@@ -1,0 +1,78 @@
+#[link(name="xcb",
+       vers="0.1")];
+
+#[crate_type="lib"];
+
+pub mod ll {
+    pub mod xproto;
+    pub mod base;
+
+    pub mod bigreq;
+    pub mod composite;
+    pub mod damage;
+    pub mod dpms;
+    pub mod dri2;
+
+    //pub mod ge; not sure about this one...
+
+    pub mod glx;
+    pub mod randr;
+    pub mod record;
+    pub mod render;
+    pub mod screensaver;
+    pub mod shape;
+    pub mod shm;
+    pub mod sync;
+    pub mod xc_misc;
+    pub mod xevie;
+    pub mod xf86dri;
+    //pub mod xf86vidmode; Same with this one...
+    pub mod xfixes;
+    pub mod xinerama;
+    pub mod xinput;
+    //pub mod xkb;
+    pub mod xprint;
+
+    #[cfg(enable_xselinux)]
+    pub mod xselinux;
+    pub mod xtest;
+    pub mod xv;
+    pub mod xvmc;
+}
+
+pub mod base;
+
+pub mod xproto;
+/*
+pub mod bigreq;
+pub mod composite;
+pub mod damage;
+pub mod dpms;
+pub mod dri2;
+
+//pub mod ge; not sure about this one...
+
+pub mod glx;
+pub mod randr;
+pub mod record;
+pub mod render;
+pub mod screensaver;
+pub mod shape;
+pub mod shm;
+pub mod sync;
+pub mod xc_misc;
+pub mod xevie;
+pub mod xf86dri;
+//pub mod xf86vidmode; Same with this one...
+pub mod xfixes;
+pub mod xinerama;
+pub mod xinput;
+//pub mod xkb;
+pub mod xprint;
+
+#[cfg(enable_xselinux)]
+pub mod xselinux;
+pub mod xtest;
+pub mod xv;
+pub mod xvmc;
+*/
