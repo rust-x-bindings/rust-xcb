@@ -265,6 +265,7 @@ def c_open(self):
 
     _hr('//Make the compiler quiet')
     _hr('#[allow(unused_imports)];')
+    _r('#[allow(unused_unsafe)];')
     _h('#[allow(non_camel_case_types)];')
 
     _hr('use core::libc::*;')
@@ -315,16 +316,14 @@ def c_close(self):
         level = level + 1
     hfile.close()
 
-    # Not generating wrappers until I figure out a decent
-    # way of doing it.
-    #rfile = open('src/%s.rs' % (_ns.header,), 'w')
-    #level = 0
-    #for list in _rlines:
-    #    for line in list:
-    #        rfile.write(line)
-    #        rfile.write('\n')
-    #    level = level + 1
-    #rfile.close()
+    rfile = open('src/%s.rs' % (_ns.header,), 'w')
+    level = 0
+    for list in _rlines:
+        for line in list:
+            rfile.write(line)
+            rfile.write('\n')
+        level = level + 1
+    rfile.close()
 
 
 def build_collision_table():
@@ -827,7 +826,6 @@ def _c_iterator(self, name):
     '''
     _h_setlevel(0)
     _r_setlevel(0)
-    _hr('')
     _h('/**')
     _h(' * @brief %s', self.c_iterator_type)
     _h(' **/')
@@ -835,9 +833,9 @@ def _c_iterator(self, name):
     _h('    data : *%s,', self.c_type)
     _h('    rem  : c_int,')
     _h('    index: c_int')
-    _h('}')
+    _h('}\n')
 
-    _r('pub type %s = %s;', self.r_iterator_type, self.c_iterator_type)
+    _r('pub type %s = %s;\n', self.r_iterator_type, self.c_iterator_type)
 
     _h_setlevel(1)
     _r_setlevel(1)
@@ -867,16 +865,17 @@ def _c_iterator(self, name):
     _h('unsafe fn %s (i:%s) -> generic_iterator;', self.c_end_name, self.c_iterator_type)
 
     _r('')
-    _r('impl<%s> Iterator<~%s> for %s {', self.r_type, self.r_type, self.r_iterator_type)
-    _r('    fn next(&mut self) -> Option<~%s> {', self.r_type)
+    _r('impl<\'self, %s> Iterator<&\'self %s> for %s {', self.r_type, self.r_type, self.r_iterator_type)
+    _r('    fn next(&mut self) -> Option<&\'self %s> {', self.r_type)
     _r('        if self.rem == 0 { return None; }')
     _r('        unsafe {')
-    _r('            let iter = cast::transmute(self);')
+    _r('            let iter : *%s = cast::transmute(self);', self.c_iterator_type)
+    _r('            let data = (*iter).data;')
     _r('            %s(iter);', self.c_next_name)
-    _r('            Some(cast::transmute((*iter).data))')
+    _r('            Some(cast::transmute(data))')
     _r('        }')
     _r('    }')
-    _r('}')
+    _r('}\n')
 
 def type_pad_type(type):
     if type == 'void':
@@ -1015,7 +1014,7 @@ def _c_accessors_list(self, field):
         _h('')
 
         if switch_obj is not None:
-            _hr('unsafe fn %s (R : %s,', field.c_iterator_name, R_obj.c_type)
+            _h('unsafe fn %s (R : %s,', field.c_iterator_name, R_obj.c_type)
             spacing = ' '*(len(field.c_iterator_name)+2)
             _h('%sS : *%s /**< */) -> %s;', spacing, S_obj.c_type, field.c_iterator_type)
         else:
@@ -1037,6 +1036,63 @@ def _c_accessors(self, name, base):
             elif field.prev_varsized_field is not None or not field.type.fixed_size():
                 _c_accessors_field(self, field)
 
+    accessor_fields = []
+    for f in self.fields:
+        if not f.visible:
+            continue
+        fty = f.type
+        accessor_fields.append(f)
+        if fty.is_list or fty.is_switch or fty.is_bitcase:
+            try:
+                accessor_fields.remove(fty.expr.lenfield)
+            except: #NB: This sohuld check for a more specific exceptio
+                pass
+
+    _r_setlevel(1)
+    _r('\npub impl %s {', self.r_type)
+    for field in accessor_fields:
+        _r_accessor(self,field)
+    _r_setlevel(1)
+    _r('}')
+
+
+def _r_accessor(self,field):
+    _r_setlevel(1)
+    if field.type.is_simple:
+        _r('  fn %s(&self) -> %s {', field.c_field_name, field.r_field_type)
+        _r('    unsafe { accessor!(%s -> %s, %s) }', field.c_field_name, field.r_field_type,
+                                            self.wrap_field_name)
+        _r('  }\n')
+    elif field.type.is_list and not field.type.fixed_size():
+        if field.type.member.is_simple:
+            fty = field.type.member.r_type
+            if fty == 'c_char':
+                rty = 'str'
+                fty = 'str'
+            else:
+                rty = '['+fty+']'
+
+            _r('  fn %s(&self) -> ~%s {', field.c_field_name, rty)
+            _r('    unsafe { accessor!(%s, %s, %s, %s) }', fty, field.c_length_name, field.c_accessor_name,
+                                            self.wrap_field_name)
+        else:
+            _r('  fn %s(&self) -> %s {', field.c_field_name, field.r_iterator_type)
+            _r('    unsafe { accessor!(%s, %s, %s) }', field.r_iterator_type, field.c_iterator_name,
+                                            self.wrap_field_name)
+        _r('  }\n')
+    elif field.type.is_list:
+        _r('  fn %s(&self) -> ~[%s,..%d] {', field.c_field_name, field.r_field_type, field.type.nmemb)
+        _r('    unsafe { ~(copy %s.%s) }',self.wrap_field_name,field.c_field_name)
+        _r('  }\n')
+
+    elif field.type.is_container:
+        _r('  fn %s(&self) -> %s {', field.c_field_name, field.r_field_type)
+        _r('    unsafe { cast::transmute(%s.%s) }', self.wrap_field_name, field.c_field_name)
+        _r('  }')
+        pass;
+    else:
+        _r('sparklemonkey %s', field.field_name)
+
 def c_simple(self, name):
     '''
     Exported function that handles cardinal type declarations.
@@ -1050,6 +1106,7 @@ def c_simple(self, name):
         my_name = _t(name)
         _h('')
         _h('pub type %s = %s;', my_name, _t(self.name))
+        _r('pub type %s = %s;\n', _rty(name), my_name)
 
         # Iterator
         _c_iterator(self, name)
@@ -1120,7 +1177,7 @@ def _c_complex(self):
                 count = oldcount
                 _h('    }')
 
-    _h('}')
+    _h('}\n')
 
 def c_struct(self, name):
     '''
@@ -1130,8 +1187,8 @@ def c_struct(self, name):
 
     _c_complex(self)
 
-    _r('pub type %s = base::Struct<%s>;', self.r_type, self.c_type)
-
+    _r('pub type %s = base::Struct<%s>;\n', self.r_type, self.c_type)
+    self.wrap_field_name = 'self.strct'
     _c_accessors(self, name, name)
     _c_iterator(self, name)
 
@@ -1305,8 +1362,6 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
         _h('%s%s : %s%s%s', func_spacing, field.c_field_name,
                 c_pointer, c_field_const_type, comma)
 
-    _rust_request(self, name, rust_func_name, rust_cookie_type, cookie_type, void, regular, aux, param_fields)
-
 def _c_reply(self, name):
     '''
     Declares the function that returns the reply structure.
@@ -1332,26 +1387,30 @@ def _c_reply(self, name):
     _h('          %s  cookie : %s,', spacing, self.c_cookie_type)
     _h('          %s  e : **generic_error) -> *%s;', spacing, self.c_reply_type)
 
+    _r('impl_reply_cookie!(%s, %s, %s, %s)\n', self.r_cookie_type, self.c_reply_type, self.r_reply_type, self.c_reply_name)
+
 def _c_opcode(name, opcode):
     '''
     Declares the opcode define for requests, events, and errors.
     '''
     _h_setlevel(0)
+    _r_setlevel(0)
     _h('')
-    _h('/** Opcode for %s. */', _n(name))
-    _h('pub static %s : c_int = %s;', _n(name).upper(), opcode)
+    _r('/** Opcode for %s. */', _n(name))
+    _r('pub static %s : u8 = %s;', _n(name).upper(), opcode)
     
 def _c_cookie(self, name):
     '''
     Declares the cookie type for a non-void request.
     '''
     _h_setlevel(0)
+    _r_setlevel(0)
     _h('')
     _h('pub struct %s {', self.c_cookie_type)
     _h('    sequence : c_uint')
     _h('}')
 
-    _r('pub type %s<\'self> = base::Cookie<\'self, %s>;', self.r_cookie_type, self.c_cookie_type)
+    _r('pub type %s = base::Cookie<%s>;\n', self.r_cookie_type, self.c_cookie_type)
 
 
 def c_request(self, name):
@@ -1376,6 +1435,7 @@ def c_request(self, name):
         _c_type_setup(self.reply, name, ('reply',))
         _r('pub type %s = base::Reply<%s>;', self.r_reply_type, self.c_reply_type)
 
+
         # Reply structure definition
         _c_complex(self.reply)
 
@@ -1386,6 +1446,8 @@ def c_request(self, name):
             _c_request_helper(self, name, self.r_cookie_type, self.c_cookie_type, False, True, True)
             _c_request_helper(self, name, self.r_cookie_type, self.c_cookie_type, False, False, True)
         # Reply accessors
+        self.reply.wrap_field_name = '(*self.reply)'
+
         _c_accessors(self.reply, name + ('reply',), name)
         _c_reply(self, name)
     else:

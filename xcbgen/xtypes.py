@@ -106,7 +106,7 @@ tcard32 = SimpleType(('u32',), 4)
 tint8 =  SimpleType(('i8',), 1)
 tint16 = SimpleType(('i16',), 2)
 tint32 = SimpleType(('i32',), 4)
-tchar =  SimpleType(('u8',), 1)
+tchar =  SimpleType(('c_char',), 1)
 tfloat = SimpleType(('f32',), 4)
 tdouble = SimpleType(('f64',), 8)
 

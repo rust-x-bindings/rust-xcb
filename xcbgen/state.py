@@ -79,7 +79,7 @@ class Module(object):
         self.add_type('INT32', '', ('i32',), tint32)
         self.add_type('BYTE', '', ('u8',), tcard8)
         self.add_type('BOOL', '', ('u8',), tcard8)
-        self.add_type('char', '', ('u8',), tchar)
+        self.add_type('char', '', ('c_char',), tchar)
         self.add_type('float', '', ('f32',), tfloat)
         self.add_type('double', '', ('f64',), tdouble)
         self.add_type('void', '', ('c_void',), tcard8)

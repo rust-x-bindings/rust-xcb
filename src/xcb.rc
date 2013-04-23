@@ -28,8 +28,11 @@ DEALINGS IN THE SOFTWARE.
 */
 
 #[link(name="xcb",
-       vers="0.1")];
+       vers="0.2",
+       uuid="ef466d26-0620-4f5f-a1d2-1bb9c628e101",
+       url= "https://github.com/Aatch/rust-xcb")];
 
+#[license = "MIT"];
 #[crate_type="lib"];
 
 pub mod ll {
@@ -70,9 +73,10 @@ pub mod ll {
 }
 
 pub mod base;
+pub mod macro;
 
-/*
 pub mod xproto;
+/*
 pub mod bigreq;
 pub mod composite;
 pub mod damage;

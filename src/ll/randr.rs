@@ -954,7 +954,7 @@ pub struct notify_event {
     u :               notify_data
 }
 #[link_args="-lxcb-randr"]
-extern "C" {
+pub extern "C" {
 
 /**
  * Get the next element of the iterator
@@ -966,7 +966,7 @@ extern "C" {
  *
  *
  */
-unsafe fn xcb_randr_mode_next (i:*mode_iterator) -> ();
+unsafe fn xcb_randr_mode_next (i:*mode_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -989,7 +989,7 @@ unsafe fn xcb_randr_mode_end (i:mode_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_randr_crtc_next (i:*crtc_iterator) -> ();
+unsafe fn xcb_randr_crtc_next (i:*crtc_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1012,7 +1012,7 @@ unsafe fn xcb_randr_crtc_end (i:crtc_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_randr_output_next (i:*output_iterator) -> ();
+unsafe fn xcb_randr_output_next (i:*output_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1035,7 +1035,7 @@ unsafe fn xcb_randr_output_end (i:output_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_randr_screen_size_next (i:*screen_size_iterator) -> ();
+unsafe fn xcb_randr_screen_size_next (i:*screen_size_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1068,7 +1068,7 @@ unsafe fn xcb_randr_refresh_rates_rates_end (R : *refresh_rates) -> generic_iter
  *
  *
  */
-unsafe fn xcb_randr_refresh_rates_next (i:*refresh_rates_iterator) -> ();
+unsafe fn xcb_randr_refresh_rates_next (i:*refresh_rates_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1349,7 +1349,7 @@ unsafe fn xcb_randr_set_screen_size (c : *connection,
  *
  *
  */
-unsafe fn xcb_randr_mode_info_next (i:*mode_info_iterator) -> ();
+unsafe fn xcb_randr_mode_info_next (i:*mode_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1809,7 +1809,7 @@ unsafe fn xcb_randr_create_mode (c : *connection,
                                  window :  xproto::window,
                                  mode_info :  mode_info,
                                  name_len :  u32,
-                                 name : *u8) -> create_mode_cookie;
+                                 name : *char) -> create_mode_cookie;
 
 /**
  *
@@ -1826,7 +1826,7 @@ unsafe fn xcb_randr_create_mode_unchecked (c : *connection,
                                            window :  xproto::window,
                                            mode_info :  mode_info,
                                            name_len :  u32,
-                                           name : *u8) -> create_mode_cookie;
+                                           name : *char) -> create_mode_cookie;
 
 /**
  * Return the reply
@@ -2291,7 +2291,7 @@ unsafe fn xcb_randr_set_crtc_transform_checked (c : *connection,
                                                 crtc :  crtc,
                                                 transform :  render::transform,
                                                 filter_len :  u16,
-                                                filter_name : *u8,
+                                                filter_name : *char,
                                                 filter_params_len :  u32,
                                                 filter_params : *render::fixed) -> void_cookie;
 
@@ -2307,7 +2307,7 @@ unsafe fn xcb_randr_set_crtc_transform (c : *connection,
                                         crtc :  crtc,
                                         transform :  render::transform,
                                         filter_len :  u16,
-                                        filter_name : *u8,
+                                        filter_name : *char,
                                         filter_params_len :  u32,
                                         filter_params : *render::fixed) -> void_cookie;
 
@@ -2338,7 +2338,7 @@ unsafe fn xcb_randr_get_crtc_transform (c : *connection,
 unsafe fn xcb_randr_get_crtc_transform_unchecked (c : *connection,
                                                   crtc :  crtc) -> get_crtc_transform_cookie;
 
-unsafe fn xcb_randr_get_crtc_transform_pending_filter_name (R : *get_crtc_transform_reply) -> *u8;
+unsafe fn xcb_randr_get_crtc_transform_pending_filter_name (R : *get_crtc_transform_reply) -> *char;
 
 
 unsafe fn xcb_randr_get_crtc_transform_pending_filter_name_length (R : *get_crtc_transform_reply) -> c_int;
@@ -2354,7 +2354,7 @@ unsafe fn xcb_randr_get_crtc_transform_pending_params_length (R : *get_crtc_tran
 
 unsafe fn xcb_randr_get_crtc_transform_pending_params_end (R : *get_crtc_transform_reply) -> generic_iterator;
 
-unsafe fn xcb_randr_get_crtc_transform_current_filter_name (R : *get_crtc_transform_reply) -> *u8;
+unsafe fn xcb_randr_get_crtc_transform_current_filter_name (R : *get_crtc_transform_reply) -> *char;
 
 
 unsafe fn xcb_randr_get_crtc_transform_current_filter_name_length (R : *get_crtc_transform_reply) -> c_int;
@@ -2580,7 +2580,7 @@ unsafe fn xcb_randr_get_output_primary_reply (c : *connection,
  *
  *
  */
-unsafe fn xcb_randr_crtc_change_next (i:*crtc_change_iterator) -> ();
+unsafe fn xcb_randr_crtc_change_next (i:*crtc_change_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2603,7 +2603,7 @@ unsafe fn xcb_randr_crtc_change_end (i:crtc_change_iterator) -> generic_iterator
  *
  *
  */
-unsafe fn xcb_randr_output_change_next (i:*output_change_iterator) -> ();
+unsafe fn xcb_randr_output_change_next (i:*output_change_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2626,7 +2626,7 @@ unsafe fn xcb_randr_output_change_end (i:output_change_iterator) -> generic_iter
  *
  *
  */
-unsafe fn xcb_randr_output_property_next (i:*output_property_iterator) -> ();
+unsafe fn xcb_randr_output_property_next (i:*output_property_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2649,7 +2649,7 @@ unsafe fn xcb_randr_output_property_end (i:output_property_iterator) -> generic_
  *
  *
  */
-unsafe fn xcb_randr_notify_data_next (i:*notify_data_iterator) -> ();
+unsafe fn xcb_randr_notify_data_next (i:*notify_data_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element

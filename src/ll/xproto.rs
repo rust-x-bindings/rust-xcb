@@ -23,8 +23,8 @@ pub struct char2b_iterator {
     index: c_int
 }
 
-pub type window = u32;
 
+pub type window = u32;
 /**
  * @brief window_iterator
  **/
@@ -34,8 +34,8 @@ pub struct window_iterator {
     index: c_int
 }
 
-pub type pixmap = u32;
 
+pub type pixmap = u32;
 /**
  * @brief pixmap_iterator
  **/
@@ -45,8 +45,8 @@ pub struct pixmap_iterator {
     index: c_int
 }
 
-pub type cursor = u32;
 
+pub type cursor = u32;
 /**
  * @brief cursor_iterator
  **/
@@ -56,8 +56,8 @@ pub struct cursor_iterator {
     index: c_int
 }
 
-pub type font = u32;
 
+pub type font = u32;
 /**
  * @brief font_iterator
  **/
@@ -67,8 +67,8 @@ pub struct font_iterator {
     index: c_int
 }
 
-pub type gcontext = u32;
 
+pub type gcontext = u32;
 /**
  * @brief gcontext_iterator
  **/
@@ -78,8 +78,8 @@ pub struct gcontext_iterator {
     index: c_int
 }
 
-pub type colormap = u32;
 
+pub type colormap = u32;
 /**
  * @brief colormap_iterator
  **/
@@ -89,8 +89,8 @@ pub struct colormap_iterator {
     index: c_int
 }
 
-pub type atom = u32;
 
+pub type atom = u32;
 /**
  * @brief atom_iterator
  **/
@@ -100,8 +100,8 @@ pub struct atom_iterator {
     index: c_int
 }
 
-pub type drawable = u32;
 
+pub type drawable = u32;
 /**
  * @brief drawable_iterator
  **/
@@ -111,8 +111,8 @@ pub struct drawable_iterator {
     index: c_int
 }
 
-pub type fontable = u32;
 
+pub type fontable = u32;
 /**
  * @brief fontable_iterator
  **/
@@ -122,8 +122,8 @@ pub struct fontable_iterator {
     index: c_int
 }
 
-pub type visualid = u32;
 
+pub type visualid = u32;
 /**
  * @brief visualid_iterator
  **/
@@ -133,8 +133,8 @@ pub struct visualid_iterator {
     index: c_int
 }
 
-pub type timestamp = u32;
 
+pub type timestamp = u32;
 /**
  * @brief timestamp_iterator
  **/
@@ -144,8 +144,8 @@ pub struct timestamp_iterator {
     index: c_int
 }
 
-pub type keysym = u32;
 
+pub type keysym = u32;
 /**
  * @brief keysym_iterator
  **/
@@ -155,8 +155,8 @@ pub struct keysym_iterator {
     index: c_int
 }
 
-pub type keycode = u8;
 
+pub type keycode = u8;
 /**
  * @brief keycode_iterator
  **/
@@ -166,8 +166,8 @@ pub struct keycode_iterator {
     index: c_int
 }
 
-pub type button = u8;
 
+pub type button = u8;
 /**
  * @brief button_iterator
  **/
@@ -176,6 +176,7 @@ pub struct button_iterator {
     rem  : c_int,
     index: c_int
 }
+
 
 pub struct point {
     x :   i16,
@@ -190,6 +191,7 @@ pub struct point_iterator {
     rem  : c_int,
     index: c_int
 }
+
 
 pub struct rectangle {
     x :        i16,
@@ -206,6 +208,7 @@ pub struct rectangle_iterator {
     rem  : c_int,
     index: c_int
 }
+
 
 pub struct arc {
     x :        i16,
@@ -225,6 +228,7 @@ pub struct arc_iterator {
     index: c_int
 }
 
+
 pub struct format {
     depth :            u8,
     bits_per_pixel :   u8,
@@ -240,6 +244,7 @@ pub struct format_iterator {
     rem  : c_int,
     index: c_int
 }
+
 
 pub type visual_class = c_uint;//{
     pub static XCB_VISUAL_CLASS_STATIC_GRAY : visual_class = 0;
@@ -270,6 +275,7 @@ pub struct visualtype_iterator {
     index: c_int
 }
 
+
 pub struct depth {
     depth :         u8,
     pad0 :          u8,
@@ -285,6 +291,7 @@ pub struct depth_iterator {
     rem  : c_int,
     index: c_int
 }
+
 
 pub type event_mask = c_uint;//{
     pub static XCB_EVENT_MASK_NO_EVENT : event_mask = 0;
@@ -349,6 +356,7 @@ pub struct screen_iterator {
     index: c_int
 }
 
+
 pub struct setup_request {
     byte_order :                        u8,
     pad0 :                              u8,
@@ -368,6 +376,7 @@ pub struct setup_request_iterator {
     index: c_int
 }
 
+
 pub struct setup_failed {
     status :                   u8,
     reason_len :               u8,
@@ -385,6 +394,7 @@ pub struct setup_failed_iterator {
     index: c_int
 }
 
+
 pub struct setup_authenticate {
     status :   u8,
     pad0 :     [u8,..5],
@@ -399,6 +409,7 @@ pub struct setup_authenticate_iterator {
     rem  : c_int,
     index: c_int
 }
+
 
 pub type image_order = c_uint;//{
     pub static XCB_IMAGE_ORDER_LSB_FIRST : image_order = 0;
@@ -437,6 +448,7 @@ pub struct setup_iterator {
     index: c_int
 }
 
+
 pub type mod_mask = c_uint;//{
     pub static XCB_MOD_MASK_SHIFT : mod_mask = 1;
     pub static XCB_MOD_MASK_LOCK : mod_mask = 2;
@@ -469,8 +481,6 @@ pub type window_enum = c_uint;//{
     pub static XCB_WINDOW_NONE : window_enum = 0;
 //}
 
-/** Opcode for xcb_key_press. */
-pub static XCB_KEY_PRESS : c_int = 2;
 
 pub struct key_press_event {
     response_type :   u8,
@@ -489,8 +499,7 @@ pub struct key_press_event {
     pad0 :            u8
 }
 
-/** Opcode for xcb_key_release. */
-pub static XCB_KEY_RELEASE : c_int = 3;
+
 
 pub type key_release_event = key_press_event;
 
@@ -503,8 +512,6 @@ pub type button_mask = c_uint;//{
     pub static XCB_BUTTON_MASK_ANY : button_mask = 32768;
 //}
 
-/** Opcode for xcb_button_press. */
-pub static XCB_BUTTON_PRESS : c_int = 4;
 
 pub struct button_press_event {
     response_type :   u8,
@@ -523,8 +530,7 @@ pub struct button_press_event {
     pad0 :            u8
 }
 
-/** Opcode for xcb_button_release. */
-pub static XCB_BUTTON_RELEASE : c_int = 5;
+
 
 pub type button_release_event = button_press_event;
 
@@ -533,8 +539,6 @@ pub type motion = c_uint;//{
     pub static XCB_MOTION_HINT : motion = 1;
 //}
 
-/** Opcode for xcb_motion_notify. */
-pub static XCB_MOTION_NOTIFY : c_int = 6;
 
 pub struct motion_notify_event {
     response_type :   u8,
@@ -552,6 +556,7 @@ pub struct motion_notify_event {
     same_screen :     u8,
     pad0 :            u8
 }
+
 
 pub type notify_detail = c_uint;//{
     pub static XCB_NOTIFY_DETAIL_ANCESTOR : notify_detail = 0;
@@ -571,8 +576,6 @@ pub type notify_mode = c_uint;//{
     pub static XCB_NOTIFY_MODE_WHILE_GRABBED : notify_mode = 3;
 //}
 
-/** Opcode for xcb_enter_notify. */
-pub static XCB_ENTER_NOTIFY : c_int = 7;
 
 pub struct enter_notify_event {
     response_type :       u8,
@@ -591,13 +594,10 @@ pub struct enter_notify_event {
     same_screen_focus :   u8
 }
 
-/** Opcode for xcb_leave_notify. */
-pub static XCB_LEAVE_NOTIFY : c_int = 8;
+
 
 pub type leave_notify_event = enter_notify_event;
 
-/** Opcode for xcb_focus_in. */
-pub static XCB_FOCUS_IN : c_int = 9;
 
 pub struct focus_in_event {
     response_type :   u8,
@@ -608,21 +608,17 @@ pub struct focus_in_event {
     pad0 :            [u8,..3]
 }
 
-/** Opcode for xcb_focus_out. */
-pub static XCB_FOCUS_OUT : c_int = 10;
+
 
 pub type focus_out_event = focus_in_event;
 
-/** Opcode for xcb_keymap_notify. */
-pub static XCB_KEYMAP_NOTIFY : c_int = 11;
 
 pub struct keymap_notify_event {
     response_type :   u8,
     keys :            [u8,..31]
 }
 
-/** Opcode for xcb_expose. */
-pub static XCB_EXPOSE : c_int = 12;
+
 
 pub struct expose_event {
     response_type :   u8,
@@ -637,8 +633,7 @@ pub struct expose_event {
     pad1 :            [u8,..2]
 }
 
-/** Opcode for xcb_graphics_exposure. */
-pub static XCB_GRAPHICS_EXPOSURE : c_int = 13;
+
 
 pub struct graphics_exposure_event {
     response_type :   u8,
@@ -655,8 +650,7 @@ pub struct graphics_exposure_event {
     pad1 :            [u8,..3]
 }
 
-/** Opcode for xcb_no_exposure. */
-pub static XCB_NO_EXPOSURE : c_int = 14;
+
 
 pub struct no_exposure_event {
     response_type :   u8,
@@ -668,14 +662,13 @@ pub struct no_exposure_event {
     pad1 :            u8
 }
 
+
 pub type visibility = c_uint;//{
     pub static XCB_VISIBILITY_UNOBSCURED : visibility = 0;
     pub static XCB_VISIBILITY_PARTIALLY_OBSCURED : visibility = 1;
     pub static XCB_VISIBILITY_FULLY_OBSCURED : visibility = 2;
 //}
 
-/** Opcode for xcb_visibility_notify. */
-pub static XCB_VISIBILITY_NOTIFY : c_int = 15;
 
 pub struct visibility_notify_event {
     response_type :   u8,
@@ -686,8 +679,7 @@ pub struct visibility_notify_event {
     pad1 :            [u8,..3]
 }
 
-/** Opcode for xcb_create_notify. */
-pub static XCB_CREATE_NOTIFY : c_int = 16;
+
 
 pub struct create_notify_event {
     response_type :       u8,
@@ -704,8 +696,7 @@ pub struct create_notify_event {
     pad1 :                u8
 }
 
-/** Opcode for xcb_destroy_notify. */
-pub static XCB_DESTROY_NOTIFY : c_int = 17;
+
 
 pub struct destroy_notify_event {
     response_type :   u8,
@@ -715,8 +706,7 @@ pub struct destroy_notify_event {
     window :          window
 }
 
-/** Opcode for xcb_unmap_notify. */
-pub static XCB_UNMAP_NOTIFY : c_int = 18;
+
 
 pub struct unmap_notify_event {
     response_type :    u8,
@@ -728,8 +718,7 @@ pub struct unmap_notify_event {
     pad1 :             [u8,..3]
 }
 
-/** Opcode for xcb_map_notify. */
-pub static XCB_MAP_NOTIFY : c_int = 19;
+
 
 pub struct map_notify_event {
     response_type :       u8,
@@ -741,8 +730,7 @@ pub struct map_notify_event {
     pad1 :                [u8,..3]
 }
 
-/** Opcode for xcb_map_request. */
-pub static XCB_MAP_REQUEST : c_int = 20;
+
 
 pub struct map_request_event {
     response_type :   u8,
@@ -752,8 +740,7 @@ pub struct map_request_event {
     window :          window
 }
 
-/** Opcode for xcb_reparent_notify. */
-pub static XCB_REPARENT_NOTIFY : c_int = 21;
+
 
 pub struct reparent_notify_event {
     response_type :       u8,
@@ -768,8 +755,7 @@ pub struct reparent_notify_event {
     pad1 :                [u8,..3]
 }
 
-/** Opcode for xcb_configure_notify. */
-pub static XCB_CONFIGURE_NOTIFY : c_int = 22;
+
 
 pub struct configure_notify_event {
     response_type :       u8,
@@ -787,8 +773,7 @@ pub struct configure_notify_event {
     pad1 :                u8
 }
 
-/** Opcode for xcb_configure_request. */
-pub static XCB_CONFIGURE_REQUEST : c_int = 23;
+
 
 pub struct configure_request_event {
     response_type :   u8,
@@ -805,8 +790,7 @@ pub struct configure_request_event {
     value_mask :      u16
 }
 
-/** Opcode for xcb_gravity_notify. */
-pub static XCB_GRAVITY_NOTIFY : c_int = 24;
+
 
 pub struct gravity_notify_event {
     response_type :   u8,
@@ -818,8 +802,7 @@ pub struct gravity_notify_event {
     y :               i16
 }
 
-/** Opcode for xcb_resize_request. */
-pub static XCB_RESIZE_REQUEST : c_int = 25;
+
 
 pub struct resize_request_event {
     response_type :   u8,
@@ -830,6 +813,7 @@ pub struct resize_request_event {
     height :          u16
 }
 
+
 pub type place = c_uint;//{
     
 /** The window is now on top of all siblings. */
@@ -839,8 +823,6 @@ pub type place = c_uint;//{
     pub static XCB_PLACE_ON_BOTTOM : place = 1;
 //}
 
-/** Opcode for xcb_circulate_notify. */
-pub static XCB_CIRCULATE_NOTIFY : c_int = 26;
 
 pub struct circulate_notify_event {
     response_type :   u8,
@@ -853,8 +835,7 @@ pub struct circulate_notify_event {
     pad2 :            [u8,..3]
 }
 
-/** Opcode for xcb_circulate_request. */
-pub static XCB_CIRCULATE_REQUEST : c_int = 27;
+
 
 pub type circulate_request_event = circulate_notify_event;
 
@@ -863,8 +844,6 @@ pub type property = c_uint;//{
     pub static XCB_PROPERTY_DELETE : property = 1;
 //}
 
-/** Opcode for xcb_property_notify. */
-pub static XCB_PROPERTY_NOTIFY : c_int = 28;
 
 pub struct property_notify_event {
     response_type :   u8,
@@ -877,8 +856,7 @@ pub struct property_notify_event {
     pad1 :            [u8,..3]
 }
 
-/** Opcode for xcb_selection_clear. */
-pub static XCB_SELECTION_CLEAR : c_int = 29;
+
 
 pub struct selection_clear_event {
     response_type :   u8,
@@ -888,6 +866,7 @@ pub struct selection_clear_event {
     owner :           window,
     selection :       atom
 }
+
 
 pub type time = c_uint;//{
     pub static XCB_TIME_CURRENT_TIME : time = 0;
@@ -966,8 +945,6 @@ pub type atom_enum = c_uint;//{
     pub static XCB_ATOM_WM_TRANSIENT_FOR : atom_enum = 68;
 //}
 
-/** Opcode for xcb_selection_request. */
-pub static XCB_SELECTION_REQUEST : c_int = 30;
 
 pub struct selection_request_event {
     response_type :   u8,
@@ -981,8 +958,7 @@ pub struct selection_request_event {
     property :        atom
 }
 
-/** Opcode for xcb_selection_notify. */
-pub static XCB_SELECTION_NOTIFY : c_int = 31;
+
 
 pub struct selection_notify_event {
     response_type :   u8,
@@ -994,6 +970,7 @@ pub struct selection_notify_event {
     target :          atom,
     property :        atom
 }
+
 
 pub type colormap_state = c_uint;//{
     
@@ -1008,8 +985,6 @@ pub type colormap_enum = c_uint;//{
     pub static XCB_COLORMAP_NONE : colormap_enum = 0;
 //}
 
-/** Opcode for xcb_colormap_notify. */
-pub static XCB_COLORMAP_NOTIFY : c_int = 32;
 
 pub struct colormap_notify_event {
     response_type :   u8,
@@ -1022,10 +997,10 @@ pub struct colormap_notify_event {
     pad1 :            [u8,..2]
 }
 
+
 pub struct client_message_data {
     data : [u8,..20]
 }
-
 /**
  * @brief client_message_data_iterator
  **/
@@ -1035,8 +1010,7 @@ pub struct client_message_data_iterator {
     index: c_int
 }
 
-/** Opcode for xcb_client_message. */
-pub static XCB_CLIENT_MESSAGE : c_int = 33;
+
 
 pub struct client_message_event {
     response_type :   u8,
@@ -1047,14 +1021,13 @@ pub struct client_message_event {
     data :            client_message_data
 }
 
+
 pub type mapping = c_uint;//{
     pub static XCB_MAPPING_MODIFIER : mapping = 0;
     pub static XCB_MAPPING_KEYBOARD : mapping = 1;
     pub static XCB_MAPPING_POINTER : mapping = 2;
 //}
 
-/** Opcode for xcb_mapping_notify. */
-pub static XCB_MAPPING_NOTIFY : c_int = 34;
 
 pub struct mapping_notify_event {
     response_type :   u8,
@@ -1066,8 +1039,7 @@ pub struct mapping_notify_event {
     pad1 :            u8
 }
 
-/** Opcode for xcb_request. */
-pub static XCB_REQUEST : c_int = 1;
+
 
 pub struct request_error {
     response_type :   u8,
@@ -1079,8 +1051,7 @@ pub struct request_error {
     pad0 :            u8
 }
 
-/** Opcode for xcb_value. */
-pub static XCB_VALUE : c_int = 2;
+
 
 pub struct value_error {
     response_type :   u8,
@@ -1092,78 +1063,49 @@ pub struct value_error {
     pad0 :            u8
 }
 
-/** Opcode for xcb_window. */
-pub static XCB_WINDOW : c_int = 3;
+
 
 pub type window_error  = value_error;
 
-/** Opcode for xcb_pixmap. */
-pub static XCB_PIXMAP : c_int = 4;
 
 pub type pixmap_error  = value_error;
 
-/** Opcode for xcb_atom. */
-pub static XCB_ATOM : c_int = 5;
 
 pub type atom_error  = value_error;
 
-/** Opcode for xcb_cursor. */
-pub static XCB_CURSOR : c_int = 6;
 
 pub type cursor_error  = value_error;
 
-/** Opcode for xcb_font. */
-pub static XCB_FONT : c_int = 7;
 
 pub type font_error  = value_error;
 
-/** Opcode for xcb_match. */
-pub static XCB_MATCH : c_int = 8;
 
 pub type match_error  = request_error;
 
-/** Opcode for xcb_drawable. */
-pub static XCB_DRAWABLE : c_int = 9;
 
 pub type drawable_error  = value_error;
 
-/** Opcode for xcb_access. */
-pub static XCB_ACCESS : c_int = 10;
 
 pub type access_error  = request_error;
 
-/** Opcode for xcb_alloc. */
-pub static XCB_ALLOC : c_int = 11;
 
 pub type alloc_error  = request_error;
 
-/** Opcode for xcb_colormap. */
-pub static XCB_COLORMAP : c_int = 12;
 
 pub type colormap_error  = value_error;
 
-/** Opcode for xcb_g_context. */
-pub static XCB_G_CONTEXT : c_int = 13;
 
 pub type g_context_error  = value_error;
 
-/** Opcode for xcb_id_choice. */
-pub static XCB_ID_CHOICE : c_int = 14;
 
 pub type id_choice_error  = value_error;
 
-/** Opcode for xcb_name. */
-pub static XCB_NAME : c_int = 15;
 
 pub type name_error  = request_error;
 
-/** Opcode for xcb_length. */
-pub static XCB_LENGTH : c_int = 16;
 
 pub type length_error  = request_error;
 
-/** Opcode for xcb_implementation. */
-pub static XCB_IMPLEMENTATION : c_int = 17;
 
 pub type implementation_error  = request_error;
 
@@ -1294,8 +1236,6 @@ pub type gravity = c_uint;//{
     pub static XCB_GRAVITY_STATIC : gravity = 10;
 //}
 
-/** Opcode for xcb_create_window. */
-pub static XCB_CREATE_WINDOW : c_int = 1;
 
 pub struct create_window_request {
     major_opcode :   u8,
@@ -1313,8 +1253,7 @@ pub struct create_window_request {
     value_mask :     u32
 }
 
-/** Opcode for xcb_change_window_attributes. */
-pub static XCB_CHANGE_WINDOW_ATTRIBUTES : c_int = 2;
+
 
 pub struct change_window_attributes_request {
     major_opcode :   u8,
@@ -1323,6 +1262,7 @@ pub struct change_window_attributes_request {
     window :         window,
     value_mask :     u32
 }
+
 
 pub type map_state = c_uint;//{
     pub static XCB_MAP_STATE_UNMAPPED : map_state = 0;
@@ -1334,8 +1274,6 @@ pub struct get_window_attributes_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_get_window_attributes. */
-pub static XCB_GET_WINDOW_ATTRIBUTES : c_int = 3;
 
 pub struct get_window_attributes_request {
     major_opcode :   u8,
@@ -1343,6 +1281,7 @@ pub struct get_window_attributes_request {
     length :         u16,
     window :         window
 }
+
 
 pub struct get_window_attributes_reply {
     response_type :           u8,
@@ -1366,8 +1305,7 @@ pub struct get_window_attributes_reply {
     pad0 :                    [u8,..2]
 }
 
-/** Opcode for xcb_destroy_window. */
-pub static XCB_DESTROY_WINDOW : c_int = 4;
+
 
 pub struct destroy_window_request {
     major_opcode :   u8,
@@ -1376,8 +1314,7 @@ pub struct destroy_window_request {
     window :         window
 }
 
-/** Opcode for xcb_destroy_subwindows. */
-pub static XCB_DESTROY_SUBWINDOWS : c_int = 5;
+
 
 pub struct destroy_subwindows_request {
     major_opcode :   u8,
@@ -1386,13 +1323,12 @@ pub struct destroy_subwindows_request {
     window :         window
 }
 
+
 pub type set_mode = c_uint;//{
     pub static XCB_SET_MODE_INSERT : set_mode = 0;
     pub static XCB_SET_MODE_DELETE : set_mode = 1;
 //}
 
-/** Opcode for xcb_change_save_set. */
-pub static XCB_CHANGE_SAVE_SET : c_int = 6;
 
 pub struct change_save_set_request {
     major_opcode :   u8,
@@ -1401,8 +1337,7 @@ pub struct change_save_set_request {
     window :         window
 }
 
-/** Opcode for xcb_reparent_window. */
-pub static XCB_REPARENT_WINDOW : c_int = 7;
+
 
 pub struct reparent_window_request {
     major_opcode :   u8,
@@ -1414,8 +1349,7 @@ pub struct reparent_window_request {
     y :              i16
 }
 
-/** Opcode for xcb_map_window. */
-pub static XCB_MAP_WINDOW : c_int = 8;
+
 
 pub struct map_window_request {
     major_opcode :   u8,
@@ -1424,8 +1358,7 @@ pub struct map_window_request {
     window :         window
 }
 
-/** Opcode for xcb_map_subwindows. */
-pub static XCB_MAP_SUBWINDOWS : c_int = 9;
+
 
 pub struct map_subwindows_request {
     major_opcode :   u8,
@@ -1434,8 +1367,7 @@ pub struct map_subwindows_request {
     window :         window
 }
 
-/** Opcode for xcb_unmap_window. */
-pub static XCB_UNMAP_WINDOW : c_int = 10;
+
 
 pub struct unmap_window_request {
     major_opcode :   u8,
@@ -1444,8 +1376,7 @@ pub struct unmap_window_request {
     window :         window
 }
 
-/** Opcode for xcb_unmap_subwindows. */
-pub static XCB_UNMAP_SUBWINDOWS : c_int = 11;
+
 
 pub struct unmap_subwindows_request {
     major_opcode :   u8,
@@ -1453,6 +1384,7 @@ pub struct unmap_subwindows_request {
     length :         u16,
     window :         window
 }
+
 
 pub type config_window = c_uint;//{
     pub static XCB_CONFIG_WINDOW_X : config_window = 1;
@@ -1472,8 +1404,6 @@ pub type stack_mode = c_uint;//{
     pub static XCB_STACK_MODE_OPPOSITE : stack_mode = 4;
 //}
 
-/** Opcode for xcb_configure_window. */
-pub static XCB_CONFIGURE_WINDOW : c_int = 12;
 
 pub struct configure_window_request {
     major_opcode :   u8,
@@ -1484,13 +1414,12 @@ pub struct configure_window_request {
     pad1 :           [u8,..2]
 }
 
+
 pub type circulate = c_uint;//{
     pub static XCB_CIRCULATE_RAISE_LOWEST : circulate = 0;
     pub static XCB_CIRCULATE_LOWER_HIGHEST : circulate = 1;
 //}
 
-/** Opcode for xcb_circulate_window. */
-pub static XCB_CIRCULATE_WINDOW : c_int = 13;
 
 pub struct circulate_window_request {
     major_opcode :   u8,
@@ -1499,12 +1428,11 @@ pub struct circulate_window_request {
     window :         window
 }
 
+
 pub struct get_geometry_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_get_geometry. */
-pub static XCB_GET_GEOMETRY : c_int = 14;
 
 pub struct get_geometry_request {
     major_opcode :   u8,
@@ -1512,6 +1440,7 @@ pub struct get_geometry_request {
     length :         u16,
     drawable :       drawable
 }
+
 
 pub struct get_geometry_reply {
     response_type :   u8,
@@ -1527,12 +1456,11 @@ pub struct get_geometry_reply {
     pad0 :            [u8,..2]
 }
 
+
 pub struct query_tree_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_query_tree. */
-pub static XCB_QUERY_TREE : c_int = 15;
 
 pub struct query_tree_request {
     major_opcode :   u8,
@@ -1540,6 +1468,7 @@ pub struct query_tree_request {
     length :         u16,
     window :         window
 }
+
 
 pub struct query_tree_reply {
     response_type :   u8,
@@ -1552,12 +1481,11 @@ pub struct query_tree_reply {
     pad1 :            [u8,..14]
 }
 
+
 pub struct intern_atom_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_intern_atom. */
-pub static XCB_INTERN_ATOM : c_int = 16;
 
 pub struct intern_atom_request {
     major_opcode :     u8,
@@ -1567,6 +1495,7 @@ pub struct intern_atom_request {
     pad0 :             [u8,..2]
 }
 
+
 pub struct intern_atom_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -1575,12 +1504,11 @@ pub struct intern_atom_reply {
     atom :            atom
 }
 
+
 pub struct get_atom_name_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_get_atom_name. */
-pub static XCB_GET_ATOM_NAME : c_int = 17;
 
 pub struct get_atom_name_request {
     major_opcode :   u8,
@@ -1588,6 +1516,7 @@ pub struct get_atom_name_request {
     length :         u16,
     atom :           atom
 }
+
 
 pub struct get_atom_name_reply {
     response_type :   u8,
@@ -1597,6 +1526,7 @@ pub struct get_atom_name_reply {
     name_len :        u16,
     pad1 :            [u8,..22]
 }
+
 
 pub type prop_mode = c_uint;//{
     
@@ -1614,8 +1544,6 @@ defined with the correct type and format with zero-length data. */
     pub static XCB_PROP_MODE_APPEND : prop_mode = 2;
 //}
 
-/** Opcode for xcb_change_property. */
-pub static XCB_CHANGE_PROPERTY : c_int = 18;
 
 pub struct change_property_request {
     major_opcode :   u8,
@@ -1629,8 +1557,7 @@ pub struct change_property_request {
     data_len :       u32
 }
 
-/** Opcode for xcb_delete_property. */
-pub static XCB_DELETE_PROPERTY : c_int = 19;
+
 
 pub struct delete_property_request {
     major_opcode :   u8,
@@ -1640,6 +1567,7 @@ pub struct delete_property_request {
     property :       atom
 }
 
+
 pub type get_property_type = c_uint;//{
     pub static XCB_GET_PROPERTY_TYPE_ANY : get_property_type = 0;
 //}
@@ -1648,8 +1576,6 @@ pub struct get_property_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_get_property. */
-pub static XCB_GET_PROPERTY : c_int = 20;
 
 pub struct get_property_request {
     major_opcode :   u8,
@@ -1662,6 +1588,7 @@ pub struct get_property_request {
     long_length :    u32
 }
 
+
 pub struct get_property_reply {
     response_type :   u8,
     format :          u8,
@@ -1673,12 +1600,11 @@ pub struct get_property_reply {
     pad0 :            [u8,..12]
 }
 
+
 pub struct list_properties_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_list_properties. */
-pub static XCB_LIST_PROPERTIES : c_int = 21;
 
 pub struct list_properties_request {
     major_opcode :   u8,
@@ -1686,6 +1612,7 @@ pub struct list_properties_request {
     length :         u16,
     window :         window
 }
+
 
 pub struct list_properties_reply {
     response_type :   u8,
@@ -1696,8 +1623,7 @@ pub struct list_properties_reply {
     pad1 :            [u8,..22]
 }
 
-/** Opcode for xcb_set_selection_owner. */
-pub static XCB_SET_SELECTION_OWNER : c_int = 22;
+
 
 pub struct set_selection_owner_request {
     major_opcode :   u8,
@@ -1708,12 +1634,11 @@ pub struct set_selection_owner_request {
     time :           timestamp
 }
 
+
 pub struct get_selection_owner_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_get_selection_owner. */
-pub static XCB_GET_SELECTION_OWNER : c_int = 23;
 
 pub struct get_selection_owner_request {
     major_opcode :   u8,
@@ -1721,6 +1646,7 @@ pub struct get_selection_owner_request {
     length :         u16,
     selection :      atom
 }
+
 
 pub struct get_selection_owner_reply {
     response_type :   u8,
@@ -1730,8 +1656,7 @@ pub struct get_selection_owner_reply {
     owner :           window
 }
 
-/** Opcode for xcb_convert_selection. */
-pub static XCB_CONVERT_SELECTION : c_int = 24;
+
 
 pub struct convert_selection_request {
     major_opcode :   u8,
@@ -1744,13 +1669,12 @@ pub struct convert_selection_request {
     time :           timestamp
 }
 
+
 pub type send_event_dest = c_uint;//{
     pub static XCB_SEND_EVENT_DEST_POINTER_WINDOW : send_event_dest = 0;
     pub static XCB_SEND_EVENT_DEST_ITEM_FOCUS : send_event_dest = 1;
 //}
 
-/** Opcode for xcb_send_event. */
-pub static XCB_SEND_EVENT : c_int = 25;
 
 pub struct send_event_request {
     major_opcode :   u8,
@@ -1758,8 +1682,9 @@ pub struct send_event_request {
     length :         u16,
     destination :    window,
     event_mask :     u32,
-    event :          [u8,..32]
+    event :          [c_char,..32]
 }
+
 
 pub type grab_mode = c_uint;//{
     
@@ -1788,8 +1713,6 @@ pub struct grab_pointer_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_grab_pointer. */
-pub static XCB_GRAB_POINTER : c_int = 26;
 
 pub struct grab_pointer_request {
     major_opcode :    u8,
@@ -1804,6 +1727,7 @@ pub struct grab_pointer_request {
     time :            timestamp
 }
 
+
 pub struct grab_pointer_reply {
     response_type :   u8,
     status :          u8,
@@ -1811,8 +1735,7 @@ pub struct grab_pointer_reply {
     length :          u32
 }
 
-/** Opcode for xcb_ungrab_pointer. */
-pub static XCB_UNGRAB_POINTER : c_int = 27;
+
 
 pub struct ungrab_pointer_request {
     major_opcode :   u8,
@@ -1820,6 +1743,7 @@ pub struct ungrab_pointer_request {
     length :         u16,
     time :           timestamp
 }
+
 
 pub type button_index = c_uint;//{
     
@@ -1842,8 +1766,6 @@ pub type button_index = c_uint;//{
     pub static XCB_BUTTON_INDEX_5 : button_index = 5;
 //}
 
-/** Opcode for xcb_grab_button. */
-pub static XCB_GRAB_BUTTON : c_int = 28;
 
 pub struct grab_button_request {
     major_opcode :    u8,
@@ -1860,8 +1782,7 @@ pub struct grab_button_request {
     modifiers :       u16
 }
 
-/** Opcode for xcb_ungrab_button. */
-pub static XCB_UNGRAB_BUTTON : c_int = 29;
+
 
 pub struct ungrab_button_request {
     major_opcode :   u8,
@@ -1872,8 +1793,7 @@ pub struct ungrab_button_request {
     pad0 :           [u8,..2]
 }
 
-/** Opcode for xcb_change_active_pointer_grab. */
-pub static XCB_CHANGE_ACTIVE_POINTER_GRAB : c_int = 30;
+
 
 pub struct change_active_pointer_grab_request {
     major_opcode :   u8,
@@ -1885,12 +1805,11 @@ pub struct change_active_pointer_grab_request {
     pad1 :           [u8,..2]
 }
 
+
 pub struct grab_keyboard_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_grab_keyboard. */
-pub static XCB_GRAB_KEYBOARD : c_int = 31;
 
 pub struct grab_keyboard_request {
     major_opcode :    u8,
@@ -1903,6 +1822,7 @@ pub struct grab_keyboard_request {
     pad0 :            [u8,..2]
 }
 
+
 pub struct grab_keyboard_reply {
     response_type :   u8,
     status :          u8,
@@ -1910,8 +1830,7 @@ pub struct grab_keyboard_reply {
     length :          u32
 }
 
-/** Opcode for xcb_ungrab_keyboard. */
-pub static XCB_UNGRAB_KEYBOARD : c_int = 32;
+
 
 pub struct ungrab_keyboard_request {
     major_opcode :   u8,
@@ -1920,12 +1839,11 @@ pub struct ungrab_keyboard_request {
     time :           timestamp
 }
 
+
 pub type grab = c_uint;//{
     pub static XCB_GRAB_ANY : grab = 0;
 //}
 
-/** Opcode for xcb_grab_key. */
-pub static XCB_GRAB_KEY : c_int = 33;
 
 pub struct grab_key_request {
     major_opcode :    u8,
@@ -1939,8 +1857,7 @@ pub struct grab_key_request {
     pad0 :            [u8,..3]
 }
 
-/** Opcode for xcb_ungrab_key. */
-pub static XCB_UNGRAB_KEY : c_int = 34;
+
 
 pub struct ungrab_key_request {
     major_opcode :   u8,
@@ -1950,6 +1867,7 @@ pub struct ungrab_key_request {
     modifiers :      u16,
     pad0 :           [u8,..2]
 }
+
 
 pub type allow = c_uint;//{
     
@@ -2027,8 +1945,6 @@ subsequent freeze for SyncBoth will only freeze each device once). */
     pub static XCB_ALLOW_SYNC_BOTH : allow = 7;
 //}
 
-/** Opcode for xcb_allow_events. */
-pub static XCB_ALLOW_EVENTS : c_int = 35;
 
 pub struct allow_events_request {
     major_opcode :   u8,
@@ -2037,8 +1953,7 @@ pub struct allow_events_request {
     time :           timestamp
 }
 
-/** Opcode for xcb_grab_server. */
-pub static XCB_GRAB_SERVER : c_int = 36;
+
 
 pub struct grab_server_request {
     major_opcode :   u8,
@@ -2046,8 +1961,7 @@ pub struct grab_server_request {
     length :         u16
 }
 
-/** Opcode for xcb_ungrab_server. */
-pub static XCB_UNGRAB_SERVER : c_int = 37;
+
 
 pub struct ungrab_server_request {
     major_opcode :   u8,
@@ -2055,12 +1969,11 @@ pub struct ungrab_server_request {
     length :         u16
 }
 
+
 pub struct query_pointer_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_query_pointer. */
-pub static XCB_QUERY_POINTER : c_int = 38;
 
 pub struct query_pointer_request {
     major_opcode :   u8,
@@ -2068,6 +1981,7 @@ pub struct query_pointer_request {
     length :         u16,
     window :         window
 }
+
 
 pub struct query_pointer_reply {
     response_type :   u8,
@@ -2084,6 +1998,7 @@ pub struct query_pointer_reply {
     pad0 :            [u8,..2]
 }
 
+
 pub struct timecoord {
     time :   timestamp,
     x :      i16,
@@ -2099,12 +2014,11 @@ pub struct timecoord_iterator {
     index: c_int
 }
 
+
 pub struct get_motion_events_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_get_motion_events. */
-pub static XCB_GET_MOTION_EVENTS : c_int = 39;
 
 pub struct get_motion_events_request {
     major_opcode :   u8,
@@ -2115,6 +2029,7 @@ pub struct get_motion_events_request {
     stop :           timestamp
 }
 
+
 pub struct get_motion_events_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -2124,12 +2039,11 @@ pub struct get_motion_events_reply {
     pad1 :            [u8,..20]
 }
 
+
 pub struct translate_coordinates_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_translate_coordinates. */
-pub static XCB_TRANSLATE_COORDINATES : c_int = 40;
 
 pub struct translate_coordinates_request {
     major_opcode :   u8,
@@ -2141,6 +2055,7 @@ pub struct translate_coordinates_request {
     src_y :          i16
 }
 
+
 pub struct translate_coordinates_reply {
     response_type :   u8,
     same_screen :     u8,
@@ -2151,8 +2066,7 @@ pub struct translate_coordinates_reply {
     dst_y :           i16
 }
 
-/** Opcode for xcb_warp_pointer. */
-pub static XCB_WARP_POINTER : c_int = 41;
+
 
 pub struct warp_pointer_request {
     major_opcode :   u8,
@@ -2167,6 +2081,7 @@ pub struct warp_pointer_request {
     dst_x :          i16,
     dst_y :          i16
 }
+
 
 pub type input_focus = c_uint;//{
     
@@ -2186,8 +2101,6 @@ revert_to value is `XCB_INPUT_FOCUS_NONE`. */
     pub static XCB_INPUT_FOCUS_FOLLOW_KEYBOARD : input_focus = 3;
 //}
 
-/** Opcode for xcb_set_input_focus. */
-pub static XCB_SET_INPUT_FOCUS : c_int = 42;
 
 pub struct set_input_focus_request {
     major_opcode :   u8,
@@ -2197,18 +2110,18 @@ pub struct set_input_focus_request {
     time :           timestamp
 }
 
+
 pub struct get_input_focus_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_get_input_focus. */
-pub static XCB_GET_INPUT_FOCUS : c_int = 43;
 
 pub struct get_input_focus_request {
     major_opcode :   u8,
     pad0 :           u8,
     length :         u16
 }
+
 
 pub struct get_input_focus_reply {
     response_type :   u8,
@@ -2218,18 +2131,18 @@ pub struct get_input_focus_reply {
     focus :           window
 }
 
+
 pub struct query_keymap_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_query_keymap. */
-pub static XCB_QUERY_KEYMAP : c_int = 44;
 
 pub struct query_keymap_request {
     major_opcode :   u8,
     pad0 :           u8,
     length :         u16
 }
+
 
 pub struct query_keymap_reply {
     response_type :   u8,
@@ -2239,8 +2152,7 @@ pub struct query_keymap_reply {
     keys :            [u8,..32]
 }
 
-/** Opcode for xcb_open_font. */
-pub static XCB_OPEN_FONT : c_int = 45;
+
 
 pub struct open_font_request {
     major_opcode :   u8,
@@ -2251,8 +2163,7 @@ pub struct open_font_request {
     pad1 :           [u8,..2]
 }
 
-/** Opcode for xcb_close_font. */
-pub static XCB_CLOSE_FONT : c_int = 46;
+
 
 pub struct close_font_request {
     major_opcode :   u8,
@@ -2260,6 +2171,7 @@ pub struct close_font_request {
     length :         u16,
     font :           font
 }
+
 
 pub type font_draw = c_uint;//{
     pub static XCB_FONT_DRAW_LEFT_TO_RIGHT : font_draw = 0;
@@ -2280,6 +2192,7 @@ pub struct fontprop_iterator {
     index: c_int
 }
 
+
 pub struct charinfo {
     left_side_bearing :    i16,
     right_side_bearing :   i16,
@@ -2298,12 +2211,11 @@ pub struct charinfo_iterator {
     index: c_int
 }
 
+
 pub struct query_font_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_query_font. */
-pub static XCB_QUERY_FONT : c_int = 47;
 
 pub struct query_font_request {
     major_opcode :   u8,
@@ -2311,6 +2223,7 @@ pub struct query_font_request {
     length :         u16,
     font :           fontable
 }
+
 
 pub struct query_font_reply {
     response_type :       u8,
@@ -2334,12 +2247,11 @@ pub struct query_font_reply {
     char_infos_len :      u32
 }
 
+
 pub struct query_text_extents_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_query_text_extents. */
-pub static XCB_QUERY_TEXT_EXTENTS : c_int = 48;
 
 pub struct query_text_extents_request {
     major_opcode :   u8,
@@ -2347,6 +2259,7 @@ pub struct query_text_extents_request {
     length :         u16,
     font :           fontable
 }
+
 
 pub struct query_text_extents_reply {
     response_type :     u8,
@@ -2362,6 +2275,7 @@ pub struct query_text_extents_reply {
     overall_right :     i32
 }
 
+
 pub struct str_ {
     name_len :   u8
 }
@@ -2375,12 +2289,11 @@ pub struct str_iterator {
     index: c_int
 }
 
+
 pub struct list_fonts_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_list_fonts. */
-pub static XCB_LIST_FONTS : c_int = 49;
 
 pub struct list_fonts_request {
     major_opcode :   u8,
@@ -2389,6 +2302,7 @@ pub struct list_fonts_request {
     max_names :      u16,
     pattern_len :    u16
 }
+
 
 pub struct list_fonts_reply {
     response_type :   u8,
@@ -2399,12 +2313,11 @@ pub struct list_fonts_reply {
     pad1 :            [u8,..22]
 }
 
+
 pub struct list_fonts_with_info_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_list_fonts_with_info. */
-pub static XCB_LIST_FONTS_WITH_INFO : c_int = 50;
 
 pub struct list_fonts_with_info_request {
     major_opcode :   u8,
@@ -2413,6 +2326,7 @@ pub struct list_fonts_with_info_request {
     max_names :      u16,
     pattern_len :    u16
 }
+
 
 pub struct list_fonts_with_info_reply {
     response_type :       u8,
@@ -2436,8 +2350,7 @@ pub struct list_fonts_with_info_reply {
     replies_hint :        u32
 }
 
-/** Opcode for xcb_set_font_path. */
-pub static XCB_SET_FONT_PATH : c_int = 51;
+
 
 pub struct set_font_path_request {
     major_opcode :   u8,
@@ -2447,18 +2360,18 @@ pub struct set_font_path_request {
     pad1 :           [u8,..2]
 }
 
+
 pub struct get_font_path_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_get_font_path. */
-pub static XCB_GET_FONT_PATH : c_int = 52;
 
 pub struct get_font_path_request {
     major_opcode :   u8,
     pad0 :           u8,
     length :         u16
 }
+
 
 pub struct get_font_path_reply {
     response_type :   u8,
@@ -2469,8 +2382,7 @@ pub struct get_font_path_reply {
     pad1 :            [u8,..22]
 }
 
-/** Opcode for xcb_create_pixmap. */
-pub static XCB_CREATE_PIXMAP : c_int = 53;
+
 
 pub struct create_pixmap_request {
     major_opcode :   u8,
@@ -2482,8 +2394,7 @@ pub struct create_pixmap_request {
     height :         u16
 }
 
-/** Opcode for xcb_free_pixmap. */
-pub static XCB_FREE_PIXMAP : c_int = 54;
+
 
 pub struct free_pixmap_request {
     major_opcode :   u8,
@@ -2491,6 +2402,7 @@ pub struct free_pixmap_request {
     length :         u16,
     pixmap :         pixmap
 }
+
 
 pub type gc = c_uint;//{
     
@@ -2701,8 +2613,6 @@ pub type arc_mode = c_uint;//{
     pub static XCB_ARC_MODE_PIE_SLICE : arc_mode = 1;
 //}
 
-/** Opcode for xcb_create_gc. */
-pub static XCB_CREATE_GC : c_int = 55;
 
 pub struct create_gc_request {
     major_opcode :   u8,
@@ -2713,8 +2623,7 @@ pub struct create_gc_request {
     value_mask :     u32
 }
 
-/** Opcode for xcb_change_gc. */
-pub static XCB_CHANGE_GC : c_int = 56;
+
 
 pub struct change_gc_request {
     major_opcode :   u8,
@@ -2724,8 +2633,7 @@ pub struct change_gc_request {
     value_mask :     u32
 }
 
-/** Opcode for xcb_copy_gc. */
-pub static XCB_COPY_GC : c_int = 57;
+
 
 pub struct copy_gc_request {
     major_opcode :   u8,
@@ -2736,8 +2644,7 @@ pub struct copy_gc_request {
     value_mask :     u32
 }
 
-/** Opcode for xcb_set_dashes. */
-pub static XCB_SET_DASHES : c_int = 58;
+
 
 pub struct set_dashes_request {
     major_opcode :   u8,
@@ -2748,6 +2655,7 @@ pub struct set_dashes_request {
     dashes_len :     u16
 }
 
+
 pub type clip_ordering = c_uint;//{
     pub static XCB_CLIP_ORDERING_UNSORTED : clip_ordering = 0;
     pub static XCB_CLIP_ORDERING_Y_SORTED : clip_ordering = 1;
@@ -2755,8 +2663,6 @@ pub type clip_ordering = c_uint;//{
     pub static XCB_CLIP_ORDERING_YX_BANDED : clip_ordering = 3;
 //}
 
-/** Opcode for xcb_set_clip_rectangles. */
-pub static XCB_SET_CLIP_RECTANGLES : c_int = 59;
 
 pub struct set_clip_rectangles_request {
     major_opcode :    u8,
@@ -2767,8 +2673,7 @@ pub struct set_clip_rectangles_request {
     clip_y_origin :   i16
 }
 
-/** Opcode for xcb_free_gc. */
-pub static XCB_FREE_GC : c_int = 60;
+
 
 pub struct free_gc_request {
     major_opcode :   u8,
@@ -2777,8 +2682,7 @@ pub struct free_gc_request {
     gc :             gcontext
 }
 
-/** Opcode for xcb_clear_area. */
-pub static XCB_CLEAR_AREA : c_int = 61;
+
 
 pub struct clear_area_request {
     major_opcode :   u8,
@@ -2791,8 +2695,7 @@ pub struct clear_area_request {
     height :         u16
 }
 
-/** Opcode for xcb_copy_area. */
-pub static XCB_COPY_AREA : c_int = 62;
+
 
 pub struct copy_area_request {
     major_opcode :   u8,
@@ -2809,8 +2712,7 @@ pub struct copy_area_request {
     height :         u16
 }
 
-/** Opcode for xcb_copy_plane. */
-pub static XCB_COPY_PLANE : c_int = 63;
+
 
 pub struct copy_plane_request {
     major_opcode :   u8,
@@ -2828,6 +2730,7 @@ pub struct copy_plane_request {
     bit_plane :      u32
 }
 
+
 pub type coord_mode = c_uint;//{
     
 /** Treats all coordinates as relative to the origin. */
@@ -2837,8 +2740,6 @@ pub type coord_mode = c_uint;//{
     pub static XCB_COORD_MODE_PREVIOUS : coord_mode = 1;
 //}
 
-/** Opcode for xcb_poly_point. */
-pub static XCB_POLY_POINT : c_int = 64;
 
 pub struct poly_point_request {
     major_opcode :      u8,
@@ -2848,8 +2749,7 @@ pub struct poly_point_request {
     gc :                gcontext
 }
 
-/** Opcode for xcb_poly_line. */
-pub static XCB_POLY_LINE : c_int = 65;
+
 
 pub struct poly_line_request {
     major_opcode :      u8,
@@ -2858,6 +2758,7 @@ pub struct poly_line_request {
     drawable :          drawable,
     gc :                gcontext
 }
+
 
 pub struct segment {
     x1 :   i16,
@@ -2875,8 +2776,7 @@ pub struct segment_iterator {
     index: c_int
 }
 
-/** Opcode for xcb_poly_segment. */
-pub static XCB_POLY_SEGMENT : c_int = 66;
+
 
 pub struct poly_segment_request {
     major_opcode :   u8,
@@ -2886,8 +2786,7 @@ pub struct poly_segment_request {
     gc :             gcontext
 }
 
-/** Opcode for xcb_poly_rectangle. */
-pub static XCB_POLY_RECTANGLE : c_int = 67;
+
 
 pub struct poly_rectangle_request {
     major_opcode :   u8,
@@ -2897,8 +2796,7 @@ pub struct poly_rectangle_request {
     gc :             gcontext
 }
 
-/** Opcode for xcb_poly_arc. */
-pub static XCB_POLY_ARC : c_int = 68;
+
 
 pub struct poly_arc_request {
     major_opcode :   u8,
@@ -2908,14 +2806,13 @@ pub struct poly_arc_request {
     gc :             gcontext
 }
 
+
 pub type poly_shape = c_uint;//{
     pub static XCB_POLY_SHAPE_COMPLEX : poly_shape = 0;
     pub static XCB_POLY_SHAPE_NONCONVEX : poly_shape = 1;
     pub static XCB_POLY_SHAPE_CONVEX : poly_shape = 2;
 //}
 
-/** Opcode for xcb_fill_poly. */
-pub static XCB_FILL_POLY : c_int = 69;
 
 pub struct fill_poly_request {
     major_opcode :      u8,
@@ -2928,8 +2825,7 @@ pub struct fill_poly_request {
     pad1 :              [u8,..2]
 }
 
-/** Opcode for xcb_poly_fill_rectangle. */
-pub static XCB_POLY_FILL_RECTANGLE : c_int = 70;
+
 
 pub struct poly_fill_rectangle_request {
     major_opcode :   u8,
@@ -2939,8 +2835,7 @@ pub struct poly_fill_rectangle_request {
     gc :             gcontext
 }
 
-/** Opcode for xcb_poly_fill_arc. */
-pub static XCB_POLY_FILL_ARC : c_int = 71;
+
 
 pub struct poly_fill_arc_request {
     major_opcode :   u8,
@@ -2950,14 +2845,13 @@ pub struct poly_fill_arc_request {
     gc :             gcontext
 }
 
+
 pub type image_format = c_uint;//{
     pub static XCB_IMAGE_FORMAT_XY_BITMAP : image_format = 0;
     pub static XCB_IMAGE_FORMAT_XY_PIXMAP : image_format = 1;
     pub static XCB_IMAGE_FORMAT_Z_PIXMAP : image_format = 2;
 //}
 
-/** Opcode for xcb_put_image. */
-pub static XCB_PUT_IMAGE : c_int = 72;
 
 pub struct put_image_request {
     major_opcode :   u8,
@@ -2974,12 +2868,11 @@ pub struct put_image_request {
     pad0 :           [u8,..2]
 }
 
+
 pub struct get_image_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_get_image. */
-pub static XCB_GET_IMAGE : c_int = 73;
 
 pub struct get_image_request {
     major_opcode :   u8,
@@ -2993,6 +2886,7 @@ pub struct get_image_request {
     plane_mask :     u32
 }
 
+
 pub struct get_image_reply {
     response_type :   u8,
     depth :           u8,
@@ -3002,8 +2896,7 @@ pub struct get_image_reply {
     pad0 :            [u8,..20]
 }
 
-/** Opcode for xcb_poly_text_8. */
-pub static XCB_POLY_TEXT_8 : c_int = 74;
+
 
 pub struct poly_text_8_request {
     major_opcode :   u8,
@@ -3015,8 +2908,7 @@ pub struct poly_text_8_request {
     y :              i16
 }
 
-/** Opcode for xcb_poly_text_16. */
-pub static XCB_POLY_TEXT_16 : c_int = 75;
+
 
 pub struct poly_text_16_request {
     major_opcode :   u8,
@@ -3028,8 +2920,7 @@ pub struct poly_text_16_request {
     y :              i16
 }
 
-/** Opcode for xcb_image_text_8. */
-pub static XCB_IMAGE_TEXT_8 : c_int = 76;
+
 
 pub struct image_text_8_request {
     major_opcode :   u8,
@@ -3041,8 +2932,7 @@ pub struct image_text_8_request {
     y :              i16
 }
 
-/** Opcode for xcb_image_text_16. */
-pub static XCB_IMAGE_TEXT_16 : c_int = 77;
+
 
 pub struct image_text_16_request {
     major_opcode :   u8,
@@ -3054,13 +2944,12 @@ pub struct image_text_16_request {
     y :              i16
 }
 
+
 pub type colormap_alloc = c_uint;//{
     pub static XCB_COLORMAP_ALLOC_NONE : colormap_alloc = 0;
     pub static XCB_COLORMAP_ALLOC_ALL : colormap_alloc = 1;
 //}
 
-/** Opcode for xcb_create_colormap. */
-pub static XCB_CREATE_COLORMAP : c_int = 78;
 
 pub struct create_colormap_request {
     major_opcode :   u8,
@@ -3071,8 +2960,7 @@ pub struct create_colormap_request {
     visual :         visualid
 }
 
-/** Opcode for xcb_free_colormap. */
-pub static XCB_FREE_COLORMAP : c_int = 79;
+
 
 pub struct free_colormap_request {
     major_opcode :   u8,
@@ -3081,8 +2969,7 @@ pub struct free_colormap_request {
     cmap :           colormap
 }
 
-/** Opcode for xcb_copy_colormap_and_free. */
-pub static XCB_COPY_COLORMAP_AND_FREE : c_int = 80;
+
 
 pub struct copy_colormap_and_free_request {
     major_opcode :   u8,
@@ -3092,8 +2979,7 @@ pub struct copy_colormap_and_free_request {
     src_cmap :       colormap
 }
 
-/** Opcode for xcb_install_colormap. */
-pub static XCB_INSTALL_COLORMAP : c_int = 81;
+
 
 pub struct install_colormap_request {
     major_opcode :   u8,
@@ -3102,8 +2988,7 @@ pub struct install_colormap_request {
     cmap :           colormap
 }
 
-/** Opcode for xcb_uninstall_colormap. */
-pub static XCB_UNINSTALL_COLORMAP : c_int = 82;
+
 
 pub struct uninstall_colormap_request {
     major_opcode :   u8,
@@ -3112,12 +2997,11 @@ pub struct uninstall_colormap_request {
     cmap :           colormap
 }
 
+
 pub struct list_installed_colormaps_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_list_installed_colormaps. */
-pub static XCB_LIST_INSTALLED_COLORMAPS : c_int = 83;
 
 pub struct list_installed_colormaps_request {
     major_opcode :   u8,
@@ -3125,6 +3009,7 @@ pub struct list_installed_colormaps_request {
     length :         u16,
     window :         window
 }
+
 
 pub struct list_installed_colormaps_reply {
     response_type :   u8,
@@ -3135,12 +3020,11 @@ pub struct list_installed_colormaps_reply {
     pad1 :            [u8,..22]
 }
 
+
 pub struct alloc_color_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_alloc_color. */
-pub static XCB_ALLOC_COLOR : c_int = 84;
 
 pub struct alloc_color_request {
     major_opcode :   u8,
@@ -3152,6 +3036,7 @@ pub struct alloc_color_request {
     blue :           u16,
     pad1 :           [u8,..2]
 }
+
 
 pub struct alloc_color_reply {
     response_type :   u8,
@@ -3165,12 +3050,11 @@ pub struct alloc_color_reply {
     pixel :           u32
 }
 
+
 pub struct alloc_named_color_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_alloc_named_color. */
-pub static XCB_ALLOC_NAMED_COLOR : c_int = 85;
 
 pub struct alloc_named_color_request {
     major_opcode :   u8,
@@ -3180,6 +3064,7 @@ pub struct alloc_named_color_request {
     name_len :       u16,
     pad1 :           [u8,..2]
 }
+
 
 pub struct alloc_named_color_reply {
     response_type :   u8,
@@ -3195,12 +3080,11 @@ pub struct alloc_named_color_reply {
     visual_blue :     u16
 }
 
+
 pub struct alloc_color_cells_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_alloc_color_cells. */
-pub static XCB_ALLOC_COLOR_CELLS : c_int = 86;
 
 pub struct alloc_color_cells_request {
     major_opcode :   u8,
@@ -3210,6 +3094,7 @@ pub struct alloc_color_cells_request {
     colors :         u16,
     planes :         u16
 }
+
 
 pub struct alloc_color_cells_reply {
     response_type :   u8,
@@ -3221,12 +3106,11 @@ pub struct alloc_color_cells_reply {
     pad1 :            [u8,..20]
 }
 
+
 pub struct alloc_color_planes_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_alloc_color_planes. */
-pub static XCB_ALLOC_COLOR_PLANES : c_int = 87;
 
 pub struct alloc_color_planes_request {
     major_opcode :   u8,
@@ -3238,6 +3122,7 @@ pub struct alloc_color_planes_request {
     greens :         u16,
     blues :          u16
 }
+
 
 pub struct alloc_color_planes_reply {
     response_type :   u8,
@@ -3252,8 +3137,7 @@ pub struct alloc_color_planes_reply {
     pad2 :            [u8,..8]
 }
 
-/** Opcode for xcb_free_colors. */
-pub static XCB_FREE_COLORS : c_int = 88;
+
 
 pub struct free_colors_request {
     major_opcode :   u8,
@@ -3262,6 +3146,7 @@ pub struct free_colors_request {
     cmap :           colormap,
     plane_mask :     u32
 }
+
 
 pub type color_flag = c_uint;//{
     pub static XCB_COLOR_FLAG_RED : color_flag = 1;
@@ -3287,8 +3172,7 @@ pub struct coloritem_iterator {
     index: c_int
 }
 
-/** Opcode for xcb_store_colors. */
-pub static XCB_STORE_COLORS : c_int = 89;
+
 
 pub struct store_colors_request {
     major_opcode :   u8,
@@ -3297,8 +3181,7 @@ pub struct store_colors_request {
     cmap :           colormap
 }
 
-/** Opcode for xcb_store_named_color. */
-pub static XCB_STORE_NAMED_COLOR : c_int = 90;
+
 
 pub struct store_named_color_request {
     major_opcode :   u8,
@@ -3309,6 +3192,7 @@ pub struct store_named_color_request {
     name_len :       u16,
     pad0 :           [u8,..2]
 }
+
 
 pub struct rgb {
     red :     u16,
@@ -3326,12 +3210,11 @@ pub struct rgb_iterator {
     index: c_int
 }
 
+
 pub struct query_colors_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_query_colors. */
-pub static XCB_QUERY_COLORS : c_int = 91;
 
 pub struct query_colors_request {
     major_opcode :   u8,
@@ -3339,6 +3222,7 @@ pub struct query_colors_request {
     length :         u16,
     cmap :           colormap
 }
+
 
 pub struct query_colors_reply {
     response_type :   u8,
@@ -3349,12 +3233,11 @@ pub struct query_colors_reply {
     pad1 :            [u8,..22]
 }
 
+
 pub struct lookup_color_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_lookup_color. */
-pub static XCB_LOOKUP_COLOR : c_int = 92;
 
 pub struct lookup_color_request {
     major_opcode :   u8,
@@ -3364,6 +3247,7 @@ pub struct lookup_color_request {
     name_len :       u16,
     pad1 :           [u8,..2]
 }
+
 
 pub struct lookup_color_reply {
     response_type :   u8,
@@ -3378,12 +3262,11 @@ pub struct lookup_color_reply {
     visual_blue :     u16
 }
 
+
 pub type pixmap_enum = c_uint;//{
     pub static XCB_PIXMAP_NONE : pixmap_enum = 0;
 //}
 
-/** Opcode for xcb_create_cursor. */
-pub static XCB_CREATE_CURSOR : c_int = 93;
 
 pub struct create_cursor_request {
     major_opcode :   u8,
@@ -3402,12 +3285,11 @@ pub struct create_cursor_request {
     y :              u16
 }
 
+
 pub type font_enum = c_uint;//{
     pub static XCB_FONT_NONE : font_enum = 0;
 //}
 
-/** Opcode for xcb_create_glyph_cursor. */
-pub static XCB_CREATE_GLYPH_CURSOR : c_int = 94;
 
 pub struct create_glyph_cursor_request {
     major_opcode :   u8,
@@ -3426,8 +3308,7 @@ pub struct create_glyph_cursor_request {
     back_blue :      u16
 }
 
-/** Opcode for xcb_free_cursor. */
-pub static XCB_FREE_CURSOR : c_int = 95;
+
 
 pub struct free_cursor_request {
     major_opcode :   u8,
@@ -3436,8 +3317,7 @@ pub struct free_cursor_request {
     cursor :         cursor
 }
 
-/** Opcode for xcb_recolor_cursor. */
-pub static XCB_RECOLOR_CURSOR : c_int = 96;
+
 
 pub struct recolor_cursor_request {
     major_opcode :   u8,
@@ -3452,6 +3332,7 @@ pub struct recolor_cursor_request {
     back_blue :      u16
 }
 
+
 pub type query_shape_of = c_uint;//{
     pub static XCB_QUERY_SHAPE_OF_LARGEST_CURSOR : query_shape_of = 0;
     pub static XCB_QUERY_SHAPE_OF_FASTEST_TILE : query_shape_of = 1;
@@ -3462,8 +3343,6 @@ pub struct query_best_size_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_query_best_size. */
-pub static XCB_QUERY_BEST_SIZE : c_int = 97;
 
 pub struct query_best_size_request {
     major_opcode :   u8,
@@ -3474,6 +3353,7 @@ pub struct query_best_size_request {
     height :         u16
 }
 
+
 pub struct query_best_size_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -3483,12 +3363,11 @@ pub struct query_best_size_reply {
     height :          u16
 }
 
+
 pub struct query_extension_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_query_extension. */
-pub static XCB_QUERY_EXTENSION : c_int = 98;
 
 pub struct query_extension_request {
     major_opcode :   u8,
@@ -3497,6 +3376,7 @@ pub struct query_extension_request {
     name_len :       u16,
     pad1 :           [u8,..2]
 }
+
 
 pub struct query_extension_reply {
     response_type :   u8,
@@ -3509,18 +3389,18 @@ pub struct query_extension_reply {
     first_error :     u8
 }
 
+
 pub struct list_extensions_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_list_extensions. */
-pub static XCB_LIST_EXTENSIONS : c_int = 99;
 
 pub struct list_extensions_request {
     major_opcode :   u8,
     pad0 :           u8,
     length :         u16
 }
+
 
 pub struct list_extensions_reply {
     response_type :   u8,
@@ -3530,8 +3410,7 @@ pub struct list_extensions_reply {
     pad0 :            [u8,..24]
 }
 
-/** Opcode for xcb_change_keyboard_mapping. */
-pub static XCB_CHANGE_KEYBOARD_MAPPING : c_int = 100;
+
 
 pub struct change_keyboard_mapping_request {
     major_opcode :          u8,
@@ -3542,12 +3421,11 @@ pub struct change_keyboard_mapping_request {
     pad0 :                  [u8,..2]
 }
 
+
 pub struct get_keyboard_mapping_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_get_keyboard_mapping. */
-pub static XCB_GET_KEYBOARD_MAPPING : c_int = 101;
 
 pub struct get_keyboard_mapping_request {
     major_opcode :    u8,
@@ -3557,6 +3435,7 @@ pub struct get_keyboard_mapping_request {
     count :           u8
 }
 
+
 pub struct get_keyboard_mapping_reply {
     response_type :         u8,
     keysyms_per_keycode :   u8,
@@ -3564,6 +3443,7 @@ pub struct get_keyboard_mapping_reply {
     length :                u32,
     pad0 :                  [u8,..24]
 }
+
 
 pub type kb = c_uint;//{
     pub static XCB_KB_KEY_CLICK_PERCENT : kb = 1;
@@ -3587,8 +3467,6 @@ pub type auto_repeat_mode = c_uint;//{
     pub static XCB_AUTO_REPEAT_MODE_DEFAULT : auto_repeat_mode = 2;
 //}
 
-/** Opcode for xcb_change_keyboard_control. */
-pub static XCB_CHANGE_KEYBOARD_CONTROL : c_int = 102;
 
 pub struct change_keyboard_control_request {
     major_opcode :   u8,
@@ -3597,18 +3475,18 @@ pub struct change_keyboard_control_request {
     value_mask :     u32
 }
 
+
 pub struct get_keyboard_control_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_get_keyboard_control. */
-pub static XCB_GET_KEYBOARD_CONTROL : c_int = 103;
 
 pub struct get_keyboard_control_request {
     major_opcode :   u8,
     pad0 :           u8,
     length :         u16
 }
+
 
 pub struct get_keyboard_control_reply {
     response_type :        u8,
@@ -3624,8 +3502,7 @@ pub struct get_keyboard_control_reply {
     auto_repeats :         [u8,..32]
 }
 
-/** Opcode for xcb_bell. */
-pub static XCB_BELL : c_int = 104;
+
 
 pub struct bell_request {
     major_opcode :   u8,
@@ -3633,8 +3510,7 @@ pub struct bell_request {
     length :         u16
 }
 
-/** Opcode for xcb_change_pointer_control. */
-pub static XCB_CHANGE_POINTER_CONTROL : c_int = 105;
+
 
 pub struct change_pointer_control_request {
     major_opcode :               u8,
@@ -3647,18 +3523,18 @@ pub struct change_pointer_control_request {
     do_threshold :               u8
 }
 
+
 pub struct get_pointer_control_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_get_pointer_control. */
-pub static XCB_GET_POINTER_CONTROL : c_int = 106;
 
 pub struct get_pointer_control_request {
     major_opcode :   u8,
     pad0 :           u8,
     length :         u16
 }
+
 
 pub struct get_pointer_control_reply {
     response_type :              u8,
@@ -3670,6 +3546,7 @@ pub struct get_pointer_control_reply {
     threshold :                  u16,
     pad1 :                       [u8,..18]
 }
+
 
 pub type blanking = c_uint;//{
     pub static XCB_BLANKING_NOT_PREFERRED : blanking = 0;
@@ -3683,8 +3560,6 @@ pub type exposures = c_uint;//{
     pub static XCB_EXPOSURES_DEFAULT : exposures = 2;
 //}
 
-/** Opcode for xcb_set_screen_saver. */
-pub static XCB_SET_SCREEN_SAVER : c_int = 107;
 
 pub struct set_screen_saver_request {
     major_opcode :      u8,
@@ -3696,18 +3571,18 @@ pub struct set_screen_saver_request {
     allow_exposures :   u8
 }
 
+
 pub struct get_screen_saver_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_get_screen_saver. */
-pub static XCB_GET_SCREEN_SAVER : c_int = 108;
 
 pub struct get_screen_saver_request {
     major_opcode :   u8,
     pad0 :           u8,
     length :         u16
 }
+
 
 pub struct get_screen_saver_reply {
     response_type :     u8,
@@ -3720,6 +3595,7 @@ pub struct get_screen_saver_reply {
     allow_exposures :   u8,
     pad1 :              [u8,..18]
 }
+
 
 pub type host_mode = c_uint;//{
     pub static XCB_HOST_MODE_INSERT : host_mode = 0;
@@ -3734,8 +3610,6 @@ pub type family = c_uint;//{
     pub static XCB_FAMILY_INTERNET_6 : family = 6;
 //}
 
-/** Opcode for xcb_change_hosts. */
-pub static XCB_CHANGE_HOSTS : c_int = 109;
 
 pub struct change_hosts_request {
     major_opcode :   u8,
@@ -3745,6 +3619,7 @@ pub struct change_hosts_request {
     pad0 :           u8,
     address_len :    u16
 }
+
 
 pub struct host {
     family :        u8,
@@ -3761,18 +3636,18 @@ pub struct host_iterator {
     index: c_int
 }
 
+
 pub struct list_hosts_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_list_hosts. */
-pub static XCB_LIST_HOSTS : c_int = 110;
 
 pub struct list_hosts_request {
     major_opcode :   u8,
     pad0 :           u8,
     length :         u16
 }
+
 
 pub struct list_hosts_reply {
     response_type :   u8,
@@ -3783,13 +3658,12 @@ pub struct list_hosts_reply {
     pad0 :            [u8,..22]
 }
 
+
 pub type access_control = c_uint;//{
     pub static XCB_ACCESS_CONTROL_DISABLE : access_control = 0;
     pub static XCB_ACCESS_CONTROL_ENABLE : access_control = 1;
 //}
 
-/** Opcode for xcb_set_access_control. */
-pub static XCB_SET_ACCESS_CONTROL : c_int = 111;
 
 pub struct set_access_control_request {
     major_opcode :   u8,
@@ -3797,14 +3671,13 @@ pub struct set_access_control_request {
     length :         u16
 }
 
+
 pub type close_down = c_uint;//{
     pub static XCB_CLOSE_DOWN_DESTROY_ALL : close_down = 0;
     pub static XCB_CLOSE_DOWN_RETAIN_PERMANENT : close_down = 1;
     pub static XCB_CLOSE_DOWN_RETAIN_TEMPORARY : close_down = 2;
 //}
 
-/** Opcode for xcb_set_close_down_mode. */
-pub static XCB_SET_CLOSE_DOWN_MODE : c_int = 112;
 
 pub struct set_close_down_mode_request {
     major_opcode :   u8,
@@ -3812,12 +3685,11 @@ pub struct set_close_down_mode_request {
     length :         u16
 }
 
+
 pub type kill = c_uint;//{
     pub static XCB_KILL_ALL_TEMPORARY : kill = 0;
 //}
 
-/** Opcode for xcb_kill_client. */
-pub static XCB_KILL_CLIENT : c_int = 113;
 
 pub struct kill_client_request {
     major_opcode :   u8,
@@ -3826,8 +3698,7 @@ pub struct kill_client_request {
     resource :       u32
 }
 
-/** Opcode for xcb_rotate_properties. */
-pub static XCB_ROTATE_PROPERTIES : c_int = 114;
+
 
 pub struct rotate_properties_request {
     major_opcode :   u8,
@@ -3838,19 +3709,19 @@ pub struct rotate_properties_request {
     delta :          i16
 }
 
+
 pub type screen_saver = c_uint;//{
     pub static XCB_SCREEN_SAVER_RESET : screen_saver = 0;
     pub static XCB_SCREEN_SAVER_ACTIVE : screen_saver = 1;
 //}
 
-/** Opcode for xcb_force_screen_saver. */
-pub static XCB_FORCE_SCREEN_SAVER : c_int = 115;
 
 pub struct force_screen_saver_request {
     major_opcode :   u8,
     mode :           u8,
     length :         u16
 }
+
 
 pub type mapping_status = c_uint;//{
     pub static XCB_MAPPING_STATUS_SUCCESS : mapping_status = 0;
@@ -3862,14 +3733,13 @@ pub struct set_pointer_mapping_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_set_pointer_mapping. */
-pub static XCB_SET_POINTER_MAPPING : c_int = 116;
 
 pub struct set_pointer_mapping_request {
     major_opcode :   u8,
     map_len :        u8,
     length :         u16
 }
+
 
 pub struct set_pointer_mapping_reply {
     response_type :   u8,
@@ -3878,18 +3748,18 @@ pub struct set_pointer_mapping_reply {
     length :          u32
 }
 
+
 pub struct get_pointer_mapping_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_get_pointer_mapping. */
-pub static XCB_GET_POINTER_MAPPING : c_int = 117;
 
 pub struct get_pointer_mapping_request {
     major_opcode :   u8,
     pad0 :           u8,
     length :         u16
 }
+
 
 pub struct get_pointer_mapping_reply {
     response_type :   u8,
@@ -3898,6 +3768,7 @@ pub struct get_pointer_mapping_reply {
     length :          u32,
     pad0 :            [u8,..24]
 }
+
 
 pub type map_index = c_uint;//{
     pub static XCB_MAP_INDEX_SHIFT : map_index = 0;
@@ -3914,14 +3785,13 @@ pub struct set_modifier_mapping_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_set_modifier_mapping. */
-pub static XCB_SET_MODIFIER_MAPPING : c_int = 118;
 
 pub struct set_modifier_mapping_request {
     major_opcode :            u8,
     keycodes_per_modifier :   u8,
     length :                  u16
 }
+
 
 pub struct set_modifier_mapping_reply {
     response_type :   u8,
@@ -3930,18 +3800,18 @@ pub struct set_modifier_mapping_reply {
     length :          u32
 }
 
+
 pub struct get_modifier_mapping_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_get_modifier_mapping. */
-pub static XCB_GET_MODIFIER_MAPPING : c_int = 119;
 
 pub struct get_modifier_mapping_request {
     major_opcode :   u8,
     pad0 :           u8,
     length :         u16
 }
+
 
 pub struct get_modifier_mapping_reply {
     response_type :           u8,
@@ -3951,14 +3821,14 @@ pub struct get_modifier_mapping_reply {
     pad0 :                    [u8,..24]
 }
 
-/** Opcode for xcb_no_operation. */
-pub static XCB_NO_OPERATION : c_int = 127;
+
 
 pub struct no_operation_request {
     major_opcode :   u8,
     pad0 :           u8,
     length :         u16
 }
+
 pub extern "C" {
 
 /**
@@ -4485,7 +4355,7 @@ unsafe fn xcb_screen_end (i:screen_iterator) -> generic_iterator;
 
 unsafe fn xcb_setup_request_sizeof (_buffer :  *c_void) -> c_int;
 
-unsafe fn xcb_setup_request_authorization_protocol_name (R : *setup_request) -> *u8;
+unsafe fn xcb_setup_request_authorization_protocol_name (R : *setup_request) -> *c_char;
 
 
 unsafe fn xcb_setup_request_authorization_protocol_name_length (R : *setup_request) -> c_int;
@@ -4493,7 +4363,7 @@ unsafe fn xcb_setup_request_authorization_protocol_name_length (R : *setup_reque
 
 unsafe fn xcb_setup_request_authorization_protocol_name_end (R : *setup_request) -> generic_iterator;
 
-unsafe fn xcb_setup_request_authorization_protocol_data (R : *setup_request) -> *u8;
+unsafe fn xcb_setup_request_authorization_protocol_data (R : *setup_request) -> *c_char;
 
 
 unsafe fn xcb_setup_request_authorization_protocol_data_length (R : *setup_request) -> c_int;
@@ -4526,7 +4396,7 @@ unsafe fn xcb_setup_request_end (i:setup_request_iterator) -> generic_iterator;
 
 unsafe fn xcb_setup_failed_sizeof (_buffer :  *c_void) -> c_int;
 
-unsafe fn xcb_setup_failed_reason (R : *setup_failed) -> *u8;
+unsafe fn xcb_setup_failed_reason (R : *setup_failed) -> *c_char;
 
 
 unsafe fn xcb_setup_failed_reason_length (R : *setup_failed) -> c_int;
@@ -4559,7 +4429,7 @@ unsafe fn xcb_setup_failed_end (i:setup_failed_iterator) -> generic_iterator;
 
 unsafe fn xcb_setup_authenticate_sizeof (_buffer :  *c_void) -> c_int;
 
-unsafe fn xcb_setup_authenticate_reason (R : *setup_authenticate) -> *u8;
+unsafe fn xcb_setup_authenticate_reason (R : *setup_authenticate) -> *c_char;
 
 
 unsafe fn xcb_setup_authenticate_reason_length (R : *setup_authenticate) -> c_int;
@@ -4592,7 +4462,7 @@ unsafe fn xcb_setup_authenticate_end (i:setup_authenticate_iterator) -> generic_
 
 unsafe fn xcb_setup_sizeof (_buffer :  *c_void) -> c_int;
 
-unsafe fn xcb_setup_vendor (R : *setup) -> *u8;
+unsafe fn xcb_setup_vendor (R : *setup) -> *c_char;
 
 
 unsafe fn xcb_setup_vendor_length (R : *setup) -> c_int;
@@ -5386,7 +5256,7 @@ unsafe fn xcb_intern_atom_sizeof (_buffer :  *c_void) -> c_int;
 unsafe fn xcb_intern_atom (c : *connection,
                            only_if_exists :  u8,
                            name_len :  u16,
-                           name : *u8) -> intern_atom_cookie;
+                           name : *c_char) -> intern_atom_cookie;
 
 /**
  * Get atom identifier by name
@@ -5412,7 +5282,7 @@ unsafe fn xcb_intern_atom (c : *connection,
 unsafe fn xcb_intern_atom_unchecked (c : *connection,
                                      only_if_exists :  u8,
                                      name_len :  u16,
-                                     name : *u8) -> intern_atom_cookie;
+                                     name : *c_char) -> intern_atom_cookie;
 
 /**
  * Return the reply
@@ -5459,7 +5329,7 @@ unsafe fn xcb_get_atom_name (c : *connection,
 unsafe fn xcb_get_atom_name_unchecked (c : *connection,
                                        atom :  atom) -> get_atom_name_cookie;
 
-unsafe fn xcb_get_atom_name_name (R : *get_atom_name_reply) -> *u8;
+unsafe fn xcb_get_atom_name_name (R : *get_atom_name_reply) -> *c_char;
 
 
 unsafe fn xcb_get_atom_name_name_length (R : *get_atom_name_reply) -> c_int;
@@ -5919,7 +5789,7 @@ unsafe fn xcb_send_event_checked (c : *connection,
                                   propagate :  u8,
                                   destination :  window,
                                   event_mask :  u32,
-                                  event : *u8) -> void_cookie;
+                                  event : *c_char) -> void_cookie;
 
 /**
  * send an event
@@ -5959,7 +5829,7 @@ unsafe fn xcb_send_event (c : *connection,
                           propagate :  u8,
                           destination :  window,
                           event_mask :  u32,
-                          event : *u8) -> void_cookie;
+                          event : *c_char) -> void_cookie;
 
 /**
  * Grab the pointer
@@ -7143,7 +7013,7 @@ unsafe fn xcb_open_font_sizeof (_buffer :  *c_void) -> c_int;
 unsafe fn xcb_open_font_checked (c : *connection,
                                  fid :  font,
                                  name_len :  u16,
-                                 name : *u8) -> void_cookie;
+                                 name : *c_char) -> void_cookie;
 
 /**
  * opens a font
@@ -7163,7 +7033,7 @@ unsafe fn xcb_open_font_checked (c : *connection,
 unsafe fn xcb_open_font (c : *connection,
                          fid :  font,
                          name_len :  u16,
-                         name : *u8) -> void_cookie;
+                         name : *c_char) -> void_cookie;
 
 /**
  *
@@ -7399,7 +7269,7 @@ unsafe fn xcb_query_text_extents_reply (c : *connection,
 
 unsafe fn xcb_str_sizeof (_buffer :  *c_void) -> c_int;
 
-unsafe fn xcb_str_name (R : *str_) -> *u8;
+unsafe fn xcb_str_name (R : *str_) -> *c_char;
 
 
 unsafe fn xcb_str_name_length (R : *str_) -> c_int;
@@ -7451,7 +7321,7 @@ unsafe fn xcb_list_fonts_sizeof (_buffer :  *c_void) -> c_int;
 unsafe fn xcb_list_fonts (c : *connection,
                           max_names :  u16,
                           pattern_len :  u16,
-                          pattern : *u8) -> list_fonts_cookie;
+                          pattern : *c_char) -> list_fonts_cookie;
 
 /**
  * get matching font names
@@ -7475,7 +7345,7 @@ unsafe fn xcb_list_fonts (c : *connection,
 unsafe fn xcb_list_fonts_unchecked (c : *connection,
                                     max_names :  u16,
                                     pattern_len :  u16,
-                                    pattern : *u8) -> list_fonts_cookie;
+                                    pattern : *c_char) -> list_fonts_cookie;
 
 
 unsafe fn xcb_list_fonts_names_length (R : *list_fonts_reply) -> c_int;
@@ -7521,7 +7391,7 @@ unsafe fn xcb_list_fonts_with_info_sizeof (_buffer :  *c_void) -> c_int;
 unsafe fn xcb_list_fonts_with_info (c : *connection,
                                     max_names :  u16,
                                     pattern_len :  u16,
-                                    pattern : *u8) -> list_fonts_with_info_cookie;
+                                    pattern : *c_char) -> list_fonts_with_info_cookie;
 
 /**
  * get matching font names and information
@@ -7545,7 +7415,7 @@ unsafe fn xcb_list_fonts_with_info (c : *connection,
 unsafe fn xcb_list_fonts_with_info_unchecked (c : *connection,
                                               max_names :  u16,
                                               pattern_len :  u16,
-                                              pattern : *u8) -> list_fonts_with_info_cookie;
+                                              pattern : *c_char) -> list_fonts_with_info_cookie;
 
 unsafe fn xcb_list_fonts_with_info_properties (R : *list_fonts_with_info_reply) -> *fontprop;
 
@@ -7554,7 +7424,7 @@ unsafe fn xcb_list_fonts_with_info_properties_length (R : *list_fonts_with_info_
 
 unsafe fn xcb_list_fonts_with_info_properties_iterator (R : *list_fonts_with_info_reply) -> fontprop_iterator;
 
-unsafe fn xcb_list_fonts_with_info_name (R : *list_fonts_with_info_reply) -> *u8;
+unsafe fn xcb_list_fonts_with_info_name (R : *list_fonts_with_info_reply) -> *c_char;
 
 
 unsafe fn xcb_list_fonts_with_info_name_length (R : *list_fonts_with_info_reply) -> c_int;
@@ -8707,7 +8577,7 @@ unsafe fn xcb_image_text_8_checked (c : *connection,
                                     gc :  gcontext,
                                     x :  i16,
                                     y :  i16,
-                                    string : *u8) -> void_cookie;
+                                    string : *c_char) -> void_cookie;
 
 /**
  * Draws text
@@ -8742,7 +8612,7 @@ unsafe fn xcb_image_text_8 (c : *connection,
                             gc :  gcontext,
                             x :  i16,
                             y :  i16,
-                            string : *u8) -> void_cookie;
+                            string : *c_char) -> void_cookie;
 
 unsafe fn xcb_image_text_16_sizeof (_buffer :  *c_void) -> c_int;
 
@@ -9087,7 +8957,7 @@ unsafe fn xcb_alloc_named_color_sizeof (_buffer :  *c_void) -> c_int;
 unsafe fn xcb_alloc_named_color (c : *connection,
                                  cmap :  colormap,
                                  name_len :  u16,
-                                 name : *u8) -> alloc_named_color_cookie;
+                                 name : *c_char) -> alloc_named_color_cookie;
 
 /**
  *
@@ -9103,7 +8973,7 @@ unsafe fn xcb_alloc_named_color (c : *connection,
 unsafe fn xcb_alloc_named_color_unchecked (c : *connection,
                                            cmap :  colormap,
                                            name_len :  u16,
-                                           name : *u8) -> alloc_named_color_cookie;
+                                           name : *c_char) -> alloc_named_color_cookie;
 
 /**
  * Return the reply
@@ -9360,7 +9230,7 @@ unsafe fn xcb_store_named_color_checked (c : *connection,
                                          cmap :  colormap,
                                          pixel :  u32,
                                          name_len :  u16,
-                                         name : *u8) -> void_cookie;
+                                         name : *c_char) -> void_cookie;
 
 /**
  *
@@ -9375,7 +9245,7 @@ unsafe fn xcb_store_named_color (c : *connection,
                                  cmap :  colormap,
                                  pixel :  u32,
                                  name_len :  u16,
-                                 name : *u8) -> void_cookie;
+                                 name : *c_char) -> void_cookie;
 
 /**
  * Get the next element of the iterator
@@ -9470,7 +9340,7 @@ unsafe fn xcb_lookup_color_sizeof (_buffer :  *c_void) -> c_int;
 unsafe fn xcb_lookup_color (c : *connection,
                             cmap :  colormap,
                             name_len :  u16,
-                            name : *u8) -> lookup_color_cookie;
+                            name : *c_char) -> lookup_color_cookie;
 
 /**
  *
@@ -9486,7 +9356,7 @@ unsafe fn xcb_lookup_color (c : *connection,
 unsafe fn xcb_lookup_color_unchecked (c : *connection,
                                       cmap :  colormap,
                                       name_len :  u16,
-                                      name : *u8) -> lookup_color_cookie;
+                                      name : *c_char) -> lookup_color_cookie;
 
 /**
  * Return the reply
@@ -9781,7 +9651,7 @@ unsafe fn xcb_query_extension_sizeof (_buffer :  *c_void) -> c_int;
  */
 unsafe fn xcb_query_extension (c : *connection,
                                name_len :  u16,
-                               name : *u8) -> query_extension_cookie;
+                               name : *c_char) -> query_extension_cookie;
 
 /**
  * check if extension is present
@@ -9808,7 +9678,7 @@ unsafe fn xcb_query_extension (c : *connection,
  */
 unsafe fn xcb_query_extension_unchecked (c : *connection,
                                          name_len :  u16,
-                                         name : *u8) -> query_extension_cookie;
+                                         name : *c_char) -> query_extension_cookie;
 
 /**
  * Return the reply

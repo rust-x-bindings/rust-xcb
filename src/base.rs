@@ -32,7 +32,6 @@ use ll::base::*;
 use core::cast;
 use core::libc::{c_int,free};
 use core::Option;
-use core::Clone;
 
 use xproto;
 
@@ -40,7 +39,7 @@ pub struct Connection {
     priv c : *connection
 }
 
-impl<'self> Connection {
+pub impl<'self> Connection {
     #[inline]
     fn flush(&self) -> bool {
         unsafe {
@@ -118,15 +117,20 @@ impl<'self> Connection {
     }
 
     #[inline]
-    fn connect() -> Option<(Connection, int)> {
+    unsafe fn get_raw_conn(&self) -> *connection {
+        self.c
+    }
+
+    #[inline]
+    fn connect() -> (Connection, int) {
         let screen : c_int = 0;
         unsafe {
             let conn = xcb_connect(ptr::null(), ptr::addr_of(&screen));
             if ptr::is_null(conn) {
-                None
+                fail!(~"Couldn't connect")
             } else {
                 xcb_prefetch_maximum_request_length(conn);
-                Some((Connection {c:conn}, screen as int))
+                (Connection {c:conn}, screen as int)
             }
         }
     }
@@ -175,14 +179,8 @@ impl Drop for Connection {
     }
 }
 
-impl Clone for Connection {
-    fn clone(&self) -> Connection {
-        Connection {c:self.c}
-    }
-}
-
 pub struct Event<T> {
-    priv event:*T
+    event:*T
 }
 
 #[unsafe_destructor]
@@ -196,7 +194,11 @@ impl<T> Drop for Event<T> {
 }
 
 pub struct Error<T> {
-    priv error:*T
+    error:*T
+}
+
+pub fn mk_error<T>(err:*T) -> Error<T> {
+    Error {error:err}
 }
 
 #[unsafe_destructor]
@@ -213,21 +215,20 @@ pub type AuthInfo = auth_info;
 //TODO: Implement wrapper functions for constructing auth_info
 
 pub struct Struct<T> {
-    priv struct_: T
+    strct: T
 }
 
-
-pub struct Cookie<'self, T> {
-    priv cookie: T,
-    priv conn: &'self Connection,
-    priv checked: bool
+pub struct Cookie<T> {
+    cookie: T,
+    conn: @Connection,
+    checked: bool
 }
 
-trait GetReply<'self, C, R> {
-    fn get_reply(&self) -> Reply<R>;
+pub trait ReplyCookie<'self, R> {
+    fn get_reply(&self) -> Result<Reply<R>, GenericError>;
 }
 
-impl<'self, T> Cookie<'self, T> {
+pub impl<T> Cookie<T> {
     fn request_check(&self) -> Option<GenericError> {
         unsafe {
             // Crazy pointer dance to get the right bit
@@ -244,7 +245,11 @@ impl<'self, T> Cookie<'self, T> {
 }
 
 pub struct Reply<T> {
-    priv reply:*T
+    reply:*T
+}
+
+pub fn mk_reply<T>(reply:*T) -> Reply<T> {
+    Reply {reply:reply}
 }
 
 #[unsafe_destructor]
@@ -260,4 +265,4 @@ impl<T> Drop for Reply<T> {
 pub type GenericReply = Reply<generic_reply>;
 pub type GenericEvent = Event<generic_event>;
 pub type GenericError = Error<generic_error>;
-pub type VoidCookie<'self> = Cookie<'self, void_cookie>;
+pub type VoidCookie = Cookie<void_cookie>;
