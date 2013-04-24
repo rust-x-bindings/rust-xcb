@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
+use core;
 use core::libc::*;
 use ll::base::*;
+use ll;
 
 pub static XCMISC_MAJOR_VERSION : c_uint = 1;
 pub static XCMISC_MINOR_VERSION : c_uint = 1;
@@ -16,8 +18,6 @@ pub struct get_version_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xc_misc_get_version. */
-pub static XCB_XC_MISC_GET_VERSION : c_int = 0;
 
 pub struct get_version_request {
     major_opcode :           u8,
@@ -26,6 +26,7 @@ pub struct get_version_request {
     client_major_version :   u16,
     client_minor_version :   u16
 }
+
 
 pub struct get_version_reply {
     response_type :          u8,
@@ -36,18 +37,18 @@ pub struct get_version_reply {
     server_minor_version :   u16
 }
 
+
 pub struct get_xid_range_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xc_misc_get_xid_range. */
-pub static XCB_XC_MISC_GET_XID_RANGE : c_int = 1;
 
 pub struct get_xid_range_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16
 }
+
 
 pub struct get_xid_range_reply {
     response_type :   u8,
@@ -58,12 +59,11 @@ pub struct get_xid_range_reply {
     count :           u32
 }
 
+
 pub struct get_xid_list_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xc_misc_get_xid_list. */
-pub static XCB_XC_MISC_GET_XID_LIST : c_int = 2;
 
 pub struct get_xid_list_request {
     major_opcode :   u8,
@@ -71,6 +71,7 @@ pub struct get_xid_list_request {
     length :         u16,
     count :          u32
 }
+
 
 pub struct get_xid_list_reply {
     response_type :   u8,
@@ -80,7 +81,8 @@ pub struct get_xid_list_reply {
     ids_len :         u32,
     pad1 :            [u8,..20]
 }
-extern "C" {
+
+pub extern "C" {
 
 /**
  *

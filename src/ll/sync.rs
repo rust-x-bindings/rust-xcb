@@ -6,15 +6,16 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
+use core;
 use core::libc::*;
 use ll::base::*;
+use ll;
 use ll::xproto;
 
 pub static SYNC_MAJOR_VERSION : c_uint = 3;
 pub static SYNC_MINOR_VERSION : c_uint = 1;
 
 pub type alarm = u32;
-
 /**
  * @brief alarm_iterator
  **/
@@ -24,14 +25,8 @@ pub struct alarm_iterator {
     index: c_int
 }
 
-pub type alarmstate = c_uint;//{
-    pub static XCB_SYNC_ALARMSTATE_ACTIVE : alarmstate = 1;
-    pub static XCB_SYNC_ALARMSTATE_INACTIVE : alarmstate = 2;
-    pub static XCB_SYNC_ALARMSTATE_DESTROYED : alarmstate = 3;
-//}
 
 pub type counter = u32;
-
 /**
  * @brief counter_iterator
  **/
@@ -41,8 +36,8 @@ pub struct counter_iterator {
     index: c_int
 }
 
-pub type fence = u32;
 
+pub type fence = u32;
 /**
  * @brief fence_iterator
  **/
@@ -52,26 +47,6 @@ pub struct fence_iterator {
     index: c_int
 }
 
-pub type testtype = c_uint;//{
-    pub static XCB_SYNC_TESTTYPE_POSITIVE_TRANSITION : testtype = 1;
-    pub static XCB_SYNC_TESTTYPE_NEGATIVE_TRANSITION : testtype = 2;
-    pub static XCB_SYNC_TESTTYPE_POSITIVE_COMPARISON : testtype = 3;
-    pub static XCB_SYNC_TESTTYPE_NEGATIVE_COMPARISON : testtype = 4;
-//}
-
-pub type valuetype = c_uint;//{
-    pub static XCB_SYNC_VALUETYPE_ABSOLUTE : valuetype = 1;
-    pub static XCB_SYNC_VALUETYPE_RELATIVE : valuetype = 2;
-//}
-
-pub type ca = c_uint;//{
-    pub static XCB_SYNC_CA_COUNTER : ca = 1;
-    pub static XCB_SYNC_CA_VALUE_TYPE : ca = 2;
-    pub static XCB_SYNC_CA_VALUE : ca = 4;
-    pub static XCB_SYNC_CA_TEST_TYPE : ca = 8;
-    pub static XCB_SYNC_CA_DELTA : ca = 16;
-    pub static XCB_SYNC_CA_EVENTS : ca = 32;
-//}
 
 pub struct int64 {
     hi :   i32,
@@ -87,6 +62,7 @@ pub struct int64_iterator {
     index: c_int
 }
 
+
 pub struct systemcounter {
     counter :      counter,
     resolution :   int64,
@@ -101,6 +77,7 @@ pub struct systemcounter_iterator {
     rem  : c_int,
     index: c_int
 }
+
 
 pub struct trigger {
     counter :      counter,
@@ -118,6 +95,7 @@ pub struct trigger_iterator {
     index: c_int
 }
 
+
 pub struct waitcondition {
     trigger :           trigger,
     event_threshold :   int64
@@ -132,8 +110,7 @@ pub struct waitcondition_iterator {
     index: c_int
 }
 
-/** Opcode for xcb_sync_counter. */
-pub static XCB_SYNC_COUNTER : c_int = 0;
+
 
 pub struct counter_error {
     response_type :   u8,
@@ -144,8 +121,7 @@ pub struct counter_error {
     major_opcode :    u8
 }
 
-/** Opcode for xcb_sync_alarm. */
-pub static XCB_SYNC_ALARM : c_int = 1;
+
 
 pub struct alarm_error {
     response_type :   u8,
@@ -156,12 +132,11 @@ pub struct alarm_error {
     major_opcode :    u8
 }
 
+
 pub struct initialize_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_sync_initialize. */
-pub static XCB_SYNC_INITIALIZE : c_int = 0;
 
 pub struct initialize_request {
     major_opcode :            u8,
@@ -170,6 +145,7 @@ pub struct initialize_request {
     desired_major_version :   u8,
     desired_minor_version :   u8
 }
+
 
 pub struct initialize_reply {
     response_type :   u8,
@@ -181,18 +157,18 @@ pub struct initialize_reply {
     pad1 :            [u8,..22]
 }
 
+
 pub struct list_system_counters_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_sync_list_system_counters. */
-pub static XCB_SYNC_LIST_SYSTEM_COUNTERS : c_int = 1;
 
 pub struct list_system_counters_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16
 }
+
 
 pub struct list_system_counters_reply {
     response_type :   u8,
@@ -203,8 +179,7 @@ pub struct list_system_counters_reply {
     pad1 :            [u8,..20]
 }
 
-/** Opcode for xcb_sync_create_counter. */
-pub static XCB_SYNC_CREATE_COUNTER : c_int = 2;
+
 
 pub struct create_counter_request {
     major_opcode :    u8,
@@ -214,8 +189,7 @@ pub struct create_counter_request {
     initial_value :   int64
 }
 
-/** Opcode for xcb_sync_destroy_counter. */
-pub static XCB_SYNC_DESTROY_COUNTER : c_int = 6;
+
 
 pub struct destroy_counter_request {
     major_opcode :   u8,
@@ -224,12 +198,11 @@ pub struct destroy_counter_request {
     counter :        counter
 }
 
+
 pub struct query_counter_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_sync_query_counter. */
-pub static XCB_SYNC_QUERY_COUNTER : c_int = 5;
 
 pub struct query_counter_request {
     major_opcode :   u8,
@@ -237,6 +210,7 @@ pub struct query_counter_request {
     length :         u16,
     counter :        counter
 }
+
 
 pub struct query_counter_reply {
     response_type :   u8,
@@ -246,8 +220,7 @@ pub struct query_counter_reply {
     counter_value :   int64
 }
 
-/** Opcode for xcb_sync_await. */
-pub static XCB_SYNC_AWAIT : c_int = 7;
+
 
 pub struct await_request {
     major_opcode :   u8,
@@ -255,8 +228,7 @@ pub struct await_request {
     length :         u16
 }
 
-/** Opcode for xcb_sync_change_counter. */
-pub static XCB_SYNC_CHANGE_COUNTER : c_int = 4;
+
 
 pub struct change_counter_request {
     major_opcode :   u8,
@@ -266,8 +238,7 @@ pub struct change_counter_request {
     amount :         int64
 }
 
-/** Opcode for xcb_sync_set_counter. */
-pub static XCB_SYNC_SET_COUNTER : c_int = 3;
+
 
 pub struct set_counter_request {
     major_opcode :   u8,
@@ -277,8 +248,7 @@ pub struct set_counter_request {
     value :          int64
 }
 
-/** Opcode for xcb_sync_create_alarm. */
-pub static XCB_SYNC_CREATE_ALARM : c_int = 8;
+
 
 pub struct create_alarm_request {
     major_opcode :   u8,
@@ -288,8 +258,7 @@ pub struct create_alarm_request {
     value_mask :     u32
 }
 
-/** Opcode for xcb_sync_change_alarm. */
-pub static XCB_SYNC_CHANGE_ALARM : c_int = 9;
+
 
 pub struct change_alarm_request {
     major_opcode :   u8,
@@ -299,8 +268,7 @@ pub struct change_alarm_request {
     value_mask :     u32
 }
 
-/** Opcode for xcb_sync_destroy_alarm. */
-pub static XCB_SYNC_DESTROY_ALARM : c_int = 11;
+
 
 pub struct destroy_alarm_request {
     major_opcode :   u8,
@@ -309,12 +277,11 @@ pub struct destroy_alarm_request {
     alarm :          alarm
 }
 
+
 pub struct query_alarm_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_sync_query_alarm. */
-pub static XCB_SYNC_QUERY_ALARM : c_int = 10;
 
 pub struct query_alarm_request {
     major_opcode :   u8,
@@ -322,6 +289,7 @@ pub struct query_alarm_request {
     length :         u16,
     alarm :          alarm
 }
+
 
 pub struct query_alarm_reply {
     response_type :   u8,
@@ -335,8 +303,7 @@ pub struct query_alarm_reply {
     pad1 :            [u8,..2]
 }
 
-/** Opcode for xcb_sync_set_priority. */
-pub static XCB_SYNC_SET_PRIORITY : c_int = 12;
+
 
 pub struct set_priority_request {
     major_opcode :   u8,
@@ -346,12 +313,11 @@ pub struct set_priority_request {
     priority :       i32
 }
 
+
 pub struct get_priority_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_sync_get_priority. */
-pub static XCB_SYNC_GET_PRIORITY : c_int = 13;
 
 pub struct get_priority_request {
     major_opcode :   u8,
@@ -359,6 +325,7 @@ pub struct get_priority_request {
     length :         u16,
     id :             u32
 }
+
 
 pub struct get_priority_reply {
     response_type :   u8,
@@ -368,20 +335,18 @@ pub struct get_priority_reply {
     priority :        i32
 }
 
-/** Opcode for xcb_sync_create_fence. */
-pub static XCB_SYNC_CREATE_FENCE : c_int = 14;
+
 
 pub struct create_fence_request {
     major_opcode :          u8,
     minor_opcode :          u8,
     length :                u16,
-    drawable :              xproto::drawable,
+    drawable :              ll::xproto::drawable,
     fence :                 fence,
     initially_triggered :   u8
 }
 
-/** Opcode for xcb_sync_trigger_fence. */
-pub static XCB_SYNC_TRIGGER_FENCE : c_int = 15;
+
 
 pub struct trigger_fence_request {
     major_opcode :   u8,
@@ -390,8 +355,7 @@ pub struct trigger_fence_request {
     fence :          fence
 }
 
-/** Opcode for xcb_sync_reset_fence. */
-pub static XCB_SYNC_RESET_FENCE : c_int = 16;
+
 
 pub struct reset_fence_request {
     major_opcode :   u8,
@@ -400,8 +364,7 @@ pub struct reset_fence_request {
     fence :          fence
 }
 
-/** Opcode for xcb_sync_destroy_fence. */
-pub static XCB_SYNC_DESTROY_FENCE : c_int = 17;
+
 
 pub struct destroy_fence_request {
     major_opcode :   u8,
@@ -410,12 +373,11 @@ pub struct destroy_fence_request {
     fence :          fence
 }
 
+
 pub struct query_fence_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_sync_query_fence. */
-pub static XCB_SYNC_QUERY_FENCE : c_int = 18;
 
 pub struct query_fence_request {
     major_opcode :   u8,
@@ -423,6 +385,7 @@ pub struct query_fence_request {
     length :         u16,
     fence :          fence
 }
+
 
 pub struct query_fence_reply {
     response_type :   u8,
@@ -433,8 +396,7 @@ pub struct query_fence_reply {
     pad1 :            [u8,..23]
 }
 
-/** Opcode for xcb_sync_await_fence. */
-pub static XCB_SYNC_AWAIT_FENCE : c_int = 19;
+
 
 pub struct await_fence_request {
     major_opcode :   u8,
@@ -442,8 +404,7 @@ pub struct await_fence_request {
     length :         u16
 }
 
-/** Opcode for xcb_sync_counter_notify. */
-pub static XCB_SYNC_COUNTER_NOTIFY : c_int = 0;
+
 
 pub struct counter_notify_event {
     response_type :   u8,
@@ -452,14 +413,13 @@ pub struct counter_notify_event {
     counter :         counter,
     wait_value :      int64,
     counter_value :   int64,
-    timestamp :       xproto::timestamp,
+    timestamp :       ll::xproto::timestamp,
     count :           u16,
     destroyed :       u8,
     pad0 :            u8
 }
 
-/** Opcode for xcb_sync_alarm_notify. */
-pub static XCB_SYNC_ALARM_NOTIFY : c_int = 1;
+
 
 pub struct alarm_notify_event {
     response_type :   u8,
@@ -468,12 +428,13 @@ pub struct alarm_notify_event {
     alarm :           alarm,
     counter_value :   int64,
     alarm_value :     int64,
-    timestamp :       xproto::timestamp,
+    timestamp :       ll::xproto::timestamp,
     state :           u8,
     pad0 :            [u8,..3]
 }
+
 #[link_args="-lxcb-sync"]
-extern "C" {
+pub extern "C" {
 
 /**
  * Get the next element of the iterator
@@ -485,7 +446,7 @@ extern "C" {
  *
  *
  */
-unsafe fn xcb_sync_alarm_next (i:*alarm_iterator) -> ();
+unsafe fn xcb_sync_alarm_next (i:*alarm_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -508,7 +469,7 @@ unsafe fn xcb_sync_alarm_end (i:alarm_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_sync_counter_next (i:*counter_iterator) -> ();
+unsafe fn xcb_sync_counter_next (i:*counter_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -531,7 +492,7 @@ unsafe fn xcb_sync_counter_end (i:counter_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_sync_fence_next (i:*fence_iterator) -> ();
+unsafe fn xcb_sync_fence_next (i:*fence_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -554,7 +515,7 @@ unsafe fn xcb_sync_fence_end (i:fence_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_sync_int64_next (i:*int64_iterator) -> ();
+unsafe fn xcb_sync_int64_next (i:*int64_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -569,7 +530,7 @@ unsafe fn xcb_sync_int64_end (i:int64_iterator) -> generic_iterator;
 
 unsafe fn xcb_sync_systemcounter_sizeof (_buffer :  *c_void) -> c_int;
 
-unsafe fn xcb_sync_systemcounter_name (R : *systemcounter) -> *u8;
+unsafe fn xcb_sync_systemcounter_name (R : *systemcounter) -> *c_char;
 
 
 unsafe fn xcb_sync_systemcounter_name_length (R : *systemcounter) -> c_int;
@@ -587,7 +548,7 @@ unsafe fn xcb_sync_systemcounter_name_end (R : *systemcounter) -> generic_iterat
  *
  *
  */
-unsafe fn xcb_sync_systemcounter_next (i:*systemcounter_iterator) -> ();
+unsafe fn xcb_sync_systemcounter_next (i:*systemcounter_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -610,7 +571,7 @@ unsafe fn xcb_sync_systemcounter_end (i:systemcounter_iterator) -> generic_itera
  *
  *
  */
-unsafe fn xcb_sync_trigger_next (i:*trigger_iterator) -> ();
+unsafe fn xcb_sync_trigger_next (i:*trigger_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -633,7 +594,7 @@ unsafe fn xcb_sync_trigger_end (i:trigger_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_sync_waitcondition_next (i:*waitcondition_iterator) -> ();
+unsafe fn xcb_sync_waitcondition_next (i:*waitcondition_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1130,7 +1091,7 @@ unsafe fn xcb_sync_get_priority_reply (c : *connection,
  * saved for handling by xcb_request_check().
  */
 unsafe fn xcb_sync_create_fence_checked (c : *connection,
-                                         drawable :  xproto::drawable,
+                                         drawable :  ll::xproto::drawable,
                                          fence :  fence,
                                          initially_triggered :  u8) -> void_cookie;
 
@@ -1143,7 +1104,7 @@ unsafe fn xcb_sync_create_fence_checked (c : *connection,
  * 
  */
 unsafe fn xcb_sync_create_fence (c : *connection,
-                                 drawable :  xproto::drawable,
+                                 drawable :  ll::xproto::drawable,
                                  fence :  fence,
                                  initially_triggered :  u8) -> void_cookie;
 

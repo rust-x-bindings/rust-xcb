@@ -6,15 +6,16 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
+use core;
 use core::libc::*;
 use ll::base::*;
+use ll;
 use ll::xproto;
 
 pub static XPRINT_MAJOR_VERSION : c_uint = 1;
 pub static XPRINT_MINOR_VERSION : c_uint = 0;
 
-pub type string8 = u8;
-
+pub type string8 = c_char;
 /**
  * @brief string8_iterator
  **/
@@ -23,6 +24,7 @@ pub struct string8_iterator {
     rem  : c_int,
     index: c_int
 }
+
 
 pub struct printer {
     nameLen :   u32,
@@ -38,8 +40,8 @@ pub struct printer_iterator {
     index: c_int
 }
 
-pub type pcontext = u32;
 
+pub type pcontext = u32;
 /**
  * @brief pcontext_iterator
  **/
@@ -49,48 +51,18 @@ pub struct pcontext_iterator {
     index: c_int
 }
 
-pub type get_doc = c_uint;//{
-    pub static XCB_X_PRINT_GET_DOC_FINISHED : get_doc = 0;
-    pub static XCB_X_PRINT_GET_DOC_SECOND_CONSUMER : get_doc = 1;
-//}
-
-pub type ev_mask = c_uint;//{
-    pub static XCB_X_PRINT_EV_MASK_NO_EVENT_MASK : ev_mask = 0;
-    pub static XCB_X_PRINT_EV_MASK_PRINT_MASK : ev_mask = 1;
-    pub static XCB_X_PRINT_EV_MASK_ATTRIBUTE_MASK : ev_mask = 2;
-//}
-
-pub type detail = c_uint;//{
-    pub static XCB_X_PRINT_DETAIL_START_JOB_NOTIFY : detail = 1;
-    pub static XCB_X_PRINT_DETAIL_END_JOB_NOTIFY : detail = 2;
-    pub static XCB_X_PRINT_DETAIL_START_DOC_NOTIFY : detail = 3;
-    pub static XCB_X_PRINT_DETAIL_END_DOC_NOTIFY : detail = 4;
-    pub static XCB_X_PRINT_DETAIL_START_PAGE_NOTIFY : detail = 5;
-    pub static XCB_X_PRINT_DETAIL_END_PAGE_NOTIFY : detail = 6;
-//}
-
-pub type attr = c_uint;//{
-    pub static XCB_X_PRINT_ATTR_JOB_ATTR : attr = 1;
-    pub static XCB_X_PRINT_ATTR_DOC_ATTR : attr = 2;
-    pub static XCB_X_PRINT_ATTR_PAGE_ATTR : attr = 3;
-    pub static XCB_X_PRINT_ATTR_PRINTER_ATTR : attr = 4;
-    pub static XCB_X_PRINT_ATTR_SERVER_ATTR : attr = 5;
-    pub static XCB_X_PRINT_ATTR_MEDIUM_ATTR : attr = 6;
-    pub static XCB_X_PRINT_ATTR_SPOOLER_ATTR : attr = 7;
-//}
 
 pub struct print_query_version_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_x_print_print_query_version. */
-pub static XCB_X_PRINT_PRINT_QUERY_VERSION : c_int = 0;
 
 pub struct print_query_version_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16
 }
+
 
 pub struct print_query_version_reply {
     response_type :   u8,
@@ -101,12 +73,11 @@ pub struct print_query_version_reply {
     minor_version :   u16
 }
 
+
 pub struct print_get_printer_list_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_x_print_print_get_printer_list. */
-pub static XCB_X_PRINT_PRINT_GET_PRINTER_LIST : c_int = 1;
 
 pub struct print_get_printer_list_request {
     major_opcode :     u8,
@@ -115,6 +86,7 @@ pub struct print_get_printer_list_request {
     printerNameLen :   u32,
     localeLen :        u32
 }
+
 
 pub struct print_get_printer_list_reply {
     response_type :   u8,
@@ -125,8 +97,7 @@ pub struct print_get_printer_list_reply {
     pad1 :            [u8,..20]
 }
 
-/** Opcode for xcb_x_print_print_rehash_printer_list. */
-pub static XCB_X_PRINT_PRINT_REHASH_PRINTER_LIST : c_int = 20;
+
 
 pub struct print_rehash_printer_list_request {
     major_opcode :   u8,
@@ -134,8 +105,7 @@ pub struct print_rehash_printer_list_request {
     length :         u16
 }
 
-/** Opcode for xcb_x_print_create_context. */
-pub static XCB_X_PRINT_CREATE_CONTEXT : c_int = 2;
+
 
 pub struct create_context_request {
     major_opcode :     u8,
@@ -146,8 +116,7 @@ pub struct create_context_request {
     localeLen :        u32
 }
 
-/** Opcode for xcb_x_print_print_set_context. */
-pub static XCB_X_PRINT_PRINT_SET_CONTEXT : c_int = 3;
+
 
 pub struct print_set_context_request {
     major_opcode :   u8,
@@ -156,18 +125,18 @@ pub struct print_set_context_request {
     context :        u32
 }
 
+
 pub struct print_get_context_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_x_print_print_get_context. */
-pub static XCB_X_PRINT_PRINT_GET_CONTEXT : c_int = 4;
 
 pub struct print_get_context_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16
 }
+
 
 pub struct print_get_context_reply {
     response_type :   u8,
@@ -177,8 +146,7 @@ pub struct print_get_context_reply {
     context :         u32
 }
 
-/** Opcode for xcb_x_print_print_destroy_context. */
-pub static XCB_X_PRINT_PRINT_DESTROY_CONTEXT : c_int = 5;
+
 
 pub struct print_destroy_context_request {
     major_opcode :   u8,
@@ -187,12 +155,11 @@ pub struct print_destroy_context_request {
     context :        u32
 }
 
+
 pub struct print_get_screen_of_context_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_x_print_print_get_screen_of_context. */
-pub static XCB_X_PRINT_PRINT_GET_SCREEN_OF_CONTEXT : c_int = 6;
 
 pub struct print_get_screen_of_context_request {
     major_opcode :   u8,
@@ -200,16 +167,16 @@ pub struct print_get_screen_of_context_request {
     length :         u16
 }
 
+
 pub struct print_get_screen_of_context_reply {
     response_type :   u8,
     pad0 :            u8,
     sequence :        u16,
     length :          u32,
-    root :            xproto::window
+    root :            ll::xproto::window
 }
 
-/** Opcode for xcb_x_print_print_start_job. */
-pub static XCB_X_PRINT_PRINT_START_JOB : c_int = 7;
+
 
 pub struct print_start_job_request {
     major_opcode :   u8,
@@ -218,8 +185,7 @@ pub struct print_start_job_request {
     output_mode :    u8
 }
 
-/** Opcode for xcb_x_print_print_end_job. */
-pub static XCB_X_PRINT_PRINT_END_JOB : c_int = 8;
+
 
 pub struct print_end_job_request {
     major_opcode :   u8,
@@ -228,8 +194,7 @@ pub struct print_end_job_request {
     cancel :         u8
 }
 
-/** Opcode for xcb_x_print_print_start_doc. */
-pub static XCB_X_PRINT_PRINT_START_DOC : c_int = 9;
+
 
 pub struct print_start_doc_request {
     major_opcode :   u8,
@@ -238,8 +203,7 @@ pub struct print_start_doc_request {
     driver_mode :    u8
 }
 
-/** Opcode for xcb_x_print_print_end_doc. */
-pub static XCB_X_PRINT_PRINT_END_DOC : c_int = 10;
+
 
 pub struct print_end_doc_request {
     major_opcode :   u8,
@@ -248,25 +212,23 @@ pub struct print_end_doc_request {
     cancel :         u8
 }
 
-/** Opcode for xcb_x_print_print_put_document_data. */
-pub static XCB_X_PRINT_PRINT_PUT_DOCUMENT_DATA : c_int = 11;
+
 
 pub struct print_put_document_data_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    drawable :       xproto::drawable,
+    drawable :       ll::xproto::drawable,
     len_data :       u32,
     len_fmt :        u16,
     len_options :    u16
 }
 
+
 pub struct print_get_document_data_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_x_print_print_get_document_data. */
-pub static XCB_X_PRINT_PRINT_GET_DOCUMENT_DATA : c_int = 12;
 
 pub struct print_get_document_data_request {
     major_opcode :   u8,
@@ -275,6 +237,7 @@ pub struct print_get_document_data_request {
     context :        pcontext,
     max_bytes :      u32
 }
+
 
 pub struct print_get_document_data_reply {
     response_type :   u8,
@@ -287,18 +250,16 @@ pub struct print_get_document_data_reply {
     pad1 :            [u8,..12]
 }
 
-/** Opcode for xcb_x_print_print_start_page. */
-pub static XCB_X_PRINT_PRINT_START_PAGE : c_int = 13;
+
 
 pub struct print_start_page_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         xproto::window
+    window :         ll::xproto::window
 }
 
-/** Opcode for xcb_x_print_print_end_page. */
-pub static XCB_X_PRINT_PRINT_END_PAGE : c_int = 14;
+
 
 pub struct print_end_page_request {
     major_opcode :   u8,
@@ -308,8 +269,7 @@ pub struct print_end_page_request {
     pad0 :           [u8,..3]
 }
 
-/** Opcode for xcb_x_print_print_select_input. */
-pub static XCB_X_PRINT_PRINT_SELECT_INPUT : c_int = 15;
+
 
 pub struct print_select_input_request {
     major_opcode :   u8,
@@ -319,12 +279,11 @@ pub struct print_select_input_request {
     event_mask :     u32
 }
 
+
 pub struct print_input_selected_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_x_print_print_input_selected. */
-pub static XCB_X_PRINT_PRINT_INPUT_SELECTED : c_int = 16;
 
 pub struct print_input_selected_request {
     major_opcode :   u8,
@@ -332,6 +291,7 @@ pub struct print_input_selected_request {
     length :         u16,
     context :        pcontext
 }
+
 
 pub struct print_input_selected_reply {
     response_type :     u8,
@@ -342,12 +302,11 @@ pub struct print_input_selected_reply {
     all_events_mask :   u32
 }
 
+
 pub struct print_get_attributes_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_x_print_print_get_attributes. */
-pub static XCB_X_PRINT_PRINT_GET_ATTRIBUTES : c_int = 17;
 
 pub struct print_get_attributes_request {
     major_opcode :   u8,
@@ -357,6 +316,7 @@ pub struct print_get_attributes_request {
     pool :           u8,
     pad0 :           [u8,..3]
 }
+
 
 pub struct print_get_attributes_reply {
     response_type :   u8,
@@ -368,12 +328,11 @@ pub struct print_get_attributes_reply {
     attributes :      string8
 }
 
+
 pub struct print_get_one_attributes_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_x_print_print_get_one_attributes. */
-pub static XCB_X_PRINT_PRINT_GET_ONE_ATTRIBUTES : c_int = 19;
 
 pub struct print_get_one_attributes_request {
     major_opcode :   u8,
@@ -385,6 +344,7 @@ pub struct print_get_one_attributes_request {
     pad0 :           [u8,..3]
 }
 
+
 pub struct print_get_one_attributes_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -394,8 +354,7 @@ pub struct print_get_one_attributes_reply {
     pad1 :            [u8,..20]
 }
 
-/** Opcode for xcb_x_print_print_set_attributes. */
-pub static XCB_X_PRINT_PRINT_SET_ATTRIBUTES : c_int = 18;
+
 
 pub struct print_set_attributes_request {
     major_opcode :   u8,
@@ -408,12 +367,11 @@ pub struct print_set_attributes_request {
     pad0 :           [u8,..2]
 }
 
+
 pub struct print_get_page_dimensions_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_x_print_print_get_page_dimensions. */
-pub static XCB_X_PRINT_PRINT_GET_PAGE_DIMENSIONS : c_int = 21;
 
 pub struct print_get_page_dimensions_request {
     major_opcode :   u8,
@@ -421,6 +379,7 @@ pub struct print_get_page_dimensions_request {
     length :         u16,
     context :        pcontext
 }
+
 
 pub struct print_get_page_dimensions_reply {
     response_type :         u8,
@@ -435,18 +394,18 @@ pub struct print_get_page_dimensions_reply {
     reproducible_height :   u16
 }
 
+
 pub struct print_query_screens_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_x_print_print_query_screens. */
-pub static XCB_X_PRINT_PRINT_QUERY_SCREENS : c_int = 22;
 
 pub struct print_query_screens_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16
 }
+
 
 pub struct print_query_screens_reply {
     response_type :   u8,
@@ -457,12 +416,11 @@ pub struct print_query_screens_reply {
     pad1 :            [u8,..20]
 }
 
+
 pub struct print_set_image_resolution_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_x_print_print_set_image_resolution. */
-pub static XCB_X_PRINT_PRINT_SET_IMAGE_RESOLUTION : c_int = 23;
 
 pub struct print_set_image_resolution_request {
     major_opcode :       u8,
@@ -472,6 +430,7 @@ pub struct print_set_image_resolution_request {
     image_resolution :   u16
 }
 
+
 pub struct print_set_image_resolution_reply {
     response_type :          u8,
     status :                 u8,
@@ -480,12 +439,11 @@ pub struct print_set_image_resolution_reply {
     previous_resolutions :   u16
 }
 
+
 pub struct print_get_image_resolution_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_x_print_print_get_image_resolution. */
-pub static XCB_X_PRINT_PRINT_GET_IMAGE_RESOLUTION : c_int = 24;
 
 pub struct print_get_image_resolution_request {
     major_opcode :   u8,
@@ -493,6 +451,7 @@ pub struct print_get_image_resolution_request {
     length :         u16,
     context :        pcontext
 }
+
 
 pub struct print_get_image_resolution_reply {
     response_type :      u8,
@@ -502,8 +461,7 @@ pub struct print_get_image_resolution_reply {
     image_resolution :   u16
 }
 
-/** Opcode for xcb_x_print_notify. */
-pub static XCB_X_PRINT_NOTIFY : c_int = 0;
+
 
 pub struct notify_event {
     response_type :   u8,
@@ -513,8 +471,7 @@ pub struct notify_event {
     cancel :          u8
 }
 
-/** Opcode for xcb_x_print_attribut_notify. */
-pub static XCB_X_PRINT_ATTRIBUT_NOTIFY : c_int = 1;
+
 
 pub struct attribut_notify_event {
     response_type :   u8,
@@ -523,8 +480,7 @@ pub struct attribut_notify_event {
     context :         pcontext
 }
 
-/** Opcode for xcb_x_print_bad_context. */
-pub static XCB_X_PRINT_BAD_CONTEXT : c_int = 0;
+
 
 pub struct bad_context_error {
     response_type :   u8,
@@ -532,16 +488,16 @@ pub struct bad_context_error {
     sequence :        u16
 }
 
-/** Opcode for xcb_x_print_bad_sequence. */
-pub static XCB_X_PRINT_BAD_SEQUENCE : c_int = 1;
+
 
 pub struct bad_sequence_error {
     response_type :   u8,
     error_code :      u8,
     sequence :        u16
 }
+
 #[link_args="-lxcb-xprint"]
-extern "C" {
+pub extern "C" {
 
 /**
  * Get the next element of the iterator
@@ -553,7 +509,7 @@ extern "C" {
  *
  *
  */
-unsafe fn xcb_x_print_string8_next (i:*string8_iterator) -> ();
+unsafe fn xcb_x_print_string8_next (i:*string8_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -602,7 +558,7 @@ unsafe fn xcb_x_print_printer_description_end (R : *printer) -> generic_iterator
  *
  *
  */
-unsafe fn xcb_x_print_printer_next (i:*printer_iterator) -> ();
+unsafe fn xcb_x_print_printer_next (i:*printer_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -625,7 +581,7 @@ unsafe fn xcb_x_print_printer_end (i:printer_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_x_print_pcontext_next (i:*pcontext_iterator) -> ();
+unsafe fn xcb_x_print_pcontext_next (i:*pcontext_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1041,7 +997,7 @@ unsafe fn xcb_x_print_print_put_document_data_sizeof (_buffer :  *c_void,
  * saved for handling by xcb_request_check().
  */
 unsafe fn xcb_x_print_print_put_document_data_checked (c : *connection,
-                                                       drawable :  xproto::drawable,
+                                                       drawable :  ll::xproto::drawable,
                                                        len_data :  u32,
                                                        len_fmt :  u16,
                                                        len_options :  u16,
@@ -1060,7 +1016,7 @@ unsafe fn xcb_x_print_print_put_document_data_checked (c : *connection,
  * 
  */
 unsafe fn xcb_x_print_print_put_document_data (c : *connection,
-                                               drawable :  xproto::drawable,
+                                               drawable :  ll::xproto::drawable,
                                                len_data :  u32,
                                                len_fmt :  u16,
                                                len_options :  u16,
@@ -1137,7 +1093,7 @@ unsafe fn xcb_x_print_print_get_document_data_reply (c : *connection,
  * saved for handling by xcb_request_check().
  */
 unsafe fn xcb_x_print_print_start_page_checked (c : *connection,
-                                                window :  xproto::window) -> void_cookie;
+                                                window :  ll::xproto::window) -> void_cookie;
 
 /**
  *
@@ -1148,7 +1104,7 @@ unsafe fn xcb_x_print_print_start_page_checked (c : *connection,
  * 
  */
 unsafe fn xcb_x_print_print_start_page (c : *connection,
-                                        window :  xproto::window) -> void_cookie;
+                                        window :  ll::xproto::window) -> void_cookie;
 
 /**
  *
@@ -1485,7 +1441,7 @@ unsafe fn xcb_x_print_print_query_screens (c : *connection) -> print_query_scree
  */
 unsafe fn xcb_x_print_print_query_screens_unchecked (c : *connection) -> print_query_screens_cookie;
 
-unsafe fn xcb_x_print_print_query_screens_roots (R : *print_query_screens_reply) -> *xproto::window;
+unsafe fn xcb_x_print_print_query_screens_roots (R : *print_query_screens_reply) -> *ll::xproto::window;
 
 
 unsafe fn xcb_x_print_print_query_screens_roots_length (R : *print_query_screens_reply) -> c_int;

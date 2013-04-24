@@ -6,122 +6,16 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
+use core;
 use core::libc::*;
 use ll::base::*;
+use ll;
 use ll::xproto;
 
 pub static RENDER_MAJOR_VERSION : c_uint = 0;
 pub static RENDER_MINOR_VERSION : c_uint = 11;
 
-pub type pict_type = c_uint;//{
-    pub static XCB_RENDER_PICT_TYPE_INDEXED : pict_type = 1;
-    pub static XCB_RENDER_PICT_TYPE_DIRECT : pict_type = 2;
-//}
-
-pub type picture_enum = c_uint;//{
-    pub static XCB_RENDER_PICTURE_NONE : picture_enum = 1;
-//}
-
-pub type pict_op = c_uint;//{
-    pub static XCB_RENDER_PICT_OP_CLEAR : pict_op = 1;
-    pub static XCB_RENDER_PICT_OP_SRC : pict_op = 2;
-    pub static XCB_RENDER_PICT_OP_DST : pict_op = 3;
-    pub static XCB_RENDER_PICT_OP_OVER : pict_op = 4;
-    pub static XCB_RENDER_PICT_OP_OVER_REVERSE : pict_op = 5;
-    pub static XCB_RENDER_PICT_OP_IN : pict_op = 6;
-    pub static XCB_RENDER_PICT_OP_IN_REVERSE : pict_op = 7;
-    pub static XCB_RENDER_PICT_OP_OUT : pict_op = 8;
-    pub static XCB_RENDER_PICT_OP_OUT_REVERSE : pict_op = 9;
-    pub static XCB_RENDER_PICT_OP_ATOP : pict_op = 10;
-    pub static XCB_RENDER_PICT_OP_ATOP_REVERSE : pict_op = 11;
-    pub static XCB_RENDER_PICT_OP_XOR : pict_op = 12;
-    pub static XCB_RENDER_PICT_OP_ADD : pict_op = 13;
-    pub static XCB_RENDER_PICT_OP_SATURATE : pict_op = 14;
-    pub static XCB_RENDER_PICT_OP_DISJOINT_CLEAR : pict_op = 16;
-    pub static XCB_RENDER_PICT_OP_DISJOINT_SRC : pict_op = 17;
-    pub static XCB_RENDER_PICT_OP_DISJOINT_DST : pict_op = 18;
-    pub static XCB_RENDER_PICT_OP_DISJOINT_OVER : pict_op = 19;
-    pub static XCB_RENDER_PICT_OP_DISJOINT_OVER_REVERSE : pict_op = 20;
-    pub static XCB_RENDER_PICT_OP_DISJOINT_IN : pict_op = 21;
-    pub static XCB_RENDER_PICT_OP_DISJOINT_IN_REVERSE : pict_op = 22;
-    pub static XCB_RENDER_PICT_OP_DISJOINT_OUT : pict_op = 23;
-    pub static XCB_RENDER_PICT_OP_DISJOINT_OUT_REVERSE : pict_op = 24;
-    pub static XCB_RENDER_PICT_OP_DISJOINT_ATOP : pict_op = 25;
-    pub static XCB_RENDER_PICT_OP_DISJOINT_ATOP_REVERSE : pict_op = 26;
-    pub static XCB_RENDER_PICT_OP_DISJOINT_XOR : pict_op = 27;
-    pub static XCB_RENDER_PICT_OP_CONJOINT_CLEAR : pict_op = 32;
-    pub static XCB_RENDER_PICT_OP_CONJOINT_SRC : pict_op = 33;
-    pub static XCB_RENDER_PICT_OP_CONJOINT_DST : pict_op = 34;
-    pub static XCB_RENDER_PICT_OP_CONJOINT_OVER : pict_op = 35;
-    pub static XCB_RENDER_PICT_OP_CONJOINT_OVER_REVERSE : pict_op = 36;
-    pub static XCB_RENDER_PICT_OP_CONJOINT_IN : pict_op = 37;
-    pub static XCB_RENDER_PICT_OP_CONJOINT_IN_REVERSE : pict_op = 38;
-    pub static XCB_RENDER_PICT_OP_CONJOINT_OUT : pict_op = 39;
-    pub static XCB_RENDER_PICT_OP_CONJOINT_OUT_REVERSE : pict_op = 40;
-    pub static XCB_RENDER_PICT_OP_CONJOINT_ATOP : pict_op = 41;
-    pub static XCB_RENDER_PICT_OP_CONJOINT_ATOP_REVERSE : pict_op = 42;
-    pub static XCB_RENDER_PICT_OP_CONJOINT_XOR : pict_op = 43;
-    pub static XCB_RENDER_PICT_OP_MULTIPLY : pict_op = 48;
-    pub static XCB_RENDER_PICT_OP_SCREEN : pict_op = 49;
-    pub static XCB_RENDER_PICT_OP_OVERLAY : pict_op = 50;
-    pub static XCB_RENDER_PICT_OP_DARKEN : pict_op = 51;
-    pub static XCB_RENDER_PICT_OP_LIGHTEN : pict_op = 52;
-    pub static XCB_RENDER_PICT_OP_COLOR_DODGE : pict_op = 53;
-    pub static XCB_RENDER_PICT_OP_COLOR_BURN : pict_op = 54;
-    pub static XCB_RENDER_PICT_OP_HARD_LIGHT : pict_op = 55;
-    pub static XCB_RENDER_PICT_OP_SOFT_LIGHT : pict_op = 56;
-    pub static XCB_RENDER_PICT_OP_DIFFERENCE : pict_op = 57;
-    pub static XCB_RENDER_PICT_OP_EXCLUSION : pict_op = 58;
-    pub static XCB_RENDER_PICT_OP_HSL_HUE : pict_op = 59;
-    pub static XCB_RENDER_PICT_OP_HSL_SATURATION : pict_op = 60;
-    pub static XCB_RENDER_PICT_OP_HSL_COLOR : pict_op = 61;
-    pub static XCB_RENDER_PICT_OP_HSL_LUMINOSITY : pict_op = 62;
-//}
-
-pub type poly_edge = c_uint;//{
-    pub static XCB_RENDER_POLY_EDGE_SHARP : poly_edge = 1;
-    pub static XCB_RENDER_POLY_EDGE_SMOOTH : poly_edge = 2;
-//}
-
-pub type poly_mode = c_uint;//{
-    pub static XCB_RENDER_POLY_MODE_PRECISE : poly_mode = 1;
-    pub static XCB_RENDER_POLY_MODE_IMPRECISE : poly_mode = 2;
-//}
-
-pub type cp = c_uint;//{
-    pub static XCB_RENDER_CP_REPEAT : cp = 1;
-    pub static XCB_RENDER_CP_ALPHA_MAP : cp = 2;
-    pub static XCB_RENDER_CP_ALPHA_X_ORIGIN : cp = 4;
-    pub static XCB_RENDER_CP_ALPHA_Y_ORIGIN : cp = 8;
-    pub static XCB_RENDER_CP_CLIP_X_ORIGIN : cp = 16;
-    pub static XCB_RENDER_CP_CLIP_Y_ORIGIN : cp = 32;
-    pub static XCB_RENDER_CP_CLIP_MASK : cp = 64;
-    pub static XCB_RENDER_CP_GRAPHICS_EXPOSURE : cp = 128;
-    pub static XCB_RENDER_CP_SUBWINDOW_MODE : cp = 256;
-    pub static XCB_RENDER_CP_POLY_EDGE : cp = 512;
-    pub static XCB_RENDER_CP_POLY_MODE : cp = 1024;
-    pub static XCB_RENDER_CP_DITHER : cp = 2048;
-    pub static XCB_RENDER_CP_COMPONENT_ALPHA : cp = 4096;
-//}
-
-pub type sub_pixel = c_uint;//{
-    pub static XCB_RENDER_SUB_PIXEL_UNKNOWN : sub_pixel = 1;
-    pub static XCB_RENDER_SUB_PIXEL_HORIZONTAL_RGB : sub_pixel = 2;
-    pub static XCB_RENDER_SUB_PIXEL_HORIZONTAL_BGR : sub_pixel = 3;
-    pub static XCB_RENDER_SUB_PIXEL_VERTICAL_RGB : sub_pixel = 4;
-    pub static XCB_RENDER_SUB_PIXEL_VERTICAL_BGR : sub_pixel = 5;
-    pub static XCB_RENDER_SUB_PIXEL_NONE : sub_pixel = 6;
-//}
-
-pub type repeat = c_uint;//{
-    pub static XCB_RENDER_REPEAT_NONE : repeat = 1;
-    pub static XCB_RENDER_REPEAT_NORMAL : repeat = 2;
-    pub static XCB_RENDER_REPEAT_PAD : repeat = 3;
-    pub static XCB_RENDER_REPEAT_REFLECT : repeat = 4;
-//}
-
 pub type glyph = u32;
-
 /**
  * @brief glyph_iterator
  **/
@@ -131,8 +25,8 @@ pub struct glyph_iterator {
     index: c_int
 }
 
-pub type glyphset = u32;
 
+pub type glyphset = u32;
 /**
  * @brief glyphset_iterator
  **/
@@ -142,8 +36,8 @@ pub struct glyphset_iterator {
     index: c_int
 }
 
-pub type picture = u32;
 
+pub type picture = u32;
 /**
  * @brief picture_iterator
  **/
@@ -153,8 +47,8 @@ pub struct picture_iterator {
     index: c_int
 }
 
-pub type pictformat = u32;
 
+pub type pictformat = u32;
 /**
  * @brief pictformat_iterator
  **/
@@ -164,8 +58,8 @@ pub struct pictformat_iterator {
     index: c_int
 }
 
-pub type fixed = i32;
 
+pub type fixed = i32;
 /**
  * @brief fixed_iterator
  **/
@@ -175,8 +69,7 @@ pub struct fixed_iterator {
     index: c_int
 }
 
-/** Opcode for xcb_render_pict_format. */
-pub static XCB_RENDER_PICT_FORMAT : c_int = 0;
+
 
 pub struct pict_format_error {
     response_type :   u8,
@@ -184,8 +77,7 @@ pub struct pict_format_error {
     sequence :        u16
 }
 
-/** Opcode for xcb_render_picture. */
-pub static XCB_RENDER_PICTURE : c_int = 1;
+
 
 pub struct picture_error {
     response_type :   u8,
@@ -193,8 +85,7 @@ pub struct picture_error {
     sequence :        u16
 }
 
-/** Opcode for xcb_render_pict_op. */
-pub static XCB_RENDER_PICT_OP : c_int = 2;
+
 
 pub struct pict_op_error {
     response_type :   u8,
@@ -202,8 +93,7 @@ pub struct pict_op_error {
     sequence :        u16
 }
 
-/** Opcode for xcb_render_glyph_set. */
-pub static XCB_RENDER_GLYPH_SET : c_int = 3;
+
 
 pub struct glyph_set_error {
     response_type :   u8,
@@ -211,14 +101,14 @@ pub struct glyph_set_error {
     sequence :        u16
 }
 
-/** Opcode for xcb_render_glyph. */
-pub static XCB_RENDER_GLYPH : c_int = 4;
+
 
 pub struct glyph_error {
     response_type :   u8,
     error_code :      u8,
     sequence :        u16
 }
+
 
 pub struct directformat {
     red_shift :     u16,
@@ -240,13 +130,14 @@ pub struct directformat_iterator {
     index: c_int
 }
 
+
 pub struct pictforminfo {
     id :         pictformat,
     type_ :      u8,
     depth :      u8,
     pad0 :       [u8,..2],
     direct :     directformat,
-    colormap :   xproto::colormap
+    colormap :   ll::xproto::colormap
 }
 
 /**
@@ -258,8 +149,9 @@ pub struct pictforminfo_iterator {
     index: c_int
 }
 
+
 pub struct pictvisual {
-    visual :   xproto::visualid,
+    visual :   ll::xproto::visualid,
     format :   pictformat
 }
 
@@ -271,6 +163,7 @@ pub struct pictvisual_iterator {
     rem  : c_int,
     index: c_int
 }
+
 
 pub struct pictdepth {
     depth :         u8,
@@ -288,6 +181,7 @@ pub struct pictdepth_iterator {
     index: c_int
 }
 
+
 pub struct pictscreen {
     num_depths :   u32,
     fallback :     pictformat
@@ -301,6 +195,7 @@ pub struct pictscreen_iterator {
     rem  : c_int,
     index: c_int
 }
+
 
 pub struct indexvalue {
     pixel :   u32,
@@ -319,6 +214,7 @@ pub struct indexvalue_iterator {
     index: c_int
 }
 
+
 pub struct color {
     red :     u16,
     green :   u16,
@@ -335,6 +231,7 @@ pub struct color_iterator {
     index: c_int
 }
 
+
 pub struct pointfix {
     x :   fixed,
     y :   fixed
@@ -349,6 +246,7 @@ pub struct pointfix_iterator {
     index: c_int
 }
 
+
 pub struct linefix {
     p1 :   pointfix,
     p2 :   pointfix
@@ -362,6 +260,7 @@ pub struct linefix_iterator {
     rem  : c_int,
     index: c_int
 }
+
 
 pub struct triangle {
     p1 :   pointfix,
@@ -378,6 +277,7 @@ pub struct triangle_iterator {
     index: c_int
 }
 
+
 pub struct trapezoid {
     top :      fixed,
     bottom :   fixed,
@@ -393,6 +293,7 @@ pub struct trapezoid_iterator {
     rem  : c_int,
     index: c_int
 }
+
 
 pub struct glyphinfo {
     width :    u16,
@@ -412,12 +313,11 @@ pub struct glyphinfo_iterator {
     index: c_int
 }
 
+
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_render_query_version. */
-pub static XCB_RENDER_QUERY_VERSION : c_int = 0;
 
 pub struct query_version_request {
     major_opcode :           u8,
@@ -426,6 +326,7 @@ pub struct query_version_request {
     client_major_version :   u32,
     client_minor_version :   u32
 }
+
 
 pub struct query_version_reply {
     response_type :   u8,
@@ -437,18 +338,18 @@ pub struct query_version_reply {
     pad1 :            [u8,..16]
 }
 
+
 pub struct query_pict_formats_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_render_query_pict_formats. */
-pub static XCB_RENDER_QUERY_PICT_FORMATS : c_int = 1;
 
 pub struct query_pict_formats_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16
 }
+
 
 pub struct query_pict_formats_reply {
     response_type :   u8,
@@ -463,12 +364,11 @@ pub struct query_pict_formats_reply {
     pad1 :            [u8,..4]
 }
 
+
 pub struct query_pict_index_values_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_render_query_pict_index_values. */
-pub static XCB_RENDER_QUERY_PICT_INDEX_VALUES : c_int = 2;
 
 pub struct query_pict_index_values_request {
     major_opcode :   u8,
@@ -476,6 +376,7 @@ pub struct query_pict_index_values_request {
     length :         u16,
     format :         pictformat
 }
+
 
 pub struct query_pict_index_values_reply {
     response_type :   u8,
@@ -486,21 +387,19 @@ pub struct query_pict_index_values_reply {
     pad1 :            [u8,..20]
 }
 
-/** Opcode for xcb_render_create_picture. */
-pub static XCB_RENDER_CREATE_PICTURE : c_int = 4;
+
 
 pub struct create_picture_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
     pid :            picture,
-    drawable :       xproto::drawable,
+    drawable :       ll::xproto::drawable,
     format :         pictformat,
     value_mask :     u32
 }
 
-/** Opcode for xcb_render_change_picture. */
-pub static XCB_RENDER_CHANGE_PICTURE : c_int = 5;
+
 
 pub struct change_picture_request {
     major_opcode :   u8,
@@ -510,8 +409,7 @@ pub struct change_picture_request {
     value_mask :     u32
 }
 
-/** Opcode for xcb_render_set_picture_clip_rectangles. */
-pub static XCB_RENDER_SET_PICTURE_CLIP_RECTANGLES : c_int = 6;
+
 
 pub struct set_picture_clip_rectangles_request {
     major_opcode :    u8,
@@ -522,8 +420,7 @@ pub struct set_picture_clip_rectangles_request {
     clip_y_origin :   i16
 }
 
-/** Opcode for xcb_render_free_picture. */
-pub static XCB_RENDER_FREE_PICTURE : c_int = 7;
+
 
 pub struct free_picture_request {
     major_opcode :   u8,
@@ -532,8 +429,7 @@ pub struct free_picture_request {
     picture :        picture
 }
 
-/** Opcode for xcb_render_composite. */
-pub static XCB_RENDER_COMPOSITE : c_int = 8;
+
 
 pub struct composite_request {
     major_opcode :   u8,
@@ -554,8 +450,7 @@ pub struct composite_request {
     height :         u16
 }
 
-/** Opcode for xcb_render_trapezoids. */
-pub static XCB_RENDER_TRAPEZOIDS : c_int = 10;
+
 
 pub struct trapezoids_request {
     major_opcode :   u8,
@@ -570,8 +465,7 @@ pub struct trapezoids_request {
     src_y :          i16
 }
 
-/** Opcode for xcb_render_triangles. */
-pub static XCB_RENDER_TRIANGLES : c_int = 11;
+
 
 pub struct triangles_request {
     major_opcode :   u8,
@@ -586,8 +480,7 @@ pub struct triangles_request {
     src_y :          i16
 }
 
-/** Opcode for xcb_render_tri_strip. */
-pub static XCB_RENDER_TRI_STRIP : c_int = 12;
+
 
 pub struct tri_strip_request {
     major_opcode :   u8,
@@ -602,8 +495,7 @@ pub struct tri_strip_request {
     src_y :          i16
 }
 
-/** Opcode for xcb_render_tri_fan. */
-pub static XCB_RENDER_TRI_FAN : c_int = 13;
+
 
 pub struct tri_fan_request {
     major_opcode :   u8,
@@ -618,8 +510,7 @@ pub struct tri_fan_request {
     src_y :          i16
 }
 
-/** Opcode for xcb_render_create_glyph_set. */
-pub static XCB_RENDER_CREATE_GLYPH_SET : c_int = 17;
+
 
 pub struct create_glyph_set_request {
     major_opcode :   u8,
@@ -629,8 +520,7 @@ pub struct create_glyph_set_request {
     format :         pictformat
 }
 
-/** Opcode for xcb_render_reference_glyph_set. */
-pub static XCB_RENDER_REFERENCE_GLYPH_SET : c_int = 18;
+
 
 pub struct reference_glyph_set_request {
     major_opcode :   u8,
@@ -640,8 +530,7 @@ pub struct reference_glyph_set_request {
     existing :       glyphset
 }
 
-/** Opcode for xcb_render_free_glyph_set. */
-pub static XCB_RENDER_FREE_GLYPH_SET : c_int = 19;
+
 
 pub struct free_glyph_set_request {
     major_opcode :   u8,
@@ -650,8 +539,7 @@ pub struct free_glyph_set_request {
     glyphset :       glyphset
 }
 
-/** Opcode for xcb_render_add_glyphs. */
-pub static XCB_RENDER_ADD_GLYPHS : c_int = 20;
+
 
 pub struct add_glyphs_request {
     major_opcode :   u8,
@@ -661,8 +549,7 @@ pub struct add_glyphs_request {
     glyphs_len :     u32
 }
 
-/** Opcode for xcb_render_free_glyphs. */
-pub static XCB_RENDER_FREE_GLYPHS : c_int = 22;
+
 
 pub struct free_glyphs_request {
     major_opcode :   u8,
@@ -671,8 +558,7 @@ pub struct free_glyphs_request {
     glyphset :       glyphset
 }
 
-/** Opcode for xcb_render_composite_glyphs_8. */
-pub static XCB_RENDER_COMPOSITE_GLYPHS_8 : c_int = 23;
+
 
 pub struct composite_glyphs_8_request {
     major_opcode :   u8,
@@ -688,8 +574,7 @@ pub struct composite_glyphs_8_request {
     src_y :          i16
 }
 
-/** Opcode for xcb_render_composite_glyphs_16. */
-pub static XCB_RENDER_COMPOSITE_GLYPHS_16 : c_int = 24;
+
 
 pub struct composite_glyphs_16_request {
     major_opcode :   u8,
@@ -705,8 +590,7 @@ pub struct composite_glyphs_16_request {
     src_y :          i16
 }
 
-/** Opcode for xcb_render_composite_glyphs_32. */
-pub static XCB_RENDER_COMPOSITE_GLYPHS_32 : c_int = 25;
+
 
 pub struct composite_glyphs_32_request {
     major_opcode :   u8,
@@ -722,8 +606,7 @@ pub struct composite_glyphs_32_request {
     src_y :          i16
 }
 
-/** Opcode for xcb_render_fill_rectangles. */
-pub static XCB_RENDER_FILL_RECTANGLES : c_int = 26;
+
 
 pub struct fill_rectangles_request {
     major_opcode :   u8,
@@ -735,18 +618,18 @@ pub struct fill_rectangles_request {
     color :          color
 }
 
-/** Opcode for xcb_render_create_cursor. */
-pub static XCB_RENDER_CREATE_CURSOR : c_int = 27;
+
 
 pub struct create_cursor_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    cid :            xproto::cursor,
+    cid :            ll::xproto::cursor,
     source :         picture,
     x :              u16,
     y :              u16
 }
+
 
 pub struct transform {
     matrix11 :   fixed,
@@ -769,8 +652,7 @@ pub struct transform_iterator {
     index: c_int
 }
 
-/** Opcode for xcb_render_set_picture_transform. */
-pub static XCB_RENDER_SET_PICTURE_TRANSFORM : c_int = 28;
+
 
 pub struct set_picture_transform_request {
     major_opcode :   u8,
@@ -780,19 +662,19 @@ pub struct set_picture_transform_request {
     transform :      transform
 }
 
+
 pub struct query_filters_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_render_query_filters. */
-pub static XCB_RENDER_QUERY_FILTERS : c_int = 29;
 
 pub struct query_filters_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    drawable :       xproto::drawable
+    drawable :       ll::xproto::drawable
 }
+
 
 pub struct query_filters_reply {
     response_type :   u8,
@@ -804,8 +686,7 @@ pub struct query_filters_reply {
     pad1 :            [u8,..16]
 }
 
-/** Opcode for xcb_render_set_picture_filter. */
-pub static XCB_RENDER_SET_PICTURE_FILTER : c_int = 30;
+
 
 pub struct set_picture_filter_request {
     major_opcode :   u8,
@@ -816,8 +697,9 @@ pub struct set_picture_filter_request {
     pad0 :           [u8,..2]
 }
 
+
 pub struct animcursorelt {
-    cursor :   xproto::cursor,
+    cursor :   ll::xproto::cursor,
     delay :    u32
 }
 
@@ -830,15 +712,15 @@ pub struct animcursorelt_iterator {
     index: c_int
 }
 
-/** Opcode for xcb_render_create_anim_cursor. */
-pub static XCB_RENDER_CREATE_ANIM_CURSOR : c_int = 31;
+
 
 pub struct create_anim_cursor_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    cid :            xproto::cursor
+    cid :            ll::xproto::cursor
 }
+
 
 pub struct spanfix {
     l :   fixed,
@@ -855,6 +737,7 @@ pub struct spanfix_iterator {
     index: c_int
 }
 
+
 pub struct trap {
     top :   spanfix,
     bot :   spanfix
@@ -869,8 +752,7 @@ pub struct trap_iterator {
     index: c_int
 }
 
-/** Opcode for xcb_render_add_traps. */
-pub static XCB_RENDER_ADD_TRAPS : c_int = 32;
+
 
 pub struct add_traps_request {
     major_opcode :   u8,
@@ -881,8 +763,7 @@ pub struct add_traps_request {
     y_off :          i16
 }
 
-/** Opcode for xcb_render_create_solid_fill. */
-pub static XCB_RENDER_CREATE_SOLID_FILL : c_int = 33;
+
 
 pub struct create_solid_fill_request {
     major_opcode :   u8,
@@ -892,8 +773,7 @@ pub struct create_solid_fill_request {
     color :          color
 }
 
-/** Opcode for xcb_render_create_linear_gradient. */
-pub static XCB_RENDER_CREATE_LINEAR_GRADIENT : c_int = 34;
+
 
 pub struct create_linear_gradient_request {
     major_opcode :   u8,
@@ -905,8 +785,7 @@ pub struct create_linear_gradient_request {
     num_stops :      u32
 }
 
-/** Opcode for xcb_render_create_radial_gradient. */
-pub static XCB_RENDER_CREATE_RADIAL_GRADIENT : c_int = 35;
+
 
 pub struct create_radial_gradient_request {
     major_opcode :   u8,
@@ -920,8 +799,7 @@ pub struct create_radial_gradient_request {
     num_stops :      u32
 }
 
-/** Opcode for xcb_render_create_conical_gradient. */
-pub static XCB_RENDER_CREATE_CONICAL_GRADIENT : c_int = 36;
+
 
 pub struct create_conical_gradient_request {
     major_opcode :   u8,
@@ -932,8 +810,9 @@ pub struct create_conical_gradient_request {
     angle :          fixed,
     num_stops :      u32
 }
+
 #[link_args="-lxcb-render"]
-extern "C" {
+pub extern "C" {
 
 /**
  * Get the next element of the iterator
@@ -945,7 +824,7 @@ extern "C" {
  *
  *
  */
-unsafe fn xcb_render_glyph_next (i:*glyph_iterator) -> ();
+unsafe fn xcb_render_glyph_next (i:*glyph_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -968,7 +847,7 @@ unsafe fn xcb_render_glyph_end (i:glyph_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_render_glyphset_next (i:*glyphset_iterator) -> ();
+unsafe fn xcb_render_glyphset_next (i:*glyphset_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -991,7 +870,7 @@ unsafe fn xcb_render_glyphset_end (i:glyphset_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_render_picture_next (i:*picture_iterator) -> ();
+unsafe fn xcb_render_picture_next (i:*picture_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1014,7 +893,7 @@ unsafe fn xcb_render_picture_end (i:picture_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_render_pictformat_next (i:*pictformat_iterator) -> ();
+unsafe fn xcb_render_pictformat_next (i:*pictformat_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1037,7 +916,7 @@ unsafe fn xcb_render_pictformat_end (i:pictformat_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_render_fixed_next (i:*fixed_iterator) -> ();
+unsafe fn xcb_render_fixed_next (i:*fixed_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1060,7 +939,7 @@ unsafe fn xcb_render_fixed_end (i:fixed_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_render_directformat_next (i:*directformat_iterator) -> ();
+unsafe fn xcb_render_directformat_next (i:*directformat_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1083,7 +962,7 @@ unsafe fn xcb_render_directformat_end (i:directformat_iterator) -> generic_itera
  *
  *
  */
-unsafe fn xcb_render_pictforminfo_next (i:*pictforminfo_iterator) -> ();
+unsafe fn xcb_render_pictforminfo_next (i:*pictforminfo_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1106,7 +985,7 @@ unsafe fn xcb_render_pictforminfo_end (i:pictforminfo_iterator) -> generic_itera
  *
  *
  */
-unsafe fn xcb_render_pictvisual_next (i:*pictvisual_iterator) -> ();
+unsafe fn xcb_render_pictvisual_next (i:*pictvisual_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1138,7 +1017,7 @@ unsafe fn xcb_render_pictdepth_visuals_iterator (R : *pictdepth) -> pictvisual_i
  *
  *
  */
-unsafe fn xcb_render_pictdepth_next (i:*pictdepth_iterator) -> ();
+unsafe fn xcb_render_pictdepth_next (i:*pictdepth_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1168,7 +1047,7 @@ unsafe fn xcb_render_pictscreen_depths_iterator (R : *pictscreen) -> pictdepth_i
  *
  *
  */
-unsafe fn xcb_render_pictscreen_next (i:*pictscreen_iterator) -> ();
+unsafe fn xcb_render_pictscreen_next (i:*pictscreen_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1191,7 +1070,7 @@ unsafe fn xcb_render_pictscreen_end (i:pictscreen_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_render_indexvalue_next (i:*indexvalue_iterator) -> ();
+unsafe fn xcb_render_indexvalue_next (i:*indexvalue_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1214,7 +1093,7 @@ unsafe fn xcb_render_indexvalue_end (i:indexvalue_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_render_color_next (i:*color_iterator) -> ();
+unsafe fn xcb_render_color_next (i:*color_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1237,7 +1116,7 @@ unsafe fn xcb_render_color_end (i:color_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_render_pointfix_next (i:*pointfix_iterator) -> ();
+unsafe fn xcb_render_pointfix_next (i:*pointfix_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1260,7 +1139,7 @@ unsafe fn xcb_render_pointfix_end (i:pointfix_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_render_linefix_next (i:*linefix_iterator) -> ();
+unsafe fn xcb_render_linefix_next (i:*linefix_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1283,7 +1162,7 @@ unsafe fn xcb_render_linefix_end (i:linefix_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_render_triangle_next (i:*triangle_iterator) -> ();
+unsafe fn xcb_render_triangle_next (i:*triangle_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1306,7 +1185,7 @@ unsafe fn xcb_render_triangle_end (i:triangle_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_render_trapezoid_next (i:*trapezoid_iterator) -> ();
+unsafe fn xcb_render_trapezoid_next (i:*trapezoid_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1329,7 +1208,7 @@ unsafe fn xcb_render_trapezoid_end (i:trapezoid_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_render_glyphinfo_next (i:*glyphinfo_iterator) -> ();
+unsafe fn xcb_render_glyphinfo_next (i:*glyphinfo_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1517,7 +1396,7 @@ unsafe fn xcb_render_create_picture_sizeof (_buffer :  *c_void) -> c_int;
  */
 unsafe fn xcb_render_create_picture_checked (c : *connection,
                                              pid :  picture,
-                                             drawable :  xproto::drawable,
+                                             drawable :  ll::xproto::drawable,
                                              format :  pictformat,
                                              value_mask :  u32,
                                              value_list : *u32) -> void_cookie;
@@ -1532,7 +1411,7 @@ unsafe fn xcb_render_create_picture_checked (c : *connection,
  */
 unsafe fn xcb_render_create_picture (c : *connection,
                                      pid :  picture,
-                                     drawable :  xproto::drawable,
+                                     drawable :  ll::xproto::drawable,
                                      format :  pictformat,
                                      value_mask :  u32,
                                      value_list : *u32) -> void_cookie;
@@ -1587,7 +1466,7 @@ unsafe fn xcb_render_set_picture_clip_rectangles_checked (c : *connection,
                                                           clip_x_origin :  i16,
                                                           clip_y_origin :  i16,
                                                           rectangles_len :  u32,
-                                                          rectangles : *xproto::rectangle) -> void_cookie;
+                                                          rectangles : *ll::xproto::rectangle) -> void_cookie;
 
 /**
  *
@@ -1602,7 +1481,7 @@ unsafe fn xcb_render_set_picture_clip_rectangles (c : *connection,
                                                   clip_x_origin :  i16,
                                                   clip_y_origin :  i16,
                                                   rectangles_len :  u32,
-                                                  rectangles : *xproto::rectangle) -> void_cookie;
+                                                  rectangles : *ll::xproto::rectangle) -> void_cookie;
 
 /**
  *
@@ -2144,7 +2023,7 @@ unsafe fn xcb_render_fill_rectangles_checked (c : *connection,
                                               dst :  picture,
                                               color :  color,
                                               rects_len :  u32,
-                                              rects : *xproto::rectangle) -> void_cookie;
+                                              rects : *ll::xproto::rectangle) -> void_cookie;
 
 /**
  *
@@ -2159,7 +2038,7 @@ unsafe fn xcb_render_fill_rectangles (c : *connection,
                                       dst :  picture,
                                       color :  color,
                                       rects_len :  u32,
-                                      rects : *xproto::rectangle) -> void_cookie;
+                                      rects : *ll::xproto::rectangle) -> void_cookie;
 
 /**
  *
@@ -2173,7 +2052,7 @@ unsafe fn xcb_render_fill_rectangles (c : *connection,
  * saved for handling by xcb_request_check().
  */
 unsafe fn xcb_render_create_cursor_checked (c : *connection,
-                                            cid :  xproto::cursor,
+                                            cid :  ll::xproto::cursor,
                                             source :  picture,
                                             x :  u16,
                                             y :  u16) -> void_cookie;
@@ -2187,7 +2066,7 @@ unsafe fn xcb_render_create_cursor_checked (c : *connection,
  * 
  */
 unsafe fn xcb_render_create_cursor (c : *connection,
-                                    cid :  xproto::cursor,
+                                    cid :  ll::xproto::cursor,
                                     source :  picture,
                                     x :  u16,
                                     y :  u16) -> void_cookie;
@@ -2202,7 +2081,7 @@ unsafe fn xcb_render_create_cursor (c : *connection,
  *
  *
  */
-unsafe fn xcb_render_transform_next (i:*transform_iterator) -> ();
+unsafe fn xcb_render_transform_next (i:*transform_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2253,7 +2132,7 @@ unsafe fn xcb_render_query_filters_sizeof (_buffer :  *c_void) -> c_int;
  * 
  */
 unsafe fn xcb_render_query_filters (c : *connection,
-                                    drawable :  xproto::drawable) -> query_filters_cookie;
+                                    drawable :  ll::xproto::drawable) -> query_filters_cookie;
 
 /**
  *
@@ -2267,7 +2146,7 @@ unsafe fn xcb_render_query_filters (c : *connection,
  * placed in the event queue.
  */
 unsafe fn xcb_render_query_filters_unchecked (c : *connection,
-                                              drawable :  xproto::drawable) -> query_filters_cookie;
+                                              drawable :  ll::xproto::drawable) -> query_filters_cookie;
 
 unsafe fn xcb_render_query_filters_aliases (R : *query_filters_reply) -> *u16;
 
@@ -2280,7 +2159,7 @@ unsafe fn xcb_render_query_filters_aliases_end (R : *query_filters_reply) -> gen
 
 unsafe fn xcb_render_query_filters_filters_length (R : *query_filters_reply) -> c_int;
 
-unsafe fn xcb_render_query_filters_filters_iterator (R : *query_filters_reply) -> xproto::str_iterator;
+unsafe fn xcb_render_query_filters_filters_iterator (R : *query_filters_reply) -> ll::xproto::str_iterator;
 
 /**
  * Return the reply
@@ -2317,7 +2196,7 @@ unsafe fn xcb_render_set_picture_filter_sizeof (_buffer :  *c_void,
 unsafe fn xcb_render_set_picture_filter_checked (c : *connection,
                                                  picture :  picture,
                                                  filter_len :  u16,
-                                                 filter : *u8,
+                                                 filter : *c_char,
                                                  values_len :  u32,
                                                  values : *fixed) -> void_cookie;
 
@@ -2332,7 +2211,7 @@ unsafe fn xcb_render_set_picture_filter_checked (c : *connection,
 unsafe fn xcb_render_set_picture_filter (c : *connection,
                                          picture :  picture,
                                          filter_len :  u16,
-                                         filter : *u8,
+                                         filter : *c_char,
                                          values_len :  u32,
                                          values : *fixed) -> void_cookie;
 
@@ -2346,7 +2225,7 @@ unsafe fn xcb_render_set_picture_filter (c : *connection,
  *
  *
  */
-unsafe fn xcb_render_animcursorelt_next (i:*animcursorelt_iterator) -> ();
+unsafe fn xcb_render_animcursorelt_next (i:*animcursorelt_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2374,7 +2253,7 @@ unsafe fn xcb_render_create_anim_cursor_sizeof (_buffer :  *c_void,
  * saved for handling by xcb_request_check().
  */
 unsafe fn xcb_render_create_anim_cursor_checked (c : *connection,
-                                                 cid :  xproto::cursor,
+                                                 cid :  ll::xproto::cursor,
                                                  cursors_len :  u32,
                                                  cursors : *animcursorelt) -> void_cookie;
 
@@ -2387,7 +2266,7 @@ unsafe fn xcb_render_create_anim_cursor_checked (c : *connection,
  * 
  */
 unsafe fn xcb_render_create_anim_cursor (c : *connection,
-                                         cid :  xproto::cursor,
+                                         cid :  ll::xproto::cursor,
                                          cursors_len :  u32,
                                          cursors : *animcursorelt) -> void_cookie;
 
@@ -2401,7 +2280,7 @@ unsafe fn xcb_render_create_anim_cursor (c : *connection,
  *
  *
  */
-unsafe fn xcb_render_spanfix_next (i:*spanfix_iterator) -> ();
+unsafe fn xcb_render_spanfix_next (i:*spanfix_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2424,7 +2303,7 @@ unsafe fn xcb_render_spanfix_end (i:spanfix_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_render_trap_next (i:*trap_iterator) -> ();
+unsafe fn xcb_render_trap_next (i:*trap_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element

@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
+use core;
 use core::libc::*;
 use ll::base::*;
+use ll;
 
 pub static XF86DRI_MAJOR_VERSION : c_uint = 4;
 pub static XF86DRI_MINOR_VERSION : c_uint = 1;
@@ -28,18 +30,18 @@ pub struct drm_clip_rect_iterator {
     index: c_int
 }
 
+
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xf86dri_query_version. */
-pub static XCB_XF86DRI_QUERY_VERSION : c_int = 0;
 
 pub struct query_version_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16
 }
+
 
 pub struct query_version_reply {
     response_type :       u8,
@@ -51,12 +53,11 @@ pub struct query_version_reply {
     dri_minor_patch :     u32
 }
 
+
 pub struct query_direct_rendering_capable_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xf86dri_query_direct_rendering_capable. */
-pub static XCB_XF86DRI_QUERY_DIRECT_RENDERING_CAPABLE : c_int = 1;
 
 pub struct query_direct_rendering_capable_request {
     major_opcode :   u8,
@@ -64,6 +65,7 @@ pub struct query_direct_rendering_capable_request {
     length :         u16,
     screen :         u32
 }
+
 
 pub struct query_direct_rendering_capable_reply {
     response_type :   u8,
@@ -73,12 +75,11 @@ pub struct query_direct_rendering_capable_reply {
     is_capable :      u8
 }
 
+
 pub struct open_connection_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xf86dri_open_connection. */
-pub static XCB_XF86DRI_OPEN_CONNECTION : c_int = 2;
 
 pub struct open_connection_request {
     major_opcode :   u8,
@@ -86,6 +87,7 @@ pub struct open_connection_request {
     length :         u16,
     screen :         u32
 }
+
 
 pub struct open_connection_reply {
     response_type :       u8,
@@ -98,8 +100,7 @@ pub struct open_connection_reply {
     pad1 :                [u8,..12]
 }
 
-/** Opcode for xcb_xf86dri_close_connection. */
-pub static XCB_XF86DRI_CLOSE_CONNECTION : c_int = 3;
+
 
 pub struct close_connection_request {
     major_opcode :   u8,
@@ -108,12 +109,11 @@ pub struct close_connection_request {
     screen :         u32
 }
 
+
 pub struct get_client_driver_name_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xf86dri_get_client_driver_name. */
-pub static XCB_XF86DRI_GET_CLIENT_DRIVER_NAME : c_int = 4;
 
 pub struct get_client_driver_name_request {
     major_opcode :   u8,
@@ -121,6 +121,7 @@ pub struct get_client_driver_name_request {
     length :         u16,
     screen :         u32
 }
+
 
 pub struct get_client_driver_name_reply {
     response_type :                 u8,
@@ -134,12 +135,11 @@ pub struct get_client_driver_name_reply {
     pad1 :                          [u8,..8]
 }
 
+
 pub struct create_context_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xf86dri_create_context. */
-pub static XCB_XF86DRI_CREATE_CONTEXT : c_int = 5;
 
 pub struct create_context_request {
     major_opcode :   u8,
@@ -150,6 +150,7 @@ pub struct create_context_request {
     context :        u32
 }
 
+
 pub struct create_context_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -158,8 +159,7 @@ pub struct create_context_reply {
     hw_context :      u32
 }
 
-/** Opcode for xcb_xf86dri_destroy_context. */
-pub static XCB_XF86DRI_DESTROY_CONTEXT : c_int = 6;
+
 
 pub struct destroy_context_request {
     major_opcode :   u8,
@@ -169,12 +169,11 @@ pub struct destroy_context_request {
     context :        u32
 }
 
+
 pub struct create_drawable_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xf86dri_create_drawable. */
-pub static XCB_XF86DRI_CREATE_DRAWABLE : c_int = 7;
 
 pub struct create_drawable_request {
     major_opcode :   u8,
@@ -184,6 +183,7 @@ pub struct create_drawable_request {
     drawable :       u32
 }
 
+
 pub struct create_drawable_reply {
     response_type :        u8,
     pad0 :                 u8,
@@ -192,8 +192,7 @@ pub struct create_drawable_reply {
     hw_drawable_handle :   u32
 }
 
-/** Opcode for xcb_xf86dri_destroy_drawable. */
-pub static XCB_XF86DRI_DESTROY_DRAWABLE : c_int = 8;
+
 
 pub struct destroy_drawable_request {
     major_opcode :   u8,
@@ -203,12 +202,11 @@ pub struct destroy_drawable_request {
     drawable :       u32
 }
 
+
 pub struct get_drawable_info_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xf86dri_get_drawable_info. */
-pub static XCB_XF86DRI_GET_DRAWABLE_INFO : c_int = 9;
 
 pub struct get_drawable_info_request {
     major_opcode :   u8,
@@ -217,6 +215,7 @@ pub struct get_drawable_info_request {
     screen :         u32,
     drawable :       u32
 }
+
 
 pub struct get_drawable_info_reply {
     response_type :          u8,
@@ -235,12 +234,11 @@ pub struct get_drawable_info_reply {
     num_back_clip_rects :    u32
 }
 
+
 pub struct get_device_info_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xf86dri_get_device_info. */
-pub static XCB_XF86DRI_GET_DEVICE_INFO : c_int = 10;
 
 pub struct get_device_info_request {
     major_opcode :   u8,
@@ -248,6 +246,7 @@ pub struct get_device_info_request {
     length :         u16,
     screen :         u32
 }
+
 
 pub struct get_device_info_reply {
     response_type :               u8,
@@ -262,12 +261,11 @@ pub struct get_device_info_reply {
     device_private_size :         u32
 }
 
+
 pub struct auth_connection_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xf86dri_auth_connection. */
-pub static XCB_XF86DRI_AUTH_CONNECTION : c_int = 11;
 
 pub struct auth_connection_request {
     major_opcode :   u8,
@@ -277,6 +275,7 @@ pub struct auth_connection_request {
     magic :          u32
 }
 
+
 pub struct auth_connection_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -284,8 +283,9 @@ pub struct auth_connection_reply {
     length :          u32,
     authenticated :   u32
 }
+
 #[link_args="-lxcb-xf86dri"]
-extern "C" {
+pub extern "C" {
 
 /**
  * Get the next element of the iterator
@@ -297,7 +297,7 @@ extern "C" {
  *
  *
  */
-unsafe fn xcb_xf86dri_drm_clip_rect_next (i:*drm_clip_rect_iterator) -> ();
+unsafe fn xcb_xf86dri_drm_clip_rect_next (i:*drm_clip_rect_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -421,7 +421,7 @@ unsafe fn xcb_xf86dri_open_connection (c : *connection,
 unsafe fn xcb_xf86dri_open_connection_unchecked (c : *connection,
                                                  screen :  u32) -> open_connection_cookie;
 
-unsafe fn xcb_xf86dri_open_connection_bus_id (R : *open_connection_reply) -> *u8;
+unsafe fn xcb_xf86dri_open_connection_bus_id (R : *open_connection_reply) -> *c_char;
 
 
 unsafe fn xcb_xf86dri_open_connection_bus_id_length (R : *open_connection_reply) -> c_int;
@@ -499,7 +499,7 @@ unsafe fn xcb_xf86dri_get_client_driver_name (c : *connection,
 unsafe fn xcb_xf86dri_get_client_driver_name_unchecked (c : *connection,
                                                         screen :  u32) -> get_client_driver_name_cookie;
 
-unsafe fn xcb_xf86dri_get_client_driver_name_client_driver_name (R : *get_client_driver_name_reply) -> *u8;
+unsafe fn xcb_xf86dri_get_client_driver_name_client_driver_name (R : *get_client_driver_name_reply) -> *c_char;
 
 
 unsafe fn xcb_xf86dri_get_client_driver_name_client_driver_name_length (R : *get_client_driver_name_reply) -> c_int;

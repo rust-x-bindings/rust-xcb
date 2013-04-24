@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
+use core;
 use core::libc::*;
 use ll::base::*;
+use ll;
 
 pub static DPMS_MAJOR_VERSION : c_uint = 0;
 pub static DPMS_MINOR_VERSION : c_uint = 0;
@@ -16,8 +18,6 @@ pub struct get_version_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_dpms_get_version. */
-pub static XCB_DPMS_GET_VERSION : c_int = 0;
 
 pub struct get_version_request {
     major_opcode :           u8,
@@ -26,6 +26,7 @@ pub struct get_version_request {
     client_major_version :   u16,
     client_minor_version :   u16
 }
+
 
 pub struct get_version_reply {
     response_type :          u8,
@@ -36,18 +37,18 @@ pub struct get_version_reply {
     server_minor_version :   u16
 }
 
+
 pub struct capable_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_dpms_capable. */
-pub static XCB_DPMS_CAPABLE : c_int = 1;
 
 pub struct capable_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16
 }
+
 
 pub struct capable_reply {
     response_type :   u8,
@@ -58,18 +59,18 @@ pub struct capable_reply {
     pad1 :            [u8,..23]
 }
 
+
 pub struct get_timeouts_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_dpms_get_timeouts. */
-pub static XCB_DPMS_GET_TIMEOUTS : c_int = 2;
 
 pub struct get_timeouts_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16
 }
+
 
 pub struct get_timeouts_reply {
     response_type :     u8,
@@ -82,8 +83,7 @@ pub struct get_timeouts_reply {
     pad1 :              [u8,..18]
 }
 
-/** Opcode for xcb_dpms_set_timeouts. */
-pub static XCB_DPMS_SET_TIMEOUTS : c_int = 3;
+
 
 pub struct set_timeouts_request {
     major_opcode :      u8,
@@ -94,8 +94,7 @@ pub struct set_timeouts_request {
     off_timeout :       u16
 }
 
-/** Opcode for xcb_dpms_enable. */
-pub static XCB_DPMS_ENABLE : c_int = 4;
+
 
 pub struct enable_request {
     major_opcode :   u8,
@@ -103,8 +102,7 @@ pub struct enable_request {
     length :         u16
 }
 
-/** Opcode for xcb_dpms_disable. */
-pub static XCB_DPMS_DISABLE : c_int = 5;
+
 
 pub struct disable_request {
     major_opcode :   u8,
@@ -112,15 +110,7 @@ pub struct disable_request {
     length :         u16
 }
 
-pub type dpms_mode = c_uint;//{
-    pub static XCB_DPMS_DPMS_MODE_ON : dpms_mode = 1;
-    pub static XCB_DPMS_DPMS_MODE_STANDBY : dpms_mode = 2;
-    pub static XCB_DPMS_DPMS_MODE_SUSPEND : dpms_mode = 3;
-    pub static XCB_DPMS_DPMS_MODE_OFF : dpms_mode = 4;
-//}
 
-/** Opcode for xcb_dpms_force_level. */
-pub static XCB_DPMS_FORCE_LEVEL : c_int = 6;
 
 pub struct force_level_request {
     major_opcode :   u8,
@@ -129,18 +119,18 @@ pub struct force_level_request {
     power_level :    u16
 }
 
+
 pub struct info_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_dpms_info. */
-pub static XCB_DPMS_INFO : c_int = 7;
 
 pub struct info_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16
 }
+
 
 pub struct info_reply {
     response_type :   u8,
@@ -151,8 +141,9 @@ pub struct info_reply {
     state :           u8,
     pad1 :            [u8,..21]
 }
+
 #[link_args="-lxcb-dpms"]
-extern "C" {
+pub extern "C" {
 
 /**
  *

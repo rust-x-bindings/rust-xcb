@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
+use core;
 use core::libc::*;
 use ll::base::*;
+use ll;
 
 pub static BIGREQUESTS_MAJOR_VERSION : c_uint = 0;
 pub static BIGREQUESTS_MINOR_VERSION : c_uint = 0;
@@ -16,14 +18,13 @@ pub struct enable_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_big_requests_enable. */
-pub static XCB_BIG_REQUESTS_ENABLE : c_int = 0;
 
 pub struct enable_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16
 }
+
 
 pub struct enable_reply {
     response_type :            u8,
@@ -32,7 +33,8 @@ pub struct enable_reply {
     length :                   u32,
     maximum_request_length :   u32
 }
-extern "C" {
+
+pub extern "C" {
 
 /**
  *

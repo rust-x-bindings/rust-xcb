@@ -76,6 +76,9 @@ pub mod base;
 pub mod macro;
 
 pub mod xproto;
+
+pub mod xinerama;
+
 /*
 pub mod bigreq;
 pub mod composite;
@@ -98,7 +101,6 @@ pub mod xevie;
 pub mod xf86dri;
 //pub mod xf86vidmode; Same with this one...
 pub mod xfixes;
-pub mod xinerama;
 pub mod xinput;
 //pub mod xkb;
 pub mod xprint;

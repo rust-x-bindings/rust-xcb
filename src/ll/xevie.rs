@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
+use core;
 use core::libc::*;
 use ll::base::*;
+use ll;
 
 pub static XEVIE_MAJOR_VERSION : c_uint = 1;
 pub static XEVIE_MINOR_VERSION : c_uint = 0;
@@ -16,8 +18,6 @@ pub struct query_version_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xevie_query_version. */
-pub static XCB_XEVIE_QUERY_VERSION : c_int = 0;
 
 pub struct query_version_request {
     major_opcode :           u8,
@@ -26,6 +26,7 @@ pub struct query_version_request {
     client_major_version :   u16,
     client_minor_version :   u16
 }
+
 
 pub struct query_version_reply {
     response_type :          u8,
@@ -37,12 +38,11 @@ pub struct query_version_reply {
     pad1 :                   [u8,..20]
 }
 
+
 pub struct start_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xevie_start. */
-pub static XCB_XEVIE_START : c_int = 1;
 
 pub struct start_request {
     major_opcode :   u8,
@@ -50,6 +50,7 @@ pub struct start_request {
     length :         u16,
     screen :         u32
 }
+
 
 pub struct start_reply {
     response_type :   u8,
@@ -59,12 +60,11 @@ pub struct start_reply {
     pad1 :            [u8,..24]
 }
 
+
 pub struct end_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xevie_end. */
-pub static XCB_XEVIE_END : c_int = 2;
 
 pub struct end_request {
     major_opcode :   u8,
@@ -72,6 +72,7 @@ pub struct end_request {
     length :         u16,
     cmap :           u32
 }
+
 
 pub struct end_reply {
     response_type :   u8,
@@ -81,10 +82,6 @@ pub struct end_reply {
     pad1 :            [u8,..24]
 }
 
-pub type datatype = c_uint;//{
-    pub static XCB_XEVIE_DATATYPE_UNMODIFIED : datatype = 1;
-    pub static XCB_XEVIE_DATATYPE_MODIFIED : datatype = 2;
-//}
 
 pub struct event {
     pad0 :   [u8,..32]
@@ -99,12 +96,11 @@ pub struct event_iterator {
     index: c_int
 }
 
+
 pub struct send_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xevie_send. */
-pub static XCB_XEVIE_SEND : c_int = 3;
 
 pub struct send_request {
     major_opcode :   u8,
@@ -115,6 +111,7 @@ pub struct send_request {
     pad0 :           [u8,..64]
 }
 
+
 pub struct send_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -123,12 +120,11 @@ pub struct send_reply {
     pad1 :            [u8,..24]
 }
 
+
 pub struct select_input_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xevie_select_input. */
-pub static XCB_XEVIE_SELECT_INPUT : c_int = 4;
 
 pub struct select_input_request {
     major_opcode :   u8,
@@ -137,6 +133,7 @@ pub struct select_input_request {
     event_mask :     u32
 }
 
+
 pub struct select_input_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -144,8 +141,9 @@ pub struct select_input_reply {
     length :          u32,
     pad1 :            [u8,..24]
 }
+
 #[link_args="-lxcb-xevie"]
-extern "C" {
+pub extern "C" {
 
 /**
  *
@@ -288,7 +286,7 @@ unsafe fn xcb_xevie_end_reply (c : *connection,
  *
  *
  */
-unsafe fn xcb_xevie_event_next (i:*event_iterator) -> ();
+unsafe fn xcb_xevie_event_next (i:*event_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element

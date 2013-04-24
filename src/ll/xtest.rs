@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
+use core;
 use core::libc::*;
 use ll::base::*;
+use ll;
 use ll::xproto;
 
 pub static TEST_MAJOR_VERSION : c_uint = 2;
@@ -17,8 +19,6 @@ pub struct get_version_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_test_get_version. */
-pub static XCB_TEST_GET_VERSION : c_int = 0;
 
 pub struct get_version_request {
     major_opcode :    u8,
@@ -29,6 +29,7 @@ pub struct get_version_request {
     minor_version :   u16
 }
 
+
 pub struct get_version_reply {
     response_type :   u8,
     major_version :   u8,
@@ -37,25 +38,20 @@ pub struct get_version_reply {
     minor_version :   u16
 }
 
-pub type cursor = c_uint;//{
-    pub static XCB_TEST_CURSOR_NONE : cursor = 0;
-    pub static XCB_TEST_CURSOR_CURRENT : cursor = 1;
-//}
 
 pub struct compare_cursor_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_test_compare_cursor. */
-pub static XCB_TEST_COMPARE_CURSOR : c_int = 1;
 
 pub struct compare_cursor_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         xproto::window,
-    cursor :         xproto::cursor
+    window :         ll::xproto::window,
+    cursor :         ll::xproto::cursor
 }
+
 
 pub struct compare_cursor_reply {
     response_type :   u8,
@@ -64,8 +60,7 @@ pub struct compare_cursor_reply {
     length :          u32
 }
 
-/** Opcode for xcb_test_fake_input. */
-pub static XCB_TEST_FAKE_INPUT : c_int = 2;
+
 
 pub struct fake_input_request {
     major_opcode :   u8,
@@ -75,7 +70,7 @@ pub struct fake_input_request {
     detail :         u8,
     pad0 :           [u8,..2],
     time :           u32,
-    root :           xproto::window,
+    root :           ll::xproto::window,
     pad1 :           [u8,..8],
     rootX :          i16,
     rootY :          i16,
@@ -83,8 +78,7 @@ pub struct fake_input_request {
     deviceid :       u8
 }
 
-/** Opcode for xcb_test_grab_control. */
-pub static XCB_TEST_GRAB_CONTROL : c_int = 3;
+
 
 pub struct grab_control_request {
     major_opcode :   u8,
@@ -93,8 +87,9 @@ pub struct grab_control_request {
     impervious :     u8,
     pad0 :           [u8,..3]
 }
+
 #[link_args="-lxcb-xtest"]
-extern "C" {
+pub extern "C" {
 
 /**
  *
@@ -150,8 +145,8 @@ unsafe fn xcb_test_get_version_reply (c : *connection,
  * 
  */
 unsafe fn xcb_test_compare_cursor (c : *connection,
-                                   window :  xproto::window,
-                                   cursor :  xproto::cursor) -> compare_cursor_cookie;
+                                   window :  ll::xproto::window,
+                                   cursor :  ll::xproto::cursor) -> compare_cursor_cookie;
 
 /**
  *
@@ -165,8 +160,8 @@ unsafe fn xcb_test_compare_cursor (c : *connection,
  * placed in the event queue.
  */
 unsafe fn xcb_test_compare_cursor_unchecked (c : *connection,
-                                             window :  xproto::window,
-                                             cursor :  xproto::cursor) -> compare_cursor_cookie;
+                                             window :  ll::xproto::window,
+                                             cursor :  ll::xproto::cursor) -> compare_cursor_cookie;
 
 /**
  * Return the reply
@@ -201,7 +196,7 @@ unsafe fn xcb_test_fake_input_checked (c : *connection,
                                        type_ :  u8,
                                        detail :  u8,
                                        time :  u32,
-                                       root :  xproto::window,
+                                       root :  ll::xproto::window,
                                        rootX :  i16,
                                        rootY :  i16,
                                        deviceid :  u8) -> void_cookie;
@@ -218,7 +213,7 @@ unsafe fn xcb_test_fake_input (c : *connection,
                                type_ :  u8,
                                detail :  u8,
                                time :  u32,
-                               root :  xproto::window,
+                               root :  ll::xproto::window,
                                rootX :  i16,
                                rootY :  i16,
                                deviceid :  u8) -> void_cookie;

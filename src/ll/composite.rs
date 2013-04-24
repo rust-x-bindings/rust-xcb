@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
+use core;
 use core::libc::*;
 use ll::base::*;
+use ll;
 use ll::xproto;
 use ll::render;
 use ll::shape;
@@ -16,17 +18,10 @@ use ll::xfixes;
 pub static COMPOSITE_MAJOR_VERSION : c_uint = 0;
 pub static COMPOSITE_MINOR_VERSION : c_uint = 3;
 
-pub type redirect = c_uint;//{
-    pub static XCB_COMPOSITE_REDIRECT_AUTOMATIC : redirect = 1;
-    pub static XCB_COMPOSITE_REDIRECT_MANUAL : redirect = 2;
-//}
-
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_composite_query_version. */
-pub static XCB_COMPOSITE_QUERY_VERSION : c_int = 0;
 
 pub struct query_version_request {
     major_opcode :           u8,
@@ -35,6 +30,7 @@ pub struct query_version_request {
     client_major_version :   u32,
     client_minor_version :   u32
 }
+
 
 pub struct query_version_reply {
     response_type :   u8,
@@ -46,110 +42,104 @@ pub struct query_version_reply {
     pad1 :            [u8,..16]
 }
 
-/** Opcode for xcb_composite_redirect_window. */
-pub static XCB_COMPOSITE_REDIRECT_WINDOW : c_int = 1;
+
 
 pub struct redirect_window_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         xproto::window,
+    window :         ll::xproto::window,
     update :         u8,
     pad0 :           [u8,..3]
 }
 
-/** Opcode for xcb_composite_redirect_subwindows. */
-pub static XCB_COMPOSITE_REDIRECT_SUBWINDOWS : c_int = 2;
+
 
 pub struct redirect_subwindows_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         xproto::window,
+    window :         ll::xproto::window,
     update :         u8,
     pad0 :           [u8,..3]
 }
 
-/** Opcode for xcb_composite_unredirect_window. */
-pub static XCB_COMPOSITE_UNREDIRECT_WINDOW : c_int = 3;
+
 
 pub struct unredirect_window_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         xproto::window,
+    window :         ll::xproto::window,
     update :         u8,
     pad0 :           [u8,..3]
 }
 
-/** Opcode for xcb_composite_unredirect_subwindows. */
-pub static XCB_COMPOSITE_UNREDIRECT_SUBWINDOWS : c_int = 4;
+
 
 pub struct unredirect_subwindows_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         xproto::window,
+    window :         ll::xproto::window,
     update :         u8,
     pad0 :           [u8,..3]
 }
 
-/** Opcode for xcb_composite_create_region_from_border_clip. */
-pub static XCB_COMPOSITE_CREATE_REGION_FROM_BORDER_CLIP : c_int = 5;
+
 
 pub struct create_region_from_border_clip_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    region :         xfixes::region,
-    window :         xproto::window
+    region :         ll::xfixes::region,
+    window :         ll::xproto::window
 }
 
-/** Opcode for xcb_composite_name_window_pixmap. */
-pub static XCB_COMPOSITE_NAME_WINDOW_PIXMAP : c_int = 6;
+
 
 pub struct name_window_pixmap_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         xproto::window,
-    pixmap :         xproto::pixmap
+    window :         ll::xproto::window,
+    pixmap :         ll::xproto::pixmap
 }
+
 
 pub struct get_overlay_window_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_composite_get_overlay_window. */
-pub static XCB_COMPOSITE_GET_OVERLAY_WINDOW : c_int = 7;
 
 pub struct get_overlay_window_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         xproto::window
+    window :         ll::xproto::window
 }
+
 
 pub struct get_overlay_window_reply {
     response_type :   u8,
     pad0 :            u8,
     sequence :        u16,
     length :          u32,
-    overlay_win :     xproto::window,
+    overlay_win :     ll::xproto::window,
     pad1 :            [u8,..20]
 }
 
-/** Opcode for xcb_composite_release_overlay_window. */
-pub static XCB_COMPOSITE_RELEASE_OVERLAY_WINDOW : c_int = 8;
+
 
 pub struct release_overlay_window_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         xproto::window
+    window :         ll::xproto::window
 }
+
 #[link_args="-lxcb-composite"]
-extern "C" {
+pub extern "C" {
 
 /**
  *
@@ -208,7 +198,7 @@ unsafe fn xcb_composite_query_version_reply (c : *connection,
  * saved for handling by xcb_request_check().
  */
 unsafe fn xcb_composite_redirect_window_checked (c : *connection,
-                                                 window :  xproto::window,
+                                                 window :  ll::xproto::window,
                                                  update :  u8) -> void_cookie;
 
 /**
@@ -220,7 +210,7 @@ unsafe fn xcb_composite_redirect_window_checked (c : *connection,
  * 
  */
 unsafe fn xcb_composite_redirect_window (c : *connection,
-                                         window :  xproto::window,
+                                         window :  ll::xproto::window,
                                          update :  u8) -> void_cookie;
 
 /**
@@ -235,7 +225,7 @@ unsafe fn xcb_composite_redirect_window (c : *connection,
  * saved for handling by xcb_request_check().
  */
 unsafe fn xcb_composite_redirect_subwindows_checked (c : *connection,
-                                                     window :  xproto::window,
+                                                     window :  ll::xproto::window,
                                                      update :  u8) -> void_cookie;
 
 /**
@@ -247,7 +237,7 @@ unsafe fn xcb_composite_redirect_subwindows_checked (c : *connection,
  * 
  */
 unsafe fn xcb_composite_redirect_subwindows (c : *connection,
-                                             window :  xproto::window,
+                                             window :  ll::xproto::window,
                                              update :  u8) -> void_cookie;
 
 /**
@@ -262,7 +252,7 @@ unsafe fn xcb_composite_redirect_subwindows (c : *connection,
  * saved for handling by xcb_request_check().
  */
 unsafe fn xcb_composite_unredirect_window_checked (c : *connection,
-                                                   window :  xproto::window,
+                                                   window :  ll::xproto::window,
                                                    update :  u8) -> void_cookie;
 
 /**
@@ -274,7 +264,7 @@ unsafe fn xcb_composite_unredirect_window_checked (c : *connection,
  * 
  */
 unsafe fn xcb_composite_unredirect_window (c : *connection,
-                                           window :  xproto::window,
+                                           window :  ll::xproto::window,
                                            update :  u8) -> void_cookie;
 
 /**
@@ -289,7 +279,7 @@ unsafe fn xcb_composite_unredirect_window (c : *connection,
  * saved for handling by xcb_request_check().
  */
 unsafe fn xcb_composite_unredirect_subwindows_checked (c : *connection,
-                                                       window :  xproto::window,
+                                                       window :  ll::xproto::window,
                                                        update :  u8) -> void_cookie;
 
 /**
@@ -301,7 +291,7 @@ unsafe fn xcb_composite_unredirect_subwindows_checked (c : *connection,
  * 
  */
 unsafe fn xcb_composite_unredirect_subwindows (c : *connection,
-                                               window :  xproto::window,
+                                               window :  ll::xproto::window,
                                                update :  u8) -> void_cookie;
 
 /**
@@ -316,8 +306,8 @@ unsafe fn xcb_composite_unredirect_subwindows (c : *connection,
  * saved for handling by xcb_request_check().
  */
 unsafe fn xcb_composite_create_region_from_border_clip_checked (c : *connection,
-                                                                region :  xfixes::region,
-                                                                window :  xproto::window) -> void_cookie;
+                                                                region :  ll::xfixes::region,
+                                                                window :  ll::xproto::window) -> void_cookie;
 
 /**
  *
@@ -328,8 +318,8 @@ unsafe fn xcb_composite_create_region_from_border_clip_checked (c : *connection,
  * 
  */
 unsafe fn xcb_composite_create_region_from_border_clip (c : *connection,
-                                                        region :  xfixes::region,
-                                                        window :  xproto::window) -> void_cookie;
+                                                        region :  ll::xfixes::region,
+                                                        window :  ll::xproto::window) -> void_cookie;
 
 /**
  *
@@ -343,8 +333,8 @@ unsafe fn xcb_composite_create_region_from_border_clip (c : *connection,
  * saved for handling by xcb_request_check().
  */
 unsafe fn xcb_composite_name_window_pixmap_checked (c : *connection,
-                                                    window :  xproto::window,
-                                                    pixmap :  xproto::pixmap) -> void_cookie;
+                                                    window :  ll::xproto::window,
+                                                    pixmap :  ll::xproto::pixmap) -> void_cookie;
 
 /**
  *
@@ -355,8 +345,8 @@ unsafe fn xcb_composite_name_window_pixmap_checked (c : *connection,
  * 
  */
 unsafe fn xcb_composite_name_window_pixmap (c : *connection,
-                                            window :  xproto::window,
-                                            pixmap :  xproto::pixmap) -> void_cookie;
+                                            window :  ll::xproto::window,
+                                            pixmap :  ll::xproto::pixmap) -> void_cookie;
 
 /**
  *
@@ -367,7 +357,7 @@ unsafe fn xcb_composite_name_window_pixmap (c : *connection,
  * 
  */
 unsafe fn xcb_composite_get_overlay_window (c : *connection,
-                                            window :  xproto::window) -> get_overlay_window_cookie;
+                                            window :  ll::xproto::window) -> get_overlay_window_cookie;
 
 /**
  *
@@ -381,7 +371,7 @@ unsafe fn xcb_composite_get_overlay_window (c : *connection,
  * placed in the event queue.
  */
 unsafe fn xcb_composite_get_overlay_window_unchecked (c : *connection,
-                                                      window :  xproto::window) -> get_overlay_window_cookie;
+                                                      window :  ll::xproto::window) -> get_overlay_window_cookie;
 
 /**
  * Return the reply
@@ -413,7 +403,7 @@ unsafe fn xcb_composite_get_overlay_window_reply (c : *connection,
  * saved for handling by xcb_request_check().
  */
 unsafe fn xcb_composite_release_overlay_window_checked (c : *connection,
-                                                        window :  xproto::window) -> void_cookie;
+                                                        window :  ll::xproto::window) -> void_cookie;
 
 /**
  *
@@ -424,6 +414,6 @@ unsafe fn xcb_composite_release_overlay_window_checked (c : *connection,
  * 
  */
 unsafe fn xcb_composite_release_overlay_window (c : *connection,
-                                                window :  xproto::window) -> void_cookie;
+                                                window :  ll::xproto::window) -> void_cookie;
 }
 

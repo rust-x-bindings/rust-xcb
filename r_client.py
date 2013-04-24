@@ -192,12 +192,12 @@ def _t(list):
         list = list[1:]
         ext = _ext(list[0])
         if ext in _imports:
-            module = (_ext(list[0]) + '::')
+            module = 'll::'+(_ext(list[0]) + '::')
             parts =  [_n_item(i) for i in list[1:]]
         elif ext == _ext(_ns.ext_name):
             parts = [_n_item(i) for i in list[1:]]
         else:
-            module = 'xproto::'
+            module = 'll::xproto::'
             parts = [_n_item(i) for i in list]
 
     elif len(list) == 2:
@@ -274,6 +274,7 @@ def c_open(self):
 
     _r('use base;')
     _r('use base::*;')
+    _hr('use ll;')
     _r('use ll::%s::*;', _ns.header)
 
     _r('use core::option::Option;')
@@ -284,7 +285,7 @@ def c_open(self):
 
     if _ns.is_ext:
         for (n, h) in self.imports:
-            _hr('use ll::%s;', h)
+            _h('use ll::%s;', h)
             _r('use %s;', h)
             _imports.append(h)
 

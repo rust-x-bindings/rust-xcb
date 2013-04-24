@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
+use core;
 use core::libc::*;
 use ll::base::*;
+use ll;
 use ll::xproto;
 use ll::render;
 use ll::shape;
@@ -17,7 +19,6 @@ pub static DAMAGE_MAJOR_VERSION : c_uint = 1;
 pub static DAMAGE_MINOR_VERSION : c_uint = 1;
 
 pub type damage = u32;
-
 /**
  * @brief damage_iterator
  **/
@@ -27,15 +28,7 @@ pub struct damage_iterator {
     index: c_int
 }
 
-pub type report_level = c_uint;//{
-    pub static XCB_DAMAGE_REPORT_LEVEL_RAW_RECTANGLES : report_level = 1;
-    pub static XCB_DAMAGE_REPORT_LEVEL_DELTA_RECTANGLES : report_level = 2;
-    pub static XCB_DAMAGE_REPORT_LEVEL_BOUNDING_BOX : report_level = 3;
-    pub static XCB_DAMAGE_REPORT_LEVEL_NON_EMPTY : report_level = 4;
-//}
 
-/** Opcode for xcb_damage_bad_damage. */
-pub static XCB_DAMAGE_BAD_DAMAGE : c_int = 0;
 
 pub struct bad_damage_error {
     response_type :   u8,
@@ -43,12 +36,11 @@ pub struct bad_damage_error {
     sequence :        u16
 }
 
+
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_damage_query_version. */
-pub static XCB_DAMAGE_QUERY_VERSION : c_int = 0;
 
 pub struct query_version_request {
     major_opcode :           u8,
@@ -57,6 +49,7 @@ pub struct query_version_request {
     client_major_version :   u32,
     client_minor_version :   u32
 }
+
 
 pub struct query_version_reply {
     response_type :   u8,
@@ -68,21 +61,19 @@ pub struct query_version_reply {
     pad1 :            [u8,..16]
 }
 
-/** Opcode for xcb_damage_create. */
-pub static XCB_DAMAGE_CREATE : c_int = 1;
+
 
 pub struct create_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
     damage :         damage,
-    drawable :       xproto::drawable,
+    drawable :       ll::xproto::drawable,
     level :          u8,
     pad0 :           [u8,..3]
 }
 
-/** Opcode for xcb_damage_destroy. */
-pub static XCB_DAMAGE_DESTROY : c_int = 2;
+
 
 pub struct destroy_request {
     major_opcode :   u8,
@@ -91,44 +82,42 @@ pub struct destroy_request {
     damage :         damage
 }
 
-/** Opcode for xcb_damage_subtract. */
-pub static XCB_DAMAGE_SUBTRACT : c_int = 3;
+
 
 pub struct subtract_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
     damage :         damage,
-    repair :         xfixes::region,
-    parts :          xfixes::region
+    repair :         ll::xfixes::region,
+    parts :          ll::xfixes::region
 }
 
-/** Opcode for xcb_damage_add. */
-pub static XCB_DAMAGE_ADD : c_int = 4;
+
 
 pub struct add_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    drawable :       xproto::drawable,
-    region :         xfixes::region
+    drawable :       ll::xproto::drawable,
+    region :         ll::xfixes::region
 }
 
-/** Opcode for xcb_damage_notify. */
-pub static XCB_DAMAGE_NOTIFY : c_int = 0;
+
 
 pub struct notify_event {
     response_type :   u8,
     level :           u8,
     sequence :        u16,
-    drawable :        xproto::drawable,
+    drawable :        ll::xproto::drawable,
     damage :          damage,
-    timestamp :       xproto::timestamp,
-    area :            xproto::rectangle,
-    geometry :        xproto::rectangle
+    timestamp :       ll::xproto::timestamp,
+    area :            ll::xproto::rectangle,
+    geometry :        ll::xproto::rectangle
 }
+
 #[link_args="-lxcb-damage"]
-extern "C" {
+pub extern "C" {
 
 /**
  * Get the next element of the iterator
@@ -140,7 +129,7 @@ extern "C" {
  *
  *
  */
-unsafe fn xcb_damage_damage_next (i:*damage_iterator) -> ();
+unsafe fn xcb_damage_damage_next (i:*damage_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -211,7 +200,7 @@ unsafe fn xcb_damage_query_version_reply (c : *connection,
  */
 unsafe fn xcb_damage_create_checked (c : *connection,
                                      damage :  damage,
-                                     drawable :  xproto::drawable,
+                                     drawable :  ll::xproto::drawable,
                                      level :  u8) -> void_cookie;
 
 /**
@@ -224,7 +213,7 @@ unsafe fn xcb_damage_create_checked (c : *connection,
  */
 unsafe fn xcb_damage_create (c : *connection,
                              damage :  damage,
-                             drawable :  xproto::drawable,
+                             drawable :  ll::xproto::drawable,
                              level :  u8) -> void_cookie;
 
 /**
@@ -265,8 +254,8 @@ unsafe fn xcb_damage_destroy (c : *connection,
  */
 unsafe fn xcb_damage_subtract_checked (c : *connection,
                                        damage :  damage,
-                                       repair :  xfixes::region,
-                                       parts :  xfixes::region) -> void_cookie;
+                                       repair :  ll::xfixes::region,
+                                       parts :  ll::xfixes::region) -> void_cookie;
 
 /**
  *
@@ -278,8 +267,8 @@ unsafe fn xcb_damage_subtract_checked (c : *connection,
  */
 unsafe fn xcb_damage_subtract (c : *connection,
                                damage :  damage,
-                               repair :  xfixes::region,
-                               parts :  xfixes::region) -> void_cookie;
+                               repair :  ll::xfixes::region,
+                               parts :  ll::xfixes::region) -> void_cookie;
 
 /**
  *
@@ -293,8 +282,8 @@ unsafe fn xcb_damage_subtract (c : *connection,
  * saved for handling by xcb_request_check().
  */
 unsafe fn xcb_damage_add_checked (c : *connection,
-                                  drawable :  xproto::drawable,
-                                  region :  xfixes::region) -> void_cookie;
+                                  drawable :  ll::xproto::drawable,
+                                  region :  ll::xfixes::region) -> void_cookie;
 
 /**
  *
@@ -305,7 +294,7 @@ unsafe fn xcb_damage_add_checked (c : *connection,
  * 
  */
 unsafe fn xcb_damage_add (c : *connection,
-                          drawable :  xproto::drawable,
-                          region :  xfixes::region) -> void_cookie;
+                          drawable :  ll::xproto::drawable,
+                          region :  ll::xfixes::region) -> void_cookie;
 }
 

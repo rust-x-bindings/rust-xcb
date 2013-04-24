@@ -6,15 +6,16 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
+use core;
 use core::libc::*;
 use ll::base::*;
+use ll;
 use ll::xproto;
 
 pub static GLX_MAJOR_VERSION : c_uint = 1;
 pub static GLX_MINOR_VERSION : c_uint = 3;
 
 pub type pixmap = u32;
-
 /**
  * @brief pixmap_iterator
  **/
@@ -24,8 +25,8 @@ pub struct pixmap_iterator {
     index: c_int
 }
 
-pub type context = u32;
 
+pub type context = u32;
 /**
  * @brief context_iterator
  **/
@@ -35,8 +36,8 @@ pub struct context_iterator {
     index: c_int
 }
 
-pub type pbuffer = u32;
 
+pub type pbuffer = u32;
 /**
  * @brief pbuffer_iterator
  **/
@@ -46,8 +47,8 @@ pub struct pbuffer_iterator {
     index: c_int
 }
 
-pub type window = u32;
 
+pub type window = u32;
 /**
  * @brief window_iterator
  **/
@@ -57,8 +58,8 @@ pub struct window_iterator {
     index: c_int
 }
 
-pub type fbconfig = u32;
 
+pub type fbconfig = u32;
 /**
  * @brief fbconfig_iterator
  **/
@@ -68,8 +69,8 @@ pub struct fbconfig_iterator {
     index: c_int
 }
 
-pub type drawable = u32;
 
+pub type drawable = u32;
 /**
  * @brief drawable_iterator
  **/
@@ -79,8 +80,8 @@ pub struct drawable_iterator {
     index: c_int
 }
 
-pub type float32 = f32;
 
+pub type float32 = f32;
 /**
  * @brief float32_iterator
  **/
@@ -90,8 +91,8 @@ pub struct float32_iterator {
     index: c_int
 }
 
-pub type float64 = f64;
 
+pub type float64 = f64;
 /**
  * @brief float64_iterator
  **/
@@ -101,8 +102,8 @@ pub struct float64_iterator {
     index: c_int
 }
 
-pub type bool32 = u32;
 
+pub type bool32 = u32;
 /**
  * @brief bool32_iterator
  **/
@@ -112,8 +113,8 @@ pub struct bool32_iterator {
     index: c_int
 }
 
-pub type context_tag = u32;
 
+pub type context_tag = u32;
 /**
  * @brief context_tag_iterator
  **/
@@ -123,8 +124,7 @@ pub struct context_tag_iterator {
     index: c_int
 }
 
-/** Opcode for xcb_glx_generic. */
-pub static XCB_GLX_GENERIC : c_int = -1;
+
 
 pub struct generic_error {
     response_type :   u8,
@@ -136,78 +136,49 @@ pub struct generic_error {
     pad0 :            [u8,..21]
 }
 
-/** Opcode for xcb_glx_bad_context. */
-pub static XCB_GLX_BAD_CONTEXT : c_int = 0;
+
 
 pub type bad_context_error  = generic_error;
 
-/** Opcode for xcb_glx_bad_context_state. */
-pub static XCB_GLX_BAD_CONTEXT_STATE : c_int = 1;
 
 pub type bad_context_state_error  = generic_error;
 
-/** Opcode for xcb_glx_bad_drawable. */
-pub static XCB_GLX_BAD_DRAWABLE : c_int = 2;
 
 pub type bad_drawable_error  = generic_error;
 
-/** Opcode for xcb_glx_bad_pixmap. */
-pub static XCB_GLX_BAD_PIXMAP : c_int = 3;
 
 pub type bad_pixmap_error  = generic_error;
 
-/** Opcode for xcb_glx_bad_context_tag. */
-pub static XCB_GLX_BAD_CONTEXT_TAG : c_int = 4;
 
 pub type bad_context_tag_error  = generic_error;
 
-/** Opcode for xcb_glx_bad_current_window. */
-pub static XCB_GLX_BAD_CURRENT_WINDOW : c_int = 5;
 
 pub type bad_current_window_error  = generic_error;
 
-/** Opcode for xcb_glx_bad_render_request. */
-pub static XCB_GLX_BAD_RENDER_REQUEST : c_int = 6;
 
 pub type bad_render_request_error  = generic_error;
 
-/** Opcode for xcb_glx_bad_large_request. */
-pub static XCB_GLX_BAD_LARGE_REQUEST : c_int = 7;
 
 pub type bad_large_request_error  = generic_error;
 
-/** Opcode for xcb_glx_unsupported_private_request. */
-pub static XCB_GLX_UNSUPPORTED_PRIVATE_REQUEST : c_int = 8;
 
 pub type unsupported_private_request_error  = generic_error;
 
-/** Opcode for xcb_glx_bad_fb_config. */
-pub static XCB_GLX_BAD_FB_CONFIG : c_int = 9;
 
 pub type bad_fb_config_error  = generic_error;
 
-/** Opcode for xcb_glx_bad_pbuffer. */
-pub static XCB_GLX_BAD_PBUFFER : c_int = 10;
 
 pub type bad_pbuffer_error  = generic_error;
 
-/** Opcode for xcb_glx_bad_current_drawable. */
-pub static XCB_GLX_BAD_CURRENT_DRAWABLE : c_int = 11;
 
 pub type bad_current_drawable_error  = generic_error;
 
-/** Opcode for xcb_glx_bad_window. */
-pub static XCB_GLX_BAD_WINDOW : c_int = 12;
 
 pub type bad_window_error  = generic_error;
 
-/** Opcode for xcb_glx_glx_bad_profile_arb. */
-pub static XCB_GLX_GLX_BAD_PROFILE_ARB : c_int = 13;
 
 pub type glx_bad_profile_arb_error  = generic_error;
 
-/** Opcode for xcb_glx_pbuffer_clobber. */
-pub static XCB_GLX_PBUFFER_CLOBBER : c_int = 0;
 
 pub struct pbuffer_clobber_event {
     response_type :   u8,
@@ -226,18 +197,7 @@ pub struct pbuffer_clobber_event {
     pad1 :            [u8,..4]
 }
 
-pub type pbcet = c_uint;//{
-    pub static XCB_GLX_PBCET_DAMAGED : pbcet = 32791;
-    pub static XCB_GLX_PBCET_SAVED : pbcet = 32792;
-//}
 
-pub type pbcdt = c_uint;//{
-    pub static XCB_GLX_PBCDT_WINDOW : pbcdt = 32793;
-    pub static XCB_GLX_PBCDT_PBUFFER : pbcdt = 32794;
-//}
-
-/** Opcode for xcb_glx_render. */
-pub static XCB_GLX_RENDER : c_int = 1;
 
 pub struct render_request {
     major_opcode :   u8,
@@ -246,8 +206,7 @@ pub struct render_request {
     context_tag :    context_tag
 }
 
-/** Opcode for xcb_glx_render_large. */
-pub static XCB_GLX_RENDER_LARGE : c_int = 2;
+
 
 pub struct render_large_request {
     major_opcode :    u8,
@@ -259,23 +218,21 @@ pub struct render_large_request {
     data_len :        u32
 }
 
-/** Opcode for xcb_glx_create_context. */
-pub static XCB_GLX_CREATE_CONTEXT : c_int = 3;
+
 
 pub struct create_context_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
     context :        context,
-    visual :         xproto::visualid,
+    visual :         ll::xproto::visualid,
     screen :         u32,
     share_list :     context,
     is_direct :      u8,
     pad0 :           [u8,..3]
 }
 
-/** Opcode for xcb_glx_destroy_context. */
-pub static XCB_GLX_DESTROY_CONTEXT : c_int = 4;
+
 
 pub struct destroy_context_request {
     major_opcode :   u8,
@@ -284,12 +241,11 @@ pub struct destroy_context_request {
     context :        context
 }
 
+
 pub struct make_current_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_make_current. */
-pub static XCB_GLX_MAKE_CURRENT : c_int = 5;
 
 pub struct make_current_request {
     major_opcode :      u8,
@@ -300,6 +256,7 @@ pub struct make_current_request {
     old_context_tag :   context_tag
 }
 
+
 pub struct make_current_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -309,12 +266,11 @@ pub struct make_current_reply {
     pad1 :            [u8,..20]
 }
 
+
 pub struct is_direct_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_is_direct. */
-pub static XCB_GLX_IS_DIRECT : c_int = 6;
 
 pub struct is_direct_request {
     major_opcode :   u8,
@@ -322,6 +278,7 @@ pub struct is_direct_request {
     length :         u16,
     context :        context
 }
+
 
 pub struct is_direct_reply {
     response_type :   u8,
@@ -332,12 +289,11 @@ pub struct is_direct_reply {
     pad1 :            [u8,..23]
 }
 
+
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_query_version. */
-pub static XCB_GLX_QUERY_VERSION : c_int = 7;
 
 pub struct query_version_request {
     major_opcode :    u8,
@@ -346,6 +302,7 @@ pub struct query_version_request {
     major_version :   u32,
     minor_version :   u32
 }
+
 
 pub struct query_version_reply {
     response_type :   u8,
@@ -357,8 +314,7 @@ pub struct query_version_reply {
     pad1 :            [u8,..16]
 }
 
-/** Opcode for xcb_glx_wait_gl. */
-pub static XCB_GLX_WAIT_GL : c_int = 8;
+
 
 pub struct wait_gl_request {
     major_opcode :   u8,
@@ -367,8 +323,7 @@ pub struct wait_gl_request {
     context_tag :    context_tag
 }
 
-/** Opcode for xcb_glx_wait_x. */
-pub static XCB_GLX_WAIT_X : c_int = 9;
+
 
 pub struct wait_x_request {
     major_opcode :   u8,
@@ -377,8 +332,7 @@ pub struct wait_x_request {
     context_tag :    context_tag
 }
 
-/** Opcode for xcb_glx_copy_context. */
-pub static XCB_GLX_COPY_CONTEXT : c_int = 10;
+
 
 pub struct copy_context_request {
     major_opcode :      u8,
@@ -390,32 +344,7 @@ pub struct copy_context_request {
     src_context_tag :   context_tag
 }
 
-pub type gc = c_uint;//{
-    pub static XCB_GLX_GC_GL_CURRENT_BIT : gc = 1;
-    pub static XCB_GLX_GC_GL_POINT_BIT : gc = 2;
-    pub static XCB_GLX_GC_GL_LINE_BIT : gc = 4;
-    pub static XCB_GLX_GC_GL_POLYGON_BIT : gc = 8;
-    pub static XCB_GLX_GC_GL_POLYGON_STIPPLE_BIT : gc = 16;
-    pub static XCB_GLX_GC_GL_PIXEL_MODE_BIT : gc = 32;
-    pub static XCB_GLX_GC_GL_LIGHTING_BIT : gc = 64;
-    pub static XCB_GLX_GC_GL_FOG_BIT : gc = 128;
-    pub static XCB_GLX_GC_GL_DEPTH_BUFFER_BIT : gc = 256;
-    pub static XCB_GLX_GC_GL_ACCUM_BUFFER_BIT : gc = 512;
-    pub static XCB_GLX_GC_GL_STENCIL_BUFFER_BIT : gc = 1024;
-    pub static XCB_GLX_GC_GL_VIEWPORT_BIT : gc = 2048;
-    pub static XCB_GLX_GC_GL_TRANSFORM_BIT : gc = 4096;
-    pub static XCB_GLX_GC_GL_ENABLE_BIT : gc = 8192;
-    pub static XCB_GLX_GC_GL_COLOR_BUFFER_BIT : gc = 16384;
-    pub static XCB_GLX_GC_GL_HINT_BIT : gc = 32768;
-    pub static XCB_GLX_GC_GL_EVAL_BIT : gc = 65536;
-    pub static XCB_GLX_GC_GL_LIST_BIT : gc = 131072;
-    pub static XCB_GLX_GC_GL_TEXTURE_BIT : gc = 262144;
-    pub static XCB_GLX_GC_GL_SCISSOR_BIT : gc = 524288;
-    pub static XCB_GLX_GC_GL_ALL_ATTRIB_BITS : gc = 16777215;
-//}
 
-/** Opcode for xcb_glx_swap_buffers. */
-pub static XCB_GLX_SWAP_BUFFERS : c_int = 11;
 
 pub struct swap_buffers_request {
     major_opcode :   u8,
@@ -425,39 +354,36 @@ pub struct swap_buffers_request {
     drawable :       drawable
 }
 
-/** Opcode for xcb_glx_use_x_font. */
-pub static XCB_GLX_USE_X_FONT : c_int = 12;
+
 
 pub struct use_x_font_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
     context_tag :    context_tag,
-    font :           xproto::font,
+    font :           ll::xproto::font,
     first :          u32,
     count :          u32,
     list_base :      u32
 }
 
-/** Opcode for xcb_glx_create_glx_pixmap. */
-pub static XCB_GLX_CREATE_GLX_PIXMAP : c_int = 13;
+
 
 pub struct create_glx_pixmap_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
     screen :         u32,
-    visual :         xproto::visualid,
-    pixmap :         xproto::pixmap,
+    visual :         ll::xproto::visualid,
+    pixmap :         ll::xproto::pixmap,
     glx_pixmap :     pixmap
 }
+
 
 pub struct get_visual_configs_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_visual_configs. */
-pub static XCB_GLX_GET_VISUAL_CONFIGS : c_int = 14;
 
 pub struct get_visual_configs_request {
     major_opcode :   u8,
@@ -465,6 +391,7 @@ pub struct get_visual_configs_request {
     length :         u16,
     screen :         u32
 }
+
 
 pub struct get_visual_configs_reply {
     response_type :    u8,
@@ -476,8 +403,7 @@ pub struct get_visual_configs_reply {
     pad1 :             [u8,..16]
 }
 
-/** Opcode for xcb_glx_destroy_glx_pixmap. */
-pub static XCB_GLX_DESTROY_GLX_PIXMAP : c_int = 15;
+
 
 pub struct destroy_glx_pixmap_request {
     major_opcode :   u8,
@@ -486,8 +412,7 @@ pub struct destroy_glx_pixmap_request {
     glx_pixmap :     pixmap
 }
 
-/** Opcode for xcb_glx_vendor_private. */
-pub static XCB_GLX_VENDOR_PRIVATE : c_int = 16;
+
 
 pub struct vendor_private_request {
     major_opcode :   u8,
@@ -497,12 +422,11 @@ pub struct vendor_private_request {
     context_tag :    context_tag
 }
 
+
 pub struct vendor_private_with_reply_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_vendor_private_with_reply. */
-pub static XCB_GLX_VENDOR_PRIVATE_WITH_REPLY : c_int = 17;
 
 pub struct vendor_private_with_reply_request {
     major_opcode :   u8,
@@ -511,6 +435,7 @@ pub struct vendor_private_with_reply_request {
     vendor_code :    u32,
     context_tag :    context_tag
 }
+
 
 pub struct vendor_private_with_reply_reply {
     response_type :   u8,
@@ -521,12 +446,11 @@ pub struct vendor_private_with_reply_reply {
     data1 :           [u8,..24]
 }
 
+
 pub struct query_extensions_string_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_query_extensions_string. */
-pub static XCB_GLX_QUERY_EXTENSIONS_STRING : c_int = 18;
 
 pub struct query_extensions_string_request {
     major_opcode :   u8,
@@ -534,6 +458,7 @@ pub struct query_extensions_string_request {
     length :         u16,
     screen :         u32
 }
+
 
 pub struct query_extensions_string_reply {
     response_type :   u8,
@@ -545,12 +470,11 @@ pub struct query_extensions_string_reply {
     pad2 :            [u8,..16]
 }
 
+
 pub struct query_server_string_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_query_server_string. */
-pub static XCB_GLX_QUERY_SERVER_STRING : c_int = 19;
 
 pub struct query_server_string_request {
     major_opcode :   u8,
@@ -559,6 +483,7 @@ pub struct query_server_string_request {
     screen :         u32,
     name :           u32
 }
+
 
 pub struct query_server_string_reply {
     response_type :   u8,
@@ -570,8 +495,7 @@ pub struct query_server_string_reply {
     pad2 :            [u8,..16]
 }
 
-/** Opcode for xcb_glx_client_info. */
-pub static XCB_GLX_CLIENT_INFO : c_int = 20;
+
 
 pub struct client_info_request {
     major_opcode :    u8,
@@ -582,12 +506,11 @@ pub struct client_info_request {
     str_len :         u32
 }
 
+
 pub struct get_fb_configs_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_fb_configs. */
-pub static XCB_GLX_GET_FB_CONFIGS : c_int = 21;
 
 pub struct get_fb_configs_request {
     major_opcode :   u8,
@@ -595,6 +518,7 @@ pub struct get_fb_configs_request {
     length :         u16,
     screen :         u32
 }
+
 
 pub struct get_fb_configs_reply {
     response_type :    u8,
@@ -606,8 +530,7 @@ pub struct get_fb_configs_reply {
     pad1 :             [u8,..16]
 }
 
-/** Opcode for xcb_glx_create_pixmap. */
-pub static XCB_GLX_CREATE_PIXMAP : c_int = 22;
+
 
 pub struct create_pixmap_request {
     major_opcode :   u8,
@@ -615,13 +538,12 @@ pub struct create_pixmap_request {
     length :         u16,
     screen :         u32,
     fbconfig :       fbconfig,
-    pixmap :         xproto::pixmap,
+    pixmap :         ll::xproto::pixmap,
     glx_pixmap :     pixmap,
     num_attribs :    u32
 }
 
-/** Opcode for xcb_glx_destroy_pixmap. */
-pub static XCB_GLX_DESTROY_PIXMAP : c_int = 23;
+
 
 pub struct destroy_pixmap_request {
     major_opcode :   u8,
@@ -630,8 +552,7 @@ pub struct destroy_pixmap_request {
     glx_pixmap :     pixmap
 }
 
-/** Opcode for xcb_glx_create_new_context. */
-pub static XCB_GLX_CREATE_NEW_CONTEXT : c_int = 24;
+
 
 pub struct create_new_context_request {
     major_opcode :   u8,
@@ -646,12 +567,11 @@ pub struct create_new_context_request {
     pad0 :           [u8,..3]
 }
 
+
 pub struct query_context_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_query_context. */
-pub static XCB_GLX_QUERY_CONTEXT : c_int = 25;
 
 pub struct query_context_request {
     major_opcode :   u8,
@@ -659,6 +579,7 @@ pub struct query_context_request {
     length :         u16,
     context :        context
 }
+
 
 pub struct query_context_reply {
     response_type :   u8,
@@ -669,12 +590,11 @@ pub struct query_context_reply {
     pad1 :            [u8,..20]
 }
 
+
 pub struct make_context_current_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_make_context_current. */
-pub static XCB_GLX_MAKE_CONTEXT_CURRENT : c_int = 26;
 
 pub struct make_context_current_request {
     major_opcode :      u8,
@@ -686,6 +606,7 @@ pub struct make_context_current_request {
     context :           context
 }
 
+
 pub struct make_context_current_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -695,8 +616,7 @@ pub struct make_context_current_reply {
     pad1 :            [u8,..20]
 }
 
-/** Opcode for xcb_glx_create_pbuffer. */
-pub static XCB_GLX_CREATE_PBUFFER : c_int = 27;
+
 
 pub struct create_pbuffer_request {
     major_opcode :   u8,
@@ -708,8 +628,7 @@ pub struct create_pbuffer_request {
     num_attribs :    u32
 }
 
-/** Opcode for xcb_glx_destroy_pbuffer. */
-pub static XCB_GLX_DESTROY_PBUFFER : c_int = 28;
+
 
 pub struct destroy_pbuffer_request {
     major_opcode :   u8,
@@ -718,12 +637,11 @@ pub struct destroy_pbuffer_request {
     pbuffer :        pbuffer
 }
 
+
 pub struct get_drawable_attributes_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_drawable_attributes. */
-pub static XCB_GLX_GET_DRAWABLE_ATTRIBUTES : c_int = 29;
 
 pub struct get_drawable_attributes_request {
     major_opcode :   u8,
@@ -731,6 +649,7 @@ pub struct get_drawable_attributes_request {
     length :         u16,
     drawable :       drawable
 }
+
 
 pub struct get_drawable_attributes_reply {
     response_type :   u8,
@@ -741,8 +660,7 @@ pub struct get_drawable_attributes_reply {
     pad1 :            [u8,..20]
 }
 
-/** Opcode for xcb_glx_change_drawable_attributes. */
-pub static XCB_GLX_CHANGE_DRAWABLE_ATTRIBUTES : c_int = 30;
+
 
 pub struct change_drawable_attributes_request {
     major_opcode :   u8,
@@ -752,8 +670,7 @@ pub struct change_drawable_attributes_request {
     num_attribs :    u32
 }
 
-/** Opcode for xcb_glx_create_window. */
-pub static XCB_GLX_CREATE_WINDOW : c_int = 31;
+
 
 pub struct create_window_request {
     major_opcode :   u8,
@@ -761,13 +678,12 @@ pub struct create_window_request {
     length :         u16,
     screen :         u32,
     fbconfig :       fbconfig,
-    window :         xproto::window,
+    window :         ll::xproto::window,
     glx_window :     window,
     num_attribs :    u32
 }
 
-/** Opcode for xcb_glx_delete_window. */
-pub static XCB_GLX_DELETE_WINDOW : c_int = 32;
+
 
 pub struct delete_window_request {
     major_opcode :   u8,
@@ -776,8 +692,7 @@ pub struct delete_window_request {
     glxwindow :      window
 }
 
-/** Opcode for xcb_glx_set_client_info_arb. */
-pub static XCB_GLX_SET_CLIENT_INFO_ARB : c_int = 33;
+
 
 pub struct set_client_info_arb_request {
     major_opcode :    u8,
@@ -790,8 +705,7 @@ pub struct set_client_info_arb_request {
     glx_str_len :     u32
 }
 
-/** Opcode for xcb_glx_create_context_attribs_arb. */
-pub static XCB_GLX_CREATE_CONTEXT_ATTRIBS_ARB : c_int = 34;
+
 
 pub struct create_context_attribs_arb_request {
     major_opcode :   u8,
@@ -806,8 +720,7 @@ pub struct create_context_attribs_arb_request {
     num_attribs :    u32
 }
 
-/** Opcode for xcb_glx_set_client_info_2arb. */
-pub static XCB_GLX_SET_CLIENT_INFO_2ARB : c_int = 35;
+
 
 pub struct set_client_info_2arb_request {
     major_opcode :    u8,
@@ -820,8 +733,7 @@ pub struct set_client_info_2arb_request {
     glx_str_len :     u32
 }
 
-/** Opcode for xcb_glx_new_list. */
-pub static XCB_GLX_NEW_LIST : c_int = 101;
+
 
 pub struct new_list_request {
     major_opcode :   u8,
@@ -832,8 +744,7 @@ pub struct new_list_request {
     mode :           u32
 }
 
-/** Opcode for xcb_glx_end_list. */
-pub static XCB_GLX_END_LIST : c_int = 102;
+
 
 pub struct end_list_request {
     major_opcode :   u8,
@@ -842,8 +753,7 @@ pub struct end_list_request {
     context_tag :    context_tag
 }
 
-/** Opcode for xcb_glx_delete_lists. */
-pub static XCB_GLX_DELETE_LISTS : c_int = 103;
+
 
 pub struct delete_lists_request {
     major_opcode :   u8,
@@ -854,12 +764,11 @@ pub struct delete_lists_request {
     range :          i32
 }
 
+
 pub struct gen_lists_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_gen_lists. */
-pub static XCB_GLX_GEN_LISTS : c_int = 104;
 
 pub struct gen_lists_request {
     major_opcode :   u8,
@@ -869,6 +778,7 @@ pub struct gen_lists_request {
     range :          i32
 }
 
+
 pub struct gen_lists_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -877,8 +787,7 @@ pub struct gen_lists_reply {
     ret_val :         u32
 }
 
-/** Opcode for xcb_glx_feedback_buffer. */
-pub static XCB_GLX_FEEDBACK_BUFFER : c_int = 105;
+
 
 pub struct feedback_buffer_request {
     major_opcode :   u8,
@@ -889,8 +798,7 @@ pub struct feedback_buffer_request {
     type_ :          i32
 }
 
-/** Opcode for xcb_glx_select_buffer. */
-pub static XCB_GLX_SELECT_BUFFER : c_int = 106;
+
 
 pub struct select_buffer_request {
     major_opcode :   u8,
@@ -900,12 +808,11 @@ pub struct select_buffer_request {
     size :           i32
 }
 
+
 pub struct render_mode_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_render_mode. */
-pub static XCB_GLX_RENDER_MODE : c_int = 107;
 
 pub struct render_mode_request {
     major_opcode :   u8,
@@ -914,6 +821,7 @@ pub struct render_mode_request {
     context_tag :    context_tag,
     mode :           u32
 }
+
 
 pub struct render_mode_reply {
     response_type :   u8,
@@ -926,18 +834,11 @@ pub struct render_mode_reply {
     pad1 :            [u8,..12]
 }
 
-pub type rm = c_uint;//{
-    pub static XCB_GLX_RM_GL_RENDER : rm = 7168;
-    pub static XCB_GLX_RM_GL_FEEDBACK : rm = 7169;
-    pub static XCB_GLX_RM_GL_SELECT : rm = 7170;
-//}
 
 pub struct finish_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_finish. */
-pub static XCB_GLX_FINISH : c_int = 108;
 
 pub struct finish_request {
     major_opcode :   u8,
@@ -946,6 +847,7 @@ pub struct finish_request {
     context_tag :    context_tag
 }
 
+
 pub struct finish_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -953,8 +855,7 @@ pub struct finish_reply {
     length :          u32
 }
 
-/** Opcode for xcb_glx_pixel_storef. */
-pub static XCB_GLX_PIXEL_STOREF : c_int = 109;
+
 
 pub struct pixel_storef_request {
     major_opcode :   u8,
@@ -965,8 +866,7 @@ pub struct pixel_storef_request {
     datum :          float32
 }
 
-/** Opcode for xcb_glx_pixel_storei. */
-pub static XCB_GLX_PIXEL_STOREI : c_int = 110;
+
 
 pub struct pixel_storei_request {
     major_opcode :   u8,
@@ -977,12 +877,11 @@ pub struct pixel_storei_request {
     datum :          i32
 }
 
+
 pub struct read_pixels_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_read_pixels. */
-pub static XCB_GLX_READ_PIXELS : c_int = 111;
 
 pub struct read_pixels_request {
     major_opcode :   u8,
@@ -999,6 +898,7 @@ pub struct read_pixels_request {
     lsb_first :      u8
 }
 
+
 pub struct read_pixels_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -1007,12 +907,11 @@ pub struct read_pixels_reply {
     pad1 :            [u8,..24]
 }
 
+
 pub struct get_booleanv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_booleanv. */
-pub static XCB_GLX_GET_BOOLEANV : c_int = 112;
 
 pub struct get_booleanv_request {
     major_opcode :   u8,
@@ -1021,6 +920,7 @@ pub struct get_booleanv_request {
     context_tag :    context_tag,
     pname :          i32
 }
+
 
 pub struct get_booleanv_reply {
     response_type :   u8,
@@ -1033,12 +933,11 @@ pub struct get_booleanv_reply {
     pad2 :            [u8,..15]
 }
 
+
 pub struct get_clip_plane_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_clip_plane. */
-pub static XCB_GLX_GET_CLIP_PLANE : c_int = 113;
 
 pub struct get_clip_plane_request {
     major_opcode :   u8,
@@ -1048,6 +947,7 @@ pub struct get_clip_plane_request {
     plane :          i32
 }
 
+
 pub struct get_clip_plane_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -1056,12 +956,11 @@ pub struct get_clip_plane_reply {
     pad1 :            [u8,..24]
 }
 
+
 pub struct get_doublev_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_doublev. */
-pub static XCB_GLX_GET_DOUBLEV : c_int = 114;
 
 pub struct get_doublev_request {
     major_opcode :   u8,
@@ -1070,6 +969,7 @@ pub struct get_doublev_request {
     context_tag :    context_tag,
     pname :          u32
 }
+
 
 pub struct get_doublev_reply {
     response_type :   u8,
@@ -1082,12 +982,11 @@ pub struct get_doublev_reply {
     pad2 :            [u8,..8]
 }
 
+
 pub struct get_error_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_error. */
-pub static XCB_GLX_GET_ERROR : c_int = 115;
 
 pub struct get_error_request {
     major_opcode :   u8,
@@ -1095,6 +994,7 @@ pub struct get_error_request {
     length :         u16,
     context_tag :    context_tag
 }
+
 
 pub struct get_error_reply {
     response_type :   u8,
@@ -1104,12 +1004,11 @@ pub struct get_error_reply {
     error :           i32
 }
 
+
 pub struct get_floatv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_floatv. */
-pub static XCB_GLX_GET_FLOATV : c_int = 116;
 
 pub struct get_floatv_request {
     major_opcode :   u8,
@@ -1118,6 +1017,7 @@ pub struct get_floatv_request {
     context_tag :    context_tag,
     pname :          u32
 }
+
 
 pub struct get_floatv_reply {
     response_type :   u8,
@@ -1130,12 +1030,11 @@ pub struct get_floatv_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_integerv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_integerv. */
-pub static XCB_GLX_GET_INTEGERV : c_int = 117;
 
 pub struct get_integerv_request {
     major_opcode :   u8,
@@ -1144,6 +1043,7 @@ pub struct get_integerv_request {
     context_tag :    context_tag,
     pname :          u32
 }
+
 
 pub struct get_integerv_reply {
     response_type :   u8,
@@ -1156,12 +1056,11 @@ pub struct get_integerv_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_lightfv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_lightfv. */
-pub static XCB_GLX_GET_LIGHTFV : c_int = 118;
 
 pub struct get_lightfv_request {
     major_opcode :   u8,
@@ -1171,6 +1070,7 @@ pub struct get_lightfv_request {
     light :          u32,
     pname :          u32
 }
+
 
 pub struct get_lightfv_reply {
     response_type :   u8,
@@ -1183,12 +1083,11 @@ pub struct get_lightfv_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_lightiv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_lightiv. */
-pub static XCB_GLX_GET_LIGHTIV : c_int = 119;
 
 pub struct get_lightiv_request {
     major_opcode :   u8,
@@ -1198,6 +1097,7 @@ pub struct get_lightiv_request {
     light :          u32,
     pname :          u32
 }
+
 
 pub struct get_lightiv_reply {
     response_type :   u8,
@@ -1210,12 +1110,11 @@ pub struct get_lightiv_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_mapdv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_mapdv. */
-pub static XCB_GLX_GET_MAPDV : c_int = 120;
 
 pub struct get_mapdv_request {
     major_opcode :   u8,
@@ -1225,6 +1124,7 @@ pub struct get_mapdv_request {
     target :         u32,
     query :          u32
 }
+
 
 pub struct get_mapdv_reply {
     response_type :   u8,
@@ -1237,12 +1137,11 @@ pub struct get_mapdv_reply {
     pad2 :            [u8,..8]
 }
 
+
 pub struct get_mapfv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_mapfv. */
-pub static XCB_GLX_GET_MAPFV : c_int = 121;
 
 pub struct get_mapfv_request {
     major_opcode :   u8,
@@ -1252,6 +1151,7 @@ pub struct get_mapfv_request {
     target :         u32,
     query :          u32
 }
+
 
 pub struct get_mapfv_reply {
     response_type :   u8,
@@ -1264,12 +1164,11 @@ pub struct get_mapfv_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_mapiv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_mapiv. */
-pub static XCB_GLX_GET_MAPIV : c_int = 122;
 
 pub struct get_mapiv_request {
     major_opcode :   u8,
@@ -1279,6 +1178,7 @@ pub struct get_mapiv_request {
     target :         u32,
     query :          u32
 }
+
 
 pub struct get_mapiv_reply {
     response_type :   u8,
@@ -1291,12 +1191,11 @@ pub struct get_mapiv_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_materialfv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_materialfv. */
-pub static XCB_GLX_GET_MATERIALFV : c_int = 123;
 
 pub struct get_materialfv_request {
     major_opcode :   u8,
@@ -1306,6 +1205,7 @@ pub struct get_materialfv_request {
     face :           u32,
     pname :          u32
 }
+
 
 pub struct get_materialfv_reply {
     response_type :   u8,
@@ -1318,12 +1218,11 @@ pub struct get_materialfv_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_materialiv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_materialiv. */
-pub static XCB_GLX_GET_MATERIALIV : c_int = 124;
 
 pub struct get_materialiv_request {
     major_opcode :   u8,
@@ -1333,6 +1232,7 @@ pub struct get_materialiv_request {
     face :           u32,
     pname :          u32
 }
+
 
 pub struct get_materialiv_reply {
     response_type :   u8,
@@ -1345,12 +1245,11 @@ pub struct get_materialiv_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_pixel_mapfv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_pixel_mapfv. */
-pub static XCB_GLX_GET_PIXEL_MAPFV : c_int = 125;
 
 pub struct get_pixel_mapfv_request {
     major_opcode :   u8,
@@ -1359,6 +1258,7 @@ pub struct get_pixel_mapfv_request {
     context_tag :    context_tag,
     map :            u32
 }
+
 
 pub struct get_pixel_mapfv_reply {
     response_type :   u8,
@@ -1371,12 +1271,11 @@ pub struct get_pixel_mapfv_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_pixel_mapuiv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_pixel_mapuiv. */
-pub static XCB_GLX_GET_PIXEL_MAPUIV : c_int = 126;
 
 pub struct get_pixel_mapuiv_request {
     major_opcode :   u8,
@@ -1385,6 +1284,7 @@ pub struct get_pixel_mapuiv_request {
     context_tag :    context_tag,
     map :            u32
 }
+
 
 pub struct get_pixel_mapuiv_reply {
     response_type :   u8,
@@ -1397,12 +1297,11 @@ pub struct get_pixel_mapuiv_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_pixel_mapusv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_pixel_mapusv. */
-pub static XCB_GLX_GET_PIXEL_MAPUSV : c_int = 127;
 
 pub struct get_pixel_mapusv_request {
     major_opcode :   u8,
@@ -1411,6 +1310,7 @@ pub struct get_pixel_mapusv_request {
     context_tag :    context_tag,
     map :            u32
 }
+
 
 pub struct get_pixel_mapusv_reply {
     response_type :   u8,
@@ -1423,12 +1323,11 @@ pub struct get_pixel_mapusv_reply {
     pad2 :            [u8,..16]
 }
 
+
 pub struct get_polygon_stipple_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_polygon_stipple. */
-pub static XCB_GLX_GET_POLYGON_STIPPLE : c_int = 128;
 
 pub struct get_polygon_stipple_request {
     major_opcode :   u8,
@@ -1438,6 +1337,7 @@ pub struct get_polygon_stipple_request {
     lsb_first :      u8
 }
 
+
 pub struct get_polygon_stipple_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -1446,12 +1346,11 @@ pub struct get_polygon_stipple_reply {
     pad1 :            [u8,..24]
 }
 
+
 pub struct get_string_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_string. */
-pub static XCB_GLX_GET_STRING : c_int = 129;
 
 pub struct get_string_request {
     major_opcode :   u8,
@@ -1460,6 +1359,7 @@ pub struct get_string_request {
     context_tag :    context_tag,
     name :           u32
 }
+
 
 pub struct get_string_reply {
     response_type :   u8,
@@ -1471,12 +1371,11 @@ pub struct get_string_reply {
     pad2 :            [u8,..16]
 }
 
+
 pub struct get_tex_envfv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_tex_envfv. */
-pub static XCB_GLX_GET_TEX_ENVFV : c_int = 130;
 
 pub struct get_tex_envfv_request {
     major_opcode :   u8,
@@ -1486,6 +1385,7 @@ pub struct get_tex_envfv_request {
     target :         u32,
     pname :          u32
 }
+
 
 pub struct get_tex_envfv_reply {
     response_type :   u8,
@@ -1498,12 +1398,11 @@ pub struct get_tex_envfv_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_tex_enviv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_tex_enviv. */
-pub static XCB_GLX_GET_TEX_ENVIV : c_int = 131;
 
 pub struct get_tex_enviv_request {
     major_opcode :   u8,
@@ -1513,6 +1412,7 @@ pub struct get_tex_enviv_request {
     target :         u32,
     pname :          u32
 }
+
 
 pub struct get_tex_enviv_reply {
     response_type :   u8,
@@ -1525,12 +1425,11 @@ pub struct get_tex_enviv_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_tex_gendv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_tex_gendv. */
-pub static XCB_GLX_GET_TEX_GENDV : c_int = 132;
 
 pub struct get_tex_gendv_request {
     major_opcode :   u8,
@@ -1540,6 +1439,7 @@ pub struct get_tex_gendv_request {
     coord :          u32,
     pname :          u32
 }
+
 
 pub struct get_tex_gendv_reply {
     response_type :   u8,
@@ -1552,12 +1452,11 @@ pub struct get_tex_gendv_reply {
     pad2 :            [u8,..8]
 }
 
+
 pub struct get_tex_genfv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_tex_genfv. */
-pub static XCB_GLX_GET_TEX_GENFV : c_int = 133;
 
 pub struct get_tex_genfv_request {
     major_opcode :   u8,
@@ -1567,6 +1466,7 @@ pub struct get_tex_genfv_request {
     coord :          u32,
     pname :          u32
 }
+
 
 pub struct get_tex_genfv_reply {
     response_type :   u8,
@@ -1579,12 +1479,11 @@ pub struct get_tex_genfv_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_tex_geniv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_tex_geniv. */
-pub static XCB_GLX_GET_TEX_GENIV : c_int = 134;
 
 pub struct get_tex_geniv_request {
     major_opcode :   u8,
@@ -1594,6 +1493,7 @@ pub struct get_tex_geniv_request {
     coord :          u32,
     pname :          u32
 }
+
 
 pub struct get_tex_geniv_reply {
     response_type :   u8,
@@ -1606,12 +1506,11 @@ pub struct get_tex_geniv_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_tex_image_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_tex_image. */
-pub static XCB_GLX_GET_TEX_IMAGE : c_int = 135;
 
 pub struct get_tex_image_request {
     major_opcode :   u8,
@@ -1625,6 +1524,7 @@ pub struct get_tex_image_request {
     swap_bytes :     u8
 }
 
+
 pub struct get_tex_image_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -1637,12 +1537,11 @@ pub struct get_tex_image_reply {
     pad2 :            [u8,..4]
 }
 
+
 pub struct get_tex_parameterfv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_tex_parameterfv. */
-pub static XCB_GLX_GET_TEX_PARAMETERFV : c_int = 136;
 
 pub struct get_tex_parameterfv_request {
     major_opcode :   u8,
@@ -1652,6 +1551,7 @@ pub struct get_tex_parameterfv_request {
     target :         u32,
     pname :          u32
 }
+
 
 pub struct get_tex_parameterfv_reply {
     response_type :   u8,
@@ -1664,12 +1564,11 @@ pub struct get_tex_parameterfv_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_tex_parameteriv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_tex_parameteriv. */
-pub static XCB_GLX_GET_TEX_PARAMETERIV : c_int = 137;
 
 pub struct get_tex_parameteriv_request {
     major_opcode :   u8,
@@ -1679,6 +1578,7 @@ pub struct get_tex_parameteriv_request {
     target :         u32,
     pname :          u32
 }
+
 
 pub struct get_tex_parameteriv_reply {
     response_type :   u8,
@@ -1691,12 +1591,11 @@ pub struct get_tex_parameteriv_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_tex_level_parameterfv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_tex_level_parameterfv. */
-pub static XCB_GLX_GET_TEX_LEVEL_PARAMETERFV : c_int = 138;
 
 pub struct get_tex_level_parameterfv_request {
     major_opcode :   u8,
@@ -1707,6 +1606,7 @@ pub struct get_tex_level_parameterfv_request {
     level :          i32,
     pname :          u32
 }
+
 
 pub struct get_tex_level_parameterfv_reply {
     response_type :   u8,
@@ -1719,12 +1619,11 @@ pub struct get_tex_level_parameterfv_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_tex_level_parameteriv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_tex_level_parameteriv. */
-pub static XCB_GLX_GET_TEX_LEVEL_PARAMETERIV : c_int = 139;
 
 pub struct get_tex_level_parameteriv_request {
     major_opcode :   u8,
@@ -1735,6 +1634,7 @@ pub struct get_tex_level_parameteriv_request {
     level :          i32,
     pname :          u32
 }
+
 
 pub struct get_tex_level_parameteriv_reply {
     response_type :   u8,
@@ -1747,12 +1647,11 @@ pub struct get_tex_level_parameteriv_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct is_list_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_is_list. */
-pub static XCB_GLX_IS_LIST : c_int = 141;
 
 pub struct is_list_request {
     major_opcode :   u8,
@@ -1762,6 +1661,7 @@ pub struct is_list_request {
     list :           u32
 }
 
+
 pub struct is_list_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -1770,8 +1670,7 @@ pub struct is_list_reply {
     ret_val :         bool32
 }
 
-/** Opcode for xcb_glx_flush. */
-pub static XCB_GLX_FLUSH : c_int = 142;
+
 
 pub struct flush_request {
     major_opcode :   u8,
@@ -1780,12 +1679,11 @@ pub struct flush_request {
     context_tag :    context_tag
 }
 
+
 pub struct are_textures_resident_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_are_textures_resident. */
-pub static XCB_GLX_ARE_TEXTURES_RESIDENT : c_int = 143;
 
 pub struct are_textures_resident_request {
     major_opcode :   u8,
@@ -1794,6 +1692,7 @@ pub struct are_textures_resident_request {
     context_tag :    context_tag,
     n :              i32
 }
+
 
 pub struct are_textures_resident_reply {
     response_type :   u8,
@@ -1804,8 +1703,7 @@ pub struct are_textures_resident_reply {
     pad1 :            [u8,..20]
 }
 
-/** Opcode for xcb_glx_delete_textures. */
-pub static XCB_GLX_DELETE_TEXTURES : c_int = 144;
+
 
 pub struct delete_textures_request {
     major_opcode :   u8,
@@ -1815,12 +1713,11 @@ pub struct delete_textures_request {
     n :              i32
 }
 
+
 pub struct gen_textures_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_gen_textures. */
-pub static XCB_GLX_GEN_TEXTURES : c_int = 145;
 
 pub struct gen_textures_request {
     major_opcode :   u8,
@@ -1830,6 +1727,7 @@ pub struct gen_textures_request {
     n :              i32
 }
 
+
 pub struct gen_textures_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -1838,12 +1736,11 @@ pub struct gen_textures_reply {
     pad1 :            [u8,..24]
 }
 
+
 pub struct is_texture_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_is_texture. */
-pub static XCB_GLX_IS_TEXTURE : c_int = 146;
 
 pub struct is_texture_request {
     major_opcode :   u8,
@@ -1853,6 +1750,7 @@ pub struct is_texture_request {
     texture :        u32
 }
 
+
 pub struct is_texture_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -1861,12 +1759,11 @@ pub struct is_texture_reply {
     ret_val :         bool32
 }
 
+
 pub struct get_color_table_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_color_table. */
-pub static XCB_GLX_GET_COLOR_TABLE : c_int = 147;
 
 pub struct get_color_table_request {
     major_opcode :   u8,
@@ -1879,6 +1776,7 @@ pub struct get_color_table_request {
     swap_bytes :     u8
 }
 
+
 pub struct get_color_table_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -1889,12 +1787,11 @@ pub struct get_color_table_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_color_table_parameterfv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_color_table_parameterfv. */
-pub static XCB_GLX_GET_COLOR_TABLE_PARAMETERFV : c_int = 148;
 
 pub struct get_color_table_parameterfv_request {
     major_opcode :   u8,
@@ -1904,6 +1801,7 @@ pub struct get_color_table_parameterfv_request {
     target :         u32,
     pname :          u32
 }
+
 
 pub struct get_color_table_parameterfv_reply {
     response_type :   u8,
@@ -1916,12 +1814,11 @@ pub struct get_color_table_parameterfv_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_color_table_parameteriv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_color_table_parameteriv. */
-pub static XCB_GLX_GET_COLOR_TABLE_PARAMETERIV : c_int = 149;
 
 pub struct get_color_table_parameteriv_request {
     major_opcode :   u8,
@@ -1931,6 +1828,7 @@ pub struct get_color_table_parameteriv_request {
     target :         u32,
     pname :          u32
 }
+
 
 pub struct get_color_table_parameteriv_reply {
     response_type :   u8,
@@ -1943,12 +1841,11 @@ pub struct get_color_table_parameteriv_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_convolution_filter_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_convolution_filter. */
-pub static XCB_GLX_GET_CONVOLUTION_FILTER : c_int = 150;
 
 pub struct get_convolution_filter_request {
     major_opcode :   u8,
@@ -1961,6 +1858,7 @@ pub struct get_convolution_filter_request {
     swap_bytes :     u8
 }
 
+
 pub struct get_convolution_filter_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -1972,12 +1870,11 @@ pub struct get_convolution_filter_reply {
     pad2 :            [u8,..8]
 }
 
+
 pub struct get_convolution_parameterfv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_convolution_parameterfv. */
-pub static XCB_GLX_GET_CONVOLUTION_PARAMETERFV : c_int = 151;
 
 pub struct get_convolution_parameterfv_request {
     major_opcode :   u8,
@@ -1987,6 +1884,7 @@ pub struct get_convolution_parameterfv_request {
     target :         u32,
     pname :          u32
 }
+
 
 pub struct get_convolution_parameterfv_reply {
     response_type :   u8,
@@ -1999,12 +1897,11 @@ pub struct get_convolution_parameterfv_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_convolution_parameteriv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_convolution_parameteriv. */
-pub static XCB_GLX_GET_CONVOLUTION_PARAMETERIV : c_int = 152;
 
 pub struct get_convolution_parameteriv_request {
     major_opcode :   u8,
@@ -2014,6 +1911,7 @@ pub struct get_convolution_parameteriv_request {
     target :         u32,
     pname :          u32
 }
+
 
 pub struct get_convolution_parameteriv_reply {
     response_type :   u8,
@@ -2026,12 +1924,11 @@ pub struct get_convolution_parameteriv_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_separable_filter_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_separable_filter. */
-pub static XCB_GLX_GET_SEPARABLE_FILTER : c_int = 153;
 
 pub struct get_separable_filter_request {
     major_opcode :   u8,
@@ -2044,6 +1941,7 @@ pub struct get_separable_filter_request {
     swap_bytes :     u8
 }
 
+
 pub struct get_separable_filter_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -2055,12 +1953,11 @@ pub struct get_separable_filter_reply {
     pad2 :            [u8,..8]
 }
 
+
 pub struct get_histogram_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_histogram. */
-pub static XCB_GLX_GET_HISTOGRAM : c_int = 154;
 
 pub struct get_histogram_request {
     major_opcode :   u8,
@@ -2074,6 +1971,7 @@ pub struct get_histogram_request {
     reset :          u8
 }
 
+
 pub struct get_histogram_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -2084,12 +1982,11 @@ pub struct get_histogram_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_histogram_parameterfv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_histogram_parameterfv. */
-pub static XCB_GLX_GET_HISTOGRAM_PARAMETERFV : c_int = 155;
 
 pub struct get_histogram_parameterfv_request {
     major_opcode :   u8,
@@ -2099,6 +1996,7 @@ pub struct get_histogram_parameterfv_request {
     target :         u32,
     pname :          u32
 }
+
 
 pub struct get_histogram_parameterfv_reply {
     response_type :   u8,
@@ -2111,12 +2009,11 @@ pub struct get_histogram_parameterfv_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_histogram_parameteriv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_histogram_parameteriv. */
-pub static XCB_GLX_GET_HISTOGRAM_PARAMETERIV : c_int = 156;
 
 pub struct get_histogram_parameteriv_request {
     major_opcode :   u8,
@@ -2126,6 +2023,7 @@ pub struct get_histogram_parameteriv_request {
     target :         u32,
     pname :          u32
 }
+
 
 pub struct get_histogram_parameteriv_reply {
     response_type :   u8,
@@ -2138,12 +2036,11 @@ pub struct get_histogram_parameteriv_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_minmax_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_minmax. */
-pub static XCB_GLX_GET_MINMAX : c_int = 157;
 
 pub struct get_minmax_request {
     major_opcode :   u8,
@@ -2157,6 +2054,7 @@ pub struct get_minmax_request {
     reset :          u8
 }
 
+
 pub struct get_minmax_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -2165,12 +2063,11 @@ pub struct get_minmax_reply {
     pad1 :            [u8,..24]
 }
 
+
 pub struct get_minmax_parameterfv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_minmax_parameterfv. */
-pub static XCB_GLX_GET_MINMAX_PARAMETERFV : c_int = 158;
 
 pub struct get_minmax_parameterfv_request {
     major_opcode :   u8,
@@ -2180,6 +2077,7 @@ pub struct get_minmax_parameterfv_request {
     target :         u32,
     pname :          u32
 }
+
 
 pub struct get_minmax_parameterfv_reply {
     response_type :   u8,
@@ -2192,12 +2090,11 @@ pub struct get_minmax_parameterfv_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_minmax_parameteriv_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_minmax_parameteriv. */
-pub static XCB_GLX_GET_MINMAX_PARAMETERIV : c_int = 159;
 
 pub struct get_minmax_parameteriv_request {
     major_opcode :   u8,
@@ -2207,6 +2104,7 @@ pub struct get_minmax_parameteriv_request {
     target :         u32,
     pname :          u32
 }
+
 
 pub struct get_minmax_parameteriv_reply {
     response_type :   u8,
@@ -2219,12 +2117,11 @@ pub struct get_minmax_parameteriv_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_compressed_tex_image_arb_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_compressed_tex_image_arb. */
-pub static XCB_GLX_GET_COMPRESSED_TEX_IMAGE_ARB : c_int = 160;
 
 pub struct get_compressed_tex_image_arb_request {
     major_opcode :   u8,
@@ -2234,6 +2131,7 @@ pub struct get_compressed_tex_image_arb_request {
     target :         u32,
     level :          i32
 }
+
 
 pub struct get_compressed_tex_image_arb_reply {
     response_type :   u8,
@@ -2245,8 +2143,7 @@ pub struct get_compressed_tex_image_arb_reply {
     pad2 :            [u8,..12]
 }
 
-/** Opcode for xcb_glx_delete_queries_arb. */
-pub static XCB_GLX_DELETE_QUERIES_ARB : c_int = 161;
+
 
 pub struct delete_queries_arb_request {
     major_opcode :   u8,
@@ -2256,12 +2153,11 @@ pub struct delete_queries_arb_request {
     n :              i32
 }
 
+
 pub struct gen_queries_arb_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_gen_queries_arb. */
-pub static XCB_GLX_GEN_QUERIES_ARB : c_int = 162;
 
 pub struct gen_queries_arb_request {
     major_opcode :   u8,
@@ -2271,6 +2167,7 @@ pub struct gen_queries_arb_request {
     n :              i32
 }
 
+
 pub struct gen_queries_arb_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -2279,12 +2176,11 @@ pub struct gen_queries_arb_reply {
     pad1 :            [u8,..24]
 }
 
+
 pub struct is_query_arb_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_is_query_arb. */
-pub static XCB_GLX_IS_QUERY_ARB : c_int = 163;
 
 pub struct is_query_arb_request {
     major_opcode :   u8,
@@ -2294,6 +2190,7 @@ pub struct is_query_arb_request {
     id :             u32
 }
 
+
 pub struct is_query_arb_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -2302,12 +2199,11 @@ pub struct is_query_arb_reply {
     ret_val :         bool32
 }
 
+
 pub struct get_queryiv_arb_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_queryiv_arb. */
-pub static XCB_GLX_GET_QUERYIV_ARB : c_int = 164;
 
 pub struct get_queryiv_arb_request {
     major_opcode :   u8,
@@ -2317,6 +2213,7 @@ pub struct get_queryiv_arb_request {
     target :         u32,
     pname :          u32
 }
+
 
 pub struct get_queryiv_arb_reply {
     response_type :   u8,
@@ -2329,12 +2226,11 @@ pub struct get_queryiv_arb_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_query_objectiv_arb_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_query_objectiv_arb. */
-pub static XCB_GLX_GET_QUERY_OBJECTIV_ARB : c_int = 165;
 
 pub struct get_query_objectiv_arb_request {
     major_opcode :   u8,
@@ -2344,6 +2240,7 @@ pub struct get_query_objectiv_arb_request {
     id :             u32,
     pname :          u32
 }
+
 
 pub struct get_query_objectiv_arb_reply {
     response_type :   u8,
@@ -2356,12 +2253,11 @@ pub struct get_query_objectiv_arb_reply {
     pad2 :            [u8,..12]
 }
 
+
 pub struct get_query_objectuiv_arb_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_glx_get_query_objectuiv_arb. */
-pub static XCB_GLX_GET_QUERY_OBJECTUIV_ARB : c_int = 166;
 
 pub struct get_query_objectuiv_arb_request {
     major_opcode :   u8,
@@ -2371,6 +2267,7 @@ pub struct get_query_objectuiv_arb_request {
     id :             u32,
     pname :          u32
 }
+
 
 pub struct get_query_objectuiv_arb_reply {
     response_type :   u8,
@@ -2382,8 +2279,9 @@ pub struct get_query_objectuiv_arb_reply {
     datum :           u32,
     pad2 :            [u8,..12]
 }
+
 #[link_args="-lxcb-glx"]
-extern "C" {
+pub extern "C" {
 
 /**
  * Get the next element of the iterator
@@ -2395,7 +2293,7 @@ extern "C" {
  *
  *
  */
-unsafe fn xcb_glx_pixmap_next (i:*pixmap_iterator) -> ();
+unsafe fn xcb_glx_pixmap_next (i:*pixmap_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2418,7 +2316,7 @@ unsafe fn xcb_glx_pixmap_end (i:pixmap_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_glx_context_next (i:*context_iterator) -> ();
+unsafe fn xcb_glx_context_next (i:*context_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2441,7 +2339,7 @@ unsafe fn xcb_glx_context_end (i:context_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_glx_pbuffer_next (i:*pbuffer_iterator) -> ();
+unsafe fn xcb_glx_pbuffer_next (i:*pbuffer_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2464,7 +2362,7 @@ unsafe fn xcb_glx_pbuffer_end (i:pbuffer_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_glx_window_next (i:*window_iterator) -> ();
+unsafe fn xcb_glx_window_next (i:*window_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2487,7 +2385,7 @@ unsafe fn xcb_glx_window_end (i:window_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_glx_fbconfig_next (i:*fbconfig_iterator) -> ();
+unsafe fn xcb_glx_fbconfig_next (i:*fbconfig_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2510,7 +2408,7 @@ unsafe fn xcb_glx_fbconfig_end (i:fbconfig_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_glx_drawable_next (i:*drawable_iterator) -> ();
+unsafe fn xcb_glx_drawable_next (i:*drawable_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2533,7 +2431,7 @@ unsafe fn xcb_glx_drawable_end (i:drawable_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_glx_float32_next (i:*float32_iterator) -> ();
+unsafe fn xcb_glx_float32_next (i:*float32_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2556,7 +2454,7 @@ unsafe fn xcb_glx_float32_end (i:float32_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_glx_float64_next (i:*float64_iterator) -> ();
+unsafe fn xcb_glx_float64_next (i:*float64_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2579,7 +2477,7 @@ unsafe fn xcb_glx_float64_end (i:float64_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_glx_bool32_next (i:*bool32_iterator) -> ();
+unsafe fn xcb_glx_bool32_next (i:*bool32_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2602,7 +2500,7 @@ unsafe fn xcb_glx_bool32_end (i:bool32_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_glx_context_tag_next (i:*context_tag_iterator) -> ();
+unsafe fn xcb_glx_context_tag_next (i:*context_tag_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2695,7 +2593,7 @@ unsafe fn xcb_glx_render_large (c : *connection,
  */
 unsafe fn xcb_glx_create_context_checked (c : *connection,
                                           context :  context,
-                                          visual :  xproto::visualid,
+                                          visual :  ll::xproto::visualid,
                                           screen :  u32,
                                           share_list :  context,
                                           is_direct :  u8) -> void_cookie;
@@ -2710,7 +2608,7 @@ unsafe fn xcb_glx_create_context_checked (c : *connection,
  */
 unsafe fn xcb_glx_create_context (c : *connection,
                                   context :  context,
-                                  visual :  xproto::visualid,
+                                  visual :  ll::xproto::visualid,
                                   screen :  u32,
                                   share_list :  context,
                                   is_direct :  u8) -> void_cookie;
@@ -2996,7 +2894,7 @@ unsafe fn xcb_glx_swap_buffers (c : *connection,
  */
 unsafe fn xcb_glx_use_x_font_checked (c : *connection,
                                       context_tag :  context_tag,
-                                      font :  xproto::font,
+                                      font :  ll::xproto::font,
                                       first :  u32,
                                       count :  u32,
                                       list_base :  u32) -> void_cookie;
@@ -3011,7 +2909,7 @@ unsafe fn xcb_glx_use_x_font_checked (c : *connection,
  */
 unsafe fn xcb_glx_use_x_font (c : *connection,
                               context_tag :  context_tag,
-                              font :  xproto::font,
+                              font :  ll::xproto::font,
                               first :  u32,
                               count :  u32,
                               list_base :  u32) -> void_cookie;
@@ -3029,8 +2927,8 @@ unsafe fn xcb_glx_use_x_font (c : *connection,
  */
 unsafe fn xcb_glx_create_glx_pixmap_checked (c : *connection,
                                              screen :  u32,
-                                             visual :  xproto::visualid,
-                                             pixmap :  xproto::pixmap,
+                                             visual :  ll::xproto::visualid,
+                                             pixmap :  ll::xproto::pixmap,
                                              glx_pixmap :  pixmap) -> void_cookie;
 
 /**
@@ -3043,8 +2941,8 @@ unsafe fn xcb_glx_create_glx_pixmap_checked (c : *connection,
  */
 unsafe fn xcb_glx_create_glx_pixmap (c : *connection,
                                      screen :  u32,
-                                     visual :  xproto::visualid,
-                                     pixmap :  xproto::pixmap,
+                                     visual :  ll::xproto::visualid,
+                                     pixmap :  ll::xproto::pixmap,
                                      glx_pixmap :  pixmap) -> void_cookie;
 
 unsafe fn xcb_glx_get_visual_configs_sizeof (_buffer :  *c_void) -> c_int;
@@ -3291,7 +3189,7 @@ unsafe fn xcb_glx_query_server_string_unchecked (c : *connection,
                                                  screen :  u32,
                                                  name :  u32) -> query_server_string_cookie;
 
-unsafe fn xcb_glx_query_server_string_string (R : *query_server_string_reply) -> *u8;
+unsafe fn xcb_glx_query_server_string_string (R : *query_server_string_reply) -> *c_char;
 
 
 unsafe fn xcb_glx_query_server_string_string_length (R : *query_server_string_reply) -> c_int;
@@ -3334,7 +3232,7 @@ unsafe fn xcb_glx_client_info_checked (c : *connection,
                                        major_version :  u32,
                                        minor_version :  u32,
                                        str_len :  u32,
-                                       string : *u8) -> void_cookie;
+                                       string : *c_char) -> void_cookie;
 
 /**
  *
@@ -3348,7 +3246,7 @@ unsafe fn xcb_glx_client_info (c : *connection,
                                major_version :  u32,
                                minor_version :  u32,
                                str_len :  u32,
-                               string : *u8) -> void_cookie;
+                               string : *c_char) -> void_cookie;
 
 unsafe fn xcb_glx_get_fb_configs_sizeof (_buffer :  *c_void) -> c_int;
 
@@ -3419,7 +3317,7 @@ unsafe fn xcb_glx_create_pixmap_sizeof (_buffer :  *c_void) -> c_int;
 unsafe fn xcb_glx_create_pixmap_checked (c : *connection,
                                          screen :  u32,
                                          fbconfig :  fbconfig,
-                                         pixmap :  xproto::pixmap,
+                                         pixmap :  ll::xproto::pixmap,
                                          glx_pixmap :  pixmap,
                                          num_attribs :  u32,
                                          attribs : *u32) -> void_cookie;
@@ -3435,7 +3333,7 @@ unsafe fn xcb_glx_create_pixmap_checked (c : *connection,
 unsafe fn xcb_glx_create_pixmap (c : *connection,
                                  screen :  u32,
                                  fbconfig :  fbconfig,
-                                 pixmap :  xproto::pixmap,
+                                 pixmap :  ll::xproto::pixmap,
                                  glx_pixmap :  pixmap,
                                  num_attribs :  u32,
                                  attribs : *u32) -> void_cookie;
@@ -3762,7 +3660,7 @@ unsafe fn xcb_glx_create_window_sizeof (_buffer :  *c_void) -> c_int;
 unsafe fn xcb_glx_create_window_checked (c : *connection,
                                          screen :  u32,
                                          fbconfig :  fbconfig,
-                                         window :  xproto::window,
+                                         window :  ll::xproto::window,
                                          glx_window :  window,
                                          num_attribs :  u32,
                                          attribs : *u32) -> void_cookie;
@@ -3778,7 +3676,7 @@ unsafe fn xcb_glx_create_window_checked (c : *connection,
 unsafe fn xcb_glx_create_window (c : *connection,
                                  screen :  u32,
                                  fbconfig :  fbconfig,
-                                 window :  xproto::window,
+                                 window :  ll::xproto::window,
                                  glx_window :  window,
                                  num_attribs :  u32,
                                  attribs : *u32) -> void_cookie;
@@ -3828,8 +3726,8 @@ unsafe fn xcb_glx_set_client_info_arb_checked (c : *connection,
                                                gl_str_len :  u32,
                                                glx_str_len :  u32,
                                                gl_versions : *u32,
-                                               gl_extension_string : *u8,
-                                               glx_extension_string : *u8) -> void_cookie;
+                                               gl_extension_string : *c_char,
+                                               glx_extension_string : *c_char) -> void_cookie;
 
 /**
  *
@@ -3846,8 +3744,8 @@ unsafe fn xcb_glx_set_client_info_arb (c : *connection,
                                        gl_str_len :  u32,
                                        glx_str_len :  u32,
                                        gl_versions : *u32,
-                                       gl_extension_string : *u8,
-                                       glx_extension_string : *u8) -> void_cookie;
+                                       gl_extension_string : *c_char,
+                                       glx_extension_string : *c_char) -> void_cookie;
 
 unsafe fn xcb_glx_create_context_attribs_arb_sizeof (_buffer :  *c_void) -> c_int;
 
@@ -3908,8 +3806,8 @@ unsafe fn xcb_glx_set_client_info_2arb_checked (c : *connection,
                                                 gl_str_len :  u32,
                                                 glx_str_len :  u32,
                                                 gl_versions : *u32,
-                                                gl_extension_string : *u8,
-                                                glx_extension_string : *u8) -> void_cookie;
+                                                gl_extension_string : *c_char,
+                                                glx_extension_string : *c_char) -> void_cookie;
 
 /**
  *
@@ -3926,8 +3824,8 @@ unsafe fn xcb_glx_set_client_info_2arb (c : *connection,
                                         gl_str_len :  u32,
                                         glx_str_len :  u32,
                                         gl_versions : *u32,
-                                        gl_extension_string : *u8,
-                                        glx_extension_string : *u8) -> void_cookie;
+                                        gl_extension_string : *c_char,
+                                        glx_extension_string : *c_char) -> void_cookie;
 
 /**
  *
@@ -5304,7 +5202,7 @@ unsafe fn xcb_glx_get_string_unchecked (c : *connection,
                                         context_tag :  context_tag,
                                         name :  u32) -> get_string_cookie;
 
-unsafe fn xcb_glx_get_string_string (R : *get_string_reply) -> *u8;
+unsafe fn xcb_glx_get_string_string (R : *get_string_reply) -> *c_char;
 
 
 unsafe fn xcb_glx_get_string_string_length (R : *get_string_reply) -> c_int;

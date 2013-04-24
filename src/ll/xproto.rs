@@ -9,6 +9,7 @@
 use core;
 use core::libc::*;
 use ll::base::*;
+use ll;
 
 pub struct char2b {
     byte1 :   u8,

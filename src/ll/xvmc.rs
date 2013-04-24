@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
+use core;
 use core::libc::*;
 use ll::base::*;
+use ll;
 use ll::xproto;
 use ll::shm;
 use ll::xv;
@@ -16,7 +18,6 @@ pub static XVMC_MAJOR_VERSION : c_uint = 1;
 pub static XVMC_MINOR_VERSION : c_uint = 1;
 
 pub type context = u32;
-
 /**
  * @brief context_iterator
  **/
@@ -26,8 +27,8 @@ pub struct context_iterator {
     index: c_int
 }
 
-pub type surface = u32;
 
+pub type surface = u32;
 /**
  * @brief surface_iterator
  **/
@@ -37,8 +38,8 @@ pub struct surface_iterator {
     index: c_int
 }
 
-pub type subpicture = u32;
 
+pub type subpicture = u32;
 /**
  * @brief subpicture_iterator
  **/
@@ -47,6 +48,7 @@ pub struct subpicture_iterator {
     rem  : c_int,
     index: c_int
 }
+
 
 pub struct surface_info {
     id :                      surface,
@@ -69,18 +71,18 @@ pub struct surface_info_iterator {
     index: c_int
 }
 
+
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xvmc_query_version. */
-pub static XCB_XVMC_QUERY_VERSION : c_int = 0;
 
 pub struct query_version_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16
 }
+
 
 pub struct query_version_reply {
     response_type :   u8,
@@ -91,19 +93,19 @@ pub struct query_version_reply {
     minor :           u32
 }
 
+
 pub struct list_surface_types_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xvmc_list_surface_types. */
-pub static XCB_XVMC_LIST_SURFACE_TYPES : c_int = 1;
 
 pub struct list_surface_types_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    port_id :        xv::port
+    port_id :        ll::xv::port
 }
+
 
 pub struct list_surface_types_reply {
     response_type :   u8,
@@ -114,24 +116,24 @@ pub struct list_surface_types_reply {
     pad1 :            [u8,..20]
 }
 
+
 pub struct create_context_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xvmc_create_context. */
-pub static XCB_XVMC_CREATE_CONTEXT : c_int = 2;
 
 pub struct create_context_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
     context_id :     context,
-    port_id :        xv::port,
+    port_id :        ll::xv::port,
     surface_id :     surface,
     width :          u16,
     height :         u16,
     flags :          u32
 }
+
 
 pub struct create_context_reply {
     response_type :   u8,
@@ -144,8 +146,7 @@ pub struct create_context_reply {
     pad1 :            [u8,..20]
 }
 
-/** Opcode for xcb_xvmc_destroy_context. */
-pub static XCB_XVMC_DESTROY_CONTEXT : c_int = 3;
+
 
 pub struct destroy_context_request {
     major_opcode :   u8,
@@ -154,12 +155,11 @@ pub struct destroy_context_request {
     context_id :     context
 }
 
+
 pub struct create_surface_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xvmc_create_surface. */
-pub static XCB_XVMC_CREATE_SURFACE : c_int = 4;
 
 pub struct create_surface_request {
     major_opcode :   u8,
@@ -169,6 +169,7 @@ pub struct create_surface_request {
     context_id :     context
 }
 
+
 pub struct create_surface_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -177,8 +178,7 @@ pub struct create_surface_reply {
     pad1 :            [u8,..24]
 }
 
-/** Opcode for xcb_xvmc_destroy_surface. */
-pub static XCB_XVMC_DESTROY_SURFACE : c_int = 5;
+
 
 pub struct destroy_surface_request {
     major_opcode :   u8,
@@ -187,12 +187,11 @@ pub struct destroy_surface_request {
     surface_id :     surface
 }
 
+
 pub struct create_subpicture_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xvmc_create_subpicture. */
-pub static XCB_XVMC_CREATE_SUBPICTURE : c_int = 6;
 
 pub struct create_subpicture_request {
     major_opcode :    u8,
@@ -204,6 +203,7 @@ pub struct create_subpicture_request {
     width :           u16,
     height :          u16
 }
+
 
 pub struct create_subpicture_reply {
     response_type :         u8,
@@ -218,8 +218,7 @@ pub struct create_subpicture_reply {
     pad1 :                  [u8,..12]
 }
 
-/** Opcode for xcb_xvmc_destroy_subpicture. */
-pub static XCB_XVMC_DESTROY_SUBPICTURE : c_int = 7;
+
 
 pub struct destroy_subpicture_request {
     major_opcode :    u8,
@@ -228,20 +227,20 @@ pub struct destroy_subpicture_request {
     subpicture_id :   subpicture
 }
 
+
 pub struct list_subpicture_types_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xvmc_list_subpicture_types. */
-pub static XCB_XVMC_LIST_SUBPICTURE_TYPES : c_int = 8;
 
 pub struct list_subpicture_types_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    port_id :        xv::port,
+    port_id :        ll::xv::port,
     surface_id :     surface
 }
+
 
 pub struct list_subpicture_types_reply {
     response_type :   u8,
@@ -251,8 +250,9 @@ pub struct list_subpicture_types_reply {
     num :             u32,
     pad1 :            [u8,..20]
 }
+
 #[link_args="-lxcb-xvmc"]
-extern "C" {
+pub extern "C" {
 
 /**
  * Get the next element of the iterator
@@ -264,7 +264,7 @@ extern "C" {
  *
  *
  */
-unsafe fn xcb_xvmc_context_next (i:*context_iterator) -> ();
+unsafe fn xcb_xvmc_context_next (i:*context_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -287,7 +287,7 @@ unsafe fn xcb_xvmc_context_end (i:context_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_xvmc_surface_next (i:*surface_iterator) -> ();
+unsafe fn xcb_xvmc_surface_next (i:*surface_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -310,7 +310,7 @@ unsafe fn xcb_xvmc_surface_end (i:surface_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_xvmc_subpicture_next (i:*subpicture_iterator) -> ();
+unsafe fn xcb_xvmc_subpicture_next (i:*subpicture_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -333,7 +333,7 @@ unsafe fn xcb_xvmc_subpicture_end (i:subpicture_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_xvmc_surface_info_next (i:*surface_info_iterator) -> ();
+unsafe fn xcb_xvmc_surface_info_next (i:*surface_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -398,7 +398,7 @@ unsafe fn xcb_xvmc_list_surface_types_sizeof (_buffer :  *c_void) -> c_int;
  * 
  */
 unsafe fn xcb_xvmc_list_surface_types (c : *connection,
-                                       port_id :  xv::port) -> list_surface_types_cookie;
+                                       port_id :  ll::xv::port) -> list_surface_types_cookie;
 
 /**
  *
@@ -412,7 +412,7 @@ unsafe fn xcb_xvmc_list_surface_types (c : *connection,
  * placed in the event queue.
  */
 unsafe fn xcb_xvmc_list_surface_types_unchecked (c : *connection,
-                                                 port_id :  xv::port) -> list_surface_types_cookie;
+                                                 port_id :  ll::xv::port) -> list_surface_types_cookie;
 
 unsafe fn xcb_xvmc_list_surface_types_surfaces (R : *list_surface_types_reply) -> *surface_info;
 
@@ -451,7 +451,7 @@ unsafe fn xcb_xvmc_create_context_sizeof (_buffer :  *c_void) -> c_int;
  */
 unsafe fn xcb_xvmc_create_context (c : *connection,
                                    context_id :  context,
-                                   port_id :  xv::port,
+                                   port_id :  ll::xv::port,
                                    surface_id :  surface,
                                    width :  u16,
                                    height :  u16,
@@ -470,7 +470,7 @@ unsafe fn xcb_xvmc_create_context (c : *connection,
  */
 unsafe fn xcb_xvmc_create_context_unchecked (c : *connection,
                                              context_id :  context,
-                                             port_id :  xv::port,
+                                             port_id :  ll::xv::port,
                                              surface_id :  surface,
                                              width :  u16,
                                              height :  u16,
@@ -704,7 +704,7 @@ unsafe fn xcb_xvmc_list_subpicture_types_sizeof (_buffer :  *c_void) -> c_int;
  * 
  */
 unsafe fn xcb_xvmc_list_subpicture_types (c : *connection,
-                                          port_id :  xv::port,
+                                          port_id :  ll::xv::port,
                                           surface_id :  surface) -> list_subpicture_types_cookie;
 
 /**
@@ -719,15 +719,15 @@ unsafe fn xcb_xvmc_list_subpicture_types (c : *connection,
  * placed in the event queue.
  */
 unsafe fn xcb_xvmc_list_subpicture_types_unchecked (c : *connection,
-                                                    port_id :  xv::port,
+                                                    port_id :  ll::xv::port,
                                                     surface_id :  surface) -> list_subpicture_types_cookie;
 
-unsafe fn xcb_xvmc_list_subpicture_types_types (R : *list_subpicture_types_reply) -> *xv::image_format_info;
+unsafe fn xcb_xvmc_list_subpicture_types_types (R : *list_subpicture_types_reply) -> *ll::xv::image_format_info;
 
 
 unsafe fn xcb_xvmc_list_subpicture_types_types_length (R : *list_subpicture_types_reply) -> c_int;
 
-unsafe fn xcb_xvmc_list_subpicture_types_types_iterator (R : *list_subpicture_types_reply) -> xv::image_format_info_iterator;
+unsafe fn xcb_xvmc_list_subpicture_types_types_iterator (R : *list_subpicture_types_reply) -> ll::xv::image_format_info_iterator;
 
 /**
  * Return the reply

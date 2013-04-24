@@ -6,14 +6,15 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
+use core;
 use core::libc::*;
 use ll::base::*;
+use ll;
 
 pub static XF86VIDMODE_MAJOR_VERSION : c_uint = 2;
 pub static XF86VIDMODE_MINOR_VERSION : c_uint = 2;
 
 pub type syncrange = u32;
-
 /**
  * @brief syncrange_iterator
  **/
@@ -23,8 +24,8 @@ pub struct syncrange_iterator {
     index: c_int
 }
 
-pub type dotclock = u32;
 
+pub type dotclock = u32;
 /**
  * @brief dotclock_iterator
  **/
@@ -34,30 +35,6 @@ pub struct dotclock_iterator {
     index: c_int
 }
 
-pub type mode_flag = c_uint;//{
-    pub static XCB_XF86VIDMODE_MODE_FLAG_POSITIVE_H_SYNC : mode_flag = 1;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_NEGATIVE_H_SYNC : mode_flag = 2;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_POSITIVE_V_SYNC : mode_flag = 4;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_NEGATIVE_V_SYNC : mode_flag = 8;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_INTERLACE : mode_flag = 16;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_COMPOSITE_SYNC : mode_flag = 32;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_POSITIVE_C_SYNC : mode_flag = 64;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_NEGATIVE_C_SYNC : mode_flag = 128;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_H_SKEW : mode_flag = 256;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_BROADCAST : mode_flag = 512;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_PIXMUX : mode_flag = 1024;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_DOUBLE_CLOCK : mode_flag = 2048;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_HALF_CLOCK : mode_flag = 4096;
-//}
-
-pub type clock_flag = c_uint;//{
-    pub static XCB_XF86VIDMODE_CLOCK_FLAG_PROGRAMABLE : clock_flag = 1;
-//}
-
-pub type permission = c_uint;//{
-    pub static XCB_XF86VIDMODE_PERMISSION_READ : permission = 1;
-    pub static XCB_XF86VIDMODE_PERMISSION_WRITE : permission = 2;
-//}
 
 pub struct mode_info {
     dotclock :     dotclock,
@@ -85,18 +62,18 @@ pub struct mode_info_iterator {
     index: c_int
 }
 
+
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xf86vidmode_query_version. */
-pub static XCB_XF86VIDMODE_QUERY_VERSION : c_int = 0;
 
 pub struct query_version_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16
 }
+
 
 pub struct query_version_reply {
     response_type :   u8,
@@ -107,12 +84,11 @@ pub struct query_version_reply {
     minor_version :   u16
 }
 
+
 pub struct get_mode_line_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xf86vidmode_get_mode_line. */
-pub static XCB_XF86VIDMODE_GET_MODE_LINE : c_int = 1;
 
 pub struct get_mode_line_request {
     major_opcode :   u8,
@@ -121,6 +97,7 @@ pub struct get_mode_line_request {
     screen :         u16,
     pad0 :           [u8,..2]
 }
+
 
 pub struct get_mode_line_reply {
     response_type :   u8,
@@ -143,8 +120,7 @@ pub struct get_mode_line_reply {
     privsize :        u32
 }
 
-/** Opcode for xcb_xf86vidmode_mod_mode_line. */
-pub static XCB_XF86VIDMODE_MOD_MODE_LINE : c_int = 2;
+
 
 pub struct mod_mode_line_request {
     major_opcode :   u8,
@@ -166,8 +142,7 @@ pub struct mod_mode_line_request {
     privsize :       u32
 }
 
-/** Opcode for xcb_xf86vidmode_switch_mode. */
-pub static XCB_XF86VIDMODE_SWITCH_MODE : c_int = 3;
+
 
 pub struct switch_mode_request {
     major_opcode :   u8,
@@ -177,12 +152,11 @@ pub struct switch_mode_request {
     zoom :           u16
 }
 
+
 pub struct get_monitor_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xf86vidmode_get_monitor. */
-pub static XCB_XF86VIDMODE_GET_MONITOR : c_int = 4;
 
 pub struct get_monitor_request {
     major_opcode :   u8,
@@ -191,6 +165,7 @@ pub struct get_monitor_request {
     screen :         u16,
     pad0 :           [u8,..2]
 }
+
 
 pub struct get_monitor_reply {
     response_type :   u8,
@@ -204,8 +179,7 @@ pub struct get_monitor_reply {
     pad1 :            [u8,..20]
 }
 
-/** Opcode for xcb_xf86vidmode_lock_mode_switch. */
-pub static XCB_XF86VIDMODE_LOCK_MODE_SWITCH : c_int = 5;
+
 
 pub struct lock_mode_switch_request {
     major_opcode :   u8,
@@ -215,12 +189,11 @@ pub struct lock_mode_switch_request {
     lock :           u16
 }
 
+
 pub struct get_all_mode_lines_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xf86vidmode_get_all_mode_lines. */
-pub static XCB_XF86VIDMODE_GET_ALL_MODE_LINES : c_int = 6;
 
 pub struct get_all_mode_lines_request {
     major_opcode :   u8,
@@ -229,6 +202,7 @@ pub struct get_all_mode_lines_request {
     screen :         u16,
     pad0 :           [u8,..2]
 }
+
 
 pub struct get_all_mode_lines_reply {
     response_type :   u8,
@@ -239,8 +213,7 @@ pub struct get_all_mode_lines_reply {
     pad1 :            [u8,..20]
 }
 
-/** Opcode for xcb_xf86vidmode_add_mode_line. */
-pub static XCB_XF86VIDMODE_ADD_MODE_LINE : c_int = 7;
+
 
 pub struct add_mode_line_request {
     major_opcode :       u8,
@@ -276,8 +249,7 @@ pub struct add_mode_line_request {
     pad3 :               [u8,..12]
 }
 
-/** Opcode for xcb_xf86vidmode_delete_mode_line. */
-pub static XCB_XF86VIDMODE_DELETE_MODE_LINE : c_int = 8;
+
 
 pub struct delete_mode_line_request {
     major_opcode :   u8,
@@ -300,12 +272,11 @@ pub struct delete_mode_line_request {
     privsize :       u32
 }
 
+
 pub struct validate_mode_line_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xf86vidmode_validate_mode_line. */
-pub static XCB_XF86VIDMODE_VALIDATE_MODE_LINE : c_int = 9;
 
 pub struct validate_mode_line_request {
     major_opcode :   u8,
@@ -328,6 +299,7 @@ pub struct validate_mode_line_request {
     privsize :       u32
 }
 
+
 pub struct validate_mode_line_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -337,8 +309,7 @@ pub struct validate_mode_line_reply {
     pad1 :            [u8,..20]
 }
 
-/** Opcode for xcb_xf86vidmode_switch_to_mode. */
-pub static XCB_XF86VIDMODE_SWITCH_TO_MODE : c_int = 10;
+
 
 pub struct switch_to_mode_request {
     major_opcode :   u8,
@@ -361,12 +332,11 @@ pub struct switch_to_mode_request {
     privsize :       u32
 }
 
+
 pub struct get_view_port_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xf86vidmode_get_view_port. */
-pub static XCB_XF86VIDMODE_GET_VIEW_PORT : c_int = 11;
 
 pub struct get_view_port_request {
     major_opcode :   u8,
@@ -375,6 +345,7 @@ pub struct get_view_port_request {
     screen :         u16,
     pad0 :           [u8,..2]
 }
+
 
 pub struct get_view_port_reply {
     response_type :   u8,
@@ -386,8 +357,7 @@ pub struct get_view_port_reply {
     pad1 :            [u8,..16]
 }
 
-/** Opcode for xcb_xf86vidmode_set_view_port. */
-pub static XCB_XF86VIDMODE_SET_VIEW_PORT : c_int = 12;
+
 
 pub struct set_view_port_request {
     major_opcode :   u8,
@@ -399,12 +369,11 @@ pub struct set_view_port_request {
     y :              u32
 }
 
+
 pub struct get_dot_clocks_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xf86vidmode_get_dot_clocks. */
-pub static XCB_XF86VIDMODE_GET_DOT_CLOCKS : c_int = 13;
 
 pub struct get_dot_clocks_request {
     major_opcode :   u8,
@@ -413,6 +382,7 @@ pub struct get_dot_clocks_request {
     screen :         u16,
     pad0 :           [u8,..2]
 }
+
 
 pub struct get_dot_clocks_reply {
     response_type :   u8,
@@ -425,8 +395,7 @@ pub struct get_dot_clocks_reply {
     pad1 :            [u8,..12]
 }
 
-/** Opcode for xcb_xf86vidmode_set_client_version. */
-pub static XCB_XF86VIDMODE_SET_CLIENT_VERSION : c_int = 14;
+
 
 pub struct set_client_version_request {
     major_opcode :   u8,
@@ -436,8 +405,7 @@ pub struct set_client_version_request {
     minor :          u16
 }
 
-/** Opcode for xcb_xf86vidmode_set_gamma. */
-pub static XCB_XF86VIDMODE_SET_GAMMA : c_int = 15;
+
 
 pub struct set_gamma_request {
     major_opcode :   u8,
@@ -451,12 +419,11 @@ pub struct set_gamma_request {
     pad1 :           [u8,..12]
 }
 
+
 pub struct get_gamma_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xf86vidmode_get_gamma. */
-pub static XCB_XF86VIDMODE_GET_GAMMA : c_int = 16;
 
 pub struct get_gamma_request {
     major_opcode :   u8,
@@ -465,6 +432,7 @@ pub struct get_gamma_request {
     screen :         u16,
     pad0 :           [u8,..26]
 }
+
 
 pub struct get_gamma_reply {
     response_type :   u8,
@@ -477,12 +445,11 @@ pub struct get_gamma_reply {
     pad1 :            [u8,..12]
 }
 
+
 pub struct get_gamma_ramp_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xf86vidmode_get_gamma_ramp. */
-pub static XCB_XF86VIDMODE_GET_GAMMA_RAMP : c_int = 17;
 
 pub struct get_gamma_ramp_request {
     major_opcode :   u8,
@@ -491,6 +458,7 @@ pub struct get_gamma_ramp_request {
     screen :         u16,
     size :           u16
 }
+
 
 pub struct get_gamma_ramp_reply {
     response_type :   u8,
@@ -501,8 +469,7 @@ pub struct get_gamma_ramp_reply {
     pad1 :            [u8,..22]
 }
 
-/** Opcode for xcb_xf86vidmode_set_gamma_ramp. */
-pub static XCB_XF86VIDMODE_SET_GAMMA_RAMP : c_int = 18;
+
 
 pub struct set_gamma_ramp_request {
     major_opcode :   u8,
@@ -512,12 +479,11 @@ pub struct set_gamma_ramp_request {
     size :           u16
 }
 
+
 pub struct get_gamma_ramp_size_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xf86vidmode_get_gamma_ramp_size. */
-pub static XCB_XF86VIDMODE_GET_GAMMA_RAMP_SIZE : c_int = 19;
 
 pub struct get_gamma_ramp_size_request {
     major_opcode :   u8,
@@ -526,6 +492,7 @@ pub struct get_gamma_ramp_size_request {
     screen :         u16,
     pad0 :           [u8,..2]
 }
+
 
 pub struct get_gamma_ramp_size_reply {
     response_type :   u8,
@@ -536,12 +503,11 @@ pub struct get_gamma_ramp_size_reply {
     pad1 :            [u8,..22]
 }
 
+
 pub struct get_permissions_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xf86vidmode_get_permissions. */
-pub static XCB_XF86VIDMODE_GET_PERMISSIONS : c_int = 20;
 
 pub struct get_permissions_request {
     major_opcode :   u8,
@@ -550,6 +516,7 @@ pub struct get_permissions_request {
     screen :         u16,
     pad0 :           [u8,..2]
 }
+
 
 pub struct get_permissions_reply {
     response_type :   u8,
@@ -560,8 +527,7 @@ pub struct get_permissions_reply {
     pad1 :            [u8,..20]
 }
 
-/** Opcode for xcb_xf86vidmode_bad_clock. */
-pub static XCB_XF86VIDMODE_BAD_CLOCK : c_int = 0;
+
 
 pub struct bad_clock_error {
     response_type :   u8,
@@ -569,8 +535,7 @@ pub struct bad_clock_error {
     sequence :        u16
 }
 
-/** Opcode for xcb_xf86vidmode_bad_h_timings. */
-pub static XCB_XF86VIDMODE_BAD_H_TIMINGS : c_int = 1;
+
 
 pub struct bad_h_timings_error {
     response_type :   u8,
@@ -578,8 +543,7 @@ pub struct bad_h_timings_error {
     sequence :        u16
 }
 
-/** Opcode for xcb_xf86vidmode_bad_v_timings. */
-pub static XCB_XF86VIDMODE_BAD_V_TIMINGS : c_int = 2;
+
 
 pub struct bad_v_timings_error {
     response_type :   u8,
@@ -587,8 +551,7 @@ pub struct bad_v_timings_error {
     sequence :        u16
 }
 
-/** Opcode for xcb_xf86vidmode_mode_unsuitable. */
-pub static XCB_XF86VIDMODE_MODE_UNSUITABLE : c_int = 3;
+
 
 pub struct mode_unsuitable_error {
     response_type :   u8,
@@ -596,8 +559,7 @@ pub struct mode_unsuitable_error {
     sequence :        u16
 }
 
-/** Opcode for xcb_xf86vidmode_extension_disabled. */
-pub static XCB_XF86VIDMODE_EXTENSION_DISABLED : c_int = 4;
+
 
 pub struct extension_disabled_error {
     response_type :   u8,
@@ -605,8 +567,7 @@ pub struct extension_disabled_error {
     sequence :        u16
 }
 
-/** Opcode for xcb_xf86vidmode_client_not_local. */
-pub static XCB_XF86VIDMODE_CLIENT_NOT_LOCAL : c_int = 5;
+
 
 pub struct client_not_local_error {
     response_type :   u8,
@@ -614,15 +575,15 @@ pub struct client_not_local_error {
     sequence :        u16
 }
 
-/** Opcode for xcb_xf86vidmode_zoom_locked. */
-pub static XCB_XF86VIDMODE_ZOOM_LOCKED : c_int = 6;
+
 
 pub struct zoom_locked_error {
     response_type :   u8,
     error_code :      u8,
     sequence :        u16
 }
-extern "C" {
+
+pub extern "C" {
 
 /**
  * Get the next element of the iterator
@@ -634,7 +595,7 @@ extern "C" {
  *
  *
  */
-unsafe fn xcb_xf86vidmode_syncrange_next (i:*syncrange_iterator) -> ();
+unsafe fn xcb_xf86vidmode_syncrange_next (i:*syncrange_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -657,7 +618,7 @@ unsafe fn xcb_xf86vidmode_syncrange_end (i:syncrange_iterator) -> generic_iterat
  *
  *
  */
-unsafe fn xcb_xf86vidmode_dotclock_next (i:*dotclock_iterator) -> ();
+unsafe fn xcb_xf86vidmode_dotclock_next (i:*dotclock_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -680,7 +641,7 @@ unsafe fn xcb_xf86vidmode_dotclock_end (i:dotclock_iterator) -> generic_iterator
  *
  *
  */
-unsafe fn xcb_xf86vidmode_mode_info_next (i:*mode_info_iterator) -> ();
+unsafe fn xcb_xf86vidmode_mode_info_next (i:*mode_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -908,7 +869,7 @@ unsafe fn xcb_xf86vidmode_get_monitor_vsync_length (R : *get_monitor_reply) -> c
 
 unsafe fn xcb_xf86vidmode_get_monitor_vsync_end (R : *get_monitor_reply) -> generic_iterator;
 
-unsafe fn xcb_xf86vidmode_get_monitor_vendor (R : *get_monitor_reply) -> *u8;
+unsafe fn xcb_xf86vidmode_get_monitor_vendor (R : *get_monitor_reply) -> *c_char;
 
 
 unsafe fn xcb_xf86vidmode_get_monitor_vendor_length (R : *get_monitor_reply) -> c_int;
@@ -924,7 +885,7 @@ unsafe fn xcb_xf86vidmode_get_monitor_alignment_pad_length (R : *get_monitor_rep
 
 unsafe fn xcb_xf86vidmode_get_monitor_alignment_pad_end (R : *get_monitor_reply) -> generic_iterator;
 
-unsafe fn xcb_xf86vidmode_get_monitor_model (R : *get_monitor_reply) -> *u8;
+unsafe fn xcb_xf86vidmode_get_monitor_model (R : *get_monitor_reply) -> *c_char;
 
 
 unsafe fn xcb_xf86vidmode_get_monitor_model_length (R : *get_monitor_reply) -> c_int;

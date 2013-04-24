@@ -6,14 +6,15 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
+use core;
 use core::libc::*;
 use ll::base::*;
+use ll;
 
 pub static RECORD_MAJOR_VERSION : c_uint = 1;
 pub static RECORD_MINOR_VERSION : c_uint = 13;
 
 pub type context = u32;
-
 /**
  * @brief context_iterator
  **/
@@ -22,6 +23,7 @@ pub struct context_iterator {
     rem  : c_int,
     index: c_int
 }
+
 
 pub struct range_8 {
     first :   u8,
@@ -37,6 +39,7 @@ pub struct range_8_iterator {
     index: c_int
 }
 
+
 pub struct range_16 {
     first :   u16,
     last :    u16
@@ -51,6 +54,7 @@ pub struct range_16_iterator {
     index: c_int
 }
 
+
 pub struct ext_range {
     major :   range_8,
     minor :   range_16
@@ -64,6 +68,7 @@ pub struct ext_range_iterator {
     rem  : c_int,
     index: c_int
 }
+
 
 pub struct range {
     core_requests :      range_8,
@@ -86,8 +91,8 @@ pub struct range_iterator {
     index: c_int
 }
 
-pub type element_header = u8;
 
+pub type element_header = u8;
 /**
  * @brief element_header_iterator
  **/
@@ -97,14 +102,8 @@ pub struct element_header_iterator {
     index: c_int
 }
 
-pub type h_type = c_uint;//{
-    pub static XCB_RECORD_H_TYPE_FROM_SERVER_TIME : h_type = 1;
-    pub static XCB_RECORD_H_TYPE_FROM_CLIENT_TIME : h_type = 2;
-    pub static XCB_RECORD_H_TYPE_FROM_CLIENT_SEQUENCE : h_type = 4;
-//}
 
 pub type client_spec = u32;
-
 /**
  * @brief client_spec_iterator
  **/
@@ -114,11 +113,6 @@ pub struct client_spec_iterator {
     index: c_int
 }
 
-pub type cs = c_uint;//{
-    pub static XCB_RECORD_CS_CURRENT_CLIENTS : cs = 1;
-    pub static XCB_RECORD_CS_FUTURE_CLIENTS : cs = 2;
-    pub static XCB_RECORD_CS_ALL_CLIENTS : cs = 3;
-//}
 
 pub struct client_info {
     client_resource :   client_spec,
@@ -134,8 +128,7 @@ pub struct client_info_iterator {
     index: c_int
 }
 
-/** Opcode for xcb_record_bad_context. */
-pub static XCB_RECORD_BAD_CONTEXT : c_int = 0;
+
 
 pub struct bad_context_error {
     response_type :    u8,
@@ -144,12 +137,11 @@ pub struct bad_context_error {
     invalid_record :   u32
 }
 
+
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_record_query_version. */
-pub static XCB_RECORD_QUERY_VERSION : c_int = 0;
 
 pub struct query_version_request {
     major_opcode :    u8,
@@ -158,6 +150,7 @@ pub struct query_version_request {
     major_version :   u16,
     minor_version :   u16
 }
+
 
 pub struct query_version_reply {
     response_type :   u8,
@@ -168,8 +161,7 @@ pub struct query_version_reply {
     minor_version :   u16
 }
 
-/** Opcode for xcb_record_create_context. */
-pub static XCB_RECORD_CREATE_CONTEXT : c_int = 1;
+
 
 pub struct create_context_request {
     major_opcode :       u8,
@@ -182,8 +174,7 @@ pub struct create_context_request {
     num_ranges :         u32
 }
 
-/** Opcode for xcb_record_register_clients. */
-pub static XCB_RECORD_REGISTER_CLIENTS : c_int = 2;
+
 
 pub struct register_clients_request {
     major_opcode :       u8,
@@ -196,8 +187,7 @@ pub struct register_clients_request {
     num_ranges :         u32
 }
 
-/** Opcode for xcb_record_unregister_clients. */
-pub static XCB_RECORD_UNREGISTER_CLIENTS : c_int = 3;
+
 
 pub struct unregister_clients_request {
     major_opcode :       u8,
@@ -207,12 +197,11 @@ pub struct unregister_clients_request {
     num_client_specs :   u32
 }
 
+
 pub struct get_context_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_record_get_context. */
-pub static XCB_RECORD_GET_CONTEXT : c_int = 4;
 
 pub struct get_context_request {
     major_opcode :   u8,
@@ -220,6 +209,7 @@ pub struct get_context_request {
     length :         u16,
     context :        context
 }
+
 
 pub struct get_context_reply {
     response_type :             u8,
@@ -232,12 +222,11 @@ pub struct get_context_reply {
     pad1 :                      [u8,..16]
 }
 
+
 pub struct enable_context_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_record_enable_context. */
-pub static XCB_RECORD_ENABLE_CONTEXT : c_int = 5;
 
 pub struct enable_context_request {
     major_opcode :   u8,
@@ -245,6 +234,7 @@ pub struct enable_context_request {
     length :         u16,
     context :        context
 }
+
 
 pub struct enable_context_reply {
     response_type :      u8,
@@ -260,8 +250,7 @@ pub struct enable_context_reply {
     pad1 :               [u8,..8]
 }
 
-/** Opcode for xcb_record_disable_context. */
-pub static XCB_RECORD_DISABLE_CONTEXT : c_int = 6;
+
 
 pub struct disable_context_request {
     major_opcode :   u8,
@@ -270,8 +259,7 @@ pub struct disable_context_request {
     context :        context
 }
 
-/** Opcode for xcb_record_free_context. */
-pub static XCB_RECORD_FREE_CONTEXT : c_int = 7;
+
 
 pub struct free_context_request {
     major_opcode :   u8,
@@ -279,8 +267,9 @@ pub struct free_context_request {
     length :         u16,
     context :        context
 }
+
 #[link_args="-lxcb-record"]
-extern "C" {
+pub extern "C" {
 
 /**
  * Get the next element of the iterator
@@ -292,7 +281,7 @@ extern "C" {
  *
  *
  */
-unsafe fn xcb_record_context_next (i:*context_iterator) -> ();
+unsafe fn xcb_record_context_next (i:*context_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -315,7 +304,7 @@ unsafe fn xcb_record_context_end (i:context_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_record_range_8_next (i:*range_8_iterator) -> ();
+unsafe fn xcb_record_range_8_next (i:*range_8_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -338,7 +327,7 @@ unsafe fn xcb_record_range_8_end (i:range_8_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_record_range_16_next (i:*range_16_iterator) -> ();
+unsafe fn xcb_record_range_16_next (i:*range_16_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -361,7 +350,7 @@ unsafe fn xcb_record_range_16_end (i:range_16_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_record_ext_range_next (i:*ext_range_iterator) -> ();
+unsafe fn xcb_record_ext_range_next (i:*ext_range_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -384,7 +373,7 @@ unsafe fn xcb_record_ext_range_end (i:ext_range_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_record_range_next (i:*range_iterator) -> ();
+unsafe fn xcb_record_range_next (i:*range_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -407,7 +396,7 @@ unsafe fn xcb_record_range_end (i:range_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_record_element_header_next (i:*element_header_iterator) -> ();
+unsafe fn xcb_record_element_header_next (i:*element_header_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -430,7 +419,7 @@ unsafe fn xcb_record_element_header_end (i:element_header_iterator) -> generic_i
  *
  *
  */
-unsafe fn xcb_record_client_spec_next (i:*client_spec_iterator) -> ();
+unsafe fn xcb_record_client_spec_next (i:*client_spec_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -462,7 +451,7 @@ unsafe fn xcb_record_client_info_ranges_iterator (R : *client_info) -> range_ite
  *
  *
  */
-unsafe fn xcb_record_client_info_next (i:*client_info_iterator) -> ();
+unsafe fn xcb_record_client_info_next (i:*client_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element

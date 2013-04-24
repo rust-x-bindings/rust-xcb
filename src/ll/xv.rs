@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
+use core;
 use core::libc::*;
 use ll::base::*;
+use ll;
 use ll::xproto;
 use ll::shm;
 
@@ -15,7 +17,6 @@ pub static XV_MAJOR_VERSION : c_uint = 2;
 pub static XV_MINOR_VERSION : c_uint = 2;
 
 pub type port = u32;
-
 /**
  * @brief port_iterator
  **/
@@ -25,8 +26,8 @@ pub struct port_iterator {
     index: c_int
 }
 
-pub type encoding = u32;
 
+pub type encoding = u32;
 /**
  * @brief encoding_iterator
  **/
@@ -36,50 +37,6 @@ pub struct encoding_iterator {
     index: c_int
 }
 
-pub type type_ = c_uint;//{
-    pub static XCB_XV_TYPE_INPUT_MASK : type_ = 1;
-    pub static XCB_XV_TYPE_OUTPUT_MASK : type_ = 2;
-    pub static XCB_XV_TYPE_VIDEO_MASK : type_ = 4;
-    pub static XCB_XV_TYPE_STILL_MASK : type_ = 8;
-    pub static XCB_XV_TYPE_IMAGE_MASK : type_ = 16;
-//}
-
-pub type image_format_info_type = c_uint;//{
-    pub static XCB_XV_IMAGE_FORMAT_INFO_TYPE_RGB : image_format_info_type = 1;
-    pub static XCB_XV_IMAGE_FORMAT_INFO_TYPE_YUV : image_format_info_type = 2;
-//}
-
-pub type image_format_info_format = c_uint;//{
-    pub static XCB_XV_IMAGE_FORMAT_INFO_FORMAT_PACKED : image_format_info_format = 1;
-    pub static XCB_XV_IMAGE_FORMAT_INFO_FORMAT_PLANAR : image_format_info_format = 2;
-//}
-
-pub type attribute_flag = c_uint;//{
-    pub static XCB_XV_ATTRIBUTE_FLAG_GETTABLE : attribute_flag = 1;
-    pub static XCB_XV_ATTRIBUTE_FLAG_SETTABLE : attribute_flag = 2;
-//}
-
-pub type video_notify_reason = c_uint;//{
-    pub static XCB_XV_VIDEO_NOTIFY_REASON_STARTED : video_notify_reason = 1;
-    pub static XCB_XV_VIDEO_NOTIFY_REASON_STOPPED : video_notify_reason = 2;
-    pub static XCB_XV_VIDEO_NOTIFY_REASON_BUSY : video_notify_reason = 3;
-    pub static XCB_XV_VIDEO_NOTIFY_REASON_PREEMPTED : video_notify_reason = 4;
-    pub static XCB_XV_VIDEO_NOTIFY_REASON_HARD_ERROR : video_notify_reason = 5;
-//}
-
-pub type scanline_order = c_uint;//{
-    pub static XCB_XV_SCANLINE_ORDER_TOP_TO_BOTTOM : scanline_order = 1;
-    pub static XCB_XV_SCANLINE_ORDER_BOTTOM_TO_TOP : scanline_order = 2;
-//}
-
-pub type grab_port_status = c_uint;//{
-    pub static XCB_XV_GRAB_PORT_STATUS_SUCCESS : grab_port_status = 1;
-    pub static XCB_XV_GRAB_PORT_STATUS_BAD_EXTENSION : grab_port_status = 2;
-    pub static XCB_XV_GRAB_PORT_STATUS_ALREADY_GRABBED : grab_port_status = 3;
-    pub static XCB_XV_GRAB_PORT_STATUS_INVALID_TIME : grab_port_status = 4;
-    pub static XCB_XV_GRAB_PORT_STATUS_BAD_REPLY : grab_port_status = 5;
-    pub static XCB_XV_GRAB_PORT_STATUS_BAD_ALLOC : grab_port_status = 6;
-//}
 
 pub struct rational {
     numerator :     i32,
@@ -95,8 +52,9 @@ pub struct rational_iterator {
     index: c_int
 }
 
+
 pub struct format {
-    visual :   xproto::visualid,
+    visual :   ll::xproto::visualid,
     depth :    u8,
     pad0 :     [u8,..3]
 }
@@ -109,6 +67,7 @@ pub struct format_iterator {
     rem  : c_int,
     index: c_int
 }
+
 
 pub struct adaptor_info {
     base_id :       port,
@@ -128,6 +87,7 @@ pub struct adaptor_info_iterator {
     index: c_int
 }
 
+
 pub struct encoding_info {
     encoding :    encoding,
     name_size :   u16,
@@ -146,6 +106,7 @@ pub struct encoding_info_iterator {
     index: c_int
 }
 
+
 pub struct image {
     id :           u32,
     width :        u16,
@@ -163,6 +124,7 @@ pub struct image_iterator {
     index: c_int
 }
 
+
 pub struct attribute_info {
     flags :   u32,
     min :     i32,
@@ -178,6 +140,7 @@ pub struct attribute_info_iterator {
     rem  : c_int,
     index: c_int
 }
+
 
 pub struct image_format_info {
     id :                u32,
@@ -218,8 +181,7 @@ pub struct image_format_info_iterator {
     index: c_int
 }
 
-/** Opcode for xcb_xv_bad_port. */
-pub static XCB_XV_BAD_PORT : c_int = 0;
+
 
 pub struct bad_port_error {
     response_type :   u8,
@@ -227,8 +189,7 @@ pub struct bad_port_error {
     sequence :        u16
 }
 
-/** Opcode for xcb_xv_bad_encoding. */
-pub static XCB_XV_BAD_ENCODING : c_int = 1;
+
 
 pub struct bad_encoding_error {
     response_type :   u8,
@@ -236,8 +197,7 @@ pub struct bad_encoding_error {
     sequence :        u16
 }
 
-/** Opcode for xcb_xv_bad_control. */
-pub static XCB_XV_BAD_CONTROL : c_int = 2;
+
 
 pub struct bad_control_error {
     response_type :   u8,
@@ -245,43 +205,41 @@ pub struct bad_control_error {
     sequence :        u16
 }
 
-/** Opcode for xcb_xv_video_notify. */
-pub static XCB_XV_VIDEO_NOTIFY : c_int = 0;
+
 
 pub struct video_notify_event {
     response_type :   u8,
     reason :          u8,
     sequence :        u16,
-    time :            xproto::timestamp,
-    drawable :        xproto::drawable,
+    time :            ll::xproto::timestamp,
+    drawable :        ll::xproto::drawable,
     port :            port
 }
 
-/** Opcode for xcb_xv_port_notify. */
-pub static XCB_XV_PORT_NOTIFY : c_int = 1;
+
 
 pub struct port_notify_event {
     response_type :   u8,
     pad0 :            u8,
     sequence :        u16,
-    time :            xproto::timestamp,
+    time :            ll::xproto::timestamp,
     port :            port,
-    attribute :       xproto::atom,
+    attribute :       ll::xproto::atom,
     value :           i32
 }
+
 
 pub struct query_extension_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xv_query_extension. */
-pub static XCB_XV_QUERY_EXTENSION : c_int = 0;
 
 pub struct query_extension_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16
 }
+
 
 pub struct query_extension_reply {
     response_type :   u8,
@@ -292,19 +250,19 @@ pub struct query_extension_reply {
     minor :           u16
 }
 
+
 pub struct query_adaptors_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xv_query_adaptors. */
-pub static XCB_XV_QUERY_ADAPTORS : c_int = 1;
 
 pub struct query_adaptors_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         xproto::window
+    window :         ll::xproto::window
 }
+
 
 pub struct query_adaptors_reply {
     response_type :   u8,
@@ -315,12 +273,11 @@ pub struct query_adaptors_reply {
     pad1 :            [u8,..22]
 }
 
+
 pub struct query_encodings_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xv_query_encodings. */
-pub static XCB_XV_QUERY_ENCODINGS : c_int = 2;
 
 pub struct query_encodings_request {
     major_opcode :   u8,
@@ -328,6 +285,7 @@ pub struct query_encodings_request {
     length :         u16,
     port :           port
 }
+
 
 pub struct query_encodings_reply {
     response_type :   u8,
@@ -338,20 +296,20 @@ pub struct query_encodings_reply {
     pad1 :            [u8,..22]
 }
 
+
 pub struct grab_port_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xv_grab_port. */
-pub static XCB_XV_GRAB_PORT : c_int = 3;
 
 pub struct grab_port_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
     port :           port,
-    time :           xproto::timestamp
+    time :           ll::xproto::timestamp
 }
+
 
 pub struct grab_port_reply {
     response_type :   u8,
@@ -360,27 +318,25 @@ pub struct grab_port_reply {
     length :          u32
 }
 
-/** Opcode for xcb_xv_ungrab_port. */
-pub static XCB_XV_UNGRAB_PORT : c_int = 4;
+
 
 pub struct ungrab_port_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
     port :           port,
-    time :           xproto::timestamp
+    time :           ll::xproto::timestamp
 }
 
-/** Opcode for xcb_xv_put_video. */
-pub static XCB_XV_PUT_VIDEO : c_int = 5;
+
 
 pub struct put_video_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
     port :           port,
-    drawable :       xproto::drawable,
-    gc :             xproto::gcontext,
+    drawable :       ll::xproto::drawable,
+    gc :             ll::xproto::gcontext,
     vid_x :          i16,
     vid_y :          i16,
     vid_w :          u16,
@@ -391,16 +347,15 @@ pub struct put_video_request {
     drw_h :          u16
 }
 
-/** Opcode for xcb_xv_put_still. */
-pub static XCB_XV_PUT_STILL : c_int = 6;
+
 
 pub struct put_still_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
     port :           port,
-    drawable :       xproto::drawable,
-    gc :             xproto::gcontext,
+    drawable :       ll::xproto::drawable,
+    gc :             ll::xproto::gcontext,
     vid_x :          i16,
     vid_y :          i16,
     vid_w :          u16,
@@ -411,16 +366,15 @@ pub struct put_still_request {
     drw_h :          u16
 }
 
-/** Opcode for xcb_xv_get_video. */
-pub static XCB_XV_GET_VIDEO : c_int = 7;
+
 
 pub struct get_video_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
     port :           port,
-    drawable :       xproto::drawable,
-    gc :             xproto::gcontext,
+    drawable :       ll::xproto::drawable,
+    gc :             ll::xproto::gcontext,
     vid_x :          i16,
     vid_y :          i16,
     vid_w :          u16,
@@ -431,16 +385,15 @@ pub struct get_video_request {
     drw_h :          u16
 }
 
-/** Opcode for xcb_xv_get_still. */
-pub static XCB_XV_GET_STILL : c_int = 8;
+
 
 pub struct get_still_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
     port :           port,
-    drawable :       xproto::drawable,
-    gc :             xproto::gcontext,
+    drawable :       ll::xproto::drawable,
+    gc :             ll::xproto::gcontext,
     vid_x :          i16,
     vid_y :          i16,
     vid_w :          u16,
@@ -451,31 +404,28 @@ pub struct get_still_request {
     drw_h :          u16
 }
 
-/** Opcode for xcb_xv_stop_video. */
-pub static XCB_XV_STOP_VIDEO : c_int = 9;
+
 
 pub struct stop_video_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
     port :           port,
-    drawable :       xproto::drawable
+    drawable :       ll::xproto::drawable
 }
 
-/** Opcode for xcb_xv_select_video_notify. */
-pub static XCB_XV_SELECT_VIDEO_NOTIFY : c_int = 10;
+
 
 pub struct select_video_notify_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    drawable :       xproto::drawable,
+    drawable :       ll::xproto::drawable,
     onoff :          u8,
     pad0 :           [u8,..3]
 }
 
-/** Opcode for xcb_xv_select_port_notify. */
-pub static XCB_XV_SELECT_PORT_NOTIFY : c_int = 11;
+
 
 pub struct select_port_notify_request {
     major_opcode :   u8,
@@ -486,12 +436,11 @@ pub struct select_port_notify_request {
     pad0 :           [u8,..3]
 }
 
+
 pub struct query_best_size_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xv_query_best_size. */
-pub static XCB_XV_QUERY_BEST_SIZE : c_int = 12;
 
 pub struct query_best_size_request {
     major_opcode :   u8,
@@ -506,6 +455,7 @@ pub struct query_best_size_request {
     pad0 :           [u8,..3]
 }
 
+
 pub struct query_best_size_reply {
     response_type :   u8,
     pad0 :            u8,
@@ -515,32 +465,31 @@ pub struct query_best_size_reply {
     actual_height :   u16
 }
 
-/** Opcode for xcb_xv_set_port_attribute. */
-pub static XCB_XV_SET_PORT_ATTRIBUTE : c_int = 13;
+
 
 pub struct set_port_attribute_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
     port :           port,
-    attribute :      xproto::atom,
+    attribute :      ll::xproto::atom,
     value :          i32
 }
+
 
 pub struct get_port_attribute_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xv_get_port_attribute. */
-pub static XCB_XV_GET_PORT_ATTRIBUTE : c_int = 14;
 
 pub struct get_port_attribute_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
     port :           port,
-    attribute :      xproto::atom
+    attribute :      ll::xproto::atom
 }
+
 
 pub struct get_port_attribute_reply {
     response_type :   u8,
@@ -550,12 +499,11 @@ pub struct get_port_attribute_reply {
     value :           i32
 }
 
+
 pub struct query_port_attributes_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xv_query_port_attributes. */
-pub static XCB_XV_QUERY_PORT_ATTRIBUTES : c_int = 15;
 
 pub struct query_port_attributes_request {
     major_opcode :   u8,
@@ -563,6 +511,7 @@ pub struct query_port_attributes_request {
     length :         u16,
     port :           port
 }
+
 
 pub struct query_port_attributes_reply {
     response_type :    u8,
@@ -574,12 +523,11 @@ pub struct query_port_attributes_reply {
     pad1 :             [u8,..16]
 }
 
+
 pub struct list_image_formats_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xv_list_image_formats. */
-pub static XCB_XV_LIST_IMAGE_FORMATS : c_int = 16;
 
 pub struct list_image_formats_request {
     major_opcode :   u8,
@@ -587,6 +535,7 @@ pub struct list_image_formats_request {
     length :         u16,
     port :           port
 }
+
 
 pub struct list_image_formats_reply {
     response_type :   u8,
@@ -597,12 +546,11 @@ pub struct list_image_formats_reply {
     pad1 :            [u8,..20]
 }
 
+
 pub struct query_image_attributes_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xv_query_image_attributes. */
-pub static XCB_XV_QUERY_IMAGE_ATTRIBUTES : c_int = 17;
 
 pub struct query_image_attributes_request {
     major_opcode :   u8,
@@ -613,6 +561,7 @@ pub struct query_image_attributes_request {
     width :          u16,
     height :         u16
 }
+
 
 pub struct query_image_attributes_reply {
     response_type :   u8,
@@ -626,16 +575,15 @@ pub struct query_image_attributes_reply {
     pad1 :            [u8,..12]
 }
 
-/** Opcode for xcb_xv_put_image. */
-pub static XCB_XV_PUT_IMAGE : c_int = 18;
+
 
 pub struct put_image_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
     port :           port,
-    drawable :       xproto::drawable,
-    gc :             xproto::gcontext,
+    drawable :       ll::xproto::drawable,
+    gc :             ll::xproto::gcontext,
     id :             u32,
     src_x :          i16,
     src_y :          i16,
@@ -649,17 +597,16 @@ pub struct put_image_request {
     height :         u16
 }
 
-/** Opcode for xcb_xv_shm_put_image. */
-pub static XCB_XV_SHM_PUT_IMAGE : c_int = 19;
+
 
 pub struct shm_put_image_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
     port :           port,
-    drawable :       xproto::drawable,
-    gc :             xproto::gcontext,
-    shmseg :         shm::seg,
+    drawable :       ll::xproto::drawable,
+    gc :             ll::xproto::gcontext,
+    shmseg :         ll::shm::seg,
     id :             u32,
     offset :         u32,
     src_x :          i16,
@@ -675,8 +622,9 @@ pub struct shm_put_image_request {
     send_event :     u8,
     pad0 :           [u8,..3]
 }
+
 #[link_args="-lxcb-xv"]
-extern "C" {
+pub extern "C" {
 
 /**
  * Get the next element of the iterator
@@ -688,7 +636,7 @@ extern "C" {
  *
  *
  */
-unsafe fn xcb_xv_port_next (i:*port_iterator) -> ();
+unsafe fn xcb_xv_port_next (i:*port_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -711,7 +659,7 @@ unsafe fn xcb_xv_port_end (i:port_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_xv_encoding_next (i:*encoding_iterator) -> ();
+unsafe fn xcb_xv_encoding_next (i:*encoding_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -734,7 +682,7 @@ unsafe fn xcb_xv_encoding_end (i:encoding_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_xv_rational_next (i:*rational_iterator) -> ();
+unsafe fn xcb_xv_rational_next (i:*rational_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -757,7 +705,7 @@ unsafe fn xcb_xv_rational_end (i:rational_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_xv_format_next (i:*format_iterator) -> ();
+unsafe fn xcb_xv_format_next (i:*format_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -772,7 +720,7 @@ unsafe fn xcb_xv_format_end (i:format_iterator) -> generic_iterator;
 
 unsafe fn xcb_xv_adaptor_info_sizeof (_buffer :  *c_void) -> c_int;
 
-unsafe fn xcb_xv_adaptor_info_name (R : *adaptor_info) -> *u8;
+unsafe fn xcb_xv_adaptor_info_name (R : *adaptor_info) -> *c_char;
 
 
 unsafe fn xcb_xv_adaptor_info_name_length (R : *adaptor_info) -> c_int;
@@ -797,7 +745,7 @@ unsafe fn xcb_xv_adaptor_info_formats_iterator (R : *adaptor_info) -> format_ite
  *
  *
  */
-unsafe fn xcb_xv_adaptor_info_next (i:*adaptor_info_iterator) -> ();
+unsafe fn xcb_xv_adaptor_info_next (i:*adaptor_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -812,7 +760,7 @@ unsafe fn xcb_xv_adaptor_info_end (i:adaptor_info_iterator) -> generic_iterator;
 
 unsafe fn xcb_xv_encoding_info_sizeof (_buffer :  *c_void) -> c_int;
 
-unsafe fn xcb_xv_encoding_info_name (R : *encoding_info) -> *u8;
+unsafe fn xcb_xv_encoding_info_name (R : *encoding_info) -> *c_char;
 
 
 unsafe fn xcb_xv_encoding_info_name_length (R : *encoding_info) -> c_int;
@@ -830,7 +778,7 @@ unsafe fn xcb_xv_encoding_info_name_end (R : *encoding_info) -> generic_iterator
  *
  *
  */
-unsafe fn xcb_xv_encoding_info_next (i:*encoding_info_iterator) -> ();
+unsafe fn xcb_xv_encoding_info_next (i:*encoding_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -879,7 +827,7 @@ unsafe fn xcb_xv_image_data_end (R : *image) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_xv_image_next (i:*image_iterator) -> ();
+unsafe fn xcb_xv_image_next (i:*image_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -894,7 +842,7 @@ unsafe fn xcb_xv_image_end (i:image_iterator) -> generic_iterator;
 
 unsafe fn xcb_xv_attribute_info_sizeof (_buffer :  *c_void) -> c_int;
 
-unsafe fn xcb_xv_attribute_info_name (R : *attribute_info) -> *u8;
+unsafe fn xcb_xv_attribute_info_name (R : *attribute_info) -> *c_char;
 
 
 unsafe fn xcb_xv_attribute_info_name_length (R : *attribute_info) -> c_int;
@@ -912,7 +860,7 @@ unsafe fn xcb_xv_attribute_info_name_end (R : *attribute_info) -> generic_iterat
  *
  *
  */
-unsafe fn xcb_xv_attribute_info_next (i:*attribute_info_iterator) -> ();
+unsafe fn xcb_xv_attribute_info_next (i:*attribute_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -935,7 +883,7 @@ unsafe fn xcb_xv_attribute_info_end (i:attribute_info_iterator) -> generic_itera
  *
  *
  */
-unsafe fn xcb_xv_image_format_info_next (i:*image_format_info_iterator) -> ();
+unsafe fn xcb_xv_image_format_info_next (i:*image_format_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1000,7 +948,7 @@ unsafe fn xcb_xv_query_adaptors_sizeof (_buffer :  *c_void) -> c_int;
  * 
  */
 unsafe fn xcb_xv_query_adaptors (c : *connection,
-                                 window :  xproto::window) -> query_adaptors_cookie;
+                                 window :  ll::xproto::window) -> query_adaptors_cookie;
 
 /**
  *
@@ -1014,7 +962,7 @@ unsafe fn xcb_xv_query_adaptors (c : *connection,
  * placed in the event queue.
  */
 unsafe fn xcb_xv_query_adaptors_unchecked (c : *connection,
-                                           window :  xproto::window) -> query_adaptors_cookie;
+                                           window :  ll::xproto::window) -> query_adaptors_cookie;
 
 
 unsafe fn xcb_xv_query_adaptors_info_length (R : *query_adaptors_reply) -> c_int;
@@ -1099,7 +1047,7 @@ unsafe fn xcb_xv_query_encodings_reply (c : *connection,
  */
 unsafe fn xcb_xv_grab_port (c : *connection,
                             port :  port,
-                            time :  xproto::timestamp) -> grab_port_cookie;
+                            time :  ll::xproto::timestamp) -> grab_port_cookie;
 
 /**
  *
@@ -1114,7 +1062,7 @@ unsafe fn xcb_xv_grab_port (c : *connection,
  */
 unsafe fn xcb_xv_grab_port_unchecked (c : *connection,
                                       port :  port,
-                                      time :  xproto::timestamp) -> grab_port_cookie;
+                                      time :  ll::xproto::timestamp) -> grab_port_cookie;
 
 /**
  * Return the reply
@@ -1147,7 +1095,7 @@ unsafe fn xcb_xv_grab_port_reply (c : *connection,
  */
 unsafe fn xcb_xv_ungrab_port_checked (c : *connection,
                                       port :  port,
-                                      time :  xproto::timestamp) -> void_cookie;
+                                      time :  ll::xproto::timestamp) -> void_cookie;
 
 /**
  *
@@ -1159,7 +1107,7 @@ unsafe fn xcb_xv_ungrab_port_checked (c : *connection,
  */
 unsafe fn xcb_xv_ungrab_port (c : *connection,
                               port :  port,
-                              time :  xproto::timestamp) -> void_cookie;
+                              time :  ll::xproto::timestamp) -> void_cookie;
 
 /**
  *
@@ -1174,8 +1122,8 @@ unsafe fn xcb_xv_ungrab_port (c : *connection,
  */
 unsafe fn xcb_xv_put_video_checked (c : *connection,
                                     port :  port,
-                                    drawable :  xproto::drawable,
-                                    gc :  xproto::gcontext,
+                                    drawable :  ll::xproto::drawable,
+                                    gc :  ll::xproto::gcontext,
                                     vid_x :  i16,
                                     vid_y :  i16,
                                     vid_w :  u16,
@@ -1195,8 +1143,8 @@ unsafe fn xcb_xv_put_video_checked (c : *connection,
  */
 unsafe fn xcb_xv_put_video (c : *connection,
                             port :  port,
-                            drawable :  xproto::drawable,
-                            gc :  xproto::gcontext,
+                            drawable :  ll::xproto::drawable,
+                            gc :  ll::xproto::gcontext,
                             vid_x :  i16,
                             vid_y :  i16,
                             vid_w :  u16,
@@ -1219,8 +1167,8 @@ unsafe fn xcb_xv_put_video (c : *connection,
  */
 unsafe fn xcb_xv_put_still_checked (c : *connection,
                                     port :  port,
-                                    drawable :  xproto::drawable,
-                                    gc :  xproto::gcontext,
+                                    drawable :  ll::xproto::drawable,
+                                    gc :  ll::xproto::gcontext,
                                     vid_x :  i16,
                                     vid_y :  i16,
                                     vid_w :  u16,
@@ -1240,8 +1188,8 @@ unsafe fn xcb_xv_put_still_checked (c : *connection,
  */
 unsafe fn xcb_xv_put_still (c : *connection,
                             port :  port,
-                            drawable :  xproto::drawable,
-                            gc :  xproto::gcontext,
+                            drawable :  ll::xproto::drawable,
+                            gc :  ll::xproto::gcontext,
                             vid_x :  i16,
                             vid_y :  i16,
                             vid_w :  u16,
@@ -1264,8 +1212,8 @@ unsafe fn xcb_xv_put_still (c : *connection,
  */
 unsafe fn xcb_xv_get_video_checked (c : *connection,
                                     port :  port,
-                                    drawable :  xproto::drawable,
-                                    gc :  xproto::gcontext,
+                                    drawable :  ll::xproto::drawable,
+                                    gc :  ll::xproto::gcontext,
                                     vid_x :  i16,
                                     vid_y :  i16,
                                     vid_w :  u16,
@@ -1285,8 +1233,8 @@ unsafe fn xcb_xv_get_video_checked (c : *connection,
  */
 unsafe fn xcb_xv_get_video (c : *connection,
                             port :  port,
-                            drawable :  xproto::drawable,
-                            gc :  xproto::gcontext,
+                            drawable :  ll::xproto::drawable,
+                            gc :  ll::xproto::gcontext,
                             vid_x :  i16,
                             vid_y :  i16,
                             vid_w :  u16,
@@ -1309,8 +1257,8 @@ unsafe fn xcb_xv_get_video (c : *connection,
  */
 unsafe fn xcb_xv_get_still_checked (c : *connection,
                                     port :  port,
-                                    drawable :  xproto::drawable,
-                                    gc :  xproto::gcontext,
+                                    drawable :  ll::xproto::drawable,
+                                    gc :  ll::xproto::gcontext,
                                     vid_x :  i16,
                                     vid_y :  i16,
                                     vid_w :  u16,
@@ -1330,8 +1278,8 @@ unsafe fn xcb_xv_get_still_checked (c : *connection,
  */
 unsafe fn xcb_xv_get_still (c : *connection,
                             port :  port,
-                            drawable :  xproto::drawable,
-                            gc :  xproto::gcontext,
+                            drawable :  ll::xproto::drawable,
+                            gc :  ll::xproto::gcontext,
                             vid_x :  i16,
                             vid_y :  i16,
                             vid_w :  u16,
@@ -1354,7 +1302,7 @@ unsafe fn xcb_xv_get_still (c : *connection,
  */
 unsafe fn xcb_xv_stop_video_checked (c : *connection,
                                      port :  port,
-                                     drawable :  xproto::drawable) -> void_cookie;
+                                     drawable :  ll::xproto::drawable) -> void_cookie;
 
 /**
  *
@@ -1366,7 +1314,7 @@ unsafe fn xcb_xv_stop_video_checked (c : *connection,
  */
 unsafe fn xcb_xv_stop_video (c : *connection,
                              port :  port,
-                             drawable :  xproto::drawable) -> void_cookie;
+                             drawable :  ll::xproto::drawable) -> void_cookie;
 
 /**
  *
@@ -1380,7 +1328,7 @@ unsafe fn xcb_xv_stop_video (c : *connection,
  * saved for handling by xcb_request_check().
  */
 unsafe fn xcb_xv_select_video_notify_checked (c : *connection,
-                                              drawable :  xproto::drawable,
+                                              drawable :  ll::xproto::drawable,
                                               onoff :  u8) -> void_cookie;
 
 /**
@@ -1392,7 +1340,7 @@ unsafe fn xcb_xv_select_video_notify_checked (c : *connection,
  * 
  */
 unsafe fn xcb_xv_select_video_notify (c : *connection,
-                                      drawable :  xproto::drawable,
+                                      drawable :  ll::xproto::drawable,
                                       onoff :  u8) -> void_cookie;
 
 /**
@@ -1488,7 +1436,7 @@ unsafe fn xcb_xv_query_best_size_reply (c : *connection,
  */
 unsafe fn xcb_xv_set_port_attribute_checked (c : *connection,
                                              port :  port,
-                                             attribute :  xproto::atom,
+                                             attribute :  ll::xproto::atom,
                                              value :  i32) -> void_cookie;
 
 /**
@@ -1501,7 +1449,7 @@ unsafe fn xcb_xv_set_port_attribute_checked (c : *connection,
  */
 unsafe fn xcb_xv_set_port_attribute (c : *connection,
                                      port :  port,
-                                     attribute :  xproto::atom,
+                                     attribute :  ll::xproto::atom,
                                      value :  i32) -> void_cookie;
 
 /**
@@ -1514,7 +1462,7 @@ unsafe fn xcb_xv_set_port_attribute (c : *connection,
  */
 unsafe fn xcb_xv_get_port_attribute (c : *connection,
                                      port :  port,
-                                     attribute :  xproto::atom) -> get_port_attribute_cookie;
+                                     attribute :  ll::xproto::atom) -> get_port_attribute_cookie;
 
 /**
  *
@@ -1529,7 +1477,7 @@ unsafe fn xcb_xv_get_port_attribute (c : *connection,
  */
 unsafe fn xcb_xv_get_port_attribute_unchecked (c : *connection,
                                                port :  port,
-                                               attribute :  xproto::atom) -> get_port_attribute_cookie;
+                                               attribute :  ll::xproto::atom) -> get_port_attribute_cookie;
 
 /**
  * Return the reply
@@ -1734,8 +1682,8 @@ unsafe fn xcb_xv_put_image_sizeof (_buffer :  *c_void,
  */
 unsafe fn xcb_xv_put_image_checked (c : *connection,
                                     port :  port,
-                                    drawable :  xproto::drawable,
-                                    gc :  xproto::gcontext,
+                                    drawable :  ll::xproto::drawable,
+                                    gc :  ll::xproto::gcontext,
                                     id :  u32,
                                     src_x :  i16,
                                     src_y :  i16,
@@ -1760,8 +1708,8 @@ unsafe fn xcb_xv_put_image_checked (c : *connection,
  */
 unsafe fn xcb_xv_put_image (c : *connection,
                             port :  port,
-                            drawable :  xproto::drawable,
-                            gc :  xproto::gcontext,
+                            drawable :  ll::xproto::drawable,
+                            gc :  ll::xproto::gcontext,
                             id :  u32,
                             src_x :  i16,
                             src_y :  i16,
@@ -1789,9 +1737,9 @@ unsafe fn xcb_xv_put_image (c : *connection,
  */
 unsafe fn xcb_xv_shm_put_image_checked (c : *connection,
                                         port :  port,
-                                        drawable :  xproto::drawable,
-                                        gc :  xproto::gcontext,
-                                        shmseg :  shm::seg,
+                                        drawable :  ll::xproto::drawable,
+                                        gc :  ll::xproto::gcontext,
+                                        shmseg :  ll::shm::seg,
                                         id :  u32,
                                         offset :  u32,
                                         src_x :  i16,
@@ -1816,9 +1764,9 @@ unsafe fn xcb_xv_shm_put_image_checked (c : *connection,
  */
 unsafe fn xcb_xv_shm_put_image (c : *connection,
                                 port :  port,
-                                drawable :  xproto::drawable,
-                                gc :  xproto::gcontext,
-                                shmseg :  shm::seg,
+                                drawable :  ll::xproto::drawable,
+                                gc :  ll::xproto::gcontext,
+                                shmseg :  ll::shm::seg,
                                 id :  u32,
                                 offset :  u32,
                                 src_x :  i16,

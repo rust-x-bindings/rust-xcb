@@ -6,15 +6,16 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
+use core;
 use core::libc::*;
 use ll::base::*;
+use ll;
 use ll::xproto;
 
 pub static SHM_MAJOR_VERSION : c_uint = 1;
 pub static SHM_MINOR_VERSION : c_uint = 1;
 
 pub type seg = u32;
-
 /**
  * @brief seg_iterator
  **/
@@ -24,14 +25,13 @@ pub struct seg_iterator {
     index: c_int
 }
 
-/** Opcode for xcb_shm_completion. */
-pub static XCB_SHM_COMPLETION : c_int = 0;
+
 
 pub struct completion_event {
     response_type :   u8,
     pad0 :            u8,
     sequence :        u16,
-    drawable :        xproto::drawable,
+    drawable :        ll::xproto::drawable,
     minor_event :     u16,
     major_event :     u8,
     pad1 :            u8,
@@ -39,23 +39,21 @@ pub struct completion_event {
     offset :          u32
 }
 
-/** Opcode for xcb_shm_bad_seg. */
-pub static XCB_SHM_BAD_SEG : c_int = 0;
 
-pub type bad_seg_error  = xproto::value_error;
+
+pub type bad_seg_error  = ll::xproto::value_error;
 
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_shm_query_version. */
-pub static XCB_SHM_QUERY_VERSION : c_int = 0;
 
 pub struct query_version_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16
 }
+
 
 pub struct query_version_reply {
     response_type :    u8,
@@ -70,8 +68,7 @@ pub struct query_version_reply {
     pad0 :             [u8,..15]
 }
 
-/** Opcode for xcb_shm_attach. */
-pub static XCB_SHM_ATTACH : c_int = 1;
+
 
 pub struct attach_request {
     major_opcode :   u8,
@@ -83,8 +80,7 @@ pub struct attach_request {
     pad0 :           [u8,..3]
 }
 
-/** Opcode for xcb_shm_detach. */
-pub static XCB_SHM_DETACH : c_int = 2;
+
 
 pub struct detach_request {
     major_opcode :   u8,
@@ -93,15 +89,14 @@ pub struct detach_request {
     shmseg :         seg
 }
 
-/** Opcode for xcb_shm_put_image. */
-pub static XCB_SHM_PUT_IMAGE : c_int = 3;
+
 
 pub struct put_image_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    drawable :       xproto::drawable,
-    gc :             xproto::gcontext,
+    drawable :       ll::xproto::drawable,
+    gc :             ll::xproto::gcontext,
     total_width :    u16,
     total_height :   u16,
     src_x :          u16,
@@ -118,18 +113,17 @@ pub struct put_image_request {
     offset :         u32
 }
 
+
 pub struct get_image_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_shm_get_image. */
-pub static XCB_SHM_GET_IMAGE : c_int = 4;
 
 pub struct get_image_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    drawable :       xproto::drawable,
+    drawable :       ll::xproto::drawable,
     x :              i16,
     y :              i16,
     width :          u16,
@@ -141,24 +135,24 @@ pub struct get_image_request {
     offset :         u32
 }
 
+
 pub struct get_image_reply {
     response_type :   u8,
     depth :           u8,
     sequence :        u16,
     length :          u32,
-    visual :          xproto::visualid,
+    visual :          ll::xproto::visualid,
     size :            u32
 }
 
-/** Opcode for xcb_shm_create_pixmap. */
-pub static XCB_SHM_CREATE_PIXMAP : c_int = 5;
+
 
 pub struct create_pixmap_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    pid :            xproto::pixmap,
-    drawable :       xproto::drawable,
+    pid :            ll::xproto::pixmap,
+    drawable :       ll::xproto::drawable,
     width :          u16,
     height :         u16,
     depth :          u8,
@@ -166,8 +160,9 @@ pub struct create_pixmap_request {
     shmseg :         seg,
     offset :         u32
 }
+
 #[link_args="-lxcb-shm"]
-extern "C" {
+pub extern "C" {
 
 /**
  * Get the next element of the iterator
@@ -179,7 +174,7 @@ extern "C" {
  *
  *
  */
-unsafe fn xcb_shm_seg_next (i:*seg_iterator) -> ();
+unsafe fn xcb_shm_seg_next (i:*seg_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -299,8 +294,8 @@ unsafe fn xcb_shm_detach (c : *connection,
  * saved for handling by xcb_request_check().
  */
 unsafe fn xcb_shm_put_image_checked (c : *connection,
-                                     drawable :  xproto::drawable,
-                                     gc :  xproto::gcontext,
+                                     drawable :  ll::xproto::drawable,
+                                     gc :  ll::xproto::gcontext,
                                      total_width :  u16,
                                      total_height :  u16,
                                      src_x :  u16,
@@ -324,8 +319,8 @@ unsafe fn xcb_shm_put_image_checked (c : *connection,
  * 
  */
 unsafe fn xcb_shm_put_image (c : *connection,
-                             drawable :  xproto::drawable,
-                             gc :  xproto::gcontext,
+                             drawable :  ll::xproto::drawable,
+                             gc :  ll::xproto::gcontext,
                              total_width :  u16,
                              total_height :  u16,
                              src_x :  u16,
@@ -349,7 +344,7 @@ unsafe fn xcb_shm_put_image (c : *connection,
  * 
  */
 unsafe fn xcb_shm_get_image (c : *connection,
-                             drawable :  xproto::drawable,
+                             drawable :  ll::xproto::drawable,
                              x :  i16,
                              y :  i16,
                              width :  u16,
@@ -371,7 +366,7 @@ unsafe fn xcb_shm_get_image (c : *connection,
  * placed in the event queue.
  */
 unsafe fn xcb_shm_get_image_unchecked (c : *connection,
-                                       drawable :  xproto::drawable,
+                                       drawable :  ll::xproto::drawable,
                                        x :  i16,
                                        y :  i16,
                                        width :  u16,
@@ -411,8 +406,8 @@ unsafe fn xcb_shm_get_image_reply (c : *connection,
  * saved for handling by xcb_request_check().
  */
 unsafe fn xcb_shm_create_pixmap_checked (c : *connection,
-                                         pid :  xproto::pixmap,
-                                         drawable :  xproto::drawable,
+                                         pid :  ll::xproto::pixmap,
+                                         drawable :  ll::xproto::drawable,
                                          width :  u16,
                                          height :  u16,
                                          depth :  u8,
@@ -428,8 +423,8 @@ unsafe fn xcb_shm_create_pixmap_checked (c : *connection,
  * 
  */
 unsafe fn xcb_shm_create_pixmap (c : *connection,
-                                 pid :  xproto::pixmap,
-                                 drawable :  xproto::drawable,
+                                 pid :  ll::xproto::pixmap,
+                                 drawable :  ll::xproto::drawable,
                                  width :  u16,
                                  height :  u16,
                                  depth :  u8,

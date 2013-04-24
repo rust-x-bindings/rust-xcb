@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
+use core;
 use core::libc::*;
 use ll::base::*;
+use ll;
 use ll::xproto;
 
 pub static RES_MAJOR_VERSION : c_uint = 1;
@@ -27,8 +29,9 @@ pub struct client_iterator {
     index: c_int
 }
 
+
 pub struct type_ {
-    resource_type :   xproto::atom,
+    resource_type :   ll::xproto::atom,
     count :           u32
 }
 
@@ -41,12 +44,11 @@ pub struct type_iterator {
     index: c_int
 }
 
+
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_res_query_version. */
-pub static XCB_RES_QUERY_VERSION : c_int = 0;
 
 pub struct query_version_request {
     major_opcode :   u8,
@@ -55,6 +57,7 @@ pub struct query_version_request {
     client_major :   u8,
     client_minor :   u8
 }
+
 
 pub struct query_version_reply {
     response_type :   u8,
@@ -65,18 +68,18 @@ pub struct query_version_reply {
     server_minor :    u16
 }
 
+
 pub struct query_clients_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_res_query_clients. */
-pub static XCB_RES_QUERY_CLIENTS : c_int = 1;
 
 pub struct query_clients_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16
 }
+
 
 pub struct query_clients_reply {
     response_type :   u8,
@@ -87,12 +90,11 @@ pub struct query_clients_reply {
     pad1 :            [u8,..20]
 }
 
+
 pub struct query_client_resources_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_res_query_client_resources. */
-pub static XCB_RES_QUERY_CLIENT_RESOURCES : c_int = 2;
 
 pub struct query_client_resources_request {
     major_opcode :   u8,
@@ -100,6 +102,7 @@ pub struct query_client_resources_request {
     length :         u16,
     xid :            u32
 }
+
 
 pub struct query_client_resources_reply {
     response_type :   u8,
@@ -110,12 +113,11 @@ pub struct query_client_resources_reply {
     pad1 :            [u8,..20]
 }
 
+
 pub struct query_client_pixmap_bytes_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_res_query_client_pixmap_bytes. */
-pub static XCB_RES_QUERY_CLIENT_PIXMAP_BYTES : c_int = 3;
 
 pub struct query_client_pixmap_bytes_request {
     major_opcode :   u8,
@@ -123,6 +125,7 @@ pub struct query_client_pixmap_bytes_request {
     length :         u16,
     xid :            u32
 }
+
 
 pub struct query_client_pixmap_bytes_reply {
     response_type :    u8,
@@ -132,8 +135,9 @@ pub struct query_client_pixmap_bytes_reply {
     bytes :            u32,
     bytes_overflow :   u32
 }
+
 #[link_args="-lxcb-res"]
-extern "C" {
+pub extern "C" {
 
 /**
  * Get the next element of the iterator
@@ -145,7 +149,7 @@ extern "C" {
  *
  *
  */
-unsafe fn xcb_res_client_next (i:*client_iterator) -> ();
+unsafe fn xcb_res_client_next (i:*client_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -168,7 +172,7 @@ unsafe fn xcb_res_client_end (i:client_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_res_type_next (i:*type_iterator) -> ();
+unsafe fn xcb_res_type_next (i:*type_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element

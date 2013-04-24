@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
+use core;
 use core::libc::*;
 use ll::base::*;
+use ll;
 use ll::xproto;
 
 pub static XINERAMA_MAJOR_VERSION : c_uint = 1;
@@ -29,12 +31,11 @@ pub struct screen_info_iterator {
     index: c_int
 }
 
+
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xinerama_query_version. */
-pub static XCB_XINERAMA_QUERY_VERSION : c_int = 0;
 
 pub struct query_version_request {
     major_opcode :   u8,
@@ -43,6 +44,7 @@ pub struct query_version_request {
     major :          u8,
     minor :          u8
 }
+
 
 pub struct query_version_reply {
     response_type :   u8,
@@ -53,64 +55,64 @@ pub struct query_version_reply {
     minor :           u16
 }
 
+
 pub struct get_state_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xinerama_get_state. */
-pub static XCB_XINERAMA_GET_STATE : c_int = 1;
 
 pub struct get_state_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         xproto::window
+    window :         ll::xproto::window
 }
+
 
 pub struct get_state_reply {
     response_type :   u8,
     state :           u8,
     sequence :        u16,
     length :          u32,
-    window :          xproto::window
+    window :          ll::xproto::window
 }
+
 
 pub struct get_screen_count_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xinerama_get_screen_count. */
-pub static XCB_XINERAMA_GET_SCREEN_COUNT : c_int = 2;
 
 pub struct get_screen_count_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         xproto::window
+    window :         ll::xproto::window
 }
+
 
 pub struct get_screen_count_reply {
     response_type :   u8,
     screen_count :    u8,
     sequence :        u16,
     length :          u32,
-    window :          xproto::window
+    window :          ll::xproto::window
 }
+
 
 pub struct get_screen_size_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xinerama_get_screen_size. */
-pub static XCB_XINERAMA_GET_SCREEN_SIZE : c_int = 3;
 
 pub struct get_screen_size_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         xproto::window,
+    window :         ll::xproto::window,
     screen :         u32
 }
+
 
 pub struct get_screen_size_reply {
     response_type :   u8,
@@ -119,22 +121,22 @@ pub struct get_screen_size_reply {
     length :          u32,
     width :           u32,
     height :          u32,
-    window :          xproto::window,
+    window :          ll::xproto::window,
     screen :          u32
 }
+
 
 pub struct is_active_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xinerama_is_active. */
-pub static XCB_XINERAMA_IS_ACTIVE : c_int = 4;
 
 pub struct is_active_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16
 }
+
 
 pub struct is_active_reply {
     response_type :   u8,
@@ -144,18 +146,18 @@ pub struct is_active_reply {
     state :           u32
 }
 
+
 pub struct query_screens_cookie {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xinerama_query_screens. */
-pub static XCB_XINERAMA_QUERY_SCREENS : c_int = 5;
 
 pub struct query_screens_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16
 }
+
 
 pub struct query_screens_reply {
     response_type :   u8,
@@ -165,8 +167,9 @@ pub struct query_screens_reply {
     number :          u32,
     pad1 :            [u8,..20]
 }
+
 #[link_args="-lxcb-xinerama"]
-extern "C" {
+pub extern "C" {
 
 /**
  * Get the next element of the iterator
@@ -178,7 +181,7 @@ extern "C" {
  *
  *
  */
-unsafe fn xcb_xinerama_screen_info_next (i:*screen_info_iterator) -> ();
+unsafe fn xcb_xinerama_screen_info_next (i:*screen_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -245,7 +248,7 @@ unsafe fn xcb_xinerama_query_version_reply (c : *connection,
  * 
  */
 unsafe fn xcb_xinerama_get_state (c : *connection,
-                                  window :  xproto::window) -> get_state_cookie;
+                                  window :  ll::xproto::window) -> get_state_cookie;
 
 /**
  *
@@ -259,7 +262,7 @@ unsafe fn xcb_xinerama_get_state (c : *connection,
  * placed in the event queue.
  */
 unsafe fn xcb_xinerama_get_state_unchecked (c : *connection,
-                                            window :  xproto::window) -> get_state_cookie;
+                                            window :  ll::xproto::window) -> get_state_cookie;
 
 /**
  * Return the reply
@@ -288,7 +291,7 @@ unsafe fn xcb_xinerama_get_state_reply (c : *connection,
  * 
  */
 unsafe fn xcb_xinerama_get_screen_count (c : *connection,
-                                         window :  xproto::window) -> get_screen_count_cookie;
+                                         window :  ll::xproto::window) -> get_screen_count_cookie;
 
 /**
  *
@@ -302,7 +305,7 @@ unsafe fn xcb_xinerama_get_screen_count (c : *connection,
  * placed in the event queue.
  */
 unsafe fn xcb_xinerama_get_screen_count_unchecked (c : *connection,
-                                                   window :  xproto::window) -> get_screen_count_cookie;
+                                                   window :  ll::xproto::window) -> get_screen_count_cookie;
 
 /**
  * Return the reply
@@ -331,7 +334,7 @@ unsafe fn xcb_xinerama_get_screen_count_reply (c : *connection,
  * 
  */
 unsafe fn xcb_xinerama_get_screen_size (c : *connection,
-                                        window :  xproto::window,
+                                        window :  ll::xproto::window,
                                         screen :  u32) -> get_screen_size_cookie;
 
 /**
@@ -346,7 +349,7 @@ unsafe fn xcb_xinerama_get_screen_size (c : *connection,
  * placed in the event queue.
  */
 unsafe fn xcb_xinerama_get_screen_size_unchecked (c : *connection,
-                                                  window :  xproto::window,
+                                                  window :  ll::xproto::window,
                                                   screen :  u32) -> get_screen_size_cookie;
 
 /**
