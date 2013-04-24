@@ -3,7 +3,7 @@
 
 macro_rules! impl_reply_cookie {
     ($cookie:ty, $crep:ty, $reply:ty, $func:ident) => (
-        impl base::ReplyCookie<$crep> for $cookie {
+        impl<'self> base::ReplyCookie<$crep> for $cookie {
             fn get_reply(&self) -> Result<$reply,base::GenericError> {
                 use ll;
                 unsafe {

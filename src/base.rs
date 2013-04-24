@@ -27,11 +27,15 @@ DEALINGS IN THE SOFTWARE.
 
 */
 
+extern mod std;
+
 use ll::base::*;
 
 use core::cast;
 use core::libc::{c_int,free};
 use core::Option;
+
+use core::num::*;
 
 use xproto;
 
@@ -218,17 +222,17 @@ pub struct Struct<T> {
     strct: T
 }
 
-pub struct Cookie<T> {
+pub struct Cookie<'self, T> {
     cookie: T,
-    conn: @Connection,
+    conn: &'self Connection,
     checked: bool
 }
 
-pub trait ReplyCookie<'self, R> {
+pub trait ReplyCookie<R> {
     fn get_reply(&self) -> Result<Reply<R>, GenericError>;
 }
 
-pub impl<T> Cookie<T> {
+pub impl<'self, T> Cookie<'self, T> {
     fn request_check(&self) -> Option<GenericError> {
         unsafe {
             // Crazy pointer dance to get the right bit
@@ -265,4 +269,37 @@ impl<T> Drop for Reply<T> {
 pub type GenericReply = Reply<generic_reply>;
 pub type GenericEvent = Event<generic_event>;
 pub type GenericError = Error<generic_error>;
-pub type VoidCookie = Cookie<void_cookie>;
+pub type VoidCookie<'self> = Cookie<'self, void_cookie>;
+
+pub impl GenericEvent {
+    fn response_type(&self) -> u8 {
+        unsafe {(*self.event).response_type}
+    }
+}
+
+pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &[(T,L)]) -> (T, ~[L]) {
+    let len = bf.len();
+
+    let sorted = std::sort::merge_sort(bf, |a,b| {
+        let &(a, _) = a;
+        let &(b, _) = b;
+        a < b});
+
+    let mut mask = 0u;
+    let mut list : ~[L] = vec::with_capacity(len);
+
+
+    for sorted.each |el| {
+        let &(f, v) = el;
+        let fld = num::cast(f);
+        if (mask & fld) > 0 {
+            loop;
+        } else {
+            mask |= fld;
+            list.push(v);
+        }
+    }
+
+    debug!("Converted to %? and %?", mask, list);
+    (num::cast(mask), list)
+}

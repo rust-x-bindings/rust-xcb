@@ -268,10 +268,12 @@ def c_open(self):
     _r('#[allow(unused_unsafe)];')
     _h('#[allow(non_camel_case_types)];')
 
+    _hr('use core;')
     _hr('use core::libc::*;')
     _hr('use ll::base::*;')
 
     _r('use base;')
+    _r('use base::*;')
     _r('use ll::%s::*;', _ns.header)
 
     _r('use core::option::Option;')
@@ -345,9 +347,9 @@ def c_enum(self, name):
     if namecount[tname] > 1:
         tname = _t(name + ('enum',))
 
-    _h_setlevel(0)
-    _h('')
-    _h('pub type %s = c_uint;//{', tname)
+    _r_setlevel(0)
+    _r('')
+    _r('pub type %s = c_uint;//{', tname)
 
     count = len(self.values)
 
@@ -358,9 +360,9 @@ def c_enum(self, name):
         doc = ''
         if hasattr(self, "doc") and self.doc and enam in self.doc.fields:
             doc = '\n/** %s */\n    ' % self.doc.fields[enam]
-        _h('    %spub static %s : %s = %s;', doc, _n(name + (enam,)).upper(), tname, val)
+        _r('    %spub static %s : %s = %s;', doc, _n(name + (enam,)).upper(), tname, val)
 
-    _h('//}')
+    _r('//}')
 
 def _c_type_setup(self, name, postfix):
     '''
@@ -1347,20 +1349,121 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
     for field in param_fields:
         count = count - 1
         c_field_const_type = field.c_field_const_type
-        r_field_const_type = field.r_field_const_type
         if c_field_const_type == 'void':
             c_field_const_type = 'c_void'
-            r_field_const_type = '()'
         c_pointer = field.c_pointer
-        r_pointer = field.r_pointer
         if field.type.need_serialize and not aux:
             c_field_const_type = "()"
-            r_field_const_type = "u8"
             c_pointer = '*'
-            r_pointer = '&'
         comma = ',' if count else (') -> %s;' % (cookie_type,))
         _h('%s%s : %s%s%s', func_spacing, field.c_field_name,
                 c_pointer, c_field_const_type, comma)
+
+    idx = 0
+    r_fields = []
+    for f in param_fields:
+        f.idx = idx
+        idx = idx + 1
+        f.skip = False
+        if not f.visible or f.auto:
+            continue
+        fty = f.type
+        if fty.is_list or fty.is_switch or fty.is_bitcase:
+            len_name = f.c_field_name+'_len'
+            f.lf = None
+            i = 0
+            for fl in param_fields:
+                if f.type.expr.lenfield == fl:
+                    fl.skip=True
+                    f.lf = fl
+                    f.lfidx = i
+                elif fl.c_field_name == len_name:
+                    fl.skip=True
+                    f.lf = fl
+                    f.lfidx = i
+                i = i + 1
+        f.idx = idx
+        r_fields.append(f)
+
+    call_params = []
+    mk_params = []
+
+    func_spacing = ' ' * (len(rust_func_name) + 9)
+    count = len(r_fields)
+    comma = ',' if count else (') -> %s<\'r> {' % (rust_cookie_type,))
+    _r('pub fn %s<\'r> (c : &\'r Connection%s', rust_func_name, comma)
+    for field in r_fields:
+        count = count - 1
+        if field.skip or field.auto:
+            continue
+        fty = field.type
+
+        field_type = field.r_field_type
+        c_field_type = field.c_field_type
+
+        c_field_const_type = field.c_field_const_type
+        if c_field_const_type == 'void':
+            c_field_const_type = 'c_void'
+        c_pointer = field.c_pointer
+        if field.type.need_serialize and not aux:
+            c_field_const_type = "()"
+            c_pointer = '*'
+
+        if fty.is_list:
+            if fty.expr.bitfield:
+                mk_params.append("let (%s_mask, %s_vec) = pack_bitfield(%s);" %
+                        (field.c_field_name, field.c_field_name, field.c_field_name))
+                mk_params.append("let %s_ptr = core::vec::raw::to_ptr(%s_vec);" %
+                        (field.c_field_name, field.c_field_name))
+
+                call_params.append((field.idx-1,'%s_mask as %s' %(field.c_field_name,
+                    fty.expr.lenfield.c_field_type)))
+                call_params.append((field.idx, '%s_ptr as *%s' % (field.c_field_name,c_field_const_type)))
+
+                field_type = '&[(%s,%s)]' % (fty.expr.lenfield.r_field_type, field_type)
+            else:
+                if fty.member.r_type == 'c_char':
+                    field_type = '&str'
+                    mk_params.append("let %s = core::str::to_bytes(%s);" % (field.c_field_name,
+                        field.c_field_name))
+                else:
+                    field_type = '&[%s]' % field_type
+
+
+                if f.lf:
+                    lfty = field.lf.c_field_const_type
+                    mk_params.append("let %s_len = %s.len();" % (field.c_field_name, field.c_field_name))
+                    call_params.append((f.lf.idx, '%s_len as %s' % (field.c_field_name,lfty)))
+
+                mk_params.append("let %s_ptr = core::vec::raw::to_ptr(%s);" % (field.c_field_name,
+                    field.c_field_name))
+                call_params.append((field.idx, '%s_ptr as *%s' % (field.c_field_name,
+                    c_field_const_type)))
+
+
+        else:
+            call_params.append((field.idx, '%s as %s' % (field.c_field_name, c_field_const_type)))
+
+        comma = ',' if count else (') -> %s<\'r> {' % (rust_cookie_type,))
+        _r('%s%s : %s%s', func_spacing, field.c_field_name, field_type, comma)
+
+    _r('  unsafe {')
+    for p in mk_params:
+        _r('    %s', p)
+
+    count = len(call_params)
+    comma = ',' if count else ');'
+    _r('    let cookie = %s(c.get_raw_conn()%s', func_name, comma)
+    call_params.sort(lambda x,y: cmp(x[0] , y[0]))
+    for idx, c in call_params:
+        count = count - 1
+        comma = ',' if count else ');'
+        _r('        %s%s //%d', c, comma, idx)
+
+
+    _r('    Cookie {cookie:cookie,conn:c,checked:%s}', 'true' if checked else 'false')
+    _r('  }')
+    _r('}')
 
 def _c_reply(self, name):
     '''
@@ -1387,7 +1490,7 @@ def _c_reply(self, name):
     _h('          %s  cookie : %s,', spacing, self.c_cookie_type)
     _h('          %s  e : **generic_error) -> *%s;', spacing, self.c_reply_type)
 
-    _r('impl_reply_cookie!(%s, %s, %s, %s)\n', self.r_cookie_type, self.c_reply_type, self.r_reply_type, self.c_reply_name)
+    _r('impl_reply_cookie!(%s<\'self>, %s, %s, %s)\n', self.r_cookie_type, self.c_reply_type, self.r_reply_type, self.c_reply_name)
 
 def _c_opcode(name, opcode):
     '''
@@ -1410,7 +1513,7 @@ def _c_cookie(self, name):
     _h('    sequence : c_uint')
     _h('}')
 
-    _r('pub type %s = base::Cookie<%s>;\n', self.r_cookie_type, self.c_cookie_type)
+    _r('pub type %s<\'self> = base::Cookie<\'self, %s>;\n', self.r_cookie_type, self.c_cookie_type)
 
 
 def c_request(self, name):

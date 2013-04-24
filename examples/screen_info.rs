@@ -1,6 +1,6 @@
 extern mod xcb;
 
-use core::iterator::{Iterator,IteratorUtil};
+use core::iterator::{Iterator};
 use xcb::base::*;
 
 fn main() {
