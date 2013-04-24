@@ -46,15 +46,22 @@ fn main() {
 
     conn.flush();
 
+    let cookie = InternAtom(conn,0,"_TEST_ATOM");
+    let rep_res = cookie.get_reply();
+    match rep_res {
+        Ok(r) => {io::println(fmt!("Interned Atom %?", r.atom()));}
+        Err(_) => { fail!(~"Failed to intern atom"); }
+    }
+
     loop {
         let event = conn.wait_for_event();
         match event {
             None => { break; }
             Some(event) => {
                 let r = event.response_type();
-                if r == XCB_EXPOSE {
-
-                } else if r == XCB_KEY_PRESS {
+                if r == XCB_KEY_PRESS {
+                    let key_press : &KeyPressEvent = cast_event(&event);
+                    io::println(fmt!("Key '%?' pressed", key_press.detail()));
                     break;
                 }
             }

@@ -1572,16 +1572,37 @@ def c_event(self, name):
     # Opcode define
     _c_opcode(name, self.opcodes[name])
 
+    _r('pub type %s = base::Event<%s>;', self.r_type, self.c_type)
+
     if self.name == name:
         # Structure definition
         _c_complex(self)
+
+        self.wrap_field_name = '(*self.event)'
+
+        accessor_fields = []
+        for f in self.fields:
+            if not f.visible:
+                continue
+            fty = f.type
+            accessor_fields.append(f)
+            if fty.is_list or fty.is_switch or fty.is_bitcase:
+                try:
+                    accessor_fields.remove(fty.expr.lenfield)
+                except: #NB: This sohuld check for a more specific exceptio
+                    pass
+
+        _r_setlevel(1)
+        _r('\npub impl %s {', self.r_type)
+        for field in accessor_fields:
+            _r_accessor(self,field)
+        _r_setlevel(1)
+        _r('}')
+
     else:
         # Typedef
         _h('')
         _h('pub type %s = %s;', _t(name + ('event',)), _t(self.name + ('event',)))
-
-    _r('pub type %s = base::Event<%s>;', self.r_type, self.c_type)
-
 
 def c_error(self, name):
     '''

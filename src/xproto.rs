@@ -154,7 +154,6 @@ pub type window_enum = c_uint;//{
 //}
 /** Opcode for xcb_key_press. */
 pub static XCB_KEY_PRESS : u8 = 2;
-pub type KeyPressEvent = base::Event<key_press_event>;
 /** Opcode for xcb_key_release. */
 pub static XCB_KEY_RELEASE : u8 = 3;
 pub type KeyReleaseEvent = base::Event<key_release_event>;
@@ -169,7 +168,6 @@ pub type button_mask = c_uint;//{
 //}
 /** Opcode for xcb_button_press. */
 pub static XCB_BUTTON_PRESS : u8 = 4;
-pub type ButtonPressEvent = base::Event<button_press_event>;
 /** Opcode for xcb_button_release. */
 pub static XCB_BUTTON_RELEASE : u8 = 5;
 pub type ButtonReleaseEvent = base::Event<button_release_event>;
@@ -180,7 +178,6 @@ pub type motion = c_uint;//{
 //}
 /** Opcode for xcb_motion_notify. */
 pub static XCB_MOTION_NOTIFY : u8 = 6;
-pub type MotionNotifyEvent = base::Event<motion_notify_event>;
 
 pub type notify_detail = c_uint;//{
     pub static XCB_NOTIFY_DETAIL_ANCESTOR : notify_detail = 0;
@@ -201,28 +198,22 @@ pub type notify_mode = c_uint;//{
 //}
 /** Opcode for xcb_enter_notify. */
 pub static XCB_ENTER_NOTIFY : u8 = 7;
-pub type EnterNotifyEvent = base::Event<enter_notify_event>;
 /** Opcode for xcb_leave_notify. */
 pub static XCB_LEAVE_NOTIFY : u8 = 8;
 pub type LeaveNotifyEvent = base::Event<leave_notify_event>;
 /** Opcode for xcb_focus_in. */
 pub static XCB_FOCUS_IN : u8 = 9;
-pub type FocusInEvent = base::Event<focus_in_event>;
 /** Opcode for xcb_focus_out. */
 pub static XCB_FOCUS_OUT : u8 = 10;
 pub type FocusOutEvent = base::Event<focus_out_event>;
 /** Opcode for xcb_keymap_notify. */
 pub static XCB_KEYMAP_NOTIFY : u8 = 11;
-pub type KeymapNotifyEvent = base::Event<keymap_notify_event>;
 /** Opcode for xcb_expose. */
 pub static XCB_EXPOSE : u8 = 12;
-pub type ExposeEvent = base::Event<expose_event>;
 /** Opcode for xcb_graphics_exposure. */
 pub static XCB_GRAPHICS_EXPOSURE : u8 = 13;
-pub type GraphicsExposureEvent = base::Event<graphics_exposure_event>;
 /** Opcode for xcb_no_exposure. */
 pub static XCB_NO_EXPOSURE : u8 = 14;
-pub type NoExposureEvent = base::Event<no_exposure_event>;
 
 pub type visibility = c_uint;//{
     pub static XCB_VISIBILITY_UNOBSCURED : visibility = 0;
@@ -231,37 +222,26 @@ pub type visibility = c_uint;//{
 //}
 /** Opcode for xcb_visibility_notify. */
 pub static XCB_VISIBILITY_NOTIFY : u8 = 15;
-pub type VisibilityNotifyEvent = base::Event<visibility_notify_event>;
 /** Opcode for xcb_create_notify. */
 pub static XCB_CREATE_NOTIFY : u8 = 16;
-pub type CreateNotifyEvent = base::Event<create_notify_event>;
 /** Opcode for xcb_destroy_notify. */
 pub static XCB_DESTROY_NOTIFY : u8 = 17;
-pub type DestroyNotifyEvent = base::Event<destroy_notify_event>;
 /** Opcode for xcb_unmap_notify. */
 pub static XCB_UNMAP_NOTIFY : u8 = 18;
-pub type UnmapNotifyEvent = base::Event<unmap_notify_event>;
 /** Opcode for xcb_map_notify. */
 pub static XCB_MAP_NOTIFY : u8 = 19;
-pub type MapNotifyEvent = base::Event<map_notify_event>;
 /** Opcode for xcb_map_request. */
 pub static XCB_MAP_REQUEST : u8 = 20;
-pub type MapRequestEvent = base::Event<map_request_event>;
 /** Opcode for xcb_reparent_notify. */
 pub static XCB_REPARENT_NOTIFY : u8 = 21;
-pub type ReparentNotifyEvent = base::Event<reparent_notify_event>;
 /** Opcode for xcb_configure_notify. */
 pub static XCB_CONFIGURE_NOTIFY : u8 = 22;
-pub type ConfigureNotifyEvent = base::Event<configure_notify_event>;
 /** Opcode for xcb_configure_request. */
 pub static XCB_CONFIGURE_REQUEST : u8 = 23;
-pub type ConfigureRequestEvent = base::Event<configure_request_event>;
 /** Opcode for xcb_gravity_notify. */
 pub static XCB_GRAVITY_NOTIFY : u8 = 24;
-pub type GravityNotifyEvent = base::Event<gravity_notify_event>;
 /** Opcode for xcb_resize_request. */
 pub static XCB_RESIZE_REQUEST : u8 = 25;
-pub type ResizeRequestEvent = base::Event<resize_request_event>;
 
 pub type place = c_uint;//{
     
@@ -273,7 +253,6 @@ pub type place = c_uint;//{
 //}
 /** Opcode for xcb_circulate_notify. */
 pub static XCB_CIRCULATE_NOTIFY : u8 = 26;
-pub type CirculateNotifyEvent = base::Event<circulate_notify_event>;
 /** Opcode for xcb_circulate_request. */
 pub static XCB_CIRCULATE_REQUEST : u8 = 27;
 pub type CirculateRequestEvent = base::Event<circulate_request_event>;
@@ -284,10 +263,8 @@ pub type property = c_uint;//{
 //}
 /** Opcode for xcb_property_notify. */
 pub static XCB_PROPERTY_NOTIFY : u8 = 28;
-pub type PropertyNotifyEvent = base::Event<property_notify_event>;
 /** Opcode for xcb_selection_clear. */
 pub static XCB_SELECTION_CLEAR : u8 = 29;
-pub type SelectionClearEvent = base::Event<selection_clear_event>;
 
 pub type time = c_uint;//{
     pub static XCB_TIME_CURRENT_TIME : time = 0;
@@ -367,10 +344,8 @@ pub type atom_enum = c_uint;//{
 //}
 /** Opcode for xcb_selection_request. */
 pub static XCB_SELECTION_REQUEST : u8 = 30;
-pub type SelectionRequestEvent = base::Event<selection_request_event>;
 /** Opcode for xcb_selection_notify. */
 pub static XCB_SELECTION_NOTIFY : u8 = 31;
-pub type SelectionNotifyEvent = base::Event<selection_notify_event>;
 
 pub type colormap_state = c_uint;//{
     
@@ -386,13 +361,10 @@ pub type colormap_enum = c_uint;//{
 //}
 /** Opcode for xcb_colormap_notify. */
 pub static XCB_COLORMAP_NOTIFY : u8 = 32;
-pub type ColormapNotifyEvent = base::Event<colormap_notify_event>;
-pub type ClientMessageData = base::Struct<client_message_data>;
 pub type ClientMessageDataIterator = client_message_data_iterator;
 
 /** Opcode for xcb_client_message. */
 pub static XCB_CLIENT_MESSAGE : u8 = 33;
-pub type ClientMessageEvent = base::Event<client_message_event>;
 
 pub type mapping = c_uint;//{
     pub static XCB_MAPPING_MODIFIER : mapping = 0;
@@ -401,7 +373,6 @@ pub type mapping = c_uint;//{
 //}
 /** Opcode for xcb_mapping_notify. */
 pub static XCB_MAPPING_NOTIFY : u8 = 34;
-pub type MappingNotifyEvent = base::Event<mapping_notify_event>;
 /** Opcode for xcb_request. */
 pub static XCB_REQUEST : u8 = 1;
 pub type RequestError = base::Error<request_error>;
@@ -2207,6 +2178,683 @@ impl<'self, Setup> Iterator<&'self Setup> for SetupIterator {
 }
 
 
+pub impl KeyPressEvent {
+  fn detail(&self) -> Keycode {
+    unsafe { accessor!(detail -> Keycode, (*self.event)) }
+  }
+
+  fn time(&self) -> Timestamp {
+    unsafe { accessor!(time -> Timestamp, (*self.event)) }
+  }
+
+  fn root(&self) -> Window {
+    unsafe { accessor!(root -> Window, (*self.event)) }
+  }
+
+  fn event(&self) -> Window {
+    unsafe { accessor!(event -> Window, (*self.event)) }
+  }
+
+  fn child(&self) -> Window {
+    unsafe { accessor!(child -> Window, (*self.event)) }
+  }
+
+  fn root_x(&self) -> i16 {
+    unsafe { accessor!(root_x -> i16, (*self.event)) }
+  }
+
+  fn root_y(&self) -> i16 {
+    unsafe { accessor!(root_y -> i16, (*self.event)) }
+  }
+
+  fn event_x(&self) -> i16 {
+    unsafe { accessor!(event_x -> i16, (*self.event)) }
+  }
+
+  fn event_y(&self) -> i16 {
+    unsafe { accessor!(event_y -> i16, (*self.event)) }
+  }
+
+  fn state(&self) -> u16 {
+    unsafe { accessor!(state -> u16, (*self.event)) }
+  }
+
+  fn same_screen(&self) -> u8 {
+    unsafe { accessor!(same_screen -> u8, (*self.event)) }
+  }
+
+}
+pub type KeyPressEvent = base::Event<key_press_event>;
+
+pub impl ButtonPressEvent {
+  fn detail(&self) -> Button {
+    unsafe { accessor!(detail -> Button, (*self.event)) }
+  }
+
+  fn time(&self) -> Timestamp {
+    unsafe { accessor!(time -> Timestamp, (*self.event)) }
+  }
+
+  fn root(&self) -> Window {
+    unsafe { accessor!(root -> Window, (*self.event)) }
+  }
+
+  fn event(&self) -> Window {
+    unsafe { accessor!(event -> Window, (*self.event)) }
+  }
+
+  fn child(&self) -> Window {
+    unsafe { accessor!(child -> Window, (*self.event)) }
+  }
+
+  fn root_x(&self) -> i16 {
+    unsafe { accessor!(root_x -> i16, (*self.event)) }
+  }
+
+  fn root_y(&self) -> i16 {
+    unsafe { accessor!(root_y -> i16, (*self.event)) }
+  }
+
+  fn event_x(&self) -> i16 {
+    unsafe { accessor!(event_x -> i16, (*self.event)) }
+  }
+
+  fn event_y(&self) -> i16 {
+    unsafe { accessor!(event_y -> i16, (*self.event)) }
+  }
+
+  fn state(&self) -> u16 {
+    unsafe { accessor!(state -> u16, (*self.event)) }
+  }
+
+  fn same_screen(&self) -> u8 {
+    unsafe { accessor!(same_screen -> u8, (*self.event)) }
+  }
+
+}
+pub type ButtonPressEvent = base::Event<button_press_event>;
+
+pub impl MotionNotifyEvent {
+  fn detail(&self) -> u8 {
+    unsafe { accessor!(detail -> u8, (*self.event)) }
+  }
+
+  fn time(&self) -> Timestamp {
+    unsafe { accessor!(time -> Timestamp, (*self.event)) }
+  }
+
+  fn root(&self) -> Window {
+    unsafe { accessor!(root -> Window, (*self.event)) }
+  }
+
+  fn event(&self) -> Window {
+    unsafe { accessor!(event -> Window, (*self.event)) }
+  }
+
+  fn child(&self) -> Window {
+    unsafe { accessor!(child -> Window, (*self.event)) }
+  }
+
+  fn root_x(&self) -> i16 {
+    unsafe { accessor!(root_x -> i16, (*self.event)) }
+  }
+
+  fn root_y(&self) -> i16 {
+    unsafe { accessor!(root_y -> i16, (*self.event)) }
+  }
+
+  fn event_x(&self) -> i16 {
+    unsafe { accessor!(event_x -> i16, (*self.event)) }
+  }
+
+  fn event_y(&self) -> i16 {
+    unsafe { accessor!(event_y -> i16, (*self.event)) }
+  }
+
+  fn state(&self) -> u16 {
+    unsafe { accessor!(state -> u16, (*self.event)) }
+  }
+
+  fn same_screen(&self) -> u8 {
+    unsafe { accessor!(same_screen -> u8, (*self.event)) }
+  }
+
+}
+pub type MotionNotifyEvent = base::Event<motion_notify_event>;
+
+pub impl EnterNotifyEvent {
+  fn detail(&self) -> u8 {
+    unsafe { accessor!(detail -> u8, (*self.event)) }
+  }
+
+  fn time(&self) -> Timestamp {
+    unsafe { accessor!(time -> Timestamp, (*self.event)) }
+  }
+
+  fn root(&self) -> Window {
+    unsafe { accessor!(root -> Window, (*self.event)) }
+  }
+
+  fn event(&self) -> Window {
+    unsafe { accessor!(event -> Window, (*self.event)) }
+  }
+
+  fn child(&self) -> Window {
+    unsafe { accessor!(child -> Window, (*self.event)) }
+  }
+
+  fn root_x(&self) -> i16 {
+    unsafe { accessor!(root_x -> i16, (*self.event)) }
+  }
+
+  fn root_y(&self) -> i16 {
+    unsafe { accessor!(root_y -> i16, (*self.event)) }
+  }
+
+  fn event_x(&self) -> i16 {
+    unsafe { accessor!(event_x -> i16, (*self.event)) }
+  }
+
+  fn event_y(&self) -> i16 {
+    unsafe { accessor!(event_y -> i16, (*self.event)) }
+  }
+
+  fn state(&self) -> u16 {
+    unsafe { accessor!(state -> u16, (*self.event)) }
+  }
+
+  fn mode(&self) -> u8 {
+    unsafe { accessor!(mode -> u8, (*self.event)) }
+  }
+
+  fn same_screen_focus(&self) -> u8 {
+    unsafe { accessor!(same_screen_focus -> u8, (*self.event)) }
+  }
+
+}
+pub type EnterNotifyEvent = base::Event<enter_notify_event>;
+
+pub impl FocusInEvent {
+  fn detail(&self) -> u8 {
+    unsafe { accessor!(detail -> u8, (*self.event)) }
+  }
+
+  fn event(&self) -> Window {
+    unsafe { accessor!(event -> Window, (*self.event)) }
+  }
+
+  fn mode(&self) -> u8 {
+    unsafe { accessor!(mode -> u8, (*self.event)) }
+  }
+
+}
+pub type FocusInEvent = base::Event<focus_in_event>;
+
+pub impl KeymapNotifyEvent {
+  fn keys(&self) -> ~[u8,..31] {
+    unsafe { ~(copy (*self.event).keys) }
+  }
+
+}
+pub type KeymapNotifyEvent = base::Event<keymap_notify_event>;
+
+pub impl ExposeEvent {
+  fn window(&self) -> Window {
+    unsafe { accessor!(window -> Window, (*self.event)) }
+  }
+
+  fn x(&self) -> u16 {
+    unsafe { accessor!(x -> u16, (*self.event)) }
+  }
+
+  fn y(&self) -> u16 {
+    unsafe { accessor!(y -> u16, (*self.event)) }
+  }
+
+  fn width(&self) -> u16 {
+    unsafe { accessor!(width -> u16, (*self.event)) }
+  }
+
+  fn height(&self) -> u16 {
+    unsafe { accessor!(height -> u16, (*self.event)) }
+  }
+
+  fn count(&self) -> u16 {
+    unsafe { accessor!(count -> u16, (*self.event)) }
+  }
+
+}
+pub type ExposeEvent = base::Event<expose_event>;
+
+pub impl GraphicsExposureEvent {
+  fn drawable(&self) -> Drawable {
+    unsafe { accessor!(drawable -> Drawable, (*self.event)) }
+  }
+
+  fn x(&self) -> u16 {
+    unsafe { accessor!(x -> u16, (*self.event)) }
+  }
+
+  fn y(&self) -> u16 {
+    unsafe { accessor!(y -> u16, (*self.event)) }
+  }
+
+  fn width(&self) -> u16 {
+    unsafe { accessor!(width -> u16, (*self.event)) }
+  }
+
+  fn height(&self) -> u16 {
+    unsafe { accessor!(height -> u16, (*self.event)) }
+  }
+
+  fn minor_opcode(&self) -> u16 {
+    unsafe { accessor!(minor_opcode -> u16, (*self.event)) }
+  }
+
+  fn count(&self) -> u16 {
+    unsafe { accessor!(count -> u16, (*self.event)) }
+  }
+
+  fn major_opcode(&self) -> u8 {
+    unsafe { accessor!(major_opcode -> u8, (*self.event)) }
+  }
+
+}
+pub type GraphicsExposureEvent = base::Event<graphics_exposure_event>;
+
+pub impl NoExposureEvent {
+  fn drawable(&self) -> Drawable {
+    unsafe { accessor!(drawable -> Drawable, (*self.event)) }
+  }
+
+  fn minor_opcode(&self) -> u16 {
+    unsafe { accessor!(minor_opcode -> u16, (*self.event)) }
+  }
+
+  fn major_opcode(&self) -> u8 {
+    unsafe { accessor!(major_opcode -> u8, (*self.event)) }
+  }
+
+}
+pub type NoExposureEvent = base::Event<no_exposure_event>;
+
+pub impl VisibilityNotifyEvent {
+  fn window(&self) -> Window {
+    unsafe { accessor!(window -> Window, (*self.event)) }
+  }
+
+  fn state(&self) -> u8 {
+    unsafe { accessor!(state -> u8, (*self.event)) }
+  }
+
+}
+pub type VisibilityNotifyEvent = base::Event<visibility_notify_event>;
+
+pub impl CreateNotifyEvent {
+  fn parent(&self) -> Window {
+    unsafe { accessor!(parent -> Window, (*self.event)) }
+  }
+
+  fn window(&self) -> Window {
+    unsafe { accessor!(window -> Window, (*self.event)) }
+  }
+
+  fn x(&self) -> i16 {
+    unsafe { accessor!(x -> i16, (*self.event)) }
+  }
+
+  fn y(&self) -> i16 {
+    unsafe { accessor!(y -> i16, (*self.event)) }
+  }
+
+  fn width(&self) -> u16 {
+    unsafe { accessor!(width -> u16, (*self.event)) }
+  }
+
+  fn height(&self) -> u16 {
+    unsafe { accessor!(height -> u16, (*self.event)) }
+  }
+
+  fn border_width(&self) -> u16 {
+    unsafe { accessor!(border_width -> u16, (*self.event)) }
+  }
+
+  fn override_redirect(&self) -> u8 {
+    unsafe { accessor!(override_redirect -> u8, (*self.event)) }
+  }
+
+}
+pub type CreateNotifyEvent = base::Event<create_notify_event>;
+
+pub impl DestroyNotifyEvent {
+  fn event(&self) -> Window {
+    unsafe { accessor!(event -> Window, (*self.event)) }
+  }
+
+  fn window(&self) -> Window {
+    unsafe { accessor!(window -> Window, (*self.event)) }
+  }
+
+}
+pub type DestroyNotifyEvent = base::Event<destroy_notify_event>;
+
+pub impl UnmapNotifyEvent {
+  fn event(&self) -> Window {
+    unsafe { accessor!(event -> Window, (*self.event)) }
+  }
+
+  fn window(&self) -> Window {
+    unsafe { accessor!(window -> Window, (*self.event)) }
+  }
+
+  fn from_configure(&self) -> u8 {
+    unsafe { accessor!(from_configure -> u8, (*self.event)) }
+  }
+
+}
+pub type UnmapNotifyEvent = base::Event<unmap_notify_event>;
+
+pub impl MapNotifyEvent {
+  fn event(&self) -> Window {
+    unsafe { accessor!(event -> Window, (*self.event)) }
+  }
+
+  fn window(&self) -> Window {
+    unsafe { accessor!(window -> Window, (*self.event)) }
+  }
+
+  fn override_redirect(&self) -> u8 {
+    unsafe { accessor!(override_redirect -> u8, (*self.event)) }
+  }
+
+}
+pub type MapNotifyEvent = base::Event<map_notify_event>;
+
+pub impl MapRequestEvent {
+  fn parent(&self) -> Window {
+    unsafe { accessor!(parent -> Window, (*self.event)) }
+  }
+
+  fn window(&self) -> Window {
+    unsafe { accessor!(window -> Window, (*self.event)) }
+  }
+
+}
+pub type MapRequestEvent = base::Event<map_request_event>;
+
+pub impl ReparentNotifyEvent {
+  fn event(&self) -> Window {
+    unsafe { accessor!(event -> Window, (*self.event)) }
+  }
+
+  fn window(&self) -> Window {
+    unsafe { accessor!(window -> Window, (*self.event)) }
+  }
+
+  fn parent(&self) -> Window {
+    unsafe { accessor!(parent -> Window, (*self.event)) }
+  }
+
+  fn x(&self) -> i16 {
+    unsafe { accessor!(x -> i16, (*self.event)) }
+  }
+
+  fn y(&self) -> i16 {
+    unsafe { accessor!(y -> i16, (*self.event)) }
+  }
+
+  fn override_redirect(&self) -> u8 {
+    unsafe { accessor!(override_redirect -> u8, (*self.event)) }
+  }
+
+}
+pub type ReparentNotifyEvent = base::Event<reparent_notify_event>;
+
+pub impl ConfigureNotifyEvent {
+  fn event(&self) -> Window {
+    unsafe { accessor!(event -> Window, (*self.event)) }
+  }
+
+  fn window(&self) -> Window {
+    unsafe { accessor!(window -> Window, (*self.event)) }
+  }
+
+  fn above_sibling(&self) -> Window {
+    unsafe { accessor!(above_sibling -> Window, (*self.event)) }
+  }
+
+  fn x(&self) -> i16 {
+    unsafe { accessor!(x -> i16, (*self.event)) }
+  }
+
+  fn y(&self) -> i16 {
+    unsafe { accessor!(y -> i16, (*self.event)) }
+  }
+
+  fn width(&self) -> u16 {
+    unsafe { accessor!(width -> u16, (*self.event)) }
+  }
+
+  fn height(&self) -> u16 {
+    unsafe { accessor!(height -> u16, (*self.event)) }
+  }
+
+  fn border_width(&self) -> u16 {
+    unsafe { accessor!(border_width -> u16, (*self.event)) }
+  }
+
+  fn override_redirect(&self) -> u8 {
+    unsafe { accessor!(override_redirect -> u8, (*self.event)) }
+  }
+
+}
+pub type ConfigureNotifyEvent = base::Event<configure_notify_event>;
+
+pub impl ConfigureRequestEvent {
+  fn stack_mode(&self) -> u8 {
+    unsafe { accessor!(stack_mode -> u8, (*self.event)) }
+  }
+
+  fn parent(&self) -> Window {
+    unsafe { accessor!(parent -> Window, (*self.event)) }
+  }
+
+  fn window(&self) -> Window {
+    unsafe { accessor!(window -> Window, (*self.event)) }
+  }
+
+  fn sibling(&self) -> Window {
+    unsafe { accessor!(sibling -> Window, (*self.event)) }
+  }
+
+  fn x(&self) -> i16 {
+    unsafe { accessor!(x -> i16, (*self.event)) }
+  }
+
+  fn y(&self) -> i16 {
+    unsafe { accessor!(y -> i16, (*self.event)) }
+  }
+
+  fn width(&self) -> u16 {
+    unsafe { accessor!(width -> u16, (*self.event)) }
+  }
+
+  fn height(&self) -> u16 {
+    unsafe { accessor!(height -> u16, (*self.event)) }
+  }
+
+  fn border_width(&self) -> u16 {
+    unsafe { accessor!(border_width -> u16, (*self.event)) }
+  }
+
+  fn value_mask(&self) -> u16 {
+    unsafe { accessor!(value_mask -> u16, (*self.event)) }
+  }
+
+}
+pub type ConfigureRequestEvent = base::Event<configure_request_event>;
+
+pub impl GravityNotifyEvent {
+  fn event(&self) -> Window {
+    unsafe { accessor!(event -> Window, (*self.event)) }
+  }
+
+  fn window(&self) -> Window {
+    unsafe { accessor!(window -> Window, (*self.event)) }
+  }
+
+  fn x(&self) -> i16 {
+    unsafe { accessor!(x -> i16, (*self.event)) }
+  }
+
+  fn y(&self) -> i16 {
+    unsafe { accessor!(y -> i16, (*self.event)) }
+  }
+
+}
+pub type GravityNotifyEvent = base::Event<gravity_notify_event>;
+
+pub impl ResizeRequestEvent {
+  fn window(&self) -> Window {
+    unsafe { accessor!(window -> Window, (*self.event)) }
+  }
+
+  fn width(&self) -> u16 {
+    unsafe { accessor!(width -> u16, (*self.event)) }
+  }
+
+  fn height(&self) -> u16 {
+    unsafe { accessor!(height -> u16, (*self.event)) }
+  }
+
+}
+pub type ResizeRequestEvent = base::Event<resize_request_event>;
+
+pub impl CirculateNotifyEvent {
+  fn event(&self) -> Window {
+    unsafe { accessor!(event -> Window, (*self.event)) }
+  }
+
+  fn window(&self) -> Window {
+    unsafe { accessor!(window -> Window, (*self.event)) }
+  }
+
+  fn place(&self) -> u8 {
+    unsafe { accessor!(place -> u8, (*self.event)) }
+  }
+
+}
+pub type CirculateNotifyEvent = base::Event<circulate_notify_event>;
+
+pub impl PropertyNotifyEvent {
+  fn window(&self) -> Window {
+    unsafe { accessor!(window -> Window, (*self.event)) }
+  }
+
+  fn atom(&self) -> Atom {
+    unsafe { accessor!(atom -> Atom, (*self.event)) }
+  }
+
+  fn time(&self) -> Timestamp {
+    unsafe { accessor!(time -> Timestamp, (*self.event)) }
+  }
+
+  fn state(&self) -> u8 {
+    unsafe { accessor!(state -> u8, (*self.event)) }
+  }
+
+}
+pub type PropertyNotifyEvent = base::Event<property_notify_event>;
+
+pub impl SelectionClearEvent {
+  fn time(&self) -> Timestamp {
+    unsafe { accessor!(time -> Timestamp, (*self.event)) }
+  }
+
+  fn owner(&self) -> Window {
+    unsafe { accessor!(owner -> Window, (*self.event)) }
+  }
+
+  fn selection(&self) -> Atom {
+    unsafe { accessor!(selection -> Atom, (*self.event)) }
+  }
+
+}
+pub type SelectionClearEvent = base::Event<selection_clear_event>;
+
+pub impl SelectionRequestEvent {
+  fn time(&self) -> Timestamp {
+    unsafe { accessor!(time -> Timestamp, (*self.event)) }
+  }
+
+  fn owner(&self) -> Window {
+    unsafe { accessor!(owner -> Window, (*self.event)) }
+  }
+
+  fn requestor(&self) -> Window {
+    unsafe { accessor!(requestor -> Window, (*self.event)) }
+  }
+
+  fn selection(&self) -> Atom {
+    unsafe { accessor!(selection -> Atom, (*self.event)) }
+  }
+
+  fn target(&self) -> Atom {
+    unsafe { accessor!(target -> Atom, (*self.event)) }
+  }
+
+  fn property(&self) -> Atom {
+    unsafe { accessor!(property -> Atom, (*self.event)) }
+  }
+
+}
+pub type SelectionRequestEvent = base::Event<selection_request_event>;
+
+pub impl SelectionNotifyEvent {
+  fn time(&self) -> Timestamp {
+    unsafe { accessor!(time -> Timestamp, (*self.event)) }
+  }
+
+  fn requestor(&self) -> Window {
+    unsafe { accessor!(requestor -> Window, (*self.event)) }
+  }
+
+  fn selection(&self) -> Atom {
+    unsafe { accessor!(selection -> Atom, (*self.event)) }
+  }
+
+  fn target(&self) -> Atom {
+    unsafe { accessor!(target -> Atom, (*self.event)) }
+  }
+
+  fn property(&self) -> Atom {
+    unsafe { accessor!(property -> Atom, (*self.event)) }
+  }
+
+}
+pub type SelectionNotifyEvent = base::Event<selection_notify_event>;
+
+pub impl ColormapNotifyEvent {
+  fn window(&self) -> Window {
+    unsafe { accessor!(window -> Window, (*self.event)) }
+  }
+
+  fn colormap(&self) -> Colormap {
+    unsafe { accessor!(colormap -> Colormap, (*self.event)) }
+  }
+
+  fn new_(&self) -> u8 {
+    unsafe { accessor!(new_ -> u8, (*self.event)) }
+  }
+
+  fn state(&self) -> u8 {
+    unsafe { accessor!(state -> u8, (*self.event)) }
+  }
+
+}
+pub type ColormapNotifyEvent = base::Event<colormap_notify_event>;
+pub type ClientMessageData = base::Struct<client_message_data>;
+
 impl<'self, ClientMessageData> Iterator<&'self ClientMessageData> for ClientMessageDataIterator {
     fn next(&mut self) -> Option<&'self ClientMessageData> {
         if self.rem == 0 { return None; }
@@ -2219,6 +2867,41 @@ impl<'self, ClientMessageData> Iterator<&'self ClientMessageData> for ClientMess
     }
 }
 
+
+pub impl ClientMessageEvent {
+  fn format(&self) -> u8 {
+    unsafe { accessor!(format -> u8, (*self.event)) }
+  }
+
+  fn window(&self) -> Window {
+    unsafe { accessor!(window -> Window, (*self.event)) }
+  }
+
+  fn type_(&self) -> Atom {
+    unsafe { accessor!(type_ -> Atom, (*self.event)) }
+  }
+
+  fn data(&self) -> ClientMessageData {
+    unsafe { cast::transmute((*self.event).data) }
+  }
+}
+pub type ClientMessageEvent = base::Event<client_message_event>;
+
+pub impl MappingNotifyEvent {
+  fn request(&self) -> u8 {
+    unsafe { accessor!(request -> u8, (*self.event)) }
+  }
+
+  fn first_keycode(&self) -> Keycode {
+    unsafe { accessor!(first_keycode -> Keycode, (*self.event)) }
+  }
+
+  fn count(&self) -> u8 {
+    unsafe { accessor!(count -> u8, (*self.event)) }
+  }
+
+}
+pub type MappingNotifyEvent = base::Event<mapping_notify_event>;
 pub fn CreateWindowChecked<'r> (c : &'r Connection,
                             depth : u8,
                             wid : Window,

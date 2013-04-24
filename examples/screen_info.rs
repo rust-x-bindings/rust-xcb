@@ -8,8 +8,6 @@ fn main() {
 
     let setup = conn.get_setup();
 
-    io::println(fmt!("%?", setup));
-
     let mut i = 0;
     let mut iter = setup.roots();
 

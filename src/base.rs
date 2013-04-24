@@ -271,9 +271,29 @@ pub type GenericEvent = Event<generic_event>;
 pub type GenericError = Error<generic_error>;
 pub type VoidCookie<'self> = Cookie<'self, void_cookie>;
 
-pub impl GenericEvent {
+/**
+ * Casts the generic event to the right event. Assumes that the given
+ * event is really the correct type.
+ */
+#[inline(always)]
+pub fn cast_event<'r, T>(event : &'r GenericEvent) -> &'r T {
+    // This isn't very safe... but other options incur yet more overhead
+    // that I really don't want to.
+    unsafe { cast::transmute(event) }
+}
+
+//Accessor methods for all Events
+pub trait EventUtil {
+    #[inline(always)]
+    fn response_type(&self) -> u8;
+}
+
+impl<T> EventUtil for Event<T> {
     fn response_type(&self) -> u8 {
-        unsafe {(*self.event).response_type}
+        unsafe {
+            let gev : *generic_event = cast::transmute(self.event);
+            (*gev).response_type
+        }
     }
 }
 
@@ -300,6 +320,5 @@ pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &[(T,L)]) -> (T, ~[L])
         }
     }
 
-    debug!("Converted to %? and %?", mask, list);
     (num::cast(mask), list)
 }
