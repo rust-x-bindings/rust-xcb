@@ -1427,6 +1427,8 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
                     field_type = '&str'
                     mk_params.append("let %s = core::str::to_bytes(%s);" % (field.c_field_name,
                         field.c_field_name))
+                if fty.member.r_type == 'c_void':
+                    field_type = '&[u8]'
                 else:
                     field_type = '&[%s]' % field_type
 
