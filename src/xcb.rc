@@ -79,9 +79,12 @@ pub mod xproto;
 
 pub mod xinerama;
 
-/*
 pub mod bigreq;
 pub mod composite;
+pub mod xfixes;
+pub mod render;
+pub mod shape;
+/*
 pub mod damage;
 pub mod dpms;
 pub mod dri2;
@@ -91,16 +94,13 @@ pub mod dri2;
 pub mod glx;
 pub mod randr;
 pub mod record;
-pub mod render;
 pub mod screensaver;
-pub mod shape;
 pub mod shm;
 pub mod sync;
 pub mod xc_misc;
 pub mod xevie;
 pub mod xf86dri;
 //pub mod xf86vidmode; Same with this one...
-pub mod xfixes;
 pub mod xinput;
 //pub mod xkb;
 pub mod xprint;

@@ -1360,6 +1360,9 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
         _h('%s%s : %s%s%s', func_spacing, field.c_field_name,
                 c_pointer, c_field_const_type, comma)
 
+    for f in param_fields:
+        f.skip = False
+
     idx = 0
     r_fields = []
     for f in param_fields:
@@ -1374,14 +1377,18 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
             f.lf = None
             i = 0
             for fl in param_fields:
+                if fl.skip:
+                    continue
                 if f.type.expr.lenfield == fl:
                     fl.skip=True
                     f.lf = fl
                     f.lfidx = i
+                    break
                 elif fl.c_field_name == len_name:
                     fl.skip=True
                     f.lf = fl
                     f.lfidx = i
+                    break
                 i = i + 1
         f.idx = idx
         r_fields.append(f)
@@ -1427,16 +1434,16 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
                     field_type = '&str'
                     mk_params.append("let %s = core::str::to_bytes(%s);" % (field.c_field_name,
                         field.c_field_name))
-                if fty.member.r_type == 'c_void':
+                elif fty.member.r_type == 'c_void':
                     field_type = '&[u8]'
                 else:
                     field_type = '&[%s]' % field_type
 
 
-                if f.lf:
+                if field.lf:
                     lfty = field.lf.c_field_const_type
                     mk_params.append("let %s_len = %s.len();" % (field.c_field_name, field.c_field_name))
-                    call_params.append((f.lf.idx, '%s_len as %s' % (field.c_field_name,lfty)))
+                    call_params.append((field.lf.idx, '%s_len as %s' % (field.c_field_name,lfty)))
 
                 mk_params.append("let %s_ptr = core::vec::raw::to_ptr(%s);" % (field.c_field_name,
                     field.c_field_name))
@@ -1444,6 +1451,8 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
                     c_field_const_type)))
 
 
+        elif fty.is_container:
+            call_params.append((field.idx, '%s.strct' % (field.c_field_name,)))
         else:
             call_params.append((field.idx, '%s as %s' % (field.c_field_name, c_field_const_type)))
 

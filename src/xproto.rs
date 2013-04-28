@@ -3347,7 +3347,7 @@ impl_reply_cookie!(QueryTreeCookie<'self>, query_tree_reply, QueryTreeReply, xcb
 
 pub fn InternAtom<'r> (c : &'r Connection,
                    only_if_exists : u8,
-                   name : &[&str]) -> InternAtomCookie<'r> {
+                   name : &str) -> InternAtomCookie<'r> {
   unsafe {
     let name = core::str::to_bytes(name);
     let name_len = name.len();
@@ -3361,7 +3361,7 @@ pub fn InternAtom<'r> (c : &'r Connection,
 }
 pub fn InternAtomUnchecked<'r> (c : &'r Connection,
                             only_if_exists : u8,
-                            name : &[&str]) -> InternAtomCookie<'r> {
+                            name : &str) -> InternAtomCookie<'r> {
   unsafe {
     let name = core::str::to_bytes(name);
     let name_len = name.len();
@@ -3639,7 +3639,7 @@ pub fn SendEventChecked<'r> (c : &'r Connection,
                          propagate : u8,
                          destination : Window,
                          event_mask : u32,
-                         event : &[&str]) -> base::VoidCookie<'r> {
+                         event : &str) -> base::VoidCookie<'r> {
   unsafe {
     let event = core::str::to_bytes(event);
     let event_ptr = core::vec::raw::to_ptr(event);
@@ -3655,7 +3655,7 @@ pub fn SendEvent<'r> (c : &'r Connection,
                   propagate : u8,
                   destination : Window,
                   event_mask : u32,
-                  event : &[&str]) -> base::VoidCookie<'r> {
+                  event : &str) -> base::VoidCookie<'r> {
   unsafe {
     let event = core::str::to_bytes(event);
     let event_ptr = core::vec::raw::to_ptr(event);
@@ -4275,7 +4275,7 @@ impl_reply_cookie!(QueryKeymapCookie<'self>, query_keymap_reply, QueryKeymapRepl
 
 pub fn OpenFontChecked<'r> (c : &'r Connection,
                         fid : Font,
-                        name : &[&str]) -> base::VoidCookie<'r> {
+                        name : &str) -> base::VoidCookie<'r> {
   unsafe {
     let name = core::str::to_bytes(name);
     let name_len = name.len();
@@ -4289,7 +4289,7 @@ pub fn OpenFontChecked<'r> (c : &'r Connection,
 }
 pub fn OpenFont<'r> (c : &'r Connection,
                  fid : Font,
-                 name : &[&str]) -> base::VoidCookie<'r> {
+                 name : &str) -> base::VoidCookie<'r> {
   unsafe {
     let name = core::str::to_bytes(name);
     let name_len = name.len();
@@ -4542,7 +4542,7 @@ impl<'self, Str> Iterator<&'self Str> for StrIterator {
 
 pub fn ListFonts<'r> (c : &'r Connection,
                   max_names : u16,
-                  pattern : &[&str]) -> ListFontsCookie<'r> {
+                  pattern : &str) -> ListFontsCookie<'r> {
   unsafe {
     let pattern = core::str::to_bytes(pattern);
     let pattern_len = pattern.len();
@@ -4556,7 +4556,7 @@ pub fn ListFonts<'r> (c : &'r Connection,
 }
 pub fn ListFontsUnchecked<'r> (c : &'r Connection,
                            max_names : u16,
-                           pattern : &[&str]) -> ListFontsCookie<'r> {
+                           pattern : &str) -> ListFontsCookie<'r> {
   unsafe {
     let pattern = core::str::to_bytes(pattern);
     let pattern_len = pattern.len();
@@ -4579,7 +4579,7 @@ impl_reply_cookie!(ListFontsCookie<'self>, list_fonts_reply, ListFontsReply, xcb
 
 pub fn ListFontsWithInfo<'r> (c : &'r Connection,
                           max_names : u16,
-                          pattern : &[&str]) -> ListFontsWithInfoCookie<'r> {
+                          pattern : &str) -> ListFontsWithInfoCookie<'r> {
   unsafe {
     let pattern = core::str::to_bytes(pattern);
     let pattern_len = pattern.len();
@@ -4593,7 +4593,7 @@ pub fn ListFontsWithInfo<'r> (c : &'r Connection,
 }
 pub fn ListFontsWithInfoUnchecked<'r> (c : &'r Connection,
                                    max_names : u16,
-                                   pattern : &[&str]) -> ListFontsWithInfoCookie<'r> {
+                                   pattern : &str) -> ListFontsWithInfoCookie<'r> {
   unsafe {
     let pattern = core::str::to_bytes(pattern);
     let pattern_len = pattern.len();
@@ -5543,7 +5543,7 @@ pub fn ImageText8Checked<'r> (c : &'r Connection,
                           gc : Gcontext,
                           x : i16,
                           y : i16,
-                          string : &[&str]) -> base::VoidCookie<'r> {
+                          string : &str) -> base::VoidCookie<'r> {
   unsafe {
     let string = core::str::to_bytes(string);
     let string_len = string.len();
@@ -5563,7 +5563,7 @@ pub fn ImageText8<'r> (c : &'r Connection,
                    gc : Gcontext,
                    x : i16,
                    y : i16,
-                   string : &[&str]) -> base::VoidCookie<'r> {
+                   string : &str) -> base::VoidCookie<'r> {
   unsafe {
     let string = core::str::to_bytes(string);
     let string_len = string.len();
@@ -5789,7 +5789,7 @@ impl_reply_cookie!(AllocColorCookie<'self>, alloc_color_reply, AllocColorReply, 
 
 pub fn AllocNamedColor<'r> (c : &'r Connection,
                         cmap : Colormap,
-                        name : &[&str]) -> AllocNamedColorCookie<'r> {
+                        name : &str) -> AllocNamedColorCookie<'r> {
   unsafe {
     let name = core::str::to_bytes(name);
     let name_len = name.len();
@@ -5803,7 +5803,7 @@ pub fn AllocNamedColor<'r> (c : &'r Connection,
 }
 pub fn AllocNamedColorUnchecked<'r> (c : &'r Connection,
                                  cmap : Colormap,
-                                 name : &[&str]) -> AllocNamedColorCookie<'r> {
+                                 name : &str) -> AllocNamedColorCookie<'r> {
   unsafe {
     let name = core::str::to_bytes(name);
     let name_len = name.len();
@@ -6044,7 +6044,7 @@ pub fn StoreNamedColorChecked<'r> (c : &'r Connection,
                                flags : u8,
                                cmap : Colormap,
                                pixel : u32,
-                               name : &[&str]) -> base::VoidCookie<'r> {
+                               name : &str) -> base::VoidCookie<'r> {
   unsafe {
     let name = core::str::to_bytes(name);
     let name_len = name.len();
@@ -6062,7 +6062,7 @@ pub fn StoreNamedColor<'r> (c : &'r Connection,
                         flags : u8,
                         cmap : Colormap,
                         pixel : u32,
-                        name : &[&str]) -> base::VoidCookie<'r> {
+                        name : &str) -> base::VoidCookie<'r> {
   unsafe {
     let name = core::str::to_bytes(name);
     let name_len = name.len();
@@ -6143,7 +6143,7 @@ impl_reply_cookie!(QueryColorsCookie<'self>, query_colors_reply, QueryColorsRepl
 
 pub fn LookupColor<'r> (c : &'r Connection,
                     cmap : Colormap,
-                    name : &[&str]) -> LookupColorCookie<'r> {
+                    name : &str) -> LookupColorCookie<'r> {
   unsafe {
     let name = core::str::to_bytes(name);
     let name_len = name.len();
@@ -6157,7 +6157,7 @@ pub fn LookupColor<'r> (c : &'r Connection,
 }
 pub fn LookupColorUnchecked<'r> (c : &'r Connection,
                              cmap : Colormap,
-                             name : &[&str]) -> LookupColorCookie<'r> {
+                             name : &str) -> LookupColorCookie<'r> {
   unsafe {
     let name = core::str::to_bytes(name);
     let name_len = name.len();
@@ -6408,7 +6408,7 @@ pub impl QueryBestSizeReply {
 impl_reply_cookie!(QueryBestSizeCookie<'self>, query_best_size_reply, QueryBestSizeReply, xcb_query_best_size_reply)
 
 pub fn QueryExtension<'r> (c : &'r Connection,
-                       name : &[&str]) -> QueryExtensionCookie<'r> {
+                       name : &str) -> QueryExtensionCookie<'r> {
   unsafe {
     let name = core::str::to_bytes(name);
     let name_len = name.len();
@@ -6420,7 +6420,7 @@ pub fn QueryExtension<'r> (c : &'r Connection,
   }
 }
 pub fn QueryExtensionUnchecked<'r> (c : &'r Connection,
-                                name : &[&str]) -> QueryExtensionCookie<'r> {
+                                name : &str) -> QueryExtensionCookie<'r> {
   unsafe {
     let name = core::str::to_bytes(name);
     let name_len = name.len();
