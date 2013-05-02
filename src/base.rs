@@ -125,11 +125,24 @@ pub impl<'self> Connection {
         self.c
     }
 
+    fn send_event<T>(&self,
+                  propogate: bool,
+                  destination: xproto::Window,
+                  event_mask : u32,
+                  event : Event<T>) {
+        use ll;
+        unsafe {
+        ll::xproto::xcb_send_event(self.c,
+            propogate as u8, destination as ll::xproto::window,
+            event_mask, event.event as *libc::c_char);
+        }
+    }
+
     #[inline]
     fn connect() -> (Connection, int) {
         let screen : c_int = 0;
         unsafe {
-            let conn = xcb_connect(ptr::null(), ptr::addr_of(&screen));
+            let conn = xcb_connect(ptr::null(), &screen);
             if ptr::is_null(conn) {
                 fail!(~"Couldn't connect")
             } else {
@@ -144,7 +157,7 @@ pub impl<'self> Connection {
         let screen : c_int = 0;
         unsafe {
             let conn = do str::as_c_str(display) |s| {
-                xcb_connect(s as *u8, ptr::addr_of(&screen))
+                xcb_connect(s as *u8, &screen)
             };
             if ptr::is_null(conn) {
                 None
@@ -161,8 +174,7 @@ pub impl<'self> Connection {
         unsafe {
             let conn = do str::as_c_str(display) |s| {
                 xcb_connect_to_display_with_auth_info(s as *u8,
-                    cast::transmute(ptr::addr_of(auth_info)),
-                    ptr::addr_of(&screen))
+                    cast::transmute(auth_info), &screen)
             };
             if ptr::is_null(conn) {
                 None
@@ -237,7 +249,7 @@ pub impl<'self, T> Cookie<'self, T> {
         unsafe {
             // Crazy pointer dance to get the right bit
             // of the struct
-            let c : *void_cookie = cast::transmute(ptr::addr_of(&self.cookie));
+            let c : *void_cookie = cast::transmute(&self.cookie);
             let err = xcb_request_check(self.conn.c, *c);
             if ptr::is_null(err) {
                 None

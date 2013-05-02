@@ -1601,14 +1601,35 @@ def c_event(self, name):
             if fty.is_list or fty.is_switch or fty.is_bitcase:
                 try:
                     accessor_fields.remove(fty.expr.lenfield)
-                except: #NB: This sohuld check for a more specific exceptio
+                except: #NB: This should check for a more specific exceptio
                     pass
+
+        new_params = []
 
         _r_setlevel(1)
         _r('\npub impl %s {', self.r_type)
         for field in accessor_fields:
             _r_accessor(self,field)
-        _r_setlevel(1)
+
+            fty = field.type
+            ftype = field.r_field_type;
+            if fty.is_list:
+                ftype = '[%s,..%d]' % (ftype, fty.nmemb)
+
+            new_params.append('%s : %s' % (field.c_field_name, ftype))
+
+        _r('  fn new('+(',\n         '.join(new_params))+') -> %s {', self.r_type)
+        _r('    unsafe {')
+        _r('      let raw = malloc(32u as size_t) as *mut %s;', self.c_type)
+        for f in self.fields:
+            if not f.visible: continue
+            if f.type.is_container:
+                _r('      (*raw).%s = %s.strct;', f.c_field_name, f.c_field_name)
+            else:
+                _r('      (*raw).%s = %s;', f.c_field_name, f.c_field_name)
+        _r('      Event { event : raw as *%s }', self.c_type)
+        _r('    }')
+        _r('  }')
         _r('}')
 
     else:

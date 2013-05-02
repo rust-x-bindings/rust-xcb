@@ -9,7 +9,7 @@ macro_rules! impl_reply_cookie {
                 unsafe {
                     let err : *ll::base::generic_error = ::core::ptr::null();
                     let reply = if self.checked {
-                        $func(self.conn.get_raw_conn(), self.cookie, ::core::ptr::addr_of(&err))
+                        $func(self.conn.get_raw_conn(), self.cookie, &err)
                     } else {
                         $func(self.conn.get_raw_conn(), self.cookie, ::core::ptr::null())
                     };
@@ -32,22 +32,22 @@ macro_rules! accessor {
     (str, $lenfn:ident, $datafn:ident, $fexpr:expr) => ( //String special case
         unsafe {
         use core;
-            let _len = $lenfn(::core::ptr::addr_of(&$fexpr));
-            let _data = $datafn(core::ptr::addr_of(&$fexpr));
-            return ::core::str::raw::from_buf_len(_data as *u8, _len as uint);
+            let _len = $lenfn(&$fexpr);
+            let _data = $datafn(&$fexpr);
+            ::core::str::raw::from_buf_len(_data as *u8, _len as uint)
         }
     );
     ($ty:ty, $iterfn:ident, $fexpr:expr) => ( //Iterator
         unsafe {
         use core;
-            $iterfn(core::ptr::addr_of(&$fexpr))
+            $iterfn(&$fexpr)
         }
     );
     ($ty:ty, $lenfn:ident, $datafn:ident, $fexpr:expr) => ( //list with fixed-size members
         unsafe {
         use core;
-            let _len = $lenfn(::core::ptr::addr_of(&$fexpr));
-            let _data = $datafn(core::ptr::addr_of(&$fexpr));
+            let _len = $lenfn(&$fexpr);
+            let _data = $datafn(&$fexpr);
             ::core::vec::raw::from_buf_raw(_data, _len as uint)
         }
     );

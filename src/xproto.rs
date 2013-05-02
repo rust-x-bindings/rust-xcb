@@ -2252,6 +2252,33 @@ pub impl KeyPressEvent {
     unsafe { accessor!(same_screen -> u8, (*self.event)) }
   }
 
+  fn new(detail : Keycode,
+         time : Timestamp,
+         root : Window,
+         event : Window,
+         child : Window,
+         root_x : i16,
+         root_y : i16,
+         event_x : i16,
+         event_y : i16,
+         state : u16,
+         same_screen : u8) -> KeyPressEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut key_press_event;
+      (*raw).detail = detail;
+      (*raw).time = time;
+      (*raw).root = root;
+      (*raw).event = event;
+      (*raw).child = child;
+      (*raw).root_x = root_x;
+      (*raw).root_y = root_y;
+      (*raw).event_x = event_x;
+      (*raw).event_y = event_y;
+      (*raw).state = state;
+      (*raw).same_screen = same_screen;
+      Event { event : raw as *key_press_event }
+    }
+  }
 }
 
 pub impl ButtonPressEvent {
@@ -2299,6 +2326,33 @@ pub impl ButtonPressEvent {
     unsafe { accessor!(same_screen -> u8, (*self.event)) }
   }
 
+  fn new(detail : Button,
+         time : Timestamp,
+         root : Window,
+         event : Window,
+         child : Window,
+         root_x : i16,
+         root_y : i16,
+         event_x : i16,
+         event_y : i16,
+         state : u16,
+         same_screen : u8) -> ButtonPressEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut button_press_event;
+      (*raw).detail = detail;
+      (*raw).time = time;
+      (*raw).root = root;
+      (*raw).event = event;
+      (*raw).child = child;
+      (*raw).root_x = root_x;
+      (*raw).root_y = root_y;
+      (*raw).event_x = event_x;
+      (*raw).event_y = event_y;
+      (*raw).state = state;
+      (*raw).same_screen = same_screen;
+      Event { event : raw as *button_press_event }
+    }
+  }
 }
 
 pub impl MotionNotifyEvent {
@@ -2346,6 +2400,33 @@ pub impl MotionNotifyEvent {
     unsafe { accessor!(same_screen -> u8, (*self.event)) }
   }
 
+  fn new(detail : u8,
+         time : Timestamp,
+         root : Window,
+         event : Window,
+         child : Window,
+         root_x : i16,
+         root_y : i16,
+         event_x : i16,
+         event_y : i16,
+         state : u16,
+         same_screen : u8) -> MotionNotifyEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut motion_notify_event;
+      (*raw).detail = detail;
+      (*raw).time = time;
+      (*raw).root = root;
+      (*raw).event = event;
+      (*raw).child = child;
+      (*raw).root_x = root_x;
+      (*raw).root_y = root_y;
+      (*raw).event_x = event_x;
+      (*raw).event_y = event_y;
+      (*raw).state = state;
+      (*raw).same_screen = same_screen;
+      Event { event : raw as *motion_notify_event }
+    }
+  }
 }
 
 pub impl EnterNotifyEvent {
@@ -2397,6 +2478,35 @@ pub impl EnterNotifyEvent {
     unsafe { accessor!(same_screen_focus -> u8, (*self.event)) }
   }
 
+  fn new(detail : u8,
+         time : Timestamp,
+         root : Window,
+         event : Window,
+         child : Window,
+         root_x : i16,
+         root_y : i16,
+         event_x : i16,
+         event_y : i16,
+         state : u16,
+         mode : u8,
+         same_screen_focus : u8) -> EnterNotifyEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut enter_notify_event;
+      (*raw).detail = detail;
+      (*raw).time = time;
+      (*raw).root = root;
+      (*raw).event = event;
+      (*raw).child = child;
+      (*raw).root_x = root_x;
+      (*raw).root_y = root_y;
+      (*raw).event_x = event_x;
+      (*raw).event_y = event_y;
+      (*raw).state = state;
+      (*raw).mode = mode;
+      (*raw).same_screen_focus = same_screen_focus;
+      Event { event : raw as *enter_notify_event }
+    }
+  }
 }
 
 pub impl FocusInEvent {
@@ -2412,6 +2522,17 @@ pub impl FocusInEvent {
     unsafe { accessor!(mode -> u8, (*self.event)) }
   }
 
+  fn new(detail : u8,
+         event : Window,
+         mode : u8) -> FocusInEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut focus_in_event;
+      (*raw).detail = detail;
+      (*raw).event = event;
+      (*raw).mode = mode;
+      Event { event : raw as *focus_in_event }
+    }
+  }
 }
 
 pub impl KeymapNotifyEvent {
@@ -2419,6 +2540,13 @@ pub impl KeymapNotifyEvent {
     unsafe { ~(copy (*self.event).keys) }
   }
 
+  fn new(keys : [u8,..31]) -> KeymapNotifyEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut keymap_notify_event;
+      (*raw).keys = keys;
+      Event { event : raw as *keymap_notify_event }
+    }
+  }
 }
 
 pub impl ExposeEvent {
@@ -2446,6 +2574,23 @@ pub impl ExposeEvent {
     unsafe { accessor!(count -> u16, (*self.event)) }
   }
 
+  fn new(window : Window,
+         x : u16,
+         y : u16,
+         width : u16,
+         height : u16,
+         count : u16) -> ExposeEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut expose_event;
+      (*raw).window = window;
+      (*raw).x = x;
+      (*raw).y = y;
+      (*raw).width = width;
+      (*raw).height = height;
+      (*raw).count = count;
+      Event { event : raw as *expose_event }
+    }
+  }
 }
 
 pub impl GraphicsExposureEvent {
@@ -2481,6 +2626,27 @@ pub impl GraphicsExposureEvent {
     unsafe { accessor!(major_opcode -> u8, (*self.event)) }
   }
 
+  fn new(drawable : Drawable,
+         x : u16,
+         y : u16,
+         width : u16,
+         height : u16,
+         minor_opcode : u16,
+         count : u16,
+         major_opcode : u8) -> GraphicsExposureEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut graphics_exposure_event;
+      (*raw).drawable = drawable;
+      (*raw).x = x;
+      (*raw).y = y;
+      (*raw).width = width;
+      (*raw).height = height;
+      (*raw).minor_opcode = minor_opcode;
+      (*raw).count = count;
+      (*raw).major_opcode = major_opcode;
+      Event { event : raw as *graphics_exposure_event }
+    }
+  }
 }
 
 pub impl NoExposureEvent {
@@ -2496,6 +2662,17 @@ pub impl NoExposureEvent {
     unsafe { accessor!(major_opcode -> u8, (*self.event)) }
   }
 
+  fn new(drawable : Drawable,
+         minor_opcode : u16,
+         major_opcode : u8) -> NoExposureEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut no_exposure_event;
+      (*raw).drawable = drawable;
+      (*raw).minor_opcode = minor_opcode;
+      (*raw).major_opcode = major_opcode;
+      Event { event : raw as *no_exposure_event }
+    }
+  }
 }
 
 pub impl VisibilityNotifyEvent {
@@ -2507,6 +2684,15 @@ pub impl VisibilityNotifyEvent {
     unsafe { accessor!(state -> u8, (*self.event)) }
   }
 
+  fn new(window : Window,
+         state : u8) -> VisibilityNotifyEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut visibility_notify_event;
+      (*raw).window = window;
+      (*raw).state = state;
+      Event { event : raw as *visibility_notify_event }
+    }
+  }
 }
 
 pub impl CreateNotifyEvent {
@@ -2542,6 +2728,27 @@ pub impl CreateNotifyEvent {
     unsafe { accessor!(override_redirect -> u8, (*self.event)) }
   }
 
+  fn new(parent : Window,
+         window : Window,
+         x : i16,
+         y : i16,
+         width : u16,
+         height : u16,
+         border_width : u16,
+         override_redirect : u8) -> CreateNotifyEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut create_notify_event;
+      (*raw).parent = parent;
+      (*raw).window = window;
+      (*raw).x = x;
+      (*raw).y = y;
+      (*raw).width = width;
+      (*raw).height = height;
+      (*raw).border_width = border_width;
+      (*raw).override_redirect = override_redirect;
+      Event { event : raw as *create_notify_event }
+    }
+  }
 }
 
 pub impl DestroyNotifyEvent {
@@ -2553,6 +2760,15 @@ pub impl DestroyNotifyEvent {
     unsafe { accessor!(window -> Window, (*self.event)) }
   }
 
+  fn new(event : Window,
+         window : Window) -> DestroyNotifyEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut destroy_notify_event;
+      (*raw).event = event;
+      (*raw).window = window;
+      Event { event : raw as *destroy_notify_event }
+    }
+  }
 }
 
 pub impl UnmapNotifyEvent {
@@ -2568,6 +2784,17 @@ pub impl UnmapNotifyEvent {
     unsafe { accessor!(from_configure -> u8, (*self.event)) }
   }
 
+  fn new(event : Window,
+         window : Window,
+         from_configure : u8) -> UnmapNotifyEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut unmap_notify_event;
+      (*raw).event = event;
+      (*raw).window = window;
+      (*raw).from_configure = from_configure;
+      Event { event : raw as *unmap_notify_event }
+    }
+  }
 }
 
 pub impl MapNotifyEvent {
@@ -2583,6 +2810,17 @@ pub impl MapNotifyEvent {
     unsafe { accessor!(override_redirect -> u8, (*self.event)) }
   }
 
+  fn new(event : Window,
+         window : Window,
+         override_redirect : u8) -> MapNotifyEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut map_notify_event;
+      (*raw).event = event;
+      (*raw).window = window;
+      (*raw).override_redirect = override_redirect;
+      Event { event : raw as *map_notify_event }
+    }
+  }
 }
 
 pub impl MapRequestEvent {
@@ -2594,6 +2832,15 @@ pub impl MapRequestEvent {
     unsafe { accessor!(window -> Window, (*self.event)) }
   }
 
+  fn new(parent : Window,
+         window : Window) -> MapRequestEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut map_request_event;
+      (*raw).parent = parent;
+      (*raw).window = window;
+      Event { event : raw as *map_request_event }
+    }
+  }
 }
 
 pub impl ReparentNotifyEvent {
@@ -2621,6 +2868,23 @@ pub impl ReparentNotifyEvent {
     unsafe { accessor!(override_redirect -> u8, (*self.event)) }
   }
 
+  fn new(event : Window,
+         window : Window,
+         parent : Window,
+         x : i16,
+         y : i16,
+         override_redirect : u8) -> ReparentNotifyEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut reparent_notify_event;
+      (*raw).event = event;
+      (*raw).window = window;
+      (*raw).parent = parent;
+      (*raw).x = x;
+      (*raw).y = y;
+      (*raw).override_redirect = override_redirect;
+      Event { event : raw as *reparent_notify_event }
+    }
+  }
 }
 
 pub impl ConfigureNotifyEvent {
@@ -2660,6 +2924,29 @@ pub impl ConfigureNotifyEvent {
     unsafe { accessor!(override_redirect -> u8, (*self.event)) }
   }
 
+  fn new(event : Window,
+         window : Window,
+         above_sibling : Window,
+         x : i16,
+         y : i16,
+         width : u16,
+         height : u16,
+         border_width : u16,
+         override_redirect : u8) -> ConfigureNotifyEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut configure_notify_event;
+      (*raw).event = event;
+      (*raw).window = window;
+      (*raw).above_sibling = above_sibling;
+      (*raw).x = x;
+      (*raw).y = y;
+      (*raw).width = width;
+      (*raw).height = height;
+      (*raw).border_width = border_width;
+      (*raw).override_redirect = override_redirect;
+      Event { event : raw as *configure_notify_event }
+    }
+  }
 }
 
 pub impl ConfigureRequestEvent {
@@ -2703,6 +2990,31 @@ pub impl ConfigureRequestEvent {
     unsafe { accessor!(value_mask -> u16, (*self.event)) }
   }
 
+  fn new(stack_mode : u8,
+         parent : Window,
+         window : Window,
+         sibling : Window,
+         x : i16,
+         y : i16,
+         width : u16,
+         height : u16,
+         border_width : u16,
+         value_mask : u16) -> ConfigureRequestEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut configure_request_event;
+      (*raw).stack_mode = stack_mode;
+      (*raw).parent = parent;
+      (*raw).window = window;
+      (*raw).sibling = sibling;
+      (*raw).x = x;
+      (*raw).y = y;
+      (*raw).width = width;
+      (*raw).height = height;
+      (*raw).border_width = border_width;
+      (*raw).value_mask = value_mask;
+      Event { event : raw as *configure_request_event }
+    }
+  }
 }
 
 pub impl GravityNotifyEvent {
@@ -2722,6 +3034,19 @@ pub impl GravityNotifyEvent {
     unsafe { accessor!(y -> i16, (*self.event)) }
   }
 
+  fn new(event : Window,
+         window : Window,
+         x : i16,
+         y : i16) -> GravityNotifyEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut gravity_notify_event;
+      (*raw).event = event;
+      (*raw).window = window;
+      (*raw).x = x;
+      (*raw).y = y;
+      Event { event : raw as *gravity_notify_event }
+    }
+  }
 }
 
 pub impl ResizeRequestEvent {
@@ -2737,6 +3062,17 @@ pub impl ResizeRequestEvent {
     unsafe { accessor!(height -> u16, (*self.event)) }
   }
 
+  fn new(window : Window,
+         width : u16,
+         height : u16) -> ResizeRequestEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut resize_request_event;
+      (*raw).window = window;
+      (*raw).width = width;
+      (*raw).height = height;
+      Event { event : raw as *resize_request_event }
+    }
+  }
 }
 
 pub impl CirculateNotifyEvent {
@@ -2752,6 +3088,17 @@ pub impl CirculateNotifyEvent {
     unsafe { accessor!(place -> u8, (*self.event)) }
   }
 
+  fn new(event : Window,
+         window : Window,
+         place : u8) -> CirculateNotifyEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut circulate_notify_event;
+      (*raw).event = event;
+      (*raw).window = window;
+      (*raw).place = place;
+      Event { event : raw as *circulate_notify_event }
+    }
+  }
 }
 
 pub impl PropertyNotifyEvent {
@@ -2771,6 +3118,19 @@ pub impl PropertyNotifyEvent {
     unsafe { accessor!(state -> u8, (*self.event)) }
   }
 
+  fn new(window : Window,
+         atom : Atom,
+         time : Timestamp,
+         state : u8) -> PropertyNotifyEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut property_notify_event;
+      (*raw).window = window;
+      (*raw).atom = atom;
+      (*raw).time = time;
+      (*raw).state = state;
+      Event { event : raw as *property_notify_event }
+    }
+  }
 }
 
 pub impl SelectionClearEvent {
@@ -2786,6 +3146,17 @@ pub impl SelectionClearEvent {
     unsafe { accessor!(selection -> Atom, (*self.event)) }
   }
 
+  fn new(time : Timestamp,
+         owner : Window,
+         selection : Atom) -> SelectionClearEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut selection_clear_event;
+      (*raw).time = time;
+      (*raw).owner = owner;
+      (*raw).selection = selection;
+      Event { event : raw as *selection_clear_event }
+    }
+  }
 }
 
 pub impl SelectionRequestEvent {
@@ -2813,6 +3184,23 @@ pub impl SelectionRequestEvent {
     unsafe { accessor!(property -> Atom, (*self.event)) }
   }
 
+  fn new(time : Timestamp,
+         owner : Window,
+         requestor : Window,
+         selection : Atom,
+         target : Atom,
+         property : Atom) -> SelectionRequestEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut selection_request_event;
+      (*raw).time = time;
+      (*raw).owner = owner;
+      (*raw).requestor = requestor;
+      (*raw).selection = selection;
+      (*raw).target = target;
+      (*raw).property = property;
+      Event { event : raw as *selection_request_event }
+    }
+  }
 }
 
 pub impl SelectionNotifyEvent {
@@ -2836,6 +3224,21 @@ pub impl SelectionNotifyEvent {
     unsafe { accessor!(property -> Atom, (*self.event)) }
   }
 
+  fn new(time : Timestamp,
+         requestor : Window,
+         selection : Atom,
+         target : Atom,
+         property : Atom) -> SelectionNotifyEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut selection_notify_event;
+      (*raw).time = time;
+      (*raw).requestor = requestor;
+      (*raw).selection = selection;
+      (*raw).target = target;
+      (*raw).property = property;
+      Event { event : raw as *selection_notify_event }
+    }
+  }
 }
 
 pub impl ColormapNotifyEvent {
@@ -2855,6 +3258,19 @@ pub impl ColormapNotifyEvent {
     unsafe { accessor!(state -> u8, (*self.event)) }
   }
 
+  fn new(window : Window,
+         colormap : Colormap,
+         new_ : u8,
+         state : u8) -> ColormapNotifyEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut colormap_notify_event;
+      (*raw).window = window;
+      (*raw).colormap = colormap;
+      (*raw).new_ = new_;
+      (*raw).state = state;
+      Event { event : raw as *colormap_notify_event }
+    }
+  }
 }
 pub type ClientMessageData = base::Struct<client_message_data>;
 
@@ -2887,6 +3303,19 @@ pub impl ClientMessageEvent {
   fn data(&self) -> ClientMessageData {
     unsafe { cast::transmute((*self.event).data) }
   }
+  fn new(format : u8,
+         window : Window,
+         type_ : Atom,
+         data : ClientMessageData) -> ClientMessageEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut client_message_event;
+      (*raw).format = format;
+      (*raw).window = window;
+      (*raw).type_ = type_;
+      (*raw).data = data.strct;
+      Event { event : raw as *client_message_event }
+    }
+  }
 }
 
 pub impl MappingNotifyEvent {
@@ -2902,6 +3331,17 @@ pub impl MappingNotifyEvent {
     unsafe { accessor!(count -> u8, (*self.event)) }
   }
 
+  fn new(request : u8,
+         first_keycode : Keycode,
+         count : u8) -> MappingNotifyEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut mapping_notify_event;
+      (*raw).request = request;
+      (*raw).first_keycode = first_keycode;
+      (*raw).count = count;
+      Event { event : raw as *mapping_notify_event }
+    }
+  }
 }
 pub fn CreateWindowChecked<'r> (c : &'r Connection,
                             depth : u8,
