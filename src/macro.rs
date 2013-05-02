@@ -31,24 +31,21 @@ macro_rules! accessor {
     );
     (str, $lenfn:ident, $datafn:ident, $fexpr:expr) => ( //String special case
         unsafe {
-        use core;
             let _len = $lenfn(&$fexpr);
             let _data = $datafn(&$fexpr);
-            ::core::str::raw::from_buf_len(_data as *u8, _len as uint)
+            core::str::raw::from_buf_len(_data as *u8, _len as uint)
         }
     );
     ($ty:ty, $iterfn:ident, $fexpr:expr) => ( //Iterator
         unsafe {
-        use core;
             $iterfn(&$fexpr)
         }
     );
     ($ty:ty, $lenfn:ident, $datafn:ident, $fexpr:expr) => ( //list with fixed-size members
         unsafe {
-        use core;
             let _len = $lenfn(&$fexpr);
             let _data = $datafn(&$fexpr);
-            ::core::vec::raw::from_buf_raw(_data, _len as uint)
+            core::vec::raw::from_buf_raw(_data, _len as uint)
         }
     );
 }

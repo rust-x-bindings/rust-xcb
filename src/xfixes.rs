@@ -163,7 +163,7 @@ pub fn QueryVersionUnchecked<'r> (c : &'r Connection,
   }
 }
 
-pub impl QueryVersionReply {
+pub impl base::Reply<query_version_reply> {
   fn major_version(&self) -> u32 {
     unsafe { accessor!(major_version -> u32, (*self.reply)) }
   }
@@ -204,7 +204,7 @@ pub fn ChangeSaveSet<'r> (c : &'r Connection,
   }
 }
 
-pub impl SelectionNotifyEvent {
+pub impl base::Event<selection_notify_event> {
   fn subtype(&self) -> u8 {
     unsafe { accessor!(subtype -> u8, (*self.event)) }
   }
@@ -229,6 +229,23 @@ pub impl SelectionNotifyEvent {
     unsafe { accessor!(selection_timestamp -> xproto::Timestamp, (*self.event)) }
   }
 
+  fn new(subtype : u8,
+         window : xproto::Window,
+         owner : xproto::Window,
+         selection : xproto::Atom,
+         timestamp : xproto::Timestamp,
+         selection_timestamp : xproto::Timestamp) -> SelectionNotifyEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut selection_notify_event;
+      (*raw).subtype = subtype;
+      (*raw).window = window;
+      (*raw).owner = owner;
+      (*raw).selection = selection;
+      (*raw).timestamp = timestamp;
+      (*raw).selection_timestamp = selection_timestamp;
+      Event { event : raw as *selection_notify_event }
+    }
+  }
 }
 pub fn SelectSelectionInputChecked<'r> (c : &'r Connection,
                                     window : xproto::Window,
@@ -255,7 +272,7 @@ pub fn SelectSelectionInput<'r> (c : &'r Connection,
   }
 }
 
-pub impl CursorNotifyEvent {
+pub impl base::Event<cursor_notify_event> {
   fn subtype(&self) -> u8 {
     unsafe { accessor!(subtype -> u8, (*self.event)) }
   }
@@ -276,6 +293,21 @@ pub impl CursorNotifyEvent {
     unsafe { accessor!(name -> xproto::Atom, (*self.event)) }
   }
 
+  fn new(subtype : u8,
+         window : xproto::Window,
+         cursor_serial : u32,
+         timestamp : xproto::Timestamp,
+         name : xproto::Atom) -> CursorNotifyEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut cursor_notify_event;
+      (*raw).subtype = subtype;
+      (*raw).window = window;
+      (*raw).cursor_serial = cursor_serial;
+      (*raw).timestamp = timestamp;
+      (*raw).name = name;
+      Event { event : raw as *cursor_notify_event }
+    }
+  }
 }
 pub fn SelectCursorInputChecked<'r> (c : &'r Connection,
                                  window : xproto::Window,
@@ -311,7 +343,7 @@ pub fn GetCursorImageUnchecked<'r> (c : &'r Connection) -> GetCursorImageCookie<
   }
 }
 
-pub impl GetCursorImageReply {
+pub impl base::Reply<get_cursor_image_reply> {
   fn x(&self) -> i16 {
     unsafe { accessor!(x -> i16, (*self.reply)) }
   }
@@ -688,7 +720,7 @@ pub fn FetchRegionUnchecked<'r> (c : &'r Connection,
   }
 }
 
-pub impl FetchRegionReply {
+pub impl base::Reply<fetch_region_reply> {
   fn extents(&self) -> xproto::Rectangle {
     unsafe { cast::transmute((*self.reply).extents) }
   }
@@ -833,7 +865,7 @@ pub fn GetCursorNameUnchecked<'r> (c : &'r Connection,
   }
 }
 
-pub impl GetCursorNameReply {
+pub impl base::Reply<get_cursor_name_reply> {
   fn atom(&self) -> xproto::Atom {
     unsafe { accessor!(atom -> xproto::Atom, (*self.reply)) }
   }
@@ -859,7 +891,7 @@ pub fn GetCursorImageAndNameUnchecked<'r> (c : &'r Connection) -> GetCursorImage
   }
 }
 
-pub impl GetCursorImageAndNameReply {
+pub impl base::Reply<get_cursor_image_and_name_reply> {
   fn x(&self) -> i16 {
     unsafe { accessor!(x -> i16, (*self.reply)) }
   }

@@ -1052,7 +1052,7 @@ def _c_accessors(self, name, base):
                 pass
 
     _r_setlevel(1)
-    _r('\npub impl %s {', self.r_type)
+    _r('\npub impl base::%s<%s> {', self.wrap_type, self.c_type)
     for field in accessor_fields:
         _r_accessor(self,field)
     _r_setlevel(1)
@@ -1190,6 +1190,7 @@ def c_struct(self, name):
 
     _c_complex(self)
 
+    self.wrap_type = 'Struct'
     _r('pub type %s = base::Struct<%s>;\n', self.r_type, self.c_type)
     self.wrap_field_name = 'self.strct'
     _c_accessors(self, name, name)
@@ -1213,6 +1214,7 @@ def c_union(self, name):
     _h('    data : [u8,..%d]', field_size)
     _h('}')
 
+    self.wrap_type = 'Struct'
     _r('pub type %s = base::Struct<%s>;', self.r_type, self.c_type)
 
     _c_iterator(self, name)
@@ -1525,6 +1527,7 @@ def _c_cookie(self, name):
     _h('    sequence : c_uint')
     _h('}')
 
+    self.wrap_type = 'Cookie'
     _r('pub type %s<\'self> = base::Cookie<\'self, %s>;\n', self.r_cookie_type, self.c_cookie_type)
 
 
@@ -1563,6 +1566,7 @@ def c_request(self, name):
         # Reply accessors
         self.reply.wrap_field_name = '(*self.reply)'
 
+        self.reply.wrap_type = "Reply"
         _c_accessors(self.reply, name + ('reply',), name)
         _c_reply(self, name)
     else:
@@ -1584,6 +1588,7 @@ def c_event(self, name):
     # Opcode define
     _c_opcode(name, self.opcodes[name])
 
+    self.wrap_type = 'Event';
     _r('pub type %s = base::Event<%s>;', self.r_type, self.c_type)
 
     if self.name == name:
@@ -1607,7 +1612,7 @@ def c_event(self, name):
         new_params = []
 
         _r_setlevel(1)
-        _r('\npub impl %s {', self.r_type)
+        _r('\npub impl base::%s<%s> {', self.wrap_type, self.c_type)
         for field in accessor_fields:
             _r_accessor(self,field)
 

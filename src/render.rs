@@ -330,7 +330,7 @@ impl<'self, Fixed> Iterator<&'self Fixed> for FixedIterator {
 }
 
 
-pub impl Directformat {
+pub impl base::Struct<directformat> {
   fn red_shift(&self) -> u16 {
     unsafe { accessor!(red_shift -> u16, self.strct) }
   }
@@ -380,7 +380,7 @@ impl<'self, Directformat> Iterator<&'self Directformat> for DirectformatIterator
 pub type Pictforminfo = base::Struct<pictforminfo>;
 
 
-pub impl Pictforminfo {
+pub impl base::Struct<pictforminfo> {
   fn id(&self) -> Pictformat {
     unsafe { accessor!(id -> Pictformat, self.strct) }
   }
@@ -417,7 +417,7 @@ impl<'self, Pictforminfo> Iterator<&'self Pictforminfo> for PictforminfoIterator
 pub type Pictvisual = base::Struct<pictvisual>;
 
 
-pub impl Pictvisual {
+pub impl base::Struct<pictvisual> {
   fn visual(&self) -> xproto::Visualid {
     unsafe { accessor!(visual -> xproto::Visualid, self.strct) }
   }
@@ -443,7 +443,7 @@ impl<'self, Pictvisual> Iterator<&'self Pictvisual> for PictvisualIterator {
 pub type Pictdepth = base::Struct<pictdepth>;
 
 
-pub impl Pictdepth {
+pub impl base::Struct<pictdepth> {
   fn depth(&self) -> u8 {
     unsafe { accessor!(depth -> u8, self.strct) }
   }
@@ -469,7 +469,7 @@ impl<'self, Pictdepth> Iterator<&'self Pictdepth> for PictdepthIterator {
 pub type Pictscreen = base::Struct<pictscreen>;
 
 
-pub impl Pictscreen {
+pub impl base::Struct<pictscreen> {
   fn fallback(&self) -> Pictformat {
     unsafe { accessor!(fallback -> Pictformat, self.strct) }
   }
@@ -495,7 +495,7 @@ impl<'self, Pictscreen> Iterator<&'self Pictscreen> for PictscreenIterator {
 pub type Indexvalue = base::Struct<indexvalue>;
 
 
-pub impl Indexvalue {
+pub impl base::Struct<indexvalue> {
   fn pixel(&self) -> u32 {
     unsafe { accessor!(pixel -> u32, self.strct) }
   }
@@ -533,7 +533,7 @@ impl<'self, Indexvalue> Iterator<&'self Indexvalue> for IndexvalueIterator {
 pub type Color = base::Struct<color>;
 
 
-pub impl Color {
+pub impl base::Struct<color> {
   fn red(&self) -> u16 {
     unsafe { accessor!(red -> u16, self.strct) }
   }
@@ -567,7 +567,7 @@ impl<'self, Color> Iterator<&'self Color> for ColorIterator {
 pub type Pointfix = base::Struct<pointfix>;
 
 
-pub impl Pointfix {
+pub impl base::Struct<pointfix> {
   fn x(&self) -> Fixed {
     unsafe { accessor!(x -> Fixed, self.strct) }
   }
@@ -593,7 +593,7 @@ impl<'self, Pointfix> Iterator<&'self Pointfix> for PointfixIterator {
 pub type Linefix = base::Struct<linefix>;
 
 
-pub impl Linefix {
+pub impl base::Struct<linefix> {
   fn p1(&self) -> Pointfix {
     unsafe { cast::transmute(self.strct.p1) }
   }
@@ -617,7 +617,7 @@ impl<'self, Linefix> Iterator<&'self Linefix> for LinefixIterator {
 pub type Triangle = base::Struct<triangle>;
 
 
-pub impl Triangle {
+pub impl base::Struct<triangle> {
   fn p1(&self) -> Pointfix {
     unsafe { cast::transmute(self.strct.p1) }
   }
@@ -644,7 +644,7 @@ impl<'self, Triangle> Iterator<&'self Triangle> for TriangleIterator {
 pub type Trapezoid = base::Struct<trapezoid>;
 
 
-pub impl Trapezoid {
+pub impl base::Struct<trapezoid> {
   fn top(&self) -> Fixed {
     unsafe { accessor!(top -> Fixed, self.strct) }
   }
@@ -676,7 +676,7 @@ impl<'self, Trapezoid> Iterator<&'self Trapezoid> for TrapezoidIterator {
 pub type Glyphinfo = base::Struct<glyphinfo>;
 
 
-pub impl Glyphinfo {
+pub impl base::Struct<glyphinfo> {
   fn width(&self) -> u16 {
     unsafe { accessor!(width -> u16, self.strct) }
   }
@@ -736,7 +736,7 @@ pub fn QueryVersionUnchecked<'r> (c : &'r Connection,
   }
 }
 
-pub impl QueryVersionReply {
+pub impl base::Reply<query_version_reply> {
   fn major_version(&self) -> u32 {
     unsafe { accessor!(major_version -> u32, (*self.reply)) }
   }
@@ -762,7 +762,7 @@ pub fn QueryPictFormatsUnchecked<'r> (c : &'r Connection) -> QueryPictFormatsCoo
   }
 }
 
-pub impl QueryPictFormatsReply {
+pub impl base::Reply<query_pict_formats_reply> {
   fn num_depths(&self) -> u32 {
     unsafe { accessor!(num_depths -> u32, (*self.reply)) }
   }
@@ -804,7 +804,7 @@ pub fn QueryPictIndexValuesUnchecked<'r> (c : &'r Connection,
   }
 }
 
-pub impl QueryPictIndexValuesReply {
+pub impl base::Reply<query_pict_index_values_reply> {
   fn values(&self) -> IndexvalueIterator {
     unsafe { accessor!(IndexvalueIterator, xcb_render_query_pict_index_values_values_iterator, (*self.reply)) }
   }
@@ -1505,7 +1505,7 @@ pub fn CreateCursor<'r> (c : &'r Connection,
 pub type Transform = base::Struct<transform>;
 
 
-pub impl Transform {
+pub impl base::Struct<transform> {
   fn matrix11(&self) -> Fixed {
     unsafe { accessor!(matrix11 -> Fixed, self.strct) }
   }
@@ -1594,7 +1594,7 @@ pub fn QueryFiltersUnchecked<'r> (c : &'r Connection,
   }
 }
 
-pub impl QueryFiltersReply {
+pub impl base::Reply<query_filters_reply> {
   fn aliases(&self) -> ~[u16] {
     unsafe { accessor!(u16, xcb_render_query_filters_aliases_length, xcb_render_query_filters_aliases, (*self.reply)) }
   }
@@ -1647,7 +1647,7 @@ pub fn SetPictureFilter<'r> (c : &'r Connection,
 pub type Animcursorelt = base::Struct<animcursorelt>;
 
 
-pub impl Animcursorelt {
+pub impl base::Struct<animcursorelt> {
   fn cursor(&self) -> xproto::Cursor {
     unsafe { accessor!(cursor -> xproto::Cursor, self.strct) }
   }
@@ -1699,7 +1699,7 @@ pub fn CreateAnimCursor<'r> (c : &'r Connection,
 pub type Spanfix = base::Struct<spanfix>;
 
 
-pub impl Spanfix {
+pub impl base::Struct<spanfix> {
   fn l(&self) -> Fixed {
     unsafe { accessor!(l -> Fixed, self.strct) }
   }
@@ -1729,7 +1729,7 @@ impl<'self, Spanfix> Iterator<&'self Spanfix> for SpanfixIterator {
 pub type Trap = base::Struct<trap>;
 
 
-pub impl Trap {
+pub impl base::Struct<trap> {
   fn top(&self) -> Spanfix {
     unsafe { cast::transmute(self.strct.top) }
   }

@@ -34,7 +34,7 @@ pub fn EnableUnchecked<'r> (c : &'r Connection) -> EnableCookie<'r> {
   }
 }
 
-pub impl EnableReply {
+pub impl base::Reply<enable_reply> {
   fn maximum_request_length(&self) -> u32 {
     unsafe { accessor!(maximum_request_length -> u32, (*self.reply)) }
   }

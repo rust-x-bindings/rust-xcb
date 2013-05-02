@@ -98,7 +98,7 @@ impl<'self, Kind> Iterator<&'self Kind> for KindIterator {
 }
 
 
-pub impl NotifyEvent {
+pub impl base::Event<notify_event> {
   fn shape_kind(&self) -> Kind {
     unsafe { accessor!(shape_kind -> Kind, (*self.event)) }
   }
@@ -131,6 +131,27 @@ pub impl NotifyEvent {
     unsafe { accessor!(shaped -> u8, (*self.event)) }
   }
 
+  fn new(shape_kind : Kind,
+         affected_window : xproto::Window,
+         extents_x : i16,
+         extents_y : i16,
+         extents_width : u16,
+         extents_height : u16,
+         server_time : xproto::Timestamp,
+         shaped : u8) -> NotifyEvent {
+    unsafe {
+      let raw = malloc(32u as size_t) as *mut notify_event;
+      (*raw).shape_kind = shape_kind;
+      (*raw).affected_window = affected_window;
+      (*raw).extents_x = extents_x;
+      (*raw).extents_y = extents_y;
+      (*raw).extents_width = extents_width;
+      (*raw).extents_height = extents_height;
+      (*raw).server_time = server_time;
+      (*raw).shaped = shaped;
+      Event { event : raw as *notify_event }
+    }
+  }
 }
 pub fn QueryVersion<'r> (c : &'r Connection) -> QueryVersionCookie<'r> {
   unsafe {
@@ -145,7 +166,7 @@ pub fn QueryVersionUnchecked<'r> (c : &'r Connection) -> QueryVersionCookie<'r> 
   }
 }
 
-pub impl QueryVersionReply {
+pub impl base::Reply<query_version_reply> {
   fn major_version(&self) -> u16 {
     unsafe { accessor!(major_version -> u16, (*self.reply)) }
   }
@@ -324,7 +345,7 @@ pub fn QueryExtentsUnchecked<'r> (c : &'r Connection,
   }
 }
 
-pub impl QueryExtentsReply {
+pub impl base::Reply<query_extents_reply> {
   fn bounding_shaped(&self) -> u8 {
     unsafe { accessor!(bounding_shaped -> u8, (*self.reply)) }
   }
@@ -405,7 +426,7 @@ pub fn InputSelectedUnchecked<'r> (c : &'r Connection,
   }
 }
 
-pub impl InputSelectedReply {
+pub impl base::Reply<input_selected_reply> {
   fn enabled(&self) -> u8 {
     unsafe { accessor!(enabled -> u8, (*self.reply)) }
   }
@@ -435,7 +456,7 @@ pub fn GetRectanglesUnchecked<'r> (c : &'r Connection,
   }
 }
 
-pub impl GetRectanglesReply {
+pub impl base::Reply<get_rectangles_reply> {
   fn ordering(&self) -> u8 {
     unsafe { accessor!(ordering -> u8, (*self.reply)) }
   }
