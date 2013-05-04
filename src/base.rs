@@ -185,6 +185,14 @@ pub impl<'self> Connection {
         }
     }
 
+    unsafe fn from_raw_conn(conn:*connection) -> Connection {
+        if ptr::is_null(conn) {
+            fail!("Cannot construct from null pointer");
+        }
+
+        Connection {c:conn}
+    }
+
 }
 
 impl Drop for Connection {
