@@ -122,7 +122,7 @@ pub mod Xlib {
 
     #[link_args="-lX11 -lX11-xcb"]
     pub extern {
-        unsafe fn XGetXCBConnection(dpy:*Display) -> connection;
+        unsafe fn XGetXCBConnection(dpy:*Display) -> *connection;
         unsafe fn XSetEventQueueOwner(dpy:*Display, owner:XEventQueueOwner) -> c_void;
     }
 
