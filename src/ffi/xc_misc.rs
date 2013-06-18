@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
-use core;
-use core::libc::*;
+use std;
+use std::libc::*;
+use std::{cast,num,ptr,str,libc};
+use std::to_bytes::ToBytes;
 use ll::base::*;
 use ll;
 
@@ -92,7 +94,7 @@ pub extern "C" {
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xc_misc_get_version (c : *connection,
+pub unsafe fn xcb_xc_misc_get_version (c : *connection,
                                    client_major_version :  u16,
                                    client_minor_version :  u16) -> get_version_cookie;
 
@@ -107,7 +109,7 @@ unsafe fn xcb_xc_misc_get_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xc_misc_get_version_unchecked (c : *connection,
+pub unsafe fn xcb_xc_misc_get_version_unchecked (c : *connection,
                                              client_major_version :  u16,
                                              client_minor_version :  u16) -> get_version_cookie;
 
@@ -125,7 +127,7 @@ unsafe fn xcb_xc_misc_get_version_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xc_misc_get_version_reply (c : *connection,
+pub unsafe fn xcb_xc_misc_get_version_reply (c : *connection,
                                          cookie : get_version_cookie,
                                          e : **generic_error) -> *get_version_reply;
 
@@ -137,7 +139,7 @@ unsafe fn xcb_xc_misc_get_version_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xc_misc_get_xid_range (c : *connection) -> get_xid_range_cookie;
+pub unsafe fn xcb_xc_misc_get_xid_range (c : *connection) -> get_xid_range_cookie;
 
 /**
  *
@@ -150,7 +152,7 @@ unsafe fn xcb_xc_misc_get_xid_range (c : *connection) -> get_xid_range_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xc_misc_get_xid_range_unchecked (c : *connection) -> get_xid_range_cookie;
+pub unsafe fn xcb_xc_misc_get_xid_range_unchecked (c : *connection) -> get_xid_range_cookie;
 
 /**
  * Return the reply
@@ -166,11 +168,11 @@ unsafe fn xcb_xc_misc_get_xid_range_unchecked (c : *connection) -> get_xid_range
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xc_misc_get_xid_range_reply (c : *connection,
+pub unsafe fn xcb_xc_misc_get_xid_range_reply (c : *connection,
                                            cookie : get_xid_range_cookie,
                                            e : **generic_error) -> *get_xid_range_reply;
 
-unsafe fn xcb_xc_misc_get_xid_list_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xc_misc_get_xid_list_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -180,7 +182,7 @@ unsafe fn xcb_xc_misc_get_xid_list_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xc_misc_get_xid_list (c : *connection,
+pub unsafe fn xcb_xc_misc_get_xid_list (c : *connection,
                                     count :  u32) -> get_xid_list_cookie;
 
 /**
@@ -194,16 +196,16 @@ unsafe fn xcb_xc_misc_get_xid_list (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xc_misc_get_xid_list_unchecked (c : *connection,
+pub unsafe fn xcb_xc_misc_get_xid_list_unchecked (c : *connection,
                                               count :  u32) -> get_xid_list_cookie;
 
-unsafe fn xcb_xc_misc_get_xid_list_ids (R : *get_xid_list_reply) -> *u32;
+pub unsafe fn xcb_xc_misc_get_xid_list_ids (R : *get_xid_list_reply) -> *u32;
 
 
-unsafe fn xcb_xc_misc_get_xid_list_ids_length (R : *get_xid_list_reply) -> c_int;
+pub unsafe fn xcb_xc_misc_get_xid_list_ids_length (R : *get_xid_list_reply) -> c_int;
 
 
-unsafe fn xcb_xc_misc_get_xid_list_ids_end (R : *get_xid_list_reply) -> generic_iterator;
+pub unsafe fn xcb_xc_misc_get_xid_list_ids_end (R : *get_xid_list_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -219,7 +221,7 @@ unsafe fn xcb_xc_misc_get_xid_list_ids_end (R : *get_xid_list_reply) -> generic_
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xc_misc_get_xid_list_reply (c : *connection,
+pub unsafe fn xcb_xc_misc_get_xid_list_reply (c : *connection,
                                           cookie : get_xid_list_cookie,
                                           e : **generic_error) -> *get_xid_list_reply;
 }

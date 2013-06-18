@@ -6,15 +6,17 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(unused_unsafe)];
-use core;
-use core::libc::*;
+use std;
+use std::libc::*;
+use std::{cast,num,ptr,str,libc};
+use std::to_bytes::ToBytes;
 use ll::base::*;
 use base;
 use base::*;
 use ll;
 use ll::composite::*;
-use core::option::Option;
-use core::iterator::Iterator;
+use std::option::Option;
+use std::iterator::Iterator;
 
 use xproto;
 use render;
@@ -70,12 +72,12 @@ pub fn QueryVersionUnchecked<'r> (c : &'r Connection,
   }
 }
 
-pub impl base::Reply<query_version_reply> {
-  fn major_version(&self) -> u32 {
+impl base::Reply<query_version_reply> {
+  pub fn major_version(&self) -> u32 {
     unsafe { accessor!(major_version -> u32, (*self.reply)) }
   }
 
-  fn minor_version(&self) -> u32 {
+  pub fn minor_version(&self) -> u32 {
     unsafe { accessor!(minor_version -> u32, (*self.reply)) }
   }
 
@@ -219,8 +221,8 @@ pub fn GetOverlayWindowUnchecked<'r> (c : &'r Connection,
   }
 }
 
-pub impl base::Reply<get_overlay_window_reply> {
-  fn overlay_win(&self) -> xproto::Window {
+impl base::Reply<get_overlay_window_reply> {
+  pub fn overlay_win(&self) -> xproto::Window {
     unsafe { accessor!(overlay_win -> xproto::Window, (*self.reply)) }
   }
 

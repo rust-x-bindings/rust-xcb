@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
-use core;
-use core::libc::*;
+use std;
+use std::libc::*;
+use std::{cast,num,ptr,str,libc};
+use std::to_bytes::ToBytes;
 use ll::base::*;
 use ll;
 use ll::xproto;
@@ -446,7 +448,7 @@ pub extern "C" {
  *
  *
  */
-unsafe fn xcb_sync_alarm_next (i:*alarm_iterator) -> c_void;
+pub unsafe fn xcb_sync_alarm_next (i:*alarm_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -457,7 +459,7 @@ unsafe fn xcb_sync_alarm_next (i:*alarm_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_sync_alarm_end (i:alarm_iterator) -> generic_iterator;
+pub unsafe fn xcb_sync_alarm_end (i:alarm_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -469,7 +471,7 @@ unsafe fn xcb_sync_alarm_end (i:alarm_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_sync_counter_next (i:*counter_iterator) -> c_void;
+pub unsafe fn xcb_sync_counter_next (i:*counter_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -480,7 +482,7 @@ unsafe fn xcb_sync_counter_next (i:*counter_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_sync_counter_end (i:counter_iterator) -> generic_iterator;
+pub unsafe fn xcb_sync_counter_end (i:counter_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -492,7 +494,7 @@ unsafe fn xcb_sync_counter_end (i:counter_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_sync_fence_next (i:*fence_iterator) -> c_void;
+pub unsafe fn xcb_sync_fence_next (i:*fence_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -503,7 +505,7 @@ unsafe fn xcb_sync_fence_next (i:*fence_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_sync_fence_end (i:fence_iterator) -> generic_iterator;
+pub unsafe fn xcb_sync_fence_end (i:fence_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -515,7 +517,7 @@ unsafe fn xcb_sync_fence_end (i:fence_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_sync_int64_next (i:*int64_iterator) -> c_void;
+pub unsafe fn xcb_sync_int64_next (i:*int64_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -526,17 +528,17 @@ unsafe fn xcb_sync_int64_next (i:*int64_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_sync_int64_end (i:int64_iterator) -> generic_iterator;
+pub unsafe fn xcb_sync_int64_end (i:int64_iterator) -> generic_iterator;
 
-unsafe fn xcb_sync_systemcounter_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_sync_systemcounter_sizeof (_buffer :  *c_void) -> c_int;
 
-unsafe fn xcb_sync_systemcounter_name (R : *systemcounter) -> *c_char;
-
-
-unsafe fn xcb_sync_systemcounter_name_length (R : *systemcounter) -> c_int;
+pub unsafe fn xcb_sync_systemcounter_name (R : *systemcounter) -> *c_char;
 
 
-unsafe fn xcb_sync_systemcounter_name_end (R : *systemcounter) -> generic_iterator;
+pub unsafe fn xcb_sync_systemcounter_name_length (R : *systemcounter) -> c_int;
+
+
+pub unsafe fn xcb_sync_systemcounter_name_end (R : *systemcounter) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -548,7 +550,7 @@ unsafe fn xcb_sync_systemcounter_name_end (R : *systemcounter) -> generic_iterat
  *
  *
  */
-unsafe fn xcb_sync_systemcounter_next (i:*systemcounter_iterator) -> c_void;
+pub unsafe fn xcb_sync_systemcounter_next (i:*systemcounter_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -559,7 +561,7 @@ unsafe fn xcb_sync_systemcounter_next (i:*systemcounter_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_sync_systemcounter_end (i:systemcounter_iterator) -> generic_iterator;
+pub unsafe fn xcb_sync_systemcounter_end (i:systemcounter_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -571,7 +573,7 @@ unsafe fn xcb_sync_systemcounter_end (i:systemcounter_iterator) -> generic_itera
  *
  *
  */
-unsafe fn xcb_sync_trigger_next (i:*trigger_iterator) -> c_void;
+pub unsafe fn xcb_sync_trigger_next (i:*trigger_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -582,7 +584,7 @@ unsafe fn xcb_sync_trigger_next (i:*trigger_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_sync_trigger_end (i:trigger_iterator) -> generic_iterator;
+pub unsafe fn xcb_sync_trigger_end (i:trigger_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -594,7 +596,7 @@ unsafe fn xcb_sync_trigger_end (i:trigger_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_sync_waitcondition_next (i:*waitcondition_iterator) -> c_void;
+pub unsafe fn xcb_sync_waitcondition_next (i:*waitcondition_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -605,7 +607,7 @@ unsafe fn xcb_sync_waitcondition_next (i:*waitcondition_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_sync_waitcondition_end (i:waitcondition_iterator) -> generic_iterator;
+pub unsafe fn xcb_sync_waitcondition_end (i:waitcondition_iterator) -> generic_iterator;
 
 /**
  *
@@ -615,7 +617,7 @@ unsafe fn xcb_sync_waitcondition_end (i:waitcondition_iterator) -> generic_itera
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_sync_initialize (c : *connection,
+pub unsafe fn xcb_sync_initialize (c : *connection,
                                desired_major_version :  u8,
                                desired_minor_version :  u8) -> initialize_cookie;
 
@@ -630,7 +632,7 @@ unsafe fn xcb_sync_initialize (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_sync_initialize_unchecked (c : *connection,
+pub unsafe fn xcb_sync_initialize_unchecked (c : *connection,
                                          desired_major_version :  u8,
                                          desired_minor_version :  u8) -> initialize_cookie;
 
@@ -648,11 +650,11 @@ unsafe fn xcb_sync_initialize_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_sync_initialize_reply (c : *connection,
+pub unsafe fn xcb_sync_initialize_reply (c : *connection,
                                      cookie : initialize_cookie,
                                      e : **generic_error) -> *initialize_reply;
 
-unsafe fn xcb_sync_list_system_counters_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_sync_list_system_counters_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -662,7 +664,7 @@ unsafe fn xcb_sync_list_system_counters_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_sync_list_system_counters (c : *connection) -> list_system_counters_cookie;
+pub unsafe fn xcb_sync_list_system_counters (c : *connection) -> list_system_counters_cookie;
 
 /**
  *
@@ -675,12 +677,12 @@ unsafe fn xcb_sync_list_system_counters (c : *connection) -> list_system_counter
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_sync_list_system_counters_unchecked (c : *connection) -> list_system_counters_cookie;
+pub unsafe fn xcb_sync_list_system_counters_unchecked (c : *connection) -> list_system_counters_cookie;
 
 
-unsafe fn xcb_sync_list_system_counters_counters_length (R : *list_system_counters_reply) -> c_int;
+pub unsafe fn xcb_sync_list_system_counters_counters_length (R : *list_system_counters_reply) -> c_int;
 
-unsafe fn xcb_sync_list_system_counters_counters_iterator (R : *list_system_counters_reply) -> systemcounter_iterator;
+pub unsafe fn xcb_sync_list_system_counters_counters_iterator (R : *list_system_counters_reply) -> systemcounter_iterator;
 
 /**
  * Return the reply
@@ -696,7 +698,7 @@ unsafe fn xcb_sync_list_system_counters_counters_iterator (R : *list_system_coun
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_sync_list_system_counters_reply (c : *connection,
+pub unsafe fn xcb_sync_list_system_counters_reply (c : *connection,
                                                cookie : list_system_counters_cookie,
                                                e : **generic_error) -> *list_system_counters_reply;
 
@@ -711,7 +713,7 @@ unsafe fn xcb_sync_list_system_counters_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_sync_create_counter_checked (c : *connection,
+pub unsafe fn xcb_sync_create_counter_checked (c : *connection,
                                            id :  counter,
                                            initial_value :  int64) -> void_cookie;
 
@@ -723,7 +725,7 @@ unsafe fn xcb_sync_create_counter_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_sync_create_counter (c : *connection,
+pub unsafe fn xcb_sync_create_counter (c : *connection,
                                    id :  counter,
                                    initial_value :  int64) -> void_cookie;
 
@@ -738,7 +740,7 @@ unsafe fn xcb_sync_create_counter (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_sync_destroy_counter_checked (c : *connection,
+pub unsafe fn xcb_sync_destroy_counter_checked (c : *connection,
                                             counter :  counter) -> void_cookie;
 
 /**
@@ -749,7 +751,7 @@ unsafe fn xcb_sync_destroy_counter_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_sync_destroy_counter (c : *connection,
+pub unsafe fn xcb_sync_destroy_counter (c : *connection,
                                     counter :  counter) -> void_cookie;
 
 /**
@@ -760,7 +762,7 @@ unsafe fn xcb_sync_destroy_counter (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_sync_query_counter (c : *connection,
+pub unsafe fn xcb_sync_query_counter (c : *connection,
                                   counter :  counter) -> query_counter_cookie;
 
 /**
@@ -774,7 +776,7 @@ unsafe fn xcb_sync_query_counter (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_sync_query_counter_unchecked (c : *connection,
+pub unsafe fn xcb_sync_query_counter_unchecked (c : *connection,
                                             counter :  counter) -> query_counter_cookie;
 
 /**
@@ -791,11 +793,11 @@ unsafe fn xcb_sync_query_counter_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_sync_query_counter_reply (c : *connection,
+pub unsafe fn xcb_sync_query_counter_reply (c : *connection,
                                         cookie : query_counter_cookie,
                                         e : **generic_error) -> *query_counter_reply;
 
-unsafe fn xcb_sync_await_sizeof (_buffer :  *c_void,
+pub unsafe fn xcb_sync_await_sizeof (_buffer :  *c_void,
                        wait_list_len :  u32) -> c_int;
 
 /**
@@ -809,7 +811,7 @@ unsafe fn xcb_sync_await_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_sync_await_checked (c : *connection,
+pub unsafe fn xcb_sync_await_checked (c : *connection,
                                   wait_list_len :  u32,
                                   wait_list : *waitcondition) -> void_cookie;
 
@@ -821,7 +823,7 @@ unsafe fn xcb_sync_await_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_sync_await (c : *connection,
+pub unsafe fn xcb_sync_await (c : *connection,
                           wait_list_len :  u32,
                           wait_list : *waitcondition) -> void_cookie;
 
@@ -836,7 +838,7 @@ unsafe fn xcb_sync_await (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_sync_change_counter_checked (c : *connection,
+pub unsafe fn xcb_sync_change_counter_checked (c : *connection,
                                            counter :  counter,
                                            amount :  int64) -> void_cookie;
 
@@ -848,7 +850,7 @@ unsafe fn xcb_sync_change_counter_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_sync_change_counter (c : *connection,
+pub unsafe fn xcb_sync_change_counter (c : *connection,
                                    counter :  counter,
                                    amount :  int64) -> void_cookie;
 
@@ -863,7 +865,7 @@ unsafe fn xcb_sync_change_counter (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_sync_set_counter_checked (c : *connection,
+pub unsafe fn xcb_sync_set_counter_checked (c : *connection,
                                         counter :  counter,
                                         value :  int64) -> void_cookie;
 
@@ -875,11 +877,11 @@ unsafe fn xcb_sync_set_counter_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_sync_set_counter (c : *connection,
+pub unsafe fn xcb_sync_set_counter (c : *connection,
                                 counter :  counter,
                                 value :  int64) -> void_cookie;
 
-unsafe fn xcb_sync_create_alarm_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_sync_create_alarm_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -892,7 +894,7 @@ unsafe fn xcb_sync_create_alarm_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_sync_create_alarm_checked (c : *connection,
+pub unsafe fn xcb_sync_create_alarm_checked (c : *connection,
                                          id :  alarm,
                                          value_mask :  u32,
                                          value_list : *u32) -> void_cookie;
@@ -905,12 +907,12 @@ unsafe fn xcb_sync_create_alarm_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_sync_create_alarm (c : *connection,
+pub unsafe fn xcb_sync_create_alarm (c : *connection,
                                  id :  alarm,
                                  value_mask :  u32,
                                  value_list : *u32) -> void_cookie;
 
-unsafe fn xcb_sync_change_alarm_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_sync_change_alarm_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -923,7 +925,7 @@ unsafe fn xcb_sync_change_alarm_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_sync_change_alarm_checked (c : *connection,
+pub unsafe fn xcb_sync_change_alarm_checked (c : *connection,
                                          id :  alarm,
                                          value_mask :  u32,
                                          value_list : *u32) -> void_cookie;
@@ -936,7 +938,7 @@ unsafe fn xcb_sync_change_alarm_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_sync_change_alarm (c : *connection,
+pub unsafe fn xcb_sync_change_alarm (c : *connection,
                                  id :  alarm,
                                  value_mask :  u32,
                                  value_list : *u32) -> void_cookie;
@@ -952,7 +954,7 @@ unsafe fn xcb_sync_change_alarm (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_sync_destroy_alarm_checked (c : *connection,
+pub unsafe fn xcb_sync_destroy_alarm_checked (c : *connection,
                                           alarm :  alarm) -> void_cookie;
 
 /**
@@ -963,7 +965,7 @@ unsafe fn xcb_sync_destroy_alarm_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_sync_destroy_alarm (c : *connection,
+pub unsafe fn xcb_sync_destroy_alarm (c : *connection,
                                   alarm :  alarm) -> void_cookie;
 
 /**
@@ -974,7 +976,7 @@ unsafe fn xcb_sync_destroy_alarm (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_sync_query_alarm (c : *connection,
+pub unsafe fn xcb_sync_query_alarm (c : *connection,
                                 alarm :  alarm) -> query_alarm_cookie;
 
 /**
@@ -988,7 +990,7 @@ unsafe fn xcb_sync_query_alarm (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_sync_query_alarm_unchecked (c : *connection,
+pub unsafe fn xcb_sync_query_alarm_unchecked (c : *connection,
                                           alarm :  alarm) -> query_alarm_cookie;
 
 /**
@@ -1005,7 +1007,7 @@ unsafe fn xcb_sync_query_alarm_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_sync_query_alarm_reply (c : *connection,
+pub unsafe fn xcb_sync_query_alarm_reply (c : *connection,
                                       cookie : query_alarm_cookie,
                                       e : **generic_error) -> *query_alarm_reply;
 
@@ -1020,7 +1022,7 @@ unsafe fn xcb_sync_query_alarm_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_sync_set_priority_checked (c : *connection,
+pub unsafe fn xcb_sync_set_priority_checked (c : *connection,
                                          id :  u32,
                                          priority :  i32) -> void_cookie;
 
@@ -1032,7 +1034,7 @@ unsafe fn xcb_sync_set_priority_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_sync_set_priority (c : *connection,
+pub unsafe fn xcb_sync_set_priority (c : *connection,
                                  id :  u32,
                                  priority :  i32) -> void_cookie;
 
@@ -1044,7 +1046,7 @@ unsafe fn xcb_sync_set_priority (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_sync_get_priority (c : *connection,
+pub unsafe fn xcb_sync_get_priority (c : *connection,
                                  id :  u32) -> get_priority_cookie;
 
 /**
@@ -1058,7 +1060,7 @@ unsafe fn xcb_sync_get_priority (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_sync_get_priority_unchecked (c : *connection,
+pub unsafe fn xcb_sync_get_priority_unchecked (c : *connection,
                                            id :  u32) -> get_priority_cookie;
 
 /**
@@ -1075,7 +1077,7 @@ unsafe fn xcb_sync_get_priority_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_sync_get_priority_reply (c : *connection,
+pub unsafe fn xcb_sync_get_priority_reply (c : *connection,
                                        cookie : get_priority_cookie,
                                        e : **generic_error) -> *get_priority_reply;
 
@@ -1090,7 +1092,7 @@ unsafe fn xcb_sync_get_priority_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_sync_create_fence_checked (c : *connection,
+pub unsafe fn xcb_sync_create_fence_checked (c : *connection,
                                          drawable :  ll::xproto::drawable,
                                          fence :  fence,
                                          initially_triggered :  u8) -> void_cookie;
@@ -1103,7 +1105,7 @@ unsafe fn xcb_sync_create_fence_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_sync_create_fence (c : *connection,
+pub unsafe fn xcb_sync_create_fence (c : *connection,
                                  drawable :  ll::xproto::drawable,
                                  fence :  fence,
                                  initially_triggered :  u8) -> void_cookie;
@@ -1119,7 +1121,7 @@ unsafe fn xcb_sync_create_fence (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_sync_trigger_fence_checked (c : *connection,
+pub unsafe fn xcb_sync_trigger_fence_checked (c : *connection,
                                           fence :  fence) -> void_cookie;
 
 /**
@@ -1130,7 +1132,7 @@ unsafe fn xcb_sync_trigger_fence_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_sync_trigger_fence (c : *connection,
+pub unsafe fn xcb_sync_trigger_fence (c : *connection,
                                   fence :  fence) -> void_cookie;
 
 /**
@@ -1144,7 +1146,7 @@ unsafe fn xcb_sync_trigger_fence (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_sync_reset_fence_checked (c : *connection,
+pub unsafe fn xcb_sync_reset_fence_checked (c : *connection,
                                         fence :  fence) -> void_cookie;
 
 /**
@@ -1155,7 +1157,7 @@ unsafe fn xcb_sync_reset_fence_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_sync_reset_fence (c : *connection,
+pub unsafe fn xcb_sync_reset_fence (c : *connection,
                                 fence :  fence) -> void_cookie;
 
 /**
@@ -1169,7 +1171,7 @@ unsafe fn xcb_sync_reset_fence (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_sync_destroy_fence_checked (c : *connection,
+pub unsafe fn xcb_sync_destroy_fence_checked (c : *connection,
                                           fence :  fence) -> void_cookie;
 
 /**
@@ -1180,7 +1182,7 @@ unsafe fn xcb_sync_destroy_fence_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_sync_destroy_fence (c : *connection,
+pub unsafe fn xcb_sync_destroy_fence (c : *connection,
                                   fence :  fence) -> void_cookie;
 
 /**
@@ -1191,7 +1193,7 @@ unsafe fn xcb_sync_destroy_fence (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_sync_query_fence (c : *connection,
+pub unsafe fn xcb_sync_query_fence (c : *connection,
                                 fence :  fence) -> query_fence_cookie;
 
 /**
@@ -1205,7 +1207,7 @@ unsafe fn xcb_sync_query_fence (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_sync_query_fence_unchecked (c : *connection,
+pub unsafe fn xcb_sync_query_fence_unchecked (c : *connection,
                                           fence :  fence) -> query_fence_cookie;
 
 /**
@@ -1222,11 +1224,11 @@ unsafe fn xcb_sync_query_fence_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_sync_query_fence_reply (c : *connection,
+pub unsafe fn xcb_sync_query_fence_reply (c : *connection,
                                       cookie : query_fence_cookie,
                                       e : **generic_error) -> *query_fence_reply;
 
-unsafe fn xcb_sync_await_fence_sizeof (_buffer :  *c_void,
+pub unsafe fn xcb_sync_await_fence_sizeof (_buffer :  *c_void,
                              fence_list_len :  u32) -> c_int;
 
 /**
@@ -1240,7 +1242,7 @@ unsafe fn xcb_sync_await_fence_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_sync_await_fence_checked (c : *connection,
+pub unsafe fn xcb_sync_await_fence_checked (c : *connection,
                                         fence_list_len :  u32,
                                         fence_list : *fence) -> void_cookie;
 
@@ -1252,7 +1254,7 @@ unsafe fn xcb_sync_await_fence_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_sync_await_fence (c : *connection,
+pub unsafe fn xcb_sync_await_fence (c : *connection,
                                 fence_list_len :  u32,
                                 fence_list : *fence) -> void_cookie;
 }

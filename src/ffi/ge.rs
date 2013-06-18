@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
-use core;
-use core::libc::*;
+use std;
+use std::libc::*;
+use std::{cast,num,ptr,str,libc};
+use std::to_bytes::ToBytes;
 use ll::base::*;
 use ll;
 
@@ -48,7 +50,7 @@ pub extern "C" {
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_genericevent_query_version (c : *connection,
+pub unsafe fn xcb_genericevent_query_version (c : *connection,
                                           client_major_version :  u16,
                                           client_minor_version :  u16) -> query_version_cookie;
 
@@ -63,7 +65,7 @@ unsafe fn xcb_genericevent_query_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_genericevent_query_version_unchecked (c : *connection,
+pub unsafe fn xcb_genericevent_query_version_unchecked (c : *connection,
                                                     client_major_version :  u16,
                                                     client_minor_version :  u16) -> query_version_cookie;
 
@@ -81,7 +83,7 @@ unsafe fn xcb_genericevent_query_version_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_genericevent_query_version_reply (c : *connection,
+pub unsafe fn xcb_genericevent_query_version_reply (c : *connection,
                                                 cookie : query_version_cookie,
                                                 e : **generic_error) -> *query_version_reply;
 }

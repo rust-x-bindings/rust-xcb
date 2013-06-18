@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
-use core;
-use core::libc::*;
+use std;
+use std::libc::*;
+use std::{cast,num,ptr,str,libc};
+use std::to_bytes::ToBytes;
 use ll::base::*;
 use ll;
 use ll::xproto;
@@ -264,7 +266,7 @@ pub extern "C" {
  *
  *
  */
-unsafe fn xcb_xvmc_context_next (i:*context_iterator) -> c_void;
+pub unsafe fn xcb_xvmc_context_next (i:*context_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -275,7 +277,7 @@ unsafe fn xcb_xvmc_context_next (i:*context_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xvmc_context_end (i:context_iterator) -> generic_iterator;
+pub unsafe fn xcb_xvmc_context_end (i:context_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -287,7 +289,7 @@ unsafe fn xcb_xvmc_context_end (i:context_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_xvmc_surface_next (i:*surface_iterator) -> c_void;
+pub unsafe fn xcb_xvmc_surface_next (i:*surface_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -298,7 +300,7 @@ unsafe fn xcb_xvmc_surface_next (i:*surface_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xvmc_surface_end (i:surface_iterator) -> generic_iterator;
+pub unsafe fn xcb_xvmc_surface_end (i:surface_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -310,7 +312,7 @@ unsafe fn xcb_xvmc_surface_end (i:surface_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_xvmc_subpicture_next (i:*subpicture_iterator) -> c_void;
+pub unsafe fn xcb_xvmc_subpicture_next (i:*subpicture_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -321,7 +323,7 @@ unsafe fn xcb_xvmc_subpicture_next (i:*subpicture_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xvmc_subpicture_end (i:subpicture_iterator) -> generic_iterator;
+pub unsafe fn xcb_xvmc_subpicture_end (i:subpicture_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -333,7 +335,7 @@ unsafe fn xcb_xvmc_subpicture_end (i:subpicture_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_xvmc_surface_info_next (i:*surface_info_iterator) -> c_void;
+pub unsafe fn xcb_xvmc_surface_info_next (i:*surface_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -344,7 +346,7 @@ unsafe fn xcb_xvmc_surface_info_next (i:*surface_info_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xvmc_surface_info_end (i:surface_info_iterator) -> generic_iterator;
+pub unsafe fn xcb_xvmc_surface_info_end (i:surface_info_iterator) -> generic_iterator;
 
 /**
  *
@@ -354,7 +356,7 @@ unsafe fn xcb_xvmc_surface_info_end (i:surface_info_iterator) -> generic_iterato
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xvmc_query_version (c : *connection) -> query_version_cookie;
+pub unsafe fn xcb_xvmc_query_version (c : *connection) -> query_version_cookie;
 
 /**
  *
@@ -367,7 +369,7 @@ unsafe fn xcb_xvmc_query_version (c : *connection) -> query_version_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xvmc_query_version_unchecked (c : *connection) -> query_version_cookie;
+pub unsafe fn xcb_xvmc_query_version_unchecked (c : *connection) -> query_version_cookie;
 
 /**
  * Return the reply
@@ -383,11 +385,11 @@ unsafe fn xcb_xvmc_query_version_unchecked (c : *connection) -> query_version_co
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xvmc_query_version_reply (c : *connection,
+pub unsafe fn xcb_xvmc_query_version_reply (c : *connection,
                                         cookie : query_version_cookie,
                                         e : **generic_error) -> *query_version_reply;
 
-unsafe fn xcb_xvmc_list_surface_types_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xvmc_list_surface_types_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -397,7 +399,7 @@ unsafe fn xcb_xvmc_list_surface_types_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xvmc_list_surface_types (c : *connection,
+pub unsafe fn xcb_xvmc_list_surface_types (c : *connection,
                                        port_id :  ll::xv::port) -> list_surface_types_cookie;
 
 /**
@@ -411,15 +413,15 @@ unsafe fn xcb_xvmc_list_surface_types (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xvmc_list_surface_types_unchecked (c : *connection,
+pub unsafe fn xcb_xvmc_list_surface_types_unchecked (c : *connection,
                                                  port_id :  ll::xv::port) -> list_surface_types_cookie;
 
-unsafe fn xcb_xvmc_list_surface_types_surfaces (R : *list_surface_types_reply) -> *surface_info;
+pub unsafe fn xcb_xvmc_list_surface_types_surfaces (R : *list_surface_types_reply) -> *surface_info;
 
 
-unsafe fn xcb_xvmc_list_surface_types_surfaces_length (R : *list_surface_types_reply) -> c_int;
+pub unsafe fn xcb_xvmc_list_surface_types_surfaces_length (R : *list_surface_types_reply) -> c_int;
 
-unsafe fn xcb_xvmc_list_surface_types_surfaces_iterator (R : *list_surface_types_reply) -> surface_info_iterator;
+pub unsafe fn xcb_xvmc_list_surface_types_surfaces_iterator (R : *list_surface_types_reply) -> surface_info_iterator;
 
 /**
  * Return the reply
@@ -435,11 +437,11 @@ unsafe fn xcb_xvmc_list_surface_types_surfaces_iterator (R : *list_surface_types
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xvmc_list_surface_types_reply (c : *connection,
+pub unsafe fn xcb_xvmc_list_surface_types_reply (c : *connection,
                                              cookie : list_surface_types_cookie,
                                              e : **generic_error) -> *list_surface_types_reply;
 
-unsafe fn xcb_xvmc_create_context_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xvmc_create_context_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -449,7 +451,7 @@ unsafe fn xcb_xvmc_create_context_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xvmc_create_context (c : *connection,
+pub unsafe fn xcb_xvmc_create_context (c : *connection,
                                    context_id :  context,
                                    port_id :  ll::xv::port,
                                    surface_id :  surface,
@@ -468,7 +470,7 @@ unsafe fn xcb_xvmc_create_context (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xvmc_create_context_unchecked (c : *connection,
+pub unsafe fn xcb_xvmc_create_context_unchecked (c : *connection,
                                              context_id :  context,
                                              port_id :  ll::xv::port,
                                              surface_id :  surface,
@@ -476,13 +478,13 @@ unsafe fn xcb_xvmc_create_context_unchecked (c : *connection,
                                              height :  u16,
                                              flags :  u32) -> create_context_cookie;
 
-unsafe fn xcb_xvmc_create_context_priv_data (R : *create_context_reply) -> *u32;
+pub unsafe fn xcb_xvmc_create_context_priv_data (R : *create_context_reply) -> *u32;
 
 
-unsafe fn xcb_xvmc_create_context_priv_data_length (R : *create_context_reply) -> c_int;
+pub unsafe fn xcb_xvmc_create_context_priv_data_length (R : *create_context_reply) -> c_int;
 
 
-unsafe fn xcb_xvmc_create_context_priv_data_end (R : *create_context_reply) -> generic_iterator;
+pub unsafe fn xcb_xvmc_create_context_priv_data_end (R : *create_context_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -498,7 +500,7 @@ unsafe fn xcb_xvmc_create_context_priv_data_end (R : *create_context_reply) -> g
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xvmc_create_context_reply (c : *connection,
+pub unsafe fn xcb_xvmc_create_context_reply (c : *connection,
                                          cookie : create_context_cookie,
                                          e : **generic_error) -> *create_context_reply;
 
@@ -513,7 +515,7 @@ unsafe fn xcb_xvmc_create_context_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xvmc_destroy_context_checked (c : *connection,
+pub unsafe fn xcb_xvmc_destroy_context_checked (c : *connection,
                                             context_id :  context) -> void_cookie;
 
 /**
@@ -524,10 +526,10 @@ unsafe fn xcb_xvmc_destroy_context_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xvmc_destroy_context (c : *connection,
+pub unsafe fn xcb_xvmc_destroy_context (c : *connection,
                                     context_id :  context) -> void_cookie;
 
-unsafe fn xcb_xvmc_create_surface_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xvmc_create_surface_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -537,7 +539,7 @@ unsafe fn xcb_xvmc_create_surface_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xvmc_create_surface (c : *connection,
+pub unsafe fn xcb_xvmc_create_surface (c : *connection,
                                    surface_id :  surface,
                                    context_id :  context) -> create_surface_cookie;
 
@@ -552,17 +554,17 @@ unsafe fn xcb_xvmc_create_surface (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xvmc_create_surface_unchecked (c : *connection,
+pub unsafe fn xcb_xvmc_create_surface_unchecked (c : *connection,
                                              surface_id :  surface,
                                              context_id :  context) -> create_surface_cookie;
 
-unsafe fn xcb_xvmc_create_surface_priv_data (R : *create_surface_reply) -> *u32;
+pub unsafe fn xcb_xvmc_create_surface_priv_data (R : *create_surface_reply) -> *u32;
 
 
-unsafe fn xcb_xvmc_create_surface_priv_data_length (R : *create_surface_reply) -> c_int;
+pub unsafe fn xcb_xvmc_create_surface_priv_data_length (R : *create_surface_reply) -> c_int;
 
 
-unsafe fn xcb_xvmc_create_surface_priv_data_end (R : *create_surface_reply) -> generic_iterator;
+pub unsafe fn xcb_xvmc_create_surface_priv_data_end (R : *create_surface_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -578,7 +580,7 @@ unsafe fn xcb_xvmc_create_surface_priv_data_end (R : *create_surface_reply) -> g
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xvmc_create_surface_reply (c : *connection,
+pub unsafe fn xcb_xvmc_create_surface_reply (c : *connection,
                                          cookie : create_surface_cookie,
                                          e : **generic_error) -> *create_surface_reply;
 
@@ -593,7 +595,7 @@ unsafe fn xcb_xvmc_create_surface_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xvmc_destroy_surface_checked (c : *connection,
+pub unsafe fn xcb_xvmc_destroy_surface_checked (c : *connection,
                                             surface_id :  surface) -> void_cookie;
 
 /**
@@ -604,10 +606,10 @@ unsafe fn xcb_xvmc_destroy_surface_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xvmc_destroy_surface (c : *connection,
+pub unsafe fn xcb_xvmc_destroy_surface (c : *connection,
                                     surface_id :  surface) -> void_cookie;
 
-unsafe fn xcb_xvmc_create_subpicture_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xvmc_create_subpicture_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -617,7 +619,7 @@ unsafe fn xcb_xvmc_create_subpicture_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xvmc_create_subpicture (c : *connection,
+pub unsafe fn xcb_xvmc_create_subpicture (c : *connection,
                                       subpicture_id :  subpicture,
                                       context :  context,
                                       xvimage_id :  u32,
@@ -635,20 +637,20 @@ unsafe fn xcb_xvmc_create_subpicture (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xvmc_create_subpicture_unchecked (c : *connection,
+pub unsafe fn xcb_xvmc_create_subpicture_unchecked (c : *connection,
                                                 subpicture_id :  subpicture,
                                                 context :  context,
                                                 xvimage_id :  u32,
                                                 width :  u16,
                                                 height :  u16) -> create_subpicture_cookie;
 
-unsafe fn xcb_xvmc_create_subpicture_priv_data (R : *create_subpicture_reply) -> *u32;
+pub unsafe fn xcb_xvmc_create_subpicture_priv_data (R : *create_subpicture_reply) -> *u32;
 
 
-unsafe fn xcb_xvmc_create_subpicture_priv_data_length (R : *create_subpicture_reply) -> c_int;
+pub unsafe fn xcb_xvmc_create_subpicture_priv_data_length (R : *create_subpicture_reply) -> c_int;
 
 
-unsafe fn xcb_xvmc_create_subpicture_priv_data_end (R : *create_subpicture_reply) -> generic_iterator;
+pub unsafe fn xcb_xvmc_create_subpicture_priv_data_end (R : *create_subpicture_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -664,7 +666,7 @@ unsafe fn xcb_xvmc_create_subpicture_priv_data_end (R : *create_subpicture_reply
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xvmc_create_subpicture_reply (c : *connection,
+pub unsafe fn xcb_xvmc_create_subpicture_reply (c : *connection,
                                             cookie : create_subpicture_cookie,
                                             e : **generic_error) -> *create_subpicture_reply;
 
@@ -679,7 +681,7 @@ unsafe fn xcb_xvmc_create_subpicture_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xvmc_destroy_subpicture_checked (c : *connection,
+pub unsafe fn xcb_xvmc_destroy_subpicture_checked (c : *connection,
                                                subpicture_id :  subpicture) -> void_cookie;
 
 /**
@@ -690,10 +692,10 @@ unsafe fn xcb_xvmc_destroy_subpicture_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xvmc_destroy_subpicture (c : *connection,
+pub unsafe fn xcb_xvmc_destroy_subpicture (c : *connection,
                                        subpicture_id :  subpicture) -> void_cookie;
 
-unsafe fn xcb_xvmc_list_subpicture_types_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xvmc_list_subpicture_types_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -703,7 +705,7 @@ unsafe fn xcb_xvmc_list_subpicture_types_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xvmc_list_subpicture_types (c : *connection,
+pub unsafe fn xcb_xvmc_list_subpicture_types (c : *connection,
                                           port_id :  ll::xv::port,
                                           surface_id :  surface) -> list_subpicture_types_cookie;
 
@@ -718,16 +720,16 @@ unsafe fn xcb_xvmc_list_subpicture_types (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xvmc_list_subpicture_types_unchecked (c : *connection,
+pub unsafe fn xcb_xvmc_list_subpicture_types_unchecked (c : *connection,
                                                     port_id :  ll::xv::port,
                                                     surface_id :  surface) -> list_subpicture_types_cookie;
 
-unsafe fn xcb_xvmc_list_subpicture_types_types (R : *list_subpicture_types_reply) -> *ll::xv::image_format_info;
+pub unsafe fn xcb_xvmc_list_subpicture_types_types (R : *list_subpicture_types_reply) -> *ll::xv::image_format_info;
 
 
-unsafe fn xcb_xvmc_list_subpicture_types_types_length (R : *list_subpicture_types_reply) -> c_int;
+pub unsafe fn xcb_xvmc_list_subpicture_types_types_length (R : *list_subpicture_types_reply) -> c_int;
 
-unsafe fn xcb_xvmc_list_subpicture_types_types_iterator (R : *list_subpicture_types_reply) -> ll::xv::image_format_info_iterator;
+pub unsafe fn xcb_xvmc_list_subpicture_types_types_iterator (R : *list_subpicture_types_reply) -> ll::xv::image_format_info_iterator;
 
 /**
  * Return the reply
@@ -743,7 +745,7 @@ unsafe fn xcb_xvmc_list_subpicture_types_types_iterator (R : *list_subpicture_ty
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xvmc_list_subpicture_types_reply (c : *connection,
+pub unsafe fn xcb_xvmc_list_subpicture_types_reply (c : *connection,
                                                 cookie : list_subpicture_types_cookie,
                                                 e : **generic_error) -> *list_subpicture_types_reply;
 }

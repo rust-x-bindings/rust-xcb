@@ -1,6 +1,6 @@
 extern mod xcb;
 
-use core::iterator::{Iterator};
+use std::iterator::{Iterator};
 use xcb::base::*;
 
 fn main() {
@@ -8,7 +8,6 @@ fn main() {
 
     let setup = conn.get_setup();
 
-    let mut i = 0;
     let mut iter = setup.roots();
 
     let screen;
@@ -25,10 +24,10 @@ fn main() {
         }
     }
 
-    io::println("");
-    io::println(fmt!("Informations of screen %?:", screen.root()));
-    io::println(fmt!("  width..........: %?", screen.width_in_pixels()));
-    io::println(fmt!("  height.........: %?", screen.height_in_pixels()));
-    io::println(fmt!("  white pixel....: %?", screen.white_pixel()));
-    io::println(fmt!("  black pixel....: %?", screen.black_pixel()));
+    println("");
+    println(fmt!("Informations of screen %?:", screen.root()));
+    println(fmt!("  width..........: %?", screen.width_in_pixels()));
+    println(fmt!("  height.........: %?", screen.height_in_pixels()));
+    println(fmt!("  white pixel....: %?", screen.white_pixel()));
+    println(fmt!("  black pixel....: %?", screen.black_pixel()));
 }

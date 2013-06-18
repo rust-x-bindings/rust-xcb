@@ -27,15 +27,16 @@ DEALINGS IN THE SOFTWARE.
 
 */
 
-extern mod std;
+extern mod extra;
 
-use ll::base::*;
+use ffi::base::*;
 
-use core::cast;
-use core::libc::{c_int,free};
-use core::Option;
+use std::cast;
+use std::libc::{c_int,free};
+use std::option::Option;
 
-use core::num::*;
+use std::{num,ptr,vec,libc,str};
+use std::num::*;
 
 use xproto;
 
@@ -43,23 +44,23 @@ pub struct Connection {
     priv c : *connection
 }
 
-pub impl<'self> Connection {
+impl<'self> Connection {
     #[inline]
-    fn flush(&self) -> bool {
+    pub fn flush(&self) -> bool {
         unsafe {
             xcb_flush(self.c) > 0
         }
     }
 
     #[inline]
-    fn get_maximum_request_length(&self) -> u32 {
+    pub fn get_maximum_request_length(&self) -> u32 {
         unsafe {
             xcb_get_maximum_request_length(self.c)
         }
     }
 
     #[inline]
-    fn wait_for_event(&self) -> Option<GenericEvent> {
+    pub fn wait_for_event(&self) -> Option<GenericEvent> {
         unsafe {
             let event = xcb_wait_for_event(self.c);
             if ptr::is_null(event) {
@@ -71,7 +72,7 @@ pub impl<'self> Connection {
     }
 
     #[inline]
-    fn poll_for_event(&self) -> Option<GenericEvent> {
+    pub fn poll_for_event(&self) -> Option<GenericEvent> {
         unsafe {
             let event = xcb_poll_for_event(self.c);
             if ptr::is_null(event) {
@@ -83,7 +84,7 @@ pub impl<'self> Connection {
     }
 
     #[inline]
-    fn poll_for_queued_event(&self) -> Option<GenericEvent> {
+    pub fn poll_for_queued_event(&self) -> Option<GenericEvent> {
         unsafe {
             let event = xcb_poll_for_queued_event(self.c);
             if ptr::is_null(event) {
@@ -95,7 +96,7 @@ pub impl<'self> Connection {
     }
 
     #[inline]
-    fn get_setup(&self) -> &'self xproto::Setup {
+    pub fn get_setup(&self) -> &'self xproto::Setup {
         unsafe {
             let setup = xcb_get_setup(self.c);
             if ptr::is_null(setup) {
@@ -107,25 +108,25 @@ pub impl<'self> Connection {
     }
 
     #[inline]
-    fn has_error(&self) -> bool {
+    pub fn has_error(&self) -> bool {
         unsafe {
             xcb_connection_has_error(self.c) > 0
         }
     }
 
     #[inline]
-    fn generate_id<T>(&self) -> T {
+    pub fn generate_id<T>(&self) -> T {
         unsafe {
             cast::transmute(xcb_generate_id(self.c))
         }
     }
 
     #[inline]
-    unsafe fn get_raw_conn(&self) -> *connection {
+    pub unsafe fn get_raw_conn(&self) -> *connection {
         self.c
     }
 
-    fn send_event<T>(&self,
+    pub fn send_event<T>(&self,
                   propogate: bool,
                   destination: xproto::Window,
                   event_mask : u32,
@@ -139,7 +140,7 @@ pub impl<'self> Connection {
     }
 
     #[inline]
-    fn connect() -> (Connection, int) {
+    pub fn connect() -> (Connection, int) {
         let screen : c_int = 0;
         unsafe {
             let conn = xcb_connect(ptr::null(), &screen);
@@ -153,7 +154,7 @@ pub impl<'self> Connection {
     }
 
     #[inline]
-    fn connect_to_display(display:&str) -> Option<(Connection, int)> {
+    pub fn connect_to_display(display:&str) -> Option<(Connection, int)> {
         let screen : c_int = 0;
         unsafe {
             let conn = do str::as_c_str(display) |s| {
@@ -169,7 +170,7 @@ pub impl<'self> Connection {
     }
 
     #[inline]
-    fn connect_with_auth(display:&str, auth_info: &AuthInfo) -> Option<(Connection, int)> {
+    pub fn connect_with_auth(display:&str, auth_info: &AuthInfo) -> Option<(Connection, int)> {
         let screen : c_int = 0;
         unsafe {
             let conn = do str::as_c_str(display) |s| {
@@ -185,7 +186,7 @@ pub impl<'self> Connection {
         }
     }
 
-    unsafe fn from_raw_conn(conn:*connection) -> Connection {
+    pub unsafe fn from_raw_conn(conn:*connection) -> Connection {
         if ptr::is_null(conn) {
             fail!("Cannot construct from null pointer");
         }
@@ -210,7 +211,7 @@ pub struct Event<T> {
 #[unsafe_destructor]
 impl<T> Drop for Event<T> {
     fn finalize(&self) {
-        use core::libc::c_void;
+        use std::libc::c_void;
         unsafe {
             free(self.event as *c_void);
         }
@@ -228,7 +229,7 @@ pub fn mk_error<T>(err:*T) -> Error<T> {
 #[unsafe_destructor]
 impl<T> Drop for Error<T> {
     fn finalize(&self) {
-        use core::libc::c_void;
+        use std::libc::c_void;
         unsafe {
             free(self.error as *c_void);
         }
@@ -252,8 +253,8 @@ pub trait ReplyCookie<R> {
     fn get_reply(&self) -> Result<Reply<R>, GenericError>;
 }
 
-pub impl<'self, T> Cookie<'self, T> {
-    fn request_check(&self) -> Option<GenericError> {
+impl<'self, T> Cookie<'self, T> {
+    pub fn request_check(&self) -> Option<GenericError> {
         unsafe {
             // Crazy pointer dance to get the right bit
             // of the struct
@@ -279,7 +280,7 @@ pub fn mk_reply<T>(reply:*T) -> Reply<T> {
 #[unsafe_destructor]
 impl<T> Drop for Reply<T> {
     fn finalize(&self) {
-        use core::libc::c_void;
+        use std::libc::c_void;
         unsafe {
             free(self.reply as *c_void);
         }
@@ -305,11 +306,11 @@ pub fn cast_event<'r, T>(event : &'r GenericEvent) -> &'r T {
 //Accessor methods for all Events
 pub trait EventUtil {
     #[inline(always)]
-    fn response_type(&self) -> u8;
+    pub fn response_type(&self) -> u8;
 }
 
 impl<T> EventUtil for Event<T> {
-    fn response_type(&self) -> u8 {
+    pub fn response_type(&self) -> u8 {
         unsafe {
             let gev : *generic_event = cast::transmute(self.event);
             (*gev).response_type
@@ -320,7 +321,7 @@ impl<T> EventUtil for Event<T> {
 pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &[(T,L)]) -> (T, ~[L]) {
     let len = bf.len();
 
-    let sorted = std::sort::merge_sort(bf, |a,b| {
+    let sorted = extra::sort::merge_sort(bf, |a,b| {
         let &(a, _) = a;
         let &(b, _) = b;
         a < b});

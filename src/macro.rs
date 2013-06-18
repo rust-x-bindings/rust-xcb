@@ -4,19 +4,19 @@
 macro_rules! impl_reply_cookie {
     ($cookie:ty, $crep:ty, $reply:ty, $func:ident) => (
         impl<'self> base::ReplyCookie<$crep> for $cookie {
-            fn get_reply(&self) -> Result<$reply,base::GenericError> {
+            pub fn get_reply(&self) -> Result<$reply,base::GenericError> {
                 use ll;
                 unsafe {
-                    let err : *ll::base::generic_error = ::core::ptr::null();
+                    let err : *ll::base::generic_error = ::std::ptr::null();
                     let reply = if self.checked {
                         $func(self.conn.get_raw_conn(), self.cookie, &err)
                     } else {
-                        $func(self.conn.get_raw_conn(), self.cookie, ::core::ptr::null())
+                        $func(self.conn.get_raw_conn(), self.cookie, ::std::ptr::null())
                     };
-                    if ::core::ptr::is_null(err) {
+                    if err.is_null() {
                         return Ok(base::mk_reply(reply));
                     } else {
-                        ::core::libc::free(reply as *::core::libc::c_void);
+                        ::std::libc::free(reply as *::std::libc::c_void);
                         return Err(base::mk_error(err));
                     }
                 }
@@ -33,7 +33,7 @@ macro_rules! accessor {
         unsafe {
             let _len = $lenfn(&$fexpr);
             let _data = $datafn(&$fexpr);
-            core::str::raw::from_buf_len(_data as *u8, _len as uint)
+            std::str::raw::from_buf_len(_data as *u8, _len as uint)
         }
     );
     ($ty:ty, $iterfn:ident, $fexpr:expr) => ( //Iterator
@@ -45,7 +45,7 @@ macro_rules! accessor {
         unsafe {
             let _len = $lenfn(&$fexpr);
             let _data = $datafn(&$fexpr);
-            core::vec::raw::from_buf_raw(_data, _len as uint)
+            std::vec::raw::from_buf_raw(_data, _len as uint)
         }
     );
 }

@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
-use core;
-use core::libc::*;
+use std;
+use std::libc::*;
+use std::{cast,num,ptr,str,libc};
+use std::to_bytes::ToBytes;
 use ll::base::*;
 use ll;
 use ll::xproto;
@@ -149,7 +151,7 @@ pub extern "C" {
  *
  *
  */
-unsafe fn xcb_res_client_next (i:*client_iterator) -> c_void;
+pub unsafe fn xcb_res_client_next (i:*client_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -160,7 +162,7 @@ unsafe fn xcb_res_client_next (i:*client_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_res_client_end (i:client_iterator) -> generic_iterator;
+pub unsafe fn xcb_res_client_end (i:client_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -172,7 +174,7 @@ unsafe fn xcb_res_client_end (i:client_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_res_type_next (i:*type_iterator) -> c_void;
+pub unsafe fn xcb_res_type_next (i:*type_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -183,7 +185,7 @@ unsafe fn xcb_res_type_next (i:*type_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_res_type_end (i:type_iterator) -> generic_iterator;
+pub unsafe fn xcb_res_type_end (i:type_iterator) -> generic_iterator;
 
 /**
  *
@@ -193,7 +195,7 @@ unsafe fn xcb_res_type_end (i:type_iterator) -> generic_iterator;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_res_query_version (c : *connection,
+pub unsafe fn xcb_res_query_version (c : *connection,
                                  client_major :  u8,
                                  client_minor :  u8) -> query_version_cookie;
 
@@ -208,7 +210,7 @@ unsafe fn xcb_res_query_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_res_query_version_unchecked (c : *connection,
+pub unsafe fn xcb_res_query_version_unchecked (c : *connection,
                                            client_major :  u8,
                                            client_minor :  u8) -> query_version_cookie;
 
@@ -226,11 +228,11 @@ unsafe fn xcb_res_query_version_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_res_query_version_reply (c : *connection,
+pub unsafe fn xcb_res_query_version_reply (c : *connection,
                                        cookie : query_version_cookie,
                                        e : **generic_error) -> *query_version_reply;
 
-unsafe fn xcb_res_query_clients_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_res_query_clients_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -240,7 +242,7 @@ unsafe fn xcb_res_query_clients_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_res_query_clients (c : *connection) -> query_clients_cookie;
+pub unsafe fn xcb_res_query_clients (c : *connection) -> query_clients_cookie;
 
 /**
  *
@@ -253,14 +255,14 @@ unsafe fn xcb_res_query_clients (c : *connection) -> query_clients_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_res_query_clients_unchecked (c : *connection) -> query_clients_cookie;
+pub unsafe fn xcb_res_query_clients_unchecked (c : *connection) -> query_clients_cookie;
 
-unsafe fn xcb_res_query_clients_clients (R : *query_clients_reply) -> *client;
+pub unsafe fn xcb_res_query_clients_clients (R : *query_clients_reply) -> *client;
 
 
-unsafe fn xcb_res_query_clients_clients_length (R : *query_clients_reply) -> c_int;
+pub unsafe fn xcb_res_query_clients_clients_length (R : *query_clients_reply) -> c_int;
 
-unsafe fn xcb_res_query_clients_clients_iterator (R : *query_clients_reply) -> client_iterator;
+pub unsafe fn xcb_res_query_clients_clients_iterator (R : *query_clients_reply) -> client_iterator;
 
 /**
  * Return the reply
@@ -276,11 +278,11 @@ unsafe fn xcb_res_query_clients_clients_iterator (R : *query_clients_reply) -> c
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_res_query_clients_reply (c : *connection,
+pub unsafe fn xcb_res_query_clients_reply (c : *connection,
                                        cookie : query_clients_cookie,
                                        e : **generic_error) -> *query_clients_reply;
 
-unsafe fn xcb_res_query_client_resources_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_res_query_client_resources_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -290,7 +292,7 @@ unsafe fn xcb_res_query_client_resources_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_res_query_client_resources (c : *connection,
+pub unsafe fn xcb_res_query_client_resources (c : *connection,
                                           xid :  u32) -> query_client_resources_cookie;
 
 /**
@@ -304,15 +306,15 @@ unsafe fn xcb_res_query_client_resources (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_res_query_client_resources_unchecked (c : *connection,
+pub unsafe fn xcb_res_query_client_resources_unchecked (c : *connection,
                                                     xid :  u32) -> query_client_resources_cookie;
 
-unsafe fn xcb_res_query_client_resources_types (R : *query_client_resources_reply) -> *type_;
+pub unsafe fn xcb_res_query_client_resources_types (R : *query_client_resources_reply) -> *type_;
 
 
-unsafe fn xcb_res_query_client_resources_types_length (R : *query_client_resources_reply) -> c_int;
+pub unsafe fn xcb_res_query_client_resources_types_length (R : *query_client_resources_reply) -> c_int;
 
-unsafe fn xcb_res_query_client_resources_types_iterator (R : *query_client_resources_reply) -> type_iterator;
+pub unsafe fn xcb_res_query_client_resources_types_iterator (R : *query_client_resources_reply) -> type_iterator;
 
 /**
  * Return the reply
@@ -328,7 +330,7 @@ unsafe fn xcb_res_query_client_resources_types_iterator (R : *query_client_resou
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_res_query_client_resources_reply (c : *connection,
+pub unsafe fn xcb_res_query_client_resources_reply (c : *connection,
                                                 cookie : query_client_resources_cookie,
                                                 e : **generic_error) -> *query_client_resources_reply;
 
@@ -340,7 +342,7 @@ unsafe fn xcb_res_query_client_resources_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_res_query_client_pixmap_bytes (c : *connection,
+pub unsafe fn xcb_res_query_client_pixmap_bytes (c : *connection,
                                              xid :  u32) -> query_client_pixmap_bytes_cookie;
 
 /**
@@ -354,7 +356,7 @@ unsafe fn xcb_res_query_client_pixmap_bytes (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_res_query_client_pixmap_bytes_unchecked (c : *connection,
+pub unsafe fn xcb_res_query_client_pixmap_bytes_unchecked (c : *connection,
                                                        xid :  u32) -> query_client_pixmap_bytes_cookie;
 
 /**
@@ -371,7 +373,7 @@ unsafe fn xcb_res_query_client_pixmap_bytes_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_res_query_client_pixmap_bytes_reply (c : *connection,
+pub unsafe fn xcb_res_query_client_pixmap_bytes_reply (c : *connection,
                                                    cookie : query_client_pixmap_bytes_cookie,
                                                    e : **generic_error) -> *query_client_pixmap_bytes_reply;
 }

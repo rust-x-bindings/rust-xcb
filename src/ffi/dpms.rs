@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
-use core;
-use core::libc::*;
+use std;
+use std::libc::*;
+use std::{cast,num,ptr,str,libc};
+use std::to_bytes::ToBytes;
 use ll::base::*;
 use ll;
 
@@ -153,7 +155,7 @@ pub extern "C" {
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_dpms_get_version (c : *connection,
+pub unsafe fn xcb_dpms_get_version (c : *connection,
                                 client_major_version :  u16,
                                 client_minor_version :  u16) -> get_version_cookie;
 
@@ -168,7 +170,7 @@ unsafe fn xcb_dpms_get_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_dpms_get_version_unchecked (c : *connection,
+pub unsafe fn xcb_dpms_get_version_unchecked (c : *connection,
                                           client_major_version :  u16,
                                           client_minor_version :  u16) -> get_version_cookie;
 
@@ -186,7 +188,7 @@ unsafe fn xcb_dpms_get_version_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_dpms_get_version_reply (c : *connection,
+pub unsafe fn xcb_dpms_get_version_reply (c : *connection,
                                       cookie : get_version_cookie,
                                       e : **generic_error) -> *get_version_reply;
 
@@ -198,7 +200,7 @@ unsafe fn xcb_dpms_get_version_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_dpms_capable (c : *connection) -> capable_cookie;
+pub unsafe fn xcb_dpms_capable (c : *connection) -> capable_cookie;
 
 /**
  *
@@ -211,7 +213,7 @@ unsafe fn xcb_dpms_capable (c : *connection) -> capable_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_dpms_capable_unchecked (c : *connection) -> capable_cookie;
+pub unsafe fn xcb_dpms_capable_unchecked (c : *connection) -> capable_cookie;
 
 /**
  * Return the reply
@@ -227,7 +229,7 @@ unsafe fn xcb_dpms_capable_unchecked (c : *connection) -> capable_cookie;
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_dpms_capable_reply (c : *connection,
+pub unsafe fn xcb_dpms_capable_reply (c : *connection,
                                   cookie : capable_cookie,
                                   e : **generic_error) -> *capable_reply;
 
@@ -239,7 +241,7 @@ unsafe fn xcb_dpms_capable_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_dpms_get_timeouts (c : *connection) -> get_timeouts_cookie;
+pub unsafe fn xcb_dpms_get_timeouts (c : *connection) -> get_timeouts_cookie;
 
 /**
  *
@@ -252,7 +254,7 @@ unsafe fn xcb_dpms_get_timeouts (c : *connection) -> get_timeouts_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_dpms_get_timeouts_unchecked (c : *connection) -> get_timeouts_cookie;
+pub unsafe fn xcb_dpms_get_timeouts_unchecked (c : *connection) -> get_timeouts_cookie;
 
 /**
  * Return the reply
@@ -268,7 +270,7 @@ unsafe fn xcb_dpms_get_timeouts_unchecked (c : *connection) -> get_timeouts_cook
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_dpms_get_timeouts_reply (c : *connection,
+pub unsafe fn xcb_dpms_get_timeouts_reply (c : *connection,
                                        cookie : get_timeouts_cookie,
                                        e : **generic_error) -> *get_timeouts_reply;
 
@@ -283,7 +285,7 @@ unsafe fn xcb_dpms_get_timeouts_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_dpms_set_timeouts_checked (c : *connection,
+pub unsafe fn xcb_dpms_set_timeouts_checked (c : *connection,
                                          standby_timeout :  u16,
                                          suspend_timeout :  u16,
                                          off_timeout :  u16) -> void_cookie;
@@ -296,7 +298,7 @@ unsafe fn xcb_dpms_set_timeouts_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_dpms_set_timeouts (c : *connection,
+pub unsafe fn xcb_dpms_set_timeouts (c : *connection,
                                  standby_timeout :  u16,
                                  suspend_timeout :  u16,
                                  off_timeout :  u16) -> void_cookie;
@@ -312,7 +314,7 @@ unsafe fn xcb_dpms_set_timeouts (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_dpms_enable_checked (c : *connection) -> void_cookie;
+pub unsafe fn xcb_dpms_enable_checked (c : *connection) -> void_cookie;
 
 /**
  *
@@ -322,30 +324,7 @@ unsafe fn xcb_dpms_enable_checked (c : *connection) -> void_cookie;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_dpms_enable (c : *connection) -> void_cookie;
-
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- * 
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
-unsafe fn xcb_dpms_disable_checked (c : *connection) -> void_cookie;
-
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- * 
- */
-unsafe fn xcb_dpms_disable (c : *connection) -> void_cookie;
+pub unsafe fn xcb_dpms_enable (c : *connection) -> void_cookie;
 
 /**
  *
@@ -358,7 +337,30 @@ unsafe fn xcb_dpms_disable (c : *connection) -> void_cookie;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_dpms_force_level_checked (c : *connection,
+pub unsafe fn xcb_dpms_disable_checked (c : *connection) -> void_cookie;
+
+/**
+ *
+ * @param c The connection
+ * @return A cookie
+ *
+ * Delivers a request to the X server.
+ * 
+ */
+pub unsafe fn xcb_dpms_disable (c : *connection) -> void_cookie;
+
+/**
+ *
+ * @param c The connection
+ * @return A cookie
+ *
+ * Delivers a request to the X server.
+ * 
+ * This form can be used only if the request will not cause
+ * a reply to be generated. Any returned error will be
+ * saved for handling by xcb_request_check().
+ */
+pub unsafe fn xcb_dpms_force_level_checked (c : *connection,
                                         power_level :  u16) -> void_cookie;
 
 /**
@@ -369,7 +371,7 @@ unsafe fn xcb_dpms_force_level_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_dpms_force_level (c : *connection,
+pub unsafe fn xcb_dpms_force_level (c : *connection,
                                 power_level :  u16) -> void_cookie;
 
 /**
@@ -380,7 +382,7 @@ unsafe fn xcb_dpms_force_level (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_dpms_info (c : *connection) -> info_cookie;
+pub unsafe fn xcb_dpms_info (c : *connection) -> info_cookie;
 
 /**
  *
@@ -393,7 +395,7 @@ unsafe fn xcb_dpms_info (c : *connection) -> info_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_dpms_info_unchecked (c : *connection) -> info_cookie;
+pub unsafe fn xcb_dpms_info_unchecked (c : *connection) -> info_cookie;
 
 /**
  * Return the reply
@@ -409,7 +411,7 @@ unsafe fn xcb_dpms_info_unchecked (c : *connection) -> info_cookie;
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_dpms_info_reply (c : *connection,
+pub unsafe fn xcb_dpms_info_reply (c : *connection,
                                cookie : info_cookie,
                                e : **generic_error) -> *info_reply;
 }

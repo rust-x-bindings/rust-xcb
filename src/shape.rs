@@ -6,15 +6,17 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(unused_unsafe)];
-use core;
-use core::libc::*;
+use std;
+use std::libc::*;
+use std::{cast,num,ptr,str,libc};
+use std::to_bytes::ToBytes;
 use ll::base::*;
 use base;
 use base::*;
 use ll;
 use ll::shape::*;
-use core::option::Option;
-use core::iterator::Iterator;
+use std::option::Option;
+use std::iterator::Iterator;
 
 use xproto;
 pub type Op = op;
@@ -71,7 +73,7 @@ pub type GetRectanglesCookie<'self> = base::Cookie<'self, get_rectangles_cookie>
 pub static XCB_SHAPE_GET_RECTANGLES : u8 = 8;
 
 impl<'self, Op> Iterator<&'self Op> for OpIterator {
-    fn next(&mut self) -> Option<&'self Op> {
+    pub fn next(&mut self) -> Option<&'self Op> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *op_iterator = cast::transmute(self);
@@ -86,7 +88,7 @@ pub type Kind = kind;
 
 
 impl<'self, Kind> Iterator<&'self Kind> for KindIterator {
-    fn next(&mut self) -> Option<&'self Kind> {
+    pub fn next(&mut self) -> Option<&'self Kind> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *kind_iterator = cast::transmute(self);
@@ -98,40 +100,40 @@ impl<'self, Kind> Iterator<&'self Kind> for KindIterator {
 }
 
 
-pub impl base::Event<notify_event> {
-  fn shape_kind(&self) -> Kind {
+impl base::Event<notify_event> {
+  pub fn shape_kind(&self) -> Kind {
     unsafe { accessor!(shape_kind -> Kind, (*self.event)) }
   }
 
-  fn affected_window(&self) -> xproto::Window {
+  pub fn affected_window(&self) -> xproto::Window {
     unsafe { accessor!(affected_window -> xproto::Window, (*self.event)) }
   }
 
-  fn extents_x(&self) -> i16 {
+  pub fn extents_x(&self) -> i16 {
     unsafe { accessor!(extents_x -> i16, (*self.event)) }
   }
 
-  fn extents_y(&self) -> i16 {
+  pub fn extents_y(&self) -> i16 {
     unsafe { accessor!(extents_y -> i16, (*self.event)) }
   }
 
-  fn extents_width(&self) -> u16 {
+  pub fn extents_width(&self) -> u16 {
     unsafe { accessor!(extents_width -> u16, (*self.event)) }
   }
 
-  fn extents_height(&self) -> u16 {
+  pub fn extents_height(&self) -> u16 {
     unsafe { accessor!(extents_height -> u16, (*self.event)) }
   }
 
-  fn server_time(&self) -> xproto::Timestamp {
+  pub fn server_time(&self) -> xproto::Timestamp {
     unsafe { accessor!(server_time -> xproto::Timestamp, (*self.event)) }
   }
 
-  fn shaped(&self) -> u8 {
+  pub fn shaped(&self) -> u8 {
     unsafe { accessor!(shaped -> u8, (*self.event)) }
   }
 
-  fn new(shape_kind : Kind,
+  pub fn new(shape_kind : Kind,
          affected_window : xproto::Window,
          extents_x : i16,
          extents_y : i16,
@@ -166,12 +168,12 @@ pub fn QueryVersionUnchecked<'r> (c : &'r Connection) -> QueryVersionCookie<'r> 
   }
 }
 
-pub impl base::Reply<query_version_reply> {
-  fn major_version(&self) -> u16 {
+impl base::Reply<query_version_reply> {
+  pub fn major_version(&self) -> u16 {
     unsafe { accessor!(major_version -> u16, (*self.reply)) }
   }
 
-  fn minor_version(&self) -> u16 {
+  pub fn minor_version(&self) -> u16 {
     unsafe { accessor!(minor_version -> u16, (*self.reply)) }
   }
 
@@ -188,7 +190,7 @@ pub fn RectanglesChecked<'r> (c : &'r Connection,
                           rectangles : &[xproto::Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = core::vec::raw::to_ptr(rectangles);
+    let rectangles_ptr = std::vec::raw::to_ptr(rectangles);
     let cookie = xcb_shape_rectangles_checked(c.get_raw_conn(),
         operation as op, //1
         destination_kind as kind, //2
@@ -211,7 +213,7 @@ pub fn Rectangles<'r> (c : &'r Connection,
                    rectangles : &[xproto::Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = core::vec::raw::to_ptr(rectangles);
+    let rectangles_ptr = std::vec::raw::to_ptr(rectangles);
     let cookie = xcb_shape_rectangles(c.get_raw_conn(),
         operation as op, //1
         destination_kind as kind, //2
@@ -345,44 +347,44 @@ pub fn QueryExtentsUnchecked<'r> (c : &'r Connection,
   }
 }
 
-pub impl base::Reply<query_extents_reply> {
-  fn bounding_shaped(&self) -> u8 {
+impl base::Reply<query_extents_reply> {
+  pub fn bounding_shaped(&self) -> u8 {
     unsafe { accessor!(bounding_shaped -> u8, (*self.reply)) }
   }
 
-  fn clip_shaped(&self) -> u8 {
+  pub fn clip_shaped(&self) -> u8 {
     unsafe { accessor!(clip_shaped -> u8, (*self.reply)) }
   }
 
-  fn bounding_shape_extents_x(&self) -> i16 {
+  pub fn bounding_shape_extents_x(&self) -> i16 {
     unsafe { accessor!(bounding_shape_extents_x -> i16, (*self.reply)) }
   }
 
-  fn bounding_shape_extents_y(&self) -> i16 {
+  pub fn bounding_shape_extents_y(&self) -> i16 {
     unsafe { accessor!(bounding_shape_extents_y -> i16, (*self.reply)) }
   }
 
-  fn bounding_shape_extents_width(&self) -> u16 {
+  pub fn bounding_shape_extents_width(&self) -> u16 {
     unsafe { accessor!(bounding_shape_extents_width -> u16, (*self.reply)) }
   }
 
-  fn bounding_shape_extents_height(&self) -> u16 {
+  pub fn bounding_shape_extents_height(&self) -> u16 {
     unsafe { accessor!(bounding_shape_extents_height -> u16, (*self.reply)) }
   }
 
-  fn clip_shape_extents_x(&self) -> i16 {
+  pub fn clip_shape_extents_x(&self) -> i16 {
     unsafe { accessor!(clip_shape_extents_x -> i16, (*self.reply)) }
   }
 
-  fn clip_shape_extents_y(&self) -> i16 {
+  pub fn clip_shape_extents_y(&self) -> i16 {
     unsafe { accessor!(clip_shape_extents_y -> i16, (*self.reply)) }
   }
 
-  fn clip_shape_extents_width(&self) -> u16 {
+  pub fn clip_shape_extents_width(&self) -> u16 {
     unsafe { accessor!(clip_shape_extents_width -> u16, (*self.reply)) }
   }
 
-  fn clip_shape_extents_height(&self) -> u16 {
+  pub fn clip_shape_extents_height(&self) -> u16 {
     unsafe { accessor!(clip_shape_extents_height -> u16, (*self.reply)) }
   }
 
@@ -426,8 +428,8 @@ pub fn InputSelectedUnchecked<'r> (c : &'r Connection,
   }
 }
 
-pub impl base::Reply<input_selected_reply> {
-  fn enabled(&self) -> u8 {
+impl base::Reply<input_selected_reply> {
+  pub fn enabled(&self) -> u8 {
     unsafe { accessor!(enabled -> u8, (*self.reply)) }
   }
 
@@ -456,12 +458,12 @@ pub fn GetRectanglesUnchecked<'r> (c : &'r Connection,
   }
 }
 
-pub impl base::Reply<get_rectangles_reply> {
-  fn ordering(&self) -> u8 {
+impl base::Reply<get_rectangles_reply> {
+  pub fn ordering(&self) -> u8 {
     unsafe { accessor!(ordering -> u8, (*self.reply)) }
   }
 
-  fn rectangles(&self) -> xproto::RectangleIterator {
+  pub fn rectangles(&self) -> xproto::RectangleIterator {
     unsafe { accessor!(xproto::RectangleIterator, xcb_shape_get_rectangles_rectangles_iterator, (*self.reply)) }
   }
 

@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
-use core;
-use core::libc::*;
+use std;
+use std::libc::*;
+use std::{cast,num,ptr,str,libc};
+use std::to_bytes::ToBytes;
 use ll::base::*;
 use ll;
 
@@ -297,7 +299,7 @@ pub extern "C" {
  *
  *
  */
-unsafe fn xcb_xf86dri_drm_clip_rect_next (i:*drm_clip_rect_iterator) -> c_void;
+pub unsafe fn xcb_xf86dri_drm_clip_rect_next (i:*drm_clip_rect_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -308,7 +310,7 @@ unsafe fn xcb_xf86dri_drm_clip_rect_next (i:*drm_clip_rect_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xf86dri_drm_clip_rect_end (i:drm_clip_rect_iterator) -> generic_iterator;
+pub unsafe fn xcb_xf86dri_drm_clip_rect_end (i:drm_clip_rect_iterator) -> generic_iterator;
 
 /**
  *
@@ -318,7 +320,7 @@ unsafe fn xcb_xf86dri_drm_clip_rect_end (i:drm_clip_rect_iterator) -> generic_it
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86dri_query_version (c : *connection) -> query_version_cookie;
+pub unsafe fn xcb_xf86dri_query_version (c : *connection) -> query_version_cookie;
 
 /**
  *
@@ -331,7 +333,7 @@ unsafe fn xcb_xf86dri_query_version (c : *connection) -> query_version_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xf86dri_query_version_unchecked (c : *connection) -> query_version_cookie;
+pub unsafe fn xcb_xf86dri_query_version_unchecked (c : *connection) -> query_version_cookie;
 
 /**
  * Return the reply
@@ -347,7 +349,7 @@ unsafe fn xcb_xf86dri_query_version_unchecked (c : *connection) -> query_version
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xf86dri_query_version_reply (c : *connection,
+pub unsafe fn xcb_xf86dri_query_version_reply (c : *connection,
                                            cookie : query_version_cookie,
                                            e : **generic_error) -> *query_version_reply;
 
@@ -359,7 +361,7 @@ unsafe fn xcb_xf86dri_query_version_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86dri_query_direct_rendering_capable (c : *connection,
+pub unsafe fn xcb_xf86dri_query_direct_rendering_capable (c : *connection,
                                                       screen :  u32) -> query_direct_rendering_capable_cookie;
 
 /**
@@ -373,7 +375,7 @@ unsafe fn xcb_xf86dri_query_direct_rendering_capable (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xf86dri_query_direct_rendering_capable_unchecked (c : *connection,
+pub unsafe fn xcb_xf86dri_query_direct_rendering_capable_unchecked (c : *connection,
                                                                 screen :  u32) -> query_direct_rendering_capable_cookie;
 
 /**
@@ -390,11 +392,11 @@ unsafe fn xcb_xf86dri_query_direct_rendering_capable_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xf86dri_query_direct_rendering_capable_reply (c : *connection,
+pub unsafe fn xcb_xf86dri_query_direct_rendering_capable_reply (c : *connection,
                                                             cookie : query_direct_rendering_capable_cookie,
                                                             e : **generic_error) -> *query_direct_rendering_capable_reply;
 
-unsafe fn xcb_xf86dri_open_connection_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xf86dri_open_connection_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -404,7 +406,7 @@ unsafe fn xcb_xf86dri_open_connection_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86dri_open_connection (c : *connection,
+pub unsafe fn xcb_xf86dri_open_connection (c : *connection,
                                        screen :  u32) -> open_connection_cookie;
 
 /**
@@ -418,16 +420,16 @@ unsafe fn xcb_xf86dri_open_connection (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xf86dri_open_connection_unchecked (c : *connection,
+pub unsafe fn xcb_xf86dri_open_connection_unchecked (c : *connection,
                                                  screen :  u32) -> open_connection_cookie;
 
-unsafe fn xcb_xf86dri_open_connection_bus_id (R : *open_connection_reply) -> *c_char;
+pub unsafe fn xcb_xf86dri_open_connection_bus_id (R : *open_connection_reply) -> *c_char;
 
 
-unsafe fn xcb_xf86dri_open_connection_bus_id_length (R : *open_connection_reply) -> c_int;
+pub unsafe fn xcb_xf86dri_open_connection_bus_id_length (R : *open_connection_reply) -> c_int;
 
 
-unsafe fn xcb_xf86dri_open_connection_bus_id_end (R : *open_connection_reply) -> generic_iterator;
+pub unsafe fn xcb_xf86dri_open_connection_bus_id_end (R : *open_connection_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -443,7 +445,7 @@ unsafe fn xcb_xf86dri_open_connection_bus_id_end (R : *open_connection_reply) ->
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xf86dri_open_connection_reply (c : *connection,
+pub unsafe fn xcb_xf86dri_open_connection_reply (c : *connection,
                                              cookie : open_connection_cookie,
                                              e : **generic_error) -> *open_connection_reply;
 
@@ -458,7 +460,7 @@ unsafe fn xcb_xf86dri_open_connection_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xf86dri_close_connection_checked (c : *connection,
+pub unsafe fn xcb_xf86dri_close_connection_checked (c : *connection,
                                                 screen :  u32) -> void_cookie;
 
 /**
@@ -469,10 +471,10 @@ unsafe fn xcb_xf86dri_close_connection_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86dri_close_connection (c : *connection,
+pub unsafe fn xcb_xf86dri_close_connection (c : *connection,
                                         screen :  u32) -> void_cookie;
 
-unsafe fn xcb_xf86dri_get_client_driver_name_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xf86dri_get_client_driver_name_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -482,7 +484,7 @@ unsafe fn xcb_xf86dri_get_client_driver_name_sizeof (_buffer :  *c_void) -> c_in
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86dri_get_client_driver_name (c : *connection,
+pub unsafe fn xcb_xf86dri_get_client_driver_name (c : *connection,
                                               screen :  u32) -> get_client_driver_name_cookie;
 
 /**
@@ -496,16 +498,16 @@ unsafe fn xcb_xf86dri_get_client_driver_name (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xf86dri_get_client_driver_name_unchecked (c : *connection,
+pub unsafe fn xcb_xf86dri_get_client_driver_name_unchecked (c : *connection,
                                                         screen :  u32) -> get_client_driver_name_cookie;
 
-unsafe fn xcb_xf86dri_get_client_driver_name_client_driver_name (R : *get_client_driver_name_reply) -> *c_char;
+pub unsafe fn xcb_xf86dri_get_client_driver_name_client_driver_name (R : *get_client_driver_name_reply) -> *c_char;
 
 
-unsafe fn xcb_xf86dri_get_client_driver_name_client_driver_name_length (R : *get_client_driver_name_reply) -> c_int;
+pub unsafe fn xcb_xf86dri_get_client_driver_name_client_driver_name_length (R : *get_client_driver_name_reply) -> c_int;
 
 
-unsafe fn xcb_xf86dri_get_client_driver_name_client_driver_name_end (R : *get_client_driver_name_reply) -> generic_iterator;
+pub unsafe fn xcb_xf86dri_get_client_driver_name_client_driver_name_end (R : *get_client_driver_name_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -521,7 +523,7 @@ unsafe fn xcb_xf86dri_get_client_driver_name_client_driver_name_end (R : *get_cl
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xf86dri_get_client_driver_name_reply (c : *connection,
+pub unsafe fn xcb_xf86dri_get_client_driver_name_reply (c : *connection,
                                                     cookie : get_client_driver_name_cookie,
                                                     e : **generic_error) -> *get_client_driver_name_reply;
 
@@ -533,7 +535,7 @@ unsafe fn xcb_xf86dri_get_client_driver_name_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86dri_create_context (c : *connection,
+pub unsafe fn xcb_xf86dri_create_context (c : *connection,
                                       screen :  u32,
                                       visual :  u32,
                                       context :  u32) -> create_context_cookie;
@@ -549,7 +551,7 @@ unsafe fn xcb_xf86dri_create_context (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xf86dri_create_context_unchecked (c : *connection,
+pub unsafe fn xcb_xf86dri_create_context_unchecked (c : *connection,
                                                 screen :  u32,
                                                 visual :  u32,
                                                 context :  u32) -> create_context_cookie;
@@ -568,7 +570,7 @@ unsafe fn xcb_xf86dri_create_context_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xf86dri_create_context_reply (c : *connection,
+pub unsafe fn xcb_xf86dri_create_context_reply (c : *connection,
                                             cookie : create_context_cookie,
                                             e : **generic_error) -> *create_context_reply;
 
@@ -583,7 +585,7 @@ unsafe fn xcb_xf86dri_create_context_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xf86dri_destroy_context_checked (c : *connection,
+pub unsafe fn xcb_xf86dri_destroy_context_checked (c : *connection,
                                                screen :  u32,
                                                context :  u32) -> void_cookie;
 
@@ -595,7 +597,7 @@ unsafe fn xcb_xf86dri_destroy_context_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86dri_destroy_context (c : *connection,
+pub unsafe fn xcb_xf86dri_destroy_context (c : *connection,
                                        screen :  u32,
                                        context :  u32) -> void_cookie;
 
@@ -607,7 +609,7 @@ unsafe fn xcb_xf86dri_destroy_context (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86dri_create_drawable (c : *connection,
+pub unsafe fn xcb_xf86dri_create_drawable (c : *connection,
                                        screen :  u32,
                                        drawable :  u32) -> create_drawable_cookie;
 
@@ -622,7 +624,7 @@ unsafe fn xcb_xf86dri_create_drawable (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xf86dri_create_drawable_unchecked (c : *connection,
+pub unsafe fn xcb_xf86dri_create_drawable_unchecked (c : *connection,
                                                  screen :  u32,
                                                  drawable :  u32) -> create_drawable_cookie;
 
@@ -640,7 +642,7 @@ unsafe fn xcb_xf86dri_create_drawable_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xf86dri_create_drawable_reply (c : *connection,
+pub unsafe fn xcb_xf86dri_create_drawable_reply (c : *connection,
                                              cookie : create_drawable_cookie,
                                              e : **generic_error) -> *create_drawable_reply;
 
@@ -655,7 +657,7 @@ unsafe fn xcb_xf86dri_create_drawable_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xf86dri_destroy_drawable_checked (c : *connection,
+pub unsafe fn xcb_xf86dri_destroy_drawable_checked (c : *connection,
                                                 screen :  u32,
                                                 drawable :  u32) -> void_cookie;
 
@@ -667,11 +669,11 @@ unsafe fn xcb_xf86dri_destroy_drawable_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86dri_destroy_drawable (c : *connection,
+pub unsafe fn xcb_xf86dri_destroy_drawable (c : *connection,
                                         screen :  u32,
                                         drawable :  u32) -> void_cookie;
 
-unsafe fn xcb_xf86dri_get_drawable_info_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xf86dri_get_drawable_info_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -681,7 +683,7 @@ unsafe fn xcb_xf86dri_get_drawable_info_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86dri_get_drawable_info (c : *connection,
+pub unsafe fn xcb_xf86dri_get_drawable_info (c : *connection,
                                          screen :  u32,
                                          drawable :  u32) -> get_drawable_info_cookie;
 
@@ -696,23 +698,23 @@ unsafe fn xcb_xf86dri_get_drawable_info (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xf86dri_get_drawable_info_unchecked (c : *connection,
+pub unsafe fn xcb_xf86dri_get_drawable_info_unchecked (c : *connection,
                                                    screen :  u32,
                                                    drawable :  u32) -> get_drawable_info_cookie;
 
-unsafe fn xcb_xf86dri_get_drawable_info_clip_rects (R : *get_drawable_info_reply) -> *drm_clip_rect;
+pub unsafe fn xcb_xf86dri_get_drawable_info_clip_rects (R : *get_drawable_info_reply) -> *drm_clip_rect;
 
 
-unsafe fn xcb_xf86dri_get_drawable_info_clip_rects_length (R : *get_drawable_info_reply) -> c_int;
+pub unsafe fn xcb_xf86dri_get_drawable_info_clip_rects_length (R : *get_drawable_info_reply) -> c_int;
 
-unsafe fn xcb_xf86dri_get_drawable_info_clip_rects_iterator (R : *get_drawable_info_reply) -> drm_clip_rect_iterator;
+pub unsafe fn xcb_xf86dri_get_drawable_info_clip_rects_iterator (R : *get_drawable_info_reply) -> drm_clip_rect_iterator;
 
-unsafe fn xcb_xf86dri_get_drawable_info_back_clip_rects (R : *get_drawable_info_reply) -> *drm_clip_rect;
+pub unsafe fn xcb_xf86dri_get_drawable_info_back_clip_rects (R : *get_drawable_info_reply) -> *drm_clip_rect;
 
 
-unsafe fn xcb_xf86dri_get_drawable_info_back_clip_rects_length (R : *get_drawable_info_reply) -> c_int;
+pub unsafe fn xcb_xf86dri_get_drawable_info_back_clip_rects_length (R : *get_drawable_info_reply) -> c_int;
 
-unsafe fn xcb_xf86dri_get_drawable_info_back_clip_rects_iterator (R : *get_drawable_info_reply) -> drm_clip_rect_iterator;
+pub unsafe fn xcb_xf86dri_get_drawable_info_back_clip_rects_iterator (R : *get_drawable_info_reply) -> drm_clip_rect_iterator;
 
 /**
  * Return the reply
@@ -728,11 +730,11 @@ unsafe fn xcb_xf86dri_get_drawable_info_back_clip_rects_iterator (R : *get_drawa
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xf86dri_get_drawable_info_reply (c : *connection,
+pub unsafe fn xcb_xf86dri_get_drawable_info_reply (c : *connection,
                                                cookie : get_drawable_info_cookie,
                                                e : **generic_error) -> *get_drawable_info_reply;
 
-unsafe fn xcb_xf86dri_get_device_info_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xf86dri_get_device_info_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -742,7 +744,7 @@ unsafe fn xcb_xf86dri_get_device_info_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86dri_get_device_info (c : *connection,
+pub unsafe fn xcb_xf86dri_get_device_info (c : *connection,
                                        screen :  u32) -> get_device_info_cookie;
 
 /**
@@ -756,16 +758,16 @@ unsafe fn xcb_xf86dri_get_device_info (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xf86dri_get_device_info_unchecked (c : *connection,
+pub unsafe fn xcb_xf86dri_get_device_info_unchecked (c : *connection,
                                                  screen :  u32) -> get_device_info_cookie;
 
-unsafe fn xcb_xf86dri_get_device_info_device_private (R : *get_device_info_reply) -> *u32;
+pub unsafe fn xcb_xf86dri_get_device_info_device_private (R : *get_device_info_reply) -> *u32;
 
 
-unsafe fn xcb_xf86dri_get_device_info_device_private_length (R : *get_device_info_reply) -> c_int;
+pub unsafe fn xcb_xf86dri_get_device_info_device_private_length (R : *get_device_info_reply) -> c_int;
 
 
-unsafe fn xcb_xf86dri_get_device_info_device_private_end (R : *get_device_info_reply) -> generic_iterator;
+pub unsafe fn xcb_xf86dri_get_device_info_device_private_end (R : *get_device_info_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -781,7 +783,7 @@ unsafe fn xcb_xf86dri_get_device_info_device_private_end (R : *get_device_info_r
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xf86dri_get_device_info_reply (c : *connection,
+pub unsafe fn xcb_xf86dri_get_device_info_reply (c : *connection,
                                              cookie : get_device_info_cookie,
                                              e : **generic_error) -> *get_device_info_reply;
 
@@ -793,7 +795,7 @@ unsafe fn xcb_xf86dri_get_device_info_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86dri_auth_connection (c : *connection,
+pub unsafe fn xcb_xf86dri_auth_connection (c : *connection,
                                        screen :  u32,
                                        magic :  u32) -> auth_connection_cookie;
 
@@ -808,7 +810,7 @@ unsafe fn xcb_xf86dri_auth_connection (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xf86dri_auth_connection_unchecked (c : *connection,
+pub unsafe fn xcb_xf86dri_auth_connection_unchecked (c : *connection,
                                                  screen :  u32,
                                                  magic :  u32) -> auth_connection_cookie;
 
@@ -826,7 +828,7 @@ unsafe fn xcb_xf86dri_auth_connection_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xf86dri_auth_connection_reply (c : *connection,
+pub unsafe fn xcb_xf86dri_auth_connection_reply (c : *connection,
                                              cookie : auth_connection_cookie,
                                              e : **generic_error) -> *auth_connection_reply;
 }

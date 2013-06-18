@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
-use core;
-use core::libc::*;
+use std;
+use std::libc::*;
+use std::{cast,num,ptr,str,libc};
+use std::to_bytes::ToBytes;
 use ll::base::*;
 use ll;
 use ll::xproto;
@@ -181,7 +183,7 @@ pub extern "C" {
  *
  *
  */
-unsafe fn xcb_xinerama_screen_info_next (i:*screen_info_iterator) -> c_void;
+pub unsafe fn xcb_xinerama_screen_info_next (i:*screen_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -192,7 +194,7 @@ unsafe fn xcb_xinerama_screen_info_next (i:*screen_info_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xinerama_screen_info_end (i:screen_info_iterator) -> generic_iterator;
+pub unsafe fn xcb_xinerama_screen_info_end (i:screen_info_iterator) -> generic_iterator;
 
 /**
  *
@@ -202,7 +204,7 @@ unsafe fn xcb_xinerama_screen_info_end (i:screen_info_iterator) -> generic_itera
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xinerama_query_version (c : *connection,
+pub unsafe fn xcb_xinerama_query_version (c : *connection,
                                       major :  u8,
                                       minor :  u8) -> query_version_cookie;
 
@@ -217,7 +219,7 @@ unsafe fn xcb_xinerama_query_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xinerama_query_version_unchecked (c : *connection,
+pub unsafe fn xcb_xinerama_query_version_unchecked (c : *connection,
                                                 major :  u8,
                                                 minor :  u8) -> query_version_cookie;
 
@@ -235,7 +237,7 @@ unsafe fn xcb_xinerama_query_version_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xinerama_query_version_reply (c : *connection,
+pub unsafe fn xcb_xinerama_query_version_reply (c : *connection,
                                             cookie : query_version_cookie,
                                             e : **generic_error) -> *query_version_reply;
 
@@ -247,7 +249,7 @@ unsafe fn xcb_xinerama_query_version_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xinerama_get_state (c : *connection,
+pub unsafe fn xcb_xinerama_get_state (c : *connection,
                                   window :  ll::xproto::window) -> get_state_cookie;
 
 /**
@@ -261,7 +263,7 @@ unsafe fn xcb_xinerama_get_state (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xinerama_get_state_unchecked (c : *connection,
+pub unsafe fn xcb_xinerama_get_state_unchecked (c : *connection,
                                             window :  ll::xproto::window) -> get_state_cookie;
 
 /**
@@ -278,7 +280,7 @@ unsafe fn xcb_xinerama_get_state_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xinerama_get_state_reply (c : *connection,
+pub unsafe fn xcb_xinerama_get_state_reply (c : *connection,
                                         cookie : get_state_cookie,
                                         e : **generic_error) -> *get_state_reply;
 
@@ -290,7 +292,7 @@ unsafe fn xcb_xinerama_get_state_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xinerama_get_screen_count (c : *connection,
+pub unsafe fn xcb_xinerama_get_screen_count (c : *connection,
                                          window :  ll::xproto::window) -> get_screen_count_cookie;
 
 /**
@@ -304,7 +306,7 @@ unsafe fn xcb_xinerama_get_screen_count (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xinerama_get_screen_count_unchecked (c : *connection,
+pub unsafe fn xcb_xinerama_get_screen_count_unchecked (c : *connection,
                                                    window :  ll::xproto::window) -> get_screen_count_cookie;
 
 /**
@@ -321,7 +323,7 @@ unsafe fn xcb_xinerama_get_screen_count_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xinerama_get_screen_count_reply (c : *connection,
+pub unsafe fn xcb_xinerama_get_screen_count_reply (c : *connection,
                                                cookie : get_screen_count_cookie,
                                                e : **generic_error) -> *get_screen_count_reply;
 
@@ -333,7 +335,7 @@ unsafe fn xcb_xinerama_get_screen_count_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xinerama_get_screen_size (c : *connection,
+pub unsafe fn xcb_xinerama_get_screen_size (c : *connection,
                                         window :  ll::xproto::window,
                                         screen :  u32) -> get_screen_size_cookie;
 
@@ -348,7 +350,7 @@ unsafe fn xcb_xinerama_get_screen_size (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xinerama_get_screen_size_unchecked (c : *connection,
+pub unsafe fn xcb_xinerama_get_screen_size_unchecked (c : *connection,
                                                   window :  ll::xproto::window,
                                                   screen :  u32) -> get_screen_size_cookie;
 
@@ -366,7 +368,7 @@ unsafe fn xcb_xinerama_get_screen_size_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xinerama_get_screen_size_reply (c : *connection,
+pub unsafe fn xcb_xinerama_get_screen_size_reply (c : *connection,
                                               cookie : get_screen_size_cookie,
                                               e : **generic_error) -> *get_screen_size_reply;
 
@@ -378,7 +380,7 @@ unsafe fn xcb_xinerama_get_screen_size_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xinerama_is_active (c : *connection) -> is_active_cookie;
+pub unsafe fn xcb_xinerama_is_active (c : *connection) -> is_active_cookie;
 
 /**
  *
@@ -391,7 +393,7 @@ unsafe fn xcb_xinerama_is_active (c : *connection) -> is_active_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xinerama_is_active_unchecked (c : *connection) -> is_active_cookie;
+pub unsafe fn xcb_xinerama_is_active_unchecked (c : *connection) -> is_active_cookie;
 
 /**
  * Return the reply
@@ -407,11 +409,11 @@ unsafe fn xcb_xinerama_is_active_unchecked (c : *connection) -> is_active_cookie
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xinerama_is_active_reply (c : *connection,
+pub unsafe fn xcb_xinerama_is_active_reply (c : *connection,
                                         cookie : is_active_cookie,
                                         e : **generic_error) -> *is_active_reply;
 
-unsafe fn xcb_xinerama_query_screens_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xinerama_query_screens_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -421,7 +423,7 @@ unsafe fn xcb_xinerama_query_screens_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xinerama_query_screens (c : *connection) -> query_screens_cookie;
+pub unsafe fn xcb_xinerama_query_screens (c : *connection) -> query_screens_cookie;
 
 /**
  *
@@ -434,14 +436,14 @@ unsafe fn xcb_xinerama_query_screens (c : *connection) -> query_screens_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xinerama_query_screens_unchecked (c : *connection) -> query_screens_cookie;
+pub unsafe fn xcb_xinerama_query_screens_unchecked (c : *connection) -> query_screens_cookie;
 
-unsafe fn xcb_xinerama_query_screens_screen_info (R : *query_screens_reply) -> *screen_info;
+pub unsafe fn xcb_xinerama_query_screens_screen_info (R : *query_screens_reply) -> *screen_info;
 
 
-unsafe fn xcb_xinerama_query_screens_screen_info_length (R : *query_screens_reply) -> c_int;
+pub unsafe fn xcb_xinerama_query_screens_screen_info_length (R : *query_screens_reply) -> c_int;
 
-unsafe fn xcb_xinerama_query_screens_screen_info_iterator (R : *query_screens_reply) -> screen_info_iterator;
+pub unsafe fn xcb_xinerama_query_screens_screen_info_iterator (R : *query_screens_reply) -> screen_info_iterator;
 
 /**
  * Return the reply
@@ -457,7 +459,7 @@ unsafe fn xcb_xinerama_query_screens_screen_info_iterator (R : *query_screens_re
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xinerama_query_screens_reply (c : *connection,
+pub unsafe fn xcb_xinerama_query_screens_reply (c : *connection,
                                             cookie : query_screens_cookie,
                                             e : **generic_error) -> *query_screens_reply;
 }

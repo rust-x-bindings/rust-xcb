@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
-use core;
-use core::libc::*;
+use std;
+use std::libc::*;
+use std::{cast,num,ptr,str,libc};
+use std::to_bytes::ToBytes;
 use ll::base::*;
 use ll;
 use ll::xproto;
@@ -509,7 +511,7 @@ pub extern "C" {
  *
  *
  */
-unsafe fn xcb_x_print_string8_next (i:*string8_iterator) -> c_void;
+pub unsafe fn xcb_x_print_string8_next (i:*string8_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -520,33 +522,33 @@ unsafe fn xcb_x_print_string8_next (i:*string8_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_x_print_string8_end (i:string8_iterator) -> generic_iterator;
+pub unsafe fn xcb_x_print_string8_end (i:string8_iterator) -> generic_iterator;
 
-unsafe fn xcb_x_print_printer_serialize (_buffer :  **c_void,
+pub unsafe fn xcb_x_print_printer_serialize (_buffer :  **c_void,
                                _aux :     *printer,
                                name :     *string8,
                                description :  *string8) -> c_int;
 
-unsafe fn xcb_x_print_printer_unserialize (_buffer :   *c_void,
+pub unsafe fn xcb_x_print_printer_unserialize (_buffer :   *c_void,
                                  _aux :     **printer) -> c_int;
 
-unsafe fn xcb_x_print_printer_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_x_print_printer_sizeof (_buffer :  *c_void) -> c_int;
 
-unsafe fn xcb_x_print_printer_name (R : *printer) -> *string8;
-
-
-unsafe fn xcb_x_print_printer_name_length (R : *printer) -> c_int;
+pub unsafe fn xcb_x_print_printer_name (R : *printer) -> *string8;
 
 
-unsafe fn xcb_x_print_printer_name_end (R : *printer) -> generic_iterator;
-
-unsafe fn xcb_x_print_printer_description (R : *printer) -> *string8;
+pub unsafe fn xcb_x_print_printer_name_length (R : *printer) -> c_int;
 
 
-unsafe fn xcb_x_print_printer_description_length (R : *printer) -> c_int;
+pub unsafe fn xcb_x_print_printer_name_end (R : *printer) -> generic_iterator;
+
+pub unsafe fn xcb_x_print_printer_description (R : *printer) -> *string8;
 
 
-unsafe fn xcb_x_print_printer_description_end (R : *printer) -> generic_iterator;
+pub unsafe fn xcb_x_print_printer_description_length (R : *printer) -> c_int;
+
+
+pub unsafe fn xcb_x_print_printer_description_end (R : *printer) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -558,7 +560,7 @@ unsafe fn xcb_x_print_printer_description_end (R : *printer) -> generic_iterator
  *
  *
  */
-unsafe fn xcb_x_print_printer_next (i:*printer_iterator) -> c_void;
+pub unsafe fn xcb_x_print_printer_next (i:*printer_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -569,7 +571,7 @@ unsafe fn xcb_x_print_printer_next (i:*printer_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_x_print_printer_end (i:printer_iterator) -> generic_iterator;
+pub unsafe fn xcb_x_print_printer_end (i:printer_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -581,7 +583,7 @@ unsafe fn xcb_x_print_printer_end (i:printer_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_x_print_pcontext_next (i:*pcontext_iterator) -> c_void;
+pub unsafe fn xcb_x_print_pcontext_next (i:*pcontext_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -592,7 +594,7 @@ unsafe fn xcb_x_print_pcontext_next (i:*pcontext_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_x_print_pcontext_end (i:pcontext_iterator) -> generic_iterator;
+pub unsafe fn xcb_x_print_pcontext_end (i:pcontext_iterator) -> generic_iterator;
 
 /**
  *
@@ -602,7 +604,7 @@ unsafe fn xcb_x_print_pcontext_end (i:pcontext_iterator) -> generic_iterator;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_x_print_print_query_version (c : *connection) -> print_query_version_cookie;
+pub unsafe fn xcb_x_print_print_query_version (c : *connection) -> print_query_version_cookie;
 
 /**
  *
@@ -615,7 +617,7 @@ unsafe fn xcb_x_print_print_query_version (c : *connection) -> print_query_versi
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_x_print_print_query_version_unchecked (c : *connection) -> print_query_version_cookie;
+pub unsafe fn xcb_x_print_print_query_version_unchecked (c : *connection) -> print_query_version_cookie;
 
 /**
  * Return the reply
@@ -631,11 +633,11 @@ unsafe fn xcb_x_print_print_query_version_unchecked (c : *connection) -> print_q
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_x_print_print_query_version_reply (c : *connection,
+pub unsafe fn xcb_x_print_print_query_version_reply (c : *connection,
                                                  cookie : print_query_version_cookie,
                                                  e : **generic_error) -> *print_query_version_reply;
 
-unsafe fn xcb_x_print_print_get_printer_list_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_x_print_print_get_printer_list_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -645,7 +647,7 @@ unsafe fn xcb_x_print_print_get_printer_list_sizeof (_buffer :  *c_void) -> c_in
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_x_print_print_get_printer_list (c : *connection,
+pub unsafe fn xcb_x_print_print_get_printer_list (c : *connection,
                                               printerNameLen :  u32,
                                               localeLen :  u32,
                                               printer_name : *string8,
@@ -662,16 +664,16 @@ unsafe fn xcb_x_print_print_get_printer_list (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_x_print_print_get_printer_list_unchecked (c : *connection,
+pub unsafe fn xcb_x_print_print_get_printer_list_unchecked (c : *connection,
                                                         printerNameLen :  u32,
                                                         localeLen :  u32,
                                                         printer_name : *string8,
                                                         locale : *string8) -> print_get_printer_list_cookie;
 
 
-unsafe fn xcb_x_print_print_get_printer_list_printers_length (R : *print_get_printer_list_reply) -> c_int;
+pub unsafe fn xcb_x_print_print_get_printer_list_printers_length (R : *print_get_printer_list_reply) -> c_int;
 
-unsafe fn xcb_x_print_print_get_printer_list_printers_iterator (R : *print_get_printer_list_reply) -> printer_iterator;
+pub unsafe fn xcb_x_print_print_get_printer_list_printers_iterator (R : *print_get_printer_list_reply) -> printer_iterator;
 
 /**
  * Return the reply
@@ -687,7 +689,7 @@ unsafe fn xcb_x_print_print_get_printer_list_printers_iterator (R : *print_get_p
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_x_print_print_get_printer_list_reply (c : *connection,
+pub unsafe fn xcb_x_print_print_get_printer_list_reply (c : *connection,
                                                     cookie : print_get_printer_list_cookie,
                                                     e : **generic_error) -> *print_get_printer_list_reply;
 
@@ -702,7 +704,7 @@ unsafe fn xcb_x_print_print_get_printer_list_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_x_print_print_rehash_printer_list_checked (c : *connection) -> void_cookie;
+pub unsafe fn xcb_x_print_print_rehash_printer_list_checked (c : *connection) -> void_cookie;
 
 /**
  *
@@ -712,9 +714,9 @@ unsafe fn xcb_x_print_print_rehash_printer_list_checked (c : *connection) -> voi
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_x_print_print_rehash_printer_list (c : *connection) -> void_cookie;
+pub unsafe fn xcb_x_print_print_rehash_printer_list (c : *connection) -> void_cookie;
 
-unsafe fn xcb_x_print_create_context_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_x_print_create_context_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -727,7 +729,7 @@ unsafe fn xcb_x_print_create_context_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_x_print_create_context_checked (c : *connection,
+pub unsafe fn xcb_x_print_create_context_checked (c : *connection,
                                               context_id :  u32,
                                               printerNameLen :  u32,
                                               localeLen :  u32,
@@ -742,7 +744,7 @@ unsafe fn xcb_x_print_create_context_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_x_print_create_context (c : *connection,
+pub unsafe fn xcb_x_print_create_context (c : *connection,
                                       context_id :  u32,
                                       printerNameLen :  u32,
                                       localeLen :  u32,
@@ -760,7 +762,7 @@ unsafe fn xcb_x_print_create_context (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_x_print_print_set_context_checked (c : *connection,
+pub unsafe fn xcb_x_print_print_set_context_checked (c : *connection,
                                                  context :  u32) -> void_cookie;
 
 /**
@@ -771,7 +773,7 @@ unsafe fn xcb_x_print_print_set_context_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_x_print_print_set_context (c : *connection,
+pub unsafe fn xcb_x_print_print_set_context (c : *connection,
                                          context :  u32) -> void_cookie;
 
 /**
@@ -782,7 +784,7 @@ unsafe fn xcb_x_print_print_set_context (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_x_print_print_get_context (c : *connection) -> print_get_context_cookie;
+pub unsafe fn xcb_x_print_print_get_context (c : *connection) -> print_get_context_cookie;
 
 /**
  *
@@ -795,7 +797,7 @@ unsafe fn xcb_x_print_print_get_context (c : *connection) -> print_get_context_c
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_x_print_print_get_context_unchecked (c : *connection) -> print_get_context_cookie;
+pub unsafe fn xcb_x_print_print_get_context_unchecked (c : *connection) -> print_get_context_cookie;
 
 /**
  * Return the reply
@@ -811,7 +813,7 @@ unsafe fn xcb_x_print_print_get_context_unchecked (c : *connection) -> print_get
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_x_print_print_get_context_reply (c : *connection,
+pub unsafe fn xcb_x_print_print_get_context_reply (c : *connection,
                                                cookie : print_get_context_cookie,
                                                e : **generic_error) -> *print_get_context_reply;
 
@@ -826,7 +828,7 @@ unsafe fn xcb_x_print_print_get_context_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_x_print_print_destroy_context_checked (c : *connection,
+pub unsafe fn xcb_x_print_print_destroy_context_checked (c : *connection,
                                                      context :  u32) -> void_cookie;
 
 /**
@@ -837,7 +839,7 @@ unsafe fn xcb_x_print_print_destroy_context_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_x_print_print_destroy_context (c : *connection,
+pub unsafe fn xcb_x_print_print_destroy_context (c : *connection,
                                              context :  u32) -> void_cookie;
 
 /**
@@ -848,7 +850,7 @@ unsafe fn xcb_x_print_print_destroy_context (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_x_print_print_get_screen_of_context (c : *connection) -> print_get_screen_of_context_cookie;
+pub unsafe fn xcb_x_print_print_get_screen_of_context (c : *connection) -> print_get_screen_of_context_cookie;
 
 /**
  *
@@ -861,7 +863,7 @@ unsafe fn xcb_x_print_print_get_screen_of_context (c : *connection) -> print_get
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_x_print_print_get_screen_of_context_unchecked (c : *connection) -> print_get_screen_of_context_cookie;
+pub unsafe fn xcb_x_print_print_get_screen_of_context_unchecked (c : *connection) -> print_get_screen_of_context_cookie;
 
 /**
  * Return the reply
@@ -877,7 +879,7 @@ unsafe fn xcb_x_print_print_get_screen_of_context_unchecked (c : *connection) ->
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_x_print_print_get_screen_of_context_reply (c : *connection,
+pub unsafe fn xcb_x_print_print_get_screen_of_context_reply (c : *connection,
                                                          cookie : print_get_screen_of_context_cookie,
                                                          e : **generic_error) -> *print_get_screen_of_context_reply;
 
@@ -892,7 +894,7 @@ unsafe fn xcb_x_print_print_get_screen_of_context_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_x_print_print_start_job_checked (c : *connection,
+pub unsafe fn xcb_x_print_print_start_job_checked (c : *connection,
                                                output_mode :  u8) -> void_cookie;
 
 /**
@@ -903,7 +905,7 @@ unsafe fn xcb_x_print_print_start_job_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_x_print_print_start_job (c : *connection,
+pub unsafe fn xcb_x_print_print_start_job (c : *connection,
                                        output_mode :  u8) -> void_cookie;
 
 /**
@@ -917,7 +919,7 @@ unsafe fn xcb_x_print_print_start_job (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_x_print_print_end_job_checked (c : *connection,
+pub unsafe fn xcb_x_print_print_end_job_checked (c : *connection,
                                              cancel :  u8) -> void_cookie;
 
 /**
@@ -928,7 +930,7 @@ unsafe fn xcb_x_print_print_end_job_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_x_print_print_end_job (c : *connection,
+pub unsafe fn xcb_x_print_print_end_job (c : *connection,
                                      cancel :  u8) -> void_cookie;
 
 /**
@@ -942,7 +944,7 @@ unsafe fn xcb_x_print_print_end_job (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_x_print_print_start_doc_checked (c : *connection,
+pub unsafe fn xcb_x_print_print_start_doc_checked (c : *connection,
                                                driver_mode :  u8) -> void_cookie;
 
 /**
@@ -953,7 +955,7 @@ unsafe fn xcb_x_print_print_start_doc_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_x_print_print_start_doc (c : *connection,
+pub unsafe fn xcb_x_print_print_start_doc (c : *connection,
                                        driver_mode :  u8) -> void_cookie;
 
 /**
@@ -967,7 +969,7 @@ unsafe fn xcb_x_print_print_start_doc (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_x_print_print_end_doc_checked (c : *connection,
+pub unsafe fn xcb_x_print_print_end_doc_checked (c : *connection,
                                              cancel :  u8) -> void_cookie;
 
 /**
@@ -978,10 +980,10 @@ unsafe fn xcb_x_print_print_end_doc_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_x_print_print_end_doc (c : *connection,
+pub unsafe fn xcb_x_print_print_end_doc (c : *connection,
                                      cancel :  u8) -> void_cookie;
 
-unsafe fn xcb_x_print_print_put_document_data_sizeof (_buffer :  *c_void,
+pub unsafe fn xcb_x_print_print_put_document_data_sizeof (_buffer :  *c_void,
                                             doc_format_len :  u32,
                                             options_len :  u32) -> c_int;
 
@@ -996,7 +998,7 @@ unsafe fn xcb_x_print_print_put_document_data_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_x_print_print_put_document_data_checked (c : *connection,
+pub unsafe fn xcb_x_print_print_put_document_data_checked (c : *connection,
                                                        drawable :  ll::xproto::drawable,
                                                        len_data :  u32,
                                                        len_fmt :  u16,
@@ -1015,7 +1017,7 @@ unsafe fn xcb_x_print_print_put_document_data_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_x_print_print_put_document_data (c : *connection,
+pub unsafe fn xcb_x_print_print_put_document_data (c : *connection,
                                                drawable :  ll::xproto::drawable,
                                                len_data :  u32,
                                                len_fmt :  u16,
@@ -1026,7 +1028,7 @@ unsafe fn xcb_x_print_print_put_document_data (c : *connection,
                                                options_len :  u32,
                                                options : *string8) -> void_cookie;
 
-unsafe fn xcb_x_print_print_get_document_data_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_x_print_print_get_document_data_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -1036,7 +1038,7 @@ unsafe fn xcb_x_print_print_get_document_data_sizeof (_buffer :  *c_void) -> c_i
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_x_print_print_get_document_data (c : *connection,
+pub unsafe fn xcb_x_print_print_get_document_data (c : *connection,
                                                context :  pcontext,
                                                max_bytes :  u32) -> print_get_document_data_cookie;
 
@@ -1051,17 +1053,17 @@ unsafe fn xcb_x_print_print_get_document_data (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_x_print_print_get_document_data_unchecked (c : *connection,
+pub unsafe fn xcb_x_print_print_get_document_data_unchecked (c : *connection,
                                                          context :  pcontext,
                                                          max_bytes :  u32) -> print_get_document_data_cookie;
 
-unsafe fn xcb_x_print_print_get_document_data_data (R : *print_get_document_data_reply) -> *u8;
+pub unsafe fn xcb_x_print_print_get_document_data_data (R : *print_get_document_data_reply) -> *u8;
 
 
-unsafe fn xcb_x_print_print_get_document_data_data_length (R : *print_get_document_data_reply) -> c_int;
+pub unsafe fn xcb_x_print_print_get_document_data_data_length (R : *print_get_document_data_reply) -> c_int;
 
 
-unsafe fn xcb_x_print_print_get_document_data_data_end (R : *print_get_document_data_reply) -> generic_iterator;
+pub unsafe fn xcb_x_print_print_get_document_data_data_end (R : *print_get_document_data_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -1077,7 +1079,7 @@ unsafe fn xcb_x_print_print_get_document_data_data_end (R : *print_get_document_
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_x_print_print_get_document_data_reply (c : *connection,
+pub unsafe fn xcb_x_print_print_get_document_data_reply (c : *connection,
                                                      cookie : print_get_document_data_cookie,
                                                      e : **generic_error) -> *print_get_document_data_reply;
 
@@ -1092,7 +1094,7 @@ unsafe fn xcb_x_print_print_get_document_data_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_x_print_print_start_page_checked (c : *connection,
+pub unsafe fn xcb_x_print_print_start_page_checked (c : *connection,
                                                 window :  ll::xproto::window) -> void_cookie;
 
 /**
@@ -1103,7 +1105,7 @@ unsafe fn xcb_x_print_print_start_page_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_x_print_print_start_page (c : *connection,
+pub unsafe fn xcb_x_print_print_start_page (c : *connection,
                                         window :  ll::xproto::window) -> void_cookie;
 
 /**
@@ -1117,7 +1119,7 @@ unsafe fn xcb_x_print_print_start_page (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_x_print_print_end_page_checked (c : *connection,
+pub unsafe fn xcb_x_print_print_end_page_checked (c : *connection,
                                               cancel :  u8) -> void_cookie;
 
 /**
@@ -1128,10 +1130,10 @@ unsafe fn xcb_x_print_print_end_page_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_x_print_print_end_page (c : *connection,
+pub unsafe fn xcb_x_print_print_end_page (c : *connection,
                                       cancel :  u8) -> void_cookie;
 
-unsafe fn xcb_x_print_print_select_input_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_x_print_print_select_input_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -1144,7 +1146,7 @@ unsafe fn xcb_x_print_print_select_input_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_x_print_print_select_input_checked (c : *connection,
+pub unsafe fn xcb_x_print_print_select_input_checked (c : *connection,
                                                   context :  pcontext,
                                                   event_mask :  u32,
                                                   event_list : *u32) -> void_cookie;
@@ -1157,20 +1159,20 @@ unsafe fn xcb_x_print_print_select_input_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_x_print_print_select_input (c : *connection,
+pub unsafe fn xcb_x_print_print_select_input (c : *connection,
                                           context :  pcontext,
                                           event_mask :  u32,
                                           event_list : *u32) -> void_cookie;
 
-unsafe fn xcb_x_print_print_input_selected_serialize (_buffer :                    **c_void,
+pub unsafe fn xcb_x_print_print_input_selected_serialize (_buffer :                    **c_void,
                                             _aux :                        *print_input_selected_reply,
                                             event_list :                  *u32,
                                             all_events_list :             *u32) -> c_int;
 
-unsafe fn xcb_x_print_print_input_selected_unserialize (_buffer :                      *c_void,
+pub unsafe fn xcb_x_print_print_input_selected_unserialize (_buffer :                      *c_void,
                                               _aux :                        **print_input_selected_reply) -> c_int;
 
-unsafe fn xcb_x_print_print_input_selected_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_x_print_print_input_selected_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -1180,7 +1182,7 @@ unsafe fn xcb_x_print_print_input_selected_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_x_print_print_input_selected (c : *connection,
+pub unsafe fn xcb_x_print_print_input_selected (c : *connection,
                                             context :  pcontext) -> print_input_selected_cookie;
 
 /**
@@ -1194,24 +1196,24 @@ unsafe fn xcb_x_print_print_input_selected (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_x_print_print_input_selected_unchecked (c : *connection,
+pub unsafe fn xcb_x_print_print_input_selected_unchecked (c : *connection,
                                                       context :  pcontext) -> print_input_selected_cookie;
 
-unsafe fn xcb_x_print_print_input_selected_event_list (R : *print_input_selected_reply) -> *u32;
+pub unsafe fn xcb_x_print_print_input_selected_event_list (R : *print_input_selected_reply) -> *u32;
 
 
-unsafe fn xcb_x_print_print_input_selected_event_list_length (R : *print_input_selected_reply) -> c_int;
+pub unsafe fn xcb_x_print_print_input_selected_event_list_length (R : *print_input_selected_reply) -> c_int;
 
 
-unsafe fn xcb_x_print_print_input_selected_event_list_end (R : *print_input_selected_reply) -> generic_iterator;
+pub unsafe fn xcb_x_print_print_input_selected_event_list_end (R : *print_input_selected_reply) -> generic_iterator;
 
-unsafe fn xcb_x_print_print_input_selected_all_events_list (R : *print_input_selected_reply) -> *u32;
-
-
-unsafe fn xcb_x_print_print_input_selected_all_events_list_length (R : *print_input_selected_reply) -> c_int;
+pub unsafe fn xcb_x_print_print_input_selected_all_events_list (R : *print_input_selected_reply) -> *u32;
 
 
-unsafe fn xcb_x_print_print_input_selected_all_events_list_end (R : *print_input_selected_reply) -> generic_iterator;
+pub unsafe fn xcb_x_print_print_input_selected_all_events_list_length (R : *print_input_selected_reply) -> c_int;
+
+
+pub unsafe fn xcb_x_print_print_input_selected_all_events_list_end (R : *print_input_selected_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -1227,7 +1229,7 @@ unsafe fn xcb_x_print_print_input_selected_all_events_list_end (R : *print_input
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_x_print_print_input_selected_reply (c : *connection,
+pub unsafe fn xcb_x_print_print_input_selected_reply (c : *connection,
                                                   cookie : print_input_selected_cookie,
                                                   e : **generic_error) -> *print_input_selected_reply;
 
@@ -1239,7 +1241,7 @@ unsafe fn xcb_x_print_print_input_selected_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_x_print_print_get_attributes (c : *connection,
+pub unsafe fn xcb_x_print_print_get_attributes (c : *connection,
                                             context :  pcontext,
                                             pool :  u8) -> print_get_attributes_cookie;
 
@@ -1254,7 +1256,7 @@ unsafe fn xcb_x_print_print_get_attributes (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_x_print_print_get_attributes_unchecked (c : *connection,
+pub unsafe fn xcb_x_print_print_get_attributes_unchecked (c : *connection,
                                                       context :  pcontext,
                                                       pool :  u8) -> print_get_attributes_cookie;
 
@@ -1272,11 +1274,11 @@ unsafe fn xcb_x_print_print_get_attributes_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_x_print_print_get_attributes_reply (c : *connection,
+pub unsafe fn xcb_x_print_print_get_attributes_reply (c : *connection,
                                                   cookie : print_get_attributes_cookie,
                                                   e : **generic_error) -> *print_get_attributes_reply;
 
-unsafe fn xcb_x_print_print_get_one_attributes_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_x_print_print_get_one_attributes_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -1286,7 +1288,7 @@ unsafe fn xcb_x_print_print_get_one_attributes_sizeof (_buffer :  *c_void) -> c_
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_x_print_print_get_one_attributes (c : *connection,
+pub unsafe fn xcb_x_print_print_get_one_attributes (c : *connection,
                                                 context :  pcontext,
                                                 nameLen :  u32,
                                                 pool :  u8,
@@ -1303,19 +1305,19 @@ unsafe fn xcb_x_print_print_get_one_attributes (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_x_print_print_get_one_attributes_unchecked (c : *connection,
+pub unsafe fn xcb_x_print_print_get_one_attributes_unchecked (c : *connection,
                                                           context :  pcontext,
                                                           nameLen :  u32,
                                                           pool :  u8,
                                                           name : *string8) -> print_get_one_attributes_cookie;
 
-unsafe fn xcb_x_print_print_get_one_attributes_value (R : *print_get_one_attributes_reply) -> *string8;
+pub unsafe fn xcb_x_print_print_get_one_attributes_value (R : *print_get_one_attributes_reply) -> *string8;
 
 
-unsafe fn xcb_x_print_print_get_one_attributes_value_length (R : *print_get_one_attributes_reply) -> c_int;
+pub unsafe fn xcb_x_print_print_get_one_attributes_value_length (R : *print_get_one_attributes_reply) -> c_int;
 
 
-unsafe fn xcb_x_print_print_get_one_attributes_value_end (R : *print_get_one_attributes_reply) -> generic_iterator;
+pub unsafe fn xcb_x_print_print_get_one_attributes_value_end (R : *print_get_one_attributes_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -1331,11 +1333,11 @@ unsafe fn xcb_x_print_print_get_one_attributes_value_end (R : *print_get_one_att
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_x_print_print_get_one_attributes_reply (c : *connection,
+pub unsafe fn xcb_x_print_print_get_one_attributes_reply (c : *connection,
                                                       cookie : print_get_one_attributes_cookie,
                                                       e : **generic_error) -> *print_get_one_attributes_reply;
 
-unsafe fn xcb_x_print_print_set_attributes_sizeof (_buffer :  *c_void,
+pub unsafe fn xcb_x_print_print_set_attributes_sizeof (_buffer :  *c_void,
                                          attributes_len :  u32) -> c_int;
 
 /**
@@ -1349,7 +1351,7 @@ unsafe fn xcb_x_print_print_set_attributes_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_x_print_print_set_attributes_checked (c : *connection,
+pub unsafe fn xcb_x_print_print_set_attributes_checked (c : *connection,
                                                     context :  pcontext,
                                                     stringLen :  u32,
                                                     pool :  u8,
@@ -1365,7 +1367,7 @@ unsafe fn xcb_x_print_print_set_attributes_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_x_print_print_set_attributes (c : *connection,
+pub unsafe fn xcb_x_print_print_set_attributes (c : *connection,
                                             context :  pcontext,
                                             stringLen :  u32,
                                             pool :  u8,
@@ -1381,7 +1383,7 @@ unsafe fn xcb_x_print_print_set_attributes (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_x_print_print_get_page_dimensions (c : *connection,
+pub unsafe fn xcb_x_print_print_get_page_dimensions (c : *connection,
                                                  context :  pcontext) -> print_get_page_dimensions_cookie;
 
 /**
@@ -1395,7 +1397,7 @@ unsafe fn xcb_x_print_print_get_page_dimensions (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_x_print_print_get_page_dimensions_unchecked (c : *connection,
+pub unsafe fn xcb_x_print_print_get_page_dimensions_unchecked (c : *connection,
                                                            context :  pcontext) -> print_get_page_dimensions_cookie;
 
 /**
@@ -1412,11 +1414,11 @@ unsafe fn xcb_x_print_print_get_page_dimensions_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_x_print_print_get_page_dimensions_reply (c : *connection,
+pub unsafe fn xcb_x_print_print_get_page_dimensions_reply (c : *connection,
                                                        cookie : print_get_page_dimensions_cookie,
                                                        e : **generic_error) -> *print_get_page_dimensions_reply;
 
-unsafe fn xcb_x_print_print_query_screens_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_x_print_print_query_screens_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -1426,7 +1428,7 @@ unsafe fn xcb_x_print_print_query_screens_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_x_print_print_query_screens (c : *connection) -> print_query_screens_cookie;
+pub unsafe fn xcb_x_print_print_query_screens (c : *connection) -> print_query_screens_cookie;
 
 /**
  *
@@ -1439,15 +1441,15 @@ unsafe fn xcb_x_print_print_query_screens (c : *connection) -> print_query_scree
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_x_print_print_query_screens_unchecked (c : *connection) -> print_query_screens_cookie;
+pub unsafe fn xcb_x_print_print_query_screens_unchecked (c : *connection) -> print_query_screens_cookie;
 
-unsafe fn xcb_x_print_print_query_screens_roots (R : *print_query_screens_reply) -> *ll::xproto::window;
-
-
-unsafe fn xcb_x_print_print_query_screens_roots_length (R : *print_query_screens_reply) -> c_int;
+pub unsafe fn xcb_x_print_print_query_screens_roots (R : *print_query_screens_reply) -> *ll::xproto::window;
 
 
-unsafe fn xcb_x_print_print_query_screens_roots_end (R : *print_query_screens_reply) -> generic_iterator;
+pub unsafe fn xcb_x_print_print_query_screens_roots_length (R : *print_query_screens_reply) -> c_int;
+
+
+pub unsafe fn xcb_x_print_print_query_screens_roots_end (R : *print_query_screens_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -1463,7 +1465,7 @@ unsafe fn xcb_x_print_print_query_screens_roots_end (R : *print_query_screens_re
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_x_print_print_query_screens_reply (c : *connection,
+pub unsafe fn xcb_x_print_print_query_screens_reply (c : *connection,
                                                  cookie : print_query_screens_cookie,
                                                  e : **generic_error) -> *print_query_screens_reply;
 
@@ -1475,7 +1477,7 @@ unsafe fn xcb_x_print_print_query_screens_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_x_print_print_set_image_resolution (c : *connection,
+pub unsafe fn xcb_x_print_print_set_image_resolution (c : *connection,
                                                   context :  pcontext,
                                                   image_resolution :  u16) -> print_set_image_resolution_cookie;
 
@@ -1490,7 +1492,7 @@ unsafe fn xcb_x_print_print_set_image_resolution (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_x_print_print_set_image_resolution_unchecked (c : *connection,
+pub unsafe fn xcb_x_print_print_set_image_resolution_unchecked (c : *connection,
                                                             context :  pcontext,
                                                             image_resolution :  u16) -> print_set_image_resolution_cookie;
 
@@ -1508,7 +1510,7 @@ unsafe fn xcb_x_print_print_set_image_resolution_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_x_print_print_set_image_resolution_reply (c : *connection,
+pub unsafe fn xcb_x_print_print_set_image_resolution_reply (c : *connection,
                                                         cookie : print_set_image_resolution_cookie,
                                                         e : **generic_error) -> *print_set_image_resolution_reply;
 
@@ -1520,7 +1522,7 @@ unsafe fn xcb_x_print_print_set_image_resolution_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_x_print_print_get_image_resolution (c : *connection,
+pub unsafe fn xcb_x_print_print_get_image_resolution (c : *connection,
                                                   context :  pcontext) -> print_get_image_resolution_cookie;
 
 /**
@@ -1534,7 +1536,7 @@ unsafe fn xcb_x_print_print_get_image_resolution (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_x_print_print_get_image_resolution_unchecked (c : *connection,
+pub unsafe fn xcb_x_print_print_get_image_resolution_unchecked (c : *connection,
                                                             context :  pcontext) -> print_get_image_resolution_cookie;
 
 /**
@@ -1551,7 +1553,7 @@ unsafe fn xcb_x_print_print_get_image_resolution_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_x_print_print_get_image_resolution_reply (c : *connection,
+pub unsafe fn xcb_x_print_print_get_image_resolution_reply (c : *connection,
                                                         cookie : print_get_image_resolution_cookie,
                                                         e : **generic_error) -> *print_get_image_resolution_reply;
 }

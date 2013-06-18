@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 from xml.etree.cElementTree import *
 from os.path import basename
 from functools import reduce
@@ -192,12 +192,12 @@ def _t(list):
         list = list[1:]
         ext = _ext(list[0])
         if ext in _imports:
-            module = 'll::'+(_ext(list[0]) + '::')
+            module = 'ffi::'+(_ext(list[0]) + '::')
             parts =  [_n_item(i) for i in list[1:]]
         elif ext == _ext(_ns.ext_name):
             parts = [_n_item(i) for i in list[1:]]
         else:
-            module = 'll::xproto::'
+            module = 'ffi::xproto::'
             parts = [_n_item(i) for i in list]
 
     elif len(list) == 2:
@@ -268,24 +268,26 @@ def c_open(self):
     _r('#[allow(unused_unsafe)];')
     _h('#[allow(non_camel_case_types)];')
 
-    _hr('use core;')
-    _hr('use core::libc::*;')
-    _hr('use ll::base::*;')
+    _hr('use std;')
+    _hr('use std::libc::*;')
+    _hr('use std::{cast,num,ptr,str,libc};')
+    _hr('use std::to_bytes::ToBytes;')
+    _hr('use ffi::base::*;')
 
     _r('use base;')
     _r('use base::*;')
-    _hr('use ll;')
-    _r('use ll::%s::*;', _ns.header)
+    _hr('use ffi;')
+    _r('use ffi::%s::*;', _ns.header)
 
-    _r('use core::option::Option;')
-    _r('use core::iterator::Iterator;')
+    _r('use std::option::Option;')
+    _r('use std::iterator::Iterator;')
     _r('')
 
     global _imports
 
     if _ns.is_ext:
         for (n, h) in self.imports:
-            _h('use ll::%s;', h)
+            _h('use ffi::%s;', h)
             _r('use %s;', h)
             _imports.append(h)
 
@@ -304,7 +306,7 @@ def c_close(self):
     global links
 
     # Write header file
-    hfile = open('src/ll/%s.rs' % (_ns.header,), 'w')
+    hfile = open('src/ffi/%s.rs' % (_ns.header,), 'w')
     level = 0
     for list in _hlines:
         if level == 1:
@@ -799,7 +801,7 @@ def _c_serialize(context, self):
         spacing = ' '*(maxtypelen-len(field_name)-len(pointerspec))
         param_str.append("%s%s :%s  %s%s" % (indent, field_name, spacing, pointerspec, typespec))
     # insert function name
-    param_str[0] = "unsafe fn %s (%s" % (func_name, param_str[0].strip())
+    param_str[0] = "pub unsafe fn %s (%s" % (func_name, param_str[0].strip())
     param_str = list(map(lambda x: "%s," % x, param_str))
     for s in param_str[:-1]:
         _h(s)
@@ -853,7 +855,7 @@ def _c_iterator(self, name):
     _h(' *')
     _h(' *')
     _h(' */');
-    _h('unsafe fn %s (i:*%s) -> c_void;', self.c_next_name, self.c_iterator_type)
+    _h('pub unsafe fn %s (i:*%s) -> c_void;', self.c_next_name, self.c_iterator_type)
 
     _h('')
     _h('/**')
@@ -865,11 +867,11 @@ def _c_iterator(self, name):
     _h(' * The member rem is set to 0. The member data points to the')
     _h(' * last element.')
     _h(' */')
-    _h('unsafe fn %s (i:%s) -> generic_iterator;', self.c_end_name, self.c_iterator_type)
+    _h('pub unsafe fn %s (i:%s) -> generic_iterator;', self.c_end_name, self.c_iterator_type)
 
     _r('')
     _r('impl<\'self, %s> Iterator<&\'self %s> for %s {', self.r_type, self.r_type, self.r_iterator_type)
-    _r('    fn next(&mut self) -> Option<&\'self %s> {', self.r_type)
+    _r('    pub fn next(&mut self) -> Option<&\'self %s> {', self.r_type)
     _r('        if self.rem == 0 { return None; }')
     _r('        unsafe {')
     _r('            let iter : *%s = cast::transmute(self);', self.c_iterator_type)
@@ -913,7 +915,7 @@ def _c_accessors_field(self, field):
         _h(' * ')
         _h(' *')
         _h(' **/')
-        _h('unsafe fn %s (R : *%s) -> %s;', field.c_accessor_name, c_type, ftype)
+        _h('pub unsafe fn %s (R : *%s) -> %s;', field.c_accessor_name, c_type, ftype)
     else:
         _h('')
         _h('')
@@ -928,7 +930,7 @@ def _c_accessors_field(self, field):
         else:
             return_type = '*%s' % ftype
 
-        _h('unsafe fn %s (R : *%s) -> %s;', field.c_accessor_name, c_type, return_type)
+        _h('pub unsafe fn %s (R : *%s) -> %s;', field.c_accessor_name, c_type, return_type)
 
 
 def _c_accessors_list(self, field):
@@ -992,36 +994,36 @@ def _c_accessors_list(self, field):
     if list.member.fixed_size():
         idx = 1 if switch_obj is not None else 0
         _h('')
-        _h('unsafe fn %s (%s) -> *%s;', field.c_accessor_name, params[idx][0], field.c_field_type)
+        _h('pub unsafe fn %s (%s) -> *%s;', field.c_accessor_name, params[idx][0], field.c_field_type)
 
     _h('')
     _h('')
     if switch_obj is not None:
-        _hr('unsafe fn %s (R : *%s,', field.c_length_name, R_obj.c_type)
+        _hr('pub unsafe fn %s (R : *%s,', field.c_length_name, R_obj.c_type)
         spacing = ' '*(len(field.c_length_name)+7)
         _h('%sS : *%s) -> c_int;', spacing, S_obj.c_type)
     else:
-        _h('unsafe fn %s (R : *%s) -> c_int;', field.c_length_name, c_type)
+        _h('pub unsafe fn %s (R : *%s) -> c_int;', field.c_length_name, c_type)
 
     if field.type.member.is_simple:
         _h('')
         _h('')
         if switch_obj is not None:
-            _h('unsafe fn %s (R : %s,', field.c_end_name, R_obj.c_type)
+            _h('pub unsafe fn %s (R : %s,', field.c_end_name, R_obj.c_type)
             spacing = ' '*(len(field.c_end_name)+2)
             _h('%sS : *%s ) -> generic_iterator;', spacing, S_obj.c_type)
         else:
-            _h('unsafe fn %s (R : *%s) -> generic_iterator;', field.c_end_name, c_type)
+            _h('pub unsafe fn %s (R : *%s) -> generic_iterator;', field.c_end_name, c_type)
 
     else:
         _h('')
 
         if switch_obj is not None:
-            _h('unsafe fn %s (R : %s,', field.c_iterator_name, R_obj.c_type)
+            _h('pub unsafe fn %s (R : %s,', field.c_iterator_name, R_obj.c_type)
             spacing = ' '*(len(field.c_iterator_name)+2)
             _h('%sS : *%s /**< */) -> %s;', spacing, S_obj.c_type, field.c_iterator_type)
         else:
-            _h('unsafe fn %s (R : *%s) -> %s;', field.c_iterator_name, c_type, field.c_iterator_type)
+            _h('pub unsafe fn %s (R : *%s) -> %s;', field.c_iterator_name, c_type, field.c_iterator_type)
 
 def _c_accessors(self, name, base):
     '''
@@ -1052,7 +1054,7 @@ def _c_accessors(self, name, base):
                 pass
 
     _r_setlevel(1)
-    _r('\npub impl base::%s<%s> {', self.wrap_type, self.c_type)
+    _r('\nimpl base::%s<%s> {', self.wrap_type, self.c_type)
     for field in accessor_fields:
         _r_accessor(self,field)
     _r_setlevel(1)
@@ -1062,7 +1064,7 @@ def _c_accessors(self, name, base):
 def _r_accessor(self,field):
     _r_setlevel(1)
     if field.type.is_simple:
-        _r('  fn %s(&self) -> %s {', field.c_field_name, field.r_field_type)
+        _r('  pub fn %s(&self) -> %s {', field.c_field_name, field.r_field_type)
         _r('    unsafe { accessor!(%s -> %s, %s) }', field.c_field_name, field.r_field_type,
                                             self.wrap_field_name)
         _r('  }\n')
@@ -1075,21 +1077,21 @@ def _r_accessor(self,field):
             else:
                 rty = '['+fty+']'
 
-            _r('  fn %s(&self) -> ~%s {', field.c_field_name, rty)
+            _r('  pub fn %s(&self) -> ~%s {', field.c_field_name, rty)
             _r('    unsafe { accessor!(%s, %s, %s, %s) }', fty, field.c_length_name, field.c_accessor_name,
                                             self.wrap_field_name)
         else:
-            _r('  fn %s(&self) -> %s {', field.c_field_name, field.r_iterator_type)
+            _r('  pub fn %s(&self) -> %s {', field.c_field_name, field.r_iterator_type)
             _r('    unsafe { accessor!(%s, %s, %s) }', field.r_iterator_type, field.c_iterator_name,
                                             self.wrap_field_name)
         _r('  }\n')
     elif field.type.is_list:
-        _r('  fn %s(&self) -> ~[%s,..%d] {', field.c_field_name, field.r_field_type, field.type.nmemb)
+        _r('  pub fn %s(&self) -> ~[%s,..%d] {', field.c_field_name, field.r_field_type, field.type.nmemb)
         _r('    unsafe { ~(copy %s.%s) }',self.wrap_field_name,field.c_field_name)
         _r('  }\n')
 
     elif field.type.is_container:
-        _r('  fn %s(&self) -> %s {', field.c_field_name, field.r_field_type)
+        _r('  pub fn %s(&self) -> %s {', field.c_field_name, field.r_field_type)
         _r('    unsafe { cast::transmute(%s.%s) }', self.wrap_field_name, field.c_field_name)
         _r('  }')
         pass;
@@ -1346,7 +1348,7 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
     _h(' */')
     count = len(param_fields)
     comma = ',' if count else (') -> %s;' % (cookie_type,))
-    _h('unsafe fn %s (c : *connection%s', func_name, comma)
+    _h('pub unsafe fn %s (c : *connection%s', func_name, comma)
 
     func_spacing = ' ' * (len(func_name) + 12)
     for field in param_fields:
@@ -1423,7 +1425,7 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
             if fty.expr.bitfield:
                 mk_params.append("let (%s_mask, %s_vec) = pack_bitfield(%s);" %
                         (field.c_field_name, field.c_field_name, field.c_field_name))
-                mk_params.append("let %s_ptr = core::vec::raw::to_ptr(%s_vec);" %
+                mk_params.append("let %s_ptr = std::vec::raw::to_ptr(%s_vec);" %
                         (field.c_field_name, field.c_field_name))
 
                 call_params.append((field.idx-1,'%s_mask as %s' %(field.c_field_name,
@@ -1434,7 +1436,7 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
             else:
                 if fty.member.r_type == 'c_char':
                     field_type = '&str'
-                    mk_params.append("let %s = core::str::to_bytes(%s);" % (field.c_field_name,
+                    mk_params.append("let %s = (%s).to_bytes(false);" % (field.c_field_name,
                         field.c_field_name))
                 elif fty.member.r_type == 'c_void':
                     field_type = '&[u8]'
@@ -1447,7 +1449,7 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
                     mk_params.append("let %s_len = %s.len();" % (field.c_field_name, field.c_field_name))
                     call_params.append((field.lf.idx, '%s_len as %s' % (field.c_field_name,lfty)))
 
-                mk_params.append("let %s_ptr = core::vec::raw::to_ptr(%s);" % (field.c_field_name,
+                mk_params.append("let %s_ptr = std::vec::raw::to_ptr(%s);" % (field.c_field_name,
                     field.c_field_name))
                 call_params.append((field.idx, '%s_ptr as *%s' % (field.c_field_name,
                     c_field_const_type)))
@@ -1500,7 +1502,7 @@ def _c_reply(self, name):
     _h(' *')
     _h(' * The returned value must be freed by the caller using free().')
     _h(' */')
-    _h('unsafe fn %s (c : *connection,', self.c_reply_name)
+    _h('pub unsafe fn %s (c : *connection,', self.c_reply_name)
     _h('          %s  cookie : %s,', spacing, self.c_cookie_type)
     _h('          %s  e : **generic_error) -> *%s;', spacing, self.c_reply_type)
 
@@ -1612,7 +1614,7 @@ def c_event(self, name):
         new_params = []
 
         _r_setlevel(1)
-        _r('\npub impl base::%s<%s> {', self.wrap_type, self.c_type)
+        _r('\nimpl base::%s<%s> {', self.wrap_type, self.c_type)
         for field in accessor_fields:
             _r_accessor(self,field)
 
@@ -1623,7 +1625,7 @@ def c_event(self, name):
 
             new_params.append('%s : %s' % (field.c_field_name, ftype))
 
-        _r('  fn new('+(',\n         '.join(new_params))+') -> %s {', self.r_type)
+        _r('  pub fn new('+(',\n         '.join(new_params))+') -> %s {', self.r_type)
         _r('    unsafe {')
         _r('      let raw = malloc(32u as size_t) as *mut %s;', self.c_type)
         for f in self.fields:
@@ -1684,7 +1686,7 @@ try:
     opts, args = getopt.getopt(sys.argv[1:], 'o:')
 except getopt.GetoptError as err:
     print(err)
-    print('Usage: c_client.py [-o outdir] file.xml')
+    print('Usage: r_client.py [-o outdir] file.xml')
     sys.exit(1)
 
 for (opt, arg) in opts:

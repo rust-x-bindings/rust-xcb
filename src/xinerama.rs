@@ -6,15 +6,17 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(unused_unsafe)];
-use core;
-use core::libc::*;
+use std;
+use std::libc::*;
+use std::{cast,num,ptr,str,libc};
+use std::to_bytes::ToBytes;
 use ll::base::*;
 use base;
 use base::*;
 use ll;
 use ll::xinerama::*;
-use core::option::Option;
-use core::iterator::Iterator;
+use std::option::Option;
+use std::iterator::Iterator;
 
 use xproto;
 pub type ScreenInfo = base::Struct<screen_info>;
@@ -51,27 +53,27 @@ pub type QueryScreensCookie<'self> = base::Cookie<'self, query_screens_cookie>;
 /** Opcode for xcb_xinerama_query_screens. */
 pub static XCB_XINERAMA_QUERY_SCREENS : u8 = 5;
 
-pub impl base::Struct<screen_info> {
-  fn x_org(&self) -> i16 {
+impl base::Struct<screen_info> {
+  pub fn x_org(&self) -> i16 {
     unsafe { accessor!(x_org -> i16, self.strct) }
   }
 
-  fn y_org(&self) -> i16 {
+  pub fn y_org(&self) -> i16 {
     unsafe { accessor!(y_org -> i16, self.strct) }
   }
 
-  fn width(&self) -> u16 {
+  pub fn width(&self) -> u16 {
     unsafe { accessor!(width -> u16, self.strct) }
   }
 
-  fn height(&self) -> u16 {
+  pub fn height(&self) -> u16 {
     unsafe { accessor!(height -> u16, self.strct) }
   }
 
 }
 
 impl<'self, ScreenInfo> Iterator<&'self ScreenInfo> for ScreenInfoIterator {
-    fn next(&mut self) -> Option<&'self ScreenInfo> {
+    pub fn next(&mut self) -> Option<&'self ScreenInfo> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *screen_info_iterator = cast::transmute(self);
@@ -103,12 +105,12 @@ pub fn QueryVersionUnchecked<'r> (c : &'r Connection,
   }
 }
 
-pub impl base::Reply<query_version_reply> {
-  fn major(&self) -> u16 {
+impl base::Reply<query_version_reply> {
+  pub fn major(&self) -> u16 {
     unsafe { accessor!(major -> u16, (*self.reply)) }
   }
 
-  fn minor(&self) -> u16 {
+  pub fn minor(&self) -> u16 {
     unsafe { accessor!(minor -> u16, (*self.reply)) }
   }
 
@@ -132,12 +134,12 @@ pub fn GetStateUnchecked<'r> (c : &'r Connection,
   }
 }
 
-pub impl base::Reply<get_state_reply> {
-  fn state(&self) -> u8 {
+impl base::Reply<get_state_reply> {
+  pub fn state(&self) -> u8 {
     unsafe { accessor!(state -> u8, (*self.reply)) }
   }
 
-  fn window(&self) -> xproto::Window {
+  pub fn window(&self) -> xproto::Window {
     unsafe { accessor!(window -> xproto::Window, (*self.reply)) }
   }
 
@@ -161,12 +163,12 @@ pub fn GetScreenCountUnchecked<'r> (c : &'r Connection,
   }
 }
 
-pub impl base::Reply<get_screen_count_reply> {
-  fn screen_count(&self) -> u8 {
+impl base::Reply<get_screen_count_reply> {
+  pub fn screen_count(&self) -> u8 {
     unsafe { accessor!(screen_count -> u8, (*self.reply)) }
   }
 
-  fn window(&self) -> xproto::Window {
+  pub fn window(&self) -> xproto::Window {
     unsafe { accessor!(window -> xproto::Window, (*self.reply)) }
   }
 
@@ -194,20 +196,20 @@ pub fn GetScreenSizeUnchecked<'r> (c : &'r Connection,
   }
 }
 
-pub impl base::Reply<get_screen_size_reply> {
-  fn width(&self) -> u32 {
+impl base::Reply<get_screen_size_reply> {
+  pub fn width(&self) -> u32 {
     unsafe { accessor!(width -> u32, (*self.reply)) }
   }
 
-  fn height(&self) -> u32 {
+  pub fn height(&self) -> u32 {
     unsafe { accessor!(height -> u32, (*self.reply)) }
   }
 
-  fn window(&self) -> xproto::Window {
+  pub fn window(&self) -> xproto::Window {
     unsafe { accessor!(window -> xproto::Window, (*self.reply)) }
   }
 
-  fn screen(&self) -> u32 {
+  pub fn screen(&self) -> u32 {
     unsafe { accessor!(screen -> u32, (*self.reply)) }
   }
 
@@ -227,8 +229,8 @@ pub fn IsActiveUnchecked<'r> (c : &'r Connection) -> IsActiveCookie<'r> {
   }
 }
 
-pub impl base::Reply<is_active_reply> {
-  fn state(&self) -> u32 {
+impl base::Reply<is_active_reply> {
+  pub fn state(&self) -> u32 {
     unsafe { accessor!(state -> u32, (*self.reply)) }
   }
 
@@ -249,8 +251,8 @@ pub fn QueryScreensUnchecked<'r> (c : &'r Connection) -> QueryScreensCookie<'r> 
   }
 }
 
-pub impl base::Reply<query_screens_reply> {
-  fn screen_info(&self) -> ScreenInfoIterator {
+impl base::Reply<query_screens_reply> {
+  pub fn screen_info(&self) -> ScreenInfoIterator {
     unsafe { accessor!(ScreenInfoIterator, xcb_xinerama_query_screens_screen_info_iterator, (*self.reply)) }
   }
 

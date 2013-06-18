@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
-use core;
-use core::libc::*;
+use std;
+use std::libc::*;
+use std::{cast,num,ptr,str,libc};
+use std::to_bytes::ToBytes;
 use ll::base::*;
 use ll;
 
@@ -595,7 +597,7 @@ pub extern "C" {
  *
  *
  */
-unsafe fn xcb_xf86vidmode_syncrange_next (i:*syncrange_iterator) -> c_void;
+pub unsafe fn xcb_xf86vidmode_syncrange_next (i:*syncrange_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -606,7 +608,7 @@ unsafe fn xcb_xf86vidmode_syncrange_next (i:*syncrange_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xf86vidmode_syncrange_end (i:syncrange_iterator) -> generic_iterator;
+pub unsafe fn xcb_xf86vidmode_syncrange_end (i:syncrange_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -618,7 +620,7 @@ unsafe fn xcb_xf86vidmode_syncrange_end (i:syncrange_iterator) -> generic_iterat
  *
  *
  */
-unsafe fn xcb_xf86vidmode_dotclock_next (i:*dotclock_iterator) -> c_void;
+pub unsafe fn xcb_xf86vidmode_dotclock_next (i:*dotclock_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -629,7 +631,7 @@ unsafe fn xcb_xf86vidmode_dotclock_next (i:*dotclock_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xf86vidmode_dotclock_end (i:dotclock_iterator) -> generic_iterator;
+pub unsafe fn xcb_xf86vidmode_dotclock_end (i:dotclock_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -641,7 +643,7 @@ unsafe fn xcb_xf86vidmode_dotclock_end (i:dotclock_iterator) -> generic_iterator
  *
  *
  */
-unsafe fn xcb_xf86vidmode_mode_info_next (i:*mode_info_iterator) -> c_void;
+pub unsafe fn xcb_xf86vidmode_mode_info_next (i:*mode_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -652,7 +654,7 @@ unsafe fn xcb_xf86vidmode_mode_info_next (i:*mode_info_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xf86vidmode_mode_info_end (i:mode_info_iterator) -> generic_iterator;
+pub unsafe fn xcb_xf86vidmode_mode_info_end (i:mode_info_iterator) -> generic_iterator;
 
 /**
  *
@@ -662,7 +664,7 @@ unsafe fn xcb_xf86vidmode_mode_info_end (i:mode_info_iterator) -> generic_iterat
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86vidmode_query_version (c : *connection) -> query_version_cookie;
+pub unsafe fn xcb_xf86vidmode_query_version (c : *connection) -> query_version_cookie;
 
 /**
  *
@@ -675,7 +677,7 @@ unsafe fn xcb_xf86vidmode_query_version (c : *connection) -> query_version_cooki
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xf86vidmode_query_version_unchecked (c : *connection) -> query_version_cookie;
+pub unsafe fn xcb_xf86vidmode_query_version_unchecked (c : *connection) -> query_version_cookie;
 
 /**
  * Return the reply
@@ -691,11 +693,11 @@ unsafe fn xcb_xf86vidmode_query_version_unchecked (c : *connection) -> query_ver
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xf86vidmode_query_version_reply (c : *connection,
+pub unsafe fn xcb_xf86vidmode_query_version_reply (c : *connection,
                                                cookie : query_version_cookie,
                                                e : **generic_error) -> *query_version_reply;
 
-unsafe fn xcb_xf86vidmode_get_mode_line_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xf86vidmode_get_mode_line_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -705,7 +707,7 @@ unsafe fn xcb_xf86vidmode_get_mode_line_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86vidmode_get_mode_line (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_mode_line (c : *connection,
                                          screen :  u16) -> get_mode_line_cookie;
 
 /**
@@ -719,16 +721,16 @@ unsafe fn xcb_xf86vidmode_get_mode_line (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xf86vidmode_get_mode_line_unchecked (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_mode_line_unchecked (c : *connection,
                                                    screen :  u16) -> get_mode_line_cookie;
 
-unsafe fn xcb_xf86vidmode_get_mode_line_private (R : *get_mode_line_reply) -> *u8;
+pub unsafe fn xcb_xf86vidmode_get_mode_line_private (R : *get_mode_line_reply) -> *u8;
 
 
-unsafe fn xcb_xf86vidmode_get_mode_line_private_length (R : *get_mode_line_reply) -> c_int;
+pub unsafe fn xcb_xf86vidmode_get_mode_line_private_length (R : *get_mode_line_reply) -> c_int;
 
 
-unsafe fn xcb_xf86vidmode_get_mode_line_private_end (R : *get_mode_line_reply) -> generic_iterator;
+pub unsafe fn xcb_xf86vidmode_get_mode_line_private_end (R : *get_mode_line_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -744,11 +746,11 @@ unsafe fn xcb_xf86vidmode_get_mode_line_private_end (R : *get_mode_line_reply) -
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xf86vidmode_get_mode_line_reply (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_mode_line_reply (c : *connection,
                                                cookie : get_mode_line_cookie,
                                                e : **generic_error) -> *get_mode_line_reply;
 
-unsafe fn xcb_xf86vidmode_mod_mode_line_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xf86vidmode_mod_mode_line_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -761,7 +763,7 @@ unsafe fn xcb_xf86vidmode_mod_mode_line_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xf86vidmode_mod_mode_line_checked (c : *connection,
+pub unsafe fn xcb_xf86vidmode_mod_mode_line_checked (c : *connection,
                                                  screen :  u32,
                                                  hdisplay :  u16,
                                                  hsyncstart :  u16,
@@ -784,7 +786,7 @@ unsafe fn xcb_xf86vidmode_mod_mode_line_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86vidmode_mod_mode_line (c : *connection,
+pub unsafe fn xcb_xf86vidmode_mod_mode_line (c : *connection,
                                          screen :  u32,
                                          hdisplay :  u16,
                                          hsyncstart :  u16,
@@ -810,7 +812,7 @@ unsafe fn xcb_xf86vidmode_mod_mode_line (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xf86vidmode_switch_mode_checked (c : *connection,
+pub unsafe fn xcb_xf86vidmode_switch_mode_checked (c : *connection,
                                                screen :  u16,
                                                zoom :  u16) -> void_cookie;
 
@@ -822,11 +824,11 @@ unsafe fn xcb_xf86vidmode_switch_mode_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86vidmode_switch_mode (c : *connection,
+pub unsafe fn xcb_xf86vidmode_switch_mode (c : *connection,
                                        screen :  u16,
                                        zoom :  u16) -> void_cookie;
 
-unsafe fn xcb_xf86vidmode_get_monitor_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xf86vidmode_get_monitor_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -836,7 +838,7 @@ unsafe fn xcb_xf86vidmode_get_monitor_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86vidmode_get_monitor (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_monitor (c : *connection,
                                        screen :  u16) -> get_monitor_cookie;
 
 /**
@@ -850,48 +852,48 @@ unsafe fn xcb_xf86vidmode_get_monitor (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xf86vidmode_get_monitor_unchecked (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_monitor_unchecked (c : *connection,
                                                  screen :  u16) -> get_monitor_cookie;
 
-unsafe fn xcb_xf86vidmode_get_monitor_hsync (R : *get_monitor_reply) -> *syncrange;
+pub unsafe fn xcb_xf86vidmode_get_monitor_hsync (R : *get_monitor_reply) -> *syncrange;
 
 
-unsafe fn xcb_xf86vidmode_get_monitor_hsync_length (R : *get_monitor_reply) -> c_int;
+pub unsafe fn xcb_xf86vidmode_get_monitor_hsync_length (R : *get_monitor_reply) -> c_int;
 
 
-unsafe fn xcb_xf86vidmode_get_monitor_hsync_end (R : *get_monitor_reply) -> generic_iterator;
+pub unsafe fn xcb_xf86vidmode_get_monitor_hsync_end (R : *get_monitor_reply) -> generic_iterator;
 
-unsafe fn xcb_xf86vidmode_get_monitor_vsync (R : *get_monitor_reply) -> *syncrange;
-
-
-unsafe fn xcb_xf86vidmode_get_monitor_vsync_length (R : *get_monitor_reply) -> c_int;
+pub unsafe fn xcb_xf86vidmode_get_monitor_vsync (R : *get_monitor_reply) -> *syncrange;
 
 
-unsafe fn xcb_xf86vidmode_get_monitor_vsync_end (R : *get_monitor_reply) -> generic_iterator;
-
-unsafe fn xcb_xf86vidmode_get_monitor_vendor (R : *get_monitor_reply) -> *c_char;
+pub unsafe fn xcb_xf86vidmode_get_monitor_vsync_length (R : *get_monitor_reply) -> c_int;
 
 
-unsafe fn xcb_xf86vidmode_get_monitor_vendor_length (R : *get_monitor_reply) -> c_int;
+pub unsafe fn xcb_xf86vidmode_get_monitor_vsync_end (R : *get_monitor_reply) -> generic_iterator;
+
+pub unsafe fn xcb_xf86vidmode_get_monitor_vendor (R : *get_monitor_reply) -> *c_char;
 
 
-unsafe fn xcb_xf86vidmode_get_monitor_vendor_end (R : *get_monitor_reply) -> generic_iterator;
-
-unsafe fn xcb_xf86vidmode_get_monitor_alignment_pad (R : *get_monitor_reply) -> *c_void;
+pub unsafe fn xcb_xf86vidmode_get_monitor_vendor_length (R : *get_monitor_reply) -> c_int;
 
 
-unsafe fn xcb_xf86vidmode_get_monitor_alignment_pad_length (R : *get_monitor_reply) -> c_int;
+pub unsafe fn xcb_xf86vidmode_get_monitor_vendor_end (R : *get_monitor_reply) -> generic_iterator;
+
+pub unsafe fn xcb_xf86vidmode_get_monitor_alignment_pad (R : *get_monitor_reply) -> *c_void;
 
 
-unsafe fn xcb_xf86vidmode_get_monitor_alignment_pad_end (R : *get_monitor_reply) -> generic_iterator;
-
-unsafe fn xcb_xf86vidmode_get_monitor_model (R : *get_monitor_reply) -> *c_char;
+pub unsafe fn xcb_xf86vidmode_get_monitor_alignment_pad_length (R : *get_monitor_reply) -> c_int;
 
 
-unsafe fn xcb_xf86vidmode_get_monitor_model_length (R : *get_monitor_reply) -> c_int;
+pub unsafe fn xcb_xf86vidmode_get_monitor_alignment_pad_end (R : *get_monitor_reply) -> generic_iterator;
+
+pub unsafe fn xcb_xf86vidmode_get_monitor_model (R : *get_monitor_reply) -> *c_char;
 
 
-unsafe fn xcb_xf86vidmode_get_monitor_model_end (R : *get_monitor_reply) -> generic_iterator;
+pub unsafe fn xcb_xf86vidmode_get_monitor_model_length (R : *get_monitor_reply) -> c_int;
+
+
+pub unsafe fn xcb_xf86vidmode_get_monitor_model_end (R : *get_monitor_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -907,7 +909,7 @@ unsafe fn xcb_xf86vidmode_get_monitor_model_end (R : *get_monitor_reply) -> gene
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xf86vidmode_get_monitor_reply (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_monitor_reply (c : *connection,
                                              cookie : get_monitor_cookie,
                                              e : **generic_error) -> *get_monitor_reply;
 
@@ -922,7 +924,7 @@ unsafe fn xcb_xf86vidmode_get_monitor_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xf86vidmode_lock_mode_switch_checked (c : *connection,
+pub unsafe fn xcb_xf86vidmode_lock_mode_switch_checked (c : *connection,
                                                     screen :  u16,
                                                     lock :  u16) -> void_cookie;
 
@@ -934,11 +936,11 @@ unsafe fn xcb_xf86vidmode_lock_mode_switch_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86vidmode_lock_mode_switch (c : *connection,
+pub unsafe fn xcb_xf86vidmode_lock_mode_switch (c : *connection,
                                             screen :  u16,
                                             lock :  u16) -> void_cookie;
 
-unsafe fn xcb_xf86vidmode_get_all_mode_lines_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xf86vidmode_get_all_mode_lines_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -948,7 +950,7 @@ unsafe fn xcb_xf86vidmode_get_all_mode_lines_sizeof (_buffer :  *c_void) -> c_in
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86vidmode_get_all_mode_lines (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_all_mode_lines (c : *connection,
                                               screen :  u16) -> get_all_mode_lines_cookie;
 
 /**
@@ -962,15 +964,15 @@ unsafe fn xcb_xf86vidmode_get_all_mode_lines (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xf86vidmode_get_all_mode_lines_unchecked (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_all_mode_lines_unchecked (c : *connection,
                                                         screen :  u16) -> get_all_mode_lines_cookie;
 
-unsafe fn xcb_xf86vidmode_get_all_mode_lines_modeinfo (R : *get_all_mode_lines_reply) -> *mode_info;
+pub unsafe fn xcb_xf86vidmode_get_all_mode_lines_modeinfo (R : *get_all_mode_lines_reply) -> *mode_info;
 
 
-unsafe fn xcb_xf86vidmode_get_all_mode_lines_modeinfo_length (R : *get_all_mode_lines_reply) -> c_int;
+pub unsafe fn xcb_xf86vidmode_get_all_mode_lines_modeinfo_length (R : *get_all_mode_lines_reply) -> c_int;
 
-unsafe fn xcb_xf86vidmode_get_all_mode_lines_modeinfo_iterator (R : *get_all_mode_lines_reply) -> mode_info_iterator;
+pub unsafe fn xcb_xf86vidmode_get_all_mode_lines_modeinfo_iterator (R : *get_all_mode_lines_reply) -> mode_info_iterator;
 
 /**
  * Return the reply
@@ -986,11 +988,11 @@ unsafe fn xcb_xf86vidmode_get_all_mode_lines_modeinfo_iterator (R : *get_all_mod
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xf86vidmode_get_all_mode_lines_reply (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_all_mode_lines_reply (c : *connection,
                                                     cookie : get_all_mode_lines_cookie,
                                                     e : **generic_error) -> *get_all_mode_lines_reply;
 
-unsafe fn xcb_xf86vidmode_add_mode_line_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xf86vidmode_add_mode_line_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -1003,7 +1005,7 @@ unsafe fn xcb_xf86vidmode_add_mode_line_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xf86vidmode_add_mode_line_checked (c : *connection,
+pub unsafe fn xcb_xf86vidmode_add_mode_line_checked (c : *connection,
                                                  screen :  u32,
                                                  dotclock :  dotclock,
                                                  hdisplay :  u16,
@@ -1038,7 +1040,7 @@ unsafe fn xcb_xf86vidmode_add_mode_line_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86vidmode_add_mode_line (c : *connection,
+pub unsafe fn xcb_xf86vidmode_add_mode_line (c : *connection,
                                          screen :  u32,
                                          dotclock :  dotclock,
                                          hdisplay :  u16,
@@ -1065,7 +1067,7 @@ unsafe fn xcb_xf86vidmode_add_mode_line (c : *connection,
                                          after_flags :  u32,
                                          private : *u8) -> void_cookie;
 
-unsafe fn xcb_xf86vidmode_delete_mode_line_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xf86vidmode_delete_mode_line_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -1078,7 +1080,7 @@ unsafe fn xcb_xf86vidmode_delete_mode_line_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xf86vidmode_delete_mode_line_checked (c : *connection,
+pub unsafe fn xcb_xf86vidmode_delete_mode_line_checked (c : *connection,
                                                     screen :  u32,
                                                     dotclock :  dotclock,
                                                     hdisplay :  u16,
@@ -1102,7 +1104,7 @@ unsafe fn xcb_xf86vidmode_delete_mode_line_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86vidmode_delete_mode_line (c : *connection,
+pub unsafe fn xcb_xf86vidmode_delete_mode_line (c : *connection,
                                             screen :  u32,
                                             dotclock :  dotclock,
                                             hdisplay :  u16,
@@ -1118,7 +1120,7 @@ unsafe fn xcb_xf86vidmode_delete_mode_line (c : *connection,
                                             privsize :  u32,
                                             private : *u8) -> void_cookie;
 
-unsafe fn xcb_xf86vidmode_validate_mode_line_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xf86vidmode_validate_mode_line_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -1128,7 +1130,7 @@ unsafe fn xcb_xf86vidmode_validate_mode_line_sizeof (_buffer :  *c_void) -> c_in
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86vidmode_validate_mode_line (c : *connection,
+pub unsafe fn xcb_xf86vidmode_validate_mode_line (c : *connection,
                                               screen :  u32,
                                               dotclock :  dotclock,
                                               hdisplay :  u16,
@@ -1155,7 +1157,7 @@ unsafe fn xcb_xf86vidmode_validate_mode_line (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xf86vidmode_validate_mode_line_unchecked (c : *connection,
+pub unsafe fn xcb_xf86vidmode_validate_mode_line_unchecked (c : *connection,
                                                         screen :  u32,
                                                         dotclock :  dotclock,
                                                         hdisplay :  u16,
@@ -1185,11 +1187,11 @@ unsafe fn xcb_xf86vidmode_validate_mode_line_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xf86vidmode_validate_mode_line_reply (c : *connection,
+pub unsafe fn xcb_xf86vidmode_validate_mode_line_reply (c : *connection,
                                                     cookie : validate_mode_line_cookie,
                                                     e : **generic_error) -> *validate_mode_line_reply;
 
-unsafe fn xcb_xf86vidmode_switch_to_mode_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xf86vidmode_switch_to_mode_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -1202,7 +1204,7 @@ unsafe fn xcb_xf86vidmode_switch_to_mode_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xf86vidmode_switch_to_mode_checked (c : *connection,
+pub unsafe fn xcb_xf86vidmode_switch_to_mode_checked (c : *connection,
                                                   screen :  u32,
                                                   dotclock :  dotclock,
                                                   hdisplay :  u16,
@@ -1226,7 +1228,7 @@ unsafe fn xcb_xf86vidmode_switch_to_mode_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86vidmode_switch_to_mode (c : *connection,
+pub unsafe fn xcb_xf86vidmode_switch_to_mode (c : *connection,
                                           screen :  u32,
                                           dotclock :  dotclock,
                                           hdisplay :  u16,
@@ -1250,7 +1252,7 @@ unsafe fn xcb_xf86vidmode_switch_to_mode (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86vidmode_get_view_port (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_view_port (c : *connection,
                                          screen :  u16) -> get_view_port_cookie;
 
 /**
@@ -1264,7 +1266,7 @@ unsafe fn xcb_xf86vidmode_get_view_port (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xf86vidmode_get_view_port_unchecked (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_view_port_unchecked (c : *connection,
                                                    screen :  u16) -> get_view_port_cookie;
 
 /**
@@ -1281,7 +1283,7 @@ unsafe fn xcb_xf86vidmode_get_view_port_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xf86vidmode_get_view_port_reply (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_view_port_reply (c : *connection,
                                                cookie : get_view_port_cookie,
                                                e : **generic_error) -> *get_view_port_reply;
 
@@ -1296,7 +1298,7 @@ unsafe fn xcb_xf86vidmode_get_view_port_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xf86vidmode_set_view_port_checked (c : *connection,
+pub unsafe fn xcb_xf86vidmode_set_view_port_checked (c : *connection,
                                                  screen :  u16,
                                                  x :  u32,
                                                  y :  u32) -> void_cookie;
@@ -1309,12 +1311,12 @@ unsafe fn xcb_xf86vidmode_set_view_port_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86vidmode_set_view_port (c : *connection,
+pub unsafe fn xcb_xf86vidmode_set_view_port (c : *connection,
                                          screen :  u16,
                                          x :  u32,
                                          y :  u32) -> void_cookie;
 
-unsafe fn xcb_xf86vidmode_get_dot_clocks_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xf86vidmode_get_dot_clocks_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -1324,7 +1326,7 @@ unsafe fn xcb_xf86vidmode_get_dot_clocks_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86vidmode_get_dot_clocks (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_dot_clocks (c : *connection,
                                           screen :  u16) -> get_dot_clocks_cookie;
 
 /**
@@ -1338,16 +1340,16 @@ unsafe fn xcb_xf86vidmode_get_dot_clocks (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xf86vidmode_get_dot_clocks_unchecked (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_dot_clocks_unchecked (c : *connection,
                                                     screen :  u16) -> get_dot_clocks_cookie;
 
-unsafe fn xcb_xf86vidmode_get_dot_clocks_clock (R : *get_dot_clocks_reply) -> *u32;
+pub unsafe fn xcb_xf86vidmode_get_dot_clocks_clock (R : *get_dot_clocks_reply) -> *u32;
 
 
-unsafe fn xcb_xf86vidmode_get_dot_clocks_clock_length (R : *get_dot_clocks_reply) -> c_int;
+pub unsafe fn xcb_xf86vidmode_get_dot_clocks_clock_length (R : *get_dot_clocks_reply) -> c_int;
 
 
-unsafe fn xcb_xf86vidmode_get_dot_clocks_clock_end (R : *get_dot_clocks_reply) -> generic_iterator;
+pub unsafe fn xcb_xf86vidmode_get_dot_clocks_clock_end (R : *get_dot_clocks_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -1363,7 +1365,7 @@ unsafe fn xcb_xf86vidmode_get_dot_clocks_clock_end (R : *get_dot_clocks_reply) -
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xf86vidmode_get_dot_clocks_reply (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_dot_clocks_reply (c : *connection,
                                                 cookie : get_dot_clocks_cookie,
                                                 e : **generic_error) -> *get_dot_clocks_reply;
 
@@ -1378,7 +1380,7 @@ unsafe fn xcb_xf86vidmode_get_dot_clocks_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xf86vidmode_set_client_version_checked (c : *connection,
+pub unsafe fn xcb_xf86vidmode_set_client_version_checked (c : *connection,
                                                       major :  u16,
                                                       minor :  u16) -> void_cookie;
 
@@ -1390,7 +1392,7 @@ unsafe fn xcb_xf86vidmode_set_client_version_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86vidmode_set_client_version (c : *connection,
+pub unsafe fn xcb_xf86vidmode_set_client_version (c : *connection,
                                               major :  u16,
                                               minor :  u16) -> void_cookie;
 
@@ -1405,7 +1407,7 @@ unsafe fn xcb_xf86vidmode_set_client_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xf86vidmode_set_gamma_checked (c : *connection,
+pub unsafe fn xcb_xf86vidmode_set_gamma_checked (c : *connection,
                                              screen :  u16,
                                              red :  u32,
                                              green :  u32,
@@ -1419,7 +1421,7 @@ unsafe fn xcb_xf86vidmode_set_gamma_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86vidmode_set_gamma (c : *connection,
+pub unsafe fn xcb_xf86vidmode_set_gamma (c : *connection,
                                      screen :  u16,
                                      red :  u32,
                                      green :  u32,
@@ -1433,7 +1435,7 @@ unsafe fn xcb_xf86vidmode_set_gamma (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86vidmode_get_gamma (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_gamma (c : *connection,
                                      screen :  u16) -> get_gamma_cookie;
 
 /**
@@ -1447,7 +1449,7 @@ unsafe fn xcb_xf86vidmode_get_gamma (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xf86vidmode_get_gamma_unchecked (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_gamma_unchecked (c : *connection,
                                                screen :  u16) -> get_gamma_cookie;
 
 /**
@@ -1464,11 +1466,11 @@ unsafe fn xcb_xf86vidmode_get_gamma_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xf86vidmode_get_gamma_reply (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_gamma_reply (c : *connection,
                                            cookie : get_gamma_cookie,
                                            e : **generic_error) -> *get_gamma_reply;
 
-unsafe fn xcb_xf86vidmode_get_gamma_ramp_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xf86vidmode_get_gamma_ramp_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -1478,7 +1480,7 @@ unsafe fn xcb_xf86vidmode_get_gamma_ramp_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86vidmode_get_gamma_ramp (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_gamma_ramp (c : *connection,
                                           screen :  u16,
                                           size :  u16) -> get_gamma_ramp_cookie;
 
@@ -1493,33 +1495,33 @@ unsafe fn xcb_xf86vidmode_get_gamma_ramp (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xf86vidmode_get_gamma_ramp_unchecked (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_gamma_ramp_unchecked (c : *connection,
                                                     screen :  u16,
                                                     size :  u16) -> get_gamma_ramp_cookie;
 
-unsafe fn xcb_xf86vidmode_get_gamma_ramp_red (R : *get_gamma_ramp_reply) -> *u16;
+pub unsafe fn xcb_xf86vidmode_get_gamma_ramp_red (R : *get_gamma_ramp_reply) -> *u16;
 
 
-unsafe fn xcb_xf86vidmode_get_gamma_ramp_red_length (R : *get_gamma_ramp_reply) -> c_int;
+pub unsafe fn xcb_xf86vidmode_get_gamma_ramp_red_length (R : *get_gamma_ramp_reply) -> c_int;
 
 
-unsafe fn xcb_xf86vidmode_get_gamma_ramp_red_end (R : *get_gamma_ramp_reply) -> generic_iterator;
+pub unsafe fn xcb_xf86vidmode_get_gamma_ramp_red_end (R : *get_gamma_ramp_reply) -> generic_iterator;
 
-unsafe fn xcb_xf86vidmode_get_gamma_ramp_green (R : *get_gamma_ramp_reply) -> *u16;
-
-
-unsafe fn xcb_xf86vidmode_get_gamma_ramp_green_length (R : *get_gamma_ramp_reply) -> c_int;
+pub unsafe fn xcb_xf86vidmode_get_gamma_ramp_green (R : *get_gamma_ramp_reply) -> *u16;
 
 
-unsafe fn xcb_xf86vidmode_get_gamma_ramp_green_end (R : *get_gamma_ramp_reply) -> generic_iterator;
-
-unsafe fn xcb_xf86vidmode_get_gamma_ramp_blue (R : *get_gamma_ramp_reply) -> *u16;
+pub unsafe fn xcb_xf86vidmode_get_gamma_ramp_green_length (R : *get_gamma_ramp_reply) -> c_int;
 
 
-unsafe fn xcb_xf86vidmode_get_gamma_ramp_blue_length (R : *get_gamma_ramp_reply) -> c_int;
+pub unsafe fn xcb_xf86vidmode_get_gamma_ramp_green_end (R : *get_gamma_ramp_reply) -> generic_iterator;
+
+pub unsafe fn xcb_xf86vidmode_get_gamma_ramp_blue (R : *get_gamma_ramp_reply) -> *u16;
 
 
-unsafe fn xcb_xf86vidmode_get_gamma_ramp_blue_end (R : *get_gamma_ramp_reply) -> generic_iterator;
+pub unsafe fn xcb_xf86vidmode_get_gamma_ramp_blue_length (R : *get_gamma_ramp_reply) -> c_int;
+
+
+pub unsafe fn xcb_xf86vidmode_get_gamma_ramp_blue_end (R : *get_gamma_ramp_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -1535,11 +1537,11 @@ unsafe fn xcb_xf86vidmode_get_gamma_ramp_blue_end (R : *get_gamma_ramp_reply) ->
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xf86vidmode_get_gamma_ramp_reply (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_gamma_ramp_reply (c : *connection,
                                                 cookie : get_gamma_ramp_cookie,
                                                 e : **generic_error) -> *get_gamma_ramp_reply;
 
-unsafe fn xcb_xf86vidmode_set_gamma_ramp_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xf86vidmode_set_gamma_ramp_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -1552,7 +1554,7 @@ unsafe fn xcb_xf86vidmode_set_gamma_ramp_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xf86vidmode_set_gamma_ramp_checked (c : *connection,
+pub unsafe fn xcb_xf86vidmode_set_gamma_ramp_checked (c : *connection,
                                                   screen :  u16,
                                                   size :  u16,
                                                   red : *u16,
@@ -1567,7 +1569,7 @@ unsafe fn xcb_xf86vidmode_set_gamma_ramp_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86vidmode_set_gamma_ramp (c : *connection,
+pub unsafe fn xcb_xf86vidmode_set_gamma_ramp (c : *connection,
                                           screen :  u16,
                                           size :  u16,
                                           red : *u16,
@@ -1582,7 +1584,7 @@ unsafe fn xcb_xf86vidmode_set_gamma_ramp (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86vidmode_get_gamma_ramp_size (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_gamma_ramp_size (c : *connection,
                                                screen :  u16) -> get_gamma_ramp_size_cookie;
 
 /**
@@ -1596,7 +1598,7 @@ unsafe fn xcb_xf86vidmode_get_gamma_ramp_size (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xf86vidmode_get_gamma_ramp_size_unchecked (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_gamma_ramp_size_unchecked (c : *connection,
                                                          screen :  u16) -> get_gamma_ramp_size_cookie;
 
 /**
@@ -1613,7 +1615,7 @@ unsafe fn xcb_xf86vidmode_get_gamma_ramp_size_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xf86vidmode_get_gamma_ramp_size_reply (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_gamma_ramp_size_reply (c : *connection,
                                                      cookie : get_gamma_ramp_size_cookie,
                                                      e : **generic_error) -> *get_gamma_ramp_size_reply;
 
@@ -1625,7 +1627,7 @@ unsafe fn xcb_xf86vidmode_get_gamma_ramp_size_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xf86vidmode_get_permissions (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_permissions (c : *connection,
                                            screen :  u16) -> get_permissions_cookie;
 
 /**
@@ -1639,7 +1641,7 @@ unsafe fn xcb_xf86vidmode_get_permissions (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xf86vidmode_get_permissions_unchecked (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_permissions_unchecked (c : *connection,
                                                      screen :  u16) -> get_permissions_cookie;
 
 /**
@@ -1656,7 +1658,7 @@ unsafe fn xcb_xf86vidmode_get_permissions_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xf86vidmode_get_permissions_reply (c : *connection,
+pub unsafe fn xcb_xf86vidmode_get_permissions_reply (c : *connection,
                                                  cookie : get_permissions_cookie,
                                                  e : **generic_error) -> *get_permissions_reply;
 }

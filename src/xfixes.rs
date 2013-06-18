@@ -6,15 +6,17 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(unused_unsafe)];
-use core;
-use core::libc::*;
+use std;
+use std::libc::*;
+use std::{cast,num,ptr,str,libc};
+use std::to_bytes::ToBytes;
 use ll::base::*;
 use base;
 use base::*;
 use ll;
 use ll::xfixes::*;
-use core::option::Option;
-use core::iterator::Iterator;
+use std::option::Option;
+use std::iterator::Iterator;
 
 use xproto;
 use render;
@@ -163,12 +165,12 @@ pub fn QueryVersionUnchecked<'r> (c : &'r Connection,
   }
 }
 
-pub impl base::Reply<query_version_reply> {
-  fn major_version(&self) -> u32 {
+impl base::Reply<query_version_reply> {
+  pub fn major_version(&self) -> u32 {
     unsafe { accessor!(major_version -> u32, (*self.reply)) }
   }
 
-  fn minor_version(&self) -> u32 {
+  pub fn minor_version(&self) -> u32 {
     unsafe { accessor!(minor_version -> u32, (*self.reply)) }
   }
 
@@ -204,32 +206,32 @@ pub fn ChangeSaveSet<'r> (c : &'r Connection,
   }
 }
 
-pub impl base::Event<selection_notify_event> {
-  fn subtype(&self) -> u8 {
+impl base::Event<selection_notify_event> {
+  pub fn subtype(&self) -> u8 {
     unsafe { accessor!(subtype -> u8, (*self.event)) }
   }
 
-  fn window(&self) -> xproto::Window {
+  pub fn window(&self) -> xproto::Window {
     unsafe { accessor!(window -> xproto::Window, (*self.event)) }
   }
 
-  fn owner(&self) -> xproto::Window {
+  pub fn owner(&self) -> xproto::Window {
     unsafe { accessor!(owner -> xproto::Window, (*self.event)) }
   }
 
-  fn selection(&self) -> xproto::Atom {
+  pub fn selection(&self) -> xproto::Atom {
     unsafe { accessor!(selection -> xproto::Atom, (*self.event)) }
   }
 
-  fn timestamp(&self) -> xproto::Timestamp {
+  pub fn timestamp(&self) -> xproto::Timestamp {
     unsafe { accessor!(timestamp -> xproto::Timestamp, (*self.event)) }
   }
 
-  fn selection_timestamp(&self) -> xproto::Timestamp {
+  pub fn selection_timestamp(&self) -> xproto::Timestamp {
     unsafe { accessor!(selection_timestamp -> xproto::Timestamp, (*self.event)) }
   }
 
-  fn new(subtype : u8,
+  pub fn new(subtype : u8,
          window : xproto::Window,
          owner : xproto::Window,
          selection : xproto::Atom,
@@ -272,28 +274,28 @@ pub fn SelectSelectionInput<'r> (c : &'r Connection,
   }
 }
 
-pub impl base::Event<cursor_notify_event> {
-  fn subtype(&self) -> u8 {
+impl base::Event<cursor_notify_event> {
+  pub fn subtype(&self) -> u8 {
     unsafe { accessor!(subtype -> u8, (*self.event)) }
   }
 
-  fn window(&self) -> xproto::Window {
+  pub fn window(&self) -> xproto::Window {
     unsafe { accessor!(window -> xproto::Window, (*self.event)) }
   }
 
-  fn cursor_serial(&self) -> u32 {
+  pub fn cursor_serial(&self) -> u32 {
     unsafe { accessor!(cursor_serial -> u32, (*self.event)) }
   }
 
-  fn timestamp(&self) -> xproto::Timestamp {
+  pub fn timestamp(&self) -> xproto::Timestamp {
     unsafe { accessor!(timestamp -> xproto::Timestamp, (*self.event)) }
   }
 
-  fn name(&self) -> xproto::Atom {
+  pub fn name(&self) -> xproto::Atom {
     unsafe { accessor!(name -> xproto::Atom, (*self.event)) }
   }
 
-  fn new(subtype : u8,
+  pub fn new(subtype : u8,
          window : xproto::Window,
          cursor_serial : u32,
          timestamp : xproto::Timestamp,
@@ -343,32 +345,32 @@ pub fn GetCursorImageUnchecked<'r> (c : &'r Connection) -> GetCursorImageCookie<
   }
 }
 
-pub impl base::Reply<get_cursor_image_reply> {
-  fn x(&self) -> i16 {
+impl base::Reply<get_cursor_image_reply> {
+  pub fn x(&self) -> i16 {
     unsafe { accessor!(x -> i16, (*self.reply)) }
   }
 
-  fn y(&self) -> i16 {
+  pub fn y(&self) -> i16 {
     unsafe { accessor!(y -> i16, (*self.reply)) }
   }
 
-  fn height(&self) -> u16 {
+  pub fn height(&self) -> u16 {
     unsafe { accessor!(height -> u16, (*self.reply)) }
   }
 
-  fn xhot(&self) -> u16 {
+  pub fn xhot(&self) -> u16 {
     unsafe { accessor!(xhot -> u16, (*self.reply)) }
   }
 
-  fn yhot(&self) -> u16 {
+  pub fn yhot(&self) -> u16 {
     unsafe { accessor!(yhot -> u16, (*self.reply)) }
   }
 
-  fn cursor_serial(&self) -> u32 {
+  pub fn cursor_serial(&self) -> u32 {
     unsafe { accessor!(cursor_serial -> u32, (*self.reply)) }
   }
 
-  fn cursor_image(&self) -> ~[u32] {
+  pub fn cursor_image(&self) -> ~[u32] {
     unsafe { accessor!(u32, xcb_xfixes_get_cursor_image_cursor_image_length, xcb_xfixes_get_cursor_image_cursor_image, (*self.reply)) }
   }
 
@@ -379,7 +381,7 @@ pub type Region = region;
 
 
 impl<'self, Region> Iterator<&'self Region> for RegionIterator {
-    fn next(&mut self) -> Option<&'self Region> {
+    pub fn next(&mut self) -> Option<&'self Region> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *region_iterator = cast::transmute(self);
@@ -395,7 +397,7 @@ pub fn CreateRegionChecked<'r> (c : &'r Connection,
                             rectangles : &[xproto::Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = core::vec::raw::to_ptr(rectangles);
+    let rectangles_ptr = std::vec::raw::to_ptr(rectangles);
     let cookie = xcb_xfixes_create_region_checked(c.get_raw_conn(),
         region as region, //1
         rectangles_len as u32, //2
@@ -408,7 +410,7 @@ pub fn CreateRegion<'r> (c : &'r Connection,
                      rectangles : &[xproto::Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = core::vec::raw::to_ptr(rectangles);
+    let rectangles_ptr = std::vec::raw::to_ptr(rectangles);
     let cookie = xcb_xfixes_create_region(c.get_raw_conn(),
         region as region, //1
         rectangles_len as u32, //2
@@ -521,7 +523,7 @@ pub fn SetRegionChecked<'r> (c : &'r Connection,
                          rectangles : &[xproto::Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = core::vec::raw::to_ptr(rectangles);
+    let rectangles_ptr = std::vec::raw::to_ptr(rectangles);
     let cookie = xcb_xfixes_set_region_checked(c.get_raw_conn(),
         region as region, //1
         rectangles_len as u32, //2
@@ -534,7 +536,7 @@ pub fn SetRegion<'r> (c : &'r Connection,
                   rectangles : &[xproto::Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = core::vec::raw::to_ptr(rectangles);
+    let rectangles_ptr = std::vec::raw::to_ptr(rectangles);
     let cookie = xcb_xfixes_set_region(c.get_raw_conn(),
         region as region, //1
         rectangles_len as u32, //2
@@ -720,11 +722,11 @@ pub fn FetchRegionUnchecked<'r> (c : &'r Connection,
   }
 }
 
-pub impl base::Reply<fetch_region_reply> {
-  fn extents(&self) -> xproto::Rectangle {
+impl base::Reply<fetch_region_reply> {
+  pub fn extents(&self) -> xproto::Rectangle {
     unsafe { cast::transmute((*self.reply).extents) }
   }
-  fn rectangles(&self) -> xproto::RectangleIterator {
+  pub fn rectangles(&self) -> xproto::RectangleIterator {
     unsafe { accessor!(xproto::RectangleIterator, xcb_xfixes_fetch_region_rectangles_iterator, (*self.reply)) }
   }
 
@@ -823,9 +825,9 @@ pub fn SetCursorNameChecked<'r> (c : &'r Connection,
                              cursor : xproto::Cursor,
                              name : &str) -> base::VoidCookie<'r> {
   unsafe {
-    let name = core::str::to_bytes(name);
+    let name = (name).to_bytes(false);
     let name_len = name.len();
-    let name_ptr = core::vec::raw::to_ptr(name);
+    let name_ptr = std::vec::raw::to_ptr(name);
     let cookie = xcb_xfixes_set_cursor_name_checked(c.get_raw_conn(),
         cursor as ll::xproto::cursor, //1
         name_len as u16, //2
@@ -837,9 +839,9 @@ pub fn SetCursorName<'r> (c : &'r Connection,
                       cursor : xproto::Cursor,
                       name : &str) -> base::VoidCookie<'r> {
   unsafe {
-    let name = core::str::to_bytes(name);
+    let name = (name).to_bytes(false);
     let name_len = name.len();
-    let name_ptr = core::vec::raw::to_ptr(name);
+    let name_ptr = std::vec::raw::to_ptr(name);
     let cookie = xcb_xfixes_set_cursor_name(c.get_raw_conn(),
         cursor as ll::xproto::cursor, //1
         name_len as u16, //2
@@ -865,12 +867,12 @@ pub fn GetCursorNameUnchecked<'r> (c : &'r Connection,
   }
 }
 
-pub impl base::Reply<get_cursor_name_reply> {
-  fn atom(&self) -> xproto::Atom {
+impl base::Reply<get_cursor_name_reply> {
+  pub fn atom(&self) -> xproto::Atom {
     unsafe { accessor!(atom -> xproto::Atom, (*self.reply)) }
   }
 
-  fn name(&self) -> ~str {
+  pub fn name(&self) -> ~str {
     unsafe { accessor!(str, xcb_xfixes_get_cursor_name_name_length, xcb_xfixes_get_cursor_name_name, (*self.reply)) }
   }
 
@@ -891,40 +893,40 @@ pub fn GetCursorImageAndNameUnchecked<'r> (c : &'r Connection) -> GetCursorImage
   }
 }
 
-pub impl base::Reply<get_cursor_image_and_name_reply> {
-  fn x(&self) -> i16 {
+impl base::Reply<get_cursor_image_and_name_reply> {
+  pub fn x(&self) -> i16 {
     unsafe { accessor!(x -> i16, (*self.reply)) }
   }
 
-  fn y(&self) -> i16 {
+  pub fn y(&self) -> i16 {
     unsafe { accessor!(y -> i16, (*self.reply)) }
   }
 
-  fn height(&self) -> u16 {
+  pub fn height(&self) -> u16 {
     unsafe { accessor!(height -> u16, (*self.reply)) }
   }
 
-  fn xhot(&self) -> u16 {
+  pub fn xhot(&self) -> u16 {
     unsafe { accessor!(xhot -> u16, (*self.reply)) }
   }
 
-  fn yhot(&self) -> u16 {
+  pub fn yhot(&self) -> u16 {
     unsafe { accessor!(yhot -> u16, (*self.reply)) }
   }
 
-  fn cursor_serial(&self) -> u32 {
+  pub fn cursor_serial(&self) -> u32 {
     unsafe { accessor!(cursor_serial -> u32, (*self.reply)) }
   }
 
-  fn cursor_atom(&self) -> xproto::Atom {
+  pub fn cursor_atom(&self) -> xproto::Atom {
     unsafe { accessor!(cursor_atom -> xproto::Atom, (*self.reply)) }
   }
 
-  fn name(&self) -> ~str {
+  pub fn name(&self) -> ~str {
     unsafe { accessor!(str, xcb_xfixes_get_cursor_image_and_name_name_length, xcb_xfixes_get_cursor_image_and_name_name, (*self.reply)) }
   }
 
-  fn cursor_image(&self) -> ~[u32] {
+  pub fn cursor_image(&self) -> ~[u32] {
     unsafe { accessor!(u32, xcb_xfixes_get_cursor_image_and_name_cursor_image_length, xcb_xfixes_get_cursor_image_and_name_cursor_image, (*self.reply)) }
   }
 
@@ -955,9 +957,9 @@ pub fn ChangeCursorByNameChecked<'r> (c : &'r Connection,
                                   src : xproto::Cursor,
                                   name : &str) -> base::VoidCookie<'r> {
   unsafe {
-    let name = core::str::to_bytes(name);
+    let name = (name).to_bytes(false);
     let name_len = name.len();
-    let name_ptr = core::vec::raw::to_ptr(name);
+    let name_ptr = std::vec::raw::to_ptr(name);
     let cookie = xcb_xfixes_change_cursor_by_name_checked(c.get_raw_conn(),
         src as ll::xproto::cursor, //1
         name_len as u16, //2
@@ -969,9 +971,9 @@ pub fn ChangeCursorByName<'r> (c : &'r Connection,
                            src : xproto::Cursor,
                            name : &str) -> base::VoidCookie<'r> {
   unsafe {
-    let name = core::str::to_bytes(name);
+    let name = (name).to_bytes(false);
     let name_len = name.len();
-    let name_ptr = core::vec::raw::to_ptr(name);
+    let name_ptr = std::vec::raw::to_ptr(name);
     let cookie = xcb_xfixes_change_cursor_by_name(c.get_raw_conn(),
         src as ll::xproto::cursor, //1
         name_len as u16, //2

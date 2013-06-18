@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
-use core;
-use core::libc::*;
+use std;
+use std::libc::*;
+use std::{cast,num,ptr,str,libc};
+use std::to_bytes::ToBytes;
 use ll::base::*;
 use ll;
 use ll::xproto;
@@ -636,7 +638,7 @@ pub extern "C" {
  *
  *
  */
-unsafe fn xcb_xv_port_next (i:*port_iterator) -> c_void;
+pub unsafe fn xcb_xv_port_next (i:*port_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -647,7 +649,7 @@ unsafe fn xcb_xv_port_next (i:*port_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xv_port_end (i:port_iterator) -> generic_iterator;
+pub unsafe fn xcb_xv_port_end (i:port_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -659,7 +661,7 @@ unsafe fn xcb_xv_port_end (i:port_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_xv_encoding_next (i:*encoding_iterator) -> c_void;
+pub unsafe fn xcb_xv_encoding_next (i:*encoding_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -670,7 +672,7 @@ unsafe fn xcb_xv_encoding_next (i:*encoding_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xv_encoding_end (i:encoding_iterator) -> generic_iterator;
+pub unsafe fn xcb_xv_encoding_end (i:encoding_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -682,7 +684,7 @@ unsafe fn xcb_xv_encoding_end (i:encoding_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_xv_rational_next (i:*rational_iterator) -> c_void;
+pub unsafe fn xcb_xv_rational_next (i:*rational_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -693,7 +695,7 @@ unsafe fn xcb_xv_rational_next (i:*rational_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xv_rational_end (i:rational_iterator) -> generic_iterator;
+pub unsafe fn xcb_xv_rational_end (i:rational_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -705,7 +707,7 @@ unsafe fn xcb_xv_rational_end (i:rational_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_xv_format_next (i:*format_iterator) -> c_void;
+pub unsafe fn xcb_xv_format_next (i:*format_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -716,24 +718,24 @@ unsafe fn xcb_xv_format_next (i:*format_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xv_format_end (i:format_iterator) -> generic_iterator;
+pub unsafe fn xcb_xv_format_end (i:format_iterator) -> generic_iterator;
 
-unsafe fn xcb_xv_adaptor_info_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xv_adaptor_info_sizeof (_buffer :  *c_void) -> c_int;
 
-unsafe fn xcb_xv_adaptor_info_name (R : *adaptor_info) -> *c_char;
-
-
-unsafe fn xcb_xv_adaptor_info_name_length (R : *adaptor_info) -> c_int;
+pub unsafe fn xcb_xv_adaptor_info_name (R : *adaptor_info) -> *c_char;
 
 
-unsafe fn xcb_xv_adaptor_info_name_end (R : *adaptor_info) -> generic_iterator;
-
-unsafe fn xcb_xv_adaptor_info_formats (R : *adaptor_info) -> *format;
+pub unsafe fn xcb_xv_adaptor_info_name_length (R : *adaptor_info) -> c_int;
 
 
-unsafe fn xcb_xv_adaptor_info_formats_length (R : *adaptor_info) -> c_int;
+pub unsafe fn xcb_xv_adaptor_info_name_end (R : *adaptor_info) -> generic_iterator;
 
-unsafe fn xcb_xv_adaptor_info_formats_iterator (R : *adaptor_info) -> format_iterator;
+pub unsafe fn xcb_xv_adaptor_info_formats (R : *adaptor_info) -> *format;
+
+
+pub unsafe fn xcb_xv_adaptor_info_formats_length (R : *adaptor_info) -> c_int;
+
+pub unsafe fn xcb_xv_adaptor_info_formats_iterator (R : *adaptor_info) -> format_iterator;
 
 /**
  * Get the next element of the iterator
@@ -745,7 +747,7 @@ unsafe fn xcb_xv_adaptor_info_formats_iterator (R : *adaptor_info) -> format_ite
  *
  *
  */
-unsafe fn xcb_xv_adaptor_info_next (i:*adaptor_info_iterator) -> c_void;
+pub unsafe fn xcb_xv_adaptor_info_next (i:*adaptor_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -756,17 +758,17 @@ unsafe fn xcb_xv_adaptor_info_next (i:*adaptor_info_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xv_adaptor_info_end (i:adaptor_info_iterator) -> generic_iterator;
+pub unsafe fn xcb_xv_adaptor_info_end (i:adaptor_info_iterator) -> generic_iterator;
 
-unsafe fn xcb_xv_encoding_info_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xv_encoding_info_sizeof (_buffer :  *c_void) -> c_int;
 
-unsafe fn xcb_xv_encoding_info_name (R : *encoding_info) -> *c_char;
-
-
-unsafe fn xcb_xv_encoding_info_name_length (R : *encoding_info) -> c_int;
+pub unsafe fn xcb_xv_encoding_info_name (R : *encoding_info) -> *c_char;
 
 
-unsafe fn xcb_xv_encoding_info_name_end (R : *encoding_info) -> generic_iterator;
+pub unsafe fn xcb_xv_encoding_info_name_length (R : *encoding_info) -> c_int;
+
+
+pub unsafe fn xcb_xv_encoding_info_name_end (R : *encoding_info) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -778,7 +780,7 @@ unsafe fn xcb_xv_encoding_info_name_end (R : *encoding_info) -> generic_iterator
  *
  *
  */
-unsafe fn xcb_xv_encoding_info_next (i:*encoding_info_iterator) -> c_void;
+pub unsafe fn xcb_xv_encoding_info_next (i:*encoding_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -789,33 +791,33 @@ unsafe fn xcb_xv_encoding_info_next (i:*encoding_info_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xv_encoding_info_end (i:encoding_info_iterator) -> generic_iterator;
+pub unsafe fn xcb_xv_encoding_info_end (i:encoding_info_iterator) -> generic_iterator;
 
-unsafe fn xcb_xv_image_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xv_image_sizeof (_buffer :  *c_void) -> c_int;
 
-unsafe fn xcb_xv_image_pitches (R : *image) -> *u32;
-
-
-unsafe fn xcb_xv_image_pitches_length (R : *image) -> c_int;
+pub unsafe fn xcb_xv_image_pitches (R : *image) -> *u32;
 
 
-unsafe fn xcb_xv_image_pitches_end (R : *image) -> generic_iterator;
-
-unsafe fn xcb_xv_image_offsets (R : *image) -> *u32;
+pub unsafe fn xcb_xv_image_pitches_length (R : *image) -> c_int;
 
 
-unsafe fn xcb_xv_image_offsets_length (R : *image) -> c_int;
+pub unsafe fn xcb_xv_image_pitches_end (R : *image) -> generic_iterator;
+
+pub unsafe fn xcb_xv_image_offsets (R : *image) -> *u32;
 
 
-unsafe fn xcb_xv_image_offsets_end (R : *image) -> generic_iterator;
-
-unsafe fn xcb_xv_image_data (R : *image) -> *u8;
+pub unsafe fn xcb_xv_image_offsets_length (R : *image) -> c_int;
 
 
-unsafe fn xcb_xv_image_data_length (R : *image) -> c_int;
+pub unsafe fn xcb_xv_image_offsets_end (R : *image) -> generic_iterator;
+
+pub unsafe fn xcb_xv_image_data (R : *image) -> *u8;
 
 
-unsafe fn xcb_xv_image_data_end (R : *image) -> generic_iterator;
+pub unsafe fn xcb_xv_image_data_length (R : *image) -> c_int;
+
+
+pub unsafe fn xcb_xv_image_data_end (R : *image) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -827,7 +829,7 @@ unsafe fn xcb_xv_image_data_end (R : *image) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_xv_image_next (i:*image_iterator) -> c_void;
+pub unsafe fn xcb_xv_image_next (i:*image_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -838,17 +840,17 @@ unsafe fn xcb_xv_image_next (i:*image_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xv_image_end (i:image_iterator) -> generic_iterator;
+pub unsafe fn xcb_xv_image_end (i:image_iterator) -> generic_iterator;
 
-unsafe fn xcb_xv_attribute_info_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xv_attribute_info_sizeof (_buffer :  *c_void) -> c_int;
 
-unsafe fn xcb_xv_attribute_info_name (R : *attribute_info) -> *c_char;
-
-
-unsafe fn xcb_xv_attribute_info_name_length (R : *attribute_info) -> c_int;
+pub unsafe fn xcb_xv_attribute_info_name (R : *attribute_info) -> *c_char;
 
 
-unsafe fn xcb_xv_attribute_info_name_end (R : *attribute_info) -> generic_iterator;
+pub unsafe fn xcb_xv_attribute_info_name_length (R : *attribute_info) -> c_int;
+
+
+pub unsafe fn xcb_xv_attribute_info_name_end (R : *attribute_info) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -860,7 +862,7 @@ unsafe fn xcb_xv_attribute_info_name_end (R : *attribute_info) -> generic_iterat
  *
  *
  */
-unsafe fn xcb_xv_attribute_info_next (i:*attribute_info_iterator) -> c_void;
+pub unsafe fn xcb_xv_attribute_info_next (i:*attribute_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -871,7 +873,7 @@ unsafe fn xcb_xv_attribute_info_next (i:*attribute_info_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xv_attribute_info_end (i:attribute_info_iterator) -> generic_iterator;
+pub unsafe fn xcb_xv_attribute_info_end (i:attribute_info_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -883,7 +885,7 @@ unsafe fn xcb_xv_attribute_info_end (i:attribute_info_iterator) -> generic_itera
  *
  *
  */
-unsafe fn xcb_xv_image_format_info_next (i:*image_format_info_iterator) -> c_void;
+pub unsafe fn xcb_xv_image_format_info_next (i:*image_format_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -894,7 +896,7 @@ unsafe fn xcb_xv_image_format_info_next (i:*image_format_info_iterator) -> c_voi
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xv_image_format_info_end (i:image_format_info_iterator) -> generic_iterator;
+pub unsafe fn xcb_xv_image_format_info_end (i:image_format_info_iterator) -> generic_iterator;
 
 /**
  *
@@ -904,7 +906,7 @@ unsafe fn xcb_xv_image_format_info_end (i:image_format_info_iterator) -> generic
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xv_query_extension (c : *connection) -> query_extension_cookie;
+pub unsafe fn xcb_xv_query_extension (c : *connection) -> query_extension_cookie;
 
 /**
  *
@@ -917,7 +919,7 @@ unsafe fn xcb_xv_query_extension (c : *connection) -> query_extension_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xv_query_extension_unchecked (c : *connection) -> query_extension_cookie;
+pub unsafe fn xcb_xv_query_extension_unchecked (c : *connection) -> query_extension_cookie;
 
 /**
  * Return the reply
@@ -933,11 +935,11 @@ unsafe fn xcb_xv_query_extension_unchecked (c : *connection) -> query_extension_
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xv_query_extension_reply (c : *connection,
+pub unsafe fn xcb_xv_query_extension_reply (c : *connection,
                                         cookie : query_extension_cookie,
                                         e : **generic_error) -> *query_extension_reply;
 
-unsafe fn xcb_xv_query_adaptors_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xv_query_adaptors_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -947,7 +949,7 @@ unsafe fn xcb_xv_query_adaptors_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xv_query_adaptors (c : *connection,
+pub unsafe fn xcb_xv_query_adaptors (c : *connection,
                                  window :  ll::xproto::window) -> query_adaptors_cookie;
 
 /**
@@ -961,13 +963,13 @@ unsafe fn xcb_xv_query_adaptors (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xv_query_adaptors_unchecked (c : *connection,
+pub unsafe fn xcb_xv_query_adaptors_unchecked (c : *connection,
                                            window :  ll::xproto::window) -> query_adaptors_cookie;
 
 
-unsafe fn xcb_xv_query_adaptors_info_length (R : *query_adaptors_reply) -> c_int;
+pub unsafe fn xcb_xv_query_adaptors_info_length (R : *query_adaptors_reply) -> c_int;
 
-unsafe fn xcb_xv_query_adaptors_info_iterator (R : *query_adaptors_reply) -> adaptor_info_iterator;
+pub unsafe fn xcb_xv_query_adaptors_info_iterator (R : *query_adaptors_reply) -> adaptor_info_iterator;
 
 /**
  * Return the reply
@@ -983,11 +985,11 @@ unsafe fn xcb_xv_query_adaptors_info_iterator (R : *query_adaptors_reply) -> ada
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xv_query_adaptors_reply (c : *connection,
+pub unsafe fn xcb_xv_query_adaptors_reply (c : *connection,
                                        cookie : query_adaptors_cookie,
                                        e : **generic_error) -> *query_adaptors_reply;
 
-unsafe fn xcb_xv_query_encodings_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xv_query_encodings_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -997,7 +999,7 @@ unsafe fn xcb_xv_query_encodings_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xv_query_encodings (c : *connection,
+pub unsafe fn xcb_xv_query_encodings (c : *connection,
                                   port :  port) -> query_encodings_cookie;
 
 /**
@@ -1011,13 +1013,13 @@ unsafe fn xcb_xv_query_encodings (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xv_query_encodings_unchecked (c : *connection,
+pub unsafe fn xcb_xv_query_encodings_unchecked (c : *connection,
                                             port :  port) -> query_encodings_cookie;
 
 
-unsafe fn xcb_xv_query_encodings_info_length (R : *query_encodings_reply) -> c_int;
+pub unsafe fn xcb_xv_query_encodings_info_length (R : *query_encodings_reply) -> c_int;
 
-unsafe fn xcb_xv_query_encodings_info_iterator (R : *query_encodings_reply) -> encoding_info_iterator;
+pub unsafe fn xcb_xv_query_encodings_info_iterator (R : *query_encodings_reply) -> encoding_info_iterator;
 
 /**
  * Return the reply
@@ -1033,7 +1035,7 @@ unsafe fn xcb_xv_query_encodings_info_iterator (R : *query_encodings_reply) -> e
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xv_query_encodings_reply (c : *connection,
+pub unsafe fn xcb_xv_query_encodings_reply (c : *connection,
                                         cookie : query_encodings_cookie,
                                         e : **generic_error) -> *query_encodings_reply;
 
@@ -1045,7 +1047,7 @@ unsafe fn xcb_xv_query_encodings_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xv_grab_port (c : *connection,
+pub unsafe fn xcb_xv_grab_port (c : *connection,
                             port :  port,
                             time :  ll::xproto::timestamp) -> grab_port_cookie;
 
@@ -1060,7 +1062,7 @@ unsafe fn xcb_xv_grab_port (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xv_grab_port_unchecked (c : *connection,
+pub unsafe fn xcb_xv_grab_port_unchecked (c : *connection,
                                       port :  port,
                                       time :  ll::xproto::timestamp) -> grab_port_cookie;
 
@@ -1078,7 +1080,7 @@ unsafe fn xcb_xv_grab_port_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xv_grab_port_reply (c : *connection,
+pub unsafe fn xcb_xv_grab_port_reply (c : *connection,
                                   cookie : grab_port_cookie,
                                   e : **generic_error) -> *grab_port_reply;
 
@@ -1093,7 +1095,7 @@ unsafe fn xcb_xv_grab_port_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xv_ungrab_port_checked (c : *connection,
+pub unsafe fn xcb_xv_ungrab_port_checked (c : *connection,
                                       port :  port,
                                       time :  ll::xproto::timestamp) -> void_cookie;
 
@@ -1105,7 +1107,7 @@ unsafe fn xcb_xv_ungrab_port_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xv_ungrab_port (c : *connection,
+pub unsafe fn xcb_xv_ungrab_port (c : *connection,
                               port :  port,
                               time :  ll::xproto::timestamp) -> void_cookie;
 
@@ -1120,7 +1122,7 @@ unsafe fn xcb_xv_ungrab_port (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xv_put_video_checked (c : *connection,
+pub unsafe fn xcb_xv_put_video_checked (c : *connection,
                                     port :  port,
                                     drawable :  ll::xproto::drawable,
                                     gc :  ll::xproto::gcontext,
@@ -1141,7 +1143,7 @@ unsafe fn xcb_xv_put_video_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xv_put_video (c : *connection,
+pub unsafe fn xcb_xv_put_video (c : *connection,
                             port :  port,
                             drawable :  ll::xproto::drawable,
                             gc :  ll::xproto::gcontext,
@@ -1165,7 +1167,7 @@ unsafe fn xcb_xv_put_video (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xv_put_still_checked (c : *connection,
+pub unsafe fn xcb_xv_put_still_checked (c : *connection,
                                     port :  port,
                                     drawable :  ll::xproto::drawable,
                                     gc :  ll::xproto::gcontext,
@@ -1186,7 +1188,7 @@ unsafe fn xcb_xv_put_still_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xv_put_still (c : *connection,
+pub unsafe fn xcb_xv_put_still (c : *connection,
                             port :  port,
                             drawable :  ll::xproto::drawable,
                             gc :  ll::xproto::gcontext,
@@ -1210,7 +1212,7 @@ unsafe fn xcb_xv_put_still (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xv_get_video_checked (c : *connection,
+pub unsafe fn xcb_xv_get_video_checked (c : *connection,
                                     port :  port,
                                     drawable :  ll::xproto::drawable,
                                     gc :  ll::xproto::gcontext,
@@ -1231,7 +1233,7 @@ unsafe fn xcb_xv_get_video_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xv_get_video (c : *connection,
+pub unsafe fn xcb_xv_get_video (c : *connection,
                             port :  port,
                             drawable :  ll::xproto::drawable,
                             gc :  ll::xproto::gcontext,
@@ -1255,7 +1257,7 @@ unsafe fn xcb_xv_get_video (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xv_get_still_checked (c : *connection,
+pub unsafe fn xcb_xv_get_still_checked (c : *connection,
                                     port :  port,
                                     drawable :  ll::xproto::drawable,
                                     gc :  ll::xproto::gcontext,
@@ -1276,7 +1278,7 @@ unsafe fn xcb_xv_get_still_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xv_get_still (c : *connection,
+pub unsafe fn xcb_xv_get_still (c : *connection,
                             port :  port,
                             drawable :  ll::xproto::drawable,
                             gc :  ll::xproto::gcontext,
@@ -1300,7 +1302,7 @@ unsafe fn xcb_xv_get_still (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xv_stop_video_checked (c : *connection,
+pub unsafe fn xcb_xv_stop_video_checked (c : *connection,
                                      port :  port,
                                      drawable :  ll::xproto::drawable) -> void_cookie;
 
@@ -1312,7 +1314,7 @@ unsafe fn xcb_xv_stop_video_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xv_stop_video (c : *connection,
+pub unsafe fn xcb_xv_stop_video (c : *connection,
                              port :  port,
                              drawable :  ll::xproto::drawable) -> void_cookie;
 
@@ -1327,7 +1329,7 @@ unsafe fn xcb_xv_stop_video (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xv_select_video_notify_checked (c : *connection,
+pub unsafe fn xcb_xv_select_video_notify_checked (c : *connection,
                                               drawable :  ll::xproto::drawable,
                                               onoff :  u8) -> void_cookie;
 
@@ -1339,7 +1341,7 @@ unsafe fn xcb_xv_select_video_notify_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xv_select_video_notify (c : *connection,
+pub unsafe fn xcb_xv_select_video_notify (c : *connection,
                                       drawable :  ll::xproto::drawable,
                                       onoff :  u8) -> void_cookie;
 
@@ -1354,7 +1356,7 @@ unsafe fn xcb_xv_select_video_notify (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xv_select_port_notify_checked (c : *connection,
+pub unsafe fn xcb_xv_select_port_notify_checked (c : *connection,
                                              port :  port,
                                              onoff :  u8) -> void_cookie;
 
@@ -1366,7 +1368,7 @@ unsafe fn xcb_xv_select_port_notify_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xv_select_port_notify (c : *connection,
+pub unsafe fn xcb_xv_select_port_notify (c : *connection,
                                      port :  port,
                                      onoff :  u8) -> void_cookie;
 
@@ -1378,7 +1380,7 @@ unsafe fn xcb_xv_select_port_notify (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xv_query_best_size (c : *connection,
+pub unsafe fn xcb_xv_query_best_size (c : *connection,
                                   port :  port,
                                   vid_w :  u16,
                                   vid_h :  u16,
@@ -1397,7 +1399,7 @@ unsafe fn xcb_xv_query_best_size (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xv_query_best_size_unchecked (c : *connection,
+pub unsafe fn xcb_xv_query_best_size_unchecked (c : *connection,
                                             port :  port,
                                             vid_w :  u16,
                                             vid_h :  u16,
@@ -1419,7 +1421,7 @@ unsafe fn xcb_xv_query_best_size_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xv_query_best_size_reply (c : *connection,
+pub unsafe fn xcb_xv_query_best_size_reply (c : *connection,
                                         cookie : query_best_size_cookie,
                                         e : **generic_error) -> *query_best_size_reply;
 
@@ -1434,7 +1436,7 @@ unsafe fn xcb_xv_query_best_size_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xv_set_port_attribute_checked (c : *connection,
+pub unsafe fn xcb_xv_set_port_attribute_checked (c : *connection,
                                              port :  port,
                                              attribute :  ll::xproto::atom,
                                              value :  i32) -> void_cookie;
@@ -1447,7 +1449,7 @@ unsafe fn xcb_xv_set_port_attribute_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xv_set_port_attribute (c : *connection,
+pub unsafe fn xcb_xv_set_port_attribute (c : *connection,
                                      port :  port,
                                      attribute :  ll::xproto::atom,
                                      value :  i32) -> void_cookie;
@@ -1460,7 +1462,7 @@ unsafe fn xcb_xv_set_port_attribute (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xv_get_port_attribute (c : *connection,
+pub unsafe fn xcb_xv_get_port_attribute (c : *connection,
                                      port :  port,
                                      attribute :  ll::xproto::atom) -> get_port_attribute_cookie;
 
@@ -1475,7 +1477,7 @@ unsafe fn xcb_xv_get_port_attribute (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xv_get_port_attribute_unchecked (c : *connection,
+pub unsafe fn xcb_xv_get_port_attribute_unchecked (c : *connection,
                                                port :  port,
                                                attribute :  ll::xproto::atom) -> get_port_attribute_cookie;
 
@@ -1493,11 +1495,11 @@ unsafe fn xcb_xv_get_port_attribute_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xv_get_port_attribute_reply (c : *connection,
+pub unsafe fn xcb_xv_get_port_attribute_reply (c : *connection,
                                            cookie : get_port_attribute_cookie,
                                            e : **generic_error) -> *get_port_attribute_reply;
 
-unsafe fn xcb_xv_query_port_attributes_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xv_query_port_attributes_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -1507,7 +1509,7 @@ unsafe fn xcb_xv_query_port_attributes_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xv_query_port_attributes (c : *connection,
+pub unsafe fn xcb_xv_query_port_attributes (c : *connection,
                                         port :  port) -> query_port_attributes_cookie;
 
 /**
@@ -1521,13 +1523,13 @@ unsafe fn xcb_xv_query_port_attributes (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xv_query_port_attributes_unchecked (c : *connection,
+pub unsafe fn xcb_xv_query_port_attributes_unchecked (c : *connection,
                                                   port :  port) -> query_port_attributes_cookie;
 
 
-unsafe fn xcb_xv_query_port_attributes_attributes_length (R : *query_port_attributes_reply) -> c_int;
+pub unsafe fn xcb_xv_query_port_attributes_attributes_length (R : *query_port_attributes_reply) -> c_int;
 
-unsafe fn xcb_xv_query_port_attributes_attributes_iterator (R : *query_port_attributes_reply) -> attribute_info_iterator;
+pub unsafe fn xcb_xv_query_port_attributes_attributes_iterator (R : *query_port_attributes_reply) -> attribute_info_iterator;
 
 /**
  * Return the reply
@@ -1543,11 +1545,11 @@ unsafe fn xcb_xv_query_port_attributes_attributes_iterator (R : *query_port_attr
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xv_query_port_attributes_reply (c : *connection,
+pub unsafe fn xcb_xv_query_port_attributes_reply (c : *connection,
                                               cookie : query_port_attributes_cookie,
                                               e : **generic_error) -> *query_port_attributes_reply;
 
-unsafe fn xcb_xv_list_image_formats_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xv_list_image_formats_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -1557,7 +1559,7 @@ unsafe fn xcb_xv_list_image_formats_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xv_list_image_formats (c : *connection,
+pub unsafe fn xcb_xv_list_image_formats (c : *connection,
                                      port :  port) -> list_image_formats_cookie;
 
 /**
@@ -1571,15 +1573,15 @@ unsafe fn xcb_xv_list_image_formats (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xv_list_image_formats_unchecked (c : *connection,
+pub unsafe fn xcb_xv_list_image_formats_unchecked (c : *connection,
                                                port :  port) -> list_image_formats_cookie;
 
-unsafe fn xcb_xv_list_image_formats_format (R : *list_image_formats_reply) -> *image_format_info;
+pub unsafe fn xcb_xv_list_image_formats_format (R : *list_image_formats_reply) -> *image_format_info;
 
 
-unsafe fn xcb_xv_list_image_formats_format_length (R : *list_image_formats_reply) -> c_int;
+pub unsafe fn xcb_xv_list_image_formats_format_length (R : *list_image_formats_reply) -> c_int;
 
-unsafe fn xcb_xv_list_image_formats_format_iterator (R : *list_image_formats_reply) -> image_format_info_iterator;
+pub unsafe fn xcb_xv_list_image_formats_format_iterator (R : *list_image_formats_reply) -> image_format_info_iterator;
 
 /**
  * Return the reply
@@ -1595,11 +1597,11 @@ unsafe fn xcb_xv_list_image_formats_format_iterator (R : *list_image_formats_rep
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xv_list_image_formats_reply (c : *connection,
+pub unsafe fn xcb_xv_list_image_formats_reply (c : *connection,
                                            cookie : list_image_formats_cookie,
                                            e : **generic_error) -> *list_image_formats_reply;
 
-unsafe fn xcb_xv_query_image_attributes_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_xv_query_image_attributes_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -1609,7 +1611,7 @@ unsafe fn xcb_xv_query_image_attributes_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xv_query_image_attributes (c : *connection,
+pub unsafe fn xcb_xv_query_image_attributes (c : *connection,
                                          port :  port,
                                          id :  u32,
                                          width :  u16,
@@ -1626,27 +1628,27 @@ unsafe fn xcb_xv_query_image_attributes (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xv_query_image_attributes_unchecked (c : *connection,
+pub unsafe fn xcb_xv_query_image_attributes_unchecked (c : *connection,
                                                    port :  port,
                                                    id :  u32,
                                                    width :  u16,
                                                    height :  u16) -> query_image_attributes_cookie;
 
-unsafe fn xcb_xv_query_image_attributes_pitches (R : *query_image_attributes_reply) -> *u32;
+pub unsafe fn xcb_xv_query_image_attributes_pitches (R : *query_image_attributes_reply) -> *u32;
 
 
-unsafe fn xcb_xv_query_image_attributes_pitches_length (R : *query_image_attributes_reply) -> c_int;
+pub unsafe fn xcb_xv_query_image_attributes_pitches_length (R : *query_image_attributes_reply) -> c_int;
 
 
-unsafe fn xcb_xv_query_image_attributes_pitches_end (R : *query_image_attributes_reply) -> generic_iterator;
+pub unsafe fn xcb_xv_query_image_attributes_pitches_end (R : *query_image_attributes_reply) -> generic_iterator;
 
-unsafe fn xcb_xv_query_image_attributes_offsets (R : *query_image_attributes_reply) -> *u32;
-
-
-unsafe fn xcb_xv_query_image_attributes_offsets_length (R : *query_image_attributes_reply) -> c_int;
+pub unsafe fn xcb_xv_query_image_attributes_offsets (R : *query_image_attributes_reply) -> *u32;
 
 
-unsafe fn xcb_xv_query_image_attributes_offsets_end (R : *query_image_attributes_reply) -> generic_iterator;
+pub unsafe fn xcb_xv_query_image_attributes_offsets_length (R : *query_image_attributes_reply) -> c_int;
+
+
+pub unsafe fn xcb_xv_query_image_attributes_offsets_end (R : *query_image_attributes_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -1662,11 +1664,11 @@ unsafe fn xcb_xv_query_image_attributes_offsets_end (R : *query_image_attributes
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xv_query_image_attributes_reply (c : *connection,
+pub unsafe fn xcb_xv_query_image_attributes_reply (c : *connection,
                                                cookie : query_image_attributes_cookie,
                                                e : **generic_error) -> *query_image_attributes_reply;
 
-unsafe fn xcb_xv_put_image_sizeof (_buffer :  *c_void,
+pub unsafe fn xcb_xv_put_image_sizeof (_buffer :  *c_void,
                          data_len :  u32) -> c_int;
 
 /**
@@ -1680,7 +1682,7 @@ unsafe fn xcb_xv_put_image_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xv_put_image_checked (c : *connection,
+pub unsafe fn xcb_xv_put_image_checked (c : *connection,
                                     port :  port,
                                     drawable :  ll::xproto::drawable,
                                     gc :  ll::xproto::gcontext,
@@ -1706,7 +1708,7 @@ unsafe fn xcb_xv_put_image_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xv_put_image (c : *connection,
+pub unsafe fn xcb_xv_put_image (c : *connection,
                             port :  port,
                             drawable :  ll::xproto::drawable,
                             gc :  ll::xproto::gcontext,
@@ -1735,7 +1737,7 @@ unsafe fn xcb_xv_put_image (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xv_shm_put_image_checked (c : *connection,
+pub unsafe fn xcb_xv_shm_put_image_checked (c : *connection,
                                         port :  port,
                                         drawable :  ll::xproto::drawable,
                                         gc :  ll::xproto::gcontext,
@@ -1762,7 +1764,7 @@ unsafe fn xcb_xv_shm_put_image_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_xv_shm_put_image (c : *connection,
+pub unsafe fn xcb_xv_shm_put_image (c : *connection,
                                 port :  port,
                                 drawable :  ll::xproto::drawable,
                                 gc :  ll::xproto::gcontext,

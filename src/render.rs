@@ -6,15 +6,17 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(unused_unsafe)];
-use core;
-use core::libc::*;
+use std;
+use std::libc::*;
+use std::{cast,num,ptr,str,libc};
+use std::to_bytes::ToBytes;
 use ll::base::*;
 use base;
 use base::*;
 use ll;
 use ll::render::*;
-use core::option::Option;
-use core::iterator::Iterator;
+use std::option::Option;
+use std::iterator::Iterator;
 
 use xproto;
 
@@ -258,7 +260,7 @@ pub static XCB_RENDER_CREATE_RADIAL_GRADIENT : u8 = 35;
 pub static XCB_RENDER_CREATE_CONICAL_GRADIENT : u8 = 36;
 
 impl<'self, Glyph> Iterator<&'self Glyph> for GlyphIterator {
-    fn next(&mut self) -> Option<&'self Glyph> {
+    pub fn next(&mut self) -> Option<&'self Glyph> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *glyph_iterator = cast::transmute(self);
@@ -273,7 +275,7 @@ pub type Glyphset = glyphset;
 
 
 impl<'self, Glyphset> Iterator<&'self Glyphset> for GlyphsetIterator {
-    fn next(&mut self) -> Option<&'self Glyphset> {
+    pub fn next(&mut self) -> Option<&'self Glyphset> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *glyphset_iterator = cast::transmute(self);
@@ -288,7 +290,7 @@ pub type Picture = picture;
 
 
 impl<'self, Picture> Iterator<&'self Picture> for PictureIterator {
-    fn next(&mut self) -> Option<&'self Picture> {
+    pub fn next(&mut self) -> Option<&'self Picture> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *picture_iterator = cast::transmute(self);
@@ -303,7 +305,7 @@ pub type Pictformat = pictformat;
 
 
 impl<'self, Pictformat> Iterator<&'self Pictformat> for PictformatIterator {
-    fn next(&mut self) -> Option<&'self Pictformat> {
+    pub fn next(&mut self) -> Option<&'self Pictformat> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *pictformat_iterator = cast::transmute(self);
@@ -318,7 +320,7 @@ pub type Fixed = fixed;
 
 
 impl<'self, Fixed> Iterator<&'self Fixed> for FixedIterator {
-    fn next(&mut self) -> Option<&'self Fixed> {
+    pub fn next(&mut self) -> Option<&'self Fixed> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *fixed_iterator = cast::transmute(self);
@@ -330,43 +332,43 @@ impl<'self, Fixed> Iterator<&'self Fixed> for FixedIterator {
 }
 
 
-pub impl base::Struct<directformat> {
-  fn red_shift(&self) -> u16 {
+impl base::Struct<directformat> {
+  pub fn red_shift(&self) -> u16 {
     unsafe { accessor!(red_shift -> u16, self.strct) }
   }
 
-  fn red_mask(&self) -> u16 {
+  pub fn red_mask(&self) -> u16 {
     unsafe { accessor!(red_mask -> u16, self.strct) }
   }
 
-  fn green_shift(&self) -> u16 {
+  pub fn green_shift(&self) -> u16 {
     unsafe { accessor!(green_shift -> u16, self.strct) }
   }
 
-  fn green_mask(&self) -> u16 {
+  pub fn green_mask(&self) -> u16 {
     unsafe { accessor!(green_mask -> u16, self.strct) }
   }
 
-  fn blue_shift(&self) -> u16 {
+  pub fn blue_shift(&self) -> u16 {
     unsafe { accessor!(blue_shift -> u16, self.strct) }
   }
 
-  fn blue_mask(&self) -> u16 {
+  pub fn blue_mask(&self) -> u16 {
     unsafe { accessor!(blue_mask -> u16, self.strct) }
   }
 
-  fn alpha_shift(&self) -> u16 {
+  pub fn alpha_shift(&self) -> u16 {
     unsafe { accessor!(alpha_shift -> u16, self.strct) }
   }
 
-  fn alpha_mask(&self) -> u16 {
+  pub fn alpha_mask(&self) -> u16 {
     unsafe { accessor!(alpha_mask -> u16, self.strct) }
   }
 
 }
 
 impl<'self, Directformat> Iterator<&'self Directformat> for DirectformatIterator {
-    fn next(&mut self) -> Option<&'self Directformat> {
+    pub fn next(&mut self) -> Option<&'self Directformat> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *directformat_iterator = cast::transmute(self);
@@ -380,30 +382,30 @@ impl<'self, Directformat> Iterator<&'self Directformat> for DirectformatIterator
 pub type Pictforminfo = base::Struct<pictforminfo>;
 
 
-pub impl base::Struct<pictforminfo> {
-  fn id(&self) -> Pictformat {
+impl base::Struct<pictforminfo> {
+  pub fn id(&self) -> Pictformat {
     unsafe { accessor!(id -> Pictformat, self.strct) }
   }
 
-  fn type_(&self) -> u8 {
+  pub fn type_(&self) -> u8 {
     unsafe { accessor!(type_ -> u8, self.strct) }
   }
 
-  fn depth(&self) -> u8 {
+  pub fn depth(&self) -> u8 {
     unsafe { accessor!(depth -> u8, self.strct) }
   }
 
-  fn direct(&self) -> Directformat {
+  pub fn direct(&self) -> Directformat {
     unsafe { cast::transmute(self.strct.direct) }
   }
-  fn colormap(&self) -> xproto::Colormap {
+  pub fn colormap(&self) -> xproto::Colormap {
     unsafe { accessor!(colormap -> xproto::Colormap, self.strct) }
   }
 
 }
 
 impl<'self, Pictforminfo> Iterator<&'self Pictforminfo> for PictforminfoIterator {
-    fn next(&mut self) -> Option<&'self Pictforminfo> {
+    pub fn next(&mut self) -> Option<&'self Pictforminfo> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *pictforminfo_iterator = cast::transmute(self);
@@ -417,19 +419,19 @@ impl<'self, Pictforminfo> Iterator<&'self Pictforminfo> for PictforminfoIterator
 pub type Pictvisual = base::Struct<pictvisual>;
 
 
-pub impl base::Struct<pictvisual> {
-  fn visual(&self) -> xproto::Visualid {
+impl base::Struct<pictvisual> {
+  pub fn visual(&self) -> xproto::Visualid {
     unsafe { accessor!(visual -> xproto::Visualid, self.strct) }
   }
 
-  fn format(&self) -> Pictformat {
+  pub fn format(&self) -> Pictformat {
     unsafe { accessor!(format -> Pictformat, self.strct) }
   }
 
 }
 
 impl<'self, Pictvisual> Iterator<&'self Pictvisual> for PictvisualIterator {
-    fn next(&mut self) -> Option<&'self Pictvisual> {
+    pub fn next(&mut self) -> Option<&'self Pictvisual> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *pictvisual_iterator = cast::transmute(self);
@@ -443,19 +445,19 @@ impl<'self, Pictvisual> Iterator<&'self Pictvisual> for PictvisualIterator {
 pub type Pictdepth = base::Struct<pictdepth>;
 
 
-pub impl base::Struct<pictdepth> {
-  fn depth(&self) -> u8 {
+impl base::Struct<pictdepth> {
+  pub fn depth(&self) -> u8 {
     unsafe { accessor!(depth -> u8, self.strct) }
   }
 
-  fn visuals(&self) -> PictvisualIterator {
+  pub fn visuals(&self) -> PictvisualIterator {
     unsafe { accessor!(PictvisualIterator, xcb_render_pictdepth_visuals_iterator, self.strct) }
   }
 
 }
 
 impl<'self, Pictdepth> Iterator<&'self Pictdepth> for PictdepthIterator {
-    fn next(&mut self) -> Option<&'self Pictdepth> {
+    pub fn next(&mut self) -> Option<&'self Pictdepth> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *pictdepth_iterator = cast::transmute(self);
@@ -469,19 +471,19 @@ impl<'self, Pictdepth> Iterator<&'self Pictdepth> for PictdepthIterator {
 pub type Pictscreen = base::Struct<pictscreen>;
 
 
-pub impl base::Struct<pictscreen> {
-  fn fallback(&self) -> Pictformat {
+impl base::Struct<pictscreen> {
+  pub fn fallback(&self) -> Pictformat {
     unsafe { accessor!(fallback -> Pictformat, self.strct) }
   }
 
-  fn depths(&self) -> PictdepthIterator {
+  pub fn depths(&self) -> PictdepthIterator {
     unsafe { accessor!(PictdepthIterator, xcb_render_pictscreen_depths_iterator, self.strct) }
   }
 
 }
 
 impl<'self, Pictscreen> Iterator<&'self Pictscreen> for PictscreenIterator {
-    fn next(&mut self) -> Option<&'self Pictscreen> {
+    pub fn next(&mut self) -> Option<&'self Pictscreen> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *pictscreen_iterator = cast::transmute(self);
@@ -495,31 +497,31 @@ impl<'self, Pictscreen> Iterator<&'self Pictscreen> for PictscreenIterator {
 pub type Indexvalue = base::Struct<indexvalue>;
 
 
-pub impl base::Struct<indexvalue> {
-  fn pixel(&self) -> u32 {
+impl base::Struct<indexvalue> {
+  pub fn pixel(&self) -> u32 {
     unsafe { accessor!(pixel -> u32, self.strct) }
   }
 
-  fn red(&self) -> u16 {
+  pub fn red(&self) -> u16 {
     unsafe { accessor!(red -> u16, self.strct) }
   }
 
-  fn green(&self) -> u16 {
+  pub fn green(&self) -> u16 {
     unsafe { accessor!(green -> u16, self.strct) }
   }
 
-  fn blue(&self) -> u16 {
+  pub fn blue(&self) -> u16 {
     unsafe { accessor!(blue -> u16, self.strct) }
   }
 
-  fn alpha(&self) -> u16 {
+  pub fn alpha(&self) -> u16 {
     unsafe { accessor!(alpha -> u16, self.strct) }
   }
 
 }
 
 impl<'self, Indexvalue> Iterator<&'self Indexvalue> for IndexvalueIterator {
-    fn next(&mut self) -> Option<&'self Indexvalue> {
+    pub fn next(&mut self) -> Option<&'self Indexvalue> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *indexvalue_iterator = cast::transmute(self);
@@ -533,27 +535,27 @@ impl<'self, Indexvalue> Iterator<&'self Indexvalue> for IndexvalueIterator {
 pub type Color = base::Struct<color>;
 
 
-pub impl base::Struct<color> {
-  fn red(&self) -> u16 {
+impl base::Struct<color> {
+  pub fn red(&self) -> u16 {
     unsafe { accessor!(red -> u16, self.strct) }
   }
 
-  fn green(&self) -> u16 {
+  pub fn green(&self) -> u16 {
     unsafe { accessor!(green -> u16, self.strct) }
   }
 
-  fn blue(&self) -> u16 {
+  pub fn blue(&self) -> u16 {
     unsafe { accessor!(blue -> u16, self.strct) }
   }
 
-  fn alpha(&self) -> u16 {
+  pub fn alpha(&self) -> u16 {
     unsafe { accessor!(alpha -> u16, self.strct) }
   }
 
 }
 
 impl<'self, Color> Iterator<&'self Color> for ColorIterator {
-    fn next(&mut self) -> Option<&'self Color> {
+    pub fn next(&mut self) -> Option<&'self Color> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *color_iterator = cast::transmute(self);
@@ -567,19 +569,19 @@ impl<'self, Color> Iterator<&'self Color> for ColorIterator {
 pub type Pointfix = base::Struct<pointfix>;
 
 
-pub impl base::Struct<pointfix> {
-  fn x(&self) -> Fixed {
+impl base::Struct<pointfix> {
+  pub fn x(&self) -> Fixed {
     unsafe { accessor!(x -> Fixed, self.strct) }
   }
 
-  fn y(&self) -> Fixed {
+  pub fn y(&self) -> Fixed {
     unsafe { accessor!(y -> Fixed, self.strct) }
   }
 
 }
 
 impl<'self, Pointfix> Iterator<&'self Pointfix> for PointfixIterator {
-    fn next(&mut self) -> Option<&'self Pointfix> {
+    pub fn next(&mut self) -> Option<&'self Pointfix> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *pointfix_iterator = cast::transmute(self);
@@ -593,17 +595,17 @@ impl<'self, Pointfix> Iterator<&'self Pointfix> for PointfixIterator {
 pub type Linefix = base::Struct<linefix>;
 
 
-pub impl base::Struct<linefix> {
-  fn p1(&self) -> Pointfix {
+impl base::Struct<linefix> {
+  pub fn p1(&self) -> Pointfix {
     unsafe { cast::transmute(self.strct.p1) }
   }
-  fn p2(&self) -> Pointfix {
+  pub fn p2(&self) -> Pointfix {
     unsafe { cast::transmute(self.strct.p2) }
   }
 }
 
 impl<'self, Linefix> Iterator<&'self Linefix> for LinefixIterator {
-    fn next(&mut self) -> Option<&'self Linefix> {
+    pub fn next(&mut self) -> Option<&'self Linefix> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *linefix_iterator = cast::transmute(self);
@@ -617,20 +619,20 @@ impl<'self, Linefix> Iterator<&'self Linefix> for LinefixIterator {
 pub type Triangle = base::Struct<triangle>;
 
 
-pub impl base::Struct<triangle> {
-  fn p1(&self) -> Pointfix {
+impl base::Struct<triangle> {
+  pub fn p1(&self) -> Pointfix {
     unsafe { cast::transmute(self.strct.p1) }
   }
-  fn p2(&self) -> Pointfix {
+  pub fn p2(&self) -> Pointfix {
     unsafe { cast::transmute(self.strct.p2) }
   }
-  fn p3(&self) -> Pointfix {
+  pub fn p3(&self) -> Pointfix {
     unsafe { cast::transmute(self.strct.p3) }
   }
 }
 
 impl<'self, Triangle> Iterator<&'self Triangle> for TriangleIterator {
-    fn next(&mut self) -> Option<&'self Triangle> {
+    pub fn next(&mut self) -> Option<&'self Triangle> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *triangle_iterator = cast::transmute(self);
@@ -644,25 +646,25 @@ impl<'self, Triangle> Iterator<&'self Triangle> for TriangleIterator {
 pub type Trapezoid = base::Struct<trapezoid>;
 
 
-pub impl base::Struct<trapezoid> {
-  fn top(&self) -> Fixed {
+impl base::Struct<trapezoid> {
+  pub fn top(&self) -> Fixed {
     unsafe { accessor!(top -> Fixed, self.strct) }
   }
 
-  fn bottom(&self) -> Fixed {
+  pub fn bottom(&self) -> Fixed {
     unsafe { accessor!(bottom -> Fixed, self.strct) }
   }
 
-  fn left(&self) -> Linefix {
+  pub fn left(&self) -> Linefix {
     unsafe { cast::transmute(self.strct.left) }
   }
-  fn right(&self) -> Linefix {
+  pub fn right(&self) -> Linefix {
     unsafe { cast::transmute(self.strct.right) }
   }
 }
 
 impl<'self, Trapezoid> Iterator<&'self Trapezoid> for TrapezoidIterator {
-    fn next(&mut self) -> Option<&'self Trapezoid> {
+    pub fn next(&mut self) -> Option<&'self Trapezoid> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *trapezoid_iterator = cast::transmute(self);
@@ -676,35 +678,35 @@ impl<'self, Trapezoid> Iterator<&'self Trapezoid> for TrapezoidIterator {
 pub type Glyphinfo = base::Struct<glyphinfo>;
 
 
-pub impl base::Struct<glyphinfo> {
-  fn width(&self) -> u16 {
+impl base::Struct<glyphinfo> {
+  pub fn width(&self) -> u16 {
     unsafe { accessor!(width -> u16, self.strct) }
   }
 
-  fn height(&self) -> u16 {
+  pub fn height(&self) -> u16 {
     unsafe { accessor!(height -> u16, self.strct) }
   }
 
-  fn x(&self) -> i16 {
+  pub fn x(&self) -> i16 {
     unsafe { accessor!(x -> i16, self.strct) }
   }
 
-  fn y(&self) -> i16 {
+  pub fn y(&self) -> i16 {
     unsafe { accessor!(y -> i16, self.strct) }
   }
 
-  fn x_off(&self) -> i16 {
+  pub fn x_off(&self) -> i16 {
     unsafe { accessor!(x_off -> i16, self.strct) }
   }
 
-  fn y_off(&self) -> i16 {
+  pub fn y_off(&self) -> i16 {
     unsafe { accessor!(y_off -> i16, self.strct) }
   }
 
 }
 
 impl<'self, Glyphinfo> Iterator<&'self Glyphinfo> for GlyphinfoIterator {
-    fn next(&mut self) -> Option<&'self Glyphinfo> {
+    pub fn next(&mut self) -> Option<&'self Glyphinfo> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *glyphinfo_iterator = cast::transmute(self);
@@ -736,12 +738,12 @@ pub fn QueryVersionUnchecked<'r> (c : &'r Connection,
   }
 }
 
-pub impl base::Reply<query_version_reply> {
-  fn major_version(&self) -> u32 {
+impl base::Reply<query_version_reply> {
+  pub fn major_version(&self) -> u32 {
     unsafe { accessor!(major_version -> u32, (*self.reply)) }
   }
 
-  fn minor_version(&self) -> u32 {
+  pub fn minor_version(&self) -> u32 {
     unsafe { accessor!(minor_version -> u32, (*self.reply)) }
   }
 
@@ -762,24 +764,24 @@ pub fn QueryPictFormatsUnchecked<'r> (c : &'r Connection) -> QueryPictFormatsCoo
   }
 }
 
-pub impl base::Reply<query_pict_formats_reply> {
-  fn num_depths(&self) -> u32 {
+impl base::Reply<query_pict_formats_reply> {
+  pub fn num_depths(&self) -> u32 {
     unsafe { accessor!(num_depths -> u32, (*self.reply)) }
   }
 
-  fn num_visuals(&self) -> u32 {
+  pub fn num_visuals(&self) -> u32 {
     unsafe { accessor!(num_visuals -> u32, (*self.reply)) }
   }
 
-  fn formats(&self) -> PictforminfoIterator {
+  pub fn formats(&self) -> PictforminfoIterator {
     unsafe { accessor!(PictforminfoIterator, xcb_render_query_pict_formats_formats_iterator, (*self.reply)) }
   }
 
-  fn screens(&self) -> PictscreenIterator {
+  pub fn screens(&self) -> PictscreenIterator {
     unsafe { accessor!(PictscreenIterator, xcb_render_query_pict_formats_screens_iterator, (*self.reply)) }
   }
 
-  fn subpixels(&self) -> ~[u32] {
+  pub fn subpixels(&self) -> ~[u32] {
     unsafe { accessor!(u32, xcb_render_query_pict_formats_subpixels_length, xcb_render_query_pict_formats_subpixels, (*self.reply)) }
   }
 
@@ -804,8 +806,8 @@ pub fn QueryPictIndexValuesUnchecked<'r> (c : &'r Connection,
   }
 }
 
-pub impl base::Reply<query_pict_index_values_reply> {
-  fn values(&self) -> IndexvalueIterator {
+impl base::Reply<query_pict_index_values_reply> {
+  pub fn values(&self) -> IndexvalueIterator {
     unsafe { accessor!(IndexvalueIterator, xcb_render_query_pict_index_values_values_iterator, (*self.reply)) }
   }
 
@@ -819,7 +821,7 @@ pub fn CreatePictureChecked<'r> (c : &'r Connection,
                              value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = core::vec::raw::to_ptr(value_list_vec);
+    let value_list_ptr = std::vec::raw::to_ptr(value_list_vec);
     let cookie = xcb_render_create_picture_checked(c.get_raw_conn(),
         pid as picture, //1
         drawable as ll::xproto::drawable, //2
@@ -836,7 +838,7 @@ pub fn CreatePicture<'r> (c : &'r Connection,
                       value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = core::vec::raw::to_ptr(value_list_vec);
+    let value_list_ptr = std::vec::raw::to_ptr(value_list_vec);
     let cookie = xcb_render_create_picture(c.get_raw_conn(),
         pid as picture, //1
         drawable as ll::xproto::drawable, //2
@@ -851,7 +853,7 @@ pub fn ChangePictureChecked<'r> (c : &'r Connection,
                              value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = core::vec::raw::to_ptr(value_list_vec);
+    let value_list_ptr = std::vec::raw::to_ptr(value_list_vec);
     let cookie = xcb_render_change_picture_checked(c.get_raw_conn(),
         picture as picture, //1
         value_list_mask as u32, //2
@@ -864,7 +866,7 @@ pub fn ChangePicture<'r> (c : &'r Connection,
                       value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = core::vec::raw::to_ptr(value_list_vec);
+    let value_list_ptr = std::vec::raw::to_ptr(value_list_vec);
     let cookie = xcb_render_change_picture(c.get_raw_conn(),
         picture as picture, //1
         value_list_mask as u32, //2
@@ -879,7 +881,7 @@ pub fn SetPictureClipRectanglesChecked<'r> (c : &'r Connection,
                                         rectangles : &[xproto::Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = core::vec::raw::to_ptr(rectangles);
+    let rectangles_ptr = std::vec::raw::to_ptr(rectangles);
     let cookie = xcb_render_set_picture_clip_rectangles_checked(c.get_raw_conn(),
         picture as picture, //1
         clip_x_origin as i16, //2
@@ -896,7 +898,7 @@ pub fn SetPictureClipRectangles<'r> (c : &'r Connection,
                                  rectangles : &[xproto::Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = core::vec::raw::to_ptr(rectangles);
+    let rectangles_ptr = std::vec::raw::to_ptr(rectangles);
     let cookie = xcb_render_set_picture_clip_rectangles(c.get_raw_conn(),
         picture as picture, //1
         clip_x_origin as i16, //2
@@ -992,7 +994,7 @@ pub fn TrapezoidsChecked<'r> (c : &'r Connection,
                           traps : &[Trapezoid]) -> base::VoidCookie<'r> {
   unsafe {
     let traps_len = traps.len();
-    let traps_ptr = core::vec::raw::to_ptr(traps);
+    let traps_ptr = std::vec::raw::to_ptr(traps);
     let cookie = xcb_render_trapezoids_checked(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1015,7 +1017,7 @@ pub fn Trapezoids<'r> (c : &'r Connection,
                    traps : &[Trapezoid]) -> base::VoidCookie<'r> {
   unsafe {
     let traps_len = traps.len();
-    let traps_ptr = core::vec::raw::to_ptr(traps);
+    let traps_ptr = std::vec::raw::to_ptr(traps);
     let cookie = xcb_render_trapezoids(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1038,7 +1040,7 @@ pub fn TrianglesChecked<'r> (c : &'r Connection,
                          triangles : &[Triangle]) -> base::VoidCookie<'r> {
   unsafe {
     let triangles_len = triangles.len();
-    let triangles_ptr = core::vec::raw::to_ptr(triangles);
+    let triangles_ptr = std::vec::raw::to_ptr(triangles);
     let cookie = xcb_render_triangles_checked(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1061,7 +1063,7 @@ pub fn Triangles<'r> (c : &'r Connection,
                   triangles : &[Triangle]) -> base::VoidCookie<'r> {
   unsafe {
     let triangles_len = triangles.len();
-    let triangles_ptr = core::vec::raw::to_ptr(triangles);
+    let triangles_ptr = std::vec::raw::to_ptr(triangles);
     let cookie = xcb_render_triangles(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1084,7 +1086,7 @@ pub fn TriStripChecked<'r> (c : &'r Connection,
                         points : &[Pointfix]) -> base::VoidCookie<'r> {
   unsafe {
     let points_len = points.len();
-    let points_ptr = core::vec::raw::to_ptr(points);
+    let points_ptr = std::vec::raw::to_ptr(points);
     let cookie = xcb_render_tri_strip_checked(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1107,7 +1109,7 @@ pub fn TriStrip<'r> (c : &'r Connection,
                  points : &[Pointfix]) -> base::VoidCookie<'r> {
   unsafe {
     let points_len = points.len();
-    let points_ptr = core::vec::raw::to_ptr(points);
+    let points_ptr = std::vec::raw::to_ptr(points);
     let cookie = xcb_render_tri_strip(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1130,7 +1132,7 @@ pub fn TriFanChecked<'r> (c : &'r Connection,
                       points : &[Pointfix]) -> base::VoidCookie<'r> {
   unsafe {
     let points_len = points.len();
-    let points_ptr = core::vec::raw::to_ptr(points);
+    let points_ptr = std::vec::raw::to_ptr(points);
     let cookie = xcb_render_tri_fan_checked(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1153,7 +1155,7 @@ pub fn TriFan<'r> (c : &'r Connection,
                points : &[Pointfix]) -> base::VoidCookie<'r> {
   unsafe {
     let points_len = points.len();
-    let points_ptr = core::vec::raw::to_ptr(points);
+    let points_ptr = std::vec::raw::to_ptr(points);
     let cookie = xcb_render_tri_fan(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1229,10 +1231,10 @@ pub fn AddGlyphsChecked<'r> (c : &'r Connection,
                          data : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let glyphids_len = glyphids.len();
-    let glyphids_ptr = core::vec::raw::to_ptr(glyphids);
-    let glyphs_ptr = core::vec::raw::to_ptr(glyphs);
+    let glyphids_ptr = std::vec::raw::to_ptr(glyphids);
+    let glyphs_ptr = std::vec::raw::to_ptr(glyphs);
     let data_len = data.len();
-    let data_ptr = core::vec::raw::to_ptr(data);
+    let data_ptr = std::vec::raw::to_ptr(data);
     let cookie = xcb_render_add_glyphs_checked(c.get_raw_conn(),
         glyphset as glyphset, //1
         glyphids_len as u32, //2
@@ -1250,10 +1252,10 @@ pub fn AddGlyphs<'r> (c : &'r Connection,
                   data : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let glyphids_len = glyphids.len();
-    let glyphids_ptr = core::vec::raw::to_ptr(glyphids);
-    let glyphs_ptr = core::vec::raw::to_ptr(glyphs);
+    let glyphids_ptr = std::vec::raw::to_ptr(glyphids);
+    let glyphs_ptr = std::vec::raw::to_ptr(glyphs);
     let data_len = data.len();
-    let data_ptr = core::vec::raw::to_ptr(data);
+    let data_ptr = std::vec::raw::to_ptr(data);
     let cookie = xcb_render_add_glyphs(c.get_raw_conn(),
         glyphset as glyphset, //1
         glyphids_len as u32, //2
@@ -1269,7 +1271,7 @@ pub fn FreeGlyphsChecked<'r> (c : &'r Connection,
                           glyphs : &[Glyph]) -> base::VoidCookie<'r> {
   unsafe {
     let glyphs_len = glyphs.len();
-    let glyphs_ptr = core::vec::raw::to_ptr(glyphs);
+    let glyphs_ptr = std::vec::raw::to_ptr(glyphs);
     let cookie = xcb_render_free_glyphs_checked(c.get_raw_conn(),
         glyphset as glyphset, //1
         glyphs_len as u32, //2
@@ -1282,7 +1284,7 @@ pub fn FreeGlyphs<'r> (c : &'r Connection,
                    glyphs : &[Glyph]) -> base::VoidCookie<'r> {
   unsafe {
     let glyphs_len = glyphs.len();
-    let glyphs_ptr = core::vec::raw::to_ptr(glyphs);
+    let glyphs_ptr = std::vec::raw::to_ptr(glyphs);
     let cookie = xcb_render_free_glyphs(c.get_raw_conn(),
         glyphset as glyphset, //1
         glyphs_len as u32, //2
@@ -1301,7 +1303,7 @@ pub fn CompositeGlyphs8Checked<'r> (c : &'r Connection,
                                 glyphcmds : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let glyphcmds_len = glyphcmds.len();
-    let glyphcmds_ptr = core::vec::raw::to_ptr(glyphcmds);
+    let glyphcmds_ptr = std::vec::raw::to_ptr(glyphcmds);
     let cookie = xcb_render_composite_glyphs_8_checked(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1326,7 +1328,7 @@ pub fn CompositeGlyphs8<'r> (c : &'r Connection,
                          glyphcmds : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let glyphcmds_len = glyphcmds.len();
-    let glyphcmds_ptr = core::vec::raw::to_ptr(glyphcmds);
+    let glyphcmds_ptr = std::vec::raw::to_ptr(glyphcmds);
     let cookie = xcb_render_composite_glyphs_8(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1351,7 +1353,7 @@ pub fn CompositeGlyphs16Checked<'r> (c : &'r Connection,
                                  glyphcmds : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let glyphcmds_len = glyphcmds.len();
-    let glyphcmds_ptr = core::vec::raw::to_ptr(glyphcmds);
+    let glyphcmds_ptr = std::vec::raw::to_ptr(glyphcmds);
     let cookie = xcb_render_composite_glyphs_16_checked(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1376,7 +1378,7 @@ pub fn CompositeGlyphs16<'r> (c : &'r Connection,
                           glyphcmds : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let glyphcmds_len = glyphcmds.len();
-    let glyphcmds_ptr = core::vec::raw::to_ptr(glyphcmds);
+    let glyphcmds_ptr = std::vec::raw::to_ptr(glyphcmds);
     let cookie = xcb_render_composite_glyphs_16(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1401,7 +1403,7 @@ pub fn CompositeGlyphs32Checked<'r> (c : &'r Connection,
                                  glyphcmds : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let glyphcmds_len = glyphcmds.len();
-    let glyphcmds_ptr = core::vec::raw::to_ptr(glyphcmds);
+    let glyphcmds_ptr = std::vec::raw::to_ptr(glyphcmds);
     let cookie = xcb_render_composite_glyphs_32_checked(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1426,7 +1428,7 @@ pub fn CompositeGlyphs32<'r> (c : &'r Connection,
                           glyphcmds : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let glyphcmds_len = glyphcmds.len();
-    let glyphcmds_ptr = core::vec::raw::to_ptr(glyphcmds);
+    let glyphcmds_ptr = std::vec::raw::to_ptr(glyphcmds);
     let cookie = xcb_render_composite_glyphs_32(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1447,7 +1449,7 @@ pub fn FillRectanglesChecked<'r> (c : &'r Connection,
                               rects : &[xproto::Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rects_len = rects.len();
-    let rects_ptr = core::vec::raw::to_ptr(rects);
+    let rects_ptr = std::vec::raw::to_ptr(rects);
     let cookie = xcb_render_fill_rectangles_checked(c.get_raw_conn(),
         op as u8, //1
         dst as picture, //2
@@ -1464,7 +1466,7 @@ pub fn FillRectangles<'r> (c : &'r Connection,
                        rects : &[xproto::Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rects_len = rects.len();
-    let rects_ptr = core::vec::raw::to_ptr(rects);
+    let rects_ptr = std::vec::raw::to_ptr(rects);
     let cookie = xcb_render_fill_rectangles(c.get_raw_conn(),
         op as u8, //1
         dst as picture, //2
@@ -1505,47 +1507,47 @@ pub fn CreateCursor<'r> (c : &'r Connection,
 pub type Transform = base::Struct<transform>;
 
 
-pub impl base::Struct<transform> {
-  fn matrix11(&self) -> Fixed {
+impl base::Struct<transform> {
+  pub fn matrix11(&self) -> Fixed {
     unsafe { accessor!(matrix11 -> Fixed, self.strct) }
   }
 
-  fn matrix12(&self) -> Fixed {
+  pub fn matrix12(&self) -> Fixed {
     unsafe { accessor!(matrix12 -> Fixed, self.strct) }
   }
 
-  fn matrix13(&self) -> Fixed {
+  pub fn matrix13(&self) -> Fixed {
     unsafe { accessor!(matrix13 -> Fixed, self.strct) }
   }
 
-  fn matrix21(&self) -> Fixed {
+  pub fn matrix21(&self) -> Fixed {
     unsafe { accessor!(matrix21 -> Fixed, self.strct) }
   }
 
-  fn matrix22(&self) -> Fixed {
+  pub fn matrix22(&self) -> Fixed {
     unsafe { accessor!(matrix22 -> Fixed, self.strct) }
   }
 
-  fn matrix23(&self) -> Fixed {
+  pub fn matrix23(&self) -> Fixed {
     unsafe { accessor!(matrix23 -> Fixed, self.strct) }
   }
 
-  fn matrix31(&self) -> Fixed {
+  pub fn matrix31(&self) -> Fixed {
     unsafe { accessor!(matrix31 -> Fixed, self.strct) }
   }
 
-  fn matrix32(&self) -> Fixed {
+  pub fn matrix32(&self) -> Fixed {
     unsafe { accessor!(matrix32 -> Fixed, self.strct) }
   }
 
-  fn matrix33(&self) -> Fixed {
+  pub fn matrix33(&self) -> Fixed {
     unsafe { accessor!(matrix33 -> Fixed, self.strct) }
   }
 
 }
 
 impl<'self, Transform> Iterator<&'self Transform> for TransformIterator {
-    fn next(&mut self) -> Option<&'self Transform> {
+    pub fn next(&mut self) -> Option<&'self Transform> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *transform_iterator = cast::transmute(self);
@@ -1594,12 +1596,12 @@ pub fn QueryFiltersUnchecked<'r> (c : &'r Connection,
   }
 }
 
-pub impl base::Reply<query_filters_reply> {
-  fn aliases(&self) -> ~[u16] {
+impl base::Reply<query_filters_reply> {
+  pub fn aliases(&self) -> ~[u16] {
     unsafe { accessor!(u16, xcb_render_query_filters_aliases_length, xcb_render_query_filters_aliases, (*self.reply)) }
   }
 
-  fn filters(&self) -> xproto::StrIterator {
+  pub fn filters(&self) -> xproto::StrIterator {
     unsafe { accessor!(xproto::StrIterator, xcb_render_query_filters_filters_iterator, (*self.reply)) }
   }
 
@@ -1611,11 +1613,11 @@ pub fn SetPictureFilterChecked<'r> (c : &'r Connection,
                                 filter : &str,
                                 values : &[Fixed]) -> base::VoidCookie<'r> {
   unsafe {
-    let filter = core::str::to_bytes(filter);
+    let filter = (filter).to_bytes(false);
     let filter_len = filter.len();
-    let filter_ptr = core::vec::raw::to_ptr(filter);
+    let filter_ptr = std::vec::raw::to_ptr(filter);
     let values_len = values.len();
-    let values_ptr = core::vec::raw::to_ptr(values);
+    let values_ptr = std::vec::raw::to_ptr(values);
     let cookie = xcb_render_set_picture_filter_checked(c.get_raw_conn(),
         picture as picture, //1
         filter_len as u16, //2
@@ -1630,11 +1632,11 @@ pub fn SetPictureFilter<'r> (c : &'r Connection,
                          filter : &str,
                          values : &[Fixed]) -> base::VoidCookie<'r> {
   unsafe {
-    let filter = core::str::to_bytes(filter);
+    let filter = (filter).to_bytes(false);
     let filter_len = filter.len();
-    let filter_ptr = core::vec::raw::to_ptr(filter);
+    let filter_ptr = std::vec::raw::to_ptr(filter);
     let values_len = values.len();
-    let values_ptr = core::vec::raw::to_ptr(values);
+    let values_ptr = std::vec::raw::to_ptr(values);
     let cookie = xcb_render_set_picture_filter(c.get_raw_conn(),
         picture as picture, //1
         filter_len as u16, //2
@@ -1647,19 +1649,19 @@ pub fn SetPictureFilter<'r> (c : &'r Connection,
 pub type Animcursorelt = base::Struct<animcursorelt>;
 
 
-pub impl base::Struct<animcursorelt> {
-  fn cursor(&self) -> xproto::Cursor {
+impl base::Struct<animcursorelt> {
+  pub fn cursor(&self) -> xproto::Cursor {
     unsafe { accessor!(cursor -> xproto::Cursor, self.strct) }
   }
 
-  fn delay(&self) -> u32 {
+  pub fn delay(&self) -> u32 {
     unsafe { accessor!(delay -> u32, self.strct) }
   }
 
 }
 
 impl<'self, Animcursorelt> Iterator<&'self Animcursorelt> for AnimcursoreltIterator {
-    fn next(&mut self) -> Option<&'self Animcursorelt> {
+    pub fn next(&mut self) -> Option<&'self Animcursorelt> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *animcursorelt_iterator = cast::transmute(self);
@@ -1675,7 +1677,7 @@ pub fn CreateAnimCursorChecked<'r> (c : &'r Connection,
                                 cursors : &[Animcursorelt]) -> base::VoidCookie<'r> {
   unsafe {
     let cursors_len = cursors.len();
-    let cursors_ptr = core::vec::raw::to_ptr(cursors);
+    let cursors_ptr = std::vec::raw::to_ptr(cursors);
     let cookie = xcb_render_create_anim_cursor_checked(c.get_raw_conn(),
         cid as ll::xproto::cursor, //1
         cursors_len as u32, //2
@@ -1688,7 +1690,7 @@ pub fn CreateAnimCursor<'r> (c : &'r Connection,
                          cursors : &[Animcursorelt]) -> base::VoidCookie<'r> {
   unsafe {
     let cursors_len = cursors.len();
-    let cursors_ptr = core::vec::raw::to_ptr(cursors);
+    let cursors_ptr = std::vec::raw::to_ptr(cursors);
     let cookie = xcb_render_create_anim_cursor(c.get_raw_conn(),
         cid as ll::xproto::cursor, //1
         cursors_len as u32, //2
@@ -1699,23 +1701,23 @@ pub fn CreateAnimCursor<'r> (c : &'r Connection,
 pub type Spanfix = base::Struct<spanfix>;
 
 
-pub impl base::Struct<spanfix> {
-  fn l(&self) -> Fixed {
+impl base::Struct<spanfix> {
+  pub fn l(&self) -> Fixed {
     unsafe { accessor!(l -> Fixed, self.strct) }
   }
 
-  fn r(&self) -> Fixed {
+  pub fn r(&self) -> Fixed {
     unsafe { accessor!(r -> Fixed, self.strct) }
   }
 
-  fn y(&self) -> Fixed {
+  pub fn y(&self) -> Fixed {
     unsafe { accessor!(y -> Fixed, self.strct) }
   }
 
 }
 
 impl<'self, Spanfix> Iterator<&'self Spanfix> for SpanfixIterator {
-    fn next(&mut self) -> Option<&'self Spanfix> {
+    pub fn next(&mut self) -> Option<&'self Spanfix> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *spanfix_iterator = cast::transmute(self);
@@ -1729,17 +1731,17 @@ impl<'self, Spanfix> Iterator<&'self Spanfix> for SpanfixIterator {
 pub type Trap = base::Struct<trap>;
 
 
-pub impl base::Struct<trap> {
-  fn top(&self) -> Spanfix {
+impl base::Struct<trap> {
+  pub fn top(&self) -> Spanfix {
     unsafe { cast::transmute(self.strct.top) }
   }
-  fn bot(&self) -> Spanfix {
+  pub fn bot(&self) -> Spanfix {
     unsafe { cast::transmute(self.strct.bot) }
   }
 }
 
 impl<'self, Trap> Iterator<&'self Trap> for TrapIterator {
-    fn next(&mut self) -> Option<&'self Trap> {
+    pub fn next(&mut self) -> Option<&'self Trap> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *trap_iterator = cast::transmute(self);
@@ -1757,7 +1759,7 @@ pub fn AddTrapsChecked<'r> (c : &'r Connection,
                         traps : &[Trap]) -> base::VoidCookie<'r> {
   unsafe {
     let traps_len = traps.len();
-    let traps_ptr = core::vec::raw::to_ptr(traps);
+    let traps_ptr = std::vec::raw::to_ptr(traps);
     let cookie = xcb_render_add_traps_checked(c.get_raw_conn(),
         picture as picture, //1
         x_off as i16, //2
@@ -1774,7 +1776,7 @@ pub fn AddTraps<'r> (c : &'r Connection,
                  traps : &[Trap]) -> base::VoidCookie<'r> {
   unsafe {
     let traps_len = traps.len();
-    let traps_ptr = core::vec::raw::to_ptr(traps);
+    let traps_ptr = std::vec::raw::to_ptr(traps);
     let cookie = xcb_render_add_traps(c.get_raw_conn(),
         picture as picture, //1
         x_off as i16, //2
@@ -1812,8 +1814,8 @@ pub fn CreateLinearGradientChecked<'r> (c : &'r Connection,
                                     colors : &[Color]) -> base::VoidCookie<'r> {
   unsafe {
     let stops_len = stops.len();
-    let stops_ptr = core::vec::raw::to_ptr(stops);
-    let colors_ptr = core::vec::raw::to_ptr(colors);
+    let stops_ptr = std::vec::raw::to_ptr(stops);
+    let colors_ptr = std::vec::raw::to_ptr(colors);
     let cookie = xcb_render_create_linear_gradient_checked(c.get_raw_conn(),
         picture as picture, //1
         p1.strct, //2
@@ -1832,8 +1834,8 @@ pub fn CreateLinearGradient<'r> (c : &'r Connection,
                              colors : &[Color]) -> base::VoidCookie<'r> {
   unsafe {
     let stops_len = stops.len();
-    let stops_ptr = core::vec::raw::to_ptr(stops);
-    let colors_ptr = core::vec::raw::to_ptr(colors);
+    let stops_ptr = std::vec::raw::to_ptr(stops);
+    let colors_ptr = std::vec::raw::to_ptr(colors);
     let cookie = xcb_render_create_linear_gradient(c.get_raw_conn(),
         picture as picture, //1
         p1.strct, //2
@@ -1854,8 +1856,8 @@ pub fn CreateRadialGradientChecked<'r> (c : &'r Connection,
                                     colors : &[Color]) -> base::VoidCookie<'r> {
   unsafe {
     let stops_len = stops.len();
-    let stops_ptr = core::vec::raw::to_ptr(stops);
-    let colors_ptr = core::vec::raw::to_ptr(colors);
+    let stops_ptr = std::vec::raw::to_ptr(stops);
+    let colors_ptr = std::vec::raw::to_ptr(colors);
     let cookie = xcb_render_create_radial_gradient_checked(c.get_raw_conn(),
         picture as picture, //1
         inner.strct, //2
@@ -1878,8 +1880,8 @@ pub fn CreateRadialGradient<'r> (c : &'r Connection,
                              colors : &[Color]) -> base::VoidCookie<'r> {
   unsafe {
     let stops_len = stops.len();
-    let stops_ptr = core::vec::raw::to_ptr(stops);
-    let colors_ptr = core::vec::raw::to_ptr(colors);
+    let stops_ptr = std::vec::raw::to_ptr(stops);
+    let colors_ptr = std::vec::raw::to_ptr(colors);
     let cookie = xcb_render_create_radial_gradient(c.get_raw_conn(),
         picture as picture, //1
         inner.strct, //2
@@ -1900,8 +1902,8 @@ pub fn CreateConicalGradientChecked<'r> (c : &'r Connection,
                                      colors : &[Color]) -> base::VoidCookie<'r> {
   unsafe {
     let stops_len = stops.len();
-    let stops_ptr = core::vec::raw::to_ptr(stops);
-    let colors_ptr = core::vec::raw::to_ptr(colors);
+    let stops_ptr = std::vec::raw::to_ptr(stops);
+    let colors_ptr = std::vec::raw::to_ptr(colors);
     let cookie = xcb_render_create_conical_gradient_checked(c.get_raw_conn(),
         picture as picture, //1
         center.strct, //2
@@ -1920,8 +1922,8 @@ pub fn CreateConicalGradient<'r> (c : &'r Connection,
                               colors : &[Color]) -> base::VoidCookie<'r> {
   unsafe {
     let stops_len = stops.len();
-    let stops_ptr = core::vec::raw::to_ptr(stops);
-    let colors_ptr = core::vec::raw::to_ptr(colors);
+    let stops_ptr = std::vec::raw::to_ptr(stops);
+    let colors_ptr = std::vec::raw::to_ptr(colors);
     let cookie = xcb_render_create_conical_gradient(c.get_raw_conn(),
         picture as picture, //1
         center.strct, //2

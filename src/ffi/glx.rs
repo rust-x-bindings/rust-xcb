@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
-use core;
-use core::libc::*;
+use std;
+use std::libc::*;
+use std::{cast,num,ptr,str,libc};
+use std::to_bytes::ToBytes;
 use ll::base::*;
 use ll;
 use ll::xproto;
@@ -2293,7 +2295,7 @@ pub extern "C" {
  *
  *
  */
-unsafe fn xcb_glx_pixmap_next (i:*pixmap_iterator) -> c_void;
+pub unsafe fn xcb_glx_pixmap_next (i:*pixmap_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2304,7 +2306,7 @@ unsafe fn xcb_glx_pixmap_next (i:*pixmap_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_glx_pixmap_end (i:pixmap_iterator) -> generic_iterator;
+pub unsafe fn xcb_glx_pixmap_end (i:pixmap_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2316,7 +2318,7 @@ unsafe fn xcb_glx_pixmap_end (i:pixmap_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_glx_context_next (i:*context_iterator) -> c_void;
+pub unsafe fn xcb_glx_context_next (i:*context_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2327,7 +2329,7 @@ unsafe fn xcb_glx_context_next (i:*context_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_glx_context_end (i:context_iterator) -> generic_iterator;
+pub unsafe fn xcb_glx_context_end (i:context_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2339,7 +2341,7 @@ unsafe fn xcb_glx_context_end (i:context_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_glx_pbuffer_next (i:*pbuffer_iterator) -> c_void;
+pub unsafe fn xcb_glx_pbuffer_next (i:*pbuffer_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2350,7 +2352,7 @@ unsafe fn xcb_glx_pbuffer_next (i:*pbuffer_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_glx_pbuffer_end (i:pbuffer_iterator) -> generic_iterator;
+pub unsafe fn xcb_glx_pbuffer_end (i:pbuffer_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2362,7 +2364,7 @@ unsafe fn xcb_glx_pbuffer_end (i:pbuffer_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_glx_window_next (i:*window_iterator) -> c_void;
+pub unsafe fn xcb_glx_window_next (i:*window_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2373,7 +2375,7 @@ unsafe fn xcb_glx_window_next (i:*window_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_glx_window_end (i:window_iterator) -> generic_iterator;
+pub unsafe fn xcb_glx_window_end (i:window_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2385,7 +2387,7 @@ unsafe fn xcb_glx_window_end (i:window_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_glx_fbconfig_next (i:*fbconfig_iterator) -> c_void;
+pub unsafe fn xcb_glx_fbconfig_next (i:*fbconfig_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2396,7 +2398,7 @@ unsafe fn xcb_glx_fbconfig_next (i:*fbconfig_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_glx_fbconfig_end (i:fbconfig_iterator) -> generic_iterator;
+pub unsafe fn xcb_glx_fbconfig_end (i:fbconfig_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2408,7 +2410,7 @@ unsafe fn xcb_glx_fbconfig_end (i:fbconfig_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_glx_drawable_next (i:*drawable_iterator) -> c_void;
+pub unsafe fn xcb_glx_drawable_next (i:*drawable_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2419,7 +2421,7 @@ unsafe fn xcb_glx_drawable_next (i:*drawable_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_glx_drawable_end (i:drawable_iterator) -> generic_iterator;
+pub unsafe fn xcb_glx_drawable_end (i:drawable_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2431,7 +2433,7 @@ unsafe fn xcb_glx_drawable_end (i:drawable_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_glx_float32_next (i:*float32_iterator) -> c_void;
+pub unsafe fn xcb_glx_float32_next (i:*float32_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2442,7 +2444,7 @@ unsafe fn xcb_glx_float32_next (i:*float32_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_glx_float32_end (i:float32_iterator) -> generic_iterator;
+pub unsafe fn xcb_glx_float32_end (i:float32_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2454,7 +2456,7 @@ unsafe fn xcb_glx_float32_end (i:float32_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_glx_float64_next (i:*float64_iterator) -> c_void;
+pub unsafe fn xcb_glx_float64_next (i:*float64_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2465,7 +2467,7 @@ unsafe fn xcb_glx_float64_next (i:*float64_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_glx_float64_end (i:float64_iterator) -> generic_iterator;
+pub unsafe fn xcb_glx_float64_end (i:float64_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2477,7 +2479,7 @@ unsafe fn xcb_glx_float64_end (i:float64_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_glx_bool32_next (i:*bool32_iterator) -> c_void;
+pub unsafe fn xcb_glx_bool32_next (i:*bool32_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2488,7 +2490,7 @@ unsafe fn xcb_glx_bool32_next (i:*bool32_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_glx_bool32_end (i:bool32_iterator) -> generic_iterator;
+pub unsafe fn xcb_glx_bool32_end (i:bool32_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2500,7 +2502,7 @@ unsafe fn xcb_glx_bool32_end (i:bool32_iterator) -> generic_iterator;
  *
  *
  */
-unsafe fn xcb_glx_context_tag_next (i:*context_tag_iterator) -> c_void;
+pub unsafe fn xcb_glx_context_tag_next (i:*context_tag_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2511,9 +2513,9 @@ unsafe fn xcb_glx_context_tag_next (i:*context_tag_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_glx_context_tag_end (i:context_tag_iterator) -> generic_iterator;
+pub unsafe fn xcb_glx_context_tag_end (i:context_tag_iterator) -> generic_iterator;
 
-unsafe fn xcb_glx_render_sizeof (_buffer :  *c_void,
+pub unsafe fn xcb_glx_render_sizeof (_buffer :  *c_void,
                        data_len :  u32) -> c_int;
 
 /**
@@ -2527,7 +2529,7 @@ unsafe fn xcb_glx_render_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_render_checked (c : *connection,
+pub unsafe fn xcb_glx_render_checked (c : *connection,
                                   context_tag :  context_tag,
                                   data_len :  u32,
                                   data : *u8) -> void_cookie;
@@ -2540,12 +2542,12 @@ unsafe fn xcb_glx_render_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_render (c : *connection,
+pub unsafe fn xcb_glx_render (c : *connection,
                           context_tag :  context_tag,
                           data_len :  u32,
                           data : *u8) -> void_cookie;
 
-unsafe fn xcb_glx_render_large_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_render_large_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -2558,7 +2560,7 @@ unsafe fn xcb_glx_render_large_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_render_large_checked (c : *connection,
+pub unsafe fn xcb_glx_render_large_checked (c : *connection,
                                         context_tag :  context_tag,
                                         request_num :  u16,
                                         request_total :  u16,
@@ -2573,7 +2575,7 @@ unsafe fn xcb_glx_render_large_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_render_large (c : *connection,
+pub unsafe fn xcb_glx_render_large (c : *connection,
                                 context_tag :  context_tag,
                                 request_num :  u16,
                                 request_total :  u16,
@@ -2591,7 +2593,7 @@ unsafe fn xcb_glx_render_large (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_create_context_checked (c : *connection,
+pub unsafe fn xcb_glx_create_context_checked (c : *connection,
                                           context :  context,
                                           visual :  ll::xproto::visualid,
                                           screen :  u32,
@@ -2606,7 +2608,7 @@ unsafe fn xcb_glx_create_context_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_create_context (c : *connection,
+pub unsafe fn xcb_glx_create_context (c : *connection,
                                   context :  context,
                                   visual :  ll::xproto::visualid,
                                   screen :  u32,
@@ -2624,7 +2626,7 @@ unsafe fn xcb_glx_create_context (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_destroy_context_checked (c : *connection,
+pub unsafe fn xcb_glx_destroy_context_checked (c : *connection,
                                            context :  context) -> void_cookie;
 
 /**
@@ -2635,7 +2637,7 @@ unsafe fn xcb_glx_destroy_context_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_destroy_context (c : *connection,
+pub unsafe fn xcb_glx_destroy_context (c : *connection,
                                    context :  context) -> void_cookie;
 
 /**
@@ -2646,7 +2648,7 @@ unsafe fn xcb_glx_destroy_context (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_make_current (c : *connection,
+pub unsafe fn xcb_glx_make_current (c : *connection,
                                 drawable :  drawable,
                                 context :  context,
                                 old_context_tag :  context_tag) -> make_current_cookie;
@@ -2662,7 +2664,7 @@ unsafe fn xcb_glx_make_current (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_make_current_unchecked (c : *connection,
+pub unsafe fn xcb_glx_make_current_unchecked (c : *connection,
                                           drawable :  drawable,
                                           context :  context,
                                           old_context_tag :  context_tag) -> make_current_cookie;
@@ -2681,7 +2683,7 @@ unsafe fn xcb_glx_make_current_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_make_current_reply (c : *connection,
+pub unsafe fn xcb_glx_make_current_reply (c : *connection,
                                       cookie : make_current_cookie,
                                       e : **generic_error) -> *make_current_reply;
 
@@ -2693,7 +2695,7 @@ unsafe fn xcb_glx_make_current_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_is_direct (c : *connection,
+pub unsafe fn xcb_glx_is_direct (c : *connection,
                              context :  context) -> is_direct_cookie;
 
 /**
@@ -2707,7 +2709,7 @@ unsafe fn xcb_glx_is_direct (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_is_direct_unchecked (c : *connection,
+pub unsafe fn xcb_glx_is_direct_unchecked (c : *connection,
                                        context :  context) -> is_direct_cookie;
 
 /**
@@ -2724,7 +2726,7 @@ unsafe fn xcb_glx_is_direct_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_is_direct_reply (c : *connection,
+pub unsafe fn xcb_glx_is_direct_reply (c : *connection,
                                    cookie : is_direct_cookie,
                                    e : **generic_error) -> *is_direct_reply;
 
@@ -2736,7 +2738,7 @@ unsafe fn xcb_glx_is_direct_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_query_version (c : *connection,
+pub unsafe fn xcb_glx_query_version (c : *connection,
                                  major_version :  u32,
                                  minor_version :  u32) -> query_version_cookie;
 
@@ -2751,7 +2753,7 @@ unsafe fn xcb_glx_query_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_query_version_unchecked (c : *connection,
+pub unsafe fn xcb_glx_query_version_unchecked (c : *connection,
                                            major_version :  u32,
                                            minor_version :  u32) -> query_version_cookie;
 
@@ -2769,7 +2771,7 @@ unsafe fn xcb_glx_query_version_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_query_version_reply (c : *connection,
+pub unsafe fn xcb_glx_query_version_reply (c : *connection,
                                        cookie : query_version_cookie,
                                        e : **generic_error) -> *query_version_reply;
 
@@ -2784,7 +2786,7 @@ unsafe fn xcb_glx_query_version_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_wait_gl_checked (c : *connection,
+pub unsafe fn xcb_glx_wait_gl_checked (c : *connection,
                                    context_tag :  context_tag) -> void_cookie;
 
 /**
@@ -2795,7 +2797,7 @@ unsafe fn xcb_glx_wait_gl_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_wait_gl (c : *connection,
+pub unsafe fn xcb_glx_wait_gl (c : *connection,
                            context_tag :  context_tag) -> void_cookie;
 
 /**
@@ -2809,7 +2811,7 @@ unsafe fn xcb_glx_wait_gl (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_wait_x_checked (c : *connection,
+pub unsafe fn xcb_glx_wait_x_checked (c : *connection,
                                   context_tag :  context_tag) -> void_cookie;
 
 /**
@@ -2820,7 +2822,7 @@ unsafe fn xcb_glx_wait_x_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_wait_x (c : *connection,
+pub unsafe fn xcb_glx_wait_x (c : *connection,
                           context_tag :  context_tag) -> void_cookie;
 
 /**
@@ -2834,7 +2836,7 @@ unsafe fn xcb_glx_wait_x (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_copy_context_checked (c : *connection,
+pub unsafe fn xcb_glx_copy_context_checked (c : *connection,
                                         src :  context,
                                         dest :  context,
                                         mask :  u32,
@@ -2848,7 +2850,7 @@ unsafe fn xcb_glx_copy_context_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_copy_context (c : *connection,
+pub unsafe fn xcb_glx_copy_context (c : *connection,
                                 src :  context,
                                 dest :  context,
                                 mask :  u32,
@@ -2865,7 +2867,7 @@ unsafe fn xcb_glx_copy_context (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_swap_buffers_checked (c : *connection,
+pub unsafe fn xcb_glx_swap_buffers_checked (c : *connection,
                                         context_tag :  context_tag,
                                         drawable :  drawable) -> void_cookie;
 
@@ -2877,7 +2879,7 @@ unsafe fn xcb_glx_swap_buffers_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_swap_buffers (c : *connection,
+pub unsafe fn xcb_glx_swap_buffers (c : *connection,
                                 context_tag :  context_tag,
                                 drawable :  drawable) -> void_cookie;
 
@@ -2892,7 +2894,7 @@ unsafe fn xcb_glx_swap_buffers (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_use_x_font_checked (c : *connection,
+pub unsafe fn xcb_glx_use_x_font_checked (c : *connection,
                                       context_tag :  context_tag,
                                       font :  ll::xproto::font,
                                       first :  u32,
@@ -2907,7 +2909,7 @@ unsafe fn xcb_glx_use_x_font_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_use_x_font (c : *connection,
+pub unsafe fn xcb_glx_use_x_font (c : *connection,
                               context_tag :  context_tag,
                               font :  ll::xproto::font,
                               first :  u32,
@@ -2925,7 +2927,7 @@ unsafe fn xcb_glx_use_x_font (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_create_glx_pixmap_checked (c : *connection,
+pub unsafe fn xcb_glx_create_glx_pixmap_checked (c : *connection,
                                              screen :  u32,
                                              visual :  ll::xproto::visualid,
                                              pixmap :  ll::xproto::pixmap,
@@ -2939,13 +2941,13 @@ unsafe fn xcb_glx_create_glx_pixmap_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_create_glx_pixmap (c : *connection,
+pub unsafe fn xcb_glx_create_glx_pixmap (c : *connection,
                                      screen :  u32,
                                      visual :  ll::xproto::visualid,
                                      pixmap :  ll::xproto::pixmap,
                                      glx_pixmap :  pixmap) -> void_cookie;
 
-unsafe fn xcb_glx_get_visual_configs_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_visual_configs_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -2955,7 +2957,7 @@ unsafe fn xcb_glx_get_visual_configs_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_visual_configs (c : *connection,
+pub unsafe fn xcb_glx_get_visual_configs (c : *connection,
                                       screen :  u32) -> get_visual_configs_cookie;
 
 /**
@@ -2969,16 +2971,16 @@ unsafe fn xcb_glx_get_visual_configs (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_visual_configs_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_visual_configs_unchecked (c : *connection,
                                                 screen :  u32) -> get_visual_configs_cookie;
 
-unsafe fn xcb_glx_get_visual_configs_property_list (R : *get_visual_configs_reply) -> *u32;
+pub unsafe fn xcb_glx_get_visual_configs_property_list (R : *get_visual_configs_reply) -> *u32;
 
 
-unsafe fn xcb_glx_get_visual_configs_property_list_length (R : *get_visual_configs_reply) -> c_int;
+pub unsafe fn xcb_glx_get_visual_configs_property_list_length (R : *get_visual_configs_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_visual_configs_property_list_end (R : *get_visual_configs_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_visual_configs_property_list_end (R : *get_visual_configs_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -2994,7 +2996,7 @@ unsafe fn xcb_glx_get_visual_configs_property_list_end (R : *get_visual_configs_
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_visual_configs_reply (c : *connection,
+pub unsafe fn xcb_glx_get_visual_configs_reply (c : *connection,
                                             cookie : get_visual_configs_cookie,
                                             e : **generic_error) -> *get_visual_configs_reply;
 
@@ -3009,7 +3011,7 @@ unsafe fn xcb_glx_get_visual_configs_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_destroy_glx_pixmap_checked (c : *connection,
+pub unsafe fn xcb_glx_destroy_glx_pixmap_checked (c : *connection,
                                               glx_pixmap :  pixmap) -> void_cookie;
 
 /**
@@ -3020,10 +3022,10 @@ unsafe fn xcb_glx_destroy_glx_pixmap_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_destroy_glx_pixmap (c : *connection,
+pub unsafe fn xcb_glx_destroy_glx_pixmap (c : *connection,
                                       glx_pixmap :  pixmap) -> void_cookie;
 
-unsafe fn xcb_glx_vendor_private_sizeof (_buffer :  *c_void,
+pub unsafe fn xcb_glx_vendor_private_sizeof (_buffer :  *c_void,
                                data_len :  u32) -> c_int;
 
 /**
@@ -3037,7 +3039,7 @@ unsafe fn xcb_glx_vendor_private_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_vendor_private_checked (c : *connection,
+pub unsafe fn xcb_glx_vendor_private_checked (c : *connection,
                                           vendor_code :  u32,
                                           context_tag :  context_tag,
                                           data_len :  u32,
@@ -3051,13 +3053,13 @@ unsafe fn xcb_glx_vendor_private_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_vendor_private (c : *connection,
+pub unsafe fn xcb_glx_vendor_private (c : *connection,
                                   vendor_code :  u32,
                                   context_tag :  context_tag,
                                   data_len :  u32,
                                   data : *u8) -> void_cookie;
 
-unsafe fn xcb_glx_vendor_private_with_reply_sizeof (_buffer :  *c_void,
+pub unsafe fn xcb_glx_vendor_private_with_reply_sizeof (_buffer :  *c_void,
                                           data_len :  u32) -> c_int;
 
 /**
@@ -3068,7 +3070,7 @@ unsafe fn xcb_glx_vendor_private_with_reply_sizeof (_buffer :  *c_void,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_vendor_private_with_reply (c : *connection,
+pub unsafe fn xcb_glx_vendor_private_with_reply (c : *connection,
                                              vendor_code :  u32,
                                              context_tag :  context_tag,
                                              data_len :  u32,
@@ -3085,19 +3087,19 @@ unsafe fn xcb_glx_vendor_private_with_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_vendor_private_with_reply_unchecked (c : *connection,
+pub unsafe fn xcb_glx_vendor_private_with_reply_unchecked (c : *connection,
                                                        vendor_code :  u32,
                                                        context_tag :  context_tag,
                                                        data_len :  u32,
                                                        data : *u8) -> vendor_private_with_reply_cookie;
 
-unsafe fn xcb_glx_vendor_private_with_reply_data_2 (R : *vendor_private_with_reply_reply) -> *u8;
+pub unsafe fn xcb_glx_vendor_private_with_reply_data_2 (R : *vendor_private_with_reply_reply) -> *u8;
 
 
-unsafe fn xcb_glx_vendor_private_with_reply_data_2_length (R : *vendor_private_with_reply_reply) -> c_int;
+pub unsafe fn xcb_glx_vendor_private_with_reply_data_2_length (R : *vendor_private_with_reply_reply) -> c_int;
 
 
-unsafe fn xcb_glx_vendor_private_with_reply_data_2_end (R : *vendor_private_with_reply_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_vendor_private_with_reply_data_2_end (R : *vendor_private_with_reply_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -3113,7 +3115,7 @@ unsafe fn xcb_glx_vendor_private_with_reply_data_2_end (R : *vendor_private_with
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_vendor_private_with_reply_reply (c : *connection,
+pub unsafe fn xcb_glx_vendor_private_with_reply_reply (c : *connection,
                                                    cookie : vendor_private_with_reply_cookie,
                                                    e : **generic_error) -> *vendor_private_with_reply_reply;
 
@@ -3125,7 +3127,7 @@ unsafe fn xcb_glx_vendor_private_with_reply_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_query_extensions_string (c : *connection,
+pub unsafe fn xcb_glx_query_extensions_string (c : *connection,
                                            screen :  u32) -> query_extensions_string_cookie;
 
 /**
@@ -3139,7 +3141,7 @@ unsafe fn xcb_glx_query_extensions_string (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_query_extensions_string_unchecked (c : *connection,
+pub unsafe fn xcb_glx_query_extensions_string_unchecked (c : *connection,
                                                      screen :  u32) -> query_extensions_string_cookie;
 
 /**
@@ -3156,11 +3158,11 @@ unsafe fn xcb_glx_query_extensions_string_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_query_extensions_string_reply (c : *connection,
+pub unsafe fn xcb_glx_query_extensions_string_reply (c : *connection,
                                                  cookie : query_extensions_string_cookie,
                                                  e : **generic_error) -> *query_extensions_string_reply;
 
-unsafe fn xcb_glx_query_server_string_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_query_server_string_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -3170,7 +3172,7 @@ unsafe fn xcb_glx_query_server_string_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_query_server_string (c : *connection,
+pub unsafe fn xcb_glx_query_server_string (c : *connection,
                                        screen :  u32,
                                        name :  u32) -> query_server_string_cookie;
 
@@ -3185,17 +3187,17 @@ unsafe fn xcb_glx_query_server_string (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_query_server_string_unchecked (c : *connection,
+pub unsafe fn xcb_glx_query_server_string_unchecked (c : *connection,
                                                  screen :  u32,
                                                  name :  u32) -> query_server_string_cookie;
 
-unsafe fn xcb_glx_query_server_string_string (R : *query_server_string_reply) -> *c_char;
+pub unsafe fn xcb_glx_query_server_string_string (R : *query_server_string_reply) -> *c_char;
 
 
-unsafe fn xcb_glx_query_server_string_string_length (R : *query_server_string_reply) -> c_int;
+pub unsafe fn xcb_glx_query_server_string_string_length (R : *query_server_string_reply) -> c_int;
 
 
-unsafe fn xcb_glx_query_server_string_string_end (R : *query_server_string_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_query_server_string_string_end (R : *query_server_string_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -3211,11 +3213,11 @@ unsafe fn xcb_glx_query_server_string_string_end (R : *query_server_string_reply
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_query_server_string_reply (c : *connection,
+pub unsafe fn xcb_glx_query_server_string_reply (c : *connection,
                                              cookie : query_server_string_cookie,
                                              e : **generic_error) -> *query_server_string_reply;
 
-unsafe fn xcb_glx_client_info_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_client_info_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -3228,7 +3230,7 @@ unsafe fn xcb_glx_client_info_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_client_info_checked (c : *connection,
+pub unsafe fn xcb_glx_client_info_checked (c : *connection,
                                        major_version :  u32,
                                        minor_version :  u32,
                                        str_len :  u32,
@@ -3242,13 +3244,13 @@ unsafe fn xcb_glx_client_info_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_client_info (c : *connection,
+pub unsafe fn xcb_glx_client_info (c : *connection,
                                major_version :  u32,
                                minor_version :  u32,
                                str_len :  u32,
                                string : *c_char) -> void_cookie;
 
-unsafe fn xcb_glx_get_fb_configs_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_fb_configs_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -3258,7 +3260,7 @@ unsafe fn xcb_glx_get_fb_configs_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_fb_configs (c : *connection,
+pub unsafe fn xcb_glx_get_fb_configs (c : *connection,
                                   screen :  u32) -> get_fb_configs_cookie;
 
 /**
@@ -3272,16 +3274,16 @@ unsafe fn xcb_glx_get_fb_configs (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_fb_configs_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_fb_configs_unchecked (c : *connection,
                                             screen :  u32) -> get_fb_configs_cookie;
 
-unsafe fn xcb_glx_get_fb_configs_property_list (R : *get_fb_configs_reply) -> *u32;
+pub unsafe fn xcb_glx_get_fb_configs_property_list (R : *get_fb_configs_reply) -> *u32;
 
 
-unsafe fn xcb_glx_get_fb_configs_property_list_length (R : *get_fb_configs_reply) -> c_int;
+pub unsafe fn xcb_glx_get_fb_configs_property_list_length (R : *get_fb_configs_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_fb_configs_property_list_end (R : *get_fb_configs_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_fb_configs_property_list_end (R : *get_fb_configs_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -3297,11 +3299,11 @@ unsafe fn xcb_glx_get_fb_configs_property_list_end (R : *get_fb_configs_reply) -
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_fb_configs_reply (c : *connection,
+pub unsafe fn xcb_glx_get_fb_configs_reply (c : *connection,
                                         cookie : get_fb_configs_cookie,
                                         e : **generic_error) -> *get_fb_configs_reply;
 
-unsafe fn xcb_glx_create_pixmap_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_create_pixmap_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -3314,7 +3316,7 @@ unsafe fn xcb_glx_create_pixmap_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_create_pixmap_checked (c : *connection,
+pub unsafe fn xcb_glx_create_pixmap_checked (c : *connection,
                                          screen :  u32,
                                          fbconfig :  fbconfig,
                                          pixmap :  ll::xproto::pixmap,
@@ -3330,7 +3332,7 @@ unsafe fn xcb_glx_create_pixmap_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_create_pixmap (c : *connection,
+pub unsafe fn xcb_glx_create_pixmap (c : *connection,
                                  screen :  u32,
                                  fbconfig :  fbconfig,
                                  pixmap :  ll::xproto::pixmap,
@@ -3349,7 +3351,7 @@ unsafe fn xcb_glx_create_pixmap (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_destroy_pixmap_checked (c : *connection,
+pub unsafe fn xcb_glx_destroy_pixmap_checked (c : *connection,
                                           glx_pixmap :  pixmap) -> void_cookie;
 
 /**
@@ -3360,7 +3362,7 @@ unsafe fn xcb_glx_destroy_pixmap_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_destroy_pixmap (c : *connection,
+pub unsafe fn xcb_glx_destroy_pixmap (c : *connection,
                                   glx_pixmap :  pixmap) -> void_cookie;
 
 /**
@@ -3374,7 +3376,7 @@ unsafe fn xcb_glx_destroy_pixmap (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_create_new_context_checked (c : *connection,
+pub unsafe fn xcb_glx_create_new_context_checked (c : *connection,
                                               context :  context,
                                               fbconfig :  fbconfig,
                                               screen :  u32,
@@ -3390,7 +3392,7 @@ unsafe fn xcb_glx_create_new_context_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_create_new_context (c : *connection,
+pub unsafe fn xcb_glx_create_new_context (c : *connection,
                                       context :  context,
                                       fbconfig :  fbconfig,
                                       screen :  u32,
@@ -3398,7 +3400,7 @@ unsafe fn xcb_glx_create_new_context (c : *connection,
                                       share_list :  context,
                                       is_direct :  u8) -> void_cookie;
 
-unsafe fn xcb_glx_query_context_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_query_context_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -3408,7 +3410,7 @@ unsafe fn xcb_glx_query_context_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_query_context (c : *connection,
+pub unsafe fn xcb_glx_query_context (c : *connection,
                                  context :  context) -> query_context_cookie;
 
 /**
@@ -3422,16 +3424,16 @@ unsafe fn xcb_glx_query_context (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_query_context_unchecked (c : *connection,
+pub unsafe fn xcb_glx_query_context_unchecked (c : *connection,
                                            context :  context) -> query_context_cookie;
 
-unsafe fn xcb_glx_query_context_attribs (R : *query_context_reply) -> *u32;
+pub unsafe fn xcb_glx_query_context_attribs (R : *query_context_reply) -> *u32;
 
 
-unsafe fn xcb_glx_query_context_attribs_length (R : *query_context_reply) -> c_int;
+pub unsafe fn xcb_glx_query_context_attribs_length (R : *query_context_reply) -> c_int;
 
 
-unsafe fn xcb_glx_query_context_attribs_end (R : *query_context_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_query_context_attribs_end (R : *query_context_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -3447,7 +3449,7 @@ unsafe fn xcb_glx_query_context_attribs_end (R : *query_context_reply) -> generi
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_query_context_reply (c : *connection,
+pub unsafe fn xcb_glx_query_context_reply (c : *connection,
                                        cookie : query_context_cookie,
                                        e : **generic_error) -> *query_context_reply;
 
@@ -3459,7 +3461,7 @@ unsafe fn xcb_glx_query_context_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_make_context_current (c : *connection,
+pub unsafe fn xcb_glx_make_context_current (c : *connection,
                                         old_context_tag :  context_tag,
                                         drawable :  drawable,
                                         read_drawable :  drawable,
@@ -3476,7 +3478,7 @@ unsafe fn xcb_glx_make_context_current (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_make_context_current_unchecked (c : *connection,
+pub unsafe fn xcb_glx_make_context_current_unchecked (c : *connection,
                                                   old_context_tag :  context_tag,
                                                   drawable :  drawable,
                                                   read_drawable :  drawable,
@@ -3496,11 +3498,11 @@ unsafe fn xcb_glx_make_context_current_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_make_context_current_reply (c : *connection,
+pub unsafe fn xcb_glx_make_context_current_reply (c : *connection,
                                               cookie : make_context_current_cookie,
                                               e : **generic_error) -> *make_context_current_reply;
 
-unsafe fn xcb_glx_create_pbuffer_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_create_pbuffer_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -3513,7 +3515,7 @@ unsafe fn xcb_glx_create_pbuffer_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_create_pbuffer_checked (c : *connection,
+pub unsafe fn xcb_glx_create_pbuffer_checked (c : *connection,
                                           screen :  u32,
                                           fbconfig :  fbconfig,
                                           pbuffer :  pbuffer,
@@ -3528,7 +3530,7 @@ unsafe fn xcb_glx_create_pbuffer_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_create_pbuffer (c : *connection,
+pub unsafe fn xcb_glx_create_pbuffer (c : *connection,
                                   screen :  u32,
                                   fbconfig :  fbconfig,
                                   pbuffer :  pbuffer,
@@ -3546,7 +3548,7 @@ unsafe fn xcb_glx_create_pbuffer (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_destroy_pbuffer_checked (c : *connection,
+pub unsafe fn xcb_glx_destroy_pbuffer_checked (c : *connection,
                                            pbuffer :  pbuffer) -> void_cookie;
 
 /**
@@ -3557,10 +3559,10 @@ unsafe fn xcb_glx_destroy_pbuffer_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_destroy_pbuffer (c : *connection,
+pub unsafe fn xcb_glx_destroy_pbuffer (c : *connection,
                                    pbuffer :  pbuffer) -> void_cookie;
 
-unsafe fn xcb_glx_get_drawable_attributes_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_drawable_attributes_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -3570,7 +3572,7 @@ unsafe fn xcb_glx_get_drawable_attributes_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_drawable_attributes (c : *connection,
+pub unsafe fn xcb_glx_get_drawable_attributes (c : *connection,
                                            drawable :  drawable) -> get_drawable_attributes_cookie;
 
 /**
@@ -3584,16 +3586,16 @@ unsafe fn xcb_glx_get_drawable_attributes (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_drawable_attributes_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_drawable_attributes_unchecked (c : *connection,
                                                      drawable :  drawable) -> get_drawable_attributes_cookie;
 
-unsafe fn xcb_glx_get_drawable_attributes_attribs (R : *get_drawable_attributes_reply) -> *u32;
+pub unsafe fn xcb_glx_get_drawable_attributes_attribs (R : *get_drawable_attributes_reply) -> *u32;
 
 
-unsafe fn xcb_glx_get_drawable_attributes_attribs_length (R : *get_drawable_attributes_reply) -> c_int;
+pub unsafe fn xcb_glx_get_drawable_attributes_attribs_length (R : *get_drawable_attributes_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_drawable_attributes_attribs_end (R : *get_drawable_attributes_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_drawable_attributes_attribs_end (R : *get_drawable_attributes_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -3609,11 +3611,11 @@ unsafe fn xcb_glx_get_drawable_attributes_attribs_end (R : *get_drawable_attribu
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_drawable_attributes_reply (c : *connection,
+pub unsafe fn xcb_glx_get_drawable_attributes_reply (c : *connection,
                                                  cookie : get_drawable_attributes_cookie,
                                                  e : **generic_error) -> *get_drawable_attributes_reply;
 
-unsafe fn xcb_glx_change_drawable_attributes_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_change_drawable_attributes_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -3626,7 +3628,7 @@ unsafe fn xcb_glx_change_drawable_attributes_sizeof (_buffer :  *c_void) -> c_in
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_change_drawable_attributes_checked (c : *connection,
+pub unsafe fn xcb_glx_change_drawable_attributes_checked (c : *connection,
                                                       drawable :  drawable,
                                                       num_attribs :  u32,
                                                       attribs : *u32) -> void_cookie;
@@ -3639,12 +3641,12 @@ unsafe fn xcb_glx_change_drawable_attributes_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_change_drawable_attributes (c : *connection,
+pub unsafe fn xcb_glx_change_drawable_attributes (c : *connection,
                                               drawable :  drawable,
                                               num_attribs :  u32,
                                               attribs : *u32) -> void_cookie;
 
-unsafe fn xcb_glx_create_window_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_create_window_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -3657,7 +3659,7 @@ unsafe fn xcb_glx_create_window_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_create_window_checked (c : *connection,
+pub unsafe fn xcb_glx_create_window_checked (c : *connection,
                                          screen :  u32,
                                          fbconfig :  fbconfig,
                                          window :  ll::xproto::window,
@@ -3673,7 +3675,7 @@ unsafe fn xcb_glx_create_window_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_create_window (c : *connection,
+pub unsafe fn xcb_glx_create_window (c : *connection,
                                  screen :  u32,
                                  fbconfig :  fbconfig,
                                  window :  ll::xproto::window,
@@ -3692,7 +3694,7 @@ unsafe fn xcb_glx_create_window (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_delete_window_checked (c : *connection,
+pub unsafe fn xcb_glx_delete_window_checked (c : *connection,
                                          glxwindow :  window) -> void_cookie;
 
 /**
@@ -3703,10 +3705,10 @@ unsafe fn xcb_glx_delete_window_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_delete_window (c : *connection,
+pub unsafe fn xcb_glx_delete_window (c : *connection,
                                  glxwindow :  window) -> void_cookie;
 
-unsafe fn xcb_glx_set_client_info_arb_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_set_client_info_arb_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -3719,7 +3721,7 @@ unsafe fn xcb_glx_set_client_info_arb_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_set_client_info_arb_checked (c : *connection,
+pub unsafe fn xcb_glx_set_client_info_arb_checked (c : *connection,
                                                major_version :  u32,
                                                minor_version :  u32,
                                                num_versions :  u32,
@@ -3737,7 +3739,7 @@ unsafe fn xcb_glx_set_client_info_arb_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_set_client_info_arb (c : *connection,
+pub unsafe fn xcb_glx_set_client_info_arb (c : *connection,
                                        major_version :  u32,
                                        minor_version :  u32,
                                        num_versions :  u32,
@@ -3747,7 +3749,7 @@ unsafe fn xcb_glx_set_client_info_arb (c : *connection,
                                        gl_extension_string : *c_char,
                                        glx_extension_string : *c_char) -> void_cookie;
 
-unsafe fn xcb_glx_create_context_attribs_arb_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_create_context_attribs_arb_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -3760,7 +3762,7 @@ unsafe fn xcb_glx_create_context_attribs_arb_sizeof (_buffer :  *c_void) -> c_in
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_create_context_attribs_arb_checked (c : *connection,
+pub unsafe fn xcb_glx_create_context_attribs_arb_checked (c : *connection,
                                                       context :  context,
                                                       fbconfig :  fbconfig,
                                                       screen :  u32,
@@ -3777,7 +3779,7 @@ unsafe fn xcb_glx_create_context_attribs_arb_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_create_context_attribs_arb (c : *connection,
+pub unsafe fn xcb_glx_create_context_attribs_arb (c : *connection,
                                               context :  context,
                                               fbconfig :  fbconfig,
                                               screen :  u32,
@@ -3786,7 +3788,7 @@ unsafe fn xcb_glx_create_context_attribs_arb (c : *connection,
                                               num_attribs :  u32,
                                               attribs : *u32) -> void_cookie;
 
-unsafe fn xcb_glx_set_client_info_2arb_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_set_client_info_2arb_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -3799,7 +3801,7 @@ unsafe fn xcb_glx_set_client_info_2arb_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_set_client_info_2arb_checked (c : *connection,
+pub unsafe fn xcb_glx_set_client_info_2arb_checked (c : *connection,
                                                 major_version :  u32,
                                                 minor_version :  u32,
                                                 num_versions :  u32,
@@ -3817,7 +3819,7 @@ unsafe fn xcb_glx_set_client_info_2arb_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_set_client_info_2arb (c : *connection,
+pub unsafe fn xcb_glx_set_client_info_2arb (c : *connection,
                                         major_version :  u32,
                                         minor_version :  u32,
                                         num_versions :  u32,
@@ -3838,7 +3840,7 @@ unsafe fn xcb_glx_set_client_info_2arb (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_new_list_checked (c : *connection,
+pub unsafe fn xcb_glx_new_list_checked (c : *connection,
                                     context_tag :  context_tag,
                                     list :  u32,
                                     mode :  u32) -> void_cookie;
@@ -3851,7 +3853,7 @@ unsafe fn xcb_glx_new_list_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_new_list (c : *connection,
+pub unsafe fn xcb_glx_new_list (c : *connection,
                             context_tag :  context_tag,
                             list :  u32,
                             mode :  u32) -> void_cookie;
@@ -3867,7 +3869,7 @@ unsafe fn xcb_glx_new_list (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_end_list_checked (c : *connection,
+pub unsafe fn xcb_glx_end_list_checked (c : *connection,
                                     context_tag :  context_tag) -> void_cookie;
 
 /**
@@ -3878,7 +3880,7 @@ unsafe fn xcb_glx_end_list_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_end_list (c : *connection,
+pub unsafe fn xcb_glx_end_list (c : *connection,
                             context_tag :  context_tag) -> void_cookie;
 
 /**
@@ -3892,7 +3894,7 @@ unsafe fn xcb_glx_end_list (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_delete_lists_checked (c : *connection,
+pub unsafe fn xcb_glx_delete_lists_checked (c : *connection,
                                         context_tag :  context_tag,
                                         list :  u32,
                                         range :  i32) -> void_cookie;
@@ -3905,7 +3907,7 @@ unsafe fn xcb_glx_delete_lists_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_delete_lists (c : *connection,
+pub unsafe fn xcb_glx_delete_lists (c : *connection,
                                 context_tag :  context_tag,
                                 list :  u32,
                                 range :  i32) -> void_cookie;
@@ -3918,7 +3920,7 @@ unsafe fn xcb_glx_delete_lists (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_gen_lists (c : *connection,
+pub unsafe fn xcb_glx_gen_lists (c : *connection,
                              context_tag :  context_tag,
                              range :  i32) -> gen_lists_cookie;
 
@@ -3933,7 +3935,7 @@ unsafe fn xcb_glx_gen_lists (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_gen_lists_unchecked (c : *connection,
+pub unsafe fn xcb_glx_gen_lists_unchecked (c : *connection,
                                        context_tag :  context_tag,
                                        range :  i32) -> gen_lists_cookie;
 
@@ -3951,7 +3953,7 @@ unsafe fn xcb_glx_gen_lists_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_gen_lists_reply (c : *connection,
+pub unsafe fn xcb_glx_gen_lists_reply (c : *connection,
                                    cookie : gen_lists_cookie,
                                    e : **generic_error) -> *gen_lists_reply;
 
@@ -3966,7 +3968,7 @@ unsafe fn xcb_glx_gen_lists_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_feedback_buffer_checked (c : *connection,
+pub unsafe fn xcb_glx_feedback_buffer_checked (c : *connection,
                                            context_tag :  context_tag,
                                            size :  i32,
                                            type_ :  i32) -> void_cookie;
@@ -3979,7 +3981,7 @@ unsafe fn xcb_glx_feedback_buffer_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_feedback_buffer (c : *connection,
+pub unsafe fn xcb_glx_feedback_buffer (c : *connection,
                                    context_tag :  context_tag,
                                    size :  i32,
                                    type_ :  i32) -> void_cookie;
@@ -3995,7 +3997,7 @@ unsafe fn xcb_glx_feedback_buffer (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_select_buffer_checked (c : *connection,
+pub unsafe fn xcb_glx_select_buffer_checked (c : *connection,
                                          context_tag :  context_tag,
                                          size :  i32) -> void_cookie;
 
@@ -4007,11 +4009,11 @@ unsafe fn xcb_glx_select_buffer_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_select_buffer (c : *connection,
+pub unsafe fn xcb_glx_select_buffer (c : *connection,
                                  context_tag :  context_tag,
                                  size :  i32) -> void_cookie;
 
-unsafe fn xcb_glx_render_mode_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_render_mode_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -4021,7 +4023,7 @@ unsafe fn xcb_glx_render_mode_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_render_mode (c : *connection,
+pub unsafe fn xcb_glx_render_mode (c : *connection,
                                context_tag :  context_tag,
                                mode :  u32) -> render_mode_cookie;
 
@@ -4036,17 +4038,17 @@ unsafe fn xcb_glx_render_mode (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_render_mode_unchecked (c : *connection,
+pub unsafe fn xcb_glx_render_mode_unchecked (c : *connection,
                                          context_tag :  context_tag,
                                          mode :  u32) -> render_mode_cookie;
 
-unsafe fn xcb_glx_render_mode_data (R : *render_mode_reply) -> *u32;
+pub unsafe fn xcb_glx_render_mode_data (R : *render_mode_reply) -> *u32;
 
 
-unsafe fn xcb_glx_render_mode_data_length (R : *render_mode_reply) -> c_int;
+pub unsafe fn xcb_glx_render_mode_data_length (R : *render_mode_reply) -> c_int;
 
 
-unsafe fn xcb_glx_render_mode_data_end (R : *render_mode_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_render_mode_data_end (R : *render_mode_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -4062,7 +4064,7 @@ unsafe fn xcb_glx_render_mode_data_end (R : *render_mode_reply) -> generic_itera
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_render_mode_reply (c : *connection,
+pub unsafe fn xcb_glx_render_mode_reply (c : *connection,
                                      cookie : render_mode_cookie,
                                      e : **generic_error) -> *render_mode_reply;
 
@@ -4074,7 +4076,7 @@ unsafe fn xcb_glx_render_mode_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_finish (c : *connection,
+pub unsafe fn xcb_glx_finish (c : *connection,
                           context_tag :  context_tag) -> finish_cookie;
 
 /**
@@ -4088,7 +4090,7 @@ unsafe fn xcb_glx_finish (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_finish_unchecked (c : *connection,
+pub unsafe fn xcb_glx_finish_unchecked (c : *connection,
                                     context_tag :  context_tag) -> finish_cookie;
 
 /**
@@ -4105,7 +4107,7 @@ unsafe fn xcb_glx_finish_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_finish_reply (c : *connection,
+pub unsafe fn xcb_glx_finish_reply (c : *connection,
                                 cookie : finish_cookie,
                                 e : **generic_error) -> *finish_reply;
 
@@ -4120,7 +4122,7 @@ unsafe fn xcb_glx_finish_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_pixel_storef_checked (c : *connection,
+pub unsafe fn xcb_glx_pixel_storef_checked (c : *connection,
                                         context_tag :  context_tag,
                                         pname :  u32,
                                         datum :  float32) -> void_cookie;
@@ -4133,7 +4135,7 @@ unsafe fn xcb_glx_pixel_storef_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_pixel_storef (c : *connection,
+pub unsafe fn xcb_glx_pixel_storef (c : *connection,
                                 context_tag :  context_tag,
                                 pname :  u32,
                                 datum :  float32) -> void_cookie;
@@ -4149,7 +4151,7 @@ unsafe fn xcb_glx_pixel_storef (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_pixel_storei_checked (c : *connection,
+pub unsafe fn xcb_glx_pixel_storei_checked (c : *connection,
                                         context_tag :  context_tag,
                                         pname :  u32,
                                         datum :  i32) -> void_cookie;
@@ -4162,12 +4164,12 @@ unsafe fn xcb_glx_pixel_storei_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_pixel_storei (c : *connection,
+pub unsafe fn xcb_glx_pixel_storei (c : *connection,
                                 context_tag :  context_tag,
                                 pname :  u32,
                                 datum :  i32) -> void_cookie;
 
-unsafe fn xcb_glx_read_pixels_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_read_pixels_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -4177,7 +4179,7 @@ unsafe fn xcb_glx_read_pixels_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_read_pixels (c : *connection,
+pub unsafe fn xcb_glx_read_pixels (c : *connection,
                                context_tag :  context_tag,
                                x :  i32,
                                y :  i32,
@@ -4199,7 +4201,7 @@ unsafe fn xcb_glx_read_pixels (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_read_pixels_unchecked (c : *connection,
+pub unsafe fn xcb_glx_read_pixels_unchecked (c : *connection,
                                          context_tag :  context_tag,
                                          x :  i32,
                                          y :  i32,
@@ -4210,13 +4212,13 @@ unsafe fn xcb_glx_read_pixels_unchecked (c : *connection,
                                          swap_bytes :  u8,
                                          lsb_first :  u8) -> read_pixels_cookie;
 
-unsafe fn xcb_glx_read_pixels_data (R : *read_pixels_reply) -> *u8;
+pub unsafe fn xcb_glx_read_pixels_data (R : *read_pixels_reply) -> *u8;
 
 
-unsafe fn xcb_glx_read_pixels_data_length (R : *read_pixels_reply) -> c_int;
+pub unsafe fn xcb_glx_read_pixels_data_length (R : *read_pixels_reply) -> c_int;
 
 
-unsafe fn xcb_glx_read_pixels_data_end (R : *read_pixels_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_read_pixels_data_end (R : *read_pixels_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -4232,11 +4234,11 @@ unsafe fn xcb_glx_read_pixels_data_end (R : *read_pixels_reply) -> generic_itera
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_read_pixels_reply (c : *connection,
+pub unsafe fn xcb_glx_read_pixels_reply (c : *connection,
                                      cookie : read_pixels_cookie,
                                      e : **generic_error) -> *read_pixels_reply;
 
-unsafe fn xcb_glx_get_booleanv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_booleanv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -4246,7 +4248,7 @@ unsafe fn xcb_glx_get_booleanv_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_booleanv (c : *connection,
+pub unsafe fn xcb_glx_get_booleanv (c : *connection,
                                 context_tag :  context_tag,
                                 pname :  i32) -> get_booleanv_cookie;
 
@@ -4261,17 +4263,17 @@ unsafe fn xcb_glx_get_booleanv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_booleanv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_booleanv_unchecked (c : *connection,
                                           context_tag :  context_tag,
                                           pname :  i32) -> get_booleanv_cookie;
 
-unsafe fn xcb_glx_get_booleanv_data (R : *get_booleanv_reply) -> *u8;
+pub unsafe fn xcb_glx_get_booleanv_data (R : *get_booleanv_reply) -> *u8;
 
 
-unsafe fn xcb_glx_get_booleanv_data_length (R : *get_booleanv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_booleanv_data_length (R : *get_booleanv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_booleanv_data_end (R : *get_booleanv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_booleanv_data_end (R : *get_booleanv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -4287,11 +4289,11 @@ unsafe fn xcb_glx_get_booleanv_data_end (R : *get_booleanv_reply) -> generic_ite
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_booleanv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_booleanv_reply (c : *connection,
                                       cookie : get_booleanv_cookie,
                                       e : **generic_error) -> *get_booleanv_reply;
 
-unsafe fn xcb_glx_get_clip_plane_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_clip_plane_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -4301,7 +4303,7 @@ unsafe fn xcb_glx_get_clip_plane_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_clip_plane (c : *connection,
+pub unsafe fn xcb_glx_get_clip_plane (c : *connection,
                                   context_tag :  context_tag,
                                   plane :  i32) -> get_clip_plane_cookie;
 
@@ -4316,17 +4318,17 @@ unsafe fn xcb_glx_get_clip_plane (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_clip_plane_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_clip_plane_unchecked (c : *connection,
                                             context_tag :  context_tag,
                                             plane :  i32) -> get_clip_plane_cookie;
 
-unsafe fn xcb_glx_get_clip_plane_data (R : *get_clip_plane_reply) -> *float64;
+pub unsafe fn xcb_glx_get_clip_plane_data (R : *get_clip_plane_reply) -> *float64;
 
 
-unsafe fn xcb_glx_get_clip_plane_data_length (R : *get_clip_plane_reply) -> c_int;
+pub unsafe fn xcb_glx_get_clip_plane_data_length (R : *get_clip_plane_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_clip_plane_data_end (R : *get_clip_plane_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_clip_plane_data_end (R : *get_clip_plane_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -4342,11 +4344,11 @@ unsafe fn xcb_glx_get_clip_plane_data_end (R : *get_clip_plane_reply) -> generic
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_clip_plane_reply (c : *connection,
+pub unsafe fn xcb_glx_get_clip_plane_reply (c : *connection,
                                         cookie : get_clip_plane_cookie,
                                         e : **generic_error) -> *get_clip_plane_reply;
 
-unsafe fn xcb_glx_get_doublev_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_doublev_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -4356,7 +4358,7 @@ unsafe fn xcb_glx_get_doublev_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_doublev (c : *connection,
+pub unsafe fn xcb_glx_get_doublev (c : *connection,
                                context_tag :  context_tag,
                                pname :  u32) -> get_doublev_cookie;
 
@@ -4371,17 +4373,17 @@ unsafe fn xcb_glx_get_doublev (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_doublev_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_doublev_unchecked (c : *connection,
                                          context_tag :  context_tag,
                                          pname :  u32) -> get_doublev_cookie;
 
-unsafe fn xcb_glx_get_doublev_data (R : *get_doublev_reply) -> *float64;
+pub unsafe fn xcb_glx_get_doublev_data (R : *get_doublev_reply) -> *float64;
 
 
-unsafe fn xcb_glx_get_doublev_data_length (R : *get_doublev_reply) -> c_int;
+pub unsafe fn xcb_glx_get_doublev_data_length (R : *get_doublev_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_doublev_data_end (R : *get_doublev_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_doublev_data_end (R : *get_doublev_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -4397,7 +4399,7 @@ unsafe fn xcb_glx_get_doublev_data_end (R : *get_doublev_reply) -> generic_itera
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_doublev_reply (c : *connection,
+pub unsafe fn xcb_glx_get_doublev_reply (c : *connection,
                                      cookie : get_doublev_cookie,
                                      e : **generic_error) -> *get_doublev_reply;
 
@@ -4409,7 +4411,7 @@ unsafe fn xcb_glx_get_doublev_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_error (c : *connection,
+pub unsafe fn xcb_glx_get_error (c : *connection,
                              context_tag :  context_tag) -> get_error_cookie;
 
 /**
@@ -4423,7 +4425,7 @@ unsafe fn xcb_glx_get_error (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_error_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_error_unchecked (c : *connection,
                                        context_tag :  context_tag) -> get_error_cookie;
 
 /**
@@ -4440,11 +4442,11 @@ unsafe fn xcb_glx_get_error_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_error_reply (c : *connection,
+pub unsafe fn xcb_glx_get_error_reply (c : *connection,
                                    cookie : get_error_cookie,
                                    e : **generic_error) -> *get_error_reply;
 
-unsafe fn xcb_glx_get_floatv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_floatv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -4454,7 +4456,7 @@ unsafe fn xcb_glx_get_floatv_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_floatv (c : *connection,
+pub unsafe fn xcb_glx_get_floatv (c : *connection,
                               context_tag :  context_tag,
                               pname :  u32) -> get_floatv_cookie;
 
@@ -4469,17 +4471,17 @@ unsafe fn xcb_glx_get_floatv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_floatv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_floatv_unchecked (c : *connection,
                                         context_tag :  context_tag,
                                         pname :  u32) -> get_floatv_cookie;
 
-unsafe fn xcb_glx_get_floatv_data (R : *get_floatv_reply) -> *float32;
+pub unsafe fn xcb_glx_get_floatv_data (R : *get_floatv_reply) -> *float32;
 
 
-unsafe fn xcb_glx_get_floatv_data_length (R : *get_floatv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_floatv_data_length (R : *get_floatv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_floatv_data_end (R : *get_floatv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_floatv_data_end (R : *get_floatv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -4495,11 +4497,11 @@ unsafe fn xcb_glx_get_floatv_data_end (R : *get_floatv_reply) -> generic_iterato
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_floatv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_floatv_reply (c : *connection,
                                     cookie : get_floatv_cookie,
                                     e : **generic_error) -> *get_floatv_reply;
 
-unsafe fn xcb_glx_get_integerv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_integerv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -4509,7 +4511,7 @@ unsafe fn xcb_glx_get_integerv_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_integerv (c : *connection,
+pub unsafe fn xcb_glx_get_integerv (c : *connection,
                                 context_tag :  context_tag,
                                 pname :  u32) -> get_integerv_cookie;
 
@@ -4524,17 +4526,17 @@ unsafe fn xcb_glx_get_integerv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_integerv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_integerv_unchecked (c : *connection,
                                           context_tag :  context_tag,
                                           pname :  u32) -> get_integerv_cookie;
 
-unsafe fn xcb_glx_get_integerv_data (R : *get_integerv_reply) -> *i32;
+pub unsafe fn xcb_glx_get_integerv_data (R : *get_integerv_reply) -> *i32;
 
 
-unsafe fn xcb_glx_get_integerv_data_length (R : *get_integerv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_integerv_data_length (R : *get_integerv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_integerv_data_end (R : *get_integerv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_integerv_data_end (R : *get_integerv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -4550,11 +4552,11 @@ unsafe fn xcb_glx_get_integerv_data_end (R : *get_integerv_reply) -> generic_ite
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_integerv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_integerv_reply (c : *connection,
                                       cookie : get_integerv_cookie,
                                       e : **generic_error) -> *get_integerv_reply;
 
-unsafe fn xcb_glx_get_lightfv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_lightfv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -4564,7 +4566,7 @@ unsafe fn xcb_glx_get_lightfv_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_lightfv (c : *connection,
+pub unsafe fn xcb_glx_get_lightfv (c : *connection,
                                context_tag :  context_tag,
                                light :  u32,
                                pname :  u32) -> get_lightfv_cookie;
@@ -4580,18 +4582,18 @@ unsafe fn xcb_glx_get_lightfv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_lightfv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_lightfv_unchecked (c : *connection,
                                          context_tag :  context_tag,
                                          light :  u32,
                                          pname :  u32) -> get_lightfv_cookie;
 
-unsafe fn xcb_glx_get_lightfv_data (R : *get_lightfv_reply) -> *float32;
+pub unsafe fn xcb_glx_get_lightfv_data (R : *get_lightfv_reply) -> *float32;
 
 
-unsafe fn xcb_glx_get_lightfv_data_length (R : *get_lightfv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_lightfv_data_length (R : *get_lightfv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_lightfv_data_end (R : *get_lightfv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_lightfv_data_end (R : *get_lightfv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -4607,11 +4609,11 @@ unsafe fn xcb_glx_get_lightfv_data_end (R : *get_lightfv_reply) -> generic_itera
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_lightfv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_lightfv_reply (c : *connection,
                                      cookie : get_lightfv_cookie,
                                      e : **generic_error) -> *get_lightfv_reply;
 
-unsafe fn xcb_glx_get_lightiv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_lightiv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -4621,7 +4623,7 @@ unsafe fn xcb_glx_get_lightiv_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_lightiv (c : *connection,
+pub unsafe fn xcb_glx_get_lightiv (c : *connection,
                                context_tag :  context_tag,
                                light :  u32,
                                pname :  u32) -> get_lightiv_cookie;
@@ -4637,18 +4639,18 @@ unsafe fn xcb_glx_get_lightiv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_lightiv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_lightiv_unchecked (c : *connection,
                                          context_tag :  context_tag,
                                          light :  u32,
                                          pname :  u32) -> get_lightiv_cookie;
 
-unsafe fn xcb_glx_get_lightiv_data (R : *get_lightiv_reply) -> *i32;
+pub unsafe fn xcb_glx_get_lightiv_data (R : *get_lightiv_reply) -> *i32;
 
 
-unsafe fn xcb_glx_get_lightiv_data_length (R : *get_lightiv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_lightiv_data_length (R : *get_lightiv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_lightiv_data_end (R : *get_lightiv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_lightiv_data_end (R : *get_lightiv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -4664,11 +4666,11 @@ unsafe fn xcb_glx_get_lightiv_data_end (R : *get_lightiv_reply) -> generic_itera
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_lightiv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_lightiv_reply (c : *connection,
                                      cookie : get_lightiv_cookie,
                                      e : **generic_error) -> *get_lightiv_reply;
 
-unsafe fn xcb_glx_get_mapdv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_mapdv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -4678,7 +4680,7 @@ unsafe fn xcb_glx_get_mapdv_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_mapdv (c : *connection,
+pub unsafe fn xcb_glx_get_mapdv (c : *connection,
                              context_tag :  context_tag,
                              target :  u32,
                              query :  u32) -> get_mapdv_cookie;
@@ -4694,18 +4696,18 @@ unsafe fn xcb_glx_get_mapdv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_mapdv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_mapdv_unchecked (c : *connection,
                                        context_tag :  context_tag,
                                        target :  u32,
                                        query :  u32) -> get_mapdv_cookie;
 
-unsafe fn xcb_glx_get_mapdv_data (R : *get_mapdv_reply) -> *float64;
+pub unsafe fn xcb_glx_get_mapdv_data (R : *get_mapdv_reply) -> *float64;
 
 
-unsafe fn xcb_glx_get_mapdv_data_length (R : *get_mapdv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_mapdv_data_length (R : *get_mapdv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_mapdv_data_end (R : *get_mapdv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_mapdv_data_end (R : *get_mapdv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -4721,11 +4723,11 @@ unsafe fn xcb_glx_get_mapdv_data_end (R : *get_mapdv_reply) -> generic_iterator;
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_mapdv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_mapdv_reply (c : *connection,
                                    cookie : get_mapdv_cookie,
                                    e : **generic_error) -> *get_mapdv_reply;
 
-unsafe fn xcb_glx_get_mapfv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_mapfv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -4735,7 +4737,7 @@ unsafe fn xcb_glx_get_mapfv_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_mapfv (c : *connection,
+pub unsafe fn xcb_glx_get_mapfv (c : *connection,
                              context_tag :  context_tag,
                              target :  u32,
                              query :  u32) -> get_mapfv_cookie;
@@ -4751,18 +4753,18 @@ unsafe fn xcb_glx_get_mapfv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_mapfv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_mapfv_unchecked (c : *connection,
                                        context_tag :  context_tag,
                                        target :  u32,
                                        query :  u32) -> get_mapfv_cookie;
 
-unsafe fn xcb_glx_get_mapfv_data (R : *get_mapfv_reply) -> *float32;
+pub unsafe fn xcb_glx_get_mapfv_data (R : *get_mapfv_reply) -> *float32;
 
 
-unsafe fn xcb_glx_get_mapfv_data_length (R : *get_mapfv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_mapfv_data_length (R : *get_mapfv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_mapfv_data_end (R : *get_mapfv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_mapfv_data_end (R : *get_mapfv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -4778,11 +4780,11 @@ unsafe fn xcb_glx_get_mapfv_data_end (R : *get_mapfv_reply) -> generic_iterator;
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_mapfv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_mapfv_reply (c : *connection,
                                    cookie : get_mapfv_cookie,
                                    e : **generic_error) -> *get_mapfv_reply;
 
-unsafe fn xcb_glx_get_mapiv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_mapiv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -4792,7 +4794,7 @@ unsafe fn xcb_glx_get_mapiv_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_mapiv (c : *connection,
+pub unsafe fn xcb_glx_get_mapiv (c : *connection,
                              context_tag :  context_tag,
                              target :  u32,
                              query :  u32) -> get_mapiv_cookie;
@@ -4808,18 +4810,18 @@ unsafe fn xcb_glx_get_mapiv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_mapiv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_mapiv_unchecked (c : *connection,
                                        context_tag :  context_tag,
                                        target :  u32,
                                        query :  u32) -> get_mapiv_cookie;
 
-unsafe fn xcb_glx_get_mapiv_data (R : *get_mapiv_reply) -> *i32;
+pub unsafe fn xcb_glx_get_mapiv_data (R : *get_mapiv_reply) -> *i32;
 
 
-unsafe fn xcb_glx_get_mapiv_data_length (R : *get_mapiv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_mapiv_data_length (R : *get_mapiv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_mapiv_data_end (R : *get_mapiv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_mapiv_data_end (R : *get_mapiv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -4835,11 +4837,11 @@ unsafe fn xcb_glx_get_mapiv_data_end (R : *get_mapiv_reply) -> generic_iterator;
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_mapiv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_mapiv_reply (c : *connection,
                                    cookie : get_mapiv_cookie,
                                    e : **generic_error) -> *get_mapiv_reply;
 
-unsafe fn xcb_glx_get_materialfv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_materialfv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -4849,7 +4851,7 @@ unsafe fn xcb_glx_get_materialfv_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_materialfv (c : *connection,
+pub unsafe fn xcb_glx_get_materialfv (c : *connection,
                                   context_tag :  context_tag,
                                   face :  u32,
                                   pname :  u32) -> get_materialfv_cookie;
@@ -4865,18 +4867,18 @@ unsafe fn xcb_glx_get_materialfv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_materialfv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_materialfv_unchecked (c : *connection,
                                             context_tag :  context_tag,
                                             face :  u32,
                                             pname :  u32) -> get_materialfv_cookie;
 
-unsafe fn xcb_glx_get_materialfv_data (R : *get_materialfv_reply) -> *float32;
+pub unsafe fn xcb_glx_get_materialfv_data (R : *get_materialfv_reply) -> *float32;
 
 
-unsafe fn xcb_glx_get_materialfv_data_length (R : *get_materialfv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_materialfv_data_length (R : *get_materialfv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_materialfv_data_end (R : *get_materialfv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_materialfv_data_end (R : *get_materialfv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -4892,11 +4894,11 @@ unsafe fn xcb_glx_get_materialfv_data_end (R : *get_materialfv_reply) -> generic
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_materialfv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_materialfv_reply (c : *connection,
                                         cookie : get_materialfv_cookie,
                                         e : **generic_error) -> *get_materialfv_reply;
 
-unsafe fn xcb_glx_get_materialiv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_materialiv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -4906,7 +4908,7 @@ unsafe fn xcb_glx_get_materialiv_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_materialiv (c : *connection,
+pub unsafe fn xcb_glx_get_materialiv (c : *connection,
                                   context_tag :  context_tag,
                                   face :  u32,
                                   pname :  u32) -> get_materialiv_cookie;
@@ -4922,18 +4924,18 @@ unsafe fn xcb_glx_get_materialiv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_materialiv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_materialiv_unchecked (c : *connection,
                                             context_tag :  context_tag,
                                             face :  u32,
                                             pname :  u32) -> get_materialiv_cookie;
 
-unsafe fn xcb_glx_get_materialiv_data (R : *get_materialiv_reply) -> *i32;
+pub unsafe fn xcb_glx_get_materialiv_data (R : *get_materialiv_reply) -> *i32;
 
 
-unsafe fn xcb_glx_get_materialiv_data_length (R : *get_materialiv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_materialiv_data_length (R : *get_materialiv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_materialiv_data_end (R : *get_materialiv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_materialiv_data_end (R : *get_materialiv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -4949,11 +4951,11 @@ unsafe fn xcb_glx_get_materialiv_data_end (R : *get_materialiv_reply) -> generic
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_materialiv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_materialiv_reply (c : *connection,
                                         cookie : get_materialiv_cookie,
                                         e : **generic_error) -> *get_materialiv_reply;
 
-unsafe fn xcb_glx_get_pixel_mapfv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_pixel_mapfv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -4963,7 +4965,7 @@ unsafe fn xcb_glx_get_pixel_mapfv_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_pixel_mapfv (c : *connection,
+pub unsafe fn xcb_glx_get_pixel_mapfv (c : *connection,
                                    context_tag :  context_tag,
                                    map :  u32) -> get_pixel_mapfv_cookie;
 
@@ -4978,17 +4980,17 @@ unsafe fn xcb_glx_get_pixel_mapfv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_pixel_mapfv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_pixel_mapfv_unchecked (c : *connection,
                                              context_tag :  context_tag,
                                              map :  u32) -> get_pixel_mapfv_cookie;
 
-unsafe fn xcb_glx_get_pixel_mapfv_data (R : *get_pixel_mapfv_reply) -> *float32;
+pub unsafe fn xcb_glx_get_pixel_mapfv_data (R : *get_pixel_mapfv_reply) -> *float32;
 
 
-unsafe fn xcb_glx_get_pixel_mapfv_data_length (R : *get_pixel_mapfv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_pixel_mapfv_data_length (R : *get_pixel_mapfv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_pixel_mapfv_data_end (R : *get_pixel_mapfv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_pixel_mapfv_data_end (R : *get_pixel_mapfv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -5004,11 +5006,11 @@ unsafe fn xcb_glx_get_pixel_mapfv_data_end (R : *get_pixel_mapfv_reply) -> gener
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_pixel_mapfv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_pixel_mapfv_reply (c : *connection,
                                          cookie : get_pixel_mapfv_cookie,
                                          e : **generic_error) -> *get_pixel_mapfv_reply;
 
-unsafe fn xcb_glx_get_pixel_mapuiv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_pixel_mapuiv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -5018,7 +5020,7 @@ unsafe fn xcb_glx_get_pixel_mapuiv_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_pixel_mapuiv (c : *connection,
+pub unsafe fn xcb_glx_get_pixel_mapuiv (c : *connection,
                                     context_tag :  context_tag,
                                     map :  u32) -> get_pixel_mapuiv_cookie;
 
@@ -5033,17 +5035,17 @@ unsafe fn xcb_glx_get_pixel_mapuiv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_pixel_mapuiv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_pixel_mapuiv_unchecked (c : *connection,
                                               context_tag :  context_tag,
                                               map :  u32) -> get_pixel_mapuiv_cookie;
 
-unsafe fn xcb_glx_get_pixel_mapuiv_data (R : *get_pixel_mapuiv_reply) -> *u32;
+pub unsafe fn xcb_glx_get_pixel_mapuiv_data (R : *get_pixel_mapuiv_reply) -> *u32;
 
 
-unsafe fn xcb_glx_get_pixel_mapuiv_data_length (R : *get_pixel_mapuiv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_pixel_mapuiv_data_length (R : *get_pixel_mapuiv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_pixel_mapuiv_data_end (R : *get_pixel_mapuiv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_pixel_mapuiv_data_end (R : *get_pixel_mapuiv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -5059,11 +5061,11 @@ unsafe fn xcb_glx_get_pixel_mapuiv_data_end (R : *get_pixel_mapuiv_reply) -> gen
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_pixel_mapuiv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_pixel_mapuiv_reply (c : *connection,
                                           cookie : get_pixel_mapuiv_cookie,
                                           e : **generic_error) -> *get_pixel_mapuiv_reply;
 
-unsafe fn xcb_glx_get_pixel_mapusv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_pixel_mapusv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -5073,7 +5075,7 @@ unsafe fn xcb_glx_get_pixel_mapusv_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_pixel_mapusv (c : *connection,
+pub unsafe fn xcb_glx_get_pixel_mapusv (c : *connection,
                                     context_tag :  context_tag,
                                     map :  u32) -> get_pixel_mapusv_cookie;
 
@@ -5088,17 +5090,17 @@ unsafe fn xcb_glx_get_pixel_mapusv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_pixel_mapusv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_pixel_mapusv_unchecked (c : *connection,
                                               context_tag :  context_tag,
                                               map :  u32) -> get_pixel_mapusv_cookie;
 
-unsafe fn xcb_glx_get_pixel_mapusv_data (R : *get_pixel_mapusv_reply) -> *u16;
+pub unsafe fn xcb_glx_get_pixel_mapusv_data (R : *get_pixel_mapusv_reply) -> *u16;
 
 
-unsafe fn xcb_glx_get_pixel_mapusv_data_length (R : *get_pixel_mapusv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_pixel_mapusv_data_length (R : *get_pixel_mapusv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_pixel_mapusv_data_end (R : *get_pixel_mapusv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_pixel_mapusv_data_end (R : *get_pixel_mapusv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -5114,11 +5116,11 @@ unsafe fn xcb_glx_get_pixel_mapusv_data_end (R : *get_pixel_mapusv_reply) -> gen
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_pixel_mapusv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_pixel_mapusv_reply (c : *connection,
                                           cookie : get_pixel_mapusv_cookie,
                                           e : **generic_error) -> *get_pixel_mapusv_reply;
 
-unsafe fn xcb_glx_get_polygon_stipple_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_polygon_stipple_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -5128,7 +5130,7 @@ unsafe fn xcb_glx_get_polygon_stipple_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_polygon_stipple (c : *connection,
+pub unsafe fn xcb_glx_get_polygon_stipple (c : *connection,
                                        context_tag :  context_tag,
                                        lsb_first :  u8) -> get_polygon_stipple_cookie;
 
@@ -5143,17 +5145,17 @@ unsafe fn xcb_glx_get_polygon_stipple (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_polygon_stipple_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_polygon_stipple_unchecked (c : *connection,
                                                  context_tag :  context_tag,
                                                  lsb_first :  u8) -> get_polygon_stipple_cookie;
 
-unsafe fn xcb_glx_get_polygon_stipple_data (R : *get_polygon_stipple_reply) -> *u8;
+pub unsafe fn xcb_glx_get_polygon_stipple_data (R : *get_polygon_stipple_reply) -> *u8;
 
 
-unsafe fn xcb_glx_get_polygon_stipple_data_length (R : *get_polygon_stipple_reply) -> c_int;
+pub unsafe fn xcb_glx_get_polygon_stipple_data_length (R : *get_polygon_stipple_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_polygon_stipple_data_end (R : *get_polygon_stipple_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_polygon_stipple_data_end (R : *get_polygon_stipple_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -5169,11 +5171,11 @@ unsafe fn xcb_glx_get_polygon_stipple_data_end (R : *get_polygon_stipple_reply) 
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_polygon_stipple_reply (c : *connection,
+pub unsafe fn xcb_glx_get_polygon_stipple_reply (c : *connection,
                                              cookie : get_polygon_stipple_cookie,
                                              e : **generic_error) -> *get_polygon_stipple_reply;
 
-unsafe fn xcb_glx_get_string_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_string_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -5183,7 +5185,7 @@ unsafe fn xcb_glx_get_string_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_string (c : *connection,
+pub unsafe fn xcb_glx_get_string (c : *connection,
                               context_tag :  context_tag,
                               name :  u32) -> get_string_cookie;
 
@@ -5198,17 +5200,17 @@ unsafe fn xcb_glx_get_string (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_string_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_string_unchecked (c : *connection,
                                         context_tag :  context_tag,
                                         name :  u32) -> get_string_cookie;
 
-unsafe fn xcb_glx_get_string_string (R : *get_string_reply) -> *c_char;
+pub unsafe fn xcb_glx_get_string_string (R : *get_string_reply) -> *c_char;
 
 
-unsafe fn xcb_glx_get_string_string_length (R : *get_string_reply) -> c_int;
+pub unsafe fn xcb_glx_get_string_string_length (R : *get_string_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_string_string_end (R : *get_string_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_string_string_end (R : *get_string_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -5224,11 +5226,11 @@ unsafe fn xcb_glx_get_string_string_end (R : *get_string_reply) -> generic_itera
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_string_reply (c : *connection,
+pub unsafe fn xcb_glx_get_string_reply (c : *connection,
                                     cookie : get_string_cookie,
                                     e : **generic_error) -> *get_string_reply;
 
-unsafe fn xcb_glx_get_tex_envfv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_tex_envfv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -5238,7 +5240,7 @@ unsafe fn xcb_glx_get_tex_envfv_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_tex_envfv (c : *connection,
+pub unsafe fn xcb_glx_get_tex_envfv (c : *connection,
                                  context_tag :  context_tag,
                                  target :  u32,
                                  pname :  u32) -> get_tex_envfv_cookie;
@@ -5254,18 +5256,18 @@ unsafe fn xcb_glx_get_tex_envfv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_tex_envfv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_tex_envfv_unchecked (c : *connection,
                                            context_tag :  context_tag,
                                            target :  u32,
                                            pname :  u32) -> get_tex_envfv_cookie;
 
-unsafe fn xcb_glx_get_tex_envfv_data (R : *get_tex_envfv_reply) -> *float32;
+pub unsafe fn xcb_glx_get_tex_envfv_data (R : *get_tex_envfv_reply) -> *float32;
 
 
-unsafe fn xcb_glx_get_tex_envfv_data_length (R : *get_tex_envfv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_tex_envfv_data_length (R : *get_tex_envfv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_tex_envfv_data_end (R : *get_tex_envfv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_tex_envfv_data_end (R : *get_tex_envfv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -5281,11 +5283,11 @@ unsafe fn xcb_glx_get_tex_envfv_data_end (R : *get_tex_envfv_reply) -> generic_i
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_tex_envfv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_tex_envfv_reply (c : *connection,
                                        cookie : get_tex_envfv_cookie,
                                        e : **generic_error) -> *get_tex_envfv_reply;
 
-unsafe fn xcb_glx_get_tex_enviv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_tex_enviv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -5295,7 +5297,7 @@ unsafe fn xcb_glx_get_tex_enviv_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_tex_enviv (c : *connection,
+pub unsafe fn xcb_glx_get_tex_enviv (c : *connection,
                                  context_tag :  context_tag,
                                  target :  u32,
                                  pname :  u32) -> get_tex_enviv_cookie;
@@ -5311,18 +5313,18 @@ unsafe fn xcb_glx_get_tex_enviv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_tex_enviv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_tex_enviv_unchecked (c : *connection,
                                            context_tag :  context_tag,
                                            target :  u32,
                                            pname :  u32) -> get_tex_enviv_cookie;
 
-unsafe fn xcb_glx_get_tex_enviv_data (R : *get_tex_enviv_reply) -> *i32;
+pub unsafe fn xcb_glx_get_tex_enviv_data (R : *get_tex_enviv_reply) -> *i32;
 
 
-unsafe fn xcb_glx_get_tex_enviv_data_length (R : *get_tex_enviv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_tex_enviv_data_length (R : *get_tex_enviv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_tex_enviv_data_end (R : *get_tex_enviv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_tex_enviv_data_end (R : *get_tex_enviv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -5338,11 +5340,11 @@ unsafe fn xcb_glx_get_tex_enviv_data_end (R : *get_tex_enviv_reply) -> generic_i
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_tex_enviv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_tex_enviv_reply (c : *connection,
                                        cookie : get_tex_enviv_cookie,
                                        e : **generic_error) -> *get_tex_enviv_reply;
 
-unsafe fn xcb_glx_get_tex_gendv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_tex_gendv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -5352,7 +5354,7 @@ unsafe fn xcb_glx_get_tex_gendv_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_tex_gendv (c : *connection,
+pub unsafe fn xcb_glx_get_tex_gendv (c : *connection,
                                  context_tag :  context_tag,
                                  coord :  u32,
                                  pname :  u32) -> get_tex_gendv_cookie;
@@ -5368,18 +5370,18 @@ unsafe fn xcb_glx_get_tex_gendv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_tex_gendv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_tex_gendv_unchecked (c : *connection,
                                            context_tag :  context_tag,
                                            coord :  u32,
                                            pname :  u32) -> get_tex_gendv_cookie;
 
-unsafe fn xcb_glx_get_tex_gendv_data (R : *get_tex_gendv_reply) -> *float64;
+pub unsafe fn xcb_glx_get_tex_gendv_data (R : *get_tex_gendv_reply) -> *float64;
 
 
-unsafe fn xcb_glx_get_tex_gendv_data_length (R : *get_tex_gendv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_tex_gendv_data_length (R : *get_tex_gendv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_tex_gendv_data_end (R : *get_tex_gendv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_tex_gendv_data_end (R : *get_tex_gendv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -5395,11 +5397,11 @@ unsafe fn xcb_glx_get_tex_gendv_data_end (R : *get_tex_gendv_reply) -> generic_i
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_tex_gendv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_tex_gendv_reply (c : *connection,
                                        cookie : get_tex_gendv_cookie,
                                        e : **generic_error) -> *get_tex_gendv_reply;
 
-unsafe fn xcb_glx_get_tex_genfv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_tex_genfv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -5409,7 +5411,7 @@ unsafe fn xcb_glx_get_tex_genfv_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_tex_genfv (c : *connection,
+pub unsafe fn xcb_glx_get_tex_genfv (c : *connection,
                                  context_tag :  context_tag,
                                  coord :  u32,
                                  pname :  u32) -> get_tex_genfv_cookie;
@@ -5425,18 +5427,18 @@ unsafe fn xcb_glx_get_tex_genfv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_tex_genfv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_tex_genfv_unchecked (c : *connection,
                                            context_tag :  context_tag,
                                            coord :  u32,
                                            pname :  u32) -> get_tex_genfv_cookie;
 
-unsafe fn xcb_glx_get_tex_genfv_data (R : *get_tex_genfv_reply) -> *float32;
+pub unsafe fn xcb_glx_get_tex_genfv_data (R : *get_tex_genfv_reply) -> *float32;
 
 
-unsafe fn xcb_glx_get_tex_genfv_data_length (R : *get_tex_genfv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_tex_genfv_data_length (R : *get_tex_genfv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_tex_genfv_data_end (R : *get_tex_genfv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_tex_genfv_data_end (R : *get_tex_genfv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -5452,11 +5454,11 @@ unsafe fn xcb_glx_get_tex_genfv_data_end (R : *get_tex_genfv_reply) -> generic_i
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_tex_genfv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_tex_genfv_reply (c : *connection,
                                        cookie : get_tex_genfv_cookie,
                                        e : **generic_error) -> *get_tex_genfv_reply;
 
-unsafe fn xcb_glx_get_tex_geniv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_tex_geniv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -5466,7 +5468,7 @@ unsafe fn xcb_glx_get_tex_geniv_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_tex_geniv (c : *connection,
+pub unsafe fn xcb_glx_get_tex_geniv (c : *connection,
                                  context_tag :  context_tag,
                                  coord :  u32,
                                  pname :  u32) -> get_tex_geniv_cookie;
@@ -5482,18 +5484,18 @@ unsafe fn xcb_glx_get_tex_geniv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_tex_geniv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_tex_geniv_unchecked (c : *connection,
                                            context_tag :  context_tag,
                                            coord :  u32,
                                            pname :  u32) -> get_tex_geniv_cookie;
 
-unsafe fn xcb_glx_get_tex_geniv_data (R : *get_tex_geniv_reply) -> *i32;
+pub unsafe fn xcb_glx_get_tex_geniv_data (R : *get_tex_geniv_reply) -> *i32;
 
 
-unsafe fn xcb_glx_get_tex_geniv_data_length (R : *get_tex_geniv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_tex_geniv_data_length (R : *get_tex_geniv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_tex_geniv_data_end (R : *get_tex_geniv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_tex_geniv_data_end (R : *get_tex_geniv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -5509,11 +5511,11 @@ unsafe fn xcb_glx_get_tex_geniv_data_end (R : *get_tex_geniv_reply) -> generic_i
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_tex_geniv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_tex_geniv_reply (c : *connection,
                                        cookie : get_tex_geniv_cookie,
                                        e : **generic_error) -> *get_tex_geniv_reply;
 
-unsafe fn xcb_glx_get_tex_image_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_tex_image_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -5523,7 +5525,7 @@ unsafe fn xcb_glx_get_tex_image_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_tex_image (c : *connection,
+pub unsafe fn xcb_glx_get_tex_image (c : *connection,
                                  context_tag :  context_tag,
                                  target :  u32,
                                  level :  i32,
@@ -5542,7 +5544,7 @@ unsafe fn xcb_glx_get_tex_image (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_tex_image_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_tex_image_unchecked (c : *connection,
                                            context_tag :  context_tag,
                                            target :  u32,
                                            level :  i32,
@@ -5550,13 +5552,13 @@ unsafe fn xcb_glx_get_tex_image_unchecked (c : *connection,
                                            type_ :  u32,
                                            swap_bytes :  u8) -> get_tex_image_cookie;
 
-unsafe fn xcb_glx_get_tex_image_data (R : *get_tex_image_reply) -> *u8;
+pub unsafe fn xcb_glx_get_tex_image_data (R : *get_tex_image_reply) -> *u8;
 
 
-unsafe fn xcb_glx_get_tex_image_data_length (R : *get_tex_image_reply) -> c_int;
+pub unsafe fn xcb_glx_get_tex_image_data_length (R : *get_tex_image_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_tex_image_data_end (R : *get_tex_image_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_tex_image_data_end (R : *get_tex_image_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -5572,11 +5574,11 @@ unsafe fn xcb_glx_get_tex_image_data_end (R : *get_tex_image_reply) -> generic_i
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_tex_image_reply (c : *connection,
+pub unsafe fn xcb_glx_get_tex_image_reply (c : *connection,
                                        cookie : get_tex_image_cookie,
                                        e : **generic_error) -> *get_tex_image_reply;
 
-unsafe fn xcb_glx_get_tex_parameterfv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_tex_parameterfv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -5586,7 +5588,7 @@ unsafe fn xcb_glx_get_tex_parameterfv_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_tex_parameterfv (c : *connection,
+pub unsafe fn xcb_glx_get_tex_parameterfv (c : *connection,
                                        context_tag :  context_tag,
                                        target :  u32,
                                        pname :  u32) -> get_tex_parameterfv_cookie;
@@ -5602,18 +5604,18 @@ unsafe fn xcb_glx_get_tex_parameterfv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_tex_parameterfv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_tex_parameterfv_unchecked (c : *connection,
                                                  context_tag :  context_tag,
                                                  target :  u32,
                                                  pname :  u32) -> get_tex_parameterfv_cookie;
 
-unsafe fn xcb_glx_get_tex_parameterfv_data (R : *get_tex_parameterfv_reply) -> *float32;
+pub unsafe fn xcb_glx_get_tex_parameterfv_data (R : *get_tex_parameterfv_reply) -> *float32;
 
 
-unsafe fn xcb_glx_get_tex_parameterfv_data_length (R : *get_tex_parameterfv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_tex_parameterfv_data_length (R : *get_tex_parameterfv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_tex_parameterfv_data_end (R : *get_tex_parameterfv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_tex_parameterfv_data_end (R : *get_tex_parameterfv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -5629,11 +5631,11 @@ unsafe fn xcb_glx_get_tex_parameterfv_data_end (R : *get_tex_parameterfv_reply) 
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_tex_parameterfv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_tex_parameterfv_reply (c : *connection,
                                              cookie : get_tex_parameterfv_cookie,
                                              e : **generic_error) -> *get_tex_parameterfv_reply;
 
-unsafe fn xcb_glx_get_tex_parameteriv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_tex_parameteriv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -5643,7 +5645,7 @@ unsafe fn xcb_glx_get_tex_parameteriv_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_tex_parameteriv (c : *connection,
+pub unsafe fn xcb_glx_get_tex_parameteriv (c : *connection,
                                        context_tag :  context_tag,
                                        target :  u32,
                                        pname :  u32) -> get_tex_parameteriv_cookie;
@@ -5659,18 +5661,18 @@ unsafe fn xcb_glx_get_tex_parameteriv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_tex_parameteriv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_tex_parameteriv_unchecked (c : *connection,
                                                  context_tag :  context_tag,
                                                  target :  u32,
                                                  pname :  u32) -> get_tex_parameteriv_cookie;
 
-unsafe fn xcb_glx_get_tex_parameteriv_data (R : *get_tex_parameteriv_reply) -> *i32;
+pub unsafe fn xcb_glx_get_tex_parameteriv_data (R : *get_tex_parameteriv_reply) -> *i32;
 
 
-unsafe fn xcb_glx_get_tex_parameteriv_data_length (R : *get_tex_parameteriv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_tex_parameteriv_data_length (R : *get_tex_parameteriv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_tex_parameteriv_data_end (R : *get_tex_parameteriv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_tex_parameteriv_data_end (R : *get_tex_parameteriv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -5686,11 +5688,11 @@ unsafe fn xcb_glx_get_tex_parameteriv_data_end (R : *get_tex_parameteriv_reply) 
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_tex_parameteriv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_tex_parameteriv_reply (c : *connection,
                                              cookie : get_tex_parameteriv_cookie,
                                              e : **generic_error) -> *get_tex_parameteriv_reply;
 
-unsafe fn xcb_glx_get_tex_level_parameterfv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_tex_level_parameterfv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -5700,7 +5702,7 @@ unsafe fn xcb_glx_get_tex_level_parameterfv_sizeof (_buffer :  *c_void) -> c_int
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_tex_level_parameterfv (c : *connection,
+pub unsafe fn xcb_glx_get_tex_level_parameterfv (c : *connection,
                                              context_tag :  context_tag,
                                              target :  u32,
                                              level :  i32,
@@ -5717,19 +5719,19 @@ unsafe fn xcb_glx_get_tex_level_parameterfv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_tex_level_parameterfv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_tex_level_parameterfv_unchecked (c : *connection,
                                                        context_tag :  context_tag,
                                                        target :  u32,
                                                        level :  i32,
                                                        pname :  u32) -> get_tex_level_parameterfv_cookie;
 
-unsafe fn xcb_glx_get_tex_level_parameterfv_data (R : *get_tex_level_parameterfv_reply) -> *float32;
+pub unsafe fn xcb_glx_get_tex_level_parameterfv_data (R : *get_tex_level_parameterfv_reply) -> *float32;
 
 
-unsafe fn xcb_glx_get_tex_level_parameterfv_data_length (R : *get_tex_level_parameterfv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_tex_level_parameterfv_data_length (R : *get_tex_level_parameterfv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_tex_level_parameterfv_data_end (R : *get_tex_level_parameterfv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_tex_level_parameterfv_data_end (R : *get_tex_level_parameterfv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -5745,11 +5747,11 @@ unsafe fn xcb_glx_get_tex_level_parameterfv_data_end (R : *get_tex_level_paramet
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_tex_level_parameterfv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_tex_level_parameterfv_reply (c : *connection,
                                                    cookie : get_tex_level_parameterfv_cookie,
                                                    e : **generic_error) -> *get_tex_level_parameterfv_reply;
 
-unsafe fn xcb_glx_get_tex_level_parameteriv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_tex_level_parameteriv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -5759,7 +5761,7 @@ unsafe fn xcb_glx_get_tex_level_parameteriv_sizeof (_buffer :  *c_void) -> c_int
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_tex_level_parameteriv (c : *connection,
+pub unsafe fn xcb_glx_get_tex_level_parameteriv (c : *connection,
                                              context_tag :  context_tag,
                                              target :  u32,
                                              level :  i32,
@@ -5776,19 +5778,19 @@ unsafe fn xcb_glx_get_tex_level_parameteriv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_tex_level_parameteriv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_tex_level_parameteriv_unchecked (c : *connection,
                                                        context_tag :  context_tag,
                                                        target :  u32,
                                                        level :  i32,
                                                        pname :  u32) -> get_tex_level_parameteriv_cookie;
 
-unsafe fn xcb_glx_get_tex_level_parameteriv_data (R : *get_tex_level_parameteriv_reply) -> *i32;
+pub unsafe fn xcb_glx_get_tex_level_parameteriv_data (R : *get_tex_level_parameteriv_reply) -> *i32;
 
 
-unsafe fn xcb_glx_get_tex_level_parameteriv_data_length (R : *get_tex_level_parameteriv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_tex_level_parameteriv_data_length (R : *get_tex_level_parameteriv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_tex_level_parameteriv_data_end (R : *get_tex_level_parameteriv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_tex_level_parameteriv_data_end (R : *get_tex_level_parameteriv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -5804,7 +5806,7 @@ unsafe fn xcb_glx_get_tex_level_parameteriv_data_end (R : *get_tex_level_paramet
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_tex_level_parameteriv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_tex_level_parameteriv_reply (c : *connection,
                                                    cookie : get_tex_level_parameteriv_cookie,
                                                    e : **generic_error) -> *get_tex_level_parameteriv_reply;
 
@@ -5816,7 +5818,7 @@ unsafe fn xcb_glx_get_tex_level_parameteriv_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_is_list (c : *connection,
+pub unsafe fn xcb_glx_is_list (c : *connection,
                            context_tag :  context_tag,
                            list :  u32) -> is_list_cookie;
 
@@ -5831,7 +5833,7 @@ unsafe fn xcb_glx_is_list (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_is_list_unchecked (c : *connection,
+pub unsafe fn xcb_glx_is_list_unchecked (c : *connection,
                                      context_tag :  context_tag,
                                      list :  u32) -> is_list_cookie;
 
@@ -5849,7 +5851,7 @@ unsafe fn xcb_glx_is_list_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_is_list_reply (c : *connection,
+pub unsafe fn xcb_glx_is_list_reply (c : *connection,
                                  cookie : is_list_cookie,
                                  e : **generic_error) -> *is_list_reply;
 
@@ -5864,7 +5866,7 @@ unsafe fn xcb_glx_is_list_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_flush_checked (c : *connection,
+pub unsafe fn xcb_glx_flush_checked (c : *connection,
                                  context_tag :  context_tag) -> void_cookie;
 
 /**
@@ -5875,10 +5877,10 @@ unsafe fn xcb_glx_flush_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_flush (c : *connection,
+pub unsafe fn xcb_glx_flush (c : *connection,
                          context_tag :  context_tag) -> void_cookie;
 
-unsafe fn xcb_glx_are_textures_resident_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_are_textures_resident_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -5888,7 +5890,7 @@ unsafe fn xcb_glx_are_textures_resident_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_are_textures_resident (c : *connection,
+pub unsafe fn xcb_glx_are_textures_resident (c : *connection,
                                          context_tag :  context_tag,
                                          n :  i32,
                                          textures : *u32) -> are_textures_resident_cookie;
@@ -5904,18 +5906,18 @@ unsafe fn xcb_glx_are_textures_resident (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_are_textures_resident_unchecked (c : *connection,
+pub unsafe fn xcb_glx_are_textures_resident_unchecked (c : *connection,
                                                    context_tag :  context_tag,
                                                    n :  i32,
                                                    textures : *u32) -> are_textures_resident_cookie;
 
-unsafe fn xcb_glx_are_textures_resident_data (R : *are_textures_resident_reply) -> *u8;
+pub unsafe fn xcb_glx_are_textures_resident_data (R : *are_textures_resident_reply) -> *u8;
 
 
-unsafe fn xcb_glx_are_textures_resident_data_length (R : *are_textures_resident_reply) -> c_int;
+pub unsafe fn xcb_glx_are_textures_resident_data_length (R : *are_textures_resident_reply) -> c_int;
 
 
-unsafe fn xcb_glx_are_textures_resident_data_end (R : *are_textures_resident_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_are_textures_resident_data_end (R : *are_textures_resident_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -5931,11 +5933,11 @@ unsafe fn xcb_glx_are_textures_resident_data_end (R : *are_textures_resident_rep
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_are_textures_resident_reply (c : *connection,
+pub unsafe fn xcb_glx_are_textures_resident_reply (c : *connection,
                                                cookie : are_textures_resident_cookie,
                                                e : **generic_error) -> *are_textures_resident_reply;
 
-unsafe fn xcb_glx_delete_textures_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_delete_textures_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -5948,7 +5950,7 @@ unsafe fn xcb_glx_delete_textures_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_delete_textures_checked (c : *connection,
+pub unsafe fn xcb_glx_delete_textures_checked (c : *connection,
                                            context_tag :  context_tag,
                                            n :  i32,
                                            textures : *u32) -> void_cookie;
@@ -5961,12 +5963,12 @@ unsafe fn xcb_glx_delete_textures_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_delete_textures (c : *connection,
+pub unsafe fn xcb_glx_delete_textures (c : *connection,
                                    context_tag :  context_tag,
                                    n :  i32,
                                    textures : *u32) -> void_cookie;
 
-unsafe fn xcb_glx_gen_textures_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_gen_textures_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -5976,7 +5978,7 @@ unsafe fn xcb_glx_gen_textures_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_gen_textures (c : *connection,
+pub unsafe fn xcb_glx_gen_textures (c : *connection,
                                 context_tag :  context_tag,
                                 n :  i32) -> gen_textures_cookie;
 
@@ -5991,17 +5993,17 @@ unsafe fn xcb_glx_gen_textures (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_gen_textures_unchecked (c : *connection,
+pub unsafe fn xcb_glx_gen_textures_unchecked (c : *connection,
                                           context_tag :  context_tag,
                                           n :  i32) -> gen_textures_cookie;
 
-unsafe fn xcb_glx_gen_textures_data (R : *gen_textures_reply) -> *u32;
+pub unsafe fn xcb_glx_gen_textures_data (R : *gen_textures_reply) -> *u32;
 
 
-unsafe fn xcb_glx_gen_textures_data_length (R : *gen_textures_reply) -> c_int;
+pub unsafe fn xcb_glx_gen_textures_data_length (R : *gen_textures_reply) -> c_int;
 
 
-unsafe fn xcb_glx_gen_textures_data_end (R : *gen_textures_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_gen_textures_data_end (R : *gen_textures_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -6017,7 +6019,7 @@ unsafe fn xcb_glx_gen_textures_data_end (R : *gen_textures_reply) -> generic_ite
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_gen_textures_reply (c : *connection,
+pub unsafe fn xcb_glx_gen_textures_reply (c : *connection,
                                       cookie : gen_textures_cookie,
                                       e : **generic_error) -> *gen_textures_reply;
 
@@ -6029,7 +6031,7 @@ unsafe fn xcb_glx_gen_textures_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_is_texture (c : *connection,
+pub unsafe fn xcb_glx_is_texture (c : *connection,
                               context_tag :  context_tag,
                               texture :  u32) -> is_texture_cookie;
 
@@ -6044,7 +6046,7 @@ unsafe fn xcb_glx_is_texture (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_is_texture_unchecked (c : *connection,
+pub unsafe fn xcb_glx_is_texture_unchecked (c : *connection,
                                         context_tag :  context_tag,
                                         texture :  u32) -> is_texture_cookie;
 
@@ -6062,11 +6064,11 @@ unsafe fn xcb_glx_is_texture_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_is_texture_reply (c : *connection,
+pub unsafe fn xcb_glx_is_texture_reply (c : *connection,
                                     cookie : is_texture_cookie,
                                     e : **generic_error) -> *is_texture_reply;
 
-unsafe fn xcb_glx_get_color_table_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_color_table_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -6076,7 +6078,7 @@ unsafe fn xcb_glx_get_color_table_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_color_table (c : *connection,
+pub unsafe fn xcb_glx_get_color_table (c : *connection,
                                    context_tag :  context_tag,
                                    target :  u32,
                                    format :  u32,
@@ -6094,20 +6096,20 @@ unsafe fn xcb_glx_get_color_table (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_color_table_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_color_table_unchecked (c : *connection,
                                              context_tag :  context_tag,
                                              target :  u32,
                                              format :  u32,
                                              type_ :  u32,
                                              swap_bytes :  u8) -> get_color_table_cookie;
 
-unsafe fn xcb_glx_get_color_table_data (R : *get_color_table_reply) -> *u8;
+pub unsafe fn xcb_glx_get_color_table_data (R : *get_color_table_reply) -> *u8;
 
 
-unsafe fn xcb_glx_get_color_table_data_length (R : *get_color_table_reply) -> c_int;
+pub unsafe fn xcb_glx_get_color_table_data_length (R : *get_color_table_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_color_table_data_end (R : *get_color_table_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_color_table_data_end (R : *get_color_table_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -6123,11 +6125,11 @@ unsafe fn xcb_glx_get_color_table_data_end (R : *get_color_table_reply) -> gener
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_color_table_reply (c : *connection,
+pub unsafe fn xcb_glx_get_color_table_reply (c : *connection,
                                          cookie : get_color_table_cookie,
                                          e : **generic_error) -> *get_color_table_reply;
 
-unsafe fn xcb_glx_get_color_table_parameterfv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_color_table_parameterfv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -6137,7 +6139,7 @@ unsafe fn xcb_glx_get_color_table_parameterfv_sizeof (_buffer :  *c_void) -> c_i
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_color_table_parameterfv (c : *connection,
+pub unsafe fn xcb_glx_get_color_table_parameterfv (c : *connection,
                                                context_tag :  context_tag,
                                                target :  u32,
                                                pname :  u32) -> get_color_table_parameterfv_cookie;
@@ -6153,18 +6155,18 @@ unsafe fn xcb_glx_get_color_table_parameterfv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_color_table_parameterfv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_color_table_parameterfv_unchecked (c : *connection,
                                                          context_tag :  context_tag,
                                                          target :  u32,
                                                          pname :  u32) -> get_color_table_parameterfv_cookie;
 
-unsafe fn xcb_glx_get_color_table_parameterfv_data (R : *get_color_table_parameterfv_reply) -> *float32;
+pub unsafe fn xcb_glx_get_color_table_parameterfv_data (R : *get_color_table_parameterfv_reply) -> *float32;
 
 
-unsafe fn xcb_glx_get_color_table_parameterfv_data_length (R : *get_color_table_parameterfv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_color_table_parameterfv_data_length (R : *get_color_table_parameterfv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_color_table_parameterfv_data_end (R : *get_color_table_parameterfv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_color_table_parameterfv_data_end (R : *get_color_table_parameterfv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -6180,11 +6182,11 @@ unsafe fn xcb_glx_get_color_table_parameterfv_data_end (R : *get_color_table_par
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_color_table_parameterfv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_color_table_parameterfv_reply (c : *connection,
                                                      cookie : get_color_table_parameterfv_cookie,
                                                      e : **generic_error) -> *get_color_table_parameterfv_reply;
 
-unsafe fn xcb_glx_get_color_table_parameteriv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_color_table_parameteriv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -6194,7 +6196,7 @@ unsafe fn xcb_glx_get_color_table_parameteriv_sizeof (_buffer :  *c_void) -> c_i
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_color_table_parameteriv (c : *connection,
+pub unsafe fn xcb_glx_get_color_table_parameteriv (c : *connection,
                                                context_tag :  context_tag,
                                                target :  u32,
                                                pname :  u32) -> get_color_table_parameteriv_cookie;
@@ -6210,18 +6212,18 @@ unsafe fn xcb_glx_get_color_table_parameteriv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_color_table_parameteriv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_color_table_parameteriv_unchecked (c : *connection,
                                                          context_tag :  context_tag,
                                                          target :  u32,
                                                          pname :  u32) -> get_color_table_parameteriv_cookie;
 
-unsafe fn xcb_glx_get_color_table_parameteriv_data (R : *get_color_table_parameteriv_reply) -> *i32;
+pub unsafe fn xcb_glx_get_color_table_parameteriv_data (R : *get_color_table_parameteriv_reply) -> *i32;
 
 
-unsafe fn xcb_glx_get_color_table_parameteriv_data_length (R : *get_color_table_parameteriv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_color_table_parameteriv_data_length (R : *get_color_table_parameteriv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_color_table_parameteriv_data_end (R : *get_color_table_parameteriv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_color_table_parameteriv_data_end (R : *get_color_table_parameteriv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -6237,11 +6239,11 @@ unsafe fn xcb_glx_get_color_table_parameteriv_data_end (R : *get_color_table_par
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_color_table_parameteriv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_color_table_parameteriv_reply (c : *connection,
                                                      cookie : get_color_table_parameteriv_cookie,
                                                      e : **generic_error) -> *get_color_table_parameteriv_reply;
 
-unsafe fn xcb_glx_get_convolution_filter_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_convolution_filter_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -6251,7 +6253,7 @@ unsafe fn xcb_glx_get_convolution_filter_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_convolution_filter (c : *connection,
+pub unsafe fn xcb_glx_get_convolution_filter (c : *connection,
                                           context_tag :  context_tag,
                                           target :  u32,
                                           format :  u32,
@@ -6269,20 +6271,20 @@ unsafe fn xcb_glx_get_convolution_filter (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_convolution_filter_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_convolution_filter_unchecked (c : *connection,
                                                     context_tag :  context_tag,
                                                     target :  u32,
                                                     format :  u32,
                                                     type_ :  u32,
                                                     swap_bytes :  u8) -> get_convolution_filter_cookie;
 
-unsafe fn xcb_glx_get_convolution_filter_data (R : *get_convolution_filter_reply) -> *u8;
+pub unsafe fn xcb_glx_get_convolution_filter_data (R : *get_convolution_filter_reply) -> *u8;
 
 
-unsafe fn xcb_glx_get_convolution_filter_data_length (R : *get_convolution_filter_reply) -> c_int;
+pub unsafe fn xcb_glx_get_convolution_filter_data_length (R : *get_convolution_filter_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_convolution_filter_data_end (R : *get_convolution_filter_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_convolution_filter_data_end (R : *get_convolution_filter_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -6298,11 +6300,11 @@ unsafe fn xcb_glx_get_convolution_filter_data_end (R : *get_convolution_filter_r
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_convolution_filter_reply (c : *connection,
+pub unsafe fn xcb_glx_get_convolution_filter_reply (c : *connection,
                                                 cookie : get_convolution_filter_cookie,
                                                 e : **generic_error) -> *get_convolution_filter_reply;
 
-unsafe fn xcb_glx_get_convolution_parameterfv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_convolution_parameterfv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -6312,7 +6314,7 @@ unsafe fn xcb_glx_get_convolution_parameterfv_sizeof (_buffer :  *c_void) -> c_i
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_convolution_parameterfv (c : *connection,
+pub unsafe fn xcb_glx_get_convolution_parameterfv (c : *connection,
                                                context_tag :  context_tag,
                                                target :  u32,
                                                pname :  u32) -> get_convolution_parameterfv_cookie;
@@ -6328,18 +6330,18 @@ unsafe fn xcb_glx_get_convolution_parameterfv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_convolution_parameterfv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_convolution_parameterfv_unchecked (c : *connection,
                                                          context_tag :  context_tag,
                                                          target :  u32,
                                                          pname :  u32) -> get_convolution_parameterfv_cookie;
 
-unsafe fn xcb_glx_get_convolution_parameterfv_data (R : *get_convolution_parameterfv_reply) -> *float32;
+pub unsafe fn xcb_glx_get_convolution_parameterfv_data (R : *get_convolution_parameterfv_reply) -> *float32;
 
 
-unsafe fn xcb_glx_get_convolution_parameterfv_data_length (R : *get_convolution_parameterfv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_convolution_parameterfv_data_length (R : *get_convolution_parameterfv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_convolution_parameterfv_data_end (R : *get_convolution_parameterfv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_convolution_parameterfv_data_end (R : *get_convolution_parameterfv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -6355,11 +6357,11 @@ unsafe fn xcb_glx_get_convolution_parameterfv_data_end (R : *get_convolution_par
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_convolution_parameterfv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_convolution_parameterfv_reply (c : *connection,
                                                      cookie : get_convolution_parameterfv_cookie,
                                                      e : **generic_error) -> *get_convolution_parameterfv_reply;
 
-unsafe fn xcb_glx_get_convolution_parameteriv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_convolution_parameteriv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -6369,7 +6371,7 @@ unsafe fn xcb_glx_get_convolution_parameteriv_sizeof (_buffer :  *c_void) -> c_i
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_convolution_parameteriv (c : *connection,
+pub unsafe fn xcb_glx_get_convolution_parameteriv (c : *connection,
                                                context_tag :  context_tag,
                                                target :  u32,
                                                pname :  u32) -> get_convolution_parameteriv_cookie;
@@ -6385,18 +6387,18 @@ unsafe fn xcb_glx_get_convolution_parameteriv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_convolution_parameteriv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_convolution_parameteriv_unchecked (c : *connection,
                                                          context_tag :  context_tag,
                                                          target :  u32,
                                                          pname :  u32) -> get_convolution_parameteriv_cookie;
 
-unsafe fn xcb_glx_get_convolution_parameteriv_data (R : *get_convolution_parameteriv_reply) -> *i32;
+pub unsafe fn xcb_glx_get_convolution_parameteriv_data (R : *get_convolution_parameteriv_reply) -> *i32;
 
 
-unsafe fn xcb_glx_get_convolution_parameteriv_data_length (R : *get_convolution_parameteriv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_convolution_parameteriv_data_length (R : *get_convolution_parameteriv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_convolution_parameteriv_data_end (R : *get_convolution_parameteriv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_convolution_parameteriv_data_end (R : *get_convolution_parameteriv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -6412,11 +6414,11 @@ unsafe fn xcb_glx_get_convolution_parameteriv_data_end (R : *get_convolution_par
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_convolution_parameteriv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_convolution_parameteriv_reply (c : *connection,
                                                      cookie : get_convolution_parameteriv_cookie,
                                                      e : **generic_error) -> *get_convolution_parameteriv_reply;
 
-unsafe fn xcb_glx_get_separable_filter_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_separable_filter_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -6426,7 +6428,7 @@ unsafe fn xcb_glx_get_separable_filter_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_separable_filter (c : *connection,
+pub unsafe fn xcb_glx_get_separable_filter (c : *connection,
                                         context_tag :  context_tag,
                                         target :  u32,
                                         format :  u32,
@@ -6444,20 +6446,20 @@ unsafe fn xcb_glx_get_separable_filter (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_separable_filter_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_separable_filter_unchecked (c : *connection,
                                                   context_tag :  context_tag,
                                                   target :  u32,
                                                   format :  u32,
                                                   type_ :  u32,
                                                   swap_bytes :  u8) -> get_separable_filter_cookie;
 
-unsafe fn xcb_glx_get_separable_filter_rows_and_cols (R : *get_separable_filter_reply) -> *u8;
+pub unsafe fn xcb_glx_get_separable_filter_rows_and_cols (R : *get_separable_filter_reply) -> *u8;
 
 
-unsafe fn xcb_glx_get_separable_filter_rows_and_cols_length (R : *get_separable_filter_reply) -> c_int;
+pub unsafe fn xcb_glx_get_separable_filter_rows_and_cols_length (R : *get_separable_filter_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_separable_filter_rows_and_cols_end (R : *get_separable_filter_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_separable_filter_rows_and_cols_end (R : *get_separable_filter_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -6473,11 +6475,11 @@ unsafe fn xcb_glx_get_separable_filter_rows_and_cols_end (R : *get_separable_fil
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_separable_filter_reply (c : *connection,
+pub unsafe fn xcb_glx_get_separable_filter_reply (c : *connection,
                                               cookie : get_separable_filter_cookie,
                                               e : **generic_error) -> *get_separable_filter_reply;
 
-unsafe fn xcb_glx_get_histogram_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_histogram_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -6487,7 +6489,7 @@ unsafe fn xcb_glx_get_histogram_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_histogram (c : *connection,
+pub unsafe fn xcb_glx_get_histogram (c : *connection,
                                  context_tag :  context_tag,
                                  target :  u32,
                                  format :  u32,
@@ -6506,7 +6508,7 @@ unsafe fn xcb_glx_get_histogram (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_histogram_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_histogram_unchecked (c : *connection,
                                            context_tag :  context_tag,
                                            target :  u32,
                                            format :  u32,
@@ -6514,13 +6516,13 @@ unsafe fn xcb_glx_get_histogram_unchecked (c : *connection,
                                            swap_bytes :  u8,
                                            reset :  u8) -> get_histogram_cookie;
 
-unsafe fn xcb_glx_get_histogram_data (R : *get_histogram_reply) -> *u8;
+pub unsafe fn xcb_glx_get_histogram_data (R : *get_histogram_reply) -> *u8;
 
 
-unsafe fn xcb_glx_get_histogram_data_length (R : *get_histogram_reply) -> c_int;
+pub unsafe fn xcb_glx_get_histogram_data_length (R : *get_histogram_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_histogram_data_end (R : *get_histogram_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_histogram_data_end (R : *get_histogram_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -6536,11 +6538,11 @@ unsafe fn xcb_glx_get_histogram_data_end (R : *get_histogram_reply) -> generic_i
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_histogram_reply (c : *connection,
+pub unsafe fn xcb_glx_get_histogram_reply (c : *connection,
                                        cookie : get_histogram_cookie,
                                        e : **generic_error) -> *get_histogram_reply;
 
-unsafe fn xcb_glx_get_histogram_parameterfv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_histogram_parameterfv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -6550,7 +6552,7 @@ unsafe fn xcb_glx_get_histogram_parameterfv_sizeof (_buffer :  *c_void) -> c_int
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_histogram_parameterfv (c : *connection,
+pub unsafe fn xcb_glx_get_histogram_parameterfv (c : *connection,
                                              context_tag :  context_tag,
                                              target :  u32,
                                              pname :  u32) -> get_histogram_parameterfv_cookie;
@@ -6566,18 +6568,18 @@ unsafe fn xcb_glx_get_histogram_parameterfv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_histogram_parameterfv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_histogram_parameterfv_unchecked (c : *connection,
                                                        context_tag :  context_tag,
                                                        target :  u32,
                                                        pname :  u32) -> get_histogram_parameterfv_cookie;
 
-unsafe fn xcb_glx_get_histogram_parameterfv_data (R : *get_histogram_parameterfv_reply) -> *float32;
+pub unsafe fn xcb_glx_get_histogram_parameterfv_data (R : *get_histogram_parameterfv_reply) -> *float32;
 
 
-unsafe fn xcb_glx_get_histogram_parameterfv_data_length (R : *get_histogram_parameterfv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_histogram_parameterfv_data_length (R : *get_histogram_parameterfv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_histogram_parameterfv_data_end (R : *get_histogram_parameterfv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_histogram_parameterfv_data_end (R : *get_histogram_parameterfv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -6593,11 +6595,11 @@ unsafe fn xcb_glx_get_histogram_parameterfv_data_end (R : *get_histogram_paramet
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_histogram_parameterfv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_histogram_parameterfv_reply (c : *connection,
                                                    cookie : get_histogram_parameterfv_cookie,
                                                    e : **generic_error) -> *get_histogram_parameterfv_reply;
 
-unsafe fn xcb_glx_get_histogram_parameteriv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_histogram_parameteriv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -6607,7 +6609,7 @@ unsafe fn xcb_glx_get_histogram_parameteriv_sizeof (_buffer :  *c_void) -> c_int
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_histogram_parameteriv (c : *connection,
+pub unsafe fn xcb_glx_get_histogram_parameteriv (c : *connection,
                                              context_tag :  context_tag,
                                              target :  u32,
                                              pname :  u32) -> get_histogram_parameteriv_cookie;
@@ -6623,18 +6625,18 @@ unsafe fn xcb_glx_get_histogram_parameteriv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_histogram_parameteriv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_histogram_parameteriv_unchecked (c : *connection,
                                                        context_tag :  context_tag,
                                                        target :  u32,
                                                        pname :  u32) -> get_histogram_parameteriv_cookie;
 
-unsafe fn xcb_glx_get_histogram_parameteriv_data (R : *get_histogram_parameteriv_reply) -> *i32;
+pub unsafe fn xcb_glx_get_histogram_parameteriv_data (R : *get_histogram_parameteriv_reply) -> *i32;
 
 
-unsafe fn xcb_glx_get_histogram_parameteriv_data_length (R : *get_histogram_parameteriv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_histogram_parameteriv_data_length (R : *get_histogram_parameteriv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_histogram_parameteriv_data_end (R : *get_histogram_parameteriv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_histogram_parameteriv_data_end (R : *get_histogram_parameteriv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -6650,11 +6652,11 @@ unsafe fn xcb_glx_get_histogram_parameteriv_data_end (R : *get_histogram_paramet
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_histogram_parameteriv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_histogram_parameteriv_reply (c : *connection,
                                                    cookie : get_histogram_parameteriv_cookie,
                                                    e : **generic_error) -> *get_histogram_parameteriv_reply;
 
-unsafe fn xcb_glx_get_minmax_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_minmax_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -6664,7 +6666,7 @@ unsafe fn xcb_glx_get_minmax_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_minmax (c : *connection,
+pub unsafe fn xcb_glx_get_minmax (c : *connection,
                               context_tag :  context_tag,
                               target :  u32,
                               format :  u32,
@@ -6683,7 +6685,7 @@ unsafe fn xcb_glx_get_minmax (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_minmax_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_minmax_unchecked (c : *connection,
                                         context_tag :  context_tag,
                                         target :  u32,
                                         format :  u32,
@@ -6691,13 +6693,13 @@ unsafe fn xcb_glx_get_minmax_unchecked (c : *connection,
                                         swap_bytes :  u8,
                                         reset :  u8) -> get_minmax_cookie;
 
-unsafe fn xcb_glx_get_minmax_data (R : *get_minmax_reply) -> *u8;
+pub unsafe fn xcb_glx_get_minmax_data (R : *get_minmax_reply) -> *u8;
 
 
-unsafe fn xcb_glx_get_minmax_data_length (R : *get_minmax_reply) -> c_int;
+pub unsafe fn xcb_glx_get_minmax_data_length (R : *get_minmax_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_minmax_data_end (R : *get_minmax_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_minmax_data_end (R : *get_minmax_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -6713,11 +6715,11 @@ unsafe fn xcb_glx_get_minmax_data_end (R : *get_minmax_reply) -> generic_iterato
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_minmax_reply (c : *connection,
+pub unsafe fn xcb_glx_get_minmax_reply (c : *connection,
                                     cookie : get_minmax_cookie,
                                     e : **generic_error) -> *get_minmax_reply;
 
-unsafe fn xcb_glx_get_minmax_parameterfv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_minmax_parameterfv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -6727,7 +6729,7 @@ unsafe fn xcb_glx_get_minmax_parameterfv_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_minmax_parameterfv (c : *connection,
+pub unsafe fn xcb_glx_get_minmax_parameterfv (c : *connection,
                                           context_tag :  context_tag,
                                           target :  u32,
                                           pname :  u32) -> get_minmax_parameterfv_cookie;
@@ -6743,18 +6745,18 @@ unsafe fn xcb_glx_get_minmax_parameterfv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_minmax_parameterfv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_minmax_parameterfv_unchecked (c : *connection,
                                                     context_tag :  context_tag,
                                                     target :  u32,
                                                     pname :  u32) -> get_minmax_parameterfv_cookie;
 
-unsafe fn xcb_glx_get_minmax_parameterfv_data (R : *get_minmax_parameterfv_reply) -> *float32;
+pub unsafe fn xcb_glx_get_minmax_parameterfv_data (R : *get_minmax_parameterfv_reply) -> *float32;
 
 
-unsafe fn xcb_glx_get_minmax_parameterfv_data_length (R : *get_minmax_parameterfv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_minmax_parameterfv_data_length (R : *get_minmax_parameterfv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_minmax_parameterfv_data_end (R : *get_minmax_parameterfv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_minmax_parameterfv_data_end (R : *get_minmax_parameterfv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -6770,11 +6772,11 @@ unsafe fn xcb_glx_get_minmax_parameterfv_data_end (R : *get_minmax_parameterfv_r
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_minmax_parameterfv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_minmax_parameterfv_reply (c : *connection,
                                                 cookie : get_minmax_parameterfv_cookie,
                                                 e : **generic_error) -> *get_minmax_parameterfv_reply;
 
-unsafe fn xcb_glx_get_minmax_parameteriv_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_minmax_parameteriv_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -6784,7 +6786,7 @@ unsafe fn xcb_glx_get_minmax_parameteriv_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_minmax_parameteriv (c : *connection,
+pub unsafe fn xcb_glx_get_minmax_parameteriv (c : *connection,
                                           context_tag :  context_tag,
                                           target :  u32,
                                           pname :  u32) -> get_minmax_parameteriv_cookie;
@@ -6800,18 +6802,18 @@ unsafe fn xcb_glx_get_minmax_parameteriv (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_minmax_parameteriv_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_minmax_parameteriv_unchecked (c : *connection,
                                                     context_tag :  context_tag,
                                                     target :  u32,
                                                     pname :  u32) -> get_minmax_parameteriv_cookie;
 
-unsafe fn xcb_glx_get_minmax_parameteriv_data (R : *get_minmax_parameteriv_reply) -> *i32;
+pub unsafe fn xcb_glx_get_minmax_parameteriv_data (R : *get_minmax_parameteriv_reply) -> *i32;
 
 
-unsafe fn xcb_glx_get_minmax_parameteriv_data_length (R : *get_minmax_parameteriv_reply) -> c_int;
+pub unsafe fn xcb_glx_get_minmax_parameteriv_data_length (R : *get_minmax_parameteriv_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_minmax_parameteriv_data_end (R : *get_minmax_parameteriv_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_minmax_parameteriv_data_end (R : *get_minmax_parameteriv_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -6827,11 +6829,11 @@ unsafe fn xcb_glx_get_minmax_parameteriv_data_end (R : *get_minmax_parameteriv_r
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_minmax_parameteriv_reply (c : *connection,
+pub unsafe fn xcb_glx_get_minmax_parameteriv_reply (c : *connection,
                                                 cookie : get_minmax_parameteriv_cookie,
                                                 e : **generic_error) -> *get_minmax_parameteriv_reply;
 
-unsafe fn xcb_glx_get_compressed_tex_image_arb_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_compressed_tex_image_arb_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -6841,7 +6843,7 @@ unsafe fn xcb_glx_get_compressed_tex_image_arb_sizeof (_buffer :  *c_void) -> c_
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_compressed_tex_image_arb (c : *connection,
+pub unsafe fn xcb_glx_get_compressed_tex_image_arb (c : *connection,
                                                 context_tag :  context_tag,
                                                 target :  u32,
                                                 level :  i32) -> get_compressed_tex_image_arb_cookie;
@@ -6857,18 +6859,18 @@ unsafe fn xcb_glx_get_compressed_tex_image_arb (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_compressed_tex_image_arb_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_compressed_tex_image_arb_unchecked (c : *connection,
                                                           context_tag :  context_tag,
                                                           target :  u32,
                                                           level :  i32) -> get_compressed_tex_image_arb_cookie;
 
-unsafe fn xcb_glx_get_compressed_tex_image_arb_data (R : *get_compressed_tex_image_arb_reply) -> *u8;
+pub unsafe fn xcb_glx_get_compressed_tex_image_arb_data (R : *get_compressed_tex_image_arb_reply) -> *u8;
 
 
-unsafe fn xcb_glx_get_compressed_tex_image_arb_data_length (R : *get_compressed_tex_image_arb_reply) -> c_int;
+pub unsafe fn xcb_glx_get_compressed_tex_image_arb_data_length (R : *get_compressed_tex_image_arb_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_compressed_tex_image_arb_data_end (R : *get_compressed_tex_image_arb_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_compressed_tex_image_arb_data_end (R : *get_compressed_tex_image_arb_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -6884,11 +6886,11 @@ unsafe fn xcb_glx_get_compressed_tex_image_arb_data_end (R : *get_compressed_tex
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_compressed_tex_image_arb_reply (c : *connection,
+pub unsafe fn xcb_glx_get_compressed_tex_image_arb_reply (c : *connection,
                                                       cookie : get_compressed_tex_image_arb_cookie,
                                                       e : **generic_error) -> *get_compressed_tex_image_arb_reply;
 
-unsafe fn xcb_glx_delete_queries_arb_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_delete_queries_arb_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -6901,7 +6903,7 @@ unsafe fn xcb_glx_delete_queries_arb_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_glx_delete_queries_arb_checked (c : *connection,
+pub unsafe fn xcb_glx_delete_queries_arb_checked (c : *connection,
                                               context_tag :  context_tag,
                                               n :  i32,
                                               ids : *u32) -> void_cookie;
@@ -6914,12 +6916,12 @@ unsafe fn xcb_glx_delete_queries_arb_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_delete_queries_arb (c : *connection,
+pub unsafe fn xcb_glx_delete_queries_arb (c : *connection,
                                       context_tag :  context_tag,
                                       n :  i32,
                                       ids : *u32) -> void_cookie;
 
-unsafe fn xcb_glx_gen_queries_arb_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_gen_queries_arb_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -6929,7 +6931,7 @@ unsafe fn xcb_glx_gen_queries_arb_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_gen_queries_arb (c : *connection,
+pub unsafe fn xcb_glx_gen_queries_arb (c : *connection,
                                    context_tag :  context_tag,
                                    n :  i32) -> gen_queries_arb_cookie;
 
@@ -6944,17 +6946,17 @@ unsafe fn xcb_glx_gen_queries_arb (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_gen_queries_arb_unchecked (c : *connection,
+pub unsafe fn xcb_glx_gen_queries_arb_unchecked (c : *connection,
                                              context_tag :  context_tag,
                                              n :  i32) -> gen_queries_arb_cookie;
 
-unsafe fn xcb_glx_gen_queries_arb_data (R : *gen_queries_arb_reply) -> *u32;
+pub unsafe fn xcb_glx_gen_queries_arb_data (R : *gen_queries_arb_reply) -> *u32;
 
 
-unsafe fn xcb_glx_gen_queries_arb_data_length (R : *gen_queries_arb_reply) -> c_int;
+pub unsafe fn xcb_glx_gen_queries_arb_data_length (R : *gen_queries_arb_reply) -> c_int;
 
 
-unsafe fn xcb_glx_gen_queries_arb_data_end (R : *gen_queries_arb_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_gen_queries_arb_data_end (R : *gen_queries_arb_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -6970,7 +6972,7 @@ unsafe fn xcb_glx_gen_queries_arb_data_end (R : *gen_queries_arb_reply) -> gener
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_gen_queries_arb_reply (c : *connection,
+pub unsafe fn xcb_glx_gen_queries_arb_reply (c : *connection,
                                          cookie : gen_queries_arb_cookie,
                                          e : **generic_error) -> *gen_queries_arb_reply;
 
@@ -6982,7 +6984,7 @@ unsafe fn xcb_glx_gen_queries_arb_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_is_query_arb (c : *connection,
+pub unsafe fn xcb_glx_is_query_arb (c : *connection,
                                 context_tag :  context_tag,
                                 id :  u32) -> is_query_arb_cookie;
 
@@ -6997,7 +6999,7 @@ unsafe fn xcb_glx_is_query_arb (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_is_query_arb_unchecked (c : *connection,
+pub unsafe fn xcb_glx_is_query_arb_unchecked (c : *connection,
                                           context_tag :  context_tag,
                                           id :  u32) -> is_query_arb_cookie;
 
@@ -7015,11 +7017,11 @@ unsafe fn xcb_glx_is_query_arb_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_is_query_arb_reply (c : *connection,
+pub unsafe fn xcb_glx_is_query_arb_reply (c : *connection,
                                       cookie : is_query_arb_cookie,
                                       e : **generic_error) -> *is_query_arb_reply;
 
-unsafe fn xcb_glx_get_queryiv_arb_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_queryiv_arb_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -7029,7 +7031,7 @@ unsafe fn xcb_glx_get_queryiv_arb_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_queryiv_arb (c : *connection,
+pub unsafe fn xcb_glx_get_queryiv_arb (c : *connection,
                                    context_tag :  context_tag,
                                    target :  u32,
                                    pname :  u32) -> get_queryiv_arb_cookie;
@@ -7045,18 +7047,18 @@ unsafe fn xcb_glx_get_queryiv_arb (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_queryiv_arb_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_queryiv_arb_unchecked (c : *connection,
                                              context_tag :  context_tag,
                                              target :  u32,
                                              pname :  u32) -> get_queryiv_arb_cookie;
 
-unsafe fn xcb_glx_get_queryiv_arb_data (R : *get_queryiv_arb_reply) -> *i32;
+pub unsafe fn xcb_glx_get_queryiv_arb_data (R : *get_queryiv_arb_reply) -> *i32;
 
 
-unsafe fn xcb_glx_get_queryiv_arb_data_length (R : *get_queryiv_arb_reply) -> c_int;
+pub unsafe fn xcb_glx_get_queryiv_arb_data_length (R : *get_queryiv_arb_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_queryiv_arb_data_end (R : *get_queryiv_arb_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_queryiv_arb_data_end (R : *get_queryiv_arb_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -7072,11 +7074,11 @@ unsafe fn xcb_glx_get_queryiv_arb_data_end (R : *get_queryiv_arb_reply) -> gener
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_queryiv_arb_reply (c : *connection,
+pub unsafe fn xcb_glx_get_queryiv_arb_reply (c : *connection,
                                          cookie : get_queryiv_arb_cookie,
                                          e : **generic_error) -> *get_queryiv_arb_reply;
 
-unsafe fn xcb_glx_get_query_objectiv_arb_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_query_objectiv_arb_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -7086,7 +7088,7 @@ unsafe fn xcb_glx_get_query_objectiv_arb_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_query_objectiv_arb (c : *connection,
+pub unsafe fn xcb_glx_get_query_objectiv_arb (c : *connection,
                                           context_tag :  context_tag,
                                           id :  u32,
                                           pname :  u32) -> get_query_objectiv_arb_cookie;
@@ -7102,18 +7104,18 @@ unsafe fn xcb_glx_get_query_objectiv_arb (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_query_objectiv_arb_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_query_objectiv_arb_unchecked (c : *connection,
                                                     context_tag :  context_tag,
                                                     id :  u32,
                                                     pname :  u32) -> get_query_objectiv_arb_cookie;
 
-unsafe fn xcb_glx_get_query_objectiv_arb_data (R : *get_query_objectiv_arb_reply) -> *i32;
+pub unsafe fn xcb_glx_get_query_objectiv_arb_data (R : *get_query_objectiv_arb_reply) -> *i32;
 
 
-unsafe fn xcb_glx_get_query_objectiv_arb_data_length (R : *get_query_objectiv_arb_reply) -> c_int;
+pub unsafe fn xcb_glx_get_query_objectiv_arb_data_length (R : *get_query_objectiv_arb_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_query_objectiv_arb_data_end (R : *get_query_objectiv_arb_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_query_objectiv_arb_data_end (R : *get_query_objectiv_arb_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -7129,11 +7131,11 @@ unsafe fn xcb_glx_get_query_objectiv_arb_data_end (R : *get_query_objectiv_arb_r
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_query_objectiv_arb_reply (c : *connection,
+pub unsafe fn xcb_glx_get_query_objectiv_arb_reply (c : *connection,
                                                 cookie : get_query_objectiv_arb_cookie,
                                                 e : **generic_error) -> *get_query_objectiv_arb_reply;
 
-unsafe fn xcb_glx_get_query_objectuiv_arb_sizeof (_buffer :  *c_void) -> c_int;
+pub unsafe fn xcb_glx_get_query_objectuiv_arb_sizeof (_buffer :  *c_void) -> c_int;
 
 /**
  *
@@ -7143,7 +7145,7 @@ unsafe fn xcb_glx_get_query_objectuiv_arb_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_glx_get_query_objectuiv_arb (c : *connection,
+pub unsafe fn xcb_glx_get_query_objectuiv_arb (c : *connection,
                                            context_tag :  context_tag,
                                            id :  u32,
                                            pname :  u32) -> get_query_objectuiv_arb_cookie;
@@ -7159,18 +7161,18 @@ unsafe fn xcb_glx_get_query_objectuiv_arb (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_glx_get_query_objectuiv_arb_unchecked (c : *connection,
+pub unsafe fn xcb_glx_get_query_objectuiv_arb_unchecked (c : *connection,
                                                      context_tag :  context_tag,
                                                      id :  u32,
                                                      pname :  u32) -> get_query_objectuiv_arb_cookie;
 
-unsafe fn xcb_glx_get_query_objectuiv_arb_data (R : *get_query_objectuiv_arb_reply) -> *u32;
+pub unsafe fn xcb_glx_get_query_objectuiv_arb_data (R : *get_query_objectuiv_arb_reply) -> *u32;
 
 
-unsafe fn xcb_glx_get_query_objectuiv_arb_data_length (R : *get_query_objectuiv_arb_reply) -> c_int;
+pub unsafe fn xcb_glx_get_query_objectuiv_arb_data_length (R : *get_query_objectuiv_arb_reply) -> c_int;
 
 
-unsafe fn xcb_glx_get_query_objectuiv_arb_data_end (R : *get_query_objectuiv_arb_reply) -> generic_iterator;
+pub unsafe fn xcb_glx_get_query_objectuiv_arb_data_end (R : *get_query_objectuiv_arb_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -7186,7 +7188,7 @@ unsafe fn xcb_glx_get_query_objectuiv_arb_data_end (R : *get_query_objectuiv_arb
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_glx_get_query_objectuiv_arb_reply (c : *connection,
+pub unsafe fn xcb_glx_get_query_objectuiv_arb_reply (c : *connection,
                                                  cookie : get_query_objectuiv_arb_cookie,
                                                  e : **generic_error) -> *get_query_objectuiv_arb_reply;
 }

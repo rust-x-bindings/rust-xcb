@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
-use core;
-use core::libc::*;
+use std;
+use std::libc::*;
+use std::{cast,num,ptr,str,libc};
+use std::to_bytes::ToBytes;
 use ll::base::*;
 use ll;
 use ll::xproto;
@@ -149,7 +151,7 @@ pub extern "C" {
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_composite_query_version (c : *connection,
+pub unsafe fn xcb_composite_query_version (c : *connection,
                                        client_major_version :  u32,
                                        client_minor_version :  u32) -> query_version_cookie;
 
@@ -164,7 +166,7 @@ unsafe fn xcb_composite_query_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_composite_query_version_unchecked (c : *connection,
+pub unsafe fn xcb_composite_query_version_unchecked (c : *connection,
                                                  client_major_version :  u32,
                                                  client_minor_version :  u32) -> query_version_cookie;
 
@@ -182,7 +184,7 @@ unsafe fn xcb_composite_query_version_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_composite_query_version_reply (c : *connection,
+pub unsafe fn xcb_composite_query_version_reply (c : *connection,
                                              cookie : query_version_cookie,
                                              e : **generic_error) -> *query_version_reply;
 
@@ -197,7 +199,7 @@ unsafe fn xcb_composite_query_version_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_composite_redirect_window_checked (c : *connection,
+pub unsafe fn xcb_composite_redirect_window_checked (c : *connection,
                                                  window :  ll::xproto::window,
                                                  update :  u8) -> void_cookie;
 
@@ -209,7 +211,7 @@ unsafe fn xcb_composite_redirect_window_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_composite_redirect_window (c : *connection,
+pub unsafe fn xcb_composite_redirect_window (c : *connection,
                                          window :  ll::xproto::window,
                                          update :  u8) -> void_cookie;
 
@@ -224,7 +226,7 @@ unsafe fn xcb_composite_redirect_window (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_composite_redirect_subwindows_checked (c : *connection,
+pub unsafe fn xcb_composite_redirect_subwindows_checked (c : *connection,
                                                      window :  ll::xproto::window,
                                                      update :  u8) -> void_cookie;
 
@@ -236,7 +238,7 @@ unsafe fn xcb_composite_redirect_subwindows_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_composite_redirect_subwindows (c : *connection,
+pub unsafe fn xcb_composite_redirect_subwindows (c : *connection,
                                              window :  ll::xproto::window,
                                              update :  u8) -> void_cookie;
 
@@ -251,7 +253,7 @@ unsafe fn xcb_composite_redirect_subwindows (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_composite_unredirect_window_checked (c : *connection,
+pub unsafe fn xcb_composite_unredirect_window_checked (c : *connection,
                                                    window :  ll::xproto::window,
                                                    update :  u8) -> void_cookie;
 
@@ -263,7 +265,7 @@ unsafe fn xcb_composite_unredirect_window_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_composite_unredirect_window (c : *connection,
+pub unsafe fn xcb_composite_unredirect_window (c : *connection,
                                            window :  ll::xproto::window,
                                            update :  u8) -> void_cookie;
 
@@ -278,7 +280,7 @@ unsafe fn xcb_composite_unredirect_window (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_composite_unredirect_subwindows_checked (c : *connection,
+pub unsafe fn xcb_composite_unredirect_subwindows_checked (c : *connection,
                                                        window :  ll::xproto::window,
                                                        update :  u8) -> void_cookie;
 
@@ -290,7 +292,7 @@ unsafe fn xcb_composite_unredirect_subwindows_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_composite_unredirect_subwindows (c : *connection,
+pub unsafe fn xcb_composite_unredirect_subwindows (c : *connection,
                                                window :  ll::xproto::window,
                                                update :  u8) -> void_cookie;
 
@@ -305,7 +307,7 @@ unsafe fn xcb_composite_unredirect_subwindows (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_composite_create_region_from_border_clip_checked (c : *connection,
+pub unsafe fn xcb_composite_create_region_from_border_clip_checked (c : *connection,
                                                                 region :  ll::xfixes::region,
                                                                 window :  ll::xproto::window) -> void_cookie;
 
@@ -317,7 +319,7 @@ unsafe fn xcb_composite_create_region_from_border_clip_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_composite_create_region_from_border_clip (c : *connection,
+pub unsafe fn xcb_composite_create_region_from_border_clip (c : *connection,
                                                         region :  ll::xfixes::region,
                                                         window :  ll::xproto::window) -> void_cookie;
 
@@ -332,7 +334,7 @@ unsafe fn xcb_composite_create_region_from_border_clip (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_composite_name_window_pixmap_checked (c : *connection,
+pub unsafe fn xcb_composite_name_window_pixmap_checked (c : *connection,
                                                     window :  ll::xproto::window,
                                                     pixmap :  ll::xproto::pixmap) -> void_cookie;
 
@@ -344,7 +346,7 @@ unsafe fn xcb_composite_name_window_pixmap_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_composite_name_window_pixmap (c : *connection,
+pub unsafe fn xcb_composite_name_window_pixmap (c : *connection,
                                             window :  ll::xproto::window,
                                             pixmap :  ll::xproto::pixmap) -> void_cookie;
 
@@ -356,7 +358,7 @@ unsafe fn xcb_composite_name_window_pixmap (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_composite_get_overlay_window (c : *connection,
+pub unsafe fn xcb_composite_get_overlay_window (c : *connection,
                                             window :  ll::xproto::window) -> get_overlay_window_cookie;
 
 /**
@@ -370,7 +372,7 @@ unsafe fn xcb_composite_get_overlay_window (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_composite_get_overlay_window_unchecked (c : *connection,
+pub unsafe fn xcb_composite_get_overlay_window_unchecked (c : *connection,
                                                       window :  ll::xproto::window) -> get_overlay_window_cookie;
 
 /**
@@ -387,7 +389,7 @@ unsafe fn xcb_composite_get_overlay_window_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_composite_get_overlay_window_reply (c : *connection,
+pub unsafe fn xcb_composite_get_overlay_window_reply (c : *connection,
                                                   cookie : get_overlay_window_cookie,
                                                   e : **generic_error) -> *get_overlay_window_reply;
 
@@ -402,7 +404,7 @@ unsafe fn xcb_composite_get_overlay_window_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_composite_release_overlay_window_checked (c : *connection,
+pub unsafe fn xcb_composite_release_overlay_window_checked (c : *connection,
                                                         window :  ll::xproto::window) -> void_cookie;
 
 /**
@@ -413,7 +415,7 @@ unsafe fn xcb_composite_release_overlay_window_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_composite_release_overlay_window (c : *connection,
+pub unsafe fn xcb_composite_release_overlay_window (c : *connection,
                                                 window :  ll::xproto::window) -> void_cookie;
 }
 

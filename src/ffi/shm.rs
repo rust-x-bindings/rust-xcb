@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
-use core;
-use core::libc::*;
+use std;
+use std::libc::*;
+use std::{cast,num,ptr,str,libc};
+use std::to_bytes::ToBytes;
 use ll::base::*;
 use ll;
 use ll::xproto;
@@ -174,7 +176,7 @@ pub extern "C" {
  *
  *
  */
-unsafe fn xcb_shm_seg_next (i:*seg_iterator) -> c_void;
+pub unsafe fn xcb_shm_seg_next (i:*seg_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -185,7 +187,7 @@ unsafe fn xcb_shm_seg_next (i:*seg_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_shm_seg_end (i:seg_iterator) -> generic_iterator;
+pub unsafe fn xcb_shm_seg_end (i:seg_iterator) -> generic_iterator;
 
 /**
  *
@@ -195,7 +197,7 @@ unsafe fn xcb_shm_seg_end (i:seg_iterator) -> generic_iterator;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_shm_query_version (c : *connection) -> query_version_cookie;
+pub unsafe fn xcb_shm_query_version (c : *connection) -> query_version_cookie;
 
 /**
  *
@@ -208,7 +210,7 @@ unsafe fn xcb_shm_query_version (c : *connection) -> query_version_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_shm_query_version_unchecked (c : *connection) -> query_version_cookie;
+pub unsafe fn xcb_shm_query_version_unchecked (c : *connection) -> query_version_cookie;
 
 /**
  * Return the reply
@@ -224,7 +226,7 @@ unsafe fn xcb_shm_query_version_unchecked (c : *connection) -> query_version_coo
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_shm_query_version_reply (c : *connection,
+pub unsafe fn xcb_shm_query_version_reply (c : *connection,
                                        cookie : query_version_cookie,
                                        e : **generic_error) -> *query_version_reply;
 
@@ -239,7 +241,7 @@ unsafe fn xcb_shm_query_version_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_shm_attach_checked (c : *connection,
+pub unsafe fn xcb_shm_attach_checked (c : *connection,
                                   shmseg :  seg,
                                   shmid :  u32,
                                   read_only :  u8) -> void_cookie;
@@ -252,7 +254,7 @@ unsafe fn xcb_shm_attach_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_shm_attach (c : *connection,
+pub unsafe fn xcb_shm_attach (c : *connection,
                           shmseg :  seg,
                           shmid :  u32,
                           read_only :  u8) -> void_cookie;
@@ -268,7 +270,7 @@ unsafe fn xcb_shm_attach (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_shm_detach_checked (c : *connection,
+pub unsafe fn xcb_shm_detach_checked (c : *connection,
                                   shmseg :  seg) -> void_cookie;
 
 /**
@@ -279,7 +281,7 @@ unsafe fn xcb_shm_detach_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_shm_detach (c : *connection,
+pub unsafe fn xcb_shm_detach (c : *connection,
                           shmseg :  seg) -> void_cookie;
 
 /**
@@ -293,7 +295,7 @@ unsafe fn xcb_shm_detach (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_shm_put_image_checked (c : *connection,
+pub unsafe fn xcb_shm_put_image_checked (c : *connection,
                                      drawable :  ll::xproto::drawable,
                                      gc :  ll::xproto::gcontext,
                                      total_width :  u16,
@@ -318,7 +320,7 @@ unsafe fn xcb_shm_put_image_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_shm_put_image (c : *connection,
+pub unsafe fn xcb_shm_put_image (c : *connection,
                              drawable :  ll::xproto::drawable,
                              gc :  ll::xproto::gcontext,
                              total_width :  u16,
@@ -343,7 +345,7 @@ unsafe fn xcb_shm_put_image (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_shm_get_image (c : *connection,
+pub unsafe fn xcb_shm_get_image (c : *connection,
                              drawable :  ll::xproto::drawable,
                              x :  i16,
                              y :  i16,
@@ -365,7 +367,7 @@ unsafe fn xcb_shm_get_image (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_shm_get_image_unchecked (c : *connection,
+pub unsafe fn xcb_shm_get_image_unchecked (c : *connection,
                                        drawable :  ll::xproto::drawable,
                                        x :  i16,
                                        y :  i16,
@@ -390,7 +392,7 @@ unsafe fn xcb_shm_get_image_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_shm_get_image_reply (c : *connection,
+pub unsafe fn xcb_shm_get_image_reply (c : *connection,
                                    cookie : get_image_cookie,
                                    e : **generic_error) -> *get_image_reply;
 
@@ -405,7 +407,7 @@ unsafe fn xcb_shm_get_image_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_shm_create_pixmap_checked (c : *connection,
+pub unsafe fn xcb_shm_create_pixmap_checked (c : *connection,
                                          pid :  ll::xproto::pixmap,
                                          drawable :  ll::xproto::drawable,
                                          width :  u16,
@@ -422,7 +424,7 @@ unsafe fn xcb_shm_create_pixmap_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_shm_create_pixmap (c : *connection,
+pub unsafe fn xcb_shm_create_pixmap (c : *connection,
                                  pid :  ll::xproto::pixmap,
                                  drawable :  ll::xproto::drawable,
                                  width :  u16,

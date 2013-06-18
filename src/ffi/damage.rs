@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
-use core;
-use core::libc::*;
+use std;
+use std::libc::*;
+use std::{cast,num,ptr,str,libc};
+use std::to_bytes::ToBytes;
 use ll::base::*;
 use ll;
 use ll::xproto;
@@ -129,7 +131,7 @@ pub extern "C" {
  *
  *
  */
-unsafe fn xcb_damage_damage_next (i:*damage_iterator) -> c_void;
+pub unsafe fn xcb_damage_damage_next (i:*damage_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -140,7 +142,7 @@ unsafe fn xcb_damage_damage_next (i:*damage_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_damage_damage_end (i:damage_iterator) -> generic_iterator;
+pub unsafe fn xcb_damage_damage_end (i:damage_iterator) -> generic_iterator;
 
 /**
  *
@@ -150,7 +152,7 @@ unsafe fn xcb_damage_damage_end (i:damage_iterator) -> generic_iterator;
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_damage_query_version (c : *connection,
+pub unsafe fn xcb_damage_query_version (c : *connection,
                                     client_major_version :  u32,
                                     client_minor_version :  u32) -> query_version_cookie;
 
@@ -165,7 +167,7 @@ unsafe fn xcb_damage_query_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_damage_query_version_unchecked (c : *connection,
+pub unsafe fn xcb_damage_query_version_unchecked (c : *connection,
                                               client_major_version :  u32,
                                               client_minor_version :  u32) -> query_version_cookie;
 
@@ -183,7 +185,7 @@ unsafe fn xcb_damage_query_version_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_damage_query_version_reply (c : *connection,
+pub unsafe fn xcb_damage_query_version_reply (c : *connection,
                                           cookie : query_version_cookie,
                                           e : **generic_error) -> *query_version_reply;
 
@@ -198,7 +200,7 @@ unsafe fn xcb_damage_query_version_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_damage_create_checked (c : *connection,
+pub unsafe fn xcb_damage_create_checked (c : *connection,
                                      damage :  damage,
                                      drawable :  ll::xproto::drawable,
                                      level :  u8) -> void_cookie;
@@ -211,7 +213,7 @@ unsafe fn xcb_damage_create_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_damage_create (c : *connection,
+pub unsafe fn xcb_damage_create (c : *connection,
                              damage :  damage,
                              drawable :  ll::xproto::drawable,
                              level :  u8) -> void_cookie;
@@ -227,7 +229,7 @@ unsafe fn xcb_damage_create (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_damage_destroy_checked (c : *connection,
+pub unsafe fn xcb_damage_destroy_checked (c : *connection,
                                       damage :  damage) -> void_cookie;
 
 /**
@@ -238,7 +240,7 @@ unsafe fn xcb_damage_destroy_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_damage_destroy (c : *connection,
+pub unsafe fn xcb_damage_destroy (c : *connection,
                               damage :  damage) -> void_cookie;
 
 /**
@@ -252,7 +254,7 @@ unsafe fn xcb_damage_destroy (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_damage_subtract_checked (c : *connection,
+pub unsafe fn xcb_damage_subtract_checked (c : *connection,
                                        damage :  damage,
                                        repair :  ll::xfixes::region,
                                        parts :  ll::xfixes::region) -> void_cookie;
@@ -265,7 +267,7 @@ unsafe fn xcb_damage_subtract_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_damage_subtract (c : *connection,
+pub unsafe fn xcb_damage_subtract (c : *connection,
                                damage :  damage,
                                repair :  ll::xfixes::region,
                                parts :  ll::xfixes::region) -> void_cookie;
@@ -281,7 +283,7 @@ unsafe fn xcb_damage_subtract (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_damage_add_checked (c : *connection,
+pub unsafe fn xcb_damage_add_checked (c : *connection,
                                   drawable :  ll::xproto::drawable,
                                   region :  ll::xfixes::region) -> void_cookie;
 
@@ -293,7 +295,7 @@ unsafe fn xcb_damage_add_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_damage_add (c : *connection,
+pub unsafe fn xcb_damage_add (c : *connection,
                           drawable :  ll::xproto::drawable,
                           region :  ll::xfixes::region) -> void_cookie;
 }

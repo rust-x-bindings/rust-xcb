@@ -6,8 +6,10 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(non_camel_case_types)];
-use core;
-use core::libc::*;
+use std;
+use std::libc::*;
+use std::{cast,num,ptr,str,libc};
+use std::to_bytes::ToBytes;
 use ll::base::*;
 use ll;
 
@@ -44,7 +46,7 @@ pub extern "C" {
  * Delivers a request to the X server.
  * 
  */
-unsafe fn xcb_big_requests_enable (c : *connection) -> enable_cookie;
+pub unsafe fn xcb_big_requests_enable (c : *connection) -> enable_cookie;
 
 /**
  *
@@ -57,7 +59,7 @@ unsafe fn xcb_big_requests_enable (c : *connection) -> enable_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_big_requests_enable_unchecked (c : *connection) -> enable_cookie;
+pub unsafe fn xcb_big_requests_enable_unchecked (c : *connection) -> enable_cookie;
 
 /**
  * Return the reply
@@ -73,7 +75,7 @@ unsafe fn xcb_big_requests_enable_unchecked (c : *connection) -> enable_cookie;
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_big_requests_enable_reply (c : *connection,
+pub unsafe fn xcb_big_requests_enable_reply (c : *connection,
                                          cookie : enable_cookie,
                                          e : **generic_error) -> *enable_reply;
 }

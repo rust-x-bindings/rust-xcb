@@ -6,15 +6,17 @@
 //Make the compiler quiet
 #[allow(unused_imports)];
 #[allow(unused_unsafe)];
-use core;
-use core::libc::*;
+use std;
+use std::libc::*;
+use std::{cast,num,ptr,str,libc};
+use std::to_bytes::ToBytes;
 use ll::base::*;
 use base;
 use base::*;
 use ll;
 use ll::bigreq::*;
-use core::option::Option;
-use core::iterator::Iterator;
+use std::option::Option;
+use std::iterator::Iterator;
 
 pub type EnableCookie<'self> = base::Cookie<'self, enable_cookie>;
 
@@ -34,8 +36,8 @@ pub fn EnableUnchecked<'r> (c : &'r Connection) -> EnableCookie<'r> {
   }
 }
 
-pub impl base::Reply<enable_reply> {
-  fn maximum_request_length(&self) -> u32 {
+impl base::Reply<enable_reply> {
+  pub fn maximum_request_length(&self) -> u32 {
     unsafe { accessor!(maximum_request_length -> u32, (*self.reply)) }
   }
 
