@@ -10,11 +10,11 @@ use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
 use std::to_bytes::ToBytes;
-use ll::base::*;
+use ffi::base::*;
 use base;
 use base::*;
-use ll;
-use ll::composite::*;
+use ffi;
+use ffi::composite::*;
 use std::option::Option;
 use std::iterator::Iterator;
 
@@ -89,7 +89,7 @@ pub fn RedirectWindowChecked<'r> (c : &'r Connection,
                               update : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_composite_redirect_window_checked(c.get_raw_conn(),
-        window as ll::xproto::window, //1
+        window as ffi::xproto::window, //1
         update as u8); //2
     Cookie {cookie:cookie,conn:c,checked:true}
   }
@@ -99,7 +99,7 @@ pub fn RedirectWindow<'r> (c : &'r Connection,
                        update : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_composite_redirect_window(c.get_raw_conn(),
-        window as ll::xproto::window, //1
+        window as ffi::xproto::window, //1
         update as u8); //2
     Cookie {cookie:cookie,conn:c,checked:false}
   }
@@ -109,7 +109,7 @@ pub fn RedirectSubwindowsChecked<'r> (c : &'r Connection,
                                   update : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_composite_redirect_subwindows_checked(c.get_raw_conn(),
-        window as ll::xproto::window, //1
+        window as ffi::xproto::window, //1
         update as u8); //2
     Cookie {cookie:cookie,conn:c,checked:true}
   }
@@ -119,7 +119,7 @@ pub fn RedirectSubwindows<'r> (c : &'r Connection,
                            update : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_composite_redirect_subwindows(c.get_raw_conn(),
-        window as ll::xproto::window, //1
+        window as ffi::xproto::window, //1
         update as u8); //2
     Cookie {cookie:cookie,conn:c,checked:false}
   }
@@ -129,7 +129,7 @@ pub fn UnredirectWindowChecked<'r> (c : &'r Connection,
                                 update : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_composite_unredirect_window_checked(c.get_raw_conn(),
-        window as ll::xproto::window, //1
+        window as ffi::xproto::window, //1
         update as u8); //2
     Cookie {cookie:cookie,conn:c,checked:true}
   }
@@ -139,7 +139,7 @@ pub fn UnredirectWindow<'r> (c : &'r Connection,
                          update : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_composite_unredirect_window(c.get_raw_conn(),
-        window as ll::xproto::window, //1
+        window as ffi::xproto::window, //1
         update as u8); //2
     Cookie {cookie:cookie,conn:c,checked:false}
   }
@@ -149,7 +149,7 @@ pub fn UnredirectSubwindowsChecked<'r> (c : &'r Connection,
                                     update : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_composite_unredirect_subwindows_checked(c.get_raw_conn(),
-        window as ll::xproto::window, //1
+        window as ffi::xproto::window, //1
         update as u8); //2
     Cookie {cookie:cookie,conn:c,checked:true}
   }
@@ -159,7 +159,7 @@ pub fn UnredirectSubwindows<'r> (c : &'r Connection,
                              update : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_composite_unredirect_subwindows(c.get_raw_conn(),
-        window as ll::xproto::window, //1
+        window as ffi::xproto::window, //1
         update as u8); //2
     Cookie {cookie:cookie,conn:c,checked:false}
   }
@@ -169,8 +169,8 @@ pub fn CreateRegionFromBorderClipChecked<'r> (c : &'r Connection,
                                           window : xproto::Window) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_composite_create_region_from_border_clip_checked(c.get_raw_conn(),
-        region as ll::xfixes::region, //1
-        window as ll::xproto::window); //2
+        region as ffi::xfixes::region, //1
+        window as ffi::xproto::window); //2
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -179,8 +179,8 @@ pub fn CreateRegionFromBorderClip<'r> (c : &'r Connection,
                                    window : xproto::Window) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_composite_create_region_from_border_clip(c.get_raw_conn(),
-        region as ll::xfixes::region, //1
-        window as ll::xproto::window); //2
+        region as ffi::xfixes::region, //1
+        window as ffi::xproto::window); //2
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -189,8 +189,8 @@ pub fn NameWindowPixmapChecked<'r> (c : &'r Connection,
                                 pixmap : xproto::Pixmap) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_composite_name_window_pixmap_checked(c.get_raw_conn(),
-        window as ll::xproto::window, //1
-        pixmap as ll::xproto::pixmap); //2
+        window as ffi::xproto::window, //1
+        pixmap as ffi::xproto::pixmap); //2
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -199,8 +199,8 @@ pub fn NameWindowPixmap<'r> (c : &'r Connection,
                          pixmap : xproto::Pixmap) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_composite_name_window_pixmap(c.get_raw_conn(),
-        window as ll::xproto::window, //1
-        pixmap as ll::xproto::pixmap); //2
+        window as ffi::xproto::window, //1
+        pixmap as ffi::xproto::pixmap); //2
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -208,7 +208,7 @@ pub fn GetOverlayWindow<'r> (c : &'r Connection,
                          window : xproto::Window) -> GetOverlayWindowCookie<'r> {
   unsafe {
     let cookie = xcb_composite_get_overlay_window(c.get_raw_conn(),
-        window as ll::xproto::window); //1
+        window as ffi::xproto::window); //1
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -216,7 +216,7 @@ pub fn GetOverlayWindowUnchecked<'r> (c : &'r Connection,
                                   window : xproto::Window) -> GetOverlayWindowCookie<'r> {
   unsafe {
     let cookie = xcb_composite_get_overlay_window_unchecked(c.get_raw_conn(),
-        window as ll::xproto::window); //1
+        window as ffi::xproto::window); //1
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -233,7 +233,7 @@ pub fn ReleaseOverlayWindowChecked<'r> (c : &'r Connection,
                                     window : xproto::Window) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_composite_release_overlay_window_checked(c.get_raw_conn(),
-        window as ll::xproto::window); //1
+        window as ffi::xproto::window); //1
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -241,7 +241,7 @@ pub fn ReleaseOverlayWindow<'r> (c : &'r Connection,
                              window : xproto::Window) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_composite_release_overlay_window(c.get_raw_conn(),
-        window as ll::xproto::window); //1
+        window as ffi::xproto::window); //1
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }

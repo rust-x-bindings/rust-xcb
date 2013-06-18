@@ -10,10 +10,10 @@ use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
 use std::to_bytes::ToBytes;
-use ll::base::*;
-use ll;
-use ll::xproto;
-use ll::render;
+use ffi::base::*;
+use ffi;
+use ffi::xproto;
+use ffi::render;
 
 pub static RANDR_MAJOR_VERSION : c_uint = 1;
 pub static RANDR_MINOR_VERSION : c_uint = 3;
@@ -140,9 +140,9 @@ pub struct set_screen_config_request {
     major_opcode :       u8,
     minor_opcode :       u8,
     length :             u16,
-    window :             ll::xproto::window,
-    timestamp :          ll::xproto::timestamp,
-    config_timestamp :   ll::xproto::timestamp,
+    window :             ffi::xproto::window,
+    timestamp :          ffi::xproto::timestamp,
+    config_timestamp :   ffi::xproto::timestamp,
     sizeID :             u16,
     rotation :           u16,
     rate :               u16,
@@ -155,9 +155,9 @@ pub struct set_screen_config_reply {
     status :             u8,
     sequence :           u16,
     length :             u32,
-    new_timestamp :      ll::xproto::timestamp,
-    config_timestamp :   ll::xproto::timestamp,
-    root :               ll::xproto::window,
+    new_timestamp :      ffi::xproto::timestamp,
+    config_timestamp :   ffi::xproto::timestamp,
+    root :               ffi::xproto::window,
     subpixel_order :     u16,
     pad0 :               [u8,..10]
 }
@@ -168,7 +168,7 @@ pub struct select_input_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window,
+    window :         ffi::xproto::window,
     enable :         u16,
     pad0 :           [u8,..2]
 }
@@ -183,7 +183,7 @@ pub struct get_screen_info_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window
+    window :         ffi::xproto::window
 }
 
 
@@ -192,9 +192,9 @@ pub struct get_screen_info_reply {
     rotations :          u8,
     sequence :           u16,
     length :             u32,
-    root :               ll::xproto::window,
-    timestamp :          ll::xproto::timestamp,
-    config_timestamp :   ll::xproto::timestamp,
+    root :               ffi::xproto::window,
+    timestamp :          ffi::xproto::timestamp,
+    config_timestamp :   ffi::xproto::timestamp,
     nSizes :             u16,
     sizeID :             u16,
     rotation :           u16,
@@ -213,7 +213,7 @@ pub struct get_screen_size_range_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window
+    window :         ffi::xproto::window
 }
 
 
@@ -235,7 +235,7 @@ pub struct set_screen_size_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window,
+    window :         ffi::xproto::window,
     width :          u16,
     height :         u16,
     mm_width :       u32,
@@ -278,7 +278,7 @@ pub struct get_screen_resources_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window
+    window :         ffi::xproto::window
 }
 
 
@@ -287,8 +287,8 @@ pub struct get_screen_resources_reply {
     pad0 :               u8,
     sequence :           u16,
     length :             u32,
-    timestamp :          ll::xproto::timestamp,
-    config_timestamp :   ll::xproto::timestamp,
+    timestamp :          ffi::xproto::timestamp,
+    config_timestamp :   ffi::xproto::timestamp,
     num_crtcs :          u16,
     num_outputs :        u16,
     num_modes :          u16,
@@ -307,7 +307,7 @@ pub struct get_output_info_request {
     minor_opcode :       u8,
     length :             u16,
     output :             output,
-    config_timestamp :   ll::xproto::timestamp
+    config_timestamp :   ffi::xproto::timestamp
 }
 
 
@@ -316,7 +316,7 @@ pub struct get_output_info_reply {
     status :           u8,
     sequence :         u16,
     length :           u32,
-    timestamp :        ll::xproto::timestamp,
+    timestamp :        ffi::xproto::timestamp,
     crtc :             crtc,
     mm_width :         u32,
     mm_height :        u32,
@@ -363,7 +363,7 @@ pub struct query_output_property_request {
     minor_opcode :   u8,
     length :         u16,
     output :         output,
-    property :       ll::xproto::atom
+    property :       ffi::xproto::atom
 }
 
 
@@ -385,7 +385,7 @@ pub struct configure_output_property_request {
     minor_opcode :   u8,
     length :         u16,
     output :         output,
-    property :       ll::xproto::atom,
+    property :       ffi::xproto::atom,
     pending :        u8,
     range :          u8,
     pad0 :           [u8,..2]
@@ -398,8 +398,8 @@ pub struct change_output_property_request {
     minor_opcode :   u8,
     length :         u16,
     output :         output,
-    property :       ll::xproto::atom,
-    type_ :          ll::xproto::atom,
+    property :       ffi::xproto::atom,
+    type_ :          ffi::xproto::atom,
     format :         u8,
     mode :           u8,
     pad0 :           [u8,..2],
@@ -413,7 +413,7 @@ pub struct delete_output_property_request {
     minor_opcode :   u8,
     length :         u16,
     output :         output,
-    property :       ll::xproto::atom
+    property :       ffi::xproto::atom
 }
 
 
@@ -427,8 +427,8 @@ pub struct get_output_property_request {
     minor_opcode :   u8,
     length :         u16,
     output :         output,
-    property :       ll::xproto::atom,
-    type_ :          ll::xproto::atom,
+    property :       ffi::xproto::atom,
+    type_ :          ffi::xproto::atom,
     long_offset :    u32,
     long_length :    u32,
     delete :         u8,
@@ -442,7 +442,7 @@ pub struct get_output_property_reply {
     format :          u8,
     sequence :        u16,
     length :          u32,
-    type_ :           ll::xproto::atom,
+    type_ :           ffi::xproto::atom,
     bytes_after :     u32,
     num_items :       u32,
     pad0 :            [u8,..12]
@@ -458,7 +458,7 @@ pub struct create_mode_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window,
+    window :         ffi::xproto::window,
     mode_info :      mode_info
 }
 
@@ -512,7 +512,7 @@ pub struct get_crtc_info_request {
     minor_opcode :       u8,
     length :             u16,
     crtc :               crtc,
-    config_timestamp :   ll::xproto::timestamp
+    config_timestamp :   ffi::xproto::timestamp
 }
 
 
@@ -521,7 +521,7 @@ pub struct get_crtc_info_reply {
     status :                 u8,
     sequence :               u16,
     length :                 u32,
-    timestamp :              ll::xproto::timestamp,
+    timestamp :              ffi::xproto::timestamp,
     x :                      i16,
     y :                      i16,
     width :                  u16,
@@ -544,8 +544,8 @@ pub struct set_crtc_config_request {
     minor_opcode :       u8,
     length :             u16,
     crtc :               crtc,
-    timestamp :          ll::xproto::timestamp,
-    config_timestamp :   ll::xproto::timestamp,
+    timestamp :          ffi::xproto::timestamp,
+    config_timestamp :   ffi::xproto::timestamp,
     x :                  i16,
     y :                  i16,
     mode :               mode,
@@ -559,7 +559,7 @@ pub struct set_crtc_config_reply {
     status :          u8,
     sequence :        u16,
     length :          u32,
-    timestamp :       ll::xproto::timestamp,
+    timestamp :       ffi::xproto::timestamp,
     pad0 :            [u8,..20]
 }
 
@@ -630,7 +630,7 @@ pub struct get_screen_resources_current_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window
+    window :         ffi::xproto::window
 }
 
 
@@ -639,8 +639,8 @@ pub struct get_screen_resources_current_reply {
     pad0 :               u8,
     sequence :           u16,
     length :             u32,
-    timestamp :          ll::xproto::timestamp,
-    config_timestamp :   ll::xproto::timestamp,
+    timestamp :          ffi::xproto::timestamp,
+    config_timestamp :   ffi::xproto::timestamp,
     num_crtcs :          u16,
     num_outputs :        u16,
     num_modes :          u16,
@@ -655,7 +655,7 @@ pub struct set_crtc_transform_request {
     minor_opcode :   u8,
     length :         u16,
     crtc :           crtc,
-    transform :      ll::render::transform,
+    transform :      ffi::render::transform,
     filter_len :     u16,
     pad0 :           [u8,..2]
 }
@@ -679,10 +679,10 @@ pub struct get_crtc_transform_reply {
     pad0 :                u8,
     sequence :            u16,
     length :              u32,
-    pending_transform :   ll::render::transform,
+    pending_transform :   ffi::render::transform,
     has_transforms :      u8,
     pad1 :                [u8,..3],
-    current_transform :   ll::render::transform,
+    current_transform :   ffi::render::transform,
     pad2 :                [u8,..4],
     pending_len :         u16,
     pending_nparams :     u16,
@@ -709,7 +709,7 @@ pub struct get_panning_reply {
     status :          u8,
     sequence :        u16,
     length :          u32,
-    timestamp :       ll::xproto::timestamp,
+    timestamp :       ffi::xproto::timestamp,
     left :            u16,
     top :             u16,
     width :           u16,
@@ -735,7 +735,7 @@ pub struct set_panning_request {
     minor_opcode :    u8,
     length :          u16,
     crtc :            crtc,
-    timestamp :       ll::xproto::timestamp,
+    timestamp :       ffi::xproto::timestamp,
     left :            u16,
     top :             u16,
     width :           u16,
@@ -756,7 +756,7 @@ pub struct set_panning_reply {
     status :          u8,
     sequence :        u16,
     length :          u32,
-    timestamp :       ll::xproto::timestamp
+    timestamp :       ffi::xproto::timestamp
 }
 
 
@@ -765,7 +765,7 @@ pub struct set_output_primary_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window,
+    window :         ffi::xproto::window,
     output :         output
 }
 
@@ -779,7 +779,7 @@ pub struct get_output_primary_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window
+    window :         ffi::xproto::window
 }
 
 
@@ -797,10 +797,10 @@ pub struct screen_change_notify_event {
     response_type :      u8,
     rotation :           u8,
     sequence :           u16,
-    timestamp :          ll::xproto::timestamp,
-    config_timestamp :   ll::xproto::timestamp,
-    root :               ll::xproto::window,
-    request_window :     ll::xproto::window,
+    timestamp :          ffi::xproto::timestamp,
+    config_timestamp :   ffi::xproto::timestamp,
+    root :               ffi::xproto::window,
+    request_window :     ffi::xproto::window,
     sizeID :             u16,
     subpixel_order :     u16,
     width :              u16,
@@ -811,8 +811,8 @@ pub struct screen_change_notify_event {
 
 
 pub struct crtc_change {
-    timestamp :   ll::xproto::timestamp,
-    window :      ll::xproto::window,
+    timestamp :   ffi::xproto::timestamp,
+    window :      ffi::xproto::window,
     crtc :        crtc,
     mode :        mode,
     rotation :    u16,
@@ -834,9 +834,9 @@ pub struct crtc_change_iterator {
 
 
 pub struct output_change {
-    timestamp :          ll::xproto::timestamp,
-    config_timestamp :   ll::xproto::timestamp,
-    window :             ll::xproto::window,
+    timestamp :          ffi::xproto::timestamp,
+    config_timestamp :   ffi::xproto::timestamp,
+    window :             ffi::xproto::window,
     output :             output,
     crtc :               crtc,
     mode :               mode,
@@ -856,10 +856,10 @@ pub struct output_change_iterator {
 
 
 pub struct output_property {
-    window :      ll::xproto::window,
+    window :      ffi::xproto::window,
     output :      output,
-    atom :        ll::xproto::atom,
-    timestamp :   ll::xproto::timestamp,
+    atom :        ffi::xproto::atom,
+    timestamp :   ffi::xproto::timestamp,
     status :      u8,
     pad0 :        [u8,..11]
 }
@@ -1077,9 +1077,9 @@ pub unsafe fn xcb_randr_query_version_reply (c : *connection,
  * 
  */
 pub unsafe fn xcb_randr_set_screen_config (c : *connection,
-                                       window :  ll::xproto::window,
-                                       timestamp :  ll::xproto::timestamp,
-                                       config_timestamp :  ll::xproto::timestamp,
+                                       window :  ffi::xproto::window,
+                                       timestamp :  ffi::xproto::timestamp,
+                                       config_timestamp :  ffi::xproto::timestamp,
                                        sizeID :  u16,
                                        rotation :  u16,
                                        rate :  u16) -> set_screen_config_cookie;
@@ -1096,9 +1096,9 @@ pub unsafe fn xcb_randr_set_screen_config (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_randr_set_screen_config_unchecked (c : *connection,
-                                                 window :  ll::xproto::window,
-                                                 timestamp :  ll::xproto::timestamp,
-                                                 config_timestamp :  ll::xproto::timestamp,
+                                                 window :  ffi::xproto::window,
+                                                 timestamp :  ffi::xproto::timestamp,
+                                                 config_timestamp :  ffi::xproto::timestamp,
                                                  sizeID :  u16,
                                                  rotation :  u16,
                                                  rate :  u16) -> set_screen_config_cookie;
@@ -1133,7 +1133,7 @@ pub unsafe fn xcb_randr_set_screen_config_reply (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_randr_select_input_checked (c : *connection,
-                                          window :  ll::xproto::window,
+                                          window :  ffi::xproto::window,
                                           enable :  u16) -> void_cookie;
 
 /**
@@ -1145,7 +1145,7 @@ pub unsafe fn xcb_randr_select_input_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_randr_select_input (c : *connection,
-                                  window :  ll::xproto::window,
+                                  window :  ffi::xproto::window,
                                   enable :  u16) -> void_cookie;
 
 pub unsafe fn xcb_randr_get_screen_info_sizeof (_buffer :  *c_void) -> c_int;
@@ -1159,7 +1159,7 @@ pub unsafe fn xcb_randr_get_screen_info_sizeof (_buffer :  *c_void) -> c_int;
  * 
  */
 pub unsafe fn xcb_randr_get_screen_info (c : *connection,
-                                     window :  ll::xproto::window) -> get_screen_info_cookie;
+                                     window :  ffi::xproto::window) -> get_screen_info_cookie;
 
 /**
  *
@@ -1173,7 +1173,7 @@ pub unsafe fn xcb_randr_get_screen_info (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_randr_get_screen_info_unchecked (c : *connection,
-                                               window :  ll::xproto::window) -> get_screen_info_cookie;
+                                               window :  ffi::xproto::window) -> get_screen_info_cookie;
 
 pub unsafe fn xcb_randr_get_screen_info_sizes (R : *get_screen_info_reply) -> *screen_size;
 
@@ -1214,7 +1214,7 @@ pub unsafe fn xcb_randr_get_screen_info_reply (c : *connection,
  * 
  */
 pub unsafe fn xcb_randr_get_screen_size_range (c : *connection,
-                                           window :  ll::xproto::window) -> get_screen_size_range_cookie;
+                                           window :  ffi::xproto::window) -> get_screen_size_range_cookie;
 
 /**
  *
@@ -1228,7 +1228,7 @@ pub unsafe fn xcb_randr_get_screen_size_range (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_randr_get_screen_size_range_unchecked (c : *connection,
-                                                     window :  ll::xproto::window) -> get_screen_size_range_cookie;
+                                                     window :  ffi::xproto::window) -> get_screen_size_range_cookie;
 
 /**
  * Return the reply
@@ -1260,7 +1260,7 @@ pub unsafe fn xcb_randr_get_screen_size_range_reply (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_randr_set_screen_size_checked (c : *connection,
-                                             window :  ll::xproto::window,
+                                             window :  ffi::xproto::window,
                                              width :  u16,
                                              height :  u16,
                                              mm_width :  u32,
@@ -1275,7 +1275,7 @@ pub unsafe fn xcb_randr_set_screen_size_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_randr_set_screen_size (c : *connection,
-                                     window :  ll::xproto::window,
+                                     window :  ffi::xproto::window,
                                      width :  u16,
                                      height :  u16,
                                      mm_width :  u32,
@@ -1315,7 +1315,7 @@ pub unsafe fn xcb_randr_get_screen_resources_sizeof (_buffer :  *c_void) -> c_in
  * 
  */
 pub unsafe fn xcb_randr_get_screen_resources (c : *connection,
-                                          window :  ll::xproto::window) -> get_screen_resources_cookie;
+                                          window :  ffi::xproto::window) -> get_screen_resources_cookie;
 
 /**
  *
@@ -1329,7 +1329,7 @@ pub unsafe fn xcb_randr_get_screen_resources (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_randr_get_screen_resources_unchecked (c : *connection,
-                                                    window :  ll::xproto::window) -> get_screen_resources_cookie;
+                                                    window :  ffi::xproto::window) -> get_screen_resources_cookie;
 
 pub unsafe fn xcb_randr_get_screen_resources_crtcs (R : *get_screen_resources_reply) -> *crtc;
 
@@ -1392,7 +1392,7 @@ pub unsafe fn xcb_randr_get_output_info_sizeof (_buffer :  *c_void) -> c_int;
  */
 pub unsafe fn xcb_randr_get_output_info (c : *connection,
                                      output :  output,
-                                     config_timestamp :  ll::xproto::timestamp) -> get_output_info_cookie;
+                                     config_timestamp :  ffi::xproto::timestamp) -> get_output_info_cookie;
 
 /**
  *
@@ -1407,7 +1407,7 @@ pub unsafe fn xcb_randr_get_output_info (c : *connection,
  */
 pub unsafe fn xcb_randr_get_output_info_unchecked (c : *connection,
                                                output :  output,
-                                               config_timestamp :  ll::xproto::timestamp) -> get_output_info_cookie;
+                                               config_timestamp :  ffi::xproto::timestamp) -> get_output_info_cookie;
 
 pub unsafe fn xcb_randr_get_output_info_crtcs (R : *get_output_info_reply) -> *crtc;
 
@@ -1486,7 +1486,7 @@ pub unsafe fn xcb_randr_list_output_properties (c : *connection,
 pub unsafe fn xcb_randr_list_output_properties_unchecked (c : *connection,
                                                       output :  output) -> list_output_properties_cookie;
 
-pub unsafe fn xcb_randr_list_output_properties_atoms (R : *list_output_properties_reply) -> *ll::xproto::atom;
+pub unsafe fn xcb_randr_list_output_properties_atoms (R : *list_output_properties_reply) -> *ffi::xproto::atom;
 
 
 pub unsafe fn xcb_randr_list_output_properties_atoms_length (R : *list_output_properties_reply) -> c_int;
@@ -1524,7 +1524,7 @@ pub unsafe fn xcb_randr_query_output_property_sizeof (_buffer :  *c_void) -> c_i
  */
 pub unsafe fn xcb_randr_query_output_property (c : *connection,
                                            output :  output,
-                                           property :  ll::xproto::atom) -> query_output_property_cookie;
+                                           property :  ffi::xproto::atom) -> query_output_property_cookie;
 
 /**
  *
@@ -1539,7 +1539,7 @@ pub unsafe fn xcb_randr_query_output_property (c : *connection,
  */
 pub unsafe fn xcb_randr_query_output_property_unchecked (c : *connection,
                                                      output :  output,
-                                                     property :  ll::xproto::atom) -> query_output_property_cookie;
+                                                     property :  ffi::xproto::atom) -> query_output_property_cookie;
 
 pub unsafe fn xcb_randr_query_output_property_valid_values (R : *query_output_property_reply) -> *i32;
 
@@ -1583,7 +1583,7 @@ pub unsafe fn xcb_randr_configure_output_property_sizeof (_buffer :  *c_void,
  */
 pub unsafe fn xcb_randr_configure_output_property_checked (c : *connection,
                                                        output :  output,
-                                                       property :  ll::xproto::atom,
+                                                       property :  ffi::xproto::atom,
                                                        pending :  u8,
                                                        range :  u8,
                                                        values_len :  u32,
@@ -1599,7 +1599,7 @@ pub unsafe fn xcb_randr_configure_output_property_checked (c : *connection,
  */
 pub unsafe fn xcb_randr_configure_output_property (c : *connection,
                                                output :  output,
-                                               property :  ll::xproto::atom,
+                                               property :  ffi::xproto::atom,
                                                pending :  u8,
                                                range :  u8,
                                                values_len :  u32,
@@ -1620,8 +1620,8 @@ pub unsafe fn xcb_randr_change_output_property_sizeof (_buffer :  *c_void) -> c_
  */
 pub unsafe fn xcb_randr_change_output_property_checked (c : *connection,
                                                     output :  output,
-                                                    property :  ll::xproto::atom,
-                                                    type_ :  ll::xproto::atom,
+                                                    property :  ffi::xproto::atom,
+                                                    type_ :  ffi::xproto::atom,
                                                     format :  u8,
                                                     mode :  u8,
                                                     num_units :  u32,
@@ -1637,8 +1637,8 @@ pub unsafe fn xcb_randr_change_output_property_checked (c : *connection,
  */
 pub unsafe fn xcb_randr_change_output_property (c : *connection,
                                             output :  output,
-                                            property :  ll::xproto::atom,
-                                            type_ :  ll::xproto::atom,
+                                            property :  ffi::xproto::atom,
+                                            type_ :  ffi::xproto::atom,
                                             format :  u8,
                                             mode :  u8,
                                             num_units :  u32,
@@ -1657,7 +1657,7 @@ pub unsafe fn xcb_randr_change_output_property (c : *connection,
  */
 pub unsafe fn xcb_randr_delete_output_property_checked (c : *connection,
                                                     output :  output,
-                                                    property :  ll::xproto::atom) -> void_cookie;
+                                                    property :  ffi::xproto::atom) -> void_cookie;
 
 /**
  *
@@ -1669,7 +1669,7 @@ pub unsafe fn xcb_randr_delete_output_property_checked (c : *connection,
  */
 pub unsafe fn xcb_randr_delete_output_property (c : *connection,
                                             output :  output,
-                                            property :  ll::xproto::atom) -> void_cookie;
+                                            property :  ffi::xproto::atom) -> void_cookie;
 
 pub unsafe fn xcb_randr_get_output_property_sizeof (_buffer :  *c_void) -> c_int;
 
@@ -1683,8 +1683,8 @@ pub unsafe fn xcb_randr_get_output_property_sizeof (_buffer :  *c_void) -> c_int
  */
 pub unsafe fn xcb_randr_get_output_property (c : *connection,
                                          output :  output,
-                                         property :  ll::xproto::atom,
-                                         type_ :  ll::xproto::atom,
+                                         property :  ffi::xproto::atom,
+                                         type_ :  ffi::xproto::atom,
                                          long_offset :  u32,
                                          long_length :  u32,
                                          delete :  u8,
@@ -1703,8 +1703,8 @@ pub unsafe fn xcb_randr_get_output_property (c : *connection,
  */
 pub unsafe fn xcb_randr_get_output_property_unchecked (c : *connection,
                                                    output :  output,
-                                                   property :  ll::xproto::atom,
-                                                   type_ :  ll::xproto::atom,
+                                                   property :  ffi::xproto::atom,
+                                                   type_ :  ffi::xproto::atom,
                                                    long_offset :  u32,
                                                    long_length :  u32,
                                                    delete :  u8,
@@ -1748,7 +1748,7 @@ pub unsafe fn xcb_randr_create_mode_sizeof (_buffer :  *c_void,
  * 
  */
 pub unsafe fn xcb_randr_create_mode (c : *connection,
-                                 window :  ll::xproto::window,
+                                 window :  ffi::xproto::window,
                                  mode_info :  mode_info,
                                  name_len :  u32,
                                  name : *c_char) -> create_mode_cookie;
@@ -1765,7 +1765,7 @@ pub unsafe fn xcb_randr_create_mode (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_randr_create_mode_unchecked (c : *connection,
-                                           window :  ll::xproto::window,
+                                           window :  ffi::xproto::window,
                                            mode_info :  mode_info,
                                            name_len :  u32,
                                            name : *c_char) -> create_mode_cookie;
@@ -1879,7 +1879,7 @@ pub unsafe fn xcb_randr_get_crtc_info_sizeof (_buffer :  *c_void) -> c_int;
  */
 pub unsafe fn xcb_randr_get_crtc_info (c : *connection,
                                    crtc :  crtc,
-                                   config_timestamp :  ll::xproto::timestamp) -> get_crtc_info_cookie;
+                                   config_timestamp :  ffi::xproto::timestamp) -> get_crtc_info_cookie;
 
 /**
  *
@@ -1894,7 +1894,7 @@ pub unsafe fn xcb_randr_get_crtc_info (c : *connection,
  */
 pub unsafe fn xcb_randr_get_crtc_info_unchecked (c : *connection,
                                              crtc :  crtc,
-                                             config_timestamp :  ll::xproto::timestamp) -> get_crtc_info_cookie;
+                                             config_timestamp :  ffi::xproto::timestamp) -> get_crtc_info_cookie;
 
 pub unsafe fn xcb_randr_get_crtc_info_outputs (R : *get_crtc_info_reply) -> *output;
 
@@ -1943,8 +1943,8 @@ pub unsafe fn xcb_randr_set_crtc_config_sizeof (_buffer :  *c_void,
  */
 pub unsafe fn xcb_randr_set_crtc_config (c : *connection,
                                      crtc :  crtc,
-                                     timestamp :  ll::xproto::timestamp,
-                                     config_timestamp :  ll::xproto::timestamp,
+                                     timestamp :  ffi::xproto::timestamp,
+                                     config_timestamp :  ffi::xproto::timestamp,
                                      x :  i16,
                                      y :  i16,
                                      mode :  mode,
@@ -1965,8 +1965,8 @@ pub unsafe fn xcb_randr_set_crtc_config (c : *connection,
  */
 pub unsafe fn xcb_randr_set_crtc_config_unchecked (c : *connection,
                                                crtc :  crtc,
-                                               timestamp :  ll::xproto::timestamp,
-                                               config_timestamp :  ll::xproto::timestamp,
+                                               timestamp :  ffi::xproto::timestamp,
+                                               config_timestamp :  ffi::xproto::timestamp,
                                                x :  i16,
                                                y :  i16,
                                                mode :  mode,
@@ -2150,7 +2150,7 @@ pub unsafe fn xcb_randr_get_screen_resources_current_sizeof (_buffer :  *c_void)
  * 
  */
 pub unsafe fn xcb_randr_get_screen_resources_current (c : *connection,
-                                                  window :  ll::xproto::window) -> get_screen_resources_current_cookie;
+                                                  window :  ffi::xproto::window) -> get_screen_resources_current_cookie;
 
 /**
  *
@@ -2164,7 +2164,7 @@ pub unsafe fn xcb_randr_get_screen_resources_current (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_randr_get_screen_resources_current_unchecked (c : *connection,
-                                                            window :  ll::xproto::window) -> get_screen_resources_current_cookie;
+                                                            window :  ffi::xproto::window) -> get_screen_resources_current_cookie;
 
 pub unsafe fn xcb_randr_get_screen_resources_current_crtcs (R : *get_screen_resources_current_reply) -> *crtc;
 
@@ -2231,11 +2231,11 @@ pub unsafe fn xcb_randr_set_crtc_transform_sizeof (_buffer :  *c_void,
  */
 pub unsafe fn xcb_randr_set_crtc_transform_checked (c : *connection,
                                                 crtc :  crtc,
-                                                transform :  ll::render::transform,
+                                                transform :  ffi::render::transform,
                                                 filter_len :  u16,
                                                 filter_name : *c_char,
                                                 filter_params_len :  u32,
-                                                filter_params : *ll::render::fixed) -> void_cookie;
+                                                filter_params : *ffi::render::fixed) -> void_cookie;
 
 /**
  *
@@ -2247,11 +2247,11 @@ pub unsafe fn xcb_randr_set_crtc_transform_checked (c : *connection,
  */
 pub unsafe fn xcb_randr_set_crtc_transform (c : *connection,
                                         crtc :  crtc,
-                                        transform :  ll::render::transform,
+                                        transform :  ffi::render::transform,
                                         filter_len :  u16,
                                         filter_name : *c_char,
                                         filter_params_len :  u32,
-                                        filter_params : *ll::render::fixed) -> void_cookie;
+                                        filter_params : *ffi::render::fixed) -> void_cookie;
 
 pub unsafe fn xcb_randr_get_crtc_transform_sizeof (_buffer :  *c_void) -> c_int;
 
@@ -2288,7 +2288,7 @@ pub unsafe fn xcb_randr_get_crtc_transform_pending_filter_name_length (R : *get_
 
 pub unsafe fn xcb_randr_get_crtc_transform_pending_filter_name_end (R : *get_crtc_transform_reply) -> generic_iterator;
 
-pub unsafe fn xcb_randr_get_crtc_transform_pending_params (R : *get_crtc_transform_reply) -> *ll::render::fixed;
+pub unsafe fn xcb_randr_get_crtc_transform_pending_params (R : *get_crtc_transform_reply) -> *ffi::render::fixed;
 
 
 pub unsafe fn xcb_randr_get_crtc_transform_pending_params_length (R : *get_crtc_transform_reply) -> c_int;
@@ -2304,7 +2304,7 @@ pub unsafe fn xcb_randr_get_crtc_transform_current_filter_name_length (R : *get_
 
 pub unsafe fn xcb_randr_get_crtc_transform_current_filter_name_end (R : *get_crtc_transform_reply) -> generic_iterator;
 
-pub unsafe fn xcb_randr_get_crtc_transform_current_params (R : *get_crtc_transform_reply) -> *ll::render::fixed;
+pub unsafe fn xcb_randr_get_crtc_transform_current_params (R : *get_crtc_transform_reply) -> *ffi::render::fixed;
 
 
 pub unsafe fn xcb_randr_get_crtc_transform_current_params_length (R : *get_crtc_transform_reply) -> c_int;
@@ -2383,7 +2383,7 @@ pub unsafe fn xcb_randr_get_panning_reply (c : *connection,
  */
 pub unsafe fn xcb_randr_set_panning (c : *connection,
                                  crtc :  crtc,
-                                 timestamp :  ll::xproto::timestamp,
+                                 timestamp :  ffi::xproto::timestamp,
                                  left :  u16,
                                  top :  u16,
                                  width :  u16,
@@ -2410,7 +2410,7 @@ pub unsafe fn xcb_randr_set_panning (c : *connection,
  */
 pub unsafe fn xcb_randr_set_panning_unchecked (c : *connection,
                                            crtc :  crtc,
-                                           timestamp :  ll::xproto::timestamp,
+                                           timestamp :  ffi::xproto::timestamp,
                                            left :  u16,
                                            top :  u16,
                                            width :  u16,
@@ -2454,7 +2454,7 @@ pub unsafe fn xcb_randr_set_panning_reply (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_randr_set_output_primary_checked (c : *connection,
-                                                window :  ll::xproto::window,
+                                                window :  ffi::xproto::window,
                                                 output :  output) -> void_cookie;
 
 /**
@@ -2466,7 +2466,7 @@ pub unsafe fn xcb_randr_set_output_primary_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_randr_set_output_primary (c : *connection,
-                                        window :  ll::xproto::window,
+                                        window :  ffi::xproto::window,
                                         output :  output) -> void_cookie;
 
 /**
@@ -2478,7 +2478,7 @@ pub unsafe fn xcb_randr_set_output_primary (c : *connection,
  * 
  */
 pub unsafe fn xcb_randr_get_output_primary (c : *connection,
-                                        window :  ll::xproto::window) -> get_output_primary_cookie;
+                                        window :  ffi::xproto::window) -> get_output_primary_cookie;
 
 /**
  *
@@ -2492,7 +2492,7 @@ pub unsafe fn xcb_randr_get_output_primary (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_randr_get_output_primary_unchecked (c : *connection,
-                                                  window :  ll::xproto::window) -> get_output_primary_cookie;
+                                                  window :  ffi::xproto::window) -> get_output_primary_cookie;
 
 /**
  * Return the reply

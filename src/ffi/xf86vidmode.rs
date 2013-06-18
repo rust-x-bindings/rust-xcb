@@ -10,8 +10,8 @@ use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
 use std::to_bytes::ToBytes;
-use ll::base::*;
-use ll;
+use ffi::base::*;
+use ffi;
 
 pub static XF86VIDMODE_MAJOR_VERSION : c_uint = 2;
 pub static XF86VIDMODE_MINOR_VERSION : c_uint = 2;

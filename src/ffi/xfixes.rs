@@ -10,11 +10,11 @@ use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
 use std::to_bytes::ToBytes;
-use ll::base::*;
-use ll;
-use ll::xproto;
-use ll::render;
-use ll::shape;
+use ffi::base::*;
+use ffi;
+use ffi::xproto;
+use ffi::render;
+use ffi::shape;
 
 pub static XFIXES_MAJOR_VERSION : c_uint = 5;
 pub static XFIXES_MINOR_VERSION : c_uint = 0;
@@ -53,7 +53,7 @@ pub struct change_save_set_request {
     target :         u8,
     map :            u8,
     pad0 :           u8,
-    window :         ll::xproto::window
+    window :         ffi::xproto::window
 }
 
 
@@ -62,11 +62,11 @@ pub struct selection_notify_event {
     response_type :         u8,
     subtype :               u8,
     sequence :              u16,
-    window :                ll::xproto::window,
-    owner :                 ll::xproto::window,
-    selection :             ll::xproto::atom,
-    timestamp :             ll::xproto::timestamp,
-    selection_timestamp :   ll::xproto::timestamp,
+    window :                ffi::xproto::window,
+    owner :                 ffi::xproto::window,
+    selection :             ffi::xproto::atom,
+    timestamp :             ffi::xproto::timestamp,
+    selection_timestamp :   ffi::xproto::timestamp,
     pad0 :                  [u8,..8]
 }
 
@@ -76,8 +76,8 @@ pub struct select_selection_input_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window,
-    selection :      ll::xproto::atom,
+    window :         ffi::xproto::window,
+    selection :      ffi::xproto::atom,
     event_mask :     u32
 }
 
@@ -87,10 +87,10 @@ pub struct cursor_notify_event {
     response_type :   u8,
     subtype :         u8,
     sequence :        u16,
-    window :          ll::xproto::window,
+    window :          ffi::xproto::window,
     cursor_serial :   u32,
-    timestamp :       ll::xproto::timestamp,
-    name :            ll::xproto::atom,
+    timestamp :       ffi::xproto::timestamp,
+    name :            ffi::xproto::atom,
     pad0 :            [u8,..12]
 }
 
@@ -100,7 +100,7 @@ pub struct select_cursor_input_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window,
+    window :         ffi::xproto::window,
     event_mask :     u32
 }
 
@@ -167,7 +167,7 @@ pub struct create_region_from_bitmap_request {
     minor_opcode :   u8,
     length :         u16,
     region :         region,
-    bitmap :         ll::xproto::pixmap
+    bitmap :         ffi::xproto::pixmap
 }
 
 
@@ -177,8 +177,8 @@ pub struct create_region_from_window_request {
     minor_opcode :   u8,
     length :         u16,
     region :         region,
-    window :         ll::xproto::window,
-    kind :           ll::shape::kind,
+    window :         ffi::xproto::window,
+    kind :           ffi::shape::kind,
     pad0 :           [u8,..3]
 }
 
@@ -189,7 +189,7 @@ pub struct create_region_from_gc_request {
     minor_opcode :   u8,
     length :         u16,
     region :         region,
-    gc :             ll::xproto::gcontext
+    gc :             ffi::xproto::gcontext
 }
 
 
@@ -199,7 +199,7 @@ pub struct create_region_from_picture_request {
     minor_opcode :   u8,
     length :         u16,
     region :         region,
-    picture :        ll::render::picture
+    picture :        ffi::render::picture
 }
 
 
@@ -270,7 +270,7 @@ pub struct invert_region_request {
     minor_opcode :   u8,
     length :         u16,
     source :         region,
-    bounds :         ll::xproto::rectangle,
+    bounds :         ffi::xproto::rectangle,
     destination :    region
 }
 
@@ -314,7 +314,7 @@ pub struct fetch_region_reply {
     pad0 :            u8,
     sequence :        u16,
     length :          u32,
-    extents :         ll::xproto::rectangle,
+    extents :         ffi::xproto::rectangle,
     pad1 :            [u8,..16]
 }
 
@@ -324,7 +324,7 @@ pub struct set_gc_clip_region_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    gc :             ll::xproto::gcontext,
+    gc :             ffi::xproto::gcontext,
     region :         region,
     x_origin :       i16,
     y_origin :       i16
@@ -336,8 +336,8 @@ pub struct set_window_shape_region_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    dest :           ll::xproto::window,
-    dest_kind :      ll::shape::kind,
+    dest :           ffi::xproto::window,
+    dest_kind :      ffi::shape::kind,
     pad0 :           [u8,..3],
     x_offset :       i16,
     y_offset :       i16,
@@ -350,7 +350,7 @@ pub struct set_picture_clip_region_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    picture :        ll::render::picture,
+    picture :        ffi::render::picture,
     region :         region,
     x_origin :       i16,
     y_origin :       i16
@@ -362,7 +362,7 @@ pub struct set_cursor_name_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    cursor :         ll::xproto::cursor,
+    cursor :         ffi::xproto::cursor,
     nbytes :         u16,
     pad0 :           [u8,..2]
 }
@@ -377,7 +377,7 @@ pub struct get_cursor_name_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    cursor :         ll::xproto::cursor
+    cursor :         ffi::xproto::cursor
 }
 
 
@@ -386,7 +386,7 @@ pub struct get_cursor_name_reply {
     pad0 :            u8,
     sequence :        u16,
     length :          u32,
-    atom :            ll::xproto::atom,
+    atom :            ffi::xproto::atom,
     nbytes :          u16,
     pad1 :            [u8,..18]
 }
@@ -416,7 +416,7 @@ pub struct get_cursor_image_and_name_reply {
     xhot :            u16,
     yhot :            u16,
     cursor_serial :   u32,
-    cursor_atom :     ll::xproto::atom,
+    cursor_atom :     ffi::xproto::atom,
     nbytes :          u16,
     pad1 :            [u8,..2]
 }
@@ -427,8 +427,8 @@ pub struct change_cursor_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    source :         ll::xproto::cursor,
-    destination :    ll::xproto::cursor
+    source :         ffi::xproto::cursor,
+    destination :    ffi::xproto::cursor
 }
 
 
@@ -437,7 +437,7 @@ pub struct change_cursor_by_name_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    src :            ll::xproto::cursor,
+    src :            ffi::xproto::cursor,
     nbytes :         u16,
     pad0 :           [u8,..2]
 }
@@ -462,7 +462,7 @@ pub struct hide_cursor_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window
+    window :         ffi::xproto::window
 }
 
 
@@ -471,7 +471,7 @@ pub struct show_cursor_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window
+    window :         ffi::xproto::window
 }
 
 #[link_args="-lxcb-xfixes"]
@@ -537,7 +537,7 @@ pub unsafe fn xcb_xfixes_change_save_set_checked (c : *connection,
                                               mode :  u8,
                                               target :  u8,
                                               map :  u8,
-                                              window :  ll::xproto::window) -> void_cookie;
+                                              window :  ffi::xproto::window) -> void_cookie;
 
 /**
  *
@@ -551,7 +551,7 @@ pub unsafe fn xcb_xfixes_change_save_set (c : *connection,
                                       mode :  u8,
                                       target :  u8,
                                       map :  u8,
-                                      window :  ll::xproto::window) -> void_cookie;
+                                      window :  ffi::xproto::window) -> void_cookie;
 
 /**
  *
@@ -565,8 +565,8 @@ pub unsafe fn xcb_xfixes_change_save_set (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_xfixes_select_selection_input_checked (c : *connection,
-                                                     window :  ll::xproto::window,
-                                                     selection :  ll::xproto::atom,
+                                                     window :  ffi::xproto::window,
+                                                     selection :  ffi::xproto::atom,
                                                      event_mask :  u32) -> void_cookie;
 
 /**
@@ -578,8 +578,8 @@ pub unsafe fn xcb_xfixes_select_selection_input_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_xfixes_select_selection_input (c : *connection,
-                                             window :  ll::xproto::window,
-                                             selection :  ll::xproto::atom,
+                                             window :  ffi::xproto::window,
+                                             selection :  ffi::xproto::atom,
                                              event_mask :  u32) -> void_cookie;
 
 /**
@@ -594,7 +594,7 @@ pub unsafe fn xcb_xfixes_select_selection_input (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_xfixes_select_cursor_input_checked (c : *connection,
-                                                  window :  ll::xproto::window,
+                                                  window :  ffi::xproto::window,
                                                   event_mask :  u32) -> void_cookie;
 
 /**
@@ -606,7 +606,7 @@ pub unsafe fn xcb_xfixes_select_cursor_input_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_xfixes_select_cursor_input (c : *connection,
-                                          window :  ll::xproto::window,
+                                          window :  ffi::xproto::window,
                                           event_mask :  u32) -> void_cookie;
 
 pub unsafe fn xcb_xfixes_get_cursor_image_sizeof (_buffer :  *c_void) -> c_int;
@@ -700,7 +700,7 @@ pub unsafe fn xcb_xfixes_create_region_sizeof (_buffer :  *c_void,
 pub unsafe fn xcb_xfixes_create_region_checked (c : *connection,
                                             region :  region,
                                             rectangles_len :  u32,
-                                            rectangles : *ll::xproto::rectangle) -> void_cookie;
+                                            rectangles : *ffi::xproto::rectangle) -> void_cookie;
 
 /**
  *
@@ -713,7 +713,7 @@ pub unsafe fn xcb_xfixes_create_region_checked (c : *connection,
 pub unsafe fn xcb_xfixes_create_region (c : *connection,
                                     region :  region,
                                     rectangles_len :  u32,
-                                    rectangles : *ll::xproto::rectangle) -> void_cookie;
+                                    rectangles : *ffi::xproto::rectangle) -> void_cookie;
 
 /**
  *
@@ -728,7 +728,7 @@ pub unsafe fn xcb_xfixes_create_region (c : *connection,
  */
 pub unsafe fn xcb_xfixes_create_region_from_bitmap_checked (c : *connection,
                                                         region :  region,
-                                                        bitmap :  ll::xproto::pixmap) -> void_cookie;
+                                                        bitmap :  ffi::xproto::pixmap) -> void_cookie;
 
 /**
  *
@@ -740,7 +740,7 @@ pub unsafe fn xcb_xfixes_create_region_from_bitmap_checked (c : *connection,
  */
 pub unsafe fn xcb_xfixes_create_region_from_bitmap (c : *connection,
                                                 region :  region,
-                                                bitmap :  ll::xproto::pixmap) -> void_cookie;
+                                                bitmap :  ffi::xproto::pixmap) -> void_cookie;
 
 /**
  *
@@ -755,8 +755,8 @@ pub unsafe fn xcb_xfixes_create_region_from_bitmap (c : *connection,
  */
 pub unsafe fn xcb_xfixes_create_region_from_window_checked (c : *connection,
                                                         region :  region,
-                                                        window :  ll::xproto::window,
-                                                        kind :  ll::shape::kind) -> void_cookie;
+                                                        window :  ffi::xproto::window,
+                                                        kind :  ffi::shape::kind) -> void_cookie;
 
 /**
  *
@@ -768,8 +768,8 @@ pub unsafe fn xcb_xfixes_create_region_from_window_checked (c : *connection,
  */
 pub unsafe fn xcb_xfixes_create_region_from_window (c : *connection,
                                                 region :  region,
-                                                window :  ll::xproto::window,
-                                                kind :  ll::shape::kind) -> void_cookie;
+                                                window :  ffi::xproto::window,
+                                                kind :  ffi::shape::kind) -> void_cookie;
 
 /**
  *
@@ -784,7 +784,7 @@ pub unsafe fn xcb_xfixes_create_region_from_window (c : *connection,
  */
 pub unsafe fn xcb_xfixes_create_region_from_gc_checked (c : *connection,
                                                     region :  region,
-                                                    gc :  ll::xproto::gcontext) -> void_cookie;
+                                                    gc :  ffi::xproto::gcontext) -> void_cookie;
 
 /**
  *
@@ -796,7 +796,7 @@ pub unsafe fn xcb_xfixes_create_region_from_gc_checked (c : *connection,
  */
 pub unsafe fn xcb_xfixes_create_region_from_gc (c : *connection,
                                             region :  region,
-                                            gc :  ll::xproto::gcontext) -> void_cookie;
+                                            gc :  ffi::xproto::gcontext) -> void_cookie;
 
 /**
  *
@@ -811,7 +811,7 @@ pub unsafe fn xcb_xfixes_create_region_from_gc (c : *connection,
  */
 pub unsafe fn xcb_xfixes_create_region_from_picture_checked (c : *connection,
                                                          region :  region,
-                                                         picture :  ll::render::picture) -> void_cookie;
+                                                         picture :  ffi::render::picture) -> void_cookie;
 
 /**
  *
@@ -823,7 +823,7 @@ pub unsafe fn xcb_xfixes_create_region_from_picture_checked (c : *connection,
  */
 pub unsafe fn xcb_xfixes_create_region_from_picture (c : *connection,
                                                  region :  region,
-                                                 picture :  ll::render::picture) -> void_cookie;
+                                                 picture :  ffi::render::picture) -> void_cookie;
 
 /**
  *
@@ -867,7 +867,7 @@ pub unsafe fn xcb_xfixes_set_region_sizeof (_buffer :  *c_void,
 pub unsafe fn xcb_xfixes_set_region_checked (c : *connection,
                                          region :  region,
                                          rectangles_len :  u32,
-                                         rectangles : *ll::xproto::rectangle) -> void_cookie;
+                                         rectangles : *ffi::xproto::rectangle) -> void_cookie;
 
 /**
  *
@@ -880,7 +880,7 @@ pub unsafe fn xcb_xfixes_set_region_checked (c : *connection,
 pub unsafe fn xcb_xfixes_set_region (c : *connection,
                                  region :  region,
                                  rectangles_len :  u32,
-                                 rectangles : *ll::xproto::rectangle) -> void_cookie;
+                                 rectangles : *ffi::xproto::rectangle) -> void_cookie;
 
 /**
  *
@@ -1009,7 +1009,7 @@ pub unsafe fn xcb_xfixes_subtract_region (c : *connection,
  */
 pub unsafe fn xcb_xfixes_invert_region_checked (c : *connection,
                                             source :  region,
-                                            bounds :  ll::xproto::rectangle,
+                                            bounds :  ffi::xproto::rectangle,
                                             destination :  region) -> void_cookie;
 
 /**
@@ -1022,7 +1022,7 @@ pub unsafe fn xcb_xfixes_invert_region_checked (c : *connection,
  */
 pub unsafe fn xcb_xfixes_invert_region (c : *connection,
                                     source :  region,
-                                    bounds :  ll::xproto::rectangle,
+                                    bounds :  ffi::xproto::rectangle,
                                     destination :  region) -> void_cookie;
 
 /**
@@ -1108,12 +1108,12 @@ pub unsafe fn xcb_xfixes_fetch_region (c : *connection,
 pub unsafe fn xcb_xfixes_fetch_region_unchecked (c : *connection,
                                              region :  region) -> fetch_region_cookie;
 
-pub unsafe fn xcb_xfixes_fetch_region_rectangles (R : *fetch_region_reply) -> *ll::xproto::rectangle;
+pub unsafe fn xcb_xfixes_fetch_region_rectangles (R : *fetch_region_reply) -> *ffi::xproto::rectangle;
 
 
 pub unsafe fn xcb_xfixes_fetch_region_rectangles_length (R : *fetch_region_reply) -> c_int;
 
-pub unsafe fn xcb_xfixes_fetch_region_rectangles_iterator (R : *fetch_region_reply) -> ll::xproto::rectangle_iterator;
+pub unsafe fn xcb_xfixes_fetch_region_rectangles_iterator (R : *fetch_region_reply) -> ffi::xproto::rectangle_iterator;
 
 /**
  * Return the reply
@@ -1145,7 +1145,7 @@ pub unsafe fn xcb_xfixes_fetch_region_reply (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_xfixes_set_gc_clip_region_checked (c : *connection,
-                                                 gc :  ll::xproto::gcontext,
+                                                 gc :  ffi::xproto::gcontext,
                                                  region :  region,
                                                  x_origin :  i16,
                                                  y_origin :  i16) -> void_cookie;
@@ -1159,7 +1159,7 @@ pub unsafe fn xcb_xfixes_set_gc_clip_region_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_xfixes_set_gc_clip_region (c : *connection,
-                                         gc :  ll::xproto::gcontext,
+                                         gc :  ffi::xproto::gcontext,
                                          region :  region,
                                          x_origin :  i16,
                                          y_origin :  i16) -> void_cookie;
@@ -1176,8 +1176,8 @@ pub unsafe fn xcb_xfixes_set_gc_clip_region (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_xfixes_set_window_shape_region_checked (c : *connection,
-                                                      dest :  ll::xproto::window,
-                                                      dest_kind :  ll::shape::kind,
+                                                      dest :  ffi::xproto::window,
+                                                      dest_kind :  ffi::shape::kind,
                                                       x_offset :  i16,
                                                       y_offset :  i16,
                                                       region :  region) -> void_cookie;
@@ -1191,8 +1191,8 @@ pub unsafe fn xcb_xfixes_set_window_shape_region_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_xfixes_set_window_shape_region (c : *connection,
-                                              dest :  ll::xproto::window,
-                                              dest_kind :  ll::shape::kind,
+                                              dest :  ffi::xproto::window,
+                                              dest_kind :  ffi::shape::kind,
                                               x_offset :  i16,
                                               y_offset :  i16,
                                               region :  region) -> void_cookie;
@@ -1209,7 +1209,7 @@ pub unsafe fn xcb_xfixes_set_window_shape_region (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_xfixes_set_picture_clip_region_checked (c : *connection,
-                                                      picture :  ll::render::picture,
+                                                      picture :  ffi::render::picture,
                                                       region :  region,
                                                       x_origin :  i16,
                                                       y_origin :  i16) -> void_cookie;
@@ -1223,7 +1223,7 @@ pub unsafe fn xcb_xfixes_set_picture_clip_region_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_xfixes_set_picture_clip_region (c : *connection,
-                                              picture :  ll::render::picture,
+                                              picture :  ffi::render::picture,
                                               region :  region,
                                               x_origin :  i16,
                                               y_origin :  i16) -> void_cookie;
@@ -1242,7 +1242,7 @@ pub unsafe fn xcb_xfixes_set_cursor_name_sizeof (_buffer :  *c_void) -> c_int;
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_xfixes_set_cursor_name_checked (c : *connection,
-                                              cursor :  ll::xproto::cursor,
+                                              cursor :  ffi::xproto::cursor,
                                               nbytes :  u16,
                                               name : *c_char) -> void_cookie;
 
@@ -1255,7 +1255,7 @@ pub unsafe fn xcb_xfixes_set_cursor_name_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_xfixes_set_cursor_name (c : *connection,
-                                      cursor :  ll::xproto::cursor,
+                                      cursor :  ffi::xproto::cursor,
                                       nbytes :  u16,
                                       name : *c_char) -> void_cookie;
 
@@ -1270,7 +1270,7 @@ pub unsafe fn xcb_xfixes_get_cursor_name_sizeof (_buffer :  *c_void) -> c_int;
  * 
  */
 pub unsafe fn xcb_xfixes_get_cursor_name (c : *connection,
-                                      cursor :  ll::xproto::cursor) -> get_cursor_name_cookie;
+                                      cursor :  ffi::xproto::cursor) -> get_cursor_name_cookie;
 
 /**
  *
@@ -1284,7 +1284,7 @@ pub unsafe fn xcb_xfixes_get_cursor_name (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_xfixes_get_cursor_name_unchecked (c : *connection,
-                                                cursor :  ll::xproto::cursor) -> get_cursor_name_cookie;
+                                                cursor :  ffi::xproto::cursor) -> get_cursor_name_cookie;
 
 pub unsafe fn xcb_xfixes_get_cursor_name_name (R : *get_cursor_name_reply) -> *c_char;
 
@@ -1383,8 +1383,8 @@ pub unsafe fn xcb_xfixes_get_cursor_image_and_name_reply (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_xfixes_change_cursor_checked (c : *connection,
-                                            source :  ll::xproto::cursor,
-                                            destination :  ll::xproto::cursor) -> void_cookie;
+                                            source :  ffi::xproto::cursor,
+                                            destination :  ffi::xproto::cursor) -> void_cookie;
 
 /**
  *
@@ -1395,8 +1395,8 @@ pub unsafe fn xcb_xfixes_change_cursor_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_xfixes_change_cursor (c : *connection,
-                                    source :  ll::xproto::cursor,
-                                    destination :  ll::xproto::cursor) -> void_cookie;
+                                    source :  ffi::xproto::cursor,
+                                    destination :  ffi::xproto::cursor) -> void_cookie;
 
 pub unsafe fn xcb_xfixes_change_cursor_by_name_sizeof (_buffer :  *c_void) -> c_int;
 
@@ -1412,7 +1412,7 @@ pub unsafe fn xcb_xfixes_change_cursor_by_name_sizeof (_buffer :  *c_void) -> c_
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_xfixes_change_cursor_by_name_checked (c : *connection,
-                                                    src :  ll::xproto::cursor,
+                                                    src :  ffi::xproto::cursor,
                                                     nbytes :  u16,
                                                     name : *c_char) -> void_cookie;
 
@@ -1425,7 +1425,7 @@ pub unsafe fn xcb_xfixes_change_cursor_by_name_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_xfixes_change_cursor_by_name (c : *connection,
-                                            src :  ll::xproto::cursor,
+                                            src :  ffi::xproto::cursor,
                                             nbytes :  u16,
                                             name : *c_char) -> void_cookie;
 
@@ -1476,7 +1476,7 @@ pub unsafe fn xcb_xfixes_expand_region (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_xfixes_hide_cursor_checked (c : *connection,
-                                          window :  ll::xproto::window) -> void_cookie;
+                                          window :  ffi::xproto::window) -> void_cookie;
 
 /**
  *
@@ -1487,7 +1487,7 @@ pub unsafe fn xcb_xfixes_hide_cursor_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_xfixes_hide_cursor (c : *connection,
-                                  window :  ll::xproto::window) -> void_cookie;
+                                  window :  ffi::xproto::window) -> void_cookie;
 
 /**
  *
@@ -1501,7 +1501,7 @@ pub unsafe fn xcb_xfixes_hide_cursor (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_xfixes_show_cursor_checked (c : *connection,
-                                          window :  ll::xproto::window) -> void_cookie;
+                                          window :  ffi::xproto::window) -> void_cookie;
 
 /**
  *
@@ -1512,6 +1512,6 @@ pub unsafe fn xcb_xfixes_show_cursor_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_xfixes_show_cursor (c : *connection,
-                                  window :  ll::xproto::window) -> void_cookie;
+                                  window :  ffi::xproto::window) -> void_cookie;
 }
 

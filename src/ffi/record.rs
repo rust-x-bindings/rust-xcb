@@ -10,8 +10,8 @@ use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
 use std::to_bytes::ToBytes;
-use ll::base::*;
-use ll;
+use ffi::base::*;
+use ffi;
 
 pub static RECORD_MAJOR_VERSION : c_uint = 1;
 pub static RECORD_MINOR_VERSION : c_uint = 13;

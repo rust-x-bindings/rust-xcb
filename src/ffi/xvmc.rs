@@ -10,11 +10,11 @@ use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
 use std::to_bytes::ToBytes;
-use ll::base::*;
-use ll;
-use ll::xproto;
-use ll::shm;
-use ll::xv;
+use ffi::base::*;
+use ffi;
+use ffi::xproto;
+use ffi::shm;
+use ffi::xv;
 
 pub static XVMC_MAJOR_VERSION : c_uint = 1;
 pub static XVMC_MINOR_VERSION : c_uint = 1;
@@ -105,7 +105,7 @@ pub struct list_surface_types_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    port_id :        ll::xv::port
+    port_id :        ffi::xv::port
 }
 
 
@@ -129,7 +129,7 @@ pub struct create_context_request {
     minor_opcode :   u8,
     length :         u16,
     context_id :     context,
-    port_id :        ll::xv::port,
+    port_id :        ffi::xv::port,
     surface_id :     surface,
     width :          u16,
     height :         u16,
@@ -239,7 +239,7 @@ pub struct list_subpicture_types_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    port_id :        ll::xv::port,
+    port_id :        ffi::xv::port,
     surface_id :     surface
 }
 
@@ -400,7 +400,7 @@ pub unsafe fn xcb_xvmc_list_surface_types_sizeof (_buffer :  *c_void) -> c_int;
  * 
  */
 pub unsafe fn xcb_xvmc_list_surface_types (c : *connection,
-                                       port_id :  ll::xv::port) -> list_surface_types_cookie;
+                                       port_id :  ffi::xv::port) -> list_surface_types_cookie;
 
 /**
  *
@@ -414,7 +414,7 @@ pub unsafe fn xcb_xvmc_list_surface_types (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_xvmc_list_surface_types_unchecked (c : *connection,
-                                                 port_id :  ll::xv::port) -> list_surface_types_cookie;
+                                                 port_id :  ffi::xv::port) -> list_surface_types_cookie;
 
 pub unsafe fn xcb_xvmc_list_surface_types_surfaces (R : *list_surface_types_reply) -> *surface_info;
 
@@ -453,7 +453,7 @@ pub unsafe fn xcb_xvmc_create_context_sizeof (_buffer :  *c_void) -> c_int;
  */
 pub unsafe fn xcb_xvmc_create_context (c : *connection,
                                    context_id :  context,
-                                   port_id :  ll::xv::port,
+                                   port_id :  ffi::xv::port,
                                    surface_id :  surface,
                                    width :  u16,
                                    height :  u16,
@@ -472,7 +472,7 @@ pub unsafe fn xcb_xvmc_create_context (c : *connection,
  */
 pub unsafe fn xcb_xvmc_create_context_unchecked (c : *connection,
                                              context_id :  context,
-                                             port_id :  ll::xv::port,
+                                             port_id :  ffi::xv::port,
                                              surface_id :  surface,
                                              width :  u16,
                                              height :  u16,
@@ -706,7 +706,7 @@ pub unsafe fn xcb_xvmc_list_subpicture_types_sizeof (_buffer :  *c_void) -> c_in
  * 
  */
 pub unsafe fn xcb_xvmc_list_subpicture_types (c : *connection,
-                                          port_id :  ll::xv::port,
+                                          port_id :  ffi::xv::port,
                                           surface_id :  surface) -> list_subpicture_types_cookie;
 
 /**
@@ -721,15 +721,15 @@ pub unsafe fn xcb_xvmc_list_subpicture_types (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_xvmc_list_subpicture_types_unchecked (c : *connection,
-                                                    port_id :  ll::xv::port,
+                                                    port_id :  ffi::xv::port,
                                                     surface_id :  surface) -> list_subpicture_types_cookie;
 
-pub unsafe fn xcb_xvmc_list_subpicture_types_types (R : *list_subpicture_types_reply) -> *ll::xv::image_format_info;
+pub unsafe fn xcb_xvmc_list_subpicture_types_types (R : *list_subpicture_types_reply) -> *ffi::xv::image_format_info;
 
 
 pub unsafe fn xcb_xvmc_list_subpicture_types_types_length (R : *list_subpicture_types_reply) -> c_int;
 
-pub unsafe fn xcb_xvmc_list_subpicture_types_types_iterator (R : *list_subpicture_types_reply) -> ll::xv::image_format_info_iterator;
+pub unsafe fn xcb_xvmc_list_subpicture_types_types_iterator (R : *list_subpicture_types_reply) -> ffi::xv::image_format_info_iterator;
 
 /**
  * Return the reply

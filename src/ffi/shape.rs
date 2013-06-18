@@ -10,9 +10,9 @@ use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
 use std::to_bytes::ToBytes;
-use ll::base::*;
-use ll;
-use ll::xproto;
+use ffi::base::*;
+use ffi;
+use ffi::xproto;
 
 pub static SHAPE_MAJOR_VERSION : c_uint = 1;
 pub static SHAPE_MINOR_VERSION : c_uint = 1;
@@ -44,12 +44,12 @@ pub struct notify_event {
     response_type :     u8,
     shape_kind :        kind,
     sequence :          u16,
-    affected_window :   ll::xproto::window,
+    affected_window :   ffi::xproto::window,
     extents_x :         i16,
     extents_y :         i16,
     extents_width :     u16,
     extents_height :    u16,
-    server_time :       ll::xproto::timestamp,
+    server_time :       ffi::xproto::timestamp,
     shaped :            u8,
     pad0 :              [u8,..11]
 }
@@ -86,7 +86,7 @@ pub struct rectangles_request {
     destination_kind :     kind,
     ordering :             u8,
     pad0 :                 u8,
-    destination_window :   ll::xproto::window,
+    destination_window :   ffi::xproto::window,
     x_offset :             i16,
     y_offset :             i16
 }
@@ -100,10 +100,10 @@ pub struct mask_request {
     operation :            op,
     destination_kind :     kind,
     pad0 :                 [u8,..2],
-    destination_window :   ll::xproto::window,
+    destination_window :   ffi::xproto::window,
     x_offset :             i16,
     y_offset :             i16,
-    source_bitmap :        ll::xproto::pixmap
+    source_bitmap :        ffi::xproto::pixmap
 }
 
 
@@ -116,10 +116,10 @@ pub struct combine_request {
     destination_kind :     kind,
     source_kind :          kind,
     pad0 :                 u8,
-    destination_window :   ll::xproto::window,
+    destination_window :   ffi::xproto::window,
     x_offset :             i16,
     y_offset :             i16,
-    source_window :        ll::xproto::window
+    source_window :        ffi::xproto::window
 }
 
 
@@ -130,7 +130,7 @@ pub struct offset_request {
     length :               u16,
     destination_kind :     kind,
     pad0 :                 [u8,..3],
-    destination_window :   ll::xproto::window,
+    destination_window :   ffi::xproto::window,
     x_offset :             i16,
     y_offset :             i16
 }
@@ -145,7 +145,7 @@ pub struct query_extents_request {
     major_opcode :         u8,
     minor_opcode :         u8,
     length :               u16,
-    destination_window :   ll::xproto::window
+    destination_window :   ffi::xproto::window
 }
 
 
@@ -173,7 +173,7 @@ pub struct select_input_request {
     major_opcode :         u8,
     minor_opcode :         u8,
     length :               u16,
-    destination_window :   ll::xproto::window,
+    destination_window :   ffi::xproto::window,
     enable :               u8,
     pad0 :                 [u8,..3]
 }
@@ -188,7 +188,7 @@ pub struct input_selected_request {
     major_opcode :         u8,
     minor_opcode :         u8,
     length :               u16,
-    destination_window :   ll::xproto::window
+    destination_window :   ffi::xproto::window
 }
 
 
@@ -209,7 +209,7 @@ pub struct get_rectangles_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window,
+    window :         ffi::xproto::window,
     source_kind :    kind,
     pad0 :           [u8,..3]
 }
@@ -332,11 +332,11 @@ pub unsafe fn xcb_shape_rectangles_checked (c : *connection,
                                         operation :  op,
                                         destination_kind :  kind,
                                         ordering :  u8,
-                                        destination_window :  ll::xproto::window,
+                                        destination_window :  ffi::xproto::window,
                                         x_offset :  i16,
                                         y_offset :  i16,
                                         rectangles_len :  u32,
-                                        rectangles : *ll::xproto::rectangle) -> void_cookie;
+                                        rectangles : *ffi::xproto::rectangle) -> void_cookie;
 
 /**
  *
@@ -350,11 +350,11 @@ pub unsafe fn xcb_shape_rectangles (c : *connection,
                                 operation :  op,
                                 destination_kind :  kind,
                                 ordering :  u8,
-                                destination_window :  ll::xproto::window,
+                                destination_window :  ffi::xproto::window,
                                 x_offset :  i16,
                                 y_offset :  i16,
                                 rectangles_len :  u32,
-                                rectangles : *ll::xproto::rectangle) -> void_cookie;
+                                rectangles : *ffi::xproto::rectangle) -> void_cookie;
 
 /**
  *
@@ -370,10 +370,10 @@ pub unsafe fn xcb_shape_rectangles (c : *connection,
 pub unsafe fn xcb_shape_mask_checked (c : *connection,
                                   operation :  op,
                                   destination_kind :  kind,
-                                  destination_window :  ll::xproto::window,
+                                  destination_window :  ffi::xproto::window,
                                   x_offset :  i16,
                                   y_offset :  i16,
-                                  source_bitmap :  ll::xproto::pixmap) -> void_cookie;
+                                  source_bitmap :  ffi::xproto::pixmap) -> void_cookie;
 
 /**
  *
@@ -386,10 +386,10 @@ pub unsafe fn xcb_shape_mask_checked (c : *connection,
 pub unsafe fn xcb_shape_mask (c : *connection,
                           operation :  op,
                           destination_kind :  kind,
-                          destination_window :  ll::xproto::window,
+                          destination_window :  ffi::xproto::window,
                           x_offset :  i16,
                           y_offset :  i16,
-                          source_bitmap :  ll::xproto::pixmap) -> void_cookie;
+                          source_bitmap :  ffi::xproto::pixmap) -> void_cookie;
 
 /**
  *
@@ -406,10 +406,10 @@ pub unsafe fn xcb_shape_combine_checked (c : *connection,
                                      operation :  op,
                                      destination_kind :  kind,
                                      source_kind :  kind,
-                                     destination_window :  ll::xproto::window,
+                                     destination_window :  ffi::xproto::window,
                                      x_offset :  i16,
                                      y_offset :  i16,
-                                     source_window :  ll::xproto::window) -> void_cookie;
+                                     source_window :  ffi::xproto::window) -> void_cookie;
 
 /**
  *
@@ -423,10 +423,10 @@ pub unsafe fn xcb_shape_combine (c : *connection,
                              operation :  op,
                              destination_kind :  kind,
                              source_kind :  kind,
-                             destination_window :  ll::xproto::window,
+                             destination_window :  ffi::xproto::window,
                              x_offset :  i16,
                              y_offset :  i16,
-                             source_window :  ll::xproto::window) -> void_cookie;
+                             source_window :  ffi::xproto::window) -> void_cookie;
 
 /**
  *
@@ -441,7 +441,7 @@ pub unsafe fn xcb_shape_combine (c : *connection,
  */
 pub unsafe fn xcb_shape_offset_checked (c : *connection,
                                     destination_kind :  kind,
-                                    destination_window :  ll::xproto::window,
+                                    destination_window :  ffi::xproto::window,
                                     x_offset :  i16,
                                     y_offset :  i16) -> void_cookie;
 
@@ -455,7 +455,7 @@ pub unsafe fn xcb_shape_offset_checked (c : *connection,
  */
 pub unsafe fn xcb_shape_offset (c : *connection,
                             destination_kind :  kind,
-                            destination_window :  ll::xproto::window,
+                            destination_window :  ffi::xproto::window,
                             x_offset :  i16,
                             y_offset :  i16) -> void_cookie;
 
@@ -468,7 +468,7 @@ pub unsafe fn xcb_shape_offset (c : *connection,
  * 
  */
 pub unsafe fn xcb_shape_query_extents (c : *connection,
-                                   destination_window :  ll::xproto::window) -> query_extents_cookie;
+                                   destination_window :  ffi::xproto::window) -> query_extents_cookie;
 
 /**
  *
@@ -482,7 +482,7 @@ pub unsafe fn xcb_shape_query_extents (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_shape_query_extents_unchecked (c : *connection,
-                                             destination_window :  ll::xproto::window) -> query_extents_cookie;
+                                             destination_window :  ffi::xproto::window) -> query_extents_cookie;
 
 /**
  * Return the reply
@@ -514,7 +514,7 @@ pub unsafe fn xcb_shape_query_extents_reply (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_shape_select_input_checked (c : *connection,
-                                          destination_window :  ll::xproto::window,
+                                          destination_window :  ffi::xproto::window,
                                           enable :  u8) -> void_cookie;
 
 /**
@@ -526,7 +526,7 @@ pub unsafe fn xcb_shape_select_input_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_shape_select_input (c : *connection,
-                                  destination_window :  ll::xproto::window,
+                                  destination_window :  ffi::xproto::window,
                                   enable :  u8) -> void_cookie;
 
 /**
@@ -538,7 +538,7 @@ pub unsafe fn xcb_shape_select_input (c : *connection,
  * 
  */
 pub unsafe fn xcb_shape_input_selected (c : *connection,
-                                    destination_window :  ll::xproto::window) -> input_selected_cookie;
+                                    destination_window :  ffi::xproto::window) -> input_selected_cookie;
 
 /**
  *
@@ -552,7 +552,7 @@ pub unsafe fn xcb_shape_input_selected (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_shape_input_selected_unchecked (c : *connection,
-                                              destination_window :  ll::xproto::window) -> input_selected_cookie;
+                                              destination_window :  ffi::xproto::window) -> input_selected_cookie;
 
 /**
  * Return the reply
@@ -583,7 +583,7 @@ pub unsafe fn xcb_shape_get_rectangles_sizeof (_buffer :  *c_void) -> c_int;
  * 
  */
 pub unsafe fn xcb_shape_get_rectangles (c : *connection,
-                                    window :  ll::xproto::window,
+                                    window :  ffi::xproto::window,
                                     source_kind :  kind) -> get_rectangles_cookie;
 
 /**
@@ -598,15 +598,15 @@ pub unsafe fn xcb_shape_get_rectangles (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_shape_get_rectangles_unchecked (c : *connection,
-                                              window :  ll::xproto::window,
+                                              window :  ffi::xproto::window,
                                               source_kind :  kind) -> get_rectangles_cookie;
 
-pub unsafe fn xcb_shape_get_rectangles_rectangles (R : *get_rectangles_reply) -> *ll::xproto::rectangle;
+pub unsafe fn xcb_shape_get_rectangles_rectangles (R : *get_rectangles_reply) -> *ffi::xproto::rectangle;
 
 
 pub unsafe fn xcb_shape_get_rectangles_rectangles_length (R : *get_rectangles_reply) -> c_int;
 
-pub unsafe fn xcb_shape_get_rectangles_rectangles_iterator (R : *get_rectangles_reply) -> ll::xproto::rectangle_iterator;
+pub unsafe fn xcb_shape_get_rectangles_rectangles_iterator (R : *get_rectangles_reply) -> ffi::xproto::rectangle_iterator;
 
 /**
  * Return the reply

@@ -10,9 +10,9 @@ use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
 use std::to_bytes::ToBytes;
-use ll::base::*;
-use ll;
-use ll::xproto;
+use ffi::base::*;
+use ffi;
+use ffi::xproto;
 
 pub static TEST_MAJOR_VERSION : c_uint = 2;
 pub static TEST_MINOR_VERSION : c_uint = 1;
@@ -50,8 +50,8 @@ pub struct compare_cursor_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window,
-    cursor :         ll::xproto::cursor
+    window :         ffi::xproto::window,
+    cursor :         ffi::xproto::cursor
 }
 
 
@@ -72,7 +72,7 @@ pub struct fake_input_request {
     detail :         u8,
     pad0 :           [u8,..2],
     time :           u32,
-    root :           ll::xproto::window,
+    root :           ffi::xproto::window,
     pad1 :           [u8,..8],
     rootX :          i16,
     rootY :          i16,
@@ -147,8 +147,8 @@ pub unsafe fn xcb_test_get_version_reply (c : *connection,
  * 
  */
 pub unsafe fn xcb_test_compare_cursor (c : *connection,
-                                   window :  ll::xproto::window,
-                                   cursor :  ll::xproto::cursor) -> compare_cursor_cookie;
+                                   window :  ffi::xproto::window,
+                                   cursor :  ffi::xproto::cursor) -> compare_cursor_cookie;
 
 /**
  *
@@ -162,8 +162,8 @@ pub unsafe fn xcb_test_compare_cursor (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_test_compare_cursor_unchecked (c : *connection,
-                                             window :  ll::xproto::window,
-                                             cursor :  ll::xproto::cursor) -> compare_cursor_cookie;
+                                             window :  ffi::xproto::window,
+                                             cursor :  ffi::xproto::cursor) -> compare_cursor_cookie;
 
 /**
  * Return the reply
@@ -198,7 +198,7 @@ pub unsafe fn xcb_test_fake_input_checked (c : *connection,
                                        type_ :  u8,
                                        detail :  u8,
                                        time :  u32,
-                                       root :  ll::xproto::window,
+                                       root :  ffi::xproto::window,
                                        rootX :  i16,
                                        rootY :  i16,
                                        deviceid :  u8) -> void_cookie;
@@ -215,7 +215,7 @@ pub unsafe fn xcb_test_fake_input (c : *connection,
                                type_ :  u8,
                                detail :  u8,
                                time :  u32,
-                               root :  ll::xproto::window,
+                               root :  ffi::xproto::window,
                                rootX :  i16,
                                rootY :  i16,
                                deviceid :  u8) -> void_cookie;

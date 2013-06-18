@@ -10,8 +10,8 @@ use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
 use std::to_bytes::ToBytes;
-use ll::base::*;
-use ll;
+use ffi::base::*;
+use ffi;
 
 pub struct char2b {
     byte1 :   u8,

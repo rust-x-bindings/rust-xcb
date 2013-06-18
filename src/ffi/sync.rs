@@ -10,9 +10,9 @@ use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
 use std::to_bytes::ToBytes;
-use ll::base::*;
-use ll;
-use ll::xproto;
+use ffi::base::*;
+use ffi;
+use ffi::xproto;
 
 pub static SYNC_MAJOR_VERSION : c_uint = 3;
 pub static SYNC_MINOR_VERSION : c_uint = 1;
@@ -343,7 +343,7 @@ pub struct create_fence_request {
     major_opcode :          u8,
     minor_opcode :          u8,
     length :                u16,
-    drawable :              ll::xproto::drawable,
+    drawable :              ffi::xproto::drawable,
     fence :                 fence,
     initially_triggered :   u8
 }
@@ -415,7 +415,7 @@ pub struct counter_notify_event {
     counter :         counter,
     wait_value :      int64,
     counter_value :   int64,
-    timestamp :       ll::xproto::timestamp,
+    timestamp :       ffi::xproto::timestamp,
     count :           u16,
     destroyed :       u8,
     pad0 :            u8
@@ -430,7 +430,7 @@ pub struct alarm_notify_event {
     alarm :           alarm,
     counter_value :   int64,
     alarm_value :     int64,
-    timestamp :       ll::xproto::timestamp,
+    timestamp :       ffi::xproto::timestamp,
     state :           u8,
     pad0 :            [u8,..3]
 }
@@ -1093,7 +1093,7 @@ pub unsafe fn xcb_sync_get_priority_reply (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_sync_create_fence_checked (c : *connection,
-                                         drawable :  ll::xproto::drawable,
+                                         drawable :  ffi::xproto::drawable,
                                          fence :  fence,
                                          initially_triggered :  u8) -> void_cookie;
 
@@ -1106,7 +1106,7 @@ pub unsafe fn xcb_sync_create_fence_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_sync_create_fence (c : *connection,
-                                 drawable :  ll::xproto::drawable,
+                                 drawable :  ffi::xproto::drawable,
                                  fence :  fence,
                                  initially_triggered :  u8) -> void_cookie;
 

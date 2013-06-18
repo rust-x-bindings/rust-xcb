@@ -10,9 +10,9 @@ use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
 use std::to_bytes::ToBytes;
-use ll::base::*;
-use ll;
-use ll::xproto;
+use ffi::base::*;
+use ffi;
+use ffi::xproto;
 
 pub static SHM_MAJOR_VERSION : c_uint = 1;
 pub static SHM_MINOR_VERSION : c_uint = 1;
@@ -33,7 +33,7 @@ pub struct completion_event {
     response_type :   u8,
     pad0 :            u8,
     sequence :        u16,
-    drawable :        ll::xproto::drawable,
+    drawable :        ffi::xproto::drawable,
     minor_event :     u16,
     major_event :     u8,
     pad1 :            u8,
@@ -43,7 +43,7 @@ pub struct completion_event {
 
 
 
-pub type bad_seg_error  = ll::xproto::value_error;
+pub type bad_seg_error  = ffi::xproto::value_error;
 
 pub struct query_version_cookie {
     sequence : c_uint
@@ -97,8 +97,8 @@ pub struct put_image_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    drawable :       ll::xproto::drawable,
-    gc :             ll::xproto::gcontext,
+    drawable :       ffi::xproto::drawable,
+    gc :             ffi::xproto::gcontext,
     total_width :    u16,
     total_height :   u16,
     src_x :          u16,
@@ -125,7 +125,7 @@ pub struct get_image_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    drawable :       ll::xproto::drawable,
+    drawable :       ffi::xproto::drawable,
     x :              i16,
     y :              i16,
     width :          u16,
@@ -143,7 +143,7 @@ pub struct get_image_reply {
     depth :           u8,
     sequence :        u16,
     length :          u32,
-    visual :          ll::xproto::visualid,
+    visual :          ffi::xproto::visualid,
     size :            u32
 }
 
@@ -153,8 +153,8 @@ pub struct create_pixmap_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    pid :            ll::xproto::pixmap,
-    drawable :       ll::xproto::drawable,
+    pid :            ffi::xproto::pixmap,
+    drawable :       ffi::xproto::drawable,
     width :          u16,
     height :         u16,
     depth :          u8,
@@ -296,8 +296,8 @@ pub unsafe fn xcb_shm_detach (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_shm_put_image_checked (c : *connection,
-                                     drawable :  ll::xproto::drawable,
-                                     gc :  ll::xproto::gcontext,
+                                     drawable :  ffi::xproto::drawable,
+                                     gc :  ffi::xproto::gcontext,
                                      total_width :  u16,
                                      total_height :  u16,
                                      src_x :  u16,
@@ -321,8 +321,8 @@ pub unsafe fn xcb_shm_put_image_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_shm_put_image (c : *connection,
-                             drawable :  ll::xproto::drawable,
-                             gc :  ll::xproto::gcontext,
+                             drawable :  ffi::xproto::drawable,
+                             gc :  ffi::xproto::gcontext,
                              total_width :  u16,
                              total_height :  u16,
                              src_x :  u16,
@@ -346,7 +346,7 @@ pub unsafe fn xcb_shm_put_image (c : *connection,
  * 
  */
 pub unsafe fn xcb_shm_get_image (c : *connection,
-                             drawable :  ll::xproto::drawable,
+                             drawable :  ffi::xproto::drawable,
                              x :  i16,
                              y :  i16,
                              width :  u16,
@@ -368,7 +368,7 @@ pub unsafe fn xcb_shm_get_image (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_shm_get_image_unchecked (c : *connection,
-                                       drawable :  ll::xproto::drawable,
+                                       drawable :  ffi::xproto::drawable,
                                        x :  i16,
                                        y :  i16,
                                        width :  u16,
@@ -408,8 +408,8 @@ pub unsafe fn xcb_shm_get_image_reply (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_shm_create_pixmap_checked (c : *connection,
-                                         pid :  ll::xproto::pixmap,
-                                         drawable :  ll::xproto::drawable,
+                                         pid :  ffi::xproto::pixmap,
+                                         drawable :  ffi::xproto::drawable,
                                          width :  u16,
                                          height :  u16,
                                          depth :  u8,
@@ -425,8 +425,8 @@ pub unsafe fn xcb_shm_create_pixmap_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_shm_create_pixmap (c : *connection,
-                                 pid :  ll::xproto::pixmap,
-                                 drawable :  ll::xproto::drawable,
+                                 pid :  ffi::xproto::pixmap,
+                                 drawable :  ffi::xproto::drawable,
                                  width :  u16,
                                  height :  u16,
                                  depth :  u8,

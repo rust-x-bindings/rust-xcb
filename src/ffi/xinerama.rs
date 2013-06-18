@@ -10,9 +10,9 @@ use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
 use std::to_bytes::ToBytes;
-use ll::base::*;
-use ll;
-use ll::xproto;
+use ffi::base::*;
+use ffi;
+use ffi::xproto;
 
 pub static XINERAMA_MAJOR_VERSION : c_uint = 1;
 pub static XINERAMA_MINOR_VERSION : c_uint = 1;
@@ -67,7 +67,7 @@ pub struct get_state_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window
+    window :         ffi::xproto::window
 }
 
 
@@ -76,7 +76,7 @@ pub struct get_state_reply {
     state :           u8,
     sequence :        u16,
     length :          u32,
-    window :          ll::xproto::window
+    window :          ffi::xproto::window
 }
 
 
@@ -89,7 +89,7 @@ pub struct get_screen_count_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window
+    window :         ffi::xproto::window
 }
 
 
@@ -98,7 +98,7 @@ pub struct get_screen_count_reply {
     screen_count :    u8,
     sequence :        u16,
     length :          u32,
-    window :          ll::xproto::window
+    window :          ffi::xproto::window
 }
 
 
@@ -111,7 +111,7 @@ pub struct get_screen_size_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window,
+    window :         ffi::xproto::window,
     screen :         u32
 }
 
@@ -123,7 +123,7 @@ pub struct get_screen_size_reply {
     length :          u32,
     width :           u32,
     height :          u32,
-    window :          ll::xproto::window,
+    window :          ffi::xproto::window,
     screen :          u32
 }
 
@@ -250,7 +250,7 @@ pub unsafe fn xcb_xinerama_query_version_reply (c : *connection,
  * 
  */
 pub unsafe fn xcb_xinerama_get_state (c : *connection,
-                                  window :  ll::xproto::window) -> get_state_cookie;
+                                  window :  ffi::xproto::window) -> get_state_cookie;
 
 /**
  *
@@ -264,7 +264,7 @@ pub unsafe fn xcb_xinerama_get_state (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_xinerama_get_state_unchecked (c : *connection,
-                                            window :  ll::xproto::window) -> get_state_cookie;
+                                            window :  ffi::xproto::window) -> get_state_cookie;
 
 /**
  * Return the reply
@@ -293,7 +293,7 @@ pub unsafe fn xcb_xinerama_get_state_reply (c : *connection,
  * 
  */
 pub unsafe fn xcb_xinerama_get_screen_count (c : *connection,
-                                         window :  ll::xproto::window) -> get_screen_count_cookie;
+                                         window :  ffi::xproto::window) -> get_screen_count_cookie;
 
 /**
  *
@@ -307,7 +307,7 @@ pub unsafe fn xcb_xinerama_get_screen_count (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_xinerama_get_screen_count_unchecked (c : *connection,
-                                                   window :  ll::xproto::window) -> get_screen_count_cookie;
+                                                   window :  ffi::xproto::window) -> get_screen_count_cookie;
 
 /**
  * Return the reply
@@ -336,7 +336,7 @@ pub unsafe fn xcb_xinerama_get_screen_count_reply (c : *connection,
  * 
  */
 pub unsafe fn xcb_xinerama_get_screen_size (c : *connection,
-                                        window :  ll::xproto::window,
+                                        window :  ffi::xproto::window,
                                         screen :  u32) -> get_screen_size_cookie;
 
 /**
@@ -351,7 +351,7 @@ pub unsafe fn xcb_xinerama_get_screen_size (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_xinerama_get_screen_size_unchecked (c : *connection,
-                                                  window :  ll::xproto::window,
+                                                  window :  ffi::xproto::window,
                                                   screen :  u32) -> get_screen_size_cookie;
 
 /**

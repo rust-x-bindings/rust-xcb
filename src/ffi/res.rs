@@ -10,9 +10,9 @@ use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
 use std::to_bytes::ToBytes;
-use ll::base::*;
-use ll;
-use ll::xproto;
+use ffi::base::*;
+use ffi;
+use ffi::xproto;
 
 pub static RES_MAJOR_VERSION : c_uint = 1;
 pub static RES_MINOR_VERSION : c_uint = 0;
@@ -33,7 +33,7 @@ pub struct client_iterator {
 
 
 pub struct type_ {
-    resource_type :   ll::xproto::atom,
+    resource_type :   ffi::xproto::atom,
     count :           u32
 }
 

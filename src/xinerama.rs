@@ -10,11 +10,11 @@ use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
 use std::to_bytes::ToBytes;
-use ll::base::*;
+use ffi::base::*;
 use base;
 use base::*;
-use ll;
-use ll::xinerama::*;
+use ffi;
+use ffi::xinerama::*;
 use std::option::Option;
 use std::iterator::Iterator;
 
@@ -121,7 +121,7 @@ pub fn GetState<'r> (c : &'r Connection,
                  window : xproto::Window) -> GetStateCookie<'r> {
   unsafe {
     let cookie = xcb_xinerama_get_state(c.get_raw_conn(),
-        window as ll::xproto::window); //1
+        window as ffi::xproto::window); //1
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -129,7 +129,7 @@ pub fn GetStateUnchecked<'r> (c : &'r Connection,
                           window : xproto::Window) -> GetStateCookie<'r> {
   unsafe {
     let cookie = xcb_xinerama_get_state_unchecked(c.get_raw_conn(),
-        window as ll::xproto::window); //1
+        window as ffi::xproto::window); //1
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -150,7 +150,7 @@ pub fn GetScreenCount<'r> (c : &'r Connection,
                        window : xproto::Window) -> GetScreenCountCookie<'r> {
   unsafe {
     let cookie = xcb_xinerama_get_screen_count(c.get_raw_conn(),
-        window as ll::xproto::window); //1
+        window as ffi::xproto::window); //1
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -158,7 +158,7 @@ pub fn GetScreenCountUnchecked<'r> (c : &'r Connection,
                                 window : xproto::Window) -> GetScreenCountCookie<'r> {
   unsafe {
     let cookie = xcb_xinerama_get_screen_count_unchecked(c.get_raw_conn(),
-        window as ll::xproto::window); //1
+        window as ffi::xproto::window); //1
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -180,7 +180,7 @@ pub fn GetScreenSize<'r> (c : &'r Connection,
                       screen : u32) -> GetScreenSizeCookie<'r> {
   unsafe {
     let cookie = xcb_xinerama_get_screen_size(c.get_raw_conn(),
-        window as ll::xproto::window, //1
+        window as ffi::xproto::window, //1
         screen as u32); //2
     Cookie {cookie:cookie,conn:c,checked:false}
   }
@@ -190,7 +190,7 @@ pub fn GetScreenSizeUnchecked<'r> (c : &'r Connection,
                                screen : u32) -> GetScreenSizeCookie<'r> {
   unsafe {
     let cookie = xcb_xinerama_get_screen_size_unchecked(c.get_raw_conn(),
-        window as ll::xproto::window, //1
+        window as ffi::xproto::window, //1
         screen as u32); //2
     Cookie {cookie:cookie,conn:c,checked:false}
   }

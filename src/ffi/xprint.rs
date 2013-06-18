@@ -10,9 +10,9 @@ use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
 use std::to_bytes::ToBytes;
-use ll::base::*;
-use ll;
-use ll::xproto;
+use ffi::base::*;
+use ffi;
+use ffi::xproto;
 
 pub static XPRINT_MAJOR_VERSION : c_uint = 1;
 pub static XPRINT_MINOR_VERSION : c_uint = 0;
@@ -175,7 +175,7 @@ pub struct print_get_screen_of_context_reply {
     pad0 :            u8,
     sequence :        u16,
     length :          u32,
-    root :            ll::xproto::window
+    root :            ffi::xproto::window
 }
 
 
@@ -220,7 +220,7 @@ pub struct print_put_document_data_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    drawable :       ll::xproto::drawable,
+    drawable :       ffi::xproto::drawable,
     len_data :       u32,
     len_fmt :        u16,
     len_options :    u16
@@ -258,7 +258,7 @@ pub struct print_start_page_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window
+    window :         ffi::xproto::window
 }
 
 
@@ -999,7 +999,7 @@ pub unsafe fn xcb_x_print_print_put_document_data_sizeof (_buffer :  *c_void,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_x_print_print_put_document_data_checked (c : *connection,
-                                                       drawable :  ll::xproto::drawable,
+                                                       drawable :  ffi::xproto::drawable,
                                                        len_data :  u32,
                                                        len_fmt :  u16,
                                                        len_options :  u16,
@@ -1018,7 +1018,7 @@ pub unsafe fn xcb_x_print_print_put_document_data_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_x_print_print_put_document_data (c : *connection,
-                                               drawable :  ll::xproto::drawable,
+                                               drawable :  ffi::xproto::drawable,
                                                len_data :  u32,
                                                len_fmt :  u16,
                                                len_options :  u16,
@@ -1095,7 +1095,7 @@ pub unsafe fn xcb_x_print_print_get_document_data_reply (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_x_print_print_start_page_checked (c : *connection,
-                                                window :  ll::xproto::window) -> void_cookie;
+                                                window :  ffi::xproto::window) -> void_cookie;
 
 /**
  *
@@ -1106,7 +1106,7 @@ pub unsafe fn xcb_x_print_print_start_page_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_x_print_print_start_page (c : *connection,
-                                        window :  ll::xproto::window) -> void_cookie;
+                                        window :  ffi::xproto::window) -> void_cookie;
 
 /**
  *
@@ -1443,7 +1443,7 @@ pub unsafe fn xcb_x_print_print_query_screens (c : *connection) -> print_query_s
  */
 pub unsafe fn xcb_x_print_print_query_screens_unchecked (c : *connection) -> print_query_screens_cookie;
 
-pub unsafe fn xcb_x_print_print_query_screens_roots (R : *print_query_screens_reply) -> *ll::xproto::window;
+pub unsafe fn xcb_x_print_print_query_screens_roots (R : *print_query_screens_reply) -> *ffi::xproto::window;
 
 
 pub unsafe fn xcb_x_print_print_query_screens_roots_length (R : *print_query_screens_reply) -> c_int;

@@ -10,9 +10,9 @@ use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
 use std::to_bytes::ToBytes;
-use ll::base::*;
-use ll;
-use ll::xproto;
+use ffi::base::*;
+use ffi;
+use ffi::xproto;
 
 pub static SCREENSAVER_MAJOR_VERSION : c_uint = 1;
 pub static SCREENSAVER_MINOR_VERSION : c_uint = 1;
@@ -52,7 +52,7 @@ pub struct query_info_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    drawable :       ll::xproto::drawable
+    drawable :       ffi::xproto::drawable
 }
 
 
@@ -61,7 +61,7 @@ pub struct query_info_reply {
     state :                 u8,
     sequence :              u16,
     length :                u32,
-    saver_window :          ll::xproto::window,
+    saver_window :          ffi::xproto::window,
     ms_until_server :       u32,
     ms_since_user_input :   u32,
     event_mask :            u32,
@@ -75,7 +75,7 @@ pub struct select_input_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    drawable :       ll::xproto::drawable,
+    drawable :       ffi::xproto::drawable,
     event_mask :     u32
 }
 
@@ -85,7 +85,7 @@ pub struct set_attributes_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    drawable :       ll::xproto::drawable,
+    drawable :       ffi::xproto::drawable,
     x :              i16,
     y :              i16,
     width :          u16,
@@ -93,7 +93,7 @@ pub struct set_attributes_request {
     border_width :   u16,
     class :          u8,
     depth :          u8,
-    visual :         ll::xproto::visualid,
+    visual :         ffi::xproto::visualid,
     value_mask :     u32
 }
 
@@ -103,7 +103,7 @@ pub struct unset_attributes_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    drawable :       ll::xproto::drawable
+    drawable :       ffi::xproto::drawable
 }
 
 
@@ -125,9 +125,9 @@ pub struct notify_event {
     state :             u8,
     pad0 :              u8,
     sequence_number :   u16,
-    time :              ll::xproto::timestamp,
-    root :              ll::xproto::window,
-    window :            ll::xproto::window,
+    time :              ffi::xproto::timestamp,
+    root :              ffi::xproto::window,
+    window :            ffi::xproto::window,
     kind :              u8,
     forced :            u8,
     pad1 :              [u8,..14]
@@ -190,7 +190,7 @@ pub unsafe fn xcb_screensaver_query_version_reply (c : *connection,
  * 
  */
 pub unsafe fn xcb_screensaver_query_info (c : *connection,
-                                      drawable :  ll::xproto::drawable) -> query_info_cookie;
+                                      drawable :  ffi::xproto::drawable) -> query_info_cookie;
 
 /**
  *
@@ -204,7 +204,7 @@ pub unsafe fn xcb_screensaver_query_info (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_screensaver_query_info_unchecked (c : *connection,
-                                                drawable :  ll::xproto::drawable) -> query_info_cookie;
+                                                drawable :  ffi::xproto::drawable) -> query_info_cookie;
 
 /**
  * Return the reply
@@ -236,7 +236,7 @@ pub unsafe fn xcb_screensaver_query_info_reply (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_screensaver_select_input_checked (c : *connection,
-                                                drawable :  ll::xproto::drawable,
+                                                drawable :  ffi::xproto::drawable,
                                                 event_mask :  u32) -> void_cookie;
 
 /**
@@ -248,7 +248,7 @@ pub unsafe fn xcb_screensaver_select_input_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_screensaver_select_input (c : *connection,
-                                        drawable :  ll::xproto::drawable,
+                                        drawable :  ffi::xproto::drawable,
                                         event_mask :  u32) -> void_cookie;
 
 pub unsafe fn xcb_screensaver_set_attributes_sizeof (_buffer :  *c_void) -> c_int;
@@ -265,7 +265,7 @@ pub unsafe fn xcb_screensaver_set_attributes_sizeof (_buffer :  *c_void) -> c_in
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_screensaver_set_attributes_checked (c : *connection,
-                                                  drawable :  ll::xproto::drawable,
+                                                  drawable :  ffi::xproto::drawable,
                                                   x :  i16,
                                                   y :  i16,
                                                   width :  u16,
@@ -273,7 +273,7 @@ pub unsafe fn xcb_screensaver_set_attributes_checked (c : *connection,
                                                   border_width :  u16,
                                                   class :  u8,
                                                   depth :  u8,
-                                                  visual :  ll::xproto::visualid,
+                                                  visual :  ffi::xproto::visualid,
                                                   value_mask :  u32,
                                                   value_list : *u32) -> void_cookie;
 
@@ -286,7 +286,7 @@ pub unsafe fn xcb_screensaver_set_attributes_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_screensaver_set_attributes (c : *connection,
-                                          drawable :  ll::xproto::drawable,
+                                          drawable :  ffi::xproto::drawable,
                                           x :  i16,
                                           y :  i16,
                                           width :  u16,
@@ -294,7 +294,7 @@ pub unsafe fn xcb_screensaver_set_attributes (c : *connection,
                                           border_width :  u16,
                                           class :  u8,
                                           depth :  u8,
-                                          visual :  ll::xproto::visualid,
+                                          visual :  ffi::xproto::visualid,
                                           value_mask :  u32,
                                           value_list : *u32) -> void_cookie;
 
@@ -310,7 +310,7 @@ pub unsafe fn xcb_screensaver_set_attributes (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_screensaver_unset_attributes_checked (c : *connection,
-                                                    drawable :  ll::xproto::drawable) -> void_cookie;
+                                                    drawable :  ffi::xproto::drawable) -> void_cookie;
 
 /**
  *
@@ -321,7 +321,7 @@ pub unsafe fn xcb_screensaver_unset_attributes_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_screensaver_unset_attributes (c : *connection,
-                                            drawable :  ll::xproto::drawable) -> void_cookie;
+                                            drawable :  ffi::xproto::drawable) -> void_cookie;
 
 /**
  *

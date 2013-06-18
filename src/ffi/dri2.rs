@@ -10,9 +10,9 @@ use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
 use std::to_bytes::ToBytes;
-use ll::base::*;
-use ll;
-use ll::xproto;
+use ffi::base::*;
+use ffi;
+use ffi::xproto;
 
 pub static DRI2_MAJOR_VERSION : c_uint = 1;
 pub static DRI2_MINOR_VERSION : c_uint = 4;
@@ -83,7 +83,7 @@ pub struct connect_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window,
+    window :         ffi::xproto::window,
     driver_type :    u32
 }
 
@@ -108,7 +108,7 @@ pub struct authenticate_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window,
+    window :         ffi::xproto::window,
     magic :          u32
 }
 
@@ -127,7 +127,7 @@ pub struct create_drawable_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    drawable :       ll::xproto::drawable
+    drawable :       ffi::xproto::drawable
 }
 
 
@@ -136,7 +136,7 @@ pub struct destroy_drawable_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    drawable :       ll::xproto::drawable
+    drawable :       ffi::xproto::drawable
 }
 
 
@@ -149,7 +149,7 @@ pub struct get_buffers_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    drawable :       ll::xproto::drawable,
+    drawable :       ffi::xproto::drawable,
     count :          u32
 }
 
@@ -175,7 +175,7 @@ pub struct copy_region_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    drawable :       ll::xproto::drawable,
+    drawable :       ffi::xproto::drawable,
     region :         u32,
     dest :           u32,
     src :            u32
@@ -199,7 +199,7 @@ pub struct get_buffers_with_format_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    drawable :       ll::xproto::drawable,
+    drawable :       ffi::xproto::drawable,
     count :          u32
 }
 
@@ -225,7 +225,7 @@ pub struct swap_buffers_request {
     major_opcode :    u8,
     minor_opcode :    u8,
     length :          u16,
-    drawable :        ll::xproto::drawable,
+    drawable :        ffi::xproto::drawable,
     target_msc_hi :   u32,
     target_msc_lo :   u32,
     divisor_hi :      u32,
@@ -254,7 +254,7 @@ pub struct get_msc_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    drawable :       ll::xproto::drawable
+    drawable :       ffi::xproto::drawable
 }
 
 
@@ -281,7 +281,7 @@ pub struct wait_msc_request {
     major_opcode :    u8,
     minor_opcode :    u8,
     length :          u16,
-    drawable :        ll::xproto::drawable,
+    drawable :        ffi::xproto::drawable,
     target_msc_hi :   u32,
     target_msc_lo :   u32,
     divisor_hi :      u32,
@@ -314,7 +314,7 @@ pub struct wait_sbc_request {
     major_opcode :    u8,
     minor_opcode :    u8,
     length :          u16,
-    drawable :        ll::xproto::drawable,
+    drawable :        ffi::xproto::drawable,
     target_sbc_hi :   u32,
     target_sbc_lo :   u32
 }
@@ -339,7 +339,7 @@ pub struct swap_interval_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    drawable :       ll::xproto::drawable,
+    drawable :       ffi::xproto::drawable,
     interval :       u32
 }
 
@@ -353,7 +353,7 @@ pub struct get_param_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    drawable :       ll::xproto::drawable,
+    drawable :       ffi::xproto::drawable,
     param :          u32
 }
 
@@ -375,7 +375,7 @@ pub struct buffer_swap_complete_event {
     sequence :        u16,
     event_type :      u16,
     pad1 :            [u8,..2],
-    drawable :        ll::xproto::drawable,
+    drawable :        ffi::xproto::drawable,
     ust_hi :          u32,
     ust_lo :          u32,
     msc_hi :          u32,
@@ -389,7 +389,7 @@ pub struct invalidate_buffers_event {
     response_type :   u8,
     pad0 :            u8,
     sequence :        u16,
-    drawable :        ll::xproto::drawable
+    drawable :        ffi::xproto::drawable
 }
 
 #[link_args="-lxcb-dri2"]
@@ -497,7 +497,7 @@ pub unsafe fn xcb_dri2_connect_sizeof (_buffer :  *c_void) -> c_int;
  * 
  */
 pub unsafe fn xcb_dri2_connect (c : *connection,
-                            window :  ll::xproto::window,
+                            window :  ffi::xproto::window,
                             driver_type :  u32) -> connect_cookie;
 
 /**
@@ -512,7 +512,7 @@ pub unsafe fn xcb_dri2_connect (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_dri2_connect_unchecked (c : *connection,
-                                      window :  ll::xproto::window,
+                                      window :  ffi::xproto::window,
                                       driver_type :  u32) -> connect_cookie;
 
 pub unsafe fn xcb_dri2_connect_driver_name (R : *connect_reply) -> *c_char;
@@ -566,7 +566,7 @@ pub unsafe fn xcb_dri2_connect_reply (c : *connection,
  * 
  */
 pub unsafe fn xcb_dri2_authenticate (c : *connection,
-                                 window :  ll::xproto::window,
+                                 window :  ffi::xproto::window,
                                  magic :  u32) -> authenticate_cookie;
 
 /**
@@ -581,7 +581,7 @@ pub unsafe fn xcb_dri2_authenticate (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_dri2_authenticate_unchecked (c : *connection,
-                                           window :  ll::xproto::window,
+                                           window :  ffi::xproto::window,
                                            magic :  u32) -> authenticate_cookie;
 
 /**
@@ -614,7 +614,7 @@ pub unsafe fn xcb_dri2_authenticate_reply (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_dri2_create_drawable_checked (c : *connection,
-                                            drawable :  ll::xproto::drawable) -> void_cookie;
+                                            drawable :  ffi::xproto::drawable) -> void_cookie;
 
 /**
  *
@@ -625,7 +625,7 @@ pub unsafe fn xcb_dri2_create_drawable_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_dri2_create_drawable (c : *connection,
-                                    drawable :  ll::xproto::drawable) -> void_cookie;
+                                    drawable :  ffi::xproto::drawable) -> void_cookie;
 
 /**
  *
@@ -639,7 +639,7 @@ pub unsafe fn xcb_dri2_create_drawable (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_dri2_destroy_drawable_checked (c : *connection,
-                                             drawable :  ll::xproto::drawable) -> void_cookie;
+                                             drawable :  ffi::xproto::drawable) -> void_cookie;
 
 /**
  *
@@ -650,7 +650,7 @@ pub unsafe fn xcb_dri2_destroy_drawable_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_dri2_destroy_drawable (c : *connection,
-                                     drawable :  ll::xproto::drawable) -> void_cookie;
+                                     drawable :  ffi::xproto::drawable) -> void_cookie;
 
 pub unsafe fn xcb_dri2_get_buffers_sizeof (_buffer :  *c_void,
                              attachments_len :  u32) -> c_int;
@@ -664,7 +664,7 @@ pub unsafe fn xcb_dri2_get_buffers_sizeof (_buffer :  *c_void,
  * 
  */
 pub unsafe fn xcb_dri2_get_buffers (c : *connection,
-                                drawable :  ll::xproto::drawable,
+                                drawable :  ffi::xproto::drawable,
                                 count :  u32,
                                 attachments_len :  u32,
                                 attachments : *u32) -> get_buffers_cookie;
@@ -681,7 +681,7 @@ pub unsafe fn xcb_dri2_get_buffers (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_dri2_get_buffers_unchecked (c : *connection,
-                                          drawable :  ll::xproto::drawable,
+                                          drawable :  ffi::xproto::drawable,
                                           count :  u32,
                                           attachments_len :  u32,
                                           attachments : *u32) -> get_buffers_cookie;
@@ -720,7 +720,7 @@ pub unsafe fn xcb_dri2_get_buffers_reply (c : *connection,
  * 
  */
 pub unsafe fn xcb_dri2_copy_region (c : *connection,
-                                drawable :  ll::xproto::drawable,
+                                drawable :  ffi::xproto::drawable,
                                 region :  u32,
                                 dest :  u32,
                                 src :  u32) -> copy_region_cookie;
@@ -737,7 +737,7 @@ pub unsafe fn xcb_dri2_copy_region (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_dri2_copy_region_unchecked (c : *connection,
-                                          drawable :  ll::xproto::drawable,
+                                          drawable :  ffi::xproto::drawable,
                                           region :  u32,
                                           dest :  u32,
                                           src :  u32) -> copy_region_cookie;
@@ -772,7 +772,7 @@ pub unsafe fn xcb_dri2_get_buffers_with_format_sizeof (_buffer :  *c_void,
  * 
  */
 pub unsafe fn xcb_dri2_get_buffers_with_format (c : *connection,
-                                            drawable :  ll::xproto::drawable,
+                                            drawable :  ffi::xproto::drawable,
                                             count :  u32,
                                             attachments_len :  u32,
                                             attachments : *attach_format) -> get_buffers_with_format_cookie;
@@ -789,7 +789,7 @@ pub unsafe fn xcb_dri2_get_buffers_with_format (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_dri2_get_buffers_with_format_unchecked (c : *connection,
-                                                      drawable :  ll::xproto::drawable,
+                                                      drawable :  ffi::xproto::drawable,
                                                       count :  u32,
                                                       attachments_len :  u32,
                                                       attachments : *attach_format) -> get_buffers_with_format_cookie;
@@ -828,7 +828,7 @@ pub unsafe fn xcb_dri2_get_buffers_with_format_reply (c : *connection,
  * 
  */
 pub unsafe fn xcb_dri2_swap_buffers (c : *connection,
-                                 drawable :  ll::xproto::drawable,
+                                 drawable :  ffi::xproto::drawable,
                                  target_msc_hi :  u32,
                                  target_msc_lo :  u32,
                                  divisor_hi :  u32,
@@ -848,7 +848,7 @@ pub unsafe fn xcb_dri2_swap_buffers (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_dri2_swap_buffers_unchecked (c : *connection,
-                                           drawable :  ll::xproto::drawable,
+                                           drawable :  ffi::xproto::drawable,
                                            target_msc_hi :  u32,
                                            target_msc_lo :  u32,
                                            divisor_hi :  u32,
@@ -883,7 +883,7 @@ pub unsafe fn xcb_dri2_swap_buffers_reply (c : *connection,
  * 
  */
 pub unsafe fn xcb_dri2_get_msc (c : *connection,
-                            drawable :  ll::xproto::drawable) -> get_msc_cookie;
+                            drawable :  ffi::xproto::drawable) -> get_msc_cookie;
 
 /**
  *
@@ -897,7 +897,7 @@ pub unsafe fn xcb_dri2_get_msc (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_dri2_get_msc_unchecked (c : *connection,
-                                      drawable :  ll::xproto::drawable) -> get_msc_cookie;
+                                      drawable :  ffi::xproto::drawable) -> get_msc_cookie;
 
 /**
  * Return the reply
@@ -926,7 +926,7 @@ pub unsafe fn xcb_dri2_get_msc_reply (c : *connection,
  * 
  */
 pub unsafe fn xcb_dri2_wait_msc (c : *connection,
-                             drawable :  ll::xproto::drawable,
+                             drawable :  ffi::xproto::drawable,
                              target_msc_hi :  u32,
                              target_msc_lo :  u32,
                              divisor_hi :  u32,
@@ -946,7 +946,7 @@ pub unsafe fn xcb_dri2_wait_msc (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_dri2_wait_msc_unchecked (c : *connection,
-                                       drawable :  ll::xproto::drawable,
+                                       drawable :  ffi::xproto::drawable,
                                        target_msc_hi :  u32,
                                        target_msc_lo :  u32,
                                        divisor_hi :  u32,
@@ -981,7 +981,7 @@ pub unsafe fn xcb_dri2_wait_msc_reply (c : *connection,
  * 
  */
 pub unsafe fn xcb_dri2_wait_sbc (c : *connection,
-                             drawable :  ll::xproto::drawable,
+                             drawable :  ffi::xproto::drawable,
                              target_sbc_hi :  u32,
                              target_sbc_lo :  u32) -> wait_sbc_cookie;
 
@@ -997,7 +997,7 @@ pub unsafe fn xcb_dri2_wait_sbc (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_dri2_wait_sbc_unchecked (c : *connection,
-                                       drawable :  ll::xproto::drawable,
+                                       drawable :  ffi::xproto::drawable,
                                        target_sbc_hi :  u32,
                                        target_sbc_lo :  u32) -> wait_sbc_cookie;
 
@@ -1031,7 +1031,7 @@ pub unsafe fn xcb_dri2_wait_sbc_reply (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_dri2_swap_interval_checked (c : *connection,
-                                          drawable :  ll::xproto::drawable,
+                                          drawable :  ffi::xproto::drawable,
                                           interval :  u32) -> void_cookie;
 
 /**
@@ -1043,7 +1043,7 @@ pub unsafe fn xcb_dri2_swap_interval_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_dri2_swap_interval (c : *connection,
-                                  drawable :  ll::xproto::drawable,
+                                  drawable :  ffi::xproto::drawable,
                                   interval :  u32) -> void_cookie;
 
 /**
@@ -1055,7 +1055,7 @@ pub unsafe fn xcb_dri2_swap_interval (c : *connection,
  * 
  */
 pub unsafe fn xcb_dri2_get_param (c : *connection,
-                              drawable :  ll::xproto::drawable,
+                              drawable :  ffi::xproto::drawable,
                               param :  u32) -> get_param_cookie;
 
 /**
@@ -1070,7 +1070,7 @@ pub unsafe fn xcb_dri2_get_param (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_dri2_get_param_unchecked (c : *connection,
-                                        drawable :  ll::xproto::drawable,
+                                        drawable :  ffi::xproto::drawable,
                                         param :  u32) -> get_param_cookie;
 
 /**

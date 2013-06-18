@@ -10,9 +10,9 @@ use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
 use std::to_bytes::ToBytes;
-use ll::base::*;
-use ll;
-use ll::xproto;
+use ffi::base::*;
+use ffi;
+use ffi::xproto;
 
 pub static GLX_MAJOR_VERSION : c_uint = 1;
 pub static GLX_MINOR_VERSION : c_uint = 3;
@@ -227,7 +227,7 @@ pub struct create_context_request {
     minor_opcode :   u8,
     length :         u16,
     context :        context,
-    visual :         ll::xproto::visualid,
+    visual :         ffi::xproto::visualid,
     screen :         u32,
     share_list :     context,
     is_direct :      u8,
@@ -363,7 +363,7 @@ pub struct use_x_font_request {
     minor_opcode :   u8,
     length :         u16,
     context_tag :    context_tag,
-    font :           ll::xproto::font,
+    font :           ffi::xproto::font,
     first :          u32,
     count :          u32,
     list_base :      u32
@@ -376,8 +376,8 @@ pub struct create_glx_pixmap_request {
     minor_opcode :   u8,
     length :         u16,
     screen :         u32,
-    visual :         ll::xproto::visualid,
-    pixmap :         ll::xproto::pixmap,
+    visual :         ffi::xproto::visualid,
+    pixmap :         ffi::xproto::pixmap,
     glx_pixmap :     pixmap
 }
 
@@ -540,7 +540,7 @@ pub struct create_pixmap_request {
     length :         u16,
     screen :         u32,
     fbconfig :       fbconfig,
-    pixmap :         ll::xproto::pixmap,
+    pixmap :         ffi::xproto::pixmap,
     glx_pixmap :     pixmap,
     num_attribs :    u32
 }
@@ -680,7 +680,7 @@ pub struct create_window_request {
     length :         u16,
     screen :         u32,
     fbconfig :       fbconfig,
-    window :         ll::xproto::window,
+    window :         ffi::xproto::window,
     glx_window :     window,
     num_attribs :    u32
 }
@@ -2595,7 +2595,7 @@ pub unsafe fn xcb_glx_render_large (c : *connection,
  */
 pub unsafe fn xcb_glx_create_context_checked (c : *connection,
                                           context :  context,
-                                          visual :  ll::xproto::visualid,
+                                          visual :  ffi::xproto::visualid,
                                           screen :  u32,
                                           share_list :  context,
                                           is_direct :  u8) -> void_cookie;
@@ -2610,7 +2610,7 @@ pub unsafe fn xcb_glx_create_context_checked (c : *connection,
  */
 pub unsafe fn xcb_glx_create_context (c : *connection,
                                   context :  context,
-                                  visual :  ll::xproto::visualid,
+                                  visual :  ffi::xproto::visualid,
                                   screen :  u32,
                                   share_list :  context,
                                   is_direct :  u8) -> void_cookie;
@@ -2896,7 +2896,7 @@ pub unsafe fn xcb_glx_swap_buffers (c : *connection,
  */
 pub unsafe fn xcb_glx_use_x_font_checked (c : *connection,
                                       context_tag :  context_tag,
-                                      font :  ll::xproto::font,
+                                      font :  ffi::xproto::font,
                                       first :  u32,
                                       count :  u32,
                                       list_base :  u32) -> void_cookie;
@@ -2911,7 +2911,7 @@ pub unsafe fn xcb_glx_use_x_font_checked (c : *connection,
  */
 pub unsafe fn xcb_glx_use_x_font (c : *connection,
                               context_tag :  context_tag,
-                              font :  ll::xproto::font,
+                              font :  ffi::xproto::font,
                               first :  u32,
                               count :  u32,
                               list_base :  u32) -> void_cookie;
@@ -2929,8 +2929,8 @@ pub unsafe fn xcb_glx_use_x_font (c : *connection,
  */
 pub unsafe fn xcb_glx_create_glx_pixmap_checked (c : *connection,
                                              screen :  u32,
-                                             visual :  ll::xproto::visualid,
-                                             pixmap :  ll::xproto::pixmap,
+                                             visual :  ffi::xproto::visualid,
+                                             pixmap :  ffi::xproto::pixmap,
                                              glx_pixmap :  pixmap) -> void_cookie;
 
 /**
@@ -2943,8 +2943,8 @@ pub unsafe fn xcb_glx_create_glx_pixmap_checked (c : *connection,
  */
 pub unsafe fn xcb_glx_create_glx_pixmap (c : *connection,
                                      screen :  u32,
-                                     visual :  ll::xproto::visualid,
-                                     pixmap :  ll::xproto::pixmap,
+                                     visual :  ffi::xproto::visualid,
+                                     pixmap :  ffi::xproto::pixmap,
                                      glx_pixmap :  pixmap) -> void_cookie;
 
 pub unsafe fn xcb_glx_get_visual_configs_sizeof (_buffer :  *c_void) -> c_int;
@@ -3319,7 +3319,7 @@ pub unsafe fn xcb_glx_create_pixmap_sizeof (_buffer :  *c_void) -> c_int;
 pub unsafe fn xcb_glx_create_pixmap_checked (c : *connection,
                                          screen :  u32,
                                          fbconfig :  fbconfig,
-                                         pixmap :  ll::xproto::pixmap,
+                                         pixmap :  ffi::xproto::pixmap,
                                          glx_pixmap :  pixmap,
                                          num_attribs :  u32,
                                          attribs : *u32) -> void_cookie;
@@ -3335,7 +3335,7 @@ pub unsafe fn xcb_glx_create_pixmap_checked (c : *connection,
 pub unsafe fn xcb_glx_create_pixmap (c : *connection,
                                  screen :  u32,
                                  fbconfig :  fbconfig,
-                                 pixmap :  ll::xproto::pixmap,
+                                 pixmap :  ffi::xproto::pixmap,
                                  glx_pixmap :  pixmap,
                                  num_attribs :  u32,
                                  attribs : *u32) -> void_cookie;
@@ -3662,7 +3662,7 @@ pub unsafe fn xcb_glx_create_window_sizeof (_buffer :  *c_void) -> c_int;
 pub unsafe fn xcb_glx_create_window_checked (c : *connection,
                                          screen :  u32,
                                          fbconfig :  fbconfig,
-                                         window :  ll::xproto::window,
+                                         window :  ffi::xproto::window,
                                          glx_window :  window,
                                          num_attribs :  u32,
                                          attribs : *u32) -> void_cookie;
@@ -3678,7 +3678,7 @@ pub unsafe fn xcb_glx_create_window_checked (c : *connection,
 pub unsafe fn xcb_glx_create_window (c : *connection,
                                  screen :  u32,
                                  fbconfig :  fbconfig,
-                                 window :  ll::xproto::window,
+                                 window :  ffi::xproto::window,
                                  glx_window :  window,
                                  num_attribs :  u32,
                                  attribs : *u32) -> void_cookie;

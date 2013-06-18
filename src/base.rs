@@ -131,10 +131,10 @@ impl<'self> Connection {
                   destination: xproto::Window,
                   event_mask : u32,
                   event : Event<T>) {
-        use ll;
+        use ffi;
         unsafe {
-        ll::xproto::xcb_send_event(self.c,
-            propogate as u8, destination as ll::xproto::window,
+        ffi::xproto::xcb_send_event(self.c,
+            propogate as u8, destination as ffi::xproto::window,
             event_mask, event.event as *libc::c_char);
         }
     }

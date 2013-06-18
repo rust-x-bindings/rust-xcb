@@ -10,11 +10,11 @@ use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
 use std::to_bytes::ToBytes;
-use ll::base::*;
+use ffi::base::*;
 use base;
 use base::*;
-use ll;
-use ll::bigreq::*;
+use ffi;
+use ffi::bigreq::*;
 use std::option::Option;
 use std::iterator::Iterator;
 

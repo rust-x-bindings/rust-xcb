@@ -10,9 +10,9 @@ use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
 use std::to_bytes::ToBytes;
-use ll::base::*;
-use ll;
-use ll::xproto;
+use ffi::base::*;
+use ffi;
+use ffi::xproto;
 
 pub static RENDER_MAJOR_VERSION : c_uint = 0;
 pub static RENDER_MINOR_VERSION : c_uint = 11;
@@ -139,7 +139,7 @@ pub struct pictforminfo {
     depth :      u8,
     pad0 :       [u8,..2],
     direct :     directformat,
-    colormap :   ll::xproto::colormap
+    colormap :   ffi::xproto::colormap
 }
 
 /**
@@ -153,7 +153,7 @@ pub struct pictforminfo_iterator {
 
 
 pub struct pictvisual {
-    visual :   ll::xproto::visualid,
+    visual :   ffi::xproto::visualid,
     format :   pictformat
 }
 
@@ -396,7 +396,7 @@ pub struct create_picture_request {
     minor_opcode :   u8,
     length :         u16,
     pid :            picture,
-    drawable :       ll::xproto::drawable,
+    drawable :       ffi::xproto::drawable,
     format :         pictformat,
     value_mask :     u32
 }
@@ -626,7 +626,7 @@ pub struct create_cursor_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    cid :            ll::xproto::cursor,
+    cid :            ffi::xproto::cursor,
     source :         picture,
     x :              u16,
     y :              u16
@@ -674,7 +674,7 @@ pub struct query_filters_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    drawable :       ll::xproto::drawable
+    drawable :       ffi::xproto::drawable
 }
 
 
@@ -701,7 +701,7 @@ pub struct set_picture_filter_request {
 
 
 pub struct animcursorelt {
-    cursor :   ll::xproto::cursor,
+    cursor :   ffi::xproto::cursor,
     delay :    u32
 }
 
@@ -720,7 +720,7 @@ pub struct create_anim_cursor_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    cid :            ll::xproto::cursor
+    cid :            ffi::xproto::cursor
 }
 
 
@@ -1398,7 +1398,7 @@ pub unsafe fn xcb_render_create_picture_sizeof (_buffer :  *c_void) -> c_int;
  */
 pub unsafe fn xcb_render_create_picture_checked (c : *connection,
                                              pid :  picture,
-                                             drawable :  ll::xproto::drawable,
+                                             drawable :  ffi::xproto::drawable,
                                              format :  pictformat,
                                              value_mask :  u32,
                                              value_list : *u32) -> void_cookie;
@@ -1413,7 +1413,7 @@ pub unsafe fn xcb_render_create_picture_checked (c : *connection,
  */
 pub unsafe fn xcb_render_create_picture (c : *connection,
                                      pid :  picture,
-                                     drawable :  ll::xproto::drawable,
+                                     drawable :  ffi::xproto::drawable,
                                      format :  pictformat,
                                      value_mask :  u32,
                                      value_list : *u32) -> void_cookie;
@@ -1468,7 +1468,7 @@ pub unsafe fn xcb_render_set_picture_clip_rectangles_checked (c : *connection,
                                                           clip_x_origin :  i16,
                                                           clip_y_origin :  i16,
                                                           rectangles_len :  u32,
-                                                          rectangles : *ll::xproto::rectangle) -> void_cookie;
+                                                          rectangles : *ffi::xproto::rectangle) -> void_cookie;
 
 /**
  *
@@ -1483,7 +1483,7 @@ pub unsafe fn xcb_render_set_picture_clip_rectangles (c : *connection,
                                                   clip_x_origin :  i16,
                                                   clip_y_origin :  i16,
                                                   rectangles_len :  u32,
-                                                  rectangles : *ll::xproto::rectangle) -> void_cookie;
+                                                  rectangles : *ffi::xproto::rectangle) -> void_cookie;
 
 /**
  *
@@ -2025,7 +2025,7 @@ pub unsafe fn xcb_render_fill_rectangles_checked (c : *connection,
                                               dst :  picture,
                                               color :  color,
                                               rects_len :  u32,
-                                              rects : *ll::xproto::rectangle) -> void_cookie;
+                                              rects : *ffi::xproto::rectangle) -> void_cookie;
 
 /**
  *
@@ -2040,7 +2040,7 @@ pub unsafe fn xcb_render_fill_rectangles (c : *connection,
                                       dst :  picture,
                                       color :  color,
                                       rects_len :  u32,
-                                      rects : *ll::xproto::rectangle) -> void_cookie;
+                                      rects : *ffi::xproto::rectangle) -> void_cookie;
 
 /**
  *
@@ -2054,7 +2054,7 @@ pub unsafe fn xcb_render_fill_rectangles (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_render_create_cursor_checked (c : *connection,
-                                            cid :  ll::xproto::cursor,
+                                            cid :  ffi::xproto::cursor,
                                             source :  picture,
                                             x :  u16,
                                             y :  u16) -> void_cookie;
@@ -2068,7 +2068,7 @@ pub unsafe fn xcb_render_create_cursor_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_render_create_cursor (c : *connection,
-                                    cid :  ll::xproto::cursor,
+                                    cid :  ffi::xproto::cursor,
                                     source :  picture,
                                     x :  u16,
                                     y :  u16) -> void_cookie;
@@ -2134,7 +2134,7 @@ pub unsafe fn xcb_render_query_filters_sizeof (_buffer :  *c_void) -> c_int;
  * 
  */
 pub unsafe fn xcb_render_query_filters (c : *connection,
-                                    drawable :  ll::xproto::drawable) -> query_filters_cookie;
+                                    drawable :  ffi::xproto::drawable) -> query_filters_cookie;
 
 /**
  *
@@ -2148,7 +2148,7 @@ pub unsafe fn xcb_render_query_filters (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_render_query_filters_unchecked (c : *connection,
-                                              drawable :  ll::xproto::drawable) -> query_filters_cookie;
+                                              drawable :  ffi::xproto::drawable) -> query_filters_cookie;
 
 pub unsafe fn xcb_render_query_filters_aliases (R : *query_filters_reply) -> *u16;
 
@@ -2161,7 +2161,7 @@ pub unsafe fn xcb_render_query_filters_aliases_end (R : *query_filters_reply) ->
 
 pub unsafe fn xcb_render_query_filters_filters_length (R : *query_filters_reply) -> c_int;
 
-pub unsafe fn xcb_render_query_filters_filters_iterator (R : *query_filters_reply) -> ll::xproto::str_iterator;
+pub unsafe fn xcb_render_query_filters_filters_iterator (R : *query_filters_reply) -> ffi::xproto::str_iterator;
 
 /**
  * Return the reply
@@ -2255,7 +2255,7 @@ pub unsafe fn xcb_render_create_anim_cursor_sizeof (_buffer :  *c_void,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_render_create_anim_cursor_checked (c : *connection,
-                                                 cid :  ll::xproto::cursor,
+                                                 cid :  ffi::xproto::cursor,
                                                  cursors_len :  u32,
                                                  cursors : *animcursorelt) -> void_cookie;
 
@@ -2268,7 +2268,7 @@ pub unsafe fn xcb_render_create_anim_cursor_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_render_create_anim_cursor (c : *connection,
-                                         cid :  ll::xproto::cursor,
+                                         cid :  ffi::xproto::cursor,
                                          cursors_len :  u32,
                                          cursors : *animcursorelt) -> void_cookie;
 

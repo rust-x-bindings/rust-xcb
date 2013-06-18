@@ -10,9 +10,9 @@ use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
 use std::to_bytes::ToBytes;
-use ll::base::*;
-use ll;
-use ll::xproto;
+use ffi::base::*;
+use ffi;
+use ffi::xproto;
 
 pub static SELINUX_MAJOR_VERSION : c_uint = 1;
 pub static SELINUX_MINOR_VERSION : c_uint = 0;
@@ -145,7 +145,7 @@ pub struct get_window_context_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window
+    window :         ffi::xproto::window
 }
 
 
@@ -160,7 +160,7 @@ pub struct get_window_context_reply {
 
 
 pub struct list_item {
-    name :                 ll::xproto::atom,
+    name :                 ffi::xproto::atom,
     object_context_len :   u32,
     data_context_len :     u32
 }
@@ -246,8 +246,8 @@ pub struct get_property_context_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window,
-    property :       ll::xproto::atom
+    window :         ffi::xproto::window,
+    property :       ffi::xproto::atom
 }
 
 
@@ -270,8 +270,8 @@ pub struct get_property_data_context_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window,
-    property :       ll::xproto::atom
+    window :         ffi::xproto::window,
+    property :       ffi::xproto::atom
 }
 
 
@@ -294,7 +294,7 @@ pub struct list_properties_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window
+    window :         ffi::xproto::window
 }
 
 
@@ -379,7 +379,7 @@ pub struct get_selection_context_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    selection :      ll::xproto::atom
+    selection :      ffi::xproto::atom
 }
 
 
@@ -402,7 +402,7 @@ pub struct get_selection_data_context_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    selection :      ll::xproto::atom
+    selection :      ffi::xproto::atom
 }
 
 
@@ -763,7 +763,7 @@ pub unsafe fn xcb_selinux_get_window_context_sizeof (_buffer :  *c_void) -> c_in
  * 
  */
 pub unsafe fn xcb_selinux_get_window_context (c : *connection,
-                                          window :  ll::xproto::window) -> get_window_context_cookie;
+                                          window :  ffi::xproto::window) -> get_window_context_cookie;
 
 /**
  *
@@ -777,7 +777,7 @@ pub unsafe fn xcb_selinux_get_window_context (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_selinux_get_window_context_unchecked (c : *connection,
-                                                    window :  ll::xproto::window) -> get_window_context_cookie;
+                                                    window :  ffi::xproto::window) -> get_window_context_cookie;
 
 pub unsafe fn xcb_selinux_get_window_context_context (R : *get_window_context_reply) -> *c_char;
 
@@ -1017,8 +1017,8 @@ pub unsafe fn xcb_selinux_get_property_context_sizeof (_buffer :  *c_void) -> c_
  * 
  */
 pub unsafe fn xcb_selinux_get_property_context (c : *connection,
-                                            window :  ll::xproto::window,
-                                            property :  ll::xproto::atom) -> get_property_context_cookie;
+                                            window :  ffi::xproto::window,
+                                            property :  ffi::xproto::atom) -> get_property_context_cookie;
 
 /**
  *
@@ -1032,8 +1032,8 @@ pub unsafe fn xcb_selinux_get_property_context (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_selinux_get_property_context_unchecked (c : *connection,
-                                                      window :  ll::xproto::window,
-                                                      property :  ll::xproto::atom) -> get_property_context_cookie;
+                                                      window :  ffi::xproto::window,
+                                                      property :  ffi::xproto::atom) -> get_property_context_cookie;
 
 pub unsafe fn xcb_selinux_get_property_context_context (R : *get_property_context_reply) -> *c_char;
 
@@ -1072,8 +1072,8 @@ pub unsafe fn xcb_selinux_get_property_data_context_sizeof (_buffer :  *c_void) 
  * 
  */
 pub unsafe fn xcb_selinux_get_property_data_context (c : *connection,
-                                                 window :  ll::xproto::window,
-                                                 property :  ll::xproto::atom) -> get_property_data_context_cookie;
+                                                 window :  ffi::xproto::window,
+                                                 property :  ffi::xproto::atom) -> get_property_data_context_cookie;
 
 /**
  *
@@ -1087,8 +1087,8 @@ pub unsafe fn xcb_selinux_get_property_data_context (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_selinux_get_property_data_context_unchecked (c : *connection,
-                                                           window :  ll::xproto::window,
-                                                           property :  ll::xproto::atom) -> get_property_data_context_cookie;
+                                                           window :  ffi::xproto::window,
+                                                           property :  ffi::xproto::atom) -> get_property_data_context_cookie;
 
 pub unsafe fn xcb_selinux_get_property_data_context_context (R : *get_property_data_context_reply) -> *c_char;
 
@@ -1127,7 +1127,7 @@ pub unsafe fn xcb_selinux_list_properties_sizeof (_buffer :  *c_void) -> c_int;
  * 
  */
 pub unsafe fn xcb_selinux_list_properties (c : *connection,
-                                       window :  ll::xproto::window) -> list_properties_cookie;
+                                       window :  ffi::xproto::window) -> list_properties_cookie;
 
 /**
  *
@@ -1141,7 +1141,7 @@ pub unsafe fn xcb_selinux_list_properties (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_selinux_list_properties_unchecked (c : *connection,
-                                                 window :  ll::xproto::window) -> list_properties_cookie;
+                                                 window :  ffi::xproto::window) -> list_properties_cookie;
 
 
 pub unsafe fn xcb_selinux_list_properties_properties_length (R : *list_properties_reply) -> c_int;
@@ -1337,7 +1337,7 @@ pub unsafe fn xcb_selinux_get_selection_context_sizeof (_buffer :  *c_void) -> c
  * 
  */
 pub unsafe fn xcb_selinux_get_selection_context (c : *connection,
-                                             selection :  ll::xproto::atom) -> get_selection_context_cookie;
+                                             selection :  ffi::xproto::atom) -> get_selection_context_cookie;
 
 /**
  *
@@ -1351,7 +1351,7 @@ pub unsafe fn xcb_selinux_get_selection_context (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_selinux_get_selection_context_unchecked (c : *connection,
-                                                       selection :  ll::xproto::atom) -> get_selection_context_cookie;
+                                                       selection :  ffi::xproto::atom) -> get_selection_context_cookie;
 
 pub unsafe fn xcb_selinux_get_selection_context_context (R : *get_selection_context_reply) -> *c_char;
 
@@ -1390,7 +1390,7 @@ pub unsafe fn xcb_selinux_get_selection_data_context_sizeof (_buffer :  *c_void)
  * 
  */
 pub unsafe fn xcb_selinux_get_selection_data_context (c : *connection,
-                                                  selection :  ll::xproto::atom) -> get_selection_data_context_cookie;
+                                                  selection :  ffi::xproto::atom) -> get_selection_data_context_cookie;
 
 /**
  *
@@ -1404,7 +1404,7 @@ pub unsafe fn xcb_selinux_get_selection_data_context (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_selinux_get_selection_data_context_unchecked (c : *connection,
-                                                            selection :  ll::xproto::atom) -> get_selection_data_context_cookie;
+                                                            selection :  ffi::xproto::atom) -> get_selection_data_context_cookie;
 
 pub unsafe fn xcb_selinux_get_selection_data_context_context (R : *get_selection_data_context_reply) -> *c_char;
 

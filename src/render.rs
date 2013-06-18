@@ -10,11 +10,11 @@ use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
 use std::to_bytes::ToBytes;
-use ll::base::*;
+use ffi::base::*;
 use base;
 use base::*;
-use ll;
-use ll::render::*;
+use ffi;
+use ffi::render::*;
 use std::option::Option;
 use std::iterator::Iterator;
 
@@ -824,7 +824,7 @@ pub fn CreatePictureChecked<'r> (c : &'r Connection,
     let value_list_ptr = std::vec::raw::to_ptr(value_list_vec);
     let cookie = xcb_render_create_picture_checked(c.get_raw_conn(),
         pid as picture, //1
-        drawable as ll::xproto::drawable, //2
+        drawable as ffi::xproto::drawable, //2
         format as pictformat, //3
         value_list_mask as u32, //4
         value_list_ptr as *u32); //5
@@ -841,7 +841,7 @@ pub fn CreatePicture<'r> (c : &'r Connection,
     let value_list_ptr = std::vec::raw::to_ptr(value_list_vec);
     let cookie = xcb_render_create_picture(c.get_raw_conn(),
         pid as picture, //1
-        drawable as ll::xproto::drawable, //2
+        drawable as ffi::xproto::drawable, //2
         format as pictformat, //3
         value_list_mask as u32, //4
         value_list_ptr as *u32); //5
@@ -887,7 +887,7 @@ pub fn SetPictureClipRectanglesChecked<'r> (c : &'r Connection,
         clip_x_origin as i16, //2
         clip_y_origin as i16, //3
         rectangles_len as u32, //4
-        rectangles_ptr as *ll::xproto::rectangle); //5
+        rectangles_ptr as *ffi::xproto::rectangle); //5
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -904,7 +904,7 @@ pub fn SetPictureClipRectangles<'r> (c : &'r Connection,
         clip_x_origin as i16, //2
         clip_y_origin as i16, //3
         rectangles_len as u32, //4
-        rectangles_ptr as *ll::xproto::rectangle); //5
+        rectangles_ptr as *ffi::xproto::rectangle); //5
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -1455,7 +1455,7 @@ pub fn FillRectanglesChecked<'r> (c : &'r Connection,
         dst as picture, //2
         color.strct, //3
         rects_len as u32, //4
-        rects_ptr as *ll::xproto::rectangle); //5
+        rects_ptr as *ffi::xproto::rectangle); //5
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -1472,7 +1472,7 @@ pub fn FillRectangles<'r> (c : &'r Connection,
         dst as picture, //2
         color.strct, //3
         rects_len as u32, //4
-        rects_ptr as *ll::xproto::rectangle); //5
+        rects_ptr as *ffi::xproto::rectangle); //5
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -1483,7 +1483,7 @@ pub fn CreateCursorChecked<'r> (c : &'r Connection,
                             y : u16) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_render_create_cursor_checked(c.get_raw_conn(),
-        cid as ll::xproto::cursor, //1
+        cid as ffi::xproto::cursor, //1
         source as picture, //2
         x as u16, //3
         y as u16); //4
@@ -1497,7 +1497,7 @@ pub fn CreateCursor<'r> (c : &'r Connection,
                      y : u16) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_render_create_cursor(c.get_raw_conn(),
-        cid as ll::xproto::cursor, //1
+        cid as ffi::xproto::cursor, //1
         source as picture, //2
         x as u16, //3
         y as u16); //4
@@ -1583,7 +1583,7 @@ pub fn QueryFilters<'r> (c : &'r Connection,
                      drawable : xproto::Drawable) -> QueryFiltersCookie<'r> {
   unsafe {
     let cookie = xcb_render_query_filters(c.get_raw_conn(),
-        drawable as ll::xproto::drawable); //1
+        drawable as ffi::xproto::drawable); //1
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -1591,7 +1591,7 @@ pub fn QueryFiltersUnchecked<'r> (c : &'r Connection,
                               drawable : xproto::Drawable) -> QueryFiltersCookie<'r> {
   unsafe {
     let cookie = xcb_render_query_filters_unchecked(c.get_raw_conn(),
-        drawable as ll::xproto::drawable); //1
+        drawable as ffi::xproto::drawable); //1
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -1679,7 +1679,7 @@ pub fn CreateAnimCursorChecked<'r> (c : &'r Connection,
     let cursors_len = cursors.len();
     let cursors_ptr = std::vec::raw::to_ptr(cursors);
     let cookie = xcb_render_create_anim_cursor_checked(c.get_raw_conn(),
-        cid as ll::xproto::cursor, //1
+        cid as ffi::xproto::cursor, //1
         cursors_len as u32, //2
         cursors_ptr as *animcursorelt); //3
     Cookie {cookie:cookie,conn:c,checked:true}
@@ -1692,7 +1692,7 @@ pub fn CreateAnimCursor<'r> (c : &'r Connection,
     let cursors_len = cursors.len();
     let cursors_ptr = std::vec::raw::to_ptr(cursors);
     let cookie = xcb_render_create_anim_cursor(c.get_raw_conn(),
-        cid as ll::xproto::cursor, //1
+        cid as ffi::xproto::cursor, //1
         cursors_len as u32, //2
         cursors_ptr as *animcursorelt); //3
     Cookie {cookie:cookie,conn:c,checked:false}

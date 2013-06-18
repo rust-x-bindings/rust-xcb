@@ -5,9 +5,9 @@ macro_rules! impl_reply_cookie {
     ($cookie:ty, $crep:ty, $reply:ty, $func:ident) => (
         impl<'self> base::ReplyCookie<$crep> for $cookie {
             pub fn get_reply(&self) -> Result<$reply,base::GenericError> {
-                use ll;
+                use ffi;
                 unsafe {
-                    let err : *ll::base::generic_error = ::std::ptr::null();
+                    let err : *ffi::base::generic_error = ::std::ptr::null();
                     let reply = if self.checked {
                         $func(self.conn.get_raw_conn(), self.cookie, &err)
                     } else {

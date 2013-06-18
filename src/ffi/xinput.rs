@@ -10,9 +10,9 @@ use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
 use std::to_bytes::ToBytes;
-use ll::base::*;
-use ll;
-use ll::xproto;
+use ffi::base::*;
+use ffi;
+use ffi::xproto;
 
 pub static INPUT_MAJOR_VERSION : c_uint = 1;
 pub static INPUT_MINOR_VERSION : c_uint = 4;
@@ -66,7 +66,7 @@ pub struct get_extension_version_reply {
 
 
 pub struct device_info {
-    device_type :      ll::xproto::atom,
+    device_type :      ffi::xproto::atom,
     device_id :        u8,
     num_class_info :   u8,
     device_use :       u8,
@@ -268,7 +268,7 @@ pub struct select_extension_event_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window,
+    window :         ffi::xproto::window,
     num_classes :    u16,
     pad0 :           [u8,..2]
 }
@@ -283,7 +283,7 @@ pub struct get_selected_extension_events_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window
+    window :         ffi::xproto::window
 }
 
 
@@ -303,7 +303,7 @@ pub struct change_device_dont_propagate_list_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window,
+    window :         ffi::xproto::window,
     num_classes :    u16,
     mode :           u8,
     pad0 :           u8
@@ -319,7 +319,7 @@ pub struct get_device_dont_propagate_list_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    window :         ll::xproto::window
+    window :         ffi::xproto::window
 }
 
 
@@ -342,8 +342,8 @@ pub struct get_device_motion_events_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    start :          ll::xproto::timestamp,
-    stop :           ll::xproto::timestamp,
+    start :          ffi::xproto::timestamp,
+    stop :           ffi::xproto::timestamp,
     device_id :      u8
 }
 
@@ -361,7 +361,7 @@ pub struct get_device_motion_events_reply {
 
 
 pub struct device_time_coord {
-    time :   ll::xproto::timestamp
+    time :   ffi::xproto::timestamp
 }
 
 /**
@@ -433,8 +433,8 @@ pub struct grab_device_request {
     major_opcode :        u8,
     minor_opcode :        u8,
     length :              u16,
-    grab_window :         ll::xproto::window,
-    time :                ll::xproto::timestamp,
+    grab_window :         ffi::xproto::window,
+    time :                ffi::xproto::timestamp,
     num_classes :         u16,
     this_device_mode :    u8,
     other_device_mode :   u8,
@@ -459,7 +459,7 @@ pub struct ungrab_device_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    time :           ll::xproto::timestamp,
+    time :           ffi::xproto::timestamp,
     device_id :      u8
 }
 
@@ -469,7 +469,7 @@ pub struct grab_device_key_request {
     major_opcode :        u8,
     minor_opcode :        u8,
     length :              u16,
-    grab_window :         ll::xproto::window,
+    grab_window :         ffi::xproto::window,
     num_classes :         u16,
     modifiers :           u16,
     modifier_device :     u8,
@@ -487,7 +487,7 @@ pub struct ungrab_device_key_request {
     major_opcode :      u8,
     minor_opcode :      u8,
     length :            u16,
-    grabWindow :        ll::xproto::window,
+    grabWindow :        ffi::xproto::window,
     modifiers :         u16,
     modifier_device :   u8,
     key :               u8,
@@ -500,7 +500,7 @@ pub struct grab_device_button_request {
     major_opcode :        u8,
     minor_opcode :        u8,
     length :              u16,
-    grab_window :         ll::xproto::window,
+    grab_window :         ffi::xproto::window,
     grabbed_device :      u8,
     modifier_device :     u8,
     num_classes :         u16,
@@ -518,7 +518,7 @@ pub struct ungrab_device_button_request {
     major_opcode :      u8,
     minor_opcode :      u8,
     length :            u16,
-    grab_window :       ll::xproto::window,
+    grab_window :       ffi::xproto::window,
     modifiers :         u16,
     modifier_device :   u8,
     button :            u8,
@@ -531,7 +531,7 @@ pub struct allow_device_events_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    time :           ll::xproto::timestamp,
+    time :           ffi::xproto::timestamp,
     mode :           u8,
     device_id :      u8
 }
@@ -556,8 +556,8 @@ pub struct get_device_focus_reply {
     pad0 :            u8,
     sequence :        u16,
     length :          u32,
-    focus :           ll::xproto::window,
-    time :            ll::xproto::timestamp,
+    focus :           ffi::xproto::window,
+    time :            ffi::xproto::timestamp,
     revert_to :       u8,
     pad1 :            [u8,..15]
 }
@@ -568,8 +568,8 @@ pub struct set_device_focus_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    focus :          ll::xproto::window,
-    time :           ll::xproto::timestamp,
+    focus :          ffi::xproto::window,
+    time :           ffi::xproto::timestamp,
     revert_to :      u8,
     device_id :      u8
 }
@@ -1101,7 +1101,7 @@ pub struct send_extension_event_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    destination :    ll::xproto::window,
+    destination :    ffi::xproto::window,
     device_id :      u8,
     propagate :      u8,
     num_classes :    u16,
@@ -1410,10 +1410,10 @@ pub struct device_key_press_event {
     response_type :   u8,
     detail :          u8,
     sequence :        u16,
-    time :            ll::xproto::timestamp,
-    root :            ll::xproto::window,
-    event :           ll::xproto::window,
-    child :           ll::xproto::window,
+    time :            ffi::xproto::timestamp,
+    root :            ffi::xproto::window,
+    event :           ffi::xproto::window,
+    child :           ffi::xproto::window,
     root_x :          i16,
     root_y :          i16,
     event_x :         i16,
@@ -1447,8 +1447,8 @@ pub struct focus_in_event {
     response_type :   u8,
     detail :          u8,
     sequence :        u16,
-    time :            ll::xproto::timestamp,
-    window :          ll::xproto::window,
+    time :            ffi::xproto::timestamp,
+    window :          ffi::xproto::window,
     mode :            u8,
     device_id :       u8,
     pad0 :            [u8,..18]
@@ -1463,7 +1463,7 @@ pub struct device_state_notify_event {
     response_type :      u8,
     device_id :          u8,
     sequence :           u16,
-    time :               ll::xproto::timestamp,
+    time :               ffi::xproto::timestamp,
     num_keys :           u8,
     num_buttons :        u8,
     num_valuators :      u8,
@@ -1483,7 +1483,7 @@ pub struct device_mapping_notify_event {
     first_keycode :   key_code,
     count :           u8,
     pad0 :            u8,
-    time :            ll::xproto::timestamp,
+    time :            ffi::xproto::timestamp,
     pad1 :            [u8,..20]
 }
 
@@ -1493,7 +1493,7 @@ pub struct change_device_notify_event {
     response_type :   u8,
     device_id :       u8,
     sequence :        u16,
-    time :            ll::xproto::timestamp,
+    time :            ffi::xproto::timestamp,
     request :         u8,
     pad0 :            [u8,..23]
 }
@@ -1522,7 +1522,7 @@ pub struct device_presence_notify_event {
     response_type :   u8,
     pad0 :            u8,
     sequence :        u16,
-    time :            ll::xproto::timestamp,
+    time :            ffi::xproto::timestamp,
     devchange :       u8,
     device_id :       u8,
     control :         u16,
@@ -2021,7 +2021,7 @@ pub unsafe fn xcb_input_select_extension_event_sizeof (_buffer :  *c_void) -> c_
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_input_select_extension_event_checked (c : *connection,
-                                                    window :  ll::xproto::window,
+                                                    window :  ffi::xproto::window,
                                                     num_classes :  u16,
                                                     classes : *event_class) -> void_cookie;
 
@@ -2034,7 +2034,7 @@ pub unsafe fn xcb_input_select_extension_event_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_input_select_extension_event (c : *connection,
-                                            window :  ll::xproto::window,
+                                            window :  ffi::xproto::window,
                                             num_classes :  u16,
                                             classes : *event_class) -> void_cookie;
 
@@ -2049,7 +2049,7 @@ pub unsafe fn xcb_input_get_selected_extension_events_sizeof (_buffer :  *c_void
  * 
  */
 pub unsafe fn xcb_input_get_selected_extension_events (c : *connection,
-                                                   window :  ll::xproto::window) -> get_selected_extension_events_cookie;
+                                                   window :  ffi::xproto::window) -> get_selected_extension_events_cookie;
 
 /**
  *
@@ -2063,7 +2063,7 @@ pub unsafe fn xcb_input_get_selected_extension_events (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_input_get_selected_extension_events_unchecked (c : *connection,
-                                                             window :  ll::xproto::window) -> get_selected_extension_events_cookie;
+                                                             window :  ffi::xproto::window) -> get_selected_extension_events_cookie;
 
 pub unsafe fn xcb_input_get_selected_extension_events_this_classes (R : *get_selected_extension_events_reply) -> *event_class;
 
@@ -2113,7 +2113,7 @@ pub unsafe fn xcb_input_change_device_dont_propagate_list_sizeof (_buffer :  *c_
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_input_change_device_dont_propagate_list_checked (c : *connection,
-                                                               window :  ll::xproto::window,
+                                                               window :  ffi::xproto::window,
                                                                num_classes :  u16,
                                                                mode :  u8,
                                                                classes : *event_class) -> void_cookie;
@@ -2127,7 +2127,7 @@ pub unsafe fn xcb_input_change_device_dont_propagate_list_checked (c : *connecti
  * 
  */
 pub unsafe fn xcb_input_change_device_dont_propagate_list (c : *connection,
-                                                       window :  ll::xproto::window,
+                                                       window :  ffi::xproto::window,
                                                        num_classes :  u16,
                                                        mode :  u8,
                                                        classes : *event_class) -> void_cookie;
@@ -2143,7 +2143,7 @@ pub unsafe fn xcb_input_get_device_dont_propagate_list_sizeof (_buffer :  *c_voi
  * 
  */
 pub unsafe fn xcb_input_get_device_dont_propagate_list (c : *connection,
-                                                    window :  ll::xproto::window) -> get_device_dont_propagate_list_cookie;
+                                                    window :  ffi::xproto::window) -> get_device_dont_propagate_list_cookie;
 
 /**
  *
@@ -2157,7 +2157,7 @@ pub unsafe fn xcb_input_get_device_dont_propagate_list (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_input_get_device_dont_propagate_list_unchecked (c : *connection,
-                                                              window :  ll::xproto::window) -> get_device_dont_propagate_list_cookie;
+                                                              window :  ffi::xproto::window) -> get_device_dont_propagate_list_cookie;
 
 pub unsafe fn xcb_input_get_device_dont_propagate_list_classes (R : *get_device_dont_propagate_list_reply) -> *event_class;
 
@@ -2194,8 +2194,8 @@ pub unsafe fn xcb_input_get_device_dont_propagate_list_reply (c : *connection,
  * 
  */
 pub unsafe fn xcb_input_get_device_motion_events (c : *connection,
-                                              start :  ll::xproto::timestamp,
-                                              stop :  ll::xproto::timestamp,
+                                              start :  ffi::xproto::timestamp,
+                                              stop :  ffi::xproto::timestamp,
                                               device_id :  u8) -> get_device_motion_events_cookie;
 
 /**
@@ -2210,8 +2210,8 @@ pub unsafe fn xcb_input_get_device_motion_events (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_input_get_device_motion_events_unchecked (c : *connection,
-                                                        start :  ll::xproto::timestamp,
-                                                        stop :  ll::xproto::timestamp,
+                                                        start :  ffi::xproto::timestamp,
+                                                        stop :  ffi::xproto::timestamp,
                                                         device_id :  u8) -> get_device_motion_events_cookie;
 
 /**
@@ -2356,8 +2356,8 @@ pub unsafe fn xcb_input_grab_device_sizeof (_buffer :  *c_void) -> c_int;
  * 
  */
 pub unsafe fn xcb_input_grab_device (c : *connection,
-                                 grab_window :  ll::xproto::window,
-                                 time :  ll::xproto::timestamp,
+                                 grab_window :  ffi::xproto::window,
+                                 time :  ffi::xproto::timestamp,
                                  num_classes :  u16,
                                  this_device_mode :  u8,
                                  other_device_mode :  u8,
@@ -2377,8 +2377,8 @@ pub unsafe fn xcb_input_grab_device (c : *connection,
  * placed in the event queue.
  */
 pub unsafe fn xcb_input_grab_device_unchecked (c : *connection,
-                                           grab_window :  ll::xproto::window,
-                                           time :  ll::xproto::timestamp,
+                                           grab_window :  ffi::xproto::window,
+                                           time :  ffi::xproto::timestamp,
                                            num_classes :  u16,
                                            this_device_mode :  u8,
                                            other_device_mode :  u8,
@@ -2416,7 +2416,7 @@ pub unsafe fn xcb_input_grab_device_reply (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_input_ungrab_device_checked (c : *connection,
-                                           time :  ll::xproto::timestamp,
+                                           time :  ffi::xproto::timestamp,
                                            device_id :  u8) -> void_cookie;
 
 /**
@@ -2428,7 +2428,7 @@ pub unsafe fn xcb_input_ungrab_device_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_input_ungrab_device (c : *connection,
-                                   time :  ll::xproto::timestamp,
+                                   time :  ffi::xproto::timestamp,
                                    device_id :  u8) -> void_cookie;
 
 pub unsafe fn xcb_input_grab_device_key_sizeof (_buffer :  *c_void) -> c_int;
@@ -2445,7 +2445,7 @@ pub unsafe fn xcb_input_grab_device_key_sizeof (_buffer :  *c_void) -> c_int;
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_input_grab_device_key_checked (c : *connection,
-                                             grab_window :  ll::xproto::window,
+                                             grab_window :  ffi::xproto::window,
                                              num_classes :  u16,
                                              modifiers :  u16,
                                              modifier_device :  u8,
@@ -2465,7 +2465,7 @@ pub unsafe fn xcb_input_grab_device_key_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_input_grab_device_key (c : *connection,
-                                     grab_window :  ll::xproto::window,
+                                     grab_window :  ffi::xproto::window,
                                      num_classes :  u16,
                                      modifiers :  u16,
                                      modifier_device :  u8,
@@ -2488,7 +2488,7 @@ pub unsafe fn xcb_input_grab_device_key (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_input_ungrab_device_key_checked (c : *connection,
-                                               grabWindow :  ll::xproto::window,
+                                               grabWindow :  ffi::xproto::window,
                                                modifiers :  u16,
                                                modifier_device :  u8,
                                                key :  u8,
@@ -2503,7 +2503,7 @@ pub unsafe fn xcb_input_ungrab_device_key_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_input_ungrab_device_key (c : *connection,
-                                       grabWindow :  ll::xproto::window,
+                                       grabWindow :  ffi::xproto::window,
                                        modifiers :  u16,
                                        modifier_device :  u8,
                                        key :  u8,
@@ -2523,7 +2523,7 @@ pub unsafe fn xcb_input_grab_device_button_sizeof (_buffer :  *c_void) -> c_int;
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_input_grab_device_button_checked (c : *connection,
-                                                grab_window :  ll::xproto::window,
+                                                grab_window :  ffi::xproto::window,
                                                 grabbed_device :  u8,
                                                 modifier_device :  u8,
                                                 num_classes :  u16,
@@ -2543,7 +2543,7 @@ pub unsafe fn xcb_input_grab_device_button_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_input_grab_device_button (c : *connection,
-                                        grab_window :  ll::xproto::window,
+                                        grab_window :  ffi::xproto::window,
                                         grabbed_device :  u8,
                                         modifier_device :  u8,
                                         num_classes :  u16,
@@ -2566,7 +2566,7 @@ pub unsafe fn xcb_input_grab_device_button (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_input_ungrab_device_button_checked (c : *connection,
-                                                  grab_window :  ll::xproto::window,
+                                                  grab_window :  ffi::xproto::window,
                                                   modifiers :  u16,
                                                   modifier_device :  u8,
                                                   button :  u8,
@@ -2581,7 +2581,7 @@ pub unsafe fn xcb_input_ungrab_device_button_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_input_ungrab_device_button (c : *connection,
-                                          grab_window :  ll::xproto::window,
+                                          grab_window :  ffi::xproto::window,
                                           modifiers :  u16,
                                           modifier_device :  u8,
                                           button :  u8,
@@ -2599,7 +2599,7 @@ pub unsafe fn xcb_input_ungrab_device_button (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_input_allow_device_events_checked (c : *connection,
-                                                 time :  ll::xproto::timestamp,
+                                                 time :  ffi::xproto::timestamp,
                                                  mode :  u8,
                                                  device_id :  u8) -> void_cookie;
 
@@ -2612,7 +2612,7 @@ pub unsafe fn xcb_input_allow_device_events_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_input_allow_device_events (c : *connection,
-                                         time :  ll::xproto::timestamp,
+                                         time :  ffi::xproto::timestamp,
                                          mode :  u8,
                                          device_id :  u8) -> void_cookie;
 
@@ -2671,8 +2671,8 @@ pub unsafe fn xcb_input_get_device_focus_reply (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_input_set_device_focus_checked (c : *connection,
-                                              focus :  ll::xproto::window,
-                                              time :  ll::xproto::timestamp,
+                                              focus :  ffi::xproto::window,
+                                              time :  ffi::xproto::timestamp,
                                               revert_to :  u8,
                                               device_id :  u8) -> void_cookie;
 
@@ -2685,8 +2685,8 @@ pub unsafe fn xcb_input_set_device_focus_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_input_set_device_focus (c : *connection,
-                                      focus :  ll::xproto::window,
-                                      time :  ll::xproto::timestamp,
+                                      focus :  ffi::xproto::window,
+                                      time :  ffi::xproto::timestamp,
                                       revert_to :  u8,
                                       device_id :  u8) -> void_cookie;
 
@@ -2827,7 +2827,7 @@ pub unsafe fn xcb_input_integer_feedback_state_end (i:integer_feedback_state_ite
 
 pub unsafe fn xcb_input_string_feedback_state_sizeof (_buffer :  *c_void) -> c_int;
 
-pub unsafe fn xcb_input_string_feedback_state_keysyms (R : *string_feedback_state) -> *ll::xproto::keysym;
+pub unsafe fn xcb_input_string_feedback_state_keysyms (R : *string_feedback_state) -> *ffi::xproto::keysym;
 
 
 pub unsafe fn xcb_input_string_feedback_state_keysyms_length (R : *string_feedback_state) -> c_int;
@@ -2998,7 +2998,7 @@ pub unsafe fn xcb_input_integer_feedback_ctl_end (i:integer_feedback_ctl_iterato
 
 pub unsafe fn xcb_input_string_feedback_ctl_sizeof (_buffer :  *c_void) -> c_int;
 
-pub unsafe fn xcb_input_string_feedback_ctl_keysyms (R : *string_feedback_ctl) -> *ll::xproto::keysym;
+pub unsafe fn xcb_input_string_feedback_ctl_keysyms (R : *string_feedback_ctl) -> *ffi::xproto::keysym;
 
 
 pub unsafe fn xcb_input_string_feedback_ctl_keysyms_length (R : *string_feedback_ctl) -> c_int;
@@ -3106,7 +3106,7 @@ pub unsafe fn xcb_input_get_device_key_mapping_unchecked (c : *connection,
                                                       first_keycode :  key_code,
                                                       count :  u8) -> get_device_key_mapping_cookie;
 
-pub unsafe fn xcb_input_get_device_key_mapping_keysyms (R : *get_device_key_mapping_reply) -> *ll::xproto::keysym;
+pub unsafe fn xcb_input_get_device_key_mapping_keysyms (R : *get_device_key_mapping_reply) -> *ffi::xproto::keysym;
 
 
 pub unsafe fn xcb_input_get_device_key_mapping_keysyms_length (R : *get_device_key_mapping_reply) -> c_int;
@@ -3150,7 +3150,7 @@ pub unsafe fn xcb_input_change_device_key_mapping_checked (c : *connection,
                                                        first_keycode :  key_code,
                                                        keysyms_per_keycode :  u8,
                                                        keycode_count :  u8,
-                                                       keysyms : *ll::xproto::keysym) -> void_cookie;
+                                                       keysyms : *ffi::xproto::keysym) -> void_cookie;
 
 /**
  *
@@ -3165,7 +3165,7 @@ pub unsafe fn xcb_input_change_device_key_mapping (c : *connection,
                                                first_keycode :  key_code,
                                                keysyms_per_keycode :  u8,
                                                keycode_count :  u8,
-                                               keysyms : *ll::xproto::keysym) -> void_cookie;
+                                               keysyms : *ffi::xproto::keysym) -> void_cookie;
 
 pub unsafe fn xcb_input_get_device_modifier_mapping_sizeof (_buffer :  *c_void) -> c_int;
 
@@ -3530,7 +3530,7 @@ pub unsafe fn xcb_input_send_extension_event_sizeof (_buffer :  *c_void) -> c_in
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_input_send_extension_event_checked (c : *connection,
-                                                  destination :  ll::xproto::window,
+                                                  destination :  ffi::xproto::window,
                                                   device_id :  u8,
                                                   propagate :  u8,
                                                   num_classes :  u16,
@@ -3547,7 +3547,7 @@ pub unsafe fn xcb_input_send_extension_event_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_input_send_extension_event (c : *connection,
-                                          destination :  ll::xproto::window,
+                                          destination :  ffi::xproto::window,
                                           device_id :  u8,
                                           propagate :  u8,
                                           num_classes :  u16,

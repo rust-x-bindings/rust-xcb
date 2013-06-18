@@ -10,11 +10,11 @@ use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
 use std::to_bytes::ToBytes;
-use ll::base::*;
+use ffi::base::*;
 use base;
 use base::*;
-use ll;
-use ll::shape::*;
+use ffi;
+use ffi::shape::*;
 use std::option::Option;
 use std::iterator::Iterator;
 
@@ -195,11 +195,11 @@ pub fn RectanglesChecked<'r> (c : &'r Connection,
         operation as op, //1
         destination_kind as kind, //2
         ordering as u8, //3
-        destination_window as ll::xproto::window, //4
+        destination_window as ffi::xproto::window, //4
         x_offset as i16, //5
         y_offset as i16, //6
         rectangles_len as u32, //7
-        rectangles_ptr as *ll::xproto::rectangle); //8
+        rectangles_ptr as *ffi::xproto::rectangle); //8
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -218,11 +218,11 @@ pub fn Rectangles<'r> (c : &'r Connection,
         operation as op, //1
         destination_kind as kind, //2
         ordering as u8, //3
-        destination_window as ll::xproto::window, //4
+        destination_window as ffi::xproto::window, //4
         x_offset as i16, //5
         y_offset as i16, //6
         rectangles_len as u32, //7
-        rectangles_ptr as *ll::xproto::rectangle); //8
+        rectangles_ptr as *ffi::xproto::rectangle); //8
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -237,10 +237,10 @@ pub fn MaskChecked<'r> (c : &'r Connection,
     let cookie = xcb_shape_mask_checked(c.get_raw_conn(),
         operation as op, //1
         destination_kind as kind, //2
-        destination_window as ll::xproto::window, //3
+        destination_window as ffi::xproto::window, //3
         x_offset as i16, //4
         y_offset as i16, //5
-        source_bitmap as ll::xproto::pixmap); //6
+        source_bitmap as ffi::xproto::pixmap); //6
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -255,10 +255,10 @@ pub fn Mask<'r> (c : &'r Connection,
     let cookie = xcb_shape_mask(c.get_raw_conn(),
         operation as op, //1
         destination_kind as kind, //2
-        destination_window as ll::xproto::window, //3
+        destination_window as ffi::xproto::window, //3
         x_offset as i16, //4
         y_offset as i16, //5
-        source_bitmap as ll::xproto::pixmap); //6
+        source_bitmap as ffi::xproto::pixmap); //6
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -275,10 +275,10 @@ pub fn CombineChecked<'r> (c : &'r Connection,
         operation as op, //1
         destination_kind as kind, //2
         source_kind as kind, //3
-        destination_window as ll::xproto::window, //4
+        destination_window as ffi::xproto::window, //4
         x_offset as i16, //5
         y_offset as i16, //6
-        source_window as ll::xproto::window); //7
+        source_window as ffi::xproto::window); //7
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -295,10 +295,10 @@ pub fn Combine<'r> (c : &'r Connection,
         operation as op, //1
         destination_kind as kind, //2
         source_kind as kind, //3
-        destination_window as ll::xproto::window, //4
+        destination_window as ffi::xproto::window, //4
         x_offset as i16, //5
         y_offset as i16, //6
-        source_window as ll::xproto::window); //7
+        source_window as ffi::xproto::window); //7
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -310,7 +310,7 @@ pub fn OffsetChecked<'r> (c : &'r Connection,
   unsafe {
     let cookie = xcb_shape_offset_checked(c.get_raw_conn(),
         destination_kind as kind, //1
-        destination_window as ll::xproto::window, //2
+        destination_window as ffi::xproto::window, //2
         x_offset as i16, //3
         y_offset as i16); //4
     Cookie {cookie:cookie,conn:c,checked:true}
@@ -324,7 +324,7 @@ pub fn Offset<'r> (c : &'r Connection,
   unsafe {
     let cookie = xcb_shape_offset(c.get_raw_conn(),
         destination_kind as kind, //1
-        destination_window as ll::xproto::window, //2
+        destination_window as ffi::xproto::window, //2
         x_offset as i16, //3
         y_offset as i16); //4
     Cookie {cookie:cookie,conn:c,checked:false}
@@ -334,7 +334,7 @@ pub fn QueryExtents<'r> (c : &'r Connection,
                      destination_window : xproto::Window) -> QueryExtentsCookie<'r> {
   unsafe {
     let cookie = xcb_shape_query_extents(c.get_raw_conn(),
-        destination_window as ll::xproto::window); //1
+        destination_window as ffi::xproto::window); //1
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -342,7 +342,7 @@ pub fn QueryExtentsUnchecked<'r> (c : &'r Connection,
                               destination_window : xproto::Window) -> QueryExtentsCookie<'r> {
   unsafe {
     let cookie = xcb_shape_query_extents_unchecked(c.get_raw_conn(),
-        destination_window as ll::xproto::window); //1
+        destination_window as ffi::xproto::window); //1
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -396,7 +396,7 @@ pub fn SelectInputChecked<'r> (c : &'r Connection,
                            enable : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_shape_select_input_checked(c.get_raw_conn(),
-        destination_window as ll::xproto::window, //1
+        destination_window as ffi::xproto::window, //1
         enable as u8); //2
     Cookie {cookie:cookie,conn:c,checked:true}
   }
@@ -406,7 +406,7 @@ pub fn SelectInput<'r> (c : &'r Connection,
                     enable : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_shape_select_input(c.get_raw_conn(),
-        destination_window as ll::xproto::window, //1
+        destination_window as ffi::xproto::window, //1
         enable as u8); //2
     Cookie {cookie:cookie,conn:c,checked:false}
   }
@@ -415,7 +415,7 @@ pub fn InputSelected<'r> (c : &'r Connection,
                       destination_window : xproto::Window) -> InputSelectedCookie<'r> {
   unsafe {
     let cookie = xcb_shape_input_selected(c.get_raw_conn(),
-        destination_window as ll::xproto::window); //1
+        destination_window as ffi::xproto::window); //1
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -423,7 +423,7 @@ pub fn InputSelectedUnchecked<'r> (c : &'r Connection,
                                destination_window : xproto::Window) -> InputSelectedCookie<'r> {
   unsafe {
     let cookie = xcb_shape_input_selected_unchecked(c.get_raw_conn(),
-        destination_window as ll::xproto::window); //1
+        destination_window as ffi::xproto::window); //1
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -442,7 +442,7 @@ pub fn GetRectangles<'r> (c : &'r Connection,
                       source_kind : Kind) -> GetRectanglesCookie<'r> {
   unsafe {
     let cookie = xcb_shape_get_rectangles(c.get_raw_conn(),
-        window as ll::xproto::window, //1
+        window as ffi::xproto::window, //1
         source_kind as kind); //2
     Cookie {cookie:cookie,conn:c,checked:false}
   }
@@ -452,7 +452,7 @@ pub fn GetRectanglesUnchecked<'r> (c : &'r Connection,
                                source_kind : Kind) -> GetRectanglesCookie<'r> {
   unsafe {
     let cookie = xcb_shape_get_rectangles_unchecked(c.get_raw_conn(),
-        window as ll::xproto::window, //1
+        window as ffi::xproto::window, //1
         source_kind as kind); //2
     Cookie {cookie:cookie,conn:c,checked:false}
   }

@@ -10,12 +10,12 @@ use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
 use std::to_bytes::ToBytes;
-use ll::base::*;
-use ll;
-use ll::xproto;
-use ll::render;
-use ll::shape;
-use ll::xfixes;
+use ffi::base::*;
+use ffi;
+use ffi::xproto;
+use ffi::render;
+use ffi::shape;
+use ffi::xfixes;
 
 pub static DAMAGE_MAJOR_VERSION : c_uint = 1;
 pub static DAMAGE_MINOR_VERSION : c_uint = 1;
@@ -70,7 +70,7 @@ pub struct create_request {
     minor_opcode :   u8,
     length :         u16,
     damage :         damage,
-    drawable :       ll::xproto::drawable,
+    drawable :       ffi::xproto::drawable,
     level :          u8,
     pad0 :           [u8,..3]
 }
@@ -91,8 +91,8 @@ pub struct subtract_request {
     minor_opcode :   u8,
     length :         u16,
     damage :         damage,
-    repair :         ll::xfixes::region,
-    parts :          ll::xfixes::region
+    repair :         ffi::xfixes::region,
+    parts :          ffi::xfixes::region
 }
 
 
@@ -101,8 +101,8 @@ pub struct add_request {
     major_opcode :   u8,
     minor_opcode :   u8,
     length :         u16,
-    drawable :       ll::xproto::drawable,
-    region :         ll::xfixes::region
+    drawable :       ffi::xproto::drawable,
+    region :         ffi::xfixes::region
 }
 
 
@@ -111,11 +111,11 @@ pub struct notify_event {
     response_type :   u8,
     level :           u8,
     sequence :        u16,
-    drawable :        ll::xproto::drawable,
+    drawable :        ffi::xproto::drawable,
     damage :          damage,
-    timestamp :       ll::xproto::timestamp,
-    area :            ll::xproto::rectangle,
-    geometry :        ll::xproto::rectangle
+    timestamp :       ffi::xproto::timestamp,
+    area :            ffi::xproto::rectangle,
+    geometry :        ffi::xproto::rectangle
 }
 
 #[link_args="-lxcb-damage"]
@@ -202,7 +202,7 @@ pub unsafe fn xcb_damage_query_version_reply (c : *connection,
  */
 pub unsafe fn xcb_damage_create_checked (c : *connection,
                                      damage :  damage,
-                                     drawable :  ll::xproto::drawable,
+                                     drawable :  ffi::xproto::drawable,
                                      level :  u8) -> void_cookie;
 
 /**
@@ -215,7 +215,7 @@ pub unsafe fn xcb_damage_create_checked (c : *connection,
  */
 pub unsafe fn xcb_damage_create (c : *connection,
                              damage :  damage,
-                             drawable :  ll::xproto::drawable,
+                             drawable :  ffi::xproto::drawable,
                              level :  u8) -> void_cookie;
 
 /**
@@ -256,8 +256,8 @@ pub unsafe fn xcb_damage_destroy (c : *connection,
  */
 pub unsafe fn xcb_damage_subtract_checked (c : *connection,
                                        damage :  damage,
-                                       repair :  ll::xfixes::region,
-                                       parts :  ll::xfixes::region) -> void_cookie;
+                                       repair :  ffi::xfixes::region,
+                                       parts :  ffi::xfixes::region) -> void_cookie;
 
 /**
  *
@@ -269,8 +269,8 @@ pub unsafe fn xcb_damage_subtract_checked (c : *connection,
  */
 pub unsafe fn xcb_damage_subtract (c : *connection,
                                damage :  damage,
-                               repair :  ll::xfixes::region,
-                               parts :  ll::xfixes::region) -> void_cookie;
+                               repair :  ffi::xfixes::region,
+                               parts :  ffi::xfixes::region) -> void_cookie;
 
 /**
  *
@@ -284,8 +284,8 @@ pub unsafe fn xcb_damage_subtract (c : *connection,
  * saved for handling by xcb_request_check().
  */
 pub unsafe fn xcb_damage_add_checked (c : *connection,
-                                  drawable :  ll::xproto::drawable,
-                                  region :  ll::xfixes::region) -> void_cookie;
+                                  drawable :  ffi::xproto::drawable,
+                                  region :  ffi::xfixes::region) -> void_cookie;
 
 /**
  *
@@ -296,7 +296,7 @@ pub unsafe fn xcb_damage_add_checked (c : *connection,
  * 
  */
 pub unsafe fn xcb_damage_add (c : *connection,
-                          drawable :  ll::xproto::drawable,
-                          region :  ll::xfixes::region) -> void_cookie;
+                          drawable :  ffi::xproto::drawable,
+                          region :  ffi::xfixes::region) -> void_cookie;
 }
 
