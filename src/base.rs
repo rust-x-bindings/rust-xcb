@@ -197,7 +197,7 @@ impl<'self> Connection {
 }
 
 impl Drop for Connection {
-    fn finalize(&self) {
+    fn drop(&self) {
         unsafe {
             xcb_disconnect(self.c);
         }
@@ -210,7 +210,7 @@ pub struct Event<T> {
 
 #[unsafe_destructor]
 impl<T> Drop for Event<T> {
-    fn finalize(&self) {
+    fn drop(&self) {
         use std::libc::c_void;
         unsafe {
             free(self.event as *c_void);
@@ -228,7 +228,7 @@ pub fn mk_error<T>(err:*T) -> Error<T> {
 
 #[unsafe_destructor]
 impl<T> Drop for Error<T> {
-    fn finalize(&self) {
+    fn drop(&self) {
         use std::libc::c_void;
         unsafe {
             free(self.error as *c_void);
@@ -279,7 +279,7 @@ pub fn mk_reply<T>(reply:*T) -> Reply<T> {
 
 #[unsafe_destructor]
 impl<T> Drop for Reply<T> {
-    fn finalize(&self) {
+    fn drop(&self) {
         use std::libc::c_void;
         unsafe {
             free(self.reply as *c_void);
@@ -330,7 +330,7 @@ pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &[(T,L)]) -> (T, ~[L])
     let mut list : ~[L] = vec::with_capacity(len);
 
 
-    for sorted.each |el| {
+    for sorted.iter().advance |el| {
         let &(f, v) = el;
         let fld = num::cast(f);
         if (mask & fld) > 0 {
