@@ -1193,7 +1193,7 @@ def c_struct(self, name):
 
     self.wrap_type = 'Struct'
     _r('pub type %s = base::Struct<%s>;\n', self.r_type, self.c_type)
-    self.wrap_field_name = 's.strct'
+    self.wrap_field_name = 'self.strct'
     _c_accessors(self, name, name)
     _c_iterator(self, name)
 
@@ -1424,7 +1424,7 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
             if fty.expr.bitfield:
                 mk_params.append("let (%s_mask, %s_vec) = pack_bitfield(%s);" %
                         (field.c_field_name, field.c_field_name, field.c_field_name))
-                mk_params.append("let %s_ptr = std::vec::raw::to_ptr(%s_vec);" %
+                mk_params.append("let %s_ptr = %s_vec.as_mut_ptr();" %
                         (field.c_field_name, field.c_field_name))
 
                 call_params.append((field.idx-1,'%s_mask as %s' %(field.c_field_name,
@@ -1448,7 +1448,7 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
                     mk_params.append("let %s_len = %s.len();" % (field.c_field_name, field.c_field_name))
                     call_params.append((field.lf.idx, '%s_len as %s' % (field.c_field_name,lfty)))
 
-                mk_params.append("let %s_ptr = std::vec::raw::to_ptr(%s);" % (field.c_field_name,
+                mk_params.append("let %s_ptr = %s.as_mmut_ptr();" % (field.c_field_name,
                     field.c_field_name))
                 call_params.append((field.idx, '%s_ptr as *mut %s' % (field.c_field_name,
                     c_field_const_type)))
