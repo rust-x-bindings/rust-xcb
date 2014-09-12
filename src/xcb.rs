@@ -37,6 +37,8 @@ DEALINGS IN THE SOFTWARE.
 #![feature(globs)]
 #![feature(macro_rules)]
 #![feature(unsafe_destructor)]
+extern crate libc;
+
 pub mod ffi {
     pub mod xproto;
     pub mod base;

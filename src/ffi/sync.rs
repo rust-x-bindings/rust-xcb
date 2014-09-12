@@ -7,9 +7,8 @@
 #![allow(unused_imports)]
 #![allow(non_camel_case_types)]
 use std;
-use std::libc::*;
-use std::{cast,num,ptr,str,libc};
-use std::to_bytes::ToBytes;
+use libc::*;
+use std::{mem,num,ptr,str};
 use ffi::base::*;
 use ffi;
 use ffi::xproto;

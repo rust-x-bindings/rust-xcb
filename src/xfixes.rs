@@ -7,9 +7,8 @@
 #![allow(unused_imports)]
 #![allow(unused_unsafe)]
 use std;
-use std::libc::*;
-use std::{cast,num,ptr,str,libc};
-use std::to_bytes::ToBytes;
+use libc::*;
+use std::{mem,num,ptr,str};
 use ffi::base::*;
 use base;
 use base::*;
@@ -384,10 +383,10 @@ impl<'s, Region> Iterator<&'s Region> for RegionIterator {
     pub fn next(&mut self) -> Option<&'s Region> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut region_iterator = cast::transmute(self);
+            let iter : *mut region_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_xfixes_region_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -724,7 +723,7 @@ pub fn FetchRegionUnchecked<'r> (c : &'r Connection,
 
 impl base::Reply<fetch_region_reply> {
   pub fn extents(&self) -> xproto::Rectangle {
-    unsafe { cast::transmute((*self.reply).extents) }
+    unsafe { mem::transmute((*self.reply).extents) }
   }
   pub fn rectangles(&self) -> xproto::RectangleIterator {
     unsafe { accessor!(xproto::RectangleIterator, xcb_xfixes_fetch_region_rectangles_iterator, (*self.reply)) }
@@ -825,7 +824,7 @@ pub fn SetCursorNameChecked<'r> (c : &'r Connection,
                              cursor : xproto::Cursor,
                              name : &str) -> base::VoidCookie<'r> {
   unsafe {
-    let name = (name).to_bytes(false);
+    let name = (name).as_bytes();
     let name_len = name.len();
     let name_ptr = std::vec::raw::to_ptr(name);
     let cookie = xcb_xfixes_set_cursor_name_checked(c.get_raw_conn(),
@@ -839,7 +838,7 @@ pub fn SetCursorName<'r> (c : &'r Connection,
                       cursor : xproto::Cursor,
                       name : &str) -> base::VoidCookie<'r> {
   unsafe {
-    let name = (name).to_bytes(false);
+    let name = (name).as_bytes();
     let name_len = name.len();
     let name_ptr = std::vec::raw::to_ptr(name);
     let cookie = xcb_xfixes_set_cursor_name(c.get_raw_conn(),
@@ -957,7 +956,7 @@ pub fn ChangeCursorByNameChecked<'r> (c : &'r Connection,
                                   src : xproto::Cursor,
                                   name : &str) -> base::VoidCookie<'r> {
   unsafe {
-    let name = (name).to_bytes(false);
+    let name = (name).as_bytes();
     let name_len = name.len();
     let name_ptr = std::vec::raw::to_ptr(name);
     let cookie = xcb_xfixes_change_cursor_by_name_checked(c.get_raw_conn(),
@@ -971,7 +970,7 @@ pub fn ChangeCursorByName<'r> (c : &'r Connection,
                            src : xproto::Cursor,
                            name : &str) -> base::VoidCookie<'r> {
   unsafe {
-    let name = (name).to_bytes(false);
+    let name = (name).as_bytes();
     let name_len = name.len();
     let name_ptr = std::vec::raw::to_ptr(name);
     let cookie = xcb_xfixes_change_cursor_by_name(c.get_raw_conn(),

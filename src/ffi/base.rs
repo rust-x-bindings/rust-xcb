@@ -19,7 +19,9 @@ The conditions in the LICENSE file provided with the Software are also in effect
 
 #![allow(non_camel_case_types)] // C types
 
-use std::libc::{c_int, c_uint, c_void};
+extern crate libc;
+
+use libc::{c_int, c_uint, c_void};
 
 use ffi::xproto;
 
@@ -113,7 +115,7 @@ pub extern {
 
 pub mod Xlib {
     use super::{connection};
-    use std::libc::{c_void, c_uint};
+    use libc::{c_void, c_uint};
     struct Display;
 
     type XEventQueueOwner = c_uint;

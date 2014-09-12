@@ -7,9 +7,8 @@
 #![allow(unused_imports)]
 #![allow(unused_unsafe)]
 use std;
-use std::libc::*;
-use std::{cast,num,ptr,str,libc};
-use std::to_bytes::ToBytes;
+use libc::*;
+use std::{mem,num,ptr,str};
 use ffi::base::*;
 use base;
 use base::*;
@@ -76,10 +75,10 @@ impl<'s, ScreenInfo> Iterator<&'s ScreenInfo> for ScreenInfoIterator {
     pub fn next(&mut self) -> Option<&'s ScreenInfo> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut screen_info_iterator = cast::transmute(self);
+            let iter : *mut screen_info_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_xinerama_screen_info_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }

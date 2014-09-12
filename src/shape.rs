@@ -7,9 +7,8 @@
 #![allow(unused_imports)]
 #![allow(unused_unsafe)]
 use std;
-use std::libc::*;
-use std::{cast,num,ptr,str,libc};
-use std::to_bytes::ToBytes;
+use libc::*;
+use std::{mem,num,ptr,str};
 use ffi::base::*;
 use base;
 use base::*;
@@ -76,10 +75,10 @@ impl<'s, Op> Iterator<&'s Op> for OpIterator {
     pub fn next(&mut self) -> Option<&'s Op> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut op_iterator = cast::transmute(self);
+            let iter : *mut op_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_shape_op_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -91,10 +90,10 @@ impl<'s, Kind> Iterator<&'s Kind> for KindIterator {
     pub fn next(&mut self) -> Option<&'s Kind> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut kind_iterator = cast::transmute(self);
+            let iter : *mut kind_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_shape_kind_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }

@@ -28,14 +28,14 @@ DEALINGS IN THE SOFTWARE.
 */
 
 //extern crate extra;
+extern crate libc;
 
 use ffi::base::*;
 
-use std::cast;
-use std::libc::{c_int,c_char,free};
+use libc::{c_int,c_char,free};
 use std::option::Option;
 
-use std::{num,ptr,vec,libc,str};
+use std::{num,ptr,vec,str};
 use std::num::*;
 
 use xproto;
@@ -102,7 +102,7 @@ impl<'s> Connection {
             if ptr::is_null(setup) {
                 fail!(box "NULL setup on connection")
             } else {
-                cast::transmute(setup)
+                mem::transmute(setup)
             }
         }
     }
@@ -117,7 +117,7 @@ impl<'s> Connection {
     #[inline]
     pub fn generate_id<T>(&self) -> T {
         unsafe {
-            cast::transmute(xcb_generate_id(self.c))
+            mem::transmute(xcb_generate_id(self.c))
         }
     }
 
@@ -177,7 +177,7 @@ impl<'s> Connection {
             let conn = {
 		let s = str::as_c_str(display);
                 xcb_connect_to_display_with_auth_info(s as *mut u8,
-                    cast::transmute(auth_info), &screen)
+                    mem::transmute(auth_info), &screen)
             };
             if ptr::is_null(conn) {
                 None
@@ -213,7 +213,7 @@ pub struct Event<T> {
 #[unsafe_destructor]
 impl<T> Drop for Event<T> {
     fn drop(&self) {
-        use std::libc::c_void;
+        use libc::c_void;
         unsafe {
             free(self.event as *mut c_void);
         }
@@ -231,7 +231,7 @@ pub fn mk_error<T>(err:*mut T) -> Error<T> {
 #[unsafe_destructor]
 impl<T> Drop for Error<T> {
     fn drop(&self) {
-        use std::libc::c_void;
+        use libc::c_void;
         unsafe {
             free(self.error as *mut c_void);
         }
@@ -260,7 +260,7 @@ impl<'s, T> Cookie<'s, T> {
         unsafe {
             // Crazy pointer dance to get the right bit
             // of the struct
-            let c : *mut void_cookie = cast::transmute(&self.cookie);
+            let c : *mut void_cookie = mem::transmute(&self.cookie);
             let err = xcb_request_check(self.conn.c, c);
             if ptr::is_null(err) {
                 None
@@ -282,7 +282,7 @@ pub fn mk_reply<T>(reply:*mut T) -> Reply<T> {
 #[unsafe_destructor]
 impl<T> Drop for Reply<T> {
     fn drop(&self) {
-        use std::libc::c_void;
+        use libc::c_void;
         unsafe {
             free(self.reply as *mut c_void);
         }
@@ -299,10 +299,10 @@ pub type VoidCookie<'s> = Cookie<'s, void_cookie>;
  * event is really the correct type.
  */
 #[inline(always)]
-pub fn cast_event<'r, T>(event : &'r GenericEvent) -> &'r T {
+pub fn mem_event<'r, T>(event : &'r GenericEvent) -> &'r T {
     // This isn't very safe... but other options incur yet more overhead
     // that I really don't want to.
-    unsafe { cast::transmute(event) }
+    unsafe { mem::transmute(event) }
 }
 
 //Accessor methods for all Events
@@ -314,7 +314,7 @@ pub trait EventUtil {
 impl<T> EventUtil for Event<T> {
     pub fn response_type(&self) -> u8 {
         unsafe {
-            let gev : *mut generic_event = cast::transmute(self.event);
+            let gev : *mut generic_event = mem::transmute(self.event);
             (*gev).response_type
         }
     }
@@ -334,7 +334,7 @@ pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &[(T,L)]) -> (T, Vec<L
 
     for el in sorted.iter().advance {
         let &(f, v) = el;
-        let fld = num::cast(f);
+        let fld = num::mem(f);
         if (mask & fld) > 0 {
             continue;
         } else {
@@ -343,5 +343,5 @@ pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &[(T,L)]) -> (T, Vec<L
         }
     }
 
-    (num::cast(mask), list)
+    (num::mem(mask), list)
 }

@@ -7,9 +7,8 @@
 #![allow(unused_imports)]
 #![allow(unused_unsafe)]
 use std;
-use std::libc::*;
-use std::{cast,num,ptr,str,libc};
-use std::to_bytes::ToBytes;
+use libc::*;
+use std::{mem,num,ptr,str};
 use ffi::base::*;
 use base;
 use base::*;
@@ -1514,10 +1513,10 @@ impl<'s, Char2b> Iterator<&'s Char2b> for Char2bIterator {
     pub fn next(&mut self) -> Option<&'s Char2b> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut char2b_iterator = cast::transmute(self);
+            let iter : *mut char2b_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_char2b_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -1529,10 +1528,10 @@ impl<'s, Window> Iterator<&'s Window> for WindowIterator {
     pub fn next(&mut self) -> Option<&'s Window> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut window_iterator = cast::transmute(self);
+            let iter : *mut window_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_window_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -1544,10 +1543,10 @@ impl<'s, Pixmap> Iterator<&'s Pixmap> for PixmapIterator {
     pub fn next(&mut self) -> Option<&'s Pixmap> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut pixmap_iterator = cast::transmute(self);
+            let iter : *mut pixmap_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_pixmap_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -1559,10 +1558,10 @@ impl<'s, Cursor> Iterator<&'s Cursor> for CursorIterator {
     pub fn next(&mut self) -> Option<&'s Cursor> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut cursor_iterator = cast::transmute(self);
+            let iter : *mut cursor_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_cursor_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -1574,10 +1573,10 @@ impl<'s, Font> Iterator<&'s Font> for FontIterator {
     pub fn next(&mut self) -> Option<&'s Font> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut font_iterator = cast::transmute(self);
+            let iter : *mut font_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_font_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -1589,10 +1588,10 @@ impl<'s, Gcontext> Iterator<&'s Gcontext> for GcontextIterator {
     pub fn next(&mut self) -> Option<&'s Gcontext> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut gcontext_iterator = cast::transmute(self);
+            let iter : *mut gcontext_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_gcontext_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -1604,10 +1603,10 @@ impl<'s, Colormap> Iterator<&'s Colormap> for ColormapIterator {
     pub fn next(&mut self) -> Option<&'s Colormap> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut colormap_iterator = cast::transmute(self);
+            let iter : *mut colormap_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_colormap_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -1619,10 +1618,10 @@ impl<'s, Atom> Iterator<&'s Atom> for AtomIterator {
     pub fn next(&mut self) -> Option<&'s Atom> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut atom_iterator = cast::transmute(self);
+            let iter : *mut atom_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_atom_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -1634,10 +1633,10 @@ impl<'s, Drawable> Iterator<&'s Drawable> for DrawableIterator {
     pub fn next(&mut self) -> Option<&'s Drawable> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut drawable_iterator = cast::transmute(self);
+            let iter : *mut drawable_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_drawable_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -1649,10 +1648,10 @@ impl<'s, Fontable> Iterator<&'s Fontable> for FontableIterator {
     pub fn next(&mut self) -> Option<&'s Fontable> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut fontable_iterator = cast::transmute(self);
+            let iter : *mut fontable_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_fontable_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -1664,10 +1663,10 @@ impl<'s, Visualid> Iterator<&'s Visualid> for VisualidIterator {
     pub fn next(&mut self) -> Option<&'s Visualid> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut visualid_iterator = cast::transmute(self);
+            let iter : *mut visualid_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_visualid_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -1679,10 +1678,10 @@ impl<'s, Timestamp> Iterator<&'s Timestamp> for TimestampIterator {
     pub fn next(&mut self) -> Option<&'s Timestamp> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut timestamp_iterator = cast::transmute(self);
+            let iter : *mut timestamp_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_timestamp_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -1694,10 +1693,10 @@ impl<'s, Keysym> Iterator<&'s Keysym> for KeysymIterator {
     pub fn next(&mut self) -> Option<&'s Keysym> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut keysym_iterator = cast::transmute(self);
+            let iter : *mut keysym_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_keysym_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -1709,10 +1708,10 @@ impl<'s, Keycode> Iterator<&'s Keycode> for KeycodeIterator {
     pub fn next(&mut self) -> Option<&'s Keycode> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut keycode_iterator = cast::transmute(self);
+            let iter : *mut keycode_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_keycode_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -1724,10 +1723,10 @@ impl<'s, Button> Iterator<&'s Button> for ButtonIterator {
     pub fn next(&mut self) -> Option<&'s Button> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut button_iterator = cast::transmute(self);
+            let iter : *mut button_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_button_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -1750,10 +1749,10 @@ impl<'s, Point> Iterator<&'s Point> for PointIterator {
     pub fn next(&mut self) -> Option<&'s Point> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut point_iterator = cast::transmute(self);
+            let iter : *mut point_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_point_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -1784,10 +1783,10 @@ impl<'s, Rectangle> Iterator<&'s Rectangle> for RectangleIterator {
     pub fn next(&mut self) -> Option<&'s Rectangle> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut rectangle_iterator = cast::transmute(self);
+            let iter : *mut rectangle_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_rectangle_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -1826,10 +1825,10 @@ impl<'s, Arc> Iterator<&'s Arc> for ArcIterator {
     pub fn next(&mut self) -> Option<&'s Arc> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut arc_iterator = cast::transmute(self);
+            let iter : *mut arc_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_arc_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -1856,10 +1855,10 @@ impl<'s, Format> Iterator<&'s Format> for FormatIterator {
     pub fn next(&mut self) -> Option<&'s Format> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut format_iterator = cast::transmute(self);
+            let iter : *mut format_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_format_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -1900,10 +1899,10 @@ impl<'s, Visualtype> Iterator<&'s Visualtype> for VisualtypeIterator {
     pub fn next(&mut self) -> Option<&'s Visualtype> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut visualtype_iterator = cast::transmute(self);
+            let iter : *mut visualtype_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_visualtype_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -1926,10 +1925,10 @@ impl<'s, Depth> Iterator<&'s Depth> for DepthIterator {
     pub fn next(&mut self) -> Option<&'s Depth> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut depth_iterator = cast::transmute(self);
+            let iter : *mut depth_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_depth_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -2008,10 +2007,10 @@ impl<'s, Screen> Iterator<&'s Screen> for ScreenIterator {
     pub fn next(&mut self) -> Option<&'s Screen> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut screen_iterator = cast::transmute(self);
+            let iter : *mut screen_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_screen_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -2046,10 +2045,10 @@ impl<'s, SetupRequest> Iterator<&'s SetupRequest> for SetupRequestIterator {
     pub fn next(&mut self) -> Option<&'s SetupRequest> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut setup_request_iterator = cast::transmute(self);
+            let iter : *mut setup_request_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_setup_request_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -2084,10 +2083,10 @@ impl<'s, SetupFailed> Iterator<&'s SetupFailed> for SetupFailedIterator {
     pub fn next(&mut self) -> Option<&'s SetupFailed> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut setup_failed_iterator = cast::transmute(self);
+            let iter : *mut setup_failed_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_setup_failed_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -2110,10 +2109,10 @@ impl<'s, SetupAuthenticate> Iterator<&'s SetupAuthenticate> for SetupAuthenticat
     pub fn next(&mut self) -> Option<&'s SetupAuthenticate> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut setup_authenticate_iterator = cast::transmute(self);
+            let iter : *mut setup_authenticate_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_setup_authenticate_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -2200,10 +2199,10 @@ impl<'s, Setup> Iterator<&'s Setup> for SetupIterator {
     pub fn next(&mut self) -> Option<&'s Setup> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut setup_iterator = cast::transmute(self);
+            let iter : *mut setup_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_setup_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -3280,10 +3279,10 @@ impl<'s, ClientMessageData> Iterator<&'s ClientMessageData> for ClientMessageDat
     pub fn next(&mut self) -> Option<&'s ClientMessageData> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut client_message_data_iterator = cast::transmute(self);
+            let iter : *mut client_message_data_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_client_message_data_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -3303,7 +3302,7 @@ impl base::Event<client_message_event> {
   }
 
   pub fn data(&self) -> ClientMessageData {
-    unsafe { cast::transmute((*self.event).data) }
+    unsafe { mem::transmute((*self.event).data) }
   }
   pub fn new(format : u8,
          window : Window,
@@ -3791,7 +3790,7 @@ pub fn InternAtom<'r> (c : &'r Connection,
                    only_if_exists : u8,
                    name : &str) -> InternAtomCookie<'r> {
   unsafe {
-    let name = (name).to_bytes(false);
+    let name = (name).as_bytes();
     let name_len = name.len();
     let name_ptr = std::vec::raw::to_ptr(name);
     let cookie = xcb_intern_atom(c.get_raw_conn(),
@@ -3805,7 +3804,7 @@ pub fn InternAtomUnchecked<'r> (c : &'r Connection,
                             only_if_exists : u8,
                             name : &str) -> InternAtomCookie<'r> {
   unsafe {
-    let name = (name).to_bytes(false);
+    let name = (name).as_bytes();
     let name_len = name.len();
     let name_ptr = std::vec::raw::to_ptr(name);
     let cookie = xcb_intern_atom_unchecked(c.get_raw_conn(),
@@ -4083,7 +4082,7 @@ pub fn SendEventChecked<'r> (c : &'r Connection,
                          event_mask : u32,
                          event : &str) -> base::VoidCookie<'r> {
   unsafe {
-    let event = (event).to_bytes(false);
+    let event = (event).as_bytes();
     let event_ptr = std::vec::raw::to_ptr(event);
     let cookie = xcb_send_event_checked(c.get_raw_conn(),
         propagate as u8, //1
@@ -4099,7 +4098,7 @@ pub fn SendEvent<'r> (c : &'r Connection,
                   event_mask : u32,
                   event : &str) -> base::VoidCookie<'r> {
   unsafe {
-    let event = (event).to_bytes(false);
+    let event = (event).as_bytes();
     let event_ptr = std::vec::raw::to_ptr(event);
     let cookie = xcb_send_event(c.get_raw_conn(),
         propagate as u8, //1
@@ -4510,10 +4509,10 @@ impl<'s, Timecoord> Iterator<&'s Timecoord> for TimecoordIterator {
     pub fn next(&mut self) -> Option<&'s Timecoord> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut timecoord_iterator = cast::transmute(self);
+            let iter : *mut timecoord_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_timecoord_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -4719,7 +4718,7 @@ pub fn OpenFontChecked<'r> (c : &'r Connection,
                         fid : Font,
                         name : &str) -> base::VoidCookie<'r> {
   unsafe {
-    let name = (name).to_bytes(false);
+    let name = (name).as_bytes();
     let name_len = name.len();
     let name_ptr = std::vec::raw::to_ptr(name);
     let cookie = xcb_open_font_checked(c.get_raw_conn(),
@@ -4733,7 +4732,7 @@ pub fn OpenFont<'r> (c : &'r Connection,
                  fid : Font,
                  name : &str) -> base::VoidCookie<'r> {
   unsafe {
-    let name = (name).to_bytes(false);
+    let name = (name).as_bytes();
     let name_len = name.len();
     let name_ptr = std::vec::raw::to_ptr(name);
     let cookie = xcb_open_font(c.get_raw_conn(),
@@ -4775,10 +4774,10 @@ impl<'s, Fontprop> Iterator<&'s Fontprop> for FontpropIterator {
     pub fn next(&mut self) -> Option<&'s Fontprop> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut fontprop_iterator = cast::transmute(self);
+            let iter : *mut fontprop_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_fontprop_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -4817,10 +4816,10 @@ impl<'s, Charinfo> Iterator<&'s Charinfo> for CharinfoIterator {
     pub fn next(&mut self) -> Option<&'s Charinfo> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut charinfo_iterator = cast::transmute(self);
+            let iter : *mut charinfo_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_charinfo_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -4845,10 +4844,10 @@ pub fn QueryFontUnchecked<'r> (c : &'r Connection,
 
 impl base::Reply<query_font_reply> {
   pub fn min_bounds(&self) -> Charinfo {
-    unsafe { cast::transmute((*self.reply).min_bounds) }
+    unsafe { mem::transmute((*self.reply).min_bounds) }
   }
   pub fn max_bounds(&self) -> Charinfo {
-    unsafe { cast::transmute((*self.reply).max_bounds) }
+    unsafe { mem::transmute((*self.reply).max_bounds) }
   }
   pub fn min_char_or_byte2(&self) -> u16 {
     unsafe { accessor!(min_char_or_byte2 -> u16, (*self.reply)) }
@@ -4974,10 +4973,10 @@ impl<'s, Str> Iterator<&'s Str> for StrIterator {
     pub fn next(&mut self) -> Option<&'s Str> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut str_iterator = cast::transmute(self);
+            let iter : *mut str_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_str_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -4986,7 +4985,7 @@ pub fn ListFonts<'r> (c : &'r Connection,
                   max_names : u16,
                   pattern : &str) -> ListFontsCookie<'r> {
   unsafe {
-    let pattern = (pattern).to_bytes(false);
+    let pattern = (pattern).as_bytes();
     let pattern_len = pattern.len();
     let pattern_ptr = std::vec::raw::to_ptr(pattern);
     let cookie = xcb_list_fonts(c.get_raw_conn(),
@@ -5000,7 +4999,7 @@ pub fn ListFontsUnchecked<'r> (c : &'r Connection,
                            max_names : u16,
                            pattern : &str) -> ListFontsCookie<'r> {
   unsafe {
-    let pattern = (pattern).to_bytes(false);
+    let pattern = (pattern).as_bytes();
     let pattern_len = pattern.len();
     let pattern_ptr = std::vec::raw::to_ptr(pattern);
     let cookie = xcb_list_fonts_unchecked(c.get_raw_conn(),
@@ -5023,7 +5022,7 @@ pub fn ListFontsWithInfo<'r> (c : &'r Connection,
                           max_names : u16,
                           pattern : &str) -> ListFontsWithInfoCookie<'r> {
   unsafe {
-    let pattern = (pattern).to_bytes(false);
+    let pattern = (pattern).as_bytes();
     let pattern_len = pattern.len();
     let pattern_ptr = std::vec::raw::to_ptr(pattern);
     let cookie = xcb_list_fonts_with_info(c.get_raw_conn(),
@@ -5037,7 +5036,7 @@ pub fn ListFontsWithInfoUnchecked<'r> (c : &'r Connection,
                                    max_names : u16,
                                    pattern : &str) -> ListFontsWithInfoCookie<'r> {
   unsafe {
-    let pattern = (pattern).to_bytes(false);
+    let pattern = (pattern).as_bytes();
     let pattern_len = pattern.len();
     let pattern_ptr = std::vec::raw::to_ptr(pattern);
     let cookie = xcb_list_fonts_with_info_unchecked(c.get_raw_conn(),
@@ -5050,10 +5049,10 @@ pub fn ListFontsWithInfoUnchecked<'r> (c : &'r Connection,
 
 impl base::Reply<list_fonts_with_info_reply> {
   pub fn min_bounds(&self) -> Charinfo {
-    unsafe { cast::transmute((*self.reply).min_bounds) }
+    unsafe { mem::transmute((*self.reply).min_bounds) }
   }
   pub fn max_bounds(&self) -> Charinfo {
-    unsafe { cast::transmute((*self.reply).max_bounds) }
+    unsafe { mem::transmute((*self.reply).max_bounds) }
   }
   pub fn min_char_or_byte2(&self) -> u16 {
     unsafe { accessor!(min_char_or_byte2 -> u16, (*self.reply)) }
@@ -5592,10 +5591,10 @@ impl<'s, Segment> Iterator<&'s Segment> for SegmentIterator {
     pub fn next(&mut self) -> Option<&'s Segment> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut segment_iterator = cast::transmute(self);
+            let iter : *mut segment_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_segment_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -5987,7 +5986,7 @@ pub fn ImageText8Checked<'r> (c : &'r Connection,
                           y : i16,
                           string : &str) -> base::VoidCookie<'r> {
   unsafe {
-    let string = (string).to_bytes(false);
+    let string = (string).as_bytes();
     let string_len = string.len();
     let string_ptr = std::vec::raw::to_ptr(string);
     let cookie = xcb_image_text_8_checked(c.get_raw_conn(),
@@ -6007,7 +6006,7 @@ pub fn ImageText8<'r> (c : &'r Connection,
                    y : i16,
                    string : &str) -> base::VoidCookie<'r> {
   unsafe {
-    let string = (string).to_bytes(false);
+    let string = (string).as_bytes();
     let string_len = string.len();
     let string_ptr = std::vec::raw::to_ptr(string);
     let cookie = xcb_image_text_8(c.get_raw_conn(),
@@ -6233,7 +6232,7 @@ pub fn AllocNamedColor<'r> (c : &'r Connection,
                         cmap : Colormap,
                         name : &str) -> AllocNamedColorCookie<'r> {
   unsafe {
-    let name = (name).to_bytes(false);
+    let name = (name).as_bytes();
     let name_len = name.len();
     let name_ptr = std::vec::raw::to_ptr(name);
     let cookie = xcb_alloc_named_color(c.get_raw_conn(),
@@ -6247,7 +6246,7 @@ pub fn AllocNamedColorUnchecked<'r> (c : &'r Connection,
                                  cmap : Colormap,
                                  name : &str) -> AllocNamedColorCookie<'r> {
   unsafe {
-    let name = (name).to_bytes(false);
+    let name = (name).as_bytes();
     let name_len = name.len();
     let name_ptr = std::vec::raw::to_ptr(name);
     let cookie = xcb_alloc_named_color_unchecked(c.get_raw_conn(),
@@ -6448,10 +6447,10 @@ impl<'s, Coloritem> Iterator<&'s Coloritem> for ColoritemIterator {
     pub fn next(&mut self) -> Option<&'s Coloritem> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut coloritem_iterator = cast::transmute(self);
+            let iter : *mut coloritem_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_coloritem_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -6488,7 +6487,7 @@ pub fn StoreNamedColorChecked<'r> (c : &'r Connection,
                                pixel : u32,
                                name : &str) -> base::VoidCookie<'r> {
   unsafe {
-    let name = (name).to_bytes(false);
+    let name = (name).as_bytes();
     let name_len = name.len();
     let name_ptr = std::vec::raw::to_ptr(name);
     let cookie = xcb_store_named_color_checked(c.get_raw_conn(),
@@ -6506,7 +6505,7 @@ pub fn StoreNamedColor<'r> (c : &'r Connection,
                         pixel : u32,
                         name : &str) -> base::VoidCookie<'r> {
   unsafe {
-    let name = (name).to_bytes(false);
+    let name = (name).as_bytes();
     let name_len = name.len();
     let name_ptr = std::vec::raw::to_ptr(name);
     let cookie = xcb_store_named_color(c.get_raw_conn(),
@@ -6540,10 +6539,10 @@ impl<'s, Rgb> Iterator<&'s Rgb> for RgbIterator {
     pub fn next(&mut self) -> Option<&'s Rgb> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut rgb_iterator = cast::transmute(self);
+            let iter : *mut rgb_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_rgb_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -6587,7 +6586,7 @@ pub fn LookupColor<'r> (c : &'r Connection,
                     cmap : Colormap,
                     name : &str) -> LookupColorCookie<'r> {
   unsafe {
-    let name = (name).to_bytes(false);
+    let name = (name).as_bytes();
     let name_len = name.len();
     let name_ptr = std::vec::raw::to_ptr(name);
     let cookie = xcb_lookup_color(c.get_raw_conn(),
@@ -6601,7 +6600,7 @@ pub fn LookupColorUnchecked<'r> (c : &'r Connection,
                              cmap : Colormap,
                              name : &str) -> LookupColorCookie<'r> {
   unsafe {
-    let name = (name).to_bytes(false);
+    let name = (name).as_bytes();
     let name_len = name.len();
     let name_ptr = std::vec::raw::to_ptr(name);
     let cookie = xcb_lookup_color_unchecked(c.get_raw_conn(),
@@ -6852,7 +6851,7 @@ impl_reply_cookie!(QueryBestSizeCookie<'s>, query_best_size_reply, QueryBestSize
 pub fn QueryExtension<'r> (c : &'r Connection,
                        name : &str) -> QueryExtensionCookie<'r> {
   unsafe {
-    let name = (name).to_bytes(false);
+    let name = (name).as_bytes();
     let name_len = name.len();
     let name_ptr = std::vec::raw::to_ptr(name);
     let cookie = xcb_query_extension(c.get_raw_conn(),
@@ -6864,7 +6863,7 @@ pub fn QueryExtension<'r> (c : &'r Connection,
 pub fn QueryExtensionUnchecked<'r> (c : &'r Connection,
                                 name : &str) -> QueryExtensionCookie<'r> {
   unsafe {
-    let name = (name).to_bytes(false);
+    let name = (name).as_bytes();
     let name_len = name.len();
     let name_ptr = std::vec::raw::to_ptr(name);
     let cookie = xcb_query_extension_unchecked(c.get_raw_conn(),
@@ -7233,10 +7232,10 @@ impl<'s, Host> Iterator<&'s Host> for HostIterator {
     pub fn next(&mut self) -> Option<&'s Host> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut host_iterator = cast::transmute(self);
+            let iter : *mut host_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_host_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }

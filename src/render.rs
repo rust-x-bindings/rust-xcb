@@ -7,9 +7,8 @@
 #![allow(unused_imports)]
 #![allow(unused_unsafe)]
 use std;
-use std::libc::*;
-use std::{cast,num,ptr,str,libc};
-use std::to_bytes::ToBytes;
+use libc::*;
+use std::{mem,num,ptr,str};
 use ffi::base::*;
 use base;
 use base::*;
@@ -263,10 +262,10 @@ impl<'s, Glyph> Iterator<&'s Glyph> for GlyphIterator {
     pub fn next(&mut self) -> Option<&'s Glyph> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut glyph_iterator = cast::transmute(self);
+            let iter : *mut glyph_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_glyph_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -278,10 +277,10 @@ impl<'s, Glyphset> Iterator<&'s Glyphset> for GlyphsetIterator {
     pub fn next(&mut self) -> Option<&'s Glyphset> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut glyphset_iterator = cast::transmute(self);
+            let iter : *mut glyphset_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_glyphset_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -293,10 +292,10 @@ impl<'s, Picture> Iterator<&'s Picture> for PictureIterator {
     pub fn next(&mut self) -> Option<&'s Picture> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut picture_iterator = cast::transmute(self);
+            let iter : *mut picture_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_picture_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -308,10 +307,10 @@ impl<'s, Pictformat> Iterator<&'s Pictformat> for PictformatIterator {
     pub fn next(&mut self) -> Option<&'s Pictformat> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut pictformat_iterator = cast::transmute(self);
+            let iter : *mut pictformat_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_pictformat_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -323,10 +322,10 @@ impl<'s, Fixed> Iterator<&'s Fixed> for FixedIterator {
     pub fn next(&mut self) -> Option<&'s Fixed> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut fixed_iterator = cast::transmute(self);
+            let iter : *mut fixed_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_fixed_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -371,10 +370,10 @@ impl<'s, Directformat> Iterator<&'s Directformat> for DirectformatIterator {
     pub fn next(&mut self) -> Option<&'s Directformat> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut directformat_iterator = cast::transmute(self);
+            let iter : *mut directformat_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_directformat_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -396,7 +395,7 @@ impl base::Struct<pictforminfo> {
   }
 
   pub fn direct(&self) -> Directformat {
-    unsafe { cast::transmute(s.strct.direct) }
+    unsafe { mem::transmute(s.strct.direct) }
   }
   pub fn colormap(&self) -> xproto::Colormap {
     unsafe { accessor!(colormap -> xproto::Colormap, s.strct) }
@@ -408,10 +407,10 @@ impl<'s, Pictforminfo> Iterator<&'s Pictforminfo> for PictforminfoIterator {
     pub fn next(&mut self) -> Option<&'s Pictforminfo> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut pictforminfo_iterator = cast::transmute(self);
+            let iter : *mut pictforminfo_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_pictforminfo_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -434,10 +433,10 @@ impl<'s, Pictvisual> Iterator<&'s Pictvisual> for PictvisualIterator {
     pub fn next(&mut self) -> Option<&'s Pictvisual> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut pictvisual_iterator = cast::transmute(self);
+            let iter : *mut pictvisual_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_pictvisual_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -460,10 +459,10 @@ impl<'s, Pictdepth> Iterator<&'s Pictdepth> for PictdepthIterator {
     pub fn next(&mut self) -> Option<&'s Pictdepth> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut pictdepth_iterator = cast::transmute(self);
+            let iter : *mut pictdepth_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_pictdepth_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -486,10 +485,10 @@ impl<'s, Pictscreen> Iterator<&'s Pictscreen> for PictscreenIterator {
     pub fn next(&mut self) -> Option<&'s Pictscreen> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut pictscreen_iterator = cast::transmute(self);
+            let iter : *mut pictscreen_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_pictscreen_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -524,10 +523,10 @@ impl<'s, Indexvalue> Iterator<&'s Indexvalue> for IndexvalueIterator {
     pub fn next(&mut self) -> Option<&'s Indexvalue> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut indexvalue_iterator = cast::transmute(self);
+            let iter : *mut indexvalue_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_indexvalue_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -558,10 +557,10 @@ impl<'s, Color> Iterator<&'s Color> for ColorIterator {
     pub fn next(&mut self) -> Option<&'s Color> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut color_iterator = cast::transmute(self);
+            let iter : *mut color_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_color_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -584,10 +583,10 @@ impl<'s, Pointfix> Iterator<&'s Pointfix> for PointfixIterator {
     pub fn next(&mut self) -> Option<&'s Pointfix> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut pointfix_iterator = cast::transmute(self);
+            let iter : *mut pointfix_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_pointfix_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -597,10 +596,10 @@ pub type Linefix = base::Struct<linefix>;
 
 impl base::Struct<linefix> {
   pub fn p1(&self) -> Pointfix {
-    unsafe { cast::transmute(s.strct.p1) }
+    unsafe { mem::transmute(s.strct.p1) }
   }
   pub fn p2(&self) -> Pointfix {
-    unsafe { cast::transmute(s.strct.p2) }
+    unsafe { mem::transmute(s.strct.p2) }
   }
 }
 
@@ -608,10 +607,10 @@ impl<'s, Linefix> Iterator<&'s Linefix> for LinefixIterator {
     pub fn next(&mut self) -> Option<&'s Linefix> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut linefix_iterator = cast::transmute(self);
+            let iter : *mut linefix_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_linefix_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -621,13 +620,13 @@ pub type Triangle = base::Struct<triangle>;
 
 impl base::Struct<triangle> {
   pub fn p1(&self) -> Pointfix {
-    unsafe { cast::transmute(s.strct.p1) }
+    unsafe { mem::transmute(s.strct.p1) }
   }
   pub fn p2(&self) -> Pointfix {
-    unsafe { cast::transmute(s.strct.p2) }
+    unsafe { mem::transmute(s.strct.p2) }
   }
   pub fn p3(&self) -> Pointfix {
-    unsafe { cast::transmute(s.strct.p3) }
+    unsafe { mem::transmute(s.strct.p3) }
   }
 }
 
@@ -635,10 +634,10 @@ impl<'s, Triangle> Iterator<&'s Triangle> for TriangleIterator {
     pub fn next(&mut self) -> Option<&'s Triangle> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut triangle_iterator = cast::transmute(self);
+            let iter : *mut triangle_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_triangle_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -656,10 +655,10 @@ impl base::Struct<trapezoid> {
   }
 
   pub fn left(&self) -> Linefix {
-    unsafe { cast::transmute(s.strct.left) }
+    unsafe { mem::transmute(s.strct.left) }
   }
   pub fn right(&self) -> Linefix {
-    unsafe { cast::transmute(s.strct.right) }
+    unsafe { mem::transmute(s.strct.right) }
   }
 }
 
@@ -667,10 +666,10 @@ impl<'s, Trapezoid> Iterator<&'s Trapezoid> for TrapezoidIterator {
     pub fn next(&mut self) -> Option<&'s Trapezoid> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut trapezoid_iterator = cast::transmute(self);
+            let iter : *mut trapezoid_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_trapezoid_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -709,10 +708,10 @@ impl<'s, Glyphinfo> Iterator<&'s Glyphinfo> for GlyphinfoIterator {
     pub fn next(&mut self) -> Option<&'s Glyphinfo> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut glyphinfo_iterator = cast::transmute(self);
+            let iter : *mut glyphinfo_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_glyphinfo_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -1550,10 +1549,10 @@ impl<'s, Transform> Iterator<&'s Transform> for TransformIterator {
     pub fn next(&mut self) -> Option<&'s Transform> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut transform_iterator = cast::transmute(self);
+            let iter : *mut transform_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_transform_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -1613,7 +1612,7 @@ pub fn SetPictureFilterChecked<'r> (c : &'r Connection,
                                 filter : &str,
                                 values : &[Fixed]) -> base::VoidCookie<'r> {
   unsafe {
-    let filter = (filter).to_bytes(false);
+    let filter = (filter).as_bytes();
     let filter_len = filter.len();
     let filter_ptr = std::vec::raw::to_ptr(filter);
     let values_len = values.len();
@@ -1632,7 +1631,7 @@ pub fn SetPictureFilter<'r> (c : &'r Connection,
                          filter : &str,
                          values : &[Fixed]) -> base::VoidCookie<'r> {
   unsafe {
-    let filter = (filter).to_bytes(false);
+    let filter = (filter).as_bytes();
     let filter_len = filter.len();
     let filter_ptr = std::vec::raw::to_ptr(filter);
     let values_len = values.len();
@@ -1664,10 +1663,10 @@ impl<'s, Animcursorelt> Iterator<&'s Animcursorelt> for AnimcursoreltIterator {
     pub fn next(&mut self) -> Option<&'s Animcursorelt> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut animcursorelt_iterator = cast::transmute(self);
+            let iter : *mut animcursorelt_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_animcursorelt_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -1720,10 +1719,10 @@ impl<'s, Spanfix> Iterator<&'s Spanfix> for SpanfixIterator {
     pub fn next(&mut self) -> Option<&'s Spanfix> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut spanfix_iterator = cast::transmute(self);
+            let iter : *mut spanfix_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_spanfix_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }
@@ -1733,10 +1732,10 @@ pub type Trap = base::Struct<trap>;
 
 impl base::Struct<trap> {
   pub fn top(&self) -> Spanfix {
-    unsafe { cast::transmute(s.strct.top) }
+    unsafe { mem::transmute(s.strct.top) }
   }
   pub fn bot(&self) -> Spanfix {
-    unsafe { cast::transmute(s.strct.bot) }
+    unsafe { mem::transmute(s.strct.bot) }
   }
 }
 
@@ -1744,10 +1743,10 @@ impl<'s, Trap> Iterator<&'s Trap> for TrapIterator {
     pub fn next(&mut self) -> Option<&'s Trap> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut trap_iterator = cast::transmute(self);
+            let iter : *mut trap_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_trap_next(iter);
-            Some(cast::transmute(data))
+            Some(mem::transmute(data))
         }
     }
 }

@@ -269,9 +269,8 @@ def c_open(self):
     _h('#![allow(non_camel_case_types)]')
 
     _hr('use std;')
-    _hr('use std::libc::*;')
-    _hr('use std::{cast,num,ptr,str,libc};')
-    _hr('use std::to_bytes::ToBytes;')
+    _hr('use libc::*;')
+    _hr('use std::{mem,num,ptr,str};')
     _hr('use ffi::base::*;')
 
     _r('use base;')
@@ -874,10 +873,10 @@ def _c_iterator(self, name):
     _r('    pub fn next(&mut self) -> Option<&\'s %s> {', self.r_type)
     _r('        if self.rem == 0 { return None; }')
     _r('        unsafe {')
-    _r('            let iter : *mut %s = cast::transmute(self);', self.c_iterator_type)
+    _r('            let iter : *mut %s = mem::transmute(self);', self.c_iterator_type)
     _r('            let data = (*iter).data;')
     _r('            %s(iter);', self.c_next_name)
-    _r('            Some(cast::transmute(data))')
+    _r('            Some(mem::transmute(data))')
     _r('        }')
     _r('    }')
     _r('}\n')
@@ -1092,7 +1091,7 @@ def _r_accessor(self,field):
 
     elif field.type.is_container:
         _r('  pub fn %s(&self) -> %s {', field.c_field_name, field.r_field_type)
-        _r('    unsafe { cast::transmute(%s.%s) }', self.wrap_field_name, field.c_field_name)
+        _r('    unsafe { mem::transmute(%s.%s) }', self.wrap_field_name, field.c_field_name)
         _r('  }')
         pass;
     else:
@@ -1436,7 +1435,7 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
             else:
                 if fty.member.r_type == 'c_char':
                     field_type = '&str'
-                    mk_params.append("let %s = (%s).to_bytes(false);" % (field.c_field_name,
+                    mk_params.append("let %s = (%s).as_bytes();" % (field.c_field_name,
                         field.c_field_name))
                 elif fty.member.r_type == 'c_void':
                     field_type = '&[u8]'
