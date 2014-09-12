@@ -835,7 +835,7 @@ def _c_iterator(self, name):
     _h(' * @brief %s', self.c_iterator_type)
     _h(' **/')
     _h('pub struct %s {', self.c_iterator_type)
-    _h('    data : *%s,', self.c_type)
+    _h('    data : *mut %s,', self.c_type)
     _h('    rem  : c_int,')
     _h('    index: c_int')
     _h('}\n')
@@ -855,7 +855,7 @@ def _c_iterator(self, name):
     _h(' *')
     _h(' *')
     _h(' */');
-    _h('pub unsafe fn %s (i:*%s) -> c_void;', self.c_next_name, self.c_iterator_type)
+    _h('pub unsafe fn %s (i:*mut %s) -> c_void;', self.c_next_name, self.c_iterator_type)
 
     _h('')
     _h('/**')
@@ -874,7 +874,7 @@ def _c_iterator(self, name):
     _r('    pub fn next(&mut self) -> Option<&\'self %s> {', self.r_type)
     _r('        if self.rem == 0 { return None; }')
     _r('        unsafe {')
-    _r('            let iter : *%s = cast::transmute(self);', self.c_iterator_type)
+    _r('            let iter : *mut %s = cast::transmute(self);', self.c_iterator_type)
     _r('            let data = (*iter).data;')
     _r('            %s(iter);', self.c_next_name)
     _r('            Some(cast::transmute(data))')
@@ -915,22 +915,22 @@ def _c_accessors_field(self, field):
         _h(' * ')
         _h(' *')
         _h(' **/')
-        _h('pub unsafe fn %s (R : *%s) -> %s;', field.c_accessor_name, c_type, ftype)
+        _h('pub unsafe fn %s (R : *mut %s) -> %s;', field.c_accessor_name, c_type, ftype)
     else:
         _h('')
         _h('')
         _h('/**')
         _h(' *')
-        _h(' * %s : *%s', field.c_accessor_name, field.c_field_type)
+        _h(' * %s : *mut %s', field.c_accessor_name, field.c_field_type)
         _h(' * ')
         _h(' *')
         _h(' */')
         if field.type.is_switch and switch_obj is None:
             return_type = '*c_void'
         else:
-            return_type = '*%s' % ftype
+            return_type = '*mut %s' % ftype
 
-        _h('pub unsafe fn %s (R : *%s) -> %s;', field.c_accessor_name, c_type, return_type)
+        _h('pub unsafe fn %s (R : *mut %s) -> %s;', field.c_accessor_name, c_type, return_type)
 
 
 def _c_accessors_list(self, field):
@@ -958,7 +958,7 @@ def _c_accessors_list(self, field):
     fields = {}
     parents = self.parents if hasattr(self, 'parents') else [self]
     # 'R': parents[0] is always the 'toplevel' container type 
-    params.append(('R : *%s' % parents[0].c_type, parents[0]))
+    params.append(('R : *mut %s' % parents[0].c_type, parents[0]))
     fields.update(_c_helper_field_mapping(parents[0], [('R', '->', parents[0])], flat=True))
     # auxiliary object for 'R' parameters
     R_obj = parents[0]
@@ -970,7 +970,7 @@ def _c_accessors_list(self, field):
 
         # 'S': name for the 'toplevel' switch
         toplevel_switch = parents[1]
-        params.append(('S : *%s' % toplevel_switch.c_type, toplevel_switch))
+        params.append(('S : *mut %s' % toplevel_switch.c_type, toplevel_switch))
         fields.update(_c_helper_field_mapping(toplevel_switch, [('S', '->', toplevel_switch)], flat=True))
 
         # initialize prefix for everything "below" S
@@ -994,16 +994,16 @@ def _c_accessors_list(self, field):
     if list.member.fixed_size():
         idx = 1 if switch_obj is not None else 0
         _h('')
-        _h('pub unsafe fn %s (%s) -> *%s;', field.c_accessor_name, params[idx][0], field.c_field_type)
+        _h('pub unsafe fn %s (%s) -> *mut %s;', field.c_accessor_name, params[idx][0], field.c_field_type)
 
     _h('')
     _h('')
     if switch_obj is not None:
-        _hr('pub unsafe fn %s (R : *%s,', field.c_length_name, R_obj.c_type)
+        _hr('pub unsafe fn %s (R : *mut %s,', field.c_length_name, R_obj.c_type)
         spacing = ' '*(len(field.c_length_name)+7)
-        _h('%sS : *%s) -> c_int;', spacing, S_obj.c_type)
+        _h('%sS : *mut %s) -> c_int;', spacing, S_obj.c_type)
     else:
-        _h('pub unsafe fn %s (R : *%s) -> c_int;', field.c_length_name, c_type)
+        _h('pub unsafe fn %s (R : *mut %s) -> c_int;', field.c_length_name, c_type)
 
     if field.type.member.is_simple:
         _h('')
@@ -1011,9 +1011,9 @@ def _c_accessors_list(self, field):
         if switch_obj is not None:
             _h('pub unsafe fn %s (R : %s,', field.c_end_name, R_obj.c_type)
             spacing = ' '*(len(field.c_end_name)+2)
-            _h('%sS : *%s ) -> generic_iterator;', spacing, S_obj.c_type)
+            _h('%sS : *mut %s ) -> generic_iterator;', spacing, S_obj.c_type)
         else:
-            _h('pub unsafe fn %s (R : *%s) -> generic_iterator;', field.c_end_name, c_type)
+            _h('pub unsafe fn %s (R : *mut %s) -> generic_iterator;', field.c_end_name, c_type)
 
     else:
         _h('')
@@ -1021,9 +1021,9 @@ def _c_accessors_list(self, field):
         if switch_obj is not None:
             _h('pub unsafe fn %s (R : %s,', field.c_iterator_name, R_obj.c_type)
             spacing = ' '*(len(field.c_iterator_name)+2)
-            _h('%sS : *%s /**< */) -> %s;', spacing, S_obj.c_type, field.c_iterator_type)
+            _h('%sS : *mut %s /**< */) -> %s;', spacing, S_obj.c_type, field.c_iterator_type)
         else:
-            _h('pub unsafe fn %s (R : *%s) -> %s;', field.c_iterator_name, c_type, field.c_iterator_type)
+            _h('pub unsafe fn %s (R : *mut %s) -> %s;', field.c_iterator_name, c_type, field.c_iterator_type)
 
 def _c_accessors(self, name, base):
     '''
@@ -1157,7 +1157,7 @@ def _c_complex(self):
         else:
             ftype = field.c_field_type
             spacing = ' ' * (maxtypelen - (len(field.c_field_type) + 1))
-            _h('%s    %s : %s  *%s%s', space, field.c_field_name, spacing, ftype, comma)
+            _h('%s    %s : %s  *mut %s%s', space, field.c_field_name, spacing, ftype, comma)
 
     if not self.is_switch:
         count = len(struct_fields)
@@ -1430,7 +1430,7 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
 
                 call_params.append((field.idx-1,'%s_mask as %s' %(field.c_field_name,
                     fty.expr.lenfield.c_field_type)))
-                call_params.append((field.idx, '%s_ptr as *%s' % (field.c_field_name,c_field_const_type)))
+                call_params.append((field.idx, '%s_ptr as *mut %s' % (field.c_field_name,c_field_const_type)))
 
                 field_type = '&[(%s,%s)]' % (fty.expr.lenfield.r_field_type, field_type)
             else:
@@ -1451,7 +1451,7 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
 
                 mk_params.append("let %s_ptr = std::vec::raw::to_ptr(%s);" % (field.c_field_name,
                     field.c_field_name))
-                call_params.append((field.idx, '%s_ptr as *%s' % (field.c_field_name,
+                call_params.append((field.idx, '%s_ptr as *mut %s' % (field.c_field_name,
                     c_field_const_type)))
 
 
@@ -1504,7 +1504,7 @@ def _c_reply(self, name):
     _h(' */')
     _h('pub unsafe fn %s (c : *connection,', self.c_reply_name)
     _h('          %s  cookie : %s,', spacing, self.c_cookie_type)
-    _h('          %s  e : **generic_error) -> *%s;', spacing, self.c_reply_type)
+    _h('          %s  e : **generic_error) -> *mut %s;', spacing, self.c_reply_type)
 
     _r('impl_reply_cookie!(%s<\'self>, %s, %s, %s)\n', self.r_cookie_type, self.c_reply_type, self.r_reply_type, self.c_reply_name)
 
@@ -1634,7 +1634,7 @@ def c_event(self, name):
                 _r('      (*raw).%s = %s.strct;', f.c_field_name, f.c_field_name)
             else:
                 _r('      (*raw).%s = %s;', f.c_field_name, f.c_field_name)
-        _r('      Event { event : raw as *%s }', self.c_type)
+        _r('      Event { event : raw as *mut %s }', self.c_type)
         _r('    }')
         _r('  }')
         _r('}')
