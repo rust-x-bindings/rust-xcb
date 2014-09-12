@@ -4,8 +4,8 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
@@ -50,7 +50,7 @@ pub extern "C" {
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_genericevent_query_version (c : *connection,
+pub fn xcb_genericevent_query_version (c : *mut connection,
                                           client_major_version :  u16,
                                           client_minor_version :  u16) -> query_version_cookie;
 
@@ -65,7 +65,7 @@ pub unsafe fn xcb_genericevent_query_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_genericevent_query_version_unchecked (c : *connection,
+pub fn xcb_genericevent_query_version_unchecked (c : *mut connection,
                                                     client_major_version :  u16,
                                                     client_minor_version :  u16) -> query_version_cookie;
 
@@ -83,8 +83,8 @@ pub unsafe fn xcb_genericevent_query_version_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_genericevent_query_version_reply (c : *connection,
+pub fn xcb_genericevent_query_version_reply (c : *mut connection,
                                                 cookie : query_version_cookie,
-                                                e : **generic_error) -> *query_version_reply;
+                                                e : *mut *mut generic_error) -> *mut query_version_reply;
 }
 

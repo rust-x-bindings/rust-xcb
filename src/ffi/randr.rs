@@ -4,8 +4,8 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
@@ -23,7 +23,7 @@ pub type mode = u32;
  * @brief mode_iterator
  **/
 pub struct mode_iterator {
-    data : *mode,
+    data : *mut mode,
     rem  : c_int,
     index: c_int
 }
@@ -34,7 +34,7 @@ pub type crtc = u32;
  * @brief crtc_iterator
  **/
 pub struct crtc_iterator {
-    data : *crtc,
+    data : *mut crtc,
     rem  : c_int,
     index: c_int
 }
@@ -45,7 +45,7 @@ pub type output = u32;
  * @brief output_iterator
  **/
 pub struct output_iterator {
-    data : *output,
+    data : *mut output,
     rem  : c_int,
     index: c_int
 }
@@ -86,7 +86,7 @@ pub struct screen_size {
  * @brief screen_size_iterator
  **/
 pub struct screen_size_iterator {
-    data : *screen_size,
+    data : *mut screen_size,
     rem  : c_int,
     index: c_int
 }
@@ -100,7 +100,7 @@ pub struct refresh_rates {
  * @brief refresh_rates_iterator
  **/
 pub struct refresh_rates_iterator {
-    data : *refresh_rates,
+    data : *mut refresh_rates,
     rem  : c_int,
     index: c_int
 }
@@ -263,7 +263,7 @@ pub struct mode_info {
  * @brief mode_info_iterator
  **/
 pub struct mode_info_iterator {
-    data : *mode_info,
+    data : *mut mode_info,
     rem  : c_int,
     index: c_int
 }
@@ -827,7 +827,7 @@ pub struct crtc_change {
  * @brief crtc_change_iterator
  **/
 pub struct crtc_change_iterator {
-    data : *crtc_change,
+    data : *mut crtc_change,
     rem  : c_int,
     index: c_int
 }
@@ -849,7 +849,7 @@ pub struct output_change {
  * @brief output_change_iterator
  **/
 pub struct output_change_iterator {
-    data : *output_change,
+    data : *mut output_change,
     rem  : c_int,
     index: c_int
 }
@@ -868,7 +868,7 @@ pub struct output_property {
  * @brief output_property_iterator
  **/
 pub struct output_property_iterator {
-    data : *output_property,
+    data : *mut output_property,
     rem  : c_int,
     index: c_int
 }
@@ -881,7 +881,7 @@ pub struct notify_data {
  * @brief notify_data_iterator
  **/
 pub struct notify_data_iterator {
-    data : *notify_data,
+    data : *mut notify_data,
     rem  : c_int,
     index: c_int
 }
@@ -895,7 +895,7 @@ pub struct notify_event {
     u :               notify_data
 }
 
-#[link_args="-lxcb-randr"]
+#[link(name="lxcb-randr")]
 pub extern "C" {
 
 /**
@@ -908,7 +908,7 @@ pub extern "C" {
  *
  *
  */
-pub unsafe fn xcb_randr_mode_next (i:*mode_iterator) -> c_void;
+pub fn xcb_randr_mode_next (i:*mut mode_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -919,7 +919,7 @@ pub unsafe fn xcb_randr_mode_next (i:*mode_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_randr_mode_end (i:mode_iterator) -> generic_iterator;
+pub fn xcb_randr_mode_end (i:mode_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -931,7 +931,7 @@ pub unsafe fn xcb_randr_mode_end (i:mode_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_randr_crtc_next (i:*crtc_iterator) -> c_void;
+pub fn xcb_randr_crtc_next (i:*mut crtc_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -942,7 +942,7 @@ pub unsafe fn xcb_randr_crtc_next (i:*crtc_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_randr_crtc_end (i:crtc_iterator) -> generic_iterator;
+pub fn xcb_randr_crtc_end (i:crtc_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -954,7 +954,7 @@ pub unsafe fn xcb_randr_crtc_end (i:crtc_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_randr_output_next (i:*output_iterator) -> c_void;
+pub fn xcb_randr_output_next (i:*mut output_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -965,7 +965,7 @@ pub unsafe fn xcb_randr_output_next (i:*output_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_randr_output_end (i:output_iterator) -> generic_iterator;
+pub fn xcb_randr_output_end (i:output_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -977,7 +977,7 @@ pub unsafe fn xcb_randr_output_end (i:output_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_randr_screen_size_next (i:*screen_size_iterator) -> c_void;
+pub fn xcb_randr_screen_size_next (i:*mut screen_size_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -988,17 +988,17 @@ pub unsafe fn xcb_randr_screen_size_next (i:*screen_size_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_randr_screen_size_end (i:screen_size_iterator) -> generic_iterator;
+pub fn xcb_randr_screen_size_end (i:screen_size_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_randr_refresh_rates_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_randr_refresh_rates_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_randr_refresh_rates_rates (R : *refresh_rates) -> *u16;
-
-
-pub unsafe fn xcb_randr_refresh_rates_rates_length (R : *refresh_rates) -> c_int;
+pub fn xcb_randr_refresh_rates_rates (R : *mut refresh_rates) -> *mut u16;
 
 
-pub unsafe fn xcb_randr_refresh_rates_rates_end (R : *refresh_rates) -> generic_iterator;
+pub fn xcb_randr_refresh_rates_rates_length (R : *mut refresh_rates) -> c_int;
+
+
+pub fn xcb_randr_refresh_rates_rates_end (R : *mut refresh_rates) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -1010,7 +1010,7 @@ pub unsafe fn xcb_randr_refresh_rates_rates_end (R : *refresh_rates) -> generic_
  *
  *
  */
-pub unsafe fn xcb_randr_refresh_rates_next (i:*refresh_rates_iterator) -> c_void;
+pub fn xcb_randr_refresh_rates_next (i:*mut refresh_rates_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1021,7 +1021,7 @@ pub unsafe fn xcb_randr_refresh_rates_next (i:*refresh_rates_iterator) -> c_void
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_randr_refresh_rates_end (i:refresh_rates_iterator) -> generic_iterator;
+pub fn xcb_randr_refresh_rates_end (i:refresh_rates_iterator) -> generic_iterator;
 
 /**
  *
@@ -1031,7 +1031,7 @@ pub unsafe fn xcb_randr_refresh_rates_end (i:refresh_rates_iterator) -> generic_
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_query_version (c : *connection,
+pub fn xcb_randr_query_version (c : *mut connection,
                                    major_version :  u32,
                                    minor_version :  u32) -> query_version_cookie;
 
@@ -1046,7 +1046,7 @@ pub unsafe fn xcb_randr_query_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_randr_query_version_unchecked (c : *connection,
+pub fn xcb_randr_query_version_unchecked (c : *mut connection,
                                              major_version :  u32,
                                              minor_version :  u32) -> query_version_cookie;
 
@@ -1064,9 +1064,9 @@ pub unsafe fn xcb_randr_query_version_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_randr_query_version_reply (c : *connection,
+pub fn xcb_randr_query_version_reply (c : *mut connection,
                                          cookie : query_version_cookie,
-                                         e : **generic_error) -> *query_version_reply;
+                                         e : *mut *mut generic_error) -> *mut query_version_reply;
 
 /**
  *
@@ -1076,7 +1076,7 @@ pub unsafe fn xcb_randr_query_version_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_set_screen_config (c : *connection,
+pub fn xcb_randr_set_screen_config (c : *mut connection,
                                        window :  ffi::xproto::window,
                                        timestamp :  ffi::xproto::timestamp,
                                        config_timestamp :  ffi::xproto::timestamp,
@@ -1095,7 +1095,7 @@ pub unsafe fn xcb_randr_set_screen_config (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_randr_set_screen_config_unchecked (c : *connection,
+pub fn xcb_randr_set_screen_config_unchecked (c : *mut connection,
                                                  window :  ffi::xproto::window,
                                                  timestamp :  ffi::xproto::timestamp,
                                                  config_timestamp :  ffi::xproto::timestamp,
@@ -1117,9 +1117,9 @@ pub unsafe fn xcb_randr_set_screen_config_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_randr_set_screen_config_reply (c : *connection,
+pub fn xcb_randr_set_screen_config_reply (c : *mut connection,
                                              cookie : set_screen_config_cookie,
-                                             e : **generic_error) -> *set_screen_config_reply;
+                                             e : *mut *mut generic_error) -> *mut set_screen_config_reply;
 
 /**
  *
@@ -1132,7 +1132,7 @@ pub unsafe fn xcb_randr_set_screen_config_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_randr_select_input_checked (c : *connection,
+pub fn xcb_randr_select_input_checked (c : *mut connection,
                                           window :  ffi::xproto::window,
                                           enable :  u16) -> void_cookie;
 
@@ -1144,11 +1144,11 @@ pub unsafe fn xcb_randr_select_input_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_select_input (c : *connection,
+pub fn xcb_randr_select_input (c : *mut connection,
                                   window :  ffi::xproto::window,
                                   enable :  u16) -> void_cookie;
 
-pub unsafe fn xcb_randr_get_screen_info_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_randr_get_screen_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1158,7 +1158,7 @@ pub unsafe fn xcb_randr_get_screen_info_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_get_screen_info (c : *connection,
+pub fn xcb_randr_get_screen_info (c : *mut connection,
                                      window :  ffi::xproto::window) -> get_screen_info_cookie;
 
 /**
@@ -1172,20 +1172,20 @@ pub unsafe fn xcb_randr_get_screen_info (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_randr_get_screen_info_unchecked (c : *connection,
+pub fn xcb_randr_get_screen_info_unchecked (c : *mut connection,
                                                window :  ffi::xproto::window) -> get_screen_info_cookie;
 
-pub unsafe fn xcb_randr_get_screen_info_sizes (R : *get_screen_info_reply) -> *screen_size;
+pub fn xcb_randr_get_screen_info_sizes (R : *mut get_screen_info_reply) -> *mut screen_size;
 
 
-pub unsafe fn xcb_randr_get_screen_info_sizes_length (R : *get_screen_info_reply) -> c_int;
+pub fn xcb_randr_get_screen_info_sizes_length (R : *mut get_screen_info_reply) -> c_int;
 
-pub unsafe fn xcb_randr_get_screen_info_sizes_iterator (R : *get_screen_info_reply) -> screen_size_iterator;
+pub fn xcb_randr_get_screen_info_sizes_iterator (R : *mut get_screen_info_reply) -> screen_size_iterator;
 
 
-pub unsafe fn xcb_randr_get_screen_info_rates_length (R : *get_screen_info_reply) -> c_int;
+pub fn xcb_randr_get_screen_info_rates_length (R : *mut get_screen_info_reply) -> c_int;
 
-pub unsafe fn xcb_randr_get_screen_info_rates_iterator (R : *get_screen_info_reply) -> refresh_rates_iterator;
+pub fn xcb_randr_get_screen_info_rates_iterator (R : *mut get_screen_info_reply) -> refresh_rates_iterator;
 
 /**
  * Return the reply
@@ -1201,9 +1201,9 @@ pub unsafe fn xcb_randr_get_screen_info_rates_iterator (R : *get_screen_info_rep
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_randr_get_screen_info_reply (c : *connection,
+pub fn xcb_randr_get_screen_info_reply (c : *mut connection,
                                            cookie : get_screen_info_cookie,
-                                           e : **generic_error) -> *get_screen_info_reply;
+                                           e : *mut *mut generic_error) -> *mut get_screen_info_reply;
 
 /**
  *
@@ -1213,7 +1213,7 @@ pub unsafe fn xcb_randr_get_screen_info_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_get_screen_size_range (c : *connection,
+pub fn xcb_randr_get_screen_size_range (c : *mut connection,
                                            window :  ffi::xproto::window) -> get_screen_size_range_cookie;
 
 /**
@@ -1227,7 +1227,7 @@ pub unsafe fn xcb_randr_get_screen_size_range (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_randr_get_screen_size_range_unchecked (c : *connection,
+pub fn xcb_randr_get_screen_size_range_unchecked (c : *mut connection,
                                                      window :  ffi::xproto::window) -> get_screen_size_range_cookie;
 
 /**
@@ -1244,9 +1244,9 @@ pub unsafe fn xcb_randr_get_screen_size_range_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_randr_get_screen_size_range_reply (c : *connection,
+pub fn xcb_randr_get_screen_size_range_reply (c : *mut connection,
                                                  cookie : get_screen_size_range_cookie,
-                                                 e : **generic_error) -> *get_screen_size_range_reply;
+                                                 e : *mut *mut generic_error) -> *mut get_screen_size_range_reply;
 
 /**
  *
@@ -1259,7 +1259,7 @@ pub unsafe fn xcb_randr_get_screen_size_range_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_randr_set_screen_size_checked (c : *connection,
+pub fn xcb_randr_set_screen_size_checked (c : *mut connection,
                                              window :  ffi::xproto::window,
                                              width :  u16,
                                              height :  u16,
@@ -1274,7 +1274,7 @@ pub unsafe fn xcb_randr_set_screen_size_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_set_screen_size (c : *connection,
+pub fn xcb_randr_set_screen_size (c : *mut connection,
                                      window :  ffi::xproto::window,
                                      width :  u16,
                                      height :  u16,
@@ -1291,7 +1291,7 @@ pub unsafe fn xcb_randr_set_screen_size (c : *connection,
  *
  *
  */
-pub unsafe fn xcb_randr_mode_info_next (i:*mode_info_iterator) -> c_void;
+pub fn xcb_randr_mode_info_next (i:*mut mode_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1302,9 +1302,9 @@ pub unsafe fn xcb_randr_mode_info_next (i:*mode_info_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_randr_mode_info_end (i:mode_info_iterator) -> generic_iterator;
+pub fn xcb_randr_mode_info_end (i:mode_info_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_randr_get_screen_resources_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_randr_get_screen_resources_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1314,7 +1314,7 @@ pub unsafe fn xcb_randr_get_screen_resources_sizeof (_buffer :  *c_void) -> c_in
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_get_screen_resources (c : *connection,
+pub fn xcb_randr_get_screen_resources (c : *mut connection,
                                           window :  ffi::xproto::window) -> get_screen_resources_cookie;
 
 /**
@@ -1328,39 +1328,39 @@ pub unsafe fn xcb_randr_get_screen_resources (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_randr_get_screen_resources_unchecked (c : *connection,
+pub fn xcb_randr_get_screen_resources_unchecked (c : *mut connection,
                                                     window :  ffi::xproto::window) -> get_screen_resources_cookie;
 
-pub unsafe fn xcb_randr_get_screen_resources_crtcs (R : *get_screen_resources_reply) -> *crtc;
+pub fn xcb_randr_get_screen_resources_crtcs (R : *mut get_screen_resources_reply) -> *mut crtc;
 
 
-pub unsafe fn xcb_randr_get_screen_resources_crtcs_length (R : *get_screen_resources_reply) -> c_int;
+pub fn xcb_randr_get_screen_resources_crtcs_length (R : *mut get_screen_resources_reply) -> c_int;
 
 
-pub unsafe fn xcb_randr_get_screen_resources_crtcs_end (R : *get_screen_resources_reply) -> generic_iterator;
+pub fn xcb_randr_get_screen_resources_crtcs_end (R : *mut get_screen_resources_reply) -> generic_iterator;
 
-pub unsafe fn xcb_randr_get_screen_resources_outputs (R : *get_screen_resources_reply) -> *output;
-
-
-pub unsafe fn xcb_randr_get_screen_resources_outputs_length (R : *get_screen_resources_reply) -> c_int;
+pub fn xcb_randr_get_screen_resources_outputs (R : *mut get_screen_resources_reply) -> *mut output;
 
 
-pub unsafe fn xcb_randr_get_screen_resources_outputs_end (R : *get_screen_resources_reply) -> generic_iterator;
-
-pub unsafe fn xcb_randr_get_screen_resources_modes (R : *get_screen_resources_reply) -> *mode_info;
+pub fn xcb_randr_get_screen_resources_outputs_length (R : *mut get_screen_resources_reply) -> c_int;
 
 
-pub unsafe fn xcb_randr_get_screen_resources_modes_length (R : *get_screen_resources_reply) -> c_int;
+pub fn xcb_randr_get_screen_resources_outputs_end (R : *mut get_screen_resources_reply) -> generic_iterator;
 
-pub unsafe fn xcb_randr_get_screen_resources_modes_iterator (R : *get_screen_resources_reply) -> mode_info_iterator;
-
-pub unsafe fn xcb_randr_get_screen_resources_names (R : *get_screen_resources_reply) -> *u8;
+pub fn xcb_randr_get_screen_resources_modes (R : *mut get_screen_resources_reply) -> *mut mode_info;
 
 
-pub unsafe fn xcb_randr_get_screen_resources_names_length (R : *get_screen_resources_reply) -> c_int;
+pub fn xcb_randr_get_screen_resources_modes_length (R : *mut get_screen_resources_reply) -> c_int;
+
+pub fn xcb_randr_get_screen_resources_modes_iterator (R : *mut get_screen_resources_reply) -> mode_info_iterator;
+
+pub fn xcb_randr_get_screen_resources_names (R : *mut get_screen_resources_reply) -> *mut u8;
 
 
-pub unsafe fn xcb_randr_get_screen_resources_names_end (R : *get_screen_resources_reply) -> generic_iterator;
+pub fn xcb_randr_get_screen_resources_names_length (R : *mut get_screen_resources_reply) -> c_int;
+
+
+pub fn xcb_randr_get_screen_resources_names_end (R : *mut get_screen_resources_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -1376,11 +1376,11 @@ pub unsafe fn xcb_randr_get_screen_resources_names_end (R : *get_screen_resource
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_randr_get_screen_resources_reply (c : *connection,
+pub fn xcb_randr_get_screen_resources_reply (c : *mut connection,
                                                 cookie : get_screen_resources_cookie,
-                                                e : **generic_error) -> *get_screen_resources_reply;
+                                                e : *mut *mut generic_error) -> *mut get_screen_resources_reply;
 
-pub unsafe fn xcb_randr_get_output_info_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_randr_get_output_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1390,7 +1390,7 @@ pub unsafe fn xcb_randr_get_output_info_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_get_output_info (c : *connection,
+pub fn xcb_randr_get_output_info (c : *mut connection,
                                      output :  output,
                                      config_timestamp :  ffi::xproto::timestamp) -> get_output_info_cookie;
 
@@ -1405,41 +1405,41 @@ pub unsafe fn xcb_randr_get_output_info (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_randr_get_output_info_unchecked (c : *connection,
+pub fn xcb_randr_get_output_info_unchecked (c : *mut connection,
                                                output :  output,
                                                config_timestamp :  ffi::xproto::timestamp) -> get_output_info_cookie;
 
-pub unsafe fn xcb_randr_get_output_info_crtcs (R : *get_output_info_reply) -> *crtc;
+pub fn xcb_randr_get_output_info_crtcs (R : *mut get_output_info_reply) -> *mut crtc;
 
 
-pub unsafe fn xcb_randr_get_output_info_crtcs_length (R : *get_output_info_reply) -> c_int;
+pub fn xcb_randr_get_output_info_crtcs_length (R : *mut get_output_info_reply) -> c_int;
 
 
-pub unsafe fn xcb_randr_get_output_info_crtcs_end (R : *get_output_info_reply) -> generic_iterator;
+pub fn xcb_randr_get_output_info_crtcs_end (R : *mut get_output_info_reply) -> generic_iterator;
 
-pub unsafe fn xcb_randr_get_output_info_modes (R : *get_output_info_reply) -> *mode;
-
-
-pub unsafe fn xcb_randr_get_output_info_modes_length (R : *get_output_info_reply) -> c_int;
+pub fn xcb_randr_get_output_info_modes (R : *mut get_output_info_reply) -> *mut mode;
 
 
-pub unsafe fn xcb_randr_get_output_info_modes_end (R : *get_output_info_reply) -> generic_iterator;
-
-pub unsafe fn xcb_randr_get_output_info_clones (R : *get_output_info_reply) -> *output;
+pub fn xcb_randr_get_output_info_modes_length (R : *mut get_output_info_reply) -> c_int;
 
 
-pub unsafe fn xcb_randr_get_output_info_clones_length (R : *get_output_info_reply) -> c_int;
+pub fn xcb_randr_get_output_info_modes_end (R : *mut get_output_info_reply) -> generic_iterator;
+
+pub fn xcb_randr_get_output_info_clones (R : *mut get_output_info_reply) -> *mut output;
 
 
-pub unsafe fn xcb_randr_get_output_info_clones_end (R : *get_output_info_reply) -> generic_iterator;
-
-pub unsafe fn xcb_randr_get_output_info_name (R : *get_output_info_reply) -> *u8;
+pub fn xcb_randr_get_output_info_clones_length (R : *mut get_output_info_reply) -> c_int;
 
 
-pub unsafe fn xcb_randr_get_output_info_name_length (R : *get_output_info_reply) -> c_int;
+pub fn xcb_randr_get_output_info_clones_end (R : *mut get_output_info_reply) -> generic_iterator;
+
+pub fn xcb_randr_get_output_info_name (R : *mut get_output_info_reply) -> *mut u8;
 
 
-pub unsafe fn xcb_randr_get_output_info_name_end (R : *get_output_info_reply) -> generic_iterator;
+pub fn xcb_randr_get_output_info_name_length (R : *mut get_output_info_reply) -> c_int;
+
+
+pub fn xcb_randr_get_output_info_name_end (R : *mut get_output_info_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -1455,11 +1455,11 @@ pub unsafe fn xcb_randr_get_output_info_name_end (R : *get_output_info_reply) ->
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_randr_get_output_info_reply (c : *connection,
+pub fn xcb_randr_get_output_info_reply (c : *mut connection,
                                            cookie : get_output_info_cookie,
-                                           e : **generic_error) -> *get_output_info_reply;
+                                           e : *mut *mut generic_error) -> *mut get_output_info_reply;
 
-pub unsafe fn xcb_randr_list_output_properties_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_randr_list_output_properties_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1469,7 +1469,7 @@ pub unsafe fn xcb_randr_list_output_properties_sizeof (_buffer :  *c_void) -> c_
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_list_output_properties (c : *connection,
+pub fn xcb_randr_list_output_properties (c : *mut connection,
                                             output :  output) -> list_output_properties_cookie;
 
 /**
@@ -1483,16 +1483,16 @@ pub unsafe fn xcb_randr_list_output_properties (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_randr_list_output_properties_unchecked (c : *connection,
+pub fn xcb_randr_list_output_properties_unchecked (c : *mut connection,
                                                       output :  output) -> list_output_properties_cookie;
 
-pub unsafe fn xcb_randr_list_output_properties_atoms (R : *list_output_properties_reply) -> *ffi::xproto::atom;
+pub fn xcb_randr_list_output_properties_atoms (R : *mut list_output_properties_reply) -> *mut ffi::xproto::atom;
 
 
-pub unsafe fn xcb_randr_list_output_properties_atoms_length (R : *list_output_properties_reply) -> c_int;
+pub fn xcb_randr_list_output_properties_atoms_length (R : *mut list_output_properties_reply) -> c_int;
 
 
-pub unsafe fn xcb_randr_list_output_properties_atoms_end (R : *list_output_properties_reply) -> generic_iterator;
+pub fn xcb_randr_list_output_properties_atoms_end (R : *mut list_output_properties_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -1508,11 +1508,11 @@ pub unsafe fn xcb_randr_list_output_properties_atoms_end (R : *list_output_prope
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_randr_list_output_properties_reply (c : *connection,
+pub fn xcb_randr_list_output_properties_reply (c : *mut connection,
                                                   cookie : list_output_properties_cookie,
-                                                  e : **generic_error) -> *list_output_properties_reply;
+                                                  e : *mut *mut generic_error) -> *mut list_output_properties_reply;
 
-pub unsafe fn xcb_randr_query_output_property_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_randr_query_output_property_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1522,7 +1522,7 @@ pub unsafe fn xcb_randr_query_output_property_sizeof (_buffer :  *c_void) -> c_i
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_query_output_property (c : *connection,
+pub fn xcb_randr_query_output_property (c : *mut connection,
                                            output :  output,
                                            property :  ffi::xproto::atom) -> query_output_property_cookie;
 
@@ -1537,17 +1537,17 @@ pub unsafe fn xcb_randr_query_output_property (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_randr_query_output_property_unchecked (c : *connection,
+pub fn xcb_randr_query_output_property_unchecked (c : *mut connection,
                                                      output :  output,
                                                      property :  ffi::xproto::atom) -> query_output_property_cookie;
 
-pub unsafe fn xcb_randr_query_output_property_valid_values (R : *query_output_property_reply) -> *i32;
+pub fn xcb_randr_query_output_property_valid_values (R : *mut query_output_property_reply) -> *mut i32;
 
 
-pub unsafe fn xcb_randr_query_output_property_valid_values_length (R : *query_output_property_reply) -> c_int;
+pub fn xcb_randr_query_output_property_valid_values_length (R : *mut query_output_property_reply) -> c_int;
 
 
-pub unsafe fn xcb_randr_query_output_property_valid_values_end (R : *query_output_property_reply) -> generic_iterator;
+pub fn xcb_randr_query_output_property_valid_values_end (R : *mut query_output_property_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -1563,12 +1563,12 @@ pub unsafe fn xcb_randr_query_output_property_valid_values_end (R : *query_outpu
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_randr_query_output_property_reply (c : *connection,
+pub fn xcb_randr_query_output_property_reply (c : *mut connection,
                                                  cookie : query_output_property_cookie,
-                                                 e : **generic_error) -> *query_output_property_reply;
+                                                 e : *mut *mut generic_error) -> *mut query_output_property_reply;
 
-pub unsafe fn xcb_randr_configure_output_property_sizeof (_buffer :  *c_void,
-                                            values_len :  u32) -> c_int;
+pub fn xcb_randr_configure_output_property_sizeof (_buffer :  *mut c_void,
+                                            values_len :   u32) -> c_int;
 
 /**
  *
@@ -1581,13 +1581,13 @@ pub unsafe fn xcb_randr_configure_output_property_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_randr_configure_output_property_checked (c : *connection,
+pub fn xcb_randr_configure_output_property_checked (c : *mut connection,
                                                        output :  output,
                                                        property :  ffi::xproto::atom,
                                                        pending :  u8,
                                                        range :  u8,
                                                        values_len :  u32,
-                                                       values : *i32) -> void_cookie;
+                                                       values : *mut i32) -> void_cookie;
 
 /**
  *
@@ -1597,15 +1597,15 @@ pub unsafe fn xcb_randr_configure_output_property_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_configure_output_property (c : *connection,
+pub fn xcb_randr_configure_output_property (c : *mut connection,
                                                output :  output,
                                                property :  ffi::xproto::atom,
                                                pending :  u8,
                                                range :  u8,
                                                values_len :  u32,
-                                               values : *i32) -> void_cookie;
+                                               values : *mut i32) -> void_cookie;
 
-pub unsafe fn xcb_randr_change_output_property_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_randr_change_output_property_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1618,14 +1618,14 @@ pub unsafe fn xcb_randr_change_output_property_sizeof (_buffer :  *c_void) -> c_
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_randr_change_output_property_checked (c : *connection,
+pub fn xcb_randr_change_output_property_checked (c : *mut connection,
                                                     output :  output,
                                                     property :  ffi::xproto::atom,
                                                     type_ :  ffi::xproto::atom,
                                                     format :  u8,
                                                     mode :  u8,
                                                     num_units :  u32,
-                                                    data : *c_void) -> void_cookie;
+                                                    data : *mut c_void) -> void_cookie;
 
 /**
  *
@@ -1635,14 +1635,14 @@ pub unsafe fn xcb_randr_change_output_property_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_change_output_property (c : *connection,
+pub fn xcb_randr_change_output_property (c : *mut connection,
                                             output :  output,
                                             property :  ffi::xproto::atom,
                                             type_ :  ffi::xproto::atom,
                                             format :  u8,
                                             mode :  u8,
                                             num_units :  u32,
-                                            data : *c_void) -> void_cookie;
+                                            data : *mut c_void) -> void_cookie;
 
 /**
  *
@@ -1655,7 +1655,7 @@ pub unsafe fn xcb_randr_change_output_property (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_randr_delete_output_property_checked (c : *connection,
+pub fn xcb_randr_delete_output_property_checked (c : *mut connection,
                                                     output :  output,
                                                     property :  ffi::xproto::atom) -> void_cookie;
 
@@ -1667,11 +1667,11 @@ pub unsafe fn xcb_randr_delete_output_property_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_delete_output_property (c : *connection,
+pub fn xcb_randr_delete_output_property (c : *mut connection,
                                             output :  output,
                                             property :  ffi::xproto::atom) -> void_cookie;
 
-pub unsafe fn xcb_randr_get_output_property_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_randr_get_output_property_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1681,7 +1681,7 @@ pub unsafe fn xcb_randr_get_output_property_sizeof (_buffer :  *c_void) -> c_int
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_get_output_property (c : *connection,
+pub fn xcb_randr_get_output_property (c : *mut connection,
                                          output :  output,
                                          property :  ffi::xproto::atom,
                                          type_ :  ffi::xproto::atom,
@@ -1701,7 +1701,7 @@ pub unsafe fn xcb_randr_get_output_property (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_randr_get_output_property_unchecked (c : *connection,
+pub fn xcb_randr_get_output_property_unchecked (c : *mut connection,
                                                    output :  output,
                                                    property :  ffi::xproto::atom,
                                                    type_ :  ffi::xproto::atom,
@@ -1710,13 +1710,13 @@ pub unsafe fn xcb_randr_get_output_property_unchecked (c : *connection,
                                                    delete :  u8,
                                                    pending :  u8) -> get_output_property_cookie;
 
-pub unsafe fn xcb_randr_get_output_property_data (R : *get_output_property_reply) -> *u8;
+pub fn xcb_randr_get_output_property_data (R : *mut get_output_property_reply) -> *mut u8;
 
 
-pub unsafe fn xcb_randr_get_output_property_data_length (R : *get_output_property_reply) -> c_int;
+pub fn xcb_randr_get_output_property_data_length (R : *mut get_output_property_reply) -> c_int;
 
 
-pub unsafe fn xcb_randr_get_output_property_data_end (R : *get_output_property_reply) -> generic_iterator;
+pub fn xcb_randr_get_output_property_data_end (R : *mut get_output_property_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -1732,12 +1732,12 @@ pub unsafe fn xcb_randr_get_output_property_data_end (R : *get_output_property_r
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_randr_get_output_property_reply (c : *connection,
+pub fn xcb_randr_get_output_property_reply (c : *mut connection,
                                                cookie : get_output_property_cookie,
-                                               e : **generic_error) -> *get_output_property_reply;
+                                               e : *mut *mut generic_error) -> *mut get_output_property_reply;
 
-pub unsafe fn xcb_randr_create_mode_sizeof (_buffer :  *c_void,
-                              name_len :  u32) -> c_int;
+pub fn xcb_randr_create_mode_sizeof (_buffer :  *mut c_void,
+                              name_len :     u32) -> c_int;
 
 /**
  *
@@ -1747,11 +1747,11 @@ pub unsafe fn xcb_randr_create_mode_sizeof (_buffer :  *c_void,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_create_mode (c : *connection,
+pub fn xcb_randr_create_mode (c : *mut connection,
                                  window :  ffi::xproto::window,
                                  mode_info :  mode_info,
                                  name_len :  u32,
-                                 name : *c_char) -> create_mode_cookie;
+                                 name : *mut c_char) -> create_mode_cookie;
 
 /**
  *
@@ -1764,11 +1764,11 @@ pub unsafe fn xcb_randr_create_mode (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_randr_create_mode_unchecked (c : *connection,
+pub fn xcb_randr_create_mode_unchecked (c : *mut connection,
                                            window :  ffi::xproto::window,
                                            mode_info :  mode_info,
                                            name_len :  u32,
-                                           name : *c_char) -> create_mode_cookie;
+                                           name : *mut c_char) -> create_mode_cookie;
 
 /**
  * Return the reply
@@ -1784,9 +1784,9 @@ pub unsafe fn xcb_randr_create_mode_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_randr_create_mode_reply (c : *connection,
+pub fn xcb_randr_create_mode_reply (c : *mut connection,
                                        cookie : create_mode_cookie,
-                                       e : **generic_error) -> *create_mode_reply;
+                                       e : *mut *mut generic_error) -> *mut create_mode_reply;
 
 /**
  *
@@ -1799,7 +1799,7 @@ pub unsafe fn xcb_randr_create_mode_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_randr_destroy_mode_checked (c : *connection,
+pub fn xcb_randr_destroy_mode_checked (c : *mut connection,
                                           mode :  mode) -> void_cookie;
 
 /**
@@ -1810,7 +1810,7 @@ pub unsafe fn xcb_randr_destroy_mode_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_destroy_mode (c : *connection,
+pub fn xcb_randr_destroy_mode (c : *mut connection,
                                   mode :  mode) -> void_cookie;
 
 /**
@@ -1824,7 +1824,7 @@ pub unsafe fn xcb_randr_destroy_mode (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_randr_add_output_mode_checked (c : *connection,
+pub fn xcb_randr_add_output_mode_checked (c : *mut connection,
                                              output :  output,
                                              mode :  mode) -> void_cookie;
 
@@ -1836,7 +1836,7 @@ pub unsafe fn xcb_randr_add_output_mode_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_add_output_mode (c : *connection,
+pub fn xcb_randr_add_output_mode (c : *mut connection,
                                      output :  output,
                                      mode :  mode) -> void_cookie;
 
@@ -1851,7 +1851,7 @@ pub unsafe fn xcb_randr_add_output_mode (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_randr_delete_output_mode_checked (c : *connection,
+pub fn xcb_randr_delete_output_mode_checked (c : *mut connection,
                                                 output :  output,
                                                 mode :  mode) -> void_cookie;
 
@@ -1863,11 +1863,11 @@ pub unsafe fn xcb_randr_delete_output_mode_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_delete_output_mode (c : *connection,
+pub fn xcb_randr_delete_output_mode (c : *mut connection,
                                         output :  output,
                                         mode :  mode) -> void_cookie;
 
-pub unsafe fn xcb_randr_get_crtc_info_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_randr_get_crtc_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1877,7 +1877,7 @@ pub unsafe fn xcb_randr_get_crtc_info_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_get_crtc_info (c : *connection,
+pub fn xcb_randr_get_crtc_info (c : *mut connection,
                                    crtc :  crtc,
                                    config_timestamp :  ffi::xproto::timestamp) -> get_crtc_info_cookie;
 
@@ -1892,25 +1892,25 @@ pub unsafe fn xcb_randr_get_crtc_info (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_randr_get_crtc_info_unchecked (c : *connection,
+pub fn xcb_randr_get_crtc_info_unchecked (c : *mut connection,
                                              crtc :  crtc,
                                              config_timestamp :  ffi::xproto::timestamp) -> get_crtc_info_cookie;
 
-pub unsafe fn xcb_randr_get_crtc_info_outputs (R : *get_crtc_info_reply) -> *output;
+pub fn xcb_randr_get_crtc_info_outputs (R : *mut get_crtc_info_reply) -> *mut output;
 
 
-pub unsafe fn xcb_randr_get_crtc_info_outputs_length (R : *get_crtc_info_reply) -> c_int;
+pub fn xcb_randr_get_crtc_info_outputs_length (R : *mut get_crtc_info_reply) -> c_int;
 
 
-pub unsafe fn xcb_randr_get_crtc_info_outputs_end (R : *get_crtc_info_reply) -> generic_iterator;
+pub fn xcb_randr_get_crtc_info_outputs_end (R : *mut get_crtc_info_reply) -> generic_iterator;
 
-pub unsafe fn xcb_randr_get_crtc_info_possible (R : *get_crtc_info_reply) -> *output;
-
-
-pub unsafe fn xcb_randr_get_crtc_info_possible_length (R : *get_crtc_info_reply) -> c_int;
+pub fn xcb_randr_get_crtc_info_possible (R : *mut get_crtc_info_reply) -> *mut output;
 
 
-pub unsafe fn xcb_randr_get_crtc_info_possible_end (R : *get_crtc_info_reply) -> generic_iterator;
+pub fn xcb_randr_get_crtc_info_possible_length (R : *mut get_crtc_info_reply) -> c_int;
+
+
+pub fn xcb_randr_get_crtc_info_possible_end (R : *mut get_crtc_info_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -1926,11 +1926,11 @@ pub unsafe fn xcb_randr_get_crtc_info_possible_end (R : *get_crtc_info_reply) ->
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_randr_get_crtc_info_reply (c : *connection,
+pub fn xcb_randr_get_crtc_info_reply (c : *mut connection,
                                          cookie : get_crtc_info_cookie,
-                                         e : **generic_error) -> *get_crtc_info_reply;
+                                         e : *mut *mut generic_error) -> *mut get_crtc_info_reply;
 
-pub unsafe fn xcb_randr_set_crtc_config_sizeof (_buffer :  *c_void,
+pub fn xcb_randr_set_crtc_config_sizeof (_buffer :  *mut c_void,
                                   outputs_len :  u32) -> c_int;
 
 /**
@@ -1941,7 +1941,7 @@ pub unsafe fn xcb_randr_set_crtc_config_sizeof (_buffer :  *c_void,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_set_crtc_config (c : *connection,
+pub fn xcb_randr_set_crtc_config (c : *mut connection,
                                      crtc :  crtc,
                                      timestamp :  ffi::xproto::timestamp,
                                      config_timestamp :  ffi::xproto::timestamp,
@@ -1950,7 +1950,7 @@ pub unsafe fn xcb_randr_set_crtc_config (c : *connection,
                                      mode :  mode,
                                      rotation :  u16,
                                      outputs_len :  u32,
-                                     outputs : *output) -> set_crtc_config_cookie;
+                                     outputs : *mut output) -> set_crtc_config_cookie;
 
 /**
  *
@@ -1963,7 +1963,7 @@ pub unsafe fn xcb_randr_set_crtc_config (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_randr_set_crtc_config_unchecked (c : *connection,
+pub fn xcb_randr_set_crtc_config_unchecked (c : *mut connection,
                                                crtc :  crtc,
                                                timestamp :  ffi::xproto::timestamp,
                                                config_timestamp :  ffi::xproto::timestamp,
@@ -1972,7 +1972,7 @@ pub unsafe fn xcb_randr_set_crtc_config_unchecked (c : *connection,
                                                mode :  mode,
                                                rotation :  u16,
                                                outputs_len :  u32,
-                                               outputs : *output) -> set_crtc_config_cookie;
+                                               outputs : *mut output) -> set_crtc_config_cookie;
 
 /**
  * Return the reply
@@ -1988,9 +1988,9 @@ pub unsafe fn xcb_randr_set_crtc_config_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_randr_set_crtc_config_reply (c : *connection,
+pub fn xcb_randr_set_crtc_config_reply (c : *mut connection,
                                            cookie : set_crtc_config_cookie,
-                                           e : **generic_error) -> *set_crtc_config_reply;
+                                           e : *mut *mut generic_error) -> *mut set_crtc_config_reply;
 
 /**
  *
@@ -2000,7 +2000,7 @@ pub unsafe fn xcb_randr_set_crtc_config_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_get_crtc_gamma_size (c : *connection,
+pub fn xcb_randr_get_crtc_gamma_size (c : *mut connection,
                                          crtc :  crtc) -> get_crtc_gamma_size_cookie;
 
 /**
@@ -2014,7 +2014,7 @@ pub unsafe fn xcb_randr_get_crtc_gamma_size (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_randr_get_crtc_gamma_size_unchecked (c : *connection,
+pub fn xcb_randr_get_crtc_gamma_size_unchecked (c : *mut connection,
                                                    crtc :  crtc) -> get_crtc_gamma_size_cookie;
 
 /**
@@ -2031,11 +2031,11 @@ pub unsafe fn xcb_randr_get_crtc_gamma_size_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_randr_get_crtc_gamma_size_reply (c : *connection,
+pub fn xcb_randr_get_crtc_gamma_size_reply (c : *mut connection,
                                                cookie : get_crtc_gamma_size_cookie,
-                                               e : **generic_error) -> *get_crtc_gamma_size_reply;
+                                               e : *mut *mut generic_error) -> *mut get_crtc_gamma_size_reply;
 
-pub unsafe fn xcb_randr_get_crtc_gamma_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_randr_get_crtc_gamma_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -2045,7 +2045,7 @@ pub unsafe fn xcb_randr_get_crtc_gamma_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_get_crtc_gamma (c : *connection,
+pub fn xcb_randr_get_crtc_gamma (c : *mut connection,
                                     crtc :  crtc) -> get_crtc_gamma_cookie;
 
 /**
@@ -2059,32 +2059,32 @@ pub unsafe fn xcb_randr_get_crtc_gamma (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_randr_get_crtc_gamma_unchecked (c : *connection,
+pub fn xcb_randr_get_crtc_gamma_unchecked (c : *mut connection,
                                               crtc :  crtc) -> get_crtc_gamma_cookie;
 
-pub unsafe fn xcb_randr_get_crtc_gamma_red (R : *get_crtc_gamma_reply) -> *u16;
+pub fn xcb_randr_get_crtc_gamma_red (R : *mut get_crtc_gamma_reply) -> *mut u16;
 
 
-pub unsafe fn xcb_randr_get_crtc_gamma_red_length (R : *get_crtc_gamma_reply) -> c_int;
+pub fn xcb_randr_get_crtc_gamma_red_length (R : *mut get_crtc_gamma_reply) -> c_int;
 
 
-pub unsafe fn xcb_randr_get_crtc_gamma_red_end (R : *get_crtc_gamma_reply) -> generic_iterator;
+pub fn xcb_randr_get_crtc_gamma_red_end (R : *mut get_crtc_gamma_reply) -> generic_iterator;
 
-pub unsafe fn xcb_randr_get_crtc_gamma_green (R : *get_crtc_gamma_reply) -> *u16;
-
-
-pub unsafe fn xcb_randr_get_crtc_gamma_green_length (R : *get_crtc_gamma_reply) -> c_int;
+pub fn xcb_randr_get_crtc_gamma_green (R : *mut get_crtc_gamma_reply) -> *mut u16;
 
 
-pub unsafe fn xcb_randr_get_crtc_gamma_green_end (R : *get_crtc_gamma_reply) -> generic_iterator;
-
-pub unsafe fn xcb_randr_get_crtc_gamma_blue (R : *get_crtc_gamma_reply) -> *u16;
+pub fn xcb_randr_get_crtc_gamma_green_length (R : *mut get_crtc_gamma_reply) -> c_int;
 
 
-pub unsafe fn xcb_randr_get_crtc_gamma_blue_length (R : *get_crtc_gamma_reply) -> c_int;
+pub fn xcb_randr_get_crtc_gamma_green_end (R : *mut get_crtc_gamma_reply) -> generic_iterator;
+
+pub fn xcb_randr_get_crtc_gamma_blue (R : *mut get_crtc_gamma_reply) -> *mut u16;
 
 
-pub unsafe fn xcb_randr_get_crtc_gamma_blue_end (R : *get_crtc_gamma_reply) -> generic_iterator;
+pub fn xcb_randr_get_crtc_gamma_blue_length (R : *mut get_crtc_gamma_reply) -> c_int;
+
+
+pub fn xcb_randr_get_crtc_gamma_blue_end (R : *mut get_crtc_gamma_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -2100,11 +2100,11 @@ pub unsafe fn xcb_randr_get_crtc_gamma_blue_end (R : *get_crtc_gamma_reply) -> g
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_randr_get_crtc_gamma_reply (c : *connection,
+pub fn xcb_randr_get_crtc_gamma_reply (c : *mut connection,
                                           cookie : get_crtc_gamma_cookie,
-                                          e : **generic_error) -> *get_crtc_gamma_reply;
+                                          e : *mut *mut generic_error) -> *mut get_crtc_gamma_reply;
 
-pub unsafe fn xcb_randr_set_crtc_gamma_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_randr_set_crtc_gamma_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -2117,12 +2117,12 @@ pub unsafe fn xcb_randr_set_crtc_gamma_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_randr_set_crtc_gamma_checked (c : *connection,
+pub fn xcb_randr_set_crtc_gamma_checked (c : *mut connection,
                                             crtc :  crtc,
                                             size :  u16,
-                                            red : *u16,
-                                            green : *u16,
-                                            blue : *u16) -> void_cookie;
+                                            red : *mut u16,
+                                            green : *mut u16,
+                                            blue : *mut u16) -> void_cookie;
 
 /**
  *
@@ -2132,14 +2132,14 @@ pub unsafe fn xcb_randr_set_crtc_gamma_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_set_crtc_gamma (c : *connection,
+pub fn xcb_randr_set_crtc_gamma (c : *mut connection,
                                     crtc :  crtc,
                                     size :  u16,
-                                    red : *u16,
-                                    green : *u16,
-                                    blue : *u16) -> void_cookie;
+                                    red : *mut u16,
+                                    green : *mut u16,
+                                    blue : *mut u16) -> void_cookie;
 
-pub unsafe fn xcb_randr_get_screen_resources_current_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_randr_get_screen_resources_current_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -2149,7 +2149,7 @@ pub unsafe fn xcb_randr_get_screen_resources_current_sizeof (_buffer :  *c_void)
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_get_screen_resources_current (c : *connection,
+pub fn xcb_randr_get_screen_resources_current (c : *mut connection,
                                                   window :  ffi::xproto::window) -> get_screen_resources_current_cookie;
 
 /**
@@ -2163,39 +2163,39 @@ pub unsafe fn xcb_randr_get_screen_resources_current (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_randr_get_screen_resources_current_unchecked (c : *connection,
+pub fn xcb_randr_get_screen_resources_current_unchecked (c : *mut connection,
                                                             window :  ffi::xproto::window) -> get_screen_resources_current_cookie;
 
-pub unsafe fn xcb_randr_get_screen_resources_current_crtcs (R : *get_screen_resources_current_reply) -> *crtc;
+pub fn xcb_randr_get_screen_resources_current_crtcs (R : *mut get_screen_resources_current_reply) -> *mut crtc;
 
 
-pub unsafe fn xcb_randr_get_screen_resources_current_crtcs_length (R : *get_screen_resources_current_reply) -> c_int;
+pub fn xcb_randr_get_screen_resources_current_crtcs_length (R : *mut get_screen_resources_current_reply) -> c_int;
 
 
-pub unsafe fn xcb_randr_get_screen_resources_current_crtcs_end (R : *get_screen_resources_current_reply) -> generic_iterator;
+pub fn xcb_randr_get_screen_resources_current_crtcs_end (R : *mut get_screen_resources_current_reply) -> generic_iterator;
 
-pub unsafe fn xcb_randr_get_screen_resources_current_outputs (R : *get_screen_resources_current_reply) -> *output;
-
-
-pub unsafe fn xcb_randr_get_screen_resources_current_outputs_length (R : *get_screen_resources_current_reply) -> c_int;
+pub fn xcb_randr_get_screen_resources_current_outputs (R : *mut get_screen_resources_current_reply) -> *mut output;
 
 
-pub unsafe fn xcb_randr_get_screen_resources_current_outputs_end (R : *get_screen_resources_current_reply) -> generic_iterator;
-
-pub unsafe fn xcb_randr_get_screen_resources_current_modes (R : *get_screen_resources_current_reply) -> *mode_info;
+pub fn xcb_randr_get_screen_resources_current_outputs_length (R : *mut get_screen_resources_current_reply) -> c_int;
 
 
-pub unsafe fn xcb_randr_get_screen_resources_current_modes_length (R : *get_screen_resources_current_reply) -> c_int;
+pub fn xcb_randr_get_screen_resources_current_outputs_end (R : *mut get_screen_resources_current_reply) -> generic_iterator;
 
-pub unsafe fn xcb_randr_get_screen_resources_current_modes_iterator (R : *get_screen_resources_current_reply) -> mode_info_iterator;
-
-pub unsafe fn xcb_randr_get_screen_resources_current_names (R : *get_screen_resources_current_reply) -> *u8;
+pub fn xcb_randr_get_screen_resources_current_modes (R : *mut get_screen_resources_current_reply) -> *mut mode_info;
 
 
-pub unsafe fn xcb_randr_get_screen_resources_current_names_length (R : *get_screen_resources_current_reply) -> c_int;
+pub fn xcb_randr_get_screen_resources_current_modes_length (R : *mut get_screen_resources_current_reply) -> c_int;
+
+pub fn xcb_randr_get_screen_resources_current_modes_iterator (R : *mut get_screen_resources_current_reply) -> mode_info_iterator;
+
+pub fn xcb_randr_get_screen_resources_current_names (R : *mut get_screen_resources_current_reply) -> *mut u8;
 
 
-pub unsafe fn xcb_randr_get_screen_resources_current_names_end (R : *get_screen_resources_current_reply) -> generic_iterator;
+pub fn xcb_randr_get_screen_resources_current_names_length (R : *mut get_screen_resources_current_reply) -> c_int;
+
+
+pub fn xcb_randr_get_screen_resources_current_names_end (R : *mut get_screen_resources_current_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -2211,11 +2211,11 @@ pub unsafe fn xcb_randr_get_screen_resources_current_names_end (R : *get_screen_
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_randr_get_screen_resources_current_reply (c : *connection,
+pub fn xcb_randr_get_screen_resources_current_reply (c : *mut connection,
                                                         cookie : get_screen_resources_current_cookie,
-                                                        e : **generic_error) -> *get_screen_resources_current_reply;
+                                                        e : *mut *mut generic_error) -> *mut get_screen_resources_current_reply;
 
-pub unsafe fn xcb_randr_set_crtc_transform_sizeof (_buffer :  *c_void,
+pub fn xcb_randr_set_crtc_transform_sizeof (_buffer :  *mut c_void,
                                      filter_params_len :  u32) -> c_int;
 
 /**
@@ -2229,13 +2229,13 @@ pub unsafe fn xcb_randr_set_crtc_transform_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_randr_set_crtc_transform_checked (c : *connection,
+pub fn xcb_randr_set_crtc_transform_checked (c : *mut connection,
                                                 crtc :  crtc,
                                                 transform :  ffi::render::transform,
                                                 filter_len :  u16,
-                                                filter_name : *c_char,
+                                                filter_name : *mut c_char,
                                                 filter_params_len :  u32,
-                                                filter_params : *ffi::render::fixed) -> void_cookie;
+                                                filter_params : *mut ffi::render::fixed) -> void_cookie;
 
 /**
  *
@@ -2245,15 +2245,15 @@ pub unsafe fn xcb_randr_set_crtc_transform_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_set_crtc_transform (c : *connection,
+pub fn xcb_randr_set_crtc_transform (c : *mut connection,
                                         crtc :  crtc,
                                         transform :  ffi::render::transform,
                                         filter_len :  u16,
-                                        filter_name : *c_char,
+                                        filter_name : *mut c_char,
                                         filter_params_len :  u32,
-                                        filter_params : *ffi::render::fixed) -> void_cookie;
+                                        filter_params : *mut ffi::render::fixed) -> void_cookie;
 
-pub unsafe fn xcb_randr_get_crtc_transform_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_randr_get_crtc_transform_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -2263,7 +2263,7 @@ pub unsafe fn xcb_randr_get_crtc_transform_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_get_crtc_transform (c : *connection,
+pub fn xcb_randr_get_crtc_transform (c : *mut connection,
                                         crtc :  crtc) -> get_crtc_transform_cookie;
 
 /**
@@ -2277,40 +2277,40 @@ pub unsafe fn xcb_randr_get_crtc_transform (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_randr_get_crtc_transform_unchecked (c : *connection,
+pub fn xcb_randr_get_crtc_transform_unchecked (c : *mut connection,
                                                   crtc :  crtc) -> get_crtc_transform_cookie;
 
-pub unsafe fn xcb_randr_get_crtc_transform_pending_filter_name (R : *get_crtc_transform_reply) -> *c_char;
+pub fn xcb_randr_get_crtc_transform_pending_filter_name (R : *mut get_crtc_transform_reply) -> *mut c_char;
 
 
-pub unsafe fn xcb_randr_get_crtc_transform_pending_filter_name_length (R : *get_crtc_transform_reply) -> c_int;
+pub fn xcb_randr_get_crtc_transform_pending_filter_name_length (R : *mut get_crtc_transform_reply) -> c_int;
 
 
-pub unsafe fn xcb_randr_get_crtc_transform_pending_filter_name_end (R : *get_crtc_transform_reply) -> generic_iterator;
+pub fn xcb_randr_get_crtc_transform_pending_filter_name_end (R : *mut get_crtc_transform_reply) -> generic_iterator;
 
-pub unsafe fn xcb_randr_get_crtc_transform_pending_params (R : *get_crtc_transform_reply) -> *ffi::render::fixed;
-
-
-pub unsafe fn xcb_randr_get_crtc_transform_pending_params_length (R : *get_crtc_transform_reply) -> c_int;
+pub fn xcb_randr_get_crtc_transform_pending_params (R : *mut get_crtc_transform_reply) -> *mut ffi::render::fixed;
 
 
-pub unsafe fn xcb_randr_get_crtc_transform_pending_params_end (R : *get_crtc_transform_reply) -> generic_iterator;
-
-pub unsafe fn xcb_randr_get_crtc_transform_current_filter_name (R : *get_crtc_transform_reply) -> *c_char;
+pub fn xcb_randr_get_crtc_transform_pending_params_length (R : *mut get_crtc_transform_reply) -> c_int;
 
 
-pub unsafe fn xcb_randr_get_crtc_transform_current_filter_name_length (R : *get_crtc_transform_reply) -> c_int;
+pub fn xcb_randr_get_crtc_transform_pending_params_end (R : *mut get_crtc_transform_reply) -> generic_iterator;
+
+pub fn xcb_randr_get_crtc_transform_current_filter_name (R : *mut get_crtc_transform_reply) -> *mut c_char;
 
 
-pub unsafe fn xcb_randr_get_crtc_transform_current_filter_name_end (R : *get_crtc_transform_reply) -> generic_iterator;
-
-pub unsafe fn xcb_randr_get_crtc_transform_current_params (R : *get_crtc_transform_reply) -> *ffi::render::fixed;
+pub fn xcb_randr_get_crtc_transform_current_filter_name_length (R : *mut get_crtc_transform_reply) -> c_int;
 
 
-pub unsafe fn xcb_randr_get_crtc_transform_current_params_length (R : *get_crtc_transform_reply) -> c_int;
+pub fn xcb_randr_get_crtc_transform_current_filter_name_end (R : *mut get_crtc_transform_reply) -> generic_iterator;
+
+pub fn xcb_randr_get_crtc_transform_current_params (R : *mut get_crtc_transform_reply) -> *mut ffi::render::fixed;
 
 
-pub unsafe fn xcb_randr_get_crtc_transform_current_params_end (R : *get_crtc_transform_reply) -> generic_iterator;
+pub fn xcb_randr_get_crtc_transform_current_params_length (R : *mut get_crtc_transform_reply) -> c_int;
+
+
+pub fn xcb_randr_get_crtc_transform_current_params_end (R : *mut get_crtc_transform_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -2326,9 +2326,9 @@ pub unsafe fn xcb_randr_get_crtc_transform_current_params_end (R : *get_crtc_tra
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_randr_get_crtc_transform_reply (c : *connection,
+pub fn xcb_randr_get_crtc_transform_reply (c : *mut connection,
                                               cookie : get_crtc_transform_cookie,
-                                              e : **generic_error) -> *get_crtc_transform_reply;
+                                              e : *mut *mut generic_error) -> *mut get_crtc_transform_reply;
 
 /**
  *
@@ -2338,7 +2338,7 @@ pub unsafe fn xcb_randr_get_crtc_transform_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_get_panning (c : *connection,
+pub fn xcb_randr_get_panning (c : *mut connection,
                                  crtc :  crtc) -> get_panning_cookie;
 
 /**
@@ -2352,7 +2352,7 @@ pub unsafe fn xcb_randr_get_panning (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_randr_get_panning_unchecked (c : *connection,
+pub fn xcb_randr_get_panning_unchecked (c : *mut connection,
                                            crtc :  crtc) -> get_panning_cookie;
 
 /**
@@ -2369,9 +2369,9 @@ pub unsafe fn xcb_randr_get_panning_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_randr_get_panning_reply (c : *connection,
+pub fn xcb_randr_get_panning_reply (c : *mut connection,
                                        cookie : get_panning_cookie,
-                                       e : **generic_error) -> *get_panning_reply;
+                                       e : *mut *mut generic_error) -> *mut get_panning_reply;
 
 /**
  *
@@ -2381,7 +2381,7 @@ pub unsafe fn xcb_randr_get_panning_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_set_panning (c : *connection,
+pub fn xcb_randr_set_panning (c : *mut connection,
                                  crtc :  crtc,
                                  timestamp :  ffi::xproto::timestamp,
                                  left :  u16,
@@ -2408,7 +2408,7 @@ pub unsafe fn xcb_randr_set_panning (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_randr_set_panning_unchecked (c : *connection,
+pub fn xcb_randr_set_panning_unchecked (c : *mut connection,
                                            crtc :  crtc,
                                            timestamp :  ffi::xproto::timestamp,
                                            left :  u16,
@@ -2438,9 +2438,9 @@ pub unsafe fn xcb_randr_set_panning_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_randr_set_panning_reply (c : *connection,
+pub fn xcb_randr_set_panning_reply (c : *mut connection,
                                        cookie : set_panning_cookie,
-                                       e : **generic_error) -> *set_panning_reply;
+                                       e : *mut *mut generic_error) -> *mut set_panning_reply;
 
 /**
  *
@@ -2453,7 +2453,7 @@ pub unsafe fn xcb_randr_set_panning_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_randr_set_output_primary_checked (c : *connection,
+pub fn xcb_randr_set_output_primary_checked (c : *mut connection,
                                                 window :  ffi::xproto::window,
                                                 output :  output) -> void_cookie;
 
@@ -2465,7 +2465,7 @@ pub unsafe fn xcb_randr_set_output_primary_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_set_output_primary (c : *connection,
+pub fn xcb_randr_set_output_primary (c : *mut connection,
                                         window :  ffi::xproto::window,
                                         output :  output) -> void_cookie;
 
@@ -2477,7 +2477,7 @@ pub unsafe fn xcb_randr_set_output_primary (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_randr_get_output_primary (c : *connection,
+pub fn xcb_randr_get_output_primary (c : *mut connection,
                                         window :  ffi::xproto::window) -> get_output_primary_cookie;
 
 /**
@@ -2491,7 +2491,7 @@ pub unsafe fn xcb_randr_get_output_primary (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_randr_get_output_primary_unchecked (c : *connection,
+pub fn xcb_randr_get_output_primary_unchecked (c : *mut connection,
                                                   window :  ffi::xproto::window) -> get_output_primary_cookie;
 
 /**
@@ -2508,9 +2508,9 @@ pub unsafe fn xcb_randr_get_output_primary_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_randr_get_output_primary_reply (c : *connection,
+pub fn xcb_randr_get_output_primary_reply (c : *mut connection,
                                               cookie : get_output_primary_cookie,
-                                              e : **generic_error) -> *get_output_primary_reply;
+                                              e : *mut *mut generic_error) -> *mut get_output_primary_reply;
 
 /**
  * Get the next element of the iterator
@@ -2522,7 +2522,7 @@ pub unsafe fn xcb_randr_get_output_primary_reply (c : *connection,
  *
  *
  */
-pub unsafe fn xcb_randr_crtc_change_next (i:*crtc_change_iterator) -> c_void;
+pub fn xcb_randr_crtc_change_next (i:*mut crtc_change_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2533,7 +2533,7 @@ pub unsafe fn xcb_randr_crtc_change_next (i:*crtc_change_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_randr_crtc_change_end (i:crtc_change_iterator) -> generic_iterator;
+pub fn xcb_randr_crtc_change_end (i:crtc_change_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2545,7 +2545,7 @@ pub unsafe fn xcb_randr_crtc_change_end (i:crtc_change_iterator) -> generic_iter
  *
  *
  */
-pub unsafe fn xcb_randr_output_change_next (i:*output_change_iterator) -> c_void;
+pub fn xcb_randr_output_change_next (i:*mut output_change_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2556,7 +2556,7 @@ pub unsafe fn xcb_randr_output_change_next (i:*output_change_iterator) -> c_void
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_randr_output_change_end (i:output_change_iterator) -> generic_iterator;
+pub fn xcb_randr_output_change_end (i:output_change_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2568,7 +2568,7 @@ pub unsafe fn xcb_randr_output_change_end (i:output_change_iterator) -> generic_
  *
  *
  */
-pub unsafe fn xcb_randr_output_property_next (i:*output_property_iterator) -> c_void;
+pub fn xcb_randr_output_property_next (i:*mut output_property_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2579,7 +2579,7 @@ pub unsafe fn xcb_randr_output_property_next (i:*output_property_iterator) -> c_
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_randr_output_property_end (i:output_property_iterator) -> generic_iterator;
+pub fn xcb_randr_output_property_end (i:output_property_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2591,7 +2591,7 @@ pub unsafe fn xcb_randr_output_property_end (i:output_property_iterator) -> gene
  *
  *
  */
-pub unsafe fn xcb_randr_notify_data_next (i:*notify_data_iterator) -> c_void;
+pub fn xcb_randr_notify_data_next (i:*mut notify_data_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2602,6 +2602,6 @@ pub unsafe fn xcb_randr_notify_data_next (i:*notify_data_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_randr_notify_data_end (i:notify_data_iterator) -> generic_iterator;
+pub fn xcb_randr_notify_data_end (i:notify_data_iterator) -> generic_iterator;
 }
 

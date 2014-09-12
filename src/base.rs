@@ -27,12 +27,12 @@ DEALINGS IN THE SOFTWARE.
 
 */
 
-extern mod extra;
+//extern crate extra;
 
 use ffi::base::*;
 
 use std::cast;
-use std::libc::{c_int,free};
+use std::libc::{c_int,c_char,free};
 use std::option::Option;
 
 use std::{num,ptr,vec,libc,str};
@@ -41,10 +41,10 @@ use std::num::*;
 use xproto;
 
 pub struct Connection {
-    priv c : *connection
+    c : *mut connection
 }
 
-impl<'self> Connection {
+impl<'s> Connection {
     #[inline]
     pub fn flush(&self) -> bool {
         unsafe {
@@ -96,11 +96,11 @@ impl<'self> Connection {
     }
 
     #[inline]
-    pub fn get_setup(&self) -> &'self xproto::Setup {
+    pub fn get_setup(&self) -> &'s xproto::Setup {
         unsafe {
             let setup = xcb_get_setup(self.c);
             if ptr::is_null(setup) {
-                fail!(~"NULL setup on connection")
+                fail!(box "NULL setup on connection")
             } else {
                 cast::transmute(setup)
             }
@@ -122,7 +122,7 @@ impl<'self> Connection {
     }
 
     #[inline]
-    pub unsafe fn get_raw_conn(&self) -> *connection {
+    pub unsafe fn get_raw_conn(&self) -> *mut connection {
         self.c
     }
 
@@ -135,7 +135,7 @@ impl<'self> Connection {
         unsafe {
         ffi::xproto::xcb_send_event(self.c,
             propogate as u8, destination as ffi::xproto::window,
-            event_mask, event.event as *libc::c_char);
+            event_mask, event.event as *mut c_char);
         }
     }
 
@@ -145,7 +145,7 @@ impl<'self> Connection {
         unsafe {
             let conn = xcb_connect(ptr::null(), &screen);
             if ptr::is_null(conn) {
-                fail!(~"Couldn't connect")
+                fail!(box "Couldn't connect")
             } else {
                 xcb_prefetch_maximum_request_length(conn);
                 (Connection {c:conn}, screen as int)
@@ -157,8 +157,9 @@ impl<'self> Connection {
     pub fn connect_to_display(display:&str) -> Option<(Connection, int)> {
         let screen : c_int = 0;
         unsafe {
-            let conn = do str::as_c_str(display) |s| {
-                xcb_connect(s as *u8, &screen)
+            let conn = {
+		let s = str::as_c_str(display);
+                xcb_connect(s as *mut u8, &screen)
             };
             if ptr::is_null(conn) {
                 None
@@ -173,8 +174,9 @@ impl<'self> Connection {
     pub fn connect_with_auth(display:&str, auth_info: &AuthInfo) -> Option<(Connection, int)> {
         let screen : c_int = 0;
         unsafe {
-            let conn = do str::as_c_str(display) |s| {
-                xcb_connect_to_display_with_auth_info(s as *u8,
+            let conn = {
+		let s = str::as_c_str(display);
+                xcb_connect_to_display_with_auth_info(s as *mut u8,
                     cast::transmute(auth_info), &screen)
             };
             if ptr::is_null(conn) {
@@ -186,7 +188,7 @@ impl<'self> Connection {
         }
     }
 
-    pub unsafe fn from_raw_conn(conn:*connection) -> Connection {
+    pub unsafe fn from_raw_conn(conn:*mut connection) -> Connection {
         if ptr::is_null(conn) {
             fail!("Cannot construct from null pointer");
         }
@@ -205,7 +207,7 @@ impl Drop for Connection {
 }
 
 pub struct Event<T> {
-    event:*T
+    event:*mut T
 }
 
 #[unsafe_destructor]
@@ -213,16 +215,16 @@ impl<T> Drop for Event<T> {
     fn drop(&self) {
         use std::libc::c_void;
         unsafe {
-            free(self.event as *c_void);
+            free(self.event as *mut c_void);
         }
     }
 }
 
 pub struct Error<T> {
-    error:*T
+    error:*mut T
 }
 
-pub fn mk_error<T>(err:*T) -> Error<T> {
+pub fn mk_error<T>(err:*mut T) -> Error<T> {
     Error {error:err}
 }
 
@@ -231,7 +233,7 @@ impl<T> Drop for Error<T> {
     fn drop(&self) {
         use std::libc::c_void;
         unsafe {
-            free(self.error as *c_void);
+            free(self.error as *mut c_void);
         }
     }
 }
@@ -243,9 +245,9 @@ pub struct Struct<T> {
     strct: T
 }
 
-pub struct Cookie<'self, T> {
+pub struct Cookie<'s, T> {
     cookie: T,
-    conn: &'self Connection,
+    conn: &'s Connection,
     checked: bool
 }
 
@@ -253,13 +255,13 @@ pub trait ReplyCookie<R> {
     fn get_reply(&self) -> Result<Reply<R>, GenericError>;
 }
 
-impl<'self, T> Cookie<'self, T> {
+impl<'s, T> Cookie<'s, T> {
     pub fn request_check(&self) -> Option<GenericError> {
         unsafe {
             // Crazy pointer dance to get the right bit
             // of the struct
-            let c : *void_cookie = cast::transmute(&self.cookie);
-            let err = xcb_request_check(self.conn.c, *c);
+            let c : *mut void_cookie = cast::transmute(&self.cookie);
+            let err = xcb_request_check(self.conn.c, c);
             if ptr::is_null(err) {
                 None
             } else {
@@ -270,10 +272,10 @@ impl<'self, T> Cookie<'self, T> {
 }
 
 pub struct Reply<T> {
-    reply:*T
+    reply:*mut T
 }
 
-pub fn mk_reply<T>(reply:*T) -> Reply<T> {
+pub fn mk_reply<T>(reply:*mut T) -> Reply<T> {
     Reply {reply:reply}
 }
 
@@ -282,7 +284,7 @@ impl<T> Drop for Reply<T> {
     fn drop(&self) {
         use std::libc::c_void;
         unsafe {
-            free(self.reply as *c_void);
+            free(self.reply as *mut c_void);
         }
     }
 }
@@ -290,7 +292,7 @@ impl<T> Drop for Reply<T> {
 pub type GenericReply = Reply<generic_reply>;
 pub type GenericEvent = Event<generic_event>;
 pub type GenericError = Error<generic_error>;
-pub type VoidCookie<'self> = Cookie<'self, void_cookie>;
+pub type VoidCookie<'s> = Cookie<'s, void_cookie>;
 
 /**
  * Casts the generic event to the right event. Assumes that the given
@@ -312,13 +314,13 @@ pub trait EventUtil {
 impl<T> EventUtil for Event<T> {
     pub fn response_type(&self) -> u8 {
         unsafe {
-            let gev : *generic_event = cast::transmute(self.event);
+            let gev : *mut generic_event = cast::transmute(self.event);
             (*gev).response_type
         }
     }
 }
 
-pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &[(T,L)]) -> (T, ~[L]) {
+pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &[(T,L)]) -> (T, Vec<L>) {
     let len = bf.len();
 
     let sorted = extra::sort::merge_sort(bf, |a,b| {
@@ -327,14 +329,14 @@ pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &[(T,L)]) -> (T, ~[L])
         a < b});
 
     let mut mask = 0u;
-    let mut list : ~[L] = vec::with_capacity(len);
+    let mut list : Vec<L> = vec::with_capacity(len);
 
 
-    for sorted.iter().advance |el| {
+    for el in sorted.iter().advance {
         let &(f, v) = el;
         let fld = num::cast(f);
         if (mask & fld) > 0 {
-            loop;
+            continue;
         } else {
             mask |= fld;
             list.push(v);

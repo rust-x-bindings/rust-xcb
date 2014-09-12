@@ -4,8 +4,8 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(unused_unsafe)];
+#![allow(unused_imports)]
+#![allow(unused_unsafe)]
 use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
@@ -16,7 +16,7 @@ use base::*;
 use ffi;
 use ffi::composite::*;
 use std::option::Option;
-use std::iterator::Iterator;
+use std::iter::Iterator;
 
 use xproto;
 use render;
@@ -27,7 +27,7 @@ pub type redirect = c_uint;//{
     pub static XCB_COMPOSITE_REDIRECT_AUTOMATIC : redirect = 1;
     pub static XCB_COMPOSITE_REDIRECT_MANUAL : redirect = 2;
 //}
-pub type QueryVersionCookie<'self> = base::Cookie<'self, query_version_cookie>;
+pub type QueryVersionCookie<'s> = base::Cookie<'s, query_version_cookie>;
 
 /** Opcode for xcb_composite_query_version. */
 pub static XCB_COMPOSITE_QUERY_VERSION : u8 = 0;
@@ -44,7 +44,7 @@ pub static XCB_COMPOSITE_UNREDIRECT_SUBWINDOWS : u8 = 4;
 pub static XCB_COMPOSITE_CREATE_REGION_FROM_BORDER_CLIP : u8 = 5;
 /** Opcode for xcb_composite_name_window_pixmap. */
 pub static XCB_COMPOSITE_NAME_WINDOW_PIXMAP : u8 = 6;
-pub type GetOverlayWindowCookie<'self> = base::Cookie<'self, get_overlay_window_cookie>;
+pub type GetOverlayWindowCookie<'s> = base::Cookie<'s, get_overlay_window_cookie>;
 
 /** Opcode for xcb_composite_get_overlay_window. */
 pub static XCB_COMPOSITE_GET_OVERLAY_WINDOW : u8 = 7;
@@ -82,7 +82,7 @@ impl base::Reply<query_version_reply> {
   }
 
 }
-impl_reply_cookie!(QueryVersionCookie<'self>, query_version_reply, QueryVersionReply, xcb_composite_query_version_reply)
+impl_reply_cookie!(QueryVersionCookie<'s>, query_version_reply, QueryVersionReply, xcb_composite_query_version_reply)
 
 pub fn RedirectWindowChecked<'r> (c : &'r Connection,
                               window : xproto::Window,
@@ -227,7 +227,7 @@ impl base::Reply<get_overlay_window_reply> {
   }
 
 }
-impl_reply_cookie!(GetOverlayWindowCookie<'self>, get_overlay_window_reply, GetOverlayWindowReply, xcb_composite_get_overlay_window_reply)
+impl_reply_cookie!(GetOverlayWindowCookie<'s>, get_overlay_window_reply, GetOverlayWindowReply, xcb_composite_get_overlay_window_reply)
 
 pub fn ReleaseOverlayWindowChecked<'r> (c : &'r Connection,
                                     window : xproto::Window) -> base::VoidCookie<'r> {

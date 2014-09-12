@@ -4,8 +4,8 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(unused_unsafe)];
+#![allow(unused_imports)]
+#![allow(unused_unsafe)]
 use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
@@ -16,7 +16,7 @@ use base::*;
 use ffi;
 use ffi::xproto::*;
 use std::option::Option;
-use std::iterator::Iterator;
+use std::iter::Iterator;
 
 pub type Char2b = base::Struct<char2b>;
 
@@ -592,7 +592,7 @@ pub type map_state = c_uint;//{
     pub static XCB_MAP_STATE_UNVIEWABLE : map_state = 1;
     pub static XCB_MAP_STATE_VIEWABLE : map_state = 2;
 //}
-pub type GetWindowAttributesCookie<'self> = base::Cookie<'self, get_window_attributes_cookie>;
+pub type GetWindowAttributesCookie<'s> = base::Cookie<'s, get_window_attributes_cookie>;
 
 /** Opcode for xcb_get_window_attributes. */
 pub static XCB_GET_WINDOW_ATTRIBUTES : u8 = 3;
@@ -645,21 +645,21 @@ pub type circulate = c_uint;//{
 //}
 /** Opcode for xcb_circulate_window. */
 pub static XCB_CIRCULATE_WINDOW : u8 = 13;
-pub type GetGeometryCookie<'self> = base::Cookie<'self, get_geometry_cookie>;
+pub type GetGeometryCookie<'s> = base::Cookie<'s, get_geometry_cookie>;
 
 /** Opcode for xcb_get_geometry. */
 pub static XCB_GET_GEOMETRY : u8 = 14;
 pub type GetGeometryReply = base::Reply<get_geometry_reply>;
-pub type QueryTreeCookie<'self> = base::Cookie<'self, query_tree_cookie>;
+pub type QueryTreeCookie<'s> = base::Cookie<'s, query_tree_cookie>;
 
 /** Opcode for xcb_query_tree. */
 pub static XCB_QUERY_TREE : u8 = 15;
-pub type InternAtomCookie<'self> = base::Cookie<'self, intern_atom_cookie>;
+pub type InternAtomCookie<'s> = base::Cookie<'s, intern_atom_cookie>;
 
 /** Opcode for xcb_intern_atom. */
 pub static XCB_INTERN_ATOM : u8 = 16;
 pub type InternAtomReply = base::Reply<intern_atom_reply>;
-pub type GetAtomNameCookie<'self> = base::Cookie<'self, get_atom_name_cookie>;
+pub type GetAtomNameCookie<'s> = base::Cookie<'s, get_atom_name_cookie>;
 
 /** Opcode for xcb_get_atom_name. */
 pub static XCB_GET_ATOM_NAME : u8 = 17;
@@ -687,17 +687,17 @@ pub static XCB_DELETE_PROPERTY : u8 = 19;
 pub type get_property_type = c_uint;//{
     pub static XCB_GET_PROPERTY_TYPE_ANY : get_property_type = 0;
 //}
-pub type GetPropertyCookie<'self> = base::Cookie<'self, get_property_cookie>;
+pub type GetPropertyCookie<'s> = base::Cookie<'s, get_property_cookie>;
 
 /** Opcode for xcb_get_property. */
 pub static XCB_GET_PROPERTY : u8 = 20;
-pub type ListPropertiesCookie<'self> = base::Cookie<'self, list_properties_cookie>;
+pub type ListPropertiesCookie<'s> = base::Cookie<'s, list_properties_cookie>;
 
 /** Opcode for xcb_list_properties. */
 pub static XCB_LIST_PROPERTIES : u8 = 21;
 /** Opcode for xcb_set_selection_owner. */
 pub static XCB_SET_SELECTION_OWNER : u8 = 22;
-pub type GetSelectionOwnerCookie<'self> = base::Cookie<'self, get_selection_owner_cookie>;
+pub type GetSelectionOwnerCookie<'s> = base::Cookie<'s, get_selection_owner_cookie>;
 
 /** Opcode for xcb_get_selection_owner. */
 pub static XCB_GET_SELECTION_OWNER : u8 = 23;
@@ -734,7 +734,7 @@ pub type grab_status = c_uint;//{
 pub type cursor_enum = c_uint;//{
     pub static XCB_CURSOR_NONE : cursor_enum = 0;
 //}
-pub type GrabPointerCookie<'self> = base::Cookie<'self, grab_pointer_cookie>;
+pub type GrabPointerCookie<'s> = base::Cookie<'s, grab_pointer_cookie>;
 
 /** Opcode for xcb_grab_pointer. */
 pub static XCB_GRAB_POINTER : u8 = 26;
@@ -768,7 +768,7 @@ pub static XCB_GRAB_BUTTON : u8 = 28;
 pub static XCB_UNGRAB_BUTTON : u8 = 29;
 /** Opcode for xcb_change_active_pointer_grab. */
 pub static XCB_CHANGE_ACTIVE_POINTER_GRAB : u8 = 30;
-pub type GrabKeyboardCookie<'self> = base::Cookie<'self, grab_keyboard_cookie>;
+pub type GrabKeyboardCookie<'s> = base::Cookie<'s, grab_keyboard_cookie>;
 
 /** Opcode for xcb_grab_keyboard. */
 pub static XCB_GRAB_KEYBOARD : u8 = 31;
@@ -865,18 +865,18 @@ pub static XCB_ALLOW_EVENTS : u8 = 35;
 pub static XCB_GRAB_SERVER : u8 = 36;
 /** Opcode for xcb_ungrab_server. */
 pub static XCB_UNGRAB_SERVER : u8 = 37;
-pub type QueryPointerCookie<'self> = base::Cookie<'self, query_pointer_cookie>;
+pub type QueryPointerCookie<'s> = base::Cookie<'s, query_pointer_cookie>;
 
 /** Opcode for xcb_query_pointer. */
 pub static XCB_QUERY_POINTER : u8 = 38;
 pub type QueryPointerReply = base::Reply<query_pointer_reply>;
 pub type TimecoordIterator = timecoord_iterator;
 
-pub type GetMotionEventsCookie<'self> = base::Cookie<'self, get_motion_events_cookie>;
+pub type GetMotionEventsCookie<'s> = base::Cookie<'s, get_motion_events_cookie>;
 
 /** Opcode for xcb_get_motion_events. */
 pub static XCB_GET_MOTION_EVENTS : u8 = 39;
-pub type TranslateCoordinatesCookie<'self> = base::Cookie<'self, translate_coordinates_cookie>;
+pub type TranslateCoordinatesCookie<'s> = base::Cookie<'s, translate_coordinates_cookie>;
 
 /** Opcode for xcb_translate_coordinates. */
 pub static XCB_TRANSLATE_COORDINATES : u8 = 40;
@@ -903,12 +903,12 @@ revert_to value is `XCB_INPUT_FOCUS_NONE`. */
 //}
 /** Opcode for xcb_set_input_focus. */
 pub static XCB_SET_INPUT_FOCUS : u8 = 42;
-pub type GetInputFocusCookie<'self> = base::Cookie<'self, get_input_focus_cookie>;
+pub type GetInputFocusCookie<'s> = base::Cookie<'s, get_input_focus_cookie>;
 
 /** Opcode for xcb_get_input_focus. */
 pub static XCB_GET_INPUT_FOCUS : u8 = 43;
 pub type GetInputFocusReply = base::Reply<get_input_focus_reply>;
-pub type QueryKeymapCookie<'self> = base::Cookie<'self, query_keymap_cookie>;
+pub type QueryKeymapCookie<'s> = base::Cookie<'s, query_keymap_cookie>;
 
 /** Opcode for xcb_query_keymap. */
 pub static XCB_QUERY_KEYMAP : u8 = 44;
@@ -928,30 +928,30 @@ pub type FontpropIterator = fontprop_iterator;
 
 pub type CharinfoIterator = charinfo_iterator;
 
-pub type QueryFontCookie<'self> = base::Cookie<'self, query_font_cookie>;
+pub type QueryFontCookie<'s> = base::Cookie<'s, query_font_cookie>;
 
 /** Opcode for xcb_query_font. */
 pub static XCB_QUERY_FONT : u8 = 47;
-pub type QueryTextExtentsCookie<'self> = base::Cookie<'self, query_text_extents_cookie>;
+pub type QueryTextExtentsCookie<'s> = base::Cookie<'s, query_text_extents_cookie>;
 
 /** Opcode for xcb_query_text_extents. */
 pub static XCB_QUERY_TEXT_EXTENTS : u8 = 48;
 pub type QueryTextExtentsReply = base::Reply<query_text_extents_reply>;
 pub type StrIterator = str_iterator;
 
-pub type ListFontsCookie<'self> = base::Cookie<'self, list_fonts_cookie>;
+pub type ListFontsCookie<'s> = base::Cookie<'s, list_fonts_cookie>;
 
 /** Opcode for xcb_list_fonts. */
 pub static XCB_LIST_FONTS : u8 = 49;
 pub type ListFontsReply = base::Reply<list_fonts_reply>;
-pub type ListFontsWithInfoCookie<'self> = base::Cookie<'self, list_fonts_with_info_cookie>;
+pub type ListFontsWithInfoCookie<'s> = base::Cookie<'s, list_fonts_with_info_cookie>;
 
 /** Opcode for xcb_list_fonts_with_info. */
 pub static XCB_LIST_FONTS_WITH_INFO : u8 = 50;
 pub type ListFontsWithInfoReply = base::Reply<list_fonts_with_info_reply>;
 /** Opcode for xcb_set_font_path. */
 pub static XCB_SET_FONT_PATH : u8 = 51;
-pub type GetFontPathCookie<'self> = base::Cookie<'self, get_font_path_cookie>;
+pub type GetFontPathCookie<'s> = base::Cookie<'s, get_font_path_cookie>;
 
 /** Opcode for xcb_get_font_path. */
 pub static XCB_GET_FONT_PATH : u8 = 52;
@@ -1234,7 +1234,7 @@ pub type image_format = c_uint;//{
 //}
 /** Opcode for xcb_put_image. */
 pub static XCB_PUT_IMAGE : u8 = 72;
-pub type GetImageCookie<'self> = base::Cookie<'self, get_image_cookie>;
+pub type GetImageCookie<'s> = base::Cookie<'s, get_image_cookie>;
 
 /** Opcode for xcb_get_image. */
 pub static XCB_GET_IMAGE : u8 = 73;
@@ -1261,25 +1261,25 @@ pub static XCB_COPY_COLORMAP_AND_FREE : u8 = 80;
 pub static XCB_INSTALL_COLORMAP : u8 = 81;
 /** Opcode for xcb_uninstall_colormap. */
 pub static XCB_UNINSTALL_COLORMAP : u8 = 82;
-pub type ListInstalledColormapsCookie<'self> = base::Cookie<'self, list_installed_colormaps_cookie>;
+pub type ListInstalledColormapsCookie<'s> = base::Cookie<'s, list_installed_colormaps_cookie>;
 
 /** Opcode for xcb_list_installed_colormaps. */
 pub static XCB_LIST_INSTALLED_COLORMAPS : u8 = 83;
-pub type AllocColorCookie<'self> = base::Cookie<'self, alloc_color_cookie>;
+pub type AllocColorCookie<'s> = base::Cookie<'s, alloc_color_cookie>;
 
 /** Opcode for xcb_alloc_color. */
 pub static XCB_ALLOC_COLOR : u8 = 84;
 pub type AllocColorReply = base::Reply<alloc_color_reply>;
-pub type AllocNamedColorCookie<'self> = base::Cookie<'self, alloc_named_color_cookie>;
+pub type AllocNamedColorCookie<'s> = base::Cookie<'s, alloc_named_color_cookie>;
 
 /** Opcode for xcb_alloc_named_color. */
 pub static XCB_ALLOC_NAMED_COLOR : u8 = 85;
 pub type AllocNamedColorReply = base::Reply<alloc_named_color_reply>;
-pub type AllocColorCellsCookie<'self> = base::Cookie<'self, alloc_color_cells_cookie>;
+pub type AllocColorCellsCookie<'s> = base::Cookie<'s, alloc_color_cells_cookie>;
 
 /** Opcode for xcb_alloc_color_cells. */
 pub static XCB_ALLOC_COLOR_CELLS : u8 = 86;
-pub type AllocColorPlanesCookie<'self> = base::Cookie<'self, alloc_color_planes_cookie>;
+pub type AllocColorPlanesCookie<'s> = base::Cookie<'s, alloc_color_planes_cookie>;
 
 /** Opcode for xcb_alloc_color_planes. */
 pub static XCB_ALLOC_COLOR_PLANES : u8 = 87;
@@ -1301,12 +1301,12 @@ pub static XCB_STORE_COLORS : u8 = 89;
 pub static XCB_STORE_NAMED_COLOR : u8 = 90;
 pub type RgbIterator = rgb_iterator;
 
-pub type QueryColorsCookie<'self> = base::Cookie<'self, query_colors_cookie>;
+pub type QueryColorsCookie<'s> = base::Cookie<'s, query_colors_cookie>;
 
 /** Opcode for xcb_query_colors. */
 pub static XCB_QUERY_COLORS : u8 = 91;
 pub type QueryColorsReply = base::Reply<query_colors_reply>;
-pub type LookupColorCookie<'self> = base::Cookie<'self, lookup_color_cookie>;
+pub type LookupColorCookie<'s> = base::Cookie<'s, lookup_color_cookie>;
 
 /** Opcode for xcb_lookup_color. */
 pub static XCB_LOOKUP_COLOR : u8 = 92;
@@ -1333,23 +1333,23 @@ pub type query_shape_of = c_uint;//{
     pub static XCB_QUERY_SHAPE_OF_FASTEST_TILE : query_shape_of = 1;
     pub static XCB_QUERY_SHAPE_OF_FASTEST_STIPPLE : query_shape_of = 2;
 //}
-pub type QueryBestSizeCookie<'self> = base::Cookie<'self, query_best_size_cookie>;
+pub type QueryBestSizeCookie<'s> = base::Cookie<'s, query_best_size_cookie>;
 
 /** Opcode for xcb_query_best_size. */
 pub static XCB_QUERY_BEST_SIZE : u8 = 97;
 pub type QueryBestSizeReply = base::Reply<query_best_size_reply>;
-pub type QueryExtensionCookie<'self> = base::Cookie<'self, query_extension_cookie>;
+pub type QueryExtensionCookie<'s> = base::Cookie<'s, query_extension_cookie>;
 
 /** Opcode for xcb_query_extension. */
 pub static XCB_QUERY_EXTENSION : u8 = 98;
 pub type QueryExtensionReply = base::Reply<query_extension_reply>;
-pub type ListExtensionsCookie<'self> = base::Cookie<'self, list_extensions_cookie>;
+pub type ListExtensionsCookie<'s> = base::Cookie<'s, list_extensions_cookie>;
 
 /** Opcode for xcb_list_extensions. */
 pub static XCB_LIST_EXTENSIONS : u8 = 99;
 /** Opcode for xcb_change_keyboard_mapping. */
 pub static XCB_CHANGE_KEYBOARD_MAPPING : u8 = 100;
-pub type GetKeyboardMappingCookie<'self> = base::Cookie<'self, get_keyboard_mapping_cookie>;
+pub type GetKeyboardMappingCookie<'s> = base::Cookie<'s, get_keyboard_mapping_cookie>;
 
 /** Opcode for xcb_get_keyboard_mapping. */
 pub static XCB_GET_KEYBOARD_MAPPING : u8 = 101;
@@ -1377,7 +1377,7 @@ pub type auto_repeat_mode = c_uint;//{
 //}
 /** Opcode for xcb_change_keyboard_control. */
 pub static XCB_CHANGE_KEYBOARD_CONTROL : u8 = 102;
-pub type GetKeyboardControlCookie<'self> = base::Cookie<'self, get_keyboard_control_cookie>;
+pub type GetKeyboardControlCookie<'s> = base::Cookie<'s, get_keyboard_control_cookie>;
 
 /** Opcode for xcb_get_keyboard_control. */
 pub static XCB_GET_KEYBOARD_CONTROL : u8 = 103;
@@ -1386,7 +1386,7 @@ pub type GetKeyboardControlReply = base::Reply<get_keyboard_control_reply>;
 pub static XCB_BELL : u8 = 104;
 /** Opcode for xcb_change_pointer_control. */
 pub static XCB_CHANGE_POINTER_CONTROL : u8 = 105;
-pub type GetPointerControlCookie<'self> = base::Cookie<'self, get_pointer_control_cookie>;
+pub type GetPointerControlCookie<'s> = base::Cookie<'s, get_pointer_control_cookie>;
 
 /** Opcode for xcb_get_pointer_control. */
 pub static XCB_GET_POINTER_CONTROL : u8 = 106;
@@ -1405,7 +1405,7 @@ pub type exposures = c_uint;//{
 //}
 /** Opcode for xcb_set_screen_saver. */
 pub static XCB_SET_SCREEN_SAVER : u8 = 107;
-pub type GetScreenSaverCookie<'self> = base::Cookie<'self, get_screen_saver_cookie>;
+pub type GetScreenSaverCookie<'s> = base::Cookie<'s, get_screen_saver_cookie>;
 
 /** Opcode for xcb_get_screen_saver. */
 pub static XCB_GET_SCREEN_SAVER : u8 = 108;
@@ -1427,7 +1427,7 @@ pub type family = c_uint;//{
 pub static XCB_CHANGE_HOSTS : u8 = 109;
 pub type HostIterator = host_iterator;
 
-pub type ListHostsCookie<'self> = base::Cookie<'self, list_hosts_cookie>;
+pub type ListHostsCookie<'s> = base::Cookie<'s, list_hosts_cookie>;
 
 /** Opcode for xcb_list_hosts. */
 pub static XCB_LIST_HOSTS : u8 = 110;
@@ -1467,12 +1467,12 @@ pub type mapping_status = c_uint;//{
     pub static XCB_MAPPING_STATUS_BUSY : mapping_status = 1;
     pub static XCB_MAPPING_STATUS_FAILURE : mapping_status = 2;
 //}
-pub type SetPointerMappingCookie<'self> = base::Cookie<'self, set_pointer_mapping_cookie>;
+pub type SetPointerMappingCookie<'s> = base::Cookie<'s, set_pointer_mapping_cookie>;
 
 /** Opcode for xcb_set_pointer_mapping. */
 pub static XCB_SET_POINTER_MAPPING : u8 = 116;
 pub type SetPointerMappingReply = base::Reply<set_pointer_mapping_reply>;
-pub type GetPointerMappingCookie<'self> = base::Cookie<'self, get_pointer_mapping_cookie>;
+pub type GetPointerMappingCookie<'s> = base::Cookie<'s, get_pointer_mapping_cookie>;
 
 /** Opcode for xcb_get_pointer_mapping. */
 pub static XCB_GET_POINTER_MAPPING : u8 = 117;
@@ -1487,12 +1487,12 @@ pub type map_index = c_uint;//{
     pub static XCB_MAP_INDEX_4 : map_index = 6;
     pub static XCB_MAP_INDEX_5 : map_index = 7;
 //}
-pub type SetModifierMappingCookie<'self> = base::Cookie<'self, set_modifier_mapping_cookie>;
+pub type SetModifierMappingCookie<'s> = base::Cookie<'s, set_modifier_mapping_cookie>;
 
 /** Opcode for xcb_set_modifier_mapping. */
 pub static XCB_SET_MODIFIER_MAPPING : u8 = 118;
 pub type SetModifierMappingReply = base::Reply<set_modifier_mapping_reply>;
-pub type GetModifierMappingCookie<'self> = base::Cookie<'self, get_modifier_mapping_cookie>;
+pub type GetModifierMappingCookie<'s> = base::Cookie<'s, get_modifier_mapping_cookie>;
 
 /** Opcode for xcb_get_modifier_mapping. */
 pub static XCB_GET_MODIFIER_MAPPING : u8 = 119;
@@ -1501,20 +1501,20 @@ pub static XCB_NO_OPERATION : u8 = 127;
 
 impl base::Struct<char2b> {
   pub fn byte1(&self) -> u8 {
-    unsafe { accessor!(byte1 -> u8, self.strct) }
+    unsafe { accessor!(byte1 -> u8, s.strct) }
   }
 
   pub fn byte2(&self) -> u8 {
-    unsafe { accessor!(byte2 -> u8, self.strct) }
+    unsafe { accessor!(byte2 -> u8, s.strct) }
   }
 
 }
 
-impl<'self, Char2b> Iterator<&'self Char2b> for Char2bIterator {
-    pub fn next(&mut self) -> Option<&'self Char2b> {
+impl<'s, Char2b> Iterator<&'s Char2b> for Char2bIterator {
+    pub fn next(&mut self) -> Option<&'s Char2b> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *char2b_iterator = cast::transmute(self);
+            let iter : *mut char2b_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_char2b_next(iter);
             Some(cast::transmute(data))
@@ -1525,11 +1525,11 @@ impl<'self, Char2b> Iterator<&'self Char2b> for Char2bIterator {
 pub type Window = window;
 
 
-impl<'self, Window> Iterator<&'self Window> for WindowIterator {
-    pub fn next(&mut self) -> Option<&'self Window> {
+impl<'s, Window> Iterator<&'s Window> for WindowIterator {
+    pub fn next(&mut self) -> Option<&'s Window> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *window_iterator = cast::transmute(self);
+            let iter : *mut window_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_window_next(iter);
             Some(cast::transmute(data))
@@ -1540,11 +1540,11 @@ impl<'self, Window> Iterator<&'self Window> for WindowIterator {
 pub type Pixmap = pixmap;
 
 
-impl<'self, Pixmap> Iterator<&'self Pixmap> for PixmapIterator {
-    pub fn next(&mut self) -> Option<&'self Pixmap> {
+impl<'s, Pixmap> Iterator<&'s Pixmap> for PixmapIterator {
+    pub fn next(&mut self) -> Option<&'s Pixmap> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *pixmap_iterator = cast::transmute(self);
+            let iter : *mut pixmap_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_pixmap_next(iter);
             Some(cast::transmute(data))
@@ -1555,11 +1555,11 @@ impl<'self, Pixmap> Iterator<&'self Pixmap> for PixmapIterator {
 pub type Cursor = cursor;
 
 
-impl<'self, Cursor> Iterator<&'self Cursor> for CursorIterator {
-    pub fn next(&mut self) -> Option<&'self Cursor> {
+impl<'s, Cursor> Iterator<&'s Cursor> for CursorIterator {
+    pub fn next(&mut self) -> Option<&'s Cursor> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *cursor_iterator = cast::transmute(self);
+            let iter : *mut cursor_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_cursor_next(iter);
             Some(cast::transmute(data))
@@ -1570,11 +1570,11 @@ impl<'self, Cursor> Iterator<&'self Cursor> for CursorIterator {
 pub type Font = font;
 
 
-impl<'self, Font> Iterator<&'self Font> for FontIterator {
-    pub fn next(&mut self) -> Option<&'self Font> {
+impl<'s, Font> Iterator<&'s Font> for FontIterator {
+    pub fn next(&mut self) -> Option<&'s Font> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *font_iterator = cast::transmute(self);
+            let iter : *mut font_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_font_next(iter);
             Some(cast::transmute(data))
@@ -1585,11 +1585,11 @@ impl<'self, Font> Iterator<&'self Font> for FontIterator {
 pub type Gcontext = gcontext;
 
 
-impl<'self, Gcontext> Iterator<&'self Gcontext> for GcontextIterator {
-    pub fn next(&mut self) -> Option<&'self Gcontext> {
+impl<'s, Gcontext> Iterator<&'s Gcontext> for GcontextIterator {
+    pub fn next(&mut self) -> Option<&'s Gcontext> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *gcontext_iterator = cast::transmute(self);
+            let iter : *mut gcontext_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_gcontext_next(iter);
             Some(cast::transmute(data))
@@ -1600,11 +1600,11 @@ impl<'self, Gcontext> Iterator<&'self Gcontext> for GcontextIterator {
 pub type Colormap = colormap;
 
 
-impl<'self, Colormap> Iterator<&'self Colormap> for ColormapIterator {
-    pub fn next(&mut self) -> Option<&'self Colormap> {
+impl<'s, Colormap> Iterator<&'s Colormap> for ColormapIterator {
+    pub fn next(&mut self) -> Option<&'s Colormap> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *colormap_iterator = cast::transmute(self);
+            let iter : *mut colormap_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_colormap_next(iter);
             Some(cast::transmute(data))
@@ -1615,11 +1615,11 @@ impl<'self, Colormap> Iterator<&'self Colormap> for ColormapIterator {
 pub type Atom = atom;
 
 
-impl<'self, Atom> Iterator<&'self Atom> for AtomIterator {
-    pub fn next(&mut self) -> Option<&'self Atom> {
+impl<'s, Atom> Iterator<&'s Atom> for AtomIterator {
+    pub fn next(&mut self) -> Option<&'s Atom> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *atom_iterator = cast::transmute(self);
+            let iter : *mut atom_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_atom_next(iter);
             Some(cast::transmute(data))
@@ -1630,11 +1630,11 @@ impl<'self, Atom> Iterator<&'self Atom> for AtomIterator {
 pub type Drawable = drawable;
 
 
-impl<'self, Drawable> Iterator<&'self Drawable> for DrawableIterator {
-    pub fn next(&mut self) -> Option<&'self Drawable> {
+impl<'s, Drawable> Iterator<&'s Drawable> for DrawableIterator {
+    pub fn next(&mut self) -> Option<&'s Drawable> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *drawable_iterator = cast::transmute(self);
+            let iter : *mut drawable_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_drawable_next(iter);
             Some(cast::transmute(data))
@@ -1645,11 +1645,11 @@ impl<'self, Drawable> Iterator<&'self Drawable> for DrawableIterator {
 pub type Fontable = fontable;
 
 
-impl<'self, Fontable> Iterator<&'self Fontable> for FontableIterator {
-    pub fn next(&mut self) -> Option<&'self Fontable> {
+impl<'s, Fontable> Iterator<&'s Fontable> for FontableIterator {
+    pub fn next(&mut self) -> Option<&'s Fontable> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *fontable_iterator = cast::transmute(self);
+            let iter : *mut fontable_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_fontable_next(iter);
             Some(cast::transmute(data))
@@ -1660,11 +1660,11 @@ impl<'self, Fontable> Iterator<&'self Fontable> for FontableIterator {
 pub type Visualid = visualid;
 
 
-impl<'self, Visualid> Iterator<&'self Visualid> for VisualidIterator {
-    pub fn next(&mut self) -> Option<&'self Visualid> {
+impl<'s, Visualid> Iterator<&'s Visualid> for VisualidIterator {
+    pub fn next(&mut self) -> Option<&'s Visualid> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *visualid_iterator = cast::transmute(self);
+            let iter : *mut visualid_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_visualid_next(iter);
             Some(cast::transmute(data))
@@ -1675,11 +1675,11 @@ impl<'self, Visualid> Iterator<&'self Visualid> for VisualidIterator {
 pub type Timestamp = timestamp;
 
 
-impl<'self, Timestamp> Iterator<&'self Timestamp> for TimestampIterator {
-    pub fn next(&mut self) -> Option<&'self Timestamp> {
+impl<'s, Timestamp> Iterator<&'s Timestamp> for TimestampIterator {
+    pub fn next(&mut self) -> Option<&'s Timestamp> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *timestamp_iterator = cast::transmute(self);
+            let iter : *mut timestamp_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_timestamp_next(iter);
             Some(cast::transmute(data))
@@ -1690,11 +1690,11 @@ impl<'self, Timestamp> Iterator<&'self Timestamp> for TimestampIterator {
 pub type Keysym = keysym;
 
 
-impl<'self, Keysym> Iterator<&'self Keysym> for KeysymIterator {
-    pub fn next(&mut self) -> Option<&'self Keysym> {
+impl<'s, Keysym> Iterator<&'s Keysym> for KeysymIterator {
+    pub fn next(&mut self) -> Option<&'s Keysym> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *keysym_iterator = cast::transmute(self);
+            let iter : *mut keysym_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_keysym_next(iter);
             Some(cast::transmute(data))
@@ -1705,11 +1705,11 @@ impl<'self, Keysym> Iterator<&'self Keysym> for KeysymIterator {
 pub type Keycode = keycode;
 
 
-impl<'self, Keycode> Iterator<&'self Keycode> for KeycodeIterator {
-    pub fn next(&mut self) -> Option<&'self Keycode> {
+impl<'s, Keycode> Iterator<&'s Keycode> for KeycodeIterator {
+    pub fn next(&mut self) -> Option<&'s Keycode> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *keycode_iterator = cast::transmute(self);
+            let iter : *mut keycode_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_keycode_next(iter);
             Some(cast::transmute(data))
@@ -1720,11 +1720,11 @@ impl<'self, Keycode> Iterator<&'self Keycode> for KeycodeIterator {
 pub type Button = button;
 
 
-impl<'self, Button> Iterator<&'self Button> for ButtonIterator {
-    pub fn next(&mut self) -> Option<&'self Button> {
+impl<'s, Button> Iterator<&'s Button> for ButtonIterator {
+    pub fn next(&mut self) -> Option<&'s Button> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *button_iterator = cast::transmute(self);
+            let iter : *mut button_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_button_next(iter);
             Some(cast::transmute(data))
@@ -1737,20 +1737,20 @@ pub type Point = base::Struct<point>;
 
 impl base::Struct<point> {
   pub fn x(&self) -> i16 {
-    unsafe { accessor!(x -> i16, self.strct) }
+    unsafe { accessor!(x -> i16, s.strct) }
   }
 
   pub fn y(&self) -> i16 {
-    unsafe { accessor!(y -> i16, self.strct) }
+    unsafe { accessor!(y -> i16, s.strct) }
   }
 
 }
 
-impl<'self, Point> Iterator<&'self Point> for PointIterator {
-    pub fn next(&mut self) -> Option<&'self Point> {
+impl<'s, Point> Iterator<&'s Point> for PointIterator {
+    pub fn next(&mut self) -> Option<&'s Point> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *point_iterator = cast::transmute(self);
+            let iter : *mut point_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_point_next(iter);
             Some(cast::transmute(data))
@@ -1763,28 +1763,28 @@ pub type Rectangle = base::Struct<rectangle>;
 
 impl base::Struct<rectangle> {
   pub fn x(&self) -> i16 {
-    unsafe { accessor!(x -> i16, self.strct) }
+    unsafe { accessor!(x -> i16, s.strct) }
   }
 
   pub fn y(&self) -> i16 {
-    unsafe { accessor!(y -> i16, self.strct) }
+    unsafe { accessor!(y -> i16, s.strct) }
   }
 
   pub fn width(&self) -> u16 {
-    unsafe { accessor!(width -> u16, self.strct) }
+    unsafe { accessor!(width -> u16, s.strct) }
   }
 
   pub fn height(&self) -> u16 {
-    unsafe { accessor!(height -> u16, self.strct) }
+    unsafe { accessor!(height -> u16, s.strct) }
   }
 
 }
 
-impl<'self, Rectangle> Iterator<&'self Rectangle> for RectangleIterator {
-    pub fn next(&mut self) -> Option<&'self Rectangle> {
+impl<'s, Rectangle> Iterator<&'s Rectangle> for RectangleIterator {
+    pub fn next(&mut self) -> Option<&'s Rectangle> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *rectangle_iterator = cast::transmute(self);
+            let iter : *mut rectangle_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_rectangle_next(iter);
             Some(cast::transmute(data))
@@ -1797,36 +1797,36 @@ pub type Arc = base::Struct<arc>;
 
 impl base::Struct<arc> {
   pub fn x(&self) -> i16 {
-    unsafe { accessor!(x -> i16, self.strct) }
+    unsafe { accessor!(x -> i16, s.strct) }
   }
 
   pub fn y(&self) -> i16 {
-    unsafe { accessor!(y -> i16, self.strct) }
+    unsafe { accessor!(y -> i16, s.strct) }
   }
 
   pub fn width(&self) -> u16 {
-    unsafe { accessor!(width -> u16, self.strct) }
+    unsafe { accessor!(width -> u16, s.strct) }
   }
 
   pub fn height(&self) -> u16 {
-    unsafe { accessor!(height -> u16, self.strct) }
+    unsafe { accessor!(height -> u16, s.strct) }
   }
 
   pub fn angle1(&self) -> i16 {
-    unsafe { accessor!(angle1 -> i16, self.strct) }
+    unsafe { accessor!(angle1 -> i16, s.strct) }
   }
 
   pub fn angle2(&self) -> i16 {
-    unsafe { accessor!(angle2 -> i16, self.strct) }
+    unsafe { accessor!(angle2 -> i16, s.strct) }
   }
 
 }
 
-impl<'self, Arc> Iterator<&'self Arc> for ArcIterator {
-    pub fn next(&mut self) -> Option<&'self Arc> {
+impl<'s, Arc> Iterator<&'s Arc> for ArcIterator {
+    pub fn next(&mut self) -> Option<&'s Arc> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *arc_iterator = cast::transmute(self);
+            let iter : *mut arc_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_arc_next(iter);
             Some(cast::transmute(data))
@@ -1839,24 +1839,24 @@ pub type Format = base::Struct<format>;
 
 impl base::Struct<format> {
   pub fn depth(&self) -> u8 {
-    unsafe { accessor!(depth -> u8, self.strct) }
+    unsafe { accessor!(depth -> u8, s.strct) }
   }
 
   pub fn bits_per_pixel(&self) -> u8 {
-    unsafe { accessor!(bits_per_pixel -> u8, self.strct) }
+    unsafe { accessor!(bits_per_pixel -> u8, s.strct) }
   }
 
   pub fn scanline_pad(&self) -> u8 {
-    unsafe { accessor!(scanline_pad -> u8, self.strct) }
+    unsafe { accessor!(scanline_pad -> u8, s.strct) }
   }
 
 }
 
-impl<'self, Format> Iterator<&'self Format> for FormatIterator {
-    pub fn next(&mut self) -> Option<&'self Format> {
+impl<'s, Format> Iterator<&'s Format> for FormatIterator {
+    pub fn next(&mut self) -> Option<&'s Format> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *format_iterator = cast::transmute(self);
+            let iter : *mut format_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_format_next(iter);
             Some(cast::transmute(data))
@@ -1867,40 +1867,40 @@ impl<'self, Format> Iterator<&'self Format> for FormatIterator {
 
 impl base::Struct<visualtype> {
   pub fn visual_id(&self) -> Visualid {
-    unsafe { accessor!(visual_id -> Visualid, self.strct) }
+    unsafe { accessor!(visual_id -> Visualid, s.strct) }
   }
 
   pub fn class(&self) -> u8 {
-    unsafe { accessor!(class -> u8, self.strct) }
+    unsafe { accessor!(class -> u8, s.strct) }
   }
 
   pub fn bits_per_rgb_value(&self) -> u8 {
-    unsafe { accessor!(bits_per_rgb_value -> u8, self.strct) }
+    unsafe { accessor!(bits_per_rgb_value -> u8, s.strct) }
   }
 
   pub fn colormap_entries(&self) -> u16 {
-    unsafe { accessor!(colormap_entries -> u16, self.strct) }
+    unsafe { accessor!(colormap_entries -> u16, s.strct) }
   }
 
   pub fn red_mask(&self) -> u32 {
-    unsafe { accessor!(red_mask -> u32, self.strct) }
+    unsafe { accessor!(red_mask -> u32, s.strct) }
   }
 
   pub fn green_mask(&self) -> u32 {
-    unsafe { accessor!(green_mask -> u32, self.strct) }
+    unsafe { accessor!(green_mask -> u32, s.strct) }
   }
 
   pub fn blue_mask(&self) -> u32 {
-    unsafe { accessor!(blue_mask -> u32, self.strct) }
+    unsafe { accessor!(blue_mask -> u32, s.strct) }
   }
 
 }
 
-impl<'self, Visualtype> Iterator<&'self Visualtype> for VisualtypeIterator {
-    pub fn next(&mut self) -> Option<&'self Visualtype> {
+impl<'s, Visualtype> Iterator<&'s Visualtype> for VisualtypeIterator {
+    pub fn next(&mut self) -> Option<&'s Visualtype> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *visualtype_iterator = cast::transmute(self);
+            let iter : *mut visualtype_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_visualtype_next(iter);
             Some(cast::transmute(data))
@@ -1913,20 +1913,20 @@ pub type Depth = base::Struct<depth>;
 
 impl base::Struct<depth> {
   pub fn depth(&self) -> u8 {
-    unsafe { accessor!(depth -> u8, self.strct) }
+    unsafe { accessor!(depth -> u8, s.strct) }
   }
 
   pub fn visuals(&self) -> VisualtypeIterator {
-    unsafe { accessor!(VisualtypeIterator, xcb_depth_visuals_iterator, self.strct) }
+    unsafe { accessor!(VisualtypeIterator, xcb_depth_visuals_iterator, s.strct) }
   }
 
 }
 
-impl<'self, Depth> Iterator<&'self Depth> for DepthIterator {
-    pub fn next(&mut self) -> Option<&'self Depth> {
+impl<'s, Depth> Iterator<&'s Depth> for DepthIterator {
+    pub fn next(&mut self) -> Option<&'s Depth> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *depth_iterator = cast::transmute(self);
+            let iter : *mut depth_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_depth_next(iter);
             Some(cast::transmute(data))
@@ -1939,76 +1939,76 @@ pub type Screen = base::Struct<screen>;
 
 impl base::Struct<screen> {
   pub fn root(&self) -> Window {
-    unsafe { accessor!(root -> Window, self.strct) }
+    unsafe { accessor!(root -> Window, s.strct) }
   }
 
   pub fn default_colormap(&self) -> Colormap {
-    unsafe { accessor!(default_colormap -> Colormap, self.strct) }
+    unsafe { accessor!(default_colormap -> Colormap, s.strct) }
   }
 
   pub fn white_pixel(&self) -> u32 {
-    unsafe { accessor!(white_pixel -> u32, self.strct) }
+    unsafe { accessor!(white_pixel -> u32, s.strct) }
   }
 
   pub fn black_pixel(&self) -> u32 {
-    unsafe { accessor!(black_pixel -> u32, self.strct) }
+    unsafe { accessor!(black_pixel -> u32, s.strct) }
   }
 
   pub fn current_input_masks(&self) -> u32 {
-    unsafe { accessor!(current_input_masks -> u32, self.strct) }
+    unsafe { accessor!(current_input_masks -> u32, s.strct) }
   }
 
   pub fn width_in_pixels(&self) -> u16 {
-    unsafe { accessor!(width_in_pixels -> u16, self.strct) }
+    unsafe { accessor!(width_in_pixels -> u16, s.strct) }
   }
 
   pub fn height_in_pixels(&self) -> u16 {
-    unsafe { accessor!(height_in_pixels -> u16, self.strct) }
+    unsafe { accessor!(height_in_pixels -> u16, s.strct) }
   }
 
   pub fn width_in_millimeters(&self) -> u16 {
-    unsafe { accessor!(width_in_millimeters -> u16, self.strct) }
+    unsafe { accessor!(width_in_millimeters -> u16, s.strct) }
   }
 
   pub fn height_in_millimeters(&self) -> u16 {
-    unsafe { accessor!(height_in_millimeters -> u16, self.strct) }
+    unsafe { accessor!(height_in_millimeters -> u16, s.strct) }
   }
 
   pub fn min_installed_maps(&self) -> u16 {
-    unsafe { accessor!(min_installed_maps -> u16, self.strct) }
+    unsafe { accessor!(min_installed_maps -> u16, s.strct) }
   }
 
   pub fn max_installed_maps(&self) -> u16 {
-    unsafe { accessor!(max_installed_maps -> u16, self.strct) }
+    unsafe { accessor!(max_installed_maps -> u16, s.strct) }
   }
 
   pub fn root_visual(&self) -> Visualid {
-    unsafe { accessor!(root_visual -> Visualid, self.strct) }
+    unsafe { accessor!(root_visual -> Visualid, s.strct) }
   }
 
   pub fn backing_stores(&self) -> u8 {
-    unsafe { accessor!(backing_stores -> u8, self.strct) }
+    unsafe { accessor!(backing_stores -> u8, s.strct) }
   }
 
   pub fn save_unders(&self) -> u8 {
-    unsafe { accessor!(save_unders -> u8, self.strct) }
+    unsafe { accessor!(save_unders -> u8, s.strct) }
   }
 
   pub fn root_depth(&self) -> u8 {
-    unsafe { accessor!(root_depth -> u8, self.strct) }
+    unsafe { accessor!(root_depth -> u8, s.strct) }
   }
 
   pub fn allowed_depths(&self) -> DepthIterator {
-    unsafe { accessor!(DepthIterator, xcb_screen_allowed_depths_iterator, self.strct) }
+    unsafe { accessor!(DepthIterator, xcb_screen_allowed_depths_iterator, s.strct) }
   }
 
 }
 
-impl<'self, Screen> Iterator<&'self Screen> for ScreenIterator {
-    pub fn next(&mut self) -> Option<&'self Screen> {
+impl<'s, Screen> Iterator<&'s Screen> for ScreenIterator {
+    pub fn next(&mut self) -> Option<&'s Screen> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *screen_iterator = cast::transmute(self);
+            let iter : *mut screen_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_screen_next(iter);
             Some(cast::transmute(data))
@@ -2021,32 +2021,32 @@ pub type SetupRequest = base::Struct<setup_request>;
 
 impl base::Struct<setup_request> {
   pub fn byte_order(&self) -> u8 {
-    unsafe { accessor!(byte_order -> u8, self.strct) }
+    unsafe { accessor!(byte_order -> u8, s.strct) }
   }
 
   pub fn protocol_major_version(&self) -> u16 {
-    unsafe { accessor!(protocol_major_version -> u16, self.strct) }
+    unsafe { accessor!(protocol_major_version -> u16, s.strct) }
   }
 
   pub fn protocol_minor_version(&self) -> u16 {
-    unsafe { accessor!(protocol_minor_version -> u16, self.strct) }
+    unsafe { accessor!(protocol_minor_version -> u16, s.strct) }
   }
 
-  pub fn authorization_protocol_name(&self) -> ~str {
-    unsafe { accessor!(str, xcb_setup_request_authorization_protocol_name_length, xcb_setup_request_authorization_protocol_name, self.strct) }
+  pub fn authorization_protocol_name(&self) -> Box<str> {
+    unsafe { accessor!(str, xcb_setup_request_authorization_protocol_name_length, xcb_setup_request_authorization_protocol_name, s.strct) }
   }
 
-  pub fn authorization_protocol_data(&self) -> ~str {
-    unsafe { accessor!(str, xcb_setup_request_authorization_protocol_data_length, xcb_setup_request_authorization_protocol_data, self.strct) }
+  pub fn authorization_protocol_data(&self) -> Box<str> {
+    unsafe { accessor!(str, xcb_setup_request_authorization_protocol_data_length, xcb_setup_request_authorization_protocol_data, s.strct) }
   }
 
 }
 
-impl<'self, SetupRequest> Iterator<&'self SetupRequest> for SetupRequestIterator {
-    pub fn next(&mut self) -> Option<&'self SetupRequest> {
+impl<'s, SetupRequest> Iterator<&'s SetupRequest> for SetupRequestIterator {
+    pub fn next(&mut self) -> Option<&'s SetupRequest> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *setup_request_iterator = cast::transmute(self);
+            let iter : *mut setup_request_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_setup_request_next(iter);
             Some(cast::transmute(data))
@@ -2059,32 +2059,32 @@ pub type SetupFailed = base::Struct<setup_failed>;
 
 impl base::Struct<setup_failed> {
   pub fn status(&self) -> u8 {
-    unsafe { accessor!(status -> u8, self.strct) }
+    unsafe { accessor!(status -> u8, s.strct) }
   }
 
   pub fn protocol_major_version(&self) -> u16 {
-    unsafe { accessor!(protocol_major_version -> u16, self.strct) }
+    unsafe { accessor!(protocol_major_version -> u16, s.strct) }
   }
 
   pub fn protocol_minor_version(&self) -> u16 {
-    unsafe { accessor!(protocol_minor_version -> u16, self.strct) }
+    unsafe { accessor!(protocol_minor_version -> u16, s.strct) }
   }
 
   pub fn length(&self) -> u16 {
-    unsafe { accessor!(length -> u16, self.strct) }
+    unsafe { accessor!(length -> u16, s.strct) }
   }
 
-  pub fn reason(&self) -> ~str {
-    unsafe { accessor!(str, xcb_setup_failed_reason_length, xcb_setup_failed_reason, self.strct) }
+  pub fn reason(&self) -> Box<str> {
+    unsafe { accessor!(str, xcb_setup_failed_reason_length, xcb_setup_failed_reason, s.strct) }
   }
 
 }
 
-impl<'self, SetupFailed> Iterator<&'self SetupFailed> for SetupFailedIterator {
-    pub fn next(&mut self) -> Option<&'self SetupFailed> {
+impl<'s, SetupFailed> Iterator<&'s SetupFailed> for SetupFailedIterator {
+    pub fn next(&mut self) -> Option<&'s SetupFailed> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *setup_failed_iterator = cast::transmute(self);
+            let iter : *mut setup_failed_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_setup_failed_next(iter);
             Some(cast::transmute(data))
@@ -2097,20 +2097,20 @@ pub type SetupAuthenticate = base::Struct<setup_authenticate>;
 
 impl base::Struct<setup_authenticate> {
   pub fn status(&self) -> u8 {
-    unsafe { accessor!(status -> u8, self.strct) }
+    unsafe { accessor!(status -> u8, s.strct) }
   }
 
-  pub fn reason(&self) -> ~str {
-    unsafe { accessor!(str, xcb_setup_authenticate_reason_length, xcb_setup_authenticate_reason, self.strct) }
+  pub fn reason(&self) -> Box<str> {
+    unsafe { accessor!(str, xcb_setup_authenticate_reason_length, xcb_setup_authenticate_reason, s.strct) }
   }
 
 }
 
-impl<'self, SetupAuthenticate> Iterator<&'self SetupAuthenticate> for SetupAuthenticateIterator {
-    pub fn next(&mut self) -> Option<&'self SetupAuthenticate> {
+impl<'s, SetupAuthenticate> Iterator<&'s SetupAuthenticate> for SetupAuthenticateIterator {
+    pub fn next(&mut self) -> Option<&'s SetupAuthenticate> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *setup_authenticate_iterator = cast::transmute(self);
+            let iter : *mut setup_authenticate_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_setup_authenticate_next(iter);
             Some(cast::transmute(data))
@@ -2123,84 +2123,84 @@ pub type Setup = base::Struct<setup>;
 
 impl base::Struct<setup> {
   pub fn status(&self) -> u8 {
-    unsafe { accessor!(status -> u8, self.strct) }
+    unsafe { accessor!(status -> u8, s.strct) }
   }
 
   pub fn protocol_major_version(&self) -> u16 {
-    unsafe { accessor!(protocol_major_version -> u16, self.strct) }
+    unsafe { accessor!(protocol_major_version -> u16, s.strct) }
   }
 
   pub fn protocol_minor_version(&self) -> u16 {
-    unsafe { accessor!(protocol_minor_version -> u16, self.strct) }
+    unsafe { accessor!(protocol_minor_version -> u16, s.strct) }
   }
 
   pub fn length(&self) -> u16 {
-    unsafe { accessor!(length -> u16, self.strct) }
+    unsafe { accessor!(length -> u16, s.strct) }
   }
 
   pub fn release_number(&self) -> u32 {
-    unsafe { accessor!(release_number -> u32, self.strct) }
+    unsafe { accessor!(release_number -> u32, s.strct) }
   }
 
   pub fn resource_id_base(&self) -> u32 {
-    unsafe { accessor!(resource_id_base -> u32, self.strct) }
+    unsafe { accessor!(resource_id_base -> u32, s.strct) }
   }
 
   pub fn resource_id_mask(&self) -> u32 {
-    unsafe { accessor!(resource_id_mask -> u32, self.strct) }
+    unsafe { accessor!(resource_id_mask -> u32, s.strct) }
   }
 
   pub fn motion_buffer_size(&self) -> u32 {
-    unsafe { accessor!(motion_buffer_size -> u32, self.strct) }
+    unsafe { accessor!(motion_buffer_size -> u32, s.strct) }
   }
 
   pub fn maximum_request_length(&self) -> u16 {
-    unsafe { accessor!(maximum_request_length -> u16, self.strct) }
+    unsafe { accessor!(maximum_request_length -> u16, s.strct) }
   }
 
   pub fn image_byte_order(&self) -> u8 {
-    unsafe { accessor!(image_byte_order -> u8, self.strct) }
+    unsafe { accessor!(image_byte_order -> u8, s.strct) }
   }
 
   pub fn bitmap_format_bit_order(&self) -> u8 {
-    unsafe { accessor!(bitmap_format_bit_order -> u8, self.strct) }
+    unsafe { accessor!(bitmap_format_bit_order -> u8, s.strct) }
   }
 
   pub fn bitmap_format_scanline_unit(&self) -> u8 {
-    unsafe { accessor!(bitmap_format_scanline_unit -> u8, self.strct) }
+    unsafe { accessor!(bitmap_format_scanline_unit -> u8, s.strct) }
   }
 
   pub fn bitmap_format_scanline_pad(&self) -> u8 {
-    unsafe { accessor!(bitmap_format_scanline_pad -> u8, self.strct) }
+    unsafe { accessor!(bitmap_format_scanline_pad -> u8, s.strct) }
   }
 
   pub fn min_keycode(&self) -> Keycode {
-    unsafe { accessor!(min_keycode -> Keycode, self.strct) }
+    unsafe { accessor!(min_keycode -> Keycode, s.strct) }
   }
 
   pub fn max_keycode(&self) -> Keycode {
-    unsafe { accessor!(max_keycode -> Keycode, self.strct) }
+    unsafe { accessor!(max_keycode -> Keycode, s.strct) }
   }
 
-  pub fn vendor(&self) -> ~str {
-    unsafe { accessor!(str, xcb_setup_vendor_length, xcb_setup_vendor, self.strct) }
+  pub fn vendor(&self) -> Box<str> {
+    unsafe { accessor!(str, xcb_setup_vendor_length, xcb_setup_vendor, s.strct) }
   }
 
   pub fn pixmap_formats(&self) -> FormatIterator {
-    unsafe { accessor!(FormatIterator, xcb_setup_pixmap_formats_iterator, self.strct) }
+    unsafe { accessor!(FormatIterator, xcb_setup_pixmap_formats_iterator, s.strct) }
   }
 
   pub fn roots(&self) -> ScreenIterator {
-    unsafe { accessor!(ScreenIterator, xcb_setup_roots_iterator, self.strct) }
+    unsafe { accessor!(ScreenIterator, xcb_setup_roots_iterator, s.strct) }
   }
 
 }
 
-impl<'self, Setup> Iterator<&'self Setup> for SetupIterator {
-    pub fn next(&mut self) -> Option<&'self Setup> {
+impl<'s, Setup> Iterator<&'s Setup> for SetupIterator {
+    pub fn next(&mut self) -> Option<&'s Setup> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *setup_iterator = cast::transmute(self);
+            let iter : *mut setup_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_setup_next(iter);
             Some(cast::transmute(data))
@@ -2278,7 +2278,7 @@ impl base::Event<key_press_event> {
       (*raw).event_y = event_y;
       (*raw).state = state;
       (*raw).same_screen = same_screen;
-      Event { event : raw as *key_press_event }
+      Event { event : raw as *mut key_press_event }
     }
   }
 }
@@ -2352,7 +2352,7 @@ impl base::Event<button_press_event> {
       (*raw).event_y = event_y;
       (*raw).state = state;
       (*raw).same_screen = same_screen;
-      Event { event : raw as *button_press_event }
+      Event { event : raw as *mut button_press_event }
     }
   }
 }
@@ -2426,7 +2426,7 @@ impl base::Event<motion_notify_event> {
       (*raw).event_y = event_y;
       (*raw).state = state;
       (*raw).same_screen = same_screen;
-      Event { event : raw as *motion_notify_event }
+      Event { event : raw as *mut motion_notify_event }
     }
   }
 }
@@ -2506,7 +2506,7 @@ impl base::Event<enter_notify_event> {
       (*raw).state = state;
       (*raw).mode = mode;
       (*raw).same_screen_focus = same_screen_focus;
-      Event { event : raw as *enter_notify_event }
+      Event { event : raw as *mut enter_notify_event }
     }
   }
 }
@@ -2532,21 +2532,21 @@ impl base::Event<focus_in_event> {
       (*raw).detail = detail;
       (*raw).event = event;
       (*raw).mode = mode;
-      Event { event : raw as *focus_in_event }
+      Event { event : raw as *mut focus_in_event }
     }
   }
 }
 
 impl base::Event<keymap_notify_event> {
-  pub fn keys(&self) -> ~[u8,..31] {
-    unsafe { ~(copy (*self.event).keys) }
+  pub fn keys(&self) -> Box<[u8,..31]> {
+    box unsafe { copy (*self.event).keys }
   }
 
   pub fn new(keys : [u8,..31]) -> KeymapNotifyEvent {
     unsafe {
       let raw = malloc(32u as size_t) as *mut keymap_notify_event;
       (*raw).keys = keys;
-      Event { event : raw as *keymap_notify_event }
+      Event { event : raw as *mut keymap_notify_event }
     }
   }
 }
@@ -2590,7 +2590,7 @@ impl base::Event<expose_event> {
       (*raw).width = width;
       (*raw).height = height;
       (*raw).count = count;
-      Event { event : raw as *expose_event }
+      Event { event : raw as *mut expose_event }
     }
   }
 }
@@ -2646,7 +2646,7 @@ impl base::Event<graphics_exposure_event> {
       (*raw).minor_opcode = minor_opcode;
       (*raw).count = count;
       (*raw).major_opcode = major_opcode;
-      Event { event : raw as *graphics_exposure_event }
+      Event { event : raw as *mut graphics_exposure_event }
     }
   }
 }
@@ -2672,7 +2672,7 @@ impl base::Event<no_exposure_event> {
       (*raw).drawable = drawable;
       (*raw).minor_opcode = minor_opcode;
       (*raw).major_opcode = major_opcode;
-      Event { event : raw as *no_exposure_event }
+      Event { event : raw as *mut no_exposure_event }
     }
   }
 }
@@ -2692,7 +2692,7 @@ impl base::Event<visibility_notify_event> {
       let raw = malloc(32u as size_t) as *mut visibility_notify_event;
       (*raw).window = window;
       (*raw).state = state;
-      Event { event : raw as *visibility_notify_event }
+      Event { event : raw as *mut visibility_notify_event }
     }
   }
 }
@@ -2748,7 +2748,7 @@ impl base::Event<create_notify_event> {
       (*raw).height = height;
       (*raw).border_width = border_width;
       (*raw).override_redirect = override_redirect;
-      Event { event : raw as *create_notify_event }
+      Event { event : raw as *mut create_notify_event }
     }
   }
 }
@@ -2768,7 +2768,7 @@ impl base::Event<destroy_notify_event> {
       let raw = malloc(32u as size_t) as *mut destroy_notify_event;
       (*raw).event = event;
       (*raw).window = window;
-      Event { event : raw as *destroy_notify_event }
+      Event { event : raw as *mut destroy_notify_event }
     }
   }
 }
@@ -2794,7 +2794,7 @@ impl base::Event<unmap_notify_event> {
       (*raw).event = event;
       (*raw).window = window;
       (*raw).from_configure = from_configure;
-      Event { event : raw as *unmap_notify_event }
+      Event { event : raw as *mut unmap_notify_event }
     }
   }
 }
@@ -2820,7 +2820,7 @@ impl base::Event<map_notify_event> {
       (*raw).event = event;
       (*raw).window = window;
       (*raw).override_redirect = override_redirect;
-      Event { event : raw as *map_notify_event }
+      Event { event : raw as *mut map_notify_event }
     }
   }
 }
@@ -2840,7 +2840,7 @@ impl base::Event<map_request_event> {
       let raw = malloc(32u as size_t) as *mut map_request_event;
       (*raw).parent = parent;
       (*raw).window = window;
-      Event { event : raw as *map_request_event }
+      Event { event : raw as *mut map_request_event }
     }
   }
 }
@@ -2884,7 +2884,7 @@ impl base::Event<reparent_notify_event> {
       (*raw).x = x;
       (*raw).y = y;
       (*raw).override_redirect = override_redirect;
-      Event { event : raw as *reparent_notify_event }
+      Event { event : raw as *mut reparent_notify_event }
     }
   }
 }
@@ -2946,7 +2946,7 @@ impl base::Event<configure_notify_event> {
       (*raw).height = height;
       (*raw).border_width = border_width;
       (*raw).override_redirect = override_redirect;
-      Event { event : raw as *configure_notify_event }
+      Event { event : raw as *mut configure_notify_event }
     }
   }
 }
@@ -3014,7 +3014,7 @@ impl base::Event<configure_request_event> {
       (*raw).height = height;
       (*raw).border_width = border_width;
       (*raw).value_mask = value_mask;
-      Event { event : raw as *configure_request_event }
+      Event { event : raw as *mut configure_request_event }
     }
   }
 }
@@ -3046,7 +3046,7 @@ impl base::Event<gravity_notify_event> {
       (*raw).window = window;
       (*raw).x = x;
       (*raw).y = y;
-      Event { event : raw as *gravity_notify_event }
+      Event { event : raw as *mut gravity_notify_event }
     }
   }
 }
@@ -3072,7 +3072,7 @@ impl base::Event<resize_request_event> {
       (*raw).window = window;
       (*raw).width = width;
       (*raw).height = height;
-      Event { event : raw as *resize_request_event }
+      Event { event : raw as *mut resize_request_event }
     }
   }
 }
@@ -3098,7 +3098,7 @@ impl base::Event<circulate_notify_event> {
       (*raw).event = event;
       (*raw).window = window;
       (*raw).place = place;
-      Event { event : raw as *circulate_notify_event }
+      Event { event : raw as *mut circulate_notify_event }
     }
   }
 }
@@ -3130,7 +3130,7 @@ impl base::Event<property_notify_event> {
       (*raw).atom = atom;
       (*raw).time = time;
       (*raw).state = state;
-      Event { event : raw as *property_notify_event }
+      Event { event : raw as *mut property_notify_event }
     }
   }
 }
@@ -3156,7 +3156,7 @@ impl base::Event<selection_clear_event> {
       (*raw).time = time;
       (*raw).owner = owner;
       (*raw).selection = selection;
-      Event { event : raw as *selection_clear_event }
+      Event { event : raw as *mut selection_clear_event }
     }
   }
 }
@@ -3200,7 +3200,7 @@ impl base::Event<selection_request_event> {
       (*raw).selection = selection;
       (*raw).target = target;
       (*raw).property = property;
-      Event { event : raw as *selection_request_event }
+      Event { event : raw as *mut selection_request_event }
     }
   }
 }
@@ -3238,7 +3238,7 @@ impl base::Event<selection_notify_event> {
       (*raw).selection = selection;
       (*raw).target = target;
       (*raw).property = property;
-      Event { event : raw as *selection_notify_event }
+      Event { event : raw as *mut selection_notify_event }
     }
   }
 }
@@ -3270,17 +3270,17 @@ impl base::Event<colormap_notify_event> {
       (*raw).colormap = colormap;
       (*raw).new_ = new_;
       (*raw).state = state;
-      Event { event : raw as *colormap_notify_event }
+      Event { event : raw as *mut colormap_notify_event }
     }
   }
 }
 pub type ClientMessageData = base::Struct<client_message_data>;
 
-impl<'self, ClientMessageData> Iterator<&'self ClientMessageData> for ClientMessageDataIterator {
-    pub fn next(&mut self) -> Option<&'self ClientMessageData> {
+impl<'s, ClientMessageData> Iterator<&'s ClientMessageData> for ClientMessageDataIterator {
+    pub fn next(&mut self) -> Option<&'s ClientMessageData> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *client_message_data_iterator = cast::transmute(self);
+            let iter : *mut client_message_data_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_client_message_data_next(iter);
             Some(cast::transmute(data))
@@ -3315,7 +3315,7 @@ impl base::Event<client_message_event> {
       (*raw).window = window;
       (*raw).type_ = type_;
       (*raw).data = data.strct;
-      Event { event : raw as *client_message_event }
+      Event { event : raw as *mut client_message_event }
     }
   }
 }
@@ -3341,7 +3341,7 @@ impl base::Event<mapping_notify_event> {
       (*raw).request = request;
       (*raw).first_keycode = first_keycode;
       (*raw).count = count;
-      Event { event : raw as *mapping_notify_event }
+      Event { event : raw as *mut mapping_notify_event }
     }
   }
 }
@@ -3372,7 +3372,7 @@ pub fn CreateWindowChecked<'r> (c : &'r Connection,
         class as u16, //9
         visual as visualid, //10
         value_list_mask as u32, //11
-        value_list_ptr as *u32); //12
+        value_list_ptr as *mut u32); //12
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -3403,7 +3403,7 @@ pub fn CreateWindow<'r> (c : &'r Connection,
         class as u16, //9
         visual as visualid, //10
         value_list_mask as u32, //11
-        value_list_ptr as *u32); //12
+        value_list_ptr as *mut u32); //12
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -3416,7 +3416,7 @@ pub fn ChangeWindowAttributesChecked<'r> (c : &'r Connection,
     let cookie = xcb_change_window_attributes_checked(c.get_raw_conn(),
         window as window, //1
         value_list_mask as u32, //2
-        value_list_ptr as *u32); //3
+        value_list_ptr as *mut u32); //3
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -3429,7 +3429,7 @@ pub fn ChangeWindowAttributes<'r> (c : &'r Connection,
     let cookie = xcb_change_window_attributes(c.get_raw_conn(),
         window as window, //1
         value_list_mask as u32, //2
-        value_list_ptr as *u32); //3
+        value_list_ptr as *mut u32); //3
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -3512,7 +3512,7 @@ impl base::Reply<get_window_attributes_reply> {
   }
 
 }
-impl_reply_cookie!(GetWindowAttributesCookie<'self>, get_window_attributes_reply, GetWindowAttributesReply, xcb_get_window_attributes_reply)
+impl_reply_cookie!(GetWindowAttributesCookie<'s>, get_window_attributes_reply, GetWindowAttributesReply, xcb_get_window_attributes_reply)
 
 pub fn DestroyWindowChecked<'r> (c : &'r Connection,
                              window : Window) -> base::VoidCookie<'r> {
@@ -3667,7 +3667,7 @@ pub fn ConfigureWindowChecked<'r> (c : &'r Connection,
     let cookie = xcb_configure_window_checked(c.get_raw_conn(),
         window as window, //1
         value_list_mask as u16, //2
-        value_list_ptr as *u32); //3
+        value_list_ptr as *mut u32); //3
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -3680,7 +3680,7 @@ pub fn ConfigureWindow<'r> (c : &'r Connection,
     let cookie = xcb_configure_window(c.get_raw_conn(),
         window as window, //1
         value_list_mask as u16, //2
-        value_list_ptr as *u32); //3
+        value_list_ptr as *mut u32); //3
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -3751,7 +3751,7 @@ impl base::Reply<get_geometry_reply> {
   }
 
 }
-impl_reply_cookie!(GetGeometryCookie<'self>, get_geometry_reply, GetGeometryReply, xcb_get_geometry_reply)
+impl_reply_cookie!(GetGeometryCookie<'s>, get_geometry_reply, GetGeometryReply, xcb_get_geometry_reply)
 
 pub type QueryTreeReply = base::Reply<query_tree_reply>;
 pub fn QueryTree<'r> (c : &'r Connection,
@@ -3780,12 +3780,12 @@ impl base::Reply<query_tree_reply> {
     unsafe { accessor!(parent -> Window, (*self.reply)) }
   }
 
-  pub fn children(&self) -> ~[Window] {
+  pub fn children(&self) -> Box<[Window]> {
     unsafe { accessor!(Window, xcb_query_tree_children_length, xcb_query_tree_children, (*self.reply)) }
   }
 
 }
-impl_reply_cookie!(QueryTreeCookie<'self>, query_tree_reply, QueryTreeReply, xcb_query_tree_reply)
+impl_reply_cookie!(QueryTreeCookie<'s>, query_tree_reply, QueryTreeReply, xcb_query_tree_reply)
 
 pub fn InternAtom<'r> (c : &'r Connection,
                    only_if_exists : u8,
@@ -3797,7 +3797,7 @@ pub fn InternAtom<'r> (c : &'r Connection,
     let cookie = xcb_intern_atom(c.get_raw_conn(),
         only_if_exists as u8, //1
         name_len as u16, //2
-        name_ptr as *c_char); //3
+        name_ptr as *mut c_char); //3
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -3811,7 +3811,7 @@ pub fn InternAtomUnchecked<'r> (c : &'r Connection,
     let cookie = xcb_intern_atom_unchecked(c.get_raw_conn(),
         only_if_exists as u8, //1
         name_len as u16, //2
-        name_ptr as *c_char); //3
+        name_ptr as *mut c_char); //3
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -3822,7 +3822,7 @@ impl base::Reply<intern_atom_reply> {
   }
 
 }
-impl_reply_cookie!(InternAtomCookie<'self>, intern_atom_reply, InternAtomReply, xcb_intern_atom_reply)
+impl_reply_cookie!(InternAtomCookie<'s>, intern_atom_reply, InternAtomReply, xcb_intern_atom_reply)
 
 pub type GetAtomNameReply = base::Reply<get_atom_name_reply>;
 pub fn GetAtomName<'r> (c : &'r Connection,
@@ -3843,12 +3843,12 @@ pub fn GetAtomNameUnchecked<'r> (c : &'r Connection,
 }
 
 impl base::Reply<get_atom_name_reply> {
-  pub fn name(&self) -> ~str {
+  pub fn name(&self) -> Box<str> {
     unsafe { accessor!(str, xcb_get_atom_name_name_length, xcb_get_atom_name_name, (*self.reply)) }
   }
 
 }
-impl_reply_cookie!(GetAtomNameCookie<'self>, get_atom_name_reply, GetAtomNameReply, xcb_get_atom_name_reply)
+impl_reply_cookie!(GetAtomNameCookie<'s>, get_atom_name_reply, GetAtomNameReply, xcb_get_atom_name_reply)
 
 pub fn ChangePropertyChecked<'r> (c : &'r Connection,
                               mode : u8,
@@ -3867,7 +3867,7 @@ pub fn ChangePropertyChecked<'r> (c : &'r Connection,
         type_ as atom, //4
         format as u8, //5
         data_len as u32, //6
-        data_ptr as *c_void); //7
+        data_ptr as *mut c_void); //7
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -3888,7 +3888,7 @@ pub fn ChangeProperty<'r> (c : &'r Connection,
         type_ as atom, //4
         format as u8, //5
         data_len as u32, //6
-        data_ptr as *c_void); //7
+        data_ptr as *mut c_void); //7
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -3963,12 +3963,12 @@ impl base::Reply<get_property_reply> {
     unsafe { accessor!(bytes_after -> u32, (*self.reply)) }
   }
 
-  pub fn value(&self) -> ~[c_void] {
+  pub fn value(&self) -> Box<[c_void]> {
     unsafe { accessor!(c_void, xcb_get_property_value_length, xcb_get_property_value, (*self.reply)) }
   }
 
 }
-impl_reply_cookie!(GetPropertyCookie<'self>, get_property_reply, GetPropertyReply, xcb_get_property_reply)
+impl_reply_cookie!(GetPropertyCookie<'s>, get_property_reply, GetPropertyReply, xcb_get_property_reply)
 
 pub type ListPropertiesReply = base::Reply<list_properties_reply>;
 pub fn ListProperties<'r> (c : &'r Connection,
@@ -3989,12 +3989,12 @@ pub fn ListPropertiesUnchecked<'r> (c : &'r Connection,
 }
 
 impl base::Reply<list_properties_reply> {
-  pub fn atoms(&self) -> ~[Atom] {
+  pub fn atoms(&self) -> Box<[Atom]> {
     unsafe { accessor!(Atom, xcb_list_properties_atoms_length, xcb_list_properties_atoms, (*self.reply)) }
   }
 
 }
-impl_reply_cookie!(ListPropertiesCookie<'self>, list_properties_reply, ListPropertiesReply, xcb_list_properties_reply)
+impl_reply_cookie!(ListPropertiesCookie<'s>, list_properties_reply, ListPropertiesReply, xcb_list_properties_reply)
 
 pub fn SetSelectionOwnerChecked<'r> (c : &'r Connection,
                                  owner : Window,
@@ -4043,7 +4043,7 @@ impl base::Reply<get_selection_owner_reply> {
   }
 
 }
-impl_reply_cookie!(GetSelectionOwnerCookie<'self>, get_selection_owner_reply, GetSelectionOwnerReply, xcb_get_selection_owner_reply)
+impl_reply_cookie!(GetSelectionOwnerCookie<'s>, get_selection_owner_reply, GetSelectionOwnerReply, xcb_get_selection_owner_reply)
 
 pub fn ConvertSelectionChecked<'r> (c : &'r Connection,
                                 requestor : Window,
@@ -4089,7 +4089,7 @@ pub fn SendEventChecked<'r> (c : &'r Connection,
         propagate as u8, //1
         destination as window, //2
         event_mask as u32, //3
-        event_ptr as *c_char); //4
+        event_ptr as *mut c_char); //4
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -4105,7 +4105,7 @@ pub fn SendEvent<'r> (c : &'r Connection,
         propagate as u8, //1
         destination as window, //2
         event_mask as u32, //3
-        event_ptr as *c_char); //4
+        event_ptr as *mut c_char); //4
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -4160,7 +4160,7 @@ impl base::Reply<grab_pointer_reply> {
   }
 
 }
-impl_reply_cookie!(GrabPointerCookie<'self>, grab_pointer_reply, GrabPointerReply, xcb_grab_pointer_reply)
+impl_reply_cookie!(GrabPointerCookie<'s>, grab_pointer_reply, GrabPointerReply, xcb_grab_pointer_reply)
 
 pub fn UngrabPointerChecked<'r> (c : &'r Connection,
                              time : Timestamp) -> base::VoidCookie<'r> {
@@ -4313,7 +4313,7 @@ impl base::Reply<grab_keyboard_reply> {
   }
 
 }
-impl_reply_cookie!(GrabKeyboardCookie<'self>, grab_keyboard_reply, GrabKeyboardReply, xcb_grab_keyboard_reply)
+impl_reply_cookie!(GrabKeyboardCookie<'s>, grab_keyboard_reply, GrabKeyboardReply, xcb_grab_keyboard_reply)
 
 pub fn UngrabKeyboardChecked<'r> (c : &'r Connection,
                               time : Timestamp) -> base::VoidCookie<'r> {
@@ -4486,31 +4486,31 @@ impl base::Reply<query_pointer_reply> {
   }
 
 }
-impl_reply_cookie!(QueryPointerCookie<'self>, query_pointer_reply, QueryPointerReply, xcb_query_pointer_reply)
+impl_reply_cookie!(QueryPointerCookie<'s>, query_pointer_reply, QueryPointerReply, xcb_query_pointer_reply)
 
 pub type Timecoord = base::Struct<timecoord>;
 
 
 impl base::Struct<timecoord> {
   pub fn time(&self) -> Timestamp {
-    unsafe { accessor!(time -> Timestamp, self.strct) }
+    unsafe { accessor!(time -> Timestamp, s.strct) }
   }
 
   pub fn x(&self) -> i16 {
-    unsafe { accessor!(x -> i16, self.strct) }
+    unsafe { accessor!(x -> i16, s.strct) }
   }
 
   pub fn y(&self) -> i16 {
-    unsafe { accessor!(y -> i16, self.strct) }
+    unsafe { accessor!(y -> i16, s.strct) }
   }
 
 }
 
-impl<'self, Timecoord> Iterator<&'self Timecoord> for TimecoordIterator {
-    pub fn next(&mut self) -> Option<&'self Timecoord> {
+impl<'s, Timecoord> Iterator<&'s Timecoord> for TimecoordIterator {
+    pub fn next(&mut self) -> Option<&'s Timecoord> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *timecoord_iterator = cast::transmute(self);
+            let iter : *mut timecoord_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_timecoord_next(iter);
             Some(cast::transmute(data))
@@ -4550,7 +4550,7 @@ impl base::Reply<get_motion_events_reply> {
   }
 
 }
-impl_reply_cookie!(GetMotionEventsCookie<'self>, get_motion_events_reply, GetMotionEventsReply, xcb_get_motion_events_reply)
+impl_reply_cookie!(GetMotionEventsCookie<'s>, get_motion_events_reply, GetMotionEventsReply, xcb_get_motion_events_reply)
 
 pub fn TranslateCoordinates<'r> (c : &'r Connection,
                              src_window : Window,
@@ -4599,7 +4599,7 @@ impl base::Reply<translate_coordinates_reply> {
   }
 
 }
-impl_reply_cookie!(TranslateCoordinatesCookie<'self>, translate_coordinates_reply, TranslateCoordinatesReply, xcb_translate_coordinates_reply)
+impl_reply_cookie!(TranslateCoordinatesCookie<'s>, translate_coordinates_reply, TranslateCoordinatesReply, xcb_translate_coordinates_reply)
 
 pub fn WarpPointerChecked<'r> (c : &'r Connection,
                            src_window : Window,
@@ -4692,7 +4692,7 @@ impl base::Reply<get_input_focus_reply> {
   }
 
 }
-impl_reply_cookie!(GetInputFocusCookie<'self>, get_input_focus_reply, GetInputFocusReply, xcb_get_input_focus_reply)
+impl_reply_cookie!(GetInputFocusCookie<'s>, get_input_focus_reply, GetInputFocusReply, xcb_get_input_focus_reply)
 
 pub fn QueryKeymap<'r> (c : &'r Connection) -> QueryKeymapCookie<'r> {
   unsafe {
@@ -4708,12 +4708,12 @@ pub fn QueryKeymapUnchecked<'r> (c : &'r Connection) -> QueryKeymapCookie<'r> {
 }
 
 impl base::Reply<query_keymap_reply> {
-  pub fn keys(&self) -> ~[u8,..32] {
-    unsafe { ~(copy (*self.reply).keys) }
+  pub fn keys(&self) -> Box<[u8,..32]> {
+    box unsafe { copy (*self.reply).keys }
   }
 
 }
-impl_reply_cookie!(QueryKeymapCookie<'self>, query_keymap_reply, QueryKeymapReply, xcb_query_keymap_reply)
+impl_reply_cookie!(QueryKeymapCookie<'s>, query_keymap_reply, QueryKeymapReply, xcb_query_keymap_reply)
 
 pub fn OpenFontChecked<'r> (c : &'r Connection,
                         fid : Font,
@@ -4725,7 +4725,7 @@ pub fn OpenFontChecked<'r> (c : &'r Connection,
     let cookie = xcb_open_font_checked(c.get_raw_conn(),
         fid as font, //1
         name_len as u16, //2
-        name_ptr as *c_char); //3
+        name_ptr as *mut c_char); //3
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -4739,7 +4739,7 @@ pub fn OpenFont<'r> (c : &'r Connection,
     let cookie = xcb_open_font(c.get_raw_conn(),
         fid as font, //1
         name_len as u16, //2
-        name_ptr as *c_char); //3
+        name_ptr as *mut c_char); //3
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -4762,20 +4762,20 @@ pub fn CloseFont<'r> (c : &'r Connection,
 
 impl base::Struct<fontprop> {
   pub fn name(&self) -> Atom {
-    unsafe { accessor!(name -> Atom, self.strct) }
+    unsafe { accessor!(name -> Atom, s.strct) }
   }
 
   pub fn value(&self) -> u32 {
-    unsafe { accessor!(value -> u32, self.strct) }
+    unsafe { accessor!(value -> u32, s.strct) }
   }
 
 }
 
-impl<'self, Fontprop> Iterator<&'self Fontprop> for FontpropIterator {
-    pub fn next(&mut self) -> Option<&'self Fontprop> {
+impl<'s, Fontprop> Iterator<&'s Fontprop> for FontpropIterator {
+    pub fn next(&mut self) -> Option<&'s Fontprop> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *fontprop_iterator = cast::transmute(self);
+            let iter : *mut fontprop_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_fontprop_next(iter);
             Some(cast::transmute(data))
@@ -4788,36 +4788,36 @@ pub type Charinfo = base::Struct<charinfo>;
 
 impl base::Struct<charinfo> {
   pub fn left_side_bearing(&self) -> i16 {
-    unsafe { accessor!(left_side_bearing -> i16, self.strct) }
+    unsafe { accessor!(left_side_bearing -> i16, s.strct) }
   }
 
   pub fn right_side_bearing(&self) -> i16 {
-    unsafe { accessor!(right_side_bearing -> i16, self.strct) }
+    unsafe { accessor!(right_side_bearing -> i16, s.strct) }
   }
 
   pub fn character_width(&self) -> i16 {
-    unsafe { accessor!(character_width -> i16, self.strct) }
+    unsafe { accessor!(character_width -> i16, s.strct) }
   }
 
   pub fn ascent(&self) -> i16 {
-    unsafe { accessor!(ascent -> i16, self.strct) }
+    unsafe { accessor!(ascent -> i16, s.strct) }
   }
 
   pub fn descent(&self) -> i16 {
-    unsafe { accessor!(descent -> i16, self.strct) }
+    unsafe { accessor!(descent -> i16, s.strct) }
   }
 
   pub fn attributes(&self) -> u16 {
-    unsafe { accessor!(attributes -> u16, self.strct) }
+    unsafe { accessor!(attributes -> u16, s.strct) }
   }
 
 }
 
-impl<'self, Charinfo> Iterator<&'self Charinfo> for CharinfoIterator {
-    pub fn next(&mut self) -> Option<&'self Charinfo> {
+impl<'s, Charinfo> Iterator<&'s Charinfo> for CharinfoIterator {
+    pub fn next(&mut self) -> Option<&'s Charinfo> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *charinfo_iterator = cast::transmute(self);
+            let iter : *mut charinfo_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_charinfo_next(iter);
             Some(cast::transmute(data))
@@ -4895,7 +4895,7 @@ impl base::Reply<query_font_reply> {
   }
 
 }
-impl_reply_cookie!(QueryFontCookie<'self>, query_font_reply, QueryFontReply, xcb_query_font_reply)
+impl_reply_cookie!(QueryFontCookie<'s>, query_font_reply, QueryFontReply, xcb_query_font_reply)
 
 pub fn QueryTextExtents<'r> (c : &'r Connection,
                          font : Fontable,
@@ -4906,7 +4906,7 @@ pub fn QueryTextExtents<'r> (c : &'r Connection,
     let cookie = xcb_query_text_extents(c.get_raw_conn(),
         font as fontable, //1
         string_len as u32, //2
-        string_ptr as *char2b); //3
+        string_ptr as *mut char2b); //3
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -4919,7 +4919,7 @@ pub fn QueryTextExtentsUnchecked<'r> (c : &'r Connection,
     let cookie = xcb_query_text_extents_unchecked(c.get_raw_conn(),
         font as fontable, //1
         string_len as u32, //2
-        string_ptr as *char2b); //3
+        string_ptr as *mut char2b); //3
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -4958,23 +4958,23 @@ impl base::Reply<query_text_extents_reply> {
   }
 
 }
-impl_reply_cookie!(QueryTextExtentsCookie<'self>, query_text_extents_reply, QueryTextExtentsReply, xcb_query_text_extents_reply)
+impl_reply_cookie!(QueryTextExtentsCookie<'s>, query_text_extents_reply, QueryTextExtentsReply, xcb_query_text_extents_reply)
 
 pub type Str = base::Struct<str_>;
 
 
 impl base::Struct<str_> {
-  pub fn name(&self) -> ~str {
-    unsafe { accessor!(str, xcb_str_name_length, xcb_str_name, self.strct) }
+  pub fn name(&self) -> Box<str> {
+    unsafe { accessor!(str, xcb_str_name_length, xcb_str_name, s.strct) }
   }
 
 }
 
-impl<'self, Str> Iterator<&'self Str> for StrIterator {
-    pub fn next(&mut self) -> Option<&'self Str> {
+impl<'s, Str> Iterator<&'s Str> for StrIterator {
+    pub fn next(&mut self) -> Option<&'s Str> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *str_iterator = cast::transmute(self);
+            let iter : *mut str_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_str_next(iter);
             Some(cast::transmute(data))
@@ -4992,7 +4992,7 @@ pub fn ListFonts<'r> (c : &'r Connection,
     let cookie = xcb_list_fonts(c.get_raw_conn(),
         max_names as u16, //1
         pattern_len as u16, //2
-        pattern_ptr as *c_char); //3
+        pattern_ptr as *mut c_char); //3
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -5006,7 +5006,7 @@ pub fn ListFontsUnchecked<'r> (c : &'r Connection,
     let cookie = xcb_list_fonts_unchecked(c.get_raw_conn(),
         max_names as u16, //1
         pattern_len as u16, //2
-        pattern_ptr as *c_char); //3
+        pattern_ptr as *mut c_char); //3
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -5017,7 +5017,7 @@ impl base::Reply<list_fonts_reply> {
   }
 
 }
-impl_reply_cookie!(ListFontsCookie<'self>, list_fonts_reply, ListFontsReply, xcb_list_fonts_reply)
+impl_reply_cookie!(ListFontsCookie<'s>, list_fonts_reply, ListFontsReply, xcb_list_fonts_reply)
 
 pub fn ListFontsWithInfo<'r> (c : &'r Connection,
                           max_names : u16,
@@ -5029,7 +5029,7 @@ pub fn ListFontsWithInfo<'r> (c : &'r Connection,
     let cookie = xcb_list_fonts_with_info(c.get_raw_conn(),
         max_names as u16, //1
         pattern_len as u16, //2
-        pattern_ptr as *c_char); //3
+        pattern_ptr as *mut c_char); //3
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -5043,7 +5043,7 @@ pub fn ListFontsWithInfoUnchecked<'r> (c : &'r Connection,
     let cookie = xcb_list_fonts_with_info_unchecked(c.get_raw_conn(),
         max_names as u16, //1
         pattern_len as u16, //2
-        pattern_ptr as *c_char); //3
+        pattern_ptr as *mut c_char); //3
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -5099,12 +5099,12 @@ impl base::Reply<list_fonts_with_info_reply> {
     unsafe { accessor!(FontpropIterator, xcb_list_fonts_with_info_properties_iterator, (*self.reply)) }
   }
 
-  pub fn name(&self) -> ~str {
+  pub fn name(&self) -> Box<str> {
     unsafe { accessor!(str, xcb_list_fonts_with_info_name_length, xcb_list_fonts_with_info_name, (*self.reply)) }
   }
 
 }
-impl_reply_cookie!(ListFontsWithInfoCookie<'self>, list_fonts_with_info_reply, ListFontsWithInfoReply, xcb_list_fonts_with_info_reply)
+impl_reply_cookie!(ListFontsWithInfoCookie<'s>, list_fonts_with_info_reply, ListFontsWithInfoReply, xcb_list_fonts_with_info_reply)
 
 pub fn SetFontPathChecked<'r> (c : &'r Connection,
                            font : &[Str]) -> base::VoidCookie<'r> {
@@ -5113,7 +5113,7 @@ pub fn SetFontPathChecked<'r> (c : &'r Connection,
     let font_ptr = std::vec::raw::to_ptr(font);
     let cookie = xcb_set_font_path_checked(c.get_raw_conn(),
         font_len as u16, //1
-        font_ptr as *str_); //2
+        font_ptr as *mut str_); //2
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -5124,7 +5124,7 @@ pub fn SetFontPath<'r> (c : &'r Connection,
     let font_ptr = std::vec::raw::to_ptr(font);
     let cookie = xcb_set_font_path(c.get_raw_conn(),
         font_len as u16, //1
-        font_ptr as *str_); //2
+        font_ptr as *mut str_); //2
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -5148,7 +5148,7 @@ impl base::Reply<get_font_path_reply> {
   }
 
 }
-impl_reply_cookie!(GetFontPathCookie<'self>, get_font_path_reply, GetFontPathReply, xcb_get_font_path_reply)
+impl_reply_cookie!(GetFontPathCookie<'s>, get_font_path_reply, GetFontPathReply, xcb_get_font_path_reply)
 
 pub fn CreatePixmapChecked<'r> (c : &'r Connection,
                             depth : u8,
@@ -5209,7 +5209,7 @@ pub fn CreateGcChecked<'r> (c : &'r Connection,
         cid as gcontext, //1
         drawable as drawable, //2
         value_list_mask as u32, //3
-        value_list_ptr as *u32); //4
+        value_list_ptr as *mut u32); //4
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -5224,7 +5224,7 @@ pub fn CreateGc<'r> (c : &'r Connection,
         cid as gcontext, //1
         drawable as drawable, //2
         value_list_mask as u32, //3
-        value_list_ptr as *u32); //4
+        value_list_ptr as *mut u32); //4
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -5237,7 +5237,7 @@ pub fn ChangeGcChecked<'r> (c : &'r Connection,
     let cookie = xcb_change_gc_checked(c.get_raw_conn(),
         gc as gcontext, //1
         value_list_mask as u32, //2
-        value_list_ptr as *u32); //3
+        value_list_ptr as *mut u32); //3
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -5250,7 +5250,7 @@ pub fn ChangeGc<'r> (c : &'r Connection,
     let cookie = xcb_change_gc(c.get_raw_conn(),
         gc as gcontext, //1
         value_list_mask as u32, //2
-        value_list_ptr as *u32); //3
+        value_list_ptr as *mut u32); //3
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -5289,7 +5289,7 @@ pub fn SetDashesChecked<'r> (c : &'r Connection,
         gc as gcontext, //1
         dash_offset as u16, //2
         dashes_len as u16, //3
-        dashes_ptr as *u8); //4
+        dashes_ptr as *mut u8); //4
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -5304,7 +5304,7 @@ pub fn SetDashes<'r> (c : &'r Connection,
         gc as gcontext, //1
         dash_offset as u16, //2
         dashes_len as u16, //3
-        dashes_ptr as *u8); //4
+        dashes_ptr as *mut u8); //4
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -5323,7 +5323,7 @@ pub fn SetClipRectanglesChecked<'r> (c : &'r Connection,
         clip_x_origin as i16, //3
         clip_y_origin as i16, //4
         rectangles_len as u32, //5
-        rectangles_ptr as *rectangle); //6
+        rectangles_ptr as *mut rectangle); //6
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -5342,7 +5342,7 @@ pub fn SetClipRectangles<'r> (c : &'r Connection,
         clip_x_origin as i16, //3
         clip_y_origin as i16, //4
         rectangles_len as u32, //5
-        rectangles_ptr as *rectangle); //6
+        rectangles_ptr as *mut rectangle); //6
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -5511,7 +5511,7 @@ pub fn PolyPointChecked<'r> (c : &'r Connection,
         drawable as drawable, //2
         gc as gcontext, //3
         points_len as u32, //4
-        points_ptr as *point); //5
+        points_ptr as *mut point); //5
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -5528,7 +5528,7 @@ pub fn PolyPoint<'r> (c : &'r Connection,
         drawable as drawable, //2
         gc as gcontext, //3
         points_len as u32, //4
-        points_ptr as *point); //5
+        points_ptr as *mut point); //5
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -5545,7 +5545,7 @@ pub fn PolyLineChecked<'r> (c : &'r Connection,
         drawable as drawable, //2
         gc as gcontext, //3
         points_len as u32, //4
-        points_ptr as *point); //5
+        points_ptr as *mut point); //5
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -5562,7 +5562,7 @@ pub fn PolyLine<'r> (c : &'r Connection,
         drawable as drawable, //2
         gc as gcontext, //3
         points_len as u32, //4
-        points_ptr as *point); //5
+        points_ptr as *mut point); //5
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -5571,28 +5571,28 @@ pub type Segment = base::Struct<segment>;
 
 impl base::Struct<segment> {
   pub fn x1(&self) -> i16 {
-    unsafe { accessor!(x1 -> i16, self.strct) }
+    unsafe { accessor!(x1 -> i16, s.strct) }
   }
 
   pub fn y1(&self) -> i16 {
-    unsafe { accessor!(y1 -> i16, self.strct) }
+    unsafe { accessor!(y1 -> i16, s.strct) }
   }
 
   pub fn x2(&self) -> i16 {
-    unsafe { accessor!(x2 -> i16, self.strct) }
+    unsafe { accessor!(x2 -> i16, s.strct) }
   }
 
   pub fn y2(&self) -> i16 {
-    unsafe { accessor!(y2 -> i16, self.strct) }
+    unsafe { accessor!(y2 -> i16, s.strct) }
   }
 
 }
 
-impl<'self, Segment> Iterator<&'self Segment> for SegmentIterator {
-    pub fn next(&mut self) -> Option<&'self Segment> {
+impl<'s, Segment> Iterator<&'s Segment> for SegmentIterator {
+    pub fn next(&mut self) -> Option<&'s Segment> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *segment_iterator = cast::transmute(self);
+            let iter : *mut segment_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_segment_next(iter);
             Some(cast::transmute(data))
@@ -5611,7 +5611,7 @@ pub fn PolySegmentChecked<'r> (c : &'r Connection,
         drawable as drawable, //1
         gc as gcontext, //2
         segments_len as u32, //3
-        segments_ptr as *segment); //4
+        segments_ptr as *mut segment); //4
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -5626,7 +5626,7 @@ pub fn PolySegment<'r> (c : &'r Connection,
         drawable as drawable, //1
         gc as gcontext, //2
         segments_len as u32, //3
-        segments_ptr as *segment); //4
+        segments_ptr as *mut segment); //4
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -5641,7 +5641,7 @@ pub fn PolyRectangleChecked<'r> (c : &'r Connection,
         drawable as drawable, //1
         gc as gcontext, //2
         rectangles_len as u32, //3
-        rectangles_ptr as *rectangle); //4
+        rectangles_ptr as *mut rectangle); //4
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -5656,7 +5656,7 @@ pub fn PolyRectangle<'r> (c : &'r Connection,
         drawable as drawable, //1
         gc as gcontext, //2
         rectangles_len as u32, //3
-        rectangles_ptr as *rectangle); //4
+        rectangles_ptr as *mut rectangle); //4
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -5671,7 +5671,7 @@ pub fn PolyArcChecked<'r> (c : &'r Connection,
         drawable as drawable, //1
         gc as gcontext, //2
         arcs_len as u32, //3
-        arcs_ptr as *arc); //4
+        arcs_ptr as *mut arc); //4
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -5686,7 +5686,7 @@ pub fn PolyArc<'r> (c : &'r Connection,
         drawable as drawable, //1
         gc as gcontext, //2
         arcs_len as u32, //3
-        arcs_ptr as *arc); //4
+        arcs_ptr as *mut arc); //4
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -5705,7 +5705,7 @@ pub fn FillPolyChecked<'r> (c : &'r Connection,
         shape as u8, //3
         coordinate_mode as u8, //4
         points_len as u32, //5
-        points_ptr as *point); //6
+        points_ptr as *mut point); //6
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -5724,7 +5724,7 @@ pub fn FillPoly<'r> (c : &'r Connection,
         shape as u8, //3
         coordinate_mode as u8, //4
         points_len as u32, //5
-        points_ptr as *point); //6
+        points_ptr as *mut point); //6
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -5739,7 +5739,7 @@ pub fn PolyFillRectangleChecked<'r> (c : &'r Connection,
         drawable as drawable, //1
         gc as gcontext, //2
         rectangles_len as u32, //3
-        rectangles_ptr as *rectangle); //4
+        rectangles_ptr as *mut rectangle); //4
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -5754,7 +5754,7 @@ pub fn PolyFillRectangle<'r> (c : &'r Connection,
         drawable as drawable, //1
         gc as gcontext, //2
         rectangles_len as u32, //3
-        rectangles_ptr as *rectangle); //4
+        rectangles_ptr as *mut rectangle); //4
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -5769,7 +5769,7 @@ pub fn PolyFillArcChecked<'r> (c : &'r Connection,
         drawable as drawable, //1
         gc as gcontext, //2
         arcs_len as u32, //3
-        arcs_ptr as *arc); //4
+        arcs_ptr as *mut arc); //4
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -5784,7 +5784,7 @@ pub fn PolyFillArc<'r> (c : &'r Connection,
         drawable as drawable, //1
         gc as gcontext, //2
         arcs_len as u32, //3
-        arcs_ptr as *arc); //4
+        arcs_ptr as *mut arc); //4
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -5813,7 +5813,7 @@ pub fn PutImageChecked<'r> (c : &'r Connection,
         left_pad as u8, //8
         depth as u8, //9
         data_len as u32, //10
-        data_ptr as *u8); //11
+        data_ptr as *mut u8); //11
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -5842,7 +5842,7 @@ pub fn PutImage<'r> (c : &'r Connection,
         left_pad as u8, //8
         depth as u8, //9
         data_len as u32, //10
-        data_ptr as *u8); //11
+        data_ptr as *mut u8); //11
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -5897,12 +5897,12 @@ impl base::Reply<get_image_reply> {
     unsafe { accessor!(visual -> Visualid, (*self.reply)) }
   }
 
-  pub fn data(&self) -> ~[u8] {
+  pub fn data(&self) -> Box<[u8]> {
     unsafe { accessor!(u8, xcb_get_image_data_length, xcb_get_image_data, (*self.reply)) }
   }
 
 }
-impl_reply_cookie!(GetImageCookie<'self>, get_image_reply, GetImageReply, xcb_get_image_reply)
+impl_reply_cookie!(GetImageCookie<'s>, get_image_reply, GetImageReply, xcb_get_image_reply)
 
 pub fn PolyText8Checked<'r> (c : &'r Connection,
                          drawable : Drawable,
@@ -5919,7 +5919,7 @@ pub fn PolyText8Checked<'r> (c : &'r Connection,
         x as i16, //3
         y as i16, //4
         items_len as u32, //5
-        items_ptr as *u8); //6
+        items_ptr as *mut u8); //6
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -5938,7 +5938,7 @@ pub fn PolyText8<'r> (c : &'r Connection,
         x as i16, //3
         y as i16, //4
         items_len as u32, //5
-        items_ptr as *u8); //6
+        items_ptr as *mut u8); //6
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -5957,7 +5957,7 @@ pub fn PolyText16Checked<'r> (c : &'r Connection,
         x as i16, //3
         y as i16, //4
         items_len as u32, //5
-        items_ptr as *u8); //6
+        items_ptr as *mut u8); //6
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -5976,7 +5976,7 @@ pub fn PolyText16<'r> (c : &'r Connection,
         x as i16, //3
         y as i16, //4
         items_len as u32, //5
-        items_ptr as *u8); //6
+        items_ptr as *mut u8); //6
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -5996,7 +5996,7 @@ pub fn ImageText8Checked<'r> (c : &'r Connection,
         gc as gcontext, //3
         x as i16, //4
         y as i16, //5
-        string_ptr as *c_char); //6
+        string_ptr as *mut c_char); //6
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -6016,7 +6016,7 @@ pub fn ImageText8<'r> (c : &'r Connection,
         gc as gcontext, //3
         x as i16, //4
         y as i16, //5
-        string_ptr as *c_char); //6
+        string_ptr as *mut c_char); //6
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -6035,7 +6035,7 @@ pub fn ImageText16Checked<'r> (c : &'r Connection,
         gc as gcontext, //3
         x as i16, //4
         y as i16, //5
-        string_ptr as *char2b); //6
+        string_ptr as *mut char2b); //6
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -6054,7 +6054,7 @@ pub fn ImageText16<'r> (c : &'r Connection,
         gc as gcontext, //3
         x as i16, //4
         y as i16, //5
-        string_ptr as *char2b); //6
+        string_ptr as *mut char2b); //6
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -6173,12 +6173,12 @@ pub fn ListInstalledColormapsUnchecked<'r> (c : &'r Connection,
 }
 
 impl base::Reply<list_installed_colormaps_reply> {
-  pub fn cmaps(&self) -> ~[Colormap] {
+  pub fn cmaps(&self) -> Box<[Colormap]> {
     unsafe { accessor!(Colormap, xcb_list_installed_colormaps_cmaps_length, xcb_list_installed_colormaps_cmaps, (*self.reply)) }
   }
 
 }
-impl_reply_cookie!(ListInstalledColormapsCookie<'self>, list_installed_colormaps_reply, ListInstalledColormapsReply, xcb_list_installed_colormaps_reply)
+impl_reply_cookie!(ListInstalledColormapsCookie<'s>, list_installed_colormaps_reply, ListInstalledColormapsReply, xcb_list_installed_colormaps_reply)
 
 pub fn AllocColor<'r> (c : &'r Connection,
                    cmap : Colormap,
@@ -6227,7 +6227,7 @@ impl base::Reply<alloc_color_reply> {
   }
 
 }
-impl_reply_cookie!(AllocColorCookie<'self>, alloc_color_reply, AllocColorReply, xcb_alloc_color_reply)
+impl_reply_cookie!(AllocColorCookie<'s>, alloc_color_reply, AllocColorReply, xcb_alloc_color_reply)
 
 pub fn AllocNamedColor<'r> (c : &'r Connection,
                         cmap : Colormap,
@@ -6239,7 +6239,7 @@ pub fn AllocNamedColor<'r> (c : &'r Connection,
     let cookie = xcb_alloc_named_color(c.get_raw_conn(),
         cmap as colormap, //1
         name_len as u16, //2
-        name_ptr as *c_char); //3
+        name_ptr as *mut c_char); //3
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -6253,7 +6253,7 @@ pub fn AllocNamedColorUnchecked<'r> (c : &'r Connection,
     let cookie = xcb_alloc_named_color_unchecked(c.get_raw_conn(),
         cmap as colormap, //1
         name_len as u16, //2
-        name_ptr as *c_char); //3
+        name_ptr as *mut c_char); //3
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -6288,7 +6288,7 @@ impl base::Reply<alloc_named_color_reply> {
   }
 
 }
-impl_reply_cookie!(AllocNamedColorCookie<'self>, alloc_named_color_reply, AllocNamedColorReply, xcb_alloc_named_color_reply)
+impl_reply_cookie!(AllocNamedColorCookie<'s>, alloc_named_color_reply, AllocNamedColorReply, xcb_alloc_named_color_reply)
 
 pub type AllocColorCellsReply = base::Reply<alloc_color_cells_reply>;
 pub fn AllocColorCells<'r> (c : &'r Connection,
@@ -6321,16 +6321,16 @@ pub fn AllocColorCellsUnchecked<'r> (c : &'r Connection,
 }
 
 impl base::Reply<alloc_color_cells_reply> {
-  pub fn pixels(&self) -> ~[u32] {
+  pub fn pixels(&self) -> Box<[u32]> {
     unsafe { accessor!(u32, xcb_alloc_color_cells_pixels_length, xcb_alloc_color_cells_pixels, (*self.reply)) }
   }
 
-  pub fn masks(&self) -> ~[u32] {
+  pub fn masks(&self) -> Box<[u32]> {
     unsafe { accessor!(u32, xcb_alloc_color_cells_masks_length, xcb_alloc_color_cells_masks, (*self.reply)) }
   }
 
 }
-impl_reply_cookie!(AllocColorCellsCookie<'self>, alloc_color_cells_reply, AllocColorCellsReply, xcb_alloc_color_cells_reply)
+impl_reply_cookie!(AllocColorCellsCookie<'s>, alloc_color_cells_reply, AllocColorCellsReply, xcb_alloc_color_cells_reply)
 
 pub type AllocColorPlanesReply = base::Reply<alloc_color_planes_reply>;
 pub fn AllocColorPlanes<'r> (c : &'r Connection,
@@ -6383,12 +6383,12 @@ impl base::Reply<alloc_color_planes_reply> {
     unsafe { accessor!(blue_mask -> u32, (*self.reply)) }
   }
 
-  pub fn pixels(&self) -> ~[u32] {
+  pub fn pixels(&self) -> Box<[u32]> {
     unsafe { accessor!(u32, xcb_alloc_color_planes_pixels_length, xcb_alloc_color_planes_pixels, (*self.reply)) }
   }
 
 }
-impl_reply_cookie!(AllocColorPlanesCookie<'self>, alloc_color_planes_reply, AllocColorPlanesReply, xcb_alloc_color_planes_reply)
+impl_reply_cookie!(AllocColorPlanesCookie<'s>, alloc_color_planes_reply, AllocColorPlanesReply, xcb_alloc_color_planes_reply)
 
 pub fn FreeColorsChecked<'r> (c : &'r Connection,
                           cmap : Colormap,
@@ -6401,7 +6401,7 @@ pub fn FreeColorsChecked<'r> (c : &'r Connection,
         cmap as colormap, //1
         plane_mask as u32, //2
         pixels_len as u32, //3
-        pixels_ptr as *u32); //4
+        pixels_ptr as *mut u32); //4
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -6416,39 +6416,39 @@ pub fn FreeColors<'r> (c : &'r Connection,
         cmap as colormap, //1
         plane_mask as u32, //2
         pixels_len as u32, //3
-        pixels_ptr as *u32); //4
+        pixels_ptr as *mut u32); //4
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
 
 impl base::Struct<coloritem> {
   pub fn pixel(&self) -> u32 {
-    unsafe { accessor!(pixel -> u32, self.strct) }
+    unsafe { accessor!(pixel -> u32, s.strct) }
   }
 
   pub fn red(&self) -> u16 {
-    unsafe { accessor!(red -> u16, self.strct) }
+    unsafe { accessor!(red -> u16, s.strct) }
   }
 
   pub fn green(&self) -> u16 {
-    unsafe { accessor!(green -> u16, self.strct) }
+    unsafe { accessor!(green -> u16, s.strct) }
   }
 
   pub fn blue(&self) -> u16 {
-    unsafe { accessor!(blue -> u16, self.strct) }
+    unsafe { accessor!(blue -> u16, s.strct) }
   }
 
   pub fn flags(&self) -> u8 {
-    unsafe { accessor!(flags -> u8, self.strct) }
+    unsafe { accessor!(flags -> u8, s.strct) }
   }
 
 }
 
-impl<'self, Coloritem> Iterator<&'self Coloritem> for ColoritemIterator {
-    pub fn next(&mut self) -> Option<&'self Coloritem> {
+impl<'s, Coloritem> Iterator<&'s Coloritem> for ColoritemIterator {
+    pub fn next(&mut self) -> Option<&'s Coloritem> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *coloritem_iterator = cast::transmute(self);
+            let iter : *mut coloritem_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_coloritem_next(iter);
             Some(cast::transmute(data))
@@ -6465,7 +6465,7 @@ pub fn StoreColorsChecked<'r> (c : &'r Connection,
     let cookie = xcb_store_colors_checked(c.get_raw_conn(),
         cmap as colormap, //1
         items_len as u32, //2
-        items_ptr as *coloritem); //3
+        items_ptr as *mut coloritem); //3
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -6478,7 +6478,7 @@ pub fn StoreColors<'r> (c : &'r Connection,
     let cookie = xcb_store_colors(c.get_raw_conn(),
         cmap as colormap, //1
         items_len as u32, //2
-        items_ptr as *coloritem); //3
+        items_ptr as *mut coloritem); //3
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -6496,7 +6496,7 @@ pub fn StoreNamedColorChecked<'r> (c : &'r Connection,
         cmap as colormap, //2
         pixel as u32, //3
         name_len as u16, //4
-        name_ptr as *c_char); //5
+        name_ptr as *mut c_char); //5
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -6514,7 +6514,7 @@ pub fn StoreNamedColor<'r> (c : &'r Connection,
         cmap as colormap, //2
         pixel as u32, //3
         name_len as u16, //4
-        name_ptr as *c_char); //5
+        name_ptr as *mut c_char); //5
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -6523,24 +6523,24 @@ pub type Rgb = base::Struct<rgb>;
 
 impl base::Struct<rgb> {
   pub fn red(&self) -> u16 {
-    unsafe { accessor!(red -> u16, self.strct) }
+    unsafe { accessor!(red -> u16, s.strct) }
   }
 
   pub fn green(&self) -> u16 {
-    unsafe { accessor!(green -> u16, self.strct) }
+    unsafe { accessor!(green -> u16, s.strct) }
   }
 
   pub fn blue(&self) -> u16 {
-    unsafe { accessor!(blue -> u16, self.strct) }
+    unsafe { accessor!(blue -> u16, s.strct) }
   }
 
 }
 
-impl<'self, Rgb> Iterator<&'self Rgb> for RgbIterator {
-    pub fn next(&mut self) -> Option<&'self Rgb> {
+impl<'s, Rgb> Iterator<&'s Rgb> for RgbIterator {
+    pub fn next(&mut self) -> Option<&'s Rgb> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *rgb_iterator = cast::transmute(self);
+            let iter : *mut rgb_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_rgb_next(iter);
             Some(cast::transmute(data))
@@ -6557,7 +6557,7 @@ pub fn QueryColors<'r> (c : &'r Connection,
     let cookie = xcb_query_colors(c.get_raw_conn(),
         cmap as colormap, //1
         pixels_len as u32, //2
-        pixels_ptr as *u32); //3
+        pixels_ptr as *mut u32); //3
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -6570,7 +6570,7 @@ pub fn QueryColorsUnchecked<'r> (c : &'r Connection,
     let cookie = xcb_query_colors_unchecked(c.get_raw_conn(),
         cmap as colormap, //1
         pixels_len as u32, //2
-        pixels_ptr as *u32); //3
+        pixels_ptr as *mut u32); //3
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -6581,7 +6581,7 @@ impl base::Reply<query_colors_reply> {
   }
 
 }
-impl_reply_cookie!(QueryColorsCookie<'self>, query_colors_reply, QueryColorsReply, xcb_query_colors_reply)
+impl_reply_cookie!(QueryColorsCookie<'s>, query_colors_reply, QueryColorsReply, xcb_query_colors_reply)
 
 pub fn LookupColor<'r> (c : &'r Connection,
                     cmap : Colormap,
@@ -6593,7 +6593,7 @@ pub fn LookupColor<'r> (c : &'r Connection,
     let cookie = xcb_lookup_color(c.get_raw_conn(),
         cmap as colormap, //1
         name_len as u16, //2
-        name_ptr as *c_char); //3
+        name_ptr as *mut c_char); //3
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -6607,7 +6607,7 @@ pub fn LookupColorUnchecked<'r> (c : &'r Connection,
     let cookie = xcb_lookup_color_unchecked(c.get_raw_conn(),
         cmap as colormap, //1
         name_len as u16, //2
-        name_ptr as *c_char); //3
+        name_ptr as *mut c_char); //3
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -6638,7 +6638,7 @@ impl base::Reply<lookup_color_reply> {
   }
 
 }
-impl_reply_cookie!(LookupColorCookie<'self>, lookup_color_reply, LookupColorReply, xcb_lookup_color_reply)
+impl_reply_cookie!(LookupColorCookie<'s>, lookup_color_reply, LookupColorReply, xcb_lookup_color_reply)
 
 pub fn CreateCursorChecked<'r> (c : &'r Connection,
                             cid : Cursor,
@@ -6847,7 +6847,7 @@ impl base::Reply<query_best_size_reply> {
   }
 
 }
-impl_reply_cookie!(QueryBestSizeCookie<'self>, query_best_size_reply, QueryBestSizeReply, xcb_query_best_size_reply)
+impl_reply_cookie!(QueryBestSizeCookie<'s>, query_best_size_reply, QueryBestSizeReply, xcb_query_best_size_reply)
 
 pub fn QueryExtension<'r> (c : &'r Connection,
                        name : &str) -> QueryExtensionCookie<'r> {
@@ -6857,7 +6857,7 @@ pub fn QueryExtension<'r> (c : &'r Connection,
     let name_ptr = std::vec::raw::to_ptr(name);
     let cookie = xcb_query_extension(c.get_raw_conn(),
         name_len as u16, //1
-        name_ptr as *c_char); //2
+        name_ptr as *mut c_char); //2
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -6869,7 +6869,7 @@ pub fn QueryExtensionUnchecked<'r> (c : &'r Connection,
     let name_ptr = std::vec::raw::to_ptr(name);
     let cookie = xcb_query_extension_unchecked(c.get_raw_conn(),
         name_len as u16, //1
-        name_ptr as *c_char); //2
+        name_ptr as *mut c_char); //2
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -6892,7 +6892,7 @@ impl base::Reply<query_extension_reply> {
   }
 
 }
-impl_reply_cookie!(QueryExtensionCookie<'self>, query_extension_reply, QueryExtensionReply, xcb_query_extension_reply)
+impl_reply_cookie!(QueryExtensionCookie<'s>, query_extension_reply, QueryExtensionReply, xcb_query_extension_reply)
 
 pub type ListExtensionsReply = base::Reply<list_extensions_reply>;
 pub fn ListExtensions<'r> (c : &'r Connection) -> ListExtensionsCookie<'r> {
@@ -6914,7 +6914,7 @@ impl base::Reply<list_extensions_reply> {
   }
 
 }
-impl_reply_cookie!(ListExtensionsCookie<'self>, list_extensions_reply, ListExtensionsReply, xcb_list_extensions_reply)
+impl_reply_cookie!(ListExtensionsCookie<'s>, list_extensions_reply, ListExtensionsReply, xcb_list_extensions_reply)
 
 pub fn ChangeKeyboardMappingChecked<'r> (c : &'r Connection,
                                      first_keycode : Keycode,
@@ -6927,7 +6927,7 @@ pub fn ChangeKeyboardMappingChecked<'r> (c : &'r Connection,
         keysyms_len as u8, //1
         first_keycode as keycode, //2
         keysyms_per_keycode as u8, //3
-        keysyms_ptr as *keysym); //4
+        keysyms_ptr as *mut keysym); //4
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -6942,7 +6942,7 @@ pub fn ChangeKeyboardMapping<'r> (c : &'r Connection,
         keysyms_len as u8, //1
         first_keycode as keycode, //2
         keysyms_per_keycode as u8, //3
-        keysyms_ptr as *keysym); //4
+        keysyms_ptr as *mut keysym); //4
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -6973,12 +6973,12 @@ impl base::Reply<get_keyboard_mapping_reply> {
     unsafe { accessor!(keysyms_per_keycode -> u8, (*self.reply)) }
   }
 
-  pub fn keysyms(&self) -> ~[Keysym] {
+  pub fn keysyms(&self) -> Box<[Keysym]> {
     unsafe { accessor!(Keysym, xcb_get_keyboard_mapping_keysyms_length, xcb_get_keyboard_mapping_keysyms, (*self.reply)) }
   }
 
 }
-impl_reply_cookie!(GetKeyboardMappingCookie<'self>, get_keyboard_mapping_reply, GetKeyboardMappingReply, xcb_get_keyboard_mapping_reply)
+impl_reply_cookie!(GetKeyboardMappingCookie<'s>, get_keyboard_mapping_reply, GetKeyboardMappingReply, xcb_get_keyboard_mapping_reply)
 
 pub fn ChangeKeyboardControlChecked<'r> (c : &'r Connection,
                                      value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
@@ -6987,7 +6987,7 @@ pub fn ChangeKeyboardControlChecked<'r> (c : &'r Connection,
     let value_list_ptr = std::vec::raw::to_ptr(value_list_vec);
     let cookie = xcb_change_keyboard_control_checked(c.get_raw_conn(),
         value_list_mask as u32, //1
-        value_list_ptr as *u32); //2
+        value_list_ptr as *mut u32); //2
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -6998,7 +6998,7 @@ pub fn ChangeKeyboardControl<'r> (c : &'r Connection,
     let value_list_ptr = std::vec::raw::to_ptr(value_list_vec);
     let cookie = xcb_change_keyboard_control(c.get_raw_conn(),
         value_list_mask as u32, //1
-        value_list_ptr as *u32); //2
+        value_list_ptr as *mut u32); //2
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -7040,12 +7040,12 @@ impl base::Reply<get_keyboard_control_reply> {
     unsafe { accessor!(bell_duration -> u16, (*self.reply)) }
   }
 
-  pub fn auto_repeats(&self) -> ~[u8,..32] {
-    unsafe { ~(copy (*self.reply).auto_repeats) }
+  pub fn auto_repeats(&self) -> Box<[u8,..32]> {
+    box unsafe { copy (*self.reply).auto_repeats }
   }
 
 }
-impl_reply_cookie!(GetKeyboardControlCookie<'self>, get_keyboard_control_reply, GetKeyboardControlReply, xcb_get_keyboard_control_reply)
+impl_reply_cookie!(GetKeyboardControlCookie<'s>, get_keyboard_control_reply, GetKeyboardControlReply, xcb_get_keyboard_control_reply)
 
 pub fn BellChecked<'r> (c : &'r Connection,
                     percent : i8) -> base::VoidCookie<'r> {
@@ -7122,7 +7122,7 @@ impl base::Reply<get_pointer_control_reply> {
   }
 
 }
-impl_reply_cookie!(GetPointerControlCookie<'self>, get_pointer_control_reply, GetPointerControlReply, xcb_get_pointer_control_reply)
+impl_reply_cookie!(GetPointerControlCookie<'s>, get_pointer_control_reply, GetPointerControlReply, xcb_get_pointer_control_reply)
 
 pub fn SetScreenSaverChecked<'r> (c : &'r Connection,
                               timeout : i16,
@@ -7183,7 +7183,7 @@ impl base::Reply<get_screen_saver_reply> {
   }
 
 }
-impl_reply_cookie!(GetScreenSaverCookie<'self>, get_screen_saver_reply, GetScreenSaverReply, xcb_get_screen_saver_reply)
+impl_reply_cookie!(GetScreenSaverCookie<'s>, get_screen_saver_reply, GetScreenSaverReply, xcb_get_screen_saver_reply)
 
 pub fn ChangeHostsChecked<'r> (c : &'r Connection,
                            mode : u8,
@@ -7196,7 +7196,7 @@ pub fn ChangeHostsChecked<'r> (c : &'r Connection,
         mode as u8, //1
         family as u8, //2
         address_len as u16, //3
-        address_ptr as *u8); //4
+        address_ptr as *mut u8); //4
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -7211,7 +7211,7 @@ pub fn ChangeHosts<'r> (c : &'r Connection,
         mode as u8, //1
         family as u8, //2
         address_len as u16, //3
-        address_ptr as *u8); //4
+        address_ptr as *mut u8); //4
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -7220,20 +7220,20 @@ pub type Host = base::Struct<host>;
 
 impl base::Struct<host> {
   pub fn family(&self) -> u8 {
-    unsafe { accessor!(family -> u8, self.strct) }
+    unsafe { accessor!(family -> u8, s.strct) }
   }
 
-  pub fn address(&self) -> ~[u8] {
-    unsafe { accessor!(u8, xcb_host_address_length, xcb_host_address, self.strct) }
+  pub fn address(&self) -> Box<[u8]> {
+    unsafe { accessor!(u8, xcb_host_address_length, xcb_host_address, s.strct) }
   }
 
 }
 
-impl<'self, Host> Iterator<&'self Host> for HostIterator {
-    pub fn next(&mut self) -> Option<&'self Host> {
+impl<'s, Host> Iterator<&'s Host> for HostIterator {
+    pub fn next(&mut self) -> Option<&'s Host> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *host_iterator = cast::transmute(self);
+            let iter : *mut host_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_host_next(iter);
             Some(cast::transmute(data))
@@ -7265,7 +7265,7 @@ impl base::Reply<list_hosts_reply> {
   }
 
 }
-impl_reply_cookie!(ListHostsCookie<'self>, list_hosts_reply, ListHostsReply, xcb_list_hosts_reply)
+impl_reply_cookie!(ListHostsCookie<'s>, list_hosts_reply, ListHostsReply, xcb_list_hosts_reply)
 
 pub fn SetAccessControlChecked<'r> (c : &'r Connection,
                                 mode : u8) -> base::VoidCookie<'r> {
@@ -7326,7 +7326,7 @@ pub fn RotatePropertiesChecked<'r> (c : &'r Connection,
         window as window, //1
         atoms_len as u16, //2
         delta as i16, //3
-        atoms_ptr as *atom); //4
+        atoms_ptr as *mut atom); //4
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -7341,7 +7341,7 @@ pub fn RotateProperties<'r> (c : &'r Connection,
         window as window, //1
         atoms_len as u16, //2
         delta as i16, //3
-        atoms_ptr as *atom); //4
+        atoms_ptr as *mut atom); //4
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -7368,7 +7368,7 @@ pub fn SetPointerMapping<'r> (c : &'r Connection,
     let map_ptr = std::vec::raw::to_ptr(map);
     let cookie = xcb_set_pointer_mapping(c.get_raw_conn(),
         map_len as u8, //1
-        map_ptr as *u8); //2
+        map_ptr as *mut u8); //2
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -7379,7 +7379,7 @@ pub fn SetPointerMappingUnchecked<'r> (c : &'r Connection,
     let map_ptr = std::vec::raw::to_ptr(map);
     let cookie = xcb_set_pointer_mapping_unchecked(c.get_raw_conn(),
         map_len as u8, //1
-        map_ptr as *u8); //2
+        map_ptr as *mut u8); //2
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -7390,7 +7390,7 @@ impl base::Reply<set_pointer_mapping_reply> {
   }
 
 }
-impl_reply_cookie!(SetPointerMappingCookie<'self>, set_pointer_mapping_reply, SetPointerMappingReply, xcb_set_pointer_mapping_reply)
+impl_reply_cookie!(SetPointerMappingCookie<'s>, set_pointer_mapping_reply, SetPointerMappingReply, xcb_set_pointer_mapping_reply)
 
 pub type GetPointerMappingReply = base::Reply<get_pointer_mapping_reply>;
 pub fn GetPointerMapping<'r> (c : &'r Connection) -> GetPointerMappingCookie<'r> {
@@ -7407,12 +7407,12 @@ pub fn GetPointerMappingUnchecked<'r> (c : &'r Connection) -> GetPointerMappingC
 }
 
 impl base::Reply<get_pointer_mapping_reply> {
-  pub fn map(&self) -> ~[u8] {
+  pub fn map(&self) -> Box<[u8]> {
     unsafe { accessor!(u8, xcb_get_pointer_mapping_map_length, xcb_get_pointer_mapping_map, (*self.reply)) }
   }
 
 }
-impl_reply_cookie!(GetPointerMappingCookie<'self>, get_pointer_mapping_reply, GetPointerMappingReply, xcb_get_pointer_mapping_reply)
+impl_reply_cookie!(GetPointerMappingCookie<'s>, get_pointer_mapping_reply, GetPointerMappingReply, xcb_get_pointer_mapping_reply)
 
 pub fn SetModifierMapping<'r> (c : &'r Connection,
                            keycodes : &[Keycode]) -> SetModifierMappingCookie<'r> {
@@ -7421,7 +7421,7 @@ pub fn SetModifierMapping<'r> (c : &'r Connection,
     let keycodes_ptr = std::vec::raw::to_ptr(keycodes);
     let cookie = xcb_set_modifier_mapping(c.get_raw_conn(),
         keycodes_len as u8, //1
-        keycodes_ptr as *keycode); //2
+        keycodes_ptr as *mut keycode); //2
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -7432,7 +7432,7 @@ pub fn SetModifierMappingUnchecked<'r> (c : &'r Connection,
     let keycodes_ptr = std::vec::raw::to_ptr(keycodes);
     let cookie = xcb_set_modifier_mapping_unchecked(c.get_raw_conn(),
         keycodes_len as u8, //1
-        keycodes_ptr as *keycode); //2
+        keycodes_ptr as *mut keycode); //2
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -7443,7 +7443,7 @@ impl base::Reply<set_modifier_mapping_reply> {
   }
 
 }
-impl_reply_cookie!(SetModifierMappingCookie<'self>, set_modifier_mapping_reply, SetModifierMappingReply, xcb_set_modifier_mapping_reply)
+impl_reply_cookie!(SetModifierMappingCookie<'s>, set_modifier_mapping_reply, SetModifierMappingReply, xcb_set_modifier_mapping_reply)
 
 pub type GetModifierMappingReply = base::Reply<get_modifier_mapping_reply>;
 pub fn GetModifierMapping<'r> (c : &'r Connection) -> GetModifierMappingCookie<'r> {
@@ -7460,12 +7460,12 @@ pub fn GetModifierMappingUnchecked<'r> (c : &'r Connection) -> GetModifierMappin
 }
 
 impl base::Reply<get_modifier_mapping_reply> {
-  pub fn keycodes(&self) -> ~[Keycode] {
+  pub fn keycodes(&self) -> Box<[Keycode]> {
     unsafe { accessor!(Keycode, xcb_get_modifier_mapping_keycodes_length, xcb_get_modifier_mapping_keycodes, (*self.reply)) }
   }
 
 }
-impl_reply_cookie!(GetModifierMappingCookie<'self>, get_modifier_mapping_reply, GetModifierMappingReply, xcb_get_modifier_mapping_reply)
+impl_reply_cookie!(GetModifierMappingCookie<'s>, get_modifier_mapping_reply, GetModifierMappingReply, xcb_get_modifier_mapping_reply)
 
 pub fn NoOperationChecked<'r> (c : &'r Connection) -> base::VoidCookie<'r> {
   unsafe {

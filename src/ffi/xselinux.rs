@@ -4,8 +4,8 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
@@ -169,7 +169,7 @@ pub struct list_item {
  * @brief list_item_iterator
  **/
 pub struct list_item_iterator {
-    data : *list_item,
+    data : *mut list_item,
     rem  : c_int,
     index: c_int
 }
@@ -460,7 +460,7 @@ pub struct get_client_context_reply {
     pad1 :            [u8,..20]
 }
 
-#[link_args="-lxcb-xselinux"]
+#[link(name="lxcb-xselinux")]
 pub extern "C" {
 
 /**
@@ -471,7 +471,7 @@ pub extern "C" {
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_selinux_query_version (c : *connection,
+pub fn xcb_selinux_query_version (c : *mut connection,
                                      client_major :  u8,
                                      client_minor :  u8) -> query_version_cookie;
 
@@ -486,7 +486,7 @@ pub unsafe fn xcb_selinux_query_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_selinux_query_version_unchecked (c : *connection,
+pub fn xcb_selinux_query_version_unchecked (c : *mut connection,
                                                client_major :  u8,
                                                client_minor :  u8) -> query_version_cookie;
 
@@ -504,11 +504,11 @@ pub unsafe fn xcb_selinux_query_version_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_selinux_query_version_reply (c : *connection,
+pub fn xcb_selinux_query_version_reply (c : *mut connection,
                                            cookie : query_version_cookie,
-                                           e : **generic_error) -> *query_version_reply;
+                                           e : *mut *mut generic_error) -> *mut query_version_reply;
 
-pub unsafe fn xcb_selinux_set_device_create_context_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_selinux_set_device_create_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -521,9 +521,9 @@ pub unsafe fn xcb_selinux_set_device_create_context_sizeof (_buffer :  *c_void) 
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_selinux_set_device_create_context_checked (c : *connection,
+pub fn xcb_selinux_set_device_create_context_checked (c : *mut connection,
                                                          context_len :  u32,
-                                                         context : *c_char) -> void_cookie;
+                                                         context : *mut c_char) -> void_cookie;
 
 /**
  *
@@ -533,11 +533,11 @@ pub unsafe fn xcb_selinux_set_device_create_context_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_selinux_set_device_create_context (c : *connection,
+pub fn xcb_selinux_set_device_create_context (c : *mut connection,
                                                  context_len :  u32,
-                                                 context : *c_char) -> void_cookie;
+                                                 context : *mut c_char) -> void_cookie;
 
-pub unsafe fn xcb_selinux_get_device_create_context_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_selinux_get_device_create_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -547,7 +547,7 @@ pub unsafe fn xcb_selinux_get_device_create_context_sizeof (_buffer :  *c_void) 
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_selinux_get_device_create_context (c : *connection) -> get_device_create_context_cookie;
+pub fn xcb_selinux_get_device_create_context (c : *mut connection) -> get_device_create_context_cookie;
 
 /**
  *
@@ -560,15 +560,15 @@ pub unsafe fn xcb_selinux_get_device_create_context (c : *connection) -> get_dev
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_selinux_get_device_create_context_unchecked (c : *connection) -> get_device_create_context_cookie;
+pub fn xcb_selinux_get_device_create_context_unchecked (c : *mut connection) -> get_device_create_context_cookie;
 
-pub unsafe fn xcb_selinux_get_device_create_context_context (R : *get_device_create_context_reply) -> *c_char;
-
-
-pub unsafe fn xcb_selinux_get_device_create_context_context_length (R : *get_device_create_context_reply) -> c_int;
+pub fn xcb_selinux_get_device_create_context_context (R : *mut get_device_create_context_reply) -> *mut c_char;
 
 
-pub unsafe fn xcb_selinux_get_device_create_context_context_end (R : *get_device_create_context_reply) -> generic_iterator;
+pub fn xcb_selinux_get_device_create_context_context_length (R : *mut get_device_create_context_reply) -> c_int;
+
+
+pub fn xcb_selinux_get_device_create_context_context_end (R : *mut get_device_create_context_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -584,11 +584,11 @@ pub unsafe fn xcb_selinux_get_device_create_context_context_end (R : *get_device
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_selinux_get_device_create_context_reply (c : *connection,
+pub fn xcb_selinux_get_device_create_context_reply (c : *mut connection,
                                                        cookie : get_device_create_context_cookie,
-                                                       e : **generic_error) -> *get_device_create_context_reply;
+                                                       e : *mut *mut generic_error) -> *mut get_device_create_context_reply;
 
-pub unsafe fn xcb_selinux_set_device_context_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_selinux_set_device_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -601,10 +601,10 @@ pub unsafe fn xcb_selinux_set_device_context_sizeof (_buffer :  *c_void) -> c_in
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_selinux_set_device_context_checked (c : *connection,
+pub fn xcb_selinux_set_device_context_checked (c : *mut connection,
                                                   device :  u32,
                                                   context_len :  u32,
-                                                  context : *c_char) -> void_cookie;
+                                                  context : *mut c_char) -> void_cookie;
 
 /**
  *
@@ -614,12 +614,12 @@ pub unsafe fn xcb_selinux_set_device_context_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_selinux_set_device_context (c : *connection,
+pub fn xcb_selinux_set_device_context (c : *mut connection,
                                           device :  u32,
                                           context_len :  u32,
-                                          context : *c_char) -> void_cookie;
+                                          context : *mut c_char) -> void_cookie;
 
-pub unsafe fn xcb_selinux_get_device_context_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_selinux_get_device_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -629,7 +629,7 @@ pub unsafe fn xcb_selinux_get_device_context_sizeof (_buffer :  *c_void) -> c_in
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_selinux_get_device_context (c : *connection,
+pub fn xcb_selinux_get_device_context (c : *mut connection,
                                           device :  u32) -> get_device_context_cookie;
 
 /**
@@ -643,16 +643,16 @@ pub unsafe fn xcb_selinux_get_device_context (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_selinux_get_device_context_unchecked (c : *connection,
+pub fn xcb_selinux_get_device_context_unchecked (c : *mut connection,
                                                     device :  u32) -> get_device_context_cookie;
 
-pub unsafe fn xcb_selinux_get_device_context_context (R : *get_device_context_reply) -> *c_char;
+pub fn xcb_selinux_get_device_context_context (R : *mut get_device_context_reply) -> *mut c_char;
 
 
-pub unsafe fn xcb_selinux_get_device_context_context_length (R : *get_device_context_reply) -> c_int;
+pub fn xcb_selinux_get_device_context_context_length (R : *mut get_device_context_reply) -> c_int;
 
 
-pub unsafe fn xcb_selinux_get_device_context_context_end (R : *get_device_context_reply) -> generic_iterator;
+pub fn xcb_selinux_get_device_context_context_end (R : *mut get_device_context_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -668,11 +668,11 @@ pub unsafe fn xcb_selinux_get_device_context_context_end (R : *get_device_contex
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_selinux_get_device_context_reply (c : *connection,
+pub fn xcb_selinux_get_device_context_reply (c : *mut connection,
                                                 cookie : get_device_context_cookie,
-                                                e : **generic_error) -> *get_device_context_reply;
+                                                e : *mut *mut generic_error) -> *mut get_device_context_reply;
 
-pub unsafe fn xcb_selinux_set_window_create_context_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_selinux_set_window_create_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -685,9 +685,9 @@ pub unsafe fn xcb_selinux_set_window_create_context_sizeof (_buffer :  *c_void) 
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_selinux_set_window_create_context_checked (c : *connection,
+pub fn xcb_selinux_set_window_create_context_checked (c : *mut connection,
                                                          context_len :  u32,
-                                                         context : *c_char) -> void_cookie;
+                                                         context : *mut c_char) -> void_cookie;
 
 /**
  *
@@ -697,11 +697,11 @@ pub unsafe fn xcb_selinux_set_window_create_context_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_selinux_set_window_create_context (c : *connection,
+pub fn xcb_selinux_set_window_create_context (c : *mut connection,
                                                  context_len :  u32,
-                                                 context : *c_char) -> void_cookie;
+                                                 context : *mut c_char) -> void_cookie;
 
-pub unsafe fn xcb_selinux_get_window_create_context_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_selinux_get_window_create_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -711,7 +711,7 @@ pub unsafe fn xcb_selinux_get_window_create_context_sizeof (_buffer :  *c_void) 
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_selinux_get_window_create_context (c : *connection) -> get_window_create_context_cookie;
+pub fn xcb_selinux_get_window_create_context (c : *mut connection) -> get_window_create_context_cookie;
 
 /**
  *
@@ -724,15 +724,15 @@ pub unsafe fn xcb_selinux_get_window_create_context (c : *connection) -> get_win
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_selinux_get_window_create_context_unchecked (c : *connection) -> get_window_create_context_cookie;
+pub fn xcb_selinux_get_window_create_context_unchecked (c : *mut connection) -> get_window_create_context_cookie;
 
-pub unsafe fn xcb_selinux_get_window_create_context_context (R : *get_window_create_context_reply) -> *c_char;
-
-
-pub unsafe fn xcb_selinux_get_window_create_context_context_length (R : *get_window_create_context_reply) -> c_int;
+pub fn xcb_selinux_get_window_create_context_context (R : *mut get_window_create_context_reply) -> *mut c_char;
 
 
-pub unsafe fn xcb_selinux_get_window_create_context_context_end (R : *get_window_create_context_reply) -> generic_iterator;
+pub fn xcb_selinux_get_window_create_context_context_length (R : *mut get_window_create_context_reply) -> c_int;
+
+
+pub fn xcb_selinux_get_window_create_context_context_end (R : *mut get_window_create_context_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -748,11 +748,11 @@ pub unsafe fn xcb_selinux_get_window_create_context_context_end (R : *get_window
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_selinux_get_window_create_context_reply (c : *connection,
+pub fn xcb_selinux_get_window_create_context_reply (c : *mut connection,
                                                        cookie : get_window_create_context_cookie,
-                                                       e : **generic_error) -> *get_window_create_context_reply;
+                                                       e : *mut *mut generic_error) -> *mut get_window_create_context_reply;
 
-pub unsafe fn xcb_selinux_get_window_context_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_selinux_get_window_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -762,7 +762,7 @@ pub unsafe fn xcb_selinux_get_window_context_sizeof (_buffer :  *c_void) -> c_in
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_selinux_get_window_context (c : *connection,
+pub fn xcb_selinux_get_window_context (c : *mut connection,
                                           window :  ffi::xproto::window) -> get_window_context_cookie;
 
 /**
@@ -776,16 +776,16 @@ pub unsafe fn xcb_selinux_get_window_context (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_selinux_get_window_context_unchecked (c : *connection,
+pub fn xcb_selinux_get_window_context_unchecked (c : *mut connection,
                                                     window :  ffi::xproto::window) -> get_window_context_cookie;
 
-pub unsafe fn xcb_selinux_get_window_context_context (R : *get_window_context_reply) -> *c_char;
+pub fn xcb_selinux_get_window_context_context (R : *mut get_window_context_reply) -> *mut c_char;
 
 
-pub unsafe fn xcb_selinux_get_window_context_context_length (R : *get_window_context_reply) -> c_int;
+pub fn xcb_selinux_get_window_context_context_length (R : *mut get_window_context_reply) -> c_int;
 
 
-pub unsafe fn xcb_selinux_get_window_context_context_end (R : *get_window_context_reply) -> generic_iterator;
+pub fn xcb_selinux_get_window_context_context_end (R : *mut get_window_context_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -801,27 +801,27 @@ pub unsafe fn xcb_selinux_get_window_context_context_end (R : *get_window_contex
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_selinux_get_window_context_reply (c : *connection,
+pub fn xcb_selinux_get_window_context_reply (c : *mut connection,
                                                 cookie : get_window_context_cookie,
-                                                e : **generic_error) -> *get_window_context_reply;
+                                                e : *mut *mut generic_error) -> *mut get_window_context_reply;
 
-pub unsafe fn xcb_selinux_list_item_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_selinux_list_item_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_selinux_list_item_object_context (R : *list_item) -> *c_char;
-
-
-pub unsafe fn xcb_selinux_list_item_object_context_length (R : *list_item) -> c_int;
+pub fn xcb_selinux_list_item_object_context (R : *mut list_item) -> *mut c_char;
 
 
-pub unsafe fn xcb_selinux_list_item_object_context_end (R : *list_item) -> generic_iterator;
-
-pub unsafe fn xcb_selinux_list_item_data_context (R : *list_item) -> *c_char;
+pub fn xcb_selinux_list_item_object_context_length (R : *mut list_item) -> c_int;
 
 
-pub unsafe fn xcb_selinux_list_item_data_context_length (R : *list_item) -> c_int;
+pub fn xcb_selinux_list_item_object_context_end (R : *mut list_item) -> generic_iterator;
+
+pub fn xcb_selinux_list_item_data_context (R : *mut list_item) -> *mut c_char;
 
 
-pub unsafe fn xcb_selinux_list_item_data_context_end (R : *list_item) -> generic_iterator;
+pub fn xcb_selinux_list_item_data_context_length (R : *mut list_item) -> c_int;
+
+
+pub fn xcb_selinux_list_item_data_context_end (R : *mut list_item) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -833,7 +833,7 @@ pub unsafe fn xcb_selinux_list_item_data_context_end (R : *list_item) -> generic
  *
  *
  */
-pub unsafe fn xcb_selinux_list_item_next (i:*list_item_iterator) -> c_void;
+pub fn xcb_selinux_list_item_next (i:*mut list_item_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -844,9 +844,9 @@ pub unsafe fn xcb_selinux_list_item_next (i:*list_item_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_selinux_list_item_end (i:list_item_iterator) -> generic_iterator;
+pub fn xcb_selinux_list_item_end (i:list_item_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_selinux_set_property_create_context_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_selinux_set_property_create_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -859,9 +859,9 @@ pub unsafe fn xcb_selinux_set_property_create_context_sizeof (_buffer :  *c_void
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_selinux_set_property_create_context_checked (c : *connection,
+pub fn xcb_selinux_set_property_create_context_checked (c : *mut connection,
                                                            context_len :  u32,
-                                                           context : *c_char) -> void_cookie;
+                                                           context : *mut c_char) -> void_cookie;
 
 /**
  *
@@ -871,11 +871,11 @@ pub unsafe fn xcb_selinux_set_property_create_context_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_selinux_set_property_create_context (c : *connection,
+pub fn xcb_selinux_set_property_create_context (c : *mut connection,
                                                    context_len :  u32,
-                                                   context : *c_char) -> void_cookie;
+                                                   context : *mut c_char) -> void_cookie;
 
-pub unsafe fn xcb_selinux_get_property_create_context_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_selinux_get_property_create_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -885,7 +885,7 @@ pub unsafe fn xcb_selinux_get_property_create_context_sizeof (_buffer :  *c_void
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_selinux_get_property_create_context (c : *connection) -> get_property_create_context_cookie;
+pub fn xcb_selinux_get_property_create_context (c : *mut connection) -> get_property_create_context_cookie;
 
 /**
  *
@@ -898,15 +898,15 @@ pub unsafe fn xcb_selinux_get_property_create_context (c : *connection) -> get_p
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_selinux_get_property_create_context_unchecked (c : *connection) -> get_property_create_context_cookie;
+pub fn xcb_selinux_get_property_create_context_unchecked (c : *mut connection) -> get_property_create_context_cookie;
 
-pub unsafe fn xcb_selinux_get_property_create_context_context (R : *get_property_create_context_reply) -> *c_char;
-
-
-pub unsafe fn xcb_selinux_get_property_create_context_context_length (R : *get_property_create_context_reply) -> c_int;
+pub fn xcb_selinux_get_property_create_context_context (R : *mut get_property_create_context_reply) -> *mut c_char;
 
 
-pub unsafe fn xcb_selinux_get_property_create_context_context_end (R : *get_property_create_context_reply) -> generic_iterator;
+pub fn xcb_selinux_get_property_create_context_context_length (R : *mut get_property_create_context_reply) -> c_int;
+
+
+pub fn xcb_selinux_get_property_create_context_context_end (R : *mut get_property_create_context_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -922,11 +922,11 @@ pub unsafe fn xcb_selinux_get_property_create_context_context_end (R : *get_prop
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_selinux_get_property_create_context_reply (c : *connection,
+pub fn xcb_selinux_get_property_create_context_reply (c : *mut connection,
                                                          cookie : get_property_create_context_cookie,
-                                                         e : **generic_error) -> *get_property_create_context_reply;
+                                                         e : *mut *mut generic_error) -> *mut get_property_create_context_reply;
 
-pub unsafe fn xcb_selinux_set_property_use_context_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_selinux_set_property_use_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -939,9 +939,9 @@ pub unsafe fn xcb_selinux_set_property_use_context_sizeof (_buffer :  *c_void) -
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_selinux_set_property_use_context_checked (c : *connection,
+pub fn xcb_selinux_set_property_use_context_checked (c : *mut connection,
                                                         context_len :  u32,
-                                                        context : *c_char) -> void_cookie;
+                                                        context : *mut c_char) -> void_cookie;
 
 /**
  *
@@ -951,11 +951,11 @@ pub unsafe fn xcb_selinux_set_property_use_context_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_selinux_set_property_use_context (c : *connection,
+pub fn xcb_selinux_set_property_use_context (c : *mut connection,
                                                 context_len :  u32,
-                                                context : *c_char) -> void_cookie;
+                                                context : *mut c_char) -> void_cookie;
 
-pub unsafe fn xcb_selinux_get_property_use_context_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_selinux_get_property_use_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -965,7 +965,7 @@ pub unsafe fn xcb_selinux_get_property_use_context_sizeof (_buffer :  *c_void) -
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_selinux_get_property_use_context (c : *connection) -> get_property_use_context_cookie;
+pub fn xcb_selinux_get_property_use_context (c : *mut connection) -> get_property_use_context_cookie;
 
 /**
  *
@@ -978,15 +978,15 @@ pub unsafe fn xcb_selinux_get_property_use_context (c : *connection) -> get_prop
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_selinux_get_property_use_context_unchecked (c : *connection) -> get_property_use_context_cookie;
+pub fn xcb_selinux_get_property_use_context_unchecked (c : *mut connection) -> get_property_use_context_cookie;
 
-pub unsafe fn xcb_selinux_get_property_use_context_context (R : *get_property_use_context_reply) -> *c_char;
-
-
-pub unsafe fn xcb_selinux_get_property_use_context_context_length (R : *get_property_use_context_reply) -> c_int;
+pub fn xcb_selinux_get_property_use_context_context (R : *mut get_property_use_context_reply) -> *mut c_char;
 
 
-pub unsafe fn xcb_selinux_get_property_use_context_context_end (R : *get_property_use_context_reply) -> generic_iterator;
+pub fn xcb_selinux_get_property_use_context_context_length (R : *mut get_property_use_context_reply) -> c_int;
+
+
+pub fn xcb_selinux_get_property_use_context_context_end (R : *mut get_property_use_context_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -1002,11 +1002,11 @@ pub unsafe fn xcb_selinux_get_property_use_context_context_end (R : *get_propert
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_selinux_get_property_use_context_reply (c : *connection,
+pub fn xcb_selinux_get_property_use_context_reply (c : *mut connection,
                                                       cookie : get_property_use_context_cookie,
-                                                      e : **generic_error) -> *get_property_use_context_reply;
+                                                      e : *mut *mut generic_error) -> *mut get_property_use_context_reply;
 
-pub unsafe fn xcb_selinux_get_property_context_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_selinux_get_property_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1016,7 +1016,7 @@ pub unsafe fn xcb_selinux_get_property_context_sizeof (_buffer :  *c_void) -> c_
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_selinux_get_property_context (c : *connection,
+pub fn xcb_selinux_get_property_context (c : *mut connection,
                                             window :  ffi::xproto::window,
                                             property :  ffi::xproto::atom) -> get_property_context_cookie;
 
@@ -1031,17 +1031,17 @@ pub unsafe fn xcb_selinux_get_property_context (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_selinux_get_property_context_unchecked (c : *connection,
+pub fn xcb_selinux_get_property_context_unchecked (c : *mut connection,
                                                       window :  ffi::xproto::window,
                                                       property :  ffi::xproto::atom) -> get_property_context_cookie;
 
-pub unsafe fn xcb_selinux_get_property_context_context (R : *get_property_context_reply) -> *c_char;
+pub fn xcb_selinux_get_property_context_context (R : *mut get_property_context_reply) -> *mut c_char;
 
 
-pub unsafe fn xcb_selinux_get_property_context_context_length (R : *get_property_context_reply) -> c_int;
+pub fn xcb_selinux_get_property_context_context_length (R : *mut get_property_context_reply) -> c_int;
 
 
-pub unsafe fn xcb_selinux_get_property_context_context_end (R : *get_property_context_reply) -> generic_iterator;
+pub fn xcb_selinux_get_property_context_context_end (R : *mut get_property_context_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -1057,11 +1057,11 @@ pub unsafe fn xcb_selinux_get_property_context_context_end (R : *get_property_co
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_selinux_get_property_context_reply (c : *connection,
+pub fn xcb_selinux_get_property_context_reply (c : *mut connection,
                                                   cookie : get_property_context_cookie,
-                                                  e : **generic_error) -> *get_property_context_reply;
+                                                  e : *mut *mut generic_error) -> *mut get_property_context_reply;
 
-pub unsafe fn xcb_selinux_get_property_data_context_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_selinux_get_property_data_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1071,7 +1071,7 @@ pub unsafe fn xcb_selinux_get_property_data_context_sizeof (_buffer :  *c_void) 
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_selinux_get_property_data_context (c : *connection,
+pub fn xcb_selinux_get_property_data_context (c : *mut connection,
                                                  window :  ffi::xproto::window,
                                                  property :  ffi::xproto::atom) -> get_property_data_context_cookie;
 
@@ -1086,17 +1086,17 @@ pub unsafe fn xcb_selinux_get_property_data_context (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_selinux_get_property_data_context_unchecked (c : *connection,
+pub fn xcb_selinux_get_property_data_context_unchecked (c : *mut connection,
                                                            window :  ffi::xproto::window,
                                                            property :  ffi::xproto::atom) -> get_property_data_context_cookie;
 
-pub unsafe fn xcb_selinux_get_property_data_context_context (R : *get_property_data_context_reply) -> *c_char;
+pub fn xcb_selinux_get_property_data_context_context (R : *mut get_property_data_context_reply) -> *mut c_char;
 
 
-pub unsafe fn xcb_selinux_get_property_data_context_context_length (R : *get_property_data_context_reply) -> c_int;
+pub fn xcb_selinux_get_property_data_context_context_length (R : *mut get_property_data_context_reply) -> c_int;
 
 
-pub unsafe fn xcb_selinux_get_property_data_context_context_end (R : *get_property_data_context_reply) -> generic_iterator;
+pub fn xcb_selinux_get_property_data_context_context_end (R : *mut get_property_data_context_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -1112,11 +1112,11 @@ pub unsafe fn xcb_selinux_get_property_data_context_context_end (R : *get_proper
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_selinux_get_property_data_context_reply (c : *connection,
+pub fn xcb_selinux_get_property_data_context_reply (c : *mut connection,
                                                        cookie : get_property_data_context_cookie,
-                                                       e : **generic_error) -> *get_property_data_context_reply;
+                                                       e : *mut *mut generic_error) -> *mut get_property_data_context_reply;
 
-pub unsafe fn xcb_selinux_list_properties_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_selinux_list_properties_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1126,7 +1126,7 @@ pub unsafe fn xcb_selinux_list_properties_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_selinux_list_properties (c : *connection,
+pub fn xcb_selinux_list_properties (c : *mut connection,
                                        window :  ffi::xproto::window) -> list_properties_cookie;
 
 /**
@@ -1140,13 +1140,13 @@ pub unsafe fn xcb_selinux_list_properties (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_selinux_list_properties_unchecked (c : *connection,
+pub fn xcb_selinux_list_properties_unchecked (c : *mut connection,
                                                  window :  ffi::xproto::window) -> list_properties_cookie;
 
 
-pub unsafe fn xcb_selinux_list_properties_properties_length (R : *list_properties_reply) -> c_int;
+pub fn xcb_selinux_list_properties_properties_length (R : *mut list_properties_reply) -> c_int;
 
-pub unsafe fn xcb_selinux_list_properties_properties_iterator (R : *list_properties_reply) -> list_item_iterator;
+pub fn xcb_selinux_list_properties_properties_iterator (R : *mut list_properties_reply) -> list_item_iterator;
 
 /**
  * Return the reply
@@ -1162,11 +1162,11 @@ pub unsafe fn xcb_selinux_list_properties_properties_iterator (R : *list_propert
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_selinux_list_properties_reply (c : *connection,
+pub fn xcb_selinux_list_properties_reply (c : *mut connection,
                                              cookie : list_properties_cookie,
-                                             e : **generic_error) -> *list_properties_reply;
+                                             e : *mut *mut generic_error) -> *mut list_properties_reply;
 
-pub unsafe fn xcb_selinux_set_selection_create_context_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_selinux_set_selection_create_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1179,9 +1179,9 @@ pub unsafe fn xcb_selinux_set_selection_create_context_sizeof (_buffer :  *c_voi
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_selinux_set_selection_create_context_checked (c : *connection,
+pub fn xcb_selinux_set_selection_create_context_checked (c : *mut connection,
                                                             context_len :  u32,
-                                                            context : *c_char) -> void_cookie;
+                                                            context : *mut c_char) -> void_cookie;
 
 /**
  *
@@ -1191,11 +1191,11 @@ pub unsafe fn xcb_selinux_set_selection_create_context_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_selinux_set_selection_create_context (c : *connection,
+pub fn xcb_selinux_set_selection_create_context (c : *mut connection,
                                                     context_len :  u32,
-                                                    context : *c_char) -> void_cookie;
+                                                    context : *mut c_char) -> void_cookie;
 
-pub unsafe fn xcb_selinux_get_selection_create_context_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_selinux_get_selection_create_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1205,7 +1205,7 @@ pub unsafe fn xcb_selinux_get_selection_create_context_sizeof (_buffer :  *c_voi
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_selinux_get_selection_create_context (c : *connection) -> get_selection_create_context_cookie;
+pub fn xcb_selinux_get_selection_create_context (c : *mut connection) -> get_selection_create_context_cookie;
 
 /**
  *
@@ -1218,15 +1218,15 @@ pub unsafe fn xcb_selinux_get_selection_create_context (c : *connection) -> get_
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_selinux_get_selection_create_context_unchecked (c : *connection) -> get_selection_create_context_cookie;
+pub fn xcb_selinux_get_selection_create_context_unchecked (c : *mut connection) -> get_selection_create_context_cookie;
 
-pub unsafe fn xcb_selinux_get_selection_create_context_context (R : *get_selection_create_context_reply) -> *c_char;
-
-
-pub unsafe fn xcb_selinux_get_selection_create_context_context_length (R : *get_selection_create_context_reply) -> c_int;
+pub fn xcb_selinux_get_selection_create_context_context (R : *mut get_selection_create_context_reply) -> *mut c_char;
 
 
-pub unsafe fn xcb_selinux_get_selection_create_context_context_end (R : *get_selection_create_context_reply) -> generic_iterator;
+pub fn xcb_selinux_get_selection_create_context_context_length (R : *mut get_selection_create_context_reply) -> c_int;
+
+
+pub fn xcb_selinux_get_selection_create_context_context_end (R : *mut get_selection_create_context_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -1242,11 +1242,11 @@ pub unsafe fn xcb_selinux_get_selection_create_context_context_end (R : *get_sel
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_selinux_get_selection_create_context_reply (c : *connection,
+pub fn xcb_selinux_get_selection_create_context_reply (c : *mut connection,
                                                           cookie : get_selection_create_context_cookie,
-                                                          e : **generic_error) -> *get_selection_create_context_reply;
+                                                          e : *mut *mut generic_error) -> *mut get_selection_create_context_reply;
 
-pub unsafe fn xcb_selinux_set_selection_use_context_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_selinux_set_selection_use_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1259,9 +1259,9 @@ pub unsafe fn xcb_selinux_set_selection_use_context_sizeof (_buffer :  *c_void) 
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_selinux_set_selection_use_context_checked (c : *connection,
+pub fn xcb_selinux_set_selection_use_context_checked (c : *mut connection,
                                                          context_len :  u32,
-                                                         context : *c_char) -> void_cookie;
+                                                         context : *mut c_char) -> void_cookie;
 
 /**
  *
@@ -1271,11 +1271,11 @@ pub unsafe fn xcb_selinux_set_selection_use_context_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_selinux_set_selection_use_context (c : *connection,
+pub fn xcb_selinux_set_selection_use_context (c : *mut connection,
                                                  context_len :  u32,
-                                                 context : *c_char) -> void_cookie;
+                                                 context : *mut c_char) -> void_cookie;
 
-pub unsafe fn xcb_selinux_get_selection_use_context_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_selinux_get_selection_use_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1285,7 +1285,7 @@ pub unsafe fn xcb_selinux_get_selection_use_context_sizeof (_buffer :  *c_void) 
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_selinux_get_selection_use_context (c : *connection) -> get_selection_use_context_cookie;
+pub fn xcb_selinux_get_selection_use_context (c : *mut connection) -> get_selection_use_context_cookie;
 
 /**
  *
@@ -1298,15 +1298,15 @@ pub unsafe fn xcb_selinux_get_selection_use_context (c : *connection) -> get_sel
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_selinux_get_selection_use_context_unchecked (c : *connection) -> get_selection_use_context_cookie;
+pub fn xcb_selinux_get_selection_use_context_unchecked (c : *mut connection) -> get_selection_use_context_cookie;
 
-pub unsafe fn xcb_selinux_get_selection_use_context_context (R : *get_selection_use_context_reply) -> *c_char;
-
-
-pub unsafe fn xcb_selinux_get_selection_use_context_context_length (R : *get_selection_use_context_reply) -> c_int;
+pub fn xcb_selinux_get_selection_use_context_context (R : *mut get_selection_use_context_reply) -> *mut c_char;
 
 
-pub unsafe fn xcb_selinux_get_selection_use_context_context_end (R : *get_selection_use_context_reply) -> generic_iterator;
+pub fn xcb_selinux_get_selection_use_context_context_length (R : *mut get_selection_use_context_reply) -> c_int;
+
+
+pub fn xcb_selinux_get_selection_use_context_context_end (R : *mut get_selection_use_context_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -1322,11 +1322,11 @@ pub unsafe fn xcb_selinux_get_selection_use_context_context_end (R : *get_select
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_selinux_get_selection_use_context_reply (c : *connection,
+pub fn xcb_selinux_get_selection_use_context_reply (c : *mut connection,
                                                        cookie : get_selection_use_context_cookie,
-                                                       e : **generic_error) -> *get_selection_use_context_reply;
+                                                       e : *mut *mut generic_error) -> *mut get_selection_use_context_reply;
 
-pub unsafe fn xcb_selinux_get_selection_context_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_selinux_get_selection_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1336,7 +1336,7 @@ pub unsafe fn xcb_selinux_get_selection_context_sizeof (_buffer :  *c_void) -> c
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_selinux_get_selection_context (c : *connection,
+pub fn xcb_selinux_get_selection_context (c : *mut connection,
                                              selection :  ffi::xproto::atom) -> get_selection_context_cookie;
 
 /**
@@ -1350,16 +1350,16 @@ pub unsafe fn xcb_selinux_get_selection_context (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_selinux_get_selection_context_unchecked (c : *connection,
+pub fn xcb_selinux_get_selection_context_unchecked (c : *mut connection,
                                                        selection :  ffi::xproto::atom) -> get_selection_context_cookie;
 
-pub unsafe fn xcb_selinux_get_selection_context_context (R : *get_selection_context_reply) -> *c_char;
+pub fn xcb_selinux_get_selection_context_context (R : *mut get_selection_context_reply) -> *mut c_char;
 
 
-pub unsafe fn xcb_selinux_get_selection_context_context_length (R : *get_selection_context_reply) -> c_int;
+pub fn xcb_selinux_get_selection_context_context_length (R : *mut get_selection_context_reply) -> c_int;
 
 
-pub unsafe fn xcb_selinux_get_selection_context_context_end (R : *get_selection_context_reply) -> generic_iterator;
+pub fn xcb_selinux_get_selection_context_context_end (R : *mut get_selection_context_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -1375,11 +1375,11 @@ pub unsafe fn xcb_selinux_get_selection_context_context_end (R : *get_selection_
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_selinux_get_selection_context_reply (c : *connection,
+pub fn xcb_selinux_get_selection_context_reply (c : *mut connection,
                                                    cookie : get_selection_context_cookie,
-                                                   e : **generic_error) -> *get_selection_context_reply;
+                                                   e : *mut *mut generic_error) -> *mut get_selection_context_reply;
 
-pub unsafe fn xcb_selinux_get_selection_data_context_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_selinux_get_selection_data_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1389,7 +1389,7 @@ pub unsafe fn xcb_selinux_get_selection_data_context_sizeof (_buffer :  *c_void)
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_selinux_get_selection_data_context (c : *connection,
+pub fn xcb_selinux_get_selection_data_context (c : *mut connection,
                                                   selection :  ffi::xproto::atom) -> get_selection_data_context_cookie;
 
 /**
@@ -1403,16 +1403,16 @@ pub unsafe fn xcb_selinux_get_selection_data_context (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_selinux_get_selection_data_context_unchecked (c : *connection,
+pub fn xcb_selinux_get_selection_data_context_unchecked (c : *mut connection,
                                                             selection :  ffi::xproto::atom) -> get_selection_data_context_cookie;
 
-pub unsafe fn xcb_selinux_get_selection_data_context_context (R : *get_selection_data_context_reply) -> *c_char;
+pub fn xcb_selinux_get_selection_data_context_context (R : *mut get_selection_data_context_reply) -> *mut c_char;
 
 
-pub unsafe fn xcb_selinux_get_selection_data_context_context_length (R : *get_selection_data_context_reply) -> c_int;
+pub fn xcb_selinux_get_selection_data_context_context_length (R : *mut get_selection_data_context_reply) -> c_int;
 
 
-pub unsafe fn xcb_selinux_get_selection_data_context_context_end (R : *get_selection_data_context_reply) -> generic_iterator;
+pub fn xcb_selinux_get_selection_data_context_context_end (R : *mut get_selection_data_context_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -1428,11 +1428,11 @@ pub unsafe fn xcb_selinux_get_selection_data_context_context_end (R : *get_selec
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_selinux_get_selection_data_context_reply (c : *connection,
+pub fn xcb_selinux_get_selection_data_context_reply (c : *mut connection,
                                                         cookie : get_selection_data_context_cookie,
-                                                        e : **generic_error) -> *get_selection_data_context_reply;
+                                                        e : *mut *mut generic_error) -> *mut get_selection_data_context_reply;
 
-pub unsafe fn xcb_selinux_list_selections_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_selinux_list_selections_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1442,7 +1442,7 @@ pub unsafe fn xcb_selinux_list_selections_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_selinux_list_selections (c : *connection) -> list_selections_cookie;
+pub fn xcb_selinux_list_selections (c : *mut connection) -> list_selections_cookie;
 
 /**
  *
@@ -1455,12 +1455,12 @@ pub unsafe fn xcb_selinux_list_selections (c : *connection) -> list_selections_c
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_selinux_list_selections_unchecked (c : *connection) -> list_selections_cookie;
+pub fn xcb_selinux_list_selections_unchecked (c : *mut connection) -> list_selections_cookie;
 
 
-pub unsafe fn xcb_selinux_list_selections_selections_length (R : *list_selections_reply) -> c_int;
+pub fn xcb_selinux_list_selections_selections_length (R : *mut list_selections_reply) -> c_int;
 
-pub unsafe fn xcb_selinux_list_selections_selections_iterator (R : *list_selections_reply) -> list_item_iterator;
+pub fn xcb_selinux_list_selections_selections_iterator (R : *mut list_selections_reply) -> list_item_iterator;
 
 /**
  * Return the reply
@@ -1476,11 +1476,11 @@ pub unsafe fn xcb_selinux_list_selections_selections_iterator (R : *list_selecti
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_selinux_list_selections_reply (c : *connection,
+pub fn xcb_selinux_list_selections_reply (c : *mut connection,
                                              cookie : list_selections_cookie,
-                                             e : **generic_error) -> *list_selections_reply;
+                                             e : *mut *mut generic_error) -> *mut list_selections_reply;
 
-pub unsafe fn xcb_selinux_get_client_context_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_selinux_get_client_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1490,7 +1490,7 @@ pub unsafe fn xcb_selinux_get_client_context_sizeof (_buffer :  *c_void) -> c_in
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_selinux_get_client_context (c : *connection,
+pub fn xcb_selinux_get_client_context (c : *mut connection,
                                           resource :  u32) -> get_client_context_cookie;
 
 /**
@@ -1504,16 +1504,16 @@ pub unsafe fn xcb_selinux_get_client_context (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_selinux_get_client_context_unchecked (c : *connection,
+pub fn xcb_selinux_get_client_context_unchecked (c : *mut connection,
                                                     resource :  u32) -> get_client_context_cookie;
 
-pub unsafe fn xcb_selinux_get_client_context_context (R : *get_client_context_reply) -> *c_char;
+pub fn xcb_selinux_get_client_context_context (R : *mut get_client_context_reply) -> *mut c_char;
 
 
-pub unsafe fn xcb_selinux_get_client_context_context_length (R : *get_client_context_reply) -> c_int;
+pub fn xcb_selinux_get_client_context_context_length (R : *mut get_client_context_reply) -> c_int;
 
 
-pub unsafe fn xcb_selinux_get_client_context_context_end (R : *get_client_context_reply) -> generic_iterator;
+pub fn xcb_selinux_get_client_context_context_end (R : *mut get_client_context_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -1529,8 +1529,8 @@ pub unsafe fn xcb_selinux_get_client_context_context_end (R : *get_client_contex
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_selinux_get_client_context_reply (c : *connection,
+pub fn xcb_selinux_get_client_context_reply (c : *mut connection,
                                                 cookie : get_client_context_cookie,
-                                                e : **generic_error) -> *get_client_context_reply;
+                                                e : *mut *mut generic_error) -> *mut get_client_context_reply;
 }
 

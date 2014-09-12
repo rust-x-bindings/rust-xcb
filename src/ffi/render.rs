@@ -4,8 +4,8 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
@@ -22,7 +22,7 @@ pub type glyph = u32;
  * @brief glyph_iterator
  **/
 pub struct glyph_iterator {
-    data : *glyph,
+    data : *mut glyph,
     rem  : c_int,
     index: c_int
 }
@@ -33,7 +33,7 @@ pub type glyphset = u32;
  * @brief glyphset_iterator
  **/
 pub struct glyphset_iterator {
-    data : *glyphset,
+    data : *mut glyphset,
     rem  : c_int,
     index: c_int
 }
@@ -44,7 +44,7 @@ pub type picture = u32;
  * @brief picture_iterator
  **/
 pub struct picture_iterator {
-    data : *picture,
+    data : *mut picture,
     rem  : c_int,
     index: c_int
 }
@@ -55,7 +55,7 @@ pub type pictformat = u32;
  * @brief pictformat_iterator
  **/
 pub struct pictformat_iterator {
-    data : *pictformat,
+    data : *mut pictformat,
     rem  : c_int,
     index: c_int
 }
@@ -66,7 +66,7 @@ pub type fixed = i32;
  * @brief fixed_iterator
  **/
 pub struct fixed_iterator {
-    data : *fixed,
+    data : *mut fixed,
     rem  : c_int,
     index: c_int
 }
@@ -127,7 +127,7 @@ pub struct directformat {
  * @brief directformat_iterator
  **/
 pub struct directformat_iterator {
-    data : *directformat,
+    data : *mut directformat,
     rem  : c_int,
     index: c_int
 }
@@ -146,7 +146,7 @@ pub struct pictforminfo {
  * @brief pictforminfo_iterator
  **/
 pub struct pictforminfo_iterator {
-    data : *pictforminfo,
+    data : *mut pictforminfo,
     rem  : c_int,
     index: c_int
 }
@@ -161,7 +161,7 @@ pub struct pictvisual {
  * @brief pictvisual_iterator
  **/
 pub struct pictvisual_iterator {
-    data : *pictvisual,
+    data : *mut pictvisual,
     rem  : c_int,
     index: c_int
 }
@@ -178,7 +178,7 @@ pub struct pictdepth {
  * @brief pictdepth_iterator
  **/
 pub struct pictdepth_iterator {
-    data : *pictdepth,
+    data : *mut pictdepth,
     rem  : c_int,
     index: c_int
 }
@@ -193,7 +193,7 @@ pub struct pictscreen {
  * @brief pictscreen_iterator
  **/
 pub struct pictscreen_iterator {
-    data : *pictscreen,
+    data : *mut pictscreen,
     rem  : c_int,
     index: c_int
 }
@@ -211,7 +211,7 @@ pub struct indexvalue {
  * @brief indexvalue_iterator
  **/
 pub struct indexvalue_iterator {
-    data : *indexvalue,
+    data : *mut indexvalue,
     rem  : c_int,
     index: c_int
 }
@@ -228,7 +228,7 @@ pub struct color {
  * @brief color_iterator
  **/
 pub struct color_iterator {
-    data : *color,
+    data : *mut color,
     rem  : c_int,
     index: c_int
 }
@@ -243,7 +243,7 @@ pub struct pointfix {
  * @brief pointfix_iterator
  **/
 pub struct pointfix_iterator {
-    data : *pointfix,
+    data : *mut pointfix,
     rem  : c_int,
     index: c_int
 }
@@ -258,7 +258,7 @@ pub struct linefix {
  * @brief linefix_iterator
  **/
 pub struct linefix_iterator {
-    data : *linefix,
+    data : *mut linefix,
     rem  : c_int,
     index: c_int
 }
@@ -274,7 +274,7 @@ pub struct triangle {
  * @brief triangle_iterator
  **/
 pub struct triangle_iterator {
-    data : *triangle,
+    data : *mut triangle,
     rem  : c_int,
     index: c_int
 }
@@ -291,7 +291,7 @@ pub struct trapezoid {
  * @brief trapezoid_iterator
  **/
 pub struct trapezoid_iterator {
-    data : *trapezoid,
+    data : *mut trapezoid,
     rem  : c_int,
     index: c_int
 }
@@ -310,7 +310,7 @@ pub struct glyphinfo {
  * @brief glyphinfo_iterator
  **/
 pub struct glyphinfo_iterator {
-    data : *glyphinfo,
+    data : *mut glyphinfo,
     rem  : c_int,
     index: c_int
 }
@@ -649,7 +649,7 @@ pub struct transform {
  * @brief transform_iterator
  **/
 pub struct transform_iterator {
-    data : *transform,
+    data : *mut transform,
     rem  : c_int,
     index: c_int
 }
@@ -709,7 +709,7 @@ pub struct animcursorelt {
  * @brief animcursorelt_iterator
  **/
 pub struct animcursorelt_iterator {
-    data : *animcursorelt,
+    data : *mut animcursorelt,
     rem  : c_int,
     index: c_int
 }
@@ -734,7 +734,7 @@ pub struct spanfix {
  * @brief spanfix_iterator
  **/
 pub struct spanfix_iterator {
-    data : *spanfix,
+    data : *mut spanfix,
     rem  : c_int,
     index: c_int
 }
@@ -749,7 +749,7 @@ pub struct trap {
  * @brief trap_iterator
  **/
 pub struct trap_iterator {
-    data : *trap,
+    data : *mut trap,
     rem  : c_int,
     index: c_int
 }
@@ -813,7 +813,7 @@ pub struct create_conical_gradient_request {
     num_stops :      u32
 }
 
-#[link_args="-lxcb-render"]
+#[link(name="lxcb-render")]
 pub extern "C" {
 
 /**
@@ -826,7 +826,7 @@ pub extern "C" {
  *
  *
  */
-pub unsafe fn xcb_render_glyph_next (i:*glyph_iterator) -> c_void;
+pub fn xcb_render_glyph_next (i:*mut glyph_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -837,7 +837,7 @@ pub unsafe fn xcb_render_glyph_next (i:*glyph_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_render_glyph_end (i:glyph_iterator) -> generic_iterator;
+pub fn xcb_render_glyph_end (i:glyph_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -849,7 +849,7 @@ pub unsafe fn xcb_render_glyph_end (i:glyph_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_render_glyphset_next (i:*glyphset_iterator) -> c_void;
+pub fn xcb_render_glyphset_next (i:*mut glyphset_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -860,7 +860,7 @@ pub unsafe fn xcb_render_glyphset_next (i:*glyphset_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_render_glyphset_end (i:glyphset_iterator) -> generic_iterator;
+pub fn xcb_render_glyphset_end (i:glyphset_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -872,7 +872,7 @@ pub unsafe fn xcb_render_glyphset_end (i:glyphset_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_render_picture_next (i:*picture_iterator) -> c_void;
+pub fn xcb_render_picture_next (i:*mut picture_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -883,7 +883,7 @@ pub unsafe fn xcb_render_picture_next (i:*picture_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_render_picture_end (i:picture_iterator) -> generic_iterator;
+pub fn xcb_render_picture_end (i:picture_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -895,7 +895,7 @@ pub unsafe fn xcb_render_picture_end (i:picture_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_render_pictformat_next (i:*pictformat_iterator) -> c_void;
+pub fn xcb_render_pictformat_next (i:*mut pictformat_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -906,7 +906,7 @@ pub unsafe fn xcb_render_pictformat_next (i:*pictformat_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_render_pictformat_end (i:pictformat_iterator) -> generic_iterator;
+pub fn xcb_render_pictformat_end (i:pictformat_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -918,7 +918,7 @@ pub unsafe fn xcb_render_pictformat_end (i:pictformat_iterator) -> generic_itera
  *
  *
  */
-pub unsafe fn xcb_render_fixed_next (i:*fixed_iterator) -> c_void;
+pub fn xcb_render_fixed_next (i:*mut fixed_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -929,7 +929,7 @@ pub unsafe fn xcb_render_fixed_next (i:*fixed_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_render_fixed_end (i:fixed_iterator) -> generic_iterator;
+pub fn xcb_render_fixed_end (i:fixed_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -941,7 +941,7 @@ pub unsafe fn xcb_render_fixed_end (i:fixed_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_render_directformat_next (i:*directformat_iterator) -> c_void;
+pub fn xcb_render_directformat_next (i:*mut directformat_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -952,7 +952,7 @@ pub unsafe fn xcb_render_directformat_next (i:*directformat_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_render_directformat_end (i:directformat_iterator) -> generic_iterator;
+pub fn xcb_render_directformat_end (i:directformat_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -964,7 +964,7 @@ pub unsafe fn xcb_render_directformat_end (i:directformat_iterator) -> generic_i
  *
  *
  */
-pub unsafe fn xcb_render_pictforminfo_next (i:*pictforminfo_iterator) -> c_void;
+pub fn xcb_render_pictforminfo_next (i:*mut pictforminfo_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -975,7 +975,7 @@ pub unsafe fn xcb_render_pictforminfo_next (i:*pictforminfo_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_render_pictforminfo_end (i:pictforminfo_iterator) -> generic_iterator;
+pub fn xcb_render_pictforminfo_end (i:pictforminfo_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -987,7 +987,7 @@ pub unsafe fn xcb_render_pictforminfo_end (i:pictforminfo_iterator) -> generic_i
  *
  *
  */
-pub unsafe fn xcb_render_pictvisual_next (i:*pictvisual_iterator) -> c_void;
+pub fn xcb_render_pictvisual_next (i:*mut pictvisual_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -998,16 +998,16 @@ pub unsafe fn xcb_render_pictvisual_next (i:*pictvisual_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_render_pictvisual_end (i:pictvisual_iterator) -> generic_iterator;
+pub fn xcb_render_pictvisual_end (i:pictvisual_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_render_pictdepth_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_render_pictdepth_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_render_pictdepth_visuals (R : *pictdepth) -> *pictvisual;
+pub fn xcb_render_pictdepth_visuals (R : *mut pictdepth) -> *mut pictvisual;
 
 
-pub unsafe fn xcb_render_pictdepth_visuals_length (R : *pictdepth) -> c_int;
+pub fn xcb_render_pictdepth_visuals_length (R : *mut pictdepth) -> c_int;
 
-pub unsafe fn xcb_render_pictdepth_visuals_iterator (R : *pictdepth) -> pictvisual_iterator;
+pub fn xcb_render_pictdepth_visuals_iterator (R : *mut pictdepth) -> pictvisual_iterator;
 
 /**
  * Get the next element of the iterator
@@ -1019,7 +1019,7 @@ pub unsafe fn xcb_render_pictdepth_visuals_iterator (R : *pictdepth) -> pictvisu
  *
  *
  */
-pub unsafe fn xcb_render_pictdepth_next (i:*pictdepth_iterator) -> c_void;
+pub fn xcb_render_pictdepth_next (i:*mut pictdepth_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1030,14 +1030,14 @@ pub unsafe fn xcb_render_pictdepth_next (i:*pictdepth_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_render_pictdepth_end (i:pictdepth_iterator) -> generic_iterator;
+pub fn xcb_render_pictdepth_end (i:pictdepth_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_render_pictscreen_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_render_pictscreen_sizeof (_buffer :  *mut c_void) -> c_int;
 
 
-pub unsafe fn xcb_render_pictscreen_depths_length (R : *pictscreen) -> c_int;
+pub fn xcb_render_pictscreen_depths_length (R : *mut pictscreen) -> c_int;
 
-pub unsafe fn xcb_render_pictscreen_depths_iterator (R : *pictscreen) -> pictdepth_iterator;
+pub fn xcb_render_pictscreen_depths_iterator (R : *mut pictscreen) -> pictdepth_iterator;
 
 /**
  * Get the next element of the iterator
@@ -1049,7 +1049,7 @@ pub unsafe fn xcb_render_pictscreen_depths_iterator (R : *pictscreen) -> pictdep
  *
  *
  */
-pub unsafe fn xcb_render_pictscreen_next (i:*pictscreen_iterator) -> c_void;
+pub fn xcb_render_pictscreen_next (i:*mut pictscreen_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1060,7 +1060,7 @@ pub unsafe fn xcb_render_pictscreen_next (i:*pictscreen_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_render_pictscreen_end (i:pictscreen_iterator) -> generic_iterator;
+pub fn xcb_render_pictscreen_end (i:pictscreen_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -1072,7 +1072,7 @@ pub unsafe fn xcb_render_pictscreen_end (i:pictscreen_iterator) -> generic_itera
  *
  *
  */
-pub unsafe fn xcb_render_indexvalue_next (i:*indexvalue_iterator) -> c_void;
+pub fn xcb_render_indexvalue_next (i:*mut indexvalue_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1083,7 +1083,7 @@ pub unsafe fn xcb_render_indexvalue_next (i:*indexvalue_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_render_indexvalue_end (i:indexvalue_iterator) -> generic_iterator;
+pub fn xcb_render_indexvalue_end (i:indexvalue_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -1095,7 +1095,7 @@ pub unsafe fn xcb_render_indexvalue_end (i:indexvalue_iterator) -> generic_itera
  *
  *
  */
-pub unsafe fn xcb_render_color_next (i:*color_iterator) -> c_void;
+pub fn xcb_render_color_next (i:*mut color_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1106,7 +1106,7 @@ pub unsafe fn xcb_render_color_next (i:*color_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_render_color_end (i:color_iterator) -> generic_iterator;
+pub fn xcb_render_color_end (i:color_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -1118,7 +1118,7 @@ pub unsafe fn xcb_render_color_end (i:color_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_render_pointfix_next (i:*pointfix_iterator) -> c_void;
+pub fn xcb_render_pointfix_next (i:*mut pointfix_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1129,7 +1129,7 @@ pub unsafe fn xcb_render_pointfix_next (i:*pointfix_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_render_pointfix_end (i:pointfix_iterator) -> generic_iterator;
+pub fn xcb_render_pointfix_end (i:pointfix_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -1141,7 +1141,7 @@ pub unsafe fn xcb_render_pointfix_end (i:pointfix_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_render_linefix_next (i:*linefix_iterator) -> c_void;
+pub fn xcb_render_linefix_next (i:*mut linefix_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1152,7 +1152,7 @@ pub unsafe fn xcb_render_linefix_next (i:*linefix_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_render_linefix_end (i:linefix_iterator) -> generic_iterator;
+pub fn xcb_render_linefix_end (i:linefix_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -1164,7 +1164,7 @@ pub unsafe fn xcb_render_linefix_end (i:linefix_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_render_triangle_next (i:*triangle_iterator) -> c_void;
+pub fn xcb_render_triangle_next (i:*mut triangle_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1175,7 +1175,7 @@ pub unsafe fn xcb_render_triangle_next (i:*triangle_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_render_triangle_end (i:triangle_iterator) -> generic_iterator;
+pub fn xcb_render_triangle_end (i:triangle_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -1187,7 +1187,7 @@ pub unsafe fn xcb_render_triangle_end (i:triangle_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_render_trapezoid_next (i:*trapezoid_iterator) -> c_void;
+pub fn xcb_render_trapezoid_next (i:*mut trapezoid_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1198,7 +1198,7 @@ pub unsafe fn xcb_render_trapezoid_next (i:*trapezoid_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_render_trapezoid_end (i:trapezoid_iterator) -> generic_iterator;
+pub fn xcb_render_trapezoid_end (i:trapezoid_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -1210,7 +1210,7 @@ pub unsafe fn xcb_render_trapezoid_end (i:trapezoid_iterator) -> generic_iterato
  *
  *
  */
-pub unsafe fn xcb_render_glyphinfo_next (i:*glyphinfo_iterator) -> c_void;
+pub fn xcb_render_glyphinfo_next (i:*mut glyphinfo_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1221,7 +1221,7 @@ pub unsafe fn xcb_render_glyphinfo_next (i:*glyphinfo_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_render_glyphinfo_end (i:glyphinfo_iterator) -> generic_iterator;
+pub fn xcb_render_glyphinfo_end (i:glyphinfo_iterator) -> generic_iterator;
 
 /**
  *
@@ -1231,7 +1231,7 @@ pub unsafe fn xcb_render_glyphinfo_end (i:glyphinfo_iterator) -> generic_iterato
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_query_version (c : *connection,
+pub fn xcb_render_query_version (c : *mut connection,
                                     client_major_version :  u32,
                                     client_minor_version :  u32) -> query_version_cookie;
 
@@ -1246,7 +1246,7 @@ pub unsafe fn xcb_render_query_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_render_query_version_unchecked (c : *connection,
+pub fn xcb_render_query_version_unchecked (c : *mut connection,
                                               client_major_version :  u32,
                                               client_minor_version :  u32) -> query_version_cookie;
 
@@ -1264,11 +1264,11 @@ pub unsafe fn xcb_render_query_version_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_render_query_version_reply (c : *connection,
+pub fn xcb_render_query_version_reply (c : *mut connection,
                                           cookie : query_version_cookie,
-                                          e : **generic_error) -> *query_version_reply;
+                                          e : *mut *mut generic_error) -> *mut query_version_reply;
 
-pub unsafe fn xcb_render_query_pict_formats_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_render_query_pict_formats_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1278,7 +1278,7 @@ pub unsafe fn xcb_render_query_pict_formats_sizeof (_buffer :  *c_void) -> c_int
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_query_pict_formats (c : *connection) -> query_pict_formats_cookie;
+pub fn xcb_render_query_pict_formats (c : *mut connection) -> query_pict_formats_cookie;
 
 /**
  *
@@ -1291,27 +1291,27 @@ pub unsafe fn xcb_render_query_pict_formats (c : *connection) -> query_pict_form
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_render_query_pict_formats_unchecked (c : *connection) -> query_pict_formats_cookie;
+pub fn xcb_render_query_pict_formats_unchecked (c : *mut connection) -> query_pict_formats_cookie;
 
-pub unsafe fn xcb_render_query_pict_formats_formats (R : *query_pict_formats_reply) -> *pictforminfo;
-
-
-pub unsafe fn xcb_render_query_pict_formats_formats_length (R : *query_pict_formats_reply) -> c_int;
-
-pub unsafe fn xcb_render_query_pict_formats_formats_iterator (R : *query_pict_formats_reply) -> pictforminfo_iterator;
+pub fn xcb_render_query_pict_formats_formats (R : *mut query_pict_formats_reply) -> *mut pictforminfo;
 
 
-pub unsafe fn xcb_render_query_pict_formats_screens_length (R : *query_pict_formats_reply) -> c_int;
+pub fn xcb_render_query_pict_formats_formats_length (R : *mut query_pict_formats_reply) -> c_int;
 
-pub unsafe fn xcb_render_query_pict_formats_screens_iterator (R : *query_pict_formats_reply) -> pictscreen_iterator;
-
-pub unsafe fn xcb_render_query_pict_formats_subpixels (R : *query_pict_formats_reply) -> *u32;
+pub fn xcb_render_query_pict_formats_formats_iterator (R : *mut query_pict_formats_reply) -> pictforminfo_iterator;
 
 
-pub unsafe fn xcb_render_query_pict_formats_subpixels_length (R : *query_pict_formats_reply) -> c_int;
+pub fn xcb_render_query_pict_formats_screens_length (R : *mut query_pict_formats_reply) -> c_int;
+
+pub fn xcb_render_query_pict_formats_screens_iterator (R : *mut query_pict_formats_reply) -> pictscreen_iterator;
+
+pub fn xcb_render_query_pict_formats_subpixels (R : *mut query_pict_formats_reply) -> *mut u32;
 
 
-pub unsafe fn xcb_render_query_pict_formats_subpixels_end (R : *query_pict_formats_reply) -> generic_iterator;
+pub fn xcb_render_query_pict_formats_subpixels_length (R : *mut query_pict_formats_reply) -> c_int;
+
+
+pub fn xcb_render_query_pict_formats_subpixels_end (R : *mut query_pict_formats_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -1327,11 +1327,11 @@ pub unsafe fn xcb_render_query_pict_formats_subpixels_end (R : *query_pict_forma
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_render_query_pict_formats_reply (c : *connection,
+pub fn xcb_render_query_pict_formats_reply (c : *mut connection,
                                                cookie : query_pict_formats_cookie,
-                                               e : **generic_error) -> *query_pict_formats_reply;
+                                               e : *mut *mut generic_error) -> *mut query_pict_formats_reply;
 
-pub unsafe fn xcb_render_query_pict_index_values_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_render_query_pict_index_values_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1341,7 +1341,7 @@ pub unsafe fn xcb_render_query_pict_index_values_sizeof (_buffer :  *c_void) -> 
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_query_pict_index_values (c : *connection,
+pub fn xcb_render_query_pict_index_values (c : *mut connection,
                                               format :  pictformat) -> query_pict_index_values_cookie;
 
 /**
@@ -1355,15 +1355,15 @@ pub unsafe fn xcb_render_query_pict_index_values (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_render_query_pict_index_values_unchecked (c : *connection,
+pub fn xcb_render_query_pict_index_values_unchecked (c : *mut connection,
                                                         format :  pictformat) -> query_pict_index_values_cookie;
 
-pub unsafe fn xcb_render_query_pict_index_values_values (R : *query_pict_index_values_reply) -> *indexvalue;
+pub fn xcb_render_query_pict_index_values_values (R : *mut query_pict_index_values_reply) -> *mut indexvalue;
 
 
-pub unsafe fn xcb_render_query_pict_index_values_values_length (R : *query_pict_index_values_reply) -> c_int;
+pub fn xcb_render_query_pict_index_values_values_length (R : *mut query_pict_index_values_reply) -> c_int;
 
-pub unsafe fn xcb_render_query_pict_index_values_values_iterator (R : *query_pict_index_values_reply) -> indexvalue_iterator;
+pub fn xcb_render_query_pict_index_values_values_iterator (R : *mut query_pict_index_values_reply) -> indexvalue_iterator;
 
 /**
  * Return the reply
@@ -1379,11 +1379,11 @@ pub unsafe fn xcb_render_query_pict_index_values_values_iterator (R : *query_pic
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_render_query_pict_index_values_reply (c : *connection,
+pub fn xcb_render_query_pict_index_values_reply (c : *mut connection,
                                                     cookie : query_pict_index_values_cookie,
-                                                    e : **generic_error) -> *query_pict_index_values_reply;
+                                                    e : *mut *mut generic_error) -> *mut query_pict_index_values_reply;
 
-pub unsafe fn xcb_render_create_picture_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_render_create_picture_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1396,12 +1396,12 @@ pub unsafe fn xcb_render_create_picture_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_create_picture_checked (c : *connection,
+pub fn xcb_render_create_picture_checked (c : *mut connection,
                                              pid :  picture,
                                              drawable :  ffi::xproto::drawable,
                                              format :  pictformat,
                                              value_mask :  u32,
-                                             value_list : *u32) -> void_cookie;
+                                             value_list : *mut u32) -> void_cookie;
 
 /**
  *
@@ -1411,14 +1411,14 @@ pub unsafe fn xcb_render_create_picture_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_create_picture (c : *connection,
+pub fn xcb_render_create_picture (c : *mut connection,
                                      pid :  picture,
                                      drawable :  ffi::xproto::drawable,
                                      format :  pictformat,
                                      value_mask :  u32,
-                                     value_list : *u32) -> void_cookie;
+                                     value_list : *mut u32) -> void_cookie;
 
-pub unsafe fn xcb_render_change_picture_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_render_change_picture_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1431,10 +1431,10 @@ pub unsafe fn xcb_render_change_picture_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_change_picture_checked (c : *connection,
+pub fn xcb_render_change_picture_checked (c : *mut connection,
                                              picture :  picture,
                                              value_mask :  u32,
-                                             value_list : *u32) -> void_cookie;
+                                             value_list : *mut u32) -> void_cookie;
 
 /**
  *
@@ -1444,12 +1444,12 @@ pub unsafe fn xcb_render_change_picture_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_change_picture (c : *connection,
+pub fn xcb_render_change_picture (c : *mut connection,
                                      picture :  picture,
                                      value_mask :  u32,
-                                     value_list : *u32) -> void_cookie;
+                                     value_list : *mut u32) -> void_cookie;
 
-pub unsafe fn xcb_render_set_picture_clip_rectangles_sizeof (_buffer :  *c_void,
+pub fn xcb_render_set_picture_clip_rectangles_sizeof (_buffer :  *mut c_void,
                                                rectangles_len :  u32) -> c_int;
 
 /**
@@ -1463,12 +1463,12 @@ pub unsafe fn xcb_render_set_picture_clip_rectangles_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_set_picture_clip_rectangles_checked (c : *connection,
+pub fn xcb_render_set_picture_clip_rectangles_checked (c : *mut connection,
                                                           picture :  picture,
                                                           clip_x_origin :  i16,
                                                           clip_y_origin :  i16,
                                                           rectangles_len :  u32,
-                                                          rectangles : *ffi::xproto::rectangle) -> void_cookie;
+                                                          rectangles : *mut ffi::xproto::rectangle) -> void_cookie;
 
 /**
  *
@@ -1478,12 +1478,12 @@ pub unsafe fn xcb_render_set_picture_clip_rectangles_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_set_picture_clip_rectangles (c : *connection,
+pub fn xcb_render_set_picture_clip_rectangles (c : *mut connection,
                                                   picture :  picture,
                                                   clip_x_origin :  i16,
                                                   clip_y_origin :  i16,
                                                   rectangles_len :  u32,
-                                                  rectangles : *ffi::xproto::rectangle) -> void_cookie;
+                                                  rectangles : *mut ffi::xproto::rectangle) -> void_cookie;
 
 /**
  *
@@ -1496,7 +1496,7 @@ pub unsafe fn xcb_render_set_picture_clip_rectangles (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_free_picture_checked (c : *connection,
+pub fn xcb_render_free_picture_checked (c : *mut connection,
                                            picture :  picture) -> void_cookie;
 
 /**
@@ -1507,7 +1507,7 @@ pub unsafe fn xcb_render_free_picture_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_free_picture (c : *connection,
+pub fn xcb_render_free_picture (c : *mut connection,
                                    picture :  picture) -> void_cookie;
 
 /**
@@ -1521,7 +1521,7 @@ pub unsafe fn xcb_render_free_picture (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_composite_checked (c : *connection,
+pub fn xcb_render_composite_checked (c : *mut connection,
                                         op :  u8,
                                         src :  picture,
                                         mask :  picture,
@@ -1543,7 +1543,7 @@ pub unsafe fn xcb_render_composite_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_composite (c : *connection,
+pub fn xcb_render_composite (c : *mut connection,
                                 op :  u8,
                                 src :  picture,
                                 mask :  picture,
@@ -1557,8 +1557,8 @@ pub unsafe fn xcb_render_composite (c : *connection,
                                 width :  u16,
                                 height :  u16) -> void_cookie;
 
-pub unsafe fn xcb_render_trapezoids_sizeof (_buffer :  *c_void,
-                              traps_len :  u32) -> c_int;
+pub fn xcb_render_trapezoids_sizeof (_buffer :  *mut c_void,
+                              traps_len :    u32) -> c_int;
 
 /**
  *
@@ -1571,7 +1571,7 @@ pub unsafe fn xcb_render_trapezoids_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_trapezoids_checked (c : *connection,
+pub fn xcb_render_trapezoids_checked (c : *mut connection,
                                          op :  u8,
                                          src :  picture,
                                          dst :  picture,
@@ -1579,7 +1579,7 @@ pub unsafe fn xcb_render_trapezoids_checked (c : *connection,
                                          src_x :  i16,
                                          src_y :  i16,
                                          traps_len :  u32,
-                                         traps : *trapezoid) -> void_cookie;
+                                         traps : *mut trapezoid) -> void_cookie;
 
 /**
  *
@@ -1589,7 +1589,7 @@ pub unsafe fn xcb_render_trapezoids_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_trapezoids (c : *connection,
+pub fn xcb_render_trapezoids (c : *mut connection,
                                  op :  u8,
                                  src :  picture,
                                  dst :  picture,
@@ -1597,9 +1597,9 @@ pub unsafe fn xcb_render_trapezoids (c : *connection,
                                  src_x :  i16,
                                  src_y :  i16,
                                  traps_len :  u32,
-                                 traps : *trapezoid) -> void_cookie;
+                                 traps : *mut trapezoid) -> void_cookie;
 
-pub unsafe fn xcb_render_triangles_sizeof (_buffer :  *c_void,
+pub fn xcb_render_triangles_sizeof (_buffer :  *mut c_void,
                              triangles_len :  u32) -> c_int;
 
 /**
@@ -1613,7 +1613,7 @@ pub unsafe fn xcb_render_triangles_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_triangles_checked (c : *connection,
+pub fn xcb_render_triangles_checked (c : *mut connection,
                                         op :  u8,
                                         src :  picture,
                                         dst :  picture,
@@ -1621,7 +1621,7 @@ pub unsafe fn xcb_render_triangles_checked (c : *connection,
                                         src_x :  i16,
                                         src_y :  i16,
                                         triangles_len :  u32,
-                                        triangles : *triangle) -> void_cookie;
+                                        triangles : *mut triangle) -> void_cookie;
 
 /**
  *
@@ -1631,7 +1631,7 @@ pub unsafe fn xcb_render_triangles_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_triangles (c : *connection,
+pub fn xcb_render_triangles (c : *mut connection,
                                 op :  u8,
                                 src :  picture,
                                 dst :  picture,
@@ -1639,10 +1639,10 @@ pub unsafe fn xcb_render_triangles (c : *connection,
                                 src_x :  i16,
                                 src_y :  i16,
                                 triangles_len :  u32,
-                                triangles : *triangle) -> void_cookie;
+                                triangles : *mut triangle) -> void_cookie;
 
-pub unsafe fn xcb_render_tri_strip_sizeof (_buffer :  *c_void,
-                             points_len :  u32) -> c_int;
+pub fn xcb_render_tri_strip_sizeof (_buffer :  *mut c_void,
+                             points_len :   u32) -> c_int;
 
 /**
  *
@@ -1655,7 +1655,7 @@ pub unsafe fn xcb_render_tri_strip_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_tri_strip_checked (c : *connection,
+pub fn xcb_render_tri_strip_checked (c : *mut connection,
                                         op :  u8,
                                         src :  picture,
                                         dst :  picture,
@@ -1663,7 +1663,7 @@ pub unsafe fn xcb_render_tri_strip_checked (c : *connection,
                                         src_x :  i16,
                                         src_y :  i16,
                                         points_len :  u32,
-                                        points : *pointfix) -> void_cookie;
+                                        points : *mut pointfix) -> void_cookie;
 
 /**
  *
@@ -1673,7 +1673,7 @@ pub unsafe fn xcb_render_tri_strip_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_tri_strip (c : *connection,
+pub fn xcb_render_tri_strip (c : *mut connection,
                                 op :  u8,
                                 src :  picture,
                                 dst :  picture,
@@ -1681,10 +1681,10 @@ pub unsafe fn xcb_render_tri_strip (c : *connection,
                                 src_x :  i16,
                                 src_y :  i16,
                                 points_len :  u32,
-                                points : *pointfix) -> void_cookie;
+                                points : *mut pointfix) -> void_cookie;
 
-pub unsafe fn xcb_render_tri_fan_sizeof (_buffer :  *c_void,
-                           points_len :  u32) -> c_int;
+pub fn xcb_render_tri_fan_sizeof (_buffer :  *mut c_void,
+                           points_len :   u32) -> c_int;
 
 /**
  *
@@ -1697,7 +1697,7 @@ pub unsafe fn xcb_render_tri_fan_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_tri_fan_checked (c : *connection,
+pub fn xcb_render_tri_fan_checked (c : *mut connection,
                                       op :  u8,
                                       src :  picture,
                                       dst :  picture,
@@ -1705,7 +1705,7 @@ pub unsafe fn xcb_render_tri_fan_checked (c : *connection,
                                       src_x :  i16,
                                       src_y :  i16,
                                       points_len :  u32,
-                                      points : *pointfix) -> void_cookie;
+                                      points : *mut pointfix) -> void_cookie;
 
 /**
  *
@@ -1715,7 +1715,7 @@ pub unsafe fn xcb_render_tri_fan_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_tri_fan (c : *connection,
+pub fn xcb_render_tri_fan (c : *mut connection,
                               op :  u8,
                               src :  picture,
                               dst :  picture,
@@ -1723,7 +1723,7 @@ pub unsafe fn xcb_render_tri_fan (c : *connection,
                               src_x :  i16,
                               src_y :  i16,
                               points_len :  u32,
-                              points : *pointfix) -> void_cookie;
+                              points : *mut pointfix) -> void_cookie;
 
 /**
  *
@@ -1736,7 +1736,7 @@ pub unsafe fn xcb_render_tri_fan (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_create_glyph_set_checked (c : *connection,
+pub fn xcb_render_create_glyph_set_checked (c : *mut connection,
                                                gsid :  glyphset,
                                                format :  pictformat) -> void_cookie;
 
@@ -1748,7 +1748,7 @@ pub unsafe fn xcb_render_create_glyph_set_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_create_glyph_set (c : *connection,
+pub fn xcb_render_create_glyph_set (c : *mut connection,
                                        gsid :  glyphset,
                                        format :  pictformat) -> void_cookie;
 
@@ -1763,7 +1763,7 @@ pub unsafe fn xcb_render_create_glyph_set (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_reference_glyph_set_checked (c : *connection,
+pub fn xcb_render_reference_glyph_set_checked (c : *mut connection,
                                                   gsid :  glyphset,
                                                   existing :  glyphset) -> void_cookie;
 
@@ -1775,7 +1775,7 @@ pub unsafe fn xcb_render_reference_glyph_set_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_reference_glyph_set (c : *connection,
+pub fn xcb_render_reference_glyph_set (c : *mut connection,
                                           gsid :  glyphset,
                                           existing :  glyphset) -> void_cookie;
 
@@ -1790,7 +1790,7 @@ pub unsafe fn xcb_render_reference_glyph_set (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_free_glyph_set_checked (c : *connection,
+pub fn xcb_render_free_glyph_set_checked (c : *mut connection,
                                              glyphset :  glyphset) -> void_cookie;
 
 /**
@@ -1801,11 +1801,11 @@ pub unsafe fn xcb_render_free_glyph_set_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_free_glyph_set (c : *connection,
+pub fn xcb_render_free_glyph_set (c : *mut connection,
                                      glyphset :  glyphset) -> void_cookie;
 
-pub unsafe fn xcb_render_add_glyphs_sizeof (_buffer :  *c_void,
-                              data_len :  u32) -> c_int;
+pub fn xcb_render_add_glyphs_sizeof (_buffer :  *mut c_void,
+                              data_len :     u32) -> c_int;
 
 /**
  *
@@ -1818,13 +1818,13 @@ pub unsafe fn xcb_render_add_glyphs_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_add_glyphs_checked (c : *connection,
+pub fn xcb_render_add_glyphs_checked (c : *mut connection,
                                          glyphset :  glyphset,
                                          glyphs_len :  u32,
-                                         glyphids : *u32,
-                                         glyphs : *glyphinfo,
+                                         glyphids : *mut u32,
+                                         glyphs : *mut glyphinfo,
                                          data_len :  u32,
-                                         data : *u8) -> void_cookie;
+                                         data : *mut u8) -> void_cookie;
 
 /**
  *
@@ -1834,16 +1834,16 @@ pub unsafe fn xcb_render_add_glyphs_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_add_glyphs (c : *connection,
+pub fn xcb_render_add_glyphs (c : *mut connection,
                                  glyphset :  glyphset,
                                  glyphs_len :  u32,
-                                 glyphids : *u32,
-                                 glyphs : *glyphinfo,
+                                 glyphids : *mut u32,
+                                 glyphs : *mut glyphinfo,
                                  data_len :  u32,
-                                 data : *u8) -> void_cookie;
+                                 data : *mut u8) -> void_cookie;
 
-pub unsafe fn xcb_render_free_glyphs_sizeof (_buffer :  *c_void,
-                               glyphs_len :  u32) -> c_int;
+pub fn xcb_render_free_glyphs_sizeof (_buffer :  *mut c_void,
+                               glyphs_len :   u32) -> c_int;
 
 /**
  *
@@ -1856,10 +1856,10 @@ pub unsafe fn xcb_render_free_glyphs_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_free_glyphs_checked (c : *connection,
+pub fn xcb_render_free_glyphs_checked (c : *mut connection,
                                           glyphset :  glyphset,
                                           glyphs_len :  u32,
-                                          glyphs : *glyph) -> void_cookie;
+                                          glyphs : *mut glyph) -> void_cookie;
 
 /**
  *
@@ -1869,12 +1869,12 @@ pub unsafe fn xcb_render_free_glyphs_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_free_glyphs (c : *connection,
+pub fn xcb_render_free_glyphs (c : *mut connection,
                                   glyphset :  glyphset,
                                   glyphs_len :  u32,
-                                  glyphs : *glyph) -> void_cookie;
+                                  glyphs : *mut glyph) -> void_cookie;
 
-pub unsafe fn xcb_render_composite_glyphs_8_sizeof (_buffer :  *c_void,
+pub fn xcb_render_composite_glyphs_8_sizeof (_buffer :  *mut c_void,
                                       glyphcmds_len :  u32) -> c_int;
 
 /**
@@ -1888,7 +1888,7 @@ pub unsafe fn xcb_render_composite_glyphs_8_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_composite_glyphs_8_checked (c : *connection,
+pub fn xcb_render_composite_glyphs_8_checked (c : *mut connection,
                                                  op :  u8,
                                                  src :  picture,
                                                  dst :  picture,
@@ -1897,7 +1897,7 @@ pub unsafe fn xcb_render_composite_glyphs_8_checked (c : *connection,
                                                  src_x :  i16,
                                                  src_y :  i16,
                                                  glyphcmds_len :  u32,
-                                                 glyphcmds : *u8) -> void_cookie;
+                                                 glyphcmds : *mut u8) -> void_cookie;
 
 /**
  *
@@ -1907,7 +1907,7 @@ pub unsafe fn xcb_render_composite_glyphs_8_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_composite_glyphs_8 (c : *connection,
+pub fn xcb_render_composite_glyphs_8 (c : *mut connection,
                                          op :  u8,
                                          src :  picture,
                                          dst :  picture,
@@ -1916,9 +1916,9 @@ pub unsafe fn xcb_render_composite_glyphs_8 (c : *connection,
                                          src_x :  i16,
                                          src_y :  i16,
                                          glyphcmds_len :  u32,
-                                         glyphcmds : *u8) -> void_cookie;
+                                         glyphcmds : *mut u8) -> void_cookie;
 
-pub unsafe fn xcb_render_composite_glyphs_16_sizeof (_buffer :  *c_void,
+pub fn xcb_render_composite_glyphs_16_sizeof (_buffer :  *mut c_void,
                                        glyphcmds_len :  u32) -> c_int;
 
 /**
@@ -1932,7 +1932,7 @@ pub unsafe fn xcb_render_composite_glyphs_16_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_composite_glyphs_16_checked (c : *connection,
+pub fn xcb_render_composite_glyphs_16_checked (c : *mut connection,
                                                   op :  u8,
                                                   src :  picture,
                                                   dst :  picture,
@@ -1941,7 +1941,7 @@ pub unsafe fn xcb_render_composite_glyphs_16_checked (c : *connection,
                                                   src_x :  i16,
                                                   src_y :  i16,
                                                   glyphcmds_len :  u32,
-                                                  glyphcmds : *u8) -> void_cookie;
+                                                  glyphcmds : *mut u8) -> void_cookie;
 
 /**
  *
@@ -1951,7 +1951,7 @@ pub unsafe fn xcb_render_composite_glyphs_16_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_composite_glyphs_16 (c : *connection,
+pub fn xcb_render_composite_glyphs_16 (c : *mut connection,
                                           op :  u8,
                                           src :  picture,
                                           dst :  picture,
@@ -1960,9 +1960,9 @@ pub unsafe fn xcb_render_composite_glyphs_16 (c : *connection,
                                           src_x :  i16,
                                           src_y :  i16,
                                           glyphcmds_len :  u32,
-                                          glyphcmds : *u8) -> void_cookie;
+                                          glyphcmds : *mut u8) -> void_cookie;
 
-pub unsafe fn xcb_render_composite_glyphs_32_sizeof (_buffer :  *c_void,
+pub fn xcb_render_composite_glyphs_32_sizeof (_buffer :  *mut c_void,
                                        glyphcmds_len :  u32) -> c_int;
 
 /**
@@ -1976,7 +1976,7 @@ pub unsafe fn xcb_render_composite_glyphs_32_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_composite_glyphs_32_checked (c : *connection,
+pub fn xcb_render_composite_glyphs_32_checked (c : *mut connection,
                                                   op :  u8,
                                                   src :  picture,
                                                   dst :  picture,
@@ -1985,7 +1985,7 @@ pub unsafe fn xcb_render_composite_glyphs_32_checked (c : *connection,
                                                   src_x :  i16,
                                                   src_y :  i16,
                                                   glyphcmds_len :  u32,
-                                                  glyphcmds : *u8) -> void_cookie;
+                                                  glyphcmds : *mut u8) -> void_cookie;
 
 /**
  *
@@ -1995,7 +1995,7 @@ pub unsafe fn xcb_render_composite_glyphs_32_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_composite_glyphs_32 (c : *connection,
+pub fn xcb_render_composite_glyphs_32 (c : *mut connection,
                                           op :  u8,
                                           src :  picture,
                                           dst :  picture,
@@ -2004,10 +2004,10 @@ pub unsafe fn xcb_render_composite_glyphs_32 (c : *connection,
                                           src_x :  i16,
                                           src_y :  i16,
                                           glyphcmds_len :  u32,
-                                          glyphcmds : *u8) -> void_cookie;
+                                          glyphcmds : *mut u8) -> void_cookie;
 
-pub unsafe fn xcb_render_fill_rectangles_sizeof (_buffer :  *c_void,
-                                   rects_len :  u32) -> c_int;
+pub fn xcb_render_fill_rectangles_sizeof (_buffer :  *mut c_void,
+                                   rects_len :    u32) -> c_int;
 
 /**
  *
@@ -2020,12 +2020,12 @@ pub unsafe fn xcb_render_fill_rectangles_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_fill_rectangles_checked (c : *connection,
+pub fn xcb_render_fill_rectangles_checked (c : *mut connection,
                                               op :  u8,
                                               dst :  picture,
                                               color :  color,
                                               rects_len :  u32,
-                                              rects : *ffi::xproto::rectangle) -> void_cookie;
+                                              rects : *mut ffi::xproto::rectangle) -> void_cookie;
 
 /**
  *
@@ -2035,12 +2035,12 @@ pub unsafe fn xcb_render_fill_rectangles_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_fill_rectangles (c : *connection,
+pub fn xcb_render_fill_rectangles (c : *mut connection,
                                       op :  u8,
                                       dst :  picture,
                                       color :  color,
                                       rects_len :  u32,
-                                      rects : *ffi::xproto::rectangle) -> void_cookie;
+                                      rects : *mut ffi::xproto::rectangle) -> void_cookie;
 
 /**
  *
@@ -2053,7 +2053,7 @@ pub unsafe fn xcb_render_fill_rectangles (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_create_cursor_checked (c : *connection,
+pub fn xcb_render_create_cursor_checked (c : *mut connection,
                                             cid :  ffi::xproto::cursor,
                                             source :  picture,
                                             x :  u16,
@@ -2067,7 +2067,7 @@ pub unsafe fn xcb_render_create_cursor_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_create_cursor (c : *connection,
+pub fn xcb_render_create_cursor (c : *mut connection,
                                     cid :  ffi::xproto::cursor,
                                     source :  picture,
                                     x :  u16,
@@ -2083,7 +2083,7 @@ pub unsafe fn xcb_render_create_cursor (c : *connection,
  *
  *
  */
-pub unsafe fn xcb_render_transform_next (i:*transform_iterator) -> c_void;
+pub fn xcb_render_transform_next (i:*mut transform_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2094,7 +2094,7 @@ pub unsafe fn xcb_render_transform_next (i:*transform_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_render_transform_end (i:transform_iterator) -> generic_iterator;
+pub fn xcb_render_transform_end (i:transform_iterator) -> generic_iterator;
 
 /**
  *
@@ -2107,7 +2107,7 @@ pub unsafe fn xcb_render_transform_end (i:transform_iterator) -> generic_iterato
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_set_picture_transform_checked (c : *connection,
+pub fn xcb_render_set_picture_transform_checked (c : *mut connection,
                                                     picture :  picture,
                                                     transform :  transform) -> void_cookie;
 
@@ -2119,11 +2119,11 @@ pub unsafe fn xcb_render_set_picture_transform_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_set_picture_transform (c : *connection,
+pub fn xcb_render_set_picture_transform (c : *mut connection,
                                             picture :  picture,
                                             transform :  transform) -> void_cookie;
 
-pub unsafe fn xcb_render_query_filters_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_render_query_filters_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -2133,7 +2133,7 @@ pub unsafe fn xcb_render_query_filters_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_query_filters (c : *connection,
+pub fn xcb_render_query_filters (c : *mut connection,
                                     drawable :  ffi::xproto::drawable) -> query_filters_cookie;
 
 /**
@@ -2147,21 +2147,21 @@ pub unsafe fn xcb_render_query_filters (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_render_query_filters_unchecked (c : *connection,
+pub fn xcb_render_query_filters_unchecked (c : *mut connection,
                                               drawable :  ffi::xproto::drawable) -> query_filters_cookie;
 
-pub unsafe fn xcb_render_query_filters_aliases (R : *query_filters_reply) -> *u16;
+pub fn xcb_render_query_filters_aliases (R : *mut query_filters_reply) -> *mut u16;
 
 
-pub unsafe fn xcb_render_query_filters_aliases_length (R : *query_filters_reply) -> c_int;
+pub fn xcb_render_query_filters_aliases_length (R : *mut query_filters_reply) -> c_int;
 
 
-pub unsafe fn xcb_render_query_filters_aliases_end (R : *query_filters_reply) -> generic_iterator;
+pub fn xcb_render_query_filters_aliases_end (R : *mut query_filters_reply) -> generic_iterator;
 
 
-pub unsafe fn xcb_render_query_filters_filters_length (R : *query_filters_reply) -> c_int;
+pub fn xcb_render_query_filters_filters_length (R : *mut query_filters_reply) -> c_int;
 
-pub unsafe fn xcb_render_query_filters_filters_iterator (R : *query_filters_reply) -> ffi::xproto::str_iterator;
+pub fn xcb_render_query_filters_filters_iterator (R : *mut query_filters_reply) -> ffi::xproto::str_iterator;
 
 /**
  * Return the reply
@@ -2177,12 +2177,12 @@ pub unsafe fn xcb_render_query_filters_filters_iterator (R : *query_filters_repl
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_render_query_filters_reply (c : *connection,
+pub fn xcb_render_query_filters_reply (c : *mut connection,
                                           cookie : query_filters_cookie,
-                                          e : **generic_error) -> *query_filters_reply;
+                                          e : *mut *mut generic_error) -> *mut query_filters_reply;
 
-pub unsafe fn xcb_render_set_picture_filter_sizeof (_buffer :  *c_void,
-                                      values_len :  u32) -> c_int;
+pub fn xcb_render_set_picture_filter_sizeof (_buffer :  *mut c_void,
+                                      values_len :   u32) -> c_int;
 
 /**
  *
@@ -2195,12 +2195,12 @@ pub unsafe fn xcb_render_set_picture_filter_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_set_picture_filter_checked (c : *connection,
+pub fn xcb_render_set_picture_filter_checked (c : *mut connection,
                                                  picture :  picture,
                                                  filter_len :  u16,
-                                                 filter : *c_char,
+                                                 filter : *mut c_char,
                                                  values_len :  u32,
-                                                 values : *fixed) -> void_cookie;
+                                                 values : *mut fixed) -> void_cookie;
 
 /**
  *
@@ -2210,12 +2210,12 @@ pub unsafe fn xcb_render_set_picture_filter_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_set_picture_filter (c : *connection,
+pub fn xcb_render_set_picture_filter (c : *mut connection,
                                          picture :  picture,
                                          filter_len :  u16,
-                                         filter : *c_char,
+                                         filter : *mut c_char,
                                          values_len :  u32,
-                                         values : *fixed) -> void_cookie;
+                                         values : *mut fixed) -> void_cookie;
 
 /**
  * Get the next element of the iterator
@@ -2227,7 +2227,7 @@ pub unsafe fn xcb_render_set_picture_filter (c : *connection,
  *
  *
  */
-pub unsafe fn xcb_render_animcursorelt_next (i:*animcursorelt_iterator) -> c_void;
+pub fn xcb_render_animcursorelt_next (i:*mut animcursorelt_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2238,9 +2238,9 @@ pub unsafe fn xcb_render_animcursorelt_next (i:*animcursorelt_iterator) -> c_voi
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_render_animcursorelt_end (i:animcursorelt_iterator) -> generic_iterator;
+pub fn xcb_render_animcursorelt_end (i:animcursorelt_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_render_create_anim_cursor_sizeof (_buffer :  *c_void,
+pub fn xcb_render_create_anim_cursor_sizeof (_buffer :  *mut c_void,
                                       cursors_len :  u32) -> c_int;
 
 /**
@@ -2254,10 +2254,10 @@ pub unsafe fn xcb_render_create_anim_cursor_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_create_anim_cursor_checked (c : *connection,
+pub fn xcb_render_create_anim_cursor_checked (c : *mut connection,
                                                  cid :  ffi::xproto::cursor,
                                                  cursors_len :  u32,
-                                                 cursors : *animcursorelt) -> void_cookie;
+                                                 cursors : *mut animcursorelt) -> void_cookie;
 
 /**
  *
@@ -2267,10 +2267,10 @@ pub unsafe fn xcb_render_create_anim_cursor_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_create_anim_cursor (c : *connection,
+pub fn xcb_render_create_anim_cursor (c : *mut connection,
                                          cid :  ffi::xproto::cursor,
                                          cursors_len :  u32,
-                                         cursors : *animcursorelt) -> void_cookie;
+                                         cursors : *mut animcursorelt) -> void_cookie;
 
 /**
  * Get the next element of the iterator
@@ -2282,7 +2282,7 @@ pub unsafe fn xcb_render_create_anim_cursor (c : *connection,
  *
  *
  */
-pub unsafe fn xcb_render_spanfix_next (i:*spanfix_iterator) -> c_void;
+pub fn xcb_render_spanfix_next (i:*mut spanfix_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2293,7 +2293,7 @@ pub unsafe fn xcb_render_spanfix_next (i:*spanfix_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_render_spanfix_end (i:spanfix_iterator) -> generic_iterator;
+pub fn xcb_render_spanfix_end (i:spanfix_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2305,7 +2305,7 @@ pub unsafe fn xcb_render_spanfix_end (i:spanfix_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_render_trap_next (i:*trap_iterator) -> c_void;
+pub fn xcb_render_trap_next (i:*mut trap_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2316,10 +2316,10 @@ pub unsafe fn xcb_render_trap_next (i:*trap_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_render_trap_end (i:trap_iterator) -> generic_iterator;
+pub fn xcb_render_trap_end (i:trap_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_render_add_traps_sizeof (_buffer :  *c_void,
-                             traps_len :  u32) -> c_int;
+pub fn xcb_render_add_traps_sizeof (_buffer :  *mut c_void,
+                             traps_len :    u32) -> c_int;
 
 /**
  *
@@ -2332,12 +2332,12 @@ pub unsafe fn xcb_render_add_traps_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_add_traps_checked (c : *connection,
+pub fn xcb_render_add_traps_checked (c : *mut connection,
                                         picture :  picture,
                                         x_off :  i16,
                                         y_off :  i16,
                                         traps_len :  u32,
-                                        traps : *trap) -> void_cookie;
+                                        traps : *mut trap) -> void_cookie;
 
 /**
  *
@@ -2347,12 +2347,12 @@ pub unsafe fn xcb_render_add_traps_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_add_traps (c : *connection,
+pub fn xcb_render_add_traps (c : *mut connection,
                                 picture :  picture,
                                 x_off :  i16,
                                 y_off :  i16,
                                 traps_len :  u32,
-                                traps : *trap) -> void_cookie;
+                                traps : *mut trap) -> void_cookie;
 
 /**
  *
@@ -2365,7 +2365,7 @@ pub unsafe fn xcb_render_add_traps (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_create_solid_fill_checked (c : *connection,
+pub fn xcb_render_create_solid_fill_checked (c : *mut connection,
                                                 picture :  picture,
                                                 color :  color) -> void_cookie;
 
@@ -2377,11 +2377,11 @@ pub unsafe fn xcb_render_create_solid_fill_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_create_solid_fill (c : *connection,
+pub fn xcb_render_create_solid_fill (c : *mut connection,
                                         picture :  picture,
                                         color :  color) -> void_cookie;
 
-pub unsafe fn xcb_render_create_linear_gradient_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_render_create_linear_gradient_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -2394,13 +2394,13 @@ pub unsafe fn xcb_render_create_linear_gradient_sizeof (_buffer :  *c_void) -> c
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_create_linear_gradient_checked (c : *connection,
+pub fn xcb_render_create_linear_gradient_checked (c : *mut connection,
                                                      picture :  picture,
                                                      p1 :  pointfix,
                                                      p2 :  pointfix,
                                                      num_stops :  u32,
-                                                     stops : *fixed,
-                                                     colors : *color) -> void_cookie;
+                                                     stops : *mut fixed,
+                                                     colors : *mut color) -> void_cookie;
 
 /**
  *
@@ -2410,15 +2410,15 @@ pub unsafe fn xcb_render_create_linear_gradient_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_create_linear_gradient (c : *connection,
+pub fn xcb_render_create_linear_gradient (c : *mut connection,
                                              picture :  picture,
                                              p1 :  pointfix,
                                              p2 :  pointfix,
                                              num_stops :  u32,
-                                             stops : *fixed,
-                                             colors : *color) -> void_cookie;
+                                             stops : *mut fixed,
+                                             colors : *mut color) -> void_cookie;
 
-pub unsafe fn xcb_render_create_radial_gradient_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_render_create_radial_gradient_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -2431,15 +2431,15 @@ pub unsafe fn xcb_render_create_radial_gradient_sizeof (_buffer :  *c_void) -> c
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_create_radial_gradient_checked (c : *connection,
+pub fn xcb_render_create_radial_gradient_checked (c : *mut connection,
                                                      picture :  picture,
                                                      inner :  pointfix,
                                                      outer :  pointfix,
                                                      inner_radius :  fixed,
                                                      outer_radius :  fixed,
                                                      num_stops :  u32,
-                                                     stops : *fixed,
-                                                     colors : *color) -> void_cookie;
+                                                     stops : *mut fixed,
+                                                     colors : *mut color) -> void_cookie;
 
 /**
  *
@@ -2449,17 +2449,17 @@ pub unsafe fn xcb_render_create_radial_gradient_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_create_radial_gradient (c : *connection,
+pub fn xcb_render_create_radial_gradient (c : *mut connection,
                                              picture :  picture,
                                              inner :  pointfix,
                                              outer :  pointfix,
                                              inner_radius :  fixed,
                                              outer_radius :  fixed,
                                              num_stops :  u32,
-                                             stops : *fixed,
-                                             colors : *color) -> void_cookie;
+                                             stops : *mut fixed,
+                                             colors : *mut color) -> void_cookie;
 
-pub unsafe fn xcb_render_create_conical_gradient_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_render_create_conical_gradient_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -2472,13 +2472,13 @@ pub unsafe fn xcb_render_create_conical_gradient_sizeof (_buffer :  *c_void) -> 
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_render_create_conical_gradient_checked (c : *connection,
+pub fn xcb_render_create_conical_gradient_checked (c : *mut connection,
                                                       picture :  picture,
                                                       center :  pointfix,
                                                       angle :  fixed,
                                                       num_stops :  u32,
-                                                      stops : *fixed,
-                                                      colors : *color) -> void_cookie;
+                                                      stops : *mut fixed,
+                                                      colors : *mut color) -> void_cookie;
 
 /**
  *
@@ -2488,12 +2488,12 @@ pub unsafe fn xcb_render_create_conical_gradient_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_render_create_conical_gradient (c : *connection,
+pub fn xcb_render_create_conical_gradient (c : *mut connection,
                                               picture :  picture,
                                               center :  pointfix,
                                               angle :  fixed,
                                               num_stops :  u32,
-                                              stops : *fixed,
-                                              colors : *color) -> void_cookie;
+                                              stops : *mut fixed,
+                                              colors : *mut color) -> void_cookie;
 }
 

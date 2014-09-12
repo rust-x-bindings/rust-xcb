@@ -4,8 +4,8 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
@@ -138,7 +138,7 @@ pub type region = u32;
  * @brief region_iterator
  **/
 pub struct region_iterator {
-    data : *region,
+    data : *mut region,
     rem  : c_int,
     index: c_int
 }
@@ -474,7 +474,7 @@ pub struct show_cursor_request {
     window :         ffi::xproto::window
 }
 
-#[link_args="-lxcb-xfixes"]
+#[link(name="lxcb-xfixes")]
 pub extern "C" {
 
 /**
@@ -485,7 +485,7 @@ pub extern "C" {
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_query_version (c : *connection,
+pub fn xcb_xfixes_query_version (c : *mut connection,
                                     client_major_version :  u32,
                                     client_minor_version :  u32) -> query_version_cookie;
 
@@ -500,7 +500,7 @@ pub unsafe fn xcb_xfixes_query_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xfixes_query_version_unchecked (c : *connection,
+pub fn xcb_xfixes_query_version_unchecked (c : *mut connection,
                                               client_major_version :  u32,
                                               client_minor_version :  u32) -> query_version_cookie;
 
@@ -518,9 +518,9 @@ pub unsafe fn xcb_xfixes_query_version_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xfixes_query_version_reply (c : *connection,
+pub fn xcb_xfixes_query_version_reply (c : *mut connection,
                                           cookie : query_version_cookie,
-                                          e : **generic_error) -> *query_version_reply;
+                                          e : *mut *mut generic_error) -> *mut query_version_reply;
 
 /**
  *
@@ -533,7 +533,7 @@ pub unsafe fn xcb_xfixes_query_version_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xfixes_change_save_set_checked (c : *connection,
+pub fn xcb_xfixes_change_save_set_checked (c : *mut connection,
                                               mode :  u8,
                                               target :  u8,
                                               map :  u8,
@@ -547,7 +547,7 @@ pub unsafe fn xcb_xfixes_change_save_set_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_change_save_set (c : *connection,
+pub fn xcb_xfixes_change_save_set (c : *mut connection,
                                       mode :  u8,
                                       target :  u8,
                                       map :  u8,
@@ -564,7 +564,7 @@ pub unsafe fn xcb_xfixes_change_save_set (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xfixes_select_selection_input_checked (c : *connection,
+pub fn xcb_xfixes_select_selection_input_checked (c : *mut connection,
                                                      window :  ffi::xproto::window,
                                                      selection :  ffi::xproto::atom,
                                                      event_mask :  u32) -> void_cookie;
@@ -577,7 +577,7 @@ pub unsafe fn xcb_xfixes_select_selection_input_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_select_selection_input (c : *connection,
+pub fn xcb_xfixes_select_selection_input (c : *mut connection,
                                              window :  ffi::xproto::window,
                                              selection :  ffi::xproto::atom,
                                              event_mask :  u32) -> void_cookie;
@@ -593,7 +593,7 @@ pub unsafe fn xcb_xfixes_select_selection_input (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xfixes_select_cursor_input_checked (c : *connection,
+pub fn xcb_xfixes_select_cursor_input_checked (c : *mut connection,
                                                   window :  ffi::xproto::window,
                                                   event_mask :  u32) -> void_cookie;
 
@@ -605,11 +605,11 @@ pub unsafe fn xcb_xfixes_select_cursor_input_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_select_cursor_input (c : *connection,
+pub fn xcb_xfixes_select_cursor_input (c : *mut connection,
                                           window :  ffi::xproto::window,
                                           event_mask :  u32) -> void_cookie;
 
-pub unsafe fn xcb_xfixes_get_cursor_image_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xfixes_get_cursor_image_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -619,7 +619,7 @@ pub unsafe fn xcb_xfixes_get_cursor_image_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_get_cursor_image (c : *connection) -> get_cursor_image_cookie;
+pub fn xcb_xfixes_get_cursor_image (c : *mut connection) -> get_cursor_image_cookie;
 
 /**
  *
@@ -632,15 +632,15 @@ pub unsafe fn xcb_xfixes_get_cursor_image (c : *connection) -> get_cursor_image_
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xfixes_get_cursor_image_unchecked (c : *connection) -> get_cursor_image_cookie;
+pub fn xcb_xfixes_get_cursor_image_unchecked (c : *mut connection) -> get_cursor_image_cookie;
 
-pub unsafe fn xcb_xfixes_get_cursor_image_cursor_image (R : *get_cursor_image_reply) -> *u32;
-
-
-pub unsafe fn xcb_xfixes_get_cursor_image_cursor_image_length (R : *get_cursor_image_reply) -> c_int;
+pub fn xcb_xfixes_get_cursor_image_cursor_image (R : *mut get_cursor_image_reply) -> *mut u32;
 
 
-pub unsafe fn xcb_xfixes_get_cursor_image_cursor_image_end (R : *get_cursor_image_reply) -> generic_iterator;
+pub fn xcb_xfixes_get_cursor_image_cursor_image_length (R : *mut get_cursor_image_reply) -> c_int;
+
+
+pub fn xcb_xfixes_get_cursor_image_cursor_image_end (R : *mut get_cursor_image_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -656,9 +656,9 @@ pub unsafe fn xcb_xfixes_get_cursor_image_cursor_image_end (R : *get_cursor_imag
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xfixes_get_cursor_image_reply (c : *connection,
+pub fn xcb_xfixes_get_cursor_image_reply (c : *mut connection,
                                              cookie : get_cursor_image_cookie,
-                                             e : **generic_error) -> *get_cursor_image_reply;
+                                             e : *mut *mut generic_error) -> *mut get_cursor_image_reply;
 
 /**
  * Get the next element of the iterator
@@ -670,7 +670,7 @@ pub unsafe fn xcb_xfixes_get_cursor_image_reply (c : *connection,
  *
  *
  */
-pub unsafe fn xcb_xfixes_region_next (i:*region_iterator) -> c_void;
+pub fn xcb_xfixes_region_next (i:*mut region_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -681,9 +681,9 @@ pub unsafe fn xcb_xfixes_region_next (i:*region_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_xfixes_region_end (i:region_iterator) -> generic_iterator;
+pub fn xcb_xfixes_region_end (i:region_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_xfixes_create_region_sizeof (_buffer :  *c_void,
+pub fn xcb_xfixes_create_region_sizeof (_buffer :  *mut c_void,
                                  rectangles_len :  u32) -> c_int;
 
 /**
@@ -697,10 +697,10 @@ pub unsafe fn xcb_xfixes_create_region_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xfixes_create_region_checked (c : *connection,
+pub fn xcb_xfixes_create_region_checked (c : *mut connection,
                                             region :  region,
                                             rectangles_len :  u32,
-                                            rectangles : *ffi::xproto::rectangle) -> void_cookie;
+                                            rectangles : *mut ffi::xproto::rectangle) -> void_cookie;
 
 /**
  *
@@ -710,10 +710,10 @@ pub unsafe fn xcb_xfixes_create_region_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_create_region (c : *connection,
+pub fn xcb_xfixes_create_region (c : *mut connection,
                                     region :  region,
                                     rectangles_len :  u32,
-                                    rectangles : *ffi::xproto::rectangle) -> void_cookie;
+                                    rectangles : *mut ffi::xproto::rectangle) -> void_cookie;
 
 /**
  *
@@ -726,7 +726,7 @@ pub unsafe fn xcb_xfixes_create_region (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xfixes_create_region_from_bitmap_checked (c : *connection,
+pub fn xcb_xfixes_create_region_from_bitmap_checked (c : *mut connection,
                                                         region :  region,
                                                         bitmap :  ffi::xproto::pixmap) -> void_cookie;
 
@@ -738,7 +738,7 @@ pub unsafe fn xcb_xfixes_create_region_from_bitmap_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_create_region_from_bitmap (c : *connection,
+pub fn xcb_xfixes_create_region_from_bitmap (c : *mut connection,
                                                 region :  region,
                                                 bitmap :  ffi::xproto::pixmap) -> void_cookie;
 
@@ -753,7 +753,7 @@ pub unsafe fn xcb_xfixes_create_region_from_bitmap (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xfixes_create_region_from_window_checked (c : *connection,
+pub fn xcb_xfixes_create_region_from_window_checked (c : *mut connection,
                                                         region :  region,
                                                         window :  ffi::xproto::window,
                                                         kind :  ffi::shape::kind) -> void_cookie;
@@ -766,7 +766,7 @@ pub unsafe fn xcb_xfixes_create_region_from_window_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_create_region_from_window (c : *connection,
+pub fn xcb_xfixes_create_region_from_window (c : *mut connection,
                                                 region :  region,
                                                 window :  ffi::xproto::window,
                                                 kind :  ffi::shape::kind) -> void_cookie;
@@ -782,7 +782,7 @@ pub unsafe fn xcb_xfixes_create_region_from_window (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xfixes_create_region_from_gc_checked (c : *connection,
+pub fn xcb_xfixes_create_region_from_gc_checked (c : *mut connection,
                                                     region :  region,
                                                     gc :  ffi::xproto::gcontext) -> void_cookie;
 
@@ -794,7 +794,7 @@ pub unsafe fn xcb_xfixes_create_region_from_gc_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_create_region_from_gc (c : *connection,
+pub fn xcb_xfixes_create_region_from_gc (c : *mut connection,
                                             region :  region,
                                             gc :  ffi::xproto::gcontext) -> void_cookie;
 
@@ -809,7 +809,7 @@ pub unsafe fn xcb_xfixes_create_region_from_gc (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xfixes_create_region_from_picture_checked (c : *connection,
+pub fn xcb_xfixes_create_region_from_picture_checked (c : *mut connection,
                                                          region :  region,
                                                          picture :  ffi::render::picture) -> void_cookie;
 
@@ -821,7 +821,7 @@ pub unsafe fn xcb_xfixes_create_region_from_picture_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_create_region_from_picture (c : *connection,
+pub fn xcb_xfixes_create_region_from_picture (c : *mut connection,
                                                  region :  region,
                                                  picture :  ffi::render::picture) -> void_cookie;
 
@@ -836,7 +836,7 @@ pub unsafe fn xcb_xfixes_create_region_from_picture (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xfixes_destroy_region_checked (c : *connection,
+pub fn xcb_xfixes_destroy_region_checked (c : *mut connection,
                                              region :  region) -> void_cookie;
 
 /**
@@ -847,10 +847,10 @@ pub unsafe fn xcb_xfixes_destroy_region_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_destroy_region (c : *connection,
+pub fn xcb_xfixes_destroy_region (c : *mut connection,
                                      region :  region) -> void_cookie;
 
-pub unsafe fn xcb_xfixes_set_region_sizeof (_buffer :  *c_void,
+pub fn xcb_xfixes_set_region_sizeof (_buffer :  *mut c_void,
                               rectangles_len :  u32) -> c_int;
 
 /**
@@ -864,10 +864,10 @@ pub unsafe fn xcb_xfixes_set_region_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xfixes_set_region_checked (c : *connection,
+pub fn xcb_xfixes_set_region_checked (c : *mut connection,
                                          region :  region,
                                          rectangles_len :  u32,
-                                         rectangles : *ffi::xproto::rectangle) -> void_cookie;
+                                         rectangles : *mut ffi::xproto::rectangle) -> void_cookie;
 
 /**
  *
@@ -877,10 +877,10 @@ pub unsafe fn xcb_xfixes_set_region_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_set_region (c : *connection,
+pub fn xcb_xfixes_set_region (c : *mut connection,
                                  region :  region,
                                  rectangles_len :  u32,
-                                 rectangles : *ffi::xproto::rectangle) -> void_cookie;
+                                 rectangles : *mut ffi::xproto::rectangle) -> void_cookie;
 
 /**
  *
@@ -893,7 +893,7 @@ pub unsafe fn xcb_xfixes_set_region (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xfixes_copy_region_checked (c : *connection,
+pub fn xcb_xfixes_copy_region_checked (c : *mut connection,
                                           source :  region,
                                           destination :  region) -> void_cookie;
 
@@ -905,7 +905,7 @@ pub unsafe fn xcb_xfixes_copy_region_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_copy_region (c : *connection,
+pub fn xcb_xfixes_copy_region (c : *mut connection,
                                   source :  region,
                                   destination :  region) -> void_cookie;
 
@@ -920,7 +920,7 @@ pub unsafe fn xcb_xfixes_copy_region (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xfixes_union_region_checked (c : *connection,
+pub fn xcb_xfixes_union_region_checked (c : *mut connection,
                                            source1 :  region,
                                            source2 :  region,
                                            destination :  region) -> void_cookie;
@@ -933,7 +933,7 @@ pub unsafe fn xcb_xfixes_union_region_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_union_region (c : *connection,
+pub fn xcb_xfixes_union_region (c : *mut connection,
                                    source1 :  region,
                                    source2 :  region,
                                    destination :  region) -> void_cookie;
@@ -949,7 +949,7 @@ pub unsafe fn xcb_xfixes_union_region (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xfixes_intersect_region_checked (c : *connection,
+pub fn xcb_xfixes_intersect_region_checked (c : *mut connection,
                                                source1 :  region,
                                                source2 :  region,
                                                destination :  region) -> void_cookie;
@@ -962,7 +962,7 @@ pub unsafe fn xcb_xfixes_intersect_region_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_intersect_region (c : *connection,
+pub fn xcb_xfixes_intersect_region (c : *mut connection,
                                        source1 :  region,
                                        source2 :  region,
                                        destination :  region) -> void_cookie;
@@ -978,7 +978,7 @@ pub unsafe fn xcb_xfixes_intersect_region (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xfixes_subtract_region_checked (c : *connection,
+pub fn xcb_xfixes_subtract_region_checked (c : *mut connection,
                                               source1 :  region,
                                               source2 :  region,
                                               destination :  region) -> void_cookie;
@@ -991,7 +991,7 @@ pub unsafe fn xcb_xfixes_subtract_region_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_subtract_region (c : *connection,
+pub fn xcb_xfixes_subtract_region (c : *mut connection,
                                       source1 :  region,
                                       source2 :  region,
                                       destination :  region) -> void_cookie;
@@ -1007,7 +1007,7 @@ pub unsafe fn xcb_xfixes_subtract_region (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xfixes_invert_region_checked (c : *connection,
+pub fn xcb_xfixes_invert_region_checked (c : *mut connection,
                                             source :  region,
                                             bounds :  ffi::xproto::rectangle,
                                             destination :  region) -> void_cookie;
@@ -1020,7 +1020,7 @@ pub unsafe fn xcb_xfixes_invert_region_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_invert_region (c : *connection,
+pub fn xcb_xfixes_invert_region (c : *mut connection,
                                     source :  region,
                                     bounds :  ffi::xproto::rectangle,
                                     destination :  region) -> void_cookie;
@@ -1036,7 +1036,7 @@ pub unsafe fn xcb_xfixes_invert_region (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xfixes_translate_region_checked (c : *connection,
+pub fn xcb_xfixes_translate_region_checked (c : *mut connection,
                                                region :  region,
                                                dx :  i16,
                                                dy :  i16) -> void_cookie;
@@ -1049,7 +1049,7 @@ pub unsafe fn xcb_xfixes_translate_region_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_translate_region (c : *connection,
+pub fn xcb_xfixes_translate_region (c : *mut connection,
                                        region :  region,
                                        dx :  i16,
                                        dy :  i16) -> void_cookie;
@@ -1065,7 +1065,7 @@ pub unsafe fn xcb_xfixes_translate_region (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xfixes_region_extents_checked (c : *connection,
+pub fn xcb_xfixes_region_extents_checked (c : *mut connection,
                                              source :  region,
                                              destination :  region) -> void_cookie;
 
@@ -1077,11 +1077,11 @@ pub unsafe fn xcb_xfixes_region_extents_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_region_extents (c : *connection,
+pub fn xcb_xfixes_region_extents (c : *mut connection,
                                      source :  region,
                                      destination :  region) -> void_cookie;
 
-pub unsafe fn xcb_xfixes_fetch_region_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xfixes_fetch_region_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1091,7 +1091,7 @@ pub unsafe fn xcb_xfixes_fetch_region_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_fetch_region (c : *connection,
+pub fn xcb_xfixes_fetch_region (c : *mut connection,
                                    region :  region) -> fetch_region_cookie;
 
 /**
@@ -1105,15 +1105,15 @@ pub unsafe fn xcb_xfixes_fetch_region (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xfixes_fetch_region_unchecked (c : *connection,
+pub fn xcb_xfixes_fetch_region_unchecked (c : *mut connection,
                                              region :  region) -> fetch_region_cookie;
 
-pub unsafe fn xcb_xfixes_fetch_region_rectangles (R : *fetch_region_reply) -> *ffi::xproto::rectangle;
+pub fn xcb_xfixes_fetch_region_rectangles (R : *mut fetch_region_reply) -> *mut ffi::xproto::rectangle;
 
 
-pub unsafe fn xcb_xfixes_fetch_region_rectangles_length (R : *fetch_region_reply) -> c_int;
+pub fn xcb_xfixes_fetch_region_rectangles_length (R : *mut fetch_region_reply) -> c_int;
 
-pub unsafe fn xcb_xfixes_fetch_region_rectangles_iterator (R : *fetch_region_reply) -> ffi::xproto::rectangle_iterator;
+pub fn xcb_xfixes_fetch_region_rectangles_iterator (R : *mut fetch_region_reply) -> ffi::xproto::rectangle_iterator;
 
 /**
  * Return the reply
@@ -1129,9 +1129,9 @@ pub unsafe fn xcb_xfixes_fetch_region_rectangles_iterator (R : *fetch_region_rep
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xfixes_fetch_region_reply (c : *connection,
+pub fn xcb_xfixes_fetch_region_reply (c : *mut connection,
                                          cookie : fetch_region_cookie,
-                                         e : **generic_error) -> *fetch_region_reply;
+                                         e : *mut *mut generic_error) -> *mut fetch_region_reply;
 
 /**
  *
@@ -1144,7 +1144,7 @@ pub unsafe fn xcb_xfixes_fetch_region_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xfixes_set_gc_clip_region_checked (c : *connection,
+pub fn xcb_xfixes_set_gc_clip_region_checked (c : *mut connection,
                                                  gc :  ffi::xproto::gcontext,
                                                  region :  region,
                                                  x_origin :  i16,
@@ -1158,7 +1158,7 @@ pub unsafe fn xcb_xfixes_set_gc_clip_region_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_set_gc_clip_region (c : *connection,
+pub fn xcb_xfixes_set_gc_clip_region (c : *mut connection,
                                          gc :  ffi::xproto::gcontext,
                                          region :  region,
                                          x_origin :  i16,
@@ -1175,7 +1175,7 @@ pub unsafe fn xcb_xfixes_set_gc_clip_region (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xfixes_set_window_shape_region_checked (c : *connection,
+pub fn xcb_xfixes_set_window_shape_region_checked (c : *mut connection,
                                                       dest :  ffi::xproto::window,
                                                       dest_kind :  ffi::shape::kind,
                                                       x_offset :  i16,
@@ -1190,7 +1190,7 @@ pub unsafe fn xcb_xfixes_set_window_shape_region_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_set_window_shape_region (c : *connection,
+pub fn xcb_xfixes_set_window_shape_region (c : *mut connection,
                                               dest :  ffi::xproto::window,
                                               dest_kind :  ffi::shape::kind,
                                               x_offset :  i16,
@@ -1208,7 +1208,7 @@ pub unsafe fn xcb_xfixes_set_window_shape_region (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xfixes_set_picture_clip_region_checked (c : *connection,
+pub fn xcb_xfixes_set_picture_clip_region_checked (c : *mut connection,
                                                       picture :  ffi::render::picture,
                                                       region :  region,
                                                       x_origin :  i16,
@@ -1222,13 +1222,13 @@ pub unsafe fn xcb_xfixes_set_picture_clip_region_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_set_picture_clip_region (c : *connection,
+pub fn xcb_xfixes_set_picture_clip_region (c : *mut connection,
                                               picture :  ffi::render::picture,
                                               region :  region,
                                               x_origin :  i16,
                                               y_origin :  i16) -> void_cookie;
 
-pub unsafe fn xcb_xfixes_set_cursor_name_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xfixes_set_cursor_name_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1241,10 +1241,10 @@ pub unsafe fn xcb_xfixes_set_cursor_name_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xfixes_set_cursor_name_checked (c : *connection,
+pub fn xcb_xfixes_set_cursor_name_checked (c : *mut connection,
                                               cursor :  ffi::xproto::cursor,
                                               nbytes :  u16,
-                                              name : *c_char) -> void_cookie;
+                                              name : *mut c_char) -> void_cookie;
 
 /**
  *
@@ -1254,12 +1254,12 @@ pub unsafe fn xcb_xfixes_set_cursor_name_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_set_cursor_name (c : *connection,
+pub fn xcb_xfixes_set_cursor_name (c : *mut connection,
                                       cursor :  ffi::xproto::cursor,
                                       nbytes :  u16,
-                                      name : *c_char) -> void_cookie;
+                                      name : *mut c_char) -> void_cookie;
 
-pub unsafe fn xcb_xfixes_get_cursor_name_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xfixes_get_cursor_name_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1269,7 +1269,7 @@ pub unsafe fn xcb_xfixes_get_cursor_name_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_get_cursor_name (c : *connection,
+pub fn xcb_xfixes_get_cursor_name (c : *mut connection,
                                       cursor :  ffi::xproto::cursor) -> get_cursor_name_cookie;
 
 /**
@@ -1283,16 +1283,16 @@ pub unsafe fn xcb_xfixes_get_cursor_name (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xfixes_get_cursor_name_unchecked (c : *connection,
+pub fn xcb_xfixes_get_cursor_name_unchecked (c : *mut connection,
                                                 cursor :  ffi::xproto::cursor) -> get_cursor_name_cookie;
 
-pub unsafe fn xcb_xfixes_get_cursor_name_name (R : *get_cursor_name_reply) -> *c_char;
+pub fn xcb_xfixes_get_cursor_name_name (R : *mut get_cursor_name_reply) -> *mut c_char;
 
 
-pub unsafe fn xcb_xfixes_get_cursor_name_name_length (R : *get_cursor_name_reply) -> c_int;
+pub fn xcb_xfixes_get_cursor_name_name_length (R : *mut get_cursor_name_reply) -> c_int;
 
 
-pub unsafe fn xcb_xfixes_get_cursor_name_name_end (R : *get_cursor_name_reply) -> generic_iterator;
+pub fn xcb_xfixes_get_cursor_name_name_end (R : *mut get_cursor_name_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -1308,11 +1308,11 @@ pub unsafe fn xcb_xfixes_get_cursor_name_name_end (R : *get_cursor_name_reply) -
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xfixes_get_cursor_name_reply (c : *connection,
+pub fn xcb_xfixes_get_cursor_name_reply (c : *mut connection,
                                             cookie : get_cursor_name_cookie,
-                                            e : **generic_error) -> *get_cursor_name_reply;
+                                            e : *mut *mut generic_error) -> *mut get_cursor_name_reply;
 
-pub unsafe fn xcb_xfixes_get_cursor_image_and_name_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xfixes_get_cursor_image_and_name_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1322,7 +1322,7 @@ pub unsafe fn xcb_xfixes_get_cursor_image_and_name_sizeof (_buffer :  *c_void) -
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_get_cursor_image_and_name (c : *connection) -> get_cursor_image_and_name_cookie;
+pub fn xcb_xfixes_get_cursor_image_and_name (c : *mut connection) -> get_cursor_image_and_name_cookie;
 
 /**
  *
@@ -1335,23 +1335,23 @@ pub unsafe fn xcb_xfixes_get_cursor_image_and_name (c : *connection) -> get_curs
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xfixes_get_cursor_image_and_name_unchecked (c : *connection) -> get_cursor_image_and_name_cookie;
+pub fn xcb_xfixes_get_cursor_image_and_name_unchecked (c : *mut connection) -> get_cursor_image_and_name_cookie;
 
-pub unsafe fn xcb_xfixes_get_cursor_image_and_name_name (R : *get_cursor_image_and_name_reply) -> *c_char;
-
-
-pub unsafe fn xcb_xfixes_get_cursor_image_and_name_name_length (R : *get_cursor_image_and_name_reply) -> c_int;
+pub fn xcb_xfixes_get_cursor_image_and_name_name (R : *mut get_cursor_image_and_name_reply) -> *mut c_char;
 
 
-pub unsafe fn xcb_xfixes_get_cursor_image_and_name_name_end (R : *get_cursor_image_and_name_reply) -> generic_iterator;
-
-pub unsafe fn xcb_xfixes_get_cursor_image_and_name_cursor_image (R : *get_cursor_image_and_name_reply) -> *u32;
+pub fn xcb_xfixes_get_cursor_image_and_name_name_length (R : *mut get_cursor_image_and_name_reply) -> c_int;
 
 
-pub unsafe fn xcb_xfixes_get_cursor_image_and_name_cursor_image_length (R : *get_cursor_image_and_name_reply) -> c_int;
+pub fn xcb_xfixes_get_cursor_image_and_name_name_end (R : *mut get_cursor_image_and_name_reply) -> generic_iterator;
+
+pub fn xcb_xfixes_get_cursor_image_and_name_cursor_image (R : *mut get_cursor_image_and_name_reply) -> *mut u32;
 
 
-pub unsafe fn xcb_xfixes_get_cursor_image_and_name_cursor_image_end (R : *get_cursor_image_and_name_reply) -> generic_iterator;
+pub fn xcb_xfixes_get_cursor_image_and_name_cursor_image_length (R : *mut get_cursor_image_and_name_reply) -> c_int;
+
+
+pub fn xcb_xfixes_get_cursor_image_and_name_cursor_image_end (R : *mut get_cursor_image_and_name_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -1367,9 +1367,9 @@ pub unsafe fn xcb_xfixes_get_cursor_image_and_name_cursor_image_end (R : *get_cu
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xfixes_get_cursor_image_and_name_reply (c : *connection,
+pub fn xcb_xfixes_get_cursor_image_and_name_reply (c : *mut connection,
                                                       cookie : get_cursor_image_and_name_cookie,
-                                                      e : **generic_error) -> *get_cursor_image_and_name_reply;
+                                                      e : *mut *mut generic_error) -> *mut get_cursor_image_and_name_reply;
 
 /**
  *
@@ -1382,7 +1382,7 @@ pub unsafe fn xcb_xfixes_get_cursor_image_and_name_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xfixes_change_cursor_checked (c : *connection,
+pub fn xcb_xfixes_change_cursor_checked (c : *mut connection,
                                             source :  ffi::xproto::cursor,
                                             destination :  ffi::xproto::cursor) -> void_cookie;
 
@@ -1394,11 +1394,11 @@ pub unsafe fn xcb_xfixes_change_cursor_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_change_cursor (c : *connection,
+pub fn xcb_xfixes_change_cursor (c : *mut connection,
                                     source :  ffi::xproto::cursor,
                                     destination :  ffi::xproto::cursor) -> void_cookie;
 
-pub unsafe fn xcb_xfixes_change_cursor_by_name_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xfixes_change_cursor_by_name_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1411,10 +1411,10 @@ pub unsafe fn xcb_xfixes_change_cursor_by_name_sizeof (_buffer :  *c_void) -> c_
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xfixes_change_cursor_by_name_checked (c : *connection,
+pub fn xcb_xfixes_change_cursor_by_name_checked (c : *mut connection,
                                                     src :  ffi::xproto::cursor,
                                                     nbytes :  u16,
-                                                    name : *c_char) -> void_cookie;
+                                                    name : *mut c_char) -> void_cookie;
 
 /**
  *
@@ -1424,10 +1424,10 @@ pub unsafe fn xcb_xfixes_change_cursor_by_name_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_change_cursor_by_name (c : *connection,
+pub fn xcb_xfixes_change_cursor_by_name (c : *mut connection,
                                             src :  ffi::xproto::cursor,
                                             nbytes :  u16,
-                                            name : *c_char) -> void_cookie;
+                                            name : *mut c_char) -> void_cookie;
 
 /**
  *
@@ -1440,7 +1440,7 @@ pub unsafe fn xcb_xfixes_change_cursor_by_name (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xfixes_expand_region_checked (c : *connection,
+pub fn xcb_xfixes_expand_region_checked (c : *mut connection,
                                             source :  region,
                                             destination :  region,
                                             left :  u16,
@@ -1456,7 +1456,7 @@ pub unsafe fn xcb_xfixes_expand_region_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_expand_region (c : *connection,
+pub fn xcb_xfixes_expand_region (c : *mut connection,
                                     source :  region,
                                     destination :  region,
                                     left :  u16,
@@ -1475,7 +1475,7 @@ pub unsafe fn xcb_xfixes_expand_region (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xfixes_hide_cursor_checked (c : *connection,
+pub fn xcb_xfixes_hide_cursor_checked (c : *mut connection,
                                           window :  ffi::xproto::window) -> void_cookie;
 
 /**
@@ -1486,7 +1486,7 @@ pub unsafe fn xcb_xfixes_hide_cursor_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_hide_cursor (c : *connection,
+pub fn xcb_xfixes_hide_cursor (c : *mut connection,
                                   window :  ffi::xproto::window) -> void_cookie;
 
 /**
@@ -1500,7 +1500,7 @@ pub unsafe fn xcb_xfixes_hide_cursor (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xfixes_show_cursor_checked (c : *connection,
+pub fn xcb_xfixes_show_cursor_checked (c : *mut connection,
                                           window :  ffi::xproto::window) -> void_cookie;
 
 /**
@@ -1511,7 +1511,7 @@ pub unsafe fn xcb_xfixes_show_cursor_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xfixes_show_cursor (c : *connection,
+pub fn xcb_xfixes_show_cursor (c : *mut connection,
                                   window :  ffi::xproto::window) -> void_cookie;
 }
 

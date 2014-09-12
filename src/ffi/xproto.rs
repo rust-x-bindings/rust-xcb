@@ -4,8 +4,8 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
@@ -22,7 +22,7 @@ pub struct char2b {
  * @brief char2b_iterator
  **/
 pub struct char2b_iterator {
-    data : *char2b,
+    data : *mut char2b,
     rem  : c_int,
     index: c_int
 }
@@ -33,7 +33,7 @@ pub type window = u32;
  * @brief window_iterator
  **/
 pub struct window_iterator {
-    data : *window,
+    data : *mut window,
     rem  : c_int,
     index: c_int
 }
@@ -44,7 +44,7 @@ pub type pixmap = u32;
  * @brief pixmap_iterator
  **/
 pub struct pixmap_iterator {
-    data : *pixmap,
+    data : *mut pixmap,
     rem  : c_int,
     index: c_int
 }
@@ -55,7 +55,7 @@ pub type cursor = u32;
  * @brief cursor_iterator
  **/
 pub struct cursor_iterator {
-    data : *cursor,
+    data : *mut cursor,
     rem  : c_int,
     index: c_int
 }
@@ -66,7 +66,7 @@ pub type font = u32;
  * @brief font_iterator
  **/
 pub struct font_iterator {
-    data : *font,
+    data : *mut font,
     rem  : c_int,
     index: c_int
 }
@@ -77,7 +77,7 @@ pub type gcontext = u32;
  * @brief gcontext_iterator
  **/
 pub struct gcontext_iterator {
-    data : *gcontext,
+    data : *mut gcontext,
     rem  : c_int,
     index: c_int
 }
@@ -88,7 +88,7 @@ pub type colormap = u32;
  * @brief colormap_iterator
  **/
 pub struct colormap_iterator {
-    data : *colormap,
+    data : *mut colormap,
     rem  : c_int,
     index: c_int
 }
@@ -99,7 +99,7 @@ pub type atom = u32;
  * @brief atom_iterator
  **/
 pub struct atom_iterator {
-    data : *atom,
+    data : *mut atom,
     rem  : c_int,
     index: c_int
 }
@@ -110,7 +110,7 @@ pub type drawable = u32;
  * @brief drawable_iterator
  **/
 pub struct drawable_iterator {
-    data : *drawable,
+    data : *mut drawable,
     rem  : c_int,
     index: c_int
 }
@@ -121,7 +121,7 @@ pub type fontable = u32;
  * @brief fontable_iterator
  **/
 pub struct fontable_iterator {
-    data : *fontable,
+    data : *mut fontable,
     rem  : c_int,
     index: c_int
 }
@@ -132,7 +132,7 @@ pub type visualid = u32;
  * @brief visualid_iterator
  **/
 pub struct visualid_iterator {
-    data : *visualid,
+    data : *mut visualid,
     rem  : c_int,
     index: c_int
 }
@@ -143,7 +143,7 @@ pub type timestamp = u32;
  * @brief timestamp_iterator
  **/
 pub struct timestamp_iterator {
-    data : *timestamp,
+    data : *mut timestamp,
     rem  : c_int,
     index: c_int
 }
@@ -154,7 +154,7 @@ pub type keysym = u32;
  * @brief keysym_iterator
  **/
 pub struct keysym_iterator {
-    data : *keysym,
+    data : *mut keysym,
     rem  : c_int,
     index: c_int
 }
@@ -165,7 +165,7 @@ pub type keycode = u8;
  * @brief keycode_iterator
  **/
 pub struct keycode_iterator {
-    data : *keycode,
+    data : *mut keycode,
     rem  : c_int,
     index: c_int
 }
@@ -176,7 +176,7 @@ pub type button = u8;
  * @brief button_iterator
  **/
 pub struct button_iterator {
-    data : *button,
+    data : *mut button,
     rem  : c_int,
     index: c_int
 }
@@ -191,7 +191,7 @@ pub struct point {
  * @brief point_iterator
  **/
 pub struct point_iterator {
-    data : *point,
+    data : *mut point,
     rem  : c_int,
     index: c_int
 }
@@ -208,7 +208,7 @@ pub struct rectangle {
  * @brief rectangle_iterator
  **/
 pub struct rectangle_iterator {
-    data : *rectangle,
+    data : *mut rectangle,
     rem  : c_int,
     index: c_int
 }
@@ -227,7 +227,7 @@ pub struct arc {
  * @brief arc_iterator
  **/
 pub struct arc_iterator {
-    data : *arc,
+    data : *mut arc,
     rem  : c_int,
     index: c_int
 }
@@ -244,7 +244,7 @@ pub struct format {
  * @brief format_iterator
  **/
 pub struct format_iterator {
-    data : *format,
+    data : *mut format,
     rem  : c_int,
     index: c_int
 }
@@ -265,7 +265,7 @@ pub struct visualtype {
  * @brief visualtype_iterator
  **/
 pub struct visualtype_iterator {
-    data : *visualtype,
+    data : *mut visualtype,
     rem  : c_int,
     index: c_int
 }
@@ -282,7 +282,7 @@ pub struct depth {
  * @brief depth_iterator
  **/
 pub struct depth_iterator {
-    data : *depth,
+    data : *mut depth,
     rem  : c_int,
     index: c_int
 }
@@ -311,7 +311,7 @@ pub struct screen {
  * @brief screen_iterator
  **/
 pub struct screen_iterator {
-    data : *screen,
+    data : *mut screen,
     rem  : c_int,
     index: c_int
 }
@@ -331,7 +331,7 @@ pub struct setup_request {
  * @brief setup_request_iterator
  **/
 pub struct setup_request_iterator {
-    data : *setup_request,
+    data : *mut setup_request,
     rem  : c_int,
     index: c_int
 }
@@ -349,7 +349,7 @@ pub struct setup_failed {
  * @brief setup_failed_iterator
  **/
 pub struct setup_failed_iterator {
-    data : *setup_failed,
+    data : *mut setup_failed,
     rem  : c_int,
     index: c_int
 }
@@ -365,7 +365,7 @@ pub struct setup_authenticate {
  * @brief setup_authenticate_iterator
  **/
 pub struct setup_authenticate_iterator {
-    data : *setup_authenticate,
+    data : *mut setup_authenticate,
     rem  : c_int,
     index: c_int
 }
@@ -398,7 +398,7 @@ pub struct setup {
  * @brief setup_iterator
  **/
 pub struct setup_iterator {
-    data : *setup,
+    data : *mut setup,
     rem  : c_int,
     index: c_int
 }
@@ -786,7 +786,7 @@ pub struct client_message_data {
  * @brief client_message_data_iterator
  **/
 pub struct client_message_data_iterator {
-    data : *client_message_data,
+    data : *mut client_message_data,
     rem  : c_int,
     index: c_int
 }
@@ -1474,7 +1474,7 @@ pub struct timecoord {
  * @brief timecoord_iterator
  **/
 pub struct timecoord_iterator {
-    data : *timecoord,
+    data : *mut timecoord,
     rem  : c_int,
     index: c_int
 }
@@ -1629,7 +1629,7 @@ pub struct fontprop {
  * @brief fontprop_iterator
  **/
 pub struct fontprop_iterator {
-    data : *fontprop,
+    data : *mut fontprop,
     rem  : c_int,
     index: c_int
 }
@@ -1648,7 +1648,7 @@ pub struct charinfo {
  * @brief charinfo_iterator
  **/
 pub struct charinfo_iterator {
-    data : *charinfo,
+    data : *mut charinfo,
     rem  : c_int,
     index: c_int
 }
@@ -1726,7 +1726,7 @@ pub struct str_ {
  * @brief str_iterator
  **/
 pub struct str_iterator {
-    data : *str_,
+    data : *mut str_,
     rem  : c_int,
     index: c_int
 }
@@ -1988,7 +1988,7 @@ pub struct segment {
  * @brief segment_iterator
  **/
 pub struct segment_iterator {
-    data : *segment,
+    data : *mut segment,
     rem  : c_int,
     index: c_int
 }
@@ -2361,7 +2361,7 @@ pub struct coloritem {
  * @brief coloritem_iterator
  **/
 pub struct coloritem_iterator {
-    data : *coloritem,
+    data : *mut coloritem,
     rem  : c_int,
     index: c_int
 }
@@ -2399,7 +2399,7 @@ pub struct rgb {
  * @brief rgb_iterator
  **/
 pub struct rgb_iterator {
-    data : *rgb,
+    data : *mut rgb,
     rem  : c_int,
     index: c_int
 }
@@ -2764,7 +2764,7 @@ pub struct host {
  * @brief host_iterator
  **/
 pub struct host_iterator {
-    data : *host,
+    data : *mut host,
     rem  : c_int,
     index: c_int
 }
@@ -2937,7 +2937,7 @@ pub extern "C" {
  *
  *
  */
-pub unsafe fn xcb_char2b_next (i:*char2b_iterator) -> c_void;
+pub fn xcb_char2b_next (i:*mut char2b_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2948,7 +2948,7 @@ pub unsafe fn xcb_char2b_next (i:*char2b_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_char2b_end (i:char2b_iterator) -> generic_iterator;
+pub fn xcb_char2b_end (i:char2b_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2960,7 +2960,7 @@ pub unsafe fn xcb_char2b_end (i:char2b_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_window_next (i:*window_iterator) -> c_void;
+pub fn xcb_window_next (i:*mut window_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2971,7 +2971,7 @@ pub unsafe fn xcb_window_next (i:*window_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_window_end (i:window_iterator) -> generic_iterator;
+pub fn xcb_window_end (i:window_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2983,7 +2983,7 @@ pub unsafe fn xcb_window_end (i:window_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_pixmap_next (i:*pixmap_iterator) -> c_void;
+pub fn xcb_pixmap_next (i:*mut pixmap_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2994,7 +2994,7 @@ pub unsafe fn xcb_pixmap_next (i:*pixmap_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_pixmap_end (i:pixmap_iterator) -> generic_iterator;
+pub fn xcb_pixmap_end (i:pixmap_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3006,7 +3006,7 @@ pub unsafe fn xcb_pixmap_end (i:pixmap_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_cursor_next (i:*cursor_iterator) -> c_void;
+pub fn xcb_cursor_next (i:*mut cursor_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3017,7 +3017,7 @@ pub unsafe fn xcb_cursor_next (i:*cursor_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_cursor_end (i:cursor_iterator) -> generic_iterator;
+pub fn xcb_cursor_end (i:cursor_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3029,7 +3029,7 @@ pub unsafe fn xcb_cursor_end (i:cursor_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_font_next (i:*font_iterator) -> c_void;
+pub fn xcb_font_next (i:*mut font_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3040,7 +3040,7 @@ pub unsafe fn xcb_font_next (i:*font_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_font_end (i:font_iterator) -> generic_iterator;
+pub fn xcb_font_end (i:font_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3052,7 +3052,7 @@ pub unsafe fn xcb_font_end (i:font_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_gcontext_next (i:*gcontext_iterator) -> c_void;
+pub fn xcb_gcontext_next (i:*mut gcontext_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3063,7 +3063,7 @@ pub unsafe fn xcb_gcontext_next (i:*gcontext_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_gcontext_end (i:gcontext_iterator) -> generic_iterator;
+pub fn xcb_gcontext_end (i:gcontext_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3075,7 +3075,7 @@ pub unsafe fn xcb_gcontext_end (i:gcontext_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_colormap_next (i:*colormap_iterator) -> c_void;
+pub fn xcb_colormap_next (i:*mut colormap_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3086,7 +3086,7 @@ pub unsafe fn xcb_colormap_next (i:*colormap_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_colormap_end (i:colormap_iterator) -> generic_iterator;
+pub fn xcb_colormap_end (i:colormap_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3098,7 +3098,7 @@ pub unsafe fn xcb_colormap_end (i:colormap_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_atom_next (i:*atom_iterator) -> c_void;
+pub fn xcb_atom_next (i:*mut atom_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3109,7 +3109,7 @@ pub unsafe fn xcb_atom_next (i:*atom_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_atom_end (i:atom_iterator) -> generic_iterator;
+pub fn xcb_atom_end (i:atom_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3121,7 +3121,7 @@ pub unsafe fn xcb_atom_end (i:atom_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_drawable_next (i:*drawable_iterator) -> c_void;
+pub fn xcb_drawable_next (i:*mut drawable_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3132,7 +3132,7 @@ pub unsafe fn xcb_drawable_next (i:*drawable_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_drawable_end (i:drawable_iterator) -> generic_iterator;
+pub fn xcb_drawable_end (i:drawable_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3144,7 +3144,7 @@ pub unsafe fn xcb_drawable_end (i:drawable_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_fontable_next (i:*fontable_iterator) -> c_void;
+pub fn xcb_fontable_next (i:*mut fontable_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3155,7 +3155,7 @@ pub unsafe fn xcb_fontable_next (i:*fontable_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_fontable_end (i:fontable_iterator) -> generic_iterator;
+pub fn xcb_fontable_end (i:fontable_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3167,7 +3167,7 @@ pub unsafe fn xcb_fontable_end (i:fontable_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_visualid_next (i:*visualid_iterator) -> c_void;
+pub fn xcb_visualid_next (i:*mut visualid_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3178,7 +3178,7 @@ pub unsafe fn xcb_visualid_next (i:*visualid_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_visualid_end (i:visualid_iterator) -> generic_iterator;
+pub fn xcb_visualid_end (i:visualid_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3190,7 +3190,7 @@ pub unsafe fn xcb_visualid_end (i:visualid_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_timestamp_next (i:*timestamp_iterator) -> c_void;
+pub fn xcb_timestamp_next (i:*mut timestamp_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3201,7 +3201,7 @@ pub unsafe fn xcb_timestamp_next (i:*timestamp_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_timestamp_end (i:timestamp_iterator) -> generic_iterator;
+pub fn xcb_timestamp_end (i:timestamp_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3213,7 +3213,7 @@ pub unsafe fn xcb_timestamp_end (i:timestamp_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_keysym_next (i:*keysym_iterator) -> c_void;
+pub fn xcb_keysym_next (i:*mut keysym_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3224,7 +3224,7 @@ pub unsafe fn xcb_keysym_next (i:*keysym_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_keysym_end (i:keysym_iterator) -> generic_iterator;
+pub fn xcb_keysym_end (i:keysym_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3236,7 +3236,7 @@ pub unsafe fn xcb_keysym_end (i:keysym_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_keycode_next (i:*keycode_iterator) -> c_void;
+pub fn xcb_keycode_next (i:*mut keycode_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3247,7 +3247,7 @@ pub unsafe fn xcb_keycode_next (i:*keycode_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_keycode_end (i:keycode_iterator) -> generic_iterator;
+pub fn xcb_keycode_end (i:keycode_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3259,7 +3259,7 @@ pub unsafe fn xcb_keycode_end (i:keycode_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_button_next (i:*button_iterator) -> c_void;
+pub fn xcb_button_next (i:*mut button_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3270,7 +3270,7 @@ pub unsafe fn xcb_button_next (i:*button_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_button_end (i:button_iterator) -> generic_iterator;
+pub fn xcb_button_end (i:button_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3282,7 +3282,7 @@ pub unsafe fn xcb_button_end (i:button_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_point_next (i:*point_iterator) -> c_void;
+pub fn xcb_point_next (i:*mut point_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3293,7 +3293,7 @@ pub unsafe fn xcb_point_next (i:*point_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_point_end (i:point_iterator) -> generic_iterator;
+pub fn xcb_point_end (i:point_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3305,7 +3305,7 @@ pub unsafe fn xcb_point_end (i:point_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_rectangle_next (i:*rectangle_iterator) -> c_void;
+pub fn xcb_rectangle_next (i:*mut rectangle_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3316,7 +3316,7 @@ pub unsafe fn xcb_rectangle_next (i:*rectangle_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_rectangle_end (i:rectangle_iterator) -> generic_iterator;
+pub fn xcb_rectangle_end (i:rectangle_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3328,7 +3328,7 @@ pub unsafe fn xcb_rectangle_end (i:rectangle_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_arc_next (i:*arc_iterator) -> c_void;
+pub fn xcb_arc_next (i:*mut arc_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3339,7 +3339,7 @@ pub unsafe fn xcb_arc_next (i:*arc_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_arc_end (i:arc_iterator) -> generic_iterator;
+pub fn xcb_arc_end (i:arc_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3351,7 +3351,7 @@ pub unsafe fn xcb_arc_end (i:arc_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_format_next (i:*format_iterator) -> c_void;
+pub fn xcb_format_next (i:*mut format_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3362,7 +3362,7 @@ pub unsafe fn xcb_format_next (i:*format_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_format_end (i:format_iterator) -> generic_iterator;
+pub fn xcb_format_end (i:format_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3374,7 +3374,7 @@ pub unsafe fn xcb_format_end (i:format_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_visualtype_next (i:*visualtype_iterator) -> c_void;
+pub fn xcb_visualtype_next (i:*mut visualtype_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3385,16 +3385,16 @@ pub unsafe fn xcb_visualtype_next (i:*visualtype_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_visualtype_end (i:visualtype_iterator) -> generic_iterator;
+pub fn xcb_visualtype_end (i:visualtype_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_depth_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_depth_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_depth_visuals (R : *depth) -> *visualtype;
+pub fn xcb_depth_visuals (R : *mut depth) -> *mut visualtype;
 
 
-pub unsafe fn xcb_depth_visuals_length (R : *depth) -> c_int;
+pub fn xcb_depth_visuals_length (R : *mut depth) -> c_int;
 
-pub unsafe fn xcb_depth_visuals_iterator (R : *depth) -> visualtype_iterator;
+pub fn xcb_depth_visuals_iterator (R : *mut depth) -> visualtype_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3406,7 +3406,7 @@ pub unsafe fn xcb_depth_visuals_iterator (R : *depth) -> visualtype_iterator;
  *
  *
  */
-pub unsafe fn xcb_depth_next (i:*depth_iterator) -> c_void;
+pub fn xcb_depth_next (i:*mut depth_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3417,14 +3417,14 @@ pub unsafe fn xcb_depth_next (i:*depth_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_depth_end (i:depth_iterator) -> generic_iterator;
+pub fn xcb_depth_end (i:depth_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_screen_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_screen_sizeof (_buffer :  *mut c_void) -> c_int;
 
 
-pub unsafe fn xcb_screen_allowed_depths_length (R : *screen) -> c_int;
+pub fn xcb_screen_allowed_depths_length (R : *mut screen) -> c_int;
 
-pub unsafe fn xcb_screen_allowed_depths_iterator (R : *screen) -> depth_iterator;
+pub fn xcb_screen_allowed_depths_iterator (R : *mut screen) -> depth_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3436,7 +3436,7 @@ pub unsafe fn xcb_screen_allowed_depths_iterator (R : *screen) -> depth_iterator
  *
  *
  */
-pub unsafe fn xcb_screen_next (i:*screen_iterator) -> c_void;
+pub fn xcb_screen_next (i:*mut screen_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3447,25 +3447,25 @@ pub unsafe fn xcb_screen_next (i:*screen_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_screen_end (i:screen_iterator) -> generic_iterator;
+pub fn xcb_screen_end (i:screen_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_setup_request_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_setup_request_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_setup_request_authorization_protocol_name (R : *setup_request) -> *c_char;
-
-
-pub unsafe fn xcb_setup_request_authorization_protocol_name_length (R : *setup_request) -> c_int;
+pub fn xcb_setup_request_authorization_protocol_name (R : *mut setup_request) -> *mut c_char;
 
 
-pub unsafe fn xcb_setup_request_authorization_protocol_name_end (R : *setup_request) -> generic_iterator;
-
-pub unsafe fn xcb_setup_request_authorization_protocol_data (R : *setup_request) -> *c_char;
+pub fn xcb_setup_request_authorization_protocol_name_length (R : *mut setup_request) -> c_int;
 
 
-pub unsafe fn xcb_setup_request_authorization_protocol_data_length (R : *setup_request) -> c_int;
+pub fn xcb_setup_request_authorization_protocol_name_end (R : *mut setup_request) -> generic_iterator;
+
+pub fn xcb_setup_request_authorization_protocol_data (R : *mut setup_request) -> *mut c_char;
 
 
-pub unsafe fn xcb_setup_request_authorization_protocol_data_end (R : *setup_request) -> generic_iterator;
+pub fn xcb_setup_request_authorization_protocol_data_length (R : *mut setup_request) -> c_int;
+
+
+pub fn xcb_setup_request_authorization_protocol_data_end (R : *mut setup_request) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3477,7 +3477,7 @@ pub unsafe fn xcb_setup_request_authorization_protocol_data_end (R : *setup_requ
  *
  *
  */
-pub unsafe fn xcb_setup_request_next (i:*setup_request_iterator) -> c_void;
+pub fn xcb_setup_request_next (i:*mut setup_request_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3488,17 +3488,17 @@ pub unsafe fn xcb_setup_request_next (i:*setup_request_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_setup_request_end (i:setup_request_iterator) -> generic_iterator;
+pub fn xcb_setup_request_end (i:setup_request_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_setup_failed_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_setup_failed_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_setup_failed_reason (R : *setup_failed) -> *c_char;
-
-
-pub unsafe fn xcb_setup_failed_reason_length (R : *setup_failed) -> c_int;
+pub fn xcb_setup_failed_reason (R : *mut setup_failed) -> *mut c_char;
 
 
-pub unsafe fn xcb_setup_failed_reason_end (R : *setup_failed) -> generic_iterator;
+pub fn xcb_setup_failed_reason_length (R : *mut setup_failed) -> c_int;
+
+
+pub fn xcb_setup_failed_reason_end (R : *mut setup_failed) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3510,7 +3510,7 @@ pub unsafe fn xcb_setup_failed_reason_end (R : *setup_failed) -> generic_iterato
  *
  *
  */
-pub unsafe fn xcb_setup_failed_next (i:*setup_failed_iterator) -> c_void;
+pub fn xcb_setup_failed_next (i:*mut setup_failed_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3521,17 +3521,17 @@ pub unsafe fn xcb_setup_failed_next (i:*setup_failed_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_setup_failed_end (i:setup_failed_iterator) -> generic_iterator;
+pub fn xcb_setup_failed_end (i:setup_failed_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_setup_authenticate_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_setup_authenticate_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_setup_authenticate_reason (R : *setup_authenticate) -> *c_char;
-
-
-pub unsafe fn xcb_setup_authenticate_reason_length (R : *setup_authenticate) -> c_int;
+pub fn xcb_setup_authenticate_reason (R : *mut setup_authenticate) -> *mut c_char;
 
 
-pub unsafe fn xcb_setup_authenticate_reason_end (R : *setup_authenticate) -> generic_iterator;
+pub fn xcb_setup_authenticate_reason_length (R : *mut setup_authenticate) -> c_int;
+
+
+pub fn xcb_setup_authenticate_reason_end (R : *mut setup_authenticate) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3543,7 +3543,7 @@ pub unsafe fn xcb_setup_authenticate_reason_end (R : *setup_authenticate) -> gen
  *
  *
  */
-pub unsafe fn xcb_setup_authenticate_next (i:*setup_authenticate_iterator) -> c_void;
+pub fn xcb_setup_authenticate_next (i:*mut setup_authenticate_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3554,29 +3554,29 @@ pub unsafe fn xcb_setup_authenticate_next (i:*setup_authenticate_iterator) -> c_
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_setup_authenticate_end (i:setup_authenticate_iterator) -> generic_iterator;
+pub fn xcb_setup_authenticate_end (i:setup_authenticate_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_setup_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_setup_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_setup_vendor (R : *setup) -> *c_char;
-
-
-pub unsafe fn xcb_setup_vendor_length (R : *setup) -> c_int;
+pub fn xcb_setup_vendor (R : *mut setup) -> *mut c_char;
 
 
-pub unsafe fn xcb_setup_vendor_end (R : *setup) -> generic_iterator;
-
-pub unsafe fn xcb_setup_pixmap_formats (R : *setup) -> *format;
+pub fn xcb_setup_vendor_length (R : *mut setup) -> c_int;
 
 
-pub unsafe fn xcb_setup_pixmap_formats_length (R : *setup) -> c_int;
+pub fn xcb_setup_vendor_end (R : *mut setup) -> generic_iterator;
 
-pub unsafe fn xcb_setup_pixmap_formats_iterator (R : *setup) -> format_iterator;
+pub fn xcb_setup_pixmap_formats (R : *mut setup) -> *mut format;
 
 
-pub unsafe fn xcb_setup_roots_length (R : *setup) -> c_int;
+pub fn xcb_setup_pixmap_formats_length (R : *mut setup) -> c_int;
 
-pub unsafe fn xcb_setup_roots_iterator (R : *setup) -> screen_iterator;
+pub fn xcb_setup_pixmap_formats_iterator (R : *mut setup) -> format_iterator;
+
+
+pub fn xcb_setup_roots_length (R : *mut setup) -> c_int;
+
+pub fn xcb_setup_roots_iterator (R : *mut setup) -> screen_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3588,7 +3588,7 @@ pub unsafe fn xcb_setup_roots_iterator (R : *setup) -> screen_iterator;
  *
  *
  */
-pub unsafe fn xcb_setup_next (i:*setup_iterator) -> c_void;
+pub fn xcb_setup_next (i:*mut setup_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3599,7 +3599,7 @@ pub unsafe fn xcb_setup_next (i:*setup_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_setup_end (i:setup_iterator) -> generic_iterator;
+pub fn xcb_setup_end (i:setup_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3611,7 +3611,7 @@ pub unsafe fn xcb_setup_end (i:setup_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_client_message_data_next (i:*client_message_data_iterator) -> c_void;
+pub fn xcb_client_message_data_next (i:*mut client_message_data_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3622,9 +3622,9 @@ pub unsafe fn xcb_client_message_data_next (i:*client_message_data_iterator) -> 
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_client_message_data_end (i:client_message_data_iterator) -> generic_iterator;
+pub fn xcb_client_message_data_end (i:client_message_data_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_create_window_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_create_window_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * Creates a window
@@ -3671,7 +3671,7 @@ pub unsafe fn xcb_create_window_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_create_window_checked (c : *connection,
+pub fn xcb_create_window_checked (c : *mut connection,
                                      depth :  u8,
                                      wid :  window,
                                      parent :  window,
@@ -3683,7 +3683,7 @@ pub unsafe fn xcb_create_window_checked (c : *connection,
                                      class :  u16,
                                      visual :  visualid,
                                      value_mask :  u32,
-                                     value_list : *u32) -> void_cookie;
+                                     value_list : *mut u32) -> void_cookie;
 
 /**
  * Creates a window
@@ -3727,7 +3727,7 @@ pub unsafe fn xcb_create_window_checked (c : *connection,
  * The created window will initially use the same cursor as its parent.
  * 
  */
-pub unsafe fn xcb_create_window (c : *connection,
+pub fn xcb_create_window (c : *mut connection,
                              depth :  u8,
                              wid :  window,
                              parent :  window,
@@ -3739,9 +3739,9 @@ pub unsafe fn xcb_create_window (c : *connection,
                              class :  u16,
                              visual :  visualid,
                              value_mask :  u32,
-                             value_list : *u32) -> void_cookie;
+                             value_list : *mut u32) -> void_cookie;
 
-pub unsafe fn xcb_change_window_attributes_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_change_window_attributes_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * change window attributes
@@ -3760,10 +3760,10 @@ pub unsafe fn xcb_change_window_attributes_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_change_window_attributes_checked (c : *connection,
+pub fn xcb_change_window_attributes_checked (c : *mut connection,
                                                 window :  window,
                                                 value_mask :  u32,
-                                                value_list : *u32) -> void_cookie;
+                                                value_list : *mut u32) -> void_cookie;
 
 /**
  * change window attributes
@@ -3779,10 +3779,10 @@ pub unsafe fn xcb_change_window_attributes_checked (c : *connection,
  * Changes the attributes specified by \a value_mask for the specified \a window.
  * 
  */
-pub unsafe fn xcb_change_window_attributes (c : *connection,
+pub fn xcb_change_window_attributes (c : *mut connection,
                                         window :  window,
                                         value_mask :  u32,
-                                        value_list : *u32) -> void_cookie;
+                                        value_list : *mut u32) -> void_cookie;
 
 /**
  * Gets window attributes
@@ -3794,7 +3794,7 @@ pub unsafe fn xcb_change_window_attributes (c : *connection,
  * Gets the current attributes for the specified \a window.
  * 
  */
-pub unsafe fn xcb_get_window_attributes (c : *connection,
+pub fn xcb_get_window_attributes (c : *mut connection,
                                      window :  window) -> get_window_attributes_cookie;
 
 /**
@@ -3810,7 +3810,7 @@ pub unsafe fn xcb_get_window_attributes (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_window_attributes_unchecked (c : *connection,
+pub fn xcb_get_window_attributes_unchecked (c : *mut connection,
                                                window :  window) -> get_window_attributes_cookie;
 
 /**
@@ -3827,9 +3827,9 @@ pub unsafe fn xcb_get_window_attributes_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_window_attributes_reply (c : *connection,
+pub fn xcb_get_window_attributes_reply (c : *mut connection,
                                            cookie : get_window_attributes_cookie,
-                                           e : **generic_error) -> *get_window_attributes_reply;
+                                           e : *mut *mut generic_error) -> *mut get_window_attributes_reply;
 
 /**
  * Destroys a window
@@ -3849,7 +3849,7 @@ pub unsafe fn xcb_get_window_attributes_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_destroy_window_checked (c : *connection,
+pub fn xcb_destroy_window_checked (c : *mut connection,
                                       window :  window) -> void_cookie;
 
 /**
@@ -3867,7 +3867,7 @@ pub unsafe fn xcb_destroy_window_checked (c : *connection,
  * Calling DestroyWindow on the root window will do nothing.
  * 
  */
-pub unsafe fn xcb_destroy_window (c : *connection,
+pub fn xcb_destroy_window (c : *mut connection,
                               window :  window) -> void_cookie;
 
 /**
@@ -3881,7 +3881,7 @@ pub unsafe fn xcb_destroy_window (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_destroy_subwindows_checked (c : *connection,
+pub fn xcb_destroy_subwindows_checked (c : *mut connection,
                                           window :  window) -> void_cookie;
 
 /**
@@ -3892,7 +3892,7 @@ pub unsafe fn xcb_destroy_subwindows_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_destroy_subwindows (c : *connection,
+pub fn xcb_destroy_subwindows (c : *mut connection,
                                   window :  window) -> void_cookie;
 
 /**
@@ -3913,7 +3913,7 @@ pub unsafe fn xcb_destroy_subwindows (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_change_save_set_checked (c : *connection,
+pub fn xcb_change_save_set_checked (c : *mut connection,
                                        mode :  u8,
                                        window :  window) -> void_cookie;
 
@@ -3932,7 +3932,7 @@ pub unsafe fn xcb_change_save_set_checked (c : *connection,
  * application's) save set.
  * 
  */
-pub unsafe fn xcb_change_save_set (c : *connection,
+pub fn xcb_change_save_set (c : *mut connection,
                                mode :  u8,
                                window :  window) -> void_cookie;
 
@@ -3957,7 +3957,7 @@ pub unsafe fn xcb_change_save_set (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_reparent_window_checked (c : *connection,
+pub fn xcb_reparent_window_checked (c : *mut connection,
                                        window :  window,
                                        parent :  window,
                                        x :  i16,
@@ -3981,7 +3981,7 @@ pub unsafe fn xcb_reparent_window_checked (c : *connection,
  * After reparenting, a ReparentNotify event is generated.
  * 
  */
-pub unsafe fn xcb_reparent_window (c : *connection,
+pub fn xcb_reparent_window (c : *mut connection,
                                window :  window,
                                parent :  window,
                                x :  i16,
@@ -4018,7 +4018,7 @@ pub unsafe fn xcb_reparent_window (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_map_window_checked (c : *connection,
+pub fn xcb_map_window_checked (c : *mut connection,
                                   window :  window) -> void_cookie;
 
 /**
@@ -4049,7 +4049,7 @@ pub unsafe fn xcb_map_window_checked (c : *connection,
  * repaint the window.
  * 
  */
-pub unsafe fn xcb_map_window (c : *connection,
+pub fn xcb_map_window (c : *mut connection,
                           window :  window) -> void_cookie;
 
 /**
@@ -4063,7 +4063,7 @@ pub unsafe fn xcb_map_window (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_map_subwindows_checked (c : *connection,
+pub fn xcb_map_subwindows_checked (c : *mut connection,
                                       window :  window) -> void_cookie;
 
 /**
@@ -4074,7 +4074,7 @@ pub unsafe fn xcb_map_subwindows_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_map_subwindows (c : *connection,
+pub fn xcb_map_subwindows (c : *mut connection,
                               window :  window) -> void_cookie;
 
 /**
@@ -4094,7 +4094,7 @@ pub unsafe fn xcb_map_subwindows (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_unmap_window_checked (c : *connection,
+pub fn xcb_unmap_window_checked (c : *mut connection,
                                     window :  window) -> void_cookie;
 
 /**
@@ -4111,7 +4111,7 @@ pub unsafe fn xcb_unmap_window_checked (c : *connection,
  * `Expose` events are generated for formerly obscured windows.
  * 
  */
-pub unsafe fn xcb_unmap_window (c : *connection,
+pub fn xcb_unmap_window (c : *mut connection,
                             window :  window) -> void_cookie;
 
 /**
@@ -4125,7 +4125,7 @@ pub unsafe fn xcb_unmap_window (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_unmap_subwindows_checked (c : *connection,
+pub fn xcb_unmap_subwindows_checked (c : *mut connection,
                                         window :  window) -> void_cookie;
 
 /**
@@ -4136,10 +4136,10 @@ pub unsafe fn xcb_unmap_subwindows_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_unmap_subwindows (c : *connection,
+pub fn xcb_unmap_subwindows (c : *mut connection,
                                 window :  window) -> void_cookie;
 
-pub unsafe fn xcb_configure_window_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_configure_window_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * Configures window attributes
@@ -4157,10 +4157,10 @@ pub unsafe fn xcb_configure_window_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_configure_window_checked (c : *connection,
+pub fn xcb_configure_window_checked (c : *mut connection,
                                         window :  window,
                                         value_mask :  u16,
-                                        value_list : *u32) -> void_cookie;
+                                        value_list : *mut u32) -> void_cookie;
 
 /**
  * Configures window attributes
@@ -4175,10 +4175,10 @@ pub unsafe fn xcb_configure_window_checked (c : *connection,
  * Configures a window's size, position, border width and stacking order.
  * 
  */
-pub unsafe fn xcb_configure_window (c : *connection,
+pub fn xcb_configure_window (c : *mut connection,
                                 window :  window,
                                 value_mask :  u16,
-                                value_list : *u32) -> void_cookie;
+                                value_list : *mut u32) -> void_cookie;
 
 /**
  * Change window stacking order
@@ -4199,7 +4199,7 @@ pub unsafe fn xcb_configure_window (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_circulate_window_checked (c : *connection,
+pub fn xcb_circulate_window_checked (c : *mut connection,
                                         direction :  u8,
                                         window :  window) -> void_cookie;
 
@@ -4219,7 +4219,7 @@ pub unsafe fn xcb_circulate_window_checked (c : *connection,
  * be lowered to the bottom of the stack.
  * 
  */
-pub unsafe fn xcb_circulate_window (c : *connection,
+pub fn xcb_circulate_window (c : *mut connection,
                                 direction :  u8,
                                 window :  window) -> void_cookie;
 
@@ -4233,7 +4233,7 @@ pub unsafe fn xcb_circulate_window (c : *connection,
  * Gets the current geometry of the specified drawable (either `Window` or `Pixmap`).
  * 
  */
-pub unsafe fn xcb_get_geometry (c : *connection,
+pub fn xcb_get_geometry (c : *mut connection,
                             drawable :  drawable) -> get_geometry_cookie;
 
 /**
@@ -4249,7 +4249,7 @@ pub unsafe fn xcb_get_geometry (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_geometry_unchecked (c : *connection,
+pub fn xcb_get_geometry_unchecked (c : *mut connection,
                                       drawable :  drawable) -> get_geometry_cookie;
 
 /**
@@ -4266,11 +4266,11 @@ pub unsafe fn xcb_get_geometry_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_geometry_reply (c : *connection,
+pub fn xcb_get_geometry_reply (c : *mut connection,
                                   cookie : get_geometry_cookie,
-                                  e : **generic_error) -> *get_geometry_reply;
+                                  e : *mut *mut generic_error) -> *mut get_geometry_reply;
 
-pub unsafe fn xcb_query_tree_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_query_tree_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * query the window tree
@@ -4283,7 +4283,7 @@ pub unsafe fn xcb_query_tree_sizeof (_buffer :  *c_void) -> c_int;
  * specified \a window. The children are listed in bottom-to-top stacking order.
  * 
  */
-pub unsafe fn xcb_query_tree (c : *connection,
+pub fn xcb_query_tree (c : *mut connection,
                           window :  window) -> query_tree_cookie;
 
 /**
@@ -4300,16 +4300,16 @@ pub unsafe fn xcb_query_tree (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_query_tree_unchecked (c : *connection,
+pub fn xcb_query_tree_unchecked (c : *mut connection,
                                     window :  window) -> query_tree_cookie;
 
-pub unsafe fn xcb_query_tree_children (R : *query_tree_reply) -> *window;
+pub fn xcb_query_tree_children (R : *mut query_tree_reply) -> *mut window;
 
 
-pub unsafe fn xcb_query_tree_children_length (R : *query_tree_reply) -> c_int;
+pub fn xcb_query_tree_children_length (R : *mut query_tree_reply) -> c_int;
 
 
-pub unsafe fn xcb_query_tree_children_end (R : *query_tree_reply) -> generic_iterator;
+pub fn xcb_query_tree_children_end (R : *mut query_tree_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -4325,11 +4325,11 @@ pub unsafe fn xcb_query_tree_children_end (R : *query_tree_reply) -> generic_ite
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_query_tree_reply (c : *connection,
+pub fn xcb_query_tree_reply (c : *mut connection,
                                 cookie : query_tree_cookie,
-                                e : **generic_error) -> *query_tree_reply;
+                                e : *mut *mut generic_error) -> *mut query_tree_reply;
 
-pub unsafe fn xcb_intern_atom_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_intern_atom_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * Get atom identifier by name
@@ -4349,10 +4349,10 @@ pub unsafe fn xcb_intern_atom_sizeof (_buffer :  *c_void) -> c_int;
  * not yet exist.
  * 
  */
-pub unsafe fn xcb_intern_atom (c : *connection,
+pub fn xcb_intern_atom (c : *mut connection,
                            only_if_exists :  u8,
                            name_len :  u16,
-                           name : *c_char) -> intern_atom_cookie;
+                           name : *mut c_char) -> intern_atom_cookie;
 
 /**
  * Get atom identifier by name
@@ -4375,10 +4375,10 @@ pub unsafe fn xcb_intern_atom (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_intern_atom_unchecked (c : *connection,
+pub fn xcb_intern_atom_unchecked (c : *mut connection,
                                      only_if_exists :  u8,
                                      name_len :  u16,
-                                     name : *c_char) -> intern_atom_cookie;
+                                     name : *mut c_char) -> intern_atom_cookie;
 
 /**
  * Return the reply
@@ -4394,11 +4394,11 @@ pub unsafe fn xcb_intern_atom_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_intern_atom_reply (c : *connection,
+pub fn xcb_intern_atom_reply (c : *mut connection,
                                  cookie : intern_atom_cookie,
-                                 e : **generic_error) -> *intern_atom_reply;
+                                 e : *mut *mut generic_error) -> *mut intern_atom_reply;
 
-pub unsafe fn xcb_get_atom_name_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_get_atom_name_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -4408,7 +4408,7 @@ pub unsafe fn xcb_get_atom_name_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_get_atom_name (c : *connection,
+pub fn xcb_get_atom_name (c : *mut connection,
                              atom :  atom) -> get_atom_name_cookie;
 
 /**
@@ -4422,16 +4422,16 @@ pub unsafe fn xcb_get_atom_name (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_atom_name_unchecked (c : *connection,
+pub fn xcb_get_atom_name_unchecked (c : *mut connection,
                                        atom :  atom) -> get_atom_name_cookie;
 
-pub unsafe fn xcb_get_atom_name_name (R : *get_atom_name_reply) -> *c_char;
+pub fn xcb_get_atom_name_name (R : *mut get_atom_name_reply) -> *mut c_char;
 
 
-pub unsafe fn xcb_get_atom_name_name_length (R : *get_atom_name_reply) -> c_int;
+pub fn xcb_get_atom_name_name_length (R : *mut get_atom_name_reply) -> c_int;
 
 
-pub unsafe fn xcb_get_atom_name_name_end (R : *get_atom_name_reply) -> generic_iterator;
+pub fn xcb_get_atom_name_name_end (R : *mut get_atom_name_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -4447,11 +4447,11 @@ pub unsafe fn xcb_get_atom_name_name_end (R : *get_atom_name_reply) -> generic_i
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_atom_name_reply (c : *connection,
+pub fn xcb_get_atom_name_reply (c : *mut connection,
                                    cookie : get_atom_name_cookie,
-                                   e : **generic_error) -> *get_atom_name_reply;
+                                   e : *mut *mut generic_error) -> *mut get_atom_name_reply;
 
-pub unsafe fn xcb_change_property_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_change_property_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * Changes a window property
@@ -4478,14 +4478,14 @@ pub unsafe fn xcb_change_property_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_change_property_checked (c : *connection,
+pub fn xcb_change_property_checked (c : *mut connection,
                                        mode :  u8,
                                        window :  window,
                                        property :  atom,
                                        type_ :  atom,
                                        format :  u8,
                                        data_len :  u32,
-                                       data : *c_void) -> void_cookie;
+                                       data : *mut c_void) -> void_cookie;
 
 /**
  * Changes a window property
@@ -4509,14 +4509,14 @@ pub unsafe fn xcb_change_property_checked (c : *connection,
  * window title, encoded as UTF-8 string, in the `_NET_WM_NAME` property.
  * 
  */
-pub unsafe fn xcb_change_property (c : *connection,
+pub fn xcb_change_property (c : *mut connection,
                                mode :  u8,
                                window :  window,
                                property :  atom,
                                type_ :  atom,
                                format :  u8,
                                data_len :  u32,
-                               data : *c_void) -> void_cookie;
+                               data : *mut c_void) -> void_cookie;
 
 /**
  *
@@ -4529,7 +4529,7 @@ pub unsafe fn xcb_change_property (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_delete_property_checked (c : *connection,
+pub fn xcb_delete_property_checked (c : *mut connection,
                                        window :  window,
                                        property :  atom) -> void_cookie;
 
@@ -4541,11 +4541,11 @@ pub unsafe fn xcb_delete_property_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_delete_property (c : *connection,
+pub fn xcb_delete_property (c : *mut connection,
                                window :  window,
                                property :  atom) -> void_cookie;
 
-pub unsafe fn xcb_get_property_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_get_property_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * Gets a window property
@@ -4574,7 +4574,7 @@ pub unsafe fn xcb_get_property_sizeof (_buffer :  *c_void) -> c_int;
  * TODO: talk about the offset/length thing. what's a valid use case?
  * 
  */
-pub unsafe fn xcb_get_property (c : *connection,
+pub fn xcb_get_property (c : *mut connection,
                             delete :  u8,
                             window :  window,
                             property :  atom,
@@ -4612,7 +4612,7 @@ pub unsafe fn xcb_get_property (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_property_unchecked (c : *connection,
+pub fn xcb_get_property_unchecked (c : *mut connection,
                                       delete :  u8,
                                       window :  window,
                                       property :  atom,
@@ -4620,13 +4620,13 @@ pub unsafe fn xcb_get_property_unchecked (c : *connection,
                                       long_offset :  u32,
                                       long_length :  u32) -> get_property_cookie;
 
-pub unsafe fn xcb_get_property_value (R : *get_property_reply) -> *c_void;
+pub fn xcb_get_property_value (R : *mut get_property_reply) -> *mut c_void;
 
 
-pub unsafe fn xcb_get_property_value_length (R : *get_property_reply) -> c_int;
+pub fn xcb_get_property_value_length (R : *mut get_property_reply) -> c_int;
 
 
-pub unsafe fn xcb_get_property_value_end (R : *get_property_reply) -> generic_iterator;
+pub fn xcb_get_property_value_end (R : *mut get_property_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -4642,11 +4642,11 @@ pub unsafe fn xcb_get_property_value_end (R : *get_property_reply) -> generic_it
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_property_reply (c : *connection,
+pub fn xcb_get_property_reply (c : *mut connection,
                                   cookie : get_property_cookie,
-                                  e : **generic_error) -> *get_property_reply;
+                                  e : *mut *mut generic_error) -> *mut get_property_reply;
 
-pub unsafe fn xcb_list_properties_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_list_properties_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -4656,7 +4656,7 @@ pub unsafe fn xcb_list_properties_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_list_properties (c : *connection,
+pub fn xcb_list_properties (c : *mut connection,
                                window :  window) -> list_properties_cookie;
 
 /**
@@ -4670,16 +4670,16 @@ pub unsafe fn xcb_list_properties (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_list_properties_unchecked (c : *connection,
+pub fn xcb_list_properties_unchecked (c : *mut connection,
                                          window :  window) -> list_properties_cookie;
 
-pub unsafe fn xcb_list_properties_atoms (R : *list_properties_reply) -> *atom;
+pub fn xcb_list_properties_atoms (R : *mut list_properties_reply) -> *mut atom;
 
 
-pub unsafe fn xcb_list_properties_atoms_length (R : *list_properties_reply) -> c_int;
+pub fn xcb_list_properties_atoms_length (R : *mut list_properties_reply) -> c_int;
 
 
-pub unsafe fn xcb_list_properties_atoms_end (R : *list_properties_reply) -> generic_iterator;
+pub fn xcb_list_properties_atoms_end (R : *mut list_properties_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -4695,9 +4695,9 @@ pub unsafe fn xcb_list_properties_atoms_end (R : *list_properties_reply) -> gene
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_list_properties_reply (c : *connection,
+pub fn xcb_list_properties_reply (c : *mut connection,
                                      cookie : list_properties_cookie,
-                                     e : **generic_error) -> *list_properties_reply;
+                                     e : *mut *mut generic_error) -> *mut list_properties_reply;
 
 /**
  * Sets the owner of a selection
@@ -4726,7 +4726,7 @@ pub unsafe fn xcb_list_properties_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_set_selection_owner_checked (c : *connection,
+pub fn xcb_set_selection_owner_checked (c : *mut connection,
                                            owner :  window,
                                            selection :  atom,
                                            time :  timestamp) -> void_cookie;
@@ -4755,7 +4755,7 @@ pub unsafe fn xcb_set_selection_owner_checked (c : *connection,
  * TODO: briefly explain what a selection is.
  * 
  */
-pub unsafe fn xcb_set_selection_owner (c : *connection,
+pub fn xcb_set_selection_owner (c : *mut connection,
                                    owner :  window,
                                    selection :  atom,
                                    time :  timestamp) -> void_cookie;
@@ -4772,7 +4772,7 @@ pub unsafe fn xcb_set_selection_owner (c : *connection,
  * TODO: briefly explain what a selection is.
  * 
  */
-pub unsafe fn xcb_get_selection_owner (c : *connection,
+pub fn xcb_get_selection_owner (c : *mut connection,
                                    selection :  atom) -> get_selection_owner_cookie;
 
 /**
@@ -4790,7 +4790,7 @@ pub unsafe fn xcb_get_selection_owner (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_selection_owner_unchecked (c : *connection,
+pub fn xcb_get_selection_owner_unchecked (c : *mut connection,
                                              selection :  atom) -> get_selection_owner_cookie;
 
 /**
@@ -4807,9 +4807,9 @@ pub unsafe fn xcb_get_selection_owner_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_selection_owner_reply (c : *connection,
+pub fn xcb_get_selection_owner_reply (c : *mut connection,
                                          cookie : get_selection_owner_cookie,
-                                         e : **generic_error) -> *get_selection_owner_reply;
+                                         e : *mut *mut generic_error) -> *mut get_selection_owner_reply;
 
 /**
  *
@@ -4822,7 +4822,7 @@ pub unsafe fn xcb_get_selection_owner_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_convert_selection_checked (c : *connection,
+pub fn xcb_convert_selection_checked (c : *mut connection,
                                          requestor :  window,
                                          selection :  atom,
                                          target :  atom,
@@ -4837,7 +4837,7 @@ pub unsafe fn xcb_convert_selection_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_convert_selection (c : *connection,
+pub fn xcb_convert_selection (c : *mut connection,
                                  requestor :  window,
                                  selection :  atom,
                                  target :  atom,
@@ -4881,11 +4881,11 @@ pub unsafe fn xcb_convert_selection (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_send_event_checked (c : *connection,
+pub fn xcb_send_event_checked (c : *mut connection,
                                   propagate :  u8,
                                   destination :  window,
                                   event_mask :  u32,
-                                  event : *c_char) -> void_cookie;
+                                  event : *mut c_char) -> void_cookie;
 
 /**
  * send an event
@@ -4921,11 +4921,11 @@ pub unsafe fn xcb_send_event_checked (c : *connection,
  * `send_event` field which is forced to 'true'.
  * 
  */
-pub unsafe fn xcb_send_event (c : *connection,
+pub fn xcb_send_event (c : *mut connection,
                           propagate :  u8,
                           destination :  window,
                           event_mask :  u32,
-                          event : *c_char) -> void_cookie;
+                          event : *mut c_char) -> void_cookie;
 
 /**
  * Grab the pointer
@@ -4963,7 +4963,7 @@ pub unsafe fn xcb_send_event (c : *connection,
  * Actively grabs control of the pointer. Further pointer events are reported only to the grabbing client. Overrides any active pointer grab by this client.
  * 
  */
-pub unsafe fn xcb_grab_pointer (c : *connection,
+pub fn xcb_grab_pointer (c : *mut connection,
                             owner_events :  u8,
                             grab_window :  window,
                             event_mask :  u16,
@@ -5012,7 +5012,7 @@ pub unsafe fn xcb_grab_pointer (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_grab_pointer_unchecked (c : *connection,
+pub fn xcb_grab_pointer_unchecked (c : *mut connection,
                                       owner_events :  u8,
                                       grab_window :  window,
                                       event_mask :  u16,
@@ -5036,9 +5036,9 @@ pub unsafe fn xcb_grab_pointer_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_grab_pointer_reply (c : *connection,
+pub fn xcb_grab_pointer_reply (c : *mut connection,
                                   cookie : grab_pointer_cookie,
-                                  e : **generic_error) -> *grab_pointer_reply;
+                                  e : *mut *mut generic_error) -> *mut grab_pointer_reply;
 
 /**
  * release the pointer
@@ -5060,7 +5060,7 @@ pub unsafe fn xcb_grab_pointer_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_ungrab_pointer_checked (c : *connection,
+pub fn xcb_ungrab_pointer_checked (c : *mut connection,
                                       time :  timestamp) -> void_cookie;
 
 /**
@@ -5080,7 +5080,7 @@ pub unsafe fn xcb_ungrab_pointer_checked (c : *connection,
  * EnterNotify and LeaveNotify events are generated.
  * 
  */
-pub unsafe fn xcb_ungrab_pointer (c : *connection,
+pub fn xcb_ungrab_pointer (c : *mut connection,
                               time :  timestamp) -> void_cookie;
 
 /**
@@ -5151,7 +5151,7 @@ pub unsafe fn xcb_ungrab_pointer (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_grab_button_checked (c : *connection,
+pub fn xcb_grab_button_checked (c : *mut connection,
                                    owner_events :  u8,
                                    grab_window :  window,
                                    event_mask :  u16,
@@ -5227,7 +5227,7 @@ pub unsafe fn xcb_grab_button_checked (c : *connection,
  * for any combination. The request has no effect on an active grab.
  * 
  */
-pub unsafe fn xcb_grab_button (c : *connection,
+pub fn xcb_grab_button (c : *mut connection,
                            owner_events :  u8,
                            grab_window :  window,
                            event_mask :  u16,
@@ -5249,7 +5249,7 @@ pub unsafe fn xcb_grab_button (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_ungrab_button_checked (c : *connection,
+pub fn xcb_ungrab_button_checked (c : *mut connection,
                                      button :  u8,
                                      grab_window :  window,
                                      modifiers :  u16) -> void_cookie;
@@ -5262,7 +5262,7 @@ pub unsafe fn xcb_ungrab_button_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_ungrab_button (c : *connection,
+pub fn xcb_ungrab_button (c : *mut connection,
                              button :  u8,
                              grab_window :  window,
                              modifiers :  u16) -> void_cookie;
@@ -5278,7 +5278,7 @@ pub unsafe fn xcb_ungrab_button (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_change_active_pointer_grab_checked (c : *connection,
+pub fn xcb_change_active_pointer_grab_checked (c : *mut connection,
                                                   cursor :  cursor,
                                                   time :  timestamp,
                                                   event_mask :  u16) -> void_cookie;
@@ -5291,7 +5291,7 @@ pub unsafe fn xcb_change_active_pointer_grab_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_change_active_pointer_grab (c : *connection,
+pub fn xcb_change_active_pointer_grab (c : *mut connection,
                                           cursor :  cursor,
                                           time :  timestamp,
                                           event_mask :  u16) -> void_cookie;
@@ -5325,7 +5325,7 @@ pub unsafe fn xcb_change_active_pointer_grab (c : *connection,
  * last-keyboard-grab time is set to the specified time.
  * 
  */
-pub unsafe fn xcb_grab_keyboard (c : *connection,
+pub fn xcb_grab_keyboard (c : *mut connection,
                              owner_events :  u8,
                              grab_window :  window,
                              time :  timestamp,
@@ -5364,7 +5364,7 @@ pub unsafe fn xcb_grab_keyboard (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_grab_keyboard_unchecked (c : *connection,
+pub fn xcb_grab_keyboard_unchecked (c : *mut connection,
                                        owner_events :  u8,
                                        grab_window :  window,
                                        time :  timestamp,
@@ -5385,9 +5385,9 @@ pub unsafe fn xcb_grab_keyboard_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_grab_keyboard_reply (c : *connection,
+pub fn xcb_grab_keyboard_reply (c : *mut connection,
                                    cookie : grab_keyboard_cookie,
-                                   e : **generic_error) -> *grab_keyboard_reply;
+                                   e : *mut *mut generic_error) -> *mut grab_keyboard_reply;
 
 /**
  *
@@ -5400,7 +5400,7 @@ pub unsafe fn xcb_grab_keyboard_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_ungrab_keyboard_checked (c : *connection,
+pub fn xcb_ungrab_keyboard_checked (c : *mut connection,
                                        time :  timestamp) -> void_cookie;
 
 /**
@@ -5411,7 +5411,7 @@ pub unsafe fn xcb_ungrab_keyboard_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_ungrab_keyboard (c : *connection,
+pub fn xcb_ungrab_keyboard (c : *mut connection,
                                time :  timestamp) -> void_cookie;
 
 /**
@@ -5469,7 +5469,7 @@ pub unsafe fn xcb_ungrab_keyboard (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_grab_key_checked (c : *connection,
+pub fn xcb_grab_key_checked (c : *mut connection,
                                 owner_events :  u8,
                                 grab_window :  window,
                                 modifiers :  u16,
@@ -5529,7 +5529,7 @@ pub unsafe fn xcb_grab_key_checked (c : *connection,
  * results (no grabs are established) if there is a conflicting grab for any combination.
  * 
  */
-pub unsafe fn xcb_grab_key (c : *connection,
+pub fn xcb_grab_key (c : *mut connection,
                         owner_events :  u8,
                         grab_window :  window,
                         modifiers :  u16,
@@ -5558,7 +5558,7 @@ pub unsafe fn xcb_grab_key (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_ungrab_key_checked (c : *connection,
+pub fn xcb_ungrab_key_checked (c : *mut connection,
                                   key :  keycode,
                                   grab_window :  window,
                                   modifiers :  u16) -> void_cookie;
@@ -5581,7 +5581,7 @@ pub unsafe fn xcb_ungrab_key_checked (c : *connection,
  * `xcb_grab_key` before.
  * 
  */
-pub unsafe fn xcb_ungrab_key (c : *connection,
+pub fn xcb_ungrab_key (c : *mut connection,
                           key :  keycode,
                           grab_window :  window,
                           modifiers :  u16) -> void_cookie;
@@ -5607,7 +5607,7 @@ pub unsafe fn xcb_ungrab_key (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_allow_events_checked (c : *connection,
+pub fn xcb_allow_events_checked (c : *mut connection,
                                     mode :  u8,
                                     time :  timestamp) -> void_cookie;
 
@@ -5629,7 +5629,7 @@ pub unsafe fn xcb_allow_events_checked (c : *connection,
  * or if \a time is later than the current X server time.
  * 
  */
-pub unsafe fn xcb_allow_events (c : *connection,
+pub fn xcb_allow_events (c : *mut connection,
                             mode :  u8,
                             time :  timestamp) -> void_cookie;
 
@@ -5644,7 +5644,7 @@ pub unsafe fn xcb_allow_events (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_grab_server_checked (c : *connection) -> void_cookie;
+pub fn xcb_grab_server_checked (c : *mut connection) -> void_cookie;
 
 /**
  *
@@ -5654,7 +5654,7 @@ pub unsafe fn xcb_grab_server_checked (c : *connection) -> void_cookie;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_grab_server (c : *connection) -> void_cookie;
+pub fn xcb_grab_server (c : *mut connection) -> void_cookie;
 
 /**
  *
@@ -5667,7 +5667,7 @@ pub unsafe fn xcb_grab_server (c : *connection) -> void_cookie;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_ungrab_server_checked (c : *connection) -> void_cookie;
+pub fn xcb_ungrab_server_checked (c : *mut connection) -> void_cookie;
 
 /**
  *
@@ -5677,7 +5677,7 @@ pub unsafe fn xcb_ungrab_server_checked (c : *connection) -> void_cookie;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_ungrab_server (c : *connection) -> void_cookie;
+pub fn xcb_ungrab_server (c : *mut connection) -> void_cookie;
 
 /**
  * get pointer coordinates
@@ -5691,7 +5691,7 @@ pub unsafe fn xcb_ungrab_server (c : *connection) -> void_cookie;
  * relative to the root window's origin.
  * 
  */
-pub unsafe fn xcb_query_pointer (c : *connection,
+pub fn xcb_query_pointer (c : *mut connection,
                              window :  window) -> query_pointer_cookie;
 
 /**
@@ -5709,7 +5709,7 @@ pub unsafe fn xcb_query_pointer (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_query_pointer_unchecked (c : *connection,
+pub fn xcb_query_pointer_unchecked (c : *mut connection,
                                        window :  window) -> query_pointer_cookie;
 
 /**
@@ -5726,9 +5726,9 @@ pub unsafe fn xcb_query_pointer_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_query_pointer_reply (c : *connection,
+pub fn xcb_query_pointer_reply (c : *mut connection,
                                    cookie : query_pointer_cookie,
-                                   e : **generic_error) -> *query_pointer_reply;
+                                   e : *mut *mut generic_error) -> *mut query_pointer_reply;
 
 /**
  * Get the next element of the iterator
@@ -5740,7 +5740,7 @@ pub unsafe fn xcb_query_pointer_reply (c : *connection,
  *
  *
  */
-pub unsafe fn xcb_timecoord_next (i:*timecoord_iterator) -> c_void;
+pub fn xcb_timecoord_next (i:*mut timecoord_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -5751,9 +5751,9 @@ pub unsafe fn xcb_timecoord_next (i:*timecoord_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_timecoord_end (i:timecoord_iterator) -> generic_iterator;
+pub fn xcb_timecoord_end (i:timecoord_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_get_motion_events_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_get_motion_events_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -5763,7 +5763,7 @@ pub unsafe fn xcb_get_motion_events_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_get_motion_events (c : *connection,
+pub fn xcb_get_motion_events (c : *mut connection,
                                  window :  window,
                                  start :  timestamp,
                                  stop :  timestamp) -> get_motion_events_cookie;
@@ -5779,17 +5779,17 @@ pub unsafe fn xcb_get_motion_events (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_motion_events_unchecked (c : *connection,
+pub fn xcb_get_motion_events_unchecked (c : *mut connection,
                                            window :  window,
                                            start :  timestamp,
                                            stop :  timestamp) -> get_motion_events_cookie;
 
-pub unsafe fn xcb_get_motion_events_events (R : *get_motion_events_reply) -> *timecoord;
+pub fn xcb_get_motion_events_events (R : *mut get_motion_events_reply) -> *mut timecoord;
 
 
-pub unsafe fn xcb_get_motion_events_events_length (R : *get_motion_events_reply) -> c_int;
+pub fn xcb_get_motion_events_events_length (R : *mut get_motion_events_reply) -> c_int;
 
-pub unsafe fn xcb_get_motion_events_events_iterator (R : *get_motion_events_reply) -> timecoord_iterator;
+pub fn xcb_get_motion_events_events_iterator (R : *mut get_motion_events_reply) -> timecoord_iterator;
 
 /**
  * Return the reply
@@ -5805,9 +5805,9 @@ pub unsafe fn xcb_get_motion_events_events_iterator (R : *get_motion_events_repl
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_motion_events_reply (c : *connection,
+pub fn xcb_get_motion_events_reply (c : *mut connection,
                                        cookie : get_motion_events_cookie,
-                                       e : **generic_error) -> *get_motion_events_reply;
+                                       e : *mut *mut generic_error) -> *mut get_motion_events_reply;
 
 /**
  *
@@ -5817,7 +5817,7 @@ pub unsafe fn xcb_get_motion_events_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_translate_coordinates (c : *connection,
+pub fn xcb_translate_coordinates (c : *mut connection,
                                      src_window :  window,
                                      dst_window :  window,
                                      src_x :  i16,
@@ -5834,7 +5834,7 @@ pub unsafe fn xcb_translate_coordinates (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_translate_coordinates_unchecked (c : *connection,
+pub fn xcb_translate_coordinates_unchecked (c : *mut connection,
                                                src_window :  window,
                                                dst_window :  window,
                                                src_x :  i16,
@@ -5854,9 +5854,9 @@ pub unsafe fn xcb_translate_coordinates_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_translate_coordinates_reply (c : *connection,
+pub fn xcb_translate_coordinates_reply (c : *mut connection,
                                            cookie : translate_coordinates_cookie,
-                                           e : **generic_error) -> *translate_coordinates_reply;
+                                           e : *mut *mut generic_error) -> *mut translate_coordinates_reply;
 
 /**
  * move mouse pointer
@@ -5888,7 +5888,7 @@ pub unsafe fn xcb_translate_coordinates_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_warp_pointer_checked (c : *connection,
+pub fn xcb_warp_pointer_checked (c : *mut connection,
                                     src_window :  window,
                                     dst_window :  window,
                                     src_x :  i16,
@@ -5925,7 +5925,7 @@ pub unsafe fn xcb_warp_pointer_checked (c : *connection,
  * relative to the current position of the pointer.
  * 
  */
-pub unsafe fn xcb_warp_pointer (c : *connection,
+pub fn xcb_warp_pointer (c : *mut connection,
                             src_window :  window,
                             dst_window :  window,
                             src_x :  i16,
@@ -5966,7 +5966,7 @@ pub unsafe fn xcb_warp_pointer (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_set_input_focus_checked (c : *connection,
+pub fn xcb_set_input_focus_checked (c : *mut connection,
                                        revert_to :  u8,
                                        focus :  window,
                                        time :  timestamp) -> void_cookie;
@@ -5999,7 +5999,7 @@ pub unsafe fn xcb_set_input_focus_checked (c : *connection,
  * A FocusIn and FocusOut event is generated when focus is changed.
  * 
  */
-pub unsafe fn xcb_set_input_focus (c : *connection,
+pub fn xcb_set_input_focus (c : *mut connection,
                                revert_to :  u8,
                                focus :  window,
                                time :  timestamp) -> void_cookie;
@@ -6012,7 +6012,7 @@ pub unsafe fn xcb_set_input_focus (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_get_input_focus (c : *connection) -> get_input_focus_cookie;
+pub fn xcb_get_input_focus (c : *mut connection) -> get_input_focus_cookie;
 
 /**
  *
@@ -6025,7 +6025,7 @@ pub unsafe fn xcb_get_input_focus (c : *connection) -> get_input_focus_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_input_focus_unchecked (c : *connection) -> get_input_focus_cookie;
+pub fn xcb_get_input_focus_unchecked (c : *mut connection) -> get_input_focus_cookie;
 
 /**
  * Return the reply
@@ -6041,9 +6041,9 @@ pub unsafe fn xcb_get_input_focus_unchecked (c : *connection) -> get_input_focus
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_input_focus_reply (c : *connection,
+pub fn xcb_get_input_focus_reply (c : *mut connection,
                                      cookie : get_input_focus_cookie,
-                                     e : **generic_error) -> *get_input_focus_reply;
+                                     e : *mut *mut generic_error) -> *mut get_input_focus_reply;
 
 /**
  *
@@ -6053,7 +6053,7 @@ pub unsafe fn xcb_get_input_focus_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_query_keymap (c : *connection) -> query_keymap_cookie;
+pub fn xcb_query_keymap (c : *mut connection) -> query_keymap_cookie;
 
 /**
  *
@@ -6066,7 +6066,7 @@ pub unsafe fn xcb_query_keymap (c : *connection) -> query_keymap_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_query_keymap_unchecked (c : *connection) -> query_keymap_cookie;
+pub fn xcb_query_keymap_unchecked (c : *mut connection) -> query_keymap_cookie;
 
 /**
  * Return the reply
@@ -6082,11 +6082,11 @@ pub unsafe fn xcb_query_keymap_unchecked (c : *connection) -> query_keymap_cooki
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_query_keymap_reply (c : *connection,
+pub fn xcb_query_keymap_reply (c : *mut connection,
                                   cookie : query_keymap_cookie,
-                                  e : **generic_error) -> *query_keymap_reply;
+                                  e : *mut *mut generic_error) -> *mut query_keymap_reply;
 
-pub unsafe fn xcb_open_font_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_open_font_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * opens a font
@@ -6106,10 +6106,10 @@ pub unsafe fn xcb_open_font_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_open_font_checked (c : *connection,
+pub fn xcb_open_font_checked (c : *mut connection,
                                  fid :  font,
                                  name_len :  u16,
-                                 name : *c_char) -> void_cookie;
+                                 name : *mut c_char) -> void_cookie;
 
 /**
  * opens a font
@@ -6126,10 +6126,10 @@ pub unsafe fn xcb_open_font_checked (c : *connection,
  * client-side rendering using Xft.
  * 
  */
-pub unsafe fn xcb_open_font (c : *connection,
+pub fn xcb_open_font (c : *mut connection,
                          fid :  font,
                          name_len :  u16,
-                         name : *c_char) -> void_cookie;
+                         name : *mut c_char) -> void_cookie;
 
 /**
  *
@@ -6142,7 +6142,7 @@ pub unsafe fn xcb_open_font (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_close_font_checked (c : *connection,
+pub fn xcb_close_font_checked (c : *mut connection,
                                   font :  font) -> void_cookie;
 
 /**
@@ -6153,7 +6153,7 @@ pub unsafe fn xcb_close_font_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_close_font (c : *connection,
+pub fn xcb_close_font (c : *mut connection,
                           font :  font) -> void_cookie;
 
 /**
@@ -6166,7 +6166,7 @@ pub unsafe fn xcb_close_font (c : *connection,
  *
  *
  */
-pub unsafe fn xcb_fontprop_next (i:*fontprop_iterator) -> c_void;
+pub fn xcb_fontprop_next (i:*mut fontprop_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -6177,7 +6177,7 @@ pub unsafe fn xcb_fontprop_next (i:*fontprop_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_fontprop_end (i:fontprop_iterator) -> generic_iterator;
+pub fn xcb_fontprop_end (i:fontprop_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -6189,7 +6189,7 @@ pub unsafe fn xcb_fontprop_end (i:fontprop_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_charinfo_next (i:*charinfo_iterator) -> c_void;
+pub fn xcb_charinfo_next (i:*mut charinfo_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -6200,9 +6200,9 @@ pub unsafe fn xcb_charinfo_next (i:*charinfo_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_charinfo_end (i:charinfo_iterator) -> generic_iterator;
+pub fn xcb_charinfo_end (i:charinfo_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_query_font_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_query_font_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * query font metrics
@@ -6214,7 +6214,7 @@ pub unsafe fn xcb_query_font_sizeof (_buffer :  *c_void) -> c_int;
  * Queries information associated with the font.
  * 
  */
-pub unsafe fn xcb_query_font (c : *connection,
+pub fn xcb_query_font (c : *mut connection,
                           font :  fontable) -> query_font_cookie;
 
 /**
@@ -6230,22 +6230,22 @@ pub unsafe fn xcb_query_font (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_query_font_unchecked (c : *connection,
+pub fn xcb_query_font_unchecked (c : *mut connection,
                                     font :  fontable) -> query_font_cookie;
 
-pub unsafe fn xcb_query_font_properties (R : *query_font_reply) -> *fontprop;
+pub fn xcb_query_font_properties (R : *mut query_font_reply) -> *mut fontprop;
 
 
-pub unsafe fn xcb_query_font_properties_length (R : *query_font_reply) -> c_int;
+pub fn xcb_query_font_properties_length (R : *mut query_font_reply) -> c_int;
 
-pub unsafe fn xcb_query_font_properties_iterator (R : *query_font_reply) -> fontprop_iterator;
+pub fn xcb_query_font_properties_iterator (R : *mut query_font_reply) -> fontprop_iterator;
 
-pub unsafe fn xcb_query_font_char_infos (R : *query_font_reply) -> *charinfo;
+pub fn xcb_query_font_char_infos (R : *mut query_font_reply) -> *mut charinfo;
 
 
-pub unsafe fn xcb_query_font_char_infos_length (R : *query_font_reply) -> c_int;
+pub fn xcb_query_font_char_infos_length (R : *mut query_font_reply) -> c_int;
 
-pub unsafe fn xcb_query_font_char_infos_iterator (R : *query_font_reply) -> charinfo_iterator;
+pub fn xcb_query_font_char_infos_iterator (R : *mut query_font_reply) -> charinfo_iterator;
 
 /**
  * Return the reply
@@ -6261,12 +6261,12 @@ pub unsafe fn xcb_query_font_char_infos_iterator (R : *query_font_reply) -> char
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_query_font_reply (c : *connection,
+pub fn xcb_query_font_reply (c : *mut connection,
                                 cookie : query_font_cookie,
-                                e : **generic_error) -> *query_font_reply;
+                                e : *mut *mut generic_error) -> *mut query_font_reply;
 
-pub unsafe fn xcb_query_text_extents_sizeof (_buffer :  *c_void,
-                               string_len :  u32) -> c_int;
+pub fn xcb_query_text_extents_sizeof (_buffer :  *mut c_void,
+                               string_len :   u32) -> c_int;
 
 /**
  * get text extents
@@ -6300,10 +6300,10 @@ pub unsafe fn xcb_query_text_extents_sizeof (_buffer :  *c_void,
  * default_char, the undefined characters in the string are also ignored.
  * 
  */
-pub unsafe fn xcb_query_text_extents (c : *connection,
+pub fn xcb_query_text_extents (c : *mut connection,
                                   font :  fontable,
                                   string_len :  u32,
-                                  string : *char2b) -> query_text_extents_cookie;
+                                  string : *mut char2b) -> query_text_extents_cookie;
 
 /**
  * get text extents
@@ -6340,10 +6340,10 @@ pub unsafe fn xcb_query_text_extents (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_query_text_extents_unchecked (c : *connection,
+pub fn xcb_query_text_extents_unchecked (c : *mut connection,
                                             font :  fontable,
                                             string_len :  u32,
-                                            string : *char2b) -> query_text_extents_cookie;
+                                            string : *mut char2b) -> query_text_extents_cookie;
 
 /**
  * Return the reply
@@ -6359,19 +6359,19 @@ pub unsafe fn xcb_query_text_extents_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_query_text_extents_reply (c : *connection,
+pub fn xcb_query_text_extents_reply (c : *mut connection,
                                         cookie : query_text_extents_cookie,
-                                        e : **generic_error) -> *query_text_extents_reply;
+                                        e : *mut *mut generic_error) -> *mut query_text_extents_reply;
 
-pub unsafe fn xcb_str_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_str_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_str_name (R : *str_) -> *c_char;
-
-
-pub unsafe fn xcb_str_name_length (R : *str_) -> c_int;
+pub fn xcb_str_name (R : *mut str_) -> *mut c_char;
 
 
-pub unsafe fn xcb_str_name_end (R : *str_) -> generic_iterator;
+pub fn xcb_str_name_length (R : *mut str_) -> c_int;
+
+
+pub fn xcb_str_name_end (R : *mut str_) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -6383,7 +6383,7 @@ pub unsafe fn xcb_str_name_end (R : *str_) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_str_next (i:*str_iterator) -> c_void;
+pub fn xcb_str_next (i:*mut str_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -6394,9 +6394,9 @@ pub unsafe fn xcb_str_next (i:*str_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_str_end (i:str_iterator) -> generic_iterator;
+pub fn xcb_str_end (i:str_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_list_fonts_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_list_fonts_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * get matching font names
@@ -6414,10 +6414,10 @@ pub unsafe fn xcb_list_fonts_sizeof (_buffer :  *c_void) -> c_int;
  * Gets a list of available font names which match the given \a pattern.
  * 
  */
-pub unsafe fn xcb_list_fonts (c : *connection,
+pub fn xcb_list_fonts (c : *mut connection,
                           max_names :  u16,
                           pattern_len :  u16,
-                          pattern : *c_char) -> list_fonts_cookie;
+                          pattern : *mut c_char) -> list_fonts_cookie;
 
 /**
  * get matching font names
@@ -6438,15 +6438,15 @@ pub unsafe fn xcb_list_fonts (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_list_fonts_unchecked (c : *connection,
+pub fn xcb_list_fonts_unchecked (c : *mut connection,
                                     max_names :  u16,
                                     pattern_len :  u16,
-                                    pattern : *c_char) -> list_fonts_cookie;
+                                    pattern : *mut c_char) -> list_fonts_cookie;
 
 
-pub unsafe fn xcb_list_fonts_names_length (R : *list_fonts_reply) -> c_int;
+pub fn xcb_list_fonts_names_length (R : *mut list_fonts_reply) -> c_int;
 
-pub unsafe fn xcb_list_fonts_names_iterator (R : *list_fonts_reply) -> str_iterator;
+pub fn xcb_list_fonts_names_iterator (R : *mut list_fonts_reply) -> str_iterator;
 
 /**
  * Return the reply
@@ -6462,11 +6462,11 @@ pub unsafe fn xcb_list_fonts_names_iterator (R : *list_fonts_reply) -> str_itera
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_list_fonts_reply (c : *connection,
+pub fn xcb_list_fonts_reply (c : *mut connection,
                                 cookie : list_fonts_cookie,
-                                e : **generic_error) -> *list_fonts_reply;
+                                e : *mut *mut generic_error) -> *mut list_fonts_reply;
 
-pub unsafe fn xcb_list_fonts_with_info_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_list_fonts_with_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * get matching font names and information
@@ -6484,10 +6484,10 @@ pub unsafe fn xcb_list_fonts_with_info_sizeof (_buffer :  *c_void) -> c_int;
  * Gets a list of available font names which match the given \a pattern.
  * 
  */
-pub unsafe fn xcb_list_fonts_with_info (c : *connection,
+pub fn xcb_list_fonts_with_info (c : *mut connection,
                                     max_names :  u16,
                                     pattern_len :  u16,
-                                    pattern : *c_char) -> list_fonts_with_info_cookie;
+                                    pattern : *mut c_char) -> list_fonts_with_info_cookie;
 
 /**
  * get matching font names and information
@@ -6508,25 +6508,25 @@ pub unsafe fn xcb_list_fonts_with_info (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_list_fonts_with_info_unchecked (c : *connection,
+pub fn xcb_list_fonts_with_info_unchecked (c : *mut connection,
                                               max_names :  u16,
                                               pattern_len :  u16,
-                                              pattern : *c_char) -> list_fonts_with_info_cookie;
+                                              pattern : *mut c_char) -> list_fonts_with_info_cookie;
 
-pub unsafe fn xcb_list_fonts_with_info_properties (R : *list_fonts_with_info_reply) -> *fontprop;
-
-
-pub unsafe fn xcb_list_fonts_with_info_properties_length (R : *list_fonts_with_info_reply) -> c_int;
-
-pub unsafe fn xcb_list_fonts_with_info_properties_iterator (R : *list_fonts_with_info_reply) -> fontprop_iterator;
-
-pub unsafe fn xcb_list_fonts_with_info_name (R : *list_fonts_with_info_reply) -> *c_char;
+pub fn xcb_list_fonts_with_info_properties (R : *mut list_fonts_with_info_reply) -> *mut fontprop;
 
 
-pub unsafe fn xcb_list_fonts_with_info_name_length (R : *list_fonts_with_info_reply) -> c_int;
+pub fn xcb_list_fonts_with_info_properties_length (R : *mut list_fonts_with_info_reply) -> c_int;
+
+pub fn xcb_list_fonts_with_info_properties_iterator (R : *mut list_fonts_with_info_reply) -> fontprop_iterator;
+
+pub fn xcb_list_fonts_with_info_name (R : *mut list_fonts_with_info_reply) -> *mut c_char;
 
 
-pub unsafe fn xcb_list_fonts_with_info_name_end (R : *list_fonts_with_info_reply) -> generic_iterator;
+pub fn xcb_list_fonts_with_info_name_length (R : *mut list_fonts_with_info_reply) -> c_int;
+
+
+pub fn xcb_list_fonts_with_info_name_end (R : *mut list_fonts_with_info_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -6542,11 +6542,11 @@ pub unsafe fn xcb_list_fonts_with_info_name_end (R : *list_fonts_with_info_reply
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_list_fonts_with_info_reply (c : *connection,
+pub fn xcb_list_fonts_with_info_reply (c : *mut connection,
                                           cookie : list_fonts_with_info_cookie,
-                                          e : **generic_error) -> *list_fonts_with_info_reply;
+                                          e : *mut *mut generic_error) -> *mut list_fonts_with_info_reply;
 
-pub unsafe fn xcb_set_font_path_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_set_font_path_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -6559,9 +6559,9 @@ pub unsafe fn xcb_set_font_path_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_set_font_path_checked (c : *connection,
+pub fn xcb_set_font_path_checked (c : *mut connection,
                                      font_qty :  u16,
-                                     font : *str_) -> void_cookie;
+                                     font : *mut str_) -> void_cookie;
 
 /**
  *
@@ -6571,11 +6571,11 @@ pub unsafe fn xcb_set_font_path_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_set_font_path (c : *connection,
+pub fn xcb_set_font_path (c : *mut connection,
                              font_qty :  u16,
-                             font : *str_) -> void_cookie;
+                             font : *mut str_) -> void_cookie;
 
-pub unsafe fn xcb_get_font_path_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_get_font_path_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -6585,7 +6585,7 @@ pub unsafe fn xcb_get_font_path_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_get_font_path (c : *connection) -> get_font_path_cookie;
+pub fn xcb_get_font_path (c : *mut connection) -> get_font_path_cookie;
 
 /**
  *
@@ -6598,12 +6598,12 @@ pub unsafe fn xcb_get_font_path (c : *connection) -> get_font_path_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_font_path_unchecked (c : *connection) -> get_font_path_cookie;
+pub fn xcb_get_font_path_unchecked (c : *mut connection) -> get_font_path_cookie;
 
 
-pub unsafe fn xcb_get_font_path_path_length (R : *get_font_path_reply) -> c_int;
+pub fn xcb_get_font_path_path_length (R : *mut get_font_path_reply) -> c_int;
 
-pub unsafe fn xcb_get_font_path_path_iterator (R : *get_font_path_reply) -> str_iterator;
+pub fn xcb_get_font_path_path_iterator (R : *mut get_font_path_reply) -> str_iterator;
 
 /**
  * Return the reply
@@ -6619,9 +6619,9 @@ pub unsafe fn xcb_get_font_path_path_iterator (R : *get_font_path_reply) -> str_
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_font_path_reply (c : *connection,
+pub fn xcb_get_font_path_reply (c : *mut connection,
                                    cookie : get_font_path_cookie,
-                                   e : **generic_error) -> *get_font_path_reply;
+                                   e : *mut *mut generic_error) -> *mut get_font_path_reply;
 
 /**
  * Creates a pixmap
@@ -6642,7 +6642,7 @@ pub unsafe fn xcb_get_font_path_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_create_pixmap_checked (c : *connection,
+pub fn xcb_create_pixmap_checked (c : *mut connection,
                                      depth :  u8,
                                      pid :  pixmap,
                                      drawable :  drawable,
@@ -6665,7 +6665,7 @@ pub unsafe fn xcb_create_pixmap_checked (c : *connection,
  * is on and only with drawables of the same \a depth.
  * 
  */
-pub unsafe fn xcb_create_pixmap (c : *connection,
+pub fn xcb_create_pixmap (c : *mut connection,
                              depth :  u8,
                              pid :  pixmap,
                              drawable :  drawable,
@@ -6686,7 +6686,7 @@ pub unsafe fn xcb_create_pixmap (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_free_pixmap_checked (c : *connection,
+pub fn xcb_free_pixmap_checked (c : *mut connection,
                                    pixmap :  pixmap) -> void_cookie;
 
 /**
@@ -6700,10 +6700,10 @@ pub unsafe fn xcb_free_pixmap_checked (c : *connection,
  * storage will be freed when there are no more references to it.
  * 
  */
-pub unsafe fn xcb_free_pixmap (c : *connection,
+pub fn xcb_free_pixmap (c : *mut connection,
                            pixmap :  pixmap) -> void_cookie;
 
-pub unsafe fn xcb_create_gc_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_create_gc_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * Creates a graphics context
@@ -6721,11 +6721,11 @@ pub unsafe fn xcb_create_gc_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_create_gc_checked (c : *connection,
+pub fn xcb_create_gc_checked (c : *mut connection,
                                  cid :  gcontext,
                                  drawable :  drawable,
                                  value_mask :  u32,
-                                 value_list : *u32) -> void_cookie;
+                                 value_list : *mut u32) -> void_cookie;
 
 /**
  * Creates a graphics context
@@ -6740,13 +6740,13 @@ pub unsafe fn xcb_create_gc_checked (c : *connection,
  * that has the same root and depth as the specified drawable.
  * 
  */
-pub unsafe fn xcb_create_gc (c : *connection,
+pub fn xcb_create_gc (c : *mut connection,
                          cid :  gcontext,
                          drawable :  drawable,
                          value_mask :  u32,
-                         value_list : *u32) -> void_cookie;
+                         value_list : *mut u32) -> void_cookie;
 
-pub unsafe fn xcb_change_gc_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_change_gc_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * change graphics context components
@@ -6765,10 +6765,10 @@ pub unsafe fn xcb_change_gc_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_change_gc_checked (c : *connection,
+pub fn xcb_change_gc_checked (c : *mut connection,
                                  gc :  gcontext,
                                  value_mask :  u32,
-                                 value_list : *u32) -> void_cookie;
+                                 value_list : *mut u32) -> void_cookie;
 
 /**
  * change graphics context components
@@ -6784,10 +6784,10 @@ pub unsafe fn xcb_change_gc_checked (c : *connection,
  * Changes the components specified by \a value_mask for the specified graphics context.
  * 
  */
-pub unsafe fn xcb_change_gc (c : *connection,
+pub fn xcb_change_gc (c : *mut connection,
                          gc :  gcontext,
                          value_mask :  u32,
-                         value_list : *u32) -> void_cookie;
+                         value_list : *mut u32) -> void_cookie;
 
 /**
  *
@@ -6800,7 +6800,7 @@ pub unsafe fn xcb_change_gc (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_copy_gc_checked (c : *connection,
+pub fn xcb_copy_gc_checked (c : *mut connection,
                                src_gc :  gcontext,
                                dst_gc :  gcontext,
                                value_mask :  u32) -> void_cookie;
@@ -6813,12 +6813,12 @@ pub unsafe fn xcb_copy_gc_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_copy_gc (c : *connection,
+pub fn xcb_copy_gc (c : *mut connection,
                        src_gc :  gcontext,
                        dst_gc :  gcontext,
                        value_mask :  u32) -> void_cookie;
 
-pub unsafe fn xcb_set_dashes_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_set_dashes_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -6831,11 +6831,11 @@ pub unsafe fn xcb_set_dashes_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_set_dashes_checked (c : *connection,
+pub fn xcb_set_dashes_checked (c : *mut connection,
                                   gc :  gcontext,
                                   dash_offset :  u16,
                                   dashes_len :  u16,
-                                  dashes : *u8) -> void_cookie;
+                                  dashes : *mut u8) -> void_cookie;
 
 /**
  *
@@ -6845,13 +6845,13 @@ pub unsafe fn xcb_set_dashes_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_set_dashes (c : *connection,
+pub fn xcb_set_dashes (c : *mut connection,
                           gc :  gcontext,
                           dash_offset :  u16,
                           dashes_len :  u16,
-                          dashes : *u8) -> void_cookie;
+                          dashes : *mut u8) -> void_cookie;
 
-pub unsafe fn xcb_set_clip_rectangles_sizeof (_buffer :  *c_void,
+pub fn xcb_set_clip_rectangles_sizeof (_buffer :  *mut c_void,
                                 rectangles_len :  u32) -> c_int;
 
 /**
@@ -6865,13 +6865,13 @@ pub unsafe fn xcb_set_clip_rectangles_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_set_clip_rectangles_checked (c : *connection,
+pub fn xcb_set_clip_rectangles_checked (c : *mut connection,
                                            ordering :  u8,
                                            gc :  gcontext,
                                            clip_x_origin :  i16,
                                            clip_y_origin :  i16,
                                            rectangles_len :  u32,
-                                           rectangles : *rectangle) -> void_cookie;
+                                           rectangles : *mut rectangle) -> void_cookie;
 
 /**
  *
@@ -6881,13 +6881,13 @@ pub unsafe fn xcb_set_clip_rectangles_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_set_clip_rectangles (c : *connection,
+pub fn xcb_set_clip_rectangles (c : *mut connection,
                                    ordering :  u8,
                                    gc :  gcontext,
                                    clip_x_origin :  i16,
                                    clip_y_origin :  i16,
                                    rectangles_len :  u32,
-                                   rectangles : *rectangle) -> void_cookie;
+                                   rectangles : *mut rectangle) -> void_cookie;
 
 /**
  * Destroys a graphics context
@@ -6902,7 +6902,7 @@ pub unsafe fn xcb_set_clip_rectangles (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_free_gc_checked (c : *connection,
+pub fn xcb_free_gc_checked (c : *mut connection,
                                gc :  gcontext) -> void_cookie;
 
 /**
@@ -6915,7 +6915,7 @@ pub unsafe fn xcb_free_gc_checked (c : *connection,
  * Destroys the specified \a gc and all associated storage.
  * 
  */
-pub unsafe fn xcb_free_gc (c : *connection,
+pub fn xcb_free_gc (c : *mut connection,
                        gc :  gcontext) -> void_cookie;
 
 /**
@@ -6929,7 +6929,7 @@ pub unsafe fn xcb_free_gc (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_clear_area_checked (c : *connection,
+pub fn xcb_clear_area_checked (c : *mut connection,
                                   exposures :  u8,
                                   window :  window,
                                   x :  i16,
@@ -6945,7 +6945,7 @@ pub unsafe fn xcb_clear_area_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_clear_area (c : *connection,
+pub fn xcb_clear_area (c : *mut connection,
                           exposures :  u8,
                           window :  window,
                           x :  i16,
@@ -6974,7 +6974,7 @@ pub unsafe fn xcb_clear_area (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_copy_area_checked (c : *connection,
+pub fn xcb_copy_area_checked (c : *mut connection,
                                  src_drawable :  drawable,
                                  dst_drawable :  drawable,
                                  gc :  gcontext,
@@ -7003,7 +7003,7 @@ pub unsafe fn xcb_copy_area_checked (c : *connection,
  * Copies the specified rectangle from \a src_drawable to \a dst_drawable.
  * 
  */
-pub unsafe fn xcb_copy_area (c : *connection,
+pub fn xcb_copy_area (c : *mut connection,
                          src_drawable :  drawable,
                          dst_drawable :  drawable,
                          gc :  gcontext,
@@ -7025,7 +7025,7 @@ pub unsafe fn xcb_copy_area (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_copy_plane_checked (c : *connection,
+pub fn xcb_copy_plane_checked (c : *mut connection,
                                   src_drawable :  drawable,
                                   dst_drawable :  drawable,
                                   gc :  gcontext,
@@ -7045,7 +7045,7 @@ pub unsafe fn xcb_copy_plane_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_copy_plane (c : *connection,
+pub fn xcb_copy_plane (c : *mut connection,
                           src_drawable :  drawable,
                           dst_drawable :  drawable,
                           gc :  gcontext,
@@ -7057,8 +7057,8 @@ pub unsafe fn xcb_copy_plane (c : *connection,
                           height :  u16,
                           bit_plane :  u32) -> void_cookie;
 
-pub unsafe fn xcb_poly_point_sizeof (_buffer :  *c_void,
-                       points_len :  u32) -> c_int;
+pub fn xcb_poly_point_sizeof (_buffer :  *mut c_void,
+                       points_len :   u32) -> c_int;
 
 /**
  *
@@ -7071,12 +7071,12 @@ pub unsafe fn xcb_poly_point_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_poly_point_checked (c : *connection,
+pub fn xcb_poly_point_checked (c : *mut connection,
                                   coordinate_mode :  u8,
                                   drawable :  drawable,
                                   gc :  gcontext,
                                   points_len :  u32,
-                                  points : *point) -> void_cookie;
+                                  points : *mut point) -> void_cookie;
 
 /**
  *
@@ -7086,15 +7086,15 @@ pub unsafe fn xcb_poly_point_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_poly_point (c : *connection,
+pub fn xcb_poly_point (c : *mut connection,
                           coordinate_mode :  u8,
                           drawable :  drawable,
                           gc :  gcontext,
                           points_len :  u32,
-                          points : *point) -> void_cookie;
+                          points : *mut point) -> void_cookie;
 
-pub unsafe fn xcb_poly_line_sizeof (_buffer :  *c_void,
-                      points_len :  u32) -> c_int;
+pub fn xcb_poly_line_sizeof (_buffer :  *mut c_void,
+                      points_len :   u32) -> c_int;
 
 /**
  * draw lines
@@ -7121,12 +7121,12 @@ pub unsafe fn xcb_poly_line_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_poly_line_checked (c : *connection,
+pub fn xcb_poly_line_checked (c : *mut connection,
                                  coordinate_mode :  u8,
                                  drawable :  drawable,
                                  gc :  gcontext,
                                  points_len :  u32,
-                                 points : *point) -> void_cookie;
+                                 points : *mut point) -> void_cookie;
 
 /**
  * draw lines
@@ -7150,12 +7150,12 @@ pub unsafe fn xcb_poly_line_checked (c : *connection,
  * request were a single, filled shape.
  * 
  */
-pub unsafe fn xcb_poly_line (c : *connection,
+pub fn xcb_poly_line (c : *mut connection,
                          coordinate_mode :  u8,
                          drawable :  drawable,
                          gc :  gcontext,
                          points_len :  u32,
-                         points : *point) -> void_cookie;
+                         points : *mut point) -> void_cookie;
 
 /**
  * Get the next element of the iterator
@@ -7167,7 +7167,7 @@ pub unsafe fn xcb_poly_line (c : *connection,
  *
  *
  */
-pub unsafe fn xcb_segment_next (i:*segment_iterator) -> c_void;
+pub fn xcb_segment_next (i:*mut segment_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -7178,9 +7178,9 @@ pub unsafe fn xcb_segment_next (i:*segment_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_segment_end (i:segment_iterator) -> generic_iterator;
+pub fn xcb_segment_end (i:segment_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_poly_segment_sizeof (_buffer :  *c_void,
+pub fn xcb_poly_segment_sizeof (_buffer :  *mut c_void,
                          segments_len :  u32) -> c_int;
 
 /**
@@ -7209,11 +7209,11 @@ pub unsafe fn xcb_poly_segment_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_poly_segment_checked (c : *connection,
+pub fn xcb_poly_segment_checked (c : *mut connection,
                                     drawable :  drawable,
                                     gc :  gcontext,
                                     segments_len :  u32,
-                                    segments : *segment) -> void_cookie;
+                                    segments : *mut segment) -> void_cookie;
 
 /**
  * draw lines
@@ -7238,13 +7238,13 @@ pub unsafe fn xcb_poly_segment_checked (c : *connection,
  * TODO: an example
  * 
  */
-pub unsafe fn xcb_poly_segment (c : *connection,
+pub fn xcb_poly_segment (c : *mut connection,
                             drawable :  drawable,
                             gc :  gcontext,
                             segments_len :  u32,
-                            segments : *segment) -> void_cookie;
+                            segments : *mut segment) -> void_cookie;
 
-pub unsafe fn xcb_poly_rectangle_sizeof (_buffer :  *c_void,
+pub fn xcb_poly_rectangle_sizeof (_buffer :  *mut c_void,
                            rectangles_len :  u32) -> c_int;
 
 /**
@@ -7258,11 +7258,11 @@ pub unsafe fn xcb_poly_rectangle_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_poly_rectangle_checked (c : *connection,
+pub fn xcb_poly_rectangle_checked (c : *mut connection,
                                       drawable :  drawable,
                                       gc :  gcontext,
                                       rectangles_len :  u32,
-                                      rectangles : *rectangle) -> void_cookie;
+                                      rectangles : *mut rectangle) -> void_cookie;
 
 /**
  *
@@ -7272,14 +7272,14 @@ pub unsafe fn xcb_poly_rectangle_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_poly_rectangle (c : *connection,
+pub fn xcb_poly_rectangle (c : *mut connection,
                               drawable :  drawable,
                               gc :  gcontext,
                               rectangles_len :  u32,
-                              rectangles : *rectangle) -> void_cookie;
+                              rectangles : *mut rectangle) -> void_cookie;
 
-pub unsafe fn xcb_poly_arc_sizeof (_buffer :  *c_void,
-                     arcs_len :  u32) -> c_int;
+pub fn xcb_poly_arc_sizeof (_buffer :  *mut c_void,
+                     arcs_len :     u32) -> c_int;
 
 /**
  *
@@ -7292,11 +7292,11 @@ pub unsafe fn xcb_poly_arc_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_poly_arc_checked (c : *connection,
+pub fn xcb_poly_arc_checked (c : *mut connection,
                                 drawable :  drawable,
                                 gc :  gcontext,
                                 arcs_len :  u32,
-                                arcs : *arc) -> void_cookie;
+                                arcs : *mut arc) -> void_cookie;
 
 /**
  *
@@ -7306,14 +7306,14 @@ pub unsafe fn xcb_poly_arc_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_poly_arc (c : *connection,
+pub fn xcb_poly_arc (c : *mut connection,
                         drawable :  drawable,
                         gc :  gcontext,
                         arcs_len :  u32,
-                        arcs : *arc) -> void_cookie;
+                        arcs : *mut arc) -> void_cookie;
 
-pub unsafe fn xcb_fill_poly_sizeof (_buffer :  *c_void,
-                      points_len :  u32) -> c_int;
+pub fn xcb_fill_poly_sizeof (_buffer :  *mut c_void,
+                      points_len :   u32) -> c_int;
 
 /**
  *
@@ -7326,13 +7326,13 @@ pub unsafe fn xcb_fill_poly_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_fill_poly_checked (c : *connection,
+pub fn xcb_fill_poly_checked (c : *mut connection,
                                  drawable :  drawable,
                                  gc :  gcontext,
                                  shape :  u8,
                                  coordinate_mode :  u8,
                                  points_len :  u32,
-                                 points : *point) -> void_cookie;
+                                 points : *mut point) -> void_cookie;
 
 /**
  *
@@ -7342,15 +7342,15 @@ pub unsafe fn xcb_fill_poly_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_fill_poly (c : *connection,
+pub fn xcb_fill_poly (c : *mut connection,
                          drawable :  drawable,
                          gc :  gcontext,
                          shape :  u8,
                          coordinate_mode :  u8,
                          points_len :  u32,
-                         points : *point) -> void_cookie;
+                         points : *mut point) -> void_cookie;
 
-pub unsafe fn xcb_poly_fill_rectangle_sizeof (_buffer :  *c_void,
+pub fn xcb_poly_fill_rectangle_sizeof (_buffer :  *mut c_void,
                                 rectangles_len :  u32) -> c_int;
 
 /**
@@ -7378,11 +7378,11 @@ pub unsafe fn xcb_poly_fill_rectangle_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_poly_fill_rectangle_checked (c : *connection,
+pub fn xcb_poly_fill_rectangle_checked (c : *mut connection,
                                            drawable :  drawable,
                                            gc :  gcontext,
                                            rectangles_len :  u32,
-                                           rectangles : *rectangle) -> void_cookie;
+                                           rectangles : *mut rectangle) -> void_cookie;
 
 /**
  * Fills rectangles
@@ -7406,14 +7406,14 @@ pub unsafe fn xcb_poly_fill_rectangle_checked (c : *connection,
  * intersect, the intersecting pixels are drawn multiple times.
  * 
  */
-pub unsafe fn xcb_poly_fill_rectangle (c : *connection,
+pub fn xcb_poly_fill_rectangle (c : *mut connection,
                                    drawable :  drawable,
                                    gc :  gcontext,
                                    rectangles_len :  u32,
-                                   rectangles : *rectangle) -> void_cookie;
+                                   rectangles : *mut rectangle) -> void_cookie;
 
-pub unsafe fn xcb_poly_fill_arc_sizeof (_buffer :  *c_void,
-                          arcs_len :  u32) -> c_int;
+pub fn xcb_poly_fill_arc_sizeof (_buffer :  *mut c_void,
+                          arcs_len :     u32) -> c_int;
 
 /**
  *
@@ -7426,11 +7426,11 @@ pub unsafe fn xcb_poly_fill_arc_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_poly_fill_arc_checked (c : *connection,
+pub fn xcb_poly_fill_arc_checked (c : *mut connection,
                                      drawable :  drawable,
                                      gc :  gcontext,
                                      arcs_len :  u32,
-                                     arcs : *arc) -> void_cookie;
+                                     arcs : *mut arc) -> void_cookie;
 
 /**
  *
@@ -7440,14 +7440,14 @@ pub unsafe fn xcb_poly_fill_arc_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_poly_fill_arc (c : *connection,
+pub fn xcb_poly_fill_arc (c : *mut connection,
                              drawable :  drawable,
                              gc :  gcontext,
                              arcs_len :  u32,
-                             arcs : *arc) -> void_cookie;
+                             arcs : *mut arc) -> void_cookie;
 
-pub unsafe fn xcb_put_image_sizeof (_buffer :  *c_void,
-                      data_len :  u32) -> c_int;
+pub fn xcb_put_image_sizeof (_buffer :  *mut c_void,
+                      data_len :     u32) -> c_int;
 
 /**
  *
@@ -7460,7 +7460,7 @@ pub unsafe fn xcb_put_image_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_put_image_checked (c : *connection,
+pub fn xcb_put_image_checked (c : *mut connection,
                                  format :  u8,
                                  drawable :  drawable,
                                  gc :  gcontext,
@@ -7471,7 +7471,7 @@ pub unsafe fn xcb_put_image_checked (c : *connection,
                                  left_pad :  u8,
                                  depth :  u8,
                                  data_len :  u32,
-                                 data : *u8) -> void_cookie;
+                                 data : *mut u8) -> void_cookie;
 
 /**
  *
@@ -7481,7 +7481,7 @@ pub unsafe fn xcb_put_image_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_put_image (c : *connection,
+pub fn xcb_put_image (c : *mut connection,
                          format :  u8,
                          drawable :  drawable,
                          gc :  gcontext,
@@ -7492,9 +7492,9 @@ pub unsafe fn xcb_put_image (c : *connection,
                          left_pad :  u8,
                          depth :  u8,
                          data_len :  u32,
-                         data : *u8) -> void_cookie;
+                         data : *mut u8) -> void_cookie;
 
-pub unsafe fn xcb_get_image_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_get_image_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -7504,7 +7504,7 @@ pub unsafe fn xcb_get_image_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_get_image (c : *connection,
+pub fn xcb_get_image (c : *mut connection,
                          format :  u8,
                          drawable :  drawable,
                          x :  i16,
@@ -7524,7 +7524,7 @@ pub unsafe fn xcb_get_image (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_image_unchecked (c : *connection,
+pub fn xcb_get_image_unchecked (c : *mut connection,
                                    format :  u8,
                                    drawable :  drawable,
                                    x :  i16,
@@ -7533,13 +7533,13 @@ pub unsafe fn xcb_get_image_unchecked (c : *connection,
                                    height :  u16,
                                    plane_mask :  u32) -> get_image_cookie;
 
-pub unsafe fn xcb_get_image_data (R : *get_image_reply) -> *u8;
+pub fn xcb_get_image_data (R : *mut get_image_reply) -> *mut u8;
 
 
-pub unsafe fn xcb_get_image_data_length (R : *get_image_reply) -> c_int;
+pub fn xcb_get_image_data_length (R : *mut get_image_reply) -> c_int;
 
 
-pub unsafe fn xcb_get_image_data_end (R : *get_image_reply) -> generic_iterator;
+pub fn xcb_get_image_data_end (R : *mut get_image_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -7555,12 +7555,12 @@ pub unsafe fn xcb_get_image_data_end (R : *get_image_reply) -> generic_iterator;
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_image_reply (c : *connection,
+pub fn xcb_get_image_reply (c : *mut connection,
                                cookie : get_image_cookie,
-                               e : **generic_error) -> *get_image_reply;
+                               e : *mut *mut generic_error) -> *mut get_image_reply;
 
-pub unsafe fn xcb_poly_text_8_sizeof (_buffer :  *c_void,
-                        items_len :  u32) -> c_int;
+pub fn xcb_poly_text_8_sizeof (_buffer :  *mut c_void,
+                        items_len :    u32) -> c_int;
 
 /**
  *
@@ -7573,13 +7573,13 @@ pub unsafe fn xcb_poly_text_8_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_poly_text_8_checked (c : *connection,
+pub fn xcb_poly_text_8_checked (c : *mut connection,
                                    drawable :  drawable,
                                    gc :  gcontext,
                                    x :  i16,
                                    y :  i16,
                                    items_len :  u32,
-                                   items : *u8) -> void_cookie;
+                                   items : *mut u8) -> void_cookie;
 
 /**
  *
@@ -7589,16 +7589,16 @@ pub unsafe fn xcb_poly_text_8_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_poly_text_8 (c : *connection,
+pub fn xcb_poly_text_8 (c : *mut connection,
                            drawable :  drawable,
                            gc :  gcontext,
                            x :  i16,
                            y :  i16,
                            items_len :  u32,
-                           items : *u8) -> void_cookie;
+                           items : *mut u8) -> void_cookie;
 
-pub unsafe fn xcb_poly_text_16_sizeof (_buffer :  *c_void,
-                         items_len :  u32) -> c_int;
+pub fn xcb_poly_text_16_sizeof (_buffer :  *mut c_void,
+                         items_len :    u32) -> c_int;
 
 /**
  *
@@ -7611,13 +7611,13 @@ pub unsafe fn xcb_poly_text_16_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_poly_text_16_checked (c : *connection,
+pub fn xcb_poly_text_16_checked (c : *mut connection,
                                     drawable :  drawable,
                                     gc :  gcontext,
                                     x :  i16,
                                     y :  i16,
                                     items_len :  u32,
-                                    items : *u8) -> void_cookie;
+                                    items : *mut u8) -> void_cookie;
 
 /**
  *
@@ -7627,15 +7627,15 @@ pub unsafe fn xcb_poly_text_16_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_poly_text_16 (c : *connection,
+pub fn xcb_poly_text_16 (c : *mut connection,
                             drawable :  drawable,
                             gc :  gcontext,
                             x :  i16,
                             y :  i16,
                             items_len :  u32,
-                            items : *u8) -> void_cookie;
+                            items : *mut u8) -> void_cookie;
 
-pub unsafe fn xcb_image_text_8_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_image_text_8_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * Draws text
@@ -7667,13 +7667,13 @@ pub unsafe fn xcb_image_text_8_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_image_text_8_checked (c : *connection,
+pub fn xcb_image_text_8_checked (c : *mut connection,
                                     string_len :  u8,
                                     drawable :  drawable,
                                     gc :  gcontext,
                                     x :  i16,
                                     y :  i16,
-                                    string : *c_char) -> void_cookie;
+                                    string : *mut c_char) -> void_cookie;
 
 /**
  * Draws text
@@ -7702,15 +7702,15 @@ pub unsafe fn xcb_image_text_8_checked (c : *connection,
  * client-side rendering using Xft.
  * 
  */
-pub unsafe fn xcb_image_text_8 (c : *connection,
+pub fn xcb_image_text_8 (c : *mut connection,
                             string_len :  u8,
                             drawable :  drawable,
                             gc :  gcontext,
                             x :  i16,
                             y :  i16,
-                            string : *c_char) -> void_cookie;
+                            string : *mut c_char) -> void_cookie;
 
-pub unsafe fn xcb_image_text_16_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_image_text_16_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * Draws text
@@ -7743,13 +7743,13 @@ pub unsafe fn xcb_image_text_16_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_image_text_16_checked (c : *connection,
+pub fn xcb_image_text_16_checked (c : *mut connection,
                                      string_len :  u8,
                                      drawable :  drawable,
                                      gc :  gcontext,
                                      x :  i16,
                                      y :  i16,
-                                     string : *char2b) -> void_cookie;
+                                     string : *mut char2b) -> void_cookie;
 
 /**
  * Draws text
@@ -7779,13 +7779,13 @@ pub unsafe fn xcb_image_text_16_checked (c : *connection,
  * client-side rendering using Xft.
  * 
  */
-pub unsafe fn xcb_image_text_16 (c : *connection,
+pub fn xcb_image_text_16 (c : *mut connection,
                              string_len :  u8,
                              drawable :  drawable,
                              gc :  gcontext,
                              x :  i16,
                              y :  i16,
-                             string : *char2b) -> void_cookie;
+                             string : *mut char2b) -> void_cookie;
 
 /**
  *
@@ -7798,7 +7798,7 @@ pub unsafe fn xcb_image_text_16 (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_create_colormap_checked (c : *connection,
+pub fn xcb_create_colormap_checked (c : *mut connection,
                                        alloc :  u8,
                                        mid :  colormap,
                                        window :  window,
@@ -7812,7 +7812,7 @@ pub unsafe fn xcb_create_colormap_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_create_colormap (c : *connection,
+pub fn xcb_create_colormap (c : *mut connection,
                                alloc :  u8,
                                mid :  colormap,
                                window :  window,
@@ -7829,7 +7829,7 @@ pub unsafe fn xcb_create_colormap (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_free_colormap_checked (c : *connection,
+pub fn xcb_free_colormap_checked (c : *mut connection,
                                      cmap :  colormap) -> void_cookie;
 
 /**
@@ -7840,7 +7840,7 @@ pub unsafe fn xcb_free_colormap_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_free_colormap (c : *connection,
+pub fn xcb_free_colormap (c : *mut connection,
                              cmap :  colormap) -> void_cookie;
 
 /**
@@ -7854,7 +7854,7 @@ pub unsafe fn xcb_free_colormap (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_copy_colormap_and_free_checked (c : *connection,
+pub fn xcb_copy_colormap_and_free_checked (c : *mut connection,
                                               mid :  colormap,
                                               src_cmap :  colormap) -> void_cookie;
 
@@ -7866,7 +7866,7 @@ pub unsafe fn xcb_copy_colormap_and_free_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_copy_colormap_and_free (c : *connection,
+pub fn xcb_copy_colormap_and_free (c : *mut connection,
                                       mid :  colormap,
                                       src_cmap :  colormap) -> void_cookie;
 
@@ -7881,7 +7881,7 @@ pub unsafe fn xcb_copy_colormap_and_free (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_install_colormap_checked (c : *connection,
+pub fn xcb_install_colormap_checked (c : *mut connection,
                                         cmap :  colormap) -> void_cookie;
 
 /**
@@ -7892,7 +7892,7 @@ pub unsafe fn xcb_install_colormap_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_install_colormap (c : *connection,
+pub fn xcb_install_colormap (c : *mut connection,
                                 cmap :  colormap) -> void_cookie;
 
 /**
@@ -7906,7 +7906,7 @@ pub unsafe fn xcb_install_colormap (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_uninstall_colormap_checked (c : *connection,
+pub fn xcb_uninstall_colormap_checked (c : *mut connection,
                                           cmap :  colormap) -> void_cookie;
 
 /**
@@ -7917,10 +7917,10 @@ pub unsafe fn xcb_uninstall_colormap_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_uninstall_colormap (c : *connection,
+pub fn xcb_uninstall_colormap (c : *mut connection,
                                   cmap :  colormap) -> void_cookie;
 
-pub unsafe fn xcb_list_installed_colormaps_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_list_installed_colormaps_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -7930,7 +7930,7 @@ pub unsafe fn xcb_list_installed_colormaps_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_list_installed_colormaps (c : *connection,
+pub fn xcb_list_installed_colormaps (c : *mut connection,
                                         window :  window) -> list_installed_colormaps_cookie;
 
 /**
@@ -7944,16 +7944,16 @@ pub unsafe fn xcb_list_installed_colormaps (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_list_installed_colormaps_unchecked (c : *connection,
+pub fn xcb_list_installed_colormaps_unchecked (c : *mut connection,
                                                   window :  window) -> list_installed_colormaps_cookie;
 
-pub unsafe fn xcb_list_installed_colormaps_cmaps (R : *list_installed_colormaps_reply) -> *colormap;
+pub fn xcb_list_installed_colormaps_cmaps (R : *mut list_installed_colormaps_reply) -> *mut colormap;
 
 
-pub unsafe fn xcb_list_installed_colormaps_cmaps_length (R : *list_installed_colormaps_reply) -> c_int;
+pub fn xcb_list_installed_colormaps_cmaps_length (R : *mut list_installed_colormaps_reply) -> c_int;
 
 
-pub unsafe fn xcb_list_installed_colormaps_cmaps_end (R : *list_installed_colormaps_reply) -> generic_iterator;
+pub fn xcb_list_installed_colormaps_cmaps_end (R : *mut list_installed_colormaps_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -7969,9 +7969,9 @@ pub unsafe fn xcb_list_installed_colormaps_cmaps_end (R : *list_installed_colorm
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_list_installed_colormaps_reply (c : *connection,
+pub fn xcb_list_installed_colormaps_reply (c : *mut connection,
                                               cookie : list_installed_colormaps_cookie,
-                                              e : **generic_error) -> *list_installed_colormaps_reply;
+                                              e : *mut *mut generic_error) -> *mut list_installed_colormaps_reply;
 
 /**
  * Allocate a color
@@ -7990,7 +7990,7 @@ pub unsafe fn xcb_list_installed_colormaps_reply (c : *connection,
  * RGB value to the RGB value you are specifying.
  * 
  */
-pub unsafe fn xcb_alloc_color (c : *connection,
+pub fn xcb_alloc_color (c : *mut connection,
                            cmap :  colormap,
                            red :  u16,
                            green :  u16,
@@ -8016,7 +8016,7 @@ pub unsafe fn xcb_alloc_color (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_alloc_color_unchecked (c : *connection,
+pub fn xcb_alloc_color_unchecked (c : *mut connection,
                                      cmap :  colormap,
                                      red :  u16,
                                      green :  u16,
@@ -8036,11 +8036,11 @@ pub unsafe fn xcb_alloc_color_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_alloc_color_reply (c : *connection,
+pub fn xcb_alloc_color_reply (c : *mut connection,
                                  cookie : alloc_color_cookie,
-                                 e : **generic_error) -> *alloc_color_reply;
+                                 e : *mut *mut generic_error) -> *mut alloc_color_reply;
 
-pub unsafe fn xcb_alloc_named_color_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_alloc_named_color_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -8050,10 +8050,10 @@ pub unsafe fn xcb_alloc_named_color_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_alloc_named_color (c : *connection,
+pub fn xcb_alloc_named_color (c : *mut connection,
                                  cmap :  colormap,
                                  name_len :  u16,
-                                 name : *c_char) -> alloc_named_color_cookie;
+                                 name : *mut c_char) -> alloc_named_color_cookie;
 
 /**
  *
@@ -8066,10 +8066,10 @@ pub unsafe fn xcb_alloc_named_color (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_alloc_named_color_unchecked (c : *connection,
+pub fn xcb_alloc_named_color_unchecked (c : *mut connection,
                                            cmap :  colormap,
                                            name_len :  u16,
-                                           name : *c_char) -> alloc_named_color_cookie;
+                                           name : *mut c_char) -> alloc_named_color_cookie;
 
 /**
  * Return the reply
@@ -8085,11 +8085,11 @@ pub unsafe fn xcb_alloc_named_color_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_alloc_named_color_reply (c : *connection,
+pub fn xcb_alloc_named_color_reply (c : *mut connection,
                                        cookie : alloc_named_color_cookie,
-                                       e : **generic_error) -> *alloc_named_color_reply;
+                                       e : *mut *mut generic_error) -> *mut alloc_named_color_reply;
 
-pub unsafe fn xcb_alloc_color_cells_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_alloc_color_cells_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -8099,7 +8099,7 @@ pub unsafe fn xcb_alloc_color_cells_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_alloc_color_cells (c : *connection,
+pub fn xcb_alloc_color_cells (c : *mut connection,
                                  contiguous :  u8,
                                  cmap :  colormap,
                                  colors :  u16,
@@ -8116,27 +8116,27 @@ pub unsafe fn xcb_alloc_color_cells (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_alloc_color_cells_unchecked (c : *connection,
+pub fn xcb_alloc_color_cells_unchecked (c : *mut connection,
                                            contiguous :  u8,
                                            cmap :  colormap,
                                            colors :  u16,
                                            planes :  u16) -> alloc_color_cells_cookie;
 
-pub unsafe fn xcb_alloc_color_cells_pixels (R : *alloc_color_cells_reply) -> *u32;
+pub fn xcb_alloc_color_cells_pixels (R : *mut alloc_color_cells_reply) -> *mut u32;
 
 
-pub unsafe fn xcb_alloc_color_cells_pixels_length (R : *alloc_color_cells_reply) -> c_int;
+pub fn xcb_alloc_color_cells_pixels_length (R : *mut alloc_color_cells_reply) -> c_int;
 
 
-pub unsafe fn xcb_alloc_color_cells_pixels_end (R : *alloc_color_cells_reply) -> generic_iterator;
+pub fn xcb_alloc_color_cells_pixels_end (R : *mut alloc_color_cells_reply) -> generic_iterator;
 
-pub unsafe fn xcb_alloc_color_cells_masks (R : *alloc_color_cells_reply) -> *u32;
-
-
-pub unsafe fn xcb_alloc_color_cells_masks_length (R : *alloc_color_cells_reply) -> c_int;
+pub fn xcb_alloc_color_cells_masks (R : *mut alloc_color_cells_reply) -> *mut u32;
 
 
-pub unsafe fn xcb_alloc_color_cells_masks_end (R : *alloc_color_cells_reply) -> generic_iterator;
+pub fn xcb_alloc_color_cells_masks_length (R : *mut alloc_color_cells_reply) -> c_int;
+
+
+pub fn xcb_alloc_color_cells_masks_end (R : *mut alloc_color_cells_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -8152,11 +8152,11 @@ pub unsafe fn xcb_alloc_color_cells_masks_end (R : *alloc_color_cells_reply) -> 
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_alloc_color_cells_reply (c : *connection,
+pub fn xcb_alloc_color_cells_reply (c : *mut connection,
                                        cookie : alloc_color_cells_cookie,
-                                       e : **generic_error) -> *alloc_color_cells_reply;
+                                       e : *mut *mut generic_error) -> *mut alloc_color_cells_reply;
 
-pub unsafe fn xcb_alloc_color_planes_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_alloc_color_planes_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -8166,7 +8166,7 @@ pub unsafe fn xcb_alloc_color_planes_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_alloc_color_planes (c : *connection,
+pub fn xcb_alloc_color_planes (c : *mut connection,
                                   contiguous :  u8,
                                   cmap :  colormap,
                                   colors :  u16,
@@ -8185,7 +8185,7 @@ pub unsafe fn xcb_alloc_color_planes (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_alloc_color_planes_unchecked (c : *connection,
+pub fn xcb_alloc_color_planes_unchecked (c : *mut connection,
                                             contiguous :  u8,
                                             cmap :  colormap,
                                             colors :  u16,
@@ -8193,13 +8193,13 @@ pub unsafe fn xcb_alloc_color_planes_unchecked (c : *connection,
                                             greens :  u16,
                                             blues :  u16) -> alloc_color_planes_cookie;
 
-pub unsafe fn xcb_alloc_color_planes_pixels (R : *alloc_color_planes_reply) -> *u32;
+pub fn xcb_alloc_color_planes_pixels (R : *mut alloc_color_planes_reply) -> *mut u32;
 
 
-pub unsafe fn xcb_alloc_color_planes_pixels_length (R : *alloc_color_planes_reply) -> c_int;
+pub fn xcb_alloc_color_planes_pixels_length (R : *mut alloc_color_planes_reply) -> c_int;
 
 
-pub unsafe fn xcb_alloc_color_planes_pixels_end (R : *alloc_color_planes_reply) -> generic_iterator;
+pub fn xcb_alloc_color_planes_pixels_end (R : *mut alloc_color_planes_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -8215,12 +8215,12 @@ pub unsafe fn xcb_alloc_color_planes_pixels_end (R : *alloc_color_planes_reply) 
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_alloc_color_planes_reply (c : *connection,
+pub fn xcb_alloc_color_planes_reply (c : *mut connection,
                                         cookie : alloc_color_planes_cookie,
-                                        e : **generic_error) -> *alloc_color_planes_reply;
+                                        e : *mut *mut generic_error) -> *mut alloc_color_planes_reply;
 
-pub unsafe fn xcb_free_colors_sizeof (_buffer :  *c_void,
-                        pixels_len :  u32) -> c_int;
+pub fn xcb_free_colors_sizeof (_buffer :  *mut c_void,
+                        pixels_len :   u32) -> c_int;
 
 /**
  *
@@ -8233,11 +8233,11 @@ pub unsafe fn xcb_free_colors_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_free_colors_checked (c : *connection,
+pub fn xcb_free_colors_checked (c : *mut connection,
                                    cmap :  colormap,
                                    plane_mask :  u32,
                                    pixels_len :  u32,
-                                   pixels : *u32) -> void_cookie;
+                                   pixels : *mut u32) -> void_cookie;
 
 /**
  *
@@ -8247,11 +8247,11 @@ pub unsafe fn xcb_free_colors_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_free_colors (c : *connection,
+pub fn xcb_free_colors (c : *mut connection,
                            cmap :  colormap,
                            plane_mask :  u32,
                            pixels_len :  u32,
-                           pixels : *u32) -> void_cookie;
+                           pixels : *mut u32) -> void_cookie;
 
 /**
  * Get the next element of the iterator
@@ -8263,7 +8263,7 @@ pub unsafe fn xcb_free_colors (c : *connection,
  *
  *
  */
-pub unsafe fn xcb_coloritem_next (i:*coloritem_iterator) -> c_void;
+pub fn xcb_coloritem_next (i:*mut coloritem_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -8274,10 +8274,10 @@ pub unsafe fn xcb_coloritem_next (i:*coloritem_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_coloritem_end (i:coloritem_iterator) -> generic_iterator;
+pub fn xcb_coloritem_end (i:coloritem_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_store_colors_sizeof (_buffer :  *c_void,
-                         items_len :  u32) -> c_int;
+pub fn xcb_store_colors_sizeof (_buffer :  *mut c_void,
+                         items_len :    u32) -> c_int;
 
 /**
  *
@@ -8290,10 +8290,10 @@ pub unsafe fn xcb_store_colors_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_store_colors_checked (c : *connection,
+pub fn xcb_store_colors_checked (c : *mut connection,
                                     cmap :  colormap,
                                     items_len :  u32,
-                                    items : *coloritem) -> void_cookie;
+                                    items : *mut coloritem) -> void_cookie;
 
 /**
  *
@@ -8303,12 +8303,12 @@ pub unsafe fn xcb_store_colors_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_store_colors (c : *connection,
+pub fn xcb_store_colors (c : *mut connection,
                             cmap :  colormap,
                             items_len :  u32,
-                            items : *coloritem) -> void_cookie;
+                            items : *mut coloritem) -> void_cookie;
 
-pub unsafe fn xcb_store_named_color_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_store_named_color_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -8321,12 +8321,12 @@ pub unsafe fn xcb_store_named_color_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_store_named_color_checked (c : *connection,
+pub fn xcb_store_named_color_checked (c : *mut connection,
                                          flags :  u8,
                                          cmap :  colormap,
                                          pixel :  u32,
                                          name_len :  u16,
-                                         name : *c_char) -> void_cookie;
+                                         name : *mut c_char) -> void_cookie;
 
 /**
  *
@@ -8336,12 +8336,12 @@ pub unsafe fn xcb_store_named_color_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_store_named_color (c : *connection,
+pub fn xcb_store_named_color (c : *mut connection,
                                  flags :  u8,
                                  cmap :  colormap,
                                  pixel :  u32,
                                  name_len :  u16,
-                                 name : *c_char) -> void_cookie;
+                                 name : *mut c_char) -> void_cookie;
 
 /**
  * Get the next element of the iterator
@@ -8353,7 +8353,7 @@ pub unsafe fn xcb_store_named_color (c : *connection,
  *
  *
  */
-pub unsafe fn xcb_rgb_next (i:*rgb_iterator) -> c_void;
+pub fn xcb_rgb_next (i:*mut rgb_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -8364,10 +8364,10 @@ pub unsafe fn xcb_rgb_next (i:*rgb_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_rgb_end (i:rgb_iterator) -> generic_iterator;
+pub fn xcb_rgb_end (i:rgb_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_query_colors_sizeof (_buffer :  *c_void,
-                         pixels_len :  u32) -> c_int;
+pub fn xcb_query_colors_sizeof (_buffer :  *mut c_void,
+                         pixels_len :   u32) -> c_int;
 
 /**
  *
@@ -8377,10 +8377,10 @@ pub unsafe fn xcb_query_colors_sizeof (_buffer :  *c_void,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_query_colors (c : *connection,
+pub fn xcb_query_colors (c : *mut connection,
                             cmap :  colormap,
                             pixels_len :  u32,
-                            pixels : *u32) -> query_colors_cookie;
+                            pixels : *mut u32) -> query_colors_cookie;
 
 /**
  *
@@ -8393,17 +8393,17 @@ pub unsafe fn xcb_query_colors (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_query_colors_unchecked (c : *connection,
+pub fn xcb_query_colors_unchecked (c : *mut connection,
                                       cmap :  colormap,
                                       pixels_len :  u32,
-                                      pixels : *u32) -> query_colors_cookie;
+                                      pixels : *mut u32) -> query_colors_cookie;
 
-pub unsafe fn xcb_query_colors_colors (R : *query_colors_reply) -> *rgb;
+pub fn xcb_query_colors_colors (R : *mut query_colors_reply) -> *mut rgb;
 
 
-pub unsafe fn xcb_query_colors_colors_length (R : *query_colors_reply) -> c_int;
+pub fn xcb_query_colors_colors_length (R : *mut query_colors_reply) -> c_int;
 
-pub unsafe fn xcb_query_colors_colors_iterator (R : *query_colors_reply) -> rgb_iterator;
+pub fn xcb_query_colors_colors_iterator (R : *mut query_colors_reply) -> rgb_iterator;
 
 /**
  * Return the reply
@@ -8419,11 +8419,11 @@ pub unsafe fn xcb_query_colors_colors_iterator (R : *query_colors_reply) -> rgb_
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_query_colors_reply (c : *connection,
+pub fn xcb_query_colors_reply (c : *mut connection,
                                   cookie : query_colors_cookie,
-                                  e : **generic_error) -> *query_colors_reply;
+                                  e : *mut *mut generic_error) -> *mut query_colors_reply;
 
-pub unsafe fn xcb_lookup_color_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_lookup_color_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -8433,10 +8433,10 @@ pub unsafe fn xcb_lookup_color_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_lookup_color (c : *connection,
+pub fn xcb_lookup_color (c : *mut connection,
                             cmap :  colormap,
                             name_len :  u16,
-                            name : *c_char) -> lookup_color_cookie;
+                            name : *mut c_char) -> lookup_color_cookie;
 
 /**
  *
@@ -8449,10 +8449,10 @@ pub unsafe fn xcb_lookup_color (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_lookup_color_unchecked (c : *connection,
+pub fn xcb_lookup_color_unchecked (c : *mut connection,
                                       cmap :  colormap,
                                       name_len :  u16,
-                                      name : *c_char) -> lookup_color_cookie;
+                                      name : *mut c_char) -> lookup_color_cookie;
 
 /**
  * Return the reply
@@ -8468,9 +8468,9 @@ pub unsafe fn xcb_lookup_color_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_lookup_color_reply (c : *connection,
+pub fn xcb_lookup_color_reply (c : *mut connection,
                                   cookie : lookup_color_cookie,
-                                  e : **generic_error) -> *lookup_color_reply;
+                                  e : *mut *mut generic_error) -> *mut lookup_color_reply;
 
 /**
  *
@@ -8483,7 +8483,7 @@ pub unsafe fn xcb_lookup_color_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_create_cursor_checked (c : *connection,
+pub fn xcb_create_cursor_checked (c : *mut connection,
                                      cid :  cursor,
                                      source :  pixmap,
                                      mask :  pixmap,
@@ -8504,7 +8504,7 @@ pub unsafe fn xcb_create_cursor_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_create_cursor (c : *connection,
+pub fn xcb_create_cursor (c : *mut connection,
                              cid :  cursor,
                              source :  pixmap,
                              mask :  pixmap,
@@ -8550,7 +8550,7 @@ pub unsafe fn xcb_create_cursor (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_create_glyph_cursor_checked (c : *connection,
+pub fn xcb_create_glyph_cursor_checked (c : *mut connection,
                                            cid :  cursor,
                                            source_font :  font,
                                            mask_font :  font,
@@ -8593,7 +8593,7 @@ pub unsafe fn xcb_create_glyph_cursor_checked (c : *connection,
  * \a back_blue).
  * 
  */
-pub unsafe fn xcb_create_glyph_cursor (c : *connection,
+pub fn xcb_create_glyph_cursor (c : *mut connection,
                                    cid :  cursor,
                                    source_font :  font,
                                    mask_font :  font,
@@ -8620,7 +8620,7 @@ pub unsafe fn xcb_create_glyph_cursor (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_free_cursor_checked (c : *connection,
+pub fn xcb_free_cursor_checked (c : *mut connection,
                                    cursor :  cursor) -> void_cookie;
 
 /**
@@ -8634,7 +8634,7 @@ pub unsafe fn xcb_free_cursor_checked (c : *connection,
  * cursor. The cursor is freed when no other resource references it.
  * 
  */
-pub unsafe fn xcb_free_cursor (c : *connection,
+pub fn xcb_free_cursor (c : *mut connection,
                            cursor :  cursor) -> void_cookie;
 
 /**
@@ -8648,7 +8648,7 @@ pub unsafe fn xcb_free_cursor (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_recolor_cursor_checked (c : *connection,
+pub fn xcb_recolor_cursor_checked (c : *mut connection,
                                       cursor :  cursor,
                                       fore_red :  u16,
                                       fore_green :  u16,
@@ -8665,7 +8665,7 @@ pub unsafe fn xcb_recolor_cursor_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_recolor_cursor (c : *connection,
+pub fn xcb_recolor_cursor (c : *mut connection,
                               cursor :  cursor,
                               fore_red :  u16,
                               fore_green :  u16,
@@ -8682,7 +8682,7 @@ pub unsafe fn xcb_recolor_cursor (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_query_best_size (c : *connection,
+pub fn xcb_query_best_size (c : *mut connection,
                                class :  u8,
                                drawable :  drawable,
                                width :  u16,
@@ -8699,7 +8699,7 @@ pub unsafe fn xcb_query_best_size (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_query_best_size_unchecked (c : *connection,
+pub fn xcb_query_best_size_unchecked (c : *mut connection,
                                          class :  u8,
                                          drawable :  drawable,
                                          width :  u16,
@@ -8719,11 +8719,11 @@ pub unsafe fn xcb_query_best_size_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_query_best_size_reply (c : *connection,
+pub fn xcb_query_best_size_reply (c : *mut connection,
                                      cookie : query_best_size_cookie,
-                                     e : **generic_error) -> *query_best_size_reply;
+                                     e : *mut *mut generic_error) -> *mut query_best_size_reply;
 
-pub unsafe fn xcb_query_extension_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_query_extension_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * check if extension is present
@@ -8745,9 +8745,9 @@ pub unsafe fn xcb_query_extension_sizeof (_buffer :  *c_void) -> c_int;
  * `xcb_get_extension_data` function instead.
  * 
  */
-pub unsafe fn xcb_query_extension (c : *connection,
+pub fn xcb_query_extension (c : *mut connection,
                                name_len :  u16,
-                               name : *c_char) -> query_extension_cookie;
+                               name : *mut c_char) -> query_extension_cookie;
 
 /**
  * check if extension is present
@@ -8772,9 +8772,9 @@ pub unsafe fn xcb_query_extension (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_query_extension_unchecked (c : *connection,
+pub fn xcb_query_extension_unchecked (c : *mut connection,
                                          name_len :  u16,
-                                         name : *c_char) -> query_extension_cookie;
+                                         name : *mut c_char) -> query_extension_cookie;
 
 /**
  * Return the reply
@@ -8790,11 +8790,11 @@ pub unsafe fn xcb_query_extension_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_query_extension_reply (c : *connection,
+pub fn xcb_query_extension_reply (c : *mut connection,
                                      cookie : query_extension_cookie,
-                                     e : **generic_error) -> *query_extension_reply;
+                                     e : *mut *mut generic_error) -> *mut query_extension_reply;
 
-pub unsafe fn xcb_list_extensions_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_list_extensions_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -8804,7 +8804,7 @@ pub unsafe fn xcb_list_extensions_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_list_extensions (c : *connection) -> list_extensions_cookie;
+pub fn xcb_list_extensions (c : *mut connection) -> list_extensions_cookie;
 
 /**
  *
@@ -8817,12 +8817,12 @@ pub unsafe fn xcb_list_extensions (c : *connection) -> list_extensions_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_list_extensions_unchecked (c : *connection) -> list_extensions_cookie;
+pub fn xcb_list_extensions_unchecked (c : *mut connection) -> list_extensions_cookie;
 
 
-pub unsafe fn xcb_list_extensions_names_length (R : *list_extensions_reply) -> c_int;
+pub fn xcb_list_extensions_names_length (R : *mut list_extensions_reply) -> c_int;
 
-pub unsafe fn xcb_list_extensions_names_iterator (R : *list_extensions_reply) -> str_iterator;
+pub fn xcb_list_extensions_names_iterator (R : *mut list_extensions_reply) -> str_iterator;
 
 /**
  * Return the reply
@@ -8838,11 +8838,11 @@ pub unsafe fn xcb_list_extensions_names_iterator (R : *list_extensions_reply) ->
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_list_extensions_reply (c : *connection,
+pub fn xcb_list_extensions_reply (c : *mut connection,
                                      cookie : list_extensions_cookie,
-                                     e : **generic_error) -> *list_extensions_reply;
+                                     e : *mut *mut generic_error) -> *mut list_extensions_reply;
 
-pub unsafe fn xcb_change_keyboard_mapping_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_change_keyboard_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -8855,11 +8855,11 @@ pub unsafe fn xcb_change_keyboard_mapping_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_change_keyboard_mapping_checked (c : *connection,
+pub fn xcb_change_keyboard_mapping_checked (c : *mut connection,
                                                keycode_count :  u8,
                                                first_keycode :  keycode,
                                                keysyms_per_keycode :  u8,
-                                               keysyms : *keysym) -> void_cookie;
+                                               keysyms : *mut keysym) -> void_cookie;
 
 /**
  *
@@ -8869,13 +8869,13 @@ pub unsafe fn xcb_change_keyboard_mapping_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_change_keyboard_mapping (c : *connection,
+pub fn xcb_change_keyboard_mapping (c : *mut connection,
                                        keycode_count :  u8,
                                        first_keycode :  keycode,
                                        keysyms_per_keycode :  u8,
-                                       keysyms : *keysym) -> void_cookie;
+                                       keysyms : *mut keysym) -> void_cookie;
 
-pub unsafe fn xcb_get_keyboard_mapping_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_get_keyboard_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -8885,7 +8885,7 @@ pub unsafe fn xcb_get_keyboard_mapping_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_get_keyboard_mapping (c : *connection,
+pub fn xcb_get_keyboard_mapping (c : *mut connection,
                                     first_keycode :  keycode,
                                     count :  u8) -> get_keyboard_mapping_cookie;
 
@@ -8900,17 +8900,17 @@ pub unsafe fn xcb_get_keyboard_mapping (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_keyboard_mapping_unchecked (c : *connection,
+pub fn xcb_get_keyboard_mapping_unchecked (c : *mut connection,
                                               first_keycode :  keycode,
                                               count :  u8) -> get_keyboard_mapping_cookie;
 
-pub unsafe fn xcb_get_keyboard_mapping_keysyms (R : *get_keyboard_mapping_reply) -> *keysym;
+pub fn xcb_get_keyboard_mapping_keysyms (R : *mut get_keyboard_mapping_reply) -> *mut keysym;
 
 
-pub unsafe fn xcb_get_keyboard_mapping_keysyms_length (R : *get_keyboard_mapping_reply) -> c_int;
+pub fn xcb_get_keyboard_mapping_keysyms_length (R : *mut get_keyboard_mapping_reply) -> c_int;
 
 
-pub unsafe fn xcb_get_keyboard_mapping_keysyms_end (R : *get_keyboard_mapping_reply) -> generic_iterator;
+pub fn xcb_get_keyboard_mapping_keysyms_end (R : *mut get_keyboard_mapping_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -8926,11 +8926,11 @@ pub unsafe fn xcb_get_keyboard_mapping_keysyms_end (R : *get_keyboard_mapping_re
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_keyboard_mapping_reply (c : *connection,
+pub fn xcb_get_keyboard_mapping_reply (c : *mut connection,
                                           cookie : get_keyboard_mapping_cookie,
-                                          e : **generic_error) -> *get_keyboard_mapping_reply;
+                                          e : *mut *mut generic_error) -> *mut get_keyboard_mapping_reply;
 
-pub unsafe fn xcb_change_keyboard_control_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_change_keyboard_control_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -8943,9 +8943,9 @@ pub unsafe fn xcb_change_keyboard_control_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_change_keyboard_control_checked (c : *connection,
+pub fn xcb_change_keyboard_control_checked (c : *mut connection,
                                                value_mask :  u32,
-                                               value_list : *u32) -> void_cookie;
+                                               value_list : *mut u32) -> void_cookie;
 
 /**
  *
@@ -8955,9 +8955,9 @@ pub unsafe fn xcb_change_keyboard_control_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_change_keyboard_control (c : *connection,
+pub fn xcb_change_keyboard_control (c : *mut connection,
                                        value_mask :  u32,
-                                       value_list : *u32) -> void_cookie;
+                                       value_list : *mut u32) -> void_cookie;
 
 /**
  *
@@ -8967,7 +8967,7 @@ pub unsafe fn xcb_change_keyboard_control (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_get_keyboard_control (c : *connection) -> get_keyboard_control_cookie;
+pub fn xcb_get_keyboard_control (c : *mut connection) -> get_keyboard_control_cookie;
 
 /**
  *
@@ -8980,7 +8980,7 @@ pub unsafe fn xcb_get_keyboard_control (c : *connection) -> get_keyboard_control
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_keyboard_control_unchecked (c : *connection) -> get_keyboard_control_cookie;
+pub fn xcb_get_keyboard_control_unchecked (c : *mut connection) -> get_keyboard_control_cookie;
 
 /**
  * Return the reply
@@ -8996,9 +8996,9 @@ pub unsafe fn xcb_get_keyboard_control_unchecked (c : *connection) -> get_keyboa
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_keyboard_control_reply (c : *connection,
+pub fn xcb_get_keyboard_control_reply (c : *mut connection,
                                           cookie : get_keyboard_control_cookie,
-                                          e : **generic_error) -> *get_keyboard_control_reply;
+                                          e : *mut *mut generic_error) -> *mut get_keyboard_control_reply;
 
 /**
  *
@@ -9011,7 +9011,7 @@ pub unsafe fn xcb_get_keyboard_control_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_bell_checked (c : *connection,
+pub fn xcb_bell_checked (c : *mut connection,
                             percent :  i8) -> void_cookie;
 
 /**
@@ -9022,7 +9022,7 @@ pub unsafe fn xcb_bell_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_bell (c : *connection,
+pub fn xcb_bell (c : *mut connection,
                     percent :  i8) -> void_cookie;
 
 /**
@@ -9036,7 +9036,7 @@ pub unsafe fn xcb_bell (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_change_pointer_control_checked (c : *connection,
+pub fn xcb_change_pointer_control_checked (c : *mut connection,
                                               acceleration_numerator :  i16,
                                               acceleration_denominator :  i16,
                                               threshold :  i16,
@@ -9051,7 +9051,7 @@ pub unsafe fn xcb_change_pointer_control_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_change_pointer_control (c : *connection,
+pub fn xcb_change_pointer_control (c : *mut connection,
                                       acceleration_numerator :  i16,
                                       acceleration_denominator :  i16,
                                       threshold :  i16,
@@ -9066,7 +9066,7 @@ pub unsafe fn xcb_change_pointer_control (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_get_pointer_control (c : *connection) -> get_pointer_control_cookie;
+pub fn xcb_get_pointer_control (c : *mut connection) -> get_pointer_control_cookie;
 
 /**
  *
@@ -9079,7 +9079,7 @@ pub unsafe fn xcb_get_pointer_control (c : *connection) -> get_pointer_control_c
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_pointer_control_unchecked (c : *connection) -> get_pointer_control_cookie;
+pub fn xcb_get_pointer_control_unchecked (c : *mut connection) -> get_pointer_control_cookie;
 
 /**
  * Return the reply
@@ -9095,9 +9095,9 @@ pub unsafe fn xcb_get_pointer_control_unchecked (c : *connection) -> get_pointer
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_pointer_control_reply (c : *connection,
+pub fn xcb_get_pointer_control_reply (c : *mut connection,
                                          cookie : get_pointer_control_cookie,
-                                         e : **generic_error) -> *get_pointer_control_reply;
+                                         e : *mut *mut generic_error) -> *mut get_pointer_control_reply;
 
 /**
  *
@@ -9110,7 +9110,7 @@ pub unsafe fn xcb_get_pointer_control_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_set_screen_saver_checked (c : *connection,
+pub fn xcb_set_screen_saver_checked (c : *mut connection,
                                         timeout :  i16,
                                         interval :  i16,
                                         prefer_blanking :  u8,
@@ -9124,7 +9124,7 @@ pub unsafe fn xcb_set_screen_saver_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_set_screen_saver (c : *connection,
+pub fn xcb_set_screen_saver (c : *mut connection,
                                 timeout :  i16,
                                 interval :  i16,
                                 prefer_blanking :  u8,
@@ -9138,7 +9138,7 @@ pub unsafe fn xcb_set_screen_saver (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_get_screen_saver (c : *connection) -> get_screen_saver_cookie;
+pub fn xcb_get_screen_saver (c : *mut connection) -> get_screen_saver_cookie;
 
 /**
  *
@@ -9151,7 +9151,7 @@ pub unsafe fn xcb_get_screen_saver (c : *connection) -> get_screen_saver_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_screen_saver_unchecked (c : *connection) -> get_screen_saver_cookie;
+pub fn xcb_get_screen_saver_unchecked (c : *mut connection) -> get_screen_saver_cookie;
 
 /**
  * Return the reply
@@ -9167,11 +9167,11 @@ pub unsafe fn xcb_get_screen_saver_unchecked (c : *connection) -> get_screen_sav
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_screen_saver_reply (c : *connection,
+pub fn xcb_get_screen_saver_reply (c : *mut connection,
                                       cookie : get_screen_saver_cookie,
-                                      e : **generic_error) -> *get_screen_saver_reply;
+                                      e : *mut *mut generic_error) -> *mut get_screen_saver_reply;
 
-pub unsafe fn xcb_change_hosts_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_change_hosts_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -9184,11 +9184,11 @@ pub unsafe fn xcb_change_hosts_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_change_hosts_checked (c : *connection,
+pub fn xcb_change_hosts_checked (c : *mut connection,
                                     mode :  u8,
                                     family :  u8,
                                     address_len :  u16,
-                                    address : *u8) -> void_cookie;
+                                    address : *mut u8) -> void_cookie;
 
 /**
  *
@@ -9198,21 +9198,21 @@ pub unsafe fn xcb_change_hosts_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_change_hosts (c : *connection,
+pub fn xcb_change_hosts (c : *mut connection,
                             mode :  u8,
                             family :  u8,
                             address_len :  u16,
-                            address : *u8) -> void_cookie;
+                            address : *mut u8) -> void_cookie;
 
-pub unsafe fn xcb_host_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_host_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_host_address (R : *host) -> *u8;
-
-
-pub unsafe fn xcb_host_address_length (R : *host) -> c_int;
+pub fn xcb_host_address (R : *mut host) -> *mut u8;
 
 
-pub unsafe fn xcb_host_address_end (R : *host) -> generic_iterator;
+pub fn xcb_host_address_length (R : *mut host) -> c_int;
+
+
+pub fn xcb_host_address_end (R : *mut host) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -9224,7 +9224,7 @@ pub unsafe fn xcb_host_address_end (R : *host) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_host_next (i:*host_iterator) -> c_void;
+pub fn xcb_host_next (i:*mut host_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -9235,9 +9235,9 @@ pub unsafe fn xcb_host_next (i:*host_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_host_end (i:host_iterator) -> generic_iterator;
+pub fn xcb_host_end (i:host_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_list_hosts_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_list_hosts_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -9247,7 +9247,7 @@ pub unsafe fn xcb_list_hosts_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_list_hosts (c : *connection) -> list_hosts_cookie;
+pub fn xcb_list_hosts (c : *mut connection) -> list_hosts_cookie;
 
 /**
  *
@@ -9260,12 +9260,12 @@ pub unsafe fn xcb_list_hosts (c : *connection) -> list_hosts_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_list_hosts_unchecked (c : *connection) -> list_hosts_cookie;
+pub fn xcb_list_hosts_unchecked (c : *mut connection) -> list_hosts_cookie;
 
 
-pub unsafe fn xcb_list_hosts_hosts_length (R : *list_hosts_reply) -> c_int;
+pub fn xcb_list_hosts_hosts_length (R : *mut list_hosts_reply) -> c_int;
 
-pub unsafe fn xcb_list_hosts_hosts_iterator (R : *list_hosts_reply) -> host_iterator;
+pub fn xcb_list_hosts_hosts_iterator (R : *mut list_hosts_reply) -> host_iterator;
 
 /**
  * Return the reply
@@ -9281,9 +9281,9 @@ pub unsafe fn xcb_list_hosts_hosts_iterator (R : *list_hosts_reply) -> host_iter
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_list_hosts_reply (c : *connection,
+pub fn xcb_list_hosts_reply (c : *mut connection,
                                 cookie : list_hosts_cookie,
-                                e : **generic_error) -> *list_hosts_reply;
+                                e : *mut *mut generic_error) -> *mut list_hosts_reply;
 
 /**
  *
@@ -9296,7 +9296,7 @@ pub unsafe fn xcb_list_hosts_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_set_access_control_checked (c : *connection,
+pub fn xcb_set_access_control_checked (c : *mut connection,
                                           mode :  u8) -> void_cookie;
 
 /**
@@ -9307,7 +9307,7 @@ pub unsafe fn xcb_set_access_control_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_set_access_control (c : *connection,
+pub fn xcb_set_access_control (c : *mut connection,
                                   mode :  u8) -> void_cookie;
 
 /**
@@ -9321,7 +9321,7 @@ pub unsafe fn xcb_set_access_control (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_set_close_down_mode_checked (c : *connection,
+pub fn xcb_set_close_down_mode_checked (c : *mut connection,
                                            mode :  u8) -> void_cookie;
 
 /**
@@ -9332,7 +9332,7 @@ pub unsafe fn xcb_set_close_down_mode_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_set_close_down_mode (c : *connection,
+pub fn xcb_set_close_down_mode (c : *mut connection,
                                    mode :  u8) -> void_cookie;
 
 /**
@@ -9352,7 +9352,7 @@ pub unsafe fn xcb_set_close_down_mode (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_kill_client_checked (c : *connection,
+pub fn xcb_kill_client_checked (c : *mut connection,
                                    resource :  u32) -> void_cookie;
 
 /**
@@ -9369,10 +9369,10 @@ pub unsafe fn xcb_kill_client_checked (c : *connection,
  * Forces a close down of the client that created the specified \a resource.
  * 
  */
-pub unsafe fn xcb_kill_client (c : *connection,
+pub fn xcb_kill_client (c : *mut connection,
                            resource :  u32) -> void_cookie;
 
-pub unsafe fn xcb_rotate_properties_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_rotate_properties_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -9385,11 +9385,11 @@ pub unsafe fn xcb_rotate_properties_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_rotate_properties_checked (c : *connection,
+pub fn xcb_rotate_properties_checked (c : *mut connection,
                                          window :  window,
                                          atoms_len :  u16,
                                          delta :  i16,
-                                         atoms : *atom) -> void_cookie;
+                                         atoms : *mut atom) -> void_cookie;
 
 /**
  *
@@ -9399,11 +9399,11 @@ pub unsafe fn xcb_rotate_properties_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_rotate_properties (c : *connection,
+pub fn xcb_rotate_properties (c : *mut connection,
                                  window :  window,
                                  atoms_len :  u16,
                                  delta :  i16,
-                                 atoms : *atom) -> void_cookie;
+                                 atoms : *mut atom) -> void_cookie;
 
 /**
  *
@@ -9416,7 +9416,7 @@ pub unsafe fn xcb_rotate_properties (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_force_screen_saver_checked (c : *connection,
+pub fn xcb_force_screen_saver_checked (c : *mut connection,
                                           mode :  u8) -> void_cookie;
 
 /**
@@ -9427,10 +9427,10 @@ pub unsafe fn xcb_force_screen_saver_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_force_screen_saver (c : *connection,
+pub fn xcb_force_screen_saver (c : *mut connection,
                                   mode :  u8) -> void_cookie;
 
-pub unsafe fn xcb_set_pointer_mapping_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_set_pointer_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -9440,9 +9440,9 @@ pub unsafe fn xcb_set_pointer_mapping_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_set_pointer_mapping (c : *connection,
+pub fn xcb_set_pointer_mapping (c : *mut connection,
                                    map_len :  u8,
-                                   map : *u8) -> set_pointer_mapping_cookie;
+                                   map : *mut u8) -> set_pointer_mapping_cookie;
 
 /**
  *
@@ -9455,9 +9455,9 @@ pub unsafe fn xcb_set_pointer_mapping (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_set_pointer_mapping_unchecked (c : *connection,
+pub fn xcb_set_pointer_mapping_unchecked (c : *mut connection,
                                              map_len :  u8,
-                                             map : *u8) -> set_pointer_mapping_cookie;
+                                             map : *mut u8) -> set_pointer_mapping_cookie;
 
 /**
  * Return the reply
@@ -9473,11 +9473,11 @@ pub unsafe fn xcb_set_pointer_mapping_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_set_pointer_mapping_reply (c : *connection,
+pub fn xcb_set_pointer_mapping_reply (c : *mut connection,
                                          cookie : set_pointer_mapping_cookie,
-                                         e : **generic_error) -> *set_pointer_mapping_reply;
+                                         e : *mut *mut generic_error) -> *mut set_pointer_mapping_reply;
 
-pub unsafe fn xcb_get_pointer_mapping_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_get_pointer_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -9487,7 +9487,7 @@ pub unsafe fn xcb_get_pointer_mapping_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_get_pointer_mapping (c : *connection) -> get_pointer_mapping_cookie;
+pub fn xcb_get_pointer_mapping (c : *mut connection) -> get_pointer_mapping_cookie;
 
 /**
  *
@@ -9500,15 +9500,15 @@ pub unsafe fn xcb_get_pointer_mapping (c : *connection) -> get_pointer_mapping_c
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_pointer_mapping_unchecked (c : *connection) -> get_pointer_mapping_cookie;
+pub fn xcb_get_pointer_mapping_unchecked (c : *mut connection) -> get_pointer_mapping_cookie;
 
-pub unsafe fn xcb_get_pointer_mapping_map (R : *get_pointer_mapping_reply) -> *u8;
-
-
-pub unsafe fn xcb_get_pointer_mapping_map_length (R : *get_pointer_mapping_reply) -> c_int;
+pub fn xcb_get_pointer_mapping_map (R : *mut get_pointer_mapping_reply) -> *mut u8;
 
 
-pub unsafe fn xcb_get_pointer_mapping_map_end (R : *get_pointer_mapping_reply) -> generic_iterator;
+pub fn xcb_get_pointer_mapping_map_length (R : *mut get_pointer_mapping_reply) -> c_int;
+
+
+pub fn xcb_get_pointer_mapping_map_end (R : *mut get_pointer_mapping_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -9524,11 +9524,11 @@ pub unsafe fn xcb_get_pointer_mapping_map_end (R : *get_pointer_mapping_reply) -
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_pointer_mapping_reply (c : *connection,
+pub fn xcb_get_pointer_mapping_reply (c : *mut connection,
                                          cookie : get_pointer_mapping_cookie,
-                                         e : **generic_error) -> *get_pointer_mapping_reply;
+                                         e : *mut *mut generic_error) -> *mut get_pointer_mapping_reply;
 
-pub unsafe fn xcb_set_modifier_mapping_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_set_modifier_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -9538,9 +9538,9 @@ pub unsafe fn xcb_set_modifier_mapping_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_set_modifier_mapping (c : *connection,
+pub fn xcb_set_modifier_mapping (c : *mut connection,
                                     keycodes_per_modifier :  u8,
-                                    keycodes : *keycode) -> set_modifier_mapping_cookie;
+                                    keycodes : *mut keycode) -> set_modifier_mapping_cookie;
 
 /**
  *
@@ -9553,9 +9553,9 @@ pub unsafe fn xcb_set_modifier_mapping (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_set_modifier_mapping_unchecked (c : *connection,
+pub fn xcb_set_modifier_mapping_unchecked (c : *mut connection,
                                               keycodes_per_modifier :  u8,
-                                              keycodes : *keycode) -> set_modifier_mapping_cookie;
+                                              keycodes : *mut keycode) -> set_modifier_mapping_cookie;
 
 /**
  * Return the reply
@@ -9571,11 +9571,11 @@ pub unsafe fn xcb_set_modifier_mapping_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_set_modifier_mapping_reply (c : *connection,
+pub fn xcb_set_modifier_mapping_reply (c : *mut connection,
                                           cookie : set_modifier_mapping_cookie,
-                                          e : **generic_error) -> *set_modifier_mapping_reply;
+                                          e : *mut *mut generic_error) -> *mut set_modifier_mapping_reply;
 
-pub unsafe fn xcb_get_modifier_mapping_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_get_modifier_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -9585,7 +9585,7 @@ pub unsafe fn xcb_get_modifier_mapping_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_get_modifier_mapping (c : *connection) -> get_modifier_mapping_cookie;
+pub fn xcb_get_modifier_mapping (c : *mut connection) -> get_modifier_mapping_cookie;
 
 /**
  *
@@ -9598,15 +9598,15 @@ pub unsafe fn xcb_get_modifier_mapping (c : *connection) -> get_modifier_mapping
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_modifier_mapping_unchecked (c : *connection) -> get_modifier_mapping_cookie;
+pub fn xcb_get_modifier_mapping_unchecked (c : *mut connection) -> get_modifier_mapping_cookie;
 
-pub unsafe fn xcb_get_modifier_mapping_keycodes (R : *get_modifier_mapping_reply) -> *keycode;
-
-
-pub unsafe fn xcb_get_modifier_mapping_keycodes_length (R : *get_modifier_mapping_reply) -> c_int;
+pub fn xcb_get_modifier_mapping_keycodes (R : *mut get_modifier_mapping_reply) -> *mut keycode;
 
 
-pub unsafe fn xcb_get_modifier_mapping_keycodes_end (R : *get_modifier_mapping_reply) -> generic_iterator;
+pub fn xcb_get_modifier_mapping_keycodes_length (R : *mut get_modifier_mapping_reply) -> c_int;
+
+
+pub fn xcb_get_modifier_mapping_keycodes_end (R : *mut get_modifier_mapping_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -9622,9 +9622,9 @@ pub unsafe fn xcb_get_modifier_mapping_keycodes_end (R : *get_modifier_mapping_r
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_modifier_mapping_reply (c : *connection,
+pub fn xcb_get_modifier_mapping_reply (c : *mut connection,
                                           cookie : get_modifier_mapping_cookie,
-                                          e : **generic_error) -> *get_modifier_mapping_reply;
+                                          e : *mut *mut generic_error) -> *mut get_modifier_mapping_reply;
 
 /**
  *
@@ -9637,7 +9637,7 @@ pub unsafe fn xcb_get_modifier_mapping_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_no_operation_checked (c : *connection) -> void_cookie;
+pub fn xcb_no_operation_checked (c : *mut connection) -> void_cookie;
 
 /**
  *
@@ -9647,6 +9647,6 @@ pub unsafe fn xcb_no_operation_checked (c : *connection) -> void_cookie;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_no_operation (c : *connection) -> void_cookie;
+pub fn xcb_no_operation (c : *mut connection) -> void_cookie;
 }
 

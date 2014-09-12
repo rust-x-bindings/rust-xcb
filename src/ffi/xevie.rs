@@ -4,8 +4,8 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
@@ -93,7 +93,7 @@ pub struct event {
  * @brief event_iterator
  **/
 pub struct event_iterator {
-    data : *event,
+    data : *mut event,
     rem  : c_int,
     index: c_int
 }
@@ -144,7 +144,7 @@ pub struct select_input_reply {
     pad1 :            [u8,..24]
 }
 
-#[link_args="-lxcb-xevie"]
+#[link(name="lxcb-xevie")]
 pub extern "C" {
 
 /**
@@ -155,7 +155,7 @@ pub extern "C" {
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xevie_query_version (c : *connection,
+pub fn xcb_xevie_query_version (c : *mut connection,
                                    client_major_version :  u16,
                                    client_minor_version :  u16) -> query_version_cookie;
 
@@ -170,7 +170,7 @@ pub unsafe fn xcb_xevie_query_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xevie_query_version_unchecked (c : *connection,
+pub fn xcb_xevie_query_version_unchecked (c : *mut connection,
                                              client_major_version :  u16,
                                              client_minor_version :  u16) -> query_version_cookie;
 
@@ -188,9 +188,9 @@ pub unsafe fn xcb_xevie_query_version_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xevie_query_version_reply (c : *connection,
+pub fn xcb_xevie_query_version_reply (c : *mut connection,
                                          cookie : query_version_cookie,
-                                         e : **generic_error) -> *query_version_reply;
+                                         e : *mut *mut generic_error) -> *mut query_version_reply;
 
 /**
  *
@@ -200,7 +200,7 @@ pub unsafe fn xcb_xevie_query_version_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xevie_start (c : *connection,
+pub fn xcb_xevie_start (c : *mut connection,
                            screen :  u32) -> start_cookie;
 
 /**
@@ -214,7 +214,7 @@ pub unsafe fn xcb_xevie_start (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xevie_start_unchecked (c : *connection,
+pub fn xcb_xevie_start_unchecked (c : *mut connection,
                                      screen :  u32) -> start_cookie;
 
 /**
@@ -231,9 +231,9 @@ pub unsafe fn xcb_xevie_start_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xevie_start_reply (c : *connection,
+pub fn xcb_xevie_start_reply (c : *mut connection,
                                  cookie : start_cookie,
-                                 e : **generic_error) -> *start_reply;
+                                 e : *mut *mut generic_error) -> *mut start_reply;
 
 /**
  *
@@ -243,7 +243,7 @@ pub unsafe fn xcb_xevie_start_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xevie_end (c : *connection,
+pub fn xcb_xevie_end (c : *mut connection,
                          cmap :  u32) -> end_cookie;
 
 /**
@@ -257,7 +257,7 @@ pub unsafe fn xcb_xevie_end (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xevie_end_unchecked (c : *connection,
+pub fn xcb_xevie_end_unchecked (c : *mut connection,
                                    cmap :  u32) -> end_cookie;
 
 /**
@@ -274,9 +274,9 @@ pub unsafe fn xcb_xevie_end_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xevie_end_reply (c : *connection,
+pub fn xcb_xevie_end_reply (c : *mut connection,
                                cookie : end_cookie,
-                               e : **generic_error) -> *end_reply;
+                               e : *mut *mut generic_error) -> *mut end_reply;
 
 /**
  * Get the next element of the iterator
@@ -288,7 +288,7 @@ pub unsafe fn xcb_xevie_end_reply (c : *connection,
  *
  *
  */
-pub unsafe fn xcb_xevie_event_next (i:*event_iterator) -> c_void;
+pub fn xcb_xevie_event_next (i:*mut event_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -299,7 +299,7 @@ pub unsafe fn xcb_xevie_event_next (i:*event_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_xevie_event_end (i:event_iterator) -> generic_iterator;
+pub fn xcb_xevie_event_end (i:event_iterator) -> generic_iterator;
 
 /**
  *
@@ -309,7 +309,7 @@ pub unsafe fn xcb_xevie_event_end (i:event_iterator) -> generic_iterator;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xevie_send (c : *connection,
+pub fn xcb_xevie_send (c : *mut connection,
                           event :  event,
                           data_type :  u32) -> send_cookie;
 
@@ -324,7 +324,7 @@ pub unsafe fn xcb_xevie_send (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xevie_send_unchecked (c : *connection,
+pub fn xcb_xevie_send_unchecked (c : *mut connection,
                                     event :  event,
                                     data_type :  u32) -> send_cookie;
 
@@ -342,9 +342,9 @@ pub unsafe fn xcb_xevie_send_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xevie_send_reply (c : *connection,
+pub fn xcb_xevie_send_reply (c : *mut connection,
                                 cookie : send_cookie,
-                                e : **generic_error) -> *send_reply;
+                                e : *mut *mut generic_error) -> *mut send_reply;
 
 /**
  *
@@ -354,7 +354,7 @@ pub unsafe fn xcb_xevie_send_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xevie_select_input (c : *connection,
+pub fn xcb_xevie_select_input (c : *mut connection,
                                   event_mask :  u32) -> select_input_cookie;
 
 /**
@@ -368,7 +368,7 @@ pub unsafe fn xcb_xevie_select_input (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xevie_select_input_unchecked (c : *connection,
+pub fn xcb_xevie_select_input_unchecked (c : *mut connection,
                                             event_mask :  u32) -> select_input_cookie;
 
 /**
@@ -385,8 +385,8 @@ pub unsafe fn xcb_xevie_select_input_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xevie_select_input_reply (c : *connection,
+pub fn xcb_xevie_select_input_reply (c : *mut connection,
                                         cookie : select_input_cookie,
-                                        e : **generic_error) -> *select_input_reply;
+                                        e : *mut *mut generic_error) -> *mut select_input_reply;
 }
 

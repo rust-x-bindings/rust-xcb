@@ -4,8 +4,8 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
@@ -144,7 +144,7 @@ pub struct info_reply {
     pad1 :            [u8,..21]
 }
 
-#[link_args="-lxcb-dpms"]
+#[link(name="lxcb-dpms")]
 pub extern "C" {
 
 /**
@@ -155,7 +155,7 @@ pub extern "C" {
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dpms_get_version (c : *connection,
+pub fn xcb_dpms_get_version (c : *mut connection,
                                 client_major_version :  u16,
                                 client_minor_version :  u16) -> get_version_cookie;
 
@@ -170,7 +170,7 @@ pub unsafe fn xcb_dpms_get_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_dpms_get_version_unchecked (c : *connection,
+pub fn xcb_dpms_get_version_unchecked (c : *mut connection,
                                           client_major_version :  u16,
                                           client_minor_version :  u16) -> get_version_cookie;
 
@@ -188,9 +188,9 @@ pub unsafe fn xcb_dpms_get_version_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_dpms_get_version_reply (c : *connection,
+pub fn xcb_dpms_get_version_reply (c : *mut connection,
                                       cookie : get_version_cookie,
-                                      e : **generic_error) -> *get_version_reply;
+                                      e : *mut *mut generic_error) -> *mut get_version_reply;
 
 /**
  *
@@ -200,7 +200,7 @@ pub unsafe fn xcb_dpms_get_version_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dpms_capable (c : *connection) -> capable_cookie;
+pub fn xcb_dpms_capable (c : *mut connection) -> capable_cookie;
 
 /**
  *
@@ -213,7 +213,7 @@ pub unsafe fn xcb_dpms_capable (c : *connection) -> capable_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_dpms_capable_unchecked (c : *connection) -> capable_cookie;
+pub fn xcb_dpms_capable_unchecked (c : *mut connection) -> capable_cookie;
 
 /**
  * Return the reply
@@ -229,9 +229,9 @@ pub unsafe fn xcb_dpms_capable_unchecked (c : *connection) -> capable_cookie;
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_dpms_capable_reply (c : *connection,
+pub fn xcb_dpms_capable_reply (c : *mut connection,
                                   cookie : capable_cookie,
-                                  e : **generic_error) -> *capable_reply;
+                                  e : *mut *mut generic_error) -> *mut capable_reply;
 
 /**
  *
@@ -241,7 +241,7 @@ pub unsafe fn xcb_dpms_capable_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dpms_get_timeouts (c : *connection) -> get_timeouts_cookie;
+pub fn xcb_dpms_get_timeouts (c : *mut connection) -> get_timeouts_cookie;
 
 /**
  *
@@ -254,7 +254,7 @@ pub unsafe fn xcb_dpms_get_timeouts (c : *connection) -> get_timeouts_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_dpms_get_timeouts_unchecked (c : *connection) -> get_timeouts_cookie;
+pub fn xcb_dpms_get_timeouts_unchecked (c : *mut connection) -> get_timeouts_cookie;
 
 /**
  * Return the reply
@@ -270,9 +270,9 @@ pub unsafe fn xcb_dpms_get_timeouts_unchecked (c : *connection) -> get_timeouts_
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_dpms_get_timeouts_reply (c : *connection,
+pub fn xcb_dpms_get_timeouts_reply (c : *mut connection,
                                        cookie : get_timeouts_cookie,
-                                       e : **generic_error) -> *get_timeouts_reply;
+                                       e : *mut *mut generic_error) -> *mut get_timeouts_reply;
 
 /**
  *
@@ -285,7 +285,7 @@ pub unsafe fn xcb_dpms_get_timeouts_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_dpms_set_timeouts_checked (c : *connection,
+pub fn xcb_dpms_set_timeouts_checked (c : *mut connection,
                                          standby_timeout :  u16,
                                          suspend_timeout :  u16,
                                          off_timeout :  u16) -> void_cookie;
@@ -298,7 +298,7 @@ pub unsafe fn xcb_dpms_set_timeouts_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dpms_set_timeouts (c : *connection,
+pub fn xcb_dpms_set_timeouts (c : *mut connection,
                                  standby_timeout :  u16,
                                  suspend_timeout :  u16,
                                  off_timeout :  u16) -> void_cookie;
@@ -314,7 +314,7 @@ pub unsafe fn xcb_dpms_set_timeouts (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_dpms_enable_checked (c : *connection) -> void_cookie;
+pub fn xcb_dpms_enable_checked (c : *mut connection) -> void_cookie;
 
 /**
  *
@@ -324,30 +324,7 @@ pub unsafe fn xcb_dpms_enable_checked (c : *connection) -> void_cookie;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dpms_enable (c : *connection) -> void_cookie;
-
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- * 
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
-pub unsafe fn xcb_dpms_disable_checked (c : *connection) -> void_cookie;
-
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- * 
- */
-pub unsafe fn xcb_dpms_disable (c : *connection) -> void_cookie;
+pub fn xcb_dpms_enable (c : *mut connection) -> void_cookie;
 
 /**
  *
@@ -360,7 +337,30 @@ pub unsafe fn xcb_dpms_disable (c : *connection) -> void_cookie;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_dpms_force_level_checked (c : *connection,
+pub fn xcb_dpms_disable_checked (c : *mut connection) -> void_cookie;
+
+/**
+ *
+ * @param c The connection
+ * @return A cookie
+ *
+ * Delivers a request to the X server.
+ * 
+ */
+pub fn xcb_dpms_disable (c : *mut connection) -> void_cookie;
+
+/**
+ *
+ * @param c The connection
+ * @return A cookie
+ *
+ * Delivers a request to the X server.
+ * 
+ * This form can be used only if the request will not cause
+ * a reply to be generated. Any returned error will be
+ * saved for handling by xcb_request_check().
+ */
+pub fn xcb_dpms_force_level_checked (c : *mut connection,
                                         power_level :  u16) -> void_cookie;
 
 /**
@@ -371,7 +371,7 @@ pub unsafe fn xcb_dpms_force_level_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dpms_force_level (c : *connection,
+pub fn xcb_dpms_force_level (c : *mut connection,
                                 power_level :  u16) -> void_cookie;
 
 /**
@@ -382,7 +382,7 @@ pub unsafe fn xcb_dpms_force_level (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dpms_info (c : *connection) -> info_cookie;
+pub fn xcb_dpms_info (c : *mut connection) -> info_cookie;
 
 /**
  *
@@ -395,7 +395,7 @@ pub unsafe fn xcb_dpms_info (c : *connection) -> info_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_dpms_info_unchecked (c : *connection) -> info_cookie;
+pub fn xcb_dpms_info_unchecked (c : *mut connection) -> info_cookie;
 
 /**
  * Return the reply
@@ -411,8 +411,8 @@ pub unsafe fn xcb_dpms_info_unchecked (c : *connection) -> info_cookie;
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_dpms_info_reply (c : *connection,
+pub fn xcb_dpms_info_reply (c : *mut connection,
                                cookie : info_cookie,
-                               e : **generic_error) -> *info_reply;
+                               e : *mut *mut generic_error) -> *mut info_reply;
 }
 

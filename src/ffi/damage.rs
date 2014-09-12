@@ -4,8 +4,8 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
@@ -25,7 +25,7 @@ pub type damage = u32;
  * @brief damage_iterator
  **/
 pub struct damage_iterator {
-    data : *damage,
+    data : *mut damage,
     rem  : c_int,
     index: c_int
 }
@@ -118,7 +118,7 @@ pub struct notify_event {
     geometry :        ffi::xproto::rectangle
 }
 
-#[link_args="-lxcb-damage"]
+#[link(name="lxcb-damage")]
 pub extern "C" {
 
 /**
@@ -131,7 +131,7 @@ pub extern "C" {
  *
  *
  */
-pub unsafe fn xcb_damage_damage_next (i:*damage_iterator) -> c_void;
+pub fn xcb_damage_damage_next (i:*mut damage_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -142,7 +142,7 @@ pub unsafe fn xcb_damage_damage_next (i:*damage_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_damage_damage_end (i:damage_iterator) -> generic_iterator;
+pub fn xcb_damage_damage_end (i:damage_iterator) -> generic_iterator;
 
 /**
  *
@@ -152,7 +152,7 @@ pub unsafe fn xcb_damage_damage_end (i:damage_iterator) -> generic_iterator;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_damage_query_version (c : *connection,
+pub fn xcb_damage_query_version (c : *mut connection,
                                     client_major_version :  u32,
                                     client_minor_version :  u32) -> query_version_cookie;
 
@@ -167,7 +167,7 @@ pub unsafe fn xcb_damage_query_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_damage_query_version_unchecked (c : *connection,
+pub fn xcb_damage_query_version_unchecked (c : *mut connection,
                                               client_major_version :  u32,
                                               client_minor_version :  u32) -> query_version_cookie;
 
@@ -185,9 +185,9 @@ pub unsafe fn xcb_damage_query_version_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_damage_query_version_reply (c : *connection,
+pub fn xcb_damage_query_version_reply (c : *mut connection,
                                           cookie : query_version_cookie,
-                                          e : **generic_error) -> *query_version_reply;
+                                          e : *mut *mut generic_error) -> *mut query_version_reply;
 
 /**
  *
@@ -200,7 +200,7 @@ pub unsafe fn xcb_damage_query_version_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_damage_create_checked (c : *connection,
+pub fn xcb_damage_create_checked (c : *mut connection,
                                      damage :  damage,
                                      drawable :  ffi::xproto::drawable,
                                      level :  u8) -> void_cookie;
@@ -213,7 +213,7 @@ pub unsafe fn xcb_damage_create_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_damage_create (c : *connection,
+pub fn xcb_damage_create (c : *mut connection,
                              damage :  damage,
                              drawable :  ffi::xproto::drawable,
                              level :  u8) -> void_cookie;
@@ -229,7 +229,7 @@ pub unsafe fn xcb_damage_create (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_damage_destroy_checked (c : *connection,
+pub fn xcb_damage_destroy_checked (c : *mut connection,
                                       damage :  damage) -> void_cookie;
 
 /**
@@ -240,7 +240,7 @@ pub unsafe fn xcb_damage_destroy_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_damage_destroy (c : *connection,
+pub fn xcb_damage_destroy (c : *mut connection,
                               damage :  damage) -> void_cookie;
 
 /**
@@ -254,7 +254,7 @@ pub unsafe fn xcb_damage_destroy (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_damage_subtract_checked (c : *connection,
+pub fn xcb_damage_subtract_checked (c : *mut connection,
                                        damage :  damage,
                                        repair :  ffi::xfixes::region,
                                        parts :  ffi::xfixes::region) -> void_cookie;
@@ -267,7 +267,7 @@ pub unsafe fn xcb_damage_subtract_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_damage_subtract (c : *connection,
+pub fn xcb_damage_subtract (c : *mut connection,
                                damage :  damage,
                                repair :  ffi::xfixes::region,
                                parts :  ffi::xfixes::region) -> void_cookie;
@@ -283,7 +283,7 @@ pub unsafe fn xcb_damage_subtract (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_damage_add_checked (c : *connection,
+pub fn xcb_damage_add_checked (c : *mut connection,
                                   drawable :  ffi::xproto::drawable,
                                   region :  ffi::xfixes::region) -> void_cookie;
 
@@ -295,7 +295,7 @@ pub unsafe fn xcb_damage_add_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_damage_add (c : *connection,
+pub fn xcb_damage_add (c : *mut connection,
                           drawable :  ffi::xproto::drawable,
                           region :  ffi::xfixes::region) -> void_cookie;
 }

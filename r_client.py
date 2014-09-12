@@ -264,9 +264,9 @@ def c_open(self):
     _hr('')
 
     _hr('//Make the compiler quiet')
-    _hr('#[allow(unused_imports)];')
-    _r('#[allow(unused_unsafe)];')
-    _h('#[allow(non_camel_case_types)];')
+    _hr('#![allow(unused_imports)]')
+    _r('#![allow(unused_unsafe)]')
+    _h('#![allow(non_camel_case_types)]')
 
     _hr('use std;')
     _hr('use std::libc::*;')
@@ -280,7 +280,7 @@ def c_open(self):
     _r('use ffi::%s::*;', _ns.header)
 
     _r('use std::option::Option;')
-    _r('use std::iterator::Iterator;')
+    _r('use std::iter::Iterator;')
     _r('')
 
     global _imports
@@ -311,7 +311,7 @@ def c_close(self):
     for list in _hlines:
         if level == 1:
             if _ns.header in links:
-                hfile.write("#[link_args=\"-lxcb-%s\"]\n" % links[_ns.header])
+                hfile.write("#[link(name=\"lxcb-%s\")]\n" % links[_ns.header])
             hfile.write("pub extern \"C\" {\n")
         if level == 2:
             hfile.write("}\n")
@@ -443,20 +443,20 @@ def _c_type_setup(self, name, postfix):
             field.r_field_const_type =  field.r_field_type
             field.c_field_name = _cpp(field.field_name)
             field.c_subscript = field.type.nmemb if (field.type.nmemb and field.type.nmemb > 1) else 1
-            field.c_pointer = ' ' if field.type.nmemb == 1 else '*'
+            field.c_pointer = ' ' if field.type.nmemb == 1 else '*mut '
             field.r_pointer = ' ' if field.type.nmemb == 1 else '&'
 
             # correct the c_pointer field for variable size non-list types
             if not field.type.fixed_size() and field.c_pointer == ' ':
-                field.c_pointer = '*'
+                field.c_pointer = '*mut '
                 field.r_pointer = '&'
             if field.type.is_list and not field.type.member.fixed_size():
-                field.c_pointer = '*'
-                field.r_pointer = '*'
+                field.c_pointer = '*mut '
+                field.r_pointer = '*mut '
 
             if field.type.is_switch:
-                field.c_pointer = '*'
-                field.r_pointer = '*'
+                field.c_pointer = '*mut '
+                field.r_pointer = '*mut '
                 field.c_field_const_type = field.c_field_type
                 field.r_field_const_type = field.r_field_type
                 self.need_aux = True
@@ -717,9 +717,9 @@ def get_serialize_params(context, self, buffer_var='_buffer', aux_var='_aux'):
     
     # 1. the parameter for the void * buffer
     if  'serialize' == context:
-        params.append(('c_void', '**', buffer_var))
+        params.append(('c_void', '*mut *mut ', buffer_var))
     elif context in ('unserialize', 'unpack', 'sizeof'):
-        params.append(('c_void', '*', buffer_var))
+        params.append(('c_void', '*mut ', buffer_var))
 
     # 2. any expr fields that cannot be resolved within self and descendants
     unresolved_fields = resolve_expr_fields(self)
@@ -741,11 +741,11 @@ def get_serialize_params(context, self, buffer_var='_buffer', aux_var='_aux'):
   
     # 4. aux argument
     if 'serialize' == context:
-        add_param(params, ('%s' % self.c_type, '*', aux_var))
+        add_param(params, ('%s' % self.c_type, '*mut ', aux_var))
     elif 'unserialize' == context: 
-        add_param(params, ('%s' % self.c_type, '**', aux_var))
+        add_param(params, ('%s' % self.c_type, '*mut *mut ', aux_var))
     elif 'unpack' == context:
-        add_param(params, ('%s' % self.c_type, '*', aux_var))
+        add_param(params, ('%s' % self.c_type, '*mut ', aux_var))
 
     # 5. switch contains all variable size fields as struct members
     #    for other data types though, these have to be supplied separately
@@ -754,7 +754,7 @@ def get_serialize_params(context, self, buffer_var='_buffer', aux_var='_aux'):
     if not self.is_switch and 'serialize' == context:
         for p in param_fields:
             if not p.type.fixed_size():
-                add_param(params, (p.c_field_const_type, '*', p.c_field_name))
+                add_param(params, (p.c_field_const_type, '*mut ', p.c_field_name))
 
     return (param_fields, wire_fields, params)
 # get_serialize_params()
@@ -801,7 +801,7 @@ def _c_serialize(context, self):
         spacing = ' '*(maxtypelen-len(field_name)-len(pointerspec))
         param_str.append("%s%s :%s  %s%s" % (indent, field_name, spacing, pointerspec, typespec))
     # insert function name
-    param_str[0] = "pub unsafe fn %s (%s" % (func_name, param_str[0].strip())
+    param_str[0] = "pub fn %s (%s" % (func_name, param_str[0].strip())
     param_str = list(map(lambda x: "%s," % x, param_str))
     for s in param_str[:-1]:
         _h(s)
@@ -855,7 +855,7 @@ def _c_iterator(self, name):
     _h(' *')
     _h(' *')
     _h(' */');
-    _h('pub unsafe fn %s (i:*mut %s) -> c_void;', self.c_next_name, self.c_iterator_type)
+    _h('pub fn %s (i:*mut %s) -> c_void;', self.c_next_name, self.c_iterator_type)
 
     _h('')
     _h('/**')
@@ -867,11 +867,11 @@ def _c_iterator(self, name):
     _h(' * The member rem is set to 0. The member data points to the')
     _h(' * last element.')
     _h(' */')
-    _h('pub unsafe fn %s (i:%s) -> generic_iterator;', self.c_end_name, self.c_iterator_type)
+    _h('pub fn %s (i:%s) -> generic_iterator;', self.c_end_name, self.c_iterator_type)
 
     _r('')
-    _r('impl<\'self, %s> Iterator<&\'self %s> for %s {', self.r_type, self.r_type, self.r_iterator_type)
-    _r('    pub fn next(&mut self) -> Option<&\'self %s> {', self.r_type)
+    _r('impl<\'s, %s> Iterator<&\'s %s> for %s {', self.r_type, self.r_type, self.r_iterator_type)
+    _r('    pub fn next(&mut self) -> Option<&\'s %s> {', self.r_type)
     _r('        if self.rem == 0 { return None; }')
     _r('        unsafe {')
     _r('            let iter : *mut %s = cast::transmute(self);', self.c_iterator_type)
@@ -915,7 +915,7 @@ def _c_accessors_field(self, field):
         _h(' * ')
         _h(' *')
         _h(' **/')
-        _h('pub unsafe fn %s (R : *mut %s) -> %s;', field.c_accessor_name, c_type, ftype)
+        _h('pub fn %s (R : *mut %s) -> %s;', field.c_accessor_name, c_type, ftype)
     else:
         _h('')
         _h('')
@@ -926,11 +926,11 @@ def _c_accessors_field(self, field):
         _h(' *')
         _h(' */')
         if field.type.is_switch and switch_obj is None:
-            return_type = '*c_void'
+            return_type = '*mut c_void'
         else:
             return_type = '*mut %s' % ftype
 
-        _h('pub unsafe fn %s (R : *mut %s) -> %s;', field.c_accessor_name, c_type, return_type)
+        _h('pub fn %s (R : *mut %s) -> %s;', field.c_accessor_name, c_type, return_type)
 
 
 def _c_accessors_list(self, field):
@@ -994,36 +994,36 @@ def _c_accessors_list(self, field):
     if list.member.fixed_size():
         idx = 1 if switch_obj is not None else 0
         _h('')
-        _h('pub unsafe fn %s (%s) -> *mut %s;', field.c_accessor_name, params[idx][0], field.c_field_type)
+        _h('pub fn %s (%s) -> *mut %s;', field.c_accessor_name, params[idx][0], field.c_field_type)
 
     _h('')
     _h('')
     if switch_obj is not None:
-        _hr('pub unsafe fn %s (R : *mut %s,', field.c_length_name, R_obj.c_type)
+        _hr('pub fn %s (R : *mut %s,', field.c_length_name, R_obj.c_type)
         spacing = ' '*(len(field.c_length_name)+7)
         _h('%sS : *mut %s) -> c_int;', spacing, S_obj.c_type)
     else:
-        _h('pub unsafe fn %s (R : *mut %s) -> c_int;', field.c_length_name, c_type)
+        _h('pub fn %s (R : *mut %s) -> c_int;', field.c_length_name, c_type)
 
     if field.type.member.is_simple:
         _h('')
         _h('')
         if switch_obj is not None:
-            _h('pub unsafe fn %s (R : %s,', field.c_end_name, R_obj.c_type)
+            _h('pub fn %s (R : %s,', field.c_end_name, R_obj.c_type)
             spacing = ' '*(len(field.c_end_name)+2)
             _h('%sS : *mut %s ) -> generic_iterator;', spacing, S_obj.c_type)
         else:
-            _h('pub unsafe fn %s (R : *mut %s) -> generic_iterator;', field.c_end_name, c_type)
+            _h('pub fn %s (R : *mut %s) -> generic_iterator;', field.c_end_name, c_type)
 
     else:
         _h('')
 
         if switch_obj is not None:
-            _h('pub unsafe fn %s (R : %s,', field.c_iterator_name, R_obj.c_type)
+            _h('pub fn %s (R : %s,', field.c_iterator_name, R_obj.c_type)
             spacing = ' '*(len(field.c_iterator_name)+2)
             _h('%sS : *mut %s /**< */) -> %s;', spacing, S_obj.c_type, field.c_iterator_type)
         else:
-            _h('pub unsafe fn %s (R : *mut %s) -> %s;', field.c_iterator_name, c_type, field.c_iterator_type)
+            _h('pub fn %s (R : *mut %s) -> %s;', field.c_iterator_name, c_type, field.c_iterator_type)
 
 def _c_accessors(self, name, base):
     '''
@@ -1077,7 +1077,7 @@ def _r_accessor(self,field):
             else:
                 rty = '['+fty+']'
 
-            _r('  pub fn %s(&self) -> ~%s {', field.c_field_name, rty)
+            _r('  pub fn %s(&self) -> Box<%s> {', field.c_field_name, rty)
             _r('    unsafe { accessor!(%s, %s, %s, %s) }', fty, field.c_length_name, field.c_accessor_name,
                                             self.wrap_field_name)
         else:
@@ -1086,8 +1086,8 @@ def _r_accessor(self,field):
                                             self.wrap_field_name)
         _r('  }\n')
     elif field.type.is_list:
-        _r('  pub fn %s(&self) -> ~[%s,..%d] {', field.c_field_name, field.r_field_type, field.type.nmemb)
-        _r('    unsafe { ~(copy %s.%s) }',self.wrap_field_name,field.c_field_name)
+        _r('  pub fn %s(&self) -> Box<[%s,..%d]> {', field.c_field_name, field.r_field_type, field.type.nmemb)
+        _r('    box unsafe { copy %s.%s }',self.wrap_field_name,field.c_field_name)
         _r('  }\n')
 
     elif field.type.is_container:
@@ -1140,7 +1140,7 @@ def _c_complex(self):
     
     for field in struct_fields:
         length = len(field.c_field_name)
-        # account for '*' pointer_spec
+        # account for '*mut ' pointer_spec
         maxtypelen = max(maxtypelen, length)
 
     def _c_complex_field(self, field, space='', comma=','):
@@ -1194,7 +1194,7 @@ def c_struct(self, name):
 
     self.wrap_type = 'Struct'
     _r('pub type %s = base::Struct<%s>;\n', self.r_type, self.c_type)
-    self.wrap_field_name = 'self.strct'
+    self.wrap_field_name = 's.strct'
     _c_accessors(self, name, name)
     _c_iterator(self, name)
 
@@ -1348,7 +1348,7 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
     _h(' */')
     count = len(param_fields)
     comma = ',' if count else (') -> %s;' % (cookie_type,))
-    _h('pub unsafe fn %s (c : *connection%s', func_name, comma)
+    _h('pub fn %s (c : *mut connection%s', func_name, comma)
 
     func_spacing = ' ' * (len(func_name) + 12)
     for field in param_fields:
@@ -1359,7 +1359,7 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
         c_pointer = field.c_pointer
         if field.type.need_serialize and not aux:
             c_field_const_type = "()"
-            c_pointer = '*'
+            c_pointer = '*mut '
         comma = ',' if count else (') -> %s;' % (cookie_type,))
         _h('%s%s : %s%s%s', func_spacing, field.c_field_name,
                 c_pointer, c_field_const_type, comma)
@@ -1419,7 +1419,7 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
         c_pointer = field.c_pointer
         if field.type.need_serialize and not aux:
             c_field_const_type = "()"
-            c_pointer = '*'
+            c_pointer = '*mut '
 
         if fty.is_list:
             if fty.expr.bitfield:
@@ -1502,11 +1502,11 @@ def _c_reply(self, name):
     _h(' *')
     _h(' * The returned value must be freed by the caller using free().')
     _h(' */')
-    _h('pub unsafe fn %s (c : *connection,', self.c_reply_name)
+    _h('pub fn %s (c : *mut connection,', self.c_reply_name)
     _h('          %s  cookie : %s,', spacing, self.c_cookie_type)
-    _h('          %s  e : **generic_error) -> *mut %s;', spacing, self.c_reply_type)
+    _h('          %s  e : *mut *mut generic_error) -> *mut %s;', spacing, self.c_reply_type)
 
-    _r('impl_reply_cookie!(%s<\'self>, %s, %s, %s)\n', self.r_cookie_type, self.c_reply_type, self.r_reply_type, self.c_reply_name)
+    _r('impl_reply_cookie!(%s<\'s>, %s, %s, %s)\n', self.r_cookie_type, self.c_reply_type, self.r_reply_type, self.c_reply_name)
 
 def _c_opcode(name, opcode):
     '''
@@ -1530,7 +1530,7 @@ def _c_cookie(self, name):
     _h('}')
 
     self.wrap_type = 'Cookie'
-    _r('pub type %s<\'self> = base::Cookie<\'self, %s>;\n', self.r_cookie_type, self.c_cookie_type)
+    _r('pub type %s<\'s> = base::Cookie<\'s, %s>;\n', self.r_cookie_type, self.c_cookie_type)
 
 
 def c_request(self, name):

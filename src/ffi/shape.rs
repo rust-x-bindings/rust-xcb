@@ -4,8 +4,8 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
@@ -22,7 +22,7 @@ pub type op = u8;
  * @brief op_iterator
  **/
 pub struct op_iterator {
-    data : *op,
+    data : *mut op,
     rem  : c_int,
     index: c_int
 }
@@ -33,7 +33,7 @@ pub type kind = u8;
  * @brief kind_iterator
  **/
 pub struct kind_iterator {
-    data : *kind,
+    data : *mut kind,
     rem  : c_int,
     index: c_int
 }
@@ -224,7 +224,7 @@ pub struct get_rectangles_reply {
     pad0 :             [u8,..20]
 }
 
-#[link_args="-lxcb-shape"]
+#[link(name="lxcb-shape")]
 pub extern "C" {
 
 /**
@@ -237,7 +237,7 @@ pub extern "C" {
  *
  *
  */
-pub unsafe fn xcb_shape_op_next (i:*op_iterator) -> c_void;
+pub fn xcb_shape_op_next (i:*mut op_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -248,7 +248,7 @@ pub unsafe fn xcb_shape_op_next (i:*op_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_shape_op_end (i:op_iterator) -> generic_iterator;
+pub fn xcb_shape_op_end (i:op_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -260,7 +260,7 @@ pub unsafe fn xcb_shape_op_end (i:op_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_shape_kind_next (i:*kind_iterator) -> c_void;
+pub fn xcb_shape_kind_next (i:*mut kind_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -271,7 +271,7 @@ pub unsafe fn xcb_shape_kind_next (i:*kind_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_shape_kind_end (i:kind_iterator) -> generic_iterator;
+pub fn xcb_shape_kind_end (i:kind_iterator) -> generic_iterator;
 
 /**
  *
@@ -281,7 +281,7 @@ pub unsafe fn xcb_shape_kind_end (i:kind_iterator) -> generic_iterator;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_shape_query_version (c : *connection) -> query_version_cookie;
+pub fn xcb_shape_query_version (c : *mut connection) -> query_version_cookie;
 
 /**
  *
@@ -294,7 +294,7 @@ pub unsafe fn xcb_shape_query_version (c : *connection) -> query_version_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_shape_query_version_unchecked (c : *connection) -> query_version_cookie;
+pub fn xcb_shape_query_version_unchecked (c : *mut connection) -> query_version_cookie;
 
 /**
  * Return the reply
@@ -310,11 +310,11 @@ pub unsafe fn xcb_shape_query_version_unchecked (c : *connection) -> query_versi
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_shape_query_version_reply (c : *connection,
+pub fn xcb_shape_query_version_reply (c : *mut connection,
                                          cookie : query_version_cookie,
-                                         e : **generic_error) -> *query_version_reply;
+                                         e : *mut *mut generic_error) -> *mut query_version_reply;
 
-pub unsafe fn xcb_shape_rectangles_sizeof (_buffer :  *c_void,
+pub fn xcb_shape_rectangles_sizeof (_buffer :  *mut c_void,
                              rectangles_len :  u32) -> c_int;
 
 /**
@@ -328,7 +328,7 @@ pub unsafe fn xcb_shape_rectangles_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_shape_rectangles_checked (c : *connection,
+pub fn xcb_shape_rectangles_checked (c : *mut connection,
                                         operation :  op,
                                         destination_kind :  kind,
                                         ordering :  u8,
@@ -336,7 +336,7 @@ pub unsafe fn xcb_shape_rectangles_checked (c : *connection,
                                         x_offset :  i16,
                                         y_offset :  i16,
                                         rectangles_len :  u32,
-                                        rectangles : *ffi::xproto::rectangle) -> void_cookie;
+                                        rectangles : *mut ffi::xproto::rectangle) -> void_cookie;
 
 /**
  *
@@ -346,7 +346,7 @@ pub unsafe fn xcb_shape_rectangles_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_shape_rectangles (c : *connection,
+pub fn xcb_shape_rectangles (c : *mut connection,
                                 operation :  op,
                                 destination_kind :  kind,
                                 ordering :  u8,
@@ -354,7 +354,7 @@ pub unsafe fn xcb_shape_rectangles (c : *connection,
                                 x_offset :  i16,
                                 y_offset :  i16,
                                 rectangles_len :  u32,
-                                rectangles : *ffi::xproto::rectangle) -> void_cookie;
+                                rectangles : *mut ffi::xproto::rectangle) -> void_cookie;
 
 /**
  *
@@ -367,7 +367,7 @@ pub unsafe fn xcb_shape_rectangles (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_shape_mask_checked (c : *connection,
+pub fn xcb_shape_mask_checked (c : *mut connection,
                                   operation :  op,
                                   destination_kind :  kind,
                                   destination_window :  ffi::xproto::window,
@@ -383,7 +383,7 @@ pub unsafe fn xcb_shape_mask_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_shape_mask (c : *connection,
+pub fn xcb_shape_mask (c : *mut connection,
                           operation :  op,
                           destination_kind :  kind,
                           destination_window :  ffi::xproto::window,
@@ -402,7 +402,7 @@ pub unsafe fn xcb_shape_mask (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_shape_combine_checked (c : *connection,
+pub fn xcb_shape_combine_checked (c : *mut connection,
                                      operation :  op,
                                      destination_kind :  kind,
                                      source_kind :  kind,
@@ -419,7 +419,7 @@ pub unsafe fn xcb_shape_combine_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_shape_combine (c : *connection,
+pub fn xcb_shape_combine (c : *mut connection,
                              operation :  op,
                              destination_kind :  kind,
                              source_kind :  kind,
@@ -439,7 +439,7 @@ pub unsafe fn xcb_shape_combine (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_shape_offset_checked (c : *connection,
+pub fn xcb_shape_offset_checked (c : *mut connection,
                                     destination_kind :  kind,
                                     destination_window :  ffi::xproto::window,
                                     x_offset :  i16,
@@ -453,7 +453,7 @@ pub unsafe fn xcb_shape_offset_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_shape_offset (c : *connection,
+pub fn xcb_shape_offset (c : *mut connection,
                             destination_kind :  kind,
                             destination_window :  ffi::xproto::window,
                             x_offset :  i16,
@@ -467,7 +467,7 @@ pub unsafe fn xcb_shape_offset (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_shape_query_extents (c : *connection,
+pub fn xcb_shape_query_extents (c : *mut connection,
                                    destination_window :  ffi::xproto::window) -> query_extents_cookie;
 
 /**
@@ -481,7 +481,7 @@ pub unsafe fn xcb_shape_query_extents (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_shape_query_extents_unchecked (c : *connection,
+pub fn xcb_shape_query_extents_unchecked (c : *mut connection,
                                              destination_window :  ffi::xproto::window) -> query_extents_cookie;
 
 /**
@@ -498,9 +498,9 @@ pub unsafe fn xcb_shape_query_extents_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_shape_query_extents_reply (c : *connection,
+pub fn xcb_shape_query_extents_reply (c : *mut connection,
                                          cookie : query_extents_cookie,
-                                         e : **generic_error) -> *query_extents_reply;
+                                         e : *mut *mut generic_error) -> *mut query_extents_reply;
 
 /**
  *
@@ -513,7 +513,7 @@ pub unsafe fn xcb_shape_query_extents_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_shape_select_input_checked (c : *connection,
+pub fn xcb_shape_select_input_checked (c : *mut connection,
                                           destination_window :  ffi::xproto::window,
                                           enable :  u8) -> void_cookie;
 
@@ -525,7 +525,7 @@ pub unsafe fn xcb_shape_select_input_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_shape_select_input (c : *connection,
+pub fn xcb_shape_select_input (c : *mut connection,
                                   destination_window :  ffi::xproto::window,
                                   enable :  u8) -> void_cookie;
 
@@ -537,7 +537,7 @@ pub unsafe fn xcb_shape_select_input (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_shape_input_selected (c : *connection,
+pub fn xcb_shape_input_selected (c : *mut connection,
                                     destination_window :  ffi::xproto::window) -> input_selected_cookie;
 
 /**
@@ -551,7 +551,7 @@ pub unsafe fn xcb_shape_input_selected (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_shape_input_selected_unchecked (c : *connection,
+pub fn xcb_shape_input_selected_unchecked (c : *mut connection,
                                               destination_window :  ffi::xproto::window) -> input_selected_cookie;
 
 /**
@@ -568,11 +568,11 @@ pub unsafe fn xcb_shape_input_selected_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_shape_input_selected_reply (c : *connection,
+pub fn xcb_shape_input_selected_reply (c : *mut connection,
                                           cookie : input_selected_cookie,
-                                          e : **generic_error) -> *input_selected_reply;
+                                          e : *mut *mut generic_error) -> *mut input_selected_reply;
 
-pub unsafe fn xcb_shape_get_rectangles_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_shape_get_rectangles_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -582,7 +582,7 @@ pub unsafe fn xcb_shape_get_rectangles_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_shape_get_rectangles (c : *connection,
+pub fn xcb_shape_get_rectangles (c : *mut connection,
                                     window :  ffi::xproto::window,
                                     source_kind :  kind) -> get_rectangles_cookie;
 
@@ -597,16 +597,16 @@ pub unsafe fn xcb_shape_get_rectangles (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_shape_get_rectangles_unchecked (c : *connection,
+pub fn xcb_shape_get_rectangles_unchecked (c : *mut connection,
                                               window :  ffi::xproto::window,
                                               source_kind :  kind) -> get_rectangles_cookie;
 
-pub unsafe fn xcb_shape_get_rectangles_rectangles (R : *get_rectangles_reply) -> *ffi::xproto::rectangle;
+pub fn xcb_shape_get_rectangles_rectangles (R : *mut get_rectangles_reply) -> *mut ffi::xproto::rectangle;
 
 
-pub unsafe fn xcb_shape_get_rectangles_rectangles_length (R : *get_rectangles_reply) -> c_int;
+pub fn xcb_shape_get_rectangles_rectangles_length (R : *mut get_rectangles_reply) -> c_int;
 
-pub unsafe fn xcb_shape_get_rectangles_rectangles_iterator (R : *get_rectangles_reply) -> ffi::xproto::rectangle_iterator;
+pub fn xcb_shape_get_rectangles_rectangles_iterator (R : *mut get_rectangles_reply) -> ffi::xproto::rectangle_iterator;
 
 /**
  * Return the reply
@@ -622,8 +622,8 @@ pub unsafe fn xcb_shape_get_rectangles_rectangles_iterator (R : *get_rectangles_
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_shape_get_rectangles_reply (c : *connection,
+pub fn xcb_shape_get_rectangles_reply (c : *mut connection,
                                           cookie : get_rectangles_cookie,
-                                          e : **generic_error) -> *get_rectangles_reply;
+                                          e : *mut *mut generic_error) -> *mut get_rectangles_reply;
 }
 

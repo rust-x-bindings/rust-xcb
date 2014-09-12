@@ -4,8 +4,8 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(unused_unsafe)];
+#![allow(unused_imports)]
+#![allow(unused_unsafe)]
 use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
@@ -16,7 +16,7 @@ use base::*;
 use ffi;
 use ffi::shape::*;
 use std::option::Option;
-use std::iterator::Iterator;
+use std::iter::Iterator;
 
 use xproto;
 pub type Op = op;
@@ -42,7 +42,7 @@ pub type sk = c_uint;//{
 /** Opcode for xcb_shape_notify. */
 pub static XCB_SHAPE_NOTIFY : u8 = 0;
 pub type NotifyEvent = base::Event<notify_event>;
-pub type QueryVersionCookie<'self> = base::Cookie<'self, query_version_cookie>;
+pub type QueryVersionCookie<'s> = base::Cookie<'s, query_version_cookie>;
 
 /** Opcode for xcb_shape_query_version. */
 pub static XCB_SHAPE_QUERY_VERSION : u8 = 0;
@@ -55,28 +55,28 @@ pub static XCB_SHAPE_MASK : u8 = 2;
 pub static XCB_SHAPE_COMBINE : u8 = 3;
 /** Opcode for xcb_shape_offset. */
 pub static XCB_SHAPE_OFFSET : u8 = 4;
-pub type QueryExtentsCookie<'self> = base::Cookie<'self, query_extents_cookie>;
+pub type QueryExtentsCookie<'s> = base::Cookie<'s, query_extents_cookie>;
 
 /** Opcode for xcb_shape_query_extents. */
 pub static XCB_SHAPE_QUERY_EXTENTS : u8 = 5;
 pub type QueryExtentsReply = base::Reply<query_extents_reply>;
 /** Opcode for xcb_shape_select_input. */
 pub static XCB_SHAPE_SELECT_INPUT : u8 = 6;
-pub type InputSelectedCookie<'self> = base::Cookie<'self, input_selected_cookie>;
+pub type InputSelectedCookie<'s> = base::Cookie<'s, input_selected_cookie>;
 
 /** Opcode for xcb_shape_input_selected. */
 pub static XCB_SHAPE_INPUT_SELECTED : u8 = 7;
 pub type InputSelectedReply = base::Reply<input_selected_reply>;
-pub type GetRectanglesCookie<'self> = base::Cookie<'self, get_rectangles_cookie>;
+pub type GetRectanglesCookie<'s> = base::Cookie<'s, get_rectangles_cookie>;
 
 /** Opcode for xcb_shape_get_rectangles. */
 pub static XCB_SHAPE_GET_RECTANGLES : u8 = 8;
 
-impl<'self, Op> Iterator<&'self Op> for OpIterator {
-    pub fn next(&mut self) -> Option<&'self Op> {
+impl<'s, Op> Iterator<&'s Op> for OpIterator {
+    pub fn next(&mut self) -> Option<&'s Op> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *op_iterator = cast::transmute(self);
+            let iter : *mut op_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_shape_op_next(iter);
             Some(cast::transmute(data))
@@ -87,11 +87,11 @@ impl<'self, Op> Iterator<&'self Op> for OpIterator {
 pub type Kind = kind;
 
 
-impl<'self, Kind> Iterator<&'self Kind> for KindIterator {
-    pub fn next(&mut self) -> Option<&'self Kind> {
+impl<'s, Kind> Iterator<&'s Kind> for KindIterator {
+    pub fn next(&mut self) -> Option<&'s Kind> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *kind_iterator = cast::transmute(self);
+            let iter : *mut kind_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_shape_kind_next(iter);
             Some(cast::transmute(data))
@@ -151,7 +151,7 @@ impl base::Event<notify_event> {
       (*raw).extents_height = extents_height;
       (*raw).server_time = server_time;
       (*raw).shaped = shaped;
-      Event { event : raw as *notify_event }
+      Event { event : raw as *mut notify_event }
     }
   }
 }
@@ -178,7 +178,7 @@ impl base::Reply<query_version_reply> {
   }
 
 }
-impl_reply_cookie!(QueryVersionCookie<'self>, query_version_reply, QueryVersionReply, xcb_shape_query_version_reply)
+impl_reply_cookie!(QueryVersionCookie<'s>, query_version_reply, QueryVersionReply, xcb_shape_query_version_reply)
 
 pub fn RectanglesChecked<'r> (c : &'r Connection,
                           operation : Op,
@@ -199,7 +199,7 @@ pub fn RectanglesChecked<'r> (c : &'r Connection,
         x_offset as i16, //5
         y_offset as i16, //6
         rectangles_len as u32, //7
-        rectangles_ptr as *ffi::xproto::rectangle); //8
+        rectangles_ptr as *mut ffi::xproto::rectangle); //8
     Cookie {cookie:cookie,conn:c,checked:true}
   }
 }
@@ -222,7 +222,7 @@ pub fn Rectangles<'r> (c : &'r Connection,
         x_offset as i16, //5
         y_offset as i16, //6
         rectangles_len as u32, //7
-        rectangles_ptr as *ffi::xproto::rectangle); //8
+        rectangles_ptr as *mut ffi::xproto::rectangle); //8
     Cookie {cookie:cookie,conn:c,checked:false}
   }
 }
@@ -389,7 +389,7 @@ impl base::Reply<query_extents_reply> {
   }
 
 }
-impl_reply_cookie!(QueryExtentsCookie<'self>, query_extents_reply, QueryExtentsReply, xcb_shape_query_extents_reply)
+impl_reply_cookie!(QueryExtentsCookie<'s>, query_extents_reply, QueryExtentsReply, xcb_shape_query_extents_reply)
 
 pub fn SelectInputChecked<'r> (c : &'r Connection,
                            destination_window : xproto::Window,
@@ -434,7 +434,7 @@ impl base::Reply<input_selected_reply> {
   }
 
 }
-impl_reply_cookie!(InputSelectedCookie<'self>, input_selected_reply, InputSelectedReply, xcb_shape_input_selected_reply)
+impl_reply_cookie!(InputSelectedCookie<'s>, input_selected_reply, InputSelectedReply, xcb_shape_input_selected_reply)
 
 pub type GetRectanglesReply = base::Reply<get_rectangles_reply>;
 pub fn GetRectangles<'r> (c : &'r Connection,
@@ -468,6 +468,6 @@ impl base::Reply<get_rectangles_reply> {
   }
 
 }
-impl_reply_cookie!(GetRectanglesCookie<'self>, get_rectangles_reply, GetRectanglesReply, xcb_shape_get_rectangles_reply)
+impl_reply_cookie!(GetRectanglesCookie<'s>, get_rectangles_reply, GetRectanglesReply, xcb_shape_get_rectangles_reply)
 
 

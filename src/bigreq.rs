@@ -4,8 +4,8 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(unused_unsafe)];
+#![allow(unused_imports)]
+#![allow(unused_unsafe)]
 use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
@@ -16,9 +16,9 @@ use base::*;
 use ffi;
 use ffi::bigreq::*;
 use std::option::Option;
-use std::iterator::Iterator;
+use std::iter::Iterator;
 
-pub type EnableCookie<'self> = base::Cookie<'self, enable_cookie>;
+pub type EnableCookie<'s> = base::Cookie<'s, enable_cookie>;
 
 /** Opcode for xcb_big_requests_enable. */
 pub static XCB_BIG_REQUESTS_ENABLE : u8 = 0;
@@ -42,6 +42,6 @@ impl base::Reply<enable_reply> {
   }
 
 }
-impl_reply_cookie!(EnableCookie<'self>, enable_reply, EnableReply, xcb_big_requests_enable_reply)
+impl_reply_cookie!(EnableCookie<'s>, enable_reply, EnableReply, xcb_big_requests_enable_reply)
 
 

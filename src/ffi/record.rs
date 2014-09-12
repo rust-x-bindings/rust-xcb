@@ -4,8 +4,8 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
@@ -21,7 +21,7 @@ pub type context = u32;
  * @brief context_iterator
  **/
 pub struct context_iterator {
-    data : *context,
+    data : *mut context,
     rem  : c_int,
     index: c_int
 }
@@ -36,7 +36,7 @@ pub struct range_8 {
  * @brief range_8_iterator
  **/
 pub struct range_8_iterator {
-    data : *range_8,
+    data : *mut range_8,
     rem  : c_int,
     index: c_int
 }
@@ -51,7 +51,7 @@ pub struct range_16 {
  * @brief range_16_iterator
  **/
 pub struct range_16_iterator {
-    data : *range_16,
+    data : *mut range_16,
     rem  : c_int,
     index: c_int
 }
@@ -66,7 +66,7 @@ pub struct ext_range {
  * @brief ext_range_iterator
  **/
 pub struct ext_range_iterator {
-    data : *ext_range,
+    data : *mut ext_range,
     rem  : c_int,
     index: c_int
 }
@@ -88,7 +88,7 @@ pub struct range {
  * @brief range_iterator
  **/
 pub struct range_iterator {
-    data : *range,
+    data : *mut range,
     rem  : c_int,
     index: c_int
 }
@@ -99,7 +99,7 @@ pub type element_header = u8;
  * @brief element_header_iterator
  **/
 pub struct element_header_iterator {
-    data : *element_header,
+    data : *mut element_header,
     rem  : c_int,
     index: c_int
 }
@@ -110,7 +110,7 @@ pub type client_spec = u32;
  * @brief client_spec_iterator
  **/
 pub struct client_spec_iterator {
-    data : *client_spec,
+    data : *mut client_spec,
     rem  : c_int,
     index: c_int
 }
@@ -125,7 +125,7 @@ pub struct client_info {
  * @brief client_info_iterator
  **/
 pub struct client_info_iterator {
-    data : *client_info,
+    data : *mut client_info,
     rem  : c_int,
     index: c_int
 }
@@ -270,7 +270,7 @@ pub struct free_context_request {
     context :        context
 }
 
-#[link_args="-lxcb-record"]
+#[link(name="lxcb-record")]
 pub extern "C" {
 
 /**
@@ -283,7 +283,7 @@ pub extern "C" {
  *
  *
  */
-pub unsafe fn xcb_record_context_next (i:*context_iterator) -> c_void;
+pub fn xcb_record_context_next (i:*mut context_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -294,7 +294,7 @@ pub unsafe fn xcb_record_context_next (i:*context_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_record_context_end (i:context_iterator) -> generic_iterator;
+pub fn xcb_record_context_end (i:context_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -306,7 +306,7 @@ pub unsafe fn xcb_record_context_end (i:context_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_record_range_8_next (i:*range_8_iterator) -> c_void;
+pub fn xcb_record_range_8_next (i:*mut range_8_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -317,7 +317,7 @@ pub unsafe fn xcb_record_range_8_next (i:*range_8_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_record_range_8_end (i:range_8_iterator) -> generic_iterator;
+pub fn xcb_record_range_8_end (i:range_8_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -329,7 +329,7 @@ pub unsafe fn xcb_record_range_8_end (i:range_8_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_record_range_16_next (i:*range_16_iterator) -> c_void;
+pub fn xcb_record_range_16_next (i:*mut range_16_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -340,7 +340,7 @@ pub unsafe fn xcb_record_range_16_next (i:*range_16_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_record_range_16_end (i:range_16_iterator) -> generic_iterator;
+pub fn xcb_record_range_16_end (i:range_16_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -352,7 +352,7 @@ pub unsafe fn xcb_record_range_16_end (i:range_16_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_record_ext_range_next (i:*ext_range_iterator) -> c_void;
+pub fn xcb_record_ext_range_next (i:*mut ext_range_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -363,7 +363,7 @@ pub unsafe fn xcb_record_ext_range_next (i:*ext_range_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_record_ext_range_end (i:ext_range_iterator) -> generic_iterator;
+pub fn xcb_record_ext_range_end (i:ext_range_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -375,7 +375,7 @@ pub unsafe fn xcb_record_ext_range_end (i:ext_range_iterator) -> generic_iterato
  *
  *
  */
-pub unsafe fn xcb_record_range_next (i:*range_iterator) -> c_void;
+pub fn xcb_record_range_next (i:*mut range_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -386,7 +386,7 @@ pub unsafe fn xcb_record_range_next (i:*range_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_record_range_end (i:range_iterator) -> generic_iterator;
+pub fn xcb_record_range_end (i:range_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -398,7 +398,7 @@ pub unsafe fn xcb_record_range_end (i:range_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_record_element_header_next (i:*element_header_iterator) -> c_void;
+pub fn xcb_record_element_header_next (i:*mut element_header_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -409,7 +409,7 @@ pub unsafe fn xcb_record_element_header_next (i:*element_header_iterator) -> c_v
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_record_element_header_end (i:element_header_iterator) -> generic_iterator;
+pub fn xcb_record_element_header_end (i:element_header_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -421,7 +421,7 @@ pub unsafe fn xcb_record_element_header_end (i:element_header_iterator) -> gener
  *
  *
  */
-pub unsafe fn xcb_record_client_spec_next (i:*client_spec_iterator) -> c_void;
+pub fn xcb_record_client_spec_next (i:*mut client_spec_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -432,16 +432,16 @@ pub unsafe fn xcb_record_client_spec_next (i:*client_spec_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_record_client_spec_end (i:client_spec_iterator) -> generic_iterator;
+pub fn xcb_record_client_spec_end (i:client_spec_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_record_client_info_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_record_client_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_record_client_info_ranges (R : *client_info) -> *range;
+pub fn xcb_record_client_info_ranges (R : *mut client_info) -> *mut range;
 
 
-pub unsafe fn xcb_record_client_info_ranges_length (R : *client_info) -> c_int;
+pub fn xcb_record_client_info_ranges_length (R : *mut client_info) -> c_int;
 
-pub unsafe fn xcb_record_client_info_ranges_iterator (R : *client_info) -> range_iterator;
+pub fn xcb_record_client_info_ranges_iterator (R : *mut client_info) -> range_iterator;
 
 /**
  * Get the next element of the iterator
@@ -453,7 +453,7 @@ pub unsafe fn xcb_record_client_info_ranges_iterator (R : *client_info) -> range
  *
  *
  */
-pub unsafe fn xcb_record_client_info_next (i:*client_info_iterator) -> c_void;
+pub fn xcb_record_client_info_next (i:*mut client_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -464,7 +464,7 @@ pub unsafe fn xcb_record_client_info_next (i:*client_info_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_record_client_info_end (i:client_info_iterator) -> generic_iterator;
+pub fn xcb_record_client_info_end (i:client_info_iterator) -> generic_iterator;
 
 /**
  *
@@ -474,7 +474,7 @@ pub unsafe fn xcb_record_client_info_end (i:client_info_iterator) -> generic_ite
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_record_query_version (c : *connection,
+pub fn xcb_record_query_version (c : *mut connection,
                                     major_version :  u16,
                                     minor_version :  u16) -> query_version_cookie;
 
@@ -489,7 +489,7 @@ pub unsafe fn xcb_record_query_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_record_query_version_unchecked (c : *connection,
+pub fn xcb_record_query_version_unchecked (c : *mut connection,
                                               major_version :  u16,
                                               minor_version :  u16) -> query_version_cookie;
 
@@ -507,11 +507,11 @@ pub unsafe fn xcb_record_query_version_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_record_query_version_reply (c : *connection,
+pub fn xcb_record_query_version_reply (c : *mut connection,
                                           cookie : query_version_cookie,
-                                          e : **generic_error) -> *query_version_reply;
+                                          e : *mut *mut generic_error) -> *mut query_version_reply;
 
-pub unsafe fn xcb_record_create_context_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_record_create_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -524,13 +524,13 @@ pub unsafe fn xcb_record_create_context_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_record_create_context_checked (c : *connection,
+pub fn xcb_record_create_context_checked (c : *mut connection,
                                              context :  context,
                                              element_header :  element_header,
                                              num_client_specs :  u32,
                                              num_ranges :  u32,
-                                             client_specs : *client_spec,
-                                             ranges : *range) -> void_cookie;
+                                             client_specs : *mut client_spec,
+                                             ranges : *mut range) -> void_cookie;
 
 /**
  *
@@ -540,15 +540,15 @@ pub unsafe fn xcb_record_create_context_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_record_create_context (c : *connection,
+pub fn xcb_record_create_context (c : *mut connection,
                                      context :  context,
                                      element_header :  element_header,
                                      num_client_specs :  u32,
                                      num_ranges :  u32,
-                                     client_specs : *client_spec,
-                                     ranges : *range) -> void_cookie;
+                                     client_specs : *mut client_spec,
+                                     ranges : *mut range) -> void_cookie;
 
-pub unsafe fn xcb_record_register_clients_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_record_register_clients_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -561,13 +561,13 @@ pub unsafe fn xcb_record_register_clients_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_record_register_clients_checked (c : *connection,
+pub fn xcb_record_register_clients_checked (c : *mut connection,
                                                context :  context,
                                                element_header :  element_header,
                                                num_client_specs :  u32,
                                                num_ranges :  u32,
-                                               client_specs : *client_spec,
-                                               ranges : *range) -> void_cookie;
+                                               client_specs : *mut client_spec,
+                                               ranges : *mut range) -> void_cookie;
 
 /**
  *
@@ -577,15 +577,15 @@ pub unsafe fn xcb_record_register_clients_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_record_register_clients (c : *connection,
+pub fn xcb_record_register_clients (c : *mut connection,
                                        context :  context,
                                        element_header :  element_header,
                                        num_client_specs :  u32,
                                        num_ranges :  u32,
-                                       client_specs : *client_spec,
-                                       ranges : *range) -> void_cookie;
+                                       client_specs : *mut client_spec,
+                                       ranges : *mut range) -> void_cookie;
 
-pub unsafe fn xcb_record_unregister_clients_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_record_unregister_clients_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -598,10 +598,10 @@ pub unsafe fn xcb_record_unregister_clients_sizeof (_buffer :  *c_void) -> c_int
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_record_unregister_clients_checked (c : *connection,
+pub fn xcb_record_unregister_clients_checked (c : *mut connection,
                                                  context :  context,
                                                  num_client_specs :  u32,
-                                                 client_specs : *client_spec) -> void_cookie;
+                                                 client_specs : *mut client_spec) -> void_cookie;
 
 /**
  *
@@ -611,12 +611,12 @@ pub unsafe fn xcb_record_unregister_clients_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_record_unregister_clients (c : *connection,
+pub fn xcb_record_unregister_clients (c : *mut connection,
                                          context :  context,
                                          num_client_specs :  u32,
-                                         client_specs : *client_spec) -> void_cookie;
+                                         client_specs : *mut client_spec) -> void_cookie;
 
-pub unsafe fn xcb_record_get_context_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_record_get_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -626,7 +626,7 @@ pub unsafe fn xcb_record_get_context_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_record_get_context (c : *connection,
+pub fn xcb_record_get_context (c : *mut connection,
                                   context :  context) -> get_context_cookie;
 
 /**
@@ -640,13 +640,13 @@ pub unsafe fn xcb_record_get_context (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_record_get_context_unchecked (c : *connection,
+pub fn xcb_record_get_context_unchecked (c : *mut connection,
                                             context :  context) -> get_context_cookie;
 
 
-pub unsafe fn xcb_record_get_context_intercepted_clients_length (R : *get_context_reply) -> c_int;
+pub fn xcb_record_get_context_intercepted_clients_length (R : *mut get_context_reply) -> c_int;
 
-pub unsafe fn xcb_record_get_context_intercepted_clients_iterator (R : *get_context_reply) -> client_info_iterator;
+pub fn xcb_record_get_context_intercepted_clients_iterator (R : *mut get_context_reply) -> client_info_iterator;
 
 /**
  * Return the reply
@@ -662,11 +662,11 @@ pub unsafe fn xcb_record_get_context_intercepted_clients_iterator (R : *get_cont
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_record_get_context_reply (c : *connection,
+pub fn xcb_record_get_context_reply (c : *mut connection,
                                         cookie : get_context_cookie,
-                                        e : **generic_error) -> *get_context_reply;
+                                        e : *mut *mut generic_error) -> *mut get_context_reply;
 
-pub unsafe fn xcb_record_enable_context_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_record_enable_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -676,7 +676,7 @@ pub unsafe fn xcb_record_enable_context_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_record_enable_context (c : *connection,
+pub fn xcb_record_enable_context (c : *mut connection,
                                      context :  context) -> enable_context_cookie;
 
 /**
@@ -690,16 +690,16 @@ pub unsafe fn xcb_record_enable_context (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_record_enable_context_unchecked (c : *connection,
+pub fn xcb_record_enable_context_unchecked (c : *mut connection,
                                                context :  context) -> enable_context_cookie;
 
-pub unsafe fn xcb_record_enable_context_data (R : *enable_context_reply) -> *u8;
+pub fn xcb_record_enable_context_data (R : *mut enable_context_reply) -> *mut u8;
 
 
-pub unsafe fn xcb_record_enable_context_data_length (R : *enable_context_reply) -> c_int;
+pub fn xcb_record_enable_context_data_length (R : *mut enable_context_reply) -> c_int;
 
 
-pub unsafe fn xcb_record_enable_context_data_end (R : *enable_context_reply) -> generic_iterator;
+pub fn xcb_record_enable_context_data_end (R : *mut enable_context_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -715,9 +715,9 @@ pub unsafe fn xcb_record_enable_context_data_end (R : *enable_context_reply) -> 
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_record_enable_context_reply (c : *connection,
+pub fn xcb_record_enable_context_reply (c : *mut connection,
                                            cookie : enable_context_cookie,
-                                           e : **generic_error) -> *enable_context_reply;
+                                           e : *mut *mut generic_error) -> *mut enable_context_reply;
 
 /**
  *
@@ -730,7 +730,7 @@ pub unsafe fn xcb_record_enable_context_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_record_disable_context_checked (c : *connection,
+pub fn xcb_record_disable_context_checked (c : *mut connection,
                                               context :  context) -> void_cookie;
 
 /**
@@ -741,7 +741,7 @@ pub unsafe fn xcb_record_disable_context_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_record_disable_context (c : *connection,
+pub fn xcb_record_disable_context (c : *mut connection,
                                       context :  context) -> void_cookie;
 
 /**
@@ -755,7 +755,7 @@ pub unsafe fn xcb_record_disable_context (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_record_free_context_checked (c : *connection,
+pub fn xcb_record_free_context_checked (c : *mut connection,
                                            context :  context) -> void_cookie;
 
 /**
@@ -766,7 +766,7 @@ pub unsafe fn xcb_record_free_context_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_record_free_context (c : *connection,
+pub fn xcb_record_free_context (c : *mut connection,
                                    context :  context) -> void_cookie;
 }
 

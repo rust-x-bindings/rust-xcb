@@ -4,8 +4,8 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
@@ -22,7 +22,7 @@ pub type key_code = u8;
  * @brief key_code_iterator
  **/
 pub struct key_code_iterator {
-    data : *key_code,
+    data : *mut key_code,
     rem  : c_int,
     index: c_int
 }
@@ -33,7 +33,7 @@ pub type event_class = u32;
  * @brief event_class_iterator
  **/
 pub struct event_class_iterator {
-    data : *event_class,
+    data : *mut event_class,
     rem  : c_int,
     index: c_int
 }
@@ -77,7 +77,7 @@ pub struct device_info {
  * @brief device_info_iterator
  **/
 pub struct device_info_iterator {
-    data : *device_info,
+    data : *mut device_info,
     rem  : c_int,
     index: c_int
 }
@@ -114,7 +114,7 @@ pub struct input_info {
  * @brief input_info_iterator
  **/
 pub struct input_info_iterator {
-    data : *input_info,
+    data : *mut input_info,
     rem  : c_int,
     index: c_int
 }
@@ -133,7 +133,7 @@ pub struct key_info {
  * @brief key_info_iterator
  **/
 pub struct key_info_iterator {
-    data : *key_info,
+    data : *mut key_info,
     rem  : c_int,
     index: c_int
 }
@@ -149,7 +149,7 @@ pub struct button_info {
  * @brief button_info_iterator
  **/
 pub struct button_info_iterator {
-    data : *button_info,
+    data : *mut button_info,
     rem  : c_int,
     index: c_int
 }
@@ -165,7 +165,7 @@ pub struct axis_info {
  * @brief axis_info_iterator
  **/
 pub struct axis_info_iterator {
-    data : *axis_info,
+    data : *mut axis_info,
     rem  : c_int,
     index: c_int
 }
@@ -183,7 +183,7 @@ pub struct valuator_info {
  * @brief valuator_info_iterator
  **/
 pub struct valuator_info_iterator {
-    data : *valuator_info,
+    data : *mut valuator_info,
     rem  : c_int,
     index: c_int
 }
@@ -198,7 +198,7 @@ pub struct input_class_info {
  * @brief input_class_info_iterator
  **/
 pub struct input_class_info_iterator {
-    data : *input_class_info,
+    data : *mut input_class_info,
     rem  : c_int,
     index: c_int
 }
@@ -368,7 +368,7 @@ pub struct device_time_coord {
  * @brief device_time_coord_iterator
  **/
 pub struct device_time_coord_iterator {
-    data : *device_time_coord,
+    data : *mut device_time_coord,
     rem  : c_int,
     index: c_int
 }
@@ -609,7 +609,7 @@ pub struct feedback_state {
  * @brief feedback_state_iterator
  **/
 pub struct feedback_state_iterator {
-    data : *feedback_state,
+    data : *mut feedback_state,
     rem  : c_int,
     index: c_int
 }
@@ -634,7 +634,7 @@ pub struct kbd_feedback_state {
  * @brief kbd_feedback_state_iterator
  **/
 pub struct kbd_feedback_state_iterator {
-    data : *kbd_feedback_state,
+    data : *mut kbd_feedback_state,
     rem  : c_int,
     index: c_int
 }
@@ -654,7 +654,7 @@ pub struct ptr_feedback_state {
  * @brief ptr_feedback_state_iterator
  **/
 pub struct ptr_feedback_state_iterator {
-    data : *ptr_feedback_state,
+    data : *mut ptr_feedback_state,
     rem  : c_int,
     index: c_int
 }
@@ -673,7 +673,7 @@ pub struct integer_feedback_state {
  * @brief integer_feedback_state_iterator
  **/
 pub struct integer_feedback_state_iterator {
-    data : *integer_feedback_state,
+    data : *mut integer_feedback_state,
     rem  : c_int,
     index: c_int
 }
@@ -691,7 +691,7 @@ pub struct string_feedback_state {
  * @brief string_feedback_state_iterator
  **/
 pub struct string_feedback_state_iterator {
-    data : *string_feedback_state,
+    data : *mut string_feedback_state,
     rem  : c_int,
     index: c_int
 }
@@ -711,7 +711,7 @@ pub struct bell_feedback_state {
  * @brief bell_feedback_state_iterator
  **/
 pub struct bell_feedback_state_iterator {
-    data : *bell_feedback_state,
+    data : *mut bell_feedback_state,
     rem  : c_int,
     index: c_int
 }
@@ -729,7 +729,7 @@ pub struct led_feedback_state {
  * @brief led_feedback_state_iterator
  **/
 pub struct led_feedback_state_iterator {
-    data : *led_feedback_state,
+    data : *mut led_feedback_state,
     rem  : c_int,
     index: c_int
 }
@@ -745,7 +745,7 @@ pub struct feedback_ctl {
  * @brief feedback_ctl_iterator
  **/
 pub struct feedback_ctl_iterator {
-    data : *feedback_ctl,
+    data : *mut feedback_ctl,
     rem  : c_int,
     index: c_int
 }
@@ -769,7 +769,7 @@ pub struct kbd_feedback_ctl {
  * @brief kbd_feedback_ctl_iterator
  **/
 pub struct kbd_feedback_ctl_iterator {
-    data : *kbd_feedback_ctl,
+    data : *mut kbd_feedback_ctl,
     rem  : c_int,
     index: c_int
 }
@@ -789,7 +789,7 @@ pub struct ptr_feedback_ctl {
  * @brief ptr_feedback_ctl_iterator
  **/
 pub struct ptr_feedback_ctl_iterator {
-    data : *ptr_feedback_ctl,
+    data : *mut ptr_feedback_ctl,
     rem  : c_int,
     index: c_int
 }
@@ -806,7 +806,7 @@ pub struct integer_feedback_ctl {
  * @brief integer_feedback_ctl_iterator
  **/
 pub struct integer_feedback_ctl_iterator {
-    data : *integer_feedback_ctl,
+    data : *mut integer_feedback_ctl,
     rem  : c_int,
     index: c_int
 }
@@ -824,7 +824,7 @@ pub struct string_feedback_ctl {
  * @brief string_feedback_ctl_iterator
  **/
 pub struct string_feedback_ctl_iterator {
-    data : *string_feedback_ctl,
+    data : *mut string_feedback_ctl,
     rem  : c_int,
     index: c_int
 }
@@ -844,7 +844,7 @@ pub struct bell_feedback_ctl {
  * @brief bell_feedback_ctl_iterator
  **/
 pub struct bell_feedback_ctl_iterator {
-    data : *bell_feedback_ctl,
+    data : *mut bell_feedback_ctl,
     rem  : c_int,
     index: c_int
 }
@@ -862,7 +862,7 @@ pub struct led_feedback_ctl {
  * @brief led_feedback_ctl_iterator
  **/
 pub struct led_feedback_ctl_iterator {
-    data : *led_feedback_ctl,
+    data : *mut led_feedback_ctl,
     rem  : c_int,
     index: c_int
 }
@@ -1037,7 +1037,7 @@ pub struct input_state {
  * @brief input_state_iterator
  **/
 pub struct input_state_iterator {
-    data : *input_state,
+    data : *mut input_state,
     rem  : c_int,
     index: c_int
 }
@@ -1055,7 +1055,7 @@ pub struct key_state {
  * @brief key_state_iterator
  **/
 pub struct key_state_iterator {
-    data : *key_state,
+    data : *mut key_state,
     rem  : c_int,
     index: c_int
 }
@@ -1073,7 +1073,7 @@ pub struct button_state {
  * @brief button_state_iterator
  **/
 pub struct button_state_iterator {
-    data : *button_state,
+    data : *mut button_state,
     rem  : c_int,
     index: c_int
 }
@@ -1090,7 +1090,7 @@ pub struct valuator_state {
  * @brief valuator_state_iterator
  **/
 pub struct valuator_state_iterator {
-    data : *valuator_state,
+    data : *mut valuator_state,
     rem  : c_int,
     index: c_int
 }
@@ -1182,7 +1182,7 @@ pub struct device_state {
  * @brief device_state_iterator
  **/
 pub struct device_state_iterator {
-    data : *device_state,
+    data : *mut device_state,
     rem  : c_int,
     index: c_int
 }
@@ -1198,7 +1198,7 @@ pub struct device_resolution_state {
  * @brief device_resolution_state_iterator
  **/
 pub struct device_resolution_state_iterator {
-    data : *device_resolution_state,
+    data : *mut device_resolution_state,
     rem  : c_int,
     index: c_int
 }
@@ -1221,7 +1221,7 @@ pub struct device_abs_calib_state {
  * @brief device_abs_calib_state_iterator
  **/
 pub struct device_abs_calib_state_iterator {
-    data : *device_abs_calib_state,
+    data : *mut device_abs_calib_state,
     rem  : c_int,
     index: c_int
 }
@@ -1242,7 +1242,7 @@ pub struct device_abs_area_state {
  * @brief device_abs_area_state_iterator
  **/
 pub struct device_abs_area_state_iterator {
-    data : *device_abs_area_state,
+    data : *mut device_abs_area_state,
     rem  : c_int,
     index: c_int
 }
@@ -1260,7 +1260,7 @@ pub struct device_core_state {
  * @brief device_core_state_iterator
  **/
 pub struct device_core_state_iterator {
-    data : *device_core_state,
+    data : *mut device_core_state,
     rem  : c_int,
     index: c_int
 }
@@ -1277,7 +1277,7 @@ pub struct device_enable_state {
  * @brief device_enable_state_iterator
  **/
 pub struct device_enable_state_iterator {
-    data : *device_enable_state,
+    data : *mut device_enable_state,
     rem  : c_int,
     index: c_int
 }
@@ -1292,7 +1292,7 @@ pub struct device_ctl {
  * @brief device_ctl_iterator
  **/
 pub struct device_ctl_iterator {
-    data : *device_ctl,
+    data : *mut device_ctl,
     rem  : c_int,
     index: c_int
 }
@@ -1309,7 +1309,7 @@ pub struct device_resolution_ctl {
  * @brief device_resolution_ctl_iterator
  **/
 pub struct device_resolution_ctl_iterator {
-    data : *device_resolution_ctl,
+    data : *mut device_resolution_ctl,
     rem  : c_int,
     index: c_int
 }
@@ -1332,7 +1332,7 @@ pub struct device_abs_calib_ctl {
  * @brief device_abs_calib_ctl_iterator
  **/
 pub struct device_abs_calib_ctl_iterator {
-    data : *device_abs_calib_ctl,
+    data : *mut device_abs_calib_ctl,
     rem  : c_int,
     index: c_int
 }
@@ -1353,7 +1353,7 @@ pub struct device_abs_area_ctrl {
  * @brief device_abs_area_ctrl_iterator
  **/
 pub struct device_abs_area_ctrl_iterator {
-    data : *device_abs_area_ctrl,
+    data : *mut device_abs_area_ctrl,
     rem  : c_int,
     index: c_int
 }
@@ -1370,7 +1370,7 @@ pub struct device_core_ctrl {
  * @brief device_core_ctrl_iterator
  **/
 pub struct device_core_ctrl_iterator {
-    data : *device_core_ctrl,
+    data : *mut device_core_ctrl,
     rem  : c_int,
     index: c_int
 }
@@ -1387,7 +1387,7 @@ pub struct device_enable_ctrl {
  * @brief device_enable_ctrl_iterator
  **/
 pub struct device_enable_ctrl_iterator {
-    data : *device_enable_ctrl,
+    data : *mut device_enable_ctrl,
     rem  : c_int,
     index: c_int
 }
@@ -1569,7 +1569,7 @@ pub struct class_error {
     sequence :        u16
 }
 
-#[link_args="-lxcb-xinput"]
+#[link(name="lxcb-xinput")]
 pub extern "C" {
 
 /**
@@ -1582,7 +1582,7 @@ pub extern "C" {
  *
  *
  */
-pub unsafe fn xcb_input_key_code_next (i:*key_code_iterator) -> c_void;
+pub fn xcb_input_key_code_next (i:*mut key_code_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1593,7 +1593,7 @@ pub unsafe fn xcb_input_key_code_next (i:*key_code_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_key_code_end (i:key_code_iterator) -> generic_iterator;
+pub fn xcb_input_key_code_end (i:key_code_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -1605,7 +1605,7 @@ pub unsafe fn xcb_input_key_code_end (i:key_code_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_input_event_class_next (i:*event_class_iterator) -> c_void;
+pub fn xcb_input_event_class_next (i:*mut event_class_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1616,9 +1616,9 @@ pub unsafe fn xcb_input_event_class_next (i:*event_class_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_event_class_end (i:event_class_iterator) -> generic_iterator;
+pub fn xcb_input_event_class_end (i:event_class_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_input_get_extension_version_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_input_get_extension_version_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1628,9 +1628,9 @@ pub unsafe fn xcb_input_get_extension_version_sizeof (_buffer :  *c_void) -> c_i
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_get_extension_version (c : *connection,
+pub fn xcb_input_get_extension_version (c : *mut connection,
                                            name_len :  u16,
-                                           name : *c_char) -> get_extension_version_cookie;
+                                           name : *mut c_char) -> get_extension_version_cookie;
 
 /**
  *
@@ -1643,9 +1643,9 @@ pub unsafe fn xcb_input_get_extension_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_input_get_extension_version_unchecked (c : *connection,
+pub fn xcb_input_get_extension_version_unchecked (c : *mut connection,
                                                      name_len :  u16,
-                                                     name : *c_char) -> get_extension_version_cookie;
+                                                     name : *mut c_char) -> get_extension_version_cookie;
 
 /**
  * Return the reply
@@ -1661,9 +1661,9 @@ pub unsafe fn xcb_input_get_extension_version_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_input_get_extension_version_reply (c : *connection,
+pub fn xcb_input_get_extension_version_reply (c : *mut connection,
                                                  cookie : get_extension_version_cookie,
-                                                 e : **generic_error) -> *get_extension_version_reply;
+                                                 e : *mut *mut generic_error) -> *mut get_extension_version_reply;
 
 /**
  * Get the next element of the iterator
@@ -1675,7 +1675,7 @@ pub unsafe fn xcb_input_get_extension_version_reply (c : *connection,
  *
  *
  */
-pub unsafe fn xcb_input_device_info_next (i:*device_info_iterator) -> c_void;
+pub fn xcb_input_device_info_next (i:*mut device_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1686,9 +1686,9 @@ pub unsafe fn xcb_input_device_info_next (i:*device_info_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_device_info_end (i:device_info_iterator) -> generic_iterator;
+pub fn xcb_input_device_info_end (i:device_info_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_input_list_input_devices_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_input_list_input_devices_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1698,7 +1698,7 @@ pub unsafe fn xcb_input_list_input_devices_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_list_input_devices (c : *connection) -> list_input_devices_cookie;
+pub fn xcb_input_list_input_devices (c : *mut connection) -> list_input_devices_cookie;
 
 /**
  *
@@ -1711,14 +1711,14 @@ pub unsafe fn xcb_input_list_input_devices (c : *connection) -> list_input_devic
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_input_list_input_devices_unchecked (c : *connection) -> list_input_devices_cookie;
+pub fn xcb_input_list_input_devices_unchecked (c : *mut connection) -> list_input_devices_cookie;
 
-pub unsafe fn xcb_input_list_input_devices_devices (R : *list_input_devices_reply) -> *device_info;
+pub fn xcb_input_list_input_devices_devices (R : *mut list_input_devices_reply) -> *mut device_info;
 
 
-pub unsafe fn xcb_input_list_input_devices_devices_length (R : *list_input_devices_reply) -> c_int;
+pub fn xcb_input_list_input_devices_devices_length (R : *mut list_input_devices_reply) -> c_int;
 
-pub unsafe fn xcb_input_list_input_devices_devices_iterator (R : *list_input_devices_reply) -> device_info_iterator;
+pub fn xcb_input_list_input_devices_devices_iterator (R : *mut list_input_devices_reply) -> device_info_iterator;
 
 /**
  * Return the reply
@@ -1734,9 +1734,9 @@ pub unsafe fn xcb_input_list_input_devices_devices_iterator (R : *list_input_dev
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_input_list_input_devices_reply (c : *connection,
+pub fn xcb_input_list_input_devices_reply (c : *mut connection,
                                               cookie : list_input_devices_cookie,
-                                              e : **generic_error) -> *list_input_devices_reply;
+                                              e : *mut *mut generic_error) -> *mut list_input_devices_reply;
 
 /**
  * Get the next element of the iterator
@@ -1748,7 +1748,7 @@ pub unsafe fn xcb_input_list_input_devices_reply (c : *connection,
  *
  *
  */
-pub unsafe fn xcb_input_input_info_next (i:*input_info_iterator) -> c_void;
+pub fn xcb_input_input_info_next (i:*mut input_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1759,7 +1759,7 @@ pub unsafe fn xcb_input_input_info_next (i:*input_info_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_input_info_end (i:input_info_iterator) -> generic_iterator;
+pub fn xcb_input_input_info_end (i:input_info_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -1771,7 +1771,7 @@ pub unsafe fn xcb_input_input_info_end (i:input_info_iterator) -> generic_iterat
  *
  *
  */
-pub unsafe fn xcb_input_key_info_next (i:*key_info_iterator) -> c_void;
+pub fn xcb_input_key_info_next (i:*mut key_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1782,7 +1782,7 @@ pub unsafe fn xcb_input_key_info_next (i:*key_info_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_key_info_end (i:key_info_iterator) -> generic_iterator;
+pub fn xcb_input_key_info_end (i:key_info_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -1794,7 +1794,7 @@ pub unsafe fn xcb_input_key_info_end (i:key_info_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_input_button_info_next (i:*button_info_iterator) -> c_void;
+pub fn xcb_input_button_info_next (i:*mut button_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1805,7 +1805,7 @@ pub unsafe fn xcb_input_button_info_next (i:*button_info_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_button_info_end (i:button_info_iterator) -> generic_iterator;
+pub fn xcb_input_button_info_end (i:button_info_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -1817,7 +1817,7 @@ pub unsafe fn xcb_input_button_info_end (i:button_info_iterator) -> generic_iter
  *
  *
  */
-pub unsafe fn xcb_input_axis_info_next (i:*axis_info_iterator) -> c_void;
+pub fn xcb_input_axis_info_next (i:*mut axis_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1828,16 +1828,16 @@ pub unsafe fn xcb_input_axis_info_next (i:*axis_info_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_axis_info_end (i:axis_info_iterator) -> generic_iterator;
+pub fn xcb_input_axis_info_end (i:axis_info_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_input_valuator_info_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_input_valuator_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_input_valuator_info_axes (R : *valuator_info) -> *axis_info;
+pub fn xcb_input_valuator_info_axes (R : *mut valuator_info) -> *mut axis_info;
 
 
-pub unsafe fn xcb_input_valuator_info_axes_length (R : *valuator_info) -> c_int;
+pub fn xcb_input_valuator_info_axes_length (R : *mut valuator_info) -> c_int;
 
-pub unsafe fn xcb_input_valuator_info_axes_iterator (R : *valuator_info) -> axis_info_iterator;
+pub fn xcb_input_valuator_info_axes_iterator (R : *mut valuator_info) -> axis_info_iterator;
 
 /**
  * Get the next element of the iterator
@@ -1849,7 +1849,7 @@ pub unsafe fn xcb_input_valuator_info_axes_iterator (R : *valuator_info) -> axis
  *
  *
  */
-pub unsafe fn xcb_input_valuator_info_next (i:*valuator_info_iterator) -> c_void;
+pub fn xcb_input_valuator_info_next (i:*mut valuator_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1860,7 +1860,7 @@ pub unsafe fn xcb_input_valuator_info_next (i:*valuator_info_iterator) -> c_void
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_valuator_info_end (i:valuator_info_iterator) -> generic_iterator;
+pub fn xcb_input_valuator_info_end (i:valuator_info_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -1872,7 +1872,7 @@ pub unsafe fn xcb_input_valuator_info_end (i:valuator_info_iterator) -> generic_
  *
  *
  */
-pub unsafe fn xcb_input_input_class_info_next (i:*input_class_info_iterator) -> c_void;
+pub fn xcb_input_input_class_info_next (i:*mut input_class_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -1883,9 +1883,9 @@ pub unsafe fn xcb_input_input_class_info_next (i:*input_class_info_iterator) -> 
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_input_class_info_end (i:input_class_info_iterator) -> generic_iterator;
+pub fn xcb_input_input_class_info_end (i:input_class_info_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_input_open_device_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_input_open_device_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1895,7 +1895,7 @@ pub unsafe fn xcb_input_open_device_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_open_device (c : *connection,
+pub fn xcb_input_open_device (c : *mut connection,
                                  device_id :  u8) -> open_device_cookie;
 
 /**
@@ -1909,15 +1909,15 @@ pub unsafe fn xcb_input_open_device (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_input_open_device_unchecked (c : *connection,
+pub fn xcb_input_open_device_unchecked (c : *mut connection,
                                            device_id :  u8) -> open_device_cookie;
 
-pub unsafe fn xcb_input_open_device_class_info (R : *open_device_reply) -> *input_class_info;
+pub fn xcb_input_open_device_class_info (R : *mut open_device_reply) -> *mut input_class_info;
 
 
-pub unsafe fn xcb_input_open_device_class_info_length (R : *open_device_reply) -> c_int;
+pub fn xcb_input_open_device_class_info_length (R : *mut open_device_reply) -> c_int;
 
-pub unsafe fn xcb_input_open_device_class_info_iterator (R : *open_device_reply) -> input_class_info_iterator;
+pub fn xcb_input_open_device_class_info_iterator (R : *mut open_device_reply) -> input_class_info_iterator;
 
 /**
  * Return the reply
@@ -1933,9 +1933,9 @@ pub unsafe fn xcb_input_open_device_class_info_iterator (R : *open_device_reply)
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_input_open_device_reply (c : *connection,
+pub fn xcb_input_open_device_reply (c : *mut connection,
                                        cookie : open_device_cookie,
-                                       e : **generic_error) -> *open_device_reply;
+                                       e : *mut *mut generic_error) -> *mut open_device_reply;
 
 /**
  *
@@ -1948,7 +1948,7 @@ pub unsafe fn xcb_input_open_device_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_input_close_device_checked (c : *connection,
+pub fn xcb_input_close_device_checked (c : *mut connection,
                                           device_id :  u8) -> void_cookie;
 
 /**
@@ -1959,7 +1959,7 @@ pub unsafe fn xcb_input_close_device_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_close_device (c : *connection,
+pub fn xcb_input_close_device (c : *mut connection,
                                   device_id :  u8) -> void_cookie;
 
 /**
@@ -1970,7 +1970,7 @@ pub unsafe fn xcb_input_close_device (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_set_device_mode (c : *connection,
+pub fn xcb_input_set_device_mode (c : *mut connection,
                                      device_id :  u8,
                                      mode :  u8) -> set_device_mode_cookie;
 
@@ -1985,7 +1985,7 @@ pub unsafe fn xcb_input_set_device_mode (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_input_set_device_mode_unchecked (c : *connection,
+pub fn xcb_input_set_device_mode_unchecked (c : *mut connection,
                                                device_id :  u8,
                                                mode :  u8) -> set_device_mode_cookie;
 
@@ -2003,11 +2003,11 @@ pub unsafe fn xcb_input_set_device_mode_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_input_set_device_mode_reply (c : *connection,
+pub fn xcb_input_set_device_mode_reply (c : *mut connection,
                                            cookie : set_device_mode_cookie,
-                                           e : **generic_error) -> *set_device_mode_reply;
+                                           e : *mut *mut generic_error) -> *mut set_device_mode_reply;
 
-pub unsafe fn xcb_input_select_extension_event_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_input_select_extension_event_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -2020,10 +2020,10 @@ pub unsafe fn xcb_input_select_extension_event_sizeof (_buffer :  *c_void) -> c_
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_input_select_extension_event_checked (c : *connection,
+pub fn xcb_input_select_extension_event_checked (c : *mut connection,
                                                     window :  ffi::xproto::window,
                                                     num_classes :  u16,
-                                                    classes : *event_class) -> void_cookie;
+                                                    classes : *mut event_class) -> void_cookie;
 
 /**
  *
@@ -2033,12 +2033,12 @@ pub unsafe fn xcb_input_select_extension_event_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_select_extension_event (c : *connection,
+pub fn xcb_input_select_extension_event (c : *mut connection,
                                             window :  ffi::xproto::window,
                                             num_classes :  u16,
-                                            classes : *event_class) -> void_cookie;
+                                            classes : *mut event_class) -> void_cookie;
 
-pub unsafe fn xcb_input_get_selected_extension_events_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_input_get_selected_extension_events_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -2048,7 +2048,7 @@ pub unsafe fn xcb_input_get_selected_extension_events_sizeof (_buffer :  *c_void
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_get_selected_extension_events (c : *connection,
+pub fn xcb_input_get_selected_extension_events (c : *mut connection,
                                                    window :  ffi::xproto::window) -> get_selected_extension_events_cookie;
 
 /**
@@ -2062,24 +2062,24 @@ pub unsafe fn xcb_input_get_selected_extension_events (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_input_get_selected_extension_events_unchecked (c : *connection,
+pub fn xcb_input_get_selected_extension_events_unchecked (c : *mut connection,
                                                              window :  ffi::xproto::window) -> get_selected_extension_events_cookie;
 
-pub unsafe fn xcb_input_get_selected_extension_events_this_classes (R : *get_selected_extension_events_reply) -> *event_class;
+pub fn xcb_input_get_selected_extension_events_this_classes (R : *mut get_selected_extension_events_reply) -> *mut event_class;
 
 
-pub unsafe fn xcb_input_get_selected_extension_events_this_classes_length (R : *get_selected_extension_events_reply) -> c_int;
+pub fn xcb_input_get_selected_extension_events_this_classes_length (R : *mut get_selected_extension_events_reply) -> c_int;
 
 
-pub unsafe fn xcb_input_get_selected_extension_events_this_classes_end (R : *get_selected_extension_events_reply) -> generic_iterator;
+pub fn xcb_input_get_selected_extension_events_this_classes_end (R : *mut get_selected_extension_events_reply) -> generic_iterator;
 
-pub unsafe fn xcb_input_get_selected_extension_events_all_classes (R : *get_selected_extension_events_reply) -> *event_class;
-
-
-pub unsafe fn xcb_input_get_selected_extension_events_all_classes_length (R : *get_selected_extension_events_reply) -> c_int;
+pub fn xcb_input_get_selected_extension_events_all_classes (R : *mut get_selected_extension_events_reply) -> *mut event_class;
 
 
-pub unsafe fn xcb_input_get_selected_extension_events_all_classes_end (R : *get_selected_extension_events_reply) -> generic_iterator;
+pub fn xcb_input_get_selected_extension_events_all_classes_length (R : *mut get_selected_extension_events_reply) -> c_int;
+
+
+pub fn xcb_input_get_selected_extension_events_all_classes_end (R : *mut get_selected_extension_events_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -2095,11 +2095,11 @@ pub unsafe fn xcb_input_get_selected_extension_events_all_classes_end (R : *get_
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_input_get_selected_extension_events_reply (c : *connection,
+pub fn xcb_input_get_selected_extension_events_reply (c : *mut connection,
                                                          cookie : get_selected_extension_events_cookie,
-                                                         e : **generic_error) -> *get_selected_extension_events_reply;
+                                                         e : *mut *mut generic_error) -> *mut get_selected_extension_events_reply;
 
-pub unsafe fn xcb_input_change_device_dont_propagate_list_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_input_change_device_dont_propagate_list_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -2112,11 +2112,11 @@ pub unsafe fn xcb_input_change_device_dont_propagate_list_sizeof (_buffer :  *c_
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_input_change_device_dont_propagate_list_checked (c : *connection,
+pub fn xcb_input_change_device_dont_propagate_list_checked (c : *mut connection,
                                                                window :  ffi::xproto::window,
                                                                num_classes :  u16,
                                                                mode :  u8,
-                                                               classes : *event_class) -> void_cookie;
+                                                               classes : *mut event_class) -> void_cookie;
 
 /**
  *
@@ -2126,13 +2126,13 @@ pub unsafe fn xcb_input_change_device_dont_propagate_list_checked (c : *connecti
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_change_device_dont_propagate_list (c : *connection,
+pub fn xcb_input_change_device_dont_propagate_list (c : *mut connection,
                                                        window :  ffi::xproto::window,
                                                        num_classes :  u16,
                                                        mode :  u8,
-                                                       classes : *event_class) -> void_cookie;
+                                                       classes : *mut event_class) -> void_cookie;
 
-pub unsafe fn xcb_input_get_device_dont_propagate_list_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_input_get_device_dont_propagate_list_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -2142,7 +2142,7 @@ pub unsafe fn xcb_input_get_device_dont_propagate_list_sizeof (_buffer :  *c_voi
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_get_device_dont_propagate_list (c : *connection,
+pub fn xcb_input_get_device_dont_propagate_list (c : *mut connection,
                                                     window :  ffi::xproto::window) -> get_device_dont_propagate_list_cookie;
 
 /**
@@ -2156,16 +2156,16 @@ pub unsafe fn xcb_input_get_device_dont_propagate_list (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_input_get_device_dont_propagate_list_unchecked (c : *connection,
+pub fn xcb_input_get_device_dont_propagate_list_unchecked (c : *mut connection,
                                                               window :  ffi::xproto::window) -> get_device_dont_propagate_list_cookie;
 
-pub unsafe fn xcb_input_get_device_dont_propagate_list_classes (R : *get_device_dont_propagate_list_reply) -> *event_class;
+pub fn xcb_input_get_device_dont_propagate_list_classes (R : *mut get_device_dont_propagate_list_reply) -> *mut event_class;
 
 
-pub unsafe fn xcb_input_get_device_dont_propagate_list_classes_length (R : *get_device_dont_propagate_list_reply) -> c_int;
+pub fn xcb_input_get_device_dont_propagate_list_classes_length (R : *mut get_device_dont_propagate_list_reply) -> c_int;
 
 
-pub unsafe fn xcb_input_get_device_dont_propagate_list_classes_end (R : *get_device_dont_propagate_list_reply) -> generic_iterator;
+pub fn xcb_input_get_device_dont_propagate_list_classes_end (R : *mut get_device_dont_propagate_list_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -2181,9 +2181,9 @@ pub unsafe fn xcb_input_get_device_dont_propagate_list_classes_end (R : *get_dev
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_input_get_device_dont_propagate_list_reply (c : *connection,
+pub fn xcb_input_get_device_dont_propagate_list_reply (c : *mut connection,
                                                           cookie : get_device_dont_propagate_list_cookie,
-                                                          e : **generic_error) -> *get_device_dont_propagate_list_reply;
+                                                          e : *mut *mut generic_error) -> *mut get_device_dont_propagate_list_reply;
 
 /**
  *
@@ -2193,7 +2193,7 @@ pub unsafe fn xcb_input_get_device_dont_propagate_list_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_get_device_motion_events (c : *connection,
+pub fn xcb_input_get_device_motion_events (c : *mut connection,
                                               start :  ffi::xproto::timestamp,
                                               stop :  ffi::xproto::timestamp,
                                               device_id :  u8) -> get_device_motion_events_cookie;
@@ -2209,7 +2209,7 @@ pub unsafe fn xcb_input_get_device_motion_events (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_input_get_device_motion_events_unchecked (c : *connection,
+pub fn xcb_input_get_device_motion_events_unchecked (c : *mut connection,
                                                         start :  ffi::xproto::timestamp,
                                                         stop :  ffi::xproto::timestamp,
                                                         device_id :  u8) -> get_device_motion_events_cookie;
@@ -2228,9 +2228,9 @@ pub unsafe fn xcb_input_get_device_motion_events_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_input_get_device_motion_events_reply (c : *connection,
+pub fn xcb_input_get_device_motion_events_reply (c : *mut connection,
                                                     cookie : get_device_motion_events_cookie,
-                                                    e : **generic_error) -> *get_device_motion_events_reply;
+                                                    e : *mut *mut generic_error) -> *mut get_device_motion_events_reply;
 
 /**
  * Get the next element of the iterator
@@ -2242,7 +2242,7 @@ pub unsafe fn xcb_input_get_device_motion_events_reply (c : *connection,
  *
  *
  */
-pub unsafe fn xcb_input_device_time_coord_next (i:*device_time_coord_iterator) -> c_void;
+pub fn xcb_input_device_time_coord_next (i:*mut device_time_coord_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2253,7 +2253,7 @@ pub unsafe fn xcb_input_device_time_coord_next (i:*device_time_coord_iterator) -
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_device_time_coord_end (i:device_time_coord_iterator) -> generic_iterator;
+pub fn xcb_input_device_time_coord_end (i:device_time_coord_iterator) -> generic_iterator;
 
 /**
  *
@@ -2263,7 +2263,7 @@ pub unsafe fn xcb_input_device_time_coord_end (i:device_time_coord_iterator) -> 
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_change_keyboard_device (c : *connection,
+pub fn xcb_input_change_keyboard_device (c : *mut connection,
                                             device_id :  u8) -> change_keyboard_device_cookie;
 
 /**
@@ -2277,7 +2277,7 @@ pub unsafe fn xcb_input_change_keyboard_device (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_input_change_keyboard_device_unchecked (c : *connection,
+pub fn xcb_input_change_keyboard_device_unchecked (c : *mut connection,
                                                       device_id :  u8) -> change_keyboard_device_cookie;
 
 /**
@@ -2294,9 +2294,9 @@ pub unsafe fn xcb_input_change_keyboard_device_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_input_change_keyboard_device_reply (c : *connection,
+pub fn xcb_input_change_keyboard_device_reply (c : *mut connection,
                                                   cookie : change_keyboard_device_cookie,
-                                                  e : **generic_error) -> *change_keyboard_device_reply;
+                                                  e : *mut *mut generic_error) -> *mut change_keyboard_device_reply;
 
 /**
  *
@@ -2306,7 +2306,7 @@ pub unsafe fn xcb_input_change_keyboard_device_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_change_pointer_device (c : *connection,
+pub fn xcb_input_change_pointer_device (c : *mut connection,
                                            x_axis :  u8,
                                            y_axis :  u8,
                                            device_id :  u8) -> change_pointer_device_cookie;
@@ -2322,7 +2322,7 @@ pub unsafe fn xcb_input_change_pointer_device (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_input_change_pointer_device_unchecked (c : *connection,
+pub fn xcb_input_change_pointer_device_unchecked (c : *mut connection,
                                                      x_axis :  u8,
                                                      y_axis :  u8,
                                                      device_id :  u8) -> change_pointer_device_cookie;
@@ -2341,11 +2341,11 @@ pub unsafe fn xcb_input_change_pointer_device_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_input_change_pointer_device_reply (c : *connection,
+pub fn xcb_input_change_pointer_device_reply (c : *mut connection,
                                                  cookie : change_pointer_device_cookie,
-                                                 e : **generic_error) -> *change_pointer_device_reply;
+                                                 e : *mut *mut generic_error) -> *mut change_pointer_device_reply;
 
-pub unsafe fn xcb_input_grab_device_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_input_grab_device_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -2355,7 +2355,7 @@ pub unsafe fn xcb_input_grab_device_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_grab_device (c : *connection,
+pub fn xcb_input_grab_device (c : *mut connection,
                                  grab_window :  ffi::xproto::window,
                                  time :  ffi::xproto::timestamp,
                                  num_classes :  u16,
@@ -2363,7 +2363,7 @@ pub unsafe fn xcb_input_grab_device (c : *connection,
                                  other_device_mode :  u8,
                                  owner_events :  u8,
                                  device_id :  u8,
-                                 classes : *event_class) -> grab_device_cookie;
+                                 classes : *mut event_class) -> grab_device_cookie;
 
 /**
  *
@@ -2376,7 +2376,7 @@ pub unsafe fn xcb_input_grab_device (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_input_grab_device_unchecked (c : *connection,
+pub fn xcb_input_grab_device_unchecked (c : *mut connection,
                                            grab_window :  ffi::xproto::window,
                                            time :  ffi::xproto::timestamp,
                                            num_classes :  u16,
@@ -2384,7 +2384,7 @@ pub unsafe fn xcb_input_grab_device_unchecked (c : *connection,
                                            other_device_mode :  u8,
                                            owner_events :  u8,
                                            device_id :  u8,
-                                           classes : *event_class) -> grab_device_cookie;
+                                           classes : *mut event_class) -> grab_device_cookie;
 
 /**
  * Return the reply
@@ -2400,9 +2400,9 @@ pub unsafe fn xcb_input_grab_device_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_input_grab_device_reply (c : *connection,
+pub fn xcb_input_grab_device_reply (c : *mut connection,
                                        cookie : grab_device_cookie,
-                                       e : **generic_error) -> *grab_device_reply;
+                                       e : *mut *mut generic_error) -> *mut grab_device_reply;
 
 /**
  *
@@ -2415,7 +2415,7 @@ pub unsafe fn xcb_input_grab_device_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_input_ungrab_device_checked (c : *connection,
+pub fn xcb_input_ungrab_device_checked (c : *mut connection,
                                            time :  ffi::xproto::timestamp,
                                            device_id :  u8) -> void_cookie;
 
@@ -2427,11 +2427,11 @@ pub unsafe fn xcb_input_ungrab_device_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_ungrab_device (c : *connection,
+pub fn xcb_input_ungrab_device (c : *mut connection,
                                    time :  ffi::xproto::timestamp,
                                    device_id :  u8) -> void_cookie;
 
-pub unsafe fn xcb_input_grab_device_key_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_input_grab_device_key_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -2444,7 +2444,7 @@ pub unsafe fn xcb_input_grab_device_key_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_input_grab_device_key_checked (c : *connection,
+pub fn xcb_input_grab_device_key_checked (c : *mut connection,
                                              grab_window :  ffi::xproto::window,
                                              num_classes :  u16,
                                              modifiers :  u16,
@@ -2454,7 +2454,7 @@ pub unsafe fn xcb_input_grab_device_key_checked (c : *connection,
                                              this_device_mode :  u8,
                                              other_device_mode :  u8,
                                              owner_events :  u8,
-                                             classes : *event_class) -> void_cookie;
+                                             classes : *mut event_class) -> void_cookie;
 
 /**
  *
@@ -2464,7 +2464,7 @@ pub unsafe fn xcb_input_grab_device_key_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_grab_device_key (c : *connection,
+pub fn xcb_input_grab_device_key (c : *mut connection,
                                      grab_window :  ffi::xproto::window,
                                      num_classes :  u16,
                                      modifiers :  u16,
@@ -2474,7 +2474,7 @@ pub unsafe fn xcb_input_grab_device_key (c : *connection,
                                      this_device_mode :  u8,
                                      other_device_mode :  u8,
                                      owner_events :  u8,
-                                     classes : *event_class) -> void_cookie;
+                                     classes : *mut event_class) -> void_cookie;
 
 /**
  *
@@ -2487,7 +2487,7 @@ pub unsafe fn xcb_input_grab_device_key (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_input_ungrab_device_key_checked (c : *connection,
+pub fn xcb_input_ungrab_device_key_checked (c : *mut connection,
                                                grabWindow :  ffi::xproto::window,
                                                modifiers :  u16,
                                                modifier_device :  u8,
@@ -2502,14 +2502,14 @@ pub unsafe fn xcb_input_ungrab_device_key_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_ungrab_device_key (c : *connection,
+pub fn xcb_input_ungrab_device_key (c : *mut connection,
                                        grabWindow :  ffi::xproto::window,
                                        modifiers :  u16,
                                        modifier_device :  u8,
                                        key :  u8,
                                        grabbed_device :  u8) -> void_cookie;
 
-pub unsafe fn xcb_input_grab_device_button_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_input_grab_device_button_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -2522,7 +2522,7 @@ pub unsafe fn xcb_input_grab_device_button_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_input_grab_device_button_checked (c : *connection,
+pub fn xcb_input_grab_device_button_checked (c : *mut connection,
                                                 grab_window :  ffi::xproto::window,
                                                 grabbed_device :  u8,
                                                 modifier_device :  u8,
@@ -2532,7 +2532,7 @@ pub unsafe fn xcb_input_grab_device_button_checked (c : *connection,
                                                 other_device_mode :  u8,
                                                 button :  u8,
                                                 owner_events :  u8,
-                                                classes : *event_class) -> void_cookie;
+                                                classes : *mut event_class) -> void_cookie;
 
 /**
  *
@@ -2542,7 +2542,7 @@ pub unsafe fn xcb_input_grab_device_button_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_grab_device_button (c : *connection,
+pub fn xcb_input_grab_device_button (c : *mut connection,
                                         grab_window :  ffi::xproto::window,
                                         grabbed_device :  u8,
                                         modifier_device :  u8,
@@ -2552,7 +2552,7 @@ pub unsafe fn xcb_input_grab_device_button (c : *connection,
                                         other_device_mode :  u8,
                                         button :  u8,
                                         owner_events :  u8,
-                                        classes : *event_class) -> void_cookie;
+                                        classes : *mut event_class) -> void_cookie;
 
 /**
  *
@@ -2565,7 +2565,7 @@ pub unsafe fn xcb_input_grab_device_button (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_input_ungrab_device_button_checked (c : *connection,
+pub fn xcb_input_ungrab_device_button_checked (c : *mut connection,
                                                   grab_window :  ffi::xproto::window,
                                                   modifiers :  u16,
                                                   modifier_device :  u8,
@@ -2580,7 +2580,7 @@ pub unsafe fn xcb_input_ungrab_device_button_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_ungrab_device_button (c : *connection,
+pub fn xcb_input_ungrab_device_button (c : *mut connection,
                                           grab_window :  ffi::xproto::window,
                                           modifiers :  u16,
                                           modifier_device :  u8,
@@ -2598,7 +2598,7 @@ pub unsafe fn xcb_input_ungrab_device_button (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_input_allow_device_events_checked (c : *connection,
+pub fn xcb_input_allow_device_events_checked (c : *mut connection,
                                                  time :  ffi::xproto::timestamp,
                                                  mode :  u8,
                                                  device_id :  u8) -> void_cookie;
@@ -2611,7 +2611,7 @@ pub unsafe fn xcb_input_allow_device_events_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_allow_device_events (c : *connection,
+pub fn xcb_input_allow_device_events (c : *mut connection,
                                          time :  ffi::xproto::timestamp,
                                          mode :  u8,
                                          device_id :  u8) -> void_cookie;
@@ -2624,7 +2624,7 @@ pub unsafe fn xcb_input_allow_device_events (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_get_device_focus (c : *connection,
+pub fn xcb_input_get_device_focus (c : *mut connection,
                                       device_id :  u8) -> get_device_focus_cookie;
 
 /**
@@ -2638,7 +2638,7 @@ pub unsafe fn xcb_input_get_device_focus (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_input_get_device_focus_unchecked (c : *connection,
+pub fn xcb_input_get_device_focus_unchecked (c : *mut connection,
                                                 device_id :  u8) -> get_device_focus_cookie;
 
 /**
@@ -2655,9 +2655,9 @@ pub unsafe fn xcb_input_get_device_focus_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_input_get_device_focus_reply (c : *connection,
+pub fn xcb_input_get_device_focus_reply (c : *mut connection,
                                             cookie : get_device_focus_cookie,
-                                            e : **generic_error) -> *get_device_focus_reply;
+                                            e : *mut *mut generic_error) -> *mut get_device_focus_reply;
 
 /**
  *
@@ -2670,7 +2670,7 @@ pub unsafe fn xcb_input_get_device_focus_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_input_set_device_focus_checked (c : *connection,
+pub fn xcb_input_set_device_focus_checked (c : *mut connection,
                                               focus :  ffi::xproto::window,
                                               time :  ffi::xproto::timestamp,
                                               revert_to :  u8,
@@ -2684,7 +2684,7 @@ pub unsafe fn xcb_input_set_device_focus_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_set_device_focus (c : *connection,
+pub fn xcb_input_set_device_focus (c : *mut connection,
                                       focus :  ffi::xproto::window,
                                       time :  ffi::xproto::timestamp,
                                       revert_to :  u8,
@@ -2698,7 +2698,7 @@ pub unsafe fn xcb_input_set_device_focus (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_get_feedback_control (c : *connection,
+pub fn xcb_input_get_feedback_control (c : *mut connection,
                                           device_id :  u8) -> get_feedback_control_cookie;
 
 /**
@@ -2712,7 +2712,7 @@ pub unsafe fn xcb_input_get_feedback_control (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_input_get_feedback_control_unchecked (c : *connection,
+pub fn xcb_input_get_feedback_control_unchecked (c : *mut connection,
                                                     device_id :  u8) -> get_feedback_control_cookie;
 
 /**
@@ -2729,9 +2729,9 @@ pub unsafe fn xcb_input_get_feedback_control_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_input_get_feedback_control_reply (c : *connection,
+pub fn xcb_input_get_feedback_control_reply (c : *mut connection,
                                                 cookie : get_feedback_control_cookie,
-                                                e : **generic_error) -> *get_feedback_control_reply;
+                                                e : *mut *mut generic_error) -> *mut get_feedback_control_reply;
 
 /**
  * Get the next element of the iterator
@@ -2743,7 +2743,7 @@ pub unsafe fn xcb_input_get_feedback_control_reply (c : *connection,
  *
  *
  */
-pub unsafe fn xcb_input_feedback_state_next (i:*feedback_state_iterator) -> c_void;
+pub fn xcb_input_feedback_state_next (i:*mut feedback_state_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2754,7 +2754,7 @@ pub unsafe fn xcb_input_feedback_state_next (i:*feedback_state_iterator) -> c_vo
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_feedback_state_end (i:feedback_state_iterator) -> generic_iterator;
+pub fn xcb_input_feedback_state_end (i:feedback_state_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2766,7 +2766,7 @@ pub unsafe fn xcb_input_feedback_state_end (i:feedback_state_iterator) -> generi
  *
  *
  */
-pub unsafe fn xcb_input_kbd_feedback_state_next (i:*kbd_feedback_state_iterator) -> c_void;
+pub fn xcb_input_kbd_feedback_state_next (i:*mut kbd_feedback_state_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2777,7 +2777,7 @@ pub unsafe fn xcb_input_kbd_feedback_state_next (i:*kbd_feedback_state_iterator)
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_kbd_feedback_state_end (i:kbd_feedback_state_iterator) -> generic_iterator;
+pub fn xcb_input_kbd_feedback_state_end (i:kbd_feedback_state_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2789,7 +2789,7 @@ pub unsafe fn xcb_input_kbd_feedback_state_end (i:kbd_feedback_state_iterator) -
  *
  *
  */
-pub unsafe fn xcb_input_ptr_feedback_state_next (i:*ptr_feedback_state_iterator) -> c_void;
+pub fn xcb_input_ptr_feedback_state_next (i:*mut ptr_feedback_state_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2800,7 +2800,7 @@ pub unsafe fn xcb_input_ptr_feedback_state_next (i:*ptr_feedback_state_iterator)
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_ptr_feedback_state_end (i:ptr_feedback_state_iterator) -> generic_iterator;
+pub fn xcb_input_ptr_feedback_state_end (i:ptr_feedback_state_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2812,7 +2812,7 @@ pub unsafe fn xcb_input_ptr_feedback_state_end (i:ptr_feedback_state_iterator) -
  *
  *
  */
-pub unsafe fn xcb_input_integer_feedback_state_next (i:*integer_feedback_state_iterator) -> c_void;
+pub fn xcb_input_integer_feedback_state_next (i:*mut integer_feedback_state_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2823,17 +2823,17 @@ pub unsafe fn xcb_input_integer_feedback_state_next (i:*integer_feedback_state_i
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_integer_feedback_state_end (i:integer_feedback_state_iterator) -> generic_iterator;
+pub fn xcb_input_integer_feedback_state_end (i:integer_feedback_state_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_input_string_feedback_state_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_input_string_feedback_state_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_input_string_feedback_state_keysyms (R : *string_feedback_state) -> *ffi::xproto::keysym;
-
-
-pub unsafe fn xcb_input_string_feedback_state_keysyms_length (R : *string_feedback_state) -> c_int;
+pub fn xcb_input_string_feedback_state_keysyms (R : *mut string_feedback_state) -> *mut ffi::xproto::keysym;
 
 
-pub unsafe fn xcb_input_string_feedback_state_keysyms_end (R : *string_feedback_state) -> generic_iterator;
+pub fn xcb_input_string_feedback_state_keysyms_length (R : *mut string_feedback_state) -> c_int;
+
+
+pub fn xcb_input_string_feedback_state_keysyms_end (R : *mut string_feedback_state) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2845,7 +2845,7 @@ pub unsafe fn xcb_input_string_feedback_state_keysyms_end (R : *string_feedback_
  *
  *
  */
-pub unsafe fn xcb_input_string_feedback_state_next (i:*string_feedback_state_iterator) -> c_void;
+pub fn xcb_input_string_feedback_state_next (i:*mut string_feedback_state_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2856,7 +2856,7 @@ pub unsafe fn xcb_input_string_feedback_state_next (i:*string_feedback_state_ite
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_string_feedback_state_end (i:string_feedback_state_iterator) -> generic_iterator;
+pub fn xcb_input_string_feedback_state_end (i:string_feedback_state_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2868,7 +2868,7 @@ pub unsafe fn xcb_input_string_feedback_state_end (i:string_feedback_state_itera
  *
  *
  */
-pub unsafe fn xcb_input_bell_feedback_state_next (i:*bell_feedback_state_iterator) -> c_void;
+pub fn xcb_input_bell_feedback_state_next (i:*mut bell_feedback_state_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2879,7 +2879,7 @@ pub unsafe fn xcb_input_bell_feedback_state_next (i:*bell_feedback_state_iterato
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_bell_feedback_state_end (i:bell_feedback_state_iterator) -> generic_iterator;
+pub fn xcb_input_bell_feedback_state_end (i:bell_feedback_state_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2891,7 +2891,7 @@ pub unsafe fn xcb_input_bell_feedback_state_end (i:bell_feedback_state_iterator)
  *
  *
  */
-pub unsafe fn xcb_input_led_feedback_state_next (i:*led_feedback_state_iterator) -> c_void;
+pub fn xcb_input_led_feedback_state_next (i:*mut led_feedback_state_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2902,7 +2902,7 @@ pub unsafe fn xcb_input_led_feedback_state_next (i:*led_feedback_state_iterator)
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_led_feedback_state_end (i:led_feedback_state_iterator) -> generic_iterator;
+pub fn xcb_input_led_feedback_state_end (i:led_feedback_state_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2914,7 +2914,7 @@ pub unsafe fn xcb_input_led_feedback_state_end (i:led_feedback_state_iterator) -
  *
  *
  */
-pub unsafe fn xcb_input_feedback_ctl_next (i:*feedback_ctl_iterator) -> c_void;
+pub fn xcb_input_feedback_ctl_next (i:*mut feedback_ctl_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2925,7 +2925,7 @@ pub unsafe fn xcb_input_feedback_ctl_next (i:*feedback_ctl_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_feedback_ctl_end (i:feedback_ctl_iterator) -> generic_iterator;
+pub fn xcb_input_feedback_ctl_end (i:feedback_ctl_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2937,7 +2937,7 @@ pub unsafe fn xcb_input_feedback_ctl_end (i:feedback_ctl_iterator) -> generic_it
  *
  *
  */
-pub unsafe fn xcb_input_kbd_feedback_ctl_next (i:*kbd_feedback_ctl_iterator) -> c_void;
+pub fn xcb_input_kbd_feedback_ctl_next (i:*mut kbd_feedback_ctl_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2948,7 +2948,7 @@ pub unsafe fn xcb_input_kbd_feedback_ctl_next (i:*kbd_feedback_ctl_iterator) -> 
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_kbd_feedback_ctl_end (i:kbd_feedback_ctl_iterator) -> generic_iterator;
+pub fn xcb_input_kbd_feedback_ctl_end (i:kbd_feedback_ctl_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2960,7 +2960,7 @@ pub unsafe fn xcb_input_kbd_feedback_ctl_end (i:kbd_feedback_ctl_iterator) -> ge
  *
  *
  */
-pub unsafe fn xcb_input_ptr_feedback_ctl_next (i:*ptr_feedback_ctl_iterator) -> c_void;
+pub fn xcb_input_ptr_feedback_ctl_next (i:*mut ptr_feedback_ctl_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2971,7 +2971,7 @@ pub unsafe fn xcb_input_ptr_feedback_ctl_next (i:*ptr_feedback_ctl_iterator) -> 
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_ptr_feedback_ctl_end (i:ptr_feedback_ctl_iterator) -> generic_iterator;
+pub fn xcb_input_ptr_feedback_ctl_end (i:ptr_feedback_ctl_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2983,7 +2983,7 @@ pub unsafe fn xcb_input_ptr_feedback_ctl_end (i:ptr_feedback_ctl_iterator) -> ge
  *
  *
  */
-pub unsafe fn xcb_input_integer_feedback_ctl_next (i:*integer_feedback_ctl_iterator) -> c_void;
+pub fn xcb_input_integer_feedback_ctl_next (i:*mut integer_feedback_ctl_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2994,17 +2994,17 @@ pub unsafe fn xcb_input_integer_feedback_ctl_next (i:*integer_feedback_ctl_itera
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_integer_feedback_ctl_end (i:integer_feedback_ctl_iterator) -> generic_iterator;
+pub fn xcb_input_integer_feedback_ctl_end (i:integer_feedback_ctl_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_input_string_feedback_ctl_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_input_string_feedback_ctl_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_input_string_feedback_ctl_keysyms (R : *string_feedback_ctl) -> *ffi::xproto::keysym;
-
-
-pub unsafe fn xcb_input_string_feedback_ctl_keysyms_length (R : *string_feedback_ctl) -> c_int;
+pub fn xcb_input_string_feedback_ctl_keysyms (R : *mut string_feedback_ctl) -> *mut ffi::xproto::keysym;
 
 
-pub unsafe fn xcb_input_string_feedback_ctl_keysyms_end (R : *string_feedback_ctl) -> generic_iterator;
+pub fn xcb_input_string_feedback_ctl_keysyms_length (R : *mut string_feedback_ctl) -> c_int;
+
+
+pub fn xcb_input_string_feedback_ctl_keysyms_end (R : *mut string_feedback_ctl) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3016,7 +3016,7 @@ pub unsafe fn xcb_input_string_feedback_ctl_keysyms_end (R : *string_feedback_ct
  *
  *
  */
-pub unsafe fn xcb_input_string_feedback_ctl_next (i:*string_feedback_ctl_iterator) -> c_void;
+pub fn xcb_input_string_feedback_ctl_next (i:*mut string_feedback_ctl_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3027,7 +3027,7 @@ pub unsafe fn xcb_input_string_feedback_ctl_next (i:*string_feedback_ctl_iterato
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_string_feedback_ctl_end (i:string_feedback_ctl_iterator) -> generic_iterator;
+pub fn xcb_input_string_feedback_ctl_end (i:string_feedback_ctl_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3039,7 +3039,7 @@ pub unsafe fn xcb_input_string_feedback_ctl_end (i:string_feedback_ctl_iterator)
  *
  *
  */
-pub unsafe fn xcb_input_bell_feedback_ctl_next (i:*bell_feedback_ctl_iterator) -> c_void;
+pub fn xcb_input_bell_feedback_ctl_next (i:*mut bell_feedback_ctl_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3050,7 +3050,7 @@ pub unsafe fn xcb_input_bell_feedback_ctl_next (i:*bell_feedback_ctl_iterator) -
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_bell_feedback_ctl_end (i:bell_feedback_ctl_iterator) -> generic_iterator;
+pub fn xcb_input_bell_feedback_ctl_end (i:bell_feedback_ctl_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3062,7 +3062,7 @@ pub unsafe fn xcb_input_bell_feedback_ctl_end (i:bell_feedback_ctl_iterator) -> 
  *
  *
  */
-pub unsafe fn xcb_input_led_feedback_ctl_next (i:*led_feedback_ctl_iterator) -> c_void;
+pub fn xcb_input_led_feedback_ctl_next (i:*mut led_feedback_ctl_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3073,9 +3073,9 @@ pub unsafe fn xcb_input_led_feedback_ctl_next (i:*led_feedback_ctl_iterator) -> 
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_led_feedback_ctl_end (i:led_feedback_ctl_iterator) -> generic_iterator;
+pub fn xcb_input_led_feedback_ctl_end (i:led_feedback_ctl_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_input_get_device_key_mapping_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_input_get_device_key_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -3085,7 +3085,7 @@ pub unsafe fn xcb_input_get_device_key_mapping_sizeof (_buffer :  *c_void) -> c_
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_get_device_key_mapping (c : *connection,
+pub fn xcb_input_get_device_key_mapping (c : *mut connection,
                                             device_id :  u8,
                                             first_keycode :  key_code,
                                             count :  u8) -> get_device_key_mapping_cookie;
@@ -3101,18 +3101,18 @@ pub unsafe fn xcb_input_get_device_key_mapping (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_input_get_device_key_mapping_unchecked (c : *connection,
+pub fn xcb_input_get_device_key_mapping_unchecked (c : *mut connection,
                                                       device_id :  u8,
                                                       first_keycode :  key_code,
                                                       count :  u8) -> get_device_key_mapping_cookie;
 
-pub unsafe fn xcb_input_get_device_key_mapping_keysyms (R : *get_device_key_mapping_reply) -> *ffi::xproto::keysym;
+pub fn xcb_input_get_device_key_mapping_keysyms (R : *mut get_device_key_mapping_reply) -> *mut ffi::xproto::keysym;
 
 
-pub unsafe fn xcb_input_get_device_key_mapping_keysyms_length (R : *get_device_key_mapping_reply) -> c_int;
+pub fn xcb_input_get_device_key_mapping_keysyms_length (R : *mut get_device_key_mapping_reply) -> c_int;
 
 
-pub unsafe fn xcb_input_get_device_key_mapping_keysyms_end (R : *get_device_key_mapping_reply) -> generic_iterator;
+pub fn xcb_input_get_device_key_mapping_keysyms_end (R : *mut get_device_key_mapping_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -3128,11 +3128,11 @@ pub unsafe fn xcb_input_get_device_key_mapping_keysyms_end (R : *get_device_key_
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_input_get_device_key_mapping_reply (c : *connection,
+pub fn xcb_input_get_device_key_mapping_reply (c : *mut connection,
                                                   cookie : get_device_key_mapping_cookie,
-                                                  e : **generic_error) -> *get_device_key_mapping_reply;
+                                                  e : *mut *mut generic_error) -> *mut get_device_key_mapping_reply;
 
-pub unsafe fn xcb_input_change_device_key_mapping_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_input_change_device_key_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -3145,12 +3145,12 @@ pub unsafe fn xcb_input_change_device_key_mapping_sizeof (_buffer :  *c_void) ->
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_input_change_device_key_mapping_checked (c : *connection,
+pub fn xcb_input_change_device_key_mapping_checked (c : *mut connection,
                                                        device_id :  u8,
                                                        first_keycode :  key_code,
                                                        keysyms_per_keycode :  u8,
                                                        keycode_count :  u8,
-                                                       keysyms : *ffi::xproto::keysym) -> void_cookie;
+                                                       keysyms : *mut ffi::xproto::keysym) -> void_cookie;
 
 /**
  *
@@ -3160,14 +3160,14 @@ pub unsafe fn xcb_input_change_device_key_mapping_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_change_device_key_mapping (c : *connection,
+pub fn xcb_input_change_device_key_mapping (c : *mut connection,
                                                device_id :  u8,
                                                first_keycode :  key_code,
                                                keysyms_per_keycode :  u8,
                                                keycode_count :  u8,
-                                               keysyms : *ffi::xproto::keysym) -> void_cookie;
+                                               keysyms : *mut ffi::xproto::keysym) -> void_cookie;
 
-pub unsafe fn xcb_input_get_device_modifier_mapping_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_input_get_device_modifier_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -3177,7 +3177,7 @@ pub unsafe fn xcb_input_get_device_modifier_mapping_sizeof (_buffer :  *c_void) 
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_get_device_modifier_mapping (c : *connection,
+pub fn xcb_input_get_device_modifier_mapping (c : *mut connection,
                                                  device_id :  u8) -> get_device_modifier_mapping_cookie;
 
 /**
@@ -3191,16 +3191,16 @@ pub unsafe fn xcb_input_get_device_modifier_mapping (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_input_get_device_modifier_mapping_unchecked (c : *connection,
+pub fn xcb_input_get_device_modifier_mapping_unchecked (c : *mut connection,
                                                            device_id :  u8) -> get_device_modifier_mapping_cookie;
 
-pub unsafe fn xcb_input_get_device_modifier_mapping_keymaps (R : *get_device_modifier_mapping_reply) -> *u8;
+pub fn xcb_input_get_device_modifier_mapping_keymaps (R : *mut get_device_modifier_mapping_reply) -> *mut u8;
 
 
-pub unsafe fn xcb_input_get_device_modifier_mapping_keymaps_length (R : *get_device_modifier_mapping_reply) -> c_int;
+pub fn xcb_input_get_device_modifier_mapping_keymaps_length (R : *mut get_device_modifier_mapping_reply) -> c_int;
 
 
-pub unsafe fn xcb_input_get_device_modifier_mapping_keymaps_end (R : *get_device_modifier_mapping_reply) -> generic_iterator;
+pub fn xcb_input_get_device_modifier_mapping_keymaps_end (R : *mut get_device_modifier_mapping_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -3216,11 +3216,11 @@ pub unsafe fn xcb_input_get_device_modifier_mapping_keymaps_end (R : *get_device
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_input_get_device_modifier_mapping_reply (c : *connection,
+pub fn xcb_input_get_device_modifier_mapping_reply (c : *mut connection,
                                                        cookie : get_device_modifier_mapping_cookie,
-                                                       e : **generic_error) -> *get_device_modifier_mapping_reply;
+                                                       e : *mut *mut generic_error) -> *mut get_device_modifier_mapping_reply;
 
-pub unsafe fn xcb_input_set_device_modifier_mapping_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_input_set_device_modifier_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -3230,10 +3230,10 @@ pub unsafe fn xcb_input_set_device_modifier_mapping_sizeof (_buffer :  *c_void) 
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_set_device_modifier_mapping (c : *connection,
+pub fn xcb_input_set_device_modifier_mapping (c : *mut connection,
                                                  device_id :  u8,
                                                  keycodes_per_modifier :  u8,
-                                                 keymaps : *u8) -> set_device_modifier_mapping_cookie;
+                                                 keymaps : *mut u8) -> set_device_modifier_mapping_cookie;
 
 /**
  *
@@ -3246,10 +3246,10 @@ pub unsafe fn xcb_input_set_device_modifier_mapping (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_input_set_device_modifier_mapping_unchecked (c : *connection,
+pub fn xcb_input_set_device_modifier_mapping_unchecked (c : *mut connection,
                                                            device_id :  u8,
                                                            keycodes_per_modifier :  u8,
-                                                           keymaps : *u8) -> set_device_modifier_mapping_cookie;
+                                                           keymaps : *mut u8) -> set_device_modifier_mapping_cookie;
 
 /**
  * Return the reply
@@ -3265,11 +3265,11 @@ pub unsafe fn xcb_input_set_device_modifier_mapping_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_input_set_device_modifier_mapping_reply (c : *connection,
+pub fn xcb_input_set_device_modifier_mapping_reply (c : *mut connection,
                                                        cookie : set_device_modifier_mapping_cookie,
-                                                       e : **generic_error) -> *set_device_modifier_mapping_reply;
+                                                       e : *mut *mut generic_error) -> *mut set_device_modifier_mapping_reply;
 
-pub unsafe fn xcb_input_get_device_button_mapping_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_input_get_device_button_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -3279,7 +3279,7 @@ pub unsafe fn xcb_input_get_device_button_mapping_sizeof (_buffer :  *c_void) ->
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_get_device_button_mapping (c : *connection,
+pub fn xcb_input_get_device_button_mapping (c : *mut connection,
                                                device_id :  u8) -> get_device_button_mapping_cookie;
 
 /**
@@ -3293,16 +3293,16 @@ pub unsafe fn xcb_input_get_device_button_mapping (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_input_get_device_button_mapping_unchecked (c : *connection,
+pub fn xcb_input_get_device_button_mapping_unchecked (c : *mut connection,
                                                          device_id :  u8) -> get_device_button_mapping_cookie;
 
-pub unsafe fn xcb_input_get_device_button_mapping_map (R : *get_device_button_mapping_reply) -> *u8;
+pub fn xcb_input_get_device_button_mapping_map (R : *mut get_device_button_mapping_reply) -> *mut u8;
 
 
-pub unsafe fn xcb_input_get_device_button_mapping_map_length (R : *get_device_button_mapping_reply) -> c_int;
+pub fn xcb_input_get_device_button_mapping_map_length (R : *mut get_device_button_mapping_reply) -> c_int;
 
 
-pub unsafe fn xcb_input_get_device_button_mapping_map_end (R : *get_device_button_mapping_reply) -> generic_iterator;
+pub fn xcb_input_get_device_button_mapping_map_end (R : *mut get_device_button_mapping_reply) -> generic_iterator;
 
 /**
  * Return the reply
@@ -3318,11 +3318,11 @@ pub unsafe fn xcb_input_get_device_button_mapping_map_end (R : *get_device_butto
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_input_get_device_button_mapping_reply (c : *connection,
+pub fn xcb_input_get_device_button_mapping_reply (c : *mut connection,
                                                      cookie : get_device_button_mapping_cookie,
-                                                     e : **generic_error) -> *get_device_button_mapping_reply;
+                                                     e : *mut *mut generic_error) -> *mut get_device_button_mapping_reply;
 
-pub unsafe fn xcb_input_set_device_button_mapping_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_input_set_device_button_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -3332,10 +3332,10 @@ pub unsafe fn xcb_input_set_device_button_mapping_sizeof (_buffer :  *c_void) ->
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_set_device_button_mapping (c : *connection,
+pub fn xcb_input_set_device_button_mapping (c : *mut connection,
                                                device_id :  u8,
                                                map_size :  u8,
-                                               map : *u8) -> set_device_button_mapping_cookie;
+                                               map : *mut u8) -> set_device_button_mapping_cookie;
 
 /**
  *
@@ -3348,10 +3348,10 @@ pub unsafe fn xcb_input_set_device_button_mapping (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_input_set_device_button_mapping_unchecked (c : *connection,
+pub fn xcb_input_set_device_button_mapping_unchecked (c : *mut connection,
                                                          device_id :  u8,
                                                          map_size :  u8,
-                                                         map : *u8) -> set_device_button_mapping_cookie;
+                                                         map : *mut u8) -> set_device_button_mapping_cookie;
 
 /**
  * Return the reply
@@ -3367,9 +3367,9 @@ pub unsafe fn xcb_input_set_device_button_mapping_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_input_set_device_button_mapping_reply (c : *connection,
+pub fn xcb_input_set_device_button_mapping_reply (c : *mut connection,
                                                      cookie : set_device_button_mapping_cookie,
-                                                     e : **generic_error) -> *set_device_button_mapping_reply;
+                                                     e : *mut *mut generic_error) -> *mut set_device_button_mapping_reply;
 
 /**
  *
@@ -3379,7 +3379,7 @@ pub unsafe fn xcb_input_set_device_button_mapping_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_query_device_state (c : *connection,
+pub fn xcb_input_query_device_state (c : *mut connection,
                                         device_id :  u8) -> query_device_state_cookie;
 
 /**
@@ -3393,7 +3393,7 @@ pub unsafe fn xcb_input_query_device_state (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_input_query_device_state_unchecked (c : *connection,
+pub fn xcb_input_query_device_state_unchecked (c : *mut connection,
                                                   device_id :  u8) -> query_device_state_cookie;
 
 /**
@@ -3410,9 +3410,9 @@ pub unsafe fn xcb_input_query_device_state_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_input_query_device_state_reply (c : *connection,
+pub fn xcb_input_query_device_state_reply (c : *mut connection,
                                               cookie : query_device_state_cookie,
-                                              e : **generic_error) -> *query_device_state_reply;
+                                              e : *mut *mut generic_error) -> *mut query_device_state_reply;
 
 /**
  * Get the next element of the iterator
@@ -3424,7 +3424,7 @@ pub unsafe fn xcb_input_query_device_state_reply (c : *connection,
  *
  *
  */
-pub unsafe fn xcb_input_input_state_next (i:*input_state_iterator) -> c_void;
+pub fn xcb_input_input_state_next (i:*mut input_state_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3435,7 +3435,7 @@ pub unsafe fn xcb_input_input_state_next (i:*input_state_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_input_state_end (i:input_state_iterator) -> generic_iterator;
+pub fn xcb_input_input_state_end (i:input_state_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3447,7 +3447,7 @@ pub unsafe fn xcb_input_input_state_end (i:input_state_iterator) -> generic_iter
  *
  *
  */
-pub unsafe fn xcb_input_key_state_next (i:*key_state_iterator) -> c_void;
+pub fn xcb_input_key_state_next (i:*mut key_state_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3458,7 +3458,7 @@ pub unsafe fn xcb_input_key_state_next (i:*key_state_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_key_state_end (i:key_state_iterator) -> generic_iterator;
+pub fn xcb_input_key_state_end (i:key_state_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3470,7 +3470,7 @@ pub unsafe fn xcb_input_key_state_end (i:key_state_iterator) -> generic_iterator
  *
  *
  */
-pub unsafe fn xcb_input_button_state_next (i:*button_state_iterator) -> c_void;
+pub fn xcb_input_button_state_next (i:*mut button_state_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3481,17 +3481,17 @@ pub unsafe fn xcb_input_button_state_next (i:*button_state_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_button_state_end (i:button_state_iterator) -> generic_iterator;
+pub fn xcb_input_button_state_end (i:button_state_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_input_valuator_state_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_input_valuator_state_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_input_valuator_state_valuators (R : *valuator_state) -> *u32;
-
-
-pub unsafe fn xcb_input_valuator_state_valuators_length (R : *valuator_state) -> c_int;
+pub fn xcb_input_valuator_state_valuators (R : *mut valuator_state) -> *mut u32;
 
 
-pub unsafe fn xcb_input_valuator_state_valuators_end (R : *valuator_state) -> generic_iterator;
+pub fn xcb_input_valuator_state_valuators_length (R : *mut valuator_state) -> c_int;
+
+
+pub fn xcb_input_valuator_state_valuators_end (R : *mut valuator_state) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3503,7 +3503,7 @@ pub unsafe fn xcb_input_valuator_state_valuators_end (R : *valuator_state) -> ge
  *
  *
  */
-pub unsafe fn xcb_input_valuator_state_next (i:*valuator_state_iterator) -> c_void;
+pub fn xcb_input_valuator_state_next (i:*mut valuator_state_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3514,9 +3514,9 @@ pub unsafe fn xcb_input_valuator_state_next (i:*valuator_state_iterator) -> c_vo
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_valuator_state_end (i:valuator_state_iterator) -> generic_iterator;
+pub fn xcb_input_valuator_state_end (i:valuator_state_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_input_send_extension_event_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_input_send_extension_event_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -3529,14 +3529,14 @@ pub unsafe fn xcb_input_send_extension_event_sizeof (_buffer :  *c_void) -> c_in
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_input_send_extension_event_checked (c : *connection,
+pub fn xcb_input_send_extension_event_checked (c : *mut connection,
                                                   destination :  ffi::xproto::window,
                                                   device_id :  u8,
                                                   propagate :  u8,
                                                   num_classes :  u16,
                                                   num_events :  u8,
-                                                  events : *c_char,
-                                                  classes : *event_class) -> void_cookie;
+                                                  events : *mut c_char,
+                                                  classes : *mut event_class) -> void_cookie;
 
 /**
  *
@@ -3546,14 +3546,14 @@ pub unsafe fn xcb_input_send_extension_event_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_send_extension_event (c : *connection,
+pub fn xcb_input_send_extension_event (c : *mut connection,
                                           destination :  ffi::xproto::window,
                                           device_id :  u8,
                                           propagate :  u8,
                                           num_classes :  u16,
                                           num_events :  u8,
-                                          events : *c_char,
-                                          classes : *event_class) -> void_cookie;
+                                          events : *mut c_char,
+                                          classes : *mut event_class) -> void_cookie;
 
 /**
  *
@@ -3566,7 +3566,7 @@ pub unsafe fn xcb_input_send_extension_event (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_input_device_bell_checked (c : *connection,
+pub fn xcb_input_device_bell_checked (c : *mut connection,
                                          device_id :  u8,
                                          feedback_id :  u8,
                                          feedback_class :  u8,
@@ -3580,13 +3580,13 @@ pub unsafe fn xcb_input_device_bell_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_device_bell (c : *connection,
+pub fn xcb_input_device_bell (c : *mut connection,
                                  device_id :  u8,
                                  feedback_id :  u8,
                                  feedback_class :  u8,
                                  percent :  i8) -> void_cookie;
 
-pub unsafe fn xcb_input_set_device_valuators_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_input_set_device_valuators_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -3596,11 +3596,11 @@ pub unsafe fn xcb_input_set_device_valuators_sizeof (_buffer :  *c_void) -> c_in
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_set_device_valuators (c : *connection,
+pub fn xcb_input_set_device_valuators (c : *mut connection,
                                           device_id :  u8,
                                           first_valuator :  u8,
                                           num_valuators :  u8,
-                                          valuators : *i32) -> set_device_valuators_cookie;
+                                          valuators : *mut i32) -> set_device_valuators_cookie;
 
 /**
  *
@@ -3613,11 +3613,11 @@ pub unsafe fn xcb_input_set_device_valuators (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_input_set_device_valuators_unchecked (c : *connection,
+pub fn xcb_input_set_device_valuators_unchecked (c : *mut connection,
                                                     device_id :  u8,
                                                     first_valuator :  u8,
                                                     num_valuators :  u8,
-                                                    valuators : *i32) -> set_device_valuators_cookie;
+                                                    valuators : *mut i32) -> set_device_valuators_cookie;
 
 /**
  * Return the reply
@@ -3633,9 +3633,9 @@ pub unsafe fn xcb_input_set_device_valuators_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_input_set_device_valuators_reply (c : *connection,
+pub fn xcb_input_set_device_valuators_reply (c : *mut connection,
                                                 cookie : set_device_valuators_cookie,
-                                                e : **generic_error) -> *set_device_valuators_reply;
+                                                e : *mut *mut generic_error) -> *mut set_device_valuators_reply;
 
 /**
  *
@@ -3645,7 +3645,7 @@ pub unsafe fn xcb_input_set_device_valuators_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_input_get_device_control (c : *connection,
+pub fn xcb_input_get_device_control (c : *mut connection,
                                         control_id :  u16,
                                         device_id :  u8) -> get_device_control_cookie;
 
@@ -3660,7 +3660,7 @@ pub unsafe fn xcb_input_get_device_control (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_input_get_device_control_unchecked (c : *connection,
+pub fn xcb_input_get_device_control_unchecked (c : *mut connection,
                                                   control_id :  u16,
                                                   device_id :  u8) -> get_device_control_cookie;
 
@@ -3678,9 +3678,9 @@ pub unsafe fn xcb_input_get_device_control_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_input_get_device_control_reply (c : *connection,
+pub fn xcb_input_get_device_control_reply (c : *mut connection,
                                               cookie : get_device_control_cookie,
-                                              e : **generic_error) -> *get_device_control_reply;
+                                              e : *mut *mut generic_error) -> *mut get_device_control_reply;
 
 /**
  * Get the next element of the iterator
@@ -3692,7 +3692,7 @@ pub unsafe fn xcb_input_get_device_control_reply (c : *connection,
  *
  *
  */
-pub unsafe fn xcb_input_device_state_next (i:*device_state_iterator) -> c_void;
+pub fn xcb_input_device_state_next (i:*mut device_state_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3703,33 +3703,33 @@ pub unsafe fn xcb_input_device_state_next (i:*device_state_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_device_state_end (i:device_state_iterator) -> generic_iterator;
+pub fn xcb_input_device_state_end (i:device_state_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_input_device_resolution_state_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_input_device_resolution_state_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_input_device_resolution_state_resolution_values (R : *device_resolution_state) -> *u32;
-
-
-pub unsafe fn xcb_input_device_resolution_state_resolution_values_length (R : *device_resolution_state) -> c_int;
+pub fn xcb_input_device_resolution_state_resolution_values (R : *mut device_resolution_state) -> *mut u32;
 
 
-pub unsafe fn xcb_input_device_resolution_state_resolution_values_end (R : *device_resolution_state) -> generic_iterator;
-
-pub unsafe fn xcb_input_device_resolution_state_resolution_min (R : *device_resolution_state) -> *u32;
+pub fn xcb_input_device_resolution_state_resolution_values_length (R : *mut device_resolution_state) -> c_int;
 
 
-pub unsafe fn xcb_input_device_resolution_state_resolution_min_length (R : *device_resolution_state) -> c_int;
+pub fn xcb_input_device_resolution_state_resolution_values_end (R : *mut device_resolution_state) -> generic_iterator;
+
+pub fn xcb_input_device_resolution_state_resolution_min (R : *mut device_resolution_state) -> *mut u32;
 
 
-pub unsafe fn xcb_input_device_resolution_state_resolution_min_end (R : *device_resolution_state) -> generic_iterator;
-
-pub unsafe fn xcb_input_device_resolution_state_resolution_max (R : *device_resolution_state) -> *u32;
+pub fn xcb_input_device_resolution_state_resolution_min_length (R : *mut device_resolution_state) -> c_int;
 
 
-pub unsafe fn xcb_input_device_resolution_state_resolution_max_length (R : *device_resolution_state) -> c_int;
+pub fn xcb_input_device_resolution_state_resolution_min_end (R : *mut device_resolution_state) -> generic_iterator;
+
+pub fn xcb_input_device_resolution_state_resolution_max (R : *mut device_resolution_state) -> *mut u32;
 
 
-pub unsafe fn xcb_input_device_resolution_state_resolution_max_end (R : *device_resolution_state) -> generic_iterator;
+pub fn xcb_input_device_resolution_state_resolution_max_length (R : *mut device_resolution_state) -> c_int;
+
+
+pub fn xcb_input_device_resolution_state_resolution_max_end (R : *mut device_resolution_state) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3741,7 +3741,7 @@ pub unsafe fn xcb_input_device_resolution_state_resolution_max_end (R : *device_
  *
  *
  */
-pub unsafe fn xcb_input_device_resolution_state_next (i:*device_resolution_state_iterator) -> c_void;
+pub fn xcb_input_device_resolution_state_next (i:*mut device_resolution_state_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3752,7 +3752,7 @@ pub unsafe fn xcb_input_device_resolution_state_next (i:*device_resolution_state
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_device_resolution_state_end (i:device_resolution_state_iterator) -> generic_iterator;
+pub fn xcb_input_device_resolution_state_end (i:device_resolution_state_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3764,7 +3764,7 @@ pub unsafe fn xcb_input_device_resolution_state_end (i:device_resolution_state_i
  *
  *
  */
-pub unsafe fn xcb_input_device_abs_calib_state_next (i:*device_abs_calib_state_iterator) -> c_void;
+pub fn xcb_input_device_abs_calib_state_next (i:*mut device_abs_calib_state_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3775,7 +3775,7 @@ pub unsafe fn xcb_input_device_abs_calib_state_next (i:*device_abs_calib_state_i
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_device_abs_calib_state_end (i:device_abs_calib_state_iterator) -> generic_iterator;
+pub fn xcb_input_device_abs_calib_state_end (i:device_abs_calib_state_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3787,7 +3787,7 @@ pub unsafe fn xcb_input_device_abs_calib_state_end (i:device_abs_calib_state_ite
  *
  *
  */
-pub unsafe fn xcb_input_device_abs_area_state_next (i:*device_abs_area_state_iterator) -> c_void;
+pub fn xcb_input_device_abs_area_state_next (i:*mut device_abs_area_state_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3798,7 +3798,7 @@ pub unsafe fn xcb_input_device_abs_area_state_next (i:*device_abs_area_state_ite
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_device_abs_area_state_end (i:device_abs_area_state_iterator) -> generic_iterator;
+pub fn xcb_input_device_abs_area_state_end (i:device_abs_area_state_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3810,7 +3810,7 @@ pub unsafe fn xcb_input_device_abs_area_state_end (i:device_abs_area_state_itera
  *
  *
  */
-pub unsafe fn xcb_input_device_core_state_next (i:*device_core_state_iterator) -> c_void;
+pub fn xcb_input_device_core_state_next (i:*mut device_core_state_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3821,7 +3821,7 @@ pub unsafe fn xcb_input_device_core_state_next (i:*device_core_state_iterator) -
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_device_core_state_end (i:device_core_state_iterator) -> generic_iterator;
+pub fn xcb_input_device_core_state_end (i:device_core_state_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3833,7 +3833,7 @@ pub unsafe fn xcb_input_device_core_state_end (i:device_core_state_iterator) -> 
  *
  *
  */
-pub unsafe fn xcb_input_device_enable_state_next (i:*device_enable_state_iterator) -> c_void;
+pub fn xcb_input_device_enable_state_next (i:*mut device_enable_state_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3844,7 +3844,7 @@ pub unsafe fn xcb_input_device_enable_state_next (i:*device_enable_state_iterato
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_device_enable_state_end (i:device_enable_state_iterator) -> generic_iterator;
+pub fn xcb_input_device_enable_state_end (i:device_enable_state_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3856,7 +3856,7 @@ pub unsafe fn xcb_input_device_enable_state_end (i:device_enable_state_iterator)
  *
  *
  */
-pub unsafe fn xcb_input_device_ctl_next (i:*device_ctl_iterator) -> c_void;
+pub fn xcb_input_device_ctl_next (i:*mut device_ctl_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3867,17 +3867,17 @@ pub unsafe fn xcb_input_device_ctl_next (i:*device_ctl_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_device_ctl_end (i:device_ctl_iterator) -> generic_iterator;
+pub fn xcb_input_device_ctl_end (i:device_ctl_iterator) -> generic_iterator;
 
-pub unsafe fn xcb_input_device_resolution_ctl_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_input_device_resolution_ctl_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_input_device_resolution_ctl_resolution_values (R : *device_resolution_ctl) -> *u32;
-
-
-pub unsafe fn xcb_input_device_resolution_ctl_resolution_values_length (R : *device_resolution_ctl) -> c_int;
+pub fn xcb_input_device_resolution_ctl_resolution_values (R : *mut device_resolution_ctl) -> *mut u32;
 
 
-pub unsafe fn xcb_input_device_resolution_ctl_resolution_values_end (R : *device_resolution_ctl) -> generic_iterator;
+pub fn xcb_input_device_resolution_ctl_resolution_values_length (R : *mut device_resolution_ctl) -> c_int;
+
+
+pub fn xcb_input_device_resolution_ctl_resolution_values_end (R : *mut device_resolution_ctl) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3889,7 +3889,7 @@ pub unsafe fn xcb_input_device_resolution_ctl_resolution_values_end (R : *device
  *
  *
  */
-pub unsafe fn xcb_input_device_resolution_ctl_next (i:*device_resolution_ctl_iterator) -> c_void;
+pub fn xcb_input_device_resolution_ctl_next (i:*mut device_resolution_ctl_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3900,7 +3900,7 @@ pub unsafe fn xcb_input_device_resolution_ctl_next (i:*device_resolution_ctl_ite
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_device_resolution_ctl_end (i:device_resolution_ctl_iterator) -> generic_iterator;
+pub fn xcb_input_device_resolution_ctl_end (i:device_resolution_ctl_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3912,7 +3912,7 @@ pub unsafe fn xcb_input_device_resolution_ctl_end (i:device_resolution_ctl_itera
  *
  *
  */
-pub unsafe fn xcb_input_device_abs_calib_ctl_next (i:*device_abs_calib_ctl_iterator) -> c_void;
+pub fn xcb_input_device_abs_calib_ctl_next (i:*mut device_abs_calib_ctl_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3923,7 +3923,7 @@ pub unsafe fn xcb_input_device_abs_calib_ctl_next (i:*device_abs_calib_ctl_itera
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_device_abs_calib_ctl_end (i:device_abs_calib_ctl_iterator) -> generic_iterator;
+pub fn xcb_input_device_abs_calib_ctl_end (i:device_abs_calib_ctl_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3935,7 +3935,7 @@ pub unsafe fn xcb_input_device_abs_calib_ctl_end (i:device_abs_calib_ctl_iterato
  *
  *
  */
-pub unsafe fn xcb_input_device_abs_area_ctrl_next (i:*device_abs_area_ctrl_iterator) -> c_void;
+pub fn xcb_input_device_abs_area_ctrl_next (i:*mut device_abs_area_ctrl_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3946,7 +3946,7 @@ pub unsafe fn xcb_input_device_abs_area_ctrl_next (i:*device_abs_area_ctrl_itera
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_device_abs_area_ctrl_end (i:device_abs_area_ctrl_iterator) -> generic_iterator;
+pub fn xcb_input_device_abs_area_ctrl_end (i:device_abs_area_ctrl_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3958,7 +3958,7 @@ pub unsafe fn xcb_input_device_abs_area_ctrl_end (i:device_abs_area_ctrl_iterato
  *
  *
  */
-pub unsafe fn xcb_input_device_core_ctrl_next (i:*device_core_ctrl_iterator) -> c_void;
+pub fn xcb_input_device_core_ctrl_next (i:*mut device_core_ctrl_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3969,7 +3969,7 @@ pub unsafe fn xcb_input_device_core_ctrl_next (i:*device_core_ctrl_iterator) -> 
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_device_core_ctrl_end (i:device_core_ctrl_iterator) -> generic_iterator;
+pub fn xcb_input_device_core_ctrl_end (i:device_core_ctrl_iterator) -> generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3981,7 +3981,7 @@ pub unsafe fn xcb_input_device_core_ctrl_end (i:device_core_ctrl_iterator) -> ge
  *
  *
  */
-pub unsafe fn xcb_input_device_enable_ctrl_next (i:*device_enable_ctrl_iterator) -> c_void;
+pub fn xcb_input_device_enable_ctrl_next (i:*mut device_enable_ctrl_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3992,6 +3992,6 @@ pub unsafe fn xcb_input_device_enable_ctrl_next (i:*device_enable_ctrl_iterator)
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_input_device_enable_ctrl_end (i:device_enable_ctrl_iterator) -> generic_iterator;
+pub fn xcb_input_device_enable_ctrl_end (i:device_enable_ctrl_iterator) -> generic_iterator;
 }
 

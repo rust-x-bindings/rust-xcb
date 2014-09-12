@@ -4,8 +4,8 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(unused_unsafe)];
+#![allow(unused_imports)]
+#![allow(unused_unsafe)]
 use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
@@ -16,67 +16,67 @@ use base::*;
 use ffi;
 use ffi::xinerama::*;
 use std::option::Option;
-use std::iterator::Iterator;
+use std::iter::Iterator;
 
 use xproto;
 pub type ScreenInfo = base::Struct<screen_info>;
 
 pub type ScreenInfoIterator = screen_info_iterator;
 
-pub type QueryVersionCookie<'self> = base::Cookie<'self, query_version_cookie>;
+pub type QueryVersionCookie<'s> = base::Cookie<'s, query_version_cookie>;
 
 /** Opcode for xcb_xinerama_query_version. */
 pub static XCB_XINERAMA_QUERY_VERSION : u8 = 0;
 pub type QueryVersionReply = base::Reply<query_version_reply>;
-pub type GetStateCookie<'self> = base::Cookie<'self, get_state_cookie>;
+pub type GetStateCookie<'s> = base::Cookie<'s, get_state_cookie>;
 
 /** Opcode for xcb_xinerama_get_state. */
 pub static XCB_XINERAMA_GET_STATE : u8 = 1;
 pub type GetStateReply = base::Reply<get_state_reply>;
-pub type GetScreenCountCookie<'self> = base::Cookie<'self, get_screen_count_cookie>;
+pub type GetScreenCountCookie<'s> = base::Cookie<'s, get_screen_count_cookie>;
 
 /** Opcode for xcb_xinerama_get_screen_count. */
 pub static XCB_XINERAMA_GET_SCREEN_COUNT : u8 = 2;
 pub type GetScreenCountReply = base::Reply<get_screen_count_reply>;
-pub type GetScreenSizeCookie<'self> = base::Cookie<'self, get_screen_size_cookie>;
+pub type GetScreenSizeCookie<'s> = base::Cookie<'s, get_screen_size_cookie>;
 
 /** Opcode for xcb_xinerama_get_screen_size. */
 pub static XCB_XINERAMA_GET_SCREEN_SIZE : u8 = 3;
 pub type GetScreenSizeReply = base::Reply<get_screen_size_reply>;
-pub type IsActiveCookie<'self> = base::Cookie<'self, is_active_cookie>;
+pub type IsActiveCookie<'s> = base::Cookie<'s, is_active_cookie>;
 
 /** Opcode for xcb_xinerama_is_active. */
 pub static XCB_XINERAMA_IS_ACTIVE : u8 = 4;
 pub type IsActiveReply = base::Reply<is_active_reply>;
-pub type QueryScreensCookie<'self> = base::Cookie<'self, query_screens_cookie>;
+pub type QueryScreensCookie<'s> = base::Cookie<'s, query_screens_cookie>;
 
 /** Opcode for xcb_xinerama_query_screens. */
 pub static XCB_XINERAMA_QUERY_SCREENS : u8 = 5;
 
 impl base::Struct<screen_info> {
   pub fn x_org(&self) -> i16 {
-    unsafe { accessor!(x_org -> i16, self.strct) }
+    unsafe { accessor!(x_org -> i16, s.strct) }
   }
 
   pub fn y_org(&self) -> i16 {
-    unsafe { accessor!(y_org -> i16, self.strct) }
+    unsafe { accessor!(y_org -> i16, s.strct) }
   }
 
   pub fn width(&self) -> u16 {
-    unsafe { accessor!(width -> u16, self.strct) }
+    unsafe { accessor!(width -> u16, s.strct) }
   }
 
   pub fn height(&self) -> u16 {
-    unsafe { accessor!(height -> u16, self.strct) }
+    unsafe { accessor!(height -> u16, s.strct) }
   }
 
 }
 
-impl<'self, ScreenInfo> Iterator<&'self ScreenInfo> for ScreenInfoIterator {
-    pub fn next(&mut self) -> Option<&'self ScreenInfo> {
+impl<'s, ScreenInfo> Iterator<&'s ScreenInfo> for ScreenInfoIterator {
+    pub fn next(&mut self) -> Option<&'s ScreenInfo> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *screen_info_iterator = cast::transmute(self);
+            let iter : *mut screen_info_iterator = cast::transmute(self);
             let data = (*iter).data;
             xcb_xinerama_screen_info_next(iter);
             Some(cast::transmute(data))
@@ -115,7 +115,7 @@ impl base::Reply<query_version_reply> {
   }
 
 }
-impl_reply_cookie!(QueryVersionCookie<'self>, query_version_reply, QueryVersionReply, xcb_xinerama_query_version_reply)
+impl_reply_cookie!(QueryVersionCookie<'s>, query_version_reply, QueryVersionReply, xcb_xinerama_query_version_reply)
 
 pub fn GetState<'r> (c : &'r Connection,
                  window : xproto::Window) -> GetStateCookie<'r> {
@@ -144,7 +144,7 @@ impl base::Reply<get_state_reply> {
   }
 
 }
-impl_reply_cookie!(GetStateCookie<'self>, get_state_reply, GetStateReply, xcb_xinerama_get_state_reply)
+impl_reply_cookie!(GetStateCookie<'s>, get_state_reply, GetStateReply, xcb_xinerama_get_state_reply)
 
 pub fn GetScreenCount<'r> (c : &'r Connection,
                        window : xproto::Window) -> GetScreenCountCookie<'r> {
@@ -173,7 +173,7 @@ impl base::Reply<get_screen_count_reply> {
   }
 
 }
-impl_reply_cookie!(GetScreenCountCookie<'self>, get_screen_count_reply, GetScreenCountReply, xcb_xinerama_get_screen_count_reply)
+impl_reply_cookie!(GetScreenCountCookie<'s>, get_screen_count_reply, GetScreenCountReply, xcb_xinerama_get_screen_count_reply)
 
 pub fn GetScreenSize<'r> (c : &'r Connection,
                       window : xproto::Window,
@@ -214,7 +214,7 @@ impl base::Reply<get_screen_size_reply> {
   }
 
 }
-impl_reply_cookie!(GetScreenSizeCookie<'self>, get_screen_size_reply, GetScreenSizeReply, xcb_xinerama_get_screen_size_reply)
+impl_reply_cookie!(GetScreenSizeCookie<'s>, get_screen_size_reply, GetScreenSizeReply, xcb_xinerama_get_screen_size_reply)
 
 pub fn IsActive<'r> (c : &'r Connection) -> IsActiveCookie<'r> {
   unsafe {
@@ -235,7 +235,7 @@ impl base::Reply<is_active_reply> {
   }
 
 }
-impl_reply_cookie!(IsActiveCookie<'self>, is_active_reply, IsActiveReply, xcb_xinerama_is_active_reply)
+impl_reply_cookie!(IsActiveCookie<'s>, is_active_reply, IsActiveReply, xcb_xinerama_is_active_reply)
 
 pub type QueryScreensReply = base::Reply<query_screens_reply>;
 pub fn QueryScreens<'r> (c : &'r Connection) -> QueryScreensCookie<'r> {
@@ -257,6 +257,6 @@ impl base::Reply<query_screens_reply> {
   }
 
 }
-impl_reply_cookie!(QueryScreensCookie<'self>, query_screens_reply, QueryScreensReply, xcb_xinerama_query_screens_reply)
+impl_reply_cookie!(QueryScreensCookie<'s>, query_screens_reply, QueryScreensReply, xcb_xinerama_query_screens_reply)
 
 

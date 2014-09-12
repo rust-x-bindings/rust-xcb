@@ -4,8 +4,8 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
@@ -22,7 +22,7 @@ pub type seg = u32;
  * @brief seg_iterator
  **/
 pub struct seg_iterator {
-    data : *seg,
+    data : *mut seg,
     rem  : c_int,
     index: c_int
 }
@@ -163,7 +163,7 @@ pub struct create_pixmap_request {
     offset :         u32
 }
 
-#[link_args="-lxcb-shm"]
+#[link(name="lxcb-shm")]
 pub extern "C" {
 
 /**
@@ -176,7 +176,7 @@ pub extern "C" {
  *
  *
  */
-pub unsafe fn xcb_shm_seg_next (i:*seg_iterator) -> c_void;
+pub fn xcb_shm_seg_next (i:*mut seg_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -187,7 +187,7 @@ pub unsafe fn xcb_shm_seg_next (i:*seg_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_shm_seg_end (i:seg_iterator) -> generic_iterator;
+pub fn xcb_shm_seg_end (i:seg_iterator) -> generic_iterator;
 
 /**
  *
@@ -197,7 +197,7 @@ pub unsafe fn xcb_shm_seg_end (i:seg_iterator) -> generic_iterator;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_shm_query_version (c : *connection) -> query_version_cookie;
+pub fn xcb_shm_query_version (c : *mut connection) -> query_version_cookie;
 
 /**
  *
@@ -210,7 +210,7 @@ pub unsafe fn xcb_shm_query_version (c : *connection) -> query_version_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_shm_query_version_unchecked (c : *connection) -> query_version_cookie;
+pub fn xcb_shm_query_version_unchecked (c : *mut connection) -> query_version_cookie;
 
 /**
  * Return the reply
@@ -226,9 +226,9 @@ pub unsafe fn xcb_shm_query_version_unchecked (c : *connection) -> query_version
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_shm_query_version_reply (c : *connection,
+pub fn xcb_shm_query_version_reply (c : *mut connection,
                                        cookie : query_version_cookie,
-                                       e : **generic_error) -> *query_version_reply;
+                                       e : *mut *mut generic_error) -> *mut query_version_reply;
 
 /**
  *
@@ -241,7 +241,7 @@ pub unsafe fn xcb_shm_query_version_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_shm_attach_checked (c : *connection,
+pub fn xcb_shm_attach_checked (c : *mut connection,
                                   shmseg :  seg,
                                   shmid :  u32,
                                   read_only :  u8) -> void_cookie;
@@ -254,7 +254,7 @@ pub unsafe fn xcb_shm_attach_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_shm_attach (c : *connection,
+pub fn xcb_shm_attach (c : *mut connection,
                           shmseg :  seg,
                           shmid :  u32,
                           read_only :  u8) -> void_cookie;
@@ -270,7 +270,7 @@ pub unsafe fn xcb_shm_attach (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_shm_detach_checked (c : *connection,
+pub fn xcb_shm_detach_checked (c : *mut connection,
                                   shmseg :  seg) -> void_cookie;
 
 /**
@@ -281,7 +281,7 @@ pub unsafe fn xcb_shm_detach_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_shm_detach (c : *connection,
+pub fn xcb_shm_detach (c : *mut connection,
                           shmseg :  seg) -> void_cookie;
 
 /**
@@ -295,7 +295,7 @@ pub unsafe fn xcb_shm_detach (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_shm_put_image_checked (c : *connection,
+pub fn xcb_shm_put_image_checked (c : *mut connection,
                                      drawable :  ffi::xproto::drawable,
                                      gc :  ffi::xproto::gcontext,
                                      total_width :  u16,
@@ -320,7 +320,7 @@ pub unsafe fn xcb_shm_put_image_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_shm_put_image (c : *connection,
+pub fn xcb_shm_put_image (c : *mut connection,
                              drawable :  ffi::xproto::drawable,
                              gc :  ffi::xproto::gcontext,
                              total_width :  u16,
@@ -345,7 +345,7 @@ pub unsafe fn xcb_shm_put_image (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_shm_get_image (c : *connection,
+pub fn xcb_shm_get_image (c : *mut connection,
                              drawable :  ffi::xproto::drawable,
                              x :  i16,
                              y :  i16,
@@ -367,7 +367,7 @@ pub unsafe fn xcb_shm_get_image (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_shm_get_image_unchecked (c : *connection,
+pub fn xcb_shm_get_image_unchecked (c : *mut connection,
                                        drawable :  ffi::xproto::drawable,
                                        x :  i16,
                                        y :  i16,
@@ -392,9 +392,9 @@ pub unsafe fn xcb_shm_get_image_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_shm_get_image_reply (c : *connection,
+pub fn xcb_shm_get_image_reply (c : *mut connection,
                                    cookie : get_image_cookie,
-                                   e : **generic_error) -> *get_image_reply;
+                                   e : *mut *mut generic_error) -> *mut get_image_reply;
 
 /**
  *
@@ -407,7 +407,7 @@ pub unsafe fn xcb_shm_get_image_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_shm_create_pixmap_checked (c : *connection,
+pub fn xcb_shm_create_pixmap_checked (c : *mut connection,
                                          pid :  ffi::xproto::pixmap,
                                          drawable :  ffi::xproto::drawable,
                                          width :  u16,
@@ -424,7 +424,7 @@ pub unsafe fn xcb_shm_create_pixmap_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_shm_create_pixmap (c : *connection,
+pub fn xcb_shm_create_pixmap (c : *mut connection,
                                  pid :  ffi::xproto::pixmap,
                                  drawable :  ffi::xproto::drawable,
                                  width :  u16,

@@ -1,13 +1,13 @@
-#[macro_escape];
+#![macro_escape]
 
 
 macro_rules! impl_reply_cookie {
     ($cookie:ty, $crep:ty, $reply:ty, $func:ident) => (
-        impl<'self> base::ReplyCookie<$crep> for $cookie {
+        impl<'s> base::ReplyCookie<$crep> for $cookie {
             pub fn get_reply(&self) -> Result<$reply,base::GenericError> {
                 use ffi;
                 unsafe {
-                    let err : *ffi::base::generic_error = ::std::ptr::null();
+                    let err : *mut ffi::base::generic_error = ::std::ptr::null();
                     let reply = if self.checked {
                         $func(self.conn.get_raw_conn(), self.cookie, &err)
                     } else {
@@ -16,7 +16,7 @@ macro_rules! impl_reply_cookie {
                     if err.is_null() {
                         return Ok(base::mk_reply(reply));
                     } else {
-                        ::std::libc::free(reply as *::std::libc::c_void);
+                        ::std::libc::free(reply as *mut ::std::libc::c_void);
                         return Err(base::mk_error(err));
                     }
                 }
@@ -33,7 +33,7 @@ macro_rules! accessor {
         unsafe {
             let _len = $lenfn(&$fexpr);
             let _data = $datafn(&$fexpr);
-            std::str::raw::from_buf_len(_data as *u8, _len as uint)
+            std::str::raw::from_buf_len(_data as *mut u8, _len as uint)
         }
     );
     ($ty:ty, $iterfn:ident, $fexpr:expr) => ( //Iterator

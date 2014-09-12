@@ -4,8 +4,8 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
@@ -90,7 +90,7 @@ pub struct grab_control_request {
     pad0 :           [u8,..3]
 }
 
-#[link_args="-lxcb-xtest"]
+#[link(name="lxcb-xtest")]
 pub extern "C" {
 
 /**
@@ -101,7 +101,7 @@ pub extern "C" {
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_test_get_version (c : *connection,
+pub fn xcb_test_get_version (c : *mut connection,
                                 major_version :  u8,
                                 minor_version :  u16) -> get_version_cookie;
 
@@ -116,7 +116,7 @@ pub unsafe fn xcb_test_get_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_test_get_version_unchecked (c : *connection,
+pub fn xcb_test_get_version_unchecked (c : *mut connection,
                                           major_version :  u8,
                                           minor_version :  u16) -> get_version_cookie;
 
@@ -134,9 +134,9 @@ pub unsafe fn xcb_test_get_version_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_test_get_version_reply (c : *connection,
+pub fn xcb_test_get_version_reply (c : *mut connection,
                                       cookie : get_version_cookie,
-                                      e : **generic_error) -> *get_version_reply;
+                                      e : *mut *mut generic_error) -> *mut get_version_reply;
 
 /**
  *
@@ -146,7 +146,7 @@ pub unsafe fn xcb_test_get_version_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_test_compare_cursor (c : *connection,
+pub fn xcb_test_compare_cursor (c : *mut connection,
                                    window :  ffi::xproto::window,
                                    cursor :  ffi::xproto::cursor) -> compare_cursor_cookie;
 
@@ -161,7 +161,7 @@ pub unsafe fn xcb_test_compare_cursor (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_test_compare_cursor_unchecked (c : *connection,
+pub fn xcb_test_compare_cursor_unchecked (c : *mut connection,
                                              window :  ffi::xproto::window,
                                              cursor :  ffi::xproto::cursor) -> compare_cursor_cookie;
 
@@ -179,9 +179,9 @@ pub unsafe fn xcb_test_compare_cursor_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_test_compare_cursor_reply (c : *connection,
+pub fn xcb_test_compare_cursor_reply (c : *mut connection,
                                          cookie : compare_cursor_cookie,
-                                         e : **generic_error) -> *compare_cursor_reply;
+                                         e : *mut *mut generic_error) -> *mut compare_cursor_reply;
 
 /**
  *
@@ -194,7 +194,7 @@ pub unsafe fn xcb_test_compare_cursor_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_test_fake_input_checked (c : *connection,
+pub fn xcb_test_fake_input_checked (c : *mut connection,
                                        type_ :  u8,
                                        detail :  u8,
                                        time :  u32,
@@ -211,7 +211,7 @@ pub unsafe fn xcb_test_fake_input_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_test_fake_input (c : *connection,
+pub fn xcb_test_fake_input (c : *mut connection,
                                type_ :  u8,
                                detail :  u8,
                                time :  u32,
@@ -231,7 +231,7 @@ pub unsafe fn xcb_test_fake_input (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_test_grab_control_checked (c : *connection,
+pub fn xcb_test_grab_control_checked (c : *mut connection,
                                          impervious :  u8) -> void_cookie;
 
 /**
@@ -242,7 +242,7 @@ pub unsafe fn xcb_test_grab_control_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_test_grab_control (c : *connection,
+pub fn xcb_test_grab_control (c : *mut connection,
                                  impervious :  u8) -> void_cookie;
 }
 

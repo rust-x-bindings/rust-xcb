@@ -4,8 +4,8 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 use std;
 use std::libc::*;
 use std::{cast,num,ptr,str,libc};
@@ -133,7 +133,7 @@ pub struct notify_event {
     pad1 :              [u8,..14]
 }
 
-#[link_args="-lxcb-screensaver"]
+#[link(name="lxcb-screensaver")]
 pub extern "C" {
 
 /**
@@ -144,7 +144,7 @@ pub extern "C" {
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_screensaver_query_version (c : *connection,
+pub fn xcb_screensaver_query_version (c : *mut connection,
                                          client_major_version :  u8,
                                          client_minor_version :  u8) -> query_version_cookie;
 
@@ -159,7 +159,7 @@ pub unsafe fn xcb_screensaver_query_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_screensaver_query_version_unchecked (c : *connection,
+pub fn xcb_screensaver_query_version_unchecked (c : *mut connection,
                                                    client_major_version :  u8,
                                                    client_minor_version :  u8) -> query_version_cookie;
 
@@ -177,9 +177,9 @@ pub unsafe fn xcb_screensaver_query_version_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_screensaver_query_version_reply (c : *connection,
+pub fn xcb_screensaver_query_version_reply (c : *mut connection,
                                                cookie : query_version_cookie,
-                                               e : **generic_error) -> *query_version_reply;
+                                               e : *mut *mut generic_error) -> *mut query_version_reply;
 
 /**
  *
@@ -189,7 +189,7 @@ pub unsafe fn xcb_screensaver_query_version_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_screensaver_query_info (c : *connection,
+pub fn xcb_screensaver_query_info (c : *mut connection,
                                       drawable :  ffi::xproto::drawable) -> query_info_cookie;
 
 /**
@@ -203,7 +203,7 @@ pub unsafe fn xcb_screensaver_query_info (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_screensaver_query_info_unchecked (c : *connection,
+pub fn xcb_screensaver_query_info_unchecked (c : *mut connection,
                                                 drawable :  ffi::xproto::drawable) -> query_info_cookie;
 
 /**
@@ -220,9 +220,9 @@ pub unsafe fn xcb_screensaver_query_info_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_screensaver_query_info_reply (c : *connection,
+pub fn xcb_screensaver_query_info_reply (c : *mut connection,
                                             cookie : query_info_cookie,
-                                            e : **generic_error) -> *query_info_reply;
+                                            e : *mut *mut generic_error) -> *mut query_info_reply;
 
 /**
  *
@@ -235,7 +235,7 @@ pub unsafe fn xcb_screensaver_query_info_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_screensaver_select_input_checked (c : *connection,
+pub fn xcb_screensaver_select_input_checked (c : *mut connection,
                                                 drawable :  ffi::xproto::drawable,
                                                 event_mask :  u32) -> void_cookie;
 
@@ -247,11 +247,11 @@ pub unsafe fn xcb_screensaver_select_input_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_screensaver_select_input (c : *connection,
+pub fn xcb_screensaver_select_input (c : *mut connection,
                                         drawable :  ffi::xproto::drawable,
                                         event_mask :  u32) -> void_cookie;
 
-pub unsafe fn xcb_screensaver_set_attributes_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_screensaver_set_attributes_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -264,7 +264,7 @@ pub unsafe fn xcb_screensaver_set_attributes_sizeof (_buffer :  *c_void) -> c_in
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_screensaver_set_attributes_checked (c : *connection,
+pub fn xcb_screensaver_set_attributes_checked (c : *mut connection,
                                                   drawable :  ffi::xproto::drawable,
                                                   x :  i16,
                                                   y :  i16,
@@ -275,7 +275,7 @@ pub unsafe fn xcb_screensaver_set_attributes_checked (c : *connection,
                                                   depth :  u8,
                                                   visual :  ffi::xproto::visualid,
                                                   value_mask :  u32,
-                                                  value_list : *u32) -> void_cookie;
+                                                  value_list : *mut u32) -> void_cookie;
 
 /**
  *
@@ -285,7 +285,7 @@ pub unsafe fn xcb_screensaver_set_attributes_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_screensaver_set_attributes (c : *connection,
+pub fn xcb_screensaver_set_attributes (c : *mut connection,
                                           drawable :  ffi::xproto::drawable,
                                           x :  i16,
                                           y :  i16,
@@ -296,7 +296,7 @@ pub unsafe fn xcb_screensaver_set_attributes (c : *connection,
                                           depth :  u8,
                                           visual :  ffi::xproto::visualid,
                                           value_mask :  u32,
-                                          value_list : *u32) -> void_cookie;
+                                          value_list : *mut u32) -> void_cookie;
 
 /**
  *
@@ -309,7 +309,7 @@ pub unsafe fn xcb_screensaver_set_attributes (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_screensaver_unset_attributes_checked (c : *connection,
+pub fn xcb_screensaver_unset_attributes_checked (c : *mut connection,
                                                     drawable :  ffi::xproto::drawable) -> void_cookie;
 
 /**
@@ -320,7 +320,7 @@ pub unsafe fn xcb_screensaver_unset_attributes_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_screensaver_unset_attributes (c : *connection,
+pub fn xcb_screensaver_unset_attributes (c : *mut connection,
                                             drawable :  ffi::xproto::drawable) -> void_cookie;
 
 /**
@@ -334,7 +334,7 @@ pub unsafe fn xcb_screensaver_unset_attributes (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_screensaver_suspend_checked (c : *connection,
+pub fn xcb_screensaver_suspend_checked (c : *mut connection,
                                            suspend :  u8) -> void_cookie;
 
 /**
@@ -345,7 +345,7 @@ pub unsafe fn xcb_screensaver_suspend_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_screensaver_suspend (c : *connection,
+pub fn xcb_screensaver_suspend (c : *mut connection,
                                    suspend :  u8) -> void_cookie;
 }
 
