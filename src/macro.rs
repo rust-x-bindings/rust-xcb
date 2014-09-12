@@ -16,7 +16,7 @@ macro_rules! impl_reply_cookie {
                     if err.is_null() {
                         return Ok(base::mk_reply(reply));
                     } else {
-                        ::std::libc::free(reply as *mut ::std::libc::c_void);
+                        ::libc::free(reply as *mut ::libc::c_void);
                         return Err(base::mk_error(err));
                     }
                 }

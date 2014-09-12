@@ -4,12 +4,10 @@
  */
 
 //Make the compiler quiet
-#![allow(unused_imports)]
 #![allow(non_camel_case_types)]
 use std;
 use libc::*;
 use std::{mem,num,ptr,str};
-use ffi::base::*;
 use ffi;
 use ffi::xproto;
 
