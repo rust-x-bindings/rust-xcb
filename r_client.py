@@ -1086,7 +1086,7 @@ def _r_accessor(self,field):
         _r('  }\n')
     elif field.type.is_list:
         _r('  pub fn %s(&self) -> Box<[%s,..%d]> {', field.c_field_name, field.r_field_type, field.type.nmemb)
-        _r('    box unsafe { copy %s.%s }',self.wrap_field_name,field.c_field_name)
+        _r('    unsafe { (%s.%s).to_owned() }',self.wrap_field_name,field.c_field_name)
         _r('  }\n')
 
     elif field.type.is_container:

@@ -30,12 +30,15 @@ DEALINGS IN THE SOFTWARE.
 //extern crate extra;
 extern crate libc;
 
+// I don't know enough about the module system to figure out why I can't
+// globally export the base module and see it here.
+use ffi;
 use ffi::base::*;
 
 use libc::{c_int,c_char,free};
 use std::option::Option;
 
-use std::{num,ptr,vec,str};
+use std::{num,ptr,vec,str,mem};
 use std::num::*;
 
 use xproto;
@@ -48,22 +51,22 @@ impl<'s> Connection {
     #[inline]
     pub fn flush(&self) -> bool {
         unsafe {
-            xcb_flush(self.c) > 0
+            ffi::base::xcb_flush(self.c) > 0
         }
     }
 
     #[inline]
     pub fn get_maximum_request_length(&self) -> u32 {
         unsafe {
-            xcb_get_maximum_request_length(self.c)
+            ffi::base::xcb_get_maximum_request_length(self.c)
         }
     }
 
     #[inline]
     pub fn wait_for_event(&self) -> Option<GenericEvent> {
         unsafe {
-            let event = xcb_wait_for_event(self.c);
-            if ptr::is_null(event) {
+            let event = ffi::base::xcb_wait_for_event(self.c);
+            if event.is_null() {
                 None
             } else {
                 Some(Event {event:event})
@@ -74,8 +77,8 @@ impl<'s> Connection {
     #[inline]
     pub fn poll_for_event(&self) -> Option<GenericEvent> {
         unsafe {
-            let event = xcb_poll_for_event(self.c);
-            if ptr::is_null(event) {
+            let event = ffi::base::xcb_poll_for_event(self.c);
+            if event.is_null() {
                 None
             } else {
                 Some(Event {event:event})
@@ -86,8 +89,8 @@ impl<'s> Connection {
     #[inline]
     pub fn poll_for_queued_event(&self) -> Option<GenericEvent> {
         unsafe {
-            let event = xcb_poll_for_queued_event(self.c);
-            if ptr::is_null(event) {
+            let event = ffi::base::xcb_poll_for_queued_event(self.c);
+            if event.is_null() {
                 None
             } else {
                 Some(Event {event:event})
@@ -98,8 +101,8 @@ impl<'s> Connection {
     #[inline]
     pub fn get_setup(&self) -> &'s xproto::Setup {
         unsafe {
-            let setup = xcb_get_setup(self.c);
-            if ptr::is_null(setup) {
+            let setup = ffi::base::xcb_get_setup(self.c);
+            if setup.is_null() {
                 fail!(box "NULL setup on connection")
             } else {
                 mem::transmute(setup)
@@ -110,14 +113,14 @@ impl<'s> Connection {
     #[inline]
     pub fn has_error(&self) -> bool {
         unsafe {
-            xcb_connection_has_error(self.c) > 0
+            ffi::base::xcb_connection_has_error(self.c) > 0
         }
     }
 
     #[inline]
     pub fn generate_id<T>(&self) -> T {
         unsafe {
-            mem::transmute(xcb_generate_id(self.c))
+            mem::transmute(ffi::base::xcb_generate_id(self.c))
         }
     }
 
@@ -131,7 +134,6 @@ impl<'s> Connection {
                   destination: xproto::Window,
                   event_mask : u32,
                   event : Event<T>) {
-        use ffi;
         unsafe {
         ffi::xproto::xcb_send_event(self.c,
             propogate as u8, destination as ffi::xproto::window,
@@ -143,11 +145,11 @@ impl<'s> Connection {
     pub fn connect() -> (Connection, int) {
         let screen : c_int = 0;
         unsafe {
-            let conn = xcb_connect(ptr::null(), &screen);
-            if ptr::is_null(conn) {
+            let conn = ffi::base::xcb_connect(ptr::null(), &mut screen);
+            if conn.is_null() {
                 fail!(box "Couldn't connect")
             } else {
-                xcb_prefetch_maximum_request_length(conn);
+                ffi::base::xcb_prefetch_maximum_request_length(conn);
                 (Connection {c:conn}, screen as int)
             }
         }
@@ -158,13 +160,13 @@ impl<'s> Connection {
         let screen : c_int = 0;
         unsafe {
             let conn = {
-		let s = str::as_c_str(display);
-                xcb_connect(s as *mut u8, &screen)
+		let s = display.as_c_str();
+                ffi::base::xcb_connect(s as *mut u8, &mut screen)
             };
-            if ptr::is_null(conn) {
+            if conn.is_null() {
                 None
             } else {
-                xcb_prefetch_maximum_request_length(conn);
+                ffi::base::xcb_prefetch_maximum_request_length(conn);
                 Some((Connection {c:conn}, screen as int))
             }
         }
@@ -175,21 +177,21 @@ impl<'s> Connection {
         let screen : c_int = 0;
         unsafe {
             let conn = {
-		let s = str::as_c_str(display);
-                xcb_connect_to_display_with_auth_info(s as *mut u8,
-                    mem::transmute(auth_info), &screen)
+		let s = display.as_c_str();
+                ffi::base::xcb_connect_to_display_with_auth_info(s as *mut u8,
+                    mem::transmute(auth_info), &mut screen)
             };
-            if ptr::is_null(conn) {
+            if conn.is_null() {
                 None
             } else {
-                xcb_prefetch_maximum_request_length(conn);
+                ffi::base::xcb_prefetch_maximum_request_length(conn);
                 Some((Connection {c:conn}, screen as int))
             }
         }
     }
 
     pub unsafe fn from_raw_conn(conn:*mut connection) -> Connection {
-        if ptr::is_null(conn) {
+        if conn.is_null() {
             fail!("Cannot construct from null pointer");
         }
 
@@ -201,7 +203,7 @@ impl<'s> Connection {
 impl Drop for Connection {
     fn drop(&self) {
         unsafe {
-            xcb_disconnect(self.c);
+            ffi::base::xcb_disconnect(self.c);
         }
     }
 }
@@ -261,8 +263,8 @@ impl<'s, T> Cookie<'s, T> {
             // Crazy pointer dance to get the right bit
             // of the struct
             let c : *mut void_cookie = mem::transmute(&self.cookie);
-            let err = xcb_request_check(self.conn.c, c);
-            if ptr::is_null(err) {
+            let err = ffi::base::xcb_request_check(self.conn.c, c);
+            if err.is_null() {
                 None
             } else {
                 Some(Error {error:err})
@@ -320,21 +322,19 @@ impl<T> EventUtil for Event<T> {
     }
 }
 
-pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &[(T,L)]) -> (T, Box<[L]>) {
-    let len = bf.len();
-
-    let sorted = extra::sort::merge_sort(bf, |a,b| {
+pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &[(T,L)]) -> (T, Vec<L>) {
+    let sorted = bf.sort_by(|a,b| {
         let &(a, _) = a;
         let &(b, _) = b;
         a < b});
 
     let mut mask = 0u;
-    let mut list : Vec<L> = vec::with_capacity(len);
+    let mut list : Vec<L> = Vec::new();
 
-
+    //TODO: num::mem(f) and (mask) ??
     for el in sorted.iter().advance {
         let &(f, v) = el;
-        let fld = num::mem(f);
+        let fld = f;
         if (mask & fld) > 0 {
             continue;
         } else {
@@ -343,5 +343,5 @@ pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &[(T,L)]) -> (T, Box<[
         }
     }
 
-    (num::mem(mask), list)
+    (mask, list)
 }

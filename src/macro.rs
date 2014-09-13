@@ -7,11 +7,11 @@ macro_rules! impl_reply_cookie {
             pub fn get_reply(&self) -> Result<$reply,base::GenericError> {
                 use ffi;
                 unsafe {
-                    let err : *mut ffi::base::generic_error = ::std::ptr::null();
+                    let err : *mut ffi::base::generic_error = ::std::ptr::mut_null();
                     let reply = if self.checked {
-                        $func(self.conn.get_raw_conn(), self.cookie, &err)
+                        $func(self.conn.get_raw_conn(), self.cookie, &mut err)
                     } else {
-                        $func(self.conn.get_raw_conn(), self.cookie, ::std::ptr::null())
+                        $func(self.conn.get_raw_conn(), self.cookie, ::std::ptr::mut_null())
                     };
                     if err.is_null() {
                         return Ok(base::mk_reply(reply));
@@ -31,20 +31,20 @@ macro_rules! accessor {
     );
     (str, $lenfn:ident, $datafn:ident, $fexpr:expr) => ( //String special case
         unsafe {
-            let _len = $lenfn(&$fexpr);
-            let _data = $datafn(&$fexpr);
+            let _len = $lenfn(&mut $fexpr);
+            let _data = $datafn(&mut $fexpr);
             std::string::raw::from_buf_len(_data as *mut u8, _len as uint)
         }
     );
     ($ty:ty, $iterfn:ident, $fexpr:expr) => ( //Iterator
         unsafe {
-            $iterfn(&$fexpr)
+            $iterfn(&mut $fexpr)
         }
     );
     ($ty:ty, $lenfn:ident, $datafn:ident, $fexpr:expr) => ( //list with fixed-size members
         unsafe {
-            let _len = $lenfn(&$fexpr);
-            let _data = $datafn(&$fexpr);
+            let _len = $lenfn(&mut $fexpr);
+            let _data = $datafn(&mut $fexpr);
             std::vec::raw::from_buf(_data, _len as uint)
         }
     );

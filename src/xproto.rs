@@ -2538,7 +2538,7 @@ impl base::Event<focus_in_event> {
 
 impl base::Event<keymap_notify_event> {
   pub fn keys(&self) -> Box<[u8,..31]> {
-    box unsafe { copy (*self.event).keys }
+    unsafe { ((*self.event).keys).to_owned() }
   }
 
   pub fn new(keys : [u8,..31]) -> KeymapNotifyEvent {
@@ -4708,7 +4708,7 @@ pub fn QueryKeymapUnchecked<'r> (c : &'r Connection) -> QueryKeymapCookie<'r> {
 
 impl base::Reply<query_keymap_reply> {
   pub fn keys(&self) -> Box<[u8,..32]> {
-    box unsafe { copy (*self.reply).keys }
+    unsafe { ((*self.reply).keys).to_owned() }
   }
 
 }
@@ -7040,7 +7040,7 @@ impl base::Reply<get_keyboard_control_reply> {
   }
 
   pub fn auto_repeats(&self) -> Box<[u8,..32]> {
-    box unsafe { copy (*self.reply).auto_repeats }
+    unsafe { ((*self.reply).auto_repeats).to_owned() }
   }
 
 }
