@@ -270,8 +270,8 @@ def c_open(self):
 
     _hr('use std;')
     _hr('use libc::*;')
-    _hr('use std::{mem,num,ptr,str};')
-    _hr('use ffi::base::*;')
+    _r('use std::{mem,num,ptr,str};')
+    _r('use ffi::base::*;')
 
     _r('use base;')
     _r('use base::*;')
@@ -866,7 +866,7 @@ def _c_iterator(self, name):
     _h(' * The member rem is set to 0. The member data points to the')
     _h(' * last element.')
     _h(' */')
-    _h('pub fn %s (i:%s) -> generic_iterator;', self.c_end_name, self.c_iterator_type)
+    _h('pub fn %s (i:%s) -> ffi::base::generic_iterator;', self.c_end_name, self.c_iterator_type)
 
     _r('')
     _r('impl<\'s, %s> Iterator<&\'s %s> for %s {', self.r_type, self.r_type, self.r_iterator_type)
@@ -1010,9 +1010,9 @@ def _c_accessors_list(self, field):
         if switch_obj is not None:
             _h('pub fn %s (R : %s,', field.c_end_name, R_obj.c_type)
             spacing = ' '*(len(field.c_end_name)+2)
-            _h('%sS : *mut %s ) -> generic_iterator;', spacing, S_obj.c_type)
+            _h('%sS : *mut %s ) -> ffi::base::generic_iterator;', spacing, S_obj.c_type)
         else:
-            _h('pub fn %s (R : *mut %s) -> generic_iterator;', field.c_end_name, c_type)
+            _h('pub fn %s (R : *mut %s) -> ffi::base::generic_iterator;', field.c_end_name, c_type)
 
     else:
         _h('')
@@ -1347,7 +1347,7 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
     _h(' */')
     count = len(param_fields)
     comma = ',' if count else (') -> %s;' % (cookie_type,))
-    _h('pub fn %s (c : *mut connection%s', func_name, comma)
+    _h('pub fn %s (c : *mut ffi::base::connection%s', func_name, comma)
 
     func_spacing = ' ' * (len(func_name) + 12)
     for field in param_fields:
@@ -1501,9 +1501,9 @@ def _c_reply(self, name):
     _h(' *')
     _h(' * The returned value must be freed by the caller using free().')
     _h(' */')
-    _h('pub fn %s (c : *mut connection,', self.c_reply_name)
+    _h('pub fn %s (c : *mut ffi::base::connection,', self.c_reply_name)
     _h('          %s  cookie : %s,', spacing, self.c_cookie_type)
-    _h('          %s  e : *mut *mut generic_error) -> *mut %s;', spacing, self.c_reply_type)
+    _h('          %s  e : *mut *mut ffi::base::generic_error) -> *mut %s;', spacing, self.c_reply_type)
 
     _r('impl_reply_cookie!(%s<\'s>, %s, %s, %s)\n', self.r_cookie_type, self.c_reply_type, self.r_reply_type, self.c_reply_name)
 
@@ -1572,11 +1572,11 @@ def c_request(self, name):
         _c_reply(self, name)
     else:
         # Request prototypes
-        _c_request_helper(self, name, 'base::VoidCookie', 'void_cookie', True, False)
-        _c_request_helper(self, name, 'base::VoidCookie', 'void_cookie', True, True)
+        _c_request_helper(self, name, 'base::VoidCookie', 'ffi::base::void_cookie', True, False)
+        _c_request_helper(self, name, 'base::VoidCookie', 'ffi::base::void_cookie', True, True)
         if self.need_aux:
-            _c_request_helper(self, name, 'base::VoidCookie', 'void_cookie', True, False, True)
-            _c_request_helper(self, name, 'base::VoidCookie', 'void_cookie', True, True, True)
+            _c_request_helper(self, name, 'base::VoidCookie', 'ffi::base::void_cookie', True, False, True)
+            _c_request_helper(self, name, 'base::VoidCookie', 'ffi::base::void_cookie', True, True, True)
 
     cookie_type = self.c_cookie_type if self.reply else 'void_cookie'
 
