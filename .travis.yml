@@ -1,3 +1,4 @@
+language: rust
 install:
   - sudo add-apt-repository --yes ppa:hansjorg/rust
   - sudo add-apt-repository --yes ppa:cmrx64/cargo
