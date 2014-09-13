@@ -880,7 +880,7 @@ pub fn SetPictureClipRectanglesChecked<'r> (c : &'r Connection,
                                         rectangles : &[xproto::Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = rectangles.as_mmut_ptr();
+    let rectangles_ptr = rectangles.as_mut_ptr();
     let cookie = xcb_render_set_picture_clip_rectangles_checked(c.get_raw_conn(),
         picture as picture, //1
         clip_x_origin as i16, //2
@@ -897,7 +897,7 @@ pub fn SetPictureClipRectangles<'r> (c : &'r Connection,
                                  rectangles : &[xproto::Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = rectangles.as_mmut_ptr();
+    let rectangles_ptr = rectangles.as_mut_ptr();
     let cookie = xcb_render_set_picture_clip_rectangles(c.get_raw_conn(),
         picture as picture, //1
         clip_x_origin as i16, //2
@@ -993,7 +993,7 @@ pub fn TrapezoidsChecked<'r> (c : &'r Connection,
                           traps : &[Trapezoid]) -> base::VoidCookie<'r> {
   unsafe {
     let traps_len = traps.len();
-    let traps_ptr = traps.as_mmut_ptr();
+    let traps_ptr = traps.as_mut_ptr();
     let cookie = xcb_render_trapezoids_checked(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1016,7 +1016,7 @@ pub fn Trapezoids<'r> (c : &'r Connection,
                    traps : &[Trapezoid]) -> base::VoidCookie<'r> {
   unsafe {
     let traps_len = traps.len();
-    let traps_ptr = traps.as_mmut_ptr();
+    let traps_ptr = traps.as_mut_ptr();
     let cookie = xcb_render_trapezoids(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1039,7 +1039,7 @@ pub fn TrianglesChecked<'r> (c : &'r Connection,
                          triangles : &[Triangle]) -> base::VoidCookie<'r> {
   unsafe {
     let triangles_len = triangles.len();
-    let triangles_ptr = triangles.as_mmut_ptr();
+    let triangles_ptr = triangles.as_mut_ptr();
     let cookie = xcb_render_triangles_checked(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1062,7 +1062,7 @@ pub fn Triangles<'r> (c : &'r Connection,
                   triangles : &[Triangle]) -> base::VoidCookie<'r> {
   unsafe {
     let triangles_len = triangles.len();
-    let triangles_ptr = triangles.as_mmut_ptr();
+    let triangles_ptr = triangles.as_mut_ptr();
     let cookie = xcb_render_triangles(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1085,7 +1085,7 @@ pub fn TriStripChecked<'r> (c : &'r Connection,
                         points : &[Pointfix]) -> base::VoidCookie<'r> {
   unsafe {
     let points_len = points.len();
-    let points_ptr = points.as_mmut_ptr();
+    let points_ptr = points.as_mut_ptr();
     let cookie = xcb_render_tri_strip_checked(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1108,7 +1108,7 @@ pub fn TriStrip<'r> (c : &'r Connection,
                  points : &[Pointfix]) -> base::VoidCookie<'r> {
   unsafe {
     let points_len = points.len();
-    let points_ptr = points.as_mmut_ptr();
+    let points_ptr = points.as_mut_ptr();
     let cookie = xcb_render_tri_strip(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1131,7 +1131,7 @@ pub fn TriFanChecked<'r> (c : &'r Connection,
                       points : &[Pointfix]) -> base::VoidCookie<'r> {
   unsafe {
     let points_len = points.len();
-    let points_ptr = points.as_mmut_ptr();
+    let points_ptr = points.as_mut_ptr();
     let cookie = xcb_render_tri_fan_checked(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1154,7 +1154,7 @@ pub fn TriFan<'r> (c : &'r Connection,
                points : &[Pointfix]) -> base::VoidCookie<'r> {
   unsafe {
     let points_len = points.len();
-    let points_ptr = points.as_mmut_ptr();
+    let points_ptr = points.as_mut_ptr();
     let cookie = xcb_render_tri_fan(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1230,10 +1230,10 @@ pub fn AddGlyphsChecked<'r> (c : &'r Connection,
                          data : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let glyphids_len = glyphids.len();
-    let glyphids_ptr = glyphids.as_mmut_ptr();
-    let glyphs_ptr = glyphs.as_mmut_ptr();
+    let glyphids_ptr = glyphids.as_mut_ptr();
+    let glyphs_ptr = glyphs.as_mut_ptr();
     let data_len = data.len();
-    let data_ptr = data.as_mmut_ptr();
+    let data_ptr = data.as_mut_ptr();
     let cookie = xcb_render_add_glyphs_checked(c.get_raw_conn(),
         glyphset as glyphset, //1
         glyphids_len as u32, //2
@@ -1251,10 +1251,10 @@ pub fn AddGlyphs<'r> (c : &'r Connection,
                   data : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let glyphids_len = glyphids.len();
-    let glyphids_ptr = glyphids.as_mmut_ptr();
-    let glyphs_ptr = glyphs.as_mmut_ptr();
+    let glyphids_ptr = glyphids.as_mut_ptr();
+    let glyphs_ptr = glyphs.as_mut_ptr();
     let data_len = data.len();
-    let data_ptr = data.as_mmut_ptr();
+    let data_ptr = data.as_mut_ptr();
     let cookie = xcb_render_add_glyphs(c.get_raw_conn(),
         glyphset as glyphset, //1
         glyphids_len as u32, //2
@@ -1270,7 +1270,7 @@ pub fn FreeGlyphsChecked<'r> (c : &'r Connection,
                           glyphs : &[Glyph]) -> base::VoidCookie<'r> {
   unsafe {
     let glyphs_len = glyphs.len();
-    let glyphs_ptr = glyphs.as_mmut_ptr();
+    let glyphs_ptr = glyphs.as_mut_ptr();
     let cookie = xcb_render_free_glyphs_checked(c.get_raw_conn(),
         glyphset as glyphset, //1
         glyphs_len as u32, //2
@@ -1283,7 +1283,7 @@ pub fn FreeGlyphs<'r> (c : &'r Connection,
                    glyphs : &[Glyph]) -> base::VoidCookie<'r> {
   unsafe {
     let glyphs_len = glyphs.len();
-    let glyphs_ptr = glyphs.as_mmut_ptr();
+    let glyphs_ptr = glyphs.as_mut_ptr();
     let cookie = xcb_render_free_glyphs(c.get_raw_conn(),
         glyphset as glyphset, //1
         glyphs_len as u32, //2
@@ -1302,7 +1302,7 @@ pub fn CompositeGlyphs8Checked<'r> (c : &'r Connection,
                                 glyphcmds : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let glyphcmds_len = glyphcmds.len();
-    let glyphcmds_ptr = glyphcmds.as_mmut_ptr();
+    let glyphcmds_ptr = glyphcmds.as_mut_ptr();
     let cookie = xcb_render_composite_glyphs_8_checked(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1327,7 +1327,7 @@ pub fn CompositeGlyphs8<'r> (c : &'r Connection,
                          glyphcmds : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let glyphcmds_len = glyphcmds.len();
-    let glyphcmds_ptr = glyphcmds.as_mmut_ptr();
+    let glyphcmds_ptr = glyphcmds.as_mut_ptr();
     let cookie = xcb_render_composite_glyphs_8(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1352,7 +1352,7 @@ pub fn CompositeGlyphs16Checked<'r> (c : &'r Connection,
                                  glyphcmds : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let glyphcmds_len = glyphcmds.len();
-    let glyphcmds_ptr = glyphcmds.as_mmut_ptr();
+    let glyphcmds_ptr = glyphcmds.as_mut_ptr();
     let cookie = xcb_render_composite_glyphs_16_checked(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1377,7 +1377,7 @@ pub fn CompositeGlyphs16<'r> (c : &'r Connection,
                           glyphcmds : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let glyphcmds_len = glyphcmds.len();
-    let glyphcmds_ptr = glyphcmds.as_mmut_ptr();
+    let glyphcmds_ptr = glyphcmds.as_mut_ptr();
     let cookie = xcb_render_composite_glyphs_16(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1402,7 +1402,7 @@ pub fn CompositeGlyphs32Checked<'r> (c : &'r Connection,
                                  glyphcmds : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let glyphcmds_len = glyphcmds.len();
-    let glyphcmds_ptr = glyphcmds.as_mmut_ptr();
+    let glyphcmds_ptr = glyphcmds.as_mut_ptr();
     let cookie = xcb_render_composite_glyphs_32_checked(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1427,7 +1427,7 @@ pub fn CompositeGlyphs32<'r> (c : &'r Connection,
                           glyphcmds : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let glyphcmds_len = glyphcmds.len();
-    let glyphcmds_ptr = glyphcmds.as_mmut_ptr();
+    let glyphcmds_ptr = glyphcmds.as_mut_ptr();
     let cookie = xcb_render_composite_glyphs_32(c.get_raw_conn(),
         op as u8, //1
         src as picture, //2
@@ -1448,7 +1448,7 @@ pub fn FillRectanglesChecked<'r> (c : &'r Connection,
                               rects : &[xproto::Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rects_len = rects.len();
-    let rects_ptr = rects.as_mmut_ptr();
+    let rects_ptr = rects.as_mut_ptr();
     let cookie = xcb_render_fill_rectangles_checked(c.get_raw_conn(),
         op as u8, //1
         dst as picture, //2
@@ -1465,7 +1465,7 @@ pub fn FillRectangles<'r> (c : &'r Connection,
                        rects : &[xproto::Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rects_len = rects.len();
-    let rects_ptr = rects.as_mmut_ptr();
+    let rects_ptr = rects.as_mut_ptr();
     let cookie = xcb_render_fill_rectangles(c.get_raw_conn(),
         op as u8, //1
         dst as picture, //2
@@ -1614,9 +1614,9 @@ pub fn SetPictureFilterChecked<'r> (c : &'r Connection,
   unsafe {
     let filter = (filter).as_bytes();
     let filter_len = filter.len();
-    let filter_ptr = filter.as_mmut_ptr();
+    let filter_ptr = filter.as_mut_ptr();
     let values_len = values.len();
-    let values_ptr = values.as_mmut_ptr();
+    let values_ptr = values.as_mut_ptr();
     let cookie = xcb_render_set_picture_filter_checked(c.get_raw_conn(),
         picture as picture, //1
         filter_len as u16, //2
@@ -1633,9 +1633,9 @@ pub fn SetPictureFilter<'r> (c : &'r Connection,
   unsafe {
     let filter = (filter).as_bytes();
     let filter_len = filter.len();
-    let filter_ptr = filter.as_mmut_ptr();
+    let filter_ptr = filter.as_mut_ptr();
     let values_len = values.len();
-    let values_ptr = values.as_mmut_ptr();
+    let values_ptr = values.as_mut_ptr();
     let cookie = xcb_render_set_picture_filter(c.get_raw_conn(),
         picture as picture, //1
         filter_len as u16, //2
@@ -1676,7 +1676,7 @@ pub fn CreateAnimCursorChecked<'r> (c : &'r Connection,
                                 cursors : &[Animcursorelt]) -> base::VoidCookie<'r> {
   unsafe {
     let cursors_len = cursors.len();
-    let cursors_ptr = cursors.as_mmut_ptr();
+    let cursors_ptr = cursors.as_mut_ptr();
     let cookie = xcb_render_create_anim_cursor_checked(c.get_raw_conn(),
         cid as ffi::xproto::cursor, //1
         cursors_len as u32, //2
@@ -1689,7 +1689,7 @@ pub fn CreateAnimCursor<'r> (c : &'r Connection,
                          cursors : &[Animcursorelt]) -> base::VoidCookie<'r> {
   unsafe {
     let cursors_len = cursors.len();
-    let cursors_ptr = cursors.as_mmut_ptr();
+    let cursors_ptr = cursors.as_mut_ptr();
     let cookie = xcb_render_create_anim_cursor(c.get_raw_conn(),
         cid as ffi::xproto::cursor, //1
         cursors_len as u32, //2
@@ -1758,7 +1758,7 @@ pub fn AddTrapsChecked<'r> (c : &'r Connection,
                         traps : &[Trap]) -> base::VoidCookie<'r> {
   unsafe {
     let traps_len = traps.len();
-    let traps_ptr = traps.as_mmut_ptr();
+    let traps_ptr = traps.as_mut_ptr();
     let cookie = xcb_render_add_traps_checked(c.get_raw_conn(),
         picture as picture, //1
         x_off as i16, //2
@@ -1775,7 +1775,7 @@ pub fn AddTraps<'r> (c : &'r Connection,
                  traps : &[Trap]) -> base::VoidCookie<'r> {
   unsafe {
     let traps_len = traps.len();
-    let traps_ptr = traps.as_mmut_ptr();
+    let traps_ptr = traps.as_mut_ptr();
     let cookie = xcb_render_add_traps(c.get_raw_conn(),
         picture as picture, //1
         x_off as i16, //2
@@ -1813,8 +1813,8 @@ pub fn CreateLinearGradientChecked<'r> (c : &'r Connection,
                                     colors : &[Color]) -> base::VoidCookie<'r> {
   unsafe {
     let stops_len = stops.len();
-    let stops_ptr = stops.as_mmut_ptr();
-    let colors_ptr = colors.as_mmut_ptr();
+    let stops_ptr = stops.as_mut_ptr();
+    let colors_ptr = colors.as_mut_ptr();
     let cookie = xcb_render_create_linear_gradient_checked(c.get_raw_conn(),
         picture as picture, //1
         p1.strct, //2
@@ -1833,8 +1833,8 @@ pub fn CreateLinearGradient<'r> (c : &'r Connection,
                              colors : &[Color]) -> base::VoidCookie<'r> {
   unsafe {
     let stops_len = stops.len();
-    let stops_ptr = stops.as_mmut_ptr();
-    let colors_ptr = colors.as_mmut_ptr();
+    let stops_ptr = stops.as_mut_ptr();
+    let colors_ptr = colors.as_mut_ptr();
     let cookie = xcb_render_create_linear_gradient(c.get_raw_conn(),
         picture as picture, //1
         p1.strct, //2
@@ -1855,8 +1855,8 @@ pub fn CreateRadialGradientChecked<'r> (c : &'r Connection,
                                     colors : &[Color]) -> base::VoidCookie<'r> {
   unsafe {
     let stops_len = stops.len();
-    let stops_ptr = stops.as_mmut_ptr();
-    let colors_ptr = colors.as_mmut_ptr();
+    let stops_ptr = stops.as_mut_ptr();
+    let colors_ptr = colors.as_mut_ptr();
     let cookie = xcb_render_create_radial_gradient_checked(c.get_raw_conn(),
         picture as picture, //1
         inner.strct, //2
@@ -1879,8 +1879,8 @@ pub fn CreateRadialGradient<'r> (c : &'r Connection,
                              colors : &[Color]) -> base::VoidCookie<'r> {
   unsafe {
     let stops_len = stops.len();
-    let stops_ptr = stops.as_mmut_ptr();
-    let colors_ptr = colors.as_mmut_ptr();
+    let stops_ptr = stops.as_mut_ptr();
+    let colors_ptr = colors.as_mut_ptr();
     let cookie = xcb_render_create_radial_gradient(c.get_raw_conn(),
         picture as picture, //1
         inner.strct, //2
@@ -1901,8 +1901,8 @@ pub fn CreateConicalGradientChecked<'r> (c : &'r Connection,
                                      colors : &[Color]) -> base::VoidCookie<'r> {
   unsafe {
     let stops_len = stops.len();
-    let stops_ptr = stops.as_mmut_ptr();
-    let colors_ptr = colors.as_mmut_ptr();
+    let stops_ptr = stops.as_mut_ptr();
+    let colors_ptr = colors.as_mut_ptr();
     let cookie = xcb_render_create_conical_gradient_checked(c.get_raw_conn(),
         picture as picture, //1
         center.strct, //2
@@ -1921,8 +1921,8 @@ pub fn CreateConicalGradient<'r> (c : &'r Connection,
                               colors : &[Color]) -> base::VoidCookie<'r> {
   unsafe {
     let stops_len = stops.len();
-    let stops_ptr = stops.as_mmut_ptr();
-    let colors_ptr = colors.as_mmut_ptr();
+    let stops_ptr = stops.as_mut_ptr();
+    let colors_ptr = colors.as_mut_ptr();
     let cookie = xcb_render_create_conical_gradient(c.get_raw_conn(),
         picture as picture, //1
         center.strct, //2

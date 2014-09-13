@@ -1448,7 +1448,7 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
                     mk_params.append("let %s_len = %s.len();" % (field.c_field_name, field.c_field_name))
                     call_params.append((field.lf.idx, '%s_len as %s' % (field.c_field_name,lfty)))
 
-                mk_params.append("let %s_ptr = %s.as_mmut_ptr();" % (field.c_field_name,
+                mk_params.append("let %s_ptr = %s.as_mut_ptr();" % (field.c_field_name,
                     field.c_field_name))
                 call_params.append((field.idx, '%s_ptr as *mut %s' % (field.c_field_name,
                     c_field_const_type)))

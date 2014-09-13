@@ -189,7 +189,7 @@ pub fn RectanglesChecked<'r> (c : &'r Connection,
                           rectangles : &[xproto::Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = rectangles.as_mmut_ptr();
+    let rectangles_ptr = rectangles.as_mut_ptr();
     let cookie = xcb_shape_rectangles_checked(c.get_raw_conn(),
         operation as op, //1
         destination_kind as kind, //2
@@ -212,7 +212,7 @@ pub fn Rectangles<'r> (c : &'r Connection,
                    rectangles : &[xproto::Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = rectangles.as_mmut_ptr();
+    let rectangles_ptr = rectangles.as_mut_ptr();
     let cookie = xcb_shape_rectangles(c.get_raw_conn(),
         operation as op, //1
         destination_kind as kind, //2

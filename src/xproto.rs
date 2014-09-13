@@ -3792,7 +3792,7 @@ pub fn InternAtom<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mmut_ptr();
+    let name_ptr = name.as_mut_ptr();
     let cookie = xcb_intern_atom(c.get_raw_conn(),
         only_if_exists as u8, //1
         name_len as u16, //2
@@ -3806,7 +3806,7 @@ pub fn InternAtomUnchecked<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mmut_ptr();
+    let name_ptr = name.as_mut_ptr();
     let cookie = xcb_intern_atom_unchecked(c.get_raw_conn(),
         only_if_exists as u8, //1
         name_len as u16, //2
@@ -3858,7 +3858,7 @@ pub fn ChangePropertyChecked<'r> (c : &'r Connection,
                               data : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let data_len = data.len();
-    let data_ptr = data.as_mmut_ptr();
+    let data_ptr = data.as_mut_ptr();
     let cookie = xcb_change_property_checked(c.get_raw_conn(),
         mode as u8, //1
         window as window, //2
@@ -3879,7 +3879,7 @@ pub fn ChangeProperty<'r> (c : &'r Connection,
                        data : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let data_len = data.len();
-    let data_ptr = data.as_mmut_ptr();
+    let data_ptr = data.as_mut_ptr();
     let cookie = xcb_change_property(c.get_raw_conn(),
         mode as u8, //1
         window as window, //2
@@ -4083,7 +4083,7 @@ pub fn SendEventChecked<'r> (c : &'r Connection,
                          event : &str) -> base::VoidCookie<'r> {
   unsafe {
     let event = (event).as_bytes();
-    let event_ptr = event.as_mmut_ptr();
+    let event_ptr = event.as_mut_ptr();
     let cookie = xcb_send_event_checked(c.get_raw_conn(),
         propagate as u8, //1
         destination as window, //2
@@ -4099,7 +4099,7 @@ pub fn SendEvent<'r> (c : &'r Connection,
                   event : &str) -> base::VoidCookie<'r> {
   unsafe {
     let event = (event).as_bytes();
-    let event_ptr = event.as_mmut_ptr();
+    let event_ptr = event.as_mut_ptr();
     let cookie = xcb_send_event(c.get_raw_conn(),
         propagate as u8, //1
         destination as window, //2
@@ -4720,7 +4720,7 @@ pub fn OpenFontChecked<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mmut_ptr();
+    let name_ptr = name.as_mut_ptr();
     let cookie = xcb_open_font_checked(c.get_raw_conn(),
         fid as font, //1
         name_len as u16, //2
@@ -4734,7 +4734,7 @@ pub fn OpenFont<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mmut_ptr();
+    let name_ptr = name.as_mut_ptr();
     let cookie = xcb_open_font(c.get_raw_conn(),
         fid as font, //1
         name_len as u16, //2
@@ -4901,7 +4901,7 @@ pub fn QueryTextExtents<'r> (c : &'r Connection,
                          string : &[Char2b]) -> QueryTextExtentsCookie<'r> {
   unsafe {
     let string_len = string.len();
-    let string_ptr = string.as_mmut_ptr();
+    let string_ptr = string.as_mut_ptr();
     let cookie = xcb_query_text_extents(c.get_raw_conn(),
         font as fontable, //1
         string_len as u32, //2
@@ -4914,7 +4914,7 @@ pub fn QueryTextExtentsUnchecked<'r> (c : &'r Connection,
                                   string : &[Char2b]) -> QueryTextExtentsCookie<'r> {
   unsafe {
     let string_len = string.len();
-    let string_ptr = string.as_mmut_ptr();
+    let string_ptr = string.as_mut_ptr();
     let cookie = xcb_query_text_extents_unchecked(c.get_raw_conn(),
         font as fontable, //1
         string_len as u32, //2
@@ -4987,7 +4987,7 @@ pub fn ListFonts<'r> (c : &'r Connection,
   unsafe {
     let pattern = (pattern).as_bytes();
     let pattern_len = pattern.len();
-    let pattern_ptr = pattern.as_mmut_ptr();
+    let pattern_ptr = pattern.as_mut_ptr();
     let cookie = xcb_list_fonts(c.get_raw_conn(),
         max_names as u16, //1
         pattern_len as u16, //2
@@ -5001,7 +5001,7 @@ pub fn ListFontsUnchecked<'r> (c : &'r Connection,
   unsafe {
     let pattern = (pattern).as_bytes();
     let pattern_len = pattern.len();
-    let pattern_ptr = pattern.as_mmut_ptr();
+    let pattern_ptr = pattern.as_mut_ptr();
     let cookie = xcb_list_fonts_unchecked(c.get_raw_conn(),
         max_names as u16, //1
         pattern_len as u16, //2
@@ -5024,7 +5024,7 @@ pub fn ListFontsWithInfo<'r> (c : &'r Connection,
   unsafe {
     let pattern = (pattern).as_bytes();
     let pattern_len = pattern.len();
-    let pattern_ptr = pattern.as_mmut_ptr();
+    let pattern_ptr = pattern.as_mut_ptr();
     let cookie = xcb_list_fonts_with_info(c.get_raw_conn(),
         max_names as u16, //1
         pattern_len as u16, //2
@@ -5038,7 +5038,7 @@ pub fn ListFontsWithInfoUnchecked<'r> (c : &'r Connection,
   unsafe {
     let pattern = (pattern).as_bytes();
     let pattern_len = pattern.len();
-    let pattern_ptr = pattern.as_mmut_ptr();
+    let pattern_ptr = pattern.as_mut_ptr();
     let cookie = xcb_list_fonts_with_info_unchecked(c.get_raw_conn(),
         max_names as u16, //1
         pattern_len as u16, //2
@@ -5109,7 +5109,7 @@ pub fn SetFontPathChecked<'r> (c : &'r Connection,
                            font : &[Str]) -> base::VoidCookie<'r> {
   unsafe {
     let font_len = font.len();
-    let font_ptr = font.as_mmut_ptr();
+    let font_ptr = font.as_mut_ptr();
     let cookie = xcb_set_font_path_checked(c.get_raw_conn(),
         font_len as u16, //1
         font_ptr as *mut str_); //2
@@ -5120,7 +5120,7 @@ pub fn SetFontPath<'r> (c : &'r Connection,
                     font : &[Str]) -> base::VoidCookie<'r> {
   unsafe {
     let font_len = font.len();
-    let font_ptr = font.as_mmut_ptr();
+    let font_ptr = font.as_mut_ptr();
     let cookie = xcb_set_font_path(c.get_raw_conn(),
         font_len as u16, //1
         font_ptr as *mut str_); //2
@@ -5283,7 +5283,7 @@ pub fn SetDashesChecked<'r> (c : &'r Connection,
                          dashes : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let dashes_len = dashes.len();
-    let dashes_ptr = dashes.as_mmut_ptr();
+    let dashes_ptr = dashes.as_mut_ptr();
     let cookie = xcb_set_dashes_checked(c.get_raw_conn(),
         gc as gcontext, //1
         dash_offset as u16, //2
@@ -5298,7 +5298,7 @@ pub fn SetDashes<'r> (c : &'r Connection,
                   dashes : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let dashes_len = dashes.len();
-    let dashes_ptr = dashes.as_mmut_ptr();
+    let dashes_ptr = dashes.as_mut_ptr();
     let cookie = xcb_set_dashes(c.get_raw_conn(),
         gc as gcontext, //1
         dash_offset as u16, //2
@@ -5315,7 +5315,7 @@ pub fn SetClipRectanglesChecked<'r> (c : &'r Connection,
                                  rectangles : &[Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = rectangles.as_mmut_ptr();
+    let rectangles_ptr = rectangles.as_mut_ptr();
     let cookie = xcb_set_clip_rectangles_checked(c.get_raw_conn(),
         ordering as u8, //1
         gc as gcontext, //2
@@ -5334,7 +5334,7 @@ pub fn SetClipRectangles<'r> (c : &'r Connection,
                           rectangles : &[Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = rectangles.as_mmut_ptr();
+    let rectangles_ptr = rectangles.as_mut_ptr();
     let cookie = xcb_set_clip_rectangles(c.get_raw_conn(),
         ordering as u8, //1
         gc as gcontext, //2
@@ -5504,7 +5504,7 @@ pub fn PolyPointChecked<'r> (c : &'r Connection,
                          points : &[Point]) -> base::VoidCookie<'r> {
   unsafe {
     let points_len = points.len();
-    let points_ptr = points.as_mmut_ptr();
+    let points_ptr = points.as_mut_ptr();
     let cookie = xcb_poly_point_checked(c.get_raw_conn(),
         coordinate_mode as u8, //1
         drawable as drawable, //2
@@ -5521,7 +5521,7 @@ pub fn PolyPoint<'r> (c : &'r Connection,
                   points : &[Point]) -> base::VoidCookie<'r> {
   unsafe {
     let points_len = points.len();
-    let points_ptr = points.as_mmut_ptr();
+    let points_ptr = points.as_mut_ptr();
     let cookie = xcb_poly_point(c.get_raw_conn(),
         coordinate_mode as u8, //1
         drawable as drawable, //2
@@ -5538,7 +5538,7 @@ pub fn PolyLineChecked<'r> (c : &'r Connection,
                         points : &[Point]) -> base::VoidCookie<'r> {
   unsafe {
     let points_len = points.len();
-    let points_ptr = points.as_mmut_ptr();
+    let points_ptr = points.as_mut_ptr();
     let cookie = xcb_poly_line_checked(c.get_raw_conn(),
         coordinate_mode as u8, //1
         drawable as drawable, //2
@@ -5555,7 +5555,7 @@ pub fn PolyLine<'r> (c : &'r Connection,
                  points : &[Point]) -> base::VoidCookie<'r> {
   unsafe {
     let points_len = points.len();
-    let points_ptr = points.as_mmut_ptr();
+    let points_ptr = points.as_mut_ptr();
     let cookie = xcb_poly_line(c.get_raw_conn(),
         coordinate_mode as u8, //1
         drawable as drawable, //2
@@ -5605,7 +5605,7 @@ pub fn PolySegmentChecked<'r> (c : &'r Connection,
                            segments : &[Segment]) -> base::VoidCookie<'r> {
   unsafe {
     let segments_len = segments.len();
-    let segments_ptr = segments.as_mmut_ptr();
+    let segments_ptr = segments.as_mut_ptr();
     let cookie = xcb_poly_segment_checked(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5620,7 +5620,7 @@ pub fn PolySegment<'r> (c : &'r Connection,
                     segments : &[Segment]) -> base::VoidCookie<'r> {
   unsafe {
     let segments_len = segments.len();
-    let segments_ptr = segments.as_mmut_ptr();
+    let segments_ptr = segments.as_mut_ptr();
     let cookie = xcb_poly_segment(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5635,7 +5635,7 @@ pub fn PolyRectangleChecked<'r> (c : &'r Connection,
                              rectangles : &[Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = rectangles.as_mmut_ptr();
+    let rectangles_ptr = rectangles.as_mut_ptr();
     let cookie = xcb_poly_rectangle_checked(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5650,7 +5650,7 @@ pub fn PolyRectangle<'r> (c : &'r Connection,
                       rectangles : &[Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = rectangles.as_mmut_ptr();
+    let rectangles_ptr = rectangles.as_mut_ptr();
     let cookie = xcb_poly_rectangle(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5665,7 +5665,7 @@ pub fn PolyArcChecked<'r> (c : &'r Connection,
                        arcs : &[Arc]) -> base::VoidCookie<'r> {
   unsafe {
     let arcs_len = arcs.len();
-    let arcs_ptr = arcs.as_mmut_ptr();
+    let arcs_ptr = arcs.as_mut_ptr();
     let cookie = xcb_poly_arc_checked(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5680,7 +5680,7 @@ pub fn PolyArc<'r> (c : &'r Connection,
                 arcs : &[Arc]) -> base::VoidCookie<'r> {
   unsafe {
     let arcs_len = arcs.len();
-    let arcs_ptr = arcs.as_mmut_ptr();
+    let arcs_ptr = arcs.as_mut_ptr();
     let cookie = xcb_poly_arc(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5697,7 +5697,7 @@ pub fn FillPolyChecked<'r> (c : &'r Connection,
                         points : &[Point]) -> base::VoidCookie<'r> {
   unsafe {
     let points_len = points.len();
-    let points_ptr = points.as_mmut_ptr();
+    let points_ptr = points.as_mut_ptr();
     let cookie = xcb_fill_poly_checked(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5716,7 +5716,7 @@ pub fn FillPoly<'r> (c : &'r Connection,
                  points : &[Point]) -> base::VoidCookie<'r> {
   unsafe {
     let points_len = points.len();
-    let points_ptr = points.as_mmut_ptr();
+    let points_ptr = points.as_mut_ptr();
     let cookie = xcb_fill_poly(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5733,7 +5733,7 @@ pub fn PolyFillRectangleChecked<'r> (c : &'r Connection,
                                  rectangles : &[Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = rectangles.as_mmut_ptr();
+    let rectangles_ptr = rectangles.as_mut_ptr();
     let cookie = xcb_poly_fill_rectangle_checked(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5748,7 +5748,7 @@ pub fn PolyFillRectangle<'r> (c : &'r Connection,
                           rectangles : &[Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = rectangles.as_mmut_ptr();
+    let rectangles_ptr = rectangles.as_mut_ptr();
     let cookie = xcb_poly_fill_rectangle(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5763,7 +5763,7 @@ pub fn PolyFillArcChecked<'r> (c : &'r Connection,
                            arcs : &[Arc]) -> base::VoidCookie<'r> {
   unsafe {
     let arcs_len = arcs.len();
-    let arcs_ptr = arcs.as_mmut_ptr();
+    let arcs_ptr = arcs.as_mut_ptr();
     let cookie = xcb_poly_fill_arc_checked(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5778,7 +5778,7 @@ pub fn PolyFillArc<'r> (c : &'r Connection,
                     arcs : &[Arc]) -> base::VoidCookie<'r> {
   unsafe {
     let arcs_len = arcs.len();
-    let arcs_ptr = arcs.as_mmut_ptr();
+    let arcs_ptr = arcs.as_mut_ptr();
     let cookie = xcb_poly_fill_arc(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5800,7 +5800,7 @@ pub fn PutImageChecked<'r> (c : &'r Connection,
                         data : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let data_len = data.len();
-    let data_ptr = data.as_mmut_ptr();
+    let data_ptr = data.as_mut_ptr();
     let cookie = xcb_put_image_checked(c.get_raw_conn(),
         format as u8, //1
         drawable as drawable, //2
@@ -5829,7 +5829,7 @@ pub fn PutImage<'r> (c : &'r Connection,
                  data : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let data_len = data.len();
-    let data_ptr = data.as_mmut_ptr();
+    let data_ptr = data.as_mut_ptr();
     let cookie = xcb_put_image(c.get_raw_conn(),
         format as u8, //1
         drawable as drawable, //2
@@ -5911,7 +5911,7 @@ pub fn PolyText8Checked<'r> (c : &'r Connection,
                          items : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let items_len = items.len();
-    let items_ptr = items.as_mmut_ptr();
+    let items_ptr = items.as_mut_ptr();
     let cookie = xcb_poly_text_8_checked(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5930,7 +5930,7 @@ pub fn PolyText8<'r> (c : &'r Connection,
                   items : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let items_len = items.len();
-    let items_ptr = items.as_mmut_ptr();
+    let items_ptr = items.as_mut_ptr();
     let cookie = xcb_poly_text_8(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5949,7 +5949,7 @@ pub fn PolyText16Checked<'r> (c : &'r Connection,
                           items : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let items_len = items.len();
-    let items_ptr = items.as_mmut_ptr();
+    let items_ptr = items.as_mut_ptr();
     let cookie = xcb_poly_text_16_checked(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5968,7 +5968,7 @@ pub fn PolyText16<'r> (c : &'r Connection,
                    items : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let items_len = items.len();
-    let items_ptr = items.as_mmut_ptr();
+    let items_ptr = items.as_mut_ptr();
     let cookie = xcb_poly_text_16(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5988,7 +5988,7 @@ pub fn ImageText8Checked<'r> (c : &'r Connection,
   unsafe {
     let string = (string).as_bytes();
     let string_len = string.len();
-    let string_ptr = string.as_mmut_ptr();
+    let string_ptr = string.as_mut_ptr();
     let cookie = xcb_image_text_8_checked(c.get_raw_conn(),
         string_len as u8, //1
         drawable as drawable, //2
@@ -6008,7 +6008,7 @@ pub fn ImageText8<'r> (c : &'r Connection,
   unsafe {
     let string = (string).as_bytes();
     let string_len = string.len();
-    let string_ptr = string.as_mmut_ptr();
+    let string_ptr = string.as_mut_ptr();
     let cookie = xcb_image_text_8(c.get_raw_conn(),
         string_len as u8, //1
         drawable as drawable, //2
@@ -6027,7 +6027,7 @@ pub fn ImageText16Checked<'r> (c : &'r Connection,
                            string : &[Char2b]) -> base::VoidCookie<'r> {
   unsafe {
     let string_len = string.len();
-    let string_ptr = string.as_mmut_ptr();
+    let string_ptr = string.as_mut_ptr();
     let cookie = xcb_image_text_16_checked(c.get_raw_conn(),
         string_len as u8, //1
         drawable as drawable, //2
@@ -6046,7 +6046,7 @@ pub fn ImageText16<'r> (c : &'r Connection,
                     string : &[Char2b]) -> base::VoidCookie<'r> {
   unsafe {
     let string_len = string.len();
-    let string_ptr = string.as_mmut_ptr();
+    let string_ptr = string.as_mut_ptr();
     let cookie = xcb_image_text_16(c.get_raw_conn(),
         string_len as u8, //1
         drawable as drawable, //2
@@ -6234,7 +6234,7 @@ pub fn AllocNamedColor<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mmut_ptr();
+    let name_ptr = name.as_mut_ptr();
     let cookie = xcb_alloc_named_color(c.get_raw_conn(),
         cmap as colormap, //1
         name_len as u16, //2
@@ -6248,7 +6248,7 @@ pub fn AllocNamedColorUnchecked<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mmut_ptr();
+    let name_ptr = name.as_mut_ptr();
     let cookie = xcb_alloc_named_color_unchecked(c.get_raw_conn(),
         cmap as colormap, //1
         name_len as u16, //2
@@ -6395,7 +6395,7 @@ pub fn FreeColorsChecked<'r> (c : &'r Connection,
                           pixels : &[u32]) -> base::VoidCookie<'r> {
   unsafe {
     let pixels_len = pixels.len();
-    let pixels_ptr = pixels.as_mmut_ptr();
+    let pixels_ptr = pixels.as_mut_ptr();
     let cookie = xcb_free_colors_checked(c.get_raw_conn(),
         cmap as colormap, //1
         plane_mask as u32, //2
@@ -6410,7 +6410,7 @@ pub fn FreeColors<'r> (c : &'r Connection,
                    pixels : &[u32]) -> base::VoidCookie<'r> {
   unsafe {
     let pixels_len = pixels.len();
-    let pixels_ptr = pixels.as_mmut_ptr();
+    let pixels_ptr = pixels.as_mut_ptr();
     let cookie = xcb_free_colors(c.get_raw_conn(),
         cmap as colormap, //1
         plane_mask as u32, //2
@@ -6460,7 +6460,7 @@ pub fn StoreColorsChecked<'r> (c : &'r Connection,
                            items : &[Coloritem]) -> base::VoidCookie<'r> {
   unsafe {
     let items_len = items.len();
-    let items_ptr = items.as_mmut_ptr();
+    let items_ptr = items.as_mut_ptr();
     let cookie = xcb_store_colors_checked(c.get_raw_conn(),
         cmap as colormap, //1
         items_len as u32, //2
@@ -6473,7 +6473,7 @@ pub fn StoreColors<'r> (c : &'r Connection,
                     items : &[Coloritem]) -> base::VoidCookie<'r> {
   unsafe {
     let items_len = items.len();
-    let items_ptr = items.as_mmut_ptr();
+    let items_ptr = items.as_mut_ptr();
     let cookie = xcb_store_colors(c.get_raw_conn(),
         cmap as colormap, //1
         items_len as u32, //2
@@ -6489,7 +6489,7 @@ pub fn StoreNamedColorChecked<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mmut_ptr();
+    let name_ptr = name.as_mut_ptr();
     let cookie = xcb_store_named_color_checked(c.get_raw_conn(),
         flags as u8, //1
         cmap as colormap, //2
@@ -6507,7 +6507,7 @@ pub fn StoreNamedColor<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mmut_ptr();
+    let name_ptr = name.as_mut_ptr();
     let cookie = xcb_store_named_color(c.get_raw_conn(),
         flags as u8, //1
         cmap as colormap, //2
@@ -6552,7 +6552,7 @@ pub fn QueryColors<'r> (c : &'r Connection,
                     pixels : &[u32]) -> QueryColorsCookie<'r> {
   unsafe {
     let pixels_len = pixels.len();
-    let pixels_ptr = pixels.as_mmut_ptr();
+    let pixels_ptr = pixels.as_mut_ptr();
     let cookie = xcb_query_colors(c.get_raw_conn(),
         cmap as colormap, //1
         pixels_len as u32, //2
@@ -6565,7 +6565,7 @@ pub fn QueryColorsUnchecked<'r> (c : &'r Connection,
                              pixels : &[u32]) -> QueryColorsCookie<'r> {
   unsafe {
     let pixels_len = pixels.len();
-    let pixels_ptr = pixels.as_mmut_ptr();
+    let pixels_ptr = pixels.as_mut_ptr();
     let cookie = xcb_query_colors_unchecked(c.get_raw_conn(),
         cmap as colormap, //1
         pixels_len as u32, //2
@@ -6588,7 +6588,7 @@ pub fn LookupColor<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mmut_ptr();
+    let name_ptr = name.as_mut_ptr();
     let cookie = xcb_lookup_color(c.get_raw_conn(),
         cmap as colormap, //1
         name_len as u16, //2
@@ -6602,7 +6602,7 @@ pub fn LookupColorUnchecked<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mmut_ptr();
+    let name_ptr = name.as_mut_ptr();
     let cookie = xcb_lookup_color_unchecked(c.get_raw_conn(),
         cmap as colormap, //1
         name_len as u16, //2
@@ -6853,7 +6853,7 @@ pub fn QueryExtension<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mmut_ptr();
+    let name_ptr = name.as_mut_ptr();
     let cookie = xcb_query_extension(c.get_raw_conn(),
         name_len as u16, //1
         name_ptr as *mut c_char); //2
@@ -6865,7 +6865,7 @@ pub fn QueryExtensionUnchecked<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mmut_ptr();
+    let name_ptr = name.as_mut_ptr();
     let cookie = xcb_query_extension_unchecked(c.get_raw_conn(),
         name_len as u16, //1
         name_ptr as *mut c_char); //2
@@ -6921,7 +6921,7 @@ pub fn ChangeKeyboardMappingChecked<'r> (c : &'r Connection,
                                      keysyms : &[Keysym]) -> base::VoidCookie<'r> {
   unsafe {
     let keysyms_len = keysyms.len();
-    let keysyms_ptr = keysyms.as_mmut_ptr();
+    let keysyms_ptr = keysyms.as_mut_ptr();
     let cookie = xcb_change_keyboard_mapping_checked(c.get_raw_conn(),
         keysyms_len as u8, //1
         first_keycode as keycode, //2
@@ -6936,7 +6936,7 @@ pub fn ChangeKeyboardMapping<'r> (c : &'r Connection,
                               keysyms : &[Keysym]) -> base::VoidCookie<'r> {
   unsafe {
     let keysyms_len = keysyms.len();
-    let keysyms_ptr = keysyms.as_mmut_ptr();
+    let keysyms_ptr = keysyms.as_mut_ptr();
     let cookie = xcb_change_keyboard_mapping(c.get_raw_conn(),
         keysyms_len as u8, //1
         first_keycode as keycode, //2
@@ -7190,7 +7190,7 @@ pub fn ChangeHostsChecked<'r> (c : &'r Connection,
                            address : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let address_len = address.len();
-    let address_ptr = address.as_mmut_ptr();
+    let address_ptr = address.as_mut_ptr();
     let cookie = xcb_change_hosts_checked(c.get_raw_conn(),
         mode as u8, //1
         family as u8, //2
@@ -7205,7 +7205,7 @@ pub fn ChangeHosts<'r> (c : &'r Connection,
                     address : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let address_len = address.len();
-    let address_ptr = address.as_mmut_ptr();
+    let address_ptr = address.as_mut_ptr();
     let cookie = xcb_change_hosts(c.get_raw_conn(),
         mode as u8, //1
         family as u8, //2
@@ -7320,7 +7320,7 @@ pub fn RotatePropertiesChecked<'r> (c : &'r Connection,
                                 atoms : &[Atom]) -> base::VoidCookie<'r> {
   unsafe {
     let atoms_len = atoms.len();
-    let atoms_ptr = atoms.as_mmut_ptr();
+    let atoms_ptr = atoms.as_mut_ptr();
     let cookie = xcb_rotate_properties_checked(c.get_raw_conn(),
         window as window, //1
         atoms_len as u16, //2
@@ -7335,7 +7335,7 @@ pub fn RotateProperties<'r> (c : &'r Connection,
                          atoms : &[Atom]) -> base::VoidCookie<'r> {
   unsafe {
     let atoms_len = atoms.len();
-    let atoms_ptr = atoms.as_mmut_ptr();
+    let atoms_ptr = atoms.as_mut_ptr();
     let cookie = xcb_rotate_properties(c.get_raw_conn(),
         window as window, //1
         atoms_len as u16, //2
@@ -7364,7 +7364,7 @@ pub fn SetPointerMapping<'r> (c : &'r Connection,
                           map : &[u8]) -> SetPointerMappingCookie<'r> {
   unsafe {
     let map_len = map.len();
-    let map_ptr = map.as_mmut_ptr();
+    let map_ptr = map.as_mut_ptr();
     let cookie = xcb_set_pointer_mapping(c.get_raw_conn(),
         map_len as u8, //1
         map_ptr as *mut u8); //2
@@ -7375,7 +7375,7 @@ pub fn SetPointerMappingUnchecked<'r> (c : &'r Connection,
                                    map : &[u8]) -> SetPointerMappingCookie<'r> {
   unsafe {
     let map_len = map.len();
-    let map_ptr = map.as_mmut_ptr();
+    let map_ptr = map.as_mut_ptr();
     let cookie = xcb_set_pointer_mapping_unchecked(c.get_raw_conn(),
         map_len as u8, //1
         map_ptr as *mut u8); //2
@@ -7417,7 +7417,7 @@ pub fn SetModifierMapping<'r> (c : &'r Connection,
                            keycodes : &[Keycode]) -> SetModifierMappingCookie<'r> {
   unsafe {
     let keycodes_len = keycodes.len();
-    let keycodes_ptr = keycodes.as_mmut_ptr();
+    let keycodes_ptr = keycodes.as_mut_ptr();
     let cookie = xcb_set_modifier_mapping(c.get_raw_conn(),
         keycodes_len as u8, //1
         keycodes_ptr as *mut keycode); //2
@@ -7428,7 +7428,7 @@ pub fn SetModifierMappingUnchecked<'r> (c : &'r Connection,
                                     keycodes : &[Keycode]) -> SetModifierMappingCookie<'r> {
   unsafe {
     let keycodes_len = keycodes.len();
-    let keycodes_ptr = keycodes.as_mmut_ptr();
+    let keycodes_ptr = keycodes.as_mut_ptr();
     let cookie = xcb_set_modifier_mapping_unchecked(c.get_raw_conn(),
         keycodes_len as u8, //1
         keycodes_ptr as *mut keycode); //2

@@ -9,6 +9,7 @@
 use std;
 use libc::*;
 use std::{mem,num,ptr,str};
+use ffi::base::*;
 use ffi;
 use ffi::xproto;
 
