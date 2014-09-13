@@ -8,8 +8,6 @@
 #![allow(non_camel_case_types)]
 use std;
 use libc::*;
-use std::{mem,num,ptr,str};
-use ffi::base::*;
 use ffi;
 use ffi::xproto;
 use ffi::render;
@@ -484,7 +482,7 @@ pub extern "C" {
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_query_version (c : *mut connection,
+pub fn xcb_xfixes_query_version (c : *mut ffi::base::connection,
                                     client_major_version :  u32,
                                     client_minor_version :  u32) -> query_version_cookie;
 
@@ -499,7 +497,7 @@ pub fn xcb_xfixes_query_version (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xfixes_query_version_unchecked (c : *mut connection,
+pub fn xcb_xfixes_query_version_unchecked (c : *mut ffi::base::connection,
                                               client_major_version :  u32,
                                               client_minor_version :  u32) -> query_version_cookie;
 
@@ -517,9 +515,9 @@ pub fn xcb_xfixes_query_version_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xfixes_query_version_reply (c : *mut connection,
+pub fn xcb_xfixes_query_version_reply (c : *mut ffi::base::connection,
                                           cookie : query_version_cookie,
-                                          e : *mut *mut generic_error) -> *mut query_version_reply;
+                                          e : *mut *mut ffi::base::generic_error) -> *mut query_version_reply;
 
 /**
  *
@@ -532,11 +530,11 @@ pub fn xcb_xfixes_query_version_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xfixes_change_save_set_checked (c : *mut connection,
+pub fn xcb_xfixes_change_save_set_checked (c : *mut ffi::base::connection,
                                               mode :  u8,
                                               target :  u8,
                                               map :  u8,
-                                              window :  ffi::xproto::window) -> void_cookie;
+                                              window :  ffi::xproto::window) -> ffi::base::void_cookie;
 
 /**
  *
@@ -546,11 +544,11 @@ pub fn xcb_xfixes_change_save_set_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_change_save_set (c : *mut connection,
+pub fn xcb_xfixes_change_save_set (c : *mut ffi::base::connection,
                                       mode :  u8,
                                       target :  u8,
                                       map :  u8,
-                                      window :  ffi::xproto::window) -> void_cookie;
+                                      window :  ffi::xproto::window) -> ffi::base::void_cookie;
 
 /**
  *
@@ -563,10 +561,10 @@ pub fn xcb_xfixes_change_save_set (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xfixes_select_selection_input_checked (c : *mut connection,
+pub fn xcb_xfixes_select_selection_input_checked (c : *mut ffi::base::connection,
                                                      window :  ffi::xproto::window,
                                                      selection :  ffi::xproto::atom,
-                                                     event_mask :  u32) -> void_cookie;
+                                                     event_mask :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -576,10 +574,10 @@ pub fn xcb_xfixes_select_selection_input_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_select_selection_input (c : *mut connection,
+pub fn xcb_xfixes_select_selection_input (c : *mut ffi::base::connection,
                                              window :  ffi::xproto::window,
                                              selection :  ffi::xproto::atom,
-                                             event_mask :  u32) -> void_cookie;
+                                             event_mask :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -592,9 +590,9 @@ pub fn xcb_xfixes_select_selection_input (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xfixes_select_cursor_input_checked (c : *mut connection,
+pub fn xcb_xfixes_select_cursor_input_checked (c : *mut ffi::base::connection,
                                                   window :  ffi::xproto::window,
-                                                  event_mask :  u32) -> void_cookie;
+                                                  event_mask :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -604,9 +602,9 @@ pub fn xcb_xfixes_select_cursor_input_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_select_cursor_input (c : *mut connection,
+pub fn xcb_xfixes_select_cursor_input (c : *mut ffi::base::connection,
                                           window :  ffi::xproto::window,
-                                          event_mask :  u32) -> void_cookie;
+                                          event_mask :  u32) -> ffi::base::void_cookie;
 
 pub fn xcb_xfixes_get_cursor_image_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -618,7 +616,7 @@ pub fn xcb_xfixes_get_cursor_image_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_get_cursor_image (c : *mut connection) -> get_cursor_image_cookie;
+pub fn xcb_xfixes_get_cursor_image (c : *mut ffi::base::connection) -> get_cursor_image_cookie;
 
 /**
  *
@@ -631,7 +629,7 @@ pub fn xcb_xfixes_get_cursor_image (c : *mut connection) -> get_cursor_image_coo
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xfixes_get_cursor_image_unchecked (c : *mut connection) -> get_cursor_image_cookie;
+pub fn xcb_xfixes_get_cursor_image_unchecked (c : *mut ffi::base::connection) -> get_cursor_image_cookie;
 
 pub fn xcb_xfixes_get_cursor_image_cursor_image (R : *mut get_cursor_image_reply) -> *mut u32;
 
@@ -639,7 +637,7 @@ pub fn xcb_xfixes_get_cursor_image_cursor_image (R : *mut get_cursor_image_reply
 pub fn xcb_xfixes_get_cursor_image_cursor_image_length (R : *mut get_cursor_image_reply) -> c_int;
 
 
-pub fn xcb_xfixes_get_cursor_image_cursor_image_end (R : *mut get_cursor_image_reply) -> generic_iterator;
+pub fn xcb_xfixes_get_cursor_image_cursor_image_end (R : *mut get_cursor_image_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -655,9 +653,9 @@ pub fn xcb_xfixes_get_cursor_image_cursor_image_end (R : *mut get_cursor_image_r
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xfixes_get_cursor_image_reply (c : *mut connection,
+pub fn xcb_xfixes_get_cursor_image_reply (c : *mut ffi::base::connection,
                                              cookie : get_cursor_image_cookie,
-                                             e : *mut *mut generic_error) -> *mut get_cursor_image_reply;
+                                             e : *mut *mut ffi::base::generic_error) -> *mut get_cursor_image_reply;
 
 /**
  * Get the next element of the iterator
@@ -680,7 +678,7 @@ pub fn xcb_xfixes_region_next (i:*mut region_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xfixes_region_end (i:region_iterator) -> generic_iterator;
+pub fn xcb_xfixes_region_end (i:region_iterator) -> ffi::base::generic_iterator;
 
 pub fn xcb_xfixes_create_region_sizeof (_buffer :  *mut c_void,
                                  rectangles_len :  u32) -> c_int;
@@ -696,10 +694,10 @@ pub fn xcb_xfixes_create_region_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xfixes_create_region_checked (c : *mut connection,
+pub fn xcb_xfixes_create_region_checked (c : *mut ffi::base::connection,
                                             region :  region,
                                             rectangles_len :  u32,
-                                            rectangles : *mut ffi::xproto::rectangle) -> void_cookie;
+                                            rectangles : *mut ffi::xproto::rectangle) -> ffi::base::void_cookie;
 
 /**
  *
@@ -709,10 +707,10 @@ pub fn xcb_xfixes_create_region_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_create_region (c : *mut connection,
+pub fn xcb_xfixes_create_region (c : *mut ffi::base::connection,
                                     region :  region,
                                     rectangles_len :  u32,
-                                    rectangles : *mut ffi::xproto::rectangle) -> void_cookie;
+                                    rectangles : *mut ffi::xproto::rectangle) -> ffi::base::void_cookie;
 
 /**
  *
@@ -725,9 +723,9 @@ pub fn xcb_xfixes_create_region (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xfixes_create_region_from_bitmap_checked (c : *mut connection,
+pub fn xcb_xfixes_create_region_from_bitmap_checked (c : *mut ffi::base::connection,
                                                         region :  region,
-                                                        bitmap :  ffi::xproto::pixmap) -> void_cookie;
+                                                        bitmap :  ffi::xproto::pixmap) -> ffi::base::void_cookie;
 
 /**
  *
@@ -737,9 +735,9 @@ pub fn xcb_xfixes_create_region_from_bitmap_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_create_region_from_bitmap (c : *mut connection,
+pub fn xcb_xfixes_create_region_from_bitmap (c : *mut ffi::base::connection,
                                                 region :  region,
-                                                bitmap :  ffi::xproto::pixmap) -> void_cookie;
+                                                bitmap :  ffi::xproto::pixmap) -> ffi::base::void_cookie;
 
 /**
  *
@@ -752,10 +750,10 @@ pub fn xcb_xfixes_create_region_from_bitmap (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xfixes_create_region_from_window_checked (c : *mut connection,
+pub fn xcb_xfixes_create_region_from_window_checked (c : *mut ffi::base::connection,
                                                         region :  region,
                                                         window :  ffi::xproto::window,
-                                                        kind :  ffi::shape::kind) -> void_cookie;
+                                                        kind :  ffi::shape::kind) -> ffi::base::void_cookie;
 
 /**
  *
@@ -765,10 +763,10 @@ pub fn xcb_xfixes_create_region_from_window_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_create_region_from_window (c : *mut connection,
+pub fn xcb_xfixes_create_region_from_window (c : *mut ffi::base::connection,
                                                 region :  region,
                                                 window :  ffi::xproto::window,
-                                                kind :  ffi::shape::kind) -> void_cookie;
+                                                kind :  ffi::shape::kind) -> ffi::base::void_cookie;
 
 /**
  *
@@ -781,9 +779,9 @@ pub fn xcb_xfixes_create_region_from_window (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xfixes_create_region_from_gc_checked (c : *mut connection,
+pub fn xcb_xfixes_create_region_from_gc_checked (c : *mut ffi::base::connection,
                                                     region :  region,
-                                                    gc :  ffi::xproto::gcontext) -> void_cookie;
+                                                    gc :  ffi::xproto::gcontext) -> ffi::base::void_cookie;
 
 /**
  *
@@ -793,9 +791,9 @@ pub fn xcb_xfixes_create_region_from_gc_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_create_region_from_gc (c : *mut connection,
+pub fn xcb_xfixes_create_region_from_gc (c : *mut ffi::base::connection,
                                             region :  region,
-                                            gc :  ffi::xproto::gcontext) -> void_cookie;
+                                            gc :  ffi::xproto::gcontext) -> ffi::base::void_cookie;
 
 /**
  *
@@ -808,9 +806,9 @@ pub fn xcb_xfixes_create_region_from_gc (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xfixes_create_region_from_picture_checked (c : *mut connection,
+pub fn xcb_xfixes_create_region_from_picture_checked (c : *mut ffi::base::connection,
                                                          region :  region,
-                                                         picture :  ffi::render::picture) -> void_cookie;
+                                                         picture :  ffi::render::picture) -> ffi::base::void_cookie;
 
 /**
  *
@@ -820,9 +818,9 @@ pub fn xcb_xfixes_create_region_from_picture_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_create_region_from_picture (c : *mut connection,
+pub fn xcb_xfixes_create_region_from_picture (c : *mut ffi::base::connection,
                                                  region :  region,
-                                                 picture :  ffi::render::picture) -> void_cookie;
+                                                 picture :  ffi::render::picture) -> ffi::base::void_cookie;
 
 /**
  *
@@ -835,8 +833,8 @@ pub fn xcb_xfixes_create_region_from_picture (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xfixes_destroy_region_checked (c : *mut connection,
-                                             region :  region) -> void_cookie;
+pub fn xcb_xfixes_destroy_region_checked (c : *mut ffi::base::connection,
+                                             region :  region) -> ffi::base::void_cookie;
 
 /**
  *
@@ -846,8 +844,8 @@ pub fn xcb_xfixes_destroy_region_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_destroy_region (c : *mut connection,
-                                     region :  region) -> void_cookie;
+pub fn xcb_xfixes_destroy_region (c : *mut ffi::base::connection,
+                                     region :  region) -> ffi::base::void_cookie;
 
 pub fn xcb_xfixes_set_region_sizeof (_buffer :  *mut c_void,
                               rectangles_len :  u32) -> c_int;
@@ -863,10 +861,10 @@ pub fn xcb_xfixes_set_region_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xfixes_set_region_checked (c : *mut connection,
+pub fn xcb_xfixes_set_region_checked (c : *mut ffi::base::connection,
                                          region :  region,
                                          rectangles_len :  u32,
-                                         rectangles : *mut ffi::xproto::rectangle) -> void_cookie;
+                                         rectangles : *mut ffi::xproto::rectangle) -> ffi::base::void_cookie;
 
 /**
  *
@@ -876,10 +874,10 @@ pub fn xcb_xfixes_set_region_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_set_region (c : *mut connection,
+pub fn xcb_xfixes_set_region (c : *mut ffi::base::connection,
                                  region :  region,
                                  rectangles_len :  u32,
-                                 rectangles : *mut ffi::xproto::rectangle) -> void_cookie;
+                                 rectangles : *mut ffi::xproto::rectangle) -> ffi::base::void_cookie;
 
 /**
  *
@@ -892,9 +890,9 @@ pub fn xcb_xfixes_set_region (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xfixes_copy_region_checked (c : *mut connection,
+pub fn xcb_xfixes_copy_region_checked (c : *mut ffi::base::connection,
                                           source :  region,
-                                          destination :  region) -> void_cookie;
+                                          destination :  region) -> ffi::base::void_cookie;
 
 /**
  *
@@ -904,9 +902,9 @@ pub fn xcb_xfixes_copy_region_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_copy_region (c : *mut connection,
+pub fn xcb_xfixes_copy_region (c : *mut ffi::base::connection,
                                   source :  region,
-                                  destination :  region) -> void_cookie;
+                                  destination :  region) -> ffi::base::void_cookie;
 
 /**
  *
@@ -919,10 +917,10 @@ pub fn xcb_xfixes_copy_region (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xfixes_union_region_checked (c : *mut connection,
+pub fn xcb_xfixes_union_region_checked (c : *mut ffi::base::connection,
                                            source1 :  region,
                                            source2 :  region,
-                                           destination :  region) -> void_cookie;
+                                           destination :  region) -> ffi::base::void_cookie;
 
 /**
  *
@@ -932,10 +930,10 @@ pub fn xcb_xfixes_union_region_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_union_region (c : *mut connection,
+pub fn xcb_xfixes_union_region (c : *mut ffi::base::connection,
                                    source1 :  region,
                                    source2 :  region,
-                                   destination :  region) -> void_cookie;
+                                   destination :  region) -> ffi::base::void_cookie;
 
 /**
  *
@@ -948,10 +946,10 @@ pub fn xcb_xfixes_union_region (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xfixes_intersect_region_checked (c : *mut connection,
+pub fn xcb_xfixes_intersect_region_checked (c : *mut ffi::base::connection,
                                                source1 :  region,
                                                source2 :  region,
-                                               destination :  region) -> void_cookie;
+                                               destination :  region) -> ffi::base::void_cookie;
 
 /**
  *
@@ -961,10 +959,10 @@ pub fn xcb_xfixes_intersect_region_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_intersect_region (c : *mut connection,
+pub fn xcb_xfixes_intersect_region (c : *mut ffi::base::connection,
                                        source1 :  region,
                                        source2 :  region,
-                                       destination :  region) -> void_cookie;
+                                       destination :  region) -> ffi::base::void_cookie;
 
 /**
  *
@@ -977,10 +975,10 @@ pub fn xcb_xfixes_intersect_region (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xfixes_subtract_region_checked (c : *mut connection,
+pub fn xcb_xfixes_subtract_region_checked (c : *mut ffi::base::connection,
                                               source1 :  region,
                                               source2 :  region,
-                                              destination :  region) -> void_cookie;
+                                              destination :  region) -> ffi::base::void_cookie;
 
 /**
  *
@@ -990,10 +988,10 @@ pub fn xcb_xfixes_subtract_region_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_subtract_region (c : *mut connection,
+pub fn xcb_xfixes_subtract_region (c : *mut ffi::base::connection,
                                       source1 :  region,
                                       source2 :  region,
-                                      destination :  region) -> void_cookie;
+                                      destination :  region) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1006,10 +1004,10 @@ pub fn xcb_xfixes_subtract_region (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xfixes_invert_region_checked (c : *mut connection,
+pub fn xcb_xfixes_invert_region_checked (c : *mut ffi::base::connection,
                                             source :  region,
                                             bounds :  ffi::xproto::rectangle,
-                                            destination :  region) -> void_cookie;
+                                            destination :  region) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1019,10 +1017,10 @@ pub fn xcb_xfixes_invert_region_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_invert_region (c : *mut connection,
+pub fn xcb_xfixes_invert_region (c : *mut ffi::base::connection,
                                     source :  region,
                                     bounds :  ffi::xproto::rectangle,
-                                    destination :  region) -> void_cookie;
+                                    destination :  region) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1035,10 +1033,10 @@ pub fn xcb_xfixes_invert_region (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xfixes_translate_region_checked (c : *mut connection,
+pub fn xcb_xfixes_translate_region_checked (c : *mut ffi::base::connection,
                                                region :  region,
                                                dx :  i16,
-                                               dy :  i16) -> void_cookie;
+                                               dy :  i16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1048,10 +1046,10 @@ pub fn xcb_xfixes_translate_region_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_translate_region (c : *mut connection,
+pub fn xcb_xfixes_translate_region (c : *mut ffi::base::connection,
                                        region :  region,
                                        dx :  i16,
-                                       dy :  i16) -> void_cookie;
+                                       dy :  i16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1064,9 +1062,9 @@ pub fn xcb_xfixes_translate_region (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xfixes_region_extents_checked (c : *mut connection,
+pub fn xcb_xfixes_region_extents_checked (c : *mut ffi::base::connection,
                                              source :  region,
-                                             destination :  region) -> void_cookie;
+                                             destination :  region) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1076,9 +1074,9 @@ pub fn xcb_xfixes_region_extents_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_region_extents (c : *mut connection,
+pub fn xcb_xfixes_region_extents (c : *mut ffi::base::connection,
                                      source :  region,
-                                     destination :  region) -> void_cookie;
+                                     destination :  region) -> ffi::base::void_cookie;
 
 pub fn xcb_xfixes_fetch_region_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1090,7 +1088,7 @@ pub fn xcb_xfixes_fetch_region_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_fetch_region (c : *mut connection,
+pub fn xcb_xfixes_fetch_region (c : *mut ffi::base::connection,
                                    region :  region) -> fetch_region_cookie;
 
 /**
@@ -1104,7 +1102,7 @@ pub fn xcb_xfixes_fetch_region (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xfixes_fetch_region_unchecked (c : *mut connection,
+pub fn xcb_xfixes_fetch_region_unchecked (c : *mut ffi::base::connection,
                                              region :  region) -> fetch_region_cookie;
 
 pub fn xcb_xfixes_fetch_region_rectangles (R : *mut fetch_region_reply) -> *mut ffi::xproto::rectangle;
@@ -1128,9 +1126,9 @@ pub fn xcb_xfixes_fetch_region_rectangles_iterator (R : *mut fetch_region_reply)
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xfixes_fetch_region_reply (c : *mut connection,
+pub fn xcb_xfixes_fetch_region_reply (c : *mut ffi::base::connection,
                                          cookie : fetch_region_cookie,
-                                         e : *mut *mut generic_error) -> *mut fetch_region_reply;
+                                         e : *mut *mut ffi::base::generic_error) -> *mut fetch_region_reply;
 
 /**
  *
@@ -1143,11 +1141,11 @@ pub fn xcb_xfixes_fetch_region_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xfixes_set_gc_clip_region_checked (c : *mut connection,
+pub fn xcb_xfixes_set_gc_clip_region_checked (c : *mut ffi::base::connection,
                                                  gc :  ffi::xproto::gcontext,
                                                  region :  region,
                                                  x_origin :  i16,
-                                                 y_origin :  i16) -> void_cookie;
+                                                 y_origin :  i16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1157,11 +1155,11 @@ pub fn xcb_xfixes_set_gc_clip_region_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_set_gc_clip_region (c : *mut connection,
+pub fn xcb_xfixes_set_gc_clip_region (c : *mut ffi::base::connection,
                                          gc :  ffi::xproto::gcontext,
                                          region :  region,
                                          x_origin :  i16,
-                                         y_origin :  i16) -> void_cookie;
+                                         y_origin :  i16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1174,12 +1172,12 @@ pub fn xcb_xfixes_set_gc_clip_region (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xfixes_set_window_shape_region_checked (c : *mut connection,
+pub fn xcb_xfixes_set_window_shape_region_checked (c : *mut ffi::base::connection,
                                                       dest :  ffi::xproto::window,
                                                       dest_kind :  ffi::shape::kind,
                                                       x_offset :  i16,
                                                       y_offset :  i16,
-                                                      region :  region) -> void_cookie;
+                                                      region :  region) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1189,12 +1187,12 @@ pub fn xcb_xfixes_set_window_shape_region_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_set_window_shape_region (c : *mut connection,
+pub fn xcb_xfixes_set_window_shape_region (c : *mut ffi::base::connection,
                                               dest :  ffi::xproto::window,
                                               dest_kind :  ffi::shape::kind,
                                               x_offset :  i16,
                                               y_offset :  i16,
-                                              region :  region) -> void_cookie;
+                                              region :  region) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1207,11 +1205,11 @@ pub fn xcb_xfixes_set_window_shape_region (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xfixes_set_picture_clip_region_checked (c : *mut connection,
+pub fn xcb_xfixes_set_picture_clip_region_checked (c : *mut ffi::base::connection,
                                                       picture :  ffi::render::picture,
                                                       region :  region,
                                                       x_origin :  i16,
-                                                      y_origin :  i16) -> void_cookie;
+                                                      y_origin :  i16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1221,11 +1219,11 @@ pub fn xcb_xfixes_set_picture_clip_region_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_set_picture_clip_region (c : *mut connection,
+pub fn xcb_xfixes_set_picture_clip_region (c : *mut ffi::base::connection,
                                               picture :  ffi::render::picture,
                                               region :  region,
                                               x_origin :  i16,
-                                              y_origin :  i16) -> void_cookie;
+                                              y_origin :  i16) -> ffi::base::void_cookie;
 
 pub fn xcb_xfixes_set_cursor_name_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1240,10 +1238,10 @@ pub fn xcb_xfixes_set_cursor_name_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xfixes_set_cursor_name_checked (c : *mut connection,
+pub fn xcb_xfixes_set_cursor_name_checked (c : *mut ffi::base::connection,
                                               cursor :  ffi::xproto::cursor,
                                               nbytes :  u16,
-                                              name : *mut c_char) -> void_cookie;
+                                              name : *mut c_char) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1253,10 +1251,10 @@ pub fn xcb_xfixes_set_cursor_name_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_set_cursor_name (c : *mut connection,
+pub fn xcb_xfixes_set_cursor_name (c : *mut ffi::base::connection,
                                       cursor :  ffi::xproto::cursor,
                                       nbytes :  u16,
-                                      name : *mut c_char) -> void_cookie;
+                                      name : *mut c_char) -> ffi::base::void_cookie;
 
 pub fn xcb_xfixes_get_cursor_name_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1268,7 +1266,7 @@ pub fn xcb_xfixes_get_cursor_name_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_get_cursor_name (c : *mut connection,
+pub fn xcb_xfixes_get_cursor_name (c : *mut ffi::base::connection,
                                       cursor :  ffi::xproto::cursor) -> get_cursor_name_cookie;
 
 /**
@@ -1282,7 +1280,7 @@ pub fn xcb_xfixes_get_cursor_name (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xfixes_get_cursor_name_unchecked (c : *mut connection,
+pub fn xcb_xfixes_get_cursor_name_unchecked (c : *mut ffi::base::connection,
                                                 cursor :  ffi::xproto::cursor) -> get_cursor_name_cookie;
 
 pub fn xcb_xfixes_get_cursor_name_name (R : *mut get_cursor_name_reply) -> *mut c_char;
@@ -1291,7 +1289,7 @@ pub fn xcb_xfixes_get_cursor_name_name (R : *mut get_cursor_name_reply) -> *mut 
 pub fn xcb_xfixes_get_cursor_name_name_length (R : *mut get_cursor_name_reply) -> c_int;
 
 
-pub fn xcb_xfixes_get_cursor_name_name_end (R : *mut get_cursor_name_reply) -> generic_iterator;
+pub fn xcb_xfixes_get_cursor_name_name_end (R : *mut get_cursor_name_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -1307,9 +1305,9 @@ pub fn xcb_xfixes_get_cursor_name_name_end (R : *mut get_cursor_name_reply) -> g
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xfixes_get_cursor_name_reply (c : *mut connection,
+pub fn xcb_xfixes_get_cursor_name_reply (c : *mut ffi::base::connection,
                                             cookie : get_cursor_name_cookie,
-                                            e : *mut *mut generic_error) -> *mut get_cursor_name_reply;
+                                            e : *mut *mut ffi::base::generic_error) -> *mut get_cursor_name_reply;
 
 pub fn xcb_xfixes_get_cursor_image_and_name_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1321,7 +1319,7 @@ pub fn xcb_xfixes_get_cursor_image_and_name_sizeof (_buffer :  *mut c_void) -> c
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_get_cursor_image_and_name (c : *mut connection) -> get_cursor_image_and_name_cookie;
+pub fn xcb_xfixes_get_cursor_image_and_name (c : *mut ffi::base::connection) -> get_cursor_image_and_name_cookie;
 
 /**
  *
@@ -1334,7 +1332,7 @@ pub fn xcb_xfixes_get_cursor_image_and_name (c : *mut connection) -> get_cursor_
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xfixes_get_cursor_image_and_name_unchecked (c : *mut connection) -> get_cursor_image_and_name_cookie;
+pub fn xcb_xfixes_get_cursor_image_and_name_unchecked (c : *mut ffi::base::connection) -> get_cursor_image_and_name_cookie;
 
 pub fn xcb_xfixes_get_cursor_image_and_name_name (R : *mut get_cursor_image_and_name_reply) -> *mut c_char;
 
@@ -1342,7 +1340,7 @@ pub fn xcb_xfixes_get_cursor_image_and_name_name (R : *mut get_cursor_image_and_
 pub fn xcb_xfixes_get_cursor_image_and_name_name_length (R : *mut get_cursor_image_and_name_reply) -> c_int;
 
 
-pub fn xcb_xfixes_get_cursor_image_and_name_name_end (R : *mut get_cursor_image_and_name_reply) -> generic_iterator;
+pub fn xcb_xfixes_get_cursor_image_and_name_name_end (R : *mut get_cursor_image_and_name_reply) -> ffi::base::generic_iterator;
 
 pub fn xcb_xfixes_get_cursor_image_and_name_cursor_image (R : *mut get_cursor_image_and_name_reply) -> *mut u32;
 
@@ -1350,7 +1348,7 @@ pub fn xcb_xfixes_get_cursor_image_and_name_cursor_image (R : *mut get_cursor_im
 pub fn xcb_xfixes_get_cursor_image_and_name_cursor_image_length (R : *mut get_cursor_image_and_name_reply) -> c_int;
 
 
-pub fn xcb_xfixes_get_cursor_image_and_name_cursor_image_end (R : *mut get_cursor_image_and_name_reply) -> generic_iterator;
+pub fn xcb_xfixes_get_cursor_image_and_name_cursor_image_end (R : *mut get_cursor_image_and_name_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -1366,9 +1364,9 @@ pub fn xcb_xfixes_get_cursor_image_and_name_cursor_image_end (R : *mut get_curso
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xfixes_get_cursor_image_and_name_reply (c : *mut connection,
+pub fn xcb_xfixes_get_cursor_image_and_name_reply (c : *mut ffi::base::connection,
                                                       cookie : get_cursor_image_and_name_cookie,
-                                                      e : *mut *mut generic_error) -> *mut get_cursor_image_and_name_reply;
+                                                      e : *mut *mut ffi::base::generic_error) -> *mut get_cursor_image_and_name_reply;
 
 /**
  *
@@ -1381,9 +1379,9 @@ pub fn xcb_xfixes_get_cursor_image_and_name_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xfixes_change_cursor_checked (c : *mut connection,
+pub fn xcb_xfixes_change_cursor_checked (c : *mut ffi::base::connection,
                                             source :  ffi::xproto::cursor,
-                                            destination :  ffi::xproto::cursor) -> void_cookie;
+                                            destination :  ffi::xproto::cursor) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1393,9 +1391,9 @@ pub fn xcb_xfixes_change_cursor_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_change_cursor (c : *mut connection,
+pub fn xcb_xfixes_change_cursor (c : *mut ffi::base::connection,
                                     source :  ffi::xproto::cursor,
-                                    destination :  ffi::xproto::cursor) -> void_cookie;
+                                    destination :  ffi::xproto::cursor) -> ffi::base::void_cookie;
 
 pub fn xcb_xfixes_change_cursor_by_name_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1410,10 +1408,10 @@ pub fn xcb_xfixes_change_cursor_by_name_sizeof (_buffer :  *mut c_void) -> c_int
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xfixes_change_cursor_by_name_checked (c : *mut connection,
+pub fn xcb_xfixes_change_cursor_by_name_checked (c : *mut ffi::base::connection,
                                                     src :  ffi::xproto::cursor,
                                                     nbytes :  u16,
-                                                    name : *mut c_char) -> void_cookie;
+                                                    name : *mut c_char) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1423,10 +1421,10 @@ pub fn xcb_xfixes_change_cursor_by_name_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_change_cursor_by_name (c : *mut connection,
+pub fn xcb_xfixes_change_cursor_by_name (c : *mut ffi::base::connection,
                                             src :  ffi::xproto::cursor,
                                             nbytes :  u16,
-                                            name : *mut c_char) -> void_cookie;
+                                            name : *mut c_char) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1439,13 +1437,13 @@ pub fn xcb_xfixes_change_cursor_by_name (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xfixes_expand_region_checked (c : *mut connection,
+pub fn xcb_xfixes_expand_region_checked (c : *mut ffi::base::connection,
                                             source :  region,
                                             destination :  region,
                                             left :  u16,
                                             right :  u16,
                                             top :  u16,
-                                            bottom :  u16) -> void_cookie;
+                                            bottom :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1455,13 +1453,13 @@ pub fn xcb_xfixes_expand_region_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_expand_region (c : *mut connection,
+pub fn xcb_xfixes_expand_region (c : *mut ffi::base::connection,
                                     source :  region,
                                     destination :  region,
                                     left :  u16,
                                     right :  u16,
                                     top :  u16,
-                                    bottom :  u16) -> void_cookie;
+                                    bottom :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1474,8 +1472,8 @@ pub fn xcb_xfixes_expand_region (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xfixes_hide_cursor_checked (c : *mut connection,
-                                          window :  ffi::xproto::window) -> void_cookie;
+pub fn xcb_xfixes_hide_cursor_checked (c : *mut ffi::base::connection,
+                                          window :  ffi::xproto::window) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1485,8 +1483,8 @@ pub fn xcb_xfixes_hide_cursor_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_hide_cursor (c : *mut connection,
-                                  window :  ffi::xproto::window) -> void_cookie;
+pub fn xcb_xfixes_hide_cursor (c : *mut ffi::base::connection,
+                                  window :  ffi::xproto::window) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1499,8 +1497,8 @@ pub fn xcb_xfixes_hide_cursor (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xfixes_show_cursor_checked (c : *mut connection,
-                                          window :  ffi::xproto::window) -> void_cookie;
+pub fn xcb_xfixes_show_cursor_checked (c : *mut ffi::base::connection,
+                                          window :  ffi::xproto::window) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1510,7 +1508,7 @@ pub fn xcb_xfixes_show_cursor_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xfixes_show_cursor (c : *mut connection,
-                                  window :  ffi::xproto::window) -> void_cookie;
+pub fn xcb_xfixes_show_cursor (c : *mut ffi::base::connection,
+                                  window :  ffi::xproto::window) -> ffi::base::void_cookie;
 }
 

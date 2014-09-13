@@ -8,8 +8,6 @@
 #![allow(non_camel_case_types)]
 use std;
 use libc::*;
-use std::{mem,num,ptr,str};
-use ffi::base::*;
 use ffi;
 use ffi::xproto;
 
@@ -186,7 +184,7 @@ pub fn xcb_shm_seg_next (i:*mut seg_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_shm_seg_end (i:seg_iterator) -> generic_iterator;
+pub fn xcb_shm_seg_end (i:seg_iterator) -> ffi::base::generic_iterator;
 
 /**
  *
@@ -196,7 +194,7 @@ pub fn xcb_shm_seg_end (i:seg_iterator) -> generic_iterator;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_shm_query_version (c : *mut connection) -> query_version_cookie;
+pub fn xcb_shm_query_version (c : *mut ffi::base::connection) -> query_version_cookie;
 
 /**
  *
@@ -209,7 +207,7 @@ pub fn xcb_shm_query_version (c : *mut connection) -> query_version_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_shm_query_version_unchecked (c : *mut connection) -> query_version_cookie;
+pub fn xcb_shm_query_version_unchecked (c : *mut ffi::base::connection) -> query_version_cookie;
 
 /**
  * Return the reply
@@ -225,9 +223,9 @@ pub fn xcb_shm_query_version_unchecked (c : *mut connection) -> query_version_co
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_shm_query_version_reply (c : *mut connection,
+pub fn xcb_shm_query_version_reply (c : *mut ffi::base::connection,
                                        cookie : query_version_cookie,
-                                       e : *mut *mut generic_error) -> *mut query_version_reply;
+                                       e : *mut *mut ffi::base::generic_error) -> *mut query_version_reply;
 
 /**
  *
@@ -240,10 +238,10 @@ pub fn xcb_shm_query_version_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_shm_attach_checked (c : *mut connection,
+pub fn xcb_shm_attach_checked (c : *mut ffi::base::connection,
                                   shmseg :  seg,
                                   shmid :  u32,
-                                  read_only :  u8) -> void_cookie;
+                                  read_only :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -253,10 +251,10 @@ pub fn xcb_shm_attach_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_shm_attach (c : *mut connection,
+pub fn xcb_shm_attach (c : *mut ffi::base::connection,
                           shmseg :  seg,
                           shmid :  u32,
-                          read_only :  u8) -> void_cookie;
+                          read_only :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -269,8 +267,8 @@ pub fn xcb_shm_attach (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_shm_detach_checked (c : *mut connection,
-                                  shmseg :  seg) -> void_cookie;
+pub fn xcb_shm_detach_checked (c : *mut ffi::base::connection,
+                                  shmseg :  seg) -> ffi::base::void_cookie;
 
 /**
  *
@@ -280,8 +278,8 @@ pub fn xcb_shm_detach_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_shm_detach (c : *mut connection,
-                          shmseg :  seg) -> void_cookie;
+pub fn xcb_shm_detach (c : *mut ffi::base::connection,
+                          shmseg :  seg) -> ffi::base::void_cookie;
 
 /**
  *
@@ -294,7 +292,7 @@ pub fn xcb_shm_detach (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_shm_put_image_checked (c : *mut connection,
+pub fn xcb_shm_put_image_checked (c : *mut ffi::base::connection,
                                      drawable :  ffi::xproto::drawable,
                                      gc :  ffi::xproto::gcontext,
                                      total_width :  u16,
@@ -309,7 +307,7 @@ pub fn xcb_shm_put_image_checked (c : *mut connection,
                                      format :  u8,
                                      send_event :  u8,
                                      shmseg :  seg,
-                                     offset :  u32) -> void_cookie;
+                                     offset :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -319,7 +317,7 @@ pub fn xcb_shm_put_image_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_shm_put_image (c : *mut connection,
+pub fn xcb_shm_put_image (c : *mut ffi::base::connection,
                              drawable :  ffi::xproto::drawable,
                              gc :  ffi::xproto::gcontext,
                              total_width :  u16,
@@ -334,7 +332,7 @@ pub fn xcb_shm_put_image (c : *mut connection,
                              format :  u8,
                              send_event :  u8,
                              shmseg :  seg,
-                             offset :  u32) -> void_cookie;
+                             offset :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -344,7 +342,7 @@ pub fn xcb_shm_put_image (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_shm_get_image (c : *mut connection,
+pub fn xcb_shm_get_image (c : *mut ffi::base::connection,
                              drawable :  ffi::xproto::drawable,
                              x :  i16,
                              y :  i16,
@@ -366,7 +364,7 @@ pub fn xcb_shm_get_image (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_shm_get_image_unchecked (c : *mut connection,
+pub fn xcb_shm_get_image_unchecked (c : *mut ffi::base::connection,
                                        drawable :  ffi::xproto::drawable,
                                        x :  i16,
                                        y :  i16,
@@ -391,9 +389,9 @@ pub fn xcb_shm_get_image_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_shm_get_image_reply (c : *mut connection,
+pub fn xcb_shm_get_image_reply (c : *mut ffi::base::connection,
                                    cookie : get_image_cookie,
-                                   e : *mut *mut generic_error) -> *mut get_image_reply;
+                                   e : *mut *mut ffi::base::generic_error) -> *mut get_image_reply;
 
 /**
  *
@@ -406,14 +404,14 @@ pub fn xcb_shm_get_image_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_shm_create_pixmap_checked (c : *mut connection,
+pub fn xcb_shm_create_pixmap_checked (c : *mut ffi::base::connection,
                                          pid :  ffi::xproto::pixmap,
                                          drawable :  ffi::xproto::drawable,
                                          width :  u16,
                                          height :  u16,
                                          depth :  u8,
                                          shmseg :  seg,
-                                         offset :  u32) -> void_cookie;
+                                         offset :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -423,13 +421,13 @@ pub fn xcb_shm_create_pixmap_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_shm_create_pixmap (c : *mut connection,
+pub fn xcb_shm_create_pixmap (c : *mut ffi::base::connection,
                                  pid :  ffi::xproto::pixmap,
                                  drawable :  ffi::xproto::drawable,
                                  width :  u16,
                                  height :  u16,
                                  depth :  u8,
                                  shmseg :  seg,
-                                 offset :  u32) -> void_cookie;
+                                 offset :  u32) -> ffi::base::void_cookie;
 }
 

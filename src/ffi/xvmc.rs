@@ -8,8 +8,6 @@
 #![allow(non_camel_case_types)]
 use std;
 use libc::*;
-use std::{mem,num,ptr,str};
-use ffi::base::*;
 use ffi;
 use ffi::xproto;
 use ffi::shm;
@@ -276,7 +274,7 @@ pub fn xcb_xvmc_context_next (i:*mut context_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xvmc_context_end (i:context_iterator) -> generic_iterator;
+pub fn xcb_xvmc_context_end (i:context_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -299,7 +297,7 @@ pub fn xcb_xvmc_surface_next (i:*mut surface_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xvmc_surface_end (i:surface_iterator) -> generic_iterator;
+pub fn xcb_xvmc_surface_end (i:surface_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -322,7 +320,7 @@ pub fn xcb_xvmc_subpicture_next (i:*mut subpicture_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xvmc_subpicture_end (i:subpicture_iterator) -> generic_iterator;
+pub fn xcb_xvmc_subpicture_end (i:subpicture_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -345,7 +343,7 @@ pub fn xcb_xvmc_surface_info_next (i:*mut surface_info_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xvmc_surface_info_end (i:surface_info_iterator) -> generic_iterator;
+pub fn xcb_xvmc_surface_info_end (i:surface_info_iterator) -> ffi::base::generic_iterator;
 
 /**
  *
@@ -355,7 +353,7 @@ pub fn xcb_xvmc_surface_info_end (i:surface_info_iterator) -> generic_iterator;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xvmc_query_version (c : *mut connection) -> query_version_cookie;
+pub fn xcb_xvmc_query_version (c : *mut ffi::base::connection) -> query_version_cookie;
 
 /**
  *
@@ -368,7 +366,7 @@ pub fn xcb_xvmc_query_version (c : *mut connection) -> query_version_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xvmc_query_version_unchecked (c : *mut connection) -> query_version_cookie;
+pub fn xcb_xvmc_query_version_unchecked (c : *mut ffi::base::connection) -> query_version_cookie;
 
 /**
  * Return the reply
@@ -384,9 +382,9 @@ pub fn xcb_xvmc_query_version_unchecked (c : *mut connection) -> query_version_c
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xvmc_query_version_reply (c : *mut connection,
+pub fn xcb_xvmc_query_version_reply (c : *mut ffi::base::connection,
                                         cookie : query_version_cookie,
-                                        e : *mut *mut generic_error) -> *mut query_version_reply;
+                                        e : *mut *mut ffi::base::generic_error) -> *mut query_version_reply;
 
 pub fn xcb_xvmc_list_surface_types_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -398,7 +396,7 @@ pub fn xcb_xvmc_list_surface_types_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xvmc_list_surface_types (c : *mut connection,
+pub fn xcb_xvmc_list_surface_types (c : *mut ffi::base::connection,
                                        port_id :  ffi::xv::port) -> list_surface_types_cookie;
 
 /**
@@ -412,7 +410,7 @@ pub fn xcb_xvmc_list_surface_types (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xvmc_list_surface_types_unchecked (c : *mut connection,
+pub fn xcb_xvmc_list_surface_types_unchecked (c : *mut ffi::base::connection,
                                                  port_id :  ffi::xv::port) -> list_surface_types_cookie;
 
 pub fn xcb_xvmc_list_surface_types_surfaces (R : *mut list_surface_types_reply) -> *mut surface_info;
@@ -436,9 +434,9 @@ pub fn xcb_xvmc_list_surface_types_surfaces_iterator (R : *mut list_surface_type
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xvmc_list_surface_types_reply (c : *mut connection,
+pub fn xcb_xvmc_list_surface_types_reply (c : *mut ffi::base::connection,
                                              cookie : list_surface_types_cookie,
-                                             e : *mut *mut generic_error) -> *mut list_surface_types_reply;
+                                             e : *mut *mut ffi::base::generic_error) -> *mut list_surface_types_reply;
 
 pub fn xcb_xvmc_create_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -450,7 +448,7 @@ pub fn xcb_xvmc_create_context_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xvmc_create_context (c : *mut connection,
+pub fn xcb_xvmc_create_context (c : *mut ffi::base::connection,
                                    context_id :  context,
                                    port_id :  ffi::xv::port,
                                    surface_id :  surface,
@@ -469,7 +467,7 @@ pub fn xcb_xvmc_create_context (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xvmc_create_context_unchecked (c : *mut connection,
+pub fn xcb_xvmc_create_context_unchecked (c : *mut ffi::base::connection,
                                              context_id :  context,
                                              port_id :  ffi::xv::port,
                                              surface_id :  surface,
@@ -483,7 +481,7 @@ pub fn xcb_xvmc_create_context_priv_data (R : *mut create_context_reply) -> *mut
 pub fn xcb_xvmc_create_context_priv_data_length (R : *mut create_context_reply) -> c_int;
 
 
-pub fn xcb_xvmc_create_context_priv_data_end (R : *mut create_context_reply) -> generic_iterator;
+pub fn xcb_xvmc_create_context_priv_data_end (R : *mut create_context_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -499,9 +497,9 @@ pub fn xcb_xvmc_create_context_priv_data_end (R : *mut create_context_reply) -> 
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xvmc_create_context_reply (c : *mut connection,
+pub fn xcb_xvmc_create_context_reply (c : *mut ffi::base::connection,
                                          cookie : create_context_cookie,
-                                         e : *mut *mut generic_error) -> *mut create_context_reply;
+                                         e : *mut *mut ffi::base::generic_error) -> *mut create_context_reply;
 
 /**
  *
@@ -514,8 +512,8 @@ pub fn xcb_xvmc_create_context_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xvmc_destroy_context_checked (c : *mut connection,
-                                            context_id :  context) -> void_cookie;
+pub fn xcb_xvmc_destroy_context_checked (c : *mut ffi::base::connection,
+                                            context_id :  context) -> ffi::base::void_cookie;
 
 /**
  *
@@ -525,8 +523,8 @@ pub fn xcb_xvmc_destroy_context_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xvmc_destroy_context (c : *mut connection,
-                                    context_id :  context) -> void_cookie;
+pub fn xcb_xvmc_destroy_context (c : *mut ffi::base::connection,
+                                    context_id :  context) -> ffi::base::void_cookie;
 
 pub fn xcb_xvmc_create_surface_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -538,7 +536,7 @@ pub fn xcb_xvmc_create_surface_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xvmc_create_surface (c : *mut connection,
+pub fn xcb_xvmc_create_surface (c : *mut ffi::base::connection,
                                    surface_id :  surface,
                                    context_id :  context) -> create_surface_cookie;
 
@@ -553,7 +551,7 @@ pub fn xcb_xvmc_create_surface (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xvmc_create_surface_unchecked (c : *mut connection,
+pub fn xcb_xvmc_create_surface_unchecked (c : *mut ffi::base::connection,
                                              surface_id :  surface,
                                              context_id :  context) -> create_surface_cookie;
 
@@ -563,7 +561,7 @@ pub fn xcb_xvmc_create_surface_priv_data (R : *mut create_surface_reply) -> *mut
 pub fn xcb_xvmc_create_surface_priv_data_length (R : *mut create_surface_reply) -> c_int;
 
 
-pub fn xcb_xvmc_create_surface_priv_data_end (R : *mut create_surface_reply) -> generic_iterator;
+pub fn xcb_xvmc_create_surface_priv_data_end (R : *mut create_surface_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -579,9 +577,9 @@ pub fn xcb_xvmc_create_surface_priv_data_end (R : *mut create_surface_reply) -> 
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xvmc_create_surface_reply (c : *mut connection,
+pub fn xcb_xvmc_create_surface_reply (c : *mut ffi::base::connection,
                                          cookie : create_surface_cookie,
-                                         e : *mut *mut generic_error) -> *mut create_surface_reply;
+                                         e : *mut *mut ffi::base::generic_error) -> *mut create_surface_reply;
 
 /**
  *
@@ -594,8 +592,8 @@ pub fn xcb_xvmc_create_surface_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xvmc_destroy_surface_checked (c : *mut connection,
-                                            surface_id :  surface) -> void_cookie;
+pub fn xcb_xvmc_destroy_surface_checked (c : *mut ffi::base::connection,
+                                            surface_id :  surface) -> ffi::base::void_cookie;
 
 /**
  *
@@ -605,8 +603,8 @@ pub fn xcb_xvmc_destroy_surface_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xvmc_destroy_surface (c : *mut connection,
-                                    surface_id :  surface) -> void_cookie;
+pub fn xcb_xvmc_destroy_surface (c : *mut ffi::base::connection,
+                                    surface_id :  surface) -> ffi::base::void_cookie;
 
 pub fn xcb_xvmc_create_subpicture_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -618,7 +616,7 @@ pub fn xcb_xvmc_create_subpicture_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xvmc_create_subpicture (c : *mut connection,
+pub fn xcb_xvmc_create_subpicture (c : *mut ffi::base::connection,
                                       subpicture_id :  subpicture,
                                       context :  context,
                                       xvimage_id :  u32,
@@ -636,7 +634,7 @@ pub fn xcb_xvmc_create_subpicture (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xvmc_create_subpicture_unchecked (c : *mut connection,
+pub fn xcb_xvmc_create_subpicture_unchecked (c : *mut ffi::base::connection,
                                                 subpicture_id :  subpicture,
                                                 context :  context,
                                                 xvimage_id :  u32,
@@ -649,7 +647,7 @@ pub fn xcb_xvmc_create_subpicture_priv_data (R : *mut create_subpicture_reply) -
 pub fn xcb_xvmc_create_subpicture_priv_data_length (R : *mut create_subpicture_reply) -> c_int;
 
 
-pub fn xcb_xvmc_create_subpicture_priv_data_end (R : *mut create_subpicture_reply) -> generic_iterator;
+pub fn xcb_xvmc_create_subpicture_priv_data_end (R : *mut create_subpicture_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -665,9 +663,9 @@ pub fn xcb_xvmc_create_subpicture_priv_data_end (R : *mut create_subpicture_repl
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xvmc_create_subpicture_reply (c : *mut connection,
+pub fn xcb_xvmc_create_subpicture_reply (c : *mut ffi::base::connection,
                                             cookie : create_subpicture_cookie,
-                                            e : *mut *mut generic_error) -> *mut create_subpicture_reply;
+                                            e : *mut *mut ffi::base::generic_error) -> *mut create_subpicture_reply;
 
 /**
  *
@@ -680,8 +678,8 @@ pub fn xcb_xvmc_create_subpicture_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xvmc_destroy_subpicture_checked (c : *mut connection,
-                                               subpicture_id :  subpicture) -> void_cookie;
+pub fn xcb_xvmc_destroy_subpicture_checked (c : *mut ffi::base::connection,
+                                               subpicture_id :  subpicture) -> ffi::base::void_cookie;
 
 /**
  *
@@ -691,8 +689,8 @@ pub fn xcb_xvmc_destroy_subpicture_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xvmc_destroy_subpicture (c : *mut connection,
-                                       subpicture_id :  subpicture) -> void_cookie;
+pub fn xcb_xvmc_destroy_subpicture (c : *mut ffi::base::connection,
+                                       subpicture_id :  subpicture) -> ffi::base::void_cookie;
 
 pub fn xcb_xvmc_list_subpicture_types_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -704,7 +702,7 @@ pub fn xcb_xvmc_list_subpicture_types_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xvmc_list_subpicture_types (c : *mut connection,
+pub fn xcb_xvmc_list_subpicture_types (c : *mut ffi::base::connection,
                                           port_id :  ffi::xv::port,
                                           surface_id :  surface) -> list_subpicture_types_cookie;
 
@@ -719,7 +717,7 @@ pub fn xcb_xvmc_list_subpicture_types (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xvmc_list_subpicture_types_unchecked (c : *mut connection,
+pub fn xcb_xvmc_list_subpicture_types_unchecked (c : *mut ffi::base::connection,
                                                     port_id :  ffi::xv::port,
                                                     surface_id :  surface) -> list_subpicture_types_cookie;
 
@@ -744,8 +742,8 @@ pub fn xcb_xvmc_list_subpicture_types_types_iterator (R : *mut list_subpicture_t
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xvmc_list_subpicture_types_reply (c : *mut connection,
+pub fn xcb_xvmc_list_subpicture_types_reply (c : *mut ffi::base::connection,
                                                 cookie : list_subpicture_types_cookie,
-                                                e : *mut *mut generic_error) -> *mut list_subpicture_types_reply;
+                                                e : *mut *mut ffi::base::generic_error) -> *mut list_subpicture_types_reply;
 }
 

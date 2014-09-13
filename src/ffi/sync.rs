@@ -8,8 +8,6 @@
 #![allow(non_camel_case_types)]
 use std;
 use libc::*;
-use std::{mem,num,ptr,str};
-use ffi::base::*;
 use ffi;
 use ffi::xproto;
 
@@ -458,7 +456,7 @@ pub fn xcb_sync_alarm_next (i:*mut alarm_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_sync_alarm_end (i:alarm_iterator) -> generic_iterator;
+pub fn xcb_sync_alarm_end (i:alarm_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -481,7 +479,7 @@ pub fn xcb_sync_counter_next (i:*mut counter_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_sync_counter_end (i:counter_iterator) -> generic_iterator;
+pub fn xcb_sync_counter_end (i:counter_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -504,7 +502,7 @@ pub fn xcb_sync_fence_next (i:*mut fence_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_sync_fence_end (i:fence_iterator) -> generic_iterator;
+pub fn xcb_sync_fence_end (i:fence_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -527,7 +525,7 @@ pub fn xcb_sync_int64_next (i:*mut int64_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_sync_int64_end (i:int64_iterator) -> generic_iterator;
+pub fn xcb_sync_int64_end (i:int64_iterator) -> ffi::base::generic_iterator;
 
 pub fn xcb_sync_systemcounter_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -537,7 +535,7 @@ pub fn xcb_sync_systemcounter_name (R : *mut systemcounter) -> *mut c_char;
 pub fn xcb_sync_systemcounter_name_length (R : *mut systemcounter) -> c_int;
 
 
-pub fn xcb_sync_systemcounter_name_end (R : *mut systemcounter) -> generic_iterator;
+pub fn xcb_sync_systemcounter_name_end (R : *mut systemcounter) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -560,7 +558,7 @@ pub fn xcb_sync_systemcounter_next (i:*mut systemcounter_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_sync_systemcounter_end (i:systemcounter_iterator) -> generic_iterator;
+pub fn xcb_sync_systemcounter_end (i:systemcounter_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -583,7 +581,7 @@ pub fn xcb_sync_trigger_next (i:*mut trigger_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_sync_trigger_end (i:trigger_iterator) -> generic_iterator;
+pub fn xcb_sync_trigger_end (i:trigger_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -606,7 +604,7 @@ pub fn xcb_sync_waitcondition_next (i:*mut waitcondition_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_sync_waitcondition_end (i:waitcondition_iterator) -> generic_iterator;
+pub fn xcb_sync_waitcondition_end (i:waitcondition_iterator) -> ffi::base::generic_iterator;
 
 /**
  *
@@ -616,7 +614,7 @@ pub fn xcb_sync_waitcondition_end (i:waitcondition_iterator) -> generic_iterator
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_sync_initialize (c : *mut connection,
+pub fn xcb_sync_initialize (c : *mut ffi::base::connection,
                                desired_major_version :  u8,
                                desired_minor_version :  u8) -> initialize_cookie;
 
@@ -631,7 +629,7 @@ pub fn xcb_sync_initialize (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_sync_initialize_unchecked (c : *mut connection,
+pub fn xcb_sync_initialize_unchecked (c : *mut ffi::base::connection,
                                          desired_major_version :  u8,
                                          desired_minor_version :  u8) -> initialize_cookie;
 
@@ -649,9 +647,9 @@ pub fn xcb_sync_initialize_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_sync_initialize_reply (c : *mut connection,
+pub fn xcb_sync_initialize_reply (c : *mut ffi::base::connection,
                                      cookie : initialize_cookie,
-                                     e : *mut *mut generic_error) -> *mut initialize_reply;
+                                     e : *mut *mut ffi::base::generic_error) -> *mut initialize_reply;
 
 pub fn xcb_sync_list_system_counters_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -663,7 +661,7 @@ pub fn xcb_sync_list_system_counters_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_sync_list_system_counters (c : *mut connection) -> list_system_counters_cookie;
+pub fn xcb_sync_list_system_counters (c : *mut ffi::base::connection) -> list_system_counters_cookie;
 
 /**
  *
@@ -676,7 +674,7 @@ pub fn xcb_sync_list_system_counters (c : *mut connection) -> list_system_counte
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_sync_list_system_counters_unchecked (c : *mut connection) -> list_system_counters_cookie;
+pub fn xcb_sync_list_system_counters_unchecked (c : *mut ffi::base::connection) -> list_system_counters_cookie;
 
 
 pub fn xcb_sync_list_system_counters_counters_length (R : *mut list_system_counters_reply) -> c_int;
@@ -697,9 +695,9 @@ pub fn xcb_sync_list_system_counters_counters_iterator (R : *mut list_system_cou
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_sync_list_system_counters_reply (c : *mut connection,
+pub fn xcb_sync_list_system_counters_reply (c : *mut ffi::base::connection,
                                                cookie : list_system_counters_cookie,
-                                               e : *mut *mut generic_error) -> *mut list_system_counters_reply;
+                                               e : *mut *mut ffi::base::generic_error) -> *mut list_system_counters_reply;
 
 /**
  *
@@ -712,9 +710,9 @@ pub fn xcb_sync_list_system_counters_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_sync_create_counter_checked (c : *mut connection,
+pub fn xcb_sync_create_counter_checked (c : *mut ffi::base::connection,
                                            id :  counter,
-                                           initial_value :  int64) -> void_cookie;
+                                           initial_value :  int64) -> ffi::base::void_cookie;
 
 /**
  *
@@ -724,9 +722,9 @@ pub fn xcb_sync_create_counter_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_sync_create_counter (c : *mut connection,
+pub fn xcb_sync_create_counter (c : *mut ffi::base::connection,
                                    id :  counter,
-                                   initial_value :  int64) -> void_cookie;
+                                   initial_value :  int64) -> ffi::base::void_cookie;
 
 /**
  *
@@ -739,8 +737,8 @@ pub fn xcb_sync_create_counter (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_sync_destroy_counter_checked (c : *mut connection,
-                                            counter :  counter) -> void_cookie;
+pub fn xcb_sync_destroy_counter_checked (c : *mut ffi::base::connection,
+                                            counter :  counter) -> ffi::base::void_cookie;
 
 /**
  *
@@ -750,8 +748,8 @@ pub fn xcb_sync_destroy_counter_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_sync_destroy_counter (c : *mut connection,
-                                    counter :  counter) -> void_cookie;
+pub fn xcb_sync_destroy_counter (c : *mut ffi::base::connection,
+                                    counter :  counter) -> ffi::base::void_cookie;
 
 /**
  *
@@ -761,7 +759,7 @@ pub fn xcb_sync_destroy_counter (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_sync_query_counter (c : *mut connection,
+pub fn xcb_sync_query_counter (c : *mut ffi::base::connection,
                                   counter :  counter) -> query_counter_cookie;
 
 /**
@@ -775,7 +773,7 @@ pub fn xcb_sync_query_counter (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_sync_query_counter_unchecked (c : *mut connection,
+pub fn xcb_sync_query_counter_unchecked (c : *mut ffi::base::connection,
                                             counter :  counter) -> query_counter_cookie;
 
 /**
@@ -792,9 +790,9 @@ pub fn xcb_sync_query_counter_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_sync_query_counter_reply (c : *mut connection,
+pub fn xcb_sync_query_counter_reply (c : *mut ffi::base::connection,
                                         cookie : query_counter_cookie,
-                                        e : *mut *mut generic_error) -> *mut query_counter_reply;
+                                        e : *mut *mut ffi::base::generic_error) -> *mut query_counter_reply;
 
 pub fn xcb_sync_await_sizeof (_buffer :  *mut c_void,
                        wait_list_len :  u32) -> c_int;
@@ -810,9 +808,9 @@ pub fn xcb_sync_await_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_sync_await_checked (c : *mut connection,
+pub fn xcb_sync_await_checked (c : *mut ffi::base::connection,
                                   wait_list_len :  u32,
-                                  wait_list : *mut waitcondition) -> void_cookie;
+                                  wait_list : *mut waitcondition) -> ffi::base::void_cookie;
 
 /**
  *
@@ -822,9 +820,9 @@ pub fn xcb_sync_await_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_sync_await (c : *mut connection,
+pub fn xcb_sync_await (c : *mut ffi::base::connection,
                           wait_list_len :  u32,
-                          wait_list : *mut waitcondition) -> void_cookie;
+                          wait_list : *mut waitcondition) -> ffi::base::void_cookie;
 
 /**
  *
@@ -837,9 +835,9 @@ pub fn xcb_sync_await (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_sync_change_counter_checked (c : *mut connection,
+pub fn xcb_sync_change_counter_checked (c : *mut ffi::base::connection,
                                            counter :  counter,
-                                           amount :  int64) -> void_cookie;
+                                           amount :  int64) -> ffi::base::void_cookie;
 
 /**
  *
@@ -849,9 +847,9 @@ pub fn xcb_sync_change_counter_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_sync_change_counter (c : *mut connection,
+pub fn xcb_sync_change_counter (c : *mut ffi::base::connection,
                                    counter :  counter,
-                                   amount :  int64) -> void_cookie;
+                                   amount :  int64) -> ffi::base::void_cookie;
 
 /**
  *
@@ -864,9 +862,9 @@ pub fn xcb_sync_change_counter (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_sync_set_counter_checked (c : *mut connection,
+pub fn xcb_sync_set_counter_checked (c : *mut ffi::base::connection,
                                         counter :  counter,
-                                        value :  int64) -> void_cookie;
+                                        value :  int64) -> ffi::base::void_cookie;
 
 /**
  *
@@ -876,9 +874,9 @@ pub fn xcb_sync_set_counter_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_sync_set_counter (c : *mut connection,
+pub fn xcb_sync_set_counter (c : *mut ffi::base::connection,
                                 counter :  counter,
-                                value :  int64) -> void_cookie;
+                                value :  int64) -> ffi::base::void_cookie;
 
 pub fn xcb_sync_create_alarm_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -893,10 +891,10 @@ pub fn xcb_sync_create_alarm_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_sync_create_alarm_checked (c : *mut connection,
+pub fn xcb_sync_create_alarm_checked (c : *mut ffi::base::connection,
                                          id :  alarm,
                                          value_mask :  u32,
-                                         value_list : *mut u32) -> void_cookie;
+                                         value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -906,10 +904,10 @@ pub fn xcb_sync_create_alarm_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_sync_create_alarm (c : *mut connection,
+pub fn xcb_sync_create_alarm (c : *mut ffi::base::connection,
                                  id :  alarm,
                                  value_mask :  u32,
-                                 value_list : *mut u32) -> void_cookie;
+                                 value_list : *mut u32) -> ffi::base::void_cookie;
 
 pub fn xcb_sync_change_alarm_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -924,10 +922,10 @@ pub fn xcb_sync_change_alarm_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_sync_change_alarm_checked (c : *mut connection,
+pub fn xcb_sync_change_alarm_checked (c : *mut ffi::base::connection,
                                          id :  alarm,
                                          value_mask :  u32,
-                                         value_list : *mut u32) -> void_cookie;
+                                         value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -937,10 +935,10 @@ pub fn xcb_sync_change_alarm_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_sync_change_alarm (c : *mut connection,
+pub fn xcb_sync_change_alarm (c : *mut ffi::base::connection,
                                  id :  alarm,
                                  value_mask :  u32,
-                                 value_list : *mut u32) -> void_cookie;
+                                 value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -953,8 +951,8 @@ pub fn xcb_sync_change_alarm (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_sync_destroy_alarm_checked (c : *mut connection,
-                                          alarm :  alarm) -> void_cookie;
+pub fn xcb_sync_destroy_alarm_checked (c : *mut ffi::base::connection,
+                                          alarm :  alarm) -> ffi::base::void_cookie;
 
 /**
  *
@@ -964,8 +962,8 @@ pub fn xcb_sync_destroy_alarm_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_sync_destroy_alarm (c : *mut connection,
-                                  alarm :  alarm) -> void_cookie;
+pub fn xcb_sync_destroy_alarm (c : *mut ffi::base::connection,
+                                  alarm :  alarm) -> ffi::base::void_cookie;
 
 /**
  *
@@ -975,7 +973,7 @@ pub fn xcb_sync_destroy_alarm (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_sync_query_alarm (c : *mut connection,
+pub fn xcb_sync_query_alarm (c : *mut ffi::base::connection,
                                 alarm :  alarm) -> query_alarm_cookie;
 
 /**
@@ -989,7 +987,7 @@ pub fn xcb_sync_query_alarm (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_sync_query_alarm_unchecked (c : *mut connection,
+pub fn xcb_sync_query_alarm_unchecked (c : *mut ffi::base::connection,
                                           alarm :  alarm) -> query_alarm_cookie;
 
 /**
@@ -1006,9 +1004,9 @@ pub fn xcb_sync_query_alarm_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_sync_query_alarm_reply (c : *mut connection,
+pub fn xcb_sync_query_alarm_reply (c : *mut ffi::base::connection,
                                       cookie : query_alarm_cookie,
-                                      e : *mut *mut generic_error) -> *mut query_alarm_reply;
+                                      e : *mut *mut ffi::base::generic_error) -> *mut query_alarm_reply;
 
 /**
  *
@@ -1021,9 +1019,9 @@ pub fn xcb_sync_query_alarm_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_sync_set_priority_checked (c : *mut connection,
+pub fn xcb_sync_set_priority_checked (c : *mut ffi::base::connection,
                                          id :  u32,
-                                         priority :  i32) -> void_cookie;
+                                         priority :  i32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1033,9 +1031,9 @@ pub fn xcb_sync_set_priority_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_sync_set_priority (c : *mut connection,
+pub fn xcb_sync_set_priority (c : *mut ffi::base::connection,
                                  id :  u32,
-                                 priority :  i32) -> void_cookie;
+                                 priority :  i32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1045,7 +1043,7 @@ pub fn xcb_sync_set_priority (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_sync_get_priority (c : *mut connection,
+pub fn xcb_sync_get_priority (c : *mut ffi::base::connection,
                                  id :  u32) -> get_priority_cookie;
 
 /**
@@ -1059,7 +1057,7 @@ pub fn xcb_sync_get_priority (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_sync_get_priority_unchecked (c : *mut connection,
+pub fn xcb_sync_get_priority_unchecked (c : *mut ffi::base::connection,
                                            id :  u32) -> get_priority_cookie;
 
 /**
@@ -1076,9 +1074,9 @@ pub fn xcb_sync_get_priority_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_sync_get_priority_reply (c : *mut connection,
+pub fn xcb_sync_get_priority_reply (c : *mut ffi::base::connection,
                                        cookie : get_priority_cookie,
-                                       e : *mut *mut generic_error) -> *mut get_priority_reply;
+                                       e : *mut *mut ffi::base::generic_error) -> *mut get_priority_reply;
 
 /**
  *
@@ -1091,10 +1089,10 @@ pub fn xcb_sync_get_priority_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_sync_create_fence_checked (c : *mut connection,
+pub fn xcb_sync_create_fence_checked (c : *mut ffi::base::connection,
                                          drawable :  ffi::xproto::drawable,
                                          fence :  fence,
-                                         initially_triggered :  u8) -> void_cookie;
+                                         initially_triggered :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1104,10 +1102,10 @@ pub fn xcb_sync_create_fence_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_sync_create_fence (c : *mut connection,
+pub fn xcb_sync_create_fence (c : *mut ffi::base::connection,
                                  drawable :  ffi::xproto::drawable,
                                  fence :  fence,
-                                 initially_triggered :  u8) -> void_cookie;
+                                 initially_triggered :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1120,8 +1118,8 @@ pub fn xcb_sync_create_fence (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_sync_trigger_fence_checked (c : *mut connection,
-                                          fence :  fence) -> void_cookie;
+pub fn xcb_sync_trigger_fence_checked (c : *mut ffi::base::connection,
+                                          fence :  fence) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1131,33 +1129,8 @@ pub fn xcb_sync_trigger_fence_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_sync_trigger_fence (c : *mut connection,
-                                  fence :  fence) -> void_cookie;
-
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- * 
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
-pub fn xcb_sync_reset_fence_checked (c : *mut connection,
-                                        fence :  fence) -> void_cookie;
-
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- * 
- */
-pub fn xcb_sync_reset_fence (c : *mut connection,
-                                fence :  fence) -> void_cookie;
+pub fn xcb_sync_trigger_fence (c : *mut ffi::base::connection,
+                                  fence :  fence) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1170,8 +1143,8 @@ pub fn xcb_sync_reset_fence (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_sync_destroy_fence_checked (c : *mut connection,
-                                          fence :  fence) -> void_cookie;
+pub fn xcb_sync_reset_fence_checked (c : *mut ffi::base::connection,
+                                        fence :  fence) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1181,8 +1154,22 @@ pub fn xcb_sync_destroy_fence_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_sync_destroy_fence (c : *mut connection,
-                                  fence :  fence) -> void_cookie;
+pub fn xcb_sync_reset_fence (c : *mut ffi::base::connection,
+                                fence :  fence) -> ffi::base::void_cookie;
+
+/**
+ *
+ * @param c The connection
+ * @return A cookie
+ *
+ * Delivers a request to the X server.
+ * 
+ * This form can be used only if the request will not cause
+ * a reply to be generated. Any returned error will be
+ * saved for handling by xcb_request_check().
+ */
+pub fn xcb_sync_destroy_fence_checked (c : *mut ffi::base::connection,
+                                          fence :  fence) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1192,7 +1179,18 @@ pub fn xcb_sync_destroy_fence (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_sync_query_fence (c : *mut connection,
+pub fn xcb_sync_destroy_fence (c : *mut ffi::base::connection,
+                                  fence :  fence) -> ffi::base::void_cookie;
+
+/**
+ *
+ * @param c The connection
+ * @return A cookie
+ *
+ * Delivers a request to the X server.
+ * 
+ */
+pub fn xcb_sync_query_fence (c : *mut ffi::base::connection,
                                 fence :  fence) -> query_fence_cookie;
 
 /**
@@ -1206,7 +1204,7 @@ pub fn xcb_sync_query_fence (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_sync_query_fence_unchecked (c : *mut connection,
+pub fn xcb_sync_query_fence_unchecked (c : *mut ffi::base::connection,
                                           fence :  fence) -> query_fence_cookie;
 
 /**
@@ -1223,9 +1221,9 @@ pub fn xcb_sync_query_fence_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_sync_query_fence_reply (c : *mut connection,
+pub fn xcb_sync_query_fence_reply (c : *mut ffi::base::connection,
                                       cookie : query_fence_cookie,
-                                      e : *mut *mut generic_error) -> *mut query_fence_reply;
+                                      e : *mut *mut ffi::base::generic_error) -> *mut query_fence_reply;
 
 pub fn xcb_sync_await_fence_sizeof (_buffer :  *mut c_void,
                              fence_list_len :  u32) -> c_int;
@@ -1241,9 +1239,9 @@ pub fn xcb_sync_await_fence_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_sync_await_fence_checked (c : *mut connection,
+pub fn xcb_sync_await_fence_checked (c : *mut ffi::base::connection,
                                         fence_list_len :  u32,
-                                        fence_list : *mut fence) -> void_cookie;
+                                        fence_list : *mut fence) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1253,8 +1251,8 @@ pub fn xcb_sync_await_fence_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_sync_await_fence (c : *mut connection,
+pub fn xcb_sync_await_fence (c : *mut ffi::base::connection,
                                 fence_list_len :  u32,
-                                fence_list : *mut fence) -> void_cookie;
+                                fence_list : *mut fence) -> ffi::base::void_cookie;
 }
 

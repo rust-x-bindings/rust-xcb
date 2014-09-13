@@ -8,8 +8,6 @@
 #![allow(non_camel_case_types)]
 use std;
 use libc::*;
-use std::{mem,num,ptr,str};
-use ffi::base::*;
 use ffi;
 use ffi::xproto;
 
@@ -100,7 +98,7 @@ pub extern "C" {
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_test_get_version (c : *mut connection,
+pub fn xcb_test_get_version (c : *mut ffi::base::connection,
                                 major_version :  u8,
                                 minor_version :  u16) -> get_version_cookie;
 
@@ -115,7 +113,7 @@ pub fn xcb_test_get_version (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_test_get_version_unchecked (c : *mut connection,
+pub fn xcb_test_get_version_unchecked (c : *mut ffi::base::connection,
                                           major_version :  u8,
                                           minor_version :  u16) -> get_version_cookie;
 
@@ -133,9 +131,9 @@ pub fn xcb_test_get_version_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_test_get_version_reply (c : *mut connection,
+pub fn xcb_test_get_version_reply (c : *mut ffi::base::connection,
                                       cookie : get_version_cookie,
-                                      e : *mut *mut generic_error) -> *mut get_version_reply;
+                                      e : *mut *mut ffi::base::generic_error) -> *mut get_version_reply;
 
 /**
  *
@@ -145,7 +143,7 @@ pub fn xcb_test_get_version_reply (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_test_compare_cursor (c : *mut connection,
+pub fn xcb_test_compare_cursor (c : *mut ffi::base::connection,
                                    window :  ffi::xproto::window,
                                    cursor :  ffi::xproto::cursor) -> compare_cursor_cookie;
 
@@ -160,7 +158,7 @@ pub fn xcb_test_compare_cursor (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_test_compare_cursor_unchecked (c : *mut connection,
+pub fn xcb_test_compare_cursor_unchecked (c : *mut ffi::base::connection,
                                              window :  ffi::xproto::window,
                                              cursor :  ffi::xproto::cursor) -> compare_cursor_cookie;
 
@@ -178,9 +176,9 @@ pub fn xcb_test_compare_cursor_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_test_compare_cursor_reply (c : *mut connection,
+pub fn xcb_test_compare_cursor_reply (c : *mut ffi::base::connection,
                                          cookie : compare_cursor_cookie,
-                                         e : *mut *mut generic_error) -> *mut compare_cursor_reply;
+                                         e : *mut *mut ffi::base::generic_error) -> *mut compare_cursor_reply;
 
 /**
  *
@@ -193,14 +191,14 @@ pub fn xcb_test_compare_cursor_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_test_fake_input_checked (c : *mut connection,
+pub fn xcb_test_fake_input_checked (c : *mut ffi::base::connection,
                                        type_ :  u8,
                                        detail :  u8,
                                        time :  u32,
                                        root :  ffi::xproto::window,
                                        rootX :  i16,
                                        rootY :  i16,
-                                       deviceid :  u8) -> void_cookie;
+                                       deviceid :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -210,14 +208,14 @@ pub fn xcb_test_fake_input_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_test_fake_input (c : *mut connection,
+pub fn xcb_test_fake_input (c : *mut ffi::base::connection,
                                type_ :  u8,
                                detail :  u8,
                                time :  u32,
                                root :  ffi::xproto::window,
                                rootX :  i16,
                                rootY :  i16,
-                               deviceid :  u8) -> void_cookie;
+                               deviceid :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -230,8 +228,8 @@ pub fn xcb_test_fake_input (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_test_grab_control_checked (c : *mut connection,
-                                         impervious :  u8) -> void_cookie;
+pub fn xcb_test_grab_control_checked (c : *mut ffi::base::connection,
+                                         impervious :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -241,7 +239,7 @@ pub fn xcb_test_grab_control_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_test_grab_control (c : *mut connection,
-                                 impervious :  u8) -> void_cookie;
+pub fn xcb_test_grab_control (c : *mut ffi::base::connection,
+                                 impervious :  u8) -> ffi::base::void_cookie;
 }
 

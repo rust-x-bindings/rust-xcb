@@ -8,8 +8,6 @@
 #![allow(non_camel_case_types)]
 use std;
 use libc::*;
-use std::{mem,num,ptr,str};
-use ffi::base::*;
 use ffi;
 use ffi::xproto;
 
@@ -193,7 +191,7 @@ pub fn xcb_xinerama_screen_info_next (i:*mut screen_info_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xinerama_screen_info_end (i:screen_info_iterator) -> generic_iterator;
+pub fn xcb_xinerama_screen_info_end (i:screen_info_iterator) -> ffi::base::generic_iterator;
 
 /**
  *
@@ -203,7 +201,7 @@ pub fn xcb_xinerama_screen_info_end (i:screen_info_iterator) -> generic_iterator
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xinerama_query_version (c : *mut connection,
+pub fn xcb_xinerama_query_version (c : *mut ffi::base::connection,
                                       major :  u8,
                                       minor :  u8) -> query_version_cookie;
 
@@ -218,7 +216,7 @@ pub fn xcb_xinerama_query_version (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xinerama_query_version_unchecked (c : *mut connection,
+pub fn xcb_xinerama_query_version_unchecked (c : *mut ffi::base::connection,
                                                 major :  u8,
                                                 minor :  u8) -> query_version_cookie;
 
@@ -236,9 +234,9 @@ pub fn xcb_xinerama_query_version_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xinerama_query_version_reply (c : *mut connection,
+pub fn xcb_xinerama_query_version_reply (c : *mut ffi::base::connection,
                                             cookie : query_version_cookie,
-                                            e : *mut *mut generic_error) -> *mut query_version_reply;
+                                            e : *mut *mut ffi::base::generic_error) -> *mut query_version_reply;
 
 /**
  *
@@ -248,7 +246,7 @@ pub fn xcb_xinerama_query_version_reply (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xinerama_get_state (c : *mut connection,
+pub fn xcb_xinerama_get_state (c : *mut ffi::base::connection,
                                   window :  ffi::xproto::window) -> get_state_cookie;
 
 /**
@@ -262,7 +260,7 @@ pub fn xcb_xinerama_get_state (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xinerama_get_state_unchecked (c : *mut connection,
+pub fn xcb_xinerama_get_state_unchecked (c : *mut ffi::base::connection,
                                             window :  ffi::xproto::window) -> get_state_cookie;
 
 /**
@@ -279,9 +277,9 @@ pub fn xcb_xinerama_get_state_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xinerama_get_state_reply (c : *mut connection,
+pub fn xcb_xinerama_get_state_reply (c : *mut ffi::base::connection,
                                         cookie : get_state_cookie,
-                                        e : *mut *mut generic_error) -> *mut get_state_reply;
+                                        e : *mut *mut ffi::base::generic_error) -> *mut get_state_reply;
 
 /**
  *
@@ -291,7 +289,7 @@ pub fn xcb_xinerama_get_state_reply (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xinerama_get_screen_count (c : *mut connection,
+pub fn xcb_xinerama_get_screen_count (c : *mut ffi::base::connection,
                                          window :  ffi::xproto::window) -> get_screen_count_cookie;
 
 /**
@@ -305,7 +303,7 @@ pub fn xcb_xinerama_get_screen_count (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xinerama_get_screen_count_unchecked (c : *mut connection,
+pub fn xcb_xinerama_get_screen_count_unchecked (c : *mut ffi::base::connection,
                                                    window :  ffi::xproto::window) -> get_screen_count_cookie;
 
 /**
@@ -322,9 +320,9 @@ pub fn xcb_xinerama_get_screen_count_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xinerama_get_screen_count_reply (c : *mut connection,
+pub fn xcb_xinerama_get_screen_count_reply (c : *mut ffi::base::connection,
                                                cookie : get_screen_count_cookie,
-                                               e : *mut *mut generic_error) -> *mut get_screen_count_reply;
+                                               e : *mut *mut ffi::base::generic_error) -> *mut get_screen_count_reply;
 
 /**
  *
@@ -334,7 +332,7 @@ pub fn xcb_xinerama_get_screen_count_reply (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xinerama_get_screen_size (c : *mut connection,
+pub fn xcb_xinerama_get_screen_size (c : *mut ffi::base::connection,
                                         window :  ffi::xproto::window,
                                         screen :  u32) -> get_screen_size_cookie;
 
@@ -349,7 +347,7 @@ pub fn xcb_xinerama_get_screen_size (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xinerama_get_screen_size_unchecked (c : *mut connection,
+pub fn xcb_xinerama_get_screen_size_unchecked (c : *mut ffi::base::connection,
                                                   window :  ffi::xproto::window,
                                                   screen :  u32) -> get_screen_size_cookie;
 
@@ -367,9 +365,9 @@ pub fn xcb_xinerama_get_screen_size_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xinerama_get_screen_size_reply (c : *mut connection,
+pub fn xcb_xinerama_get_screen_size_reply (c : *mut ffi::base::connection,
                                               cookie : get_screen_size_cookie,
-                                              e : *mut *mut generic_error) -> *mut get_screen_size_reply;
+                                              e : *mut *mut ffi::base::generic_error) -> *mut get_screen_size_reply;
 
 /**
  *
@@ -379,7 +377,7 @@ pub fn xcb_xinerama_get_screen_size_reply (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xinerama_is_active (c : *mut connection) -> is_active_cookie;
+pub fn xcb_xinerama_is_active (c : *mut ffi::base::connection) -> is_active_cookie;
 
 /**
  *
@@ -392,7 +390,7 @@ pub fn xcb_xinerama_is_active (c : *mut connection) -> is_active_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xinerama_is_active_unchecked (c : *mut connection) -> is_active_cookie;
+pub fn xcb_xinerama_is_active_unchecked (c : *mut ffi::base::connection) -> is_active_cookie;
 
 /**
  * Return the reply
@@ -408,9 +406,9 @@ pub fn xcb_xinerama_is_active_unchecked (c : *mut connection) -> is_active_cooki
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xinerama_is_active_reply (c : *mut connection,
+pub fn xcb_xinerama_is_active_reply (c : *mut ffi::base::connection,
                                         cookie : is_active_cookie,
-                                        e : *mut *mut generic_error) -> *mut is_active_reply;
+                                        e : *mut *mut ffi::base::generic_error) -> *mut is_active_reply;
 
 pub fn xcb_xinerama_query_screens_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -422,7 +420,7 @@ pub fn xcb_xinerama_query_screens_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xinerama_query_screens (c : *mut connection) -> query_screens_cookie;
+pub fn xcb_xinerama_query_screens (c : *mut ffi::base::connection) -> query_screens_cookie;
 
 /**
  *
@@ -435,7 +433,7 @@ pub fn xcb_xinerama_query_screens (c : *mut connection) -> query_screens_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xinerama_query_screens_unchecked (c : *mut connection) -> query_screens_cookie;
+pub fn xcb_xinerama_query_screens_unchecked (c : *mut ffi::base::connection) -> query_screens_cookie;
 
 pub fn xcb_xinerama_query_screens_screen_info (R : *mut query_screens_reply) -> *mut screen_info;
 
@@ -458,8 +456,8 @@ pub fn xcb_xinerama_query_screens_screen_info_iterator (R : *mut query_screens_r
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xinerama_query_screens_reply (c : *mut connection,
+pub fn xcb_xinerama_query_screens_reply (c : *mut ffi::base::connection,
                                             cookie : query_screens_cookie,
-                                            e : *mut *mut generic_error) -> *mut query_screens_reply;
+                                            e : *mut *mut ffi::base::generic_error) -> *mut query_screens_reply;
 }
 

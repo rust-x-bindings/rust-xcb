@@ -8,8 +8,6 @@
 #![allow(non_camel_case_types)]
 use std;
 use libc::*;
-use std::{mem,num,ptr,str};
-use ffi::base::*;
 use ffi;
 
 pub static XF86DRI_MAJOR_VERSION : c_uint = 4;
@@ -309,7 +307,7 @@ pub fn xcb_xf86dri_drm_clip_rect_next (i:*mut drm_clip_rect_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xf86dri_drm_clip_rect_end (i:drm_clip_rect_iterator) -> generic_iterator;
+pub fn xcb_xf86dri_drm_clip_rect_end (i:drm_clip_rect_iterator) -> ffi::base::generic_iterator;
 
 /**
  *
@@ -319,7 +317,7 @@ pub fn xcb_xf86dri_drm_clip_rect_end (i:drm_clip_rect_iterator) -> generic_itera
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86dri_query_version (c : *mut connection) -> query_version_cookie;
+pub fn xcb_xf86dri_query_version (c : *mut ffi::base::connection) -> query_version_cookie;
 
 /**
  *
@@ -332,7 +330,7 @@ pub fn xcb_xf86dri_query_version (c : *mut connection) -> query_version_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86dri_query_version_unchecked (c : *mut connection) -> query_version_cookie;
+pub fn xcb_xf86dri_query_version_unchecked (c : *mut ffi::base::connection) -> query_version_cookie;
 
 /**
  * Return the reply
@@ -348,9 +346,9 @@ pub fn xcb_xf86dri_query_version_unchecked (c : *mut connection) -> query_versio
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86dri_query_version_reply (c : *mut connection,
+pub fn xcb_xf86dri_query_version_reply (c : *mut ffi::base::connection,
                                            cookie : query_version_cookie,
-                                           e : *mut *mut generic_error) -> *mut query_version_reply;
+                                           e : *mut *mut ffi::base::generic_error) -> *mut query_version_reply;
 
 /**
  *
@@ -360,7 +358,7 @@ pub fn xcb_xf86dri_query_version_reply (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86dri_query_direct_rendering_capable (c : *mut connection,
+pub fn xcb_xf86dri_query_direct_rendering_capable (c : *mut ffi::base::connection,
                                                       screen :  u32) -> query_direct_rendering_capable_cookie;
 
 /**
@@ -374,7 +372,7 @@ pub fn xcb_xf86dri_query_direct_rendering_capable (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86dri_query_direct_rendering_capable_unchecked (c : *mut connection,
+pub fn xcb_xf86dri_query_direct_rendering_capable_unchecked (c : *mut ffi::base::connection,
                                                                 screen :  u32) -> query_direct_rendering_capable_cookie;
 
 /**
@@ -391,9 +389,9 @@ pub fn xcb_xf86dri_query_direct_rendering_capable_unchecked (c : *mut connection
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86dri_query_direct_rendering_capable_reply (c : *mut connection,
+pub fn xcb_xf86dri_query_direct_rendering_capable_reply (c : *mut ffi::base::connection,
                                                             cookie : query_direct_rendering_capable_cookie,
-                                                            e : *mut *mut generic_error) -> *mut query_direct_rendering_capable_reply;
+                                                            e : *mut *mut ffi::base::generic_error) -> *mut query_direct_rendering_capable_reply;
 
 pub fn xcb_xf86dri_open_connection_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -405,7 +403,7 @@ pub fn xcb_xf86dri_open_connection_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86dri_open_connection (c : *mut connection,
+pub fn xcb_xf86dri_open_connection (c : *mut ffi::base::connection,
                                        screen :  u32) -> open_connection_cookie;
 
 /**
@@ -419,7 +417,7 @@ pub fn xcb_xf86dri_open_connection (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86dri_open_connection_unchecked (c : *mut connection,
+pub fn xcb_xf86dri_open_connection_unchecked (c : *mut ffi::base::connection,
                                                  screen :  u32) -> open_connection_cookie;
 
 pub fn xcb_xf86dri_open_connection_bus_id (R : *mut open_connection_reply) -> *mut c_char;
@@ -428,7 +426,7 @@ pub fn xcb_xf86dri_open_connection_bus_id (R : *mut open_connection_reply) -> *m
 pub fn xcb_xf86dri_open_connection_bus_id_length (R : *mut open_connection_reply) -> c_int;
 
 
-pub fn xcb_xf86dri_open_connection_bus_id_end (R : *mut open_connection_reply) -> generic_iterator;
+pub fn xcb_xf86dri_open_connection_bus_id_end (R : *mut open_connection_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -444,9 +442,9 @@ pub fn xcb_xf86dri_open_connection_bus_id_end (R : *mut open_connection_reply) -
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86dri_open_connection_reply (c : *mut connection,
+pub fn xcb_xf86dri_open_connection_reply (c : *mut ffi::base::connection,
                                              cookie : open_connection_cookie,
-                                             e : *mut *mut generic_error) -> *mut open_connection_reply;
+                                             e : *mut *mut ffi::base::generic_error) -> *mut open_connection_reply;
 
 /**
  *
@@ -459,8 +457,8 @@ pub fn xcb_xf86dri_open_connection_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xf86dri_close_connection_checked (c : *mut connection,
-                                                screen :  u32) -> void_cookie;
+pub fn xcb_xf86dri_close_connection_checked (c : *mut ffi::base::connection,
+                                                screen :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -470,8 +468,8 @@ pub fn xcb_xf86dri_close_connection_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86dri_close_connection (c : *mut connection,
-                                        screen :  u32) -> void_cookie;
+pub fn xcb_xf86dri_close_connection (c : *mut ffi::base::connection,
+                                        screen :  u32) -> ffi::base::void_cookie;
 
 pub fn xcb_xf86dri_get_client_driver_name_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -483,7 +481,7 @@ pub fn xcb_xf86dri_get_client_driver_name_sizeof (_buffer :  *mut c_void) -> c_i
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86dri_get_client_driver_name (c : *mut connection,
+pub fn xcb_xf86dri_get_client_driver_name (c : *mut ffi::base::connection,
                                               screen :  u32) -> get_client_driver_name_cookie;
 
 /**
@@ -497,7 +495,7 @@ pub fn xcb_xf86dri_get_client_driver_name (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86dri_get_client_driver_name_unchecked (c : *mut connection,
+pub fn xcb_xf86dri_get_client_driver_name_unchecked (c : *mut ffi::base::connection,
                                                         screen :  u32) -> get_client_driver_name_cookie;
 
 pub fn xcb_xf86dri_get_client_driver_name_client_driver_name (R : *mut get_client_driver_name_reply) -> *mut c_char;
@@ -506,7 +504,7 @@ pub fn xcb_xf86dri_get_client_driver_name_client_driver_name (R : *mut get_clien
 pub fn xcb_xf86dri_get_client_driver_name_client_driver_name_length (R : *mut get_client_driver_name_reply) -> c_int;
 
 
-pub fn xcb_xf86dri_get_client_driver_name_client_driver_name_end (R : *mut get_client_driver_name_reply) -> generic_iterator;
+pub fn xcb_xf86dri_get_client_driver_name_client_driver_name_end (R : *mut get_client_driver_name_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -522,9 +520,9 @@ pub fn xcb_xf86dri_get_client_driver_name_client_driver_name_end (R : *mut get_c
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86dri_get_client_driver_name_reply (c : *mut connection,
+pub fn xcb_xf86dri_get_client_driver_name_reply (c : *mut ffi::base::connection,
                                                     cookie : get_client_driver_name_cookie,
-                                                    e : *mut *mut generic_error) -> *mut get_client_driver_name_reply;
+                                                    e : *mut *mut ffi::base::generic_error) -> *mut get_client_driver_name_reply;
 
 /**
  *
@@ -534,7 +532,7 @@ pub fn xcb_xf86dri_get_client_driver_name_reply (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86dri_create_context (c : *mut connection,
+pub fn xcb_xf86dri_create_context (c : *mut ffi::base::connection,
                                       screen :  u32,
                                       visual :  u32,
                                       context :  u32) -> create_context_cookie;
@@ -550,7 +548,7 @@ pub fn xcb_xf86dri_create_context (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86dri_create_context_unchecked (c : *mut connection,
+pub fn xcb_xf86dri_create_context_unchecked (c : *mut ffi::base::connection,
                                                 screen :  u32,
                                                 visual :  u32,
                                                 context :  u32) -> create_context_cookie;
@@ -569,9 +567,9 @@ pub fn xcb_xf86dri_create_context_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86dri_create_context_reply (c : *mut connection,
+pub fn xcb_xf86dri_create_context_reply (c : *mut ffi::base::connection,
                                             cookie : create_context_cookie,
-                                            e : *mut *mut generic_error) -> *mut create_context_reply;
+                                            e : *mut *mut ffi::base::generic_error) -> *mut create_context_reply;
 
 /**
  *
@@ -584,9 +582,9 @@ pub fn xcb_xf86dri_create_context_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xf86dri_destroy_context_checked (c : *mut connection,
+pub fn xcb_xf86dri_destroy_context_checked (c : *mut ffi::base::connection,
                                                screen :  u32,
-                                               context :  u32) -> void_cookie;
+                                               context :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -596,9 +594,9 @@ pub fn xcb_xf86dri_destroy_context_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86dri_destroy_context (c : *mut connection,
+pub fn xcb_xf86dri_destroy_context (c : *mut ffi::base::connection,
                                        screen :  u32,
-                                       context :  u32) -> void_cookie;
+                                       context :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -608,7 +606,7 @@ pub fn xcb_xf86dri_destroy_context (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86dri_create_drawable (c : *mut connection,
+pub fn xcb_xf86dri_create_drawable (c : *mut ffi::base::connection,
                                        screen :  u32,
                                        drawable :  u32) -> create_drawable_cookie;
 
@@ -623,7 +621,7 @@ pub fn xcb_xf86dri_create_drawable (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86dri_create_drawable_unchecked (c : *mut connection,
+pub fn xcb_xf86dri_create_drawable_unchecked (c : *mut ffi::base::connection,
                                                  screen :  u32,
                                                  drawable :  u32) -> create_drawable_cookie;
 
@@ -641,9 +639,9 @@ pub fn xcb_xf86dri_create_drawable_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86dri_create_drawable_reply (c : *mut connection,
+pub fn xcb_xf86dri_create_drawable_reply (c : *mut ffi::base::connection,
                                              cookie : create_drawable_cookie,
-                                             e : *mut *mut generic_error) -> *mut create_drawable_reply;
+                                             e : *mut *mut ffi::base::generic_error) -> *mut create_drawable_reply;
 
 /**
  *
@@ -656,9 +654,9 @@ pub fn xcb_xf86dri_create_drawable_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xf86dri_destroy_drawable_checked (c : *mut connection,
+pub fn xcb_xf86dri_destroy_drawable_checked (c : *mut ffi::base::connection,
                                                 screen :  u32,
-                                                drawable :  u32) -> void_cookie;
+                                                drawable :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -668,9 +666,9 @@ pub fn xcb_xf86dri_destroy_drawable_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86dri_destroy_drawable (c : *mut connection,
+pub fn xcb_xf86dri_destroy_drawable (c : *mut ffi::base::connection,
                                         screen :  u32,
-                                        drawable :  u32) -> void_cookie;
+                                        drawable :  u32) -> ffi::base::void_cookie;
 
 pub fn xcb_xf86dri_get_drawable_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -682,7 +680,7 @@ pub fn xcb_xf86dri_get_drawable_info_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86dri_get_drawable_info (c : *mut connection,
+pub fn xcb_xf86dri_get_drawable_info (c : *mut ffi::base::connection,
                                          screen :  u32,
                                          drawable :  u32) -> get_drawable_info_cookie;
 
@@ -697,7 +695,7 @@ pub fn xcb_xf86dri_get_drawable_info (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86dri_get_drawable_info_unchecked (c : *mut connection,
+pub fn xcb_xf86dri_get_drawable_info_unchecked (c : *mut ffi::base::connection,
                                                    screen :  u32,
                                                    drawable :  u32) -> get_drawable_info_cookie;
 
@@ -729,9 +727,9 @@ pub fn xcb_xf86dri_get_drawable_info_back_clip_rects_iterator (R : *mut get_draw
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86dri_get_drawable_info_reply (c : *mut connection,
+pub fn xcb_xf86dri_get_drawable_info_reply (c : *mut ffi::base::connection,
                                                cookie : get_drawable_info_cookie,
-                                               e : *mut *mut generic_error) -> *mut get_drawable_info_reply;
+                                               e : *mut *mut ffi::base::generic_error) -> *mut get_drawable_info_reply;
 
 pub fn xcb_xf86dri_get_device_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -743,7 +741,7 @@ pub fn xcb_xf86dri_get_device_info_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86dri_get_device_info (c : *mut connection,
+pub fn xcb_xf86dri_get_device_info (c : *mut ffi::base::connection,
                                        screen :  u32) -> get_device_info_cookie;
 
 /**
@@ -757,7 +755,7 @@ pub fn xcb_xf86dri_get_device_info (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86dri_get_device_info_unchecked (c : *mut connection,
+pub fn xcb_xf86dri_get_device_info_unchecked (c : *mut ffi::base::connection,
                                                  screen :  u32) -> get_device_info_cookie;
 
 pub fn xcb_xf86dri_get_device_info_device_private (R : *mut get_device_info_reply) -> *mut u32;
@@ -766,7 +764,7 @@ pub fn xcb_xf86dri_get_device_info_device_private (R : *mut get_device_info_repl
 pub fn xcb_xf86dri_get_device_info_device_private_length (R : *mut get_device_info_reply) -> c_int;
 
 
-pub fn xcb_xf86dri_get_device_info_device_private_end (R : *mut get_device_info_reply) -> generic_iterator;
+pub fn xcb_xf86dri_get_device_info_device_private_end (R : *mut get_device_info_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -782,9 +780,9 @@ pub fn xcb_xf86dri_get_device_info_device_private_end (R : *mut get_device_info_
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86dri_get_device_info_reply (c : *mut connection,
+pub fn xcb_xf86dri_get_device_info_reply (c : *mut ffi::base::connection,
                                              cookie : get_device_info_cookie,
-                                             e : *mut *mut generic_error) -> *mut get_device_info_reply;
+                                             e : *mut *mut ffi::base::generic_error) -> *mut get_device_info_reply;
 
 /**
  *
@@ -794,7 +792,7 @@ pub fn xcb_xf86dri_get_device_info_reply (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86dri_auth_connection (c : *mut connection,
+pub fn xcb_xf86dri_auth_connection (c : *mut ffi::base::connection,
                                        screen :  u32,
                                        magic :  u32) -> auth_connection_cookie;
 
@@ -809,7 +807,7 @@ pub fn xcb_xf86dri_auth_connection (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86dri_auth_connection_unchecked (c : *mut connection,
+pub fn xcb_xf86dri_auth_connection_unchecked (c : *mut ffi::base::connection,
                                                  screen :  u32,
                                                  magic :  u32) -> auth_connection_cookie;
 
@@ -827,8 +825,8 @@ pub fn xcb_xf86dri_auth_connection_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86dri_auth_connection_reply (c : *mut connection,
+pub fn xcb_xf86dri_auth_connection_reply (c : *mut ffi::base::connection,
                                              cookie : auth_connection_cookie,
-                                             e : *mut *mut generic_error) -> *mut auth_connection_reply;
+                                             e : *mut *mut ffi::base::generic_error) -> *mut auth_connection_reply;
 }
 

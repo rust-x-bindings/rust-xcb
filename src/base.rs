@@ -320,7 +320,7 @@ impl<T> EventUtil for Event<T> {
     }
 }
 
-pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &[(T,L)]) -> (T, Vec<L>) {
+pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &[(T,L)]) -> (T, Box<[L]>) {
     let len = bf.len();
 
     let sorted = extra::sort::merge_sort(bf, |a,b| {

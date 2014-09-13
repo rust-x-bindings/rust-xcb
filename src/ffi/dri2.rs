@@ -8,8 +8,6 @@
 #![allow(non_camel_case_types)]
 use std;
 use libc::*;
-use std::{mem,num,ptr,str};
-use ffi::base::*;
 use ffi;
 use ffi::xproto;
 
@@ -415,7 +413,7 @@ pub fn xcb_dri2_dri2_buffer_next (i:*mut dri2_buffer_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_dri2_dri2_buffer_end (i:dri2_buffer_iterator) -> generic_iterator;
+pub fn xcb_dri2_dri2_buffer_end (i:dri2_buffer_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -438,7 +436,7 @@ pub fn xcb_dri2_attach_format_next (i:*mut attach_format_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_dri2_attach_format_end (i:attach_format_iterator) -> generic_iterator;
+pub fn xcb_dri2_attach_format_end (i:attach_format_iterator) -> ffi::base::generic_iterator;
 
 /**
  *
@@ -448,7 +446,7 @@ pub fn xcb_dri2_attach_format_end (i:attach_format_iterator) -> generic_iterator
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_dri2_query_version (c : *mut connection,
+pub fn xcb_dri2_query_version (c : *mut ffi::base::connection,
                                   major_version :  u32,
                                   minor_version :  u32) -> query_version_cookie;
 
@@ -463,7 +461,7 @@ pub fn xcb_dri2_query_version (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_dri2_query_version_unchecked (c : *mut connection,
+pub fn xcb_dri2_query_version_unchecked (c : *mut ffi::base::connection,
                                             major_version :  u32,
                                             minor_version :  u32) -> query_version_cookie;
 
@@ -481,9 +479,9 @@ pub fn xcb_dri2_query_version_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_dri2_query_version_reply (c : *mut connection,
+pub fn xcb_dri2_query_version_reply (c : *mut ffi::base::connection,
                                         cookie : query_version_cookie,
-                                        e : *mut *mut generic_error) -> *mut query_version_reply;
+                                        e : *mut *mut ffi::base::generic_error) -> *mut query_version_reply;
 
 pub fn xcb_dri2_connect_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -495,7 +493,7 @@ pub fn xcb_dri2_connect_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_dri2_connect (c : *mut connection,
+pub fn xcb_dri2_connect (c : *mut ffi::base::connection,
                             window :  ffi::xproto::window,
                             driver_type :  u32) -> connect_cookie;
 
@@ -510,7 +508,7 @@ pub fn xcb_dri2_connect (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_dri2_connect_unchecked (c : *mut connection,
+pub fn xcb_dri2_connect_unchecked (c : *mut ffi::base::connection,
                                       window :  ffi::xproto::window,
                                       driver_type :  u32) -> connect_cookie;
 
@@ -520,7 +518,7 @@ pub fn xcb_dri2_connect_driver_name (R : *mut connect_reply) -> *mut c_char;
 pub fn xcb_dri2_connect_driver_name_length (R : *mut connect_reply) -> c_int;
 
 
-pub fn xcb_dri2_connect_driver_name_end (R : *mut connect_reply) -> generic_iterator;
+pub fn xcb_dri2_connect_driver_name_end (R : *mut connect_reply) -> ffi::base::generic_iterator;
 
 pub fn xcb_dri2_connect_alignment_pad (R : *mut connect_reply) -> *mut c_void;
 
@@ -528,7 +526,7 @@ pub fn xcb_dri2_connect_alignment_pad (R : *mut connect_reply) -> *mut c_void;
 pub fn xcb_dri2_connect_alignment_pad_length (R : *mut connect_reply) -> c_int;
 
 
-pub fn xcb_dri2_connect_alignment_pad_end (R : *mut connect_reply) -> generic_iterator;
+pub fn xcb_dri2_connect_alignment_pad_end (R : *mut connect_reply) -> ffi::base::generic_iterator;
 
 pub fn xcb_dri2_connect_device_name (R : *mut connect_reply) -> *mut c_char;
 
@@ -536,7 +534,7 @@ pub fn xcb_dri2_connect_device_name (R : *mut connect_reply) -> *mut c_char;
 pub fn xcb_dri2_connect_device_name_length (R : *mut connect_reply) -> c_int;
 
 
-pub fn xcb_dri2_connect_device_name_end (R : *mut connect_reply) -> generic_iterator;
+pub fn xcb_dri2_connect_device_name_end (R : *mut connect_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -552,9 +550,9 @@ pub fn xcb_dri2_connect_device_name_end (R : *mut connect_reply) -> generic_iter
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_dri2_connect_reply (c : *mut connection,
+pub fn xcb_dri2_connect_reply (c : *mut ffi::base::connection,
                                   cookie : connect_cookie,
-                                  e : *mut *mut generic_error) -> *mut connect_reply;
+                                  e : *mut *mut ffi::base::generic_error) -> *mut connect_reply;
 
 /**
  *
@@ -564,7 +562,7 @@ pub fn xcb_dri2_connect_reply (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_dri2_authenticate (c : *mut connection,
+pub fn xcb_dri2_authenticate (c : *mut ffi::base::connection,
                                  window :  ffi::xproto::window,
                                  magic :  u32) -> authenticate_cookie;
 
@@ -579,7 +577,7 @@ pub fn xcb_dri2_authenticate (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_dri2_authenticate_unchecked (c : *mut connection,
+pub fn xcb_dri2_authenticate_unchecked (c : *mut ffi::base::connection,
                                            window :  ffi::xproto::window,
                                            magic :  u32) -> authenticate_cookie;
 
@@ -597,9 +595,9 @@ pub fn xcb_dri2_authenticate_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_dri2_authenticate_reply (c : *mut connection,
+pub fn xcb_dri2_authenticate_reply (c : *mut ffi::base::connection,
                                        cookie : authenticate_cookie,
-                                       e : *mut *mut generic_error) -> *mut authenticate_reply;
+                                       e : *mut *mut ffi::base::generic_error) -> *mut authenticate_reply;
 
 /**
  *
@@ -612,8 +610,8 @@ pub fn xcb_dri2_authenticate_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_dri2_create_drawable_checked (c : *mut connection,
-                                            drawable :  ffi::xproto::drawable) -> void_cookie;
+pub fn xcb_dri2_create_drawable_checked (c : *mut ffi::base::connection,
+                                            drawable :  ffi::xproto::drawable) -> ffi::base::void_cookie;
 
 /**
  *
@@ -623,8 +621,8 @@ pub fn xcb_dri2_create_drawable_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_dri2_create_drawable (c : *mut connection,
-                                    drawable :  ffi::xproto::drawable) -> void_cookie;
+pub fn xcb_dri2_create_drawable (c : *mut ffi::base::connection,
+                                    drawable :  ffi::xproto::drawable) -> ffi::base::void_cookie;
 
 /**
  *
@@ -637,8 +635,8 @@ pub fn xcb_dri2_create_drawable (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_dri2_destroy_drawable_checked (c : *mut connection,
-                                             drawable :  ffi::xproto::drawable) -> void_cookie;
+pub fn xcb_dri2_destroy_drawable_checked (c : *mut ffi::base::connection,
+                                             drawable :  ffi::xproto::drawable) -> ffi::base::void_cookie;
 
 /**
  *
@@ -648,8 +646,8 @@ pub fn xcb_dri2_destroy_drawable_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_dri2_destroy_drawable (c : *mut connection,
-                                     drawable :  ffi::xproto::drawable) -> void_cookie;
+pub fn xcb_dri2_destroy_drawable (c : *mut ffi::base::connection,
+                                     drawable :  ffi::xproto::drawable) -> ffi::base::void_cookie;
 
 pub fn xcb_dri2_get_buffers_sizeof (_buffer :  *mut c_void,
                              attachments_len :  u32) -> c_int;
@@ -662,7 +660,7 @@ pub fn xcb_dri2_get_buffers_sizeof (_buffer :  *mut c_void,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_dri2_get_buffers (c : *mut connection,
+pub fn xcb_dri2_get_buffers (c : *mut ffi::base::connection,
                                 drawable :  ffi::xproto::drawable,
                                 count :  u32,
                                 attachments_len :  u32,
@@ -679,7 +677,7 @@ pub fn xcb_dri2_get_buffers (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_dri2_get_buffers_unchecked (c : *mut connection,
+pub fn xcb_dri2_get_buffers_unchecked (c : *mut ffi::base::connection,
                                           drawable :  ffi::xproto::drawable,
                                           count :  u32,
                                           attachments_len :  u32,
@@ -706,9 +704,9 @@ pub fn xcb_dri2_get_buffers_buffers_iterator (R : *mut get_buffers_reply) -> dri
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_dri2_get_buffers_reply (c : *mut connection,
+pub fn xcb_dri2_get_buffers_reply (c : *mut ffi::base::connection,
                                       cookie : get_buffers_cookie,
-                                      e : *mut *mut generic_error) -> *mut get_buffers_reply;
+                                      e : *mut *mut ffi::base::generic_error) -> *mut get_buffers_reply;
 
 /**
  *
@@ -718,7 +716,7 @@ pub fn xcb_dri2_get_buffers_reply (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_dri2_copy_region (c : *mut connection,
+pub fn xcb_dri2_copy_region (c : *mut ffi::base::connection,
                                 drawable :  ffi::xproto::drawable,
                                 region :  u32,
                                 dest :  u32,
@@ -735,7 +733,7 @@ pub fn xcb_dri2_copy_region (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_dri2_copy_region_unchecked (c : *mut connection,
+pub fn xcb_dri2_copy_region_unchecked (c : *mut ffi::base::connection,
                                           drawable :  ffi::xproto::drawable,
                                           region :  u32,
                                           dest :  u32,
@@ -755,9 +753,9 @@ pub fn xcb_dri2_copy_region_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_dri2_copy_region_reply (c : *mut connection,
+pub fn xcb_dri2_copy_region_reply (c : *mut ffi::base::connection,
                                       cookie : copy_region_cookie,
-                                      e : *mut *mut generic_error) -> *mut copy_region_reply;
+                                      e : *mut *mut ffi::base::generic_error) -> *mut copy_region_reply;
 
 pub fn xcb_dri2_get_buffers_with_format_sizeof (_buffer :  *mut c_void,
                                          attachments_len :  u32) -> c_int;
@@ -770,7 +768,7 @@ pub fn xcb_dri2_get_buffers_with_format_sizeof (_buffer :  *mut c_void,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_dri2_get_buffers_with_format (c : *mut connection,
+pub fn xcb_dri2_get_buffers_with_format (c : *mut ffi::base::connection,
                                             drawable :  ffi::xproto::drawable,
                                             count :  u32,
                                             attachments_len :  u32,
@@ -787,7 +785,7 @@ pub fn xcb_dri2_get_buffers_with_format (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_dri2_get_buffers_with_format_unchecked (c : *mut connection,
+pub fn xcb_dri2_get_buffers_with_format_unchecked (c : *mut ffi::base::connection,
                                                       drawable :  ffi::xproto::drawable,
                                                       count :  u32,
                                                       attachments_len :  u32,
@@ -814,9 +812,9 @@ pub fn xcb_dri2_get_buffers_with_format_buffers_iterator (R : *mut get_buffers_w
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_dri2_get_buffers_with_format_reply (c : *mut connection,
+pub fn xcb_dri2_get_buffers_with_format_reply (c : *mut ffi::base::connection,
                                                   cookie : get_buffers_with_format_cookie,
-                                                  e : *mut *mut generic_error) -> *mut get_buffers_with_format_reply;
+                                                  e : *mut *mut ffi::base::generic_error) -> *mut get_buffers_with_format_reply;
 
 /**
  *
@@ -826,7 +824,7 @@ pub fn xcb_dri2_get_buffers_with_format_reply (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_dri2_swap_buffers (c : *mut connection,
+pub fn xcb_dri2_swap_buffers (c : *mut ffi::base::connection,
                                  drawable :  ffi::xproto::drawable,
                                  target_msc_hi :  u32,
                                  target_msc_lo :  u32,
@@ -846,7 +844,7 @@ pub fn xcb_dri2_swap_buffers (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_dri2_swap_buffers_unchecked (c : *mut connection,
+pub fn xcb_dri2_swap_buffers_unchecked (c : *mut ffi::base::connection,
                                            drawable :  ffi::xproto::drawable,
                                            target_msc_hi :  u32,
                                            target_msc_lo :  u32,
@@ -869,9 +867,9 @@ pub fn xcb_dri2_swap_buffers_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_dri2_swap_buffers_reply (c : *mut connection,
+pub fn xcb_dri2_swap_buffers_reply (c : *mut ffi::base::connection,
                                        cookie : swap_buffers_cookie,
-                                       e : *mut *mut generic_error) -> *mut swap_buffers_reply;
+                                       e : *mut *mut ffi::base::generic_error) -> *mut swap_buffers_reply;
 
 /**
  *
@@ -881,7 +879,7 @@ pub fn xcb_dri2_swap_buffers_reply (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_dri2_get_msc (c : *mut connection,
+pub fn xcb_dri2_get_msc (c : *mut ffi::base::connection,
                             drawable :  ffi::xproto::drawable) -> get_msc_cookie;
 
 /**
@@ -895,7 +893,7 @@ pub fn xcb_dri2_get_msc (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_dri2_get_msc_unchecked (c : *mut connection,
+pub fn xcb_dri2_get_msc_unchecked (c : *mut ffi::base::connection,
                                       drawable :  ffi::xproto::drawable) -> get_msc_cookie;
 
 /**
@@ -912,9 +910,9 @@ pub fn xcb_dri2_get_msc_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_dri2_get_msc_reply (c : *mut connection,
+pub fn xcb_dri2_get_msc_reply (c : *mut ffi::base::connection,
                                   cookie : get_msc_cookie,
-                                  e : *mut *mut generic_error) -> *mut get_msc_reply;
+                                  e : *mut *mut ffi::base::generic_error) -> *mut get_msc_reply;
 
 /**
  *
@@ -924,7 +922,7 @@ pub fn xcb_dri2_get_msc_reply (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_dri2_wait_msc (c : *mut connection,
+pub fn xcb_dri2_wait_msc (c : *mut ffi::base::connection,
                              drawable :  ffi::xproto::drawable,
                              target_msc_hi :  u32,
                              target_msc_lo :  u32,
@@ -944,7 +942,7 @@ pub fn xcb_dri2_wait_msc (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_dri2_wait_msc_unchecked (c : *mut connection,
+pub fn xcb_dri2_wait_msc_unchecked (c : *mut ffi::base::connection,
                                        drawable :  ffi::xproto::drawable,
                                        target_msc_hi :  u32,
                                        target_msc_lo :  u32,
@@ -967,9 +965,9 @@ pub fn xcb_dri2_wait_msc_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_dri2_wait_msc_reply (c : *mut connection,
+pub fn xcb_dri2_wait_msc_reply (c : *mut ffi::base::connection,
                                    cookie : wait_msc_cookie,
-                                   e : *mut *mut generic_error) -> *mut wait_msc_reply;
+                                   e : *mut *mut ffi::base::generic_error) -> *mut wait_msc_reply;
 
 /**
  *
@@ -979,7 +977,7 @@ pub fn xcb_dri2_wait_msc_reply (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_dri2_wait_sbc (c : *mut connection,
+pub fn xcb_dri2_wait_sbc (c : *mut ffi::base::connection,
                              drawable :  ffi::xproto::drawable,
                              target_sbc_hi :  u32,
                              target_sbc_lo :  u32) -> wait_sbc_cookie;
@@ -995,7 +993,7 @@ pub fn xcb_dri2_wait_sbc (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_dri2_wait_sbc_unchecked (c : *mut connection,
+pub fn xcb_dri2_wait_sbc_unchecked (c : *mut ffi::base::connection,
                                        drawable :  ffi::xproto::drawable,
                                        target_sbc_hi :  u32,
                                        target_sbc_lo :  u32) -> wait_sbc_cookie;
@@ -1014,9 +1012,9 @@ pub fn xcb_dri2_wait_sbc_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_dri2_wait_sbc_reply (c : *mut connection,
+pub fn xcb_dri2_wait_sbc_reply (c : *mut ffi::base::connection,
                                    cookie : wait_sbc_cookie,
-                                   e : *mut *mut generic_error) -> *mut wait_sbc_reply;
+                                   e : *mut *mut ffi::base::generic_error) -> *mut wait_sbc_reply;
 
 /**
  *
@@ -1029,9 +1027,9 @@ pub fn xcb_dri2_wait_sbc_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_dri2_swap_interval_checked (c : *mut connection,
+pub fn xcb_dri2_swap_interval_checked (c : *mut ffi::base::connection,
                                           drawable :  ffi::xproto::drawable,
-                                          interval :  u32) -> void_cookie;
+                                          interval :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1041,9 +1039,9 @@ pub fn xcb_dri2_swap_interval_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_dri2_swap_interval (c : *mut connection,
+pub fn xcb_dri2_swap_interval (c : *mut ffi::base::connection,
                                   drawable :  ffi::xproto::drawable,
-                                  interval :  u32) -> void_cookie;
+                                  interval :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1053,7 +1051,7 @@ pub fn xcb_dri2_swap_interval (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_dri2_get_param (c : *mut connection,
+pub fn xcb_dri2_get_param (c : *mut ffi::base::connection,
                               drawable :  ffi::xproto::drawable,
                               param :  u32) -> get_param_cookie;
 
@@ -1068,7 +1066,7 @@ pub fn xcb_dri2_get_param (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_dri2_get_param_unchecked (c : *mut connection,
+pub fn xcb_dri2_get_param_unchecked (c : *mut ffi::base::connection,
                                         drawable :  ffi::xproto::drawable,
                                         param :  u32) -> get_param_cookie;
 
@@ -1086,8 +1084,8 @@ pub fn xcb_dri2_get_param_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_dri2_get_param_reply (c : *mut connection,
+pub fn xcb_dri2_get_param_reply (c : *mut ffi::base::connection,
                                     cookie : get_param_cookie,
-                                    e : *mut *mut generic_error) -> *mut get_param_reply;
+                                    e : *mut *mut ffi::base::generic_error) -> *mut get_param_reply;
 }
 

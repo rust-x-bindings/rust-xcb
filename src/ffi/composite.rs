@@ -8,8 +8,6 @@
 #![allow(non_camel_case_types)]
 use std;
 use libc::*;
-use std::{mem,num,ptr,str};
-use ffi::base::*;
 use ffi;
 use ffi::xproto;
 use ffi::render;
@@ -150,7 +148,7 @@ pub extern "C" {
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_composite_query_version (c : *mut connection,
+pub fn xcb_composite_query_version (c : *mut ffi::base::connection,
                                        client_major_version :  u32,
                                        client_minor_version :  u32) -> query_version_cookie;
 
@@ -165,7 +163,7 @@ pub fn xcb_composite_query_version (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_composite_query_version_unchecked (c : *mut connection,
+pub fn xcb_composite_query_version_unchecked (c : *mut ffi::base::connection,
                                                  client_major_version :  u32,
                                                  client_minor_version :  u32) -> query_version_cookie;
 
@@ -183,9 +181,9 @@ pub fn xcb_composite_query_version_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_composite_query_version_reply (c : *mut connection,
+pub fn xcb_composite_query_version_reply (c : *mut ffi::base::connection,
                                              cookie : query_version_cookie,
-                                             e : *mut *mut generic_error) -> *mut query_version_reply;
+                                             e : *mut *mut ffi::base::generic_error) -> *mut query_version_reply;
 
 /**
  *
@@ -198,9 +196,9 @@ pub fn xcb_composite_query_version_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_composite_redirect_window_checked (c : *mut connection,
+pub fn xcb_composite_redirect_window_checked (c : *mut ffi::base::connection,
                                                  window :  ffi::xproto::window,
-                                                 update :  u8) -> void_cookie;
+                                                 update :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -210,9 +208,9 @@ pub fn xcb_composite_redirect_window_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_composite_redirect_window (c : *mut connection,
+pub fn xcb_composite_redirect_window (c : *mut ffi::base::connection,
                                          window :  ffi::xproto::window,
-                                         update :  u8) -> void_cookie;
+                                         update :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -225,9 +223,9 @@ pub fn xcb_composite_redirect_window (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_composite_redirect_subwindows_checked (c : *mut connection,
+pub fn xcb_composite_redirect_subwindows_checked (c : *mut ffi::base::connection,
                                                      window :  ffi::xproto::window,
-                                                     update :  u8) -> void_cookie;
+                                                     update :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -237,9 +235,9 @@ pub fn xcb_composite_redirect_subwindows_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_composite_redirect_subwindows (c : *mut connection,
+pub fn xcb_composite_redirect_subwindows (c : *mut ffi::base::connection,
                                              window :  ffi::xproto::window,
-                                             update :  u8) -> void_cookie;
+                                             update :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -252,9 +250,9 @@ pub fn xcb_composite_redirect_subwindows (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_composite_unredirect_window_checked (c : *mut connection,
+pub fn xcb_composite_unredirect_window_checked (c : *mut ffi::base::connection,
                                                    window :  ffi::xproto::window,
-                                                   update :  u8) -> void_cookie;
+                                                   update :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -264,9 +262,9 @@ pub fn xcb_composite_unredirect_window_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_composite_unredirect_window (c : *mut connection,
+pub fn xcb_composite_unredirect_window (c : *mut ffi::base::connection,
                                            window :  ffi::xproto::window,
-                                           update :  u8) -> void_cookie;
+                                           update :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -279,9 +277,9 @@ pub fn xcb_composite_unredirect_window (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_composite_unredirect_subwindows_checked (c : *mut connection,
+pub fn xcb_composite_unredirect_subwindows_checked (c : *mut ffi::base::connection,
                                                        window :  ffi::xproto::window,
-                                                       update :  u8) -> void_cookie;
+                                                       update :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -291,9 +289,9 @@ pub fn xcb_composite_unredirect_subwindows_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_composite_unredirect_subwindows (c : *mut connection,
+pub fn xcb_composite_unredirect_subwindows (c : *mut ffi::base::connection,
                                                window :  ffi::xproto::window,
-                                               update :  u8) -> void_cookie;
+                                               update :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -306,9 +304,9 @@ pub fn xcb_composite_unredirect_subwindows (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_composite_create_region_from_border_clip_checked (c : *mut connection,
+pub fn xcb_composite_create_region_from_border_clip_checked (c : *mut ffi::base::connection,
                                                                 region :  ffi::xfixes::region,
-                                                                window :  ffi::xproto::window) -> void_cookie;
+                                                                window :  ffi::xproto::window) -> ffi::base::void_cookie;
 
 /**
  *
@@ -318,9 +316,9 @@ pub fn xcb_composite_create_region_from_border_clip_checked (c : *mut connection
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_composite_create_region_from_border_clip (c : *mut connection,
+pub fn xcb_composite_create_region_from_border_clip (c : *mut ffi::base::connection,
                                                         region :  ffi::xfixes::region,
-                                                        window :  ffi::xproto::window) -> void_cookie;
+                                                        window :  ffi::xproto::window) -> ffi::base::void_cookie;
 
 /**
  *
@@ -333,9 +331,9 @@ pub fn xcb_composite_create_region_from_border_clip (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_composite_name_window_pixmap_checked (c : *mut connection,
+pub fn xcb_composite_name_window_pixmap_checked (c : *mut ffi::base::connection,
                                                     window :  ffi::xproto::window,
-                                                    pixmap :  ffi::xproto::pixmap) -> void_cookie;
+                                                    pixmap :  ffi::xproto::pixmap) -> ffi::base::void_cookie;
 
 /**
  *
@@ -345,9 +343,9 @@ pub fn xcb_composite_name_window_pixmap_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_composite_name_window_pixmap (c : *mut connection,
+pub fn xcb_composite_name_window_pixmap (c : *mut ffi::base::connection,
                                             window :  ffi::xproto::window,
-                                            pixmap :  ffi::xproto::pixmap) -> void_cookie;
+                                            pixmap :  ffi::xproto::pixmap) -> ffi::base::void_cookie;
 
 /**
  *
@@ -357,7 +355,7 @@ pub fn xcb_composite_name_window_pixmap (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_composite_get_overlay_window (c : *mut connection,
+pub fn xcb_composite_get_overlay_window (c : *mut ffi::base::connection,
                                             window :  ffi::xproto::window) -> get_overlay_window_cookie;
 
 /**
@@ -371,7 +369,7 @@ pub fn xcb_composite_get_overlay_window (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_composite_get_overlay_window_unchecked (c : *mut connection,
+pub fn xcb_composite_get_overlay_window_unchecked (c : *mut ffi::base::connection,
                                                       window :  ffi::xproto::window) -> get_overlay_window_cookie;
 
 /**
@@ -388,9 +386,9 @@ pub fn xcb_composite_get_overlay_window_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_composite_get_overlay_window_reply (c : *mut connection,
+pub fn xcb_composite_get_overlay_window_reply (c : *mut ffi::base::connection,
                                                   cookie : get_overlay_window_cookie,
-                                                  e : *mut *mut generic_error) -> *mut get_overlay_window_reply;
+                                                  e : *mut *mut ffi::base::generic_error) -> *mut get_overlay_window_reply;
 
 /**
  *
@@ -403,8 +401,8 @@ pub fn xcb_composite_get_overlay_window_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_composite_release_overlay_window_checked (c : *mut connection,
-                                                        window :  ffi::xproto::window) -> void_cookie;
+pub fn xcb_composite_release_overlay_window_checked (c : *mut ffi::base::connection,
+                                                        window :  ffi::xproto::window) -> ffi::base::void_cookie;
 
 /**
  *
@@ -414,7 +412,7 @@ pub fn xcb_composite_release_overlay_window_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_composite_release_overlay_window (c : *mut connection,
-                                                window :  ffi::xproto::window) -> void_cookie;
+pub fn xcb_composite_release_overlay_window (c : *mut ffi::base::connection,
+                                                window :  ffi::xproto::window) -> ffi::base::void_cookie;
 }
 

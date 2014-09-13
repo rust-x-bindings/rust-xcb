@@ -8,8 +8,6 @@
 #![allow(non_camel_case_types)]
 use std;
 use libc::*;
-use std::{mem,num,ptr,str};
-use ffi::base::*;
 use ffi;
 use ffi::xproto;
 
@@ -143,7 +141,7 @@ pub extern "C" {
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_screensaver_query_version (c : *mut connection,
+pub fn xcb_screensaver_query_version (c : *mut ffi::base::connection,
                                          client_major_version :  u8,
                                          client_minor_version :  u8) -> query_version_cookie;
 
@@ -158,7 +156,7 @@ pub fn xcb_screensaver_query_version (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_screensaver_query_version_unchecked (c : *mut connection,
+pub fn xcb_screensaver_query_version_unchecked (c : *mut ffi::base::connection,
                                                    client_major_version :  u8,
                                                    client_minor_version :  u8) -> query_version_cookie;
 
@@ -176,9 +174,9 @@ pub fn xcb_screensaver_query_version_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_screensaver_query_version_reply (c : *mut connection,
+pub fn xcb_screensaver_query_version_reply (c : *mut ffi::base::connection,
                                                cookie : query_version_cookie,
-                                               e : *mut *mut generic_error) -> *mut query_version_reply;
+                                               e : *mut *mut ffi::base::generic_error) -> *mut query_version_reply;
 
 /**
  *
@@ -188,7 +186,7 @@ pub fn xcb_screensaver_query_version_reply (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_screensaver_query_info (c : *mut connection,
+pub fn xcb_screensaver_query_info (c : *mut ffi::base::connection,
                                       drawable :  ffi::xproto::drawable) -> query_info_cookie;
 
 /**
@@ -202,7 +200,7 @@ pub fn xcb_screensaver_query_info (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_screensaver_query_info_unchecked (c : *mut connection,
+pub fn xcb_screensaver_query_info_unchecked (c : *mut ffi::base::connection,
                                                 drawable :  ffi::xproto::drawable) -> query_info_cookie;
 
 /**
@@ -219,9 +217,9 @@ pub fn xcb_screensaver_query_info_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_screensaver_query_info_reply (c : *mut connection,
+pub fn xcb_screensaver_query_info_reply (c : *mut ffi::base::connection,
                                             cookie : query_info_cookie,
-                                            e : *mut *mut generic_error) -> *mut query_info_reply;
+                                            e : *mut *mut ffi::base::generic_error) -> *mut query_info_reply;
 
 /**
  *
@@ -234,9 +232,9 @@ pub fn xcb_screensaver_query_info_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_screensaver_select_input_checked (c : *mut connection,
+pub fn xcb_screensaver_select_input_checked (c : *mut ffi::base::connection,
                                                 drawable :  ffi::xproto::drawable,
-                                                event_mask :  u32) -> void_cookie;
+                                                event_mask :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -246,9 +244,9 @@ pub fn xcb_screensaver_select_input_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_screensaver_select_input (c : *mut connection,
+pub fn xcb_screensaver_select_input (c : *mut ffi::base::connection,
                                         drawable :  ffi::xproto::drawable,
-                                        event_mask :  u32) -> void_cookie;
+                                        event_mask :  u32) -> ffi::base::void_cookie;
 
 pub fn xcb_screensaver_set_attributes_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -263,7 +261,7 @@ pub fn xcb_screensaver_set_attributes_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_screensaver_set_attributes_checked (c : *mut connection,
+pub fn xcb_screensaver_set_attributes_checked (c : *mut ffi::base::connection,
                                                   drawable :  ffi::xproto::drawable,
                                                   x :  i16,
                                                   y :  i16,
@@ -274,7 +272,7 @@ pub fn xcb_screensaver_set_attributes_checked (c : *mut connection,
                                                   depth :  u8,
                                                   visual :  ffi::xproto::visualid,
                                                   value_mask :  u32,
-                                                  value_list : *mut u32) -> void_cookie;
+                                                  value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -284,7 +282,7 @@ pub fn xcb_screensaver_set_attributes_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_screensaver_set_attributes (c : *mut connection,
+pub fn xcb_screensaver_set_attributes (c : *mut ffi::base::connection,
                                           drawable :  ffi::xproto::drawable,
                                           x :  i16,
                                           y :  i16,
@@ -295,7 +293,7 @@ pub fn xcb_screensaver_set_attributes (c : *mut connection,
                                           depth :  u8,
                                           visual :  ffi::xproto::visualid,
                                           value_mask :  u32,
-                                          value_list : *mut u32) -> void_cookie;
+                                          value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -308,8 +306,8 @@ pub fn xcb_screensaver_set_attributes (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_screensaver_unset_attributes_checked (c : *mut connection,
-                                                    drawable :  ffi::xproto::drawable) -> void_cookie;
+pub fn xcb_screensaver_unset_attributes_checked (c : *mut ffi::base::connection,
+                                                    drawable :  ffi::xproto::drawable) -> ffi::base::void_cookie;
 
 /**
  *
@@ -319,8 +317,8 @@ pub fn xcb_screensaver_unset_attributes_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_screensaver_unset_attributes (c : *mut connection,
-                                            drawable :  ffi::xproto::drawable) -> void_cookie;
+pub fn xcb_screensaver_unset_attributes (c : *mut ffi::base::connection,
+                                            drawable :  ffi::xproto::drawable) -> ffi::base::void_cookie;
 
 /**
  *
@@ -333,8 +331,8 @@ pub fn xcb_screensaver_unset_attributes (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_screensaver_suspend_checked (c : *mut connection,
-                                           suspend :  u8) -> void_cookie;
+pub fn xcb_screensaver_suspend_checked (c : *mut ffi::base::connection,
+                                           suspend :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -344,7 +342,7 @@ pub fn xcb_screensaver_suspend_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_screensaver_suspend (c : *mut connection,
-                                   suspend :  u8) -> void_cookie;
+pub fn xcb_screensaver_suspend (c : *mut ffi::base::connection,
+                                   suspend :  u8) -> ffi::base::void_cookie;
 }
 

@@ -8,8 +8,6 @@
 #![allow(non_camel_case_types)]
 use std;
 use libc::*;
-use std::{mem,num,ptr,str};
-use ffi::base::*;
 use ffi;
 use ffi::xproto;
 
@@ -521,7 +519,7 @@ pub fn xcb_x_print_string8_next (i:*mut string8_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_x_print_string8_end (i:string8_iterator) -> generic_iterator;
+pub fn xcb_x_print_string8_end (i:string8_iterator) -> ffi::base::generic_iterator;
 
 pub fn xcb_x_print_printer_serialize (_buffer :  *mut *mut c_void,
                                _aux :         *mut printer,
@@ -539,7 +537,7 @@ pub fn xcb_x_print_printer_name (R : *mut printer) -> *mut string8;
 pub fn xcb_x_print_printer_name_length (R : *mut printer) -> c_int;
 
 
-pub fn xcb_x_print_printer_name_end (R : *mut printer) -> generic_iterator;
+pub fn xcb_x_print_printer_name_end (R : *mut printer) -> ffi::base::generic_iterator;
 
 pub fn xcb_x_print_printer_description (R : *mut printer) -> *mut string8;
 
@@ -547,7 +545,7 @@ pub fn xcb_x_print_printer_description (R : *mut printer) -> *mut string8;
 pub fn xcb_x_print_printer_description_length (R : *mut printer) -> c_int;
 
 
-pub fn xcb_x_print_printer_description_end (R : *mut printer) -> generic_iterator;
+pub fn xcb_x_print_printer_description_end (R : *mut printer) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -570,7 +568,7 @@ pub fn xcb_x_print_printer_next (i:*mut printer_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_x_print_printer_end (i:printer_iterator) -> generic_iterator;
+pub fn xcb_x_print_printer_end (i:printer_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -593,7 +591,7 @@ pub fn xcb_x_print_pcontext_next (i:*mut pcontext_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_x_print_pcontext_end (i:pcontext_iterator) -> generic_iterator;
+pub fn xcb_x_print_pcontext_end (i:pcontext_iterator) -> ffi::base::generic_iterator;
 
 /**
  *
@@ -603,7 +601,7 @@ pub fn xcb_x_print_pcontext_end (i:pcontext_iterator) -> generic_iterator;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_x_print_print_query_version (c : *mut connection) -> print_query_version_cookie;
+pub fn xcb_x_print_print_query_version (c : *mut ffi::base::connection) -> print_query_version_cookie;
 
 /**
  *
@@ -616,7 +614,7 @@ pub fn xcb_x_print_print_query_version (c : *mut connection) -> print_query_vers
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_x_print_print_query_version_unchecked (c : *mut connection) -> print_query_version_cookie;
+pub fn xcb_x_print_print_query_version_unchecked (c : *mut ffi::base::connection) -> print_query_version_cookie;
 
 /**
  * Return the reply
@@ -632,9 +630,9 @@ pub fn xcb_x_print_print_query_version_unchecked (c : *mut connection) -> print_
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_x_print_print_query_version_reply (c : *mut connection,
+pub fn xcb_x_print_print_query_version_reply (c : *mut ffi::base::connection,
                                                  cookie : print_query_version_cookie,
-                                                 e : *mut *mut generic_error) -> *mut print_query_version_reply;
+                                                 e : *mut *mut ffi::base::generic_error) -> *mut print_query_version_reply;
 
 pub fn xcb_x_print_print_get_printer_list_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -646,7 +644,7 @@ pub fn xcb_x_print_print_get_printer_list_sizeof (_buffer :  *mut c_void) -> c_i
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_x_print_print_get_printer_list (c : *mut connection,
+pub fn xcb_x_print_print_get_printer_list (c : *mut ffi::base::connection,
                                               printerNameLen :  u32,
                                               localeLen :  u32,
                                               printer_name : *mut string8,
@@ -663,7 +661,7 @@ pub fn xcb_x_print_print_get_printer_list (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_x_print_print_get_printer_list_unchecked (c : *mut connection,
+pub fn xcb_x_print_print_get_printer_list_unchecked (c : *mut ffi::base::connection,
                                                         printerNameLen :  u32,
                                                         localeLen :  u32,
                                                         printer_name : *mut string8,
@@ -688,9 +686,9 @@ pub fn xcb_x_print_print_get_printer_list_printers_iterator (R : *mut print_get_
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_x_print_print_get_printer_list_reply (c : *mut connection,
+pub fn xcb_x_print_print_get_printer_list_reply (c : *mut ffi::base::connection,
                                                     cookie : print_get_printer_list_cookie,
-                                                    e : *mut *mut generic_error) -> *mut print_get_printer_list_reply;
+                                                    e : *mut *mut ffi::base::generic_error) -> *mut print_get_printer_list_reply;
 
 /**
  *
@@ -703,7 +701,7 @@ pub fn xcb_x_print_print_get_printer_list_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_x_print_print_rehash_printer_list_checked (c : *mut connection) -> void_cookie;
+pub fn xcb_x_print_print_rehash_printer_list_checked (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
 
 /**
  *
@@ -713,7 +711,7 @@ pub fn xcb_x_print_print_rehash_printer_list_checked (c : *mut connection) -> vo
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_x_print_print_rehash_printer_list (c : *mut connection) -> void_cookie;
+pub fn xcb_x_print_print_rehash_printer_list (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
 
 pub fn xcb_x_print_create_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -728,12 +726,12 @@ pub fn xcb_x_print_create_context_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_x_print_create_context_checked (c : *mut connection,
+pub fn xcb_x_print_create_context_checked (c : *mut ffi::base::connection,
                                               context_id :  u32,
                                               printerNameLen :  u32,
                                               localeLen :  u32,
                                               printerName : *mut string8,
-                                              locale : *mut string8) -> void_cookie;
+                                              locale : *mut string8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -743,12 +741,12 @@ pub fn xcb_x_print_create_context_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_x_print_create_context (c : *mut connection,
+pub fn xcb_x_print_create_context (c : *mut ffi::base::connection,
                                       context_id :  u32,
                                       printerNameLen :  u32,
                                       localeLen :  u32,
                                       printerName : *mut string8,
-                                      locale : *mut string8) -> void_cookie;
+                                      locale : *mut string8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -761,8 +759,8 @@ pub fn xcb_x_print_create_context (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_x_print_print_set_context_checked (c : *mut connection,
-                                                 context :  u32) -> void_cookie;
+pub fn xcb_x_print_print_set_context_checked (c : *mut ffi::base::connection,
+                                                 context :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -772,8 +770,8 @@ pub fn xcb_x_print_print_set_context_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_x_print_print_set_context (c : *mut connection,
-                                         context :  u32) -> void_cookie;
+pub fn xcb_x_print_print_set_context (c : *mut ffi::base::connection,
+                                         context :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -783,7 +781,7 @@ pub fn xcb_x_print_print_set_context (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_x_print_print_get_context (c : *mut connection) -> print_get_context_cookie;
+pub fn xcb_x_print_print_get_context (c : *mut ffi::base::connection) -> print_get_context_cookie;
 
 /**
  *
@@ -796,7 +794,7 @@ pub fn xcb_x_print_print_get_context (c : *mut connection) -> print_get_context_
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_x_print_print_get_context_unchecked (c : *mut connection) -> print_get_context_cookie;
+pub fn xcb_x_print_print_get_context_unchecked (c : *mut ffi::base::connection) -> print_get_context_cookie;
 
 /**
  * Return the reply
@@ -812,9 +810,9 @@ pub fn xcb_x_print_print_get_context_unchecked (c : *mut connection) -> print_ge
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_x_print_print_get_context_reply (c : *mut connection,
+pub fn xcb_x_print_print_get_context_reply (c : *mut ffi::base::connection,
                                                cookie : print_get_context_cookie,
-                                               e : *mut *mut generic_error) -> *mut print_get_context_reply;
+                                               e : *mut *mut ffi::base::generic_error) -> *mut print_get_context_reply;
 
 /**
  *
@@ -827,8 +825,8 @@ pub fn xcb_x_print_print_get_context_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_x_print_print_destroy_context_checked (c : *mut connection,
-                                                     context :  u32) -> void_cookie;
+pub fn xcb_x_print_print_destroy_context_checked (c : *mut ffi::base::connection,
+                                                     context :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -838,8 +836,8 @@ pub fn xcb_x_print_print_destroy_context_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_x_print_print_destroy_context (c : *mut connection,
-                                             context :  u32) -> void_cookie;
+pub fn xcb_x_print_print_destroy_context (c : *mut ffi::base::connection,
+                                             context :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -849,7 +847,7 @@ pub fn xcb_x_print_print_destroy_context (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_x_print_print_get_screen_of_context (c : *mut connection) -> print_get_screen_of_context_cookie;
+pub fn xcb_x_print_print_get_screen_of_context (c : *mut ffi::base::connection) -> print_get_screen_of_context_cookie;
 
 /**
  *
@@ -862,7 +860,7 @@ pub fn xcb_x_print_print_get_screen_of_context (c : *mut connection) -> print_ge
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_x_print_print_get_screen_of_context_unchecked (c : *mut connection) -> print_get_screen_of_context_cookie;
+pub fn xcb_x_print_print_get_screen_of_context_unchecked (c : *mut ffi::base::connection) -> print_get_screen_of_context_cookie;
 
 /**
  * Return the reply
@@ -878,9 +876,9 @@ pub fn xcb_x_print_print_get_screen_of_context_unchecked (c : *mut connection) -
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_x_print_print_get_screen_of_context_reply (c : *mut connection,
+pub fn xcb_x_print_print_get_screen_of_context_reply (c : *mut ffi::base::connection,
                                                          cookie : print_get_screen_of_context_cookie,
-                                                         e : *mut *mut generic_error) -> *mut print_get_screen_of_context_reply;
+                                                         e : *mut *mut ffi::base::generic_error) -> *mut print_get_screen_of_context_reply;
 
 /**
  *
@@ -893,8 +891,8 @@ pub fn xcb_x_print_print_get_screen_of_context_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_x_print_print_start_job_checked (c : *mut connection,
-                                               output_mode :  u8) -> void_cookie;
+pub fn xcb_x_print_print_start_job_checked (c : *mut ffi::base::connection,
+                                               output_mode :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -904,33 +902,8 @@ pub fn xcb_x_print_print_start_job_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_x_print_print_start_job (c : *mut connection,
-                                       output_mode :  u8) -> void_cookie;
-
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- * 
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
-pub fn xcb_x_print_print_end_job_checked (c : *mut connection,
-                                             cancel :  u8) -> void_cookie;
-
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- * 
- */
-pub fn xcb_x_print_print_end_job (c : *mut connection,
-                                     cancel :  u8) -> void_cookie;
+pub fn xcb_x_print_print_start_job (c : *mut ffi::base::connection,
+                                       output_mode :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -943,8 +916,8 @@ pub fn xcb_x_print_print_end_job (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_x_print_print_start_doc_checked (c : *mut connection,
-                                               driver_mode :  u8) -> void_cookie;
+pub fn xcb_x_print_print_end_job_checked (c : *mut ffi::base::connection,
+                                             cancel :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -954,8 +927,8 @@ pub fn xcb_x_print_print_start_doc_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_x_print_print_start_doc (c : *mut connection,
-                                       driver_mode :  u8) -> void_cookie;
+pub fn xcb_x_print_print_end_job (c : *mut ffi::base::connection,
+                                     cancel :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -968,8 +941,8 @@ pub fn xcb_x_print_print_start_doc (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_x_print_print_end_doc_checked (c : *mut connection,
-                                             cancel :  u8) -> void_cookie;
+pub fn xcb_x_print_print_start_doc_checked (c : *mut ffi::base::connection,
+                                               driver_mode :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -979,8 +952,33 @@ pub fn xcb_x_print_print_end_doc_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_x_print_print_end_doc (c : *mut connection,
-                                     cancel :  u8) -> void_cookie;
+pub fn xcb_x_print_print_start_doc (c : *mut ffi::base::connection,
+                                       driver_mode :  u8) -> ffi::base::void_cookie;
+
+/**
+ *
+ * @param c The connection
+ * @return A cookie
+ *
+ * Delivers a request to the X server.
+ * 
+ * This form can be used only if the request will not cause
+ * a reply to be generated. Any returned error will be
+ * saved for handling by xcb_request_check().
+ */
+pub fn xcb_x_print_print_end_doc_checked (c : *mut ffi::base::connection,
+                                             cancel :  u8) -> ffi::base::void_cookie;
+
+/**
+ *
+ * @param c The connection
+ * @return A cookie
+ *
+ * Delivers a request to the X server.
+ * 
+ */
+pub fn xcb_x_print_print_end_doc (c : *mut ffi::base::connection,
+                                     cancel :  u8) -> ffi::base::void_cookie;
 
 pub fn xcb_x_print_print_put_document_data_sizeof (_buffer :  *mut c_void,
                                             doc_format_len :  u32,
@@ -997,7 +995,7 @@ pub fn xcb_x_print_print_put_document_data_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_x_print_print_put_document_data_checked (c : *mut connection,
+pub fn xcb_x_print_print_put_document_data_checked (c : *mut ffi::base::connection,
                                                        drawable :  ffi::xproto::drawable,
                                                        len_data :  u32,
                                                        len_fmt :  u16,
@@ -1006,7 +1004,7 @@ pub fn xcb_x_print_print_put_document_data_checked (c : *mut connection,
                                                        doc_format_len :  u32,
                                                        doc_format : *mut string8,
                                                        options_len :  u32,
-                                                       options : *mut string8) -> void_cookie;
+                                                       options : *mut string8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1016,7 +1014,7 @@ pub fn xcb_x_print_print_put_document_data_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_x_print_print_put_document_data (c : *mut connection,
+pub fn xcb_x_print_print_put_document_data (c : *mut ffi::base::connection,
                                                drawable :  ffi::xproto::drawable,
                                                len_data :  u32,
                                                len_fmt :  u16,
@@ -1025,7 +1023,7 @@ pub fn xcb_x_print_print_put_document_data (c : *mut connection,
                                                doc_format_len :  u32,
                                                doc_format : *mut string8,
                                                options_len :  u32,
-                                               options : *mut string8) -> void_cookie;
+                                               options : *mut string8) -> ffi::base::void_cookie;
 
 pub fn xcb_x_print_print_get_document_data_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1037,7 +1035,7 @@ pub fn xcb_x_print_print_get_document_data_sizeof (_buffer :  *mut c_void) -> c_
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_x_print_print_get_document_data (c : *mut connection,
+pub fn xcb_x_print_print_get_document_data (c : *mut ffi::base::connection,
                                                context :  pcontext,
                                                max_bytes :  u32) -> print_get_document_data_cookie;
 
@@ -1052,7 +1050,7 @@ pub fn xcb_x_print_print_get_document_data (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_x_print_print_get_document_data_unchecked (c : *mut connection,
+pub fn xcb_x_print_print_get_document_data_unchecked (c : *mut ffi::base::connection,
                                                          context :  pcontext,
                                                          max_bytes :  u32) -> print_get_document_data_cookie;
 
@@ -1062,7 +1060,7 @@ pub fn xcb_x_print_print_get_document_data_data (R : *mut print_get_document_dat
 pub fn xcb_x_print_print_get_document_data_data_length (R : *mut print_get_document_data_reply) -> c_int;
 
 
-pub fn xcb_x_print_print_get_document_data_data_end (R : *mut print_get_document_data_reply) -> generic_iterator;
+pub fn xcb_x_print_print_get_document_data_data_end (R : *mut print_get_document_data_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -1078,9 +1076,9 @@ pub fn xcb_x_print_print_get_document_data_data_end (R : *mut print_get_document
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_x_print_print_get_document_data_reply (c : *mut connection,
+pub fn xcb_x_print_print_get_document_data_reply (c : *mut ffi::base::connection,
                                                      cookie : print_get_document_data_cookie,
-                                                     e : *mut *mut generic_error) -> *mut print_get_document_data_reply;
+                                                     e : *mut *mut ffi::base::generic_error) -> *mut print_get_document_data_reply;
 
 /**
  *
@@ -1093,8 +1091,8 @@ pub fn xcb_x_print_print_get_document_data_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_x_print_print_start_page_checked (c : *mut connection,
-                                                window :  ffi::xproto::window) -> void_cookie;
+pub fn xcb_x_print_print_start_page_checked (c : *mut ffi::base::connection,
+                                                window :  ffi::xproto::window) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1104,8 +1102,8 @@ pub fn xcb_x_print_print_start_page_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_x_print_print_start_page (c : *mut connection,
-                                        window :  ffi::xproto::window) -> void_cookie;
+pub fn xcb_x_print_print_start_page (c : *mut ffi::base::connection,
+                                        window :  ffi::xproto::window) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1118,8 +1116,8 @@ pub fn xcb_x_print_print_start_page (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_x_print_print_end_page_checked (c : *mut connection,
-                                              cancel :  u8) -> void_cookie;
+pub fn xcb_x_print_print_end_page_checked (c : *mut ffi::base::connection,
+                                              cancel :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1129,8 +1127,8 @@ pub fn xcb_x_print_print_end_page_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_x_print_print_end_page (c : *mut connection,
-                                      cancel :  u8) -> void_cookie;
+pub fn xcb_x_print_print_end_page (c : *mut ffi::base::connection,
+                                      cancel :  u8) -> ffi::base::void_cookie;
 
 pub fn xcb_x_print_print_select_input_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1145,10 +1143,10 @@ pub fn xcb_x_print_print_select_input_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_x_print_print_select_input_checked (c : *mut connection,
+pub fn xcb_x_print_print_select_input_checked (c : *mut ffi::base::connection,
                                                   context :  pcontext,
                                                   event_mask :  u32,
-                                                  event_list : *mut u32) -> void_cookie;
+                                                  event_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1158,10 +1156,10 @@ pub fn xcb_x_print_print_select_input_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_x_print_print_select_input (c : *mut connection,
+pub fn xcb_x_print_print_select_input (c : *mut ffi::base::connection,
                                           context :  pcontext,
                                           event_mask :  u32,
-                                          event_list : *mut u32) -> void_cookie;
+                                          event_list : *mut u32) -> ffi::base::void_cookie;
 
 pub fn xcb_x_print_print_input_selected_serialize (_buffer :                *mut *mut c_void,
                                             _aux :                        *mut print_input_selected_reply,
@@ -1181,7 +1179,7 @@ pub fn xcb_x_print_print_input_selected_sizeof (_buffer :  *mut c_void) -> c_int
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_x_print_print_input_selected (c : *mut connection,
+pub fn xcb_x_print_print_input_selected (c : *mut ffi::base::connection,
                                             context :  pcontext) -> print_input_selected_cookie;
 
 /**
@@ -1195,7 +1193,7 @@ pub fn xcb_x_print_print_input_selected (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_x_print_print_input_selected_unchecked (c : *mut connection,
+pub fn xcb_x_print_print_input_selected_unchecked (c : *mut ffi::base::connection,
                                                       context :  pcontext) -> print_input_selected_cookie;
 
 pub fn xcb_x_print_print_input_selected_event_list (R : *mut print_input_selected_reply) -> *mut u32;
@@ -1204,7 +1202,7 @@ pub fn xcb_x_print_print_input_selected_event_list (R : *mut print_input_selecte
 pub fn xcb_x_print_print_input_selected_event_list_length (R : *mut print_input_selected_reply) -> c_int;
 
 
-pub fn xcb_x_print_print_input_selected_event_list_end (R : *mut print_input_selected_reply) -> generic_iterator;
+pub fn xcb_x_print_print_input_selected_event_list_end (R : *mut print_input_selected_reply) -> ffi::base::generic_iterator;
 
 pub fn xcb_x_print_print_input_selected_all_events_list (R : *mut print_input_selected_reply) -> *mut u32;
 
@@ -1212,7 +1210,7 @@ pub fn xcb_x_print_print_input_selected_all_events_list (R : *mut print_input_se
 pub fn xcb_x_print_print_input_selected_all_events_list_length (R : *mut print_input_selected_reply) -> c_int;
 
 
-pub fn xcb_x_print_print_input_selected_all_events_list_end (R : *mut print_input_selected_reply) -> generic_iterator;
+pub fn xcb_x_print_print_input_selected_all_events_list_end (R : *mut print_input_selected_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -1228,9 +1226,9 @@ pub fn xcb_x_print_print_input_selected_all_events_list_end (R : *mut print_inpu
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_x_print_print_input_selected_reply (c : *mut connection,
+pub fn xcb_x_print_print_input_selected_reply (c : *mut ffi::base::connection,
                                                   cookie : print_input_selected_cookie,
-                                                  e : *mut *mut generic_error) -> *mut print_input_selected_reply;
+                                                  e : *mut *mut ffi::base::generic_error) -> *mut print_input_selected_reply;
 
 /**
  *
@@ -1240,7 +1238,7 @@ pub fn xcb_x_print_print_input_selected_reply (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_x_print_print_get_attributes (c : *mut connection,
+pub fn xcb_x_print_print_get_attributes (c : *mut ffi::base::connection,
                                             context :  pcontext,
                                             pool :  u8) -> print_get_attributes_cookie;
 
@@ -1255,7 +1253,7 @@ pub fn xcb_x_print_print_get_attributes (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_x_print_print_get_attributes_unchecked (c : *mut connection,
+pub fn xcb_x_print_print_get_attributes_unchecked (c : *mut ffi::base::connection,
                                                       context :  pcontext,
                                                       pool :  u8) -> print_get_attributes_cookie;
 
@@ -1273,9 +1271,9 @@ pub fn xcb_x_print_print_get_attributes_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_x_print_print_get_attributes_reply (c : *mut connection,
+pub fn xcb_x_print_print_get_attributes_reply (c : *mut ffi::base::connection,
                                                   cookie : print_get_attributes_cookie,
-                                                  e : *mut *mut generic_error) -> *mut print_get_attributes_reply;
+                                                  e : *mut *mut ffi::base::generic_error) -> *mut print_get_attributes_reply;
 
 pub fn xcb_x_print_print_get_one_attributes_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1287,7 +1285,7 @@ pub fn xcb_x_print_print_get_one_attributes_sizeof (_buffer :  *mut c_void) -> c
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_x_print_print_get_one_attributes (c : *mut connection,
+pub fn xcb_x_print_print_get_one_attributes (c : *mut ffi::base::connection,
                                                 context :  pcontext,
                                                 nameLen :  u32,
                                                 pool :  u8,
@@ -1304,7 +1302,7 @@ pub fn xcb_x_print_print_get_one_attributes (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_x_print_print_get_one_attributes_unchecked (c : *mut connection,
+pub fn xcb_x_print_print_get_one_attributes_unchecked (c : *mut ffi::base::connection,
                                                           context :  pcontext,
                                                           nameLen :  u32,
                                                           pool :  u8,
@@ -1316,7 +1314,7 @@ pub fn xcb_x_print_print_get_one_attributes_value (R : *mut print_get_one_attrib
 pub fn xcb_x_print_print_get_one_attributes_value_length (R : *mut print_get_one_attributes_reply) -> c_int;
 
 
-pub fn xcb_x_print_print_get_one_attributes_value_end (R : *mut print_get_one_attributes_reply) -> generic_iterator;
+pub fn xcb_x_print_print_get_one_attributes_value_end (R : *mut print_get_one_attributes_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -1332,9 +1330,9 @@ pub fn xcb_x_print_print_get_one_attributes_value_end (R : *mut print_get_one_at
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_x_print_print_get_one_attributes_reply (c : *mut connection,
+pub fn xcb_x_print_print_get_one_attributes_reply (c : *mut ffi::base::connection,
                                                       cookie : print_get_one_attributes_cookie,
-                                                      e : *mut *mut generic_error) -> *mut print_get_one_attributes_reply;
+                                                      e : *mut *mut ffi::base::generic_error) -> *mut print_get_one_attributes_reply;
 
 pub fn xcb_x_print_print_set_attributes_sizeof (_buffer :  *mut c_void,
                                          attributes_len :  u32) -> c_int;
@@ -1350,13 +1348,13 @@ pub fn xcb_x_print_print_set_attributes_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_x_print_print_set_attributes_checked (c : *mut connection,
+pub fn xcb_x_print_print_set_attributes_checked (c : *mut ffi::base::connection,
                                                     context :  pcontext,
                                                     stringLen :  u32,
                                                     pool :  u8,
                                                     rule :  u8,
                                                     attributes_len :  u32,
-                                                    attributes : *mut string8) -> void_cookie;
+                                                    attributes : *mut string8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1366,13 +1364,13 @@ pub fn xcb_x_print_print_set_attributes_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_x_print_print_set_attributes (c : *mut connection,
+pub fn xcb_x_print_print_set_attributes (c : *mut ffi::base::connection,
                                             context :  pcontext,
                                             stringLen :  u32,
                                             pool :  u8,
                                             rule :  u8,
                                             attributes_len :  u32,
-                                            attributes : *mut string8) -> void_cookie;
+                                            attributes : *mut string8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1382,7 +1380,7 @@ pub fn xcb_x_print_print_set_attributes (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_x_print_print_get_page_dimensions (c : *mut connection,
+pub fn xcb_x_print_print_get_page_dimensions (c : *mut ffi::base::connection,
                                                  context :  pcontext) -> print_get_page_dimensions_cookie;
 
 /**
@@ -1396,7 +1394,7 @@ pub fn xcb_x_print_print_get_page_dimensions (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_x_print_print_get_page_dimensions_unchecked (c : *mut connection,
+pub fn xcb_x_print_print_get_page_dimensions_unchecked (c : *mut ffi::base::connection,
                                                            context :  pcontext) -> print_get_page_dimensions_cookie;
 
 /**
@@ -1413,9 +1411,9 @@ pub fn xcb_x_print_print_get_page_dimensions_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_x_print_print_get_page_dimensions_reply (c : *mut connection,
+pub fn xcb_x_print_print_get_page_dimensions_reply (c : *mut ffi::base::connection,
                                                        cookie : print_get_page_dimensions_cookie,
-                                                       e : *mut *mut generic_error) -> *mut print_get_page_dimensions_reply;
+                                                       e : *mut *mut ffi::base::generic_error) -> *mut print_get_page_dimensions_reply;
 
 pub fn xcb_x_print_print_query_screens_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1427,7 +1425,7 @@ pub fn xcb_x_print_print_query_screens_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_x_print_print_query_screens (c : *mut connection) -> print_query_screens_cookie;
+pub fn xcb_x_print_print_query_screens (c : *mut ffi::base::connection) -> print_query_screens_cookie;
 
 /**
  *
@@ -1440,7 +1438,7 @@ pub fn xcb_x_print_print_query_screens (c : *mut connection) -> print_query_scre
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_x_print_print_query_screens_unchecked (c : *mut connection) -> print_query_screens_cookie;
+pub fn xcb_x_print_print_query_screens_unchecked (c : *mut ffi::base::connection) -> print_query_screens_cookie;
 
 pub fn xcb_x_print_print_query_screens_roots (R : *mut print_query_screens_reply) -> *mut ffi::xproto::window;
 
@@ -1448,7 +1446,7 @@ pub fn xcb_x_print_print_query_screens_roots (R : *mut print_query_screens_reply
 pub fn xcb_x_print_print_query_screens_roots_length (R : *mut print_query_screens_reply) -> c_int;
 
 
-pub fn xcb_x_print_print_query_screens_roots_end (R : *mut print_query_screens_reply) -> generic_iterator;
+pub fn xcb_x_print_print_query_screens_roots_end (R : *mut print_query_screens_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -1464,9 +1462,9 @@ pub fn xcb_x_print_print_query_screens_roots_end (R : *mut print_query_screens_r
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_x_print_print_query_screens_reply (c : *mut connection,
+pub fn xcb_x_print_print_query_screens_reply (c : *mut ffi::base::connection,
                                                  cookie : print_query_screens_cookie,
-                                                 e : *mut *mut generic_error) -> *mut print_query_screens_reply;
+                                                 e : *mut *mut ffi::base::generic_error) -> *mut print_query_screens_reply;
 
 /**
  *
@@ -1476,7 +1474,7 @@ pub fn xcb_x_print_print_query_screens_reply (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_x_print_print_set_image_resolution (c : *mut connection,
+pub fn xcb_x_print_print_set_image_resolution (c : *mut ffi::base::connection,
                                                   context :  pcontext,
                                                   image_resolution :  u16) -> print_set_image_resolution_cookie;
 
@@ -1491,7 +1489,7 @@ pub fn xcb_x_print_print_set_image_resolution (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_x_print_print_set_image_resolution_unchecked (c : *mut connection,
+pub fn xcb_x_print_print_set_image_resolution_unchecked (c : *mut ffi::base::connection,
                                                             context :  pcontext,
                                                             image_resolution :  u16) -> print_set_image_resolution_cookie;
 
@@ -1509,9 +1507,9 @@ pub fn xcb_x_print_print_set_image_resolution_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_x_print_print_set_image_resolution_reply (c : *mut connection,
+pub fn xcb_x_print_print_set_image_resolution_reply (c : *mut ffi::base::connection,
                                                         cookie : print_set_image_resolution_cookie,
-                                                        e : *mut *mut generic_error) -> *mut print_set_image_resolution_reply;
+                                                        e : *mut *mut ffi::base::generic_error) -> *mut print_set_image_resolution_reply;
 
 /**
  *
@@ -1521,7 +1519,7 @@ pub fn xcb_x_print_print_set_image_resolution_reply (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_x_print_print_get_image_resolution (c : *mut connection,
+pub fn xcb_x_print_print_get_image_resolution (c : *mut ffi::base::connection,
                                                   context :  pcontext) -> print_get_image_resolution_cookie;
 
 /**
@@ -1535,7 +1533,7 @@ pub fn xcb_x_print_print_get_image_resolution (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_x_print_print_get_image_resolution_unchecked (c : *mut connection,
+pub fn xcb_x_print_print_get_image_resolution_unchecked (c : *mut ffi::base::connection,
                                                             context :  pcontext) -> print_get_image_resolution_cookie;
 
 /**
@@ -1552,8 +1550,8 @@ pub fn xcb_x_print_print_get_image_resolution_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_x_print_print_get_image_resolution_reply (c : *mut connection,
+pub fn xcb_x_print_print_get_image_resolution_reply (c : *mut ffi::base::connection,
                                                         cookie : print_get_image_resolution_cookie,
-                                                        e : *mut *mut generic_error) -> *mut print_get_image_resolution_reply;
+                                                        e : *mut *mut ffi::base::generic_error) -> *mut print_get_image_resolution_reply;
 }
 

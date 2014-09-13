@@ -8,8 +8,6 @@
 #![allow(non_camel_case_types)]
 use std;
 use libc::*;
-use std::{mem,num,ptr,str};
-use ffi::base::*;
 use ffi;
 
 pub struct char2b {
@@ -2947,7 +2945,7 @@ pub fn xcb_char2b_next (i:*mut char2b_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_char2b_end (i:char2b_iterator) -> generic_iterator;
+pub fn xcb_char2b_end (i:char2b_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2970,7 +2968,7 @@ pub fn xcb_window_next (i:*mut window_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_window_end (i:window_iterator) -> generic_iterator;
+pub fn xcb_window_end (i:window_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2993,7 +2991,7 @@ pub fn xcb_pixmap_next (i:*mut pixmap_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_pixmap_end (i:pixmap_iterator) -> generic_iterator;
+pub fn xcb_pixmap_end (i:pixmap_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3016,7 +3014,7 @@ pub fn xcb_cursor_next (i:*mut cursor_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_cursor_end (i:cursor_iterator) -> generic_iterator;
+pub fn xcb_cursor_end (i:cursor_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3039,7 +3037,7 @@ pub fn xcb_font_next (i:*mut font_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_font_end (i:font_iterator) -> generic_iterator;
+pub fn xcb_font_end (i:font_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3062,7 +3060,7 @@ pub fn xcb_gcontext_next (i:*mut gcontext_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_gcontext_end (i:gcontext_iterator) -> generic_iterator;
+pub fn xcb_gcontext_end (i:gcontext_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3085,7 +3083,7 @@ pub fn xcb_colormap_next (i:*mut colormap_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_colormap_end (i:colormap_iterator) -> generic_iterator;
+pub fn xcb_colormap_end (i:colormap_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3108,7 +3106,7 @@ pub fn xcb_atom_next (i:*mut atom_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_atom_end (i:atom_iterator) -> generic_iterator;
+pub fn xcb_atom_end (i:atom_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3131,7 +3129,7 @@ pub fn xcb_drawable_next (i:*mut drawable_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_drawable_end (i:drawable_iterator) -> generic_iterator;
+pub fn xcb_drawable_end (i:drawable_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3154,7 +3152,7 @@ pub fn xcb_fontable_next (i:*mut fontable_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_fontable_end (i:fontable_iterator) -> generic_iterator;
+pub fn xcb_fontable_end (i:fontable_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3177,7 +3175,7 @@ pub fn xcb_visualid_next (i:*mut visualid_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_visualid_end (i:visualid_iterator) -> generic_iterator;
+pub fn xcb_visualid_end (i:visualid_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3200,7 +3198,7 @@ pub fn xcb_timestamp_next (i:*mut timestamp_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_timestamp_end (i:timestamp_iterator) -> generic_iterator;
+pub fn xcb_timestamp_end (i:timestamp_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3223,7 +3221,7 @@ pub fn xcb_keysym_next (i:*mut keysym_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_keysym_end (i:keysym_iterator) -> generic_iterator;
+pub fn xcb_keysym_end (i:keysym_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3246,7 +3244,7 @@ pub fn xcb_keycode_next (i:*mut keycode_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_keycode_end (i:keycode_iterator) -> generic_iterator;
+pub fn xcb_keycode_end (i:keycode_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3269,7 +3267,7 @@ pub fn xcb_button_next (i:*mut button_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_button_end (i:button_iterator) -> generic_iterator;
+pub fn xcb_button_end (i:button_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3292,7 +3290,7 @@ pub fn xcb_point_next (i:*mut point_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_point_end (i:point_iterator) -> generic_iterator;
+pub fn xcb_point_end (i:point_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3315,7 +3313,7 @@ pub fn xcb_rectangle_next (i:*mut rectangle_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_rectangle_end (i:rectangle_iterator) -> generic_iterator;
+pub fn xcb_rectangle_end (i:rectangle_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3338,7 +3336,7 @@ pub fn xcb_arc_next (i:*mut arc_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_arc_end (i:arc_iterator) -> generic_iterator;
+pub fn xcb_arc_end (i:arc_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3361,7 +3359,7 @@ pub fn xcb_format_next (i:*mut format_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_format_end (i:format_iterator) -> generic_iterator;
+pub fn xcb_format_end (i:format_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3384,7 +3382,7 @@ pub fn xcb_visualtype_next (i:*mut visualtype_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_visualtype_end (i:visualtype_iterator) -> generic_iterator;
+pub fn xcb_visualtype_end (i:visualtype_iterator) -> ffi::base::generic_iterator;
 
 pub fn xcb_depth_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -3416,7 +3414,7 @@ pub fn xcb_depth_next (i:*mut depth_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_depth_end (i:depth_iterator) -> generic_iterator;
+pub fn xcb_depth_end (i:depth_iterator) -> ffi::base::generic_iterator;
 
 pub fn xcb_screen_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -3446,7 +3444,7 @@ pub fn xcb_screen_next (i:*mut screen_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_screen_end (i:screen_iterator) -> generic_iterator;
+pub fn xcb_screen_end (i:screen_iterator) -> ffi::base::generic_iterator;
 
 pub fn xcb_setup_request_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -3456,7 +3454,7 @@ pub fn xcb_setup_request_authorization_protocol_name (R : *mut setup_request) ->
 pub fn xcb_setup_request_authorization_protocol_name_length (R : *mut setup_request) -> c_int;
 
 
-pub fn xcb_setup_request_authorization_protocol_name_end (R : *mut setup_request) -> generic_iterator;
+pub fn xcb_setup_request_authorization_protocol_name_end (R : *mut setup_request) -> ffi::base::generic_iterator;
 
 pub fn xcb_setup_request_authorization_protocol_data (R : *mut setup_request) -> *mut c_char;
 
@@ -3464,7 +3462,7 @@ pub fn xcb_setup_request_authorization_protocol_data (R : *mut setup_request) ->
 pub fn xcb_setup_request_authorization_protocol_data_length (R : *mut setup_request) -> c_int;
 
 
-pub fn xcb_setup_request_authorization_protocol_data_end (R : *mut setup_request) -> generic_iterator;
+pub fn xcb_setup_request_authorization_protocol_data_end (R : *mut setup_request) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3487,7 +3485,7 @@ pub fn xcb_setup_request_next (i:*mut setup_request_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_setup_request_end (i:setup_request_iterator) -> generic_iterator;
+pub fn xcb_setup_request_end (i:setup_request_iterator) -> ffi::base::generic_iterator;
 
 pub fn xcb_setup_failed_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -3497,7 +3495,7 @@ pub fn xcb_setup_failed_reason (R : *mut setup_failed) -> *mut c_char;
 pub fn xcb_setup_failed_reason_length (R : *mut setup_failed) -> c_int;
 
 
-pub fn xcb_setup_failed_reason_end (R : *mut setup_failed) -> generic_iterator;
+pub fn xcb_setup_failed_reason_end (R : *mut setup_failed) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3520,7 +3518,7 @@ pub fn xcb_setup_failed_next (i:*mut setup_failed_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_setup_failed_end (i:setup_failed_iterator) -> generic_iterator;
+pub fn xcb_setup_failed_end (i:setup_failed_iterator) -> ffi::base::generic_iterator;
 
 pub fn xcb_setup_authenticate_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -3530,7 +3528,7 @@ pub fn xcb_setup_authenticate_reason (R : *mut setup_authenticate) -> *mut c_cha
 pub fn xcb_setup_authenticate_reason_length (R : *mut setup_authenticate) -> c_int;
 
 
-pub fn xcb_setup_authenticate_reason_end (R : *mut setup_authenticate) -> generic_iterator;
+pub fn xcb_setup_authenticate_reason_end (R : *mut setup_authenticate) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3553,7 +3551,7 @@ pub fn xcb_setup_authenticate_next (i:*mut setup_authenticate_iterator) -> c_voi
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_setup_authenticate_end (i:setup_authenticate_iterator) -> generic_iterator;
+pub fn xcb_setup_authenticate_end (i:setup_authenticate_iterator) -> ffi::base::generic_iterator;
 
 pub fn xcb_setup_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -3563,7 +3561,7 @@ pub fn xcb_setup_vendor (R : *mut setup) -> *mut c_char;
 pub fn xcb_setup_vendor_length (R : *mut setup) -> c_int;
 
 
-pub fn xcb_setup_vendor_end (R : *mut setup) -> generic_iterator;
+pub fn xcb_setup_vendor_end (R : *mut setup) -> ffi::base::generic_iterator;
 
 pub fn xcb_setup_pixmap_formats (R : *mut setup) -> *mut format;
 
@@ -3598,7 +3596,7 @@ pub fn xcb_setup_next (i:*mut setup_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_setup_end (i:setup_iterator) -> generic_iterator;
+pub fn xcb_setup_end (i:setup_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3621,7 +3619,7 @@ pub fn xcb_client_message_data_next (i:*mut client_message_data_iterator) -> c_v
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_client_message_data_end (i:client_message_data_iterator) -> generic_iterator;
+pub fn xcb_client_message_data_end (i:client_message_data_iterator) -> ffi::base::generic_iterator;
 
 pub fn xcb_create_window_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -3670,7 +3668,7 @@ pub fn xcb_create_window_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_create_window_checked (c : *mut connection,
+pub fn xcb_create_window_checked (c : *mut ffi::base::connection,
                                      depth :  u8,
                                      wid :  window,
                                      parent :  window,
@@ -3682,7 +3680,7 @@ pub fn xcb_create_window_checked (c : *mut connection,
                                      class :  u16,
                                      visual :  visualid,
                                      value_mask :  u32,
-                                     value_list : *mut u32) -> void_cookie;
+                                     value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  * Creates a window
@@ -3726,7 +3724,7 @@ pub fn xcb_create_window_checked (c : *mut connection,
  * The created window will initially use the same cursor as its parent.
  * 
  */
-pub fn xcb_create_window (c : *mut connection,
+pub fn xcb_create_window (c : *mut ffi::base::connection,
                              depth :  u8,
                              wid :  window,
                              parent :  window,
@@ -3738,7 +3736,7 @@ pub fn xcb_create_window (c : *mut connection,
                              class :  u16,
                              visual :  visualid,
                              value_mask :  u32,
-                             value_list : *mut u32) -> void_cookie;
+                             value_list : *mut u32) -> ffi::base::void_cookie;
 
 pub fn xcb_change_window_attributes_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -3759,10 +3757,10 @@ pub fn xcb_change_window_attributes_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_change_window_attributes_checked (c : *mut connection,
+pub fn xcb_change_window_attributes_checked (c : *mut ffi::base::connection,
                                                 window :  window,
                                                 value_mask :  u32,
-                                                value_list : *mut u32) -> void_cookie;
+                                                value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  * change window attributes
@@ -3778,10 +3776,10 @@ pub fn xcb_change_window_attributes_checked (c : *mut connection,
  * Changes the attributes specified by \a value_mask for the specified \a window.
  * 
  */
-pub fn xcb_change_window_attributes (c : *mut connection,
+pub fn xcb_change_window_attributes (c : *mut ffi::base::connection,
                                         window :  window,
                                         value_mask :  u32,
-                                        value_list : *mut u32) -> void_cookie;
+                                        value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  * Gets window attributes
@@ -3793,7 +3791,7 @@ pub fn xcb_change_window_attributes (c : *mut connection,
  * Gets the current attributes for the specified \a window.
  * 
  */
-pub fn xcb_get_window_attributes (c : *mut connection,
+pub fn xcb_get_window_attributes (c : *mut ffi::base::connection,
                                      window :  window) -> get_window_attributes_cookie;
 
 /**
@@ -3809,7 +3807,7 @@ pub fn xcb_get_window_attributes (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_window_attributes_unchecked (c : *mut connection,
+pub fn xcb_get_window_attributes_unchecked (c : *mut ffi::base::connection,
                                                window :  window) -> get_window_attributes_cookie;
 
 /**
@@ -3826,9 +3824,9 @@ pub fn xcb_get_window_attributes_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_window_attributes_reply (c : *mut connection,
+pub fn xcb_get_window_attributes_reply (c : *mut ffi::base::connection,
                                            cookie : get_window_attributes_cookie,
-                                           e : *mut *mut generic_error) -> *mut get_window_attributes_reply;
+                                           e : *mut *mut ffi::base::generic_error) -> *mut get_window_attributes_reply;
 
 /**
  * Destroys a window
@@ -3848,8 +3846,8 @@ pub fn xcb_get_window_attributes_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_destroy_window_checked (c : *mut connection,
-                                      window :  window) -> void_cookie;
+pub fn xcb_destroy_window_checked (c : *mut ffi::base::connection,
+                                      window :  window) -> ffi::base::void_cookie;
 
 /**
  * Destroys a window
@@ -3866,8 +3864,8 @@ pub fn xcb_destroy_window_checked (c : *mut connection,
  * Calling DestroyWindow on the root window will do nothing.
  * 
  */
-pub fn xcb_destroy_window (c : *mut connection,
-                              window :  window) -> void_cookie;
+pub fn xcb_destroy_window (c : *mut ffi::base::connection,
+                              window :  window) -> ffi::base::void_cookie;
 
 /**
  *
@@ -3880,8 +3878,8 @@ pub fn xcb_destroy_window (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_destroy_subwindows_checked (c : *mut connection,
-                                          window :  window) -> void_cookie;
+pub fn xcb_destroy_subwindows_checked (c : *mut ffi::base::connection,
+                                          window :  window) -> ffi::base::void_cookie;
 
 /**
  *
@@ -3891,8 +3889,8 @@ pub fn xcb_destroy_subwindows_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_destroy_subwindows (c : *mut connection,
-                                  window :  window) -> void_cookie;
+pub fn xcb_destroy_subwindows (c : *mut ffi::base::connection,
+                                  window :  window) -> ffi::base::void_cookie;
 
 /**
  * Changes a client's save set
@@ -3912,9 +3910,9 @@ pub fn xcb_destroy_subwindows (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_change_save_set_checked (c : *mut connection,
+pub fn xcb_change_save_set_checked (c : *mut ffi::base::connection,
                                        mode :  u8,
-                                       window :  window) -> void_cookie;
+                                       window :  window) -> ffi::base::void_cookie;
 
 /**
  * Changes a client's save set
@@ -3931,9 +3929,9 @@ pub fn xcb_change_save_set_checked (c : *mut connection,
  * application's) save set.
  * 
  */
-pub fn xcb_change_save_set (c : *mut connection,
+pub fn xcb_change_save_set (c : *mut ffi::base::connection,
                                mode :  u8,
-                               window :  window) -> void_cookie;
+                               window :  window) -> ffi::base::void_cookie;
 
 /**
  * Reparents a window
@@ -3956,11 +3954,11 @@ pub fn xcb_change_save_set (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_reparent_window_checked (c : *mut connection,
+pub fn xcb_reparent_window_checked (c : *mut ffi::base::connection,
                                        window :  window,
                                        parent :  window,
                                        x :  i16,
-                                       y :  i16) -> void_cookie;
+                                       y :  i16) -> ffi::base::void_cookie;
 
 /**
  * Reparents a window
@@ -3980,11 +3978,11 @@ pub fn xcb_reparent_window_checked (c : *mut connection,
  * After reparenting, a ReparentNotify event is generated.
  * 
  */
-pub fn xcb_reparent_window (c : *mut connection,
+pub fn xcb_reparent_window (c : *mut ffi::base::connection,
                                window :  window,
                                parent :  window,
                                x :  i16,
-                               y :  i16) -> void_cookie;
+                               y :  i16) -> ffi::base::void_cookie;
 
 /**
  * Makes a window visible
@@ -4017,8 +4015,8 @@ pub fn xcb_reparent_window (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_map_window_checked (c : *mut connection,
-                                  window :  window) -> void_cookie;
+pub fn xcb_map_window_checked (c : *mut ffi::base::connection,
+                                  window :  window) -> ffi::base::void_cookie;
 
 /**
  * Makes a window visible
@@ -4048,8 +4046,8 @@ pub fn xcb_map_window_checked (c : *mut connection,
  * repaint the window.
  * 
  */
-pub fn xcb_map_window (c : *mut connection,
-                          window :  window) -> void_cookie;
+pub fn xcb_map_window (c : *mut ffi::base::connection,
+                          window :  window) -> ffi::base::void_cookie;
 
 /**
  *
@@ -4062,8 +4060,8 @@ pub fn xcb_map_window (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_map_subwindows_checked (c : *mut connection,
-                                      window :  window) -> void_cookie;
+pub fn xcb_map_subwindows_checked (c : *mut ffi::base::connection,
+                                      window :  window) -> ffi::base::void_cookie;
 
 /**
  *
@@ -4073,8 +4071,8 @@ pub fn xcb_map_subwindows_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_map_subwindows (c : *mut connection,
-                              window :  window) -> void_cookie;
+pub fn xcb_map_subwindows (c : *mut ffi::base::connection,
+                              window :  window) -> ffi::base::void_cookie;
 
 /**
  * Makes a window invisible
@@ -4093,8 +4091,8 @@ pub fn xcb_map_subwindows (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_unmap_window_checked (c : *mut connection,
-                                    window :  window) -> void_cookie;
+pub fn xcb_unmap_window_checked (c : *mut ffi::base::connection,
+                                    window :  window) -> ffi::base::void_cookie;
 
 /**
  * Makes a window invisible
@@ -4110,8 +4108,8 @@ pub fn xcb_unmap_window_checked (c : *mut connection,
  * `Expose` events are generated for formerly obscured windows.
  * 
  */
-pub fn xcb_unmap_window (c : *mut connection,
-                            window :  window) -> void_cookie;
+pub fn xcb_unmap_window (c : *mut ffi::base::connection,
+                            window :  window) -> ffi::base::void_cookie;
 
 /**
  *
@@ -4124,8 +4122,8 @@ pub fn xcb_unmap_window (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_unmap_subwindows_checked (c : *mut connection,
-                                        window :  window) -> void_cookie;
+pub fn xcb_unmap_subwindows_checked (c : *mut ffi::base::connection,
+                                        window :  window) -> ffi::base::void_cookie;
 
 /**
  *
@@ -4135,8 +4133,8 @@ pub fn xcb_unmap_subwindows_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_unmap_subwindows (c : *mut connection,
-                                window :  window) -> void_cookie;
+pub fn xcb_unmap_subwindows (c : *mut ffi::base::connection,
+                                window :  window) -> ffi::base::void_cookie;
 
 pub fn xcb_configure_window_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -4156,10 +4154,10 @@ pub fn xcb_configure_window_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_configure_window_checked (c : *mut connection,
+pub fn xcb_configure_window_checked (c : *mut ffi::base::connection,
                                         window :  window,
                                         value_mask :  u16,
-                                        value_list : *mut u32) -> void_cookie;
+                                        value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  * Configures window attributes
@@ -4174,10 +4172,10 @@ pub fn xcb_configure_window_checked (c : *mut connection,
  * Configures a window's size, position, border width and stacking order.
  * 
  */
-pub fn xcb_configure_window (c : *mut connection,
+pub fn xcb_configure_window (c : *mut ffi::base::connection,
                                 window :  window,
                                 value_mask :  u16,
-                                value_list : *mut u32) -> void_cookie;
+                                value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  * Change window stacking order
@@ -4198,9 +4196,9 @@ pub fn xcb_configure_window (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_circulate_window_checked (c : *mut connection,
+pub fn xcb_circulate_window_checked (c : *mut ffi::base::connection,
                                         direction :  u8,
-                                        window :  window) -> void_cookie;
+                                        window :  window) -> ffi::base::void_cookie;
 
 /**
  * Change window stacking order
@@ -4218,9 +4216,9 @@ pub fn xcb_circulate_window_checked (c : *mut connection,
  * be lowered to the bottom of the stack.
  * 
  */
-pub fn xcb_circulate_window (c : *mut connection,
+pub fn xcb_circulate_window (c : *mut ffi::base::connection,
                                 direction :  u8,
-                                window :  window) -> void_cookie;
+                                window :  window) -> ffi::base::void_cookie;
 
 /**
  * Get current window geometry
@@ -4232,7 +4230,7 @@ pub fn xcb_circulate_window (c : *mut connection,
  * Gets the current geometry of the specified drawable (either `Window` or `Pixmap`).
  * 
  */
-pub fn xcb_get_geometry (c : *mut connection,
+pub fn xcb_get_geometry (c : *mut ffi::base::connection,
                             drawable :  drawable) -> get_geometry_cookie;
 
 /**
@@ -4248,7 +4246,7 @@ pub fn xcb_get_geometry (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_geometry_unchecked (c : *mut connection,
+pub fn xcb_get_geometry_unchecked (c : *mut ffi::base::connection,
                                       drawable :  drawable) -> get_geometry_cookie;
 
 /**
@@ -4265,9 +4263,9 @@ pub fn xcb_get_geometry_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_geometry_reply (c : *mut connection,
+pub fn xcb_get_geometry_reply (c : *mut ffi::base::connection,
                                   cookie : get_geometry_cookie,
-                                  e : *mut *mut generic_error) -> *mut get_geometry_reply;
+                                  e : *mut *mut ffi::base::generic_error) -> *mut get_geometry_reply;
 
 pub fn xcb_query_tree_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -4282,7 +4280,7 @@ pub fn xcb_query_tree_sizeof (_buffer :  *mut c_void) -> c_int;
  * specified \a window. The children are listed in bottom-to-top stacking order.
  * 
  */
-pub fn xcb_query_tree (c : *mut connection,
+pub fn xcb_query_tree (c : *mut ffi::base::connection,
                           window :  window) -> query_tree_cookie;
 
 /**
@@ -4299,7 +4297,7 @@ pub fn xcb_query_tree (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_query_tree_unchecked (c : *mut connection,
+pub fn xcb_query_tree_unchecked (c : *mut ffi::base::connection,
                                     window :  window) -> query_tree_cookie;
 
 pub fn xcb_query_tree_children (R : *mut query_tree_reply) -> *mut window;
@@ -4308,7 +4306,7 @@ pub fn xcb_query_tree_children (R : *mut query_tree_reply) -> *mut window;
 pub fn xcb_query_tree_children_length (R : *mut query_tree_reply) -> c_int;
 
 
-pub fn xcb_query_tree_children_end (R : *mut query_tree_reply) -> generic_iterator;
+pub fn xcb_query_tree_children_end (R : *mut query_tree_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -4324,9 +4322,9 @@ pub fn xcb_query_tree_children_end (R : *mut query_tree_reply) -> generic_iterat
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_query_tree_reply (c : *mut connection,
+pub fn xcb_query_tree_reply (c : *mut ffi::base::connection,
                                 cookie : query_tree_cookie,
-                                e : *mut *mut generic_error) -> *mut query_tree_reply;
+                                e : *mut *mut ffi::base::generic_error) -> *mut query_tree_reply;
 
 pub fn xcb_intern_atom_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -4348,7 +4346,7 @@ pub fn xcb_intern_atom_sizeof (_buffer :  *mut c_void) -> c_int;
  * not yet exist.
  * 
  */
-pub fn xcb_intern_atom (c : *mut connection,
+pub fn xcb_intern_atom (c : *mut ffi::base::connection,
                            only_if_exists :  u8,
                            name_len :  u16,
                            name : *mut c_char) -> intern_atom_cookie;
@@ -4374,7 +4372,7 @@ pub fn xcb_intern_atom (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_intern_atom_unchecked (c : *mut connection,
+pub fn xcb_intern_atom_unchecked (c : *mut ffi::base::connection,
                                      only_if_exists :  u8,
                                      name_len :  u16,
                                      name : *mut c_char) -> intern_atom_cookie;
@@ -4393,9 +4391,9 @@ pub fn xcb_intern_atom_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_intern_atom_reply (c : *mut connection,
+pub fn xcb_intern_atom_reply (c : *mut ffi::base::connection,
                                  cookie : intern_atom_cookie,
-                                 e : *mut *mut generic_error) -> *mut intern_atom_reply;
+                                 e : *mut *mut ffi::base::generic_error) -> *mut intern_atom_reply;
 
 pub fn xcb_get_atom_name_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -4407,7 +4405,7 @@ pub fn xcb_get_atom_name_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_get_atom_name (c : *mut connection,
+pub fn xcb_get_atom_name (c : *mut ffi::base::connection,
                              atom :  atom) -> get_atom_name_cookie;
 
 /**
@@ -4421,7 +4419,7 @@ pub fn xcb_get_atom_name (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_atom_name_unchecked (c : *mut connection,
+pub fn xcb_get_atom_name_unchecked (c : *mut ffi::base::connection,
                                        atom :  atom) -> get_atom_name_cookie;
 
 pub fn xcb_get_atom_name_name (R : *mut get_atom_name_reply) -> *mut c_char;
@@ -4430,7 +4428,7 @@ pub fn xcb_get_atom_name_name (R : *mut get_atom_name_reply) -> *mut c_char;
 pub fn xcb_get_atom_name_name_length (R : *mut get_atom_name_reply) -> c_int;
 
 
-pub fn xcb_get_atom_name_name_end (R : *mut get_atom_name_reply) -> generic_iterator;
+pub fn xcb_get_atom_name_name_end (R : *mut get_atom_name_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -4446,9 +4444,9 @@ pub fn xcb_get_atom_name_name_end (R : *mut get_atom_name_reply) -> generic_iter
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_atom_name_reply (c : *mut connection,
+pub fn xcb_get_atom_name_reply (c : *mut ffi::base::connection,
                                    cookie : get_atom_name_cookie,
-                                   e : *mut *mut generic_error) -> *mut get_atom_name_reply;
+                                   e : *mut *mut ffi::base::generic_error) -> *mut get_atom_name_reply;
 
 pub fn xcb_change_property_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -4477,14 +4475,14 @@ pub fn xcb_change_property_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_change_property_checked (c : *mut connection,
+pub fn xcb_change_property_checked (c : *mut ffi::base::connection,
                                        mode :  u8,
                                        window :  window,
                                        property :  atom,
                                        type_ :  atom,
                                        format :  u8,
                                        data_len :  u32,
-                                       data : *mut c_void) -> void_cookie;
+                                       data : *mut c_void) -> ffi::base::void_cookie;
 
 /**
  * Changes a window property
@@ -4508,14 +4506,14 @@ pub fn xcb_change_property_checked (c : *mut connection,
  * window title, encoded as UTF-8 string, in the `_NET_WM_NAME` property.
  * 
  */
-pub fn xcb_change_property (c : *mut connection,
+pub fn xcb_change_property (c : *mut ffi::base::connection,
                                mode :  u8,
                                window :  window,
                                property :  atom,
                                type_ :  atom,
                                format :  u8,
                                data_len :  u32,
-                               data : *mut c_void) -> void_cookie;
+                               data : *mut c_void) -> ffi::base::void_cookie;
 
 /**
  *
@@ -4528,9 +4526,9 @@ pub fn xcb_change_property (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_delete_property_checked (c : *mut connection,
+pub fn xcb_delete_property_checked (c : *mut ffi::base::connection,
                                        window :  window,
-                                       property :  atom) -> void_cookie;
+                                       property :  atom) -> ffi::base::void_cookie;
 
 /**
  *
@@ -4540,9 +4538,9 @@ pub fn xcb_delete_property_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_delete_property (c : *mut connection,
+pub fn xcb_delete_property (c : *mut ffi::base::connection,
                                window :  window,
-                               property :  atom) -> void_cookie;
+                               property :  atom) -> ffi::base::void_cookie;
 
 pub fn xcb_get_property_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -4573,7 +4571,7 @@ pub fn xcb_get_property_sizeof (_buffer :  *mut c_void) -> c_int;
  * TODO: talk about the offset/length thing. what's a valid use case?
  * 
  */
-pub fn xcb_get_property (c : *mut connection,
+pub fn xcb_get_property (c : *mut ffi::base::connection,
                             delete :  u8,
                             window :  window,
                             property :  atom,
@@ -4611,7 +4609,7 @@ pub fn xcb_get_property (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_property_unchecked (c : *mut connection,
+pub fn xcb_get_property_unchecked (c : *mut ffi::base::connection,
                                       delete :  u8,
                                       window :  window,
                                       property :  atom,
@@ -4625,7 +4623,7 @@ pub fn xcb_get_property_value (R : *mut get_property_reply) -> *mut c_void;
 pub fn xcb_get_property_value_length (R : *mut get_property_reply) -> c_int;
 
 
-pub fn xcb_get_property_value_end (R : *mut get_property_reply) -> generic_iterator;
+pub fn xcb_get_property_value_end (R : *mut get_property_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -4641,9 +4639,9 @@ pub fn xcb_get_property_value_end (R : *mut get_property_reply) -> generic_itera
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_property_reply (c : *mut connection,
+pub fn xcb_get_property_reply (c : *mut ffi::base::connection,
                                   cookie : get_property_cookie,
-                                  e : *mut *mut generic_error) -> *mut get_property_reply;
+                                  e : *mut *mut ffi::base::generic_error) -> *mut get_property_reply;
 
 pub fn xcb_list_properties_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -4655,7 +4653,7 @@ pub fn xcb_list_properties_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_list_properties (c : *mut connection,
+pub fn xcb_list_properties (c : *mut ffi::base::connection,
                                window :  window) -> list_properties_cookie;
 
 /**
@@ -4669,7 +4667,7 @@ pub fn xcb_list_properties (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_list_properties_unchecked (c : *mut connection,
+pub fn xcb_list_properties_unchecked (c : *mut ffi::base::connection,
                                          window :  window) -> list_properties_cookie;
 
 pub fn xcb_list_properties_atoms (R : *mut list_properties_reply) -> *mut atom;
@@ -4678,7 +4676,7 @@ pub fn xcb_list_properties_atoms (R : *mut list_properties_reply) -> *mut atom;
 pub fn xcb_list_properties_atoms_length (R : *mut list_properties_reply) -> c_int;
 
 
-pub fn xcb_list_properties_atoms_end (R : *mut list_properties_reply) -> generic_iterator;
+pub fn xcb_list_properties_atoms_end (R : *mut list_properties_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -4694,9 +4692,9 @@ pub fn xcb_list_properties_atoms_end (R : *mut list_properties_reply) -> generic
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_list_properties_reply (c : *mut connection,
+pub fn xcb_list_properties_reply (c : *mut ffi::base::connection,
                                      cookie : list_properties_cookie,
-                                     e : *mut *mut generic_error) -> *mut list_properties_reply;
+                                     e : *mut *mut ffi::base::generic_error) -> *mut list_properties_reply;
 
 /**
  * Sets the owner of a selection
@@ -4725,10 +4723,10 @@ pub fn xcb_list_properties_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_set_selection_owner_checked (c : *mut connection,
+pub fn xcb_set_selection_owner_checked (c : *mut ffi::base::connection,
                                            owner :  window,
                                            selection :  atom,
-                                           time :  timestamp) -> void_cookie;
+                                           time :  timestamp) -> ffi::base::void_cookie;
 
 /**
  * Sets the owner of a selection
@@ -4754,10 +4752,10 @@ pub fn xcb_set_selection_owner_checked (c : *mut connection,
  * TODO: briefly explain what a selection is.
  * 
  */
-pub fn xcb_set_selection_owner (c : *mut connection,
+pub fn xcb_set_selection_owner (c : *mut ffi::base::connection,
                                    owner :  window,
                                    selection :  atom,
-                                   time :  timestamp) -> void_cookie;
+                                   time :  timestamp) -> ffi::base::void_cookie;
 
 /**
  * Gets the owner of a selection
@@ -4771,7 +4769,7 @@ pub fn xcb_set_selection_owner (c : *mut connection,
  * TODO: briefly explain what a selection is.
  * 
  */
-pub fn xcb_get_selection_owner (c : *mut connection,
+pub fn xcb_get_selection_owner (c : *mut ffi::base::connection,
                                    selection :  atom) -> get_selection_owner_cookie;
 
 /**
@@ -4789,7 +4787,7 @@ pub fn xcb_get_selection_owner (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_selection_owner_unchecked (c : *mut connection,
+pub fn xcb_get_selection_owner_unchecked (c : *mut ffi::base::connection,
                                              selection :  atom) -> get_selection_owner_cookie;
 
 /**
@@ -4806,9 +4804,9 @@ pub fn xcb_get_selection_owner_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_selection_owner_reply (c : *mut connection,
+pub fn xcb_get_selection_owner_reply (c : *mut ffi::base::connection,
                                          cookie : get_selection_owner_cookie,
-                                         e : *mut *mut generic_error) -> *mut get_selection_owner_reply;
+                                         e : *mut *mut ffi::base::generic_error) -> *mut get_selection_owner_reply;
 
 /**
  *
@@ -4821,12 +4819,12 @@ pub fn xcb_get_selection_owner_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_convert_selection_checked (c : *mut connection,
+pub fn xcb_convert_selection_checked (c : *mut ffi::base::connection,
                                          requestor :  window,
                                          selection :  atom,
                                          target :  atom,
                                          property :  atom,
-                                         time :  timestamp) -> void_cookie;
+                                         time :  timestamp) -> ffi::base::void_cookie;
 
 /**
  *
@@ -4836,12 +4834,12 @@ pub fn xcb_convert_selection_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_convert_selection (c : *mut connection,
+pub fn xcb_convert_selection (c : *mut ffi::base::connection,
                                  requestor :  window,
                                  selection :  atom,
                                  target :  atom,
                                  property :  atom,
-                                 time :  timestamp) -> void_cookie;
+                                 time :  timestamp) -> ffi::base::void_cookie;
 
 /**
  * send an event
@@ -4880,11 +4878,11 @@ pub fn xcb_convert_selection (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_send_event_checked (c : *mut connection,
+pub fn xcb_send_event_checked (c : *mut ffi::base::connection,
                                   propagate :  u8,
                                   destination :  window,
                                   event_mask :  u32,
-                                  event : *mut c_char) -> void_cookie;
+                                  event : *mut c_char) -> ffi::base::void_cookie;
 
 /**
  * send an event
@@ -4920,11 +4918,11 @@ pub fn xcb_send_event_checked (c : *mut connection,
  * `send_event` field which is forced to 'true'.
  * 
  */
-pub fn xcb_send_event (c : *mut connection,
+pub fn xcb_send_event (c : *mut ffi::base::connection,
                           propagate :  u8,
                           destination :  window,
                           event_mask :  u32,
-                          event : *mut c_char) -> void_cookie;
+                          event : *mut c_char) -> ffi::base::void_cookie;
 
 /**
  * Grab the pointer
@@ -4962,7 +4960,7 @@ pub fn xcb_send_event (c : *mut connection,
  * Actively grabs control of the pointer. Further pointer events are reported only to the grabbing client. Overrides any active pointer grab by this client.
  * 
  */
-pub fn xcb_grab_pointer (c : *mut connection,
+pub fn xcb_grab_pointer (c : *mut ffi::base::connection,
                             owner_events :  u8,
                             grab_window :  window,
                             event_mask :  u16,
@@ -5011,7 +5009,7 @@ pub fn xcb_grab_pointer (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_grab_pointer_unchecked (c : *mut connection,
+pub fn xcb_grab_pointer_unchecked (c : *mut ffi::base::connection,
                                       owner_events :  u8,
                                       grab_window :  window,
                                       event_mask :  u16,
@@ -5035,9 +5033,9 @@ pub fn xcb_grab_pointer_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_grab_pointer_reply (c : *mut connection,
+pub fn xcb_grab_pointer_reply (c : *mut ffi::base::connection,
                                   cookie : grab_pointer_cookie,
-                                  e : *mut *mut generic_error) -> *mut grab_pointer_reply;
+                                  e : *mut *mut ffi::base::generic_error) -> *mut grab_pointer_reply;
 
 /**
  * release the pointer
@@ -5059,8 +5057,8 @@ pub fn xcb_grab_pointer_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_ungrab_pointer_checked (c : *mut connection,
-                                      time :  timestamp) -> void_cookie;
+pub fn xcb_ungrab_pointer_checked (c : *mut ffi::base::connection,
+                                      time :  timestamp) -> ffi::base::void_cookie;
 
 /**
  * release the pointer
@@ -5079,8 +5077,8 @@ pub fn xcb_ungrab_pointer_checked (c : *mut connection,
  * EnterNotify and LeaveNotify events are generated.
  * 
  */
-pub fn xcb_ungrab_pointer (c : *mut connection,
-                              time :  timestamp) -> void_cookie;
+pub fn xcb_ungrab_pointer (c : *mut ffi::base::connection,
+                              time :  timestamp) -> ffi::base::void_cookie;
 
 /**
  * Grab pointer button(s)
@@ -5150,7 +5148,7 @@ pub fn xcb_ungrab_pointer (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_grab_button_checked (c : *mut connection,
+pub fn xcb_grab_button_checked (c : *mut ffi::base::connection,
                                    owner_events :  u8,
                                    grab_window :  window,
                                    event_mask :  u16,
@@ -5159,7 +5157,7 @@ pub fn xcb_grab_button_checked (c : *mut connection,
                                    confine_to :  window,
                                    cursor :  cursor,
                                    button :  u8,
-                                   modifiers :  u16) -> void_cookie;
+                                   modifiers :  u16) -> ffi::base::void_cookie;
 
 /**
  * Grab pointer button(s)
@@ -5226,7 +5224,7 @@ pub fn xcb_grab_button_checked (c : *mut connection,
  * for any combination. The request has no effect on an active grab.
  * 
  */
-pub fn xcb_grab_button (c : *mut connection,
+pub fn xcb_grab_button (c : *mut ffi::base::connection,
                            owner_events :  u8,
                            grab_window :  window,
                            event_mask :  u16,
@@ -5235,7 +5233,7 @@ pub fn xcb_grab_button (c : *mut connection,
                            confine_to :  window,
                            cursor :  cursor,
                            button :  u8,
-                           modifiers :  u16) -> void_cookie;
+                           modifiers :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -5248,10 +5246,10 @@ pub fn xcb_grab_button (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_ungrab_button_checked (c : *mut connection,
+pub fn xcb_ungrab_button_checked (c : *mut ffi::base::connection,
                                      button :  u8,
                                      grab_window :  window,
-                                     modifiers :  u16) -> void_cookie;
+                                     modifiers :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -5261,10 +5259,10 @@ pub fn xcb_ungrab_button_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_ungrab_button (c : *mut connection,
+pub fn xcb_ungrab_button (c : *mut ffi::base::connection,
                              button :  u8,
                              grab_window :  window,
-                             modifiers :  u16) -> void_cookie;
+                             modifiers :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -5277,10 +5275,10 @@ pub fn xcb_ungrab_button (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_change_active_pointer_grab_checked (c : *mut connection,
+pub fn xcb_change_active_pointer_grab_checked (c : *mut ffi::base::connection,
                                                   cursor :  cursor,
                                                   time :  timestamp,
-                                                  event_mask :  u16) -> void_cookie;
+                                                  event_mask :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -5290,10 +5288,10 @@ pub fn xcb_change_active_pointer_grab_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_change_active_pointer_grab (c : *mut connection,
+pub fn xcb_change_active_pointer_grab (c : *mut ffi::base::connection,
                                           cursor :  cursor,
                                           time :  timestamp,
-                                          event_mask :  u16) -> void_cookie;
+                                          event_mask :  u16) -> ffi::base::void_cookie;
 
 /**
  * Grab the keyboard
@@ -5324,7 +5322,7 @@ pub fn xcb_change_active_pointer_grab (c : *mut connection,
  * last-keyboard-grab time is set to the specified time.
  * 
  */
-pub fn xcb_grab_keyboard (c : *mut connection,
+pub fn xcb_grab_keyboard (c : *mut ffi::base::connection,
                              owner_events :  u8,
                              grab_window :  window,
                              time :  timestamp,
@@ -5363,7 +5361,7 @@ pub fn xcb_grab_keyboard (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_grab_keyboard_unchecked (c : *mut connection,
+pub fn xcb_grab_keyboard_unchecked (c : *mut ffi::base::connection,
                                        owner_events :  u8,
                                        grab_window :  window,
                                        time :  timestamp,
@@ -5384,9 +5382,9 @@ pub fn xcb_grab_keyboard_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_grab_keyboard_reply (c : *mut connection,
+pub fn xcb_grab_keyboard_reply (c : *mut ffi::base::connection,
                                    cookie : grab_keyboard_cookie,
-                                   e : *mut *mut generic_error) -> *mut grab_keyboard_reply;
+                                   e : *mut *mut ffi::base::generic_error) -> *mut grab_keyboard_reply;
 
 /**
  *
@@ -5399,8 +5397,8 @@ pub fn xcb_grab_keyboard_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_ungrab_keyboard_checked (c : *mut connection,
-                                       time :  timestamp) -> void_cookie;
+pub fn xcb_ungrab_keyboard_checked (c : *mut ffi::base::connection,
+                                       time :  timestamp) -> ffi::base::void_cookie;
 
 /**
  *
@@ -5410,8 +5408,8 @@ pub fn xcb_ungrab_keyboard_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_ungrab_keyboard (c : *mut connection,
-                               time :  timestamp) -> void_cookie;
+pub fn xcb_ungrab_keyboard (c : *mut ffi::base::connection,
+                               time :  timestamp) -> ffi::base::void_cookie;
 
 /**
  * Grab keyboard key(s)
@@ -5468,13 +5466,13 @@ pub fn xcb_ungrab_keyboard (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_grab_key_checked (c : *mut connection,
+pub fn xcb_grab_key_checked (c : *mut ffi::base::connection,
                                 owner_events :  u8,
                                 grab_window :  window,
                                 modifiers :  u16,
                                 key :  keycode,
                                 pointer_mode :  u8,
-                                keyboard_mode :  u8) -> void_cookie;
+                                keyboard_mode :  u8) -> ffi::base::void_cookie;
 
 /**
  * Grab keyboard key(s)
@@ -5528,13 +5526,13 @@ pub fn xcb_grab_key_checked (c : *mut connection,
  * results (no grabs are established) if there is a conflicting grab for any combination.
  * 
  */
-pub fn xcb_grab_key (c : *mut connection,
+pub fn xcb_grab_key (c : *mut ffi::base::connection,
                         owner_events :  u8,
                         grab_window :  window,
                         modifiers :  u16,
                         key :  keycode,
                         pointer_mode :  u8,
-                        keyboard_mode :  u8) -> void_cookie;
+                        keyboard_mode :  u8) -> ffi::base::void_cookie;
 
 /**
  * release a key combination
@@ -5557,10 +5555,10 @@ pub fn xcb_grab_key (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_ungrab_key_checked (c : *mut connection,
+pub fn xcb_ungrab_key_checked (c : *mut ffi::base::connection,
                                   key :  keycode,
                                   grab_window :  window,
-                                  modifiers :  u16) -> void_cookie;
+                                  modifiers :  u16) -> ffi::base::void_cookie;
 
 /**
  * release a key combination
@@ -5580,10 +5578,10 @@ pub fn xcb_ungrab_key_checked (c : *mut connection,
  * `xcb_grab_key` before.
  * 
  */
-pub fn xcb_ungrab_key (c : *mut connection,
+pub fn xcb_ungrab_key (c : *mut ffi::base::connection,
                           key :  keycode,
                           grab_window :  window,
-                          modifiers :  u16) -> void_cookie;
+                          modifiers :  u16) -> ffi::base::void_cookie;
 
 /**
  * release queued events
@@ -5606,9 +5604,9 @@ pub fn xcb_ungrab_key (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_allow_events_checked (c : *mut connection,
+pub fn xcb_allow_events_checked (c : *mut ffi::base::connection,
                                     mode :  u8,
-                                    time :  timestamp) -> void_cookie;
+                                    time :  timestamp) -> ffi::base::void_cookie;
 
 /**
  * release queued events
@@ -5628,9 +5626,9 @@ pub fn xcb_allow_events_checked (c : *mut connection,
  * or if \a time is later than the current X server time.
  * 
  */
-pub fn xcb_allow_events (c : *mut connection,
+pub fn xcb_allow_events (c : *mut ffi::base::connection,
                             mode :  u8,
-                            time :  timestamp) -> void_cookie;
+                            time :  timestamp) -> ffi::base::void_cookie;
 
 /**
  *
@@ -5643,7 +5641,7 @@ pub fn xcb_allow_events (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_grab_server_checked (c : *mut connection) -> void_cookie;
+pub fn xcb_grab_server_checked (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
 
 /**
  *
@@ -5653,7 +5651,7 @@ pub fn xcb_grab_server_checked (c : *mut connection) -> void_cookie;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_grab_server (c : *mut connection) -> void_cookie;
+pub fn xcb_grab_server (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
 
 /**
  *
@@ -5666,7 +5664,7 @@ pub fn xcb_grab_server (c : *mut connection) -> void_cookie;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_ungrab_server_checked (c : *mut connection) -> void_cookie;
+pub fn xcb_ungrab_server_checked (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
 
 /**
  *
@@ -5676,7 +5674,7 @@ pub fn xcb_ungrab_server_checked (c : *mut connection) -> void_cookie;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_ungrab_server (c : *mut connection) -> void_cookie;
+pub fn xcb_ungrab_server (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
 
 /**
  * get pointer coordinates
@@ -5690,7 +5688,7 @@ pub fn xcb_ungrab_server (c : *mut connection) -> void_cookie;
  * relative to the root window's origin.
  * 
  */
-pub fn xcb_query_pointer (c : *mut connection,
+pub fn xcb_query_pointer (c : *mut ffi::base::connection,
                              window :  window) -> query_pointer_cookie;
 
 /**
@@ -5708,7 +5706,7 @@ pub fn xcb_query_pointer (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_query_pointer_unchecked (c : *mut connection,
+pub fn xcb_query_pointer_unchecked (c : *mut ffi::base::connection,
                                        window :  window) -> query_pointer_cookie;
 
 /**
@@ -5725,9 +5723,9 @@ pub fn xcb_query_pointer_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_query_pointer_reply (c : *mut connection,
+pub fn xcb_query_pointer_reply (c : *mut ffi::base::connection,
                                    cookie : query_pointer_cookie,
-                                   e : *mut *mut generic_error) -> *mut query_pointer_reply;
+                                   e : *mut *mut ffi::base::generic_error) -> *mut query_pointer_reply;
 
 /**
  * Get the next element of the iterator
@@ -5750,7 +5748,7 @@ pub fn xcb_timecoord_next (i:*mut timecoord_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_timecoord_end (i:timecoord_iterator) -> generic_iterator;
+pub fn xcb_timecoord_end (i:timecoord_iterator) -> ffi::base::generic_iterator;
 
 pub fn xcb_get_motion_events_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -5762,7 +5760,7 @@ pub fn xcb_get_motion_events_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_get_motion_events (c : *mut connection,
+pub fn xcb_get_motion_events (c : *mut ffi::base::connection,
                                  window :  window,
                                  start :  timestamp,
                                  stop :  timestamp) -> get_motion_events_cookie;
@@ -5778,7 +5776,7 @@ pub fn xcb_get_motion_events (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_motion_events_unchecked (c : *mut connection,
+pub fn xcb_get_motion_events_unchecked (c : *mut ffi::base::connection,
                                            window :  window,
                                            start :  timestamp,
                                            stop :  timestamp) -> get_motion_events_cookie;
@@ -5804,9 +5802,9 @@ pub fn xcb_get_motion_events_events_iterator (R : *mut get_motion_events_reply) 
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_motion_events_reply (c : *mut connection,
+pub fn xcb_get_motion_events_reply (c : *mut ffi::base::connection,
                                        cookie : get_motion_events_cookie,
-                                       e : *mut *mut generic_error) -> *mut get_motion_events_reply;
+                                       e : *mut *mut ffi::base::generic_error) -> *mut get_motion_events_reply;
 
 /**
  *
@@ -5816,7 +5814,7 @@ pub fn xcb_get_motion_events_reply (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_translate_coordinates (c : *mut connection,
+pub fn xcb_translate_coordinates (c : *mut ffi::base::connection,
                                      src_window :  window,
                                      dst_window :  window,
                                      src_x :  i16,
@@ -5833,7 +5831,7 @@ pub fn xcb_translate_coordinates (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_translate_coordinates_unchecked (c : *mut connection,
+pub fn xcb_translate_coordinates_unchecked (c : *mut ffi::base::connection,
                                                src_window :  window,
                                                dst_window :  window,
                                                src_x :  i16,
@@ -5853,9 +5851,9 @@ pub fn xcb_translate_coordinates_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_translate_coordinates_reply (c : *mut connection,
+pub fn xcb_translate_coordinates_reply (c : *mut ffi::base::connection,
                                            cookie : translate_coordinates_cookie,
-                                           e : *mut *mut generic_error) -> *mut translate_coordinates_reply;
+                                           e : *mut *mut ffi::base::generic_error) -> *mut translate_coordinates_reply;
 
 /**
  * move mouse pointer
@@ -5887,7 +5885,7 @@ pub fn xcb_translate_coordinates_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_warp_pointer_checked (c : *mut connection,
+pub fn xcb_warp_pointer_checked (c : *mut ffi::base::connection,
                                     src_window :  window,
                                     dst_window :  window,
                                     src_x :  i16,
@@ -5895,7 +5893,7 @@ pub fn xcb_warp_pointer_checked (c : *mut connection,
                                     src_width :  u16,
                                     src_height :  u16,
                                     dst_x :  i16,
-                                    dst_y :  i16) -> void_cookie;
+                                    dst_y :  i16) -> ffi::base::void_cookie;
 
 /**
  * move mouse pointer
@@ -5924,7 +5922,7 @@ pub fn xcb_warp_pointer_checked (c : *mut connection,
  * relative to the current position of the pointer.
  * 
  */
-pub fn xcb_warp_pointer (c : *mut connection,
+pub fn xcb_warp_pointer (c : *mut ffi::base::connection,
                             src_window :  window,
                             dst_window :  window,
                             src_x :  i16,
@@ -5932,7 +5930,7 @@ pub fn xcb_warp_pointer (c : *mut connection,
                             src_width :  u16,
                             src_height :  u16,
                             dst_x :  i16,
-                            dst_y :  i16) -> void_cookie;
+                            dst_y :  i16) -> ffi::base::void_cookie;
 
 /**
  * Sets input focus
@@ -5965,10 +5963,10 @@ pub fn xcb_warp_pointer (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_set_input_focus_checked (c : *mut connection,
+pub fn xcb_set_input_focus_checked (c : *mut ffi::base::connection,
                                        revert_to :  u8,
                                        focus :  window,
-                                       time :  timestamp) -> void_cookie;
+                                       time :  timestamp) -> ffi::base::void_cookie;
 
 /**
  * Sets input focus
@@ -5998,10 +5996,10 @@ pub fn xcb_set_input_focus_checked (c : *mut connection,
  * A FocusIn and FocusOut event is generated when focus is changed.
  * 
  */
-pub fn xcb_set_input_focus (c : *mut connection,
+pub fn xcb_set_input_focus (c : *mut ffi::base::connection,
                                revert_to :  u8,
                                focus :  window,
-                               time :  timestamp) -> void_cookie;
+                               time :  timestamp) -> ffi::base::void_cookie;
 
 /**
  *
@@ -6011,7 +6009,7 @@ pub fn xcb_set_input_focus (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_get_input_focus (c : *mut connection) -> get_input_focus_cookie;
+pub fn xcb_get_input_focus (c : *mut ffi::base::connection) -> get_input_focus_cookie;
 
 /**
  *
@@ -6024,7 +6022,7 @@ pub fn xcb_get_input_focus (c : *mut connection) -> get_input_focus_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_input_focus_unchecked (c : *mut connection) -> get_input_focus_cookie;
+pub fn xcb_get_input_focus_unchecked (c : *mut ffi::base::connection) -> get_input_focus_cookie;
 
 /**
  * Return the reply
@@ -6040,9 +6038,9 @@ pub fn xcb_get_input_focus_unchecked (c : *mut connection) -> get_input_focus_co
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_input_focus_reply (c : *mut connection,
+pub fn xcb_get_input_focus_reply (c : *mut ffi::base::connection,
                                      cookie : get_input_focus_cookie,
-                                     e : *mut *mut generic_error) -> *mut get_input_focus_reply;
+                                     e : *mut *mut ffi::base::generic_error) -> *mut get_input_focus_reply;
 
 /**
  *
@@ -6052,7 +6050,7 @@ pub fn xcb_get_input_focus_reply (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_query_keymap (c : *mut connection) -> query_keymap_cookie;
+pub fn xcb_query_keymap (c : *mut ffi::base::connection) -> query_keymap_cookie;
 
 /**
  *
@@ -6065,7 +6063,7 @@ pub fn xcb_query_keymap (c : *mut connection) -> query_keymap_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_query_keymap_unchecked (c : *mut connection) -> query_keymap_cookie;
+pub fn xcb_query_keymap_unchecked (c : *mut ffi::base::connection) -> query_keymap_cookie;
 
 /**
  * Return the reply
@@ -6081,9 +6079,9 @@ pub fn xcb_query_keymap_unchecked (c : *mut connection) -> query_keymap_cookie;
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_query_keymap_reply (c : *mut connection,
+pub fn xcb_query_keymap_reply (c : *mut ffi::base::connection,
                                   cookie : query_keymap_cookie,
-                                  e : *mut *mut generic_error) -> *mut query_keymap_reply;
+                                  e : *mut *mut ffi::base::generic_error) -> *mut query_keymap_reply;
 
 pub fn xcb_open_font_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -6105,10 +6103,10 @@ pub fn xcb_open_font_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_open_font_checked (c : *mut connection,
+pub fn xcb_open_font_checked (c : *mut ffi::base::connection,
                                  fid :  font,
                                  name_len :  u16,
-                                 name : *mut c_char) -> void_cookie;
+                                 name : *mut c_char) -> ffi::base::void_cookie;
 
 /**
  * opens a font
@@ -6125,10 +6123,10 @@ pub fn xcb_open_font_checked (c : *mut connection,
  * client-side rendering using Xft.
  * 
  */
-pub fn xcb_open_font (c : *mut connection,
+pub fn xcb_open_font (c : *mut ffi::base::connection,
                          fid :  font,
                          name_len :  u16,
-                         name : *mut c_char) -> void_cookie;
+                         name : *mut c_char) -> ffi::base::void_cookie;
 
 /**
  *
@@ -6141,8 +6139,8 @@ pub fn xcb_open_font (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_close_font_checked (c : *mut connection,
-                                  font :  font) -> void_cookie;
+pub fn xcb_close_font_checked (c : *mut ffi::base::connection,
+                                  font :  font) -> ffi::base::void_cookie;
 
 /**
  *
@@ -6152,8 +6150,8 @@ pub fn xcb_close_font_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_close_font (c : *mut connection,
-                          font :  font) -> void_cookie;
+pub fn xcb_close_font (c : *mut ffi::base::connection,
+                          font :  font) -> ffi::base::void_cookie;
 
 /**
  * Get the next element of the iterator
@@ -6176,7 +6174,7 @@ pub fn xcb_fontprop_next (i:*mut fontprop_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_fontprop_end (i:fontprop_iterator) -> generic_iterator;
+pub fn xcb_fontprop_end (i:fontprop_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -6199,7 +6197,7 @@ pub fn xcb_charinfo_next (i:*mut charinfo_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_charinfo_end (i:charinfo_iterator) -> generic_iterator;
+pub fn xcb_charinfo_end (i:charinfo_iterator) -> ffi::base::generic_iterator;
 
 pub fn xcb_query_font_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -6213,7 +6211,7 @@ pub fn xcb_query_font_sizeof (_buffer :  *mut c_void) -> c_int;
  * Queries information associated with the font.
  * 
  */
-pub fn xcb_query_font (c : *mut connection,
+pub fn xcb_query_font (c : *mut ffi::base::connection,
                           font :  fontable) -> query_font_cookie;
 
 /**
@@ -6229,7 +6227,7 @@ pub fn xcb_query_font (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_query_font_unchecked (c : *mut connection,
+pub fn xcb_query_font_unchecked (c : *mut ffi::base::connection,
                                     font :  fontable) -> query_font_cookie;
 
 pub fn xcb_query_font_properties (R : *mut query_font_reply) -> *mut fontprop;
@@ -6260,9 +6258,9 @@ pub fn xcb_query_font_char_infos_iterator (R : *mut query_font_reply) -> charinf
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_query_font_reply (c : *mut connection,
+pub fn xcb_query_font_reply (c : *mut ffi::base::connection,
                                 cookie : query_font_cookie,
-                                e : *mut *mut generic_error) -> *mut query_font_reply;
+                                e : *mut *mut ffi::base::generic_error) -> *mut query_font_reply;
 
 pub fn xcb_query_text_extents_sizeof (_buffer :  *mut c_void,
                                string_len :   u32) -> c_int;
@@ -6299,7 +6297,7 @@ pub fn xcb_query_text_extents_sizeof (_buffer :  *mut c_void,
  * default_char, the undefined characters in the string are also ignored.
  * 
  */
-pub fn xcb_query_text_extents (c : *mut connection,
+pub fn xcb_query_text_extents (c : *mut ffi::base::connection,
                                   font :  fontable,
                                   string_len :  u32,
                                   string : *mut char2b) -> query_text_extents_cookie;
@@ -6339,7 +6337,7 @@ pub fn xcb_query_text_extents (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_query_text_extents_unchecked (c : *mut connection,
+pub fn xcb_query_text_extents_unchecked (c : *mut ffi::base::connection,
                                             font :  fontable,
                                             string_len :  u32,
                                             string : *mut char2b) -> query_text_extents_cookie;
@@ -6358,9 +6356,9 @@ pub fn xcb_query_text_extents_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_query_text_extents_reply (c : *mut connection,
+pub fn xcb_query_text_extents_reply (c : *mut ffi::base::connection,
                                         cookie : query_text_extents_cookie,
-                                        e : *mut *mut generic_error) -> *mut query_text_extents_reply;
+                                        e : *mut *mut ffi::base::generic_error) -> *mut query_text_extents_reply;
 
 pub fn xcb_str_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -6370,7 +6368,7 @@ pub fn xcb_str_name (R : *mut str_) -> *mut c_char;
 pub fn xcb_str_name_length (R : *mut str_) -> c_int;
 
 
-pub fn xcb_str_name_end (R : *mut str_) -> generic_iterator;
+pub fn xcb_str_name_end (R : *mut str_) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -6393,7 +6391,7 @@ pub fn xcb_str_next (i:*mut str_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_str_end (i:str_iterator) -> generic_iterator;
+pub fn xcb_str_end (i:str_iterator) -> ffi::base::generic_iterator;
 
 pub fn xcb_list_fonts_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -6413,7 +6411,7 @@ pub fn xcb_list_fonts_sizeof (_buffer :  *mut c_void) -> c_int;
  * Gets a list of available font names which match the given \a pattern.
  * 
  */
-pub fn xcb_list_fonts (c : *mut connection,
+pub fn xcb_list_fonts (c : *mut ffi::base::connection,
                           max_names :  u16,
                           pattern_len :  u16,
                           pattern : *mut c_char) -> list_fonts_cookie;
@@ -6437,7 +6435,7 @@ pub fn xcb_list_fonts (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_list_fonts_unchecked (c : *mut connection,
+pub fn xcb_list_fonts_unchecked (c : *mut ffi::base::connection,
                                     max_names :  u16,
                                     pattern_len :  u16,
                                     pattern : *mut c_char) -> list_fonts_cookie;
@@ -6461,9 +6459,9 @@ pub fn xcb_list_fonts_names_iterator (R : *mut list_fonts_reply) -> str_iterator
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_list_fonts_reply (c : *mut connection,
+pub fn xcb_list_fonts_reply (c : *mut ffi::base::connection,
                                 cookie : list_fonts_cookie,
-                                e : *mut *mut generic_error) -> *mut list_fonts_reply;
+                                e : *mut *mut ffi::base::generic_error) -> *mut list_fonts_reply;
 
 pub fn xcb_list_fonts_with_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -6483,7 +6481,7 @@ pub fn xcb_list_fonts_with_info_sizeof (_buffer :  *mut c_void) -> c_int;
  * Gets a list of available font names which match the given \a pattern.
  * 
  */
-pub fn xcb_list_fonts_with_info (c : *mut connection,
+pub fn xcb_list_fonts_with_info (c : *mut ffi::base::connection,
                                     max_names :  u16,
                                     pattern_len :  u16,
                                     pattern : *mut c_char) -> list_fonts_with_info_cookie;
@@ -6507,7 +6505,7 @@ pub fn xcb_list_fonts_with_info (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_list_fonts_with_info_unchecked (c : *mut connection,
+pub fn xcb_list_fonts_with_info_unchecked (c : *mut ffi::base::connection,
                                               max_names :  u16,
                                               pattern_len :  u16,
                                               pattern : *mut c_char) -> list_fonts_with_info_cookie;
@@ -6525,7 +6523,7 @@ pub fn xcb_list_fonts_with_info_name (R : *mut list_fonts_with_info_reply) -> *m
 pub fn xcb_list_fonts_with_info_name_length (R : *mut list_fonts_with_info_reply) -> c_int;
 
 
-pub fn xcb_list_fonts_with_info_name_end (R : *mut list_fonts_with_info_reply) -> generic_iterator;
+pub fn xcb_list_fonts_with_info_name_end (R : *mut list_fonts_with_info_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -6541,9 +6539,9 @@ pub fn xcb_list_fonts_with_info_name_end (R : *mut list_fonts_with_info_reply) -
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_list_fonts_with_info_reply (c : *mut connection,
+pub fn xcb_list_fonts_with_info_reply (c : *mut ffi::base::connection,
                                           cookie : list_fonts_with_info_cookie,
-                                          e : *mut *mut generic_error) -> *mut list_fonts_with_info_reply;
+                                          e : *mut *mut ffi::base::generic_error) -> *mut list_fonts_with_info_reply;
 
 pub fn xcb_set_font_path_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -6558,9 +6556,9 @@ pub fn xcb_set_font_path_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_set_font_path_checked (c : *mut connection,
+pub fn xcb_set_font_path_checked (c : *mut ffi::base::connection,
                                      font_qty :  u16,
-                                     font : *mut str_) -> void_cookie;
+                                     font : *mut str_) -> ffi::base::void_cookie;
 
 /**
  *
@@ -6570,9 +6568,9 @@ pub fn xcb_set_font_path_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_set_font_path (c : *mut connection,
+pub fn xcb_set_font_path (c : *mut ffi::base::connection,
                              font_qty :  u16,
-                             font : *mut str_) -> void_cookie;
+                             font : *mut str_) -> ffi::base::void_cookie;
 
 pub fn xcb_get_font_path_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -6584,7 +6582,7 @@ pub fn xcb_get_font_path_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_get_font_path (c : *mut connection) -> get_font_path_cookie;
+pub fn xcb_get_font_path (c : *mut ffi::base::connection) -> get_font_path_cookie;
 
 /**
  *
@@ -6597,7 +6595,7 @@ pub fn xcb_get_font_path (c : *mut connection) -> get_font_path_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_font_path_unchecked (c : *mut connection) -> get_font_path_cookie;
+pub fn xcb_get_font_path_unchecked (c : *mut ffi::base::connection) -> get_font_path_cookie;
 
 
 pub fn xcb_get_font_path_path_length (R : *mut get_font_path_reply) -> c_int;
@@ -6618,9 +6616,9 @@ pub fn xcb_get_font_path_path_iterator (R : *mut get_font_path_reply) -> str_ite
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_font_path_reply (c : *mut connection,
+pub fn xcb_get_font_path_reply (c : *mut ffi::base::connection,
                                    cookie : get_font_path_cookie,
-                                   e : *mut *mut generic_error) -> *mut get_font_path_reply;
+                                   e : *mut *mut ffi::base::generic_error) -> *mut get_font_path_reply;
 
 /**
  * Creates a pixmap
@@ -6641,12 +6639,12 @@ pub fn xcb_get_font_path_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_create_pixmap_checked (c : *mut connection,
+pub fn xcb_create_pixmap_checked (c : *mut ffi::base::connection,
                                      depth :  u8,
                                      pid :  pixmap,
                                      drawable :  drawable,
                                      width :  u16,
-                                     height :  u16) -> void_cookie;
+                                     height :  u16) -> ffi::base::void_cookie;
 
 /**
  * Creates a pixmap
@@ -6664,12 +6662,12 @@ pub fn xcb_create_pixmap_checked (c : *mut connection,
  * is on and only with drawables of the same \a depth.
  * 
  */
-pub fn xcb_create_pixmap (c : *mut connection,
+pub fn xcb_create_pixmap (c : *mut ffi::base::connection,
                              depth :  u8,
                              pid :  pixmap,
                              drawable :  drawable,
                              width :  u16,
-                             height :  u16) -> void_cookie;
+                             height :  u16) -> ffi::base::void_cookie;
 
 /**
  * Destroys a pixmap
@@ -6685,8 +6683,8 @@ pub fn xcb_create_pixmap (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_free_pixmap_checked (c : *mut connection,
-                                   pixmap :  pixmap) -> void_cookie;
+pub fn xcb_free_pixmap_checked (c : *mut ffi::base::connection,
+                                   pixmap :  pixmap) -> ffi::base::void_cookie;
 
 /**
  * Destroys a pixmap
@@ -6699,8 +6697,8 @@ pub fn xcb_free_pixmap_checked (c : *mut connection,
  * storage will be freed when there are no more references to it.
  * 
  */
-pub fn xcb_free_pixmap (c : *mut connection,
-                           pixmap :  pixmap) -> void_cookie;
+pub fn xcb_free_pixmap (c : *mut ffi::base::connection,
+                           pixmap :  pixmap) -> ffi::base::void_cookie;
 
 pub fn xcb_create_gc_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -6720,11 +6718,11 @@ pub fn xcb_create_gc_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_create_gc_checked (c : *mut connection,
+pub fn xcb_create_gc_checked (c : *mut ffi::base::connection,
                                  cid :  gcontext,
                                  drawable :  drawable,
                                  value_mask :  u32,
-                                 value_list : *mut u32) -> void_cookie;
+                                 value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  * Creates a graphics context
@@ -6739,11 +6737,11 @@ pub fn xcb_create_gc_checked (c : *mut connection,
  * that has the same root and depth as the specified drawable.
  * 
  */
-pub fn xcb_create_gc (c : *mut connection,
+pub fn xcb_create_gc (c : *mut ffi::base::connection,
                          cid :  gcontext,
                          drawable :  drawable,
                          value_mask :  u32,
-                         value_list : *mut u32) -> void_cookie;
+                         value_list : *mut u32) -> ffi::base::void_cookie;
 
 pub fn xcb_change_gc_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -6764,10 +6762,10 @@ pub fn xcb_change_gc_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_change_gc_checked (c : *mut connection,
+pub fn xcb_change_gc_checked (c : *mut ffi::base::connection,
                                  gc :  gcontext,
                                  value_mask :  u32,
-                                 value_list : *mut u32) -> void_cookie;
+                                 value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  * change graphics context components
@@ -6783,10 +6781,10 @@ pub fn xcb_change_gc_checked (c : *mut connection,
  * Changes the components specified by \a value_mask for the specified graphics context.
  * 
  */
-pub fn xcb_change_gc (c : *mut connection,
+pub fn xcb_change_gc (c : *mut ffi::base::connection,
                          gc :  gcontext,
                          value_mask :  u32,
-                         value_list : *mut u32) -> void_cookie;
+                         value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -6799,10 +6797,10 @@ pub fn xcb_change_gc (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_copy_gc_checked (c : *mut connection,
+pub fn xcb_copy_gc_checked (c : *mut ffi::base::connection,
                                src_gc :  gcontext,
                                dst_gc :  gcontext,
-                               value_mask :  u32) -> void_cookie;
+                               value_mask :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -6812,10 +6810,10 @@ pub fn xcb_copy_gc_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_copy_gc (c : *mut connection,
+pub fn xcb_copy_gc (c : *mut ffi::base::connection,
                        src_gc :  gcontext,
                        dst_gc :  gcontext,
-                       value_mask :  u32) -> void_cookie;
+                       value_mask :  u32) -> ffi::base::void_cookie;
 
 pub fn xcb_set_dashes_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -6830,11 +6828,11 @@ pub fn xcb_set_dashes_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_set_dashes_checked (c : *mut connection,
+pub fn xcb_set_dashes_checked (c : *mut ffi::base::connection,
                                   gc :  gcontext,
                                   dash_offset :  u16,
                                   dashes_len :  u16,
-                                  dashes : *mut u8) -> void_cookie;
+                                  dashes : *mut u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -6844,11 +6842,11 @@ pub fn xcb_set_dashes_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_set_dashes (c : *mut connection,
+pub fn xcb_set_dashes (c : *mut ffi::base::connection,
                           gc :  gcontext,
                           dash_offset :  u16,
                           dashes_len :  u16,
-                          dashes : *mut u8) -> void_cookie;
+                          dashes : *mut u8) -> ffi::base::void_cookie;
 
 pub fn xcb_set_clip_rectangles_sizeof (_buffer :  *mut c_void,
                                 rectangles_len :  u32) -> c_int;
@@ -6864,13 +6862,13 @@ pub fn xcb_set_clip_rectangles_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_set_clip_rectangles_checked (c : *mut connection,
+pub fn xcb_set_clip_rectangles_checked (c : *mut ffi::base::connection,
                                            ordering :  u8,
                                            gc :  gcontext,
                                            clip_x_origin :  i16,
                                            clip_y_origin :  i16,
                                            rectangles_len :  u32,
-                                           rectangles : *mut rectangle) -> void_cookie;
+                                           rectangles : *mut rectangle) -> ffi::base::void_cookie;
 
 /**
  *
@@ -6880,13 +6878,13 @@ pub fn xcb_set_clip_rectangles_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_set_clip_rectangles (c : *mut connection,
+pub fn xcb_set_clip_rectangles (c : *mut ffi::base::connection,
                                    ordering :  u8,
                                    gc :  gcontext,
                                    clip_x_origin :  i16,
                                    clip_y_origin :  i16,
                                    rectangles_len :  u32,
-                                   rectangles : *mut rectangle) -> void_cookie;
+                                   rectangles : *mut rectangle) -> ffi::base::void_cookie;
 
 /**
  * Destroys a graphics context
@@ -6901,8 +6899,8 @@ pub fn xcb_set_clip_rectangles (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_free_gc_checked (c : *mut connection,
-                               gc :  gcontext) -> void_cookie;
+pub fn xcb_free_gc_checked (c : *mut ffi::base::connection,
+                               gc :  gcontext) -> ffi::base::void_cookie;
 
 /**
  * Destroys a graphics context
@@ -6914,8 +6912,8 @@ pub fn xcb_free_gc_checked (c : *mut connection,
  * Destroys the specified \a gc and all associated storage.
  * 
  */
-pub fn xcb_free_gc (c : *mut connection,
-                       gc :  gcontext) -> void_cookie;
+pub fn xcb_free_gc (c : *mut ffi::base::connection,
+                       gc :  gcontext) -> ffi::base::void_cookie;
 
 /**
  *
@@ -6928,13 +6926,13 @@ pub fn xcb_free_gc (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_clear_area_checked (c : *mut connection,
+pub fn xcb_clear_area_checked (c : *mut ffi::base::connection,
                                   exposures :  u8,
                                   window :  window,
                                   x :  i16,
                                   y :  i16,
                                   width :  u16,
-                                  height :  u16) -> void_cookie;
+                                  height :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -6944,13 +6942,13 @@ pub fn xcb_clear_area_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_clear_area (c : *mut connection,
+pub fn xcb_clear_area (c : *mut ffi::base::connection,
                           exposures :  u8,
                           window :  window,
                           x :  i16,
                           y :  i16,
                           width :  u16,
-                          height :  u16) -> void_cookie;
+                          height :  u16) -> ffi::base::void_cookie;
 
 /**
  * copy areas
@@ -6973,7 +6971,7 @@ pub fn xcb_clear_area (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_copy_area_checked (c : *mut connection,
+pub fn xcb_copy_area_checked (c : *mut ffi::base::connection,
                                  src_drawable :  drawable,
                                  dst_drawable :  drawable,
                                  gc :  gcontext,
@@ -6982,7 +6980,7 @@ pub fn xcb_copy_area_checked (c : *mut connection,
                                  dst_x :  i16,
                                  dst_y :  i16,
                                  width :  u16,
-                                 height :  u16) -> void_cookie;
+                                 height :  u16) -> ffi::base::void_cookie;
 
 /**
  * copy areas
@@ -7002,7 +7000,7 @@ pub fn xcb_copy_area_checked (c : *mut connection,
  * Copies the specified rectangle from \a src_drawable to \a dst_drawable.
  * 
  */
-pub fn xcb_copy_area (c : *mut connection,
+pub fn xcb_copy_area (c : *mut ffi::base::connection,
                          src_drawable :  drawable,
                          dst_drawable :  drawable,
                          gc :  gcontext,
@@ -7011,7 +7009,7 @@ pub fn xcb_copy_area (c : *mut connection,
                          dst_x :  i16,
                          dst_y :  i16,
                          width :  u16,
-                         height :  u16) -> void_cookie;
+                         height :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7024,7 +7022,7 @@ pub fn xcb_copy_area (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_copy_plane_checked (c : *mut connection,
+pub fn xcb_copy_plane_checked (c : *mut ffi::base::connection,
                                   src_drawable :  drawable,
                                   dst_drawable :  drawable,
                                   gc :  gcontext,
@@ -7034,7 +7032,7 @@ pub fn xcb_copy_plane_checked (c : *mut connection,
                                   dst_y :  i16,
                                   width :  u16,
                                   height :  u16,
-                                  bit_plane :  u32) -> void_cookie;
+                                  bit_plane :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7044,7 +7042,7 @@ pub fn xcb_copy_plane_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_copy_plane (c : *mut connection,
+pub fn xcb_copy_plane (c : *mut ffi::base::connection,
                           src_drawable :  drawable,
                           dst_drawable :  drawable,
                           gc :  gcontext,
@@ -7054,7 +7052,7 @@ pub fn xcb_copy_plane (c : *mut connection,
                           dst_y :  i16,
                           width :  u16,
                           height :  u16,
-                          bit_plane :  u32) -> void_cookie;
+                          bit_plane :  u32) -> ffi::base::void_cookie;
 
 pub fn xcb_poly_point_sizeof (_buffer :  *mut c_void,
                        points_len :   u32) -> c_int;
@@ -7070,12 +7068,12 @@ pub fn xcb_poly_point_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_poly_point_checked (c : *mut connection,
+pub fn xcb_poly_point_checked (c : *mut ffi::base::connection,
                                   coordinate_mode :  u8,
                                   drawable :  drawable,
                                   gc :  gcontext,
                                   points_len :  u32,
-                                  points : *mut point) -> void_cookie;
+                                  points : *mut point) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7085,12 +7083,12 @@ pub fn xcb_poly_point_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_poly_point (c : *mut connection,
+pub fn xcb_poly_point (c : *mut ffi::base::connection,
                           coordinate_mode :  u8,
                           drawable :  drawable,
                           gc :  gcontext,
                           points_len :  u32,
-                          points : *mut point) -> void_cookie;
+                          points : *mut point) -> ffi::base::void_cookie;
 
 pub fn xcb_poly_line_sizeof (_buffer :  *mut c_void,
                       points_len :   u32) -> c_int;
@@ -7120,12 +7118,12 @@ pub fn xcb_poly_line_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_poly_line_checked (c : *mut connection,
+pub fn xcb_poly_line_checked (c : *mut ffi::base::connection,
                                  coordinate_mode :  u8,
                                  drawable :  drawable,
                                  gc :  gcontext,
                                  points_len :  u32,
-                                 points : *mut point) -> void_cookie;
+                                 points : *mut point) -> ffi::base::void_cookie;
 
 /**
  * draw lines
@@ -7149,12 +7147,12 @@ pub fn xcb_poly_line_checked (c : *mut connection,
  * request were a single, filled shape.
  * 
  */
-pub fn xcb_poly_line (c : *mut connection,
+pub fn xcb_poly_line (c : *mut ffi::base::connection,
                          coordinate_mode :  u8,
                          drawable :  drawable,
                          gc :  gcontext,
                          points_len :  u32,
-                         points : *mut point) -> void_cookie;
+                         points : *mut point) -> ffi::base::void_cookie;
 
 /**
  * Get the next element of the iterator
@@ -7177,7 +7175,7 @@ pub fn xcb_segment_next (i:*mut segment_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_segment_end (i:segment_iterator) -> generic_iterator;
+pub fn xcb_segment_end (i:segment_iterator) -> ffi::base::generic_iterator;
 
 pub fn xcb_poly_segment_sizeof (_buffer :  *mut c_void,
                          segments_len :  u32) -> c_int;
@@ -7208,11 +7206,11 @@ pub fn xcb_poly_segment_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_poly_segment_checked (c : *mut connection,
+pub fn xcb_poly_segment_checked (c : *mut ffi::base::connection,
                                     drawable :  drawable,
                                     gc :  gcontext,
                                     segments_len :  u32,
-                                    segments : *mut segment) -> void_cookie;
+                                    segments : *mut segment) -> ffi::base::void_cookie;
 
 /**
  * draw lines
@@ -7237,11 +7235,11 @@ pub fn xcb_poly_segment_checked (c : *mut connection,
  * TODO: an example
  * 
  */
-pub fn xcb_poly_segment (c : *mut connection,
+pub fn xcb_poly_segment (c : *mut ffi::base::connection,
                             drawable :  drawable,
                             gc :  gcontext,
                             segments_len :  u32,
-                            segments : *mut segment) -> void_cookie;
+                            segments : *mut segment) -> ffi::base::void_cookie;
 
 pub fn xcb_poly_rectangle_sizeof (_buffer :  *mut c_void,
                            rectangles_len :  u32) -> c_int;
@@ -7257,11 +7255,11 @@ pub fn xcb_poly_rectangle_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_poly_rectangle_checked (c : *mut connection,
+pub fn xcb_poly_rectangle_checked (c : *mut ffi::base::connection,
                                       drawable :  drawable,
                                       gc :  gcontext,
                                       rectangles_len :  u32,
-                                      rectangles : *mut rectangle) -> void_cookie;
+                                      rectangles : *mut rectangle) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7271,11 +7269,11 @@ pub fn xcb_poly_rectangle_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_poly_rectangle (c : *mut connection,
+pub fn xcb_poly_rectangle (c : *mut ffi::base::connection,
                               drawable :  drawable,
                               gc :  gcontext,
                               rectangles_len :  u32,
-                              rectangles : *mut rectangle) -> void_cookie;
+                              rectangles : *mut rectangle) -> ffi::base::void_cookie;
 
 pub fn xcb_poly_arc_sizeof (_buffer :  *mut c_void,
                      arcs_len :     u32) -> c_int;
@@ -7291,11 +7289,11 @@ pub fn xcb_poly_arc_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_poly_arc_checked (c : *mut connection,
+pub fn xcb_poly_arc_checked (c : *mut ffi::base::connection,
                                 drawable :  drawable,
                                 gc :  gcontext,
                                 arcs_len :  u32,
-                                arcs : *mut arc) -> void_cookie;
+                                arcs : *mut arc) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7305,11 +7303,11 @@ pub fn xcb_poly_arc_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_poly_arc (c : *mut connection,
+pub fn xcb_poly_arc (c : *mut ffi::base::connection,
                         drawable :  drawable,
                         gc :  gcontext,
                         arcs_len :  u32,
-                        arcs : *mut arc) -> void_cookie;
+                        arcs : *mut arc) -> ffi::base::void_cookie;
 
 pub fn xcb_fill_poly_sizeof (_buffer :  *mut c_void,
                       points_len :   u32) -> c_int;
@@ -7325,13 +7323,13 @@ pub fn xcb_fill_poly_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_fill_poly_checked (c : *mut connection,
+pub fn xcb_fill_poly_checked (c : *mut ffi::base::connection,
                                  drawable :  drawable,
                                  gc :  gcontext,
                                  shape :  u8,
                                  coordinate_mode :  u8,
                                  points_len :  u32,
-                                 points : *mut point) -> void_cookie;
+                                 points : *mut point) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7341,13 +7339,13 @@ pub fn xcb_fill_poly_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_fill_poly (c : *mut connection,
+pub fn xcb_fill_poly (c : *mut ffi::base::connection,
                          drawable :  drawable,
                          gc :  gcontext,
                          shape :  u8,
                          coordinate_mode :  u8,
                          points_len :  u32,
-                         points : *mut point) -> void_cookie;
+                         points : *mut point) -> ffi::base::void_cookie;
 
 pub fn xcb_poly_fill_rectangle_sizeof (_buffer :  *mut c_void,
                                 rectangles_len :  u32) -> c_int;
@@ -7377,11 +7375,11 @@ pub fn xcb_poly_fill_rectangle_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_poly_fill_rectangle_checked (c : *mut connection,
+pub fn xcb_poly_fill_rectangle_checked (c : *mut ffi::base::connection,
                                            drawable :  drawable,
                                            gc :  gcontext,
                                            rectangles_len :  u32,
-                                           rectangles : *mut rectangle) -> void_cookie;
+                                           rectangles : *mut rectangle) -> ffi::base::void_cookie;
 
 /**
  * Fills rectangles
@@ -7405,11 +7403,11 @@ pub fn xcb_poly_fill_rectangle_checked (c : *mut connection,
  * intersect, the intersecting pixels are drawn multiple times.
  * 
  */
-pub fn xcb_poly_fill_rectangle (c : *mut connection,
+pub fn xcb_poly_fill_rectangle (c : *mut ffi::base::connection,
                                    drawable :  drawable,
                                    gc :  gcontext,
                                    rectangles_len :  u32,
-                                   rectangles : *mut rectangle) -> void_cookie;
+                                   rectangles : *mut rectangle) -> ffi::base::void_cookie;
 
 pub fn xcb_poly_fill_arc_sizeof (_buffer :  *mut c_void,
                           arcs_len :     u32) -> c_int;
@@ -7425,11 +7423,11 @@ pub fn xcb_poly_fill_arc_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_poly_fill_arc_checked (c : *mut connection,
+pub fn xcb_poly_fill_arc_checked (c : *mut ffi::base::connection,
                                      drawable :  drawable,
                                      gc :  gcontext,
                                      arcs_len :  u32,
-                                     arcs : *mut arc) -> void_cookie;
+                                     arcs : *mut arc) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7439,11 +7437,11 @@ pub fn xcb_poly_fill_arc_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_poly_fill_arc (c : *mut connection,
+pub fn xcb_poly_fill_arc (c : *mut ffi::base::connection,
                              drawable :  drawable,
                              gc :  gcontext,
                              arcs_len :  u32,
-                             arcs : *mut arc) -> void_cookie;
+                             arcs : *mut arc) -> ffi::base::void_cookie;
 
 pub fn xcb_put_image_sizeof (_buffer :  *mut c_void,
                       data_len :     u32) -> c_int;
@@ -7459,7 +7457,7 @@ pub fn xcb_put_image_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_put_image_checked (c : *mut connection,
+pub fn xcb_put_image_checked (c : *mut ffi::base::connection,
                                  format :  u8,
                                  drawable :  drawable,
                                  gc :  gcontext,
@@ -7470,7 +7468,7 @@ pub fn xcb_put_image_checked (c : *mut connection,
                                  left_pad :  u8,
                                  depth :  u8,
                                  data_len :  u32,
-                                 data : *mut u8) -> void_cookie;
+                                 data : *mut u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7480,7 +7478,7 @@ pub fn xcb_put_image_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_put_image (c : *mut connection,
+pub fn xcb_put_image (c : *mut ffi::base::connection,
                          format :  u8,
                          drawable :  drawable,
                          gc :  gcontext,
@@ -7491,7 +7489,7 @@ pub fn xcb_put_image (c : *mut connection,
                          left_pad :  u8,
                          depth :  u8,
                          data_len :  u32,
-                         data : *mut u8) -> void_cookie;
+                         data : *mut u8) -> ffi::base::void_cookie;
 
 pub fn xcb_get_image_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -7503,7 +7501,7 @@ pub fn xcb_get_image_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_get_image (c : *mut connection,
+pub fn xcb_get_image (c : *mut ffi::base::connection,
                          format :  u8,
                          drawable :  drawable,
                          x :  i16,
@@ -7523,7 +7521,7 @@ pub fn xcb_get_image (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_image_unchecked (c : *mut connection,
+pub fn xcb_get_image_unchecked (c : *mut ffi::base::connection,
                                    format :  u8,
                                    drawable :  drawable,
                                    x :  i16,
@@ -7538,7 +7536,7 @@ pub fn xcb_get_image_data (R : *mut get_image_reply) -> *mut u8;
 pub fn xcb_get_image_data_length (R : *mut get_image_reply) -> c_int;
 
 
-pub fn xcb_get_image_data_end (R : *mut get_image_reply) -> generic_iterator;
+pub fn xcb_get_image_data_end (R : *mut get_image_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -7554,9 +7552,9 @@ pub fn xcb_get_image_data_end (R : *mut get_image_reply) -> generic_iterator;
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_image_reply (c : *mut connection,
+pub fn xcb_get_image_reply (c : *mut ffi::base::connection,
                                cookie : get_image_cookie,
-                               e : *mut *mut generic_error) -> *mut get_image_reply;
+                               e : *mut *mut ffi::base::generic_error) -> *mut get_image_reply;
 
 pub fn xcb_poly_text_8_sizeof (_buffer :  *mut c_void,
                         items_len :    u32) -> c_int;
@@ -7572,13 +7570,13 @@ pub fn xcb_poly_text_8_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_poly_text_8_checked (c : *mut connection,
+pub fn xcb_poly_text_8_checked (c : *mut ffi::base::connection,
                                    drawable :  drawable,
                                    gc :  gcontext,
                                    x :  i16,
                                    y :  i16,
                                    items_len :  u32,
-                                   items : *mut u8) -> void_cookie;
+                                   items : *mut u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7588,13 +7586,13 @@ pub fn xcb_poly_text_8_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_poly_text_8 (c : *mut connection,
+pub fn xcb_poly_text_8 (c : *mut ffi::base::connection,
                            drawable :  drawable,
                            gc :  gcontext,
                            x :  i16,
                            y :  i16,
                            items_len :  u32,
-                           items : *mut u8) -> void_cookie;
+                           items : *mut u8) -> ffi::base::void_cookie;
 
 pub fn xcb_poly_text_16_sizeof (_buffer :  *mut c_void,
                          items_len :    u32) -> c_int;
@@ -7610,13 +7608,13 @@ pub fn xcb_poly_text_16_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_poly_text_16_checked (c : *mut connection,
+pub fn xcb_poly_text_16_checked (c : *mut ffi::base::connection,
                                     drawable :  drawable,
                                     gc :  gcontext,
                                     x :  i16,
                                     y :  i16,
                                     items_len :  u32,
-                                    items : *mut u8) -> void_cookie;
+                                    items : *mut u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7626,13 +7624,13 @@ pub fn xcb_poly_text_16_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_poly_text_16 (c : *mut connection,
+pub fn xcb_poly_text_16 (c : *mut ffi::base::connection,
                             drawable :  drawable,
                             gc :  gcontext,
                             x :  i16,
                             y :  i16,
                             items_len :  u32,
-                            items : *mut u8) -> void_cookie;
+                            items : *mut u8) -> ffi::base::void_cookie;
 
 pub fn xcb_image_text_8_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -7666,13 +7664,13 @@ pub fn xcb_image_text_8_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_image_text_8_checked (c : *mut connection,
+pub fn xcb_image_text_8_checked (c : *mut ffi::base::connection,
                                     string_len :  u8,
                                     drawable :  drawable,
                                     gc :  gcontext,
                                     x :  i16,
                                     y :  i16,
-                                    string : *mut c_char) -> void_cookie;
+                                    string : *mut c_char) -> ffi::base::void_cookie;
 
 /**
  * Draws text
@@ -7701,13 +7699,13 @@ pub fn xcb_image_text_8_checked (c : *mut connection,
  * client-side rendering using Xft.
  * 
  */
-pub fn xcb_image_text_8 (c : *mut connection,
+pub fn xcb_image_text_8 (c : *mut ffi::base::connection,
                             string_len :  u8,
                             drawable :  drawable,
                             gc :  gcontext,
                             x :  i16,
                             y :  i16,
-                            string : *mut c_char) -> void_cookie;
+                            string : *mut c_char) -> ffi::base::void_cookie;
 
 pub fn xcb_image_text_16_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -7742,13 +7740,13 @@ pub fn xcb_image_text_16_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_image_text_16_checked (c : *mut connection,
+pub fn xcb_image_text_16_checked (c : *mut ffi::base::connection,
                                      string_len :  u8,
                                      drawable :  drawable,
                                      gc :  gcontext,
                                      x :  i16,
                                      y :  i16,
-                                     string : *mut char2b) -> void_cookie;
+                                     string : *mut char2b) -> ffi::base::void_cookie;
 
 /**
  * Draws text
@@ -7778,13 +7776,13 @@ pub fn xcb_image_text_16_checked (c : *mut connection,
  * client-side rendering using Xft.
  * 
  */
-pub fn xcb_image_text_16 (c : *mut connection,
+pub fn xcb_image_text_16 (c : *mut ffi::base::connection,
                              string_len :  u8,
                              drawable :  drawable,
                              gc :  gcontext,
                              x :  i16,
                              y :  i16,
-                             string : *mut char2b) -> void_cookie;
+                             string : *mut char2b) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7797,11 +7795,11 @@ pub fn xcb_image_text_16 (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_create_colormap_checked (c : *mut connection,
+pub fn xcb_create_colormap_checked (c : *mut ffi::base::connection,
                                        alloc :  u8,
                                        mid :  colormap,
                                        window :  window,
-                                       visual :  visualid) -> void_cookie;
+                                       visual :  visualid) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7811,11 +7809,11 @@ pub fn xcb_create_colormap_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_create_colormap (c : *mut connection,
+pub fn xcb_create_colormap (c : *mut ffi::base::connection,
                                alloc :  u8,
                                mid :  colormap,
                                window :  window,
-                               visual :  visualid) -> void_cookie;
+                               visual :  visualid) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7828,8 +7826,8 @@ pub fn xcb_create_colormap (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_free_colormap_checked (c : *mut connection,
-                                     cmap :  colormap) -> void_cookie;
+pub fn xcb_free_colormap_checked (c : *mut ffi::base::connection,
+                                     cmap :  colormap) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7839,8 +7837,8 @@ pub fn xcb_free_colormap_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_free_colormap (c : *mut connection,
-                             cmap :  colormap) -> void_cookie;
+pub fn xcb_free_colormap (c : *mut ffi::base::connection,
+                             cmap :  colormap) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7853,9 +7851,9 @@ pub fn xcb_free_colormap (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_copy_colormap_and_free_checked (c : *mut connection,
+pub fn xcb_copy_colormap_and_free_checked (c : *mut ffi::base::connection,
                                               mid :  colormap,
-                                              src_cmap :  colormap) -> void_cookie;
+                                              src_cmap :  colormap) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7865,9 +7863,9 @@ pub fn xcb_copy_colormap_and_free_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_copy_colormap_and_free (c : *mut connection,
+pub fn xcb_copy_colormap_and_free (c : *mut ffi::base::connection,
                                       mid :  colormap,
-                                      src_cmap :  colormap) -> void_cookie;
+                                      src_cmap :  colormap) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7880,8 +7878,8 @@ pub fn xcb_copy_colormap_and_free (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_install_colormap_checked (c : *mut connection,
-                                        cmap :  colormap) -> void_cookie;
+pub fn xcb_install_colormap_checked (c : *mut ffi::base::connection,
+                                        cmap :  colormap) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7891,8 +7889,8 @@ pub fn xcb_install_colormap_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_install_colormap (c : *mut connection,
-                                cmap :  colormap) -> void_cookie;
+pub fn xcb_install_colormap (c : *mut ffi::base::connection,
+                                cmap :  colormap) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7905,8 +7903,8 @@ pub fn xcb_install_colormap (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_uninstall_colormap_checked (c : *mut connection,
-                                          cmap :  colormap) -> void_cookie;
+pub fn xcb_uninstall_colormap_checked (c : *mut ffi::base::connection,
+                                          cmap :  colormap) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7916,8 +7914,8 @@ pub fn xcb_uninstall_colormap_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_uninstall_colormap (c : *mut connection,
-                                  cmap :  colormap) -> void_cookie;
+pub fn xcb_uninstall_colormap (c : *mut ffi::base::connection,
+                                  cmap :  colormap) -> ffi::base::void_cookie;
 
 pub fn xcb_list_installed_colormaps_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -7929,7 +7927,7 @@ pub fn xcb_list_installed_colormaps_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_list_installed_colormaps (c : *mut connection,
+pub fn xcb_list_installed_colormaps (c : *mut ffi::base::connection,
                                         window :  window) -> list_installed_colormaps_cookie;
 
 /**
@@ -7943,7 +7941,7 @@ pub fn xcb_list_installed_colormaps (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_list_installed_colormaps_unchecked (c : *mut connection,
+pub fn xcb_list_installed_colormaps_unchecked (c : *mut ffi::base::connection,
                                                   window :  window) -> list_installed_colormaps_cookie;
 
 pub fn xcb_list_installed_colormaps_cmaps (R : *mut list_installed_colormaps_reply) -> *mut colormap;
@@ -7952,7 +7950,7 @@ pub fn xcb_list_installed_colormaps_cmaps (R : *mut list_installed_colormaps_rep
 pub fn xcb_list_installed_colormaps_cmaps_length (R : *mut list_installed_colormaps_reply) -> c_int;
 
 
-pub fn xcb_list_installed_colormaps_cmaps_end (R : *mut list_installed_colormaps_reply) -> generic_iterator;
+pub fn xcb_list_installed_colormaps_cmaps_end (R : *mut list_installed_colormaps_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -7968,9 +7966,9 @@ pub fn xcb_list_installed_colormaps_cmaps_end (R : *mut list_installed_colormaps
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_list_installed_colormaps_reply (c : *mut connection,
+pub fn xcb_list_installed_colormaps_reply (c : *mut ffi::base::connection,
                                               cookie : list_installed_colormaps_cookie,
-                                              e : *mut *mut generic_error) -> *mut list_installed_colormaps_reply;
+                                              e : *mut *mut ffi::base::generic_error) -> *mut list_installed_colormaps_reply;
 
 /**
  * Allocate a color
@@ -7989,7 +7987,7 @@ pub fn xcb_list_installed_colormaps_reply (c : *mut connection,
  * RGB value to the RGB value you are specifying.
  * 
  */
-pub fn xcb_alloc_color (c : *mut connection,
+pub fn xcb_alloc_color (c : *mut ffi::base::connection,
                            cmap :  colormap,
                            red :  u16,
                            green :  u16,
@@ -8015,7 +8013,7 @@ pub fn xcb_alloc_color (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_alloc_color_unchecked (c : *mut connection,
+pub fn xcb_alloc_color_unchecked (c : *mut ffi::base::connection,
                                      cmap :  colormap,
                                      red :  u16,
                                      green :  u16,
@@ -8035,9 +8033,9 @@ pub fn xcb_alloc_color_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_alloc_color_reply (c : *mut connection,
+pub fn xcb_alloc_color_reply (c : *mut ffi::base::connection,
                                  cookie : alloc_color_cookie,
-                                 e : *mut *mut generic_error) -> *mut alloc_color_reply;
+                                 e : *mut *mut ffi::base::generic_error) -> *mut alloc_color_reply;
 
 pub fn xcb_alloc_named_color_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -8049,7 +8047,7 @@ pub fn xcb_alloc_named_color_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_alloc_named_color (c : *mut connection,
+pub fn xcb_alloc_named_color (c : *mut ffi::base::connection,
                                  cmap :  colormap,
                                  name_len :  u16,
                                  name : *mut c_char) -> alloc_named_color_cookie;
@@ -8065,7 +8063,7 @@ pub fn xcb_alloc_named_color (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_alloc_named_color_unchecked (c : *mut connection,
+pub fn xcb_alloc_named_color_unchecked (c : *mut ffi::base::connection,
                                            cmap :  colormap,
                                            name_len :  u16,
                                            name : *mut c_char) -> alloc_named_color_cookie;
@@ -8084,9 +8082,9 @@ pub fn xcb_alloc_named_color_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_alloc_named_color_reply (c : *mut connection,
+pub fn xcb_alloc_named_color_reply (c : *mut ffi::base::connection,
                                        cookie : alloc_named_color_cookie,
-                                       e : *mut *mut generic_error) -> *mut alloc_named_color_reply;
+                                       e : *mut *mut ffi::base::generic_error) -> *mut alloc_named_color_reply;
 
 pub fn xcb_alloc_color_cells_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -8098,7 +8096,7 @@ pub fn xcb_alloc_color_cells_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_alloc_color_cells (c : *mut connection,
+pub fn xcb_alloc_color_cells (c : *mut ffi::base::connection,
                                  contiguous :  u8,
                                  cmap :  colormap,
                                  colors :  u16,
@@ -8115,7 +8113,7 @@ pub fn xcb_alloc_color_cells (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_alloc_color_cells_unchecked (c : *mut connection,
+pub fn xcb_alloc_color_cells_unchecked (c : *mut ffi::base::connection,
                                            contiguous :  u8,
                                            cmap :  colormap,
                                            colors :  u16,
@@ -8127,7 +8125,7 @@ pub fn xcb_alloc_color_cells_pixels (R : *mut alloc_color_cells_reply) -> *mut u
 pub fn xcb_alloc_color_cells_pixels_length (R : *mut alloc_color_cells_reply) -> c_int;
 
 
-pub fn xcb_alloc_color_cells_pixels_end (R : *mut alloc_color_cells_reply) -> generic_iterator;
+pub fn xcb_alloc_color_cells_pixels_end (R : *mut alloc_color_cells_reply) -> ffi::base::generic_iterator;
 
 pub fn xcb_alloc_color_cells_masks (R : *mut alloc_color_cells_reply) -> *mut u32;
 
@@ -8135,7 +8133,7 @@ pub fn xcb_alloc_color_cells_masks (R : *mut alloc_color_cells_reply) -> *mut u3
 pub fn xcb_alloc_color_cells_masks_length (R : *mut alloc_color_cells_reply) -> c_int;
 
 
-pub fn xcb_alloc_color_cells_masks_end (R : *mut alloc_color_cells_reply) -> generic_iterator;
+pub fn xcb_alloc_color_cells_masks_end (R : *mut alloc_color_cells_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -8151,9 +8149,9 @@ pub fn xcb_alloc_color_cells_masks_end (R : *mut alloc_color_cells_reply) -> gen
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_alloc_color_cells_reply (c : *mut connection,
+pub fn xcb_alloc_color_cells_reply (c : *mut ffi::base::connection,
                                        cookie : alloc_color_cells_cookie,
-                                       e : *mut *mut generic_error) -> *mut alloc_color_cells_reply;
+                                       e : *mut *mut ffi::base::generic_error) -> *mut alloc_color_cells_reply;
 
 pub fn xcb_alloc_color_planes_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -8165,7 +8163,7 @@ pub fn xcb_alloc_color_planes_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_alloc_color_planes (c : *mut connection,
+pub fn xcb_alloc_color_planes (c : *mut ffi::base::connection,
                                   contiguous :  u8,
                                   cmap :  colormap,
                                   colors :  u16,
@@ -8184,7 +8182,7 @@ pub fn xcb_alloc_color_planes (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_alloc_color_planes_unchecked (c : *mut connection,
+pub fn xcb_alloc_color_planes_unchecked (c : *mut ffi::base::connection,
                                             contiguous :  u8,
                                             cmap :  colormap,
                                             colors :  u16,
@@ -8198,7 +8196,7 @@ pub fn xcb_alloc_color_planes_pixels (R : *mut alloc_color_planes_reply) -> *mut
 pub fn xcb_alloc_color_planes_pixels_length (R : *mut alloc_color_planes_reply) -> c_int;
 
 
-pub fn xcb_alloc_color_planes_pixels_end (R : *mut alloc_color_planes_reply) -> generic_iterator;
+pub fn xcb_alloc_color_planes_pixels_end (R : *mut alloc_color_planes_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -8214,9 +8212,9 @@ pub fn xcb_alloc_color_planes_pixels_end (R : *mut alloc_color_planes_reply) -> 
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_alloc_color_planes_reply (c : *mut connection,
+pub fn xcb_alloc_color_planes_reply (c : *mut ffi::base::connection,
                                         cookie : alloc_color_planes_cookie,
-                                        e : *mut *mut generic_error) -> *mut alloc_color_planes_reply;
+                                        e : *mut *mut ffi::base::generic_error) -> *mut alloc_color_planes_reply;
 
 pub fn xcb_free_colors_sizeof (_buffer :  *mut c_void,
                         pixels_len :   u32) -> c_int;
@@ -8232,11 +8230,11 @@ pub fn xcb_free_colors_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_free_colors_checked (c : *mut connection,
+pub fn xcb_free_colors_checked (c : *mut ffi::base::connection,
                                    cmap :  colormap,
                                    plane_mask :  u32,
                                    pixels_len :  u32,
-                                   pixels : *mut u32) -> void_cookie;
+                                   pixels : *mut u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -8246,11 +8244,11 @@ pub fn xcb_free_colors_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_free_colors (c : *mut connection,
+pub fn xcb_free_colors (c : *mut ffi::base::connection,
                            cmap :  colormap,
                            plane_mask :  u32,
                            pixels_len :  u32,
-                           pixels : *mut u32) -> void_cookie;
+                           pixels : *mut u32) -> ffi::base::void_cookie;
 
 /**
  * Get the next element of the iterator
@@ -8273,7 +8271,7 @@ pub fn xcb_coloritem_next (i:*mut coloritem_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_coloritem_end (i:coloritem_iterator) -> generic_iterator;
+pub fn xcb_coloritem_end (i:coloritem_iterator) -> ffi::base::generic_iterator;
 
 pub fn xcb_store_colors_sizeof (_buffer :  *mut c_void,
                          items_len :    u32) -> c_int;
@@ -8289,10 +8287,10 @@ pub fn xcb_store_colors_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_store_colors_checked (c : *mut connection,
+pub fn xcb_store_colors_checked (c : *mut ffi::base::connection,
                                     cmap :  colormap,
                                     items_len :  u32,
-                                    items : *mut coloritem) -> void_cookie;
+                                    items : *mut coloritem) -> ffi::base::void_cookie;
 
 /**
  *
@@ -8302,10 +8300,10 @@ pub fn xcb_store_colors_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_store_colors (c : *mut connection,
+pub fn xcb_store_colors (c : *mut ffi::base::connection,
                             cmap :  colormap,
                             items_len :  u32,
-                            items : *mut coloritem) -> void_cookie;
+                            items : *mut coloritem) -> ffi::base::void_cookie;
 
 pub fn xcb_store_named_color_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -8320,12 +8318,12 @@ pub fn xcb_store_named_color_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_store_named_color_checked (c : *mut connection,
+pub fn xcb_store_named_color_checked (c : *mut ffi::base::connection,
                                          flags :  u8,
                                          cmap :  colormap,
                                          pixel :  u32,
                                          name_len :  u16,
-                                         name : *mut c_char) -> void_cookie;
+                                         name : *mut c_char) -> ffi::base::void_cookie;
 
 /**
  *
@@ -8335,12 +8333,12 @@ pub fn xcb_store_named_color_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_store_named_color (c : *mut connection,
+pub fn xcb_store_named_color (c : *mut ffi::base::connection,
                                  flags :  u8,
                                  cmap :  colormap,
                                  pixel :  u32,
                                  name_len :  u16,
-                                 name : *mut c_char) -> void_cookie;
+                                 name : *mut c_char) -> ffi::base::void_cookie;
 
 /**
  * Get the next element of the iterator
@@ -8363,7 +8361,7 @@ pub fn xcb_rgb_next (i:*mut rgb_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_rgb_end (i:rgb_iterator) -> generic_iterator;
+pub fn xcb_rgb_end (i:rgb_iterator) -> ffi::base::generic_iterator;
 
 pub fn xcb_query_colors_sizeof (_buffer :  *mut c_void,
                          pixels_len :   u32) -> c_int;
@@ -8376,7 +8374,7 @@ pub fn xcb_query_colors_sizeof (_buffer :  *mut c_void,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_query_colors (c : *mut connection,
+pub fn xcb_query_colors (c : *mut ffi::base::connection,
                             cmap :  colormap,
                             pixels_len :  u32,
                             pixels : *mut u32) -> query_colors_cookie;
@@ -8392,7 +8390,7 @@ pub fn xcb_query_colors (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_query_colors_unchecked (c : *mut connection,
+pub fn xcb_query_colors_unchecked (c : *mut ffi::base::connection,
                                       cmap :  colormap,
                                       pixels_len :  u32,
                                       pixels : *mut u32) -> query_colors_cookie;
@@ -8418,9 +8416,9 @@ pub fn xcb_query_colors_colors_iterator (R : *mut query_colors_reply) -> rgb_ite
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_query_colors_reply (c : *mut connection,
+pub fn xcb_query_colors_reply (c : *mut ffi::base::connection,
                                   cookie : query_colors_cookie,
-                                  e : *mut *mut generic_error) -> *mut query_colors_reply;
+                                  e : *mut *mut ffi::base::generic_error) -> *mut query_colors_reply;
 
 pub fn xcb_lookup_color_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -8432,7 +8430,7 @@ pub fn xcb_lookup_color_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_lookup_color (c : *mut connection,
+pub fn xcb_lookup_color (c : *mut ffi::base::connection,
                             cmap :  colormap,
                             name_len :  u16,
                             name : *mut c_char) -> lookup_color_cookie;
@@ -8448,7 +8446,7 @@ pub fn xcb_lookup_color (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_lookup_color_unchecked (c : *mut connection,
+pub fn xcb_lookup_color_unchecked (c : *mut ffi::base::connection,
                                       cmap :  colormap,
                                       name_len :  u16,
                                       name : *mut c_char) -> lookup_color_cookie;
@@ -8467,9 +8465,9 @@ pub fn xcb_lookup_color_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_lookup_color_reply (c : *mut connection,
+pub fn xcb_lookup_color_reply (c : *mut ffi::base::connection,
                                   cookie : lookup_color_cookie,
-                                  e : *mut *mut generic_error) -> *mut lookup_color_reply;
+                                  e : *mut *mut ffi::base::generic_error) -> *mut lookup_color_reply;
 
 /**
  *
@@ -8482,7 +8480,7 @@ pub fn xcb_lookup_color_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_create_cursor_checked (c : *mut connection,
+pub fn xcb_create_cursor_checked (c : *mut ffi::base::connection,
                                      cid :  cursor,
                                      source :  pixmap,
                                      mask :  pixmap,
@@ -8493,7 +8491,7 @@ pub fn xcb_create_cursor_checked (c : *mut connection,
                                      back_green :  u16,
                                      back_blue :  u16,
                                      x :  u16,
-                                     y :  u16) -> void_cookie;
+                                     y :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -8503,7 +8501,7 @@ pub fn xcb_create_cursor_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_create_cursor (c : *mut connection,
+pub fn xcb_create_cursor (c : *mut ffi::base::connection,
                              cid :  cursor,
                              source :  pixmap,
                              mask :  pixmap,
@@ -8514,7 +8512,7 @@ pub fn xcb_create_cursor (c : *mut connection,
                              back_green :  u16,
                              back_blue :  u16,
                              x :  u16,
-                             y :  u16) -> void_cookie;
+                             y :  u16) -> ffi::base::void_cookie;
 
 /**
  * create cursor
@@ -8549,7 +8547,7 @@ pub fn xcb_create_cursor (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_create_glyph_cursor_checked (c : *mut connection,
+pub fn xcb_create_glyph_cursor_checked (c : *mut ffi::base::connection,
                                            cid :  cursor,
                                            source_font :  font,
                                            mask_font :  font,
@@ -8560,7 +8558,7 @@ pub fn xcb_create_glyph_cursor_checked (c : *mut connection,
                                            fore_blue :  u16,
                                            back_red :  u16,
                                            back_green :  u16,
-                                           back_blue :  u16) -> void_cookie;
+                                           back_blue :  u16) -> ffi::base::void_cookie;
 
 /**
  * create cursor
@@ -8592,7 +8590,7 @@ pub fn xcb_create_glyph_cursor_checked (c : *mut connection,
  * \a back_blue).
  * 
  */
-pub fn xcb_create_glyph_cursor (c : *mut connection,
+pub fn xcb_create_glyph_cursor (c : *mut ffi::base::connection,
                                    cid :  cursor,
                                    source_font :  font,
                                    mask_font :  font,
@@ -8603,7 +8601,7 @@ pub fn xcb_create_glyph_cursor (c : *mut connection,
                                    fore_blue :  u16,
                                    back_red :  u16,
                                    back_green :  u16,
-                                   back_blue :  u16) -> void_cookie;
+                                   back_blue :  u16) -> ffi::base::void_cookie;
 
 /**
  * Deletes a cursor
@@ -8619,8 +8617,8 @@ pub fn xcb_create_glyph_cursor (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_free_cursor_checked (c : *mut connection,
-                                   cursor :  cursor) -> void_cookie;
+pub fn xcb_free_cursor_checked (c : *mut ffi::base::connection,
+                                   cursor :  cursor) -> ffi::base::void_cookie;
 
 /**
  * Deletes a cursor
@@ -8633,8 +8631,8 @@ pub fn xcb_free_cursor_checked (c : *mut connection,
  * cursor. The cursor is freed when no other resource references it.
  * 
  */
-pub fn xcb_free_cursor (c : *mut connection,
-                           cursor :  cursor) -> void_cookie;
+pub fn xcb_free_cursor (c : *mut ffi::base::connection,
+                           cursor :  cursor) -> ffi::base::void_cookie;
 
 /**
  *
@@ -8647,14 +8645,14 @@ pub fn xcb_free_cursor (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_recolor_cursor_checked (c : *mut connection,
+pub fn xcb_recolor_cursor_checked (c : *mut ffi::base::connection,
                                       cursor :  cursor,
                                       fore_red :  u16,
                                       fore_green :  u16,
                                       fore_blue :  u16,
                                       back_red :  u16,
                                       back_green :  u16,
-                                      back_blue :  u16) -> void_cookie;
+                                      back_blue :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -8664,14 +8662,14 @@ pub fn xcb_recolor_cursor_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_recolor_cursor (c : *mut connection,
+pub fn xcb_recolor_cursor (c : *mut ffi::base::connection,
                               cursor :  cursor,
                               fore_red :  u16,
                               fore_green :  u16,
                               fore_blue :  u16,
                               back_red :  u16,
                               back_green :  u16,
-                              back_blue :  u16) -> void_cookie;
+                              back_blue :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -8681,7 +8679,7 @@ pub fn xcb_recolor_cursor (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_query_best_size (c : *mut connection,
+pub fn xcb_query_best_size (c : *mut ffi::base::connection,
                                class :  u8,
                                drawable :  drawable,
                                width :  u16,
@@ -8698,7 +8696,7 @@ pub fn xcb_query_best_size (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_query_best_size_unchecked (c : *mut connection,
+pub fn xcb_query_best_size_unchecked (c : *mut ffi::base::connection,
                                          class :  u8,
                                          drawable :  drawable,
                                          width :  u16,
@@ -8718,9 +8716,9 @@ pub fn xcb_query_best_size_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_query_best_size_reply (c : *mut connection,
+pub fn xcb_query_best_size_reply (c : *mut ffi::base::connection,
                                      cookie : query_best_size_cookie,
-                                     e : *mut *mut generic_error) -> *mut query_best_size_reply;
+                                     e : *mut *mut ffi::base::generic_error) -> *mut query_best_size_reply;
 
 pub fn xcb_query_extension_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -8744,7 +8742,7 @@ pub fn xcb_query_extension_sizeof (_buffer :  *mut c_void) -> c_int;
  * `xcb_get_extension_data` function instead.
  * 
  */
-pub fn xcb_query_extension (c : *mut connection,
+pub fn xcb_query_extension (c : *mut ffi::base::connection,
                                name_len :  u16,
                                name : *mut c_char) -> query_extension_cookie;
 
@@ -8771,7 +8769,7 @@ pub fn xcb_query_extension (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_query_extension_unchecked (c : *mut connection,
+pub fn xcb_query_extension_unchecked (c : *mut ffi::base::connection,
                                          name_len :  u16,
                                          name : *mut c_char) -> query_extension_cookie;
 
@@ -8789,9 +8787,9 @@ pub fn xcb_query_extension_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_query_extension_reply (c : *mut connection,
+pub fn xcb_query_extension_reply (c : *mut ffi::base::connection,
                                      cookie : query_extension_cookie,
-                                     e : *mut *mut generic_error) -> *mut query_extension_reply;
+                                     e : *mut *mut ffi::base::generic_error) -> *mut query_extension_reply;
 
 pub fn xcb_list_extensions_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -8803,7 +8801,7 @@ pub fn xcb_list_extensions_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_list_extensions (c : *mut connection) -> list_extensions_cookie;
+pub fn xcb_list_extensions (c : *mut ffi::base::connection) -> list_extensions_cookie;
 
 /**
  *
@@ -8816,7 +8814,7 @@ pub fn xcb_list_extensions (c : *mut connection) -> list_extensions_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_list_extensions_unchecked (c : *mut connection) -> list_extensions_cookie;
+pub fn xcb_list_extensions_unchecked (c : *mut ffi::base::connection) -> list_extensions_cookie;
 
 
 pub fn xcb_list_extensions_names_length (R : *mut list_extensions_reply) -> c_int;
@@ -8837,9 +8835,9 @@ pub fn xcb_list_extensions_names_iterator (R : *mut list_extensions_reply) -> st
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_list_extensions_reply (c : *mut connection,
+pub fn xcb_list_extensions_reply (c : *mut ffi::base::connection,
                                      cookie : list_extensions_cookie,
-                                     e : *mut *mut generic_error) -> *mut list_extensions_reply;
+                                     e : *mut *mut ffi::base::generic_error) -> *mut list_extensions_reply;
 
 pub fn xcb_change_keyboard_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -8854,11 +8852,11 @@ pub fn xcb_change_keyboard_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_change_keyboard_mapping_checked (c : *mut connection,
+pub fn xcb_change_keyboard_mapping_checked (c : *mut ffi::base::connection,
                                                keycode_count :  u8,
                                                first_keycode :  keycode,
                                                keysyms_per_keycode :  u8,
-                                               keysyms : *mut keysym) -> void_cookie;
+                                               keysyms : *mut keysym) -> ffi::base::void_cookie;
 
 /**
  *
@@ -8868,11 +8866,11 @@ pub fn xcb_change_keyboard_mapping_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_change_keyboard_mapping (c : *mut connection,
+pub fn xcb_change_keyboard_mapping (c : *mut ffi::base::connection,
                                        keycode_count :  u8,
                                        first_keycode :  keycode,
                                        keysyms_per_keycode :  u8,
-                                       keysyms : *mut keysym) -> void_cookie;
+                                       keysyms : *mut keysym) -> ffi::base::void_cookie;
 
 pub fn xcb_get_keyboard_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -8884,7 +8882,7 @@ pub fn xcb_get_keyboard_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_get_keyboard_mapping (c : *mut connection,
+pub fn xcb_get_keyboard_mapping (c : *mut ffi::base::connection,
                                     first_keycode :  keycode,
                                     count :  u8) -> get_keyboard_mapping_cookie;
 
@@ -8899,7 +8897,7 @@ pub fn xcb_get_keyboard_mapping (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_keyboard_mapping_unchecked (c : *mut connection,
+pub fn xcb_get_keyboard_mapping_unchecked (c : *mut ffi::base::connection,
                                               first_keycode :  keycode,
                                               count :  u8) -> get_keyboard_mapping_cookie;
 
@@ -8909,7 +8907,7 @@ pub fn xcb_get_keyboard_mapping_keysyms (R : *mut get_keyboard_mapping_reply) ->
 pub fn xcb_get_keyboard_mapping_keysyms_length (R : *mut get_keyboard_mapping_reply) -> c_int;
 
 
-pub fn xcb_get_keyboard_mapping_keysyms_end (R : *mut get_keyboard_mapping_reply) -> generic_iterator;
+pub fn xcb_get_keyboard_mapping_keysyms_end (R : *mut get_keyboard_mapping_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -8925,9 +8923,9 @@ pub fn xcb_get_keyboard_mapping_keysyms_end (R : *mut get_keyboard_mapping_reply
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_keyboard_mapping_reply (c : *mut connection,
+pub fn xcb_get_keyboard_mapping_reply (c : *mut ffi::base::connection,
                                           cookie : get_keyboard_mapping_cookie,
-                                          e : *mut *mut generic_error) -> *mut get_keyboard_mapping_reply;
+                                          e : *mut *mut ffi::base::generic_error) -> *mut get_keyboard_mapping_reply;
 
 pub fn xcb_change_keyboard_control_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -8942,9 +8940,9 @@ pub fn xcb_change_keyboard_control_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_change_keyboard_control_checked (c : *mut connection,
+pub fn xcb_change_keyboard_control_checked (c : *mut ffi::base::connection,
                                                value_mask :  u32,
-                                               value_list : *mut u32) -> void_cookie;
+                                               value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -8954,9 +8952,9 @@ pub fn xcb_change_keyboard_control_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_change_keyboard_control (c : *mut connection,
+pub fn xcb_change_keyboard_control (c : *mut ffi::base::connection,
                                        value_mask :  u32,
-                                       value_list : *mut u32) -> void_cookie;
+                                       value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -8966,7 +8964,7 @@ pub fn xcb_change_keyboard_control (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_get_keyboard_control (c : *mut connection) -> get_keyboard_control_cookie;
+pub fn xcb_get_keyboard_control (c : *mut ffi::base::connection) -> get_keyboard_control_cookie;
 
 /**
  *
@@ -8979,7 +8977,7 @@ pub fn xcb_get_keyboard_control (c : *mut connection) -> get_keyboard_control_co
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_keyboard_control_unchecked (c : *mut connection) -> get_keyboard_control_cookie;
+pub fn xcb_get_keyboard_control_unchecked (c : *mut ffi::base::connection) -> get_keyboard_control_cookie;
 
 /**
  * Return the reply
@@ -8995,9 +8993,9 @@ pub fn xcb_get_keyboard_control_unchecked (c : *mut connection) -> get_keyboard_
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_keyboard_control_reply (c : *mut connection,
+pub fn xcb_get_keyboard_control_reply (c : *mut ffi::base::connection,
                                           cookie : get_keyboard_control_cookie,
-                                          e : *mut *mut generic_error) -> *mut get_keyboard_control_reply;
+                                          e : *mut *mut ffi::base::generic_error) -> *mut get_keyboard_control_reply;
 
 /**
  *
@@ -9010,8 +9008,8 @@ pub fn xcb_get_keyboard_control_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_bell_checked (c : *mut connection,
-                            percent :  i8) -> void_cookie;
+pub fn xcb_bell_checked (c : *mut ffi::base::connection,
+                            percent :  i8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9021,8 +9019,8 @@ pub fn xcb_bell_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_bell (c : *mut connection,
-                    percent :  i8) -> void_cookie;
+pub fn xcb_bell (c : *mut ffi::base::connection,
+                    percent :  i8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9035,12 +9033,12 @@ pub fn xcb_bell (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_change_pointer_control_checked (c : *mut connection,
+pub fn xcb_change_pointer_control_checked (c : *mut ffi::base::connection,
                                               acceleration_numerator :  i16,
                                               acceleration_denominator :  i16,
                                               threshold :  i16,
                                               do_acceleration :  u8,
-                                              do_threshold :  u8) -> void_cookie;
+                                              do_threshold :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9050,12 +9048,12 @@ pub fn xcb_change_pointer_control_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_change_pointer_control (c : *mut connection,
+pub fn xcb_change_pointer_control (c : *mut ffi::base::connection,
                                       acceleration_numerator :  i16,
                                       acceleration_denominator :  i16,
                                       threshold :  i16,
                                       do_acceleration :  u8,
-                                      do_threshold :  u8) -> void_cookie;
+                                      do_threshold :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9065,7 +9063,7 @@ pub fn xcb_change_pointer_control (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_get_pointer_control (c : *mut connection) -> get_pointer_control_cookie;
+pub fn xcb_get_pointer_control (c : *mut ffi::base::connection) -> get_pointer_control_cookie;
 
 /**
  *
@@ -9078,7 +9076,7 @@ pub fn xcb_get_pointer_control (c : *mut connection) -> get_pointer_control_cook
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_pointer_control_unchecked (c : *mut connection) -> get_pointer_control_cookie;
+pub fn xcb_get_pointer_control_unchecked (c : *mut ffi::base::connection) -> get_pointer_control_cookie;
 
 /**
  * Return the reply
@@ -9094,9 +9092,9 @@ pub fn xcb_get_pointer_control_unchecked (c : *mut connection) -> get_pointer_co
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_pointer_control_reply (c : *mut connection,
+pub fn xcb_get_pointer_control_reply (c : *mut ffi::base::connection,
                                          cookie : get_pointer_control_cookie,
-                                         e : *mut *mut generic_error) -> *mut get_pointer_control_reply;
+                                         e : *mut *mut ffi::base::generic_error) -> *mut get_pointer_control_reply;
 
 /**
  *
@@ -9109,11 +9107,11 @@ pub fn xcb_get_pointer_control_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_set_screen_saver_checked (c : *mut connection,
+pub fn xcb_set_screen_saver_checked (c : *mut ffi::base::connection,
                                         timeout :  i16,
                                         interval :  i16,
                                         prefer_blanking :  u8,
-                                        allow_exposures :  u8) -> void_cookie;
+                                        allow_exposures :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9123,11 +9121,11 @@ pub fn xcb_set_screen_saver_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_set_screen_saver (c : *mut connection,
+pub fn xcb_set_screen_saver (c : *mut ffi::base::connection,
                                 timeout :  i16,
                                 interval :  i16,
                                 prefer_blanking :  u8,
-                                allow_exposures :  u8) -> void_cookie;
+                                allow_exposures :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9137,7 +9135,7 @@ pub fn xcb_set_screen_saver (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_get_screen_saver (c : *mut connection) -> get_screen_saver_cookie;
+pub fn xcb_get_screen_saver (c : *mut ffi::base::connection) -> get_screen_saver_cookie;
 
 /**
  *
@@ -9150,7 +9148,7 @@ pub fn xcb_get_screen_saver (c : *mut connection) -> get_screen_saver_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_screen_saver_unchecked (c : *mut connection) -> get_screen_saver_cookie;
+pub fn xcb_get_screen_saver_unchecked (c : *mut ffi::base::connection) -> get_screen_saver_cookie;
 
 /**
  * Return the reply
@@ -9166,9 +9164,9 @@ pub fn xcb_get_screen_saver_unchecked (c : *mut connection) -> get_screen_saver_
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_screen_saver_reply (c : *mut connection,
+pub fn xcb_get_screen_saver_reply (c : *mut ffi::base::connection,
                                       cookie : get_screen_saver_cookie,
-                                      e : *mut *mut generic_error) -> *mut get_screen_saver_reply;
+                                      e : *mut *mut ffi::base::generic_error) -> *mut get_screen_saver_reply;
 
 pub fn xcb_change_hosts_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -9183,11 +9181,11 @@ pub fn xcb_change_hosts_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_change_hosts_checked (c : *mut connection,
+pub fn xcb_change_hosts_checked (c : *mut ffi::base::connection,
                                     mode :  u8,
                                     family :  u8,
                                     address_len :  u16,
-                                    address : *mut u8) -> void_cookie;
+                                    address : *mut u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9197,11 +9195,11 @@ pub fn xcb_change_hosts_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_change_hosts (c : *mut connection,
+pub fn xcb_change_hosts (c : *mut ffi::base::connection,
                             mode :  u8,
                             family :  u8,
                             address_len :  u16,
-                            address : *mut u8) -> void_cookie;
+                            address : *mut u8) -> ffi::base::void_cookie;
 
 pub fn xcb_host_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -9211,7 +9209,7 @@ pub fn xcb_host_address (R : *mut host) -> *mut u8;
 pub fn xcb_host_address_length (R : *mut host) -> c_int;
 
 
-pub fn xcb_host_address_end (R : *mut host) -> generic_iterator;
+pub fn xcb_host_address_end (R : *mut host) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -9234,7 +9232,7 @@ pub fn xcb_host_next (i:*mut host_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_host_end (i:host_iterator) -> generic_iterator;
+pub fn xcb_host_end (i:host_iterator) -> ffi::base::generic_iterator;
 
 pub fn xcb_list_hosts_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -9246,7 +9244,7 @@ pub fn xcb_list_hosts_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_list_hosts (c : *mut connection) -> list_hosts_cookie;
+pub fn xcb_list_hosts (c : *mut ffi::base::connection) -> list_hosts_cookie;
 
 /**
  *
@@ -9259,7 +9257,7 @@ pub fn xcb_list_hosts (c : *mut connection) -> list_hosts_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_list_hosts_unchecked (c : *mut connection) -> list_hosts_cookie;
+pub fn xcb_list_hosts_unchecked (c : *mut ffi::base::connection) -> list_hosts_cookie;
 
 
 pub fn xcb_list_hosts_hosts_length (R : *mut list_hosts_reply) -> c_int;
@@ -9280,9 +9278,9 @@ pub fn xcb_list_hosts_hosts_iterator (R : *mut list_hosts_reply) -> host_iterato
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_list_hosts_reply (c : *mut connection,
+pub fn xcb_list_hosts_reply (c : *mut ffi::base::connection,
                                 cookie : list_hosts_cookie,
-                                e : *mut *mut generic_error) -> *mut list_hosts_reply;
+                                e : *mut *mut ffi::base::generic_error) -> *mut list_hosts_reply;
 
 /**
  *
@@ -9295,8 +9293,8 @@ pub fn xcb_list_hosts_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_set_access_control_checked (c : *mut connection,
-                                          mode :  u8) -> void_cookie;
+pub fn xcb_set_access_control_checked (c : *mut ffi::base::connection,
+                                          mode :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9306,8 +9304,8 @@ pub fn xcb_set_access_control_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_set_access_control (c : *mut connection,
-                                  mode :  u8) -> void_cookie;
+pub fn xcb_set_access_control (c : *mut ffi::base::connection,
+                                  mode :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9320,8 +9318,8 @@ pub fn xcb_set_access_control (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_set_close_down_mode_checked (c : *mut connection,
-                                           mode :  u8) -> void_cookie;
+pub fn xcb_set_close_down_mode_checked (c : *mut ffi::base::connection,
+                                           mode :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9331,8 +9329,8 @@ pub fn xcb_set_close_down_mode_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_set_close_down_mode (c : *mut connection,
-                                   mode :  u8) -> void_cookie;
+pub fn xcb_set_close_down_mode (c : *mut ffi::base::connection,
+                                   mode :  u8) -> ffi::base::void_cookie;
 
 /**
  * kills a client
@@ -9351,8 +9349,8 @@ pub fn xcb_set_close_down_mode (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_kill_client_checked (c : *mut connection,
-                                   resource :  u32) -> void_cookie;
+pub fn xcb_kill_client_checked (c : *mut ffi::base::connection,
+                                   resource :  u32) -> ffi::base::void_cookie;
 
 /**
  * kills a client
@@ -9368,8 +9366,8 @@ pub fn xcb_kill_client_checked (c : *mut connection,
  * Forces a close down of the client that created the specified \a resource.
  * 
  */
-pub fn xcb_kill_client (c : *mut connection,
-                           resource :  u32) -> void_cookie;
+pub fn xcb_kill_client (c : *mut ffi::base::connection,
+                           resource :  u32) -> ffi::base::void_cookie;
 
 pub fn xcb_rotate_properties_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -9384,11 +9382,11 @@ pub fn xcb_rotate_properties_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_rotate_properties_checked (c : *mut connection,
+pub fn xcb_rotate_properties_checked (c : *mut ffi::base::connection,
                                          window :  window,
                                          atoms_len :  u16,
                                          delta :  i16,
-                                         atoms : *mut atom) -> void_cookie;
+                                         atoms : *mut atom) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9398,11 +9396,11 @@ pub fn xcb_rotate_properties_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_rotate_properties (c : *mut connection,
+pub fn xcb_rotate_properties (c : *mut ffi::base::connection,
                                  window :  window,
                                  atoms_len :  u16,
                                  delta :  i16,
-                                 atoms : *mut atom) -> void_cookie;
+                                 atoms : *mut atom) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9415,8 +9413,8 @@ pub fn xcb_rotate_properties (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_force_screen_saver_checked (c : *mut connection,
-                                          mode :  u8) -> void_cookie;
+pub fn xcb_force_screen_saver_checked (c : *mut ffi::base::connection,
+                                          mode :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9426,8 +9424,8 @@ pub fn xcb_force_screen_saver_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_force_screen_saver (c : *mut connection,
-                                  mode :  u8) -> void_cookie;
+pub fn xcb_force_screen_saver (c : *mut ffi::base::connection,
+                                  mode :  u8) -> ffi::base::void_cookie;
 
 pub fn xcb_set_pointer_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -9439,7 +9437,7 @@ pub fn xcb_set_pointer_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_set_pointer_mapping (c : *mut connection,
+pub fn xcb_set_pointer_mapping (c : *mut ffi::base::connection,
                                    map_len :  u8,
                                    map : *mut u8) -> set_pointer_mapping_cookie;
 
@@ -9454,7 +9452,7 @@ pub fn xcb_set_pointer_mapping (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_set_pointer_mapping_unchecked (c : *mut connection,
+pub fn xcb_set_pointer_mapping_unchecked (c : *mut ffi::base::connection,
                                              map_len :  u8,
                                              map : *mut u8) -> set_pointer_mapping_cookie;
 
@@ -9472,9 +9470,9 @@ pub fn xcb_set_pointer_mapping_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_set_pointer_mapping_reply (c : *mut connection,
+pub fn xcb_set_pointer_mapping_reply (c : *mut ffi::base::connection,
                                          cookie : set_pointer_mapping_cookie,
-                                         e : *mut *mut generic_error) -> *mut set_pointer_mapping_reply;
+                                         e : *mut *mut ffi::base::generic_error) -> *mut set_pointer_mapping_reply;
 
 pub fn xcb_get_pointer_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -9486,7 +9484,7 @@ pub fn xcb_get_pointer_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_get_pointer_mapping (c : *mut connection) -> get_pointer_mapping_cookie;
+pub fn xcb_get_pointer_mapping (c : *mut ffi::base::connection) -> get_pointer_mapping_cookie;
 
 /**
  *
@@ -9499,7 +9497,7 @@ pub fn xcb_get_pointer_mapping (c : *mut connection) -> get_pointer_mapping_cook
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_pointer_mapping_unchecked (c : *mut connection) -> get_pointer_mapping_cookie;
+pub fn xcb_get_pointer_mapping_unchecked (c : *mut ffi::base::connection) -> get_pointer_mapping_cookie;
 
 pub fn xcb_get_pointer_mapping_map (R : *mut get_pointer_mapping_reply) -> *mut u8;
 
@@ -9507,7 +9505,7 @@ pub fn xcb_get_pointer_mapping_map (R : *mut get_pointer_mapping_reply) -> *mut 
 pub fn xcb_get_pointer_mapping_map_length (R : *mut get_pointer_mapping_reply) -> c_int;
 
 
-pub fn xcb_get_pointer_mapping_map_end (R : *mut get_pointer_mapping_reply) -> generic_iterator;
+pub fn xcb_get_pointer_mapping_map_end (R : *mut get_pointer_mapping_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -9523,9 +9521,9 @@ pub fn xcb_get_pointer_mapping_map_end (R : *mut get_pointer_mapping_reply) -> g
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_pointer_mapping_reply (c : *mut connection,
+pub fn xcb_get_pointer_mapping_reply (c : *mut ffi::base::connection,
                                          cookie : get_pointer_mapping_cookie,
-                                         e : *mut *mut generic_error) -> *mut get_pointer_mapping_reply;
+                                         e : *mut *mut ffi::base::generic_error) -> *mut get_pointer_mapping_reply;
 
 pub fn xcb_set_modifier_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -9537,7 +9535,7 @@ pub fn xcb_set_modifier_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_set_modifier_mapping (c : *mut connection,
+pub fn xcb_set_modifier_mapping (c : *mut ffi::base::connection,
                                     keycodes_per_modifier :  u8,
                                     keycodes : *mut keycode) -> set_modifier_mapping_cookie;
 
@@ -9552,7 +9550,7 @@ pub fn xcb_set_modifier_mapping (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_set_modifier_mapping_unchecked (c : *mut connection,
+pub fn xcb_set_modifier_mapping_unchecked (c : *mut ffi::base::connection,
                                               keycodes_per_modifier :  u8,
                                               keycodes : *mut keycode) -> set_modifier_mapping_cookie;
 
@@ -9570,9 +9568,9 @@ pub fn xcb_set_modifier_mapping_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_set_modifier_mapping_reply (c : *mut connection,
+pub fn xcb_set_modifier_mapping_reply (c : *mut ffi::base::connection,
                                           cookie : set_modifier_mapping_cookie,
-                                          e : *mut *mut generic_error) -> *mut set_modifier_mapping_reply;
+                                          e : *mut *mut ffi::base::generic_error) -> *mut set_modifier_mapping_reply;
 
 pub fn xcb_get_modifier_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -9584,7 +9582,7 @@ pub fn xcb_get_modifier_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_get_modifier_mapping (c : *mut connection) -> get_modifier_mapping_cookie;
+pub fn xcb_get_modifier_mapping (c : *mut ffi::base::connection) -> get_modifier_mapping_cookie;
 
 /**
  *
@@ -9597,7 +9595,7 @@ pub fn xcb_get_modifier_mapping (c : *mut connection) -> get_modifier_mapping_co
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_modifier_mapping_unchecked (c : *mut connection) -> get_modifier_mapping_cookie;
+pub fn xcb_get_modifier_mapping_unchecked (c : *mut ffi::base::connection) -> get_modifier_mapping_cookie;
 
 pub fn xcb_get_modifier_mapping_keycodes (R : *mut get_modifier_mapping_reply) -> *mut keycode;
 
@@ -9605,7 +9603,7 @@ pub fn xcb_get_modifier_mapping_keycodes (R : *mut get_modifier_mapping_reply) -
 pub fn xcb_get_modifier_mapping_keycodes_length (R : *mut get_modifier_mapping_reply) -> c_int;
 
 
-pub fn xcb_get_modifier_mapping_keycodes_end (R : *mut get_modifier_mapping_reply) -> generic_iterator;
+pub fn xcb_get_modifier_mapping_keycodes_end (R : *mut get_modifier_mapping_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -9621,9 +9619,9 @@ pub fn xcb_get_modifier_mapping_keycodes_end (R : *mut get_modifier_mapping_repl
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_modifier_mapping_reply (c : *mut connection,
+pub fn xcb_get_modifier_mapping_reply (c : *mut ffi::base::connection,
                                           cookie : get_modifier_mapping_cookie,
-                                          e : *mut *mut generic_error) -> *mut get_modifier_mapping_reply;
+                                          e : *mut *mut ffi::base::generic_error) -> *mut get_modifier_mapping_reply;
 
 /**
  *
@@ -9636,7 +9634,7 @@ pub fn xcb_get_modifier_mapping_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_no_operation_checked (c : *mut connection) -> void_cookie;
+pub fn xcb_no_operation_checked (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9646,6 +9644,6 @@ pub fn xcb_no_operation_checked (c : *mut connection) -> void_cookie;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_no_operation (c : *mut connection) -> void_cookie;
+pub fn xcb_no_operation (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
 }
 

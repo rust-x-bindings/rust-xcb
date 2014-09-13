@@ -8,8 +8,6 @@
 #![allow(non_camel_case_types)]
 use std;
 use libc::*;
-use std::{mem,num,ptr,str};
-use ffi::base::*;
 use ffi;
 
 pub static GENERICEVENT_MAJOR_VERSION : c_uint = 1;
@@ -49,7 +47,7 @@ pub extern "C" {
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_genericevent_query_version (c : *mut connection,
+pub fn xcb_genericevent_query_version (c : *mut ffi::base::connection,
                                           client_major_version :  u16,
                                           client_minor_version :  u16) -> query_version_cookie;
 
@@ -64,7 +62,7 @@ pub fn xcb_genericevent_query_version (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_genericevent_query_version_unchecked (c : *mut connection,
+pub fn xcb_genericevent_query_version_unchecked (c : *mut ffi::base::connection,
                                                     client_major_version :  u16,
                                                     client_minor_version :  u16) -> query_version_cookie;
 
@@ -82,8 +80,8 @@ pub fn xcb_genericevent_query_version_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_genericevent_query_version_reply (c : *mut connection,
+pub fn xcb_genericevent_query_version_reply (c : *mut ffi::base::connection,
                                                 cookie : query_version_cookie,
-                                                e : *mut *mut generic_error) -> *mut query_version_reply;
+                                                e : *mut *mut ffi::base::generic_error) -> *mut query_version_reply;
 }
 

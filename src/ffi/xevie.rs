@@ -8,8 +8,6 @@
 #![allow(non_camel_case_types)]
 use std;
 use libc::*;
-use std::{mem,num,ptr,str};
-use ffi::base::*;
 use ffi;
 
 pub static XEVIE_MAJOR_VERSION : c_uint = 1;
@@ -154,7 +152,7 @@ pub extern "C" {
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xevie_query_version (c : *mut connection,
+pub fn xcb_xevie_query_version (c : *mut ffi::base::connection,
                                    client_major_version :  u16,
                                    client_minor_version :  u16) -> query_version_cookie;
 
@@ -169,7 +167,7 @@ pub fn xcb_xevie_query_version (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xevie_query_version_unchecked (c : *mut connection,
+pub fn xcb_xevie_query_version_unchecked (c : *mut ffi::base::connection,
                                              client_major_version :  u16,
                                              client_minor_version :  u16) -> query_version_cookie;
 
@@ -187,9 +185,9 @@ pub fn xcb_xevie_query_version_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xevie_query_version_reply (c : *mut connection,
+pub fn xcb_xevie_query_version_reply (c : *mut ffi::base::connection,
                                          cookie : query_version_cookie,
-                                         e : *mut *mut generic_error) -> *mut query_version_reply;
+                                         e : *mut *mut ffi::base::generic_error) -> *mut query_version_reply;
 
 /**
  *
@@ -199,7 +197,7 @@ pub fn xcb_xevie_query_version_reply (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xevie_start (c : *mut connection,
+pub fn xcb_xevie_start (c : *mut ffi::base::connection,
                            screen :  u32) -> start_cookie;
 
 /**
@@ -213,7 +211,7 @@ pub fn xcb_xevie_start (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xevie_start_unchecked (c : *mut connection,
+pub fn xcb_xevie_start_unchecked (c : *mut ffi::base::connection,
                                      screen :  u32) -> start_cookie;
 
 /**
@@ -230,9 +228,9 @@ pub fn xcb_xevie_start_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xevie_start_reply (c : *mut connection,
+pub fn xcb_xevie_start_reply (c : *mut ffi::base::connection,
                                  cookie : start_cookie,
-                                 e : *mut *mut generic_error) -> *mut start_reply;
+                                 e : *mut *mut ffi::base::generic_error) -> *mut start_reply;
 
 /**
  *
@@ -242,7 +240,7 @@ pub fn xcb_xevie_start_reply (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xevie_end (c : *mut connection,
+pub fn xcb_xevie_end (c : *mut ffi::base::connection,
                          cmap :  u32) -> end_cookie;
 
 /**
@@ -256,7 +254,7 @@ pub fn xcb_xevie_end (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xevie_end_unchecked (c : *mut connection,
+pub fn xcb_xevie_end_unchecked (c : *mut ffi::base::connection,
                                    cmap :  u32) -> end_cookie;
 
 /**
@@ -273,9 +271,9 @@ pub fn xcb_xevie_end_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xevie_end_reply (c : *mut connection,
+pub fn xcb_xevie_end_reply (c : *mut ffi::base::connection,
                                cookie : end_cookie,
-                               e : *mut *mut generic_error) -> *mut end_reply;
+                               e : *mut *mut ffi::base::generic_error) -> *mut end_reply;
 
 /**
  * Get the next element of the iterator
@@ -298,7 +296,7 @@ pub fn xcb_xevie_event_next (i:*mut event_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xevie_event_end (i:event_iterator) -> generic_iterator;
+pub fn xcb_xevie_event_end (i:event_iterator) -> ffi::base::generic_iterator;
 
 /**
  *
@@ -308,7 +306,7 @@ pub fn xcb_xevie_event_end (i:event_iterator) -> generic_iterator;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xevie_send (c : *mut connection,
+pub fn xcb_xevie_send (c : *mut ffi::base::connection,
                           event :  event,
                           data_type :  u32) -> send_cookie;
 
@@ -323,7 +321,7 @@ pub fn xcb_xevie_send (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xevie_send_unchecked (c : *mut connection,
+pub fn xcb_xevie_send_unchecked (c : *mut ffi::base::connection,
                                     event :  event,
                                     data_type :  u32) -> send_cookie;
 
@@ -341,9 +339,9 @@ pub fn xcb_xevie_send_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xevie_send_reply (c : *mut connection,
+pub fn xcb_xevie_send_reply (c : *mut ffi::base::connection,
                                 cookie : send_cookie,
-                                e : *mut *mut generic_error) -> *mut send_reply;
+                                e : *mut *mut ffi::base::generic_error) -> *mut send_reply;
 
 /**
  *
@@ -353,7 +351,7 @@ pub fn xcb_xevie_send_reply (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xevie_select_input (c : *mut connection,
+pub fn xcb_xevie_select_input (c : *mut ffi::base::connection,
                                   event_mask :  u32) -> select_input_cookie;
 
 /**
@@ -367,7 +365,7 @@ pub fn xcb_xevie_select_input (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xevie_select_input_unchecked (c : *mut connection,
+pub fn xcb_xevie_select_input_unchecked (c : *mut ffi::base::connection,
                                             event_mask :  u32) -> select_input_cookie;
 
 /**
@@ -384,8 +382,8 @@ pub fn xcb_xevie_select_input_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xevie_select_input_reply (c : *mut connection,
+pub fn xcb_xevie_select_input_reply (c : *mut ffi::base::connection,
                                         cookie : select_input_cookie,
-                                        e : *mut *mut generic_error) -> *mut select_input_reply;
+                                        e : *mut *mut ffi::base::generic_error) -> *mut select_input_reply;
 }
 

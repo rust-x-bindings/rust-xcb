@@ -8,8 +8,6 @@
 #![allow(non_camel_case_types)]
 use std;
 use libc::*;
-use std::{mem,num,ptr,str};
-use ffi::base::*;
 use ffi;
 use ffi::xproto;
 
@@ -161,7 +159,7 @@ pub fn xcb_res_client_next (i:*mut client_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_res_client_end (i:client_iterator) -> generic_iterator;
+pub fn xcb_res_client_end (i:client_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -184,7 +182,7 @@ pub fn xcb_res_type_next (i:*mut type_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_res_type_end (i:type_iterator) -> generic_iterator;
+pub fn xcb_res_type_end (i:type_iterator) -> ffi::base::generic_iterator;
 
 /**
  *
@@ -194,7 +192,7 @@ pub fn xcb_res_type_end (i:type_iterator) -> generic_iterator;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_res_query_version (c : *mut connection,
+pub fn xcb_res_query_version (c : *mut ffi::base::connection,
                                  client_major :  u8,
                                  client_minor :  u8) -> query_version_cookie;
 
@@ -209,7 +207,7 @@ pub fn xcb_res_query_version (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_res_query_version_unchecked (c : *mut connection,
+pub fn xcb_res_query_version_unchecked (c : *mut ffi::base::connection,
                                            client_major :  u8,
                                            client_minor :  u8) -> query_version_cookie;
 
@@ -227,9 +225,9 @@ pub fn xcb_res_query_version_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_res_query_version_reply (c : *mut connection,
+pub fn xcb_res_query_version_reply (c : *mut ffi::base::connection,
                                        cookie : query_version_cookie,
-                                       e : *mut *mut generic_error) -> *mut query_version_reply;
+                                       e : *mut *mut ffi::base::generic_error) -> *mut query_version_reply;
 
 pub fn xcb_res_query_clients_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -241,7 +239,7 @@ pub fn xcb_res_query_clients_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_res_query_clients (c : *mut connection) -> query_clients_cookie;
+pub fn xcb_res_query_clients (c : *mut ffi::base::connection) -> query_clients_cookie;
 
 /**
  *
@@ -254,7 +252,7 @@ pub fn xcb_res_query_clients (c : *mut connection) -> query_clients_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_res_query_clients_unchecked (c : *mut connection) -> query_clients_cookie;
+pub fn xcb_res_query_clients_unchecked (c : *mut ffi::base::connection) -> query_clients_cookie;
 
 pub fn xcb_res_query_clients_clients (R : *mut query_clients_reply) -> *mut client;
 
@@ -277,9 +275,9 @@ pub fn xcb_res_query_clients_clients_iterator (R : *mut query_clients_reply) -> 
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_res_query_clients_reply (c : *mut connection,
+pub fn xcb_res_query_clients_reply (c : *mut ffi::base::connection,
                                        cookie : query_clients_cookie,
-                                       e : *mut *mut generic_error) -> *mut query_clients_reply;
+                                       e : *mut *mut ffi::base::generic_error) -> *mut query_clients_reply;
 
 pub fn xcb_res_query_client_resources_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -291,7 +289,7 @@ pub fn xcb_res_query_client_resources_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_res_query_client_resources (c : *mut connection,
+pub fn xcb_res_query_client_resources (c : *mut ffi::base::connection,
                                           xid :  u32) -> query_client_resources_cookie;
 
 /**
@@ -305,7 +303,7 @@ pub fn xcb_res_query_client_resources (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_res_query_client_resources_unchecked (c : *mut connection,
+pub fn xcb_res_query_client_resources_unchecked (c : *mut ffi::base::connection,
                                                     xid :  u32) -> query_client_resources_cookie;
 
 pub fn xcb_res_query_client_resources_types (R : *mut query_client_resources_reply) -> *mut type_;
@@ -329,9 +327,9 @@ pub fn xcb_res_query_client_resources_types_iterator (R : *mut query_client_reso
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_res_query_client_resources_reply (c : *mut connection,
+pub fn xcb_res_query_client_resources_reply (c : *mut ffi::base::connection,
                                                 cookie : query_client_resources_cookie,
-                                                e : *mut *mut generic_error) -> *mut query_client_resources_reply;
+                                                e : *mut *mut ffi::base::generic_error) -> *mut query_client_resources_reply;
 
 /**
  *
@@ -341,7 +339,7 @@ pub fn xcb_res_query_client_resources_reply (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_res_query_client_pixmap_bytes (c : *mut connection,
+pub fn xcb_res_query_client_pixmap_bytes (c : *mut ffi::base::connection,
                                              xid :  u32) -> query_client_pixmap_bytes_cookie;
 
 /**
@@ -355,7 +353,7 @@ pub fn xcb_res_query_client_pixmap_bytes (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_res_query_client_pixmap_bytes_unchecked (c : *mut connection,
+pub fn xcb_res_query_client_pixmap_bytes_unchecked (c : *mut ffi::base::connection,
                                                        xid :  u32) -> query_client_pixmap_bytes_cookie;
 
 /**
@@ -372,8 +370,8 @@ pub fn xcb_res_query_client_pixmap_bytes_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_res_query_client_pixmap_bytes_reply (c : *mut connection,
+pub fn xcb_res_query_client_pixmap_bytes_reply (c : *mut ffi::base::connection,
                                                    cookie : query_client_pixmap_bytes_cookie,
-                                                   e : *mut *mut generic_error) -> *mut query_client_pixmap_bytes_reply;
+                                                   e : *mut *mut ffi::base::generic_error) -> *mut query_client_pixmap_bytes_reply;
 }
 

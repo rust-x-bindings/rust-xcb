@@ -8,8 +8,6 @@
 #![allow(non_camel_case_types)]
 use std;
 use libc::*;
-use std::{mem,num,ptr,str};
-use ffi::base::*;
 use ffi;
 use ffi::xproto;
 use ffi::shm;
@@ -648,7 +646,7 @@ pub fn xcb_xv_port_next (i:*mut port_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xv_port_end (i:port_iterator) -> generic_iterator;
+pub fn xcb_xv_port_end (i:port_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -671,7 +669,7 @@ pub fn xcb_xv_encoding_next (i:*mut encoding_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xv_encoding_end (i:encoding_iterator) -> generic_iterator;
+pub fn xcb_xv_encoding_end (i:encoding_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -694,7 +692,7 @@ pub fn xcb_xv_rational_next (i:*mut rational_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xv_rational_end (i:rational_iterator) -> generic_iterator;
+pub fn xcb_xv_rational_end (i:rational_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -717,7 +715,7 @@ pub fn xcb_xv_format_next (i:*mut format_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xv_format_end (i:format_iterator) -> generic_iterator;
+pub fn xcb_xv_format_end (i:format_iterator) -> ffi::base::generic_iterator;
 
 pub fn xcb_xv_adaptor_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -727,7 +725,7 @@ pub fn xcb_xv_adaptor_info_name (R : *mut adaptor_info) -> *mut c_char;
 pub fn xcb_xv_adaptor_info_name_length (R : *mut adaptor_info) -> c_int;
 
 
-pub fn xcb_xv_adaptor_info_name_end (R : *mut adaptor_info) -> generic_iterator;
+pub fn xcb_xv_adaptor_info_name_end (R : *mut adaptor_info) -> ffi::base::generic_iterator;
 
 pub fn xcb_xv_adaptor_info_formats (R : *mut adaptor_info) -> *mut format;
 
@@ -757,7 +755,7 @@ pub fn xcb_xv_adaptor_info_next (i:*mut adaptor_info_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xv_adaptor_info_end (i:adaptor_info_iterator) -> generic_iterator;
+pub fn xcb_xv_adaptor_info_end (i:adaptor_info_iterator) -> ffi::base::generic_iterator;
 
 pub fn xcb_xv_encoding_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -767,7 +765,7 @@ pub fn xcb_xv_encoding_info_name (R : *mut encoding_info) -> *mut c_char;
 pub fn xcb_xv_encoding_info_name_length (R : *mut encoding_info) -> c_int;
 
 
-pub fn xcb_xv_encoding_info_name_end (R : *mut encoding_info) -> generic_iterator;
+pub fn xcb_xv_encoding_info_name_end (R : *mut encoding_info) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -790,7 +788,7 @@ pub fn xcb_xv_encoding_info_next (i:*mut encoding_info_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xv_encoding_info_end (i:encoding_info_iterator) -> generic_iterator;
+pub fn xcb_xv_encoding_info_end (i:encoding_info_iterator) -> ffi::base::generic_iterator;
 
 pub fn xcb_xv_image_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -800,7 +798,7 @@ pub fn xcb_xv_image_pitches (R : *mut image) -> *mut u32;
 pub fn xcb_xv_image_pitches_length (R : *mut image) -> c_int;
 
 
-pub fn xcb_xv_image_pitches_end (R : *mut image) -> generic_iterator;
+pub fn xcb_xv_image_pitches_end (R : *mut image) -> ffi::base::generic_iterator;
 
 pub fn xcb_xv_image_offsets (R : *mut image) -> *mut u32;
 
@@ -808,7 +806,7 @@ pub fn xcb_xv_image_offsets (R : *mut image) -> *mut u32;
 pub fn xcb_xv_image_offsets_length (R : *mut image) -> c_int;
 
 
-pub fn xcb_xv_image_offsets_end (R : *mut image) -> generic_iterator;
+pub fn xcb_xv_image_offsets_end (R : *mut image) -> ffi::base::generic_iterator;
 
 pub fn xcb_xv_image_data (R : *mut image) -> *mut u8;
 
@@ -816,7 +814,7 @@ pub fn xcb_xv_image_data (R : *mut image) -> *mut u8;
 pub fn xcb_xv_image_data_length (R : *mut image) -> c_int;
 
 
-pub fn xcb_xv_image_data_end (R : *mut image) -> generic_iterator;
+pub fn xcb_xv_image_data_end (R : *mut image) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -839,7 +837,7 @@ pub fn xcb_xv_image_next (i:*mut image_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xv_image_end (i:image_iterator) -> generic_iterator;
+pub fn xcb_xv_image_end (i:image_iterator) -> ffi::base::generic_iterator;
 
 pub fn xcb_xv_attribute_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -849,7 +847,7 @@ pub fn xcb_xv_attribute_info_name (R : *mut attribute_info) -> *mut c_char;
 pub fn xcb_xv_attribute_info_name_length (R : *mut attribute_info) -> c_int;
 
 
-pub fn xcb_xv_attribute_info_name_end (R : *mut attribute_info) -> generic_iterator;
+pub fn xcb_xv_attribute_info_name_end (R : *mut attribute_info) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -872,7 +870,7 @@ pub fn xcb_xv_attribute_info_next (i:*mut attribute_info_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xv_attribute_info_end (i:attribute_info_iterator) -> generic_iterator;
+pub fn xcb_xv_attribute_info_end (i:attribute_info_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -895,7 +893,7 @@ pub fn xcb_xv_image_format_info_next (i:*mut image_format_info_iterator) -> c_vo
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xv_image_format_info_end (i:image_format_info_iterator) -> generic_iterator;
+pub fn xcb_xv_image_format_info_end (i:image_format_info_iterator) -> ffi::base::generic_iterator;
 
 /**
  *
@@ -905,7 +903,7 @@ pub fn xcb_xv_image_format_info_end (i:image_format_info_iterator) -> generic_it
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xv_query_extension (c : *mut connection) -> query_extension_cookie;
+pub fn xcb_xv_query_extension (c : *mut ffi::base::connection) -> query_extension_cookie;
 
 /**
  *
@@ -918,7 +916,7 @@ pub fn xcb_xv_query_extension (c : *mut connection) -> query_extension_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xv_query_extension_unchecked (c : *mut connection) -> query_extension_cookie;
+pub fn xcb_xv_query_extension_unchecked (c : *mut ffi::base::connection) -> query_extension_cookie;
 
 /**
  * Return the reply
@@ -934,9 +932,9 @@ pub fn xcb_xv_query_extension_unchecked (c : *mut connection) -> query_extension
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xv_query_extension_reply (c : *mut connection,
+pub fn xcb_xv_query_extension_reply (c : *mut ffi::base::connection,
                                         cookie : query_extension_cookie,
-                                        e : *mut *mut generic_error) -> *mut query_extension_reply;
+                                        e : *mut *mut ffi::base::generic_error) -> *mut query_extension_reply;
 
 pub fn xcb_xv_query_adaptors_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -948,7 +946,7 @@ pub fn xcb_xv_query_adaptors_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xv_query_adaptors (c : *mut connection,
+pub fn xcb_xv_query_adaptors (c : *mut ffi::base::connection,
                                  window :  ffi::xproto::window) -> query_adaptors_cookie;
 
 /**
@@ -962,7 +960,7 @@ pub fn xcb_xv_query_adaptors (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xv_query_adaptors_unchecked (c : *mut connection,
+pub fn xcb_xv_query_adaptors_unchecked (c : *mut ffi::base::connection,
                                            window :  ffi::xproto::window) -> query_adaptors_cookie;
 
 
@@ -984,9 +982,9 @@ pub fn xcb_xv_query_adaptors_info_iterator (R : *mut query_adaptors_reply) -> ad
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xv_query_adaptors_reply (c : *mut connection,
+pub fn xcb_xv_query_adaptors_reply (c : *mut ffi::base::connection,
                                        cookie : query_adaptors_cookie,
-                                       e : *mut *mut generic_error) -> *mut query_adaptors_reply;
+                                       e : *mut *mut ffi::base::generic_error) -> *mut query_adaptors_reply;
 
 pub fn xcb_xv_query_encodings_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -998,7 +996,7 @@ pub fn xcb_xv_query_encodings_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xv_query_encodings (c : *mut connection,
+pub fn xcb_xv_query_encodings (c : *mut ffi::base::connection,
                                   port :  port) -> query_encodings_cookie;
 
 /**
@@ -1012,7 +1010,7 @@ pub fn xcb_xv_query_encodings (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xv_query_encodings_unchecked (c : *mut connection,
+pub fn xcb_xv_query_encodings_unchecked (c : *mut ffi::base::connection,
                                             port :  port) -> query_encodings_cookie;
 
 
@@ -1034,9 +1032,9 @@ pub fn xcb_xv_query_encodings_info_iterator (R : *mut query_encodings_reply) -> 
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xv_query_encodings_reply (c : *mut connection,
+pub fn xcb_xv_query_encodings_reply (c : *mut ffi::base::connection,
                                         cookie : query_encodings_cookie,
-                                        e : *mut *mut generic_error) -> *mut query_encodings_reply;
+                                        e : *mut *mut ffi::base::generic_error) -> *mut query_encodings_reply;
 
 /**
  *
@@ -1046,7 +1044,7 @@ pub fn xcb_xv_query_encodings_reply (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xv_grab_port (c : *mut connection,
+pub fn xcb_xv_grab_port (c : *mut ffi::base::connection,
                             port :  port,
                             time :  ffi::xproto::timestamp) -> grab_port_cookie;
 
@@ -1061,7 +1059,7 @@ pub fn xcb_xv_grab_port (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xv_grab_port_unchecked (c : *mut connection,
+pub fn xcb_xv_grab_port_unchecked (c : *mut ffi::base::connection,
                                       port :  port,
                                       time :  ffi::xproto::timestamp) -> grab_port_cookie;
 
@@ -1079,9 +1077,9 @@ pub fn xcb_xv_grab_port_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xv_grab_port_reply (c : *mut connection,
+pub fn xcb_xv_grab_port_reply (c : *mut ffi::base::connection,
                                   cookie : grab_port_cookie,
-                                  e : *mut *mut generic_error) -> *mut grab_port_reply;
+                                  e : *mut *mut ffi::base::generic_error) -> *mut grab_port_reply;
 
 /**
  *
@@ -1094,9 +1092,9 @@ pub fn xcb_xv_grab_port_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xv_ungrab_port_checked (c : *mut connection,
+pub fn xcb_xv_ungrab_port_checked (c : *mut ffi::base::connection,
                                       port :  port,
-                                      time :  ffi::xproto::timestamp) -> void_cookie;
+                                      time :  ffi::xproto::timestamp) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1106,9 +1104,9 @@ pub fn xcb_xv_ungrab_port_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xv_ungrab_port (c : *mut connection,
+pub fn xcb_xv_ungrab_port (c : *mut ffi::base::connection,
                               port :  port,
-                              time :  ffi::xproto::timestamp) -> void_cookie;
+                              time :  ffi::xproto::timestamp) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1121,7 +1119,7 @@ pub fn xcb_xv_ungrab_port (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xv_put_video_checked (c : *mut connection,
+pub fn xcb_xv_put_video_checked (c : *mut ffi::base::connection,
                                     port :  port,
                                     drawable :  ffi::xproto::drawable,
                                     gc :  ffi::xproto::gcontext,
@@ -1132,7 +1130,7 @@ pub fn xcb_xv_put_video_checked (c : *mut connection,
                                     drw_x :  i16,
                                     drw_y :  i16,
                                     drw_w :  u16,
-                                    drw_h :  u16) -> void_cookie;
+                                    drw_h :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1142,7 +1140,7 @@ pub fn xcb_xv_put_video_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xv_put_video (c : *mut connection,
+pub fn xcb_xv_put_video (c : *mut ffi::base::connection,
                             port :  port,
                             drawable :  ffi::xproto::drawable,
                             gc :  ffi::xproto::gcontext,
@@ -1153,7 +1151,7 @@ pub fn xcb_xv_put_video (c : *mut connection,
                             drw_x :  i16,
                             drw_y :  i16,
                             drw_w :  u16,
-                            drw_h :  u16) -> void_cookie;
+                            drw_h :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1166,7 +1164,7 @@ pub fn xcb_xv_put_video (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xv_put_still_checked (c : *mut connection,
+pub fn xcb_xv_put_still_checked (c : *mut ffi::base::connection,
                                     port :  port,
                                     drawable :  ffi::xproto::drawable,
                                     gc :  ffi::xproto::gcontext,
@@ -1177,7 +1175,7 @@ pub fn xcb_xv_put_still_checked (c : *mut connection,
                                     drw_x :  i16,
                                     drw_y :  i16,
                                     drw_w :  u16,
-                                    drw_h :  u16) -> void_cookie;
+                                    drw_h :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1187,7 +1185,7 @@ pub fn xcb_xv_put_still_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xv_put_still (c : *mut connection,
+pub fn xcb_xv_put_still (c : *mut ffi::base::connection,
                             port :  port,
                             drawable :  ffi::xproto::drawable,
                             gc :  ffi::xproto::gcontext,
@@ -1198,7 +1196,7 @@ pub fn xcb_xv_put_still (c : *mut connection,
                             drw_x :  i16,
                             drw_y :  i16,
                             drw_w :  u16,
-                            drw_h :  u16) -> void_cookie;
+                            drw_h :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1211,7 +1209,7 @@ pub fn xcb_xv_put_still (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xv_get_video_checked (c : *mut connection,
+pub fn xcb_xv_get_video_checked (c : *mut ffi::base::connection,
                                     port :  port,
                                     drawable :  ffi::xproto::drawable,
                                     gc :  ffi::xproto::gcontext,
@@ -1222,7 +1220,7 @@ pub fn xcb_xv_get_video_checked (c : *mut connection,
                                     drw_x :  i16,
                                     drw_y :  i16,
                                     drw_w :  u16,
-                                    drw_h :  u16) -> void_cookie;
+                                    drw_h :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1232,7 +1230,7 @@ pub fn xcb_xv_get_video_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xv_get_video (c : *mut connection,
+pub fn xcb_xv_get_video (c : *mut ffi::base::connection,
                             port :  port,
                             drawable :  ffi::xproto::drawable,
                             gc :  ffi::xproto::gcontext,
@@ -1243,7 +1241,7 @@ pub fn xcb_xv_get_video (c : *mut connection,
                             drw_x :  i16,
                             drw_y :  i16,
                             drw_w :  u16,
-                            drw_h :  u16) -> void_cookie;
+                            drw_h :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1256,7 +1254,7 @@ pub fn xcb_xv_get_video (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xv_get_still_checked (c : *mut connection,
+pub fn xcb_xv_get_still_checked (c : *mut ffi::base::connection,
                                     port :  port,
                                     drawable :  ffi::xproto::drawable,
                                     gc :  ffi::xproto::gcontext,
@@ -1267,7 +1265,7 @@ pub fn xcb_xv_get_still_checked (c : *mut connection,
                                     drw_x :  i16,
                                     drw_y :  i16,
                                     drw_w :  u16,
-                                    drw_h :  u16) -> void_cookie;
+                                    drw_h :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1277,7 +1275,7 @@ pub fn xcb_xv_get_still_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xv_get_still (c : *mut connection,
+pub fn xcb_xv_get_still (c : *mut ffi::base::connection,
                             port :  port,
                             drawable :  ffi::xproto::drawable,
                             gc :  ffi::xproto::gcontext,
@@ -1288,7 +1286,7 @@ pub fn xcb_xv_get_still (c : *mut connection,
                             drw_x :  i16,
                             drw_y :  i16,
                             drw_w :  u16,
-                            drw_h :  u16) -> void_cookie;
+                            drw_h :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1301,9 +1299,9 @@ pub fn xcb_xv_get_still (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xv_stop_video_checked (c : *mut connection,
+pub fn xcb_xv_stop_video_checked (c : *mut ffi::base::connection,
                                      port :  port,
-                                     drawable :  ffi::xproto::drawable) -> void_cookie;
+                                     drawable :  ffi::xproto::drawable) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1313,9 +1311,9 @@ pub fn xcb_xv_stop_video_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xv_stop_video (c : *mut connection,
+pub fn xcb_xv_stop_video (c : *mut ffi::base::connection,
                              port :  port,
-                             drawable :  ffi::xproto::drawable) -> void_cookie;
+                             drawable :  ffi::xproto::drawable) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1328,9 +1326,9 @@ pub fn xcb_xv_stop_video (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xv_select_video_notify_checked (c : *mut connection,
+pub fn xcb_xv_select_video_notify_checked (c : *mut ffi::base::connection,
                                               drawable :  ffi::xproto::drawable,
-                                              onoff :  u8) -> void_cookie;
+                                              onoff :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1340,9 +1338,9 @@ pub fn xcb_xv_select_video_notify_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xv_select_video_notify (c : *mut connection,
+pub fn xcb_xv_select_video_notify (c : *mut ffi::base::connection,
                                       drawable :  ffi::xproto::drawable,
-                                      onoff :  u8) -> void_cookie;
+                                      onoff :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1355,9 +1353,9 @@ pub fn xcb_xv_select_video_notify (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xv_select_port_notify_checked (c : *mut connection,
+pub fn xcb_xv_select_port_notify_checked (c : *mut ffi::base::connection,
                                              port :  port,
-                                             onoff :  u8) -> void_cookie;
+                                             onoff :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1367,9 +1365,9 @@ pub fn xcb_xv_select_port_notify_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xv_select_port_notify (c : *mut connection,
+pub fn xcb_xv_select_port_notify (c : *mut ffi::base::connection,
                                      port :  port,
-                                     onoff :  u8) -> void_cookie;
+                                     onoff :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1379,7 +1377,7 @@ pub fn xcb_xv_select_port_notify (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xv_query_best_size (c : *mut connection,
+pub fn xcb_xv_query_best_size (c : *mut ffi::base::connection,
                                   port :  port,
                                   vid_w :  u16,
                                   vid_h :  u16,
@@ -1398,7 +1396,7 @@ pub fn xcb_xv_query_best_size (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xv_query_best_size_unchecked (c : *mut connection,
+pub fn xcb_xv_query_best_size_unchecked (c : *mut ffi::base::connection,
                                             port :  port,
                                             vid_w :  u16,
                                             vid_h :  u16,
@@ -1420,9 +1418,9 @@ pub fn xcb_xv_query_best_size_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xv_query_best_size_reply (c : *mut connection,
+pub fn xcb_xv_query_best_size_reply (c : *mut ffi::base::connection,
                                         cookie : query_best_size_cookie,
-                                        e : *mut *mut generic_error) -> *mut query_best_size_reply;
+                                        e : *mut *mut ffi::base::generic_error) -> *mut query_best_size_reply;
 
 /**
  *
@@ -1435,10 +1433,10 @@ pub fn xcb_xv_query_best_size_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xv_set_port_attribute_checked (c : *mut connection,
+pub fn xcb_xv_set_port_attribute_checked (c : *mut ffi::base::connection,
                                              port :  port,
                                              attribute :  ffi::xproto::atom,
-                                             value :  i32) -> void_cookie;
+                                             value :  i32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1448,10 +1446,10 @@ pub fn xcb_xv_set_port_attribute_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xv_set_port_attribute (c : *mut connection,
+pub fn xcb_xv_set_port_attribute (c : *mut ffi::base::connection,
                                      port :  port,
                                      attribute :  ffi::xproto::atom,
-                                     value :  i32) -> void_cookie;
+                                     value :  i32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1461,7 +1459,7 @@ pub fn xcb_xv_set_port_attribute (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xv_get_port_attribute (c : *mut connection,
+pub fn xcb_xv_get_port_attribute (c : *mut ffi::base::connection,
                                      port :  port,
                                      attribute :  ffi::xproto::atom) -> get_port_attribute_cookie;
 
@@ -1476,7 +1474,7 @@ pub fn xcb_xv_get_port_attribute (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xv_get_port_attribute_unchecked (c : *mut connection,
+pub fn xcb_xv_get_port_attribute_unchecked (c : *mut ffi::base::connection,
                                                port :  port,
                                                attribute :  ffi::xproto::atom) -> get_port_attribute_cookie;
 
@@ -1494,9 +1492,9 @@ pub fn xcb_xv_get_port_attribute_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xv_get_port_attribute_reply (c : *mut connection,
+pub fn xcb_xv_get_port_attribute_reply (c : *mut ffi::base::connection,
                                            cookie : get_port_attribute_cookie,
-                                           e : *mut *mut generic_error) -> *mut get_port_attribute_reply;
+                                           e : *mut *mut ffi::base::generic_error) -> *mut get_port_attribute_reply;
 
 pub fn xcb_xv_query_port_attributes_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1508,7 +1506,7 @@ pub fn xcb_xv_query_port_attributes_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xv_query_port_attributes (c : *mut connection,
+pub fn xcb_xv_query_port_attributes (c : *mut ffi::base::connection,
                                         port :  port) -> query_port_attributes_cookie;
 
 /**
@@ -1522,7 +1520,7 @@ pub fn xcb_xv_query_port_attributes (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xv_query_port_attributes_unchecked (c : *mut connection,
+pub fn xcb_xv_query_port_attributes_unchecked (c : *mut ffi::base::connection,
                                                   port :  port) -> query_port_attributes_cookie;
 
 
@@ -1544,9 +1542,9 @@ pub fn xcb_xv_query_port_attributes_attributes_iterator (R : *mut query_port_att
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xv_query_port_attributes_reply (c : *mut connection,
+pub fn xcb_xv_query_port_attributes_reply (c : *mut ffi::base::connection,
                                               cookie : query_port_attributes_cookie,
-                                              e : *mut *mut generic_error) -> *mut query_port_attributes_reply;
+                                              e : *mut *mut ffi::base::generic_error) -> *mut query_port_attributes_reply;
 
 pub fn xcb_xv_list_image_formats_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1558,7 +1556,7 @@ pub fn xcb_xv_list_image_formats_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xv_list_image_formats (c : *mut connection,
+pub fn xcb_xv_list_image_formats (c : *mut ffi::base::connection,
                                      port :  port) -> list_image_formats_cookie;
 
 /**
@@ -1572,7 +1570,7 @@ pub fn xcb_xv_list_image_formats (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xv_list_image_formats_unchecked (c : *mut connection,
+pub fn xcb_xv_list_image_formats_unchecked (c : *mut ffi::base::connection,
                                                port :  port) -> list_image_formats_cookie;
 
 pub fn xcb_xv_list_image_formats_format (R : *mut list_image_formats_reply) -> *mut image_format_info;
@@ -1596,9 +1594,9 @@ pub fn xcb_xv_list_image_formats_format_iterator (R : *mut list_image_formats_re
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xv_list_image_formats_reply (c : *mut connection,
+pub fn xcb_xv_list_image_formats_reply (c : *mut ffi::base::connection,
                                            cookie : list_image_formats_cookie,
-                                           e : *mut *mut generic_error) -> *mut list_image_formats_reply;
+                                           e : *mut *mut ffi::base::generic_error) -> *mut list_image_formats_reply;
 
 pub fn xcb_xv_query_image_attributes_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1610,7 +1608,7 @@ pub fn xcb_xv_query_image_attributes_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xv_query_image_attributes (c : *mut connection,
+pub fn xcb_xv_query_image_attributes (c : *mut ffi::base::connection,
                                          port :  port,
                                          id :  u32,
                                          width :  u16,
@@ -1627,7 +1625,7 @@ pub fn xcb_xv_query_image_attributes (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xv_query_image_attributes_unchecked (c : *mut connection,
+pub fn xcb_xv_query_image_attributes_unchecked (c : *mut ffi::base::connection,
                                                    port :  port,
                                                    id :  u32,
                                                    width :  u16,
@@ -1639,7 +1637,7 @@ pub fn xcb_xv_query_image_attributes_pitches (R : *mut query_image_attributes_re
 pub fn xcb_xv_query_image_attributes_pitches_length (R : *mut query_image_attributes_reply) -> c_int;
 
 
-pub fn xcb_xv_query_image_attributes_pitches_end (R : *mut query_image_attributes_reply) -> generic_iterator;
+pub fn xcb_xv_query_image_attributes_pitches_end (R : *mut query_image_attributes_reply) -> ffi::base::generic_iterator;
 
 pub fn xcb_xv_query_image_attributes_offsets (R : *mut query_image_attributes_reply) -> *mut u32;
 
@@ -1647,7 +1645,7 @@ pub fn xcb_xv_query_image_attributes_offsets (R : *mut query_image_attributes_re
 pub fn xcb_xv_query_image_attributes_offsets_length (R : *mut query_image_attributes_reply) -> c_int;
 
 
-pub fn xcb_xv_query_image_attributes_offsets_end (R : *mut query_image_attributes_reply) -> generic_iterator;
+pub fn xcb_xv_query_image_attributes_offsets_end (R : *mut query_image_attributes_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -1663,9 +1661,9 @@ pub fn xcb_xv_query_image_attributes_offsets_end (R : *mut query_image_attribute
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xv_query_image_attributes_reply (c : *mut connection,
+pub fn xcb_xv_query_image_attributes_reply (c : *mut ffi::base::connection,
                                                cookie : query_image_attributes_cookie,
-                                               e : *mut *mut generic_error) -> *mut query_image_attributes_reply;
+                                               e : *mut *mut ffi::base::generic_error) -> *mut query_image_attributes_reply;
 
 pub fn xcb_xv_put_image_sizeof (_buffer :  *mut c_void,
                          data_len :     u32) -> c_int;
@@ -1681,7 +1679,7 @@ pub fn xcb_xv_put_image_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xv_put_image_checked (c : *mut connection,
+pub fn xcb_xv_put_image_checked (c : *mut ffi::base::connection,
                                     port :  port,
                                     drawable :  ffi::xproto::drawable,
                                     gc :  ffi::xproto::gcontext,
@@ -1697,7 +1695,7 @@ pub fn xcb_xv_put_image_checked (c : *mut connection,
                                     width :  u16,
                                     height :  u16,
                                     data_len :  u32,
-                                    data : *mut u8) -> void_cookie;
+                                    data : *mut u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1707,7 +1705,7 @@ pub fn xcb_xv_put_image_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xv_put_image (c : *mut connection,
+pub fn xcb_xv_put_image (c : *mut ffi::base::connection,
                             port :  port,
                             drawable :  ffi::xproto::drawable,
                             gc :  ffi::xproto::gcontext,
@@ -1723,7 +1721,7 @@ pub fn xcb_xv_put_image (c : *mut connection,
                             width :  u16,
                             height :  u16,
                             data_len :  u32,
-                            data : *mut u8) -> void_cookie;
+                            data : *mut u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1736,7 +1734,7 @@ pub fn xcb_xv_put_image (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xv_shm_put_image_checked (c : *mut connection,
+pub fn xcb_xv_shm_put_image_checked (c : *mut ffi::base::connection,
                                         port :  port,
                                         drawable :  ffi::xproto::drawable,
                                         gc :  ffi::xproto::gcontext,
@@ -1753,7 +1751,7 @@ pub fn xcb_xv_shm_put_image_checked (c : *mut connection,
                                         drw_h :  u16,
                                         width :  u16,
                                         height :  u16,
-                                        send_event :  u8) -> void_cookie;
+                                        send_event :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1763,7 +1761,7 @@ pub fn xcb_xv_shm_put_image_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xv_shm_put_image (c : *mut connection,
+pub fn xcb_xv_shm_put_image (c : *mut ffi::base::connection,
                                 port :  port,
                                 drawable :  ffi::xproto::drawable,
                                 gc :  ffi::xproto::gcontext,
@@ -1780,6 +1778,6 @@ pub fn xcb_xv_shm_put_image (c : *mut connection,
                                 drw_h :  u16,
                                 width :  u16,
                                 height :  u16,
-                                send_event :  u8) -> void_cookie;
+                                send_event :  u8) -> ffi::base::void_cookie;
 }
 

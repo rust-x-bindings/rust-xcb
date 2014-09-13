@@ -8,8 +8,6 @@
 #![allow(non_camel_case_types)]
 use std;
 use libc::*;
-use std::{mem,num,ptr,str};
-use ffi::base::*;
 use ffi;
 
 pub static XF86VIDMODE_MAJOR_VERSION : c_uint = 2;
@@ -607,7 +605,7 @@ pub fn xcb_xf86vidmode_syncrange_next (i:*mut syncrange_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xf86vidmode_syncrange_end (i:syncrange_iterator) -> generic_iterator;
+pub fn xcb_xf86vidmode_syncrange_end (i:syncrange_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -630,7 +628,7 @@ pub fn xcb_xf86vidmode_dotclock_next (i:*mut dotclock_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xf86vidmode_dotclock_end (i:dotclock_iterator) -> generic_iterator;
+pub fn xcb_xf86vidmode_dotclock_end (i:dotclock_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -653,7 +651,7 @@ pub fn xcb_xf86vidmode_mode_info_next (i:*mut mode_info_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xf86vidmode_mode_info_end (i:mode_info_iterator) -> generic_iterator;
+pub fn xcb_xf86vidmode_mode_info_end (i:mode_info_iterator) -> ffi::base::generic_iterator;
 
 /**
  *
@@ -663,7 +661,7 @@ pub fn xcb_xf86vidmode_mode_info_end (i:mode_info_iterator) -> generic_iterator;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86vidmode_query_version (c : *mut connection) -> query_version_cookie;
+pub fn xcb_xf86vidmode_query_version (c : *mut ffi::base::connection) -> query_version_cookie;
 
 /**
  *
@@ -676,7 +674,7 @@ pub fn xcb_xf86vidmode_query_version (c : *mut connection) -> query_version_cook
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86vidmode_query_version_unchecked (c : *mut connection) -> query_version_cookie;
+pub fn xcb_xf86vidmode_query_version_unchecked (c : *mut ffi::base::connection) -> query_version_cookie;
 
 /**
  * Return the reply
@@ -692,9 +690,9 @@ pub fn xcb_xf86vidmode_query_version_unchecked (c : *mut connection) -> query_ve
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86vidmode_query_version_reply (c : *mut connection,
+pub fn xcb_xf86vidmode_query_version_reply (c : *mut ffi::base::connection,
                                                cookie : query_version_cookie,
-                                               e : *mut *mut generic_error) -> *mut query_version_reply;
+                                               e : *mut *mut ffi::base::generic_error) -> *mut query_version_reply;
 
 pub fn xcb_xf86vidmode_get_mode_line_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -706,7 +704,7 @@ pub fn xcb_xf86vidmode_get_mode_line_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86vidmode_get_mode_line (c : *mut connection,
+pub fn xcb_xf86vidmode_get_mode_line (c : *mut ffi::base::connection,
                                          screen :  u16) -> get_mode_line_cookie;
 
 /**
@@ -720,7 +718,7 @@ pub fn xcb_xf86vidmode_get_mode_line (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86vidmode_get_mode_line_unchecked (c : *mut connection,
+pub fn xcb_xf86vidmode_get_mode_line_unchecked (c : *mut ffi::base::connection,
                                                    screen :  u16) -> get_mode_line_cookie;
 
 pub fn xcb_xf86vidmode_get_mode_line_private (R : *mut get_mode_line_reply) -> *mut u8;
@@ -729,7 +727,7 @@ pub fn xcb_xf86vidmode_get_mode_line_private (R : *mut get_mode_line_reply) -> *
 pub fn xcb_xf86vidmode_get_mode_line_private_length (R : *mut get_mode_line_reply) -> c_int;
 
 
-pub fn xcb_xf86vidmode_get_mode_line_private_end (R : *mut get_mode_line_reply) -> generic_iterator;
+pub fn xcb_xf86vidmode_get_mode_line_private_end (R : *mut get_mode_line_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -745,9 +743,9 @@ pub fn xcb_xf86vidmode_get_mode_line_private_end (R : *mut get_mode_line_reply) 
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86vidmode_get_mode_line_reply (c : *mut connection,
+pub fn xcb_xf86vidmode_get_mode_line_reply (c : *mut ffi::base::connection,
                                                cookie : get_mode_line_cookie,
-                                               e : *mut *mut generic_error) -> *mut get_mode_line_reply;
+                                               e : *mut *mut ffi::base::generic_error) -> *mut get_mode_line_reply;
 
 pub fn xcb_xf86vidmode_mod_mode_line_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -762,7 +760,7 @@ pub fn xcb_xf86vidmode_mod_mode_line_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xf86vidmode_mod_mode_line_checked (c : *mut connection,
+pub fn xcb_xf86vidmode_mod_mode_line_checked (c : *mut ffi::base::connection,
                                                  screen :  u32,
                                                  hdisplay :  u16,
                                                  hsyncstart :  u16,
@@ -775,7 +773,7 @@ pub fn xcb_xf86vidmode_mod_mode_line_checked (c : *mut connection,
                                                  vtotal :  u16,
                                                  flags :  u32,
                                                  privsize :  u32,
-                                                 private : *mut u8) -> void_cookie;
+                                                 private : *mut u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -785,7 +783,7 @@ pub fn xcb_xf86vidmode_mod_mode_line_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86vidmode_mod_mode_line (c : *mut connection,
+pub fn xcb_xf86vidmode_mod_mode_line (c : *mut ffi::base::connection,
                                          screen :  u32,
                                          hdisplay :  u16,
                                          hsyncstart :  u16,
@@ -798,7 +796,7 @@ pub fn xcb_xf86vidmode_mod_mode_line (c : *mut connection,
                                          vtotal :  u16,
                                          flags :  u32,
                                          privsize :  u32,
-                                         private : *mut u8) -> void_cookie;
+                                         private : *mut u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -811,9 +809,9 @@ pub fn xcb_xf86vidmode_mod_mode_line (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xf86vidmode_switch_mode_checked (c : *mut connection,
+pub fn xcb_xf86vidmode_switch_mode_checked (c : *mut ffi::base::connection,
                                                screen :  u16,
-                                               zoom :  u16) -> void_cookie;
+                                               zoom :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -823,9 +821,9 @@ pub fn xcb_xf86vidmode_switch_mode_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86vidmode_switch_mode (c : *mut connection,
+pub fn xcb_xf86vidmode_switch_mode (c : *mut ffi::base::connection,
                                        screen :  u16,
-                                       zoom :  u16) -> void_cookie;
+                                       zoom :  u16) -> ffi::base::void_cookie;
 
 pub fn xcb_xf86vidmode_get_monitor_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -837,7 +835,7 @@ pub fn xcb_xf86vidmode_get_monitor_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86vidmode_get_monitor (c : *mut connection,
+pub fn xcb_xf86vidmode_get_monitor (c : *mut ffi::base::connection,
                                        screen :  u16) -> get_monitor_cookie;
 
 /**
@@ -851,7 +849,7 @@ pub fn xcb_xf86vidmode_get_monitor (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86vidmode_get_monitor_unchecked (c : *mut connection,
+pub fn xcb_xf86vidmode_get_monitor_unchecked (c : *mut ffi::base::connection,
                                                  screen :  u16) -> get_monitor_cookie;
 
 pub fn xcb_xf86vidmode_get_monitor_hsync (R : *mut get_monitor_reply) -> *mut syncrange;
@@ -860,7 +858,7 @@ pub fn xcb_xf86vidmode_get_monitor_hsync (R : *mut get_monitor_reply) -> *mut sy
 pub fn xcb_xf86vidmode_get_monitor_hsync_length (R : *mut get_monitor_reply) -> c_int;
 
 
-pub fn xcb_xf86vidmode_get_monitor_hsync_end (R : *mut get_monitor_reply) -> generic_iterator;
+pub fn xcb_xf86vidmode_get_monitor_hsync_end (R : *mut get_monitor_reply) -> ffi::base::generic_iterator;
 
 pub fn xcb_xf86vidmode_get_monitor_vsync (R : *mut get_monitor_reply) -> *mut syncrange;
 
@@ -868,7 +866,7 @@ pub fn xcb_xf86vidmode_get_monitor_vsync (R : *mut get_monitor_reply) -> *mut sy
 pub fn xcb_xf86vidmode_get_monitor_vsync_length (R : *mut get_monitor_reply) -> c_int;
 
 
-pub fn xcb_xf86vidmode_get_monitor_vsync_end (R : *mut get_monitor_reply) -> generic_iterator;
+pub fn xcb_xf86vidmode_get_monitor_vsync_end (R : *mut get_monitor_reply) -> ffi::base::generic_iterator;
 
 pub fn xcb_xf86vidmode_get_monitor_vendor (R : *mut get_monitor_reply) -> *mut c_char;
 
@@ -876,7 +874,7 @@ pub fn xcb_xf86vidmode_get_monitor_vendor (R : *mut get_monitor_reply) -> *mut c
 pub fn xcb_xf86vidmode_get_monitor_vendor_length (R : *mut get_monitor_reply) -> c_int;
 
 
-pub fn xcb_xf86vidmode_get_monitor_vendor_end (R : *mut get_monitor_reply) -> generic_iterator;
+pub fn xcb_xf86vidmode_get_monitor_vendor_end (R : *mut get_monitor_reply) -> ffi::base::generic_iterator;
 
 pub fn xcb_xf86vidmode_get_monitor_alignment_pad (R : *mut get_monitor_reply) -> *mut c_void;
 
@@ -884,7 +882,7 @@ pub fn xcb_xf86vidmode_get_monitor_alignment_pad (R : *mut get_monitor_reply) ->
 pub fn xcb_xf86vidmode_get_monitor_alignment_pad_length (R : *mut get_monitor_reply) -> c_int;
 
 
-pub fn xcb_xf86vidmode_get_monitor_alignment_pad_end (R : *mut get_monitor_reply) -> generic_iterator;
+pub fn xcb_xf86vidmode_get_monitor_alignment_pad_end (R : *mut get_monitor_reply) -> ffi::base::generic_iterator;
 
 pub fn xcb_xf86vidmode_get_monitor_model (R : *mut get_monitor_reply) -> *mut c_char;
 
@@ -892,7 +890,7 @@ pub fn xcb_xf86vidmode_get_monitor_model (R : *mut get_monitor_reply) -> *mut c_
 pub fn xcb_xf86vidmode_get_monitor_model_length (R : *mut get_monitor_reply) -> c_int;
 
 
-pub fn xcb_xf86vidmode_get_monitor_model_end (R : *mut get_monitor_reply) -> generic_iterator;
+pub fn xcb_xf86vidmode_get_monitor_model_end (R : *mut get_monitor_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -908,9 +906,9 @@ pub fn xcb_xf86vidmode_get_monitor_model_end (R : *mut get_monitor_reply) -> gen
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86vidmode_get_monitor_reply (c : *mut connection,
+pub fn xcb_xf86vidmode_get_monitor_reply (c : *mut ffi::base::connection,
                                              cookie : get_monitor_cookie,
-                                             e : *mut *mut generic_error) -> *mut get_monitor_reply;
+                                             e : *mut *mut ffi::base::generic_error) -> *mut get_monitor_reply;
 
 /**
  *
@@ -923,9 +921,9 @@ pub fn xcb_xf86vidmode_get_monitor_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xf86vidmode_lock_mode_switch_checked (c : *mut connection,
+pub fn xcb_xf86vidmode_lock_mode_switch_checked (c : *mut ffi::base::connection,
                                                     screen :  u16,
-                                                    lock :  u16) -> void_cookie;
+                                                    lock :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -935,9 +933,9 @@ pub fn xcb_xf86vidmode_lock_mode_switch_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86vidmode_lock_mode_switch (c : *mut connection,
+pub fn xcb_xf86vidmode_lock_mode_switch (c : *mut ffi::base::connection,
                                             screen :  u16,
-                                            lock :  u16) -> void_cookie;
+                                            lock :  u16) -> ffi::base::void_cookie;
 
 pub fn xcb_xf86vidmode_get_all_mode_lines_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -949,7 +947,7 @@ pub fn xcb_xf86vidmode_get_all_mode_lines_sizeof (_buffer :  *mut c_void) -> c_i
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86vidmode_get_all_mode_lines (c : *mut connection,
+pub fn xcb_xf86vidmode_get_all_mode_lines (c : *mut ffi::base::connection,
                                               screen :  u16) -> get_all_mode_lines_cookie;
 
 /**
@@ -963,7 +961,7 @@ pub fn xcb_xf86vidmode_get_all_mode_lines (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86vidmode_get_all_mode_lines_unchecked (c : *mut connection,
+pub fn xcb_xf86vidmode_get_all_mode_lines_unchecked (c : *mut ffi::base::connection,
                                                         screen :  u16) -> get_all_mode_lines_cookie;
 
 pub fn xcb_xf86vidmode_get_all_mode_lines_modeinfo (R : *mut get_all_mode_lines_reply) -> *mut mode_info;
@@ -987,9 +985,9 @@ pub fn xcb_xf86vidmode_get_all_mode_lines_modeinfo_iterator (R : *mut get_all_mo
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86vidmode_get_all_mode_lines_reply (c : *mut connection,
+pub fn xcb_xf86vidmode_get_all_mode_lines_reply (c : *mut ffi::base::connection,
                                                     cookie : get_all_mode_lines_cookie,
-                                                    e : *mut *mut generic_error) -> *mut get_all_mode_lines_reply;
+                                                    e : *mut *mut ffi::base::generic_error) -> *mut get_all_mode_lines_reply;
 
 pub fn xcb_xf86vidmode_add_mode_line_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1004,7 +1002,7 @@ pub fn xcb_xf86vidmode_add_mode_line_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xf86vidmode_add_mode_line_checked (c : *mut connection,
+pub fn xcb_xf86vidmode_add_mode_line_checked (c : *mut ffi::base::connection,
                                                  screen :  u32,
                                                  dotclock :  dotclock,
                                                  hdisplay :  u16,
@@ -1029,7 +1027,7 @@ pub fn xcb_xf86vidmode_add_mode_line_checked (c : *mut connection,
                                                  after_vsyncend :  u16,
                                                  after_vtotal :  u16,
                                                  after_flags :  u32,
-                                                 private : *mut u8) -> void_cookie;
+                                                 private : *mut u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1039,7 +1037,7 @@ pub fn xcb_xf86vidmode_add_mode_line_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86vidmode_add_mode_line (c : *mut connection,
+pub fn xcb_xf86vidmode_add_mode_line (c : *mut ffi::base::connection,
                                          screen :  u32,
                                          dotclock :  dotclock,
                                          hdisplay :  u16,
@@ -1064,7 +1062,7 @@ pub fn xcb_xf86vidmode_add_mode_line (c : *mut connection,
                                          after_vsyncend :  u16,
                                          after_vtotal :  u16,
                                          after_flags :  u32,
-                                         private : *mut u8) -> void_cookie;
+                                         private : *mut u8) -> ffi::base::void_cookie;
 
 pub fn xcb_xf86vidmode_delete_mode_line_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1079,7 +1077,7 @@ pub fn xcb_xf86vidmode_delete_mode_line_sizeof (_buffer :  *mut c_void) -> c_int
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xf86vidmode_delete_mode_line_checked (c : *mut connection,
+pub fn xcb_xf86vidmode_delete_mode_line_checked (c : *mut ffi::base::connection,
                                                     screen :  u32,
                                                     dotclock :  dotclock,
                                                     hdisplay :  u16,
@@ -1093,7 +1091,7 @@ pub fn xcb_xf86vidmode_delete_mode_line_checked (c : *mut connection,
                                                     vtotal :  u16,
                                                     flags :  u32,
                                                     privsize :  u32,
-                                                    private : *mut u8) -> void_cookie;
+                                                    private : *mut u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1103,7 +1101,7 @@ pub fn xcb_xf86vidmode_delete_mode_line_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86vidmode_delete_mode_line (c : *mut connection,
+pub fn xcb_xf86vidmode_delete_mode_line (c : *mut ffi::base::connection,
                                             screen :  u32,
                                             dotclock :  dotclock,
                                             hdisplay :  u16,
@@ -1117,7 +1115,7 @@ pub fn xcb_xf86vidmode_delete_mode_line (c : *mut connection,
                                             vtotal :  u16,
                                             flags :  u32,
                                             privsize :  u32,
-                                            private : *mut u8) -> void_cookie;
+                                            private : *mut u8) -> ffi::base::void_cookie;
 
 pub fn xcb_xf86vidmode_validate_mode_line_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1129,7 +1127,7 @@ pub fn xcb_xf86vidmode_validate_mode_line_sizeof (_buffer :  *mut c_void) -> c_i
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86vidmode_validate_mode_line (c : *mut connection,
+pub fn xcb_xf86vidmode_validate_mode_line (c : *mut ffi::base::connection,
                                               screen :  u32,
                                               dotclock :  dotclock,
                                               hdisplay :  u16,
@@ -1156,7 +1154,7 @@ pub fn xcb_xf86vidmode_validate_mode_line (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86vidmode_validate_mode_line_unchecked (c : *mut connection,
+pub fn xcb_xf86vidmode_validate_mode_line_unchecked (c : *mut ffi::base::connection,
                                                         screen :  u32,
                                                         dotclock :  dotclock,
                                                         hdisplay :  u16,
@@ -1186,9 +1184,9 @@ pub fn xcb_xf86vidmode_validate_mode_line_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86vidmode_validate_mode_line_reply (c : *mut connection,
+pub fn xcb_xf86vidmode_validate_mode_line_reply (c : *mut ffi::base::connection,
                                                     cookie : validate_mode_line_cookie,
-                                                    e : *mut *mut generic_error) -> *mut validate_mode_line_reply;
+                                                    e : *mut *mut ffi::base::generic_error) -> *mut validate_mode_line_reply;
 
 pub fn xcb_xf86vidmode_switch_to_mode_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1203,7 +1201,7 @@ pub fn xcb_xf86vidmode_switch_to_mode_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xf86vidmode_switch_to_mode_checked (c : *mut connection,
+pub fn xcb_xf86vidmode_switch_to_mode_checked (c : *mut ffi::base::connection,
                                                   screen :  u32,
                                                   dotclock :  dotclock,
                                                   hdisplay :  u16,
@@ -1217,7 +1215,7 @@ pub fn xcb_xf86vidmode_switch_to_mode_checked (c : *mut connection,
                                                   vtotal :  u16,
                                                   flags :  u32,
                                                   privsize :  u32,
-                                                  private : *mut u8) -> void_cookie;
+                                                  private : *mut u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1227,7 +1225,7 @@ pub fn xcb_xf86vidmode_switch_to_mode_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86vidmode_switch_to_mode (c : *mut connection,
+pub fn xcb_xf86vidmode_switch_to_mode (c : *mut ffi::base::connection,
                                           screen :  u32,
                                           dotclock :  dotclock,
                                           hdisplay :  u16,
@@ -1241,7 +1239,7 @@ pub fn xcb_xf86vidmode_switch_to_mode (c : *mut connection,
                                           vtotal :  u16,
                                           flags :  u32,
                                           privsize :  u32,
-                                          private : *mut u8) -> void_cookie;
+                                          private : *mut u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1251,7 +1249,7 @@ pub fn xcb_xf86vidmode_switch_to_mode (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86vidmode_get_view_port (c : *mut connection,
+pub fn xcb_xf86vidmode_get_view_port (c : *mut ffi::base::connection,
                                          screen :  u16) -> get_view_port_cookie;
 
 /**
@@ -1265,7 +1263,7 @@ pub fn xcb_xf86vidmode_get_view_port (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86vidmode_get_view_port_unchecked (c : *mut connection,
+pub fn xcb_xf86vidmode_get_view_port_unchecked (c : *mut ffi::base::connection,
                                                    screen :  u16) -> get_view_port_cookie;
 
 /**
@@ -1282,9 +1280,9 @@ pub fn xcb_xf86vidmode_get_view_port_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86vidmode_get_view_port_reply (c : *mut connection,
+pub fn xcb_xf86vidmode_get_view_port_reply (c : *mut ffi::base::connection,
                                                cookie : get_view_port_cookie,
-                                               e : *mut *mut generic_error) -> *mut get_view_port_reply;
+                                               e : *mut *mut ffi::base::generic_error) -> *mut get_view_port_reply;
 
 /**
  *
@@ -1297,10 +1295,10 @@ pub fn xcb_xf86vidmode_get_view_port_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xf86vidmode_set_view_port_checked (c : *mut connection,
+pub fn xcb_xf86vidmode_set_view_port_checked (c : *mut ffi::base::connection,
                                                  screen :  u16,
                                                  x :  u32,
-                                                 y :  u32) -> void_cookie;
+                                                 y :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1310,10 +1308,10 @@ pub fn xcb_xf86vidmode_set_view_port_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86vidmode_set_view_port (c : *mut connection,
+pub fn xcb_xf86vidmode_set_view_port (c : *mut ffi::base::connection,
                                          screen :  u16,
                                          x :  u32,
-                                         y :  u32) -> void_cookie;
+                                         y :  u32) -> ffi::base::void_cookie;
 
 pub fn xcb_xf86vidmode_get_dot_clocks_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1325,7 +1323,7 @@ pub fn xcb_xf86vidmode_get_dot_clocks_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86vidmode_get_dot_clocks (c : *mut connection,
+pub fn xcb_xf86vidmode_get_dot_clocks (c : *mut ffi::base::connection,
                                           screen :  u16) -> get_dot_clocks_cookie;
 
 /**
@@ -1339,7 +1337,7 @@ pub fn xcb_xf86vidmode_get_dot_clocks (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86vidmode_get_dot_clocks_unchecked (c : *mut connection,
+pub fn xcb_xf86vidmode_get_dot_clocks_unchecked (c : *mut ffi::base::connection,
                                                     screen :  u16) -> get_dot_clocks_cookie;
 
 pub fn xcb_xf86vidmode_get_dot_clocks_clock (R : *mut get_dot_clocks_reply) -> *mut u32;
@@ -1348,7 +1346,7 @@ pub fn xcb_xf86vidmode_get_dot_clocks_clock (R : *mut get_dot_clocks_reply) -> *
 pub fn xcb_xf86vidmode_get_dot_clocks_clock_length (R : *mut get_dot_clocks_reply) -> c_int;
 
 
-pub fn xcb_xf86vidmode_get_dot_clocks_clock_end (R : *mut get_dot_clocks_reply) -> generic_iterator;
+pub fn xcb_xf86vidmode_get_dot_clocks_clock_end (R : *mut get_dot_clocks_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -1364,9 +1362,9 @@ pub fn xcb_xf86vidmode_get_dot_clocks_clock_end (R : *mut get_dot_clocks_reply) 
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86vidmode_get_dot_clocks_reply (c : *mut connection,
+pub fn xcb_xf86vidmode_get_dot_clocks_reply (c : *mut ffi::base::connection,
                                                 cookie : get_dot_clocks_cookie,
-                                                e : *mut *mut generic_error) -> *mut get_dot_clocks_reply;
+                                                e : *mut *mut ffi::base::generic_error) -> *mut get_dot_clocks_reply;
 
 /**
  *
@@ -1379,9 +1377,9 @@ pub fn xcb_xf86vidmode_get_dot_clocks_reply (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xf86vidmode_set_client_version_checked (c : *mut connection,
+pub fn xcb_xf86vidmode_set_client_version_checked (c : *mut ffi::base::connection,
                                                       major :  u16,
-                                                      minor :  u16) -> void_cookie;
+                                                      minor :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1391,9 +1389,9 @@ pub fn xcb_xf86vidmode_set_client_version_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86vidmode_set_client_version (c : *mut connection,
+pub fn xcb_xf86vidmode_set_client_version (c : *mut ffi::base::connection,
                                               major :  u16,
-                                              minor :  u16) -> void_cookie;
+                                              minor :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1406,11 +1404,11 @@ pub fn xcb_xf86vidmode_set_client_version (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xf86vidmode_set_gamma_checked (c : *mut connection,
+pub fn xcb_xf86vidmode_set_gamma_checked (c : *mut ffi::base::connection,
                                              screen :  u16,
                                              red :  u32,
                                              green :  u32,
-                                             blue :  u32) -> void_cookie;
+                                             blue :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1420,11 +1418,11 @@ pub fn xcb_xf86vidmode_set_gamma_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86vidmode_set_gamma (c : *mut connection,
+pub fn xcb_xf86vidmode_set_gamma (c : *mut ffi::base::connection,
                                      screen :  u16,
                                      red :  u32,
                                      green :  u32,
-                                     blue :  u32) -> void_cookie;
+                                     blue :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1434,7 +1432,7 @@ pub fn xcb_xf86vidmode_set_gamma (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86vidmode_get_gamma (c : *mut connection,
+pub fn xcb_xf86vidmode_get_gamma (c : *mut ffi::base::connection,
                                      screen :  u16) -> get_gamma_cookie;
 
 /**
@@ -1448,7 +1446,7 @@ pub fn xcb_xf86vidmode_get_gamma (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86vidmode_get_gamma_unchecked (c : *mut connection,
+pub fn xcb_xf86vidmode_get_gamma_unchecked (c : *mut ffi::base::connection,
                                                screen :  u16) -> get_gamma_cookie;
 
 /**
@@ -1465,9 +1463,9 @@ pub fn xcb_xf86vidmode_get_gamma_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86vidmode_get_gamma_reply (c : *mut connection,
+pub fn xcb_xf86vidmode_get_gamma_reply (c : *mut ffi::base::connection,
                                            cookie : get_gamma_cookie,
-                                           e : *mut *mut generic_error) -> *mut get_gamma_reply;
+                                           e : *mut *mut ffi::base::generic_error) -> *mut get_gamma_reply;
 
 pub fn xcb_xf86vidmode_get_gamma_ramp_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1479,7 +1477,7 @@ pub fn xcb_xf86vidmode_get_gamma_ramp_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86vidmode_get_gamma_ramp (c : *mut connection,
+pub fn xcb_xf86vidmode_get_gamma_ramp (c : *mut ffi::base::connection,
                                           screen :  u16,
                                           size :  u16) -> get_gamma_ramp_cookie;
 
@@ -1494,7 +1492,7 @@ pub fn xcb_xf86vidmode_get_gamma_ramp (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86vidmode_get_gamma_ramp_unchecked (c : *mut connection,
+pub fn xcb_xf86vidmode_get_gamma_ramp_unchecked (c : *mut ffi::base::connection,
                                                     screen :  u16,
                                                     size :  u16) -> get_gamma_ramp_cookie;
 
@@ -1504,7 +1502,7 @@ pub fn xcb_xf86vidmode_get_gamma_ramp_red (R : *mut get_gamma_ramp_reply) -> *mu
 pub fn xcb_xf86vidmode_get_gamma_ramp_red_length (R : *mut get_gamma_ramp_reply) -> c_int;
 
 
-pub fn xcb_xf86vidmode_get_gamma_ramp_red_end (R : *mut get_gamma_ramp_reply) -> generic_iterator;
+pub fn xcb_xf86vidmode_get_gamma_ramp_red_end (R : *mut get_gamma_ramp_reply) -> ffi::base::generic_iterator;
 
 pub fn xcb_xf86vidmode_get_gamma_ramp_green (R : *mut get_gamma_ramp_reply) -> *mut u16;
 
@@ -1512,7 +1510,7 @@ pub fn xcb_xf86vidmode_get_gamma_ramp_green (R : *mut get_gamma_ramp_reply) -> *
 pub fn xcb_xf86vidmode_get_gamma_ramp_green_length (R : *mut get_gamma_ramp_reply) -> c_int;
 
 
-pub fn xcb_xf86vidmode_get_gamma_ramp_green_end (R : *mut get_gamma_ramp_reply) -> generic_iterator;
+pub fn xcb_xf86vidmode_get_gamma_ramp_green_end (R : *mut get_gamma_ramp_reply) -> ffi::base::generic_iterator;
 
 pub fn xcb_xf86vidmode_get_gamma_ramp_blue (R : *mut get_gamma_ramp_reply) -> *mut u16;
 
@@ -1520,7 +1518,7 @@ pub fn xcb_xf86vidmode_get_gamma_ramp_blue (R : *mut get_gamma_ramp_reply) -> *m
 pub fn xcb_xf86vidmode_get_gamma_ramp_blue_length (R : *mut get_gamma_ramp_reply) -> c_int;
 
 
-pub fn xcb_xf86vidmode_get_gamma_ramp_blue_end (R : *mut get_gamma_ramp_reply) -> generic_iterator;
+pub fn xcb_xf86vidmode_get_gamma_ramp_blue_end (R : *mut get_gamma_ramp_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -1536,9 +1534,9 @@ pub fn xcb_xf86vidmode_get_gamma_ramp_blue_end (R : *mut get_gamma_ramp_reply) -
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86vidmode_get_gamma_ramp_reply (c : *mut connection,
+pub fn xcb_xf86vidmode_get_gamma_ramp_reply (c : *mut ffi::base::connection,
                                                 cookie : get_gamma_ramp_cookie,
-                                                e : *mut *mut generic_error) -> *mut get_gamma_ramp_reply;
+                                                e : *mut *mut ffi::base::generic_error) -> *mut get_gamma_ramp_reply;
 
 pub fn xcb_xf86vidmode_set_gamma_ramp_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1553,12 +1551,12 @@ pub fn xcb_xf86vidmode_set_gamma_ramp_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xf86vidmode_set_gamma_ramp_checked (c : *mut connection,
+pub fn xcb_xf86vidmode_set_gamma_ramp_checked (c : *mut ffi::base::connection,
                                                   screen :  u16,
                                                   size :  u16,
                                                   red : *mut u16,
                                                   green : *mut u16,
-                                                  blue : *mut u16) -> void_cookie;
+                                                  blue : *mut u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1568,12 +1566,12 @@ pub fn xcb_xf86vidmode_set_gamma_ramp_checked (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86vidmode_set_gamma_ramp (c : *mut connection,
+pub fn xcb_xf86vidmode_set_gamma_ramp (c : *mut ffi::base::connection,
                                           screen :  u16,
                                           size :  u16,
                                           red : *mut u16,
                                           green : *mut u16,
-                                          blue : *mut u16) -> void_cookie;
+                                          blue : *mut u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1583,7 +1581,7 @@ pub fn xcb_xf86vidmode_set_gamma_ramp (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86vidmode_get_gamma_ramp_size (c : *mut connection,
+pub fn xcb_xf86vidmode_get_gamma_ramp_size (c : *mut ffi::base::connection,
                                                screen :  u16) -> get_gamma_ramp_size_cookie;
 
 /**
@@ -1597,7 +1595,7 @@ pub fn xcb_xf86vidmode_get_gamma_ramp_size (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86vidmode_get_gamma_ramp_size_unchecked (c : *mut connection,
+pub fn xcb_xf86vidmode_get_gamma_ramp_size_unchecked (c : *mut ffi::base::connection,
                                                          screen :  u16) -> get_gamma_ramp_size_cookie;
 
 /**
@@ -1614,9 +1612,9 @@ pub fn xcb_xf86vidmode_get_gamma_ramp_size_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86vidmode_get_gamma_ramp_size_reply (c : *mut connection,
+pub fn xcb_xf86vidmode_get_gamma_ramp_size_reply (c : *mut ffi::base::connection,
                                                      cookie : get_gamma_ramp_size_cookie,
-                                                     e : *mut *mut generic_error) -> *mut get_gamma_ramp_size_reply;
+                                                     e : *mut *mut ffi::base::generic_error) -> *mut get_gamma_ramp_size_reply;
 
 /**
  *
@@ -1626,7 +1624,7 @@ pub fn xcb_xf86vidmode_get_gamma_ramp_size_reply (c : *mut connection,
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_xf86vidmode_get_permissions (c : *mut connection,
+pub fn xcb_xf86vidmode_get_permissions (c : *mut ffi::base::connection,
                                            screen :  u16) -> get_permissions_cookie;
 
 /**
@@ -1640,7 +1638,7 @@ pub fn xcb_xf86vidmode_get_permissions (c : *mut connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86vidmode_get_permissions_unchecked (c : *mut connection,
+pub fn xcb_xf86vidmode_get_permissions_unchecked (c : *mut ffi::base::connection,
                                                      screen :  u16) -> get_permissions_cookie;
 
 /**
@@ -1657,8 +1655,8 @@ pub fn xcb_xf86vidmode_get_permissions_unchecked (c : *mut connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86vidmode_get_permissions_reply (c : *mut connection,
+pub fn xcb_xf86vidmode_get_permissions_reply (c : *mut ffi::base::connection,
                                                  cookie : get_permissions_cookie,
-                                                 e : *mut *mut generic_error) -> *mut get_permissions_reply;
+                                                 e : *mut *mut ffi::base::generic_error) -> *mut get_permissions_reply;
 }
 

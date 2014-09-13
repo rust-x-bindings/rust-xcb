@@ -8,8 +8,6 @@
 #![allow(non_camel_case_types)]
 use std;
 use libc::*;
-use std::{mem,num,ptr,str};
-use ffi::base::*;
 use ffi;
 
 pub static BIGREQUESTS_MAJOR_VERSION : c_uint = 0;
@@ -45,7 +43,7 @@ pub extern "C" {
  * Delivers a request to the X server.
  * 
  */
-pub fn xcb_big_requests_enable (c : *mut connection) -> enable_cookie;
+pub fn xcb_big_requests_enable (c : *mut ffi::base::connection) -> enable_cookie;
 
 /**
  *
@@ -58,7 +56,7 @@ pub fn xcb_big_requests_enable (c : *mut connection) -> enable_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_big_requests_enable_unchecked (c : *mut connection) -> enable_cookie;
+pub fn xcb_big_requests_enable_unchecked (c : *mut ffi::base::connection) -> enable_cookie;
 
 /**
  * Return the reply
@@ -74,8 +72,8 @@ pub fn xcb_big_requests_enable_unchecked (c : *mut connection) -> enable_cookie;
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_big_requests_enable_reply (c : *mut connection,
+pub fn xcb_big_requests_enable_reply (c : *mut ffi::base::connection,
                                          cookie : enable_cookie,
-                                         e : *mut *mut generic_error) -> *mut enable_reply;
+                                         e : *mut *mut ffi::base::generic_error) -> *mut enable_reply;
 }
 
