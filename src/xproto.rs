@@ -1500,11 +1500,11 @@ pub static XCB_NO_OPERATION : u8 = 127;
 
 impl base::Struct<char2b> {
   pub fn byte1(&self) -> u8 {
-    unsafe { accessor!(byte1 -> u8, s.strct) }
+    unsafe { accessor!(byte1 -> u8, self.strct) }
   }
 
   pub fn byte2(&self) -> u8 {
-    unsafe { accessor!(byte2 -> u8, s.strct) }
+    unsafe { accessor!(byte2 -> u8, self.strct) }
   }
 
 }
@@ -1736,11 +1736,11 @@ pub type Point = base::Struct<point>;
 
 impl base::Struct<point> {
   pub fn x(&self) -> i16 {
-    unsafe { accessor!(x -> i16, s.strct) }
+    unsafe { accessor!(x -> i16, self.strct) }
   }
 
   pub fn y(&self) -> i16 {
-    unsafe { accessor!(y -> i16, s.strct) }
+    unsafe { accessor!(y -> i16, self.strct) }
   }
 
 }
@@ -1762,19 +1762,19 @@ pub type Rectangle = base::Struct<rectangle>;
 
 impl base::Struct<rectangle> {
   pub fn x(&self) -> i16 {
-    unsafe { accessor!(x -> i16, s.strct) }
+    unsafe { accessor!(x -> i16, self.strct) }
   }
 
   pub fn y(&self) -> i16 {
-    unsafe { accessor!(y -> i16, s.strct) }
+    unsafe { accessor!(y -> i16, self.strct) }
   }
 
   pub fn width(&self) -> u16 {
-    unsafe { accessor!(width -> u16, s.strct) }
+    unsafe { accessor!(width -> u16, self.strct) }
   }
 
   pub fn height(&self) -> u16 {
-    unsafe { accessor!(height -> u16, s.strct) }
+    unsafe { accessor!(height -> u16, self.strct) }
   }
 
 }
@@ -1796,27 +1796,27 @@ pub type Arc = base::Struct<arc>;
 
 impl base::Struct<arc> {
   pub fn x(&self) -> i16 {
-    unsafe { accessor!(x -> i16, s.strct) }
+    unsafe { accessor!(x -> i16, self.strct) }
   }
 
   pub fn y(&self) -> i16 {
-    unsafe { accessor!(y -> i16, s.strct) }
+    unsafe { accessor!(y -> i16, self.strct) }
   }
 
   pub fn width(&self) -> u16 {
-    unsafe { accessor!(width -> u16, s.strct) }
+    unsafe { accessor!(width -> u16, self.strct) }
   }
 
   pub fn height(&self) -> u16 {
-    unsafe { accessor!(height -> u16, s.strct) }
+    unsafe { accessor!(height -> u16, self.strct) }
   }
 
   pub fn angle1(&self) -> i16 {
-    unsafe { accessor!(angle1 -> i16, s.strct) }
+    unsafe { accessor!(angle1 -> i16, self.strct) }
   }
 
   pub fn angle2(&self) -> i16 {
-    unsafe { accessor!(angle2 -> i16, s.strct) }
+    unsafe { accessor!(angle2 -> i16, self.strct) }
   }
 
 }
@@ -1838,15 +1838,15 @@ pub type Format = base::Struct<format>;
 
 impl base::Struct<format> {
   pub fn depth(&self) -> u8 {
-    unsafe { accessor!(depth -> u8, s.strct) }
+    unsafe { accessor!(depth -> u8, self.strct) }
   }
 
   pub fn bits_per_pixel(&self) -> u8 {
-    unsafe { accessor!(bits_per_pixel -> u8, s.strct) }
+    unsafe { accessor!(bits_per_pixel -> u8, self.strct) }
   }
 
   pub fn scanline_pad(&self) -> u8 {
-    unsafe { accessor!(scanline_pad -> u8, s.strct) }
+    unsafe { accessor!(scanline_pad -> u8, self.strct) }
   }
 
 }
@@ -1866,31 +1866,31 @@ impl<'s, Format> Iterator<&'s Format> for FormatIterator {
 
 impl base::Struct<visualtype> {
   pub fn visual_id(&self) -> Visualid {
-    unsafe { accessor!(visual_id -> Visualid, s.strct) }
+    unsafe { accessor!(visual_id -> Visualid, self.strct) }
   }
 
   pub fn class(&self) -> u8 {
-    unsafe { accessor!(class -> u8, s.strct) }
+    unsafe { accessor!(class -> u8, self.strct) }
   }
 
   pub fn bits_per_rgb_value(&self) -> u8 {
-    unsafe { accessor!(bits_per_rgb_value -> u8, s.strct) }
+    unsafe { accessor!(bits_per_rgb_value -> u8, self.strct) }
   }
 
   pub fn colormap_entries(&self) -> u16 {
-    unsafe { accessor!(colormap_entries -> u16, s.strct) }
+    unsafe { accessor!(colormap_entries -> u16, self.strct) }
   }
 
   pub fn red_mask(&self) -> u32 {
-    unsafe { accessor!(red_mask -> u32, s.strct) }
+    unsafe { accessor!(red_mask -> u32, self.strct) }
   }
 
   pub fn green_mask(&self) -> u32 {
-    unsafe { accessor!(green_mask -> u32, s.strct) }
+    unsafe { accessor!(green_mask -> u32, self.strct) }
   }
 
   pub fn blue_mask(&self) -> u32 {
-    unsafe { accessor!(blue_mask -> u32, s.strct) }
+    unsafe { accessor!(blue_mask -> u32, self.strct) }
   }
 
 }
@@ -1912,11 +1912,11 @@ pub type Depth = base::Struct<depth>;
 
 impl base::Struct<depth> {
   pub fn depth(&self) -> u8 {
-    unsafe { accessor!(depth -> u8, s.strct) }
+    unsafe { accessor!(depth -> u8, self.strct) }
   }
 
   pub fn visuals(&self) -> VisualtypeIterator {
-    unsafe { accessor!(VisualtypeIterator, xcb_depth_visuals_iterator, s.strct) }
+    unsafe { accessor!(VisualtypeIterator, xcb_depth_visuals_iterator, self.strct) }
   }
 
 }
@@ -1938,67 +1938,67 @@ pub type Screen = base::Struct<screen>;
 
 impl base::Struct<screen> {
   pub fn root(&self) -> Window {
-    unsafe { accessor!(root -> Window, s.strct) }
+    unsafe { accessor!(root -> Window, self.strct) }
   }
 
   pub fn default_colormap(&self) -> Colormap {
-    unsafe { accessor!(default_colormap -> Colormap, s.strct) }
+    unsafe { accessor!(default_colormap -> Colormap, self.strct) }
   }
 
   pub fn white_pixel(&self) -> u32 {
-    unsafe { accessor!(white_pixel -> u32, s.strct) }
+    unsafe { accessor!(white_pixel -> u32, self.strct) }
   }
 
   pub fn black_pixel(&self) -> u32 {
-    unsafe { accessor!(black_pixel -> u32, s.strct) }
+    unsafe { accessor!(black_pixel -> u32, self.strct) }
   }
 
   pub fn current_input_masks(&self) -> u32 {
-    unsafe { accessor!(current_input_masks -> u32, s.strct) }
+    unsafe { accessor!(current_input_masks -> u32, self.strct) }
   }
 
   pub fn width_in_pixels(&self) -> u16 {
-    unsafe { accessor!(width_in_pixels -> u16, s.strct) }
+    unsafe { accessor!(width_in_pixels -> u16, self.strct) }
   }
 
   pub fn height_in_pixels(&self) -> u16 {
-    unsafe { accessor!(height_in_pixels -> u16, s.strct) }
+    unsafe { accessor!(height_in_pixels -> u16, self.strct) }
   }
 
   pub fn width_in_millimeters(&self) -> u16 {
-    unsafe { accessor!(width_in_millimeters -> u16, s.strct) }
+    unsafe { accessor!(width_in_millimeters -> u16, self.strct) }
   }
 
   pub fn height_in_millimeters(&self) -> u16 {
-    unsafe { accessor!(height_in_millimeters -> u16, s.strct) }
+    unsafe { accessor!(height_in_millimeters -> u16, self.strct) }
   }
 
   pub fn min_installed_maps(&self) -> u16 {
-    unsafe { accessor!(min_installed_maps -> u16, s.strct) }
+    unsafe { accessor!(min_installed_maps -> u16, self.strct) }
   }
 
   pub fn max_installed_maps(&self) -> u16 {
-    unsafe { accessor!(max_installed_maps -> u16, s.strct) }
+    unsafe { accessor!(max_installed_maps -> u16, self.strct) }
   }
 
   pub fn root_visual(&self) -> Visualid {
-    unsafe { accessor!(root_visual -> Visualid, s.strct) }
+    unsafe { accessor!(root_visual -> Visualid, self.strct) }
   }
 
   pub fn backing_stores(&self) -> u8 {
-    unsafe { accessor!(backing_stores -> u8, s.strct) }
+    unsafe { accessor!(backing_stores -> u8, self.strct) }
   }
 
   pub fn save_unders(&self) -> u8 {
-    unsafe { accessor!(save_unders -> u8, s.strct) }
+    unsafe { accessor!(save_unders -> u8, self.strct) }
   }
 
   pub fn root_depth(&self) -> u8 {
-    unsafe { accessor!(root_depth -> u8, s.strct) }
+    unsafe { accessor!(root_depth -> u8, self.strct) }
   }
 
   pub fn allowed_depths(&self) -> DepthIterator {
-    unsafe { accessor!(DepthIterator, xcb_screen_allowed_depths_iterator, s.strct) }
+    unsafe { accessor!(DepthIterator, xcb_screen_allowed_depths_iterator, self.strct) }
   }
 
 }
@@ -2020,23 +2020,23 @@ pub type SetupRequest = base::Struct<setup_request>;
 
 impl base::Struct<setup_request> {
   pub fn byte_order(&self) -> u8 {
-    unsafe { accessor!(byte_order -> u8, s.strct) }
+    unsafe { accessor!(byte_order -> u8, self.strct) }
   }
 
   pub fn protocol_major_version(&self) -> u16 {
-    unsafe { accessor!(protocol_major_version -> u16, s.strct) }
+    unsafe { accessor!(protocol_major_version -> u16, self.strct) }
   }
 
   pub fn protocol_minor_version(&self) -> u16 {
-    unsafe { accessor!(protocol_minor_version -> u16, s.strct) }
+    unsafe { accessor!(protocol_minor_version -> u16, self.strct) }
   }
 
   pub fn authorization_protocol_name(&self) -> Box<str> {
-    unsafe { accessor!(str, xcb_setup_request_authorization_protocol_name_length, xcb_setup_request_authorization_protocol_name, s.strct) }
+    unsafe { accessor!(str, xcb_setup_request_authorization_protocol_name_length, xcb_setup_request_authorization_protocol_name, self.strct) }
   }
 
   pub fn authorization_protocol_data(&self) -> Box<str> {
-    unsafe { accessor!(str, xcb_setup_request_authorization_protocol_data_length, xcb_setup_request_authorization_protocol_data, s.strct) }
+    unsafe { accessor!(str, xcb_setup_request_authorization_protocol_data_length, xcb_setup_request_authorization_protocol_data, self.strct) }
   }
 
 }
@@ -2058,23 +2058,23 @@ pub type SetupFailed = base::Struct<setup_failed>;
 
 impl base::Struct<setup_failed> {
   pub fn status(&self) -> u8 {
-    unsafe { accessor!(status -> u8, s.strct) }
+    unsafe { accessor!(status -> u8, self.strct) }
   }
 
   pub fn protocol_major_version(&self) -> u16 {
-    unsafe { accessor!(protocol_major_version -> u16, s.strct) }
+    unsafe { accessor!(protocol_major_version -> u16, self.strct) }
   }
 
   pub fn protocol_minor_version(&self) -> u16 {
-    unsafe { accessor!(protocol_minor_version -> u16, s.strct) }
+    unsafe { accessor!(protocol_minor_version -> u16, self.strct) }
   }
 
   pub fn length(&self) -> u16 {
-    unsafe { accessor!(length -> u16, s.strct) }
+    unsafe { accessor!(length -> u16, self.strct) }
   }
 
   pub fn reason(&self) -> Box<str> {
-    unsafe { accessor!(str, xcb_setup_failed_reason_length, xcb_setup_failed_reason, s.strct) }
+    unsafe { accessor!(str, xcb_setup_failed_reason_length, xcb_setup_failed_reason, self.strct) }
   }
 
 }
@@ -2096,11 +2096,11 @@ pub type SetupAuthenticate = base::Struct<setup_authenticate>;
 
 impl base::Struct<setup_authenticate> {
   pub fn status(&self) -> u8 {
-    unsafe { accessor!(status -> u8, s.strct) }
+    unsafe { accessor!(status -> u8, self.strct) }
   }
 
   pub fn reason(&self) -> Box<str> {
-    unsafe { accessor!(str, xcb_setup_authenticate_reason_length, xcb_setup_authenticate_reason, s.strct) }
+    unsafe { accessor!(str, xcb_setup_authenticate_reason_length, xcb_setup_authenticate_reason, self.strct) }
   }
 
 }
@@ -2122,75 +2122,75 @@ pub type Setup = base::Struct<setup>;
 
 impl base::Struct<setup> {
   pub fn status(&self) -> u8 {
-    unsafe { accessor!(status -> u8, s.strct) }
+    unsafe { accessor!(status -> u8, self.strct) }
   }
 
   pub fn protocol_major_version(&self) -> u16 {
-    unsafe { accessor!(protocol_major_version -> u16, s.strct) }
+    unsafe { accessor!(protocol_major_version -> u16, self.strct) }
   }
 
   pub fn protocol_minor_version(&self) -> u16 {
-    unsafe { accessor!(protocol_minor_version -> u16, s.strct) }
+    unsafe { accessor!(protocol_minor_version -> u16, self.strct) }
   }
 
   pub fn length(&self) -> u16 {
-    unsafe { accessor!(length -> u16, s.strct) }
+    unsafe { accessor!(length -> u16, self.strct) }
   }
 
   pub fn release_number(&self) -> u32 {
-    unsafe { accessor!(release_number -> u32, s.strct) }
+    unsafe { accessor!(release_number -> u32, self.strct) }
   }
 
   pub fn resource_id_base(&self) -> u32 {
-    unsafe { accessor!(resource_id_base -> u32, s.strct) }
+    unsafe { accessor!(resource_id_base -> u32, self.strct) }
   }
 
   pub fn resource_id_mask(&self) -> u32 {
-    unsafe { accessor!(resource_id_mask -> u32, s.strct) }
+    unsafe { accessor!(resource_id_mask -> u32, self.strct) }
   }
 
   pub fn motion_buffer_size(&self) -> u32 {
-    unsafe { accessor!(motion_buffer_size -> u32, s.strct) }
+    unsafe { accessor!(motion_buffer_size -> u32, self.strct) }
   }
 
   pub fn maximum_request_length(&self) -> u16 {
-    unsafe { accessor!(maximum_request_length -> u16, s.strct) }
+    unsafe { accessor!(maximum_request_length -> u16, self.strct) }
   }
 
   pub fn image_byte_order(&self) -> u8 {
-    unsafe { accessor!(image_byte_order -> u8, s.strct) }
+    unsafe { accessor!(image_byte_order -> u8, self.strct) }
   }
 
   pub fn bitmap_format_bit_order(&self) -> u8 {
-    unsafe { accessor!(bitmap_format_bit_order -> u8, s.strct) }
+    unsafe { accessor!(bitmap_format_bit_order -> u8, self.strct) }
   }
 
   pub fn bitmap_format_scanline_unit(&self) -> u8 {
-    unsafe { accessor!(bitmap_format_scanline_unit -> u8, s.strct) }
+    unsafe { accessor!(bitmap_format_scanline_unit -> u8, self.strct) }
   }
 
   pub fn bitmap_format_scanline_pad(&self) -> u8 {
-    unsafe { accessor!(bitmap_format_scanline_pad -> u8, s.strct) }
+    unsafe { accessor!(bitmap_format_scanline_pad -> u8, self.strct) }
   }
 
   pub fn min_keycode(&self) -> Keycode {
-    unsafe { accessor!(min_keycode -> Keycode, s.strct) }
+    unsafe { accessor!(min_keycode -> Keycode, self.strct) }
   }
 
   pub fn max_keycode(&self) -> Keycode {
-    unsafe { accessor!(max_keycode -> Keycode, s.strct) }
+    unsafe { accessor!(max_keycode -> Keycode, self.strct) }
   }
 
   pub fn vendor(&self) -> Box<str> {
-    unsafe { accessor!(str, xcb_setup_vendor_length, xcb_setup_vendor, s.strct) }
+    unsafe { accessor!(str, xcb_setup_vendor_length, xcb_setup_vendor, self.strct) }
   }
 
   pub fn pixmap_formats(&self) -> FormatIterator {
-    unsafe { accessor!(FormatIterator, xcb_setup_pixmap_formats_iterator, s.strct) }
+    unsafe { accessor!(FormatIterator, xcb_setup_pixmap_formats_iterator, self.strct) }
   }
 
   pub fn roots(&self) -> ScreenIterator {
-    unsafe { accessor!(ScreenIterator, xcb_setup_roots_iterator, s.strct) }
+    unsafe { accessor!(ScreenIterator, xcb_setup_roots_iterator, self.strct) }
   }
 
 }
@@ -3358,7 +3358,7 @@ pub fn CreateWindowChecked<'r> (c : &'r Connection,
                             value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = std::vec::raw::to_ptr(value_list_vec);
+    let value_list_ptr = value_list_vec.as_mut_ptr();
     let cookie = xcb_create_window_checked(c.get_raw_conn(),
         depth as u8, //1
         wid as window, //2
@@ -3389,7 +3389,7 @@ pub fn CreateWindow<'r> (c : &'r Connection,
                      value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = std::vec::raw::to_ptr(value_list_vec);
+    let value_list_ptr = value_list_vec.as_mut_ptr();
     let cookie = xcb_create_window(c.get_raw_conn(),
         depth as u8, //1
         wid as window, //2
@@ -3411,7 +3411,7 @@ pub fn ChangeWindowAttributesChecked<'r> (c : &'r Connection,
                                       value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = std::vec::raw::to_ptr(value_list_vec);
+    let value_list_ptr = value_list_vec.as_mut_ptr();
     let cookie = xcb_change_window_attributes_checked(c.get_raw_conn(),
         window as window, //1
         value_list_mask as u32, //2
@@ -3424,7 +3424,7 @@ pub fn ChangeWindowAttributes<'r> (c : &'r Connection,
                                value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = std::vec::raw::to_ptr(value_list_vec);
+    let value_list_ptr = value_list_vec.as_mut_ptr();
     let cookie = xcb_change_window_attributes(c.get_raw_conn(),
         window as window, //1
         value_list_mask as u32, //2
@@ -3662,7 +3662,7 @@ pub fn ConfigureWindowChecked<'r> (c : &'r Connection,
                                value_list : &[(u16,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = std::vec::raw::to_ptr(value_list_vec);
+    let value_list_ptr = value_list_vec.as_mut_ptr();
     let cookie = xcb_configure_window_checked(c.get_raw_conn(),
         window as window, //1
         value_list_mask as u16, //2
@@ -3675,7 +3675,7 @@ pub fn ConfigureWindow<'r> (c : &'r Connection,
                         value_list : &[(u16,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = std::vec::raw::to_ptr(value_list_vec);
+    let value_list_ptr = value_list_vec.as_mut_ptr();
     let cookie = xcb_configure_window(c.get_raw_conn(),
         window as window, //1
         value_list_mask as u16, //2
@@ -3792,7 +3792,7 @@ pub fn InternAtom<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = std::vec::raw::to_ptr(name);
+    let name_ptr = name.as_mmut_ptr();
     let cookie = xcb_intern_atom(c.get_raw_conn(),
         only_if_exists as u8, //1
         name_len as u16, //2
@@ -3806,7 +3806,7 @@ pub fn InternAtomUnchecked<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = std::vec::raw::to_ptr(name);
+    let name_ptr = name.as_mmut_ptr();
     let cookie = xcb_intern_atom_unchecked(c.get_raw_conn(),
         only_if_exists as u8, //1
         name_len as u16, //2
@@ -3858,7 +3858,7 @@ pub fn ChangePropertyChecked<'r> (c : &'r Connection,
                               data : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let data_len = data.len();
-    let data_ptr = std::vec::raw::to_ptr(data);
+    let data_ptr = data.as_mmut_ptr();
     let cookie = xcb_change_property_checked(c.get_raw_conn(),
         mode as u8, //1
         window as window, //2
@@ -3879,7 +3879,7 @@ pub fn ChangeProperty<'r> (c : &'r Connection,
                        data : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let data_len = data.len();
-    let data_ptr = std::vec::raw::to_ptr(data);
+    let data_ptr = data.as_mmut_ptr();
     let cookie = xcb_change_property(c.get_raw_conn(),
         mode as u8, //1
         window as window, //2
@@ -4083,7 +4083,7 @@ pub fn SendEventChecked<'r> (c : &'r Connection,
                          event : &str) -> base::VoidCookie<'r> {
   unsafe {
     let event = (event).as_bytes();
-    let event_ptr = std::vec::raw::to_ptr(event);
+    let event_ptr = event.as_mmut_ptr();
     let cookie = xcb_send_event_checked(c.get_raw_conn(),
         propagate as u8, //1
         destination as window, //2
@@ -4099,7 +4099,7 @@ pub fn SendEvent<'r> (c : &'r Connection,
                   event : &str) -> base::VoidCookie<'r> {
   unsafe {
     let event = (event).as_bytes();
-    let event_ptr = std::vec::raw::to_ptr(event);
+    let event_ptr = event.as_mmut_ptr();
     let cookie = xcb_send_event(c.get_raw_conn(),
         propagate as u8, //1
         destination as window, //2
@@ -4492,15 +4492,15 @@ pub type Timecoord = base::Struct<timecoord>;
 
 impl base::Struct<timecoord> {
   pub fn time(&self) -> Timestamp {
-    unsafe { accessor!(time -> Timestamp, s.strct) }
+    unsafe { accessor!(time -> Timestamp, self.strct) }
   }
 
   pub fn x(&self) -> i16 {
-    unsafe { accessor!(x -> i16, s.strct) }
+    unsafe { accessor!(x -> i16, self.strct) }
   }
 
   pub fn y(&self) -> i16 {
-    unsafe { accessor!(y -> i16, s.strct) }
+    unsafe { accessor!(y -> i16, self.strct) }
   }
 
 }
@@ -4720,7 +4720,7 @@ pub fn OpenFontChecked<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = std::vec::raw::to_ptr(name);
+    let name_ptr = name.as_mmut_ptr();
     let cookie = xcb_open_font_checked(c.get_raw_conn(),
         fid as font, //1
         name_len as u16, //2
@@ -4734,7 +4734,7 @@ pub fn OpenFont<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = std::vec::raw::to_ptr(name);
+    let name_ptr = name.as_mmut_ptr();
     let cookie = xcb_open_font(c.get_raw_conn(),
         fid as font, //1
         name_len as u16, //2
@@ -4761,11 +4761,11 @@ pub fn CloseFont<'r> (c : &'r Connection,
 
 impl base::Struct<fontprop> {
   pub fn name(&self) -> Atom {
-    unsafe { accessor!(name -> Atom, s.strct) }
+    unsafe { accessor!(name -> Atom, self.strct) }
   }
 
   pub fn value(&self) -> u32 {
-    unsafe { accessor!(value -> u32, s.strct) }
+    unsafe { accessor!(value -> u32, self.strct) }
   }
 
 }
@@ -4787,27 +4787,27 @@ pub type Charinfo = base::Struct<charinfo>;
 
 impl base::Struct<charinfo> {
   pub fn left_side_bearing(&self) -> i16 {
-    unsafe { accessor!(left_side_bearing -> i16, s.strct) }
+    unsafe { accessor!(left_side_bearing -> i16, self.strct) }
   }
 
   pub fn right_side_bearing(&self) -> i16 {
-    unsafe { accessor!(right_side_bearing -> i16, s.strct) }
+    unsafe { accessor!(right_side_bearing -> i16, self.strct) }
   }
 
   pub fn character_width(&self) -> i16 {
-    unsafe { accessor!(character_width -> i16, s.strct) }
+    unsafe { accessor!(character_width -> i16, self.strct) }
   }
 
   pub fn ascent(&self) -> i16 {
-    unsafe { accessor!(ascent -> i16, s.strct) }
+    unsafe { accessor!(ascent -> i16, self.strct) }
   }
 
   pub fn descent(&self) -> i16 {
-    unsafe { accessor!(descent -> i16, s.strct) }
+    unsafe { accessor!(descent -> i16, self.strct) }
   }
 
   pub fn attributes(&self) -> u16 {
-    unsafe { accessor!(attributes -> u16, s.strct) }
+    unsafe { accessor!(attributes -> u16, self.strct) }
   }
 
 }
@@ -4901,7 +4901,7 @@ pub fn QueryTextExtents<'r> (c : &'r Connection,
                          string : &[Char2b]) -> QueryTextExtentsCookie<'r> {
   unsafe {
     let string_len = string.len();
-    let string_ptr = std::vec::raw::to_ptr(string);
+    let string_ptr = string.as_mmut_ptr();
     let cookie = xcb_query_text_extents(c.get_raw_conn(),
         font as fontable, //1
         string_len as u32, //2
@@ -4914,7 +4914,7 @@ pub fn QueryTextExtentsUnchecked<'r> (c : &'r Connection,
                                   string : &[Char2b]) -> QueryTextExtentsCookie<'r> {
   unsafe {
     let string_len = string.len();
-    let string_ptr = std::vec::raw::to_ptr(string);
+    let string_ptr = string.as_mmut_ptr();
     let cookie = xcb_query_text_extents_unchecked(c.get_raw_conn(),
         font as fontable, //1
         string_len as u32, //2
@@ -4964,7 +4964,7 @@ pub type Str = base::Struct<str_>;
 
 impl base::Struct<str_> {
   pub fn name(&self) -> Box<str> {
-    unsafe { accessor!(str, xcb_str_name_length, xcb_str_name, s.strct) }
+    unsafe { accessor!(str, xcb_str_name_length, xcb_str_name, self.strct) }
   }
 
 }
@@ -4987,7 +4987,7 @@ pub fn ListFonts<'r> (c : &'r Connection,
   unsafe {
     let pattern = (pattern).as_bytes();
     let pattern_len = pattern.len();
-    let pattern_ptr = std::vec::raw::to_ptr(pattern);
+    let pattern_ptr = pattern.as_mmut_ptr();
     let cookie = xcb_list_fonts(c.get_raw_conn(),
         max_names as u16, //1
         pattern_len as u16, //2
@@ -5001,7 +5001,7 @@ pub fn ListFontsUnchecked<'r> (c : &'r Connection,
   unsafe {
     let pattern = (pattern).as_bytes();
     let pattern_len = pattern.len();
-    let pattern_ptr = std::vec::raw::to_ptr(pattern);
+    let pattern_ptr = pattern.as_mmut_ptr();
     let cookie = xcb_list_fonts_unchecked(c.get_raw_conn(),
         max_names as u16, //1
         pattern_len as u16, //2
@@ -5024,7 +5024,7 @@ pub fn ListFontsWithInfo<'r> (c : &'r Connection,
   unsafe {
     let pattern = (pattern).as_bytes();
     let pattern_len = pattern.len();
-    let pattern_ptr = std::vec::raw::to_ptr(pattern);
+    let pattern_ptr = pattern.as_mmut_ptr();
     let cookie = xcb_list_fonts_with_info(c.get_raw_conn(),
         max_names as u16, //1
         pattern_len as u16, //2
@@ -5038,7 +5038,7 @@ pub fn ListFontsWithInfoUnchecked<'r> (c : &'r Connection,
   unsafe {
     let pattern = (pattern).as_bytes();
     let pattern_len = pattern.len();
-    let pattern_ptr = std::vec::raw::to_ptr(pattern);
+    let pattern_ptr = pattern.as_mmut_ptr();
     let cookie = xcb_list_fonts_with_info_unchecked(c.get_raw_conn(),
         max_names as u16, //1
         pattern_len as u16, //2
@@ -5109,7 +5109,7 @@ pub fn SetFontPathChecked<'r> (c : &'r Connection,
                            font : &[Str]) -> base::VoidCookie<'r> {
   unsafe {
     let font_len = font.len();
-    let font_ptr = std::vec::raw::to_ptr(font);
+    let font_ptr = font.as_mmut_ptr();
     let cookie = xcb_set_font_path_checked(c.get_raw_conn(),
         font_len as u16, //1
         font_ptr as *mut str_); //2
@@ -5120,7 +5120,7 @@ pub fn SetFontPath<'r> (c : &'r Connection,
                     font : &[Str]) -> base::VoidCookie<'r> {
   unsafe {
     let font_len = font.len();
-    let font_ptr = std::vec::raw::to_ptr(font);
+    let font_ptr = font.as_mmut_ptr();
     let cookie = xcb_set_font_path(c.get_raw_conn(),
         font_len as u16, //1
         font_ptr as *mut str_); //2
@@ -5203,7 +5203,7 @@ pub fn CreateGcChecked<'r> (c : &'r Connection,
                         value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = std::vec::raw::to_ptr(value_list_vec);
+    let value_list_ptr = value_list_vec.as_mut_ptr();
     let cookie = xcb_create_gc_checked(c.get_raw_conn(),
         cid as gcontext, //1
         drawable as drawable, //2
@@ -5218,7 +5218,7 @@ pub fn CreateGc<'r> (c : &'r Connection,
                  value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = std::vec::raw::to_ptr(value_list_vec);
+    let value_list_ptr = value_list_vec.as_mut_ptr();
     let cookie = xcb_create_gc(c.get_raw_conn(),
         cid as gcontext, //1
         drawable as drawable, //2
@@ -5232,7 +5232,7 @@ pub fn ChangeGcChecked<'r> (c : &'r Connection,
                         value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = std::vec::raw::to_ptr(value_list_vec);
+    let value_list_ptr = value_list_vec.as_mut_ptr();
     let cookie = xcb_change_gc_checked(c.get_raw_conn(),
         gc as gcontext, //1
         value_list_mask as u32, //2
@@ -5245,7 +5245,7 @@ pub fn ChangeGc<'r> (c : &'r Connection,
                  value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = std::vec::raw::to_ptr(value_list_vec);
+    let value_list_ptr = value_list_vec.as_mut_ptr();
     let cookie = xcb_change_gc(c.get_raw_conn(),
         gc as gcontext, //1
         value_list_mask as u32, //2
@@ -5283,7 +5283,7 @@ pub fn SetDashesChecked<'r> (c : &'r Connection,
                          dashes : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let dashes_len = dashes.len();
-    let dashes_ptr = std::vec::raw::to_ptr(dashes);
+    let dashes_ptr = dashes.as_mmut_ptr();
     let cookie = xcb_set_dashes_checked(c.get_raw_conn(),
         gc as gcontext, //1
         dash_offset as u16, //2
@@ -5298,7 +5298,7 @@ pub fn SetDashes<'r> (c : &'r Connection,
                   dashes : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let dashes_len = dashes.len();
-    let dashes_ptr = std::vec::raw::to_ptr(dashes);
+    let dashes_ptr = dashes.as_mmut_ptr();
     let cookie = xcb_set_dashes(c.get_raw_conn(),
         gc as gcontext, //1
         dash_offset as u16, //2
@@ -5315,7 +5315,7 @@ pub fn SetClipRectanglesChecked<'r> (c : &'r Connection,
                                  rectangles : &[Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = std::vec::raw::to_ptr(rectangles);
+    let rectangles_ptr = rectangles.as_mmut_ptr();
     let cookie = xcb_set_clip_rectangles_checked(c.get_raw_conn(),
         ordering as u8, //1
         gc as gcontext, //2
@@ -5334,7 +5334,7 @@ pub fn SetClipRectangles<'r> (c : &'r Connection,
                           rectangles : &[Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = std::vec::raw::to_ptr(rectangles);
+    let rectangles_ptr = rectangles.as_mmut_ptr();
     let cookie = xcb_set_clip_rectangles(c.get_raw_conn(),
         ordering as u8, //1
         gc as gcontext, //2
@@ -5504,7 +5504,7 @@ pub fn PolyPointChecked<'r> (c : &'r Connection,
                          points : &[Point]) -> base::VoidCookie<'r> {
   unsafe {
     let points_len = points.len();
-    let points_ptr = std::vec::raw::to_ptr(points);
+    let points_ptr = points.as_mmut_ptr();
     let cookie = xcb_poly_point_checked(c.get_raw_conn(),
         coordinate_mode as u8, //1
         drawable as drawable, //2
@@ -5521,7 +5521,7 @@ pub fn PolyPoint<'r> (c : &'r Connection,
                   points : &[Point]) -> base::VoidCookie<'r> {
   unsafe {
     let points_len = points.len();
-    let points_ptr = std::vec::raw::to_ptr(points);
+    let points_ptr = points.as_mmut_ptr();
     let cookie = xcb_poly_point(c.get_raw_conn(),
         coordinate_mode as u8, //1
         drawable as drawable, //2
@@ -5538,7 +5538,7 @@ pub fn PolyLineChecked<'r> (c : &'r Connection,
                         points : &[Point]) -> base::VoidCookie<'r> {
   unsafe {
     let points_len = points.len();
-    let points_ptr = std::vec::raw::to_ptr(points);
+    let points_ptr = points.as_mmut_ptr();
     let cookie = xcb_poly_line_checked(c.get_raw_conn(),
         coordinate_mode as u8, //1
         drawable as drawable, //2
@@ -5555,7 +5555,7 @@ pub fn PolyLine<'r> (c : &'r Connection,
                  points : &[Point]) -> base::VoidCookie<'r> {
   unsafe {
     let points_len = points.len();
-    let points_ptr = std::vec::raw::to_ptr(points);
+    let points_ptr = points.as_mmut_ptr();
     let cookie = xcb_poly_line(c.get_raw_conn(),
         coordinate_mode as u8, //1
         drawable as drawable, //2
@@ -5570,19 +5570,19 @@ pub type Segment = base::Struct<segment>;
 
 impl base::Struct<segment> {
   pub fn x1(&self) -> i16 {
-    unsafe { accessor!(x1 -> i16, s.strct) }
+    unsafe { accessor!(x1 -> i16, self.strct) }
   }
 
   pub fn y1(&self) -> i16 {
-    unsafe { accessor!(y1 -> i16, s.strct) }
+    unsafe { accessor!(y1 -> i16, self.strct) }
   }
 
   pub fn x2(&self) -> i16 {
-    unsafe { accessor!(x2 -> i16, s.strct) }
+    unsafe { accessor!(x2 -> i16, self.strct) }
   }
 
   pub fn y2(&self) -> i16 {
-    unsafe { accessor!(y2 -> i16, s.strct) }
+    unsafe { accessor!(y2 -> i16, self.strct) }
   }
 
 }
@@ -5605,7 +5605,7 @@ pub fn PolySegmentChecked<'r> (c : &'r Connection,
                            segments : &[Segment]) -> base::VoidCookie<'r> {
   unsafe {
     let segments_len = segments.len();
-    let segments_ptr = std::vec::raw::to_ptr(segments);
+    let segments_ptr = segments.as_mmut_ptr();
     let cookie = xcb_poly_segment_checked(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5620,7 +5620,7 @@ pub fn PolySegment<'r> (c : &'r Connection,
                     segments : &[Segment]) -> base::VoidCookie<'r> {
   unsafe {
     let segments_len = segments.len();
-    let segments_ptr = std::vec::raw::to_ptr(segments);
+    let segments_ptr = segments.as_mmut_ptr();
     let cookie = xcb_poly_segment(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5635,7 +5635,7 @@ pub fn PolyRectangleChecked<'r> (c : &'r Connection,
                              rectangles : &[Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = std::vec::raw::to_ptr(rectangles);
+    let rectangles_ptr = rectangles.as_mmut_ptr();
     let cookie = xcb_poly_rectangle_checked(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5650,7 +5650,7 @@ pub fn PolyRectangle<'r> (c : &'r Connection,
                       rectangles : &[Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = std::vec::raw::to_ptr(rectangles);
+    let rectangles_ptr = rectangles.as_mmut_ptr();
     let cookie = xcb_poly_rectangle(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5665,7 +5665,7 @@ pub fn PolyArcChecked<'r> (c : &'r Connection,
                        arcs : &[Arc]) -> base::VoidCookie<'r> {
   unsafe {
     let arcs_len = arcs.len();
-    let arcs_ptr = std::vec::raw::to_ptr(arcs);
+    let arcs_ptr = arcs.as_mmut_ptr();
     let cookie = xcb_poly_arc_checked(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5680,7 +5680,7 @@ pub fn PolyArc<'r> (c : &'r Connection,
                 arcs : &[Arc]) -> base::VoidCookie<'r> {
   unsafe {
     let arcs_len = arcs.len();
-    let arcs_ptr = std::vec::raw::to_ptr(arcs);
+    let arcs_ptr = arcs.as_mmut_ptr();
     let cookie = xcb_poly_arc(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5697,7 +5697,7 @@ pub fn FillPolyChecked<'r> (c : &'r Connection,
                         points : &[Point]) -> base::VoidCookie<'r> {
   unsafe {
     let points_len = points.len();
-    let points_ptr = std::vec::raw::to_ptr(points);
+    let points_ptr = points.as_mmut_ptr();
     let cookie = xcb_fill_poly_checked(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5716,7 +5716,7 @@ pub fn FillPoly<'r> (c : &'r Connection,
                  points : &[Point]) -> base::VoidCookie<'r> {
   unsafe {
     let points_len = points.len();
-    let points_ptr = std::vec::raw::to_ptr(points);
+    let points_ptr = points.as_mmut_ptr();
     let cookie = xcb_fill_poly(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5733,7 +5733,7 @@ pub fn PolyFillRectangleChecked<'r> (c : &'r Connection,
                                  rectangles : &[Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = std::vec::raw::to_ptr(rectangles);
+    let rectangles_ptr = rectangles.as_mmut_ptr();
     let cookie = xcb_poly_fill_rectangle_checked(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5748,7 +5748,7 @@ pub fn PolyFillRectangle<'r> (c : &'r Connection,
                           rectangles : &[Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = std::vec::raw::to_ptr(rectangles);
+    let rectangles_ptr = rectangles.as_mmut_ptr();
     let cookie = xcb_poly_fill_rectangle(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5763,7 +5763,7 @@ pub fn PolyFillArcChecked<'r> (c : &'r Connection,
                            arcs : &[Arc]) -> base::VoidCookie<'r> {
   unsafe {
     let arcs_len = arcs.len();
-    let arcs_ptr = std::vec::raw::to_ptr(arcs);
+    let arcs_ptr = arcs.as_mmut_ptr();
     let cookie = xcb_poly_fill_arc_checked(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5778,7 +5778,7 @@ pub fn PolyFillArc<'r> (c : &'r Connection,
                     arcs : &[Arc]) -> base::VoidCookie<'r> {
   unsafe {
     let arcs_len = arcs.len();
-    let arcs_ptr = std::vec::raw::to_ptr(arcs);
+    let arcs_ptr = arcs.as_mmut_ptr();
     let cookie = xcb_poly_fill_arc(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5800,7 +5800,7 @@ pub fn PutImageChecked<'r> (c : &'r Connection,
                         data : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let data_len = data.len();
-    let data_ptr = std::vec::raw::to_ptr(data);
+    let data_ptr = data.as_mmut_ptr();
     let cookie = xcb_put_image_checked(c.get_raw_conn(),
         format as u8, //1
         drawable as drawable, //2
@@ -5829,7 +5829,7 @@ pub fn PutImage<'r> (c : &'r Connection,
                  data : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let data_len = data.len();
-    let data_ptr = std::vec::raw::to_ptr(data);
+    let data_ptr = data.as_mmut_ptr();
     let cookie = xcb_put_image(c.get_raw_conn(),
         format as u8, //1
         drawable as drawable, //2
@@ -5911,7 +5911,7 @@ pub fn PolyText8Checked<'r> (c : &'r Connection,
                          items : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let items_len = items.len();
-    let items_ptr = std::vec::raw::to_ptr(items);
+    let items_ptr = items.as_mmut_ptr();
     let cookie = xcb_poly_text_8_checked(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5930,7 +5930,7 @@ pub fn PolyText8<'r> (c : &'r Connection,
                   items : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let items_len = items.len();
-    let items_ptr = std::vec::raw::to_ptr(items);
+    let items_ptr = items.as_mmut_ptr();
     let cookie = xcb_poly_text_8(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5949,7 +5949,7 @@ pub fn PolyText16Checked<'r> (c : &'r Connection,
                           items : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let items_len = items.len();
-    let items_ptr = std::vec::raw::to_ptr(items);
+    let items_ptr = items.as_mmut_ptr();
     let cookie = xcb_poly_text_16_checked(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5968,7 +5968,7 @@ pub fn PolyText16<'r> (c : &'r Connection,
                    items : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let items_len = items.len();
-    let items_ptr = std::vec::raw::to_ptr(items);
+    let items_ptr = items.as_mmut_ptr();
     let cookie = xcb_poly_text_16(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5988,7 +5988,7 @@ pub fn ImageText8Checked<'r> (c : &'r Connection,
   unsafe {
     let string = (string).as_bytes();
     let string_len = string.len();
-    let string_ptr = std::vec::raw::to_ptr(string);
+    let string_ptr = string.as_mmut_ptr();
     let cookie = xcb_image_text_8_checked(c.get_raw_conn(),
         string_len as u8, //1
         drawable as drawable, //2
@@ -6008,7 +6008,7 @@ pub fn ImageText8<'r> (c : &'r Connection,
   unsafe {
     let string = (string).as_bytes();
     let string_len = string.len();
-    let string_ptr = std::vec::raw::to_ptr(string);
+    let string_ptr = string.as_mmut_ptr();
     let cookie = xcb_image_text_8(c.get_raw_conn(),
         string_len as u8, //1
         drawable as drawable, //2
@@ -6027,7 +6027,7 @@ pub fn ImageText16Checked<'r> (c : &'r Connection,
                            string : &[Char2b]) -> base::VoidCookie<'r> {
   unsafe {
     let string_len = string.len();
-    let string_ptr = std::vec::raw::to_ptr(string);
+    let string_ptr = string.as_mmut_ptr();
     let cookie = xcb_image_text_16_checked(c.get_raw_conn(),
         string_len as u8, //1
         drawable as drawable, //2
@@ -6046,7 +6046,7 @@ pub fn ImageText16<'r> (c : &'r Connection,
                     string : &[Char2b]) -> base::VoidCookie<'r> {
   unsafe {
     let string_len = string.len();
-    let string_ptr = std::vec::raw::to_ptr(string);
+    let string_ptr = string.as_mmut_ptr();
     let cookie = xcb_image_text_16(c.get_raw_conn(),
         string_len as u8, //1
         drawable as drawable, //2
@@ -6234,7 +6234,7 @@ pub fn AllocNamedColor<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = std::vec::raw::to_ptr(name);
+    let name_ptr = name.as_mmut_ptr();
     let cookie = xcb_alloc_named_color(c.get_raw_conn(),
         cmap as colormap, //1
         name_len as u16, //2
@@ -6248,7 +6248,7 @@ pub fn AllocNamedColorUnchecked<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = std::vec::raw::to_ptr(name);
+    let name_ptr = name.as_mmut_ptr();
     let cookie = xcb_alloc_named_color_unchecked(c.get_raw_conn(),
         cmap as colormap, //1
         name_len as u16, //2
@@ -6395,7 +6395,7 @@ pub fn FreeColorsChecked<'r> (c : &'r Connection,
                           pixels : &[u32]) -> base::VoidCookie<'r> {
   unsafe {
     let pixels_len = pixels.len();
-    let pixels_ptr = std::vec::raw::to_ptr(pixels);
+    let pixels_ptr = pixels.as_mmut_ptr();
     let cookie = xcb_free_colors_checked(c.get_raw_conn(),
         cmap as colormap, //1
         plane_mask as u32, //2
@@ -6410,7 +6410,7 @@ pub fn FreeColors<'r> (c : &'r Connection,
                    pixels : &[u32]) -> base::VoidCookie<'r> {
   unsafe {
     let pixels_len = pixels.len();
-    let pixels_ptr = std::vec::raw::to_ptr(pixels);
+    let pixels_ptr = pixels.as_mmut_ptr();
     let cookie = xcb_free_colors(c.get_raw_conn(),
         cmap as colormap, //1
         plane_mask as u32, //2
@@ -6422,23 +6422,23 @@ pub fn FreeColors<'r> (c : &'r Connection,
 
 impl base::Struct<coloritem> {
   pub fn pixel(&self) -> u32 {
-    unsafe { accessor!(pixel -> u32, s.strct) }
+    unsafe { accessor!(pixel -> u32, self.strct) }
   }
 
   pub fn red(&self) -> u16 {
-    unsafe { accessor!(red -> u16, s.strct) }
+    unsafe { accessor!(red -> u16, self.strct) }
   }
 
   pub fn green(&self) -> u16 {
-    unsafe { accessor!(green -> u16, s.strct) }
+    unsafe { accessor!(green -> u16, self.strct) }
   }
 
   pub fn blue(&self) -> u16 {
-    unsafe { accessor!(blue -> u16, s.strct) }
+    unsafe { accessor!(blue -> u16, self.strct) }
   }
 
   pub fn flags(&self) -> u8 {
-    unsafe { accessor!(flags -> u8, s.strct) }
+    unsafe { accessor!(flags -> u8, self.strct) }
   }
 
 }
@@ -6460,7 +6460,7 @@ pub fn StoreColorsChecked<'r> (c : &'r Connection,
                            items : &[Coloritem]) -> base::VoidCookie<'r> {
   unsafe {
     let items_len = items.len();
-    let items_ptr = std::vec::raw::to_ptr(items);
+    let items_ptr = items.as_mmut_ptr();
     let cookie = xcb_store_colors_checked(c.get_raw_conn(),
         cmap as colormap, //1
         items_len as u32, //2
@@ -6473,7 +6473,7 @@ pub fn StoreColors<'r> (c : &'r Connection,
                     items : &[Coloritem]) -> base::VoidCookie<'r> {
   unsafe {
     let items_len = items.len();
-    let items_ptr = std::vec::raw::to_ptr(items);
+    let items_ptr = items.as_mmut_ptr();
     let cookie = xcb_store_colors(c.get_raw_conn(),
         cmap as colormap, //1
         items_len as u32, //2
@@ -6489,7 +6489,7 @@ pub fn StoreNamedColorChecked<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = std::vec::raw::to_ptr(name);
+    let name_ptr = name.as_mmut_ptr();
     let cookie = xcb_store_named_color_checked(c.get_raw_conn(),
         flags as u8, //1
         cmap as colormap, //2
@@ -6507,7 +6507,7 @@ pub fn StoreNamedColor<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = std::vec::raw::to_ptr(name);
+    let name_ptr = name.as_mmut_ptr();
     let cookie = xcb_store_named_color(c.get_raw_conn(),
         flags as u8, //1
         cmap as colormap, //2
@@ -6522,15 +6522,15 @@ pub type Rgb = base::Struct<rgb>;
 
 impl base::Struct<rgb> {
   pub fn red(&self) -> u16 {
-    unsafe { accessor!(red -> u16, s.strct) }
+    unsafe { accessor!(red -> u16, self.strct) }
   }
 
   pub fn green(&self) -> u16 {
-    unsafe { accessor!(green -> u16, s.strct) }
+    unsafe { accessor!(green -> u16, self.strct) }
   }
 
   pub fn blue(&self) -> u16 {
-    unsafe { accessor!(blue -> u16, s.strct) }
+    unsafe { accessor!(blue -> u16, self.strct) }
   }
 
 }
@@ -6552,7 +6552,7 @@ pub fn QueryColors<'r> (c : &'r Connection,
                     pixels : &[u32]) -> QueryColorsCookie<'r> {
   unsafe {
     let pixels_len = pixels.len();
-    let pixels_ptr = std::vec::raw::to_ptr(pixels);
+    let pixels_ptr = pixels.as_mmut_ptr();
     let cookie = xcb_query_colors(c.get_raw_conn(),
         cmap as colormap, //1
         pixels_len as u32, //2
@@ -6565,7 +6565,7 @@ pub fn QueryColorsUnchecked<'r> (c : &'r Connection,
                              pixels : &[u32]) -> QueryColorsCookie<'r> {
   unsafe {
     let pixels_len = pixels.len();
-    let pixels_ptr = std::vec::raw::to_ptr(pixels);
+    let pixels_ptr = pixels.as_mmut_ptr();
     let cookie = xcb_query_colors_unchecked(c.get_raw_conn(),
         cmap as colormap, //1
         pixels_len as u32, //2
@@ -6588,7 +6588,7 @@ pub fn LookupColor<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = std::vec::raw::to_ptr(name);
+    let name_ptr = name.as_mmut_ptr();
     let cookie = xcb_lookup_color(c.get_raw_conn(),
         cmap as colormap, //1
         name_len as u16, //2
@@ -6602,7 +6602,7 @@ pub fn LookupColorUnchecked<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = std::vec::raw::to_ptr(name);
+    let name_ptr = name.as_mmut_ptr();
     let cookie = xcb_lookup_color_unchecked(c.get_raw_conn(),
         cmap as colormap, //1
         name_len as u16, //2
@@ -6853,7 +6853,7 @@ pub fn QueryExtension<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = std::vec::raw::to_ptr(name);
+    let name_ptr = name.as_mmut_ptr();
     let cookie = xcb_query_extension(c.get_raw_conn(),
         name_len as u16, //1
         name_ptr as *mut c_char); //2
@@ -6865,7 +6865,7 @@ pub fn QueryExtensionUnchecked<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = std::vec::raw::to_ptr(name);
+    let name_ptr = name.as_mmut_ptr();
     let cookie = xcb_query_extension_unchecked(c.get_raw_conn(),
         name_len as u16, //1
         name_ptr as *mut c_char); //2
@@ -6921,7 +6921,7 @@ pub fn ChangeKeyboardMappingChecked<'r> (c : &'r Connection,
                                      keysyms : &[Keysym]) -> base::VoidCookie<'r> {
   unsafe {
     let keysyms_len = keysyms.len();
-    let keysyms_ptr = std::vec::raw::to_ptr(keysyms);
+    let keysyms_ptr = keysyms.as_mmut_ptr();
     let cookie = xcb_change_keyboard_mapping_checked(c.get_raw_conn(),
         keysyms_len as u8, //1
         first_keycode as keycode, //2
@@ -6936,7 +6936,7 @@ pub fn ChangeKeyboardMapping<'r> (c : &'r Connection,
                               keysyms : &[Keysym]) -> base::VoidCookie<'r> {
   unsafe {
     let keysyms_len = keysyms.len();
-    let keysyms_ptr = std::vec::raw::to_ptr(keysyms);
+    let keysyms_ptr = keysyms.as_mmut_ptr();
     let cookie = xcb_change_keyboard_mapping(c.get_raw_conn(),
         keysyms_len as u8, //1
         first_keycode as keycode, //2
@@ -6983,7 +6983,7 @@ pub fn ChangeKeyboardControlChecked<'r> (c : &'r Connection,
                                      value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = std::vec::raw::to_ptr(value_list_vec);
+    let value_list_ptr = value_list_vec.as_mut_ptr();
     let cookie = xcb_change_keyboard_control_checked(c.get_raw_conn(),
         value_list_mask as u32, //1
         value_list_ptr as *mut u32); //2
@@ -6994,7 +6994,7 @@ pub fn ChangeKeyboardControl<'r> (c : &'r Connection,
                               value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = std::vec::raw::to_ptr(value_list_vec);
+    let value_list_ptr = value_list_vec.as_mut_ptr();
     let cookie = xcb_change_keyboard_control(c.get_raw_conn(),
         value_list_mask as u32, //1
         value_list_ptr as *mut u32); //2
@@ -7190,7 +7190,7 @@ pub fn ChangeHostsChecked<'r> (c : &'r Connection,
                            address : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let address_len = address.len();
-    let address_ptr = std::vec::raw::to_ptr(address);
+    let address_ptr = address.as_mmut_ptr();
     let cookie = xcb_change_hosts_checked(c.get_raw_conn(),
         mode as u8, //1
         family as u8, //2
@@ -7205,7 +7205,7 @@ pub fn ChangeHosts<'r> (c : &'r Connection,
                     address : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let address_len = address.len();
-    let address_ptr = std::vec::raw::to_ptr(address);
+    let address_ptr = address.as_mmut_ptr();
     let cookie = xcb_change_hosts(c.get_raw_conn(),
         mode as u8, //1
         family as u8, //2
@@ -7219,11 +7219,11 @@ pub type Host = base::Struct<host>;
 
 impl base::Struct<host> {
   pub fn family(&self) -> u8 {
-    unsafe { accessor!(family -> u8, s.strct) }
+    unsafe { accessor!(family -> u8, self.strct) }
   }
 
   pub fn address(&self) -> Box<[u8]> {
-    unsafe { accessor!(u8, xcb_host_address_length, xcb_host_address, s.strct) }
+    unsafe { accessor!(u8, xcb_host_address_length, xcb_host_address, self.strct) }
   }
 
 }
@@ -7320,7 +7320,7 @@ pub fn RotatePropertiesChecked<'r> (c : &'r Connection,
                                 atoms : &[Atom]) -> base::VoidCookie<'r> {
   unsafe {
     let atoms_len = atoms.len();
-    let atoms_ptr = std::vec::raw::to_ptr(atoms);
+    let atoms_ptr = atoms.as_mmut_ptr();
     let cookie = xcb_rotate_properties_checked(c.get_raw_conn(),
         window as window, //1
         atoms_len as u16, //2
@@ -7335,7 +7335,7 @@ pub fn RotateProperties<'r> (c : &'r Connection,
                          atoms : &[Atom]) -> base::VoidCookie<'r> {
   unsafe {
     let atoms_len = atoms.len();
-    let atoms_ptr = std::vec::raw::to_ptr(atoms);
+    let atoms_ptr = atoms.as_mmut_ptr();
     let cookie = xcb_rotate_properties(c.get_raw_conn(),
         window as window, //1
         atoms_len as u16, //2
@@ -7364,7 +7364,7 @@ pub fn SetPointerMapping<'r> (c : &'r Connection,
                           map : &[u8]) -> SetPointerMappingCookie<'r> {
   unsafe {
     let map_len = map.len();
-    let map_ptr = std::vec::raw::to_ptr(map);
+    let map_ptr = map.as_mmut_ptr();
     let cookie = xcb_set_pointer_mapping(c.get_raw_conn(),
         map_len as u8, //1
         map_ptr as *mut u8); //2
@@ -7375,7 +7375,7 @@ pub fn SetPointerMappingUnchecked<'r> (c : &'r Connection,
                                    map : &[u8]) -> SetPointerMappingCookie<'r> {
   unsafe {
     let map_len = map.len();
-    let map_ptr = std::vec::raw::to_ptr(map);
+    let map_ptr = map.as_mmut_ptr();
     let cookie = xcb_set_pointer_mapping_unchecked(c.get_raw_conn(),
         map_len as u8, //1
         map_ptr as *mut u8); //2
@@ -7417,7 +7417,7 @@ pub fn SetModifierMapping<'r> (c : &'r Connection,
                            keycodes : &[Keycode]) -> SetModifierMappingCookie<'r> {
   unsafe {
     let keycodes_len = keycodes.len();
-    let keycodes_ptr = std::vec::raw::to_ptr(keycodes);
+    let keycodes_ptr = keycodes.as_mmut_ptr();
     let cookie = xcb_set_modifier_mapping(c.get_raw_conn(),
         keycodes_len as u8, //1
         keycodes_ptr as *mut keycode); //2
@@ -7428,7 +7428,7 @@ pub fn SetModifierMappingUnchecked<'r> (c : &'r Connection,
                                     keycodes : &[Keycode]) -> SetModifierMappingCookie<'r> {
   unsafe {
     let keycodes_len = keycodes.len();
-    let keycodes_ptr = std::vec::raw::to_ptr(keycodes);
+    let keycodes_ptr = keycodes.as_mmut_ptr();
     let cookie = xcb_set_modifier_mapping_unchecked(c.get_raw_conn(),
         keycodes_len as u8, //1
         keycodes_ptr as *mut keycode); //2

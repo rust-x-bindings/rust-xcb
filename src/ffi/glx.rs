@@ -4,6 +4,7 @@
  */
 
 //Make the compiler quiet
+#![allow(unused_imports)]
 #![allow(non_camel_case_types)]
 use std;
 use libc::*;

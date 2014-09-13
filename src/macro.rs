@@ -33,7 +33,7 @@ macro_rules! accessor {
         unsafe {
             let _len = $lenfn(&$fexpr);
             let _data = $datafn(&$fexpr);
-            std::str::raw::from_buf_len(_data as *mut u8, _len as uint)
+            std::string::raw::from_buf_len(_data as *mut u8, _len as uint)
         }
     );
     ($ty:ty, $iterfn:ident, $fexpr:expr) => ( //Iterator
@@ -45,7 +45,7 @@ macro_rules! accessor {
         unsafe {
             let _len = $lenfn(&$fexpr);
             let _data = $datafn(&$fexpr);
-            std::vec::raw::from_buf_raw(_data, _len as uint)
+            std::vec::raw::from_buf(_data, _len as uint)
         }
     );
 }

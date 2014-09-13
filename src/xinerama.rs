@@ -54,19 +54,19 @@ pub static XCB_XINERAMA_QUERY_SCREENS : u8 = 5;
 
 impl base::Struct<screen_info> {
   pub fn x_org(&self) -> i16 {
-    unsafe { accessor!(x_org -> i16, s.strct) }
+    unsafe { accessor!(x_org -> i16, self.strct) }
   }
 
   pub fn y_org(&self) -> i16 {
-    unsafe { accessor!(y_org -> i16, s.strct) }
+    unsafe { accessor!(y_org -> i16, self.strct) }
   }
 
   pub fn width(&self) -> u16 {
-    unsafe { accessor!(width -> u16, s.strct) }
+    unsafe { accessor!(width -> u16, self.strct) }
   }
 
   pub fn height(&self) -> u16 {
-    unsafe { accessor!(height -> u16, s.strct) }
+    unsafe { accessor!(height -> u16, self.strct) }
   }
 
 }

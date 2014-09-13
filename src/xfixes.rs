@@ -396,7 +396,7 @@ pub fn CreateRegionChecked<'r> (c : &'r Connection,
                             rectangles : &[xproto::Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = std::vec::raw::to_ptr(rectangles);
+    let rectangles_ptr = rectangles.as_mmut_ptr();
     let cookie = xcb_xfixes_create_region_checked(c.get_raw_conn(),
         region as region, //1
         rectangles_len as u32, //2
@@ -409,7 +409,7 @@ pub fn CreateRegion<'r> (c : &'r Connection,
                      rectangles : &[xproto::Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = std::vec::raw::to_ptr(rectangles);
+    let rectangles_ptr = rectangles.as_mmut_ptr();
     let cookie = xcb_xfixes_create_region(c.get_raw_conn(),
         region as region, //1
         rectangles_len as u32, //2
@@ -522,7 +522,7 @@ pub fn SetRegionChecked<'r> (c : &'r Connection,
                          rectangles : &[xproto::Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = std::vec::raw::to_ptr(rectangles);
+    let rectangles_ptr = rectangles.as_mmut_ptr();
     let cookie = xcb_xfixes_set_region_checked(c.get_raw_conn(),
         region as region, //1
         rectangles_len as u32, //2
@@ -535,7 +535,7 @@ pub fn SetRegion<'r> (c : &'r Connection,
                   rectangles : &[xproto::Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = std::vec::raw::to_ptr(rectangles);
+    let rectangles_ptr = rectangles.as_mmut_ptr();
     let cookie = xcb_xfixes_set_region(c.get_raw_conn(),
         region as region, //1
         rectangles_len as u32, //2
@@ -826,7 +826,7 @@ pub fn SetCursorNameChecked<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = std::vec::raw::to_ptr(name);
+    let name_ptr = name.as_mmut_ptr();
     let cookie = xcb_xfixes_set_cursor_name_checked(c.get_raw_conn(),
         cursor as ffi::xproto::cursor, //1
         name_len as u16, //2
@@ -840,7 +840,7 @@ pub fn SetCursorName<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = std::vec::raw::to_ptr(name);
+    let name_ptr = name.as_mmut_ptr();
     let cookie = xcb_xfixes_set_cursor_name(c.get_raw_conn(),
         cursor as ffi::xproto::cursor, //1
         name_len as u16, //2
@@ -958,7 +958,7 @@ pub fn ChangeCursorByNameChecked<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = std::vec::raw::to_ptr(name);
+    let name_ptr = name.as_mmut_ptr();
     let cookie = xcb_xfixes_change_cursor_by_name_checked(c.get_raw_conn(),
         src as ffi::xproto::cursor, //1
         name_len as u16, //2
@@ -972,7 +972,7 @@ pub fn ChangeCursorByName<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = std::vec::raw::to_ptr(name);
+    let name_ptr = name.as_mmut_ptr();
     let cookie = xcb_xfixes_change_cursor_by_name(c.get_raw_conn(),
         src as ffi::xproto::cursor, //1
         name_len as u16, //2
