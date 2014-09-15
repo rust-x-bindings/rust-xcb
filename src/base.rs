@@ -145,7 +145,7 @@ impl<'s> Connection {
     pub fn connect() -> (Connection, int) {
         let screen : c_int = 0;
         unsafe {
-            let conn = ffi::base::xcb_connect(ptr::null(), &mut screen);
+            let conn = ffi::base::xcb_connect(ptr::mut_null(), &mut screen);
             if conn.is_null() {
                 fail!(box "Couldn't connect")
             } else {
@@ -160,7 +160,7 @@ impl<'s> Connection {
         let screen : c_int = 0;
         unsafe {
             let conn = {
-		let s = display.as_c_str();
+		let s = display.as_ptr();
                 ffi::base::xcb_connect(s as *mut u8, &mut screen)
             };
             if conn.is_null() {
@@ -177,7 +177,7 @@ impl<'s> Connection {
         let screen : c_int = 0;
         unsafe {
             let conn = {
-		let s = display.as_c_str();
+		let s = display.as_ptr();
                 ffi::base::xcb_connect_to_display_with_auth_info(s as *mut u8,
                     mem::transmute(auth_info), &mut screen)
             };
@@ -201,7 +201,7 @@ impl<'s> Connection {
 }
 
 impl Drop for Connection {
-    fn drop(&self) {
+    fn drop(&mut self) {
         unsafe {
             ffi::base::xcb_disconnect(self.c);
         }
@@ -214,7 +214,7 @@ pub struct Event<T> {
 
 #[unsafe_destructor]
 impl<T> Drop for Event<T> {
-    fn drop(&self) {
+    fn drop(&mut self) {
         use libc::c_void;
         unsafe {
             free(self.event as *mut c_void);
@@ -232,7 +232,7 @@ pub fn mk_error<T>(err:*mut T) -> Error<T> {
 
 #[unsafe_destructor]
 impl<T> Drop for Error<T> {
-    fn drop(&self) {
+    fn drop(&mut self) {
         use libc::c_void;
         unsafe {
             free(self.error as *mut c_void);
@@ -263,7 +263,7 @@ impl<'s, T> Cookie<'s, T> {
             // Crazy pointer dance to get the right bit
             // of the struct
             let c : *mut void_cookie = mem::transmute(&self.cookie);
-            let err = ffi::base::xcb_request_check(self.conn.c, c);
+            let err = ffi::base::xcb_request_check(self.conn.c, *c);
             if err.is_null() {
                 None
             } else {
@@ -283,7 +283,7 @@ pub fn mk_reply<T>(reply:*mut T) -> Reply<T> {
 
 #[unsafe_destructor]
 impl<T> Drop for Reply<T> {
-    fn drop(&self) {
+    fn drop(&mut self) {
         use libc::c_void;
         unsafe {
             free(self.reply as *mut c_void);
@@ -326,13 +326,14 @@ pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &[(T,L)]) -> (T, Vec<L
     let sorted = bf.sort_by(|a,b| {
         let &(a, _) = a;
         let &(b, _) = b;
-        a < b});
-
+        if a < b { Less } else if a > b { Greater } else { Equal }       
+        });
+    
     let mut mask = 0u;
     let mut list : Vec<L> = Vec::new();
 
     //TODO: num::mem(f) and (mask) ??
-    for el in sorted.iter().advance {
+    for el in sorted.iter() {
         let &(f, v) = el;
         let fld = f;
         if (mask & fld) > 0 {
