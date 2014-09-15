@@ -369,7 +369,7 @@ impl base::Reply<get_cursor_image_reply> {
     unsafe { accessor!(cursor_serial -> u32, (*self.reply)) }
   }
 
-  pub fn cursor_image(&self) -> Box<[u32]> {
+  pub fn cursor_image(&self) -> Vec<u32> {
     unsafe { accessor!(u32, xcb_xfixes_get_cursor_image_cursor_image_length, xcb_xfixes_get_cursor_image_cursor_image, (*self.reply)) }
   }
 
@@ -871,7 +871,7 @@ impl base::Reply<get_cursor_name_reply> {
     unsafe { accessor!(atom -> xproto::Atom, (*self.reply)) }
   }
 
-  pub fn name(&self) -> Box<str> {
+  pub fn name(&self) -> String {
     unsafe { accessor!(str, xcb_xfixes_get_cursor_name_name_length, xcb_xfixes_get_cursor_name_name, (*self.reply)) }
   }
 
@@ -921,11 +921,11 @@ impl base::Reply<get_cursor_image_and_name_reply> {
     unsafe { accessor!(cursor_atom -> xproto::Atom, (*self.reply)) }
   }
 
-  pub fn name(&self) -> Box<str> {
+  pub fn name(&self) -> String {
     unsafe { accessor!(str, xcb_xfixes_get_cursor_image_and_name_name_length, xcb_xfixes_get_cursor_image_and_name_name, (*self.reply)) }
   }
 
-  pub fn cursor_image(&self) -> Box<[u32]> {
+  pub fn cursor_image(&self) -> Vec<u32> {
     unsafe { accessor!(u32, xcb_xfixes_get_cursor_image_and_name_cursor_image_length, xcb_xfixes_get_cursor_image_and_name_cursor_image, (*self.reply)) }
   }
 

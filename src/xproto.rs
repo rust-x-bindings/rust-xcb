@@ -2031,11 +2031,11 @@ impl base::Struct<setup_request> {
     unsafe { accessor!(protocol_minor_version -> u16, self.strct) }
   }
 
-  pub fn authorization_protocol_name(&self) -> Box<str> {
+  pub fn authorization_protocol_name(&self) -> String {
     unsafe { accessor!(str, xcb_setup_request_authorization_protocol_name_length, xcb_setup_request_authorization_protocol_name, self.strct) }
   }
 
-  pub fn authorization_protocol_data(&self) -> Box<str> {
+  pub fn authorization_protocol_data(&self) -> String {
     unsafe { accessor!(str, xcb_setup_request_authorization_protocol_data_length, xcb_setup_request_authorization_protocol_data, self.strct) }
   }
 
@@ -2073,7 +2073,7 @@ impl base::Struct<setup_failed> {
     unsafe { accessor!(length -> u16, self.strct) }
   }
 
-  pub fn reason(&self) -> Box<str> {
+  pub fn reason(&self) -> String {
     unsafe { accessor!(str, xcb_setup_failed_reason_length, xcb_setup_failed_reason, self.strct) }
   }
 
@@ -2099,7 +2099,7 @@ impl base::Struct<setup_authenticate> {
     unsafe { accessor!(status -> u8, self.strct) }
   }
 
-  pub fn reason(&self) -> Box<str> {
+  pub fn reason(&self) -> String {
     unsafe { accessor!(str, xcb_setup_authenticate_reason_length, xcb_setup_authenticate_reason, self.strct) }
   }
 
@@ -2181,7 +2181,7 @@ impl base::Struct<setup> {
     unsafe { accessor!(max_keycode -> Keycode, self.strct) }
   }
 
-  pub fn vendor(&self) -> Box<str> {
+  pub fn vendor(&self) -> String {
     unsafe { accessor!(str, xcb_setup_vendor_length, xcb_setup_vendor, self.strct) }
   }
 
@@ -2537,7 +2537,7 @@ impl base::Event<focus_in_event> {
 }
 
 impl base::Event<keymap_notify_event> {
-  pub fn keys(&self) -> Box<[u8,..31]> {
+  pub fn keys(&self) -> Vec<u8> {
     unsafe { ((*self.event).keys).to_owned() }
   }
 
@@ -3779,7 +3779,7 @@ impl base::Reply<query_tree_reply> {
     unsafe { accessor!(parent -> Window, (*self.reply)) }
   }
 
-  pub fn children(&self) -> Box<[Window]> {
+  pub fn children(&self) -> Vec<Window> {
     unsafe { accessor!(Window, xcb_query_tree_children_length, xcb_query_tree_children, (*self.reply)) }
   }
 
@@ -3842,7 +3842,7 @@ pub fn GetAtomNameUnchecked<'r> (c : &'r Connection,
 }
 
 impl base::Reply<get_atom_name_reply> {
-  pub fn name(&self) -> Box<str> {
+  pub fn name(&self) -> String {
     unsafe { accessor!(str, xcb_get_atom_name_name_length, xcb_get_atom_name_name, (*self.reply)) }
   }
 
@@ -3962,7 +3962,7 @@ impl base::Reply<get_property_reply> {
     unsafe { accessor!(bytes_after -> u32, (*self.reply)) }
   }
 
-  pub fn value(&self) -> Box<[c_void]> {
+  pub fn value(&self) -> Vec<c_void> {
     unsafe { accessor!(c_void, xcb_get_property_value_length, xcb_get_property_value, (*self.reply)) }
   }
 
@@ -3988,7 +3988,7 @@ pub fn ListPropertiesUnchecked<'r> (c : &'r Connection,
 }
 
 impl base::Reply<list_properties_reply> {
-  pub fn atoms(&self) -> Box<[Atom]> {
+  pub fn atoms(&self) -> Vec<Atom> {
     unsafe { accessor!(Atom, xcb_list_properties_atoms_length, xcb_list_properties_atoms, (*self.reply)) }
   }
 
@@ -4707,7 +4707,7 @@ pub fn QueryKeymapUnchecked<'r> (c : &'r Connection) -> QueryKeymapCookie<'r> {
 }
 
 impl base::Reply<query_keymap_reply> {
-  pub fn keys(&self) -> Box<[u8,..32]> {
+  pub fn keys(&self) -> Vec<u8> {
     unsafe { ((*self.reply).keys).to_owned() }
   }
 
@@ -4963,7 +4963,7 @@ pub type Str = base::Struct<str_>;
 
 
 impl base::Struct<str_> {
-  pub fn name(&self) -> Box<str> {
+  pub fn name(&self) -> String {
     unsafe { accessor!(str, xcb_str_name_length, xcb_str_name, self.strct) }
   }
 
@@ -5098,7 +5098,7 @@ impl base::Reply<list_fonts_with_info_reply> {
     unsafe { accessor!(FontpropIterator, xcb_list_fonts_with_info_properties_iterator, (*self.reply)) }
   }
 
-  pub fn name(&self) -> Box<str> {
+  pub fn name(&self) -> String {
     unsafe { accessor!(str, xcb_list_fonts_with_info_name_length, xcb_list_fonts_with_info_name, (*self.reply)) }
   }
 
@@ -5896,7 +5896,7 @@ impl base::Reply<get_image_reply> {
     unsafe { accessor!(visual -> Visualid, (*self.reply)) }
   }
 
-  pub fn data(&self) -> Box<[u8]> {
+  pub fn data(&self) -> Vec<u8> {
     unsafe { accessor!(u8, xcb_get_image_data_length, xcb_get_image_data, (*self.reply)) }
   }
 
@@ -6172,7 +6172,7 @@ pub fn ListInstalledColormapsUnchecked<'r> (c : &'r Connection,
 }
 
 impl base::Reply<list_installed_colormaps_reply> {
-  pub fn cmaps(&self) -> Box<[Colormap]> {
+  pub fn cmaps(&self) -> Vec<Colormap> {
     unsafe { accessor!(Colormap, xcb_list_installed_colormaps_cmaps_length, xcb_list_installed_colormaps_cmaps, (*self.reply)) }
   }
 
@@ -6320,11 +6320,11 @@ pub fn AllocColorCellsUnchecked<'r> (c : &'r Connection,
 }
 
 impl base::Reply<alloc_color_cells_reply> {
-  pub fn pixels(&self) -> Box<[u32]> {
+  pub fn pixels(&self) -> Vec<u32> {
     unsafe { accessor!(u32, xcb_alloc_color_cells_pixels_length, xcb_alloc_color_cells_pixels, (*self.reply)) }
   }
 
-  pub fn masks(&self) -> Box<[u32]> {
+  pub fn masks(&self) -> Vec<u32> {
     unsafe { accessor!(u32, xcb_alloc_color_cells_masks_length, xcb_alloc_color_cells_masks, (*self.reply)) }
   }
 
@@ -6382,7 +6382,7 @@ impl base::Reply<alloc_color_planes_reply> {
     unsafe { accessor!(blue_mask -> u32, (*self.reply)) }
   }
 
-  pub fn pixels(&self) -> Box<[u32]> {
+  pub fn pixels(&self) -> Vec<u32> {
     unsafe { accessor!(u32, xcb_alloc_color_planes_pixels_length, xcb_alloc_color_planes_pixels, (*self.reply)) }
   }
 
@@ -6972,7 +6972,7 @@ impl base::Reply<get_keyboard_mapping_reply> {
     unsafe { accessor!(keysyms_per_keycode -> u8, (*self.reply)) }
   }
 
-  pub fn keysyms(&self) -> Box<[Keysym]> {
+  pub fn keysyms(&self) -> Vec<Keysym> {
     unsafe { accessor!(Keysym, xcb_get_keyboard_mapping_keysyms_length, xcb_get_keyboard_mapping_keysyms, (*self.reply)) }
   }
 
@@ -7039,7 +7039,7 @@ impl base::Reply<get_keyboard_control_reply> {
     unsafe { accessor!(bell_duration -> u16, (*self.reply)) }
   }
 
-  pub fn auto_repeats(&self) -> Box<[u8,..32]> {
+  pub fn auto_repeats(&self) -> Vec<u8> {
     unsafe { ((*self.reply).auto_repeats).to_owned() }
   }
 
@@ -7222,7 +7222,7 @@ impl base::Struct<host> {
     unsafe { accessor!(family -> u8, self.strct) }
   }
 
-  pub fn address(&self) -> Box<[u8]> {
+  pub fn address(&self) -> Vec<u8> {
     unsafe { accessor!(u8, xcb_host_address_length, xcb_host_address, self.strct) }
   }
 
@@ -7406,7 +7406,7 @@ pub fn GetPointerMappingUnchecked<'r> (c : &'r Connection) -> GetPointerMappingC
 }
 
 impl base::Reply<get_pointer_mapping_reply> {
-  pub fn map(&self) -> Box<[u8]> {
+  pub fn map(&self) -> Vec<u8> {
     unsafe { accessor!(u8, xcb_get_pointer_mapping_map_length, xcb_get_pointer_mapping_map, (*self.reply)) }
   }
 
@@ -7459,7 +7459,7 @@ pub fn GetModifierMappingUnchecked<'r> (c : &'r Connection) -> GetModifierMappin
 }
 
 impl base::Reply<get_modifier_mapping_reply> {
-  pub fn keycodes(&self) -> Box<[Keycode]> {
+  pub fn keycodes(&self) -> Vec<Keycode> {
     unsafe { accessor!(Keycode, xcb_get_modifier_mapping_keycodes_length, xcb_get_modifier_mapping_keycodes, (*self.reply)) }
   }
 

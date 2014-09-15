@@ -780,7 +780,7 @@ impl base::Reply<query_pict_formats_reply> {
     unsafe { accessor!(PictscreenIterator, xcb_render_query_pict_formats_screens_iterator, (*self.reply)) }
   }
 
-  pub fn subpixels(&self) -> Box<[u32]> {
+  pub fn subpixels(&self) -> Vec<u32> {
     unsafe { accessor!(u32, xcb_render_query_pict_formats_subpixels_length, xcb_render_query_pict_formats_subpixels, (*self.reply)) }
   }
 
@@ -1596,7 +1596,7 @@ pub fn QueryFiltersUnchecked<'r> (c : &'r Connection,
 }
 
 impl base::Reply<query_filters_reply> {
-  pub fn aliases(&self) -> Box<[u16]> {
+  pub fn aliases(&self) -> Vec<u16> {
     unsafe { accessor!(u16, xcb_render_query_filters_aliases_length, xcb_render_query_filters_aliases, (*self.reply)) }
   }
 

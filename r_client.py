@@ -1071,12 +1071,12 @@ def _r_accessor(self,field):
         if field.type.member.is_simple:
             fty = field.type.member.r_type
             if fty == 'c_char':
-                rty = 'str'
+                rty = 'String'
                 fty = 'str'
             else:
-                rty = '['+fty+']'
+                rty = 'Vec<'+fty+'>'
 
-            _r('  pub fn %s(&self) -> Box<%s> {', field.c_field_name, rty)
+            _r('  pub fn %s(&self) -> %s {', field.c_field_name, rty)
             _r('    unsafe { accessor!(%s, %s, %s, %s) }', fty, field.c_length_name, field.c_accessor_name,
                                             self.wrap_field_name)
         else:
@@ -1085,7 +1085,7 @@ def _r_accessor(self,field):
                                             self.wrap_field_name)
         _r('  }\n')
     elif field.type.is_list:
-        _r('  pub fn %s(&self) -> Box<[%s,..%d]> {', field.c_field_name, field.r_field_type, field.type.nmemb)
+        _r('  pub fn %s(&self) -> Vec<%s> {', field.c_field_name, field.r_field_type) 
         _r('    unsafe { (%s.%s).to_owned() }',self.wrap_field_name,field.c_field_name)
         _r('  }\n')
 
