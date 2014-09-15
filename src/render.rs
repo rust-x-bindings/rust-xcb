@@ -139,20 +139,20 @@ pub type FixedIterator = fixed_iterator;
 
 /** Opcode for xcb_render_pict_format. */
 pub static XCB_RENDER_PICT_FORMAT : u8 = 0;
-pub type PictFormatError = base::Error<pict_format_error>;
+pub struct PictFormatError { pub base : base::Error<pict_format_error> }
 /** Opcode for xcb_render_picture. */
 pub static XCB_RENDER_PICTURE : u8 = 1;
-pub type PictureError = base::Error<picture_error>;
+pub struct PictureError { pub base : base::Error<picture_error> }
 /** Opcode for xcb_render_pict_op. */
 pub static XCB_RENDER_PICT_OP : u8 = 2;
-pub type PictOpError = base::Error<pict_op_error>;
+pub struct PictOpError { pub base : base::Error<pict_op_error> }
 /** Opcode for xcb_render_glyph_set. */
 pub static XCB_RENDER_GLYPH_SET : u8 = 3;
-pub type GlyphSetError = base::Error<glyph_set_error>;
+pub struct GlyphSetError { pub base : base::Error<glyph_set_error> }
 /** Opcode for xcb_render_glyph. */
 pub static XCB_RENDER_GLYPH : u8 = 4;
-pub type GlyphError = base::Error<glyph_error>;
-pub type Directformat = base::Struct<directformat>;
+pub struct GlyphError { pub base : base::Error<glyph_error> }
+pub struct Directformat {pub base : base::Struct<directformat> }
 
 pub type DirectformatIterator = directformat_iterator;
 
@@ -178,16 +178,17 @@ pub type TrapezoidIterator = trapezoid_iterator;
 
 pub type GlyphinfoIterator = glyphinfo_iterator;
 
-pub type QueryVersionCookie<'s> = base::Cookie<'s, query_version_cookie>;
+pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, query_version_cookie> }
 
 /** Opcode for xcb_render_query_version. */
 pub static XCB_RENDER_QUERY_VERSION : u8 = 0;
-pub type QueryVersionReply = base::Reply<query_version_reply>;
-pub type QueryPictFormatsCookie<'s> = base::Cookie<'s, query_pict_formats_cookie>;
+pub struct QueryVersionReply { base:  base::Reply<query_version_reply> }
+fn mk_reply_query_version_reply(reply:*mut query_version_reply) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
+pub struct  QueryPictFormatsCookie<'s> { pub base : base::Cookie<'s, query_pict_formats_cookie> }
 
 /** Opcode for xcb_render_query_pict_formats. */
 pub static XCB_RENDER_QUERY_PICT_FORMATS : u8 = 1;
-pub type QueryPictIndexValuesCookie<'s> = base::Cookie<'s, query_pict_index_values_cookie>;
+pub struct  QueryPictIndexValuesCookie<'s> { pub base : base::Cookie<'s, query_pict_index_values_cookie> }
 
 /** Opcode for xcb_render_query_pict_index_values. */
 pub static XCB_RENDER_QUERY_PICT_INDEX_VALUES : u8 = 2;
@@ -233,7 +234,7 @@ pub type TransformIterator = transform_iterator;
 
 /** Opcode for xcb_render_set_picture_transform. */
 pub static XCB_RENDER_SET_PICTURE_TRANSFORM : u8 = 28;
-pub type QueryFiltersCookie<'s> = base::Cookie<'s, query_filters_cookie>;
+pub struct  QueryFiltersCookie<'s> { pub base : base::Cookie<'s, query_filters_cookie> }
 
 /** Opcode for xcb_render_query_filters. */
 pub static XCB_RENDER_QUERY_FILTERS : u8 = 29;
@@ -331,37 +332,37 @@ impl<'s, Fixed> Iterator<&'s Fixed> for FixedIterator {
 }
 
 
-impl Struct<directformat> {
+impl Directformat {
   pub fn red_shift(&self) -> u16 {
-    unsafe { accessor!(red_shift -> u16, self.strct) }
+    unsafe { accessor!(red_shift -> u16, self.base.strct) }
   }
 
   pub fn red_mask(&self) -> u16 {
-    unsafe { accessor!(red_mask -> u16, self.strct) }
+    unsafe { accessor!(red_mask -> u16, self.base.strct) }
   }
 
   pub fn green_shift(&self) -> u16 {
-    unsafe { accessor!(green_shift -> u16, self.strct) }
+    unsafe { accessor!(green_shift -> u16, self.base.strct) }
   }
 
   pub fn green_mask(&self) -> u16 {
-    unsafe { accessor!(green_mask -> u16, self.strct) }
+    unsafe { accessor!(green_mask -> u16, self.base.strct) }
   }
 
   pub fn blue_shift(&self) -> u16 {
-    unsafe { accessor!(blue_shift -> u16, self.strct) }
+    unsafe { accessor!(blue_shift -> u16, self.base.strct) }
   }
 
   pub fn blue_mask(&self) -> u16 {
-    unsafe { accessor!(blue_mask -> u16, self.strct) }
+    unsafe { accessor!(blue_mask -> u16, self.base.strct) }
   }
 
   pub fn alpha_shift(&self) -> u16 {
-    unsafe { accessor!(alpha_shift -> u16, self.strct) }
+    unsafe { accessor!(alpha_shift -> u16, self.base.strct) }
   }
 
   pub fn alpha_mask(&self) -> u16 {
-    unsafe { accessor!(alpha_mask -> u16, self.strct) }
+    unsafe { accessor!(alpha_mask -> u16, self.base.strct) }
   }
 
 }
@@ -378,27 +379,27 @@ impl<'s, Directformat> Iterator<&'s Directformat> for DirectformatIterator {
     }
 }
 
-pub type Pictforminfo = base::Struct<pictforminfo>;
+pub struct Pictforminfo {pub base : base::Struct<pictforminfo> }
 
 
-impl Struct<pictforminfo> {
+impl Pictforminfo {
   pub fn id(&self) -> Pictformat {
-    unsafe { accessor!(id -> Pictformat, self.strct) }
+    unsafe { accessor!(id -> Pictformat, self.base.strct) }
   }
 
   pub fn type_(&self) -> u8 {
-    unsafe { accessor!(type_ -> u8, self.strct) }
+    unsafe { accessor!(type_ -> u8, self.base.strct) }
   }
 
   pub fn depth(&self) -> u8 {
-    unsafe { accessor!(depth -> u8, self.strct) }
+    unsafe { accessor!(depth -> u8, self.base.strct) }
   }
 
   pub fn direct(&self) -> Directformat {
-    unsafe { mem::transmute(self.strct.direct) }
+    unsafe { mem::transmute(self.base.strct.direct) }
   }
   pub fn colormap(&self) -> xproto::Colormap {
-    unsafe { accessor!(colormap -> xproto::Colormap, self.strct) }
+    unsafe { accessor!(colormap -> xproto::Colormap, self.base.strct) }
   }
 
 }
@@ -415,16 +416,16 @@ impl<'s, Pictforminfo> Iterator<&'s Pictforminfo> for PictforminfoIterator {
     }
 }
 
-pub type Pictvisual = base::Struct<pictvisual>;
+pub struct Pictvisual {pub base : base::Struct<pictvisual> }
 
 
-impl Struct<pictvisual> {
+impl Pictvisual {
   pub fn visual(&self) -> xproto::Visualid {
-    unsafe { accessor!(visual -> xproto::Visualid, self.strct) }
+    unsafe { accessor!(visual -> xproto::Visualid, self.base.strct) }
   }
 
   pub fn format(&self) -> Pictformat {
-    unsafe { accessor!(format -> Pictformat, self.strct) }
+    unsafe { accessor!(format -> Pictformat, self.base.strct) }
   }
 
 }
@@ -441,16 +442,16 @@ impl<'s, Pictvisual> Iterator<&'s Pictvisual> for PictvisualIterator {
     }
 }
 
-pub type Pictdepth = base::Struct<pictdepth>;
+pub struct Pictdepth {pub base : base::Struct<pictdepth> }
 
 
-impl Struct<pictdepth> {
+impl Pictdepth {
   pub fn depth(&self) -> u8 {
-    unsafe { accessor!(depth -> u8, self.strct) }
+    unsafe { accessor!(depth -> u8, self.base.strct) }
   }
 
   pub fn visuals(&self) -> PictvisualIterator {
-    unsafe { accessor!(PictvisualIterator, xcb_render_pictdepth_visuals_iterator, self.strct) }
+    unsafe { accessor!(PictvisualIterator, xcb_render_pictdepth_visuals_iterator, self.base.strct) }
   }
 
 }
@@ -467,16 +468,16 @@ impl<'s, Pictdepth> Iterator<&'s Pictdepth> for PictdepthIterator {
     }
 }
 
-pub type Pictscreen = base::Struct<pictscreen>;
+pub struct Pictscreen {pub base : base::Struct<pictscreen> }
 
 
-impl Struct<pictscreen> {
+impl Pictscreen {
   pub fn fallback(&self) -> Pictformat {
-    unsafe { accessor!(fallback -> Pictformat, self.strct) }
+    unsafe { accessor!(fallback -> Pictformat, self.base.strct) }
   }
 
   pub fn depths(&self) -> PictdepthIterator {
-    unsafe { accessor!(PictdepthIterator, xcb_render_pictscreen_depths_iterator, self.strct) }
+    unsafe { accessor!(PictdepthIterator, xcb_render_pictscreen_depths_iterator, self.base.strct) }
   }
 
 }
@@ -493,28 +494,28 @@ impl<'s, Pictscreen> Iterator<&'s Pictscreen> for PictscreenIterator {
     }
 }
 
-pub type Indexvalue = base::Struct<indexvalue>;
+pub struct Indexvalue {pub base : base::Struct<indexvalue> }
 
 
-impl Struct<indexvalue> {
+impl Indexvalue {
   pub fn pixel(&self) -> u32 {
-    unsafe { accessor!(pixel -> u32, self.strct) }
+    unsafe { accessor!(pixel -> u32, self.base.strct) }
   }
 
   pub fn red(&self) -> u16 {
-    unsafe { accessor!(red -> u16, self.strct) }
+    unsafe { accessor!(red -> u16, self.base.strct) }
   }
 
   pub fn green(&self) -> u16 {
-    unsafe { accessor!(green -> u16, self.strct) }
+    unsafe { accessor!(green -> u16, self.base.strct) }
   }
 
   pub fn blue(&self) -> u16 {
-    unsafe { accessor!(blue -> u16, self.strct) }
+    unsafe { accessor!(blue -> u16, self.base.strct) }
   }
 
   pub fn alpha(&self) -> u16 {
-    unsafe { accessor!(alpha -> u16, self.strct) }
+    unsafe { accessor!(alpha -> u16, self.base.strct) }
   }
 
 }
@@ -531,24 +532,24 @@ impl<'s, Indexvalue> Iterator<&'s Indexvalue> for IndexvalueIterator {
     }
 }
 
-pub type Color = base::Struct<color>;
+pub struct Color {pub base : base::Struct<color> }
 
 
-impl Struct<color> {
+impl Color {
   pub fn red(&self) -> u16 {
-    unsafe { accessor!(red -> u16, self.strct) }
+    unsafe { accessor!(red -> u16, self.base.strct) }
   }
 
   pub fn green(&self) -> u16 {
-    unsafe { accessor!(green -> u16, self.strct) }
+    unsafe { accessor!(green -> u16, self.base.strct) }
   }
 
   pub fn blue(&self) -> u16 {
-    unsafe { accessor!(blue -> u16, self.strct) }
+    unsafe { accessor!(blue -> u16, self.base.strct) }
   }
 
   pub fn alpha(&self) -> u16 {
-    unsafe { accessor!(alpha -> u16, self.strct) }
+    unsafe { accessor!(alpha -> u16, self.base.strct) }
   }
 
 }
@@ -565,16 +566,16 @@ impl<'s, Color> Iterator<&'s Color> for ColorIterator {
     }
 }
 
-pub type Pointfix = base::Struct<pointfix>;
+pub struct Pointfix {pub base : base::Struct<pointfix> }
 
 
-impl Struct<pointfix> {
+impl Pointfix {
   pub fn x(&self) -> Fixed {
-    unsafe { accessor!(x -> Fixed, self.strct) }
+    unsafe { accessor!(x -> Fixed, self.base.strct) }
   }
 
   pub fn y(&self) -> Fixed {
-    unsafe { accessor!(y -> Fixed, self.strct) }
+    unsafe { accessor!(y -> Fixed, self.base.strct) }
   }
 
 }
@@ -591,15 +592,15 @@ impl<'s, Pointfix> Iterator<&'s Pointfix> for PointfixIterator {
     }
 }
 
-pub type Linefix = base::Struct<linefix>;
+pub struct Linefix {pub base : base::Struct<linefix> }
 
 
-impl Struct<linefix> {
+impl Linefix {
   pub fn p1(&self) -> Pointfix {
-    unsafe { mem::transmute(self.strct.p1) }
+    unsafe { mem::transmute(self.base.strct.p1) }
   }
   pub fn p2(&self) -> Pointfix {
-    unsafe { mem::transmute(self.strct.p2) }
+    unsafe { mem::transmute(self.base.strct.p2) }
   }
 }
 
@@ -615,18 +616,18 @@ impl<'s, Linefix> Iterator<&'s Linefix> for LinefixIterator {
     }
 }
 
-pub type Triangle = base::Struct<triangle>;
+pub struct Triangle {pub base : base::Struct<triangle> }
 
 
-impl Struct<triangle> {
+impl Triangle {
   pub fn p1(&self) -> Pointfix {
-    unsafe { mem::transmute(self.strct.p1) }
+    unsafe { mem::transmute(self.base.strct.p1) }
   }
   pub fn p2(&self) -> Pointfix {
-    unsafe { mem::transmute(self.strct.p2) }
+    unsafe { mem::transmute(self.base.strct.p2) }
   }
   pub fn p3(&self) -> Pointfix {
-    unsafe { mem::transmute(self.strct.p3) }
+    unsafe { mem::transmute(self.base.strct.p3) }
   }
 }
 
@@ -642,23 +643,23 @@ impl<'s, Triangle> Iterator<&'s Triangle> for TriangleIterator {
     }
 }
 
-pub type Trapezoid = base::Struct<trapezoid>;
+pub struct Trapezoid {pub base : base::Struct<trapezoid> }
 
 
-impl Struct<trapezoid> {
+impl Trapezoid {
   pub fn top(&self) -> Fixed {
-    unsafe { accessor!(top -> Fixed, self.strct) }
+    unsafe { accessor!(top -> Fixed, self.base.strct) }
   }
 
   pub fn bottom(&self) -> Fixed {
-    unsafe { accessor!(bottom -> Fixed, self.strct) }
+    unsafe { accessor!(bottom -> Fixed, self.base.strct) }
   }
 
   pub fn left(&self) -> Linefix {
-    unsafe { mem::transmute(self.strct.left) }
+    unsafe { mem::transmute(self.base.strct.left) }
   }
   pub fn right(&self) -> Linefix {
-    unsafe { mem::transmute(self.strct.right) }
+    unsafe { mem::transmute(self.base.strct.right) }
   }
 }
 
@@ -674,32 +675,32 @@ impl<'s, Trapezoid> Iterator<&'s Trapezoid> for TrapezoidIterator {
     }
 }
 
-pub type Glyphinfo = base::Struct<glyphinfo>;
+pub struct Glyphinfo {pub base : base::Struct<glyphinfo> }
 
 
-impl Struct<glyphinfo> {
+impl Glyphinfo {
   pub fn width(&self) -> u16 {
-    unsafe { accessor!(width -> u16, self.strct) }
+    unsafe { accessor!(width -> u16, self.base.strct) }
   }
 
   pub fn height(&self) -> u16 {
-    unsafe { accessor!(height -> u16, self.strct) }
+    unsafe { accessor!(height -> u16, self.base.strct) }
   }
 
   pub fn x(&self) -> i16 {
-    unsafe { accessor!(x -> i16, self.strct) }
+    unsafe { accessor!(x -> i16, self.base.strct) }
   }
 
   pub fn y(&self) -> i16 {
-    unsafe { accessor!(y -> i16, self.strct) }
+    unsafe { accessor!(y -> i16, self.base.strct) }
   }
 
   pub fn x_off(&self) -> i16 {
-    unsafe { accessor!(x_off -> i16, self.strct) }
+    unsafe { accessor!(x_off -> i16, self.base.strct) }
   }
 
   pub fn y_off(&self) -> i16 {
-    unsafe { accessor!(y_off -> i16, self.strct) }
+    unsafe { accessor!(y_off -> i16, self.base.strct) }
   }
 
 }
@@ -723,7 +724,7 @@ pub fn QueryVersion<'r> (c : &'r Connection,
     let cookie = xcb_render_query_version(c.get_raw_conn(),
         client_major_version as u32, //1
         client_minor_version as u32); //2
-    Cookie {cookie:cookie,conn:c,checked:false}
+    QueryVersionCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 pub fn QueryVersionUnchecked<'r> (c : &'r Connection,
@@ -733,67 +734,69 @@ pub fn QueryVersionUnchecked<'r> (c : &'r Connection,
     let cookie = xcb_render_query_version_unchecked(c.get_raw_conn(),
         client_major_version as u32, //1
         client_minor_version as u32); //2
-    Cookie {cookie:cookie,conn:c,checked:false}
+    QueryVersionCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 
-impl Reply<query_version_reply> {
+impl QueryVersionReply {
   pub fn major_version(&self) -> u32 {
-    unsafe { accessor!(major_version -> u32, (*self.reply)) }
+    unsafe { accessor!(major_version -> u32, (*self.base.reply)) }
   }
 
   pub fn minor_version(&self) -> u32 {
-    unsafe { accessor!(minor_version -> u32, (*self.reply)) }
+    unsafe { accessor!(minor_version -> u32, (*self.base.reply)) }
   }
 
 }
-impl_reply_cookie!(QueryVersionCookie<'s>, query_version_reply, QueryVersionReply, xcb_render_query_version_reply)
+impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_query_version_reply, QueryVersionReply, xcb_render_query_version_reply)
 
-pub type QueryPictFormatsReply = base::Reply<query_pict_formats_reply>;
+pub struct QueryPictFormatsReply { base:  base::Reply<query_pict_formats_reply> }
+fn mk_reply_query_pict_formats_reply(reply:*mut query_pict_formats_reply) -> QueryPictFormatsReply { QueryPictFormatsReply { base : base::mk_reply(reply) } }
 pub fn QueryPictFormats<'r> (c : &'r Connection) -> QueryPictFormatsCookie<'r> {
   unsafe {
     let cookie = xcb_render_query_pict_formats(c.get_raw_conn());
-    Cookie {cookie:cookie,conn:c,checked:false}
+    QueryPictFormatsCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 pub fn QueryPictFormatsUnchecked<'r> (c : &'r Connection) -> QueryPictFormatsCookie<'r> {
   unsafe {
     let cookie = xcb_render_query_pict_formats_unchecked(c.get_raw_conn());
-    Cookie {cookie:cookie,conn:c,checked:false}
+    QueryPictFormatsCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 
-impl Reply<query_pict_formats_reply> {
+impl QueryPictFormatsReply {
   pub fn num_depths(&self) -> u32 {
-    unsafe { accessor!(num_depths -> u32, (*self.reply)) }
+    unsafe { accessor!(num_depths -> u32, (*self.base.reply)) }
   }
 
   pub fn num_visuals(&self) -> u32 {
-    unsafe { accessor!(num_visuals -> u32, (*self.reply)) }
+    unsafe { accessor!(num_visuals -> u32, (*self.base.reply)) }
   }
 
   pub fn formats(&self) -> PictforminfoIterator {
-    unsafe { accessor!(PictforminfoIterator, xcb_render_query_pict_formats_formats_iterator, (*self.reply)) }
+    unsafe { accessor!(PictforminfoIterator, xcb_render_query_pict_formats_formats_iterator, (*self.base.reply)) }
   }
 
   pub fn screens(&self) -> PictscreenIterator {
-    unsafe { accessor!(PictscreenIterator, xcb_render_query_pict_formats_screens_iterator, (*self.reply)) }
+    unsafe { accessor!(PictscreenIterator, xcb_render_query_pict_formats_screens_iterator, (*self.base.reply)) }
   }
 
   pub fn subpixels(&self) -> Vec<u32> {
-    unsafe { accessor!(u32, xcb_render_query_pict_formats_subpixels_length, xcb_render_query_pict_formats_subpixels, (*self.reply)) }
+    unsafe { accessor!(u32, xcb_render_query_pict_formats_subpixels_length, xcb_render_query_pict_formats_subpixels, (*self.base.reply)) }
   }
 
 }
-impl_reply_cookie!(QueryPictFormatsCookie<'s>, query_pict_formats_reply, QueryPictFormatsReply, xcb_render_query_pict_formats_reply)
+impl_reply_cookie!(QueryPictFormatsCookie<'s>, mk_reply_query_pict_formats_reply, QueryPictFormatsReply, xcb_render_query_pict_formats_reply)
 
-pub type QueryPictIndexValuesReply = base::Reply<query_pict_index_values_reply>;
+pub struct QueryPictIndexValuesReply { base:  base::Reply<query_pict_index_values_reply> }
+fn mk_reply_query_pict_index_values_reply(reply:*mut query_pict_index_values_reply) -> QueryPictIndexValuesReply { QueryPictIndexValuesReply { base : base::mk_reply(reply) } }
 pub fn QueryPictIndexValues<'r> (c : &'r Connection,
                              format : Pictformat) -> QueryPictIndexValuesCookie<'r> {
   unsafe {
     let cookie = xcb_render_query_pict_index_values(c.get_raw_conn(),
         format as pictformat); //1
-    Cookie {cookie:cookie,conn:c,checked:false}
+    QueryPictIndexValuesCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 pub fn QueryPictIndexValuesUnchecked<'r> (c : &'r Connection,
@@ -801,17 +804,17 @@ pub fn QueryPictIndexValuesUnchecked<'r> (c : &'r Connection,
   unsafe {
     let cookie = xcb_render_query_pict_index_values_unchecked(c.get_raw_conn(),
         format as pictformat); //1
-    Cookie {cookie:cookie,conn:c,checked:false}
+    QueryPictIndexValuesCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 
-impl Reply<query_pict_index_values_reply> {
+impl QueryPictIndexValuesReply {
   pub fn values(&self) -> IndexvalueIterator {
-    unsafe { accessor!(IndexvalueIterator, xcb_render_query_pict_index_values_values_iterator, (*self.reply)) }
+    unsafe { accessor!(IndexvalueIterator, xcb_render_query_pict_index_values_values_iterator, (*self.base.reply)) }
   }
 
 }
-impl_reply_cookie!(QueryPictIndexValuesCookie<'s>, query_pict_index_values_reply, QueryPictIndexValuesReply, xcb_render_query_pict_index_values_reply)
+impl_reply_cookie!(QueryPictIndexValuesCookie<'s>, mk_reply_query_pict_index_values_reply, QueryPictIndexValuesReply, xcb_render_query_pict_index_values_reply)
 
 pub fn CreatePictureChecked<'r> (c : &'r Connection,
                              pid : Picture,
@@ -827,7 +830,7 @@ pub fn CreatePictureChecked<'r> (c : &'r Connection,
         format as pictformat, //3
         value_list_mask as u32, //4
         value_list_ptr as *mut u32); //5
-    Cookie {cookie:cookie,conn:c,checked:true}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn CreatePicture<'r> (c : &'r Connection,
@@ -844,7 +847,7 @@ pub fn CreatePicture<'r> (c : &'r Connection,
         format as pictformat, //3
         value_list_mask as u32, //4
         value_list_ptr as *mut u32); //5
-    Cookie {cookie:cookie,conn:c,checked:false}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 pub fn ChangePictureChecked<'r> (c : &'r Connection,
@@ -857,7 +860,7 @@ pub fn ChangePictureChecked<'r> (c : &'r Connection,
         picture as picture, //1
         value_list_mask as u32, //2
         value_list_ptr as *mut u32); //3
-    Cookie {cookie:cookie,conn:c,checked:true}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn ChangePicture<'r> (c : &'r Connection,
@@ -870,7 +873,7 @@ pub fn ChangePicture<'r> (c : &'r Connection,
         picture as picture, //1
         value_list_mask as u32, //2
         value_list_ptr as *mut u32); //3
-    Cookie {cookie:cookie,conn:c,checked:false}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 pub fn SetPictureClipRectanglesChecked<'r> (c : &'r Connection,
@@ -887,7 +890,7 @@ pub fn SetPictureClipRectanglesChecked<'r> (c : &'r Connection,
         clip_y_origin as i16, //3
         rectangles_len as u32, //4
         rectangles_ptr as *mut ffi::xproto::rectangle); //5
-    Cookie {cookie:cookie,conn:c,checked:true}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn SetPictureClipRectangles<'r> (c : &'r Connection,
@@ -904,7 +907,7 @@ pub fn SetPictureClipRectangles<'r> (c : &'r Connection,
         clip_y_origin as i16, //3
         rectangles_len as u32, //4
         rectangles_ptr as *mut ffi::xproto::rectangle); //5
-    Cookie {cookie:cookie,conn:c,checked:false}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 pub fn FreePictureChecked<'r> (c : &'r Connection,
@@ -912,7 +915,7 @@ pub fn FreePictureChecked<'r> (c : &'r Connection,
   unsafe {
     let cookie = xcb_render_free_picture_checked(c.get_raw_conn(),
         picture as picture); //1
-    Cookie {cookie:cookie,conn:c,checked:true}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn FreePicture<'r> (c : &'r Connection,
@@ -920,7 +923,7 @@ pub fn FreePicture<'r> (c : &'r Connection,
   unsafe {
     let cookie = xcb_render_free_picture(c.get_raw_conn(),
         picture as picture); //1
-    Cookie {cookie:cookie,conn:c,checked:false}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 pub fn CompositeChecked<'r> (c : &'r Connection,
@@ -950,7 +953,7 @@ pub fn CompositeChecked<'r> (c : &'r Connection,
         dst_y as i16, //10
         width as u16, //11
         height as u16); //12
-    Cookie {cookie:cookie,conn:c,checked:true}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn Composite<'r> (c : &'r Connection,
@@ -980,7 +983,7 @@ pub fn Composite<'r> (c : &'r Connection,
         dst_y as i16, //10
         width as u16, //11
         height as u16); //12
-    Cookie {cookie:cookie,conn:c,checked:false}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 pub fn TrapezoidsChecked<'r> (c : &'r Connection,
@@ -1003,7 +1006,7 @@ pub fn TrapezoidsChecked<'r> (c : &'r Connection,
         src_y as i16, //6
         traps_len as u32, //7
         traps_ptr as *mut trapezoid); //8
-    Cookie {cookie:cookie,conn:c,checked:true}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn Trapezoids<'r> (c : &'r Connection,
@@ -1026,7 +1029,7 @@ pub fn Trapezoids<'r> (c : &'r Connection,
         src_y as i16, //6
         traps_len as u32, //7
         traps_ptr as *mut trapezoid); //8
-    Cookie {cookie:cookie,conn:c,checked:false}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 pub fn TrianglesChecked<'r> (c : &'r Connection,
@@ -1049,7 +1052,7 @@ pub fn TrianglesChecked<'r> (c : &'r Connection,
         src_y as i16, //6
         triangles_len as u32, //7
         triangles_ptr as *mut triangle); //8
-    Cookie {cookie:cookie,conn:c,checked:true}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn Triangles<'r> (c : &'r Connection,
@@ -1072,7 +1075,7 @@ pub fn Triangles<'r> (c : &'r Connection,
         src_y as i16, //6
         triangles_len as u32, //7
         triangles_ptr as *mut triangle); //8
-    Cookie {cookie:cookie,conn:c,checked:false}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 pub fn TriStripChecked<'r> (c : &'r Connection,
@@ -1095,7 +1098,7 @@ pub fn TriStripChecked<'r> (c : &'r Connection,
         src_y as i16, //6
         points_len as u32, //7
         points_ptr as *mut pointfix); //8
-    Cookie {cookie:cookie,conn:c,checked:true}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn TriStrip<'r> (c : &'r Connection,
@@ -1118,7 +1121,7 @@ pub fn TriStrip<'r> (c : &'r Connection,
         src_y as i16, //6
         points_len as u32, //7
         points_ptr as *mut pointfix); //8
-    Cookie {cookie:cookie,conn:c,checked:false}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 pub fn TriFanChecked<'r> (c : &'r Connection,
@@ -1141,7 +1144,7 @@ pub fn TriFanChecked<'r> (c : &'r Connection,
         src_y as i16, //6
         points_len as u32, //7
         points_ptr as *mut pointfix); //8
-    Cookie {cookie:cookie,conn:c,checked:true}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn TriFan<'r> (c : &'r Connection,
@@ -1164,7 +1167,7 @@ pub fn TriFan<'r> (c : &'r Connection,
         src_y as i16, //6
         points_len as u32, //7
         points_ptr as *mut pointfix); //8
-    Cookie {cookie:cookie,conn:c,checked:false}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 pub fn CreateGlyphSetChecked<'r> (c : &'r Connection,
@@ -1174,7 +1177,7 @@ pub fn CreateGlyphSetChecked<'r> (c : &'r Connection,
     let cookie = xcb_render_create_glyph_set_checked(c.get_raw_conn(),
         gsid as glyphset, //1
         format as pictformat); //2
-    Cookie {cookie:cookie,conn:c,checked:true}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn CreateGlyphSet<'r> (c : &'r Connection,
@@ -1184,7 +1187,7 @@ pub fn CreateGlyphSet<'r> (c : &'r Connection,
     let cookie = xcb_render_create_glyph_set(c.get_raw_conn(),
         gsid as glyphset, //1
         format as pictformat); //2
-    Cookie {cookie:cookie,conn:c,checked:false}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 pub fn ReferenceGlyphSetChecked<'r> (c : &'r Connection,
@@ -1194,7 +1197,7 @@ pub fn ReferenceGlyphSetChecked<'r> (c : &'r Connection,
     let cookie = xcb_render_reference_glyph_set_checked(c.get_raw_conn(),
         gsid as glyphset, //1
         existing as glyphset); //2
-    Cookie {cookie:cookie,conn:c,checked:true}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn ReferenceGlyphSet<'r> (c : &'r Connection,
@@ -1204,7 +1207,7 @@ pub fn ReferenceGlyphSet<'r> (c : &'r Connection,
     let cookie = xcb_render_reference_glyph_set(c.get_raw_conn(),
         gsid as glyphset, //1
         existing as glyphset); //2
-    Cookie {cookie:cookie,conn:c,checked:false}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 pub fn FreeGlyphSetChecked<'r> (c : &'r Connection,
@@ -1212,7 +1215,7 @@ pub fn FreeGlyphSetChecked<'r> (c : &'r Connection,
   unsafe {
     let cookie = xcb_render_free_glyph_set_checked(c.get_raw_conn(),
         glyphset as glyphset); //1
-    Cookie {cookie:cookie,conn:c,checked:true}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn FreeGlyphSet<'r> (c : &'r Connection,
@@ -1220,7 +1223,7 @@ pub fn FreeGlyphSet<'r> (c : &'r Connection,
   unsafe {
     let cookie = xcb_render_free_glyph_set(c.get_raw_conn(),
         glyphset as glyphset); //1
-    Cookie {cookie:cookie,conn:c,checked:false}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 pub fn AddGlyphsChecked<'r> (c : &'r Connection,
@@ -1241,7 +1244,7 @@ pub fn AddGlyphsChecked<'r> (c : &'r Connection,
         glyphs_ptr as *mut glyphinfo, //4
         data_len as u32, //5
         data_ptr as *mut u8); //6
-    Cookie {cookie:cookie,conn:c,checked:true}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn AddGlyphs<'r> (c : &'r Connection,
@@ -1262,7 +1265,7 @@ pub fn AddGlyphs<'r> (c : &'r Connection,
         glyphs_ptr as *mut glyphinfo, //4
         data_len as u32, //5
         data_ptr as *mut u8); //6
-    Cookie {cookie:cookie,conn:c,checked:false}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 pub fn FreeGlyphsChecked<'r> (c : &'r Connection,
@@ -1275,7 +1278,7 @@ pub fn FreeGlyphsChecked<'r> (c : &'r Connection,
         glyphset as glyphset, //1
         glyphs_len as u32, //2
         glyphs_ptr as *mut glyph); //3
-    Cookie {cookie:cookie,conn:c,checked:true}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn FreeGlyphs<'r> (c : &'r Connection,
@@ -1288,7 +1291,7 @@ pub fn FreeGlyphs<'r> (c : &'r Connection,
         glyphset as glyphset, //1
         glyphs_len as u32, //2
         glyphs_ptr as *mut glyph); //3
-    Cookie {cookie:cookie,conn:c,checked:false}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 pub fn CompositeGlyphs8Checked<'r> (c : &'r Connection,
@@ -1313,7 +1316,7 @@ pub fn CompositeGlyphs8Checked<'r> (c : &'r Connection,
         src_y as i16, //7
         glyphcmds_len as u32, //8
         glyphcmds_ptr as *mut u8); //9
-    Cookie {cookie:cookie,conn:c,checked:true}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn CompositeGlyphs8<'r> (c : &'r Connection,
@@ -1338,7 +1341,7 @@ pub fn CompositeGlyphs8<'r> (c : &'r Connection,
         src_y as i16, //7
         glyphcmds_len as u32, //8
         glyphcmds_ptr as *mut u8); //9
-    Cookie {cookie:cookie,conn:c,checked:false}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 pub fn CompositeGlyphs16Checked<'r> (c : &'r Connection,
@@ -1363,7 +1366,7 @@ pub fn CompositeGlyphs16Checked<'r> (c : &'r Connection,
         src_y as i16, //7
         glyphcmds_len as u32, //8
         glyphcmds_ptr as *mut u8); //9
-    Cookie {cookie:cookie,conn:c,checked:true}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn CompositeGlyphs16<'r> (c : &'r Connection,
@@ -1388,7 +1391,7 @@ pub fn CompositeGlyphs16<'r> (c : &'r Connection,
         src_y as i16, //7
         glyphcmds_len as u32, //8
         glyphcmds_ptr as *mut u8); //9
-    Cookie {cookie:cookie,conn:c,checked:false}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 pub fn CompositeGlyphs32Checked<'r> (c : &'r Connection,
@@ -1413,7 +1416,7 @@ pub fn CompositeGlyphs32Checked<'r> (c : &'r Connection,
         src_y as i16, //7
         glyphcmds_len as u32, //8
         glyphcmds_ptr as *mut u8); //9
-    Cookie {cookie:cookie,conn:c,checked:true}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn CompositeGlyphs32<'r> (c : &'r Connection,
@@ -1438,7 +1441,7 @@ pub fn CompositeGlyphs32<'r> (c : &'r Connection,
         src_y as i16, //7
         glyphcmds_len as u32, //8
         glyphcmds_ptr as *mut u8); //9
-    Cookie {cookie:cookie,conn:c,checked:false}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 pub fn FillRectanglesChecked<'r> (c : &'r Connection,
@@ -1452,10 +1455,10 @@ pub fn FillRectanglesChecked<'r> (c : &'r Connection,
     let cookie = xcb_render_fill_rectangles_checked(c.get_raw_conn(),
         op as u8, //1
         dst as picture, //2
-        color.strct, //3
+        color.base.strct, //3
         rects_len as u32, //4
         rects_ptr as *mut ffi::xproto::rectangle); //5
-    Cookie {cookie:cookie,conn:c,checked:true}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn FillRectangles<'r> (c : &'r Connection,
@@ -1469,10 +1472,10 @@ pub fn FillRectangles<'r> (c : &'r Connection,
     let cookie = xcb_render_fill_rectangles(c.get_raw_conn(),
         op as u8, //1
         dst as picture, //2
-        color.strct, //3
+        color.base.strct, //3
         rects_len as u32, //4
         rects_ptr as *mut ffi::xproto::rectangle); //5
-    Cookie {cookie:cookie,conn:c,checked:false}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 pub fn CreateCursorChecked<'r> (c : &'r Connection,
@@ -1486,7 +1489,7 @@ pub fn CreateCursorChecked<'r> (c : &'r Connection,
         source as picture, //2
         x as u16, //3
         y as u16); //4
-    Cookie {cookie:cookie,conn:c,checked:true}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn CreateCursor<'r> (c : &'r Connection,
@@ -1500,47 +1503,47 @@ pub fn CreateCursor<'r> (c : &'r Connection,
         source as picture, //2
         x as u16, //3
         y as u16); //4
-    Cookie {cookie:cookie,conn:c,checked:false}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub type Transform = base::Struct<transform>;
+pub struct Transform {pub base : base::Struct<transform> }
 
 
-impl Struct<transform> {
+impl Transform {
   pub fn matrix11(&self) -> Fixed {
-    unsafe { accessor!(matrix11 -> Fixed, self.strct) }
+    unsafe { accessor!(matrix11 -> Fixed, self.base.strct) }
   }
 
   pub fn matrix12(&self) -> Fixed {
-    unsafe { accessor!(matrix12 -> Fixed, self.strct) }
+    unsafe { accessor!(matrix12 -> Fixed, self.base.strct) }
   }
 
   pub fn matrix13(&self) -> Fixed {
-    unsafe { accessor!(matrix13 -> Fixed, self.strct) }
+    unsafe { accessor!(matrix13 -> Fixed, self.base.strct) }
   }
 
   pub fn matrix21(&self) -> Fixed {
-    unsafe { accessor!(matrix21 -> Fixed, self.strct) }
+    unsafe { accessor!(matrix21 -> Fixed, self.base.strct) }
   }
 
   pub fn matrix22(&self) -> Fixed {
-    unsafe { accessor!(matrix22 -> Fixed, self.strct) }
+    unsafe { accessor!(matrix22 -> Fixed, self.base.strct) }
   }
 
   pub fn matrix23(&self) -> Fixed {
-    unsafe { accessor!(matrix23 -> Fixed, self.strct) }
+    unsafe { accessor!(matrix23 -> Fixed, self.base.strct) }
   }
 
   pub fn matrix31(&self) -> Fixed {
-    unsafe { accessor!(matrix31 -> Fixed, self.strct) }
+    unsafe { accessor!(matrix31 -> Fixed, self.base.strct) }
   }
 
   pub fn matrix32(&self) -> Fixed {
-    unsafe { accessor!(matrix32 -> Fixed, self.strct) }
+    unsafe { accessor!(matrix32 -> Fixed, self.base.strct) }
   }
 
   pub fn matrix33(&self) -> Fixed {
-    unsafe { accessor!(matrix33 -> Fixed, self.strct) }
+    unsafe { accessor!(matrix33 -> Fixed, self.base.strct) }
   }
 
 }
@@ -1563,8 +1566,8 @@ pub fn SetPictureTransformChecked<'r> (c : &'r Connection,
   unsafe {
     let cookie = xcb_render_set_picture_transform_checked(c.get_raw_conn(),
         picture as picture, //1
-        transform.strct); //2
-    Cookie {cookie:cookie,conn:c,checked:true}
+        transform.base.strct); //2
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn SetPictureTransform<'r> (c : &'r Connection,
@@ -1573,17 +1576,18 @@ pub fn SetPictureTransform<'r> (c : &'r Connection,
   unsafe {
     let cookie = xcb_render_set_picture_transform(c.get_raw_conn(),
         picture as picture, //1
-        transform.strct); //2
-    Cookie {cookie:cookie,conn:c,checked:false}
+        transform.base.strct); //2
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub type QueryFiltersReply = base::Reply<query_filters_reply>;
+pub struct QueryFiltersReply { base:  base::Reply<query_filters_reply> }
+fn mk_reply_query_filters_reply(reply:*mut query_filters_reply) -> QueryFiltersReply { QueryFiltersReply { base : base::mk_reply(reply) } }
 pub fn QueryFilters<'r> (c : &'r Connection,
                      drawable : xproto::Drawable) -> QueryFiltersCookie<'r> {
   unsafe {
     let cookie = xcb_render_query_filters(c.get_raw_conn(),
         drawable as ffi::xproto::drawable); //1
-    Cookie {cookie:cookie,conn:c,checked:false}
+    QueryFiltersCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 pub fn QueryFiltersUnchecked<'r> (c : &'r Connection,
@@ -1591,21 +1595,21 @@ pub fn QueryFiltersUnchecked<'r> (c : &'r Connection,
   unsafe {
     let cookie = xcb_render_query_filters_unchecked(c.get_raw_conn(),
         drawable as ffi::xproto::drawable); //1
-    Cookie {cookie:cookie,conn:c,checked:false}
+    QueryFiltersCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 
-impl Reply<query_filters_reply> {
+impl QueryFiltersReply {
   pub fn aliases(&self) -> Vec<u16> {
-    unsafe { accessor!(u16, xcb_render_query_filters_aliases_length, xcb_render_query_filters_aliases, (*self.reply)) }
+    unsafe { accessor!(u16, xcb_render_query_filters_aliases_length, xcb_render_query_filters_aliases, (*self.base.reply)) }
   }
 
   pub fn filters(&self) -> xproto::StrIterator {
-    unsafe { accessor!(xproto::StrIterator, xcb_render_query_filters_filters_iterator, (*self.reply)) }
+    unsafe { accessor!(xproto::StrIterator, xcb_render_query_filters_filters_iterator, (*self.base.reply)) }
   }
 
 }
-impl_reply_cookie!(QueryFiltersCookie<'s>, query_filters_reply, QueryFiltersReply, xcb_render_query_filters_reply)
+impl_reply_cookie!(QueryFiltersCookie<'s>, mk_reply_query_filters_reply, QueryFiltersReply, xcb_render_query_filters_reply)
 
 pub fn SetPictureFilterChecked<'r> (c : &'r Connection,
                                 picture : Picture,
@@ -1623,7 +1627,7 @@ pub fn SetPictureFilterChecked<'r> (c : &'r Connection,
         filter_ptr as *mut c_char, //3
         values_len as u32, //4
         values_ptr as *mut fixed); //5
-    Cookie {cookie:cookie,conn:c,checked:true}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn SetPictureFilter<'r> (c : &'r Connection,
@@ -1642,19 +1646,19 @@ pub fn SetPictureFilter<'r> (c : &'r Connection,
         filter_ptr as *mut c_char, //3
         values_len as u32, //4
         values_ptr as *mut fixed); //5
-    Cookie {cookie:cookie,conn:c,checked:false}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub type Animcursorelt = base::Struct<animcursorelt>;
+pub struct Animcursorelt {pub base : base::Struct<animcursorelt> }
 
 
-impl Struct<animcursorelt> {
+impl Animcursorelt {
   pub fn cursor(&self) -> xproto::Cursor {
-    unsafe { accessor!(cursor -> xproto::Cursor, self.strct) }
+    unsafe { accessor!(cursor -> xproto::Cursor, self.base.strct) }
   }
 
   pub fn delay(&self) -> u32 {
-    unsafe { accessor!(delay -> u32, self.strct) }
+    unsafe { accessor!(delay -> u32, self.base.strct) }
   }
 
 }
@@ -1681,7 +1685,7 @@ pub fn CreateAnimCursorChecked<'r> (c : &'r Connection,
         cid as ffi::xproto::cursor, //1
         cursors_len as u32, //2
         cursors_ptr as *mut animcursorelt); //3
-    Cookie {cookie:cookie,conn:c,checked:true}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn CreateAnimCursor<'r> (c : &'r Connection,
@@ -1694,23 +1698,23 @@ pub fn CreateAnimCursor<'r> (c : &'r Connection,
         cid as ffi::xproto::cursor, //1
         cursors_len as u32, //2
         cursors_ptr as *mut animcursorelt); //3
-    Cookie {cookie:cookie,conn:c,checked:false}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub type Spanfix = base::Struct<spanfix>;
+pub struct Spanfix {pub base : base::Struct<spanfix> }
 
 
-impl Struct<spanfix> {
+impl Spanfix {
   pub fn l(&self) -> Fixed {
-    unsafe { accessor!(l -> Fixed, self.strct) }
+    unsafe { accessor!(l -> Fixed, self.base.strct) }
   }
 
   pub fn r(&self) -> Fixed {
-    unsafe { accessor!(r -> Fixed, self.strct) }
+    unsafe { accessor!(r -> Fixed, self.base.strct) }
   }
 
   pub fn y(&self) -> Fixed {
-    unsafe { accessor!(y -> Fixed, self.strct) }
+    unsafe { accessor!(y -> Fixed, self.base.strct) }
   }
 
 }
@@ -1727,15 +1731,15 @@ impl<'s, Spanfix> Iterator<&'s Spanfix> for SpanfixIterator {
     }
 }
 
-pub type Trap = base::Struct<trap>;
+pub struct Trap {pub base : base::Struct<trap> }
 
 
-impl Struct<trap> {
+impl Trap {
   pub fn top(&self) -> Spanfix {
-    unsafe { mem::transmute(self.strct.top) }
+    unsafe { mem::transmute(self.base.strct.top) }
   }
   pub fn bot(&self) -> Spanfix {
-    unsafe { mem::transmute(self.strct.bot) }
+    unsafe { mem::transmute(self.base.strct.bot) }
   }
 }
 
@@ -1765,7 +1769,7 @@ pub fn AddTrapsChecked<'r> (c : &'r Connection,
         y_off as i16, //3
         traps_len as u32, //4
         traps_ptr as *mut trap); //5
-    Cookie {cookie:cookie,conn:c,checked:true}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn AddTraps<'r> (c : &'r Connection,
@@ -1782,7 +1786,7 @@ pub fn AddTraps<'r> (c : &'r Connection,
         y_off as i16, //3
         traps_len as u32, //4
         traps_ptr as *mut trap); //5
-    Cookie {cookie:cookie,conn:c,checked:false}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 pub fn CreateSolidFillChecked<'r> (c : &'r Connection,
@@ -1791,8 +1795,8 @@ pub fn CreateSolidFillChecked<'r> (c : &'r Connection,
   unsafe {
     let cookie = xcb_render_create_solid_fill_checked(c.get_raw_conn(),
         picture as picture, //1
-        color.strct); //2
-    Cookie {cookie:cookie,conn:c,checked:true}
+        color.base.strct); //2
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn CreateSolidFill<'r> (c : &'r Connection,
@@ -1801,8 +1805,8 @@ pub fn CreateSolidFill<'r> (c : &'r Connection,
   unsafe {
     let cookie = xcb_render_create_solid_fill(c.get_raw_conn(),
         picture as picture, //1
-        color.strct); //2
-    Cookie {cookie:cookie,conn:c,checked:false}
+        color.base.strct); //2
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 pub fn CreateLinearGradientChecked<'r> (c : &'r Connection,
@@ -1817,12 +1821,12 @@ pub fn CreateLinearGradientChecked<'r> (c : &'r Connection,
     let colors_ptr = colors.as_mut_ptr();
     let cookie = xcb_render_create_linear_gradient_checked(c.get_raw_conn(),
         picture as picture, //1
-        p1.strct, //2
-        p2.strct, //3
+        p1.base.strct, //2
+        p2.base.strct, //3
         stops_len as u32, //4
         stops_ptr as *mut fixed, //5
         colors_ptr as *mut color); //6
-    Cookie {cookie:cookie,conn:c,checked:true}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn CreateLinearGradient<'r> (c : &'r Connection,
@@ -1837,12 +1841,12 @@ pub fn CreateLinearGradient<'r> (c : &'r Connection,
     let colors_ptr = colors.as_mut_ptr();
     let cookie = xcb_render_create_linear_gradient(c.get_raw_conn(),
         picture as picture, //1
-        p1.strct, //2
-        p2.strct, //3
+        p1.base.strct, //2
+        p2.base.strct, //3
         stops_len as u32, //4
         stops_ptr as *mut fixed, //5
         colors_ptr as *mut color); //6
-    Cookie {cookie:cookie,conn:c,checked:false}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 pub fn CreateRadialGradientChecked<'r> (c : &'r Connection,
@@ -1859,14 +1863,14 @@ pub fn CreateRadialGradientChecked<'r> (c : &'r Connection,
     let colors_ptr = colors.as_mut_ptr();
     let cookie = xcb_render_create_radial_gradient_checked(c.get_raw_conn(),
         picture as picture, //1
-        inner.strct, //2
-        outer.strct, //3
+        inner.base.strct, //2
+        outer.base.strct, //3
         inner_radius as fixed, //4
         outer_radius as fixed, //5
         stops_len as u32, //6
         stops_ptr as *mut fixed, //7
         colors_ptr as *mut color); //8
-    Cookie {cookie:cookie,conn:c,checked:true}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn CreateRadialGradient<'r> (c : &'r Connection,
@@ -1883,14 +1887,14 @@ pub fn CreateRadialGradient<'r> (c : &'r Connection,
     let colors_ptr = colors.as_mut_ptr();
     let cookie = xcb_render_create_radial_gradient(c.get_raw_conn(),
         picture as picture, //1
-        inner.strct, //2
-        outer.strct, //3
+        inner.base.strct, //2
+        outer.base.strct, //3
         inner_radius as fixed, //4
         outer_radius as fixed, //5
         stops_len as u32, //6
         stops_ptr as *mut fixed, //7
         colors_ptr as *mut color); //8
-    Cookie {cookie:cookie,conn:c,checked:false}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 pub fn CreateConicalGradientChecked<'r> (c : &'r Connection,
@@ -1905,12 +1909,12 @@ pub fn CreateConicalGradientChecked<'r> (c : &'r Connection,
     let colors_ptr = colors.as_mut_ptr();
     let cookie = xcb_render_create_conical_gradient_checked(c.get_raw_conn(),
         picture as picture, //1
-        center.strct, //2
+        center.base.strct, //2
         angle as fixed, //3
         stops_len as u32, //4
         stops_ptr as *mut fixed, //5
         colors_ptr as *mut color); //6
-    Cookie {cookie:cookie,conn:c,checked:true}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
 pub fn CreateConicalGradient<'r> (c : &'r Connection,
@@ -1925,12 +1929,12 @@ pub fn CreateConicalGradient<'r> (c : &'r Connection,
     let colors_ptr = colors.as_mut_ptr();
     let cookie = xcb_render_create_conical_gradient(c.get_raw_conn(),
         picture as picture, //1
-        center.strct, //2
+        center.base.strct, //2
         angle as fixed, //3
         stops_len as u32, //4
         stops_ptr as *mut fixed, //5
         colors_ptr as *mut color); //6
-    Cookie {cookie:cookie,conn:c,checked:false}
+    base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 

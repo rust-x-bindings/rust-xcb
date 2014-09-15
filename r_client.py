@@ -1053,7 +1053,7 @@ def _c_accessors(self, name, base):
                 pass
 
     _r_setlevel(1)
-    _r('\nimpl %s<%s> {', self.wrap_type, self.c_type)
+    _r('\nimpl %s {', self.r_type)
     for field in accessor_fields:
         _r_accessor(self,field)
     _r_setlevel(1)
@@ -1192,8 +1192,8 @@ def c_struct(self, name):
     _c_complex(self)
 
     self.wrap_type = 'Struct'
-    _r('pub type %s = base::Struct<%s>;\n', self.r_type, self.c_type)
-    self.wrap_field_name = 'self.strct'
+    _r('pub struct %s {pub base : base::Struct<%s> }\n', self.r_type, self.c_type)
+    self.wrap_field_name = 'self.base.strct'
     _c_accessors(self, name, name)
     _c_iterator(self, name)
 
@@ -1216,7 +1216,7 @@ def c_union(self, name):
     _h('}')
 
     self.wrap_type = 'Struct'
-    _r('pub type %s = base::Struct<%s>;', self.r_type, self.c_type)
+    _r('pub struct %s {pub base : base::Struct<%s>}', self.r_type, self.c_type)
 
     _c_iterator(self, name)
 
@@ -1455,7 +1455,7 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
 
 
         elif fty.is_container:
-            call_params.append((field.idx, '%s.strct' % (field.c_field_name,)))
+            call_params.append((field.idx, '%s.base.strct' % (field.c_field_name,)))
         else:
             call_params.append((field.idx, '%s as %s' % (field.c_field_name, c_field_const_type)))
 
@@ -1476,7 +1476,7 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
         _r('        %s%s //%d', c, comma, idx)
 
 
-    _r('    Cookie {cookie:cookie,conn:c,checked:%s}', 'true' if checked else 'false')
+    _r('    %s { base : Cookie {cookie:cookie,conn:c,checked:%s}}', rust_cookie_type, 'true' if checked else 'false')
     _r('  }')
     _r('}')
 
@@ -1505,7 +1505,7 @@ def _c_reply(self, name):
     _h('          %s  cookie : %s,', spacing, self.c_cookie_type)
     _h('          %s  e : *mut *mut ffi::base::generic_error) -> *mut %s;', spacing, self.c_reply_type)
 
-    _r('impl_reply_cookie!(%s<\'s>, %s, %s, %s)\n', self.r_cookie_type, self.c_reply_type, self.r_reply_type, self.c_reply_name)
+    _r('impl_reply_cookie!(%s<\'s>, mk_reply_%s, %s, %s)\n', self.r_cookie_type, self.c_reply_type, self.r_reply_type, self.c_reply_name)
 
 def _c_opcode(name, opcode):
     '''
@@ -1529,7 +1529,7 @@ def _c_cookie(self, name):
     _h('}')
 
     self.wrap_type = 'Cookie'
-    _r('pub type %s<\'s> = base::Cookie<\'s, %s>;\n', self.r_cookie_type, self.c_cookie_type)
+    _r('pub struct  %s<\'s> { pub base : base::Cookie<\'s, %s> }\n', self.r_cookie_type, self.c_cookie_type)
 
 
 def c_request(self, name):
@@ -1552,7 +1552,8 @@ def c_request(self, name):
 
     if self.reply:
         _c_type_setup(self.reply, name, ('reply',))
-        _r('pub type %s = base::Reply<%s>;', self.r_reply_type, self.c_reply_type)
+        _r('pub struct %s { base:  base::Reply<%s> }', self.r_reply_type, self.c_reply_type)
+        _r('fn mk_reply_%s(reply:*mut %s) -> %s { %s { base : base::mk_reply(reply) } }', self.c_reply_type, self.c_reply_type, self.r_reply_type,  self.r_reply_type)
 
 
         # Reply structure definition
@@ -1565,7 +1566,7 @@ def c_request(self, name):
             _c_request_helper(self, name, self.r_cookie_type, self.c_cookie_type, False, True, True)
             _c_request_helper(self, name, self.r_cookie_type, self.c_cookie_type, False, False, True)
         # Reply accessors
-        self.reply.wrap_field_name = '(*self.reply)'
+        self.reply.wrap_field_name = '(*self.base.reply)'
 
         self.reply.wrap_type = "Reply"
         _c_accessors(self.reply, name + ('reply',), name)
@@ -1590,13 +1591,13 @@ def c_event(self, name):
     _c_opcode(name, self.opcodes[name])
 
     self.wrap_type = 'Event';
-    _r('pub type %s = base::Event<%s>;', self.r_type, self.c_type)
+    _r('pub struct %s {pub base : base::Event<%s>}', self.r_type, self.c_type)
 
     if self.name == name:
         # Structure definition
         _c_complex(self)
 
-        self.wrap_field_name = '(*self.event)'
+        self.wrap_field_name = '(*self.base.event)'
 
         accessor_fields = []
         for f in self.fields:
@@ -1613,7 +1614,7 @@ def c_event(self, name):
         new_params = []
 
         _r_setlevel(1)
-        _r('\nimpl %s<%s> {', self.wrap_type, self.c_type)
+        _r('\nimpl %s {', self.r_type)
         for field in accessor_fields:
             _r_accessor(self,field)
 
@@ -1630,10 +1631,10 @@ def c_event(self, name):
         for f in self.fields:
             if not f.visible: continue
             if f.type.is_container:
-                _r('      (*raw).%s = %s.strct;', f.c_field_name, f.c_field_name)
+                _r('      (*raw).%s = %s.base.strct;', f.c_field_name, f.c_field_name)
             else:
                 _r('      (*raw).%s = %s;', f.c_field_name, f.c_field_name)
-        _r('      Event { event : raw as *mut %s }', self.c_type)
+        _r('      %s { base : Event { event : raw as *mut %s }}', self.r_type, self.c_type)
         _r('    }')
         _r('  }')
         _r('}')
@@ -1660,7 +1661,7 @@ def c_error(self, name):
         _h('')
         _h('pub type %s  = %s;', _t(name + ('error',)), _t(self.name + ('error',)))
 
-    _r('pub type %s = base::Error<%s>;', self.r_type, self.c_type)
+    _r('pub struct %s { pub base : base::Error<%s> }', self.r_type, self.c_type)
 
 
 

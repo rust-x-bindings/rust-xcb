@@ -69,7 +69,7 @@ impl<'s> Connection {
             if event.is_null() {
                 None
             } else {
-                Some(Event {event:event})
+                Some(GenericEvent { base: Event {event:event}})
             }
         }
     }
@@ -81,7 +81,7 @@ impl<'s> Connection {
             if event.is_null() {
                 None
             } else {
-                Some(Event {event:event})
+                Some(GenericEvent { base: Event {event:event}})
             }
         }
     }
@@ -93,7 +93,7 @@ impl<'s> Connection {
             if event.is_null() {
                 None
             } else {
-                Some(Event {event:event})
+                Some(GenericEvent { base : Event {event:event}})
             }
         }
     }
@@ -254,7 +254,7 @@ pub struct Cookie<'s, T> {
 }
 
 pub trait ReplyCookie<R> {
-    fn get_reply(&self) -> Result<Reply<R>, GenericError>;
+    fn get_reply(&self) -> Result<R, GenericError>;
 }
 
 impl<'s, T> Cookie<'s, T> {
@@ -267,7 +267,7 @@ impl<'s, T> Cookie<'s, T> {
             if err.is_null() {
                 None
             } else {
-                Some(Error {error:err})
+                Some(GenericError{base: Error {error:err}})
             }
         }
     }
@@ -291,10 +291,10 @@ impl<T> Drop for Reply<T> {
     }
 }
 
-pub type GenericReply = Reply<generic_reply>;
-pub type GenericEvent = Event<generic_event>;
-pub type GenericError = Error<generic_error>;
-pub type VoidCookie<'s> = Cookie<'s, void_cookie>;
+pub struct GenericReply { pub base : Reply<generic_reply>}
+pub struct GenericEvent { pub base : Event<generic_event>}
+pub struct GenericError { pub base : Error<generic_error>}
+pub struct VoidCookie<'s> { pub base : Cookie<'s, void_cookie> }
 
 /**
  * Casts the generic event to the right event. Assumes that the given

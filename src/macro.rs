@@ -2,22 +2,22 @@
 
 
 macro_rules! impl_reply_cookie {
-    ($cookie:ty, $crep:ty, $reply:ty, $func:ident) => (
-        impl<'s> base::ReplyCookie<$crep> for $cookie {
+    ($cookie:ty, $mk_func:ident, $reply:ty, $func:ident) => (
+        impl<'s> base::ReplyCookie<$reply> for $cookie {
             fn get_reply(&self) -> Result<$reply,base::GenericError> {
                 use ffi;
                 unsafe {
                     let err : *mut ffi::base::generic_error = ::std::ptr::mut_null();
-                    let reply = if self.checked {
-                        $func(self.conn.get_raw_conn(), self.cookie, &mut err)
+                    let reply = if self.base.checked {
+                        $func(self.base.conn.get_raw_conn(), self.base.cookie, &mut err)
                     } else {
-                        $func(self.conn.get_raw_conn(), self.cookie, ::std::ptr::mut_null())
+                        $func(self.base.conn.get_raw_conn(), self.base.cookie, ::std::ptr::mut_null())
                     };
                     if err.is_null() {
-                        return Ok(base::mk_reply(reply));
+                        return Ok($mk_func(reply));
                     } else {
                         ::libc::free(reply as *mut ::libc::c_void);
-                        return Err(base::mk_error(err));
+                        return Err(GenericError { base : base::mk_error(err)});
                     }
                 }
             }
