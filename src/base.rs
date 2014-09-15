@@ -323,7 +323,7 @@ impl<T> EventUtil for Event<T> {
 }
 
 pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &[(T,L)]) -> (T, Vec<L>) {
-    let sorted = bf.sort_by(|a,b| {
+    bf.sort_by(|a,b| {
         let &(a, _) = a;
         let &(b, _) = b;
         if a < b { Less } else if a > b { Greater } else { Equal }       
@@ -332,10 +332,9 @@ pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &[(T,L)]) -> (T, Vec<L
     let mut mask = 0u;
     let mut list : Vec<L> = Vec::new();
 
-    //TODO: num::mem(f) and (mask) ??
-    for el in sorted.iter() {
+    for el in bf.iter() {
         let &(f, v) = el;
-        let fld = f;
+        let fld= num::cast(f).unwrap();
         if (mask & fld) > 0 {
             continue;
         } else {
@@ -344,5 +343,5 @@ pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &[(T,L)]) -> (T, Vec<L
         }
     }
 
-    (mask, list)
+    (num::cast(mask).unwrap(), list)
 }
