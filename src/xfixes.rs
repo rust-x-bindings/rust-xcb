@@ -164,7 +164,7 @@ pub fn QueryVersionUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<query_version_reply> {
+impl Reply<query_version_reply> {
   pub fn major_version(&self) -> u32 {
     unsafe { accessor!(major_version -> u32, (*self.reply)) }
   }
@@ -205,7 +205,7 @@ pub fn ChangeSaveSet<'r> (c : &'r Connection,
   }
 }
 
-impl base::Event<selection_notify_event> {
+impl Event<selection_notify_event> {
   pub fn subtype(&self) -> u8 {
     unsafe { accessor!(subtype -> u8, (*self.event)) }
   }
@@ -273,7 +273,7 @@ pub fn SelectSelectionInput<'r> (c : &'r Connection,
   }
 }
 
-impl base::Event<cursor_notify_event> {
+impl Event<cursor_notify_event> {
   pub fn subtype(&self) -> u8 {
     unsafe { accessor!(subtype -> u8, (*self.event)) }
   }
@@ -344,7 +344,7 @@ pub fn GetCursorImageUnchecked<'r> (c : &'r Connection) -> GetCursorImageCookie<
   }
 }
 
-impl base::Reply<get_cursor_image_reply> {
+impl Reply<get_cursor_image_reply> {
   pub fn x(&self) -> i16 {
     unsafe { accessor!(x -> i16, (*self.reply)) }
   }
@@ -721,7 +721,7 @@ pub fn FetchRegionUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<fetch_region_reply> {
+impl Reply<fetch_region_reply> {
   pub fn extents(&self) -> xproto::Rectangle {
     unsafe { mem::transmute((*self.reply).extents) }
   }
@@ -866,7 +866,7 @@ pub fn GetCursorNameUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<get_cursor_name_reply> {
+impl Reply<get_cursor_name_reply> {
   pub fn atom(&self) -> xproto::Atom {
     unsafe { accessor!(atom -> xproto::Atom, (*self.reply)) }
   }
@@ -892,7 +892,7 @@ pub fn GetCursorImageAndNameUnchecked<'r> (c : &'r Connection) -> GetCursorImage
   }
 }
 
-impl base::Reply<get_cursor_image_and_name_reply> {
+impl Reply<get_cursor_image_and_name_reply> {
   pub fn x(&self) -> i16 {
     unsafe { accessor!(x -> i16, (*self.reply)) }
   }

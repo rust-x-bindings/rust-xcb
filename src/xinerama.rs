@@ -52,7 +52,7 @@ pub type QueryScreensCookie<'s> = base::Cookie<'s, query_screens_cookie>;
 /** Opcode for xcb_xinerama_query_screens. */
 pub static XCB_XINERAMA_QUERY_SCREENS : u8 = 5;
 
-impl base::Struct<screen_info> {
+impl Struct<screen_info> {
   pub fn x_org(&self) -> i16 {
     unsafe { accessor!(x_org -> i16, self.strct) }
   }
@@ -104,7 +104,7 @@ pub fn QueryVersionUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<query_version_reply> {
+impl Reply<query_version_reply> {
   pub fn major(&self) -> u16 {
     unsafe { accessor!(major -> u16, (*self.reply)) }
   }
@@ -133,7 +133,7 @@ pub fn GetStateUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<get_state_reply> {
+impl Reply<get_state_reply> {
   pub fn state(&self) -> u8 {
     unsafe { accessor!(state -> u8, (*self.reply)) }
   }
@@ -162,7 +162,7 @@ pub fn GetScreenCountUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<get_screen_count_reply> {
+impl Reply<get_screen_count_reply> {
   pub fn screen_count(&self) -> u8 {
     unsafe { accessor!(screen_count -> u8, (*self.reply)) }
   }
@@ -195,7 +195,7 @@ pub fn GetScreenSizeUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<get_screen_size_reply> {
+impl Reply<get_screen_size_reply> {
   pub fn width(&self) -> u32 {
     unsafe { accessor!(width -> u32, (*self.reply)) }
   }
@@ -228,7 +228,7 @@ pub fn IsActiveUnchecked<'r> (c : &'r Connection) -> IsActiveCookie<'r> {
   }
 }
 
-impl base::Reply<is_active_reply> {
+impl Reply<is_active_reply> {
   pub fn state(&self) -> u32 {
     unsafe { accessor!(state -> u32, (*self.reply)) }
   }
@@ -250,7 +250,7 @@ pub fn QueryScreensUnchecked<'r> (c : &'r Connection) -> QueryScreensCookie<'r> 
   }
 }
 
-impl base::Reply<query_screens_reply> {
+impl Reply<query_screens_reply> {
   pub fn screen_info(&self) -> ScreenInfoIterator {
     unsafe { accessor!(ScreenInfoIterator, xcb_xinerama_query_screens_screen_info_iterator, (*self.reply)) }
   }

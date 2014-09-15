@@ -1498,7 +1498,7 @@ pub static XCB_GET_MODIFIER_MAPPING : u8 = 119;
 /** Opcode for xcb_no_operation. */
 pub static XCB_NO_OPERATION : u8 = 127;
 
-impl base::Struct<char2b> {
+impl Struct<char2b> {
   pub fn byte1(&self) -> u8 {
     unsafe { accessor!(byte1 -> u8, self.strct) }
   }
@@ -1734,7 +1734,7 @@ impl<'s, Button> Iterator<&'s Button> for ButtonIterator {
 pub type Point = base::Struct<point>;
 
 
-impl base::Struct<point> {
+impl Struct<point> {
   pub fn x(&self) -> i16 {
     unsafe { accessor!(x -> i16, self.strct) }
   }
@@ -1760,7 +1760,7 @@ impl<'s, Point> Iterator<&'s Point> for PointIterator {
 pub type Rectangle = base::Struct<rectangle>;
 
 
-impl base::Struct<rectangle> {
+impl Struct<rectangle> {
   pub fn x(&self) -> i16 {
     unsafe { accessor!(x -> i16, self.strct) }
   }
@@ -1794,7 +1794,7 @@ impl<'s, Rectangle> Iterator<&'s Rectangle> for RectangleIterator {
 pub type Arc = base::Struct<arc>;
 
 
-impl base::Struct<arc> {
+impl Struct<arc> {
   pub fn x(&self) -> i16 {
     unsafe { accessor!(x -> i16, self.strct) }
   }
@@ -1836,7 +1836,7 @@ impl<'s, Arc> Iterator<&'s Arc> for ArcIterator {
 pub type Format = base::Struct<format>;
 
 
-impl base::Struct<format> {
+impl Struct<format> {
   pub fn depth(&self) -> u8 {
     unsafe { accessor!(depth -> u8, self.strct) }
   }
@@ -1864,7 +1864,7 @@ impl<'s, Format> Iterator<&'s Format> for FormatIterator {
 }
 
 
-impl base::Struct<visualtype> {
+impl Struct<visualtype> {
   pub fn visual_id(&self) -> Visualid {
     unsafe { accessor!(visual_id -> Visualid, self.strct) }
   }
@@ -1910,7 +1910,7 @@ impl<'s, Visualtype> Iterator<&'s Visualtype> for VisualtypeIterator {
 pub type Depth = base::Struct<depth>;
 
 
-impl base::Struct<depth> {
+impl Struct<depth> {
   pub fn depth(&self) -> u8 {
     unsafe { accessor!(depth -> u8, self.strct) }
   }
@@ -1936,7 +1936,7 @@ impl<'s, Depth> Iterator<&'s Depth> for DepthIterator {
 pub type Screen = base::Struct<screen>;
 
 
-impl base::Struct<screen> {
+impl Struct<screen> {
   pub fn root(&self) -> Window {
     unsafe { accessor!(root -> Window, self.strct) }
   }
@@ -2018,7 +2018,7 @@ impl<'s, Screen> Iterator<&'s Screen> for ScreenIterator {
 pub type SetupRequest = base::Struct<setup_request>;
 
 
-impl base::Struct<setup_request> {
+impl Struct<setup_request> {
   pub fn byte_order(&self) -> u8 {
     unsafe { accessor!(byte_order -> u8, self.strct) }
   }
@@ -2056,7 +2056,7 @@ impl<'s, SetupRequest> Iterator<&'s SetupRequest> for SetupRequestIterator {
 pub type SetupFailed = base::Struct<setup_failed>;
 
 
-impl base::Struct<setup_failed> {
+impl Struct<setup_failed> {
   pub fn status(&self) -> u8 {
     unsafe { accessor!(status -> u8, self.strct) }
   }
@@ -2094,7 +2094,7 @@ impl<'s, SetupFailed> Iterator<&'s SetupFailed> for SetupFailedIterator {
 pub type SetupAuthenticate = base::Struct<setup_authenticate>;
 
 
-impl base::Struct<setup_authenticate> {
+impl Struct<setup_authenticate> {
   pub fn status(&self) -> u8 {
     unsafe { accessor!(status -> u8, self.strct) }
   }
@@ -2120,7 +2120,7 @@ impl<'s, SetupAuthenticate> Iterator<&'s SetupAuthenticate> for SetupAuthenticat
 pub type Setup = base::Struct<setup>;
 
 
-impl base::Struct<setup> {
+impl Struct<setup> {
   pub fn status(&self) -> u8 {
     unsafe { accessor!(status -> u8, self.strct) }
   }
@@ -2208,7 +2208,7 @@ impl<'s, Setup> Iterator<&'s Setup> for SetupIterator {
 }
 
 
-impl base::Event<key_press_event> {
+impl Event<key_press_event> {
   pub fn detail(&self) -> Keycode {
     unsafe { accessor!(detail -> Keycode, (*self.event)) }
   }
@@ -2282,7 +2282,7 @@ impl base::Event<key_press_event> {
   }
 }
 
-impl base::Event<button_press_event> {
+impl Event<button_press_event> {
   pub fn detail(&self) -> Button {
     unsafe { accessor!(detail -> Button, (*self.event)) }
   }
@@ -2356,7 +2356,7 @@ impl base::Event<button_press_event> {
   }
 }
 
-impl base::Event<motion_notify_event> {
+impl Event<motion_notify_event> {
   pub fn detail(&self) -> u8 {
     unsafe { accessor!(detail -> u8, (*self.event)) }
   }
@@ -2430,7 +2430,7 @@ impl base::Event<motion_notify_event> {
   }
 }
 
-impl base::Event<enter_notify_event> {
+impl Event<enter_notify_event> {
   pub fn detail(&self) -> u8 {
     unsafe { accessor!(detail -> u8, (*self.event)) }
   }
@@ -2510,7 +2510,7 @@ impl base::Event<enter_notify_event> {
   }
 }
 
-impl base::Event<focus_in_event> {
+impl Event<focus_in_event> {
   pub fn detail(&self) -> u8 {
     unsafe { accessor!(detail -> u8, (*self.event)) }
   }
@@ -2536,7 +2536,7 @@ impl base::Event<focus_in_event> {
   }
 }
 
-impl base::Event<keymap_notify_event> {
+impl Event<keymap_notify_event> {
   pub fn keys(&self) -> Vec<u8> {
     unsafe { ((*self.event).keys).to_owned() }
   }
@@ -2550,7 +2550,7 @@ impl base::Event<keymap_notify_event> {
   }
 }
 
-impl base::Event<expose_event> {
+impl Event<expose_event> {
   pub fn window(&self) -> Window {
     unsafe { accessor!(window -> Window, (*self.event)) }
   }
@@ -2594,7 +2594,7 @@ impl base::Event<expose_event> {
   }
 }
 
-impl base::Event<graphics_exposure_event> {
+impl Event<graphics_exposure_event> {
   pub fn drawable(&self) -> Drawable {
     unsafe { accessor!(drawable -> Drawable, (*self.event)) }
   }
@@ -2650,7 +2650,7 @@ impl base::Event<graphics_exposure_event> {
   }
 }
 
-impl base::Event<no_exposure_event> {
+impl Event<no_exposure_event> {
   pub fn drawable(&self) -> Drawable {
     unsafe { accessor!(drawable -> Drawable, (*self.event)) }
   }
@@ -2676,7 +2676,7 @@ impl base::Event<no_exposure_event> {
   }
 }
 
-impl base::Event<visibility_notify_event> {
+impl Event<visibility_notify_event> {
   pub fn window(&self) -> Window {
     unsafe { accessor!(window -> Window, (*self.event)) }
   }
@@ -2696,7 +2696,7 @@ impl base::Event<visibility_notify_event> {
   }
 }
 
-impl base::Event<create_notify_event> {
+impl Event<create_notify_event> {
   pub fn parent(&self) -> Window {
     unsafe { accessor!(parent -> Window, (*self.event)) }
   }
@@ -2752,7 +2752,7 @@ impl base::Event<create_notify_event> {
   }
 }
 
-impl base::Event<destroy_notify_event> {
+impl Event<destroy_notify_event> {
   pub fn event(&self) -> Window {
     unsafe { accessor!(event -> Window, (*self.event)) }
   }
@@ -2772,7 +2772,7 @@ impl base::Event<destroy_notify_event> {
   }
 }
 
-impl base::Event<unmap_notify_event> {
+impl Event<unmap_notify_event> {
   pub fn event(&self) -> Window {
     unsafe { accessor!(event -> Window, (*self.event)) }
   }
@@ -2798,7 +2798,7 @@ impl base::Event<unmap_notify_event> {
   }
 }
 
-impl base::Event<map_notify_event> {
+impl Event<map_notify_event> {
   pub fn event(&self) -> Window {
     unsafe { accessor!(event -> Window, (*self.event)) }
   }
@@ -2824,7 +2824,7 @@ impl base::Event<map_notify_event> {
   }
 }
 
-impl base::Event<map_request_event> {
+impl Event<map_request_event> {
   pub fn parent(&self) -> Window {
     unsafe { accessor!(parent -> Window, (*self.event)) }
   }
@@ -2844,7 +2844,7 @@ impl base::Event<map_request_event> {
   }
 }
 
-impl base::Event<reparent_notify_event> {
+impl Event<reparent_notify_event> {
   pub fn event(&self) -> Window {
     unsafe { accessor!(event -> Window, (*self.event)) }
   }
@@ -2888,7 +2888,7 @@ impl base::Event<reparent_notify_event> {
   }
 }
 
-impl base::Event<configure_notify_event> {
+impl Event<configure_notify_event> {
   pub fn event(&self) -> Window {
     unsafe { accessor!(event -> Window, (*self.event)) }
   }
@@ -2950,7 +2950,7 @@ impl base::Event<configure_notify_event> {
   }
 }
 
-impl base::Event<configure_request_event> {
+impl Event<configure_request_event> {
   pub fn stack_mode(&self) -> u8 {
     unsafe { accessor!(stack_mode -> u8, (*self.event)) }
   }
@@ -3018,7 +3018,7 @@ impl base::Event<configure_request_event> {
   }
 }
 
-impl base::Event<gravity_notify_event> {
+impl Event<gravity_notify_event> {
   pub fn event(&self) -> Window {
     unsafe { accessor!(event -> Window, (*self.event)) }
   }
@@ -3050,7 +3050,7 @@ impl base::Event<gravity_notify_event> {
   }
 }
 
-impl base::Event<resize_request_event> {
+impl Event<resize_request_event> {
   pub fn window(&self) -> Window {
     unsafe { accessor!(window -> Window, (*self.event)) }
   }
@@ -3076,7 +3076,7 @@ impl base::Event<resize_request_event> {
   }
 }
 
-impl base::Event<circulate_notify_event> {
+impl Event<circulate_notify_event> {
   pub fn event(&self) -> Window {
     unsafe { accessor!(event -> Window, (*self.event)) }
   }
@@ -3102,7 +3102,7 @@ impl base::Event<circulate_notify_event> {
   }
 }
 
-impl base::Event<property_notify_event> {
+impl Event<property_notify_event> {
   pub fn window(&self) -> Window {
     unsafe { accessor!(window -> Window, (*self.event)) }
   }
@@ -3134,7 +3134,7 @@ impl base::Event<property_notify_event> {
   }
 }
 
-impl base::Event<selection_clear_event> {
+impl Event<selection_clear_event> {
   pub fn time(&self) -> Timestamp {
     unsafe { accessor!(time -> Timestamp, (*self.event)) }
   }
@@ -3160,7 +3160,7 @@ impl base::Event<selection_clear_event> {
   }
 }
 
-impl base::Event<selection_request_event> {
+impl Event<selection_request_event> {
   pub fn time(&self) -> Timestamp {
     unsafe { accessor!(time -> Timestamp, (*self.event)) }
   }
@@ -3204,7 +3204,7 @@ impl base::Event<selection_request_event> {
   }
 }
 
-impl base::Event<selection_notify_event> {
+impl Event<selection_notify_event> {
   pub fn time(&self) -> Timestamp {
     unsafe { accessor!(time -> Timestamp, (*self.event)) }
   }
@@ -3242,7 +3242,7 @@ impl base::Event<selection_notify_event> {
   }
 }
 
-impl base::Event<colormap_notify_event> {
+impl Event<colormap_notify_event> {
   pub fn window(&self) -> Window {
     unsafe { accessor!(window -> Window, (*self.event)) }
   }
@@ -3288,7 +3288,7 @@ impl<'s, ClientMessageData> Iterator<&'s ClientMessageData> for ClientMessageDat
 }
 
 
-impl base::Event<client_message_event> {
+impl Event<client_message_event> {
   pub fn format(&self) -> u8 {
     unsafe { accessor!(format -> u8, (*self.event)) }
   }
@@ -3319,7 +3319,7 @@ impl base::Event<client_message_event> {
   }
 }
 
-impl base::Event<mapping_notify_event> {
+impl Event<mapping_notify_event> {
   pub fn request(&self) -> u8 {
     unsafe { accessor!(request -> u8, (*self.event)) }
   }
@@ -3449,7 +3449,7 @@ pub fn GetWindowAttributesUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<get_window_attributes_reply> {
+impl Reply<get_window_attributes_reply> {
   pub fn backing_store(&self) -> u8 {
     unsafe { accessor!(backing_store -> u8, (*self.reply)) }
   }
@@ -3720,7 +3720,7 @@ pub fn GetGeometryUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<get_geometry_reply> {
+impl Reply<get_geometry_reply> {
   pub fn depth(&self) -> u8 {
     unsafe { accessor!(depth -> u8, (*self.reply)) }
   }
@@ -3770,7 +3770,7 @@ pub fn QueryTreeUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<query_tree_reply> {
+impl Reply<query_tree_reply> {
   pub fn root(&self) -> Window {
     unsafe { accessor!(root -> Window, (*self.reply)) }
   }
@@ -3815,7 +3815,7 @@ pub fn InternAtomUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<intern_atom_reply> {
+impl Reply<intern_atom_reply> {
   pub fn atom(&self) -> Atom {
     unsafe { accessor!(atom -> Atom, (*self.reply)) }
   }
@@ -3841,7 +3841,7 @@ pub fn GetAtomNameUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<get_atom_name_reply> {
+impl Reply<get_atom_name_reply> {
   pub fn name(&self) -> String {
     unsafe { accessor!(str, xcb_get_atom_name_name_length, xcb_get_atom_name_name, (*self.reply)) }
   }
@@ -3949,7 +3949,7 @@ pub fn GetPropertyUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<get_property_reply> {
+impl Reply<get_property_reply> {
   pub fn format(&self) -> u8 {
     unsafe { accessor!(format -> u8, (*self.reply)) }
   }
@@ -3987,7 +3987,7 @@ pub fn ListPropertiesUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<list_properties_reply> {
+impl Reply<list_properties_reply> {
   pub fn atoms(&self) -> Vec<Atom> {
     unsafe { accessor!(Atom, xcb_list_properties_atoms_length, xcb_list_properties_atoms, (*self.reply)) }
   }
@@ -4036,7 +4036,7 @@ pub fn GetSelectionOwnerUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<get_selection_owner_reply> {
+impl Reply<get_selection_owner_reply> {
   pub fn owner(&self) -> Window {
     unsafe { accessor!(owner -> Window, (*self.reply)) }
   }
@@ -4153,7 +4153,7 @@ pub fn GrabPointerUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<grab_pointer_reply> {
+impl Reply<grab_pointer_reply> {
   pub fn status(&self) -> u8 {
     unsafe { accessor!(status -> u8, (*self.reply)) }
   }
@@ -4306,7 +4306,7 @@ pub fn GrabKeyboardUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<grab_keyboard_reply> {
+impl Reply<grab_keyboard_reply> {
   pub fn status(&self) -> u8 {
     unsafe { accessor!(status -> u8, (*self.reply)) }
   }
@@ -4451,7 +4451,7 @@ pub fn QueryPointerUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<query_pointer_reply> {
+impl Reply<query_pointer_reply> {
   pub fn same_screen(&self) -> u8 {
     unsafe { accessor!(same_screen -> u8, (*self.reply)) }
   }
@@ -4490,7 +4490,7 @@ impl_reply_cookie!(QueryPointerCookie<'s>, query_pointer_reply, QueryPointerRepl
 pub type Timecoord = base::Struct<timecoord>;
 
 
-impl base::Struct<timecoord> {
+impl Struct<timecoord> {
   pub fn time(&self) -> Timestamp {
     unsafe { accessor!(time -> Timestamp, self.strct) }
   }
@@ -4543,7 +4543,7 @@ pub fn GetMotionEventsUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<get_motion_events_reply> {
+impl Reply<get_motion_events_reply> {
   pub fn events(&self) -> TimecoordIterator {
     unsafe { accessor!(TimecoordIterator, xcb_get_motion_events_events_iterator, (*self.reply)) }
   }
@@ -4580,7 +4580,7 @@ pub fn TranslateCoordinatesUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<translate_coordinates_reply> {
+impl Reply<translate_coordinates_reply> {
   pub fn same_screen(&self) -> u8 {
     unsafe { accessor!(same_screen -> u8, (*self.reply)) }
   }
@@ -4681,7 +4681,7 @@ pub fn GetInputFocusUnchecked<'r> (c : &'r Connection) -> GetInputFocusCookie<'r
   }
 }
 
-impl base::Reply<get_input_focus_reply> {
+impl Reply<get_input_focus_reply> {
   pub fn revert_to(&self) -> u8 {
     unsafe { accessor!(revert_to -> u8, (*self.reply)) }
   }
@@ -4706,7 +4706,7 @@ pub fn QueryKeymapUnchecked<'r> (c : &'r Connection) -> QueryKeymapCookie<'r> {
   }
 }
 
-impl base::Reply<query_keymap_reply> {
+impl Reply<query_keymap_reply> {
   pub fn keys(&self) -> Vec<u8> {
     unsafe { ((*self.reply).keys).to_owned() }
   }
@@ -4759,7 +4759,7 @@ pub fn CloseFont<'r> (c : &'r Connection,
   }
 }
 
-impl base::Struct<fontprop> {
+impl Struct<fontprop> {
   pub fn name(&self) -> Atom {
     unsafe { accessor!(name -> Atom, self.strct) }
   }
@@ -4785,7 +4785,7 @@ impl<'s, Fontprop> Iterator<&'s Fontprop> for FontpropIterator {
 pub type Charinfo = base::Struct<charinfo>;
 
 
-impl base::Struct<charinfo> {
+impl Struct<charinfo> {
   pub fn left_side_bearing(&self) -> i16 {
     unsafe { accessor!(left_side_bearing -> i16, self.strct) }
   }
@@ -4842,7 +4842,7 @@ pub fn QueryFontUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<query_font_reply> {
+impl Reply<query_font_reply> {
   pub fn min_bounds(&self) -> Charinfo {
     unsafe { mem::transmute((*self.reply).min_bounds) }
   }
@@ -4923,7 +4923,7 @@ pub fn QueryTextExtentsUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<query_text_extents_reply> {
+impl Reply<query_text_extents_reply> {
   pub fn draw_direction(&self) -> u8 {
     unsafe { accessor!(draw_direction -> u8, (*self.reply)) }
   }
@@ -4962,7 +4962,7 @@ impl_reply_cookie!(QueryTextExtentsCookie<'s>, query_text_extents_reply, QueryTe
 pub type Str = base::Struct<str_>;
 
 
-impl base::Struct<str_> {
+impl Struct<str_> {
   pub fn name(&self) -> String {
     unsafe { accessor!(str, xcb_str_name_length, xcb_str_name, self.strct) }
   }
@@ -5010,7 +5010,7 @@ pub fn ListFontsUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<list_fonts_reply> {
+impl Reply<list_fonts_reply> {
   pub fn names(&self) -> StrIterator {
     unsafe { accessor!(StrIterator, xcb_list_fonts_names_iterator, (*self.reply)) }
   }
@@ -5047,7 +5047,7 @@ pub fn ListFontsWithInfoUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<list_fonts_with_info_reply> {
+impl Reply<list_fonts_with_info_reply> {
   pub fn min_bounds(&self) -> Charinfo {
     unsafe { mem::transmute((*self.reply).min_bounds) }
   }
@@ -5141,7 +5141,7 @@ pub fn GetFontPathUnchecked<'r> (c : &'r Connection) -> GetFontPathCookie<'r> {
   }
 }
 
-impl base::Reply<get_font_path_reply> {
+impl Reply<get_font_path_reply> {
   pub fn path(&self) -> StrIterator {
     unsafe { accessor!(StrIterator, xcb_get_font_path_path_iterator, (*self.reply)) }
   }
@@ -5568,7 +5568,7 @@ pub fn PolyLine<'r> (c : &'r Connection,
 pub type Segment = base::Struct<segment>;
 
 
-impl base::Struct<segment> {
+impl Struct<segment> {
   pub fn x1(&self) -> i16 {
     unsafe { accessor!(x1 -> i16, self.strct) }
   }
@@ -5887,7 +5887,7 @@ pub fn GetImageUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<get_image_reply> {
+impl Reply<get_image_reply> {
   pub fn depth(&self) -> u8 {
     unsafe { accessor!(depth -> u8, (*self.reply)) }
   }
@@ -6171,7 +6171,7 @@ pub fn ListInstalledColormapsUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<list_installed_colormaps_reply> {
+impl Reply<list_installed_colormaps_reply> {
   pub fn cmaps(&self) -> Vec<Colormap> {
     unsafe { accessor!(Colormap, xcb_list_installed_colormaps_cmaps_length, xcb_list_installed_colormaps_cmaps, (*self.reply)) }
   }
@@ -6208,7 +6208,7 @@ pub fn AllocColorUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<alloc_color_reply> {
+impl Reply<alloc_color_reply> {
   pub fn red(&self) -> u16 {
     unsafe { accessor!(red -> u16, (*self.reply)) }
   }
@@ -6257,7 +6257,7 @@ pub fn AllocNamedColorUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<alloc_named_color_reply> {
+impl Reply<alloc_named_color_reply> {
   pub fn pixel(&self) -> u32 {
     unsafe { accessor!(pixel -> u32, (*self.reply)) }
   }
@@ -6319,7 +6319,7 @@ pub fn AllocColorCellsUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<alloc_color_cells_reply> {
+impl Reply<alloc_color_cells_reply> {
   pub fn pixels(&self) -> Vec<u32> {
     unsafe { accessor!(u32, xcb_alloc_color_cells_pixels_length, xcb_alloc_color_cells_pixels, (*self.reply)) }
   }
@@ -6369,7 +6369,7 @@ pub fn AllocColorPlanesUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<alloc_color_planes_reply> {
+impl Reply<alloc_color_planes_reply> {
   pub fn red_mask(&self) -> u32 {
     unsafe { accessor!(red_mask -> u32, (*self.reply)) }
   }
@@ -6420,7 +6420,7 @@ pub fn FreeColors<'r> (c : &'r Connection,
   }
 }
 
-impl base::Struct<coloritem> {
+impl Struct<coloritem> {
   pub fn pixel(&self) -> u32 {
     unsafe { accessor!(pixel -> u32, self.strct) }
   }
@@ -6520,7 +6520,7 @@ pub fn StoreNamedColor<'r> (c : &'r Connection,
 pub type Rgb = base::Struct<rgb>;
 
 
-impl base::Struct<rgb> {
+impl Struct<rgb> {
   pub fn red(&self) -> u16 {
     unsafe { accessor!(red -> u16, self.strct) }
   }
@@ -6574,7 +6574,7 @@ pub fn QueryColorsUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<query_colors_reply> {
+impl Reply<query_colors_reply> {
   pub fn colors(&self) -> RgbIterator {
     unsafe { accessor!(RgbIterator, xcb_query_colors_colors_iterator, (*self.reply)) }
   }
@@ -6611,7 +6611,7 @@ pub fn LookupColorUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<lookup_color_reply> {
+impl Reply<lookup_color_reply> {
   pub fn exact_red(&self) -> u16 {
     unsafe { accessor!(exact_red -> u16, (*self.reply)) }
   }
@@ -6836,7 +6836,7 @@ pub fn QueryBestSizeUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<query_best_size_reply> {
+impl Reply<query_best_size_reply> {
   pub fn width(&self) -> u16 {
     unsafe { accessor!(width -> u16, (*self.reply)) }
   }
@@ -6873,7 +6873,7 @@ pub fn QueryExtensionUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<query_extension_reply> {
+impl Reply<query_extension_reply> {
   pub fn present(&self) -> u8 {
     unsafe { accessor!(present -> u8, (*self.reply)) }
   }
@@ -6907,7 +6907,7 @@ pub fn ListExtensionsUnchecked<'r> (c : &'r Connection) -> ListExtensionsCookie<
   }
 }
 
-impl base::Reply<list_extensions_reply> {
+impl Reply<list_extensions_reply> {
   pub fn names(&self) -> StrIterator {
     unsafe { accessor!(StrIterator, xcb_list_extensions_names_iterator, (*self.reply)) }
   }
@@ -6967,7 +6967,7 @@ pub fn GetKeyboardMappingUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<get_keyboard_mapping_reply> {
+impl Reply<get_keyboard_mapping_reply> {
   pub fn keysyms_per_keycode(&self) -> u8 {
     unsafe { accessor!(keysyms_per_keycode -> u8, (*self.reply)) }
   }
@@ -7014,7 +7014,7 @@ pub fn GetKeyboardControlUnchecked<'r> (c : &'r Connection) -> GetKeyboardContro
   }
 }
 
-impl base::Reply<get_keyboard_control_reply> {
+impl Reply<get_keyboard_control_reply> {
   pub fn global_auto_repeat(&self) -> u8 {
     unsafe { accessor!(global_auto_repeat -> u8, (*self.reply)) }
   }
@@ -7107,7 +7107,7 @@ pub fn GetPointerControlUnchecked<'r> (c : &'r Connection) -> GetPointerControlC
   }
 }
 
-impl base::Reply<get_pointer_control_reply> {
+impl Reply<get_pointer_control_reply> {
   pub fn acceleration_numerator(&self) -> u16 {
     unsafe { accessor!(acceleration_numerator -> u16, (*self.reply)) }
   }
@@ -7164,7 +7164,7 @@ pub fn GetScreenSaverUnchecked<'r> (c : &'r Connection) -> GetScreenSaverCookie<
   }
 }
 
-impl base::Reply<get_screen_saver_reply> {
+impl Reply<get_screen_saver_reply> {
   pub fn timeout(&self) -> u16 {
     unsafe { accessor!(timeout -> u16, (*self.reply)) }
   }
@@ -7217,7 +7217,7 @@ pub fn ChangeHosts<'r> (c : &'r Connection,
 pub type Host = base::Struct<host>;
 
 
-impl base::Struct<host> {
+impl Struct<host> {
   pub fn family(&self) -> u8 {
     unsafe { accessor!(family -> u8, self.strct) }
   }
@@ -7254,7 +7254,7 @@ pub fn ListHostsUnchecked<'r> (c : &'r Connection) -> ListHostsCookie<'r> {
   }
 }
 
-impl base::Reply<list_hosts_reply> {
+impl Reply<list_hosts_reply> {
   pub fn mode(&self) -> u8 {
     unsafe { accessor!(mode -> u8, (*self.reply)) }
   }
@@ -7383,7 +7383,7 @@ pub fn SetPointerMappingUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<set_pointer_mapping_reply> {
+impl Reply<set_pointer_mapping_reply> {
   pub fn status(&self) -> u8 {
     unsafe { accessor!(status -> u8, (*self.reply)) }
   }
@@ -7405,7 +7405,7 @@ pub fn GetPointerMappingUnchecked<'r> (c : &'r Connection) -> GetPointerMappingC
   }
 }
 
-impl base::Reply<get_pointer_mapping_reply> {
+impl Reply<get_pointer_mapping_reply> {
   pub fn map(&self) -> Vec<u8> {
     unsafe { accessor!(u8, xcb_get_pointer_mapping_map_length, xcb_get_pointer_mapping_map, (*self.reply)) }
   }
@@ -7436,7 +7436,7 @@ pub fn SetModifierMappingUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<set_modifier_mapping_reply> {
+impl Reply<set_modifier_mapping_reply> {
   pub fn status(&self) -> u8 {
     unsafe { accessor!(status -> u8, (*self.reply)) }
   }
@@ -7458,7 +7458,7 @@ pub fn GetModifierMappingUnchecked<'r> (c : &'r Connection) -> GetModifierMappin
   }
 }
 
-impl base::Reply<get_modifier_mapping_reply> {
+impl Reply<get_modifier_mapping_reply> {
   pub fn keycodes(&self) -> Vec<Keycode> {
     unsafe { accessor!(Keycode, xcb_get_modifier_mapping_keycodes_length, xcb_get_modifier_mapping_keycodes, (*self.reply)) }
   }

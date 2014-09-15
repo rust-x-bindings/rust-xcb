@@ -1053,7 +1053,7 @@ def _c_accessors(self, name, base):
                 pass
 
     _r_setlevel(1)
-    _r('\nimpl base::%s<%s> {', self.wrap_type, self.c_type)
+    _r('\nimpl %s<%s> {', self.wrap_type, self.c_type)
     for field in accessor_fields:
         _r_accessor(self,field)
     _r_setlevel(1)
@@ -1613,7 +1613,7 @@ def c_event(self, name):
         new_params = []
 
         _r_setlevel(1)
-        _r('\nimpl base::%s<%s> {', self.wrap_type, self.c_type)
+        _r('\nimpl %s<%s> {', self.wrap_type, self.c_type)
         for field in accessor_fields:
             _r_accessor(self,field)
 

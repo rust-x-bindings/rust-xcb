@@ -99,7 +99,7 @@ impl<'s, Kind> Iterator<&'s Kind> for KindIterator {
 }
 
 
-impl base::Event<notify_event> {
+impl Event<notify_event> {
   pub fn shape_kind(&self) -> Kind {
     unsafe { accessor!(shape_kind -> Kind, (*self.event)) }
   }
@@ -167,7 +167,7 @@ pub fn QueryVersionUnchecked<'r> (c : &'r Connection) -> QueryVersionCookie<'r> 
   }
 }
 
-impl base::Reply<query_version_reply> {
+impl Reply<query_version_reply> {
   pub fn major_version(&self) -> u16 {
     unsafe { accessor!(major_version -> u16, (*self.reply)) }
   }
@@ -346,7 +346,7 @@ pub fn QueryExtentsUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<query_extents_reply> {
+impl Reply<query_extents_reply> {
   pub fn bounding_shaped(&self) -> u8 {
     unsafe { accessor!(bounding_shaped -> u8, (*self.reply)) }
   }
@@ -427,7 +427,7 @@ pub fn InputSelectedUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<input_selected_reply> {
+impl Reply<input_selected_reply> {
   pub fn enabled(&self) -> u8 {
     unsafe { accessor!(enabled -> u8, (*self.reply)) }
   }
@@ -457,7 +457,7 @@ pub fn GetRectanglesUnchecked<'r> (c : &'r Connection,
   }
 }
 
-impl base::Reply<get_rectangles_reply> {
+impl Reply<get_rectangles_reply> {
   pub fn ordering(&self) -> u8 {
     unsafe { accessor!(ordering -> u8, (*self.reply)) }
   }
