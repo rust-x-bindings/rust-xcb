@@ -19,21 +19,21 @@ pub struct get_version_cookie {
 
 
 pub struct get_version_request {
-    major_opcode :           u8,
-    minor_opcode :           u8,
-    length :                 u16,
-    client_major_version :   u16,
-    client_minor_version :   u16
+     pub major_opcode :           u8,
+     pub minor_opcode :           u8,
+     pub length :                 u16,
+     pub client_major_version :   u16,
+     pub client_minor_version :   u16
 }
 
 
 pub struct get_version_reply {
-    response_type :          u8,
-    pad0 :                   u8,
-    sequence :               u16,
-    length :                 u32,
-    server_major_version :   u16,
-    server_minor_version :   u16
+     pub response_type :          u8,
+     pub pad0 :                   u8,
+     pub sequence :               u16,
+     pub length :                 u32,
+     pub server_major_version :   u16,
+     pub server_minor_version :   u16
 }
 
 
@@ -43,19 +43,19 @@ pub struct capable_cookie {
 
 
 pub struct capable_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct capable_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    capable :         u8,
-    pad1 :            [u8,..23]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub capable :         u8,
+     pub pad1 :            [u8,..23]
 }
 
 
@@ -65,57 +65,57 @@ pub struct get_timeouts_cookie {
 
 
 pub struct get_timeouts_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct get_timeouts_reply {
-    response_type :     u8,
-    pad0 :              u8,
-    sequence :          u16,
-    length :            u32,
-    standby_timeout :   u16,
-    suspend_timeout :   u16,
-    off_timeout :       u16,
-    pad1 :              [u8,..18]
+     pub response_type :     u8,
+     pub pad0 :              u8,
+     pub sequence :          u16,
+     pub length :            u32,
+     pub standby_timeout :   u16,
+     pub suspend_timeout :   u16,
+     pub off_timeout :       u16,
+     pub pad1 :              [u8,..18]
 }
 
 
 
 pub struct set_timeouts_request {
-    major_opcode :      u8,
-    minor_opcode :      u8,
-    length :            u16,
-    standby_timeout :   u16,
-    suspend_timeout :   u16,
-    off_timeout :       u16
+     pub major_opcode :      u8,
+     pub minor_opcode :      u8,
+     pub length :            u16,
+     pub standby_timeout :   u16,
+     pub suspend_timeout :   u16,
+     pub off_timeout :       u16
 }
 
 
 
 pub struct enable_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 
 pub struct disable_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 
 pub struct force_level_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    power_level :    u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub power_level :    u16
 }
 
 
@@ -125,24 +125,24 @@ pub struct info_cookie {
 
 
 pub struct info_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct info_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    power_level :     u16,
-    state :           u8,
-    pad1 :            [u8,..21]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub power_level :     u16,
+     pub state :           u8,
+     pub pad1 :            [u8,..21]
 }
 
 #[link(name="lxcb-dpms")]
-pub extern "C" {
+extern "C" {
 
 /**
  *

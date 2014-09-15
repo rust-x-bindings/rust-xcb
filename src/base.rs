@@ -209,7 +209,7 @@ impl Drop for Connection {
 }
 
 pub struct Event<T> {
-    event:*mut T
+   pub event:*mut T
 }
 
 #[unsafe_destructor]
@@ -244,13 +244,13 @@ pub type AuthInfo = auth_info;
 //TODO: Implement wrapper functions for constructing auth_info
 
 pub struct Struct<T> {
-    strct: T
+    pub strct: T
 }
 
 pub struct Cookie<'s, T> {
-    cookie: T,
-    conn: &'s Connection,
-    checked: bool
+    pub cookie: T,
+    pub conn: &'s Connection,
+    pub checked: bool
 }
 
 pub trait ReplyCookie<R> {
@@ -274,7 +274,7 @@ impl<'s, T> Cookie<'s, T> {
 }
 
 pub struct Reply<T> {
-    reply:*mut T
+    pub reply:*mut T
 }
 
 pub fn mk_reply<T>(reply:*mut T) -> Reply<T> {
@@ -310,11 +310,11 @@ pub fn mem_event<'r, T>(event : &'r GenericEvent) -> &'r T {
 //Accessor methods for all Events
 pub trait EventUtil {
     #[inline(always)]
-    pub fn response_type(&self) -> u8;
+    fn response_type(&self) -> u8;
 }
 
 impl<T> EventUtil for Event<T> {
-    pub fn response_type(&self) -> u8 {
+    fn response_type(&self) -> u8 {
         unsafe {
             let gev : *mut generic_event = mem::transmute(self.event);
             (*gev).response_type

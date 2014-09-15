@@ -259,7 +259,7 @@ pub static XCB_RENDER_CREATE_RADIAL_GRADIENT : u8 = 35;
 pub static XCB_RENDER_CREATE_CONICAL_GRADIENT : u8 = 36;
 
 impl<'s, Glyph> Iterator<&'s Glyph> for GlyphIterator {
-    pub fn next(&mut self) -> Option<&'s Glyph> {
+    fn next(&mut self) -> Option<&'s Glyph> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut glyph_iterator = mem::transmute(self);
@@ -274,7 +274,7 @@ pub type Glyphset = glyphset;
 
 
 impl<'s, Glyphset> Iterator<&'s Glyphset> for GlyphsetIterator {
-    pub fn next(&mut self) -> Option<&'s Glyphset> {
+    fn next(&mut self) -> Option<&'s Glyphset> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut glyphset_iterator = mem::transmute(self);
@@ -289,7 +289,7 @@ pub type Picture = picture;
 
 
 impl<'s, Picture> Iterator<&'s Picture> for PictureIterator {
-    pub fn next(&mut self) -> Option<&'s Picture> {
+    fn next(&mut self) -> Option<&'s Picture> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut picture_iterator = mem::transmute(self);
@@ -304,7 +304,7 @@ pub type Pictformat = pictformat;
 
 
 impl<'s, Pictformat> Iterator<&'s Pictformat> for PictformatIterator {
-    pub fn next(&mut self) -> Option<&'s Pictformat> {
+    fn next(&mut self) -> Option<&'s Pictformat> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut pictformat_iterator = mem::transmute(self);
@@ -319,7 +319,7 @@ pub type Fixed = fixed;
 
 
 impl<'s, Fixed> Iterator<&'s Fixed> for FixedIterator {
-    pub fn next(&mut self) -> Option<&'s Fixed> {
+    fn next(&mut self) -> Option<&'s Fixed> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut fixed_iterator = mem::transmute(self);
@@ -367,7 +367,7 @@ impl base::Struct<directformat> {
 }
 
 impl<'s, Directformat> Iterator<&'s Directformat> for DirectformatIterator {
-    pub fn next(&mut self) -> Option<&'s Directformat> {
+    fn next(&mut self) -> Option<&'s Directformat> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut directformat_iterator = mem::transmute(self);
@@ -404,7 +404,7 @@ impl base::Struct<pictforminfo> {
 }
 
 impl<'s, Pictforminfo> Iterator<&'s Pictforminfo> for PictforminfoIterator {
-    pub fn next(&mut self) -> Option<&'s Pictforminfo> {
+    fn next(&mut self) -> Option<&'s Pictforminfo> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut pictforminfo_iterator = mem::transmute(self);
@@ -430,7 +430,7 @@ impl base::Struct<pictvisual> {
 }
 
 impl<'s, Pictvisual> Iterator<&'s Pictvisual> for PictvisualIterator {
-    pub fn next(&mut self) -> Option<&'s Pictvisual> {
+    fn next(&mut self) -> Option<&'s Pictvisual> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut pictvisual_iterator = mem::transmute(self);
@@ -456,7 +456,7 @@ impl base::Struct<pictdepth> {
 }
 
 impl<'s, Pictdepth> Iterator<&'s Pictdepth> for PictdepthIterator {
-    pub fn next(&mut self) -> Option<&'s Pictdepth> {
+    fn next(&mut self) -> Option<&'s Pictdepth> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut pictdepth_iterator = mem::transmute(self);
@@ -482,7 +482,7 @@ impl base::Struct<pictscreen> {
 }
 
 impl<'s, Pictscreen> Iterator<&'s Pictscreen> for PictscreenIterator {
-    pub fn next(&mut self) -> Option<&'s Pictscreen> {
+    fn next(&mut self) -> Option<&'s Pictscreen> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut pictscreen_iterator = mem::transmute(self);
@@ -520,7 +520,7 @@ impl base::Struct<indexvalue> {
 }
 
 impl<'s, Indexvalue> Iterator<&'s Indexvalue> for IndexvalueIterator {
-    pub fn next(&mut self) -> Option<&'s Indexvalue> {
+    fn next(&mut self) -> Option<&'s Indexvalue> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut indexvalue_iterator = mem::transmute(self);
@@ -554,7 +554,7 @@ impl base::Struct<color> {
 }
 
 impl<'s, Color> Iterator<&'s Color> for ColorIterator {
-    pub fn next(&mut self) -> Option<&'s Color> {
+    fn next(&mut self) -> Option<&'s Color> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut color_iterator = mem::transmute(self);
@@ -580,7 +580,7 @@ impl base::Struct<pointfix> {
 }
 
 impl<'s, Pointfix> Iterator<&'s Pointfix> for PointfixIterator {
-    pub fn next(&mut self) -> Option<&'s Pointfix> {
+    fn next(&mut self) -> Option<&'s Pointfix> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut pointfix_iterator = mem::transmute(self);
@@ -604,7 +604,7 @@ impl base::Struct<linefix> {
 }
 
 impl<'s, Linefix> Iterator<&'s Linefix> for LinefixIterator {
-    pub fn next(&mut self) -> Option<&'s Linefix> {
+    fn next(&mut self) -> Option<&'s Linefix> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut linefix_iterator = mem::transmute(self);
@@ -631,7 +631,7 @@ impl base::Struct<triangle> {
 }
 
 impl<'s, Triangle> Iterator<&'s Triangle> for TriangleIterator {
-    pub fn next(&mut self) -> Option<&'s Triangle> {
+    fn next(&mut self) -> Option<&'s Triangle> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut triangle_iterator = mem::transmute(self);
@@ -663,7 +663,7 @@ impl base::Struct<trapezoid> {
 }
 
 impl<'s, Trapezoid> Iterator<&'s Trapezoid> for TrapezoidIterator {
-    pub fn next(&mut self) -> Option<&'s Trapezoid> {
+    fn next(&mut self) -> Option<&'s Trapezoid> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut trapezoid_iterator = mem::transmute(self);
@@ -705,7 +705,7 @@ impl base::Struct<glyphinfo> {
 }
 
 impl<'s, Glyphinfo> Iterator<&'s Glyphinfo> for GlyphinfoIterator {
-    pub fn next(&mut self) -> Option<&'s Glyphinfo> {
+    fn next(&mut self) -> Option<&'s Glyphinfo> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut glyphinfo_iterator = mem::transmute(self);
@@ -1546,7 +1546,7 @@ impl base::Struct<transform> {
 }
 
 impl<'s, Transform> Iterator<&'s Transform> for TransformIterator {
-    pub fn next(&mut self) -> Option<&'s Transform> {
+    fn next(&mut self) -> Option<&'s Transform> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut transform_iterator = mem::transmute(self);
@@ -1660,7 +1660,7 @@ impl base::Struct<animcursorelt> {
 }
 
 impl<'s, Animcursorelt> Iterator<&'s Animcursorelt> for AnimcursoreltIterator {
-    pub fn next(&mut self) -> Option<&'s Animcursorelt> {
+    fn next(&mut self) -> Option<&'s Animcursorelt> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut animcursorelt_iterator = mem::transmute(self);
@@ -1716,7 +1716,7 @@ impl base::Struct<spanfix> {
 }
 
 impl<'s, Spanfix> Iterator<&'s Spanfix> for SpanfixIterator {
-    pub fn next(&mut self) -> Option<&'s Spanfix> {
+    fn next(&mut self) -> Option<&'s Spanfix> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut spanfix_iterator = mem::transmute(self);
@@ -1740,7 +1740,7 @@ impl base::Struct<trap> {
 }
 
 impl<'s, Trap> Iterator<&'s Trap> for TrapIterator {
-    pub fn next(&mut self) -> Option<&'s Trap> {
+    fn next(&mut self) -> Option<&'s Trap> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut trap_iterator = mem::transmute(self);

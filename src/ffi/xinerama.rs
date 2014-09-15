@@ -15,19 +15,19 @@ pub static XINERAMA_MAJOR_VERSION : c_uint = 1;
 pub static XINERAMA_MINOR_VERSION : c_uint = 1;
 
 pub struct screen_info {
-    x_org :    i16,
-    y_org :    i16,
-    width :    u16,
-    height :   u16
+     pub x_org :    i16,
+     pub y_org :    i16,
+     pub width :    u16,
+     pub height :   u16
 }
 
 /**
  * @brief screen_info_iterator
  **/
 pub struct screen_info_iterator {
-    data : *mut screen_info,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut screen_info,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -37,21 +37,21 @@ pub struct query_version_cookie {
 
 
 pub struct query_version_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    major :          u8,
-    minor :          u8
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub major :          u8,
+     pub minor :          u8
 }
 
 
 pub struct query_version_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    major :           u16,
-    minor :           u16
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub major :           u16,
+     pub minor :           u16
 }
 
 
@@ -61,19 +61,19 @@ pub struct get_state_cookie {
 
 
 pub struct get_state_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window
 }
 
 
 pub struct get_state_reply {
-    response_type :   u8,
-    state :           u8,
-    sequence :        u16,
-    length :          u32,
-    window :          ffi::xproto::window
+     pub response_type :   u8,
+     pub state :           u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub window :          ffi::xproto::window
 }
 
 
@@ -83,19 +83,19 @@ pub struct get_screen_count_cookie {
 
 
 pub struct get_screen_count_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window
 }
 
 
 pub struct get_screen_count_reply {
-    response_type :   u8,
-    screen_count :    u8,
-    sequence :        u16,
-    length :          u32,
-    window :          ffi::xproto::window
+     pub response_type :   u8,
+     pub screen_count :    u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub window :          ffi::xproto::window
 }
 
 
@@ -105,23 +105,23 @@ pub struct get_screen_size_cookie {
 
 
 pub struct get_screen_size_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window,
-    screen :         u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window,
+     pub screen :         u32
 }
 
 
 pub struct get_screen_size_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    width :           u32,
-    height :          u32,
-    window :          ffi::xproto::window,
-    screen :          u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub width :           u32,
+     pub height :          u32,
+     pub window :          ffi::xproto::window,
+     pub screen :          u32
 }
 
 
@@ -131,18 +131,18 @@ pub struct is_active_cookie {
 
 
 pub struct is_active_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct is_active_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    state :           u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub state :           u32
 }
 
 
@@ -152,23 +152,23 @@ pub struct query_screens_cookie {
 
 
 pub struct query_screens_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct query_screens_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    number :          u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub number :          u32,
+     pub pad1 :            [u8,..20]
 }
 
 #[link(name="lxcb-xinerama")]
-pub extern "C" {
+extern "C" {
 
 /**
  * Get the next element of the iterator

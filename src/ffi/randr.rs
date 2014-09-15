@@ -20,9 +20,9 @@ pub type mode = u32;
  * @brief mode_iterator
  **/
 pub struct mode_iterator {
-    data : *mut mode,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut mode,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -31,9 +31,9 @@ pub type crtc = u32;
  * @brief crtc_iterator
  **/
 pub struct crtc_iterator {
-    data : *mut crtc,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut crtc,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -42,64 +42,64 @@ pub type output = u32;
  * @brief output_iterator
  **/
 pub struct output_iterator {
-    data : *mut output,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut output,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 
 pub struct bad_output_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16
 }
 
 
 
 pub struct bad_crtc_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16
 }
 
 
 
 pub struct bad_mode_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16
 }
 
 
 pub struct screen_size {
-    width :     u16,
-    height :    u16,
-    mwidth :    u16,
-    mheight :   u16
+     pub width :     u16,
+     pub height :    u16,
+     pub mwidth :    u16,
+     pub mheight :   u16
 }
 
 /**
  * @brief screen_size_iterator
  **/
 pub struct screen_size_iterator {
-    data : *mut screen_size,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut screen_size,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct refresh_rates {
-    nRates :   u16
+     pub nRates :   u16
 }
 
 /**
  * @brief refresh_rates_iterator
  **/
 pub struct refresh_rates_iterator {
-    data : *mut refresh_rates,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut refresh_rates,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -109,22 +109,22 @@ pub struct query_version_cookie {
 
 
 pub struct query_version_request {
-    major_opcode :    u8,
-    minor_opcode :    u8,
-    length :          u16,
-    major_version :   u32,
-    minor_version :   u32
+     pub major_opcode :    u8,
+     pub minor_opcode :    u8,
+     pub length :          u16,
+     pub major_version :   u32,
+     pub minor_version :   u32
 }
 
 
 pub struct query_version_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    major_version :   u32,
-    minor_version :   u32,
-    pad1 :            [u8,..16]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub major_version :   u32,
+     pub minor_version :   u32,
+     pub pad1 :            [u8,..16]
 }
 
 
@@ -134,40 +134,40 @@ pub struct set_screen_config_cookie {
 
 
 pub struct set_screen_config_request {
-    major_opcode :       u8,
-    minor_opcode :       u8,
-    length :             u16,
-    window :             ffi::xproto::window,
-    timestamp :          ffi::xproto::timestamp,
-    config_timestamp :   ffi::xproto::timestamp,
-    sizeID :             u16,
-    rotation :           u16,
-    rate :               u16,
-    pad0 :               [u8,..2]
+     pub major_opcode :       u8,
+     pub minor_opcode :       u8,
+     pub length :             u16,
+     pub window :             ffi::xproto::window,
+     pub timestamp :          ffi::xproto::timestamp,
+     pub config_timestamp :   ffi::xproto::timestamp,
+     pub sizeID :             u16,
+     pub rotation :           u16,
+     pub rate :               u16,
+     pub pad0 :               [u8,..2]
 }
 
 
 pub struct set_screen_config_reply {
-    response_type :      u8,
-    status :             u8,
-    sequence :           u16,
-    length :             u32,
-    new_timestamp :      ffi::xproto::timestamp,
-    config_timestamp :   ffi::xproto::timestamp,
-    root :               ffi::xproto::window,
-    subpixel_order :     u16,
-    pad0 :               [u8,..10]
+     pub response_type :      u8,
+     pub status :             u8,
+     pub sequence :           u16,
+     pub length :             u32,
+     pub new_timestamp :      ffi::xproto::timestamp,
+     pub config_timestamp :   ffi::xproto::timestamp,
+     pub root :               ffi::xproto::window,
+     pub subpixel_order :     u16,
+     pub pad0 :               [u8,..10]
 }
 
 
 
 pub struct select_input_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window,
-    enable :         u16,
-    pad0 :           [u8,..2]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window,
+     pub enable :         u16,
+     pub pad0 :           [u8,..2]
 }
 
 
@@ -177,27 +177,27 @@ pub struct get_screen_info_cookie {
 
 
 pub struct get_screen_info_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window
 }
 
 
 pub struct get_screen_info_reply {
-    response_type :      u8,
-    rotations :          u8,
-    sequence :           u16,
-    length :             u32,
-    root :               ffi::xproto::window,
-    timestamp :          ffi::xproto::timestamp,
-    config_timestamp :   ffi::xproto::timestamp,
-    nSizes :             u16,
-    sizeID :             u16,
-    rotation :           u16,
-    rate :               u16,
-    nInfo :              u16,
-    pad0 :               [u8,..2]
+     pub response_type :      u8,
+     pub rotations :          u8,
+     pub sequence :           u16,
+     pub length :             u32,
+     pub root :               ffi::xproto::window,
+     pub timestamp :          ffi::xproto::timestamp,
+     pub config_timestamp :   ffi::xproto::timestamp,
+     pub nSizes :             u16,
+     pub sizeID :             u16,
+     pub rotation :           u16,
+     pub rate :               u16,
+     pub nInfo :              u16,
+     pub pad0 :               [u8,..2]
 }
 
 
@@ -207,62 +207,62 @@ pub struct get_screen_size_range_cookie {
 
 
 pub struct get_screen_size_range_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window
 }
 
 
 pub struct get_screen_size_range_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    min_width :       u16,
-    min_height :      u16,
-    max_width :       u16,
-    max_height :      u16,
-    pad1 :            [u8,..16]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub min_width :       u16,
+     pub min_height :      u16,
+     pub max_width :       u16,
+     pub max_height :      u16,
+     pub pad1 :            [u8,..16]
 }
 
 
 
 pub struct set_screen_size_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window,
-    width :          u16,
-    height :         u16,
-    mm_width :       u32,
-    mm_height :      u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window,
+     pub width :          u16,
+     pub height :         u16,
+     pub mm_width :       u32,
+     pub mm_height :      u32
 }
 
 
 pub struct mode_info {
-    id :            u32,
-    width :         u16,
-    height :        u16,
-    dot_clock :     u32,
-    hsync_start :   u16,
-    hsync_end :     u16,
-    htotal :        u16,
-    hskew :         u16,
-    vsync_start :   u16,
-    vsync_end :     u16,
-    vtotal :        u16,
-    name_len :      u16,
-    mode_flags :    u32
+     pub id :            u32,
+     pub width :         u16,
+     pub height :        u16,
+     pub dot_clock :     u32,
+     pub hsync_start :   u16,
+     pub hsync_end :     u16,
+     pub htotal :        u16,
+     pub hskew :         u16,
+     pub vsync_start :   u16,
+     pub vsync_end :     u16,
+     pub vtotal :        u16,
+     pub name_len :      u16,
+     pub mode_flags :    u32
 }
 
 /**
  * @brief mode_info_iterator
  **/
 pub struct mode_info_iterator {
-    data : *mut mode_info,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut mode_info,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -272,25 +272,25 @@ pub struct get_screen_resources_cookie {
 
 
 pub struct get_screen_resources_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window
 }
 
 
 pub struct get_screen_resources_reply {
-    response_type :      u8,
-    pad0 :               u8,
-    sequence :           u16,
-    length :             u32,
-    timestamp :          ffi::xproto::timestamp,
-    config_timestamp :   ffi::xproto::timestamp,
-    num_crtcs :          u16,
-    num_outputs :        u16,
-    num_modes :          u16,
-    names_len :          u16,
-    pad1 :               [u8,..8]
+     pub response_type :      u8,
+     pub pad0 :               u8,
+     pub sequence :           u16,
+     pub length :             u32,
+     pub timestamp :          ffi::xproto::timestamp,
+     pub config_timestamp :   ffi::xproto::timestamp,
+     pub num_crtcs :          u16,
+     pub num_outputs :        u16,
+     pub num_modes :          u16,
+     pub names_len :          u16,
+     pub pad1 :               [u8,..8]
 }
 
 
@@ -300,30 +300,30 @@ pub struct get_output_info_cookie {
 
 
 pub struct get_output_info_request {
-    major_opcode :       u8,
-    minor_opcode :       u8,
-    length :             u16,
-    output :             output,
-    config_timestamp :   ffi::xproto::timestamp
+     pub major_opcode :       u8,
+     pub minor_opcode :       u8,
+     pub length :             u16,
+     pub output :             output,
+     pub config_timestamp :   ffi::xproto::timestamp
 }
 
 
 pub struct get_output_info_reply {
-    response_type :    u8,
-    status :           u8,
-    sequence :         u16,
-    length :           u32,
-    timestamp :        ffi::xproto::timestamp,
-    crtc :             crtc,
-    mm_width :         u32,
-    mm_height :        u32,
-    connection :       u8,
-    subpixel_order :   u8,
-    num_crtcs :        u16,
-    num_modes :        u16,
-    num_preferred :    u16,
-    num_clones :       u16,
-    name_len :         u16
+     pub response_type :    u8,
+     pub status :           u8,
+     pub sequence :         u16,
+     pub length :           u32,
+     pub timestamp :        ffi::xproto::timestamp,
+     pub crtc :             crtc,
+     pub mm_width :         u32,
+     pub mm_height :        u32,
+     pub connection :       u8,
+     pub subpixel_order :   u8,
+     pub num_crtcs :        u16,
+     pub num_modes :        u16,
+     pub num_preferred :    u16,
+     pub num_clones :       u16,
+     pub name_len :         u16
 }
 
 
@@ -333,20 +333,20 @@ pub struct list_output_properties_cookie {
 
 
 pub struct list_output_properties_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    output :         output
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub output :         output
 }
 
 
 pub struct list_output_properties_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    num_atoms :       u16,
-    pad1 :            [u8,..22]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub num_atoms :       u16,
+     pub pad1 :            [u8,..22]
 }
 
 
@@ -356,61 +356,61 @@ pub struct query_output_property_cookie {
 
 
 pub struct query_output_property_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    output :         output,
-    property :       ffi::xproto::atom
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub output :         output,
+     pub property :       ffi::xproto::atom
 }
 
 
 pub struct query_output_property_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pending :         u8,
-    range :           u8,
-    immutable :       u8,
-    pad1 :            [u8,..21]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pending :         u8,
+     pub range :           u8,
+     pub immutable :       u8,
+     pub pad1 :            [u8,..21]
 }
 
 
 
 pub struct configure_output_property_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    output :         output,
-    property :       ffi::xproto::atom,
-    pending :        u8,
-    range :          u8,
-    pad0 :           [u8,..2]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub output :         output,
+     pub property :       ffi::xproto::atom,
+     pub pending :        u8,
+     pub range :          u8,
+     pub pad0 :           [u8,..2]
 }
 
 
 
 pub struct change_output_property_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    output :         output,
-    property :       ffi::xproto::atom,
-    type_ :          ffi::xproto::atom,
-    format :         u8,
-    mode :           u8,
-    pad0 :           [u8,..2],
-    num_units :      u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub output :         output,
+     pub property :       ffi::xproto::atom,
+     pub type_ :          ffi::xproto::atom,
+     pub format :         u8,
+     pub mode :           u8,
+     pub pad0 :           [u8,..2],
+     pub num_units :      u32
 }
 
 
 
 pub struct delete_output_property_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    output :         output,
-    property :       ffi::xproto::atom
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub output :         output,
+     pub property :       ffi::xproto::atom
 }
 
 
@@ -420,29 +420,29 @@ pub struct get_output_property_cookie {
 
 
 pub struct get_output_property_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    output :         output,
-    property :       ffi::xproto::atom,
-    type_ :          ffi::xproto::atom,
-    long_offset :    u32,
-    long_length :    u32,
-    delete :         u8,
-    pending :        u8,
-    pad0 :           [u8,..2]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub output :         output,
+     pub property :       ffi::xproto::atom,
+     pub type_ :          ffi::xproto::atom,
+     pub long_offset :    u32,
+     pub long_length :    u32,
+     pub delete :         u8,
+     pub pending :        u8,
+     pub pad0 :           [u8,..2]
 }
 
 
 pub struct get_output_property_reply {
-    response_type :   u8,
-    format :          u8,
-    sequence :        u16,
-    length :          u32,
-    type_ :           ffi::xproto::atom,
-    bytes_after :     u32,
-    num_items :       u32,
-    pad0 :            [u8,..12]
+     pub response_type :   u8,
+     pub format :          u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub type_ :           ffi::xproto::atom,
+     pub bytes_after :     u32,
+     pub num_items :       u32,
+     pub pad0 :            [u8,..12]
 }
 
 
@@ -452,50 +452,50 @@ pub struct create_mode_cookie {
 
 
 pub struct create_mode_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window,
-    mode_info :      mode_info
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window,
+     pub mode_info :      mode_info
 }
 
 
 pub struct create_mode_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    mode :            mode,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub mode :            mode,
+     pub pad1 :            [u8,..20]
 }
 
 
 
 pub struct destroy_mode_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    mode :           mode
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub mode :           mode
 }
 
 
 
 pub struct add_output_mode_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    output :         output,
-    mode :           mode
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub output :         output,
+     pub mode :           mode
 }
 
 
 
 pub struct delete_output_mode_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    output :         output,
-    mode :           mode
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub output :         output,
+     pub mode :           mode
 }
 
 
@@ -505,29 +505,29 @@ pub struct get_crtc_info_cookie {
 
 
 pub struct get_crtc_info_request {
-    major_opcode :       u8,
-    minor_opcode :       u8,
-    length :             u16,
-    crtc :               crtc,
-    config_timestamp :   ffi::xproto::timestamp
+     pub major_opcode :       u8,
+     pub minor_opcode :       u8,
+     pub length :             u16,
+     pub crtc :               crtc,
+     pub config_timestamp :   ffi::xproto::timestamp
 }
 
 
 pub struct get_crtc_info_reply {
-    response_type :          u8,
-    status :                 u8,
-    sequence :               u16,
-    length :                 u32,
-    timestamp :              ffi::xproto::timestamp,
-    x :                      i16,
-    y :                      i16,
-    width :                  u16,
-    height :                 u16,
-    mode :                   mode,
-    rotation :               u16,
-    rotations :              u16,
-    num_outputs :            u16,
-    num_possible_outputs :   u16
+     pub response_type :          u8,
+     pub status :                 u8,
+     pub sequence :               u16,
+     pub length :                 u32,
+     pub timestamp :              ffi::xproto::timestamp,
+     pub x :                      i16,
+     pub y :                      i16,
+     pub width :                  u16,
+     pub height :                 u16,
+     pub mode :                   mode,
+     pub rotation :               u16,
+     pub rotations :              u16,
+     pub num_outputs :            u16,
+     pub num_possible_outputs :   u16
 }
 
 
@@ -537,27 +537,27 @@ pub struct set_crtc_config_cookie {
 
 
 pub struct set_crtc_config_request {
-    major_opcode :       u8,
-    minor_opcode :       u8,
-    length :             u16,
-    crtc :               crtc,
-    timestamp :          ffi::xproto::timestamp,
-    config_timestamp :   ffi::xproto::timestamp,
-    x :                  i16,
-    y :                  i16,
-    mode :               mode,
-    rotation :           u16,
-    pad0 :               [u8,..2]
+     pub major_opcode :       u8,
+     pub minor_opcode :       u8,
+     pub length :             u16,
+     pub crtc :               crtc,
+     pub timestamp :          ffi::xproto::timestamp,
+     pub config_timestamp :   ffi::xproto::timestamp,
+     pub x :                  i16,
+     pub y :                  i16,
+     pub mode :               mode,
+     pub rotation :           u16,
+     pub pad0 :               [u8,..2]
 }
 
 
 pub struct set_crtc_config_reply {
-    response_type :   u8,
-    status :          u8,
-    sequence :        u16,
-    length :          u32,
-    timestamp :       ffi::xproto::timestamp,
-    pad0 :            [u8,..20]
+     pub response_type :   u8,
+     pub status :          u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub timestamp :       ffi::xproto::timestamp,
+     pub pad0 :            [u8,..20]
 }
 
 
@@ -567,20 +567,20 @@ pub struct get_crtc_gamma_size_cookie {
 
 
 pub struct get_crtc_gamma_size_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    crtc :           crtc
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub crtc :           crtc
 }
 
 
 pub struct get_crtc_gamma_size_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    size :            u16,
-    pad1 :            [u8,..22]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub size :            u16,
+     pub pad1 :            [u8,..22]
 }
 
 
@@ -590,31 +590,31 @@ pub struct get_crtc_gamma_cookie {
 
 
 pub struct get_crtc_gamma_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    crtc :           crtc
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub crtc :           crtc
 }
 
 
 pub struct get_crtc_gamma_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    size :            u16,
-    pad1 :            [u8,..22]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub size :            u16,
+     pub pad1 :            [u8,..22]
 }
 
 
 
 pub struct set_crtc_gamma_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    crtc :           crtc,
-    size :           u16,
-    pad0 :           [u8,..2]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub crtc :           crtc,
+     pub size :           u16,
+     pub pad0 :           [u8,..2]
 }
 
 
@@ -624,37 +624,37 @@ pub struct get_screen_resources_current_cookie {
 
 
 pub struct get_screen_resources_current_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window
 }
 
 
 pub struct get_screen_resources_current_reply {
-    response_type :      u8,
-    pad0 :               u8,
-    sequence :           u16,
-    length :             u32,
-    timestamp :          ffi::xproto::timestamp,
-    config_timestamp :   ffi::xproto::timestamp,
-    num_crtcs :          u16,
-    num_outputs :        u16,
-    num_modes :          u16,
-    names_len :          u16,
-    pad1 :               [u8,..8]
+     pub response_type :      u8,
+     pub pad0 :               u8,
+     pub sequence :           u16,
+     pub length :             u32,
+     pub timestamp :          ffi::xproto::timestamp,
+     pub config_timestamp :   ffi::xproto::timestamp,
+     pub num_crtcs :          u16,
+     pub num_outputs :        u16,
+     pub num_modes :          u16,
+     pub names_len :          u16,
+     pub pad1 :               [u8,..8]
 }
 
 
 
 pub struct set_crtc_transform_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    crtc :           crtc,
-    transform :      ffi::render::transform,
-    filter_len :     u16,
-    pad0 :           [u8,..2]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub crtc :           crtc,
+     pub transform :      ffi::render::transform,
+     pub filter_len :     u16,
+     pub pad0 :           [u8,..2]
 }
 
 
@@ -664,27 +664,27 @@ pub struct get_crtc_transform_cookie {
 
 
 pub struct get_crtc_transform_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    crtc :           crtc
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub crtc :           crtc
 }
 
 
 pub struct get_crtc_transform_reply {
-    response_type :       u8,
-    pad0 :                u8,
-    sequence :            u16,
-    length :              u32,
-    pending_transform :   ffi::render::transform,
-    has_transforms :      u8,
-    pad1 :                [u8,..3],
-    current_transform :   ffi::render::transform,
-    pad2 :                [u8,..4],
-    pending_len :         u16,
-    pending_nparams :     u16,
-    current_len :         u16,
-    current_nparams :     u16
+     pub response_type :       u8,
+     pub pad0 :                u8,
+     pub sequence :            u16,
+     pub length :              u32,
+     pub pending_transform :   ffi::render::transform,
+     pub has_transforms :      u8,
+     pub pad1 :                [u8,..3],
+     pub current_transform :   ffi::render::transform,
+     pub pad2 :                [u8,..4],
+     pub pending_len :         u16,
+     pub pending_nparams :     u16,
+     pub current_len :         u16,
+     pub current_nparams :     u16
 }
 
 
@@ -694,31 +694,31 @@ pub struct get_panning_cookie {
 
 
 pub struct get_panning_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    crtc :           crtc
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub crtc :           crtc
 }
 
 
 pub struct get_panning_reply {
-    response_type :   u8,
-    status :          u8,
-    sequence :        u16,
-    length :          u32,
-    timestamp :       ffi::xproto::timestamp,
-    left :            u16,
-    top :             u16,
-    width :           u16,
-    height :          u16,
-    track_left :      u16,
-    track_top :       u16,
-    track_width :     u16,
-    track_height :    u16,
-    border_left :     i16,
-    border_top :      i16,
-    border_right :    i16,
-    border_bottom :   i16
+     pub response_type :   u8,
+     pub status :          u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub timestamp :       ffi::xproto::timestamp,
+     pub left :            u16,
+     pub top :             u16,
+     pub width :           u16,
+     pub height :          u16,
+     pub track_left :      u16,
+     pub track_top :       u16,
+     pub track_width :     u16,
+     pub track_height :    u16,
+     pub border_left :     i16,
+     pub border_top :      i16,
+     pub border_right :    i16,
+     pub border_bottom :   i16
 }
 
 
@@ -728,42 +728,42 @@ pub struct set_panning_cookie {
 
 
 pub struct set_panning_request {
-    major_opcode :    u8,
-    minor_opcode :    u8,
-    length :          u16,
-    crtc :            crtc,
-    timestamp :       ffi::xproto::timestamp,
-    left :            u16,
-    top :             u16,
-    width :           u16,
-    height :          u16,
-    track_left :      u16,
-    track_top :       u16,
-    track_width :     u16,
-    track_height :    u16,
-    border_left :     i16,
-    border_top :      i16,
-    border_right :    i16,
-    border_bottom :   i16
+     pub major_opcode :    u8,
+     pub minor_opcode :    u8,
+     pub length :          u16,
+     pub crtc :            crtc,
+     pub timestamp :       ffi::xproto::timestamp,
+     pub left :            u16,
+     pub top :             u16,
+     pub width :           u16,
+     pub height :          u16,
+     pub track_left :      u16,
+     pub track_top :       u16,
+     pub track_width :     u16,
+     pub track_height :    u16,
+     pub border_left :     i16,
+     pub border_top :      i16,
+     pub border_right :    i16,
+     pub border_bottom :   i16
 }
 
 
 pub struct set_panning_reply {
-    response_type :   u8,
-    status :          u8,
-    sequence :        u16,
-    length :          u32,
-    timestamp :       ffi::xproto::timestamp
+     pub response_type :   u8,
+     pub status :          u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub timestamp :       ffi::xproto::timestamp
 }
 
 
 
 pub struct set_output_primary_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window,
-    output :         output
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window,
+     pub output :         output
 }
 
 
@@ -773,101 +773,101 @@ pub struct get_output_primary_cookie {
 
 
 pub struct get_output_primary_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window
 }
 
 
 pub struct get_output_primary_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    output :          output
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub output :          output
 }
 
 
 
 pub struct screen_change_notify_event {
-    response_type :      u8,
-    rotation :           u8,
-    sequence :           u16,
-    timestamp :          ffi::xproto::timestamp,
-    config_timestamp :   ffi::xproto::timestamp,
-    root :               ffi::xproto::window,
-    request_window :     ffi::xproto::window,
-    sizeID :             u16,
-    subpixel_order :     u16,
-    width :              u16,
-    height :             u16,
-    mwidth :             u16,
-    mheight :            u16
+     pub response_type :      u8,
+     pub rotation :           u8,
+     pub sequence :           u16,
+     pub timestamp :          ffi::xproto::timestamp,
+     pub config_timestamp :   ffi::xproto::timestamp,
+     pub root :               ffi::xproto::window,
+     pub request_window :     ffi::xproto::window,
+     pub sizeID :             u16,
+     pub subpixel_order :     u16,
+     pub width :              u16,
+     pub height :             u16,
+     pub mwidth :             u16,
+     pub mheight :            u16
 }
 
 
 pub struct crtc_change {
-    timestamp :   ffi::xproto::timestamp,
-    window :      ffi::xproto::window,
-    crtc :        crtc,
-    mode :        mode,
-    rotation :    u16,
-    pad0 :        [u8,..2],
-    x :           i16,
-    y :           i16,
-    width :       u16,
-    height :      u16
+     pub timestamp :   ffi::xproto::timestamp,
+     pub window :      ffi::xproto::window,
+     pub crtc :        crtc,
+     pub mode :        mode,
+     pub rotation :    u16,
+     pub pad0 :        [u8,..2],
+     pub x :           i16,
+     pub y :           i16,
+     pub width :       u16,
+     pub height :      u16
 }
 
 /**
  * @brief crtc_change_iterator
  **/
 pub struct crtc_change_iterator {
-    data : *mut crtc_change,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut crtc_change,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct output_change {
-    timestamp :          ffi::xproto::timestamp,
-    config_timestamp :   ffi::xproto::timestamp,
-    window :             ffi::xproto::window,
-    output :             output,
-    crtc :               crtc,
-    mode :               mode,
-    rotation :           u16,
-    connection :         u8,
-    subpixel_order :     u8
+     pub timestamp :          ffi::xproto::timestamp,
+     pub config_timestamp :   ffi::xproto::timestamp,
+     pub window :             ffi::xproto::window,
+     pub output :             output,
+     pub crtc :               crtc,
+     pub mode :               mode,
+     pub rotation :           u16,
+     pub connection :         u8,
+     pub subpixel_order :     u8
 }
 
 /**
  * @brief output_change_iterator
  **/
 pub struct output_change_iterator {
-    data : *mut output_change,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut output_change,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct output_property {
-    window :      ffi::xproto::window,
-    output :      output,
-    atom :        ffi::xproto::atom,
-    timestamp :   ffi::xproto::timestamp,
-    status :      u8,
-    pad0 :        [u8,..11]
+     pub window :      ffi::xproto::window,
+     pub output :      output,
+     pub atom :        ffi::xproto::atom,
+     pub timestamp :   ffi::xproto::timestamp,
+     pub status :      u8,
+     pub pad0 :        [u8,..11]
 }
 
 /**
  * @brief output_property_iterator
  **/
 pub struct output_property_iterator {
-    data : *mut output_property,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut output_property,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -878,22 +878,22 @@ pub struct notify_data {
  * @brief notify_data_iterator
  **/
 pub struct notify_data_iterator {
-    data : *mut notify_data,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut notify_data,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 
 pub struct notify_event {
-    response_type :   u8,
-    subCode :         u8,
-    sequence :        u16,
-    u :               notify_data
+     pub response_type :   u8,
+     pub subCode :         u8,
+     pub sequence :        u16,
+     pub u :               notify_data
 }
 
 #[link(name="lxcb-randr")]
-pub extern "C" {
+extern "C" {
 
 /**
  * Get the next element of the iterator

@@ -4,7 +4,7 @@
 macro_rules! impl_reply_cookie {
     ($cookie:ty, $crep:ty, $reply:ty, $func:ident) => (
         impl<'s> base::ReplyCookie<$crep> for $cookie {
-            pub fn get_reply(&self) -> Result<$reply,base::GenericError> {
+            fn get_reply(&self) -> Result<$reply,base::GenericError> {
                 use ffi;
                 unsafe {
                     let err : *mut ffi::base::generic_error = ::std::ptr::mut_null();

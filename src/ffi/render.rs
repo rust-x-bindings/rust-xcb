@@ -19,9 +19,9 @@ pub type glyph = u32;
  * @brief glyph_iterator
  **/
 pub struct glyph_iterator {
-    data : *mut glyph,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut glyph,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -30,9 +30,9 @@ pub type glyphset = u32;
  * @brief glyphset_iterator
  **/
 pub struct glyphset_iterator {
-    data : *mut glyphset,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut glyphset,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -41,9 +41,9 @@ pub type picture = u32;
  * @brief picture_iterator
  **/
 pub struct picture_iterator {
-    data : *mut picture,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut picture,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -52,9 +52,9 @@ pub type pictformat = u32;
  * @brief pictformat_iterator
  **/
 pub struct pictformat_iterator {
-    data : *mut pictformat,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut pictformat,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -63,253 +63,253 @@ pub type fixed = i32;
  * @brief fixed_iterator
  **/
 pub struct fixed_iterator {
-    data : *mut fixed,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut fixed,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 
 pub struct pict_format_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16
 }
 
 
 
 pub struct picture_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16
 }
 
 
 
 pub struct pict_op_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16
 }
 
 
 
 pub struct glyph_set_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16
 }
 
 
 
 pub struct glyph_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16
 }
 
 
 pub struct directformat {
-    red_shift :     u16,
-    red_mask :      u16,
-    green_shift :   u16,
-    green_mask :    u16,
-    blue_shift :    u16,
-    blue_mask :     u16,
-    alpha_shift :   u16,
-    alpha_mask :    u16
+     pub red_shift :     u16,
+     pub red_mask :      u16,
+     pub green_shift :   u16,
+     pub green_mask :    u16,
+     pub blue_shift :    u16,
+     pub blue_mask :     u16,
+     pub alpha_shift :   u16,
+     pub alpha_mask :    u16
 }
 
 /**
  * @brief directformat_iterator
  **/
 pub struct directformat_iterator {
-    data : *mut directformat,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut directformat,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct pictforminfo {
-    id :         pictformat,
-    type_ :      u8,
-    depth :      u8,
-    pad0 :       [u8,..2],
-    direct :     directformat,
-    colormap :   ffi::xproto::colormap
+     pub id :         pictformat,
+     pub type_ :      u8,
+     pub depth :      u8,
+     pub pad0 :       [u8,..2],
+     pub direct :     directformat,
+     pub colormap :   ffi::xproto::colormap
 }
 
 /**
  * @brief pictforminfo_iterator
  **/
 pub struct pictforminfo_iterator {
-    data : *mut pictforminfo,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut pictforminfo,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct pictvisual {
-    visual :   ffi::xproto::visualid,
-    format :   pictformat
+     pub visual :   ffi::xproto::visualid,
+     pub format :   pictformat
 }
 
 /**
  * @brief pictvisual_iterator
  **/
 pub struct pictvisual_iterator {
-    data : *mut pictvisual,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut pictvisual,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct pictdepth {
-    depth :         u8,
-    pad0 :          u8,
-    num_visuals :   u16,
-    pad1 :          [u8,..4]
+     pub depth :         u8,
+     pub pad0 :          u8,
+     pub num_visuals :   u16,
+     pub pad1 :          [u8,..4]
 }
 
 /**
  * @brief pictdepth_iterator
  **/
 pub struct pictdepth_iterator {
-    data : *mut pictdepth,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut pictdepth,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct pictscreen {
-    num_depths :   u32,
-    fallback :     pictformat
+     pub num_depths :   u32,
+     pub fallback :     pictformat
 }
 
 /**
  * @brief pictscreen_iterator
  **/
 pub struct pictscreen_iterator {
-    data : *mut pictscreen,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut pictscreen,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct indexvalue {
-    pixel :   u32,
-    red :     u16,
-    green :   u16,
-    blue :    u16,
-    alpha :   u16
+     pub pixel :   u32,
+     pub red :     u16,
+     pub green :   u16,
+     pub blue :    u16,
+     pub alpha :   u16
 }
 
 /**
  * @brief indexvalue_iterator
  **/
 pub struct indexvalue_iterator {
-    data : *mut indexvalue,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut indexvalue,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct color {
-    red :     u16,
-    green :   u16,
-    blue :    u16,
-    alpha :   u16
+     pub red :     u16,
+     pub green :   u16,
+     pub blue :    u16,
+     pub alpha :   u16
 }
 
 /**
  * @brief color_iterator
  **/
 pub struct color_iterator {
-    data : *mut color,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut color,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct pointfix {
-    x :   fixed,
-    y :   fixed
+     pub x :   fixed,
+     pub y :   fixed
 }
 
 /**
  * @brief pointfix_iterator
  **/
 pub struct pointfix_iterator {
-    data : *mut pointfix,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut pointfix,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct linefix {
-    p1 :   pointfix,
-    p2 :   pointfix
+     pub p1 :   pointfix,
+     pub p2 :   pointfix
 }
 
 /**
  * @brief linefix_iterator
  **/
 pub struct linefix_iterator {
-    data : *mut linefix,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut linefix,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct triangle {
-    p1 :   pointfix,
-    p2 :   pointfix,
-    p3 :   pointfix
+     pub p1 :   pointfix,
+     pub p2 :   pointfix,
+     pub p3 :   pointfix
 }
 
 /**
  * @brief triangle_iterator
  **/
 pub struct triangle_iterator {
-    data : *mut triangle,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut triangle,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct trapezoid {
-    top :      fixed,
-    bottom :   fixed,
-    left :     linefix,
-    right :    linefix
+     pub top :      fixed,
+     pub bottom :   fixed,
+     pub left :     linefix,
+     pub right :    linefix
 }
 
 /**
  * @brief trapezoid_iterator
  **/
 pub struct trapezoid_iterator {
-    data : *mut trapezoid,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut trapezoid,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct glyphinfo {
-    width :    u16,
-    height :   u16,
-    x :        i16,
-    y :        i16,
-    x_off :    i16,
-    y_off :    i16
+     pub width :    u16,
+     pub height :   u16,
+     pub x :        i16,
+     pub y :        i16,
+     pub x_off :    i16,
+     pub y_off :    i16
 }
 
 /**
  * @brief glyphinfo_iterator
  **/
 pub struct glyphinfo_iterator {
-    data : *mut glyphinfo,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut glyphinfo,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -319,22 +319,22 @@ pub struct query_version_cookie {
 
 
 pub struct query_version_request {
-    major_opcode :           u8,
-    minor_opcode :           u8,
-    length :                 u16,
-    client_major_version :   u32,
-    client_minor_version :   u32
+     pub major_opcode :           u8,
+     pub minor_opcode :           u8,
+     pub length :                 u16,
+     pub client_major_version :   u32,
+     pub client_minor_version :   u32
 }
 
 
 pub struct query_version_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    major_version :   u32,
-    minor_version :   u32,
-    pad1 :            [u8,..16]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub major_version :   u32,
+     pub minor_version :   u32,
+     pub pad1 :            [u8,..16]
 }
 
 
@@ -344,23 +344,23 @@ pub struct query_pict_formats_cookie {
 
 
 pub struct query_pict_formats_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct query_pict_formats_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    num_formats :     u32,
-    num_screens :     u32,
-    num_depths :      u32,
-    num_visuals :     u32,
-    num_subpixel :    u32,
-    pad1 :            [u8,..4]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub num_formats :     u32,
+     pub num_screens :     u32,
+     pub num_depths :      u32,
+     pub num_visuals :     u32,
+     pub num_subpixel :    u32,
+     pub pad1 :            [u8,..4]
 }
 
 
@@ -370,295 +370,295 @@ pub struct query_pict_index_values_cookie {
 
 
 pub struct query_pict_index_values_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    format :         pictformat
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub format :         pictformat
 }
 
 
 pub struct query_pict_index_values_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    num_values :      u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub num_values :      u32,
+     pub pad1 :            [u8,..20]
 }
 
 
 
 pub struct create_picture_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    pid :            picture,
-    drawable :       ffi::xproto::drawable,
-    format :         pictformat,
-    value_mask :     u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub pid :            picture,
+     pub drawable :       ffi::xproto::drawable,
+     pub format :         pictformat,
+     pub value_mask :     u32
 }
 
 
 
 pub struct change_picture_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    picture :        picture,
-    value_mask :     u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub picture :        picture,
+     pub value_mask :     u32
 }
 
 
 
 pub struct set_picture_clip_rectangles_request {
-    major_opcode :    u8,
-    minor_opcode :    u8,
-    length :          u16,
-    picture :         picture,
-    clip_x_origin :   i16,
-    clip_y_origin :   i16
+     pub major_opcode :    u8,
+     pub minor_opcode :    u8,
+     pub length :          u16,
+     pub picture :         picture,
+     pub clip_x_origin :   i16,
+     pub clip_y_origin :   i16
 }
 
 
 
 pub struct free_picture_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    picture :        picture
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub picture :        picture
 }
 
 
 
 pub struct composite_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    op :             u8,
-    pad0 :           [u8,..3],
-    src :            picture,
-    mask :           picture,
-    dst :            picture,
-    src_x :          i16,
-    src_y :          i16,
-    mask_x :         i16,
-    mask_y :         i16,
-    dst_x :          i16,
-    dst_y :          i16,
-    width :          u16,
-    height :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub op :             u8,
+     pub pad0 :           [u8,..3],
+     pub src :            picture,
+     pub mask :           picture,
+     pub dst :            picture,
+     pub src_x :          i16,
+     pub src_y :          i16,
+     pub mask_x :         i16,
+     pub mask_y :         i16,
+     pub dst_x :          i16,
+     pub dst_y :          i16,
+     pub width :          u16,
+     pub height :         u16
 }
 
 
 
 pub struct trapezoids_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    op :             u8,
-    pad0 :           [u8,..3],
-    src :            picture,
-    dst :            picture,
-    mask_format :    pictformat,
-    src_x :          i16,
-    src_y :          i16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub op :             u8,
+     pub pad0 :           [u8,..3],
+     pub src :            picture,
+     pub dst :            picture,
+     pub mask_format :    pictformat,
+     pub src_x :          i16,
+     pub src_y :          i16
 }
 
 
 
 pub struct triangles_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    op :             u8,
-    pad0 :           [u8,..3],
-    src :            picture,
-    dst :            picture,
-    mask_format :    pictformat,
-    src_x :          i16,
-    src_y :          i16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub op :             u8,
+     pub pad0 :           [u8,..3],
+     pub src :            picture,
+     pub dst :            picture,
+     pub mask_format :    pictformat,
+     pub src_x :          i16,
+     pub src_y :          i16
 }
 
 
 
 pub struct tri_strip_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    op :             u8,
-    pad0 :           [u8,..3],
-    src :            picture,
-    dst :            picture,
-    mask_format :    pictformat,
-    src_x :          i16,
-    src_y :          i16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub op :             u8,
+     pub pad0 :           [u8,..3],
+     pub src :            picture,
+     pub dst :            picture,
+     pub mask_format :    pictformat,
+     pub src_x :          i16,
+     pub src_y :          i16
 }
 
 
 
 pub struct tri_fan_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    op :             u8,
-    pad0 :           [u8,..3],
-    src :            picture,
-    dst :            picture,
-    mask_format :    pictformat,
-    src_x :          i16,
-    src_y :          i16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub op :             u8,
+     pub pad0 :           [u8,..3],
+     pub src :            picture,
+     pub dst :            picture,
+     pub mask_format :    pictformat,
+     pub src_x :          i16,
+     pub src_y :          i16
 }
 
 
 
 pub struct create_glyph_set_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    gsid :           glyphset,
-    format :         pictformat
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub gsid :           glyphset,
+     pub format :         pictformat
 }
 
 
 
 pub struct reference_glyph_set_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    gsid :           glyphset,
-    existing :       glyphset
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub gsid :           glyphset,
+     pub existing :       glyphset
 }
 
 
 
 pub struct free_glyph_set_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    glyphset :       glyphset
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub glyphset :       glyphset
 }
 
 
 
 pub struct add_glyphs_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    glyphset :       glyphset,
-    glyphs_len :     u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub glyphset :       glyphset,
+     pub glyphs_len :     u32
 }
 
 
 
 pub struct free_glyphs_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    glyphset :       glyphset
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub glyphset :       glyphset
 }
 
 
 
 pub struct composite_glyphs_8_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    op :             u8,
-    pad0 :           [u8,..3],
-    src :            picture,
-    dst :            picture,
-    mask_format :    pictformat,
-    glyphset :       glyphset,
-    src_x :          i16,
-    src_y :          i16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub op :             u8,
+     pub pad0 :           [u8,..3],
+     pub src :            picture,
+     pub dst :            picture,
+     pub mask_format :    pictformat,
+     pub glyphset :       glyphset,
+     pub src_x :          i16,
+     pub src_y :          i16
 }
 
 
 
 pub struct composite_glyphs_16_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    op :             u8,
-    pad0 :           [u8,..3],
-    src :            picture,
-    dst :            picture,
-    mask_format :    pictformat,
-    glyphset :       glyphset,
-    src_x :          i16,
-    src_y :          i16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub op :             u8,
+     pub pad0 :           [u8,..3],
+     pub src :            picture,
+     pub dst :            picture,
+     pub mask_format :    pictformat,
+     pub glyphset :       glyphset,
+     pub src_x :          i16,
+     pub src_y :          i16
 }
 
 
 
 pub struct composite_glyphs_32_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    op :             u8,
-    pad0 :           [u8,..3],
-    src :            picture,
-    dst :            picture,
-    mask_format :    pictformat,
-    glyphset :       glyphset,
-    src_x :          i16,
-    src_y :          i16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub op :             u8,
+     pub pad0 :           [u8,..3],
+     pub src :            picture,
+     pub dst :            picture,
+     pub mask_format :    pictformat,
+     pub glyphset :       glyphset,
+     pub src_x :          i16,
+     pub src_y :          i16
 }
 
 
 
 pub struct fill_rectangles_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    op :             u8,
-    pad0 :           [u8,..3],
-    dst :            picture,
-    color :          color
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub op :             u8,
+     pub pad0 :           [u8,..3],
+     pub dst :            picture,
+     pub color :          color
 }
 
 
 
 pub struct create_cursor_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    cid :            ffi::xproto::cursor,
-    source :         picture,
-    x :              u16,
-    y :              u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub cid :            ffi::xproto::cursor,
+     pub source :         picture,
+     pub x :              u16,
+     pub y :              u16
 }
 
 
 pub struct transform {
-    matrix11 :   fixed,
-    matrix12 :   fixed,
-    matrix13 :   fixed,
-    matrix21 :   fixed,
-    matrix22 :   fixed,
-    matrix23 :   fixed,
-    matrix31 :   fixed,
-    matrix32 :   fixed,
-    matrix33 :   fixed
+     pub matrix11 :   fixed,
+     pub matrix12 :   fixed,
+     pub matrix13 :   fixed,
+     pub matrix21 :   fixed,
+     pub matrix22 :   fixed,
+     pub matrix23 :   fixed,
+     pub matrix31 :   fixed,
+     pub matrix32 :   fixed,
+     pub matrix33 :   fixed
 }
 
 /**
  * @brief transform_iterator
  **/
 pub struct transform_iterator {
-    data : *mut transform,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut transform,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 
 pub struct set_picture_transform_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    picture :        picture,
-    transform :      transform
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub picture :        picture,
+     pub transform :      transform
 }
 
 
@@ -668,150 +668,150 @@ pub struct query_filters_cookie {
 
 
 pub struct query_filters_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       ffi::xproto::drawable
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       ffi::xproto::drawable
 }
 
 
 pub struct query_filters_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    num_aliases :     u32,
-    num_filters :     u32,
-    pad1 :            [u8,..16]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub num_aliases :     u32,
+     pub num_filters :     u32,
+     pub pad1 :            [u8,..16]
 }
 
 
 
 pub struct set_picture_filter_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    picture :        picture,
-    filter_len :     u16,
-    pad0 :           [u8,..2]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub picture :        picture,
+     pub filter_len :     u16,
+     pub pad0 :           [u8,..2]
 }
 
 
 pub struct animcursorelt {
-    cursor :   ffi::xproto::cursor,
-    delay :    u32
+     pub cursor :   ffi::xproto::cursor,
+     pub delay :    u32
 }
 
 /**
  * @brief animcursorelt_iterator
  **/
 pub struct animcursorelt_iterator {
-    data : *mut animcursorelt,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut animcursorelt,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 
 pub struct create_anim_cursor_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    cid :            ffi::xproto::cursor
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub cid :            ffi::xproto::cursor
 }
 
 
 pub struct spanfix {
-    l :   fixed,
-    r :   fixed,
-    y :   fixed
+     pub l :   fixed,
+     pub r :   fixed,
+     pub y :   fixed
 }
 
 /**
  * @brief spanfix_iterator
  **/
 pub struct spanfix_iterator {
-    data : *mut spanfix,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut spanfix,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct trap {
-    top :   spanfix,
-    bot :   spanfix
+     pub top :   spanfix,
+     pub bot :   spanfix
 }
 
 /**
  * @brief trap_iterator
  **/
 pub struct trap_iterator {
-    data : *mut trap,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut trap,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 
 pub struct add_traps_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    picture :        picture,
-    x_off :          i16,
-    y_off :          i16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub picture :        picture,
+     pub x_off :          i16,
+     pub y_off :          i16
 }
 
 
 
 pub struct create_solid_fill_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    picture :        picture,
-    color :          color
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub picture :        picture,
+     pub color :          color
 }
 
 
 
 pub struct create_linear_gradient_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    picture :        picture,
-    p1 :             pointfix,
-    p2 :             pointfix,
-    num_stops :      u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub picture :        picture,
+     pub p1 :             pointfix,
+     pub p2 :             pointfix,
+     pub num_stops :      u32
 }
 
 
 
 pub struct create_radial_gradient_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    picture :        picture,
-    inner :          pointfix,
-    outer :          pointfix,
-    inner_radius :   fixed,
-    outer_radius :   fixed,
-    num_stops :      u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub picture :        picture,
+     pub inner :          pointfix,
+     pub outer :          pointfix,
+     pub inner_radius :   fixed,
+     pub outer_radius :   fixed,
+     pub num_stops :      u32
 }
 
 
 
 pub struct create_conical_gradient_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    picture :        picture,
-    center :         pointfix,
-    angle :          fixed,
-    num_stops :      u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub picture :        picture,
+     pub center :         pointfix,
+     pub angle :          fixed,
+     pub num_stops :      u32
 }
 
 #[link(name="lxcb-render")]
-pub extern "C" {
+extern "C" {
 
 /**
  * Get the next element of the iterator

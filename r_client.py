@@ -311,7 +311,7 @@ def c_close(self):
         if level == 1:
             if _ns.header in links:
                 hfile.write("#[link(name=\"lxcb-%s\")]\n" % links[_ns.header])
-            hfile.write("pub extern \"C\" {\n")
+            hfile.write("extern \"C\" {\n")
         if level == 2:
             hfile.write("}\n")
         for line in list:
@@ -834,9 +834,9 @@ def _c_iterator(self, name):
     _h(' * @brief %s', self.c_iterator_type)
     _h(' **/')
     _h('pub struct %s {', self.c_iterator_type)
-    _h('    data : *mut %s,', self.c_type)
-    _h('    rem  : c_int,')
-    _h('    index: c_int')
+    _h('    pub data : *mut %s,', self.c_type)
+    _h('    pub rem  : c_int,')
+    _h('    pub index: c_int')
     _h('}\n')
 
     _r('pub type %s = %s;\n', self.r_iterator_type, self.c_iterator_type)
@@ -870,7 +870,7 @@ def _c_iterator(self, name):
 
     _r('')
     _r('impl<\'s, %s> Iterator<&\'s %s> for %s {', self.r_type, self.r_type, self.r_iterator_type)
-    _r('    pub fn next(&mut self) -> Option<&\'s %s> {', self.r_type)
+    _r('    fn next(&mut self) -> Option<&\'s %s> {', self.r_type)
     _r('        if self.rem == 0 { return None; }')
     _r('        unsafe {')
     _r('            let iter : *mut %s = mem::transmute(self);', self.c_iterator_type)
@@ -1152,11 +1152,11 @@ def _c_complex(self):
                 ftype = field.c_field_type
             else:
                 ftype = "[%s,..%d]" % (field.c_field_type, field.c_subscript)
-            _h('%s    %s : %s  %s%s', space, field.c_field_name, spacing, ftype, comma)
+            _h(' %s    pub %s : %s  %s%s', space, field.c_field_name, spacing, ftype, comma)
         else:
             ftype = field.c_field_type
             spacing = ' ' * (maxtypelen - (len(field.c_field_type) + 1))
-            _h('%s    %s : %s  *mut %s%s', space, field.c_field_name, spacing, ftype, comma)
+            _h('%s    pub %s : %s  *mut %s%s', space, field.c_field_name, spacing, ftype, comma)
 
     if not self.is_switch:
         count = len(struct_fields)

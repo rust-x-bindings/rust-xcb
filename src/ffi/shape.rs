@@ -19,9 +19,9 @@ pub type op = u8;
  * @brief op_iterator
  **/
 pub struct op_iterator {
-    data : *mut op,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut op,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -30,25 +30,25 @@ pub type kind = u8;
  * @brief kind_iterator
  **/
 pub struct kind_iterator {
-    data : *mut kind,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut kind,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 
 pub struct notify_event {
-    response_type :     u8,
-    shape_kind :        kind,
-    sequence :          u16,
-    affected_window :   ffi::xproto::window,
-    extents_x :         i16,
-    extents_y :         i16,
-    extents_width :     u16,
-    extents_height :    u16,
-    server_time :       ffi::xproto::timestamp,
-    shaped :            u8,
-    pad0 :              [u8,..11]
+     pub response_type :     u8,
+     pub shape_kind :        kind,
+     pub sequence :          u16,
+     pub affected_window :   ffi::xproto::window,
+     pub extents_x :         i16,
+     pub extents_y :         i16,
+     pub extents_width :     u16,
+     pub extents_height :    u16,
+     pub server_time :       ffi::xproto::timestamp,
+     pub shaped :            u8,
+     pub pad0 :              [u8,..11]
 }
 
 
@@ -58,78 +58,78 @@ pub struct query_version_cookie {
 
 
 pub struct query_version_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct query_version_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    major_version :   u16,
-    minor_version :   u16
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub major_version :   u16,
+     pub minor_version :   u16
 }
 
 
 
 pub struct rectangles_request {
-    major_opcode :         u8,
-    minor_opcode :         u8,
-    length :               u16,
-    operation :            op,
-    destination_kind :     kind,
-    ordering :             u8,
-    pad0 :                 u8,
-    destination_window :   ffi::xproto::window,
-    x_offset :             i16,
-    y_offset :             i16
+     pub major_opcode :         u8,
+     pub minor_opcode :         u8,
+     pub length :               u16,
+     pub operation :            op,
+     pub destination_kind :     kind,
+     pub ordering :             u8,
+     pub pad0 :                 u8,
+     pub destination_window :   ffi::xproto::window,
+     pub x_offset :             i16,
+     pub y_offset :             i16
 }
 
 
 
 pub struct mask_request {
-    major_opcode :         u8,
-    minor_opcode :         u8,
-    length :               u16,
-    operation :            op,
-    destination_kind :     kind,
-    pad0 :                 [u8,..2],
-    destination_window :   ffi::xproto::window,
-    x_offset :             i16,
-    y_offset :             i16,
-    source_bitmap :        ffi::xproto::pixmap
+     pub major_opcode :         u8,
+     pub minor_opcode :         u8,
+     pub length :               u16,
+     pub operation :            op,
+     pub destination_kind :     kind,
+     pub pad0 :                 [u8,..2],
+     pub destination_window :   ffi::xproto::window,
+     pub x_offset :             i16,
+     pub y_offset :             i16,
+     pub source_bitmap :        ffi::xproto::pixmap
 }
 
 
 
 pub struct combine_request {
-    major_opcode :         u8,
-    minor_opcode :         u8,
-    length :               u16,
-    operation :            op,
-    destination_kind :     kind,
-    source_kind :          kind,
-    pad0 :                 u8,
-    destination_window :   ffi::xproto::window,
-    x_offset :             i16,
-    y_offset :             i16,
-    source_window :        ffi::xproto::window
+     pub major_opcode :         u8,
+     pub minor_opcode :         u8,
+     pub length :               u16,
+     pub operation :            op,
+     pub destination_kind :     kind,
+     pub source_kind :          kind,
+     pub pad0 :                 u8,
+     pub destination_window :   ffi::xproto::window,
+     pub x_offset :             i16,
+     pub y_offset :             i16,
+     pub source_window :        ffi::xproto::window
 }
 
 
 
 pub struct offset_request {
-    major_opcode :         u8,
-    minor_opcode :         u8,
-    length :               u16,
-    destination_kind :     kind,
-    pad0 :                 [u8,..3],
-    destination_window :   ffi::xproto::window,
-    x_offset :             i16,
-    y_offset :             i16
+     pub major_opcode :         u8,
+     pub minor_opcode :         u8,
+     pub length :               u16,
+     pub destination_kind :     kind,
+     pub pad0 :                 [u8,..3],
+     pub destination_window :   ffi::xproto::window,
+     pub x_offset :             i16,
+     pub y_offset :             i16
 }
 
 
@@ -139,40 +139,40 @@ pub struct query_extents_cookie {
 
 
 pub struct query_extents_request {
-    major_opcode :         u8,
-    minor_opcode :         u8,
-    length :               u16,
-    destination_window :   ffi::xproto::window
+     pub major_opcode :         u8,
+     pub minor_opcode :         u8,
+     pub length :               u16,
+     pub destination_window :   ffi::xproto::window
 }
 
 
 pub struct query_extents_reply {
-    response_type :                   u8,
-    pad0 :                            u8,
-    sequence :                        u16,
-    length :                          u32,
-    bounding_shaped :                 u8,
-    clip_shaped :                     u8,
-    pad1 :                            [u8,..2],
-    bounding_shape_extents_x :        i16,
-    bounding_shape_extents_y :        i16,
-    bounding_shape_extents_width :    u16,
-    bounding_shape_extents_height :   u16,
-    clip_shape_extents_x :            i16,
-    clip_shape_extents_y :            i16,
-    clip_shape_extents_width :        u16,
-    clip_shape_extents_height :       u16
+     pub response_type :                   u8,
+     pub pad0 :                            u8,
+     pub sequence :                        u16,
+     pub length :                          u32,
+     pub bounding_shaped :                 u8,
+     pub clip_shaped :                     u8,
+     pub pad1 :                            [u8,..2],
+     pub bounding_shape_extents_x :        i16,
+     pub bounding_shape_extents_y :        i16,
+     pub bounding_shape_extents_width :    u16,
+     pub bounding_shape_extents_height :   u16,
+     pub clip_shape_extents_x :            i16,
+     pub clip_shape_extents_y :            i16,
+     pub clip_shape_extents_width :        u16,
+     pub clip_shape_extents_height :       u16
 }
 
 
 
 pub struct select_input_request {
-    major_opcode :         u8,
-    minor_opcode :         u8,
-    length :               u16,
-    destination_window :   ffi::xproto::window,
-    enable :               u8,
-    pad0 :                 [u8,..3]
+     pub major_opcode :         u8,
+     pub minor_opcode :         u8,
+     pub length :               u16,
+     pub destination_window :   ffi::xproto::window,
+     pub enable :               u8,
+     pub pad0 :                 [u8,..3]
 }
 
 
@@ -182,18 +182,18 @@ pub struct input_selected_cookie {
 
 
 pub struct input_selected_request {
-    major_opcode :         u8,
-    minor_opcode :         u8,
-    length :               u16,
-    destination_window :   ffi::xproto::window
+     pub major_opcode :         u8,
+     pub minor_opcode :         u8,
+     pub length :               u16,
+     pub destination_window :   ffi::xproto::window
 }
 
 
 pub struct input_selected_reply {
-    response_type :   u8,
-    enabled :         u8,
-    sequence :        u16,
-    length :          u32
+     pub response_type :   u8,
+     pub enabled :         u8,
+     pub sequence :        u16,
+     pub length :          u32
 }
 
 
@@ -203,26 +203,26 @@ pub struct get_rectangles_cookie {
 
 
 pub struct get_rectangles_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window,
-    source_kind :    kind,
-    pad0 :           [u8,..3]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window,
+     pub source_kind :    kind,
+     pub pad0 :           [u8,..3]
 }
 
 
 pub struct get_rectangles_reply {
-    response_type :    u8,
-    ordering :         u8,
-    sequence :         u16,
-    length :           u32,
-    rectangles_len :   u32,
-    pad0 :             [u8,..20]
+     pub response_type :    u8,
+     pub ordering :         u8,
+     pub sequence :         u16,
+     pub length :           u32,
+     pub rectangles_len :   u32,
+     pub pad0 :             [u8,..20]
 }
 
 #[link(name="lxcb-shape")]
-pub extern "C" {
+extern "C" {
 
 /**
  * Get the next element of the iterator

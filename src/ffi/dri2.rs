@@ -15,35 +15,35 @@ pub static DRI2_MAJOR_VERSION : c_uint = 1;
 pub static DRI2_MINOR_VERSION : c_uint = 4;
 
 pub struct dri2_buffer {
-    attachment :   u32,
-    name :         u32,
-    pitch :        u32,
-    cpp :          u32,
-    flags :        u32
+     pub attachment :   u32,
+     pub name :         u32,
+     pub pitch :        u32,
+     pub cpp :          u32,
+     pub flags :        u32
 }
 
 /**
  * @brief dri2_buffer_iterator
  **/
 pub struct dri2_buffer_iterator {
-    data : *mut dri2_buffer,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut dri2_buffer,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct attach_format {
-    attachment :   u32,
-    format :       u32
+     pub attachment :   u32,
+     pub format :       u32
 }
 
 /**
  * @brief attach_format_iterator
  **/
 pub struct attach_format_iterator {
-    data : *mut attach_format,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut attach_format,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -53,21 +53,21 @@ pub struct query_version_cookie {
 
 
 pub struct query_version_request {
-    major_opcode :    u8,
-    minor_opcode :    u8,
-    length :          u16,
-    major_version :   u32,
-    minor_version :   u32
+     pub major_opcode :    u8,
+     pub minor_opcode :    u8,
+     pub length :          u16,
+     pub major_version :   u32,
+     pub minor_version :   u32
 }
 
 
 pub struct query_version_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    major_version :   u32,
-    minor_version :   u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub major_version :   u32,
+     pub minor_version :   u32
 }
 
 
@@ -77,22 +77,22 @@ pub struct connect_cookie {
 
 
 pub struct connect_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window,
-    driver_type :    u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window,
+     pub driver_type :    u32
 }
 
 
 pub struct connect_reply {
-    response_type :        u8,
-    pad0 :                 u8,
-    sequence :             u16,
-    length :               u32,
-    driver_name_length :   u32,
-    device_name_length :   u32,
-    pad1 :                 [u8,..16]
+     pub response_type :        u8,
+     pub pad0 :                 u8,
+     pub sequence :             u16,
+     pub length :               u32,
+     pub driver_name_length :   u32,
+     pub device_name_length :   u32,
+     pub pad1 :                 [u8,..16]
 }
 
 
@@ -102,38 +102,38 @@ pub struct authenticate_cookie {
 
 
 pub struct authenticate_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window,
-    magic :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window,
+     pub magic :          u32
 }
 
 
 pub struct authenticate_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    authenticated :   u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub authenticated :   u32
 }
 
 
 
 pub struct create_drawable_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       ffi::xproto::drawable
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       ffi::xproto::drawable
 }
 
 
 
 pub struct destroy_drawable_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       ffi::xproto::drawable
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       ffi::xproto::drawable
 }
 
 
@@ -143,23 +143,23 @@ pub struct get_buffers_cookie {
 
 
 pub struct get_buffers_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       ffi::xproto::drawable,
-    count :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       ffi::xproto::drawable,
+     pub count :          u32
 }
 
 
 pub struct get_buffers_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    width :           u32,
-    height :          u32,
-    count :           u32,
-    pad1 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub width :           u32,
+     pub height :          u32,
+     pub count :           u32,
+     pub pad1 :            [u8,..12]
 }
 
 
@@ -169,21 +169,21 @@ pub struct copy_region_cookie {
 
 
 pub struct copy_region_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       ffi::xproto::drawable,
-    region :         u32,
-    dest :           u32,
-    src :            u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       ffi::xproto::drawable,
+     pub region :         u32,
+     pub dest :           u32,
+     pub src :            u32
 }
 
 
 pub struct copy_region_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32
 }
 
 
@@ -193,23 +193,23 @@ pub struct get_buffers_with_format_cookie {
 
 
 pub struct get_buffers_with_format_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       ffi::xproto::drawable,
-    count :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       ffi::xproto::drawable,
+     pub count :          u32
 }
 
 
 pub struct get_buffers_with_format_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    width :           u32,
-    height :          u32,
-    count :           u32,
-    pad1 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub width :           u32,
+     pub height :          u32,
+     pub count :           u32,
+     pub pad1 :            [u8,..12]
 }
 
 
@@ -219,26 +219,26 @@ pub struct swap_buffers_cookie {
 
 
 pub struct swap_buffers_request {
-    major_opcode :    u8,
-    minor_opcode :    u8,
-    length :          u16,
-    drawable :        ffi::xproto::drawable,
-    target_msc_hi :   u32,
-    target_msc_lo :   u32,
-    divisor_hi :      u32,
-    divisor_lo :      u32,
-    remainder_hi :    u32,
-    remainder_lo :    u32
+     pub major_opcode :    u8,
+     pub minor_opcode :    u8,
+     pub length :          u16,
+     pub drawable :        ffi::xproto::drawable,
+     pub target_msc_hi :   u32,
+     pub target_msc_lo :   u32,
+     pub divisor_hi :      u32,
+     pub divisor_lo :      u32,
+     pub remainder_hi :    u32,
+     pub remainder_lo :    u32
 }
 
 
 pub struct swap_buffers_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    swap_hi :         u32,
-    swap_lo :         u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub swap_hi :         u32,
+     pub swap_lo :         u32
 }
 
 
@@ -248,24 +248,24 @@ pub struct get_msc_cookie {
 
 
 pub struct get_msc_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       ffi::xproto::drawable
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       ffi::xproto::drawable
 }
 
 
 pub struct get_msc_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    ust_hi :          u32,
-    ust_lo :          u32,
-    msc_hi :          u32,
-    msc_lo :          u32,
-    sbc_hi :          u32,
-    sbc_lo :          u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub ust_hi :          u32,
+     pub ust_lo :          u32,
+     pub msc_hi :          u32,
+     pub msc_lo :          u32,
+     pub sbc_hi :          u32,
+     pub sbc_lo :          u32
 }
 
 
@@ -275,30 +275,30 @@ pub struct wait_msc_cookie {
 
 
 pub struct wait_msc_request {
-    major_opcode :    u8,
-    minor_opcode :    u8,
-    length :          u16,
-    drawable :        ffi::xproto::drawable,
-    target_msc_hi :   u32,
-    target_msc_lo :   u32,
-    divisor_hi :      u32,
-    divisor_lo :      u32,
-    remainder_hi :    u32,
-    remainder_lo :    u32
+     pub major_opcode :    u8,
+     pub minor_opcode :    u8,
+     pub length :          u16,
+     pub drawable :        ffi::xproto::drawable,
+     pub target_msc_hi :   u32,
+     pub target_msc_lo :   u32,
+     pub divisor_hi :      u32,
+     pub divisor_lo :      u32,
+     pub remainder_hi :    u32,
+     pub remainder_lo :    u32
 }
 
 
 pub struct wait_msc_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    ust_hi :          u32,
-    ust_lo :          u32,
-    msc_hi :          u32,
-    msc_lo :          u32,
-    sbc_hi :          u32,
-    sbc_lo :          u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub ust_hi :          u32,
+     pub ust_lo :          u32,
+     pub msc_hi :          u32,
+     pub msc_lo :          u32,
+     pub sbc_hi :          u32,
+     pub sbc_lo :          u32
 }
 
 
@@ -308,36 +308,36 @@ pub struct wait_sbc_cookie {
 
 
 pub struct wait_sbc_request {
-    major_opcode :    u8,
-    minor_opcode :    u8,
-    length :          u16,
-    drawable :        ffi::xproto::drawable,
-    target_sbc_hi :   u32,
-    target_sbc_lo :   u32
+     pub major_opcode :    u8,
+     pub minor_opcode :    u8,
+     pub length :          u16,
+     pub drawable :        ffi::xproto::drawable,
+     pub target_sbc_hi :   u32,
+     pub target_sbc_lo :   u32
 }
 
 
 pub struct wait_sbc_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    ust_hi :          u32,
-    ust_lo :          u32,
-    msc_hi :          u32,
-    msc_lo :          u32,
-    sbc_hi :          u32,
-    sbc_lo :          u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub ust_hi :          u32,
+     pub ust_lo :          u32,
+     pub msc_hi :          u32,
+     pub msc_lo :          u32,
+     pub sbc_hi :          u32,
+     pub sbc_lo :          u32
 }
 
 
 
 pub struct swap_interval_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       ffi::xproto::drawable,
-    interval :       u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       ffi::xproto::drawable,
+     pub interval :       u32
 }
 
 
@@ -347,50 +347,50 @@ pub struct get_param_cookie {
 
 
 pub struct get_param_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       ffi::xproto::drawable,
-    param :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       ffi::xproto::drawable,
+     pub param :          u32
 }
 
 
 pub struct get_param_reply {
-    response_type :         u8,
-    is_param_recognized :   u8,
-    sequence :              u16,
-    length :                u32,
-    value_hi :              u32,
-    value_lo :              u32
+     pub response_type :         u8,
+     pub is_param_recognized :   u8,
+     pub sequence :              u16,
+     pub length :                u32,
+     pub value_hi :              u32,
+     pub value_lo :              u32
 }
 
 
 
 pub struct buffer_swap_complete_event {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    event_type :      u16,
-    pad1 :            [u8,..2],
-    drawable :        ffi::xproto::drawable,
-    ust_hi :          u32,
-    ust_lo :          u32,
-    msc_hi :          u32,
-    msc_lo :          u32,
-    sbc :             u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub event_type :      u16,
+     pub pad1 :            [u8,..2],
+     pub drawable :        ffi::xproto::drawable,
+     pub ust_hi :          u32,
+     pub ust_lo :          u32,
+     pub msc_hi :          u32,
+     pub msc_lo :          u32,
+     pub sbc :             u32
 }
 
 
 
 pub struct invalidate_buffers_event {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    drawable :        ffi::xproto::drawable
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub drawable :        ffi::xproto::drawable
 }
 
 #[link(name="lxcb-dri2")]
-pub extern "C" {
+extern "C" {
 
 /**
  * Get the next element of the iterator

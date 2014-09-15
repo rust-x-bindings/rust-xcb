@@ -380,7 +380,7 @@ pub type Region = region;
 
 
 impl<'s, Region> Iterator<&'s Region> for RegionIterator {
-    pub fn next(&mut self) -> Option<&'s Region> {
+    fn next(&mut self) -> Option<&'s Region> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut region_iterator = mem::transmute(self);

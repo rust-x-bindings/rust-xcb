@@ -21,9 +21,9 @@ pub type context = u32;
  * @brief context_iterator
  **/
 pub struct context_iterator {
-    data : *mut context,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut context,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -32,9 +32,9 @@ pub type surface = u32;
  * @brief surface_iterator
  **/
 pub struct surface_iterator {
-    data : *mut surface,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut surface,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -43,31 +43,31 @@ pub type subpicture = u32;
  * @brief subpicture_iterator
  **/
 pub struct subpicture_iterator {
-    data : *mut subpicture,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut subpicture,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct surface_info {
-    id :                      surface,
-    chroma_format :           u16,
-    pad0 :                    u16,
-    max_width :               u16,
-    max_height :              u16,
-    subpicture_max_width :    u16,
-    subpicture_max_height :   u16,
-    mc_type :                 u32,
-    flags :                   u32
+     pub id :                      surface,
+     pub chroma_format :           u16,
+     pub pad0 :                    u16,
+     pub max_width :               u16,
+     pub max_height :              u16,
+     pub subpicture_max_width :    u16,
+     pub subpicture_max_height :   u16,
+     pub mc_type :                 u32,
+     pub flags :                   u32
 }
 
 /**
  * @brief surface_info_iterator
  **/
 pub struct surface_info_iterator {
-    data : *mut surface_info,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut surface_info,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -77,19 +77,19 @@ pub struct query_version_cookie {
 
 
 pub struct query_version_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct query_version_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    major :           u32,
-    minor :           u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub major :           u32,
+     pub minor :           u32
 }
 
 
@@ -99,20 +99,20 @@ pub struct list_surface_types_cookie {
 
 
 pub struct list_surface_types_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port_id :        ffi::xv::port
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port_id :        ffi::xv::port
 }
 
 
 pub struct list_surface_types_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    num :             u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub num :             u32,
+     pub pad1 :            [u8,..20]
 }
 
 
@@ -122,36 +122,36 @@ pub struct create_context_cookie {
 
 
 pub struct create_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_id :     context,
-    port_id :        ffi::xv::port,
-    surface_id :     surface,
-    width :          u16,
-    height :         u16,
-    flags :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_id :     context,
+     pub port_id :        ffi::xv::port,
+     pub surface_id :     surface,
+     pub width :          u16,
+     pub height :         u16,
+     pub flags :          u32
 }
 
 
 pub struct create_context_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    width_actual :    u16,
-    height_actual :   u16,
-    flags_return :    u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub width_actual :    u16,
+     pub height_actual :   u16,
+     pub flags_return :    u32,
+     pub pad1 :            [u8,..20]
 }
 
 
 
 pub struct destroy_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_id :     context
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_id :     context
 }
 
 
@@ -161,29 +161,29 @@ pub struct create_surface_cookie {
 
 
 pub struct create_surface_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    surface_id :     surface,
-    context_id :     context
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub surface_id :     surface,
+     pub context_id :     context
 }
 
 
 pub struct create_surface_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..24]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..24]
 }
 
 
 
 pub struct destroy_surface_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    surface_id :     surface
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub surface_id :     surface
 }
 
 
@@ -193,37 +193,37 @@ pub struct create_subpicture_cookie {
 
 
 pub struct create_subpicture_request {
-    major_opcode :    u8,
-    minor_opcode :    u8,
-    length :          u16,
-    subpicture_id :   subpicture,
-    context :         context,
-    xvimage_id :      u32,
-    width :           u16,
-    height :          u16
+     pub major_opcode :    u8,
+     pub minor_opcode :    u8,
+     pub length :          u16,
+     pub subpicture_id :   subpicture,
+     pub context :         context,
+     pub xvimage_id :      u32,
+     pub width :           u16,
+     pub height :          u16
 }
 
 
 pub struct create_subpicture_reply {
-    response_type :         u8,
-    pad0 :                  u8,
-    sequence :              u16,
-    length :                u32,
-    width_actual :          u16,
-    height_actual :         u16,
-    num_palette_entries :   u16,
-    entry_bytes :           u16,
-    component_order :       [u8,..4],
-    pad1 :                  [u8,..12]
+     pub response_type :         u8,
+     pub pad0 :                  u8,
+     pub sequence :              u16,
+     pub length :                u32,
+     pub width_actual :          u16,
+     pub height_actual :         u16,
+     pub num_palette_entries :   u16,
+     pub entry_bytes :           u16,
+     pub component_order :       [u8,..4],
+     pub pad1 :                  [u8,..12]
 }
 
 
 
 pub struct destroy_subpicture_request {
-    major_opcode :    u8,
-    minor_opcode :    u8,
-    length :          u16,
-    subpicture_id :   subpicture
+     pub major_opcode :    u8,
+     pub minor_opcode :    u8,
+     pub length :          u16,
+     pub subpicture_id :   subpicture
 }
 
 
@@ -233,25 +233,25 @@ pub struct list_subpicture_types_cookie {
 
 
 pub struct list_subpicture_types_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port_id :        ffi::xv::port,
-    surface_id :     surface
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port_id :        ffi::xv::port,
+     pub surface_id :     surface
 }
 
 
 pub struct list_subpicture_types_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    num :             u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub num :             u32,
+     pub pad1 :            [u8,..20]
 }
 
 #[link(name="lxcb-xvmc")]
-pub extern "C" {
+extern "C" {
 
 /**
  * Get the next element of the iterator

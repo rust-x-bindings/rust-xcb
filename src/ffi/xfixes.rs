@@ -22,83 +22,83 @@ pub struct query_version_cookie {
 
 
 pub struct query_version_request {
-    major_opcode :           u8,
-    minor_opcode :           u8,
-    length :                 u16,
-    client_major_version :   u32,
-    client_minor_version :   u32
+     pub major_opcode :           u8,
+     pub minor_opcode :           u8,
+     pub length :                 u16,
+     pub client_major_version :   u32,
+     pub client_minor_version :   u32
 }
 
 
 pub struct query_version_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    major_version :   u32,
-    minor_version :   u32,
-    pad1 :            [u8,..16]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub major_version :   u32,
+     pub minor_version :   u32,
+     pub pad1 :            [u8,..16]
 }
 
 
 
 pub struct change_save_set_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    mode :           u8,
-    target :         u8,
-    map :            u8,
-    pad0 :           u8,
-    window :         ffi::xproto::window
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub mode :           u8,
+     pub target :         u8,
+     pub map :            u8,
+     pub pad0 :           u8,
+     pub window :         ffi::xproto::window
 }
 
 
 
 pub struct selection_notify_event {
-    response_type :         u8,
-    subtype :               u8,
-    sequence :              u16,
-    window :                ffi::xproto::window,
-    owner :                 ffi::xproto::window,
-    selection :             ffi::xproto::atom,
-    timestamp :             ffi::xproto::timestamp,
-    selection_timestamp :   ffi::xproto::timestamp,
-    pad0 :                  [u8,..8]
+     pub response_type :         u8,
+     pub subtype :               u8,
+     pub sequence :              u16,
+     pub window :                ffi::xproto::window,
+     pub owner :                 ffi::xproto::window,
+     pub selection :             ffi::xproto::atom,
+     pub timestamp :             ffi::xproto::timestamp,
+     pub selection_timestamp :   ffi::xproto::timestamp,
+     pub pad0 :                  [u8,..8]
 }
 
 
 
 pub struct select_selection_input_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window,
-    selection :      ffi::xproto::atom,
-    event_mask :     u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window,
+     pub selection :      ffi::xproto::atom,
+     pub event_mask :     u32
 }
 
 
 
 pub struct cursor_notify_event {
-    response_type :   u8,
-    subtype :         u8,
-    sequence :        u16,
-    window :          ffi::xproto::window,
-    cursor_serial :   u32,
-    timestamp :       ffi::xproto::timestamp,
-    name :            ffi::xproto::atom,
-    pad0 :            [u8,..12]
+     pub response_type :   u8,
+     pub subtype :         u8,
+     pub sequence :        u16,
+     pub window :          ffi::xproto::window,
+     pub cursor_serial :   u32,
+     pub timestamp :       ffi::xproto::timestamp,
+     pub name :            ffi::xproto::atom,
+     pub pad0 :            [u8,..12]
 }
 
 
 
 pub struct select_cursor_input_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window,
-    event_mask :     u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window,
+     pub event_mask :     u32
 }
 
 
@@ -108,25 +108,25 @@ pub struct get_cursor_image_cookie {
 
 
 pub struct get_cursor_image_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct get_cursor_image_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    x :               i16,
-    y :               i16,
-    width :           u16,
-    height :          u16,
-    xhot :            u16,
-    yhot :            u16,
-    cursor_serial :   u32,
-    pad1 :            [u8,..8]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub x :               i16,
+     pub y :               i16,
+     pub width :           u16,
+     pub height :          u16,
+     pub xhot :            u16,
+     pub yhot :            u16,
+     pub cursor_serial :   u32,
+     pub pad1 :            [u8,..8]
 }
 
 
@@ -135,161 +135,161 @@ pub type region = u32;
  * @brief region_iterator
  **/
 pub struct region_iterator {
-    data : *mut region,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut region,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 
 pub struct bad_region_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16
 }
 
 
 
 pub struct create_region_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    region :         region
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub region :         region
 }
 
 
 
 pub struct create_region_from_bitmap_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    region :         region,
-    bitmap :         ffi::xproto::pixmap
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub region :         region,
+     pub bitmap :         ffi::xproto::pixmap
 }
 
 
 
 pub struct create_region_from_window_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    region :         region,
-    window :         ffi::xproto::window,
-    kind :           ffi::shape::kind,
-    pad0 :           [u8,..3]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub region :         region,
+     pub window :         ffi::xproto::window,
+     pub kind :           ffi::shape::kind,
+     pub pad0 :           [u8,..3]
 }
 
 
 
 pub struct create_region_from_gc_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    region :         region,
-    gc :             ffi::xproto::gcontext
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub region :         region,
+     pub gc :             ffi::xproto::gcontext
 }
 
 
 
 pub struct create_region_from_picture_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    region :         region,
-    picture :        ffi::render::picture
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub region :         region,
+     pub picture :        ffi::render::picture
 }
 
 
 
 pub struct destroy_region_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    region :         region
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub region :         region
 }
 
 
 
 pub struct set_region_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    region :         region
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub region :         region
 }
 
 
 
 pub struct copy_region_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    source :         region,
-    destination :    region
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub source :         region,
+     pub destination :    region
 }
 
 
 
 pub struct union_region_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    source1 :        region,
-    source2 :        region,
-    destination :    region
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub source1 :        region,
+     pub source2 :        region,
+     pub destination :    region
 }
 
 
 
 pub struct intersect_region_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    source1 :        region,
-    source2 :        region,
-    destination :    region
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub source1 :        region,
+     pub source2 :        region,
+     pub destination :    region
 }
 
 
 
 pub struct subtract_region_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    source1 :        region,
-    source2 :        region,
-    destination :    region
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub source1 :        region,
+     pub source2 :        region,
+     pub destination :    region
 }
 
 
 
 pub struct invert_region_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    source :         region,
-    bounds :         ffi::xproto::rectangle,
-    destination :    region
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub source :         region,
+     pub bounds :         ffi::xproto::rectangle,
+     pub destination :    region
 }
 
 
 
 pub struct translate_region_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    region :         region,
-    dx :             i16,
-    dy :             i16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub region :         region,
+     pub dx :             i16,
+     pub dy :             i16
 }
 
 
 
 pub struct region_extents_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    source :         region,
-    destination :    region
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub source :         region,
+     pub destination :    region
 }
 
 
@@ -299,69 +299,69 @@ pub struct fetch_region_cookie {
 
 
 pub struct fetch_region_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    region :         region
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub region :         region
 }
 
 
 pub struct fetch_region_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    extents :         ffi::xproto::rectangle,
-    pad1 :            [u8,..16]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub extents :         ffi::xproto::rectangle,
+     pub pad1 :            [u8,..16]
 }
 
 
 
 pub struct set_gc_clip_region_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    gc :             ffi::xproto::gcontext,
-    region :         region,
-    x_origin :       i16,
-    y_origin :       i16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub gc :             ffi::xproto::gcontext,
+     pub region :         region,
+     pub x_origin :       i16,
+     pub y_origin :       i16
 }
 
 
 
 pub struct set_window_shape_region_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    dest :           ffi::xproto::window,
-    dest_kind :      ffi::shape::kind,
-    pad0 :           [u8,..3],
-    x_offset :       i16,
-    y_offset :       i16,
-    region :         region
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub dest :           ffi::xproto::window,
+     pub dest_kind :      ffi::shape::kind,
+     pub pad0 :           [u8,..3],
+     pub x_offset :       i16,
+     pub y_offset :       i16,
+     pub region :         region
 }
 
 
 
 pub struct set_picture_clip_region_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    picture :        ffi::render::picture,
-    region :         region,
-    x_origin :       i16,
-    y_origin :       i16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub picture :        ffi::render::picture,
+     pub region :         region,
+     pub x_origin :       i16,
+     pub y_origin :       i16
 }
 
 
 
 pub struct set_cursor_name_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    cursor :         ffi::xproto::cursor,
-    nbytes :         u16,
-    pad0 :           [u8,..2]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub cursor :         ffi::xproto::cursor,
+     pub nbytes :         u16,
+     pub pad0 :           [u8,..2]
 }
 
 
@@ -371,21 +371,21 @@ pub struct get_cursor_name_cookie {
 
 
 pub struct get_cursor_name_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    cursor :         ffi::xproto::cursor
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub cursor :         ffi::xproto::cursor
 }
 
 
 pub struct get_cursor_name_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    atom :            ffi::xproto::atom,
-    nbytes :          u16,
-    pad1 :            [u8,..18]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub atom :            ffi::xproto::atom,
+     pub nbytes :          u16,
+     pub pad1 :            [u8,..18]
 }
 
 
@@ -395,84 +395,84 @@ pub struct get_cursor_image_and_name_cookie {
 
 
 pub struct get_cursor_image_and_name_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct get_cursor_image_and_name_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    x :               i16,
-    y :               i16,
-    width :           u16,
-    height :          u16,
-    xhot :            u16,
-    yhot :            u16,
-    cursor_serial :   u32,
-    cursor_atom :     ffi::xproto::atom,
-    nbytes :          u16,
-    pad1 :            [u8,..2]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub x :               i16,
+     pub y :               i16,
+     pub width :           u16,
+     pub height :          u16,
+     pub xhot :            u16,
+     pub yhot :            u16,
+     pub cursor_serial :   u32,
+     pub cursor_atom :     ffi::xproto::atom,
+     pub nbytes :          u16,
+     pub pad1 :            [u8,..2]
 }
 
 
 
 pub struct change_cursor_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    source :         ffi::xproto::cursor,
-    destination :    ffi::xproto::cursor
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub source :         ffi::xproto::cursor,
+     pub destination :    ffi::xproto::cursor
 }
 
 
 
 pub struct change_cursor_by_name_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    src :            ffi::xproto::cursor,
-    nbytes :         u16,
-    pad0 :           [u8,..2]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub src :            ffi::xproto::cursor,
+     pub nbytes :         u16,
+     pub pad0 :           [u8,..2]
 }
 
 
 
 pub struct expand_region_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    source :         region,
-    destination :    region,
-    left :           u16,
-    right :          u16,
-    top :            u16,
-    bottom :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub source :         region,
+     pub destination :    region,
+     pub left :           u16,
+     pub right :          u16,
+     pub top :            u16,
+     pub bottom :         u16
 }
 
 
 
 pub struct hide_cursor_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window
 }
 
 
 
 pub struct show_cursor_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window
 }
 
 #[link(name="lxcb-xfixes")]
-pub extern "C" {
+extern "C" {
 
 /**
  *

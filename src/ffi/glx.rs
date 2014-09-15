@@ -19,9 +19,9 @@ pub type pixmap = u32;
  * @brief pixmap_iterator
  **/
 pub struct pixmap_iterator {
-    data : *mut pixmap,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut pixmap,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -30,9 +30,9 @@ pub type context = u32;
  * @brief context_iterator
  **/
 pub struct context_iterator {
-    data : *mut context,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut context,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -41,9 +41,9 @@ pub type pbuffer = u32;
  * @brief pbuffer_iterator
  **/
 pub struct pbuffer_iterator {
-    data : *mut pbuffer,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut pbuffer,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -52,9 +52,9 @@ pub type window = u32;
  * @brief window_iterator
  **/
 pub struct window_iterator {
-    data : *mut window,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut window,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -63,9 +63,9 @@ pub type fbconfig = u32;
  * @brief fbconfig_iterator
  **/
 pub struct fbconfig_iterator {
-    data : *mut fbconfig,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut fbconfig,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -74,9 +74,9 @@ pub type drawable = u32;
  * @brief drawable_iterator
  **/
 pub struct drawable_iterator {
-    data : *mut drawable,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut drawable,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -85,9 +85,9 @@ pub type float32 = f32;
  * @brief float32_iterator
  **/
 pub struct float32_iterator {
-    data : *mut float32,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut float32,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -96,9 +96,9 @@ pub type float64 = f64;
  * @brief float64_iterator
  **/
 pub struct float64_iterator {
-    data : *mut float64,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut float64,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -107,9 +107,9 @@ pub type bool32 = u32;
  * @brief bool32_iterator
  **/
 pub struct bool32_iterator {
-    data : *mut bool32,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut bool32,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -118,21 +118,21 @@ pub type context_tag = u32;
  * @brief context_tag_iterator
  **/
 pub struct context_tag_iterator {
-    data : *mut context_tag,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut context_tag,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 
 pub struct generic_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16,
-    bad_value :       u32,
-    minor_opcode :    u16,
-    major_opcode :    u8,
-    pad0 :            [u8,..21]
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16,
+     pub bad_value :       u32,
+     pub minor_opcode :    u16,
+     pub major_opcode :    u8,
+     pub pad0 :            [u8,..21]
 }
 
 
@@ -180,64 +180,64 @@ pub type glx_bad_profile_arb_error  = generic_error;
 
 
 pub struct pbuffer_clobber_event {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    event_type :      u16,
-    draw_type :       u16,
-    drawable :        drawable,
-    b_mask :          u32,
-    aux_buffer :      u16,
-    x :               u16,
-    y :               u16,
-    width :           u16,
-    height :          u16,
-    count :           u16,
-    pad1 :            [u8,..4]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub event_type :      u16,
+     pub draw_type :       u16,
+     pub drawable :        drawable,
+     pub b_mask :          u32,
+     pub aux_buffer :      u16,
+     pub x :               u16,
+     pub y :               u16,
+     pub width :           u16,
+     pub height :          u16,
+     pub count :           u16,
+     pub pad1 :            [u8,..4]
 }
 
 
 
 pub struct render_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag
 }
 
 
 
 pub struct render_large_request {
-    major_opcode :    u8,
-    minor_opcode :    u8,
-    length :          u16,
-    context_tag :     context_tag,
-    request_num :     u16,
-    request_total :   u16,
-    data_len :        u32
+     pub major_opcode :    u8,
+     pub minor_opcode :    u8,
+     pub length :          u16,
+     pub context_tag :     context_tag,
+     pub request_num :     u16,
+     pub request_total :   u16,
+     pub data_len :        u32
 }
 
 
 
 pub struct create_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context :        context,
-    visual :         ffi::xproto::visualid,
-    screen :         u32,
-    share_list :     context,
-    is_direct :      u8,
-    pad0 :           [u8,..3]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context :        context,
+     pub visual :         ffi::xproto::visualid,
+     pub screen :         u32,
+     pub share_list :     context,
+     pub is_direct :      u8,
+     pub pad0 :           [u8,..3]
 }
 
 
 
 pub struct destroy_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context :        context
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context :        context
 }
 
 
@@ -247,22 +247,22 @@ pub struct make_current_cookie {
 
 
 pub struct make_current_request {
-    major_opcode :      u8,
-    minor_opcode :      u8,
-    length :            u16,
-    drawable :          drawable,
-    context :           context,
-    old_context_tag :   context_tag
+     pub major_opcode :      u8,
+     pub minor_opcode :      u8,
+     pub length :            u16,
+     pub drawable :          drawable,
+     pub context :           context,
+     pub old_context_tag :   context_tag
 }
 
 
 pub struct make_current_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    context_tag :     context_tag,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub context_tag :     context_tag,
+     pub pad1 :            [u8,..20]
 }
 
 
@@ -272,20 +272,20 @@ pub struct is_direct_cookie {
 
 
 pub struct is_direct_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context :        context
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context :        context
 }
 
 
 pub struct is_direct_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    is_direct :       u8,
-    pad1 :            [u8,..23]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub is_direct :       u8,
+     pub pad1 :            [u8,..23]
 }
 
 
@@ -295,87 +295,87 @@ pub struct query_version_cookie {
 
 
 pub struct query_version_request {
-    major_opcode :    u8,
-    minor_opcode :    u8,
-    length :          u16,
-    major_version :   u32,
-    minor_version :   u32
+     pub major_opcode :    u8,
+     pub minor_opcode :    u8,
+     pub length :          u16,
+     pub major_version :   u32,
+     pub minor_version :   u32
 }
 
 
 pub struct query_version_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    major_version :   u32,
-    minor_version :   u32,
-    pad1 :            [u8,..16]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub major_version :   u32,
+     pub minor_version :   u32,
+     pub pad1 :            [u8,..16]
 }
 
 
 
 pub struct wait_gl_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag
 }
 
 
 
 pub struct wait_x_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag
 }
 
 
 
 pub struct copy_context_request {
-    major_opcode :      u8,
-    minor_opcode :      u8,
-    length :            u16,
-    src :               context,
-    dest :              context,
-    mask :              u32,
-    src_context_tag :   context_tag
+     pub major_opcode :      u8,
+     pub minor_opcode :      u8,
+     pub length :            u16,
+     pub src :               context,
+     pub dest :              context,
+     pub mask :              u32,
+     pub src_context_tag :   context_tag
 }
 
 
 
 pub struct swap_buffers_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    drawable :       drawable
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub drawable :       drawable
 }
 
 
 
 pub struct use_x_font_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    font :           ffi::xproto::font,
-    first :          u32,
-    count :          u32,
-    list_base :      u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub font :           ffi::xproto::font,
+     pub first :          u32,
+     pub count :          u32,
+     pub list_base :      u32
 }
 
 
 
 pub struct create_glx_pixmap_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    screen :         u32,
-    visual :         ffi::xproto::visualid,
-    pixmap :         ffi::xproto::pixmap,
-    glx_pixmap :     pixmap
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub screen :         u32,
+     pub visual :         ffi::xproto::visualid,
+     pub pixmap :         ffi::xproto::pixmap,
+     pub glx_pixmap :     pixmap
 }
 
 
@@ -385,40 +385,40 @@ pub struct get_visual_configs_cookie {
 
 
 pub struct get_visual_configs_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    screen :         u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub screen :         u32
 }
 
 
 pub struct get_visual_configs_reply {
-    response_type :    u8,
-    pad0 :             u8,
-    sequence :         u16,
-    length :           u32,
-    num_visuals :      u32,
-    num_properties :   u32,
-    pad1 :             [u8,..16]
+     pub response_type :    u8,
+     pub pad0 :             u8,
+     pub sequence :         u16,
+     pub length :           u32,
+     pub num_visuals :      u32,
+     pub num_properties :   u32,
+     pub pad1 :             [u8,..16]
 }
 
 
 
 pub struct destroy_glx_pixmap_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    glx_pixmap :     pixmap
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub glx_pixmap :     pixmap
 }
 
 
 
 pub struct vendor_private_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    vendor_code :    u32,
-    context_tag :    context_tag
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub vendor_code :    u32,
+     pub context_tag :    context_tag
 }
 
 
@@ -428,21 +428,21 @@ pub struct vendor_private_with_reply_cookie {
 
 
 pub struct vendor_private_with_reply_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    vendor_code :    u32,
-    context_tag :    context_tag
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub vendor_code :    u32,
+     pub context_tag :    context_tag
 }
 
 
 pub struct vendor_private_with_reply_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    retval :          u32,
-    data1 :           [u8,..24]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub retval :          u32,
+     pub data1 :           [u8,..24]
 }
 
 
@@ -452,21 +452,21 @@ pub struct query_extensions_string_cookie {
 
 
 pub struct query_extensions_string_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    screen :         u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub screen :         u32
 }
 
 
 pub struct query_extensions_string_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    pad2 :            [u8,..16]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub pad2 :            [u8,..16]
 }
 
 
@@ -476,33 +476,33 @@ pub struct query_server_string_cookie {
 
 
 pub struct query_server_string_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    screen :         u32,
-    name :           u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub screen :         u32,
+     pub name :           u32
 }
 
 
 pub struct query_server_string_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    str_len :         u32,
-    pad2 :            [u8,..16]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub str_len :         u32,
+     pub pad2 :            [u8,..16]
 }
 
 
 
 pub struct client_info_request {
-    major_opcode :    u8,
-    minor_opcode :    u8,
-    length :          u16,
-    major_version :   u32,
-    minor_version :   u32,
-    str_len :         u32
+     pub major_opcode :    u8,
+     pub minor_opcode :    u8,
+     pub length :          u16,
+     pub major_version :   u32,
+     pub minor_version :   u32,
+     pub str_len :         u32
 }
 
 
@@ -512,58 +512,58 @@ pub struct get_fb_configs_cookie {
 
 
 pub struct get_fb_configs_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    screen :         u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub screen :         u32
 }
 
 
 pub struct get_fb_configs_reply {
-    response_type :    u8,
-    pad0 :             u8,
-    sequence :         u16,
-    length :           u32,
-    num_FB_configs :   u32,
-    num_properties :   u32,
-    pad1 :             [u8,..16]
+     pub response_type :    u8,
+     pub pad0 :             u8,
+     pub sequence :         u16,
+     pub length :           u32,
+     pub num_FB_configs :   u32,
+     pub num_properties :   u32,
+     pub pad1 :             [u8,..16]
 }
 
 
 
 pub struct create_pixmap_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    screen :         u32,
-    fbconfig :       fbconfig,
-    pixmap :         ffi::xproto::pixmap,
-    glx_pixmap :     pixmap,
-    num_attribs :    u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub screen :         u32,
+     pub fbconfig :       fbconfig,
+     pub pixmap :         ffi::xproto::pixmap,
+     pub glx_pixmap :     pixmap,
+     pub num_attribs :    u32
 }
 
 
 
 pub struct destroy_pixmap_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    glx_pixmap :     pixmap
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub glx_pixmap :     pixmap
 }
 
 
 
 pub struct create_new_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context :        context,
-    fbconfig :       fbconfig,
-    screen :         u32,
-    render_type :    u32,
-    share_list :     context,
-    is_direct :      u8,
-    pad0 :           [u8,..3]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context :        context,
+     pub fbconfig :       fbconfig,
+     pub screen :         u32,
+     pub render_type :    u32,
+     pub share_list :     context,
+     pub is_direct :      u8,
+     pub pad0 :           [u8,..3]
 }
 
 
@@ -573,20 +573,20 @@ pub struct query_context_cookie {
 
 
 pub struct query_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context :        context
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context :        context
 }
 
 
 pub struct query_context_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    num_attribs :     u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub num_attribs :     u32,
+     pub pad1 :            [u8,..20]
 }
 
 
@@ -596,44 +596,44 @@ pub struct make_context_current_cookie {
 
 
 pub struct make_context_current_request {
-    major_opcode :      u8,
-    minor_opcode :      u8,
-    length :            u16,
-    old_context_tag :   context_tag,
-    drawable :          drawable,
-    read_drawable :     drawable,
-    context :           context
+     pub major_opcode :      u8,
+     pub minor_opcode :      u8,
+     pub length :            u16,
+     pub old_context_tag :   context_tag,
+     pub drawable :          drawable,
+     pub read_drawable :     drawable,
+     pub context :           context
 }
 
 
 pub struct make_context_current_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    context_tag :     context_tag,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub context_tag :     context_tag,
+     pub pad1 :            [u8,..20]
 }
 
 
 
 pub struct create_pbuffer_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    screen :         u32,
-    fbconfig :       fbconfig,
-    pbuffer :        pbuffer,
-    num_attribs :    u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub screen :         u32,
+     pub fbconfig :       fbconfig,
+     pub pbuffer :        pbuffer,
+     pub num_attribs :    u32
 }
 
 
 
 pub struct destroy_pbuffer_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    pbuffer :        pbuffer
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub pbuffer :        pbuffer
 }
 
 
@@ -643,124 +643,124 @@ pub struct get_drawable_attributes_cookie {
 
 
 pub struct get_drawable_attributes_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       drawable
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       drawable
 }
 
 
 pub struct get_drawable_attributes_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    num_attribs :     u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub num_attribs :     u32,
+     pub pad1 :            [u8,..20]
 }
 
 
 
 pub struct change_drawable_attributes_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       drawable,
-    num_attribs :    u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       drawable,
+     pub num_attribs :    u32
 }
 
 
 
 pub struct create_window_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    screen :         u32,
-    fbconfig :       fbconfig,
-    window :         ffi::xproto::window,
-    glx_window :     window,
-    num_attribs :    u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub screen :         u32,
+     pub fbconfig :       fbconfig,
+     pub window :         ffi::xproto::window,
+     pub glx_window :     window,
+     pub num_attribs :    u32
 }
 
 
 
 pub struct delete_window_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    glxwindow :      window
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub glxwindow :      window
 }
 
 
 
 pub struct set_client_info_arb_request {
-    major_opcode :    u8,
-    minor_opcode :    u8,
-    length :          u16,
-    major_version :   u32,
-    minor_version :   u32,
-    num_versions :    u32,
-    gl_str_len :      u32,
-    glx_str_len :     u32
+     pub major_opcode :    u8,
+     pub minor_opcode :    u8,
+     pub length :          u16,
+     pub major_version :   u32,
+     pub minor_version :   u32,
+     pub num_versions :    u32,
+     pub gl_str_len :      u32,
+     pub glx_str_len :     u32
 }
 
 
 
 pub struct create_context_attribs_arb_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context :        context,
-    fbconfig :       fbconfig,
-    screen :         u32,
-    share_list :     context,
-    is_direct :      u8,
-    pad0 :           [u8,..3],
-    num_attribs :    u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context :        context,
+     pub fbconfig :       fbconfig,
+     pub screen :         u32,
+     pub share_list :     context,
+     pub is_direct :      u8,
+     pub pad0 :           [u8,..3],
+     pub num_attribs :    u32
 }
 
 
 
 pub struct set_client_info_2arb_request {
-    major_opcode :    u8,
-    minor_opcode :    u8,
-    length :          u16,
-    major_version :   u32,
-    minor_version :   u32,
-    num_versions :    u32,
-    gl_str_len :      u32,
-    glx_str_len :     u32
+     pub major_opcode :    u8,
+     pub minor_opcode :    u8,
+     pub length :          u16,
+     pub major_version :   u32,
+     pub minor_version :   u32,
+     pub num_versions :    u32,
+     pub gl_str_len :      u32,
+     pub glx_str_len :     u32
 }
 
 
 
 pub struct new_list_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    list :           u32,
-    mode :           u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub list :           u32,
+     pub mode :           u32
 }
 
 
 
 pub struct end_list_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag
 }
 
 
 
 pub struct delete_lists_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    list :           u32,
-    range :          i32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub list :           u32,
+     pub range :          i32
 }
 
 
@@ -770,41 +770,41 @@ pub struct gen_lists_cookie {
 
 
 pub struct gen_lists_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    range :          i32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub range :          i32
 }
 
 
 pub struct gen_lists_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    ret_val :         u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub ret_val :         u32
 }
 
 
 
 pub struct feedback_buffer_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    size :           i32,
-    type_ :          i32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub size :           i32,
+     pub type_ :          i32
 }
 
 
 
 pub struct select_buffer_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    size :           i32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub size :           i32
 }
 
 
@@ -814,23 +814,23 @@ pub struct render_mode_cookie {
 
 
 pub struct render_mode_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    mode :           u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub mode :           u32
 }
 
 
 pub struct render_mode_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    ret_val :         u32,
-    n :               u32,
-    new_mode :        u32,
-    pad1 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub ret_val :         u32,
+     pub n :               u32,
+     pub new_mode :        u32,
+     pub pad1 :            [u8,..12]
 }
 
 
@@ -840,40 +840,40 @@ pub struct finish_cookie {
 
 
 pub struct finish_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag
 }
 
 
 pub struct finish_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32
 }
 
 
 
 pub struct pixel_storef_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    pname :          u32,
-    datum :          float32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub pname :          u32,
+     pub datum :          float32
 }
 
 
 
 pub struct pixel_storei_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    pname :          u32,
-    datum :          i32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub pname :          u32,
+     pub datum :          i32
 }
 
 
@@ -883,27 +883,27 @@ pub struct read_pixels_cookie {
 
 
 pub struct read_pixels_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    x :              i32,
-    y :              i32,
-    width :          i32,
-    height :         i32,
-    format :         u32,
-    type_ :          u32,
-    swap_bytes :     u8,
-    lsb_first :      u8
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub x :              i32,
+     pub y :              i32,
+     pub width :          i32,
+     pub height :         i32,
+     pub format :         u32,
+     pub type_ :          u32,
+     pub swap_bytes :     u8,
+     pub lsb_first :      u8
 }
 
 
 pub struct read_pixels_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..24]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..24]
 }
 
 
@@ -913,23 +913,23 @@ pub struct get_booleanv_cookie {
 
 
 pub struct get_booleanv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    pname :          i32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub pname :          i32
 }
 
 
 pub struct get_booleanv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           u8,
-    pad2 :            [u8,..15]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           u8,
+     pub pad2 :            [u8,..15]
 }
 
 
@@ -939,20 +939,20 @@ pub struct get_clip_plane_cookie {
 
 
 pub struct get_clip_plane_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    plane :          i32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub plane :          i32
 }
 
 
 pub struct get_clip_plane_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..24]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..24]
 }
 
 
@@ -962,23 +962,23 @@ pub struct get_doublev_cookie {
 
 
 pub struct get_doublev_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub pname :          u32
 }
 
 
 pub struct get_doublev_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           float64,
-    pad2 :            [u8,..8]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           float64,
+     pub pad2 :            [u8,..8]
 }
 
 
@@ -988,19 +988,19 @@ pub struct get_error_cookie {
 
 
 pub struct get_error_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag
 }
 
 
 pub struct get_error_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    error :           i32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub error :           i32
 }
 
 
@@ -1010,23 +1010,23 @@ pub struct get_floatv_cookie {
 
 
 pub struct get_floatv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub pname :          u32
 }
 
 
 pub struct get_floatv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           float32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           float32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -1036,23 +1036,23 @@ pub struct get_integerv_cookie {
 
 
 pub struct get_integerv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub pname :          u32
 }
 
 
 pub struct get_integerv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           i32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           i32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -1062,24 +1062,24 @@ pub struct get_lightfv_cookie {
 
 
 pub struct get_lightfv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    light :          u32,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub light :          u32,
+     pub pname :          u32
 }
 
 
 pub struct get_lightfv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           float32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           float32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -1089,24 +1089,24 @@ pub struct get_lightiv_cookie {
 
 
 pub struct get_lightiv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    light :          u32,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub light :          u32,
+     pub pname :          u32
 }
 
 
 pub struct get_lightiv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           i32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           i32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -1116,24 +1116,24 @@ pub struct get_mapdv_cookie {
 
 
 pub struct get_mapdv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    target :         u32,
-    query :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub target :         u32,
+     pub query :          u32
 }
 
 
 pub struct get_mapdv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           float64,
-    pad2 :            [u8,..8]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           float64,
+     pub pad2 :            [u8,..8]
 }
 
 
@@ -1143,24 +1143,24 @@ pub struct get_mapfv_cookie {
 
 
 pub struct get_mapfv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    target :         u32,
-    query :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub target :         u32,
+     pub query :          u32
 }
 
 
 pub struct get_mapfv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           float32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           float32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -1170,24 +1170,24 @@ pub struct get_mapiv_cookie {
 
 
 pub struct get_mapiv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    target :         u32,
-    query :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub target :         u32,
+     pub query :          u32
 }
 
 
 pub struct get_mapiv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           i32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           i32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -1197,24 +1197,24 @@ pub struct get_materialfv_cookie {
 
 
 pub struct get_materialfv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    face :           u32,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub face :           u32,
+     pub pname :          u32
 }
 
 
 pub struct get_materialfv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           float32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           float32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -1224,24 +1224,24 @@ pub struct get_materialiv_cookie {
 
 
 pub struct get_materialiv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    face :           u32,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub face :           u32,
+     pub pname :          u32
 }
 
 
 pub struct get_materialiv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           i32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           i32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -1251,23 +1251,23 @@ pub struct get_pixel_mapfv_cookie {
 
 
 pub struct get_pixel_mapfv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    map :            u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub map :            u32
 }
 
 
 pub struct get_pixel_mapfv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           float32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           float32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -1277,23 +1277,23 @@ pub struct get_pixel_mapuiv_cookie {
 
 
 pub struct get_pixel_mapuiv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    map :            u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub map :            u32
 }
 
 
 pub struct get_pixel_mapuiv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           u32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           u32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -1303,23 +1303,23 @@ pub struct get_pixel_mapusv_cookie {
 
 
 pub struct get_pixel_mapusv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    map :            u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub map :            u32
 }
 
 
 pub struct get_pixel_mapusv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           u16,
-    pad2 :            [u8,..16]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           u16,
+     pub pad2 :            [u8,..16]
 }
 
 
@@ -1329,20 +1329,20 @@ pub struct get_polygon_stipple_cookie {
 
 
 pub struct get_polygon_stipple_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    lsb_first :      u8
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub lsb_first :      u8
 }
 
 
 pub struct get_polygon_stipple_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..24]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..24]
 }
 
 
@@ -1352,22 +1352,22 @@ pub struct get_string_cookie {
 
 
 pub struct get_string_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    name :           u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub name :           u32
 }
 
 
 pub struct get_string_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    pad2 :            [u8,..16]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub pad2 :            [u8,..16]
 }
 
 
@@ -1377,24 +1377,24 @@ pub struct get_tex_envfv_cookie {
 
 
 pub struct get_tex_envfv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    target :         u32,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub target :         u32,
+     pub pname :          u32
 }
 
 
 pub struct get_tex_envfv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           float32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           float32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -1404,24 +1404,24 @@ pub struct get_tex_enviv_cookie {
 
 
 pub struct get_tex_enviv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    target :         u32,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub target :         u32,
+     pub pname :          u32
 }
 
 
 pub struct get_tex_enviv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           i32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           i32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -1431,24 +1431,24 @@ pub struct get_tex_gendv_cookie {
 
 
 pub struct get_tex_gendv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    coord :          u32,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub coord :          u32,
+     pub pname :          u32
 }
 
 
 pub struct get_tex_gendv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           float64,
-    pad2 :            [u8,..8]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           float64,
+     pub pad2 :            [u8,..8]
 }
 
 
@@ -1458,24 +1458,24 @@ pub struct get_tex_genfv_cookie {
 
 
 pub struct get_tex_genfv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    coord :          u32,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub coord :          u32,
+     pub pname :          u32
 }
 
 
 pub struct get_tex_genfv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           float32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           float32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -1485,24 +1485,24 @@ pub struct get_tex_geniv_cookie {
 
 
 pub struct get_tex_geniv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    coord :          u32,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub coord :          u32,
+     pub pname :          u32
 }
 
 
 pub struct get_tex_geniv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           i32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           i32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -1512,28 +1512,28 @@ pub struct get_tex_image_cookie {
 
 
 pub struct get_tex_image_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    target :         u32,
-    level :          i32,
-    format :         u32,
-    type_ :          u32,
-    swap_bytes :     u8
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub target :         u32,
+     pub level :          i32,
+     pub format :         u32,
+     pub type_ :          u32,
+     pub swap_bytes :     u8
 }
 
 
 pub struct get_tex_image_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..8],
-    width :           i32,
-    height :          i32,
-    depth :           i32,
-    pad2 :            [u8,..4]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..8],
+     pub width :           i32,
+     pub height :          i32,
+     pub depth :           i32,
+     pub pad2 :            [u8,..4]
 }
 
 
@@ -1543,24 +1543,24 @@ pub struct get_tex_parameterfv_cookie {
 
 
 pub struct get_tex_parameterfv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    target :         u32,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub target :         u32,
+     pub pname :          u32
 }
 
 
 pub struct get_tex_parameterfv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           float32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           float32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -1570,24 +1570,24 @@ pub struct get_tex_parameteriv_cookie {
 
 
 pub struct get_tex_parameteriv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    target :         u32,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub target :         u32,
+     pub pname :          u32
 }
 
 
 pub struct get_tex_parameteriv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           i32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           i32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -1597,25 +1597,25 @@ pub struct get_tex_level_parameterfv_cookie {
 
 
 pub struct get_tex_level_parameterfv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    target :         u32,
-    level :          i32,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub target :         u32,
+     pub level :          i32,
+     pub pname :          u32
 }
 
 
 pub struct get_tex_level_parameterfv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           float32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           float32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -1625,25 +1625,25 @@ pub struct get_tex_level_parameteriv_cookie {
 
 
 pub struct get_tex_level_parameteriv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    target :         u32,
-    level :          i32,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub target :         u32,
+     pub level :          i32,
+     pub pname :          u32
 }
 
 
 pub struct get_tex_level_parameteriv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           i32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           i32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -1653,29 +1653,29 @@ pub struct is_list_cookie {
 
 
 pub struct is_list_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    list :           u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub list :           u32
 }
 
 
 pub struct is_list_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    ret_val :         bool32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub ret_val :         bool32
 }
 
 
 
 pub struct flush_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag
 }
 
 
@@ -1685,31 +1685,31 @@ pub struct are_textures_resident_cookie {
 
 
 pub struct are_textures_resident_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    n :              i32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub n :              i32
 }
 
 
 pub struct are_textures_resident_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    ret_val :         bool32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub ret_val :         bool32,
+     pub pad1 :            [u8,..20]
 }
 
 
 
 pub struct delete_textures_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    n :              i32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub n :              i32
 }
 
 
@@ -1719,20 +1719,20 @@ pub struct gen_textures_cookie {
 
 
 pub struct gen_textures_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    n :              i32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub n :              i32
 }
 
 
 pub struct gen_textures_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..24]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..24]
 }
 
 
@@ -1742,20 +1742,20 @@ pub struct is_texture_cookie {
 
 
 pub struct is_texture_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    texture :        u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub texture :        u32
 }
 
 
 pub struct is_texture_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    ret_val :         bool32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub ret_val :         bool32
 }
 
 
@@ -1765,25 +1765,25 @@ pub struct get_color_table_cookie {
 
 
 pub struct get_color_table_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    target :         u32,
-    format :         u32,
-    type_ :          u32,
-    swap_bytes :     u8
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub target :         u32,
+     pub format :         u32,
+     pub type_ :          u32,
+     pub swap_bytes :     u8
 }
 
 
 pub struct get_color_table_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..8],
-    width :           i32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..8],
+     pub width :           i32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -1793,24 +1793,24 @@ pub struct get_color_table_parameterfv_cookie {
 
 
 pub struct get_color_table_parameterfv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    target :         u32,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub target :         u32,
+     pub pname :          u32
 }
 
 
 pub struct get_color_table_parameterfv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           float32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           float32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -1820,24 +1820,24 @@ pub struct get_color_table_parameteriv_cookie {
 
 
 pub struct get_color_table_parameteriv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    target :         u32,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub target :         u32,
+     pub pname :          u32
 }
 
 
 pub struct get_color_table_parameteriv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           i32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           i32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -1847,26 +1847,26 @@ pub struct get_convolution_filter_cookie {
 
 
 pub struct get_convolution_filter_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    target :         u32,
-    format :         u32,
-    type_ :          u32,
-    swap_bytes :     u8
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub target :         u32,
+     pub format :         u32,
+     pub type_ :          u32,
+     pub swap_bytes :     u8
 }
 
 
 pub struct get_convolution_filter_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..8],
-    width :           i32,
-    height :          i32,
-    pad2 :            [u8,..8]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..8],
+     pub width :           i32,
+     pub height :          i32,
+     pub pad2 :            [u8,..8]
 }
 
 
@@ -1876,24 +1876,24 @@ pub struct get_convolution_parameterfv_cookie {
 
 
 pub struct get_convolution_parameterfv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    target :         u32,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub target :         u32,
+     pub pname :          u32
 }
 
 
 pub struct get_convolution_parameterfv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           float32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           float32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -1903,24 +1903,24 @@ pub struct get_convolution_parameteriv_cookie {
 
 
 pub struct get_convolution_parameteriv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    target :         u32,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub target :         u32,
+     pub pname :          u32
 }
 
 
 pub struct get_convolution_parameteriv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           i32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           i32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -1930,26 +1930,26 @@ pub struct get_separable_filter_cookie {
 
 
 pub struct get_separable_filter_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    target :         u32,
-    format :         u32,
-    type_ :          u32,
-    swap_bytes :     u8
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub target :         u32,
+     pub format :         u32,
+     pub type_ :          u32,
+     pub swap_bytes :     u8
 }
 
 
 pub struct get_separable_filter_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..8],
-    row_w :           i32,
-    col_h :           i32,
-    pad2 :            [u8,..8]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..8],
+     pub row_w :           i32,
+     pub col_h :           i32,
+     pub pad2 :            [u8,..8]
 }
 
 
@@ -1959,26 +1959,26 @@ pub struct get_histogram_cookie {
 
 
 pub struct get_histogram_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    target :         u32,
-    format :         u32,
-    type_ :          u32,
-    swap_bytes :     u8,
-    reset :          u8
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub target :         u32,
+     pub format :         u32,
+     pub type_ :          u32,
+     pub swap_bytes :     u8,
+     pub reset :          u8
 }
 
 
 pub struct get_histogram_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..8],
-    width :           i32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..8],
+     pub width :           i32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -1988,24 +1988,24 @@ pub struct get_histogram_parameterfv_cookie {
 
 
 pub struct get_histogram_parameterfv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    target :         u32,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub target :         u32,
+     pub pname :          u32
 }
 
 
 pub struct get_histogram_parameterfv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           float32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           float32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -2015,24 +2015,24 @@ pub struct get_histogram_parameteriv_cookie {
 
 
 pub struct get_histogram_parameteriv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    target :         u32,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub target :         u32,
+     pub pname :          u32
 }
 
 
 pub struct get_histogram_parameteriv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           i32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           i32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -2042,24 +2042,24 @@ pub struct get_minmax_cookie {
 
 
 pub struct get_minmax_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    target :         u32,
-    format :         u32,
-    type_ :          u32,
-    swap_bytes :     u8,
-    reset :          u8
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub target :         u32,
+     pub format :         u32,
+     pub type_ :          u32,
+     pub swap_bytes :     u8,
+     pub reset :          u8
 }
 
 
 pub struct get_minmax_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..24]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..24]
 }
 
 
@@ -2069,24 +2069,24 @@ pub struct get_minmax_parameterfv_cookie {
 
 
 pub struct get_minmax_parameterfv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    target :         u32,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub target :         u32,
+     pub pname :          u32
 }
 
 
 pub struct get_minmax_parameterfv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           float32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           float32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -2096,24 +2096,24 @@ pub struct get_minmax_parameteriv_cookie {
 
 
 pub struct get_minmax_parameteriv_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    target :         u32,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub target :         u32,
+     pub pname :          u32
 }
 
 
 pub struct get_minmax_parameteriv_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           i32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           i32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -2123,33 +2123,33 @@ pub struct get_compressed_tex_image_arb_cookie {
 
 
 pub struct get_compressed_tex_image_arb_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    target :         u32,
-    level :          i32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub target :         u32,
+     pub level :          i32
 }
 
 
 pub struct get_compressed_tex_image_arb_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..8],
-    size :            i32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..8],
+     pub size :            i32,
+     pub pad2 :            [u8,..12]
 }
 
 
 
 pub struct delete_queries_arb_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    n :              i32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub n :              i32
 }
 
 
@@ -2159,20 +2159,20 @@ pub struct gen_queries_arb_cookie {
 
 
 pub struct gen_queries_arb_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    n :              i32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub n :              i32
 }
 
 
 pub struct gen_queries_arb_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..24]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..24]
 }
 
 
@@ -2182,20 +2182,20 @@ pub struct is_query_arb_cookie {
 
 
 pub struct is_query_arb_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    id :             u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub id :             u32
 }
 
 
 pub struct is_query_arb_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    ret_val :         bool32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub ret_val :         bool32
 }
 
 
@@ -2205,24 +2205,24 @@ pub struct get_queryiv_arb_cookie {
 
 
 pub struct get_queryiv_arb_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    target :         u32,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub target :         u32,
+     pub pname :          u32
 }
 
 
 pub struct get_queryiv_arb_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           i32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           i32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -2232,24 +2232,24 @@ pub struct get_query_objectiv_arb_cookie {
 
 
 pub struct get_query_objectiv_arb_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    id :             u32,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub id :             u32,
+     pub pname :          u32
 }
 
 
 pub struct get_query_objectiv_arb_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           i32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           i32,
+     pub pad2 :            [u8,..12]
 }
 
 
@@ -2259,28 +2259,28 @@ pub struct get_query_objectuiv_arb_cookie {
 
 
 pub struct get_query_objectuiv_arb_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_tag :    context_tag,
-    id :             u32,
-    pname :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_tag :    context_tag,
+     pub id :             u32,
+     pub pname :          u32
 }
 
 
 pub struct get_query_objectuiv_arb_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..4],
-    n :               u32,
-    datum :           u32,
-    pad2 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..4],
+     pub n :               u32,
+     pub datum :           u32,
+     pub pad2 :            [u8,..12]
 }
 
 #[link(name="lxcb-glx")]
-pub extern "C" {
+extern "C" {
 
 /**
  * Get the next element of the iterator

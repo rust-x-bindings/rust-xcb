@@ -20,30 +20,30 @@ pub struct query_version_cookie {
 
 
 pub struct query_version_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    client_major :   u8,
-    client_minor :   u8
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub client_major :   u8,
+     pub client_minor :   u8
 }
 
 
 pub struct query_version_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    server_major :    u16,
-    server_minor :    u16
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub server_major :    u16,
+     pub server_minor :    u16
 }
 
 
 
 pub struct set_device_create_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_len :    u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_len :    u32
 }
 
 
@@ -53,29 +53,29 @@ pub struct get_device_create_context_cookie {
 
 
 pub struct get_device_create_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct get_device_create_context_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    context_len :     u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub context_len :     u32,
+     pub pad1 :            [u8,..20]
 }
 
 
 
 pub struct set_device_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    device :         u32,
-    context_len :    u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub device :         u32,
+     pub context_len :    u32
 }
 
 
@@ -85,29 +85,29 @@ pub struct get_device_context_cookie {
 
 
 pub struct get_device_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    device :         u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub device :         u32
 }
 
 
 pub struct get_device_context_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    context_len :     u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub context_len :     u32,
+     pub pad1 :            [u8,..20]
 }
 
 
 
 pub struct set_window_create_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_len :    u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_len :    u32
 }
 
 
@@ -117,19 +117,19 @@ pub struct get_window_create_context_cookie {
 
 
 pub struct get_window_create_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct get_window_create_context_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    context_len :     u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub context_len :     u32,
+     pub pad1 :            [u8,..20]
 }
 
 
@@ -139,45 +139,45 @@ pub struct get_window_context_cookie {
 
 
 pub struct get_window_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window
 }
 
 
 pub struct get_window_context_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    context_len :     u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub context_len :     u32,
+     pub pad1 :            [u8,..20]
 }
 
 
 pub struct list_item {
-    name :                 ffi::xproto::atom,
-    object_context_len :   u32,
-    data_context_len :     u32
+     pub name :                 ffi::xproto::atom,
+     pub object_context_len :   u32,
+     pub data_context_len :     u32
 }
 
 /**
  * @brief list_item_iterator
  **/
 pub struct list_item_iterator {
-    data : *mut list_item,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut list_item,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 
 pub struct set_property_create_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_len :    u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_len :    u32
 }
 
 
@@ -187,28 +187,28 @@ pub struct get_property_create_context_cookie {
 
 
 pub struct get_property_create_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct get_property_create_context_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    context_len :     u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub context_len :     u32,
+     pub pad1 :            [u8,..20]
 }
 
 
 
 pub struct set_property_use_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_len :    u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_len :    u32
 }
 
 
@@ -218,19 +218,19 @@ pub struct get_property_use_context_cookie {
 
 
 pub struct get_property_use_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct get_property_use_context_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    context_len :     u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub context_len :     u32,
+     pub pad1 :            [u8,..20]
 }
 
 
@@ -240,21 +240,21 @@ pub struct get_property_context_cookie {
 
 
 pub struct get_property_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window,
-    property :       ffi::xproto::atom
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window,
+     pub property :       ffi::xproto::atom
 }
 
 
 pub struct get_property_context_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    context_len :     u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub context_len :     u32,
+     pub pad1 :            [u8,..20]
 }
 
 
@@ -264,21 +264,21 @@ pub struct get_property_data_context_cookie {
 
 
 pub struct get_property_data_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window,
-    property :       ffi::xproto::atom
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window,
+     pub property :       ffi::xproto::atom
 }
 
 
 pub struct get_property_data_context_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    context_len :     u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub context_len :     u32,
+     pub pad1 :            [u8,..20]
 }
 
 
@@ -288,29 +288,29 @@ pub struct list_properties_cookie {
 
 
 pub struct list_properties_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window
 }
 
 
 pub struct list_properties_reply {
-    response_type :    u8,
-    pad0 :             u8,
-    sequence :         u16,
-    length :           u32,
-    properties_len :   u32,
-    pad1 :             [u8,..20]
+     pub response_type :    u8,
+     pub pad0 :             u8,
+     pub sequence :         u16,
+     pub length :           u32,
+     pub properties_len :   u32,
+     pub pad1 :             [u8,..20]
 }
 
 
 
 pub struct set_selection_create_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_len :    u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_len :    u32
 }
 
 
@@ -320,28 +320,28 @@ pub struct get_selection_create_context_cookie {
 
 
 pub struct get_selection_create_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct get_selection_create_context_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    context_len :     u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub context_len :     u32,
+     pub pad1 :            [u8,..20]
 }
 
 
 
 pub struct set_selection_use_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context_len :    u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context_len :    u32
 }
 
 
@@ -351,19 +351,19 @@ pub struct get_selection_use_context_cookie {
 
 
 pub struct get_selection_use_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct get_selection_use_context_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    context_len :     u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub context_len :     u32,
+     pub pad1 :            [u8,..20]
 }
 
 
@@ -373,20 +373,20 @@ pub struct get_selection_context_cookie {
 
 
 pub struct get_selection_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    selection :      ffi::xproto::atom
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub selection :      ffi::xproto::atom
 }
 
 
 pub struct get_selection_context_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    context_len :     u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub context_len :     u32,
+     pub pad1 :            [u8,..20]
 }
 
 
@@ -396,20 +396,20 @@ pub struct get_selection_data_context_cookie {
 
 
 pub struct get_selection_data_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    selection :      ffi::xproto::atom
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub selection :      ffi::xproto::atom
 }
 
 
 pub struct get_selection_data_context_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    context_len :     u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub context_len :     u32,
+     pub pad1 :            [u8,..20]
 }
 
 
@@ -419,19 +419,19 @@ pub struct list_selections_cookie {
 
 
 pub struct list_selections_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct list_selections_reply {
-    response_type :    u8,
-    pad0 :             u8,
-    sequence :         u16,
-    length :           u32,
-    selections_len :   u32,
-    pad1 :             [u8,..20]
+     pub response_type :    u8,
+     pub pad0 :             u8,
+     pub sequence :         u16,
+     pub length :           u32,
+     pub selections_len :   u32,
+     pub pad1 :             [u8,..20]
 }
 
 
@@ -441,24 +441,24 @@ pub struct get_client_context_cookie {
 
 
 pub struct get_client_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    resource :       u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub resource :       u32
 }
 
 
 pub struct get_client_context_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    context_len :     u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub context_len :     u32,
+     pub pad1 :            [u8,..20]
 }
 
 #[link(name="lxcb-xselinux")]
-pub extern "C" {
+extern "C" {
 
 /**
  *

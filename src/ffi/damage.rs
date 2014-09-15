@@ -22,17 +22,17 @@ pub type damage = u32;
  * @brief damage_iterator
  **/
 pub struct damage_iterator {
-    data : *mut damage,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut damage,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 
 pub struct bad_damage_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16
 }
 
 
@@ -42,81 +42,81 @@ pub struct query_version_cookie {
 
 
 pub struct query_version_request {
-    major_opcode :           u8,
-    minor_opcode :           u8,
-    length :                 u16,
-    client_major_version :   u32,
-    client_minor_version :   u32
+     pub major_opcode :           u8,
+     pub minor_opcode :           u8,
+     pub length :                 u16,
+     pub client_major_version :   u32,
+     pub client_minor_version :   u32
 }
 
 
 pub struct query_version_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    major_version :   u32,
-    minor_version :   u32,
-    pad1 :            [u8,..16]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub major_version :   u32,
+     pub minor_version :   u32,
+     pub pad1 :            [u8,..16]
 }
 
 
 
 pub struct create_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    damage :         damage,
-    drawable :       ffi::xproto::drawable,
-    level :          u8,
-    pad0 :           [u8,..3]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub damage :         damage,
+     pub drawable :       ffi::xproto::drawable,
+     pub level :          u8,
+     pub pad0 :           [u8,..3]
 }
 
 
 
 pub struct destroy_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    damage :         damage
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub damage :         damage
 }
 
 
 
 pub struct subtract_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    damage :         damage,
-    repair :         ffi::xfixes::region,
-    parts :          ffi::xfixes::region
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub damage :         damage,
+     pub repair :         ffi::xfixes::region,
+     pub parts :          ffi::xfixes::region
 }
 
 
 
 pub struct add_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       ffi::xproto::drawable,
-    region :         ffi::xfixes::region
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       ffi::xproto::drawable,
+     pub region :         ffi::xfixes::region
 }
 
 
 
 pub struct notify_event {
-    response_type :   u8,
-    level :           u8,
-    sequence :        u16,
-    drawable :        ffi::xproto::drawable,
-    damage :          damage,
-    timestamp :       ffi::xproto::timestamp,
-    area :            ffi::xproto::rectangle,
-    geometry :        ffi::xproto::rectangle
+     pub response_type :   u8,
+     pub level :           u8,
+     pub sequence :        u16,
+     pub drawable :        ffi::xproto::drawable,
+     pub damage :          damage,
+     pub timestamp :       ffi::xproto::timestamp,
+     pub area :            ffi::xproto::rectangle,
+     pub geometry :        ffi::xproto::rectangle
 }
 
 #[link(name="lxcb-damage")]
-pub extern "C" {
+extern "C" {
 
 /**
  * Get the next element of the iterator

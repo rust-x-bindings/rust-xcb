@@ -19,21 +19,21 @@ pub struct get_version_cookie {
 
 
 pub struct get_version_request {
-    major_opcode :           u8,
-    minor_opcode :           u8,
-    length :                 u16,
-    client_major_version :   u16,
-    client_minor_version :   u16
+     pub major_opcode :           u8,
+     pub minor_opcode :           u8,
+     pub length :                 u16,
+     pub client_major_version :   u16,
+     pub client_minor_version :   u16
 }
 
 
 pub struct get_version_reply {
-    response_type :          u8,
-    pad0 :                   u8,
-    sequence :               u16,
-    length :                 u32,
-    server_major_version :   u16,
-    server_minor_version :   u16
+     pub response_type :          u8,
+     pub pad0 :                   u8,
+     pub sequence :               u16,
+     pub length :                 u32,
+     pub server_major_version :   u16,
+     pub server_minor_version :   u16
 }
 
 
@@ -43,19 +43,19 @@ pub struct get_xid_range_cookie {
 
 
 pub struct get_xid_range_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct get_xid_range_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    start_id :        u32,
-    count :           u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub start_id :        u32,
+     pub count :           u32
 }
 
 
@@ -65,23 +65,23 @@ pub struct get_xid_list_cookie {
 
 
 pub struct get_xid_list_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    count :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub count :          u32
 }
 
 
 pub struct get_xid_list_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    ids_len :         u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub ids_len :         u32,
+     pub pad1 :            [u8,..20]
 }
 
-pub extern "C" {
+extern "C" {
 
 /**
  *

@@ -19,9 +19,9 @@ pub type alarm = u32;
  * @brief alarm_iterator
  **/
 pub struct alarm_iterator {
-    data : *mut alarm,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut alarm,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -30,9 +30,9 @@ pub type counter = u32;
  * @brief counter_iterator
  **/
 pub struct counter_iterator {
-    data : *mut counter,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut counter,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -41,94 +41,94 @@ pub type fence = u32;
  * @brief fence_iterator
  **/
 pub struct fence_iterator {
-    data : *mut fence,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut fence,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct int64 {
-    hi :   i32,
-    lo :   u32
+     pub hi :   i32,
+     pub lo :   u32
 }
 
 /**
  * @brief int64_iterator
  **/
 pub struct int64_iterator {
-    data : *mut int64,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut int64,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct systemcounter {
-    counter :      counter,
-    resolution :   int64,
-    name_len :     u16
+     pub counter :      counter,
+     pub resolution :   int64,
+     pub name_len :     u16
 }
 
 /**
  * @brief systemcounter_iterator
  **/
 pub struct systemcounter_iterator {
-    data : *mut systemcounter,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut systemcounter,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct trigger {
-    counter :      counter,
-    wait_type :    u32,
-    wait_value :   int64,
-    test_type :    u32
+     pub counter :      counter,
+     pub wait_type :    u32,
+     pub wait_value :   int64,
+     pub test_type :    u32
 }
 
 /**
  * @brief trigger_iterator
  **/
 pub struct trigger_iterator {
-    data : *mut trigger,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut trigger,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct waitcondition {
-    trigger :           trigger,
-    event_threshold :   int64
+     pub trigger :           trigger,
+     pub event_threshold :   int64
 }
 
 /**
  * @brief waitcondition_iterator
  **/
 pub struct waitcondition_iterator {
-    data : *mut waitcondition,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut waitcondition,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 
 pub struct counter_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16,
-    bad_counter :     u32,
-    minor_opcode :    u16,
-    major_opcode :    u8
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16,
+     pub bad_counter :     u32,
+     pub minor_opcode :    u16,
+     pub major_opcode :    u8
 }
 
 
 
 pub struct alarm_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16,
-    bad_alarm :       u32,
-    minor_opcode :    u16,
-    major_opcode :    u8
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16,
+     pub bad_alarm :       u32,
+     pub minor_opcode :    u16,
+     pub major_opcode :    u8
 }
 
 
@@ -138,22 +138,22 @@ pub struct initialize_cookie {
 
 
 pub struct initialize_request {
-    major_opcode :            u8,
-    minor_opcode :            u8,
-    length :                  u16,
-    desired_major_version :   u8,
-    desired_minor_version :   u8
+     pub major_opcode :            u8,
+     pub minor_opcode :            u8,
+     pub length :                  u16,
+     pub desired_major_version :   u8,
+     pub desired_minor_version :   u8
 }
 
 
 pub struct initialize_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    major_version :   u8,
-    minor_version :   u8,
-    pad1 :            [u8,..22]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub major_version :   u8,
+     pub minor_version :   u8,
+     pub pad1 :            [u8,..22]
 }
 
 
@@ -163,38 +163,38 @@ pub struct list_system_counters_cookie {
 
 
 pub struct list_system_counters_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct list_system_counters_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    counters_len :    u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub counters_len :    u32,
+     pub pad1 :            [u8,..20]
 }
 
 
 
 pub struct create_counter_request {
-    major_opcode :    u8,
-    minor_opcode :    u8,
-    length :          u16,
-    id :              counter,
-    initial_value :   int64
+     pub major_opcode :    u8,
+     pub minor_opcode :    u8,
+     pub length :          u16,
+     pub id :              counter,
+     pub initial_value :   int64
 }
 
 
 
 pub struct destroy_counter_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    counter :        counter
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub counter :        counter
 }
 
 
@@ -204,76 +204,76 @@ pub struct query_counter_cookie {
 
 
 pub struct query_counter_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    counter :        counter
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub counter :        counter
 }
 
 
 pub struct query_counter_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    counter_value :   int64
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub counter_value :   int64
 }
 
 
 
 pub struct await_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 
 pub struct change_counter_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    counter :        counter,
-    amount :         int64
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub counter :        counter,
+     pub amount :         int64
 }
 
 
 
 pub struct set_counter_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    counter :        counter,
-    value :          int64
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub counter :        counter,
+     pub value :          int64
 }
 
 
 
 pub struct create_alarm_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    id :             alarm,
-    value_mask :     u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub id :             alarm,
+     pub value_mask :     u32
 }
 
 
 
 pub struct change_alarm_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    id :             alarm,
-    value_mask :     u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub id :             alarm,
+     pub value_mask :     u32
 }
 
 
 
 pub struct destroy_alarm_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    alarm :          alarm
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub alarm :          alarm
 }
 
 
@@ -283,33 +283,33 @@ pub struct query_alarm_cookie {
 
 
 pub struct query_alarm_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    alarm :          alarm
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub alarm :          alarm
 }
 
 
 pub struct query_alarm_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    trigger :         trigger,
-    delta :           int64,
-    events :          u8,
-    state :           u8,
-    pad1 :            [u8,..2]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub trigger :         trigger,
+     pub delta :           int64,
+     pub events :          u8,
+     pub state :           u8,
+     pub pad1 :            [u8,..2]
 }
 
 
 
 pub struct set_priority_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    id :             u32,
-    priority :       i32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub id :             u32,
+     pub priority :       i32
 }
 
 
@@ -319,57 +319,57 @@ pub struct get_priority_cookie {
 
 
 pub struct get_priority_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    id :             u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub id :             u32
 }
 
 
 pub struct get_priority_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    priority :        i32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub priority :        i32
 }
 
 
 
 pub struct create_fence_request {
-    major_opcode :          u8,
-    minor_opcode :          u8,
-    length :                u16,
-    drawable :              ffi::xproto::drawable,
-    fence :                 fence,
-    initially_triggered :   u8
+     pub major_opcode :          u8,
+     pub minor_opcode :          u8,
+     pub length :                u16,
+     pub drawable :              ffi::xproto::drawable,
+     pub fence :                 fence,
+     pub initially_triggered :   u8
 }
 
 
 
 pub struct trigger_fence_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    fence :          fence
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub fence :          fence
 }
 
 
 
 pub struct reset_fence_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    fence :          fence
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub fence :          fence
 }
 
 
 
 pub struct destroy_fence_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    fence :          fence
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub fence :          fence
 }
 
 
@@ -379,61 +379,61 @@ pub struct query_fence_cookie {
 
 
 pub struct query_fence_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    fence :          fence
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub fence :          fence
 }
 
 
 pub struct query_fence_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    triggered :       u8,
-    pad1 :            [u8,..23]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub triggered :       u8,
+     pub pad1 :            [u8,..23]
 }
 
 
 
 pub struct await_fence_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 
 pub struct counter_notify_event {
-    response_type :   u8,
-    kind :            u8,
-    sequence :        u16,
-    counter :         counter,
-    wait_value :      int64,
-    counter_value :   int64,
-    timestamp :       ffi::xproto::timestamp,
-    count :           u16,
-    destroyed :       u8,
-    pad0 :            u8
+     pub response_type :   u8,
+     pub kind :            u8,
+     pub sequence :        u16,
+     pub counter :         counter,
+     pub wait_value :      int64,
+     pub counter_value :   int64,
+     pub timestamp :       ffi::xproto::timestamp,
+     pub count :           u16,
+     pub destroyed :       u8,
+     pub pad0 :            u8
 }
 
 
 
 pub struct alarm_notify_event {
-    response_type :   u8,
-    kind :            u8,
-    sequence :        u16,
-    alarm :           alarm,
-    counter_value :   int64,
-    alarm_value :     int64,
-    timestamp :       ffi::xproto::timestamp,
-    state :           u8,
-    pad0 :            [u8,..3]
+     pub response_type :   u8,
+     pub kind :            u8,
+     pub sequence :        u16,
+     pub alarm :           alarm,
+     pub counter_value :   int64,
+     pub alarm_value :     int64,
+     pub timestamp :       ffi::xproto::timestamp,
+     pub state :           u8,
+     pub pad0 :            [u8,..3]
 }
 
 #[link(name="lxcb-sync")]
-pub extern "C" {
+extern "C" {
 
 /**
  * Get the next element of the iterator

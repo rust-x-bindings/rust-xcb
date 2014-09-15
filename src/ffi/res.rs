@@ -15,32 +15,32 @@ pub static RES_MAJOR_VERSION : c_uint = 1;
 pub static RES_MINOR_VERSION : c_uint = 0;
 
 pub struct client {
-    resource_base :   u32,
-    resource_mask :   u32
+     pub resource_base :   u32,
+     pub resource_mask :   u32
 }
 
 /**
  * @brief client_iterator
  **/
 pub struct client_iterator {
-    data : *mut client,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut client,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct type_ {
-    resource_type :   ffi::xproto::atom,
-    count :           u32
+     pub resource_type :   ffi::xproto::atom,
+     pub count :           u32
 }
 
 /**
  * @brief type_iterator
  **/
 pub struct type_iterator {
-    data : *mut type_,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut type_,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -50,21 +50,21 @@ pub struct query_version_cookie {
 
 
 pub struct query_version_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    client_major :   u8,
-    client_minor :   u8
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub client_major :   u8,
+     pub client_minor :   u8
 }
 
 
 pub struct query_version_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    server_major :    u16,
-    server_minor :    u16
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub server_major :    u16,
+     pub server_minor :    u16
 }
 
 
@@ -74,19 +74,19 @@ pub struct query_clients_cookie {
 
 
 pub struct query_clients_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct query_clients_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    num_clients :     u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub num_clients :     u32,
+     pub pad1 :            [u8,..20]
 }
 
 
@@ -96,20 +96,20 @@ pub struct query_client_resources_cookie {
 
 
 pub struct query_client_resources_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    xid :            u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub xid :            u32
 }
 
 
 pub struct query_client_resources_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    num_types :       u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub num_types :       u32,
+     pub pad1 :            [u8,..20]
 }
 
 
@@ -119,24 +119,24 @@ pub struct query_client_pixmap_bytes_cookie {
 
 
 pub struct query_client_pixmap_bytes_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    xid :            u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub xid :            u32
 }
 
 
 pub struct query_client_pixmap_bytes_reply {
-    response_type :    u8,
-    pad0 :             u8,
-    sequence :         u16,
-    length :           u32,
-    bytes :            u32,
-    bytes_overflow :   u32
+     pub response_type :    u8,
+     pub pad0 :             u8,
+     pub sequence :         u16,
+     pub length :           u32,
+     pub bytes :            u32,
+     pub bytes_overflow :   u32
 }
 
 #[link(name="lxcb-res")]
-pub extern "C" {
+extern "C" {
 
 /**
  * Get the next element of the iterator

@@ -43,7 +43,7 @@ pub struct generic_reply {
 }
 
 pub struct generic_event {
-    response_type : u8,
+    pub response_type : u8,
     pad0 : u8,
     sequence : u16,
     pad : [u32,..7],
@@ -85,32 +85,32 @@ pub struct auth_info {
 }
 
 #[link(name = "xcb")]
-pub extern {
-    fn xcb_flush(c : *mut connection) -> c_int;
+extern {
+    pub fn xcb_flush(c : *mut connection) -> c_int;
 
-    fn xcb_get_maximum_request_length(c:*mut connection) -> u32;
-    fn xcb_prefetch_maximum_request_length(c:*mut connection) -> c_void;
+    pub fn xcb_get_maximum_request_length(c:*mut connection) -> u32;
+    pub fn xcb_prefetch_maximum_request_length(c:*mut connection) -> c_void;
 
-    fn xcb_wait_for_event(c:*mut connection) -> *mut generic_event;
-    fn xcb_poll_for_event(c:*mut connection) -> *mut generic_event;
-    fn xcb_poll_for_queued_event(c:*mut connection) -> *mut generic_event;
-    fn xcb_request_check(c:*mut connection, cookie:void_cookie) -> *mut generic_error;
-    fn xcb_discard_reply(c:*mut connection, sequence:c_uint) -> c_void;
+    pub fn xcb_wait_for_event(c:*mut connection) -> *mut generic_event;
+    pub fn xcb_poll_for_event(c:*mut connection) -> *mut generic_event;
+    pub fn xcb_poll_for_queued_event(c:*mut connection) -> *mut generic_event;
+    pub fn xcb_request_check(c:*mut connection, cookie:void_cookie) -> *mut generic_error;
+    pub fn xcb_discard_reply(c:*mut connection, sequence:c_uint) -> c_void;
 
-    fn xcb_get_extension_data(c:*mut connection, ext:*mut extension) -> *mut xproto::query_extension_reply;
-    fn xcb_prefetch_extension_data(c:*mut connection, ext:*mut extension) -> c_void;
+    pub fn xcb_get_extension_data(c:*mut connection, ext:*mut extension) -> *mut xproto::query_extension_reply;
+    pub fn xcb_prefetch_extension_data(c:*mut connection, ext:*mut extension) -> c_void;
 
-    fn xcb_get_setup(c:*mut connection) -> *mut xproto::setup;
-    fn xcb_get_file_descriptor(c:*mut connection) -> c_int;
-    fn xcb_connection_has_error(c:*mut connection) -> c_int;
-    fn xcb_connect_to_fd(fd:c_int, auth_info:*mut auth_info) -> *mut connection;
-    fn xcb_disconnect(c:*mut connection) -> c_void;
+    pub fn xcb_get_setup(c:*mut connection) -> *mut xproto::setup;
+    pub fn xcb_get_file_descriptor(c:*mut connection) -> c_int;
+    pub fn xcb_connection_has_error(c:*mut connection) -> c_int;
+    pub fn xcb_connect_to_fd(fd:c_int, auth_info:*mut auth_info) -> *mut connection;
+    pub fn xcb_disconnect(c:*mut connection) -> c_void;
 
-    fn xcb_parse_display(name:*mut u8, host:*mut *mut u8, display:*mut c_int, screen:*mut c_int) -> c_int;
-    fn xcb_connect(displayname:*mut u8, screenp:*mut c_int) -> *mut connection;
-    fn xcb_connect_to_display_with_auth_info(display:*mut u8, auth:*mut auth_info, screen:*mut c_int) -> *mut connection;
+    pub fn xcb_parse_display(name:*mut u8, host:*mut *mut u8, display:*mut c_int, screen:*mut c_int) -> c_int;
+    pub fn xcb_connect(displayname:*mut u8, screenp:*mut c_int) -> *mut connection;
+    pub fn xcb_connect_to_display_with_auth_info(display:*mut u8, auth:*mut auth_info, screen:*mut c_int) -> *mut connection;
 
-    fn xcb_generate_id(c:*mut connection) -> u32;
+    pub fn xcb_generate_id(c:*mut connection) -> u32;
 }
 
 pub mod Xlib {
@@ -124,9 +124,9 @@ pub mod Xlib {
 
     #[link(name="X11")]
     #[link(name="X11-xcb")]
-    pub extern {
-        fn XGetXCBConnection(dpy:*mut Display) -> *mut connection;
-        fn XSetEventQueueOwner(dpy:*mut Display, owner:XEventQueueOwner) -> c_void;
+    extern {
+        pub fn XGetXCBConnection(dpy:*mut Display) -> *mut connection;
+        pub fn XSetEventQueueOwner(dpy:*mut Display, owner:XEventQueueOwner) -> c_void;
     }
 
 }

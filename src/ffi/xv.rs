@@ -20,9 +20,9 @@ pub type port = u32;
  * @brief port_iterator
  **/
 pub struct port_iterator {
-    data : *mut port,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut port,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -31,200 +31,200 @@ pub type encoding = u32;
  * @brief encoding_iterator
  **/
 pub struct encoding_iterator {
-    data : *mut encoding,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut encoding,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct rational {
-    numerator :     i32,
-    denominator :   i32
+     pub numerator :     i32,
+     pub denominator :   i32
 }
 
 /**
  * @brief rational_iterator
  **/
 pub struct rational_iterator {
-    data : *mut rational,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut rational,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct format {
-    visual :   ffi::xproto::visualid,
-    depth :    u8,
-    pad0 :     [u8,..3]
+     pub visual :   ffi::xproto::visualid,
+     pub depth :    u8,
+     pub pad0 :     [u8,..3]
 }
 
 /**
  * @brief format_iterator
  **/
 pub struct format_iterator {
-    data : *mut format,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut format,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct adaptor_info {
-    base_id :       port,
-    name_size :     u16,
-    num_ports :     u16,
-    num_formats :   u16,
-    type_ :         u8,
-    pad0 :          u8
+     pub base_id :       port,
+     pub name_size :     u16,
+     pub num_ports :     u16,
+     pub num_formats :   u16,
+     pub type_ :         u8,
+     pub pad0 :          u8
 }
 
 /**
  * @brief adaptor_info_iterator
  **/
 pub struct adaptor_info_iterator {
-    data : *mut adaptor_info,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut adaptor_info,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct encoding_info {
-    encoding :    encoding,
-    name_size :   u16,
-    width :       u16,
-    height :      u16,
-    pad0 :        [u8,..2],
-    rate :        rational
+     pub encoding :    encoding,
+     pub name_size :   u16,
+     pub width :       u16,
+     pub height :      u16,
+     pub pad0 :        [u8,..2],
+     pub rate :        rational
 }
 
 /**
  * @brief encoding_info_iterator
  **/
 pub struct encoding_info_iterator {
-    data : *mut encoding_info,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut encoding_info,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct image {
-    id :           u32,
-    width :        u16,
-    height :       u16,
-    data_size :    u32,
-    num_planes :   u32
+     pub id :           u32,
+     pub width :        u16,
+     pub height :       u16,
+     pub data_size :    u32,
+     pub num_planes :   u32
 }
 
 /**
  * @brief image_iterator
  **/
 pub struct image_iterator {
-    data : *mut image,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut image,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct attribute_info {
-    flags :   u32,
-    min :     i32,
-    max :     i32,
-    size :    u32
+     pub flags :   u32,
+     pub min :     i32,
+     pub max :     i32,
+     pub size :    u32
 }
 
 /**
  * @brief attribute_info_iterator
  **/
 pub struct attribute_info_iterator {
-    data : *mut attribute_info,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut attribute_info,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct image_format_info {
-    id :                u32,
-    type_ :             u8,
-    byte_order :        u8,
-    pad0 :              [u8,..2],
-    guid :              [u8,..16],
-    bpp :               u8,
-    num_planes :        u8,
-    pad1 :              [u8,..2],
-    depth :             u8,
-    pad2 :              [u8,..3],
-    red_mask :          u32,
-    green_mask :        u32,
-    blue_mask :         u32,
-    format :            u8,
-    pad3 :              [u8,..3],
-    y_sample_bits :     u32,
-    u_sample_bits :     u32,
-    v_sample_bits :     u32,
-    vhorz_y_period :    u32,
-    vhorz_u_period :    u32,
-    vhorz_v_period :    u32,
-    vvert_y_period :    u32,
-    vvert_u_period :    u32,
-    vvert_v_period :    u32,
-    vcomp_order :       [u8,..32],
-    vscanline_order :   u8,
-    pad4 :              [u8,..11]
+     pub id :                u32,
+     pub type_ :             u8,
+     pub byte_order :        u8,
+     pub pad0 :              [u8,..2],
+     pub guid :              [u8,..16],
+     pub bpp :               u8,
+     pub num_planes :        u8,
+     pub pad1 :              [u8,..2],
+     pub depth :             u8,
+     pub pad2 :              [u8,..3],
+     pub red_mask :          u32,
+     pub green_mask :        u32,
+     pub blue_mask :         u32,
+     pub format :            u8,
+     pub pad3 :              [u8,..3],
+     pub y_sample_bits :     u32,
+     pub u_sample_bits :     u32,
+     pub v_sample_bits :     u32,
+     pub vhorz_y_period :    u32,
+     pub vhorz_u_period :    u32,
+     pub vhorz_v_period :    u32,
+     pub vvert_y_period :    u32,
+     pub vvert_u_period :    u32,
+     pub vvert_v_period :    u32,
+     pub vcomp_order :       [u8,..32],
+     pub vscanline_order :   u8,
+     pub pad4 :              [u8,..11]
 }
 
 /**
  * @brief image_format_info_iterator
  **/
 pub struct image_format_info_iterator {
-    data : *mut image_format_info,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut image_format_info,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 
 pub struct bad_port_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16
 }
 
 
 
 pub struct bad_encoding_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16
 }
 
 
 
 pub struct bad_control_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16
 }
 
 
 
 pub struct video_notify_event {
-    response_type :   u8,
-    reason :          u8,
-    sequence :        u16,
-    time :            ffi::xproto::timestamp,
-    drawable :        ffi::xproto::drawable,
-    port :            port
+     pub response_type :   u8,
+     pub reason :          u8,
+     pub sequence :        u16,
+     pub time :            ffi::xproto::timestamp,
+     pub drawable :        ffi::xproto::drawable,
+     pub port :            port
 }
 
 
 
 pub struct port_notify_event {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    time :            ffi::xproto::timestamp,
-    port :            port,
-    attribute :       ffi::xproto::atom,
-    value :           i32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub time :            ffi::xproto::timestamp,
+     pub port :            port,
+     pub attribute :       ffi::xproto::atom,
+     pub value :           i32
 }
 
 
@@ -234,19 +234,19 @@ pub struct query_extension_cookie {
 
 
 pub struct query_extension_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct query_extension_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    major :           u16,
-    minor :           u16
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub major :           u16,
+     pub minor :           u16
 }
 
 
@@ -256,20 +256,20 @@ pub struct query_adaptors_cookie {
 
 
 pub struct query_adaptors_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window
 }
 
 
 pub struct query_adaptors_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    num_adaptors :    u16,
-    pad1 :            [u8,..22]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub num_adaptors :    u16,
+     pub pad1 :            [u8,..22]
 }
 
 
@@ -279,20 +279,20 @@ pub struct query_encodings_cookie {
 
 
 pub struct query_encodings_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port
 }
 
 
 pub struct query_encodings_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    num_encodings :   u16,
-    pad1 :            [u8,..22]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub num_encodings :   u16,
+     pub pad1 :            [u8,..22]
 }
 
 
@@ -302,137 +302,137 @@ pub struct grab_port_cookie {
 
 
 pub struct grab_port_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    time :           ffi::xproto::timestamp
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub time :           ffi::xproto::timestamp
 }
 
 
 pub struct grab_port_reply {
-    response_type :   u8,
-    result :          u8,
-    sequence :        u16,
-    length :          u32
+     pub response_type :   u8,
+     pub result :          u8,
+     pub sequence :        u16,
+     pub length :          u32
 }
 
 
 
 pub struct ungrab_port_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    time :           ffi::xproto::timestamp
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub time :           ffi::xproto::timestamp
 }
 
 
 
 pub struct put_video_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    drawable :       ffi::xproto::drawable,
-    gc :             ffi::xproto::gcontext,
-    vid_x :          i16,
-    vid_y :          i16,
-    vid_w :          u16,
-    vid_h :          u16,
-    drw_x :          i16,
-    drw_y :          i16,
-    drw_w :          u16,
-    drw_h :          u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub drawable :       ffi::xproto::drawable,
+     pub gc :             ffi::xproto::gcontext,
+     pub vid_x :          i16,
+     pub vid_y :          i16,
+     pub vid_w :          u16,
+     pub vid_h :          u16,
+     pub drw_x :          i16,
+     pub drw_y :          i16,
+     pub drw_w :          u16,
+     pub drw_h :          u16
 }
 
 
 
 pub struct put_still_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    drawable :       ffi::xproto::drawable,
-    gc :             ffi::xproto::gcontext,
-    vid_x :          i16,
-    vid_y :          i16,
-    vid_w :          u16,
-    vid_h :          u16,
-    drw_x :          i16,
-    drw_y :          i16,
-    drw_w :          u16,
-    drw_h :          u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub drawable :       ffi::xproto::drawable,
+     pub gc :             ffi::xproto::gcontext,
+     pub vid_x :          i16,
+     pub vid_y :          i16,
+     pub vid_w :          u16,
+     pub vid_h :          u16,
+     pub drw_x :          i16,
+     pub drw_y :          i16,
+     pub drw_w :          u16,
+     pub drw_h :          u16
 }
 
 
 
 pub struct get_video_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    drawable :       ffi::xproto::drawable,
-    gc :             ffi::xproto::gcontext,
-    vid_x :          i16,
-    vid_y :          i16,
-    vid_w :          u16,
-    vid_h :          u16,
-    drw_x :          i16,
-    drw_y :          i16,
-    drw_w :          u16,
-    drw_h :          u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub drawable :       ffi::xproto::drawable,
+     pub gc :             ffi::xproto::gcontext,
+     pub vid_x :          i16,
+     pub vid_y :          i16,
+     pub vid_w :          u16,
+     pub vid_h :          u16,
+     pub drw_x :          i16,
+     pub drw_y :          i16,
+     pub drw_w :          u16,
+     pub drw_h :          u16
 }
 
 
 
 pub struct get_still_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    drawable :       ffi::xproto::drawable,
-    gc :             ffi::xproto::gcontext,
-    vid_x :          i16,
-    vid_y :          i16,
-    vid_w :          u16,
-    vid_h :          u16,
-    drw_x :          i16,
-    drw_y :          i16,
-    drw_w :          u16,
-    drw_h :          u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub drawable :       ffi::xproto::drawable,
+     pub gc :             ffi::xproto::gcontext,
+     pub vid_x :          i16,
+     pub vid_y :          i16,
+     pub vid_w :          u16,
+     pub vid_h :          u16,
+     pub drw_x :          i16,
+     pub drw_y :          i16,
+     pub drw_w :          u16,
+     pub drw_h :          u16
 }
 
 
 
 pub struct stop_video_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    drawable :       ffi::xproto::drawable
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub drawable :       ffi::xproto::drawable
 }
 
 
 
 pub struct select_video_notify_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       ffi::xproto::drawable,
-    onoff :          u8,
-    pad0 :           [u8,..3]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       ffi::xproto::drawable,
+     pub onoff :          u8,
+     pub pad0 :           [u8,..3]
 }
 
 
 
 pub struct select_port_notify_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    onoff :          u8,
-    pad0 :           [u8,..3]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub onoff :          u8,
+     pub pad0 :           [u8,..3]
 }
 
 
@@ -442,37 +442,37 @@ pub struct query_best_size_cookie {
 
 
 pub struct query_best_size_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    vid_w :          u16,
-    vid_h :          u16,
-    drw_w :          u16,
-    drw_h :          u16,
-    motion :         u8,
-    pad0 :           [u8,..3]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub vid_w :          u16,
+     pub vid_h :          u16,
+     pub drw_w :          u16,
+     pub drw_h :          u16,
+     pub motion :         u8,
+     pub pad0 :           [u8,..3]
 }
 
 
 pub struct query_best_size_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    actual_width :    u16,
-    actual_height :   u16
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub actual_width :    u16,
+     pub actual_height :   u16
 }
 
 
 
 pub struct set_port_attribute_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    attribute :      ffi::xproto::atom,
-    value :          i32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub attribute :      ffi::xproto::atom,
+     pub value :          i32
 }
 
 
@@ -482,20 +482,20 @@ pub struct get_port_attribute_cookie {
 
 
 pub struct get_port_attribute_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    attribute :      ffi::xproto::atom
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub attribute :      ffi::xproto::atom
 }
 
 
 pub struct get_port_attribute_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    value :           i32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub value :           i32
 }
 
 
@@ -505,21 +505,21 @@ pub struct query_port_attributes_cookie {
 
 
 pub struct query_port_attributes_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port
 }
 
 
 pub struct query_port_attributes_reply {
-    response_type :    u8,
-    pad0 :             u8,
-    sequence :         u16,
-    length :           u32,
-    num_attributes :   u32,
-    text_size :        u32,
-    pad1 :             [u8,..16]
+     pub response_type :    u8,
+     pub pad0 :             u8,
+     pub sequence :         u16,
+     pub length :           u32,
+     pub num_attributes :   u32,
+     pub text_size :        u32,
+     pub pad1 :             [u8,..16]
 }
 
 
@@ -529,20 +529,20 @@ pub struct list_image_formats_cookie {
 
 
 pub struct list_image_formats_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port
 }
 
 
 pub struct list_image_formats_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    num_formats :     u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub num_formats :     u32,
+     pub pad1 :            [u8,..20]
 }
 
 
@@ -552,78 +552,78 @@ pub struct query_image_attributes_cookie {
 
 
 pub struct query_image_attributes_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    id :             u32,
-    width :          u16,
-    height :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub id :             u32,
+     pub width :          u16,
+     pub height :         u16
 }
 
 
 pub struct query_image_attributes_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    num_planes :      u32,
-    data_size :       u32,
-    width :           u16,
-    height :          u16,
-    pad1 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub num_planes :      u32,
+     pub data_size :       u32,
+     pub width :           u16,
+     pub height :          u16,
+     pub pad1 :            [u8,..12]
 }
 
 
 
 pub struct put_image_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    drawable :       ffi::xproto::drawable,
-    gc :             ffi::xproto::gcontext,
-    id :             u32,
-    src_x :          i16,
-    src_y :          i16,
-    src_w :          u16,
-    src_h :          u16,
-    drw_x :          i16,
-    drw_y :          i16,
-    drw_w :          u16,
-    drw_h :          u16,
-    width :          u16,
-    height :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub drawable :       ffi::xproto::drawable,
+     pub gc :             ffi::xproto::gcontext,
+     pub id :             u32,
+     pub src_x :          i16,
+     pub src_y :          i16,
+     pub src_w :          u16,
+     pub src_h :          u16,
+     pub drw_x :          i16,
+     pub drw_y :          i16,
+     pub drw_w :          u16,
+     pub drw_h :          u16,
+     pub width :          u16,
+     pub height :         u16
 }
 
 
 
 pub struct shm_put_image_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    drawable :       ffi::xproto::drawable,
-    gc :             ffi::xproto::gcontext,
-    shmseg :         ffi::shm::seg,
-    id :             u32,
-    offset :         u32,
-    src_x :          i16,
-    src_y :          i16,
-    src_w :          u16,
-    src_h :          u16,
-    drw_x :          i16,
-    drw_y :          i16,
-    drw_w :          u16,
-    drw_h :          u16,
-    width :          u16,
-    height :         u16,
-    send_event :     u8,
-    pad0 :           [u8,..3]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub drawable :       ffi::xproto::drawable,
+     pub gc :             ffi::xproto::gcontext,
+     pub shmseg :         ffi::shm::seg,
+     pub id :             u32,
+     pub offset :         u32,
+     pub src_x :          i16,
+     pub src_y :          i16,
+     pub src_w :          u16,
+     pub src_h :          u16,
+     pub drw_x :          i16,
+     pub drw_y :          i16,
+     pub drw_w :          u16,
+     pub drw_h :          u16,
+     pub width :          u16,
+     pub height :         u16,
+     pub send_event :     u8,
+     pub pad0 :           [u8,..3]
 }
 
 #[link(name="lxcb-xv")]
-pub extern "C" {
+extern "C" {
 
 /**
  * Get the next element of the iterator

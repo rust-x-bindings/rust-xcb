@@ -20,21 +20,21 @@ pub struct get_version_cookie {
 
 
 pub struct get_version_request {
-    major_opcode :    u8,
-    minor_opcode :    u8,
-    length :          u16,
-    major_version :   u8,
-    pad0 :            u8,
-    minor_version :   u16
+     pub major_opcode :    u8,
+     pub minor_opcode :    u8,
+     pub length :          u16,
+     pub major_version :   u8,
+     pub pad0 :            u8,
+     pub minor_version :   u16
 }
 
 
 pub struct get_version_reply {
-    response_type :   u8,
-    major_version :   u8,
-    sequence :        u16,
-    length :          u32,
-    minor_version :   u16
+     pub response_type :   u8,
+     pub major_version :   u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub minor_version :   u16
 }
 
 
@@ -44,51 +44,51 @@ pub struct compare_cursor_cookie {
 
 
 pub struct compare_cursor_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window,
-    cursor :         ffi::xproto::cursor
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window,
+     pub cursor :         ffi::xproto::cursor
 }
 
 
 pub struct compare_cursor_reply {
-    response_type :   u8,
-    same :            u8,
-    sequence :        u16,
-    length :          u32
+     pub response_type :   u8,
+     pub same :            u8,
+     pub sequence :        u16,
+     pub length :          u32
 }
 
 
 
 pub struct fake_input_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    type_ :          u8,
-    detail :         u8,
-    pad0 :           [u8,..2],
-    time :           u32,
-    root :           ffi::xproto::window,
-    pad1 :           [u8,..8],
-    rootX :          i16,
-    rootY :          i16,
-    pad2 :           [u8,..7],
-    deviceid :       u8
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub type_ :          u8,
+     pub detail :         u8,
+     pub pad0 :           [u8,..2],
+     pub time :           u32,
+     pub root :           ffi::xproto::window,
+     pub pad1 :           [u8,..8],
+     pub rootX :          i16,
+     pub rootY :          i16,
+     pub pad2 :           [u8,..7],
+     pub deviceid :       u8
 }
 
 
 
 pub struct grab_control_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    impervious :     u8,
-    pad0 :           [u8,..3]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub impervious :     u8,
+     pub pad0 :           [u8,..3]
 }
 
 #[link(name="lxcb-xtest")]
-pub extern "C" {
+extern "C" {
 
 /**
  *

@@ -1510,7 +1510,7 @@ impl base::Struct<char2b> {
 }
 
 impl<'s, Char2b> Iterator<&'s Char2b> for Char2bIterator {
-    pub fn next(&mut self) -> Option<&'s Char2b> {
+    fn next(&mut self) -> Option<&'s Char2b> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut char2b_iterator = mem::transmute(self);
@@ -1525,7 +1525,7 @@ pub type Window = window;
 
 
 impl<'s, Window> Iterator<&'s Window> for WindowIterator {
-    pub fn next(&mut self) -> Option<&'s Window> {
+    fn next(&mut self) -> Option<&'s Window> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut window_iterator = mem::transmute(self);
@@ -1540,7 +1540,7 @@ pub type Pixmap = pixmap;
 
 
 impl<'s, Pixmap> Iterator<&'s Pixmap> for PixmapIterator {
-    pub fn next(&mut self) -> Option<&'s Pixmap> {
+    fn next(&mut self) -> Option<&'s Pixmap> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut pixmap_iterator = mem::transmute(self);
@@ -1555,7 +1555,7 @@ pub type Cursor = cursor;
 
 
 impl<'s, Cursor> Iterator<&'s Cursor> for CursorIterator {
-    pub fn next(&mut self) -> Option<&'s Cursor> {
+    fn next(&mut self) -> Option<&'s Cursor> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut cursor_iterator = mem::transmute(self);
@@ -1570,7 +1570,7 @@ pub type Font = font;
 
 
 impl<'s, Font> Iterator<&'s Font> for FontIterator {
-    pub fn next(&mut self) -> Option<&'s Font> {
+    fn next(&mut self) -> Option<&'s Font> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut font_iterator = mem::transmute(self);
@@ -1585,7 +1585,7 @@ pub type Gcontext = gcontext;
 
 
 impl<'s, Gcontext> Iterator<&'s Gcontext> for GcontextIterator {
-    pub fn next(&mut self) -> Option<&'s Gcontext> {
+    fn next(&mut self) -> Option<&'s Gcontext> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut gcontext_iterator = mem::transmute(self);
@@ -1600,7 +1600,7 @@ pub type Colormap = colormap;
 
 
 impl<'s, Colormap> Iterator<&'s Colormap> for ColormapIterator {
-    pub fn next(&mut self) -> Option<&'s Colormap> {
+    fn next(&mut self) -> Option<&'s Colormap> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut colormap_iterator = mem::transmute(self);
@@ -1615,7 +1615,7 @@ pub type Atom = atom;
 
 
 impl<'s, Atom> Iterator<&'s Atom> for AtomIterator {
-    pub fn next(&mut self) -> Option<&'s Atom> {
+    fn next(&mut self) -> Option<&'s Atom> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut atom_iterator = mem::transmute(self);
@@ -1630,7 +1630,7 @@ pub type Drawable = drawable;
 
 
 impl<'s, Drawable> Iterator<&'s Drawable> for DrawableIterator {
-    pub fn next(&mut self) -> Option<&'s Drawable> {
+    fn next(&mut self) -> Option<&'s Drawable> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut drawable_iterator = mem::transmute(self);
@@ -1645,7 +1645,7 @@ pub type Fontable = fontable;
 
 
 impl<'s, Fontable> Iterator<&'s Fontable> for FontableIterator {
-    pub fn next(&mut self) -> Option<&'s Fontable> {
+    fn next(&mut self) -> Option<&'s Fontable> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut fontable_iterator = mem::transmute(self);
@@ -1660,7 +1660,7 @@ pub type Visualid = visualid;
 
 
 impl<'s, Visualid> Iterator<&'s Visualid> for VisualidIterator {
-    pub fn next(&mut self) -> Option<&'s Visualid> {
+    fn next(&mut self) -> Option<&'s Visualid> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut visualid_iterator = mem::transmute(self);
@@ -1675,7 +1675,7 @@ pub type Timestamp = timestamp;
 
 
 impl<'s, Timestamp> Iterator<&'s Timestamp> for TimestampIterator {
-    pub fn next(&mut self) -> Option<&'s Timestamp> {
+    fn next(&mut self) -> Option<&'s Timestamp> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut timestamp_iterator = mem::transmute(self);
@@ -1690,7 +1690,7 @@ pub type Keysym = keysym;
 
 
 impl<'s, Keysym> Iterator<&'s Keysym> for KeysymIterator {
-    pub fn next(&mut self) -> Option<&'s Keysym> {
+    fn next(&mut self) -> Option<&'s Keysym> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut keysym_iterator = mem::transmute(self);
@@ -1705,7 +1705,7 @@ pub type Keycode = keycode;
 
 
 impl<'s, Keycode> Iterator<&'s Keycode> for KeycodeIterator {
-    pub fn next(&mut self) -> Option<&'s Keycode> {
+    fn next(&mut self) -> Option<&'s Keycode> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut keycode_iterator = mem::transmute(self);
@@ -1720,7 +1720,7 @@ pub type Button = button;
 
 
 impl<'s, Button> Iterator<&'s Button> for ButtonIterator {
-    pub fn next(&mut self) -> Option<&'s Button> {
+    fn next(&mut self) -> Option<&'s Button> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut button_iterator = mem::transmute(self);
@@ -1746,7 +1746,7 @@ impl base::Struct<point> {
 }
 
 impl<'s, Point> Iterator<&'s Point> for PointIterator {
-    pub fn next(&mut self) -> Option<&'s Point> {
+    fn next(&mut self) -> Option<&'s Point> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut point_iterator = mem::transmute(self);
@@ -1780,7 +1780,7 @@ impl base::Struct<rectangle> {
 }
 
 impl<'s, Rectangle> Iterator<&'s Rectangle> for RectangleIterator {
-    pub fn next(&mut self) -> Option<&'s Rectangle> {
+    fn next(&mut self) -> Option<&'s Rectangle> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut rectangle_iterator = mem::transmute(self);
@@ -1822,7 +1822,7 @@ impl base::Struct<arc> {
 }
 
 impl<'s, Arc> Iterator<&'s Arc> for ArcIterator {
-    pub fn next(&mut self) -> Option<&'s Arc> {
+    fn next(&mut self) -> Option<&'s Arc> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut arc_iterator = mem::transmute(self);
@@ -1852,7 +1852,7 @@ impl base::Struct<format> {
 }
 
 impl<'s, Format> Iterator<&'s Format> for FormatIterator {
-    pub fn next(&mut self) -> Option<&'s Format> {
+    fn next(&mut self) -> Option<&'s Format> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut format_iterator = mem::transmute(self);
@@ -1896,7 +1896,7 @@ impl base::Struct<visualtype> {
 }
 
 impl<'s, Visualtype> Iterator<&'s Visualtype> for VisualtypeIterator {
-    pub fn next(&mut self) -> Option<&'s Visualtype> {
+    fn next(&mut self) -> Option<&'s Visualtype> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut visualtype_iterator = mem::transmute(self);
@@ -1922,7 +1922,7 @@ impl base::Struct<depth> {
 }
 
 impl<'s, Depth> Iterator<&'s Depth> for DepthIterator {
-    pub fn next(&mut self) -> Option<&'s Depth> {
+    fn next(&mut self) -> Option<&'s Depth> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut depth_iterator = mem::transmute(self);
@@ -2004,7 +2004,7 @@ impl base::Struct<screen> {
 }
 
 impl<'s, Screen> Iterator<&'s Screen> for ScreenIterator {
-    pub fn next(&mut self) -> Option<&'s Screen> {
+    fn next(&mut self) -> Option<&'s Screen> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut screen_iterator = mem::transmute(self);
@@ -2042,7 +2042,7 @@ impl base::Struct<setup_request> {
 }
 
 impl<'s, SetupRequest> Iterator<&'s SetupRequest> for SetupRequestIterator {
-    pub fn next(&mut self) -> Option<&'s SetupRequest> {
+    fn next(&mut self) -> Option<&'s SetupRequest> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut setup_request_iterator = mem::transmute(self);
@@ -2080,7 +2080,7 @@ impl base::Struct<setup_failed> {
 }
 
 impl<'s, SetupFailed> Iterator<&'s SetupFailed> for SetupFailedIterator {
-    pub fn next(&mut self) -> Option<&'s SetupFailed> {
+    fn next(&mut self) -> Option<&'s SetupFailed> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut setup_failed_iterator = mem::transmute(self);
@@ -2106,7 +2106,7 @@ impl base::Struct<setup_authenticate> {
 }
 
 impl<'s, SetupAuthenticate> Iterator<&'s SetupAuthenticate> for SetupAuthenticateIterator {
-    pub fn next(&mut self) -> Option<&'s SetupAuthenticate> {
+    fn next(&mut self) -> Option<&'s SetupAuthenticate> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut setup_authenticate_iterator = mem::transmute(self);
@@ -2196,7 +2196,7 @@ impl base::Struct<setup> {
 }
 
 impl<'s, Setup> Iterator<&'s Setup> for SetupIterator {
-    pub fn next(&mut self) -> Option<&'s Setup> {
+    fn next(&mut self) -> Option<&'s Setup> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut setup_iterator = mem::transmute(self);
@@ -3276,7 +3276,7 @@ impl base::Event<colormap_notify_event> {
 pub type ClientMessageData = base::Struct<client_message_data>;
 
 impl<'s, ClientMessageData> Iterator<&'s ClientMessageData> for ClientMessageDataIterator {
-    pub fn next(&mut self) -> Option<&'s ClientMessageData> {
+    fn next(&mut self) -> Option<&'s ClientMessageData> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut client_message_data_iterator = mem::transmute(self);
@@ -4506,7 +4506,7 @@ impl base::Struct<timecoord> {
 }
 
 impl<'s, Timecoord> Iterator<&'s Timecoord> for TimecoordIterator {
-    pub fn next(&mut self) -> Option<&'s Timecoord> {
+    fn next(&mut self) -> Option<&'s Timecoord> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut timecoord_iterator = mem::transmute(self);
@@ -4771,7 +4771,7 @@ impl base::Struct<fontprop> {
 }
 
 impl<'s, Fontprop> Iterator<&'s Fontprop> for FontpropIterator {
-    pub fn next(&mut self) -> Option<&'s Fontprop> {
+    fn next(&mut self) -> Option<&'s Fontprop> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut fontprop_iterator = mem::transmute(self);
@@ -4813,7 +4813,7 @@ impl base::Struct<charinfo> {
 }
 
 impl<'s, Charinfo> Iterator<&'s Charinfo> for CharinfoIterator {
-    pub fn next(&mut self) -> Option<&'s Charinfo> {
+    fn next(&mut self) -> Option<&'s Charinfo> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut charinfo_iterator = mem::transmute(self);
@@ -4970,7 +4970,7 @@ impl base::Struct<str_> {
 }
 
 impl<'s, Str> Iterator<&'s Str> for StrIterator {
-    pub fn next(&mut self) -> Option<&'s Str> {
+    fn next(&mut self) -> Option<&'s Str> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut str_iterator = mem::transmute(self);
@@ -5588,7 +5588,7 @@ impl base::Struct<segment> {
 }
 
 impl<'s, Segment> Iterator<&'s Segment> for SegmentIterator {
-    pub fn next(&mut self) -> Option<&'s Segment> {
+    fn next(&mut self) -> Option<&'s Segment> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut segment_iterator = mem::transmute(self);
@@ -6444,7 +6444,7 @@ impl base::Struct<coloritem> {
 }
 
 impl<'s, Coloritem> Iterator<&'s Coloritem> for ColoritemIterator {
-    pub fn next(&mut self) -> Option<&'s Coloritem> {
+    fn next(&mut self) -> Option<&'s Coloritem> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut coloritem_iterator = mem::transmute(self);
@@ -6536,7 +6536,7 @@ impl base::Struct<rgb> {
 }
 
 impl<'s, Rgb> Iterator<&'s Rgb> for RgbIterator {
-    pub fn next(&mut self) -> Option<&'s Rgb> {
+    fn next(&mut self) -> Option<&'s Rgb> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut rgb_iterator = mem::transmute(self);
@@ -7229,7 +7229,7 @@ impl base::Struct<host> {
 }
 
 impl<'s, Host> Iterator<&'s Host> for HostIterator {
-    pub fn next(&mut self) -> Option<&'s Host> {
+    fn next(&mut self) -> Option<&'s Host> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut host_iterator = mem::transmute(self);

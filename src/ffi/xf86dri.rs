@@ -14,19 +14,19 @@ pub static XF86DRI_MAJOR_VERSION : c_uint = 4;
 pub static XF86DRI_MINOR_VERSION : c_uint = 1;
 
 pub struct drm_clip_rect {
-    x1 :   i16,
-    y1 :   i16,
-    x2 :   i16,
-    x3 :   i16
+     pub x1 :   i16,
+     pub y1 :   i16,
+     pub x2 :   i16,
+     pub x3 :   i16
 }
 
 /**
  * @brief drm_clip_rect_iterator
  **/
 pub struct drm_clip_rect_iterator {
-    data : *mut drm_clip_rect,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut drm_clip_rect,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -36,20 +36,20 @@ pub struct query_version_cookie {
 
 
 pub struct query_version_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct query_version_reply {
-    response_type :       u8,
-    pad0 :                u8,
-    sequence :            u16,
-    length :              u32,
-    dri_major_version :   u16,
-    dri_minor_version :   u16,
-    dri_minor_patch :     u32
+     pub response_type :       u8,
+     pub pad0 :                u8,
+     pub sequence :            u16,
+     pub length :              u32,
+     pub dri_major_version :   u16,
+     pub dri_minor_version :   u16,
+     pub dri_minor_patch :     u32
 }
 
 
@@ -59,19 +59,19 @@ pub struct query_direct_rendering_capable_cookie {
 
 
 pub struct query_direct_rendering_capable_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    screen :         u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub screen :         u32
 }
 
 
 pub struct query_direct_rendering_capable_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    is_capable :      u8
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub is_capable :      u8
 }
 
 
@@ -81,31 +81,31 @@ pub struct open_connection_cookie {
 
 
 pub struct open_connection_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    screen :         u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub screen :         u32
 }
 
 
 pub struct open_connection_reply {
-    response_type :       u8,
-    pad0 :                u8,
-    sequence :            u16,
-    length :              u32,
-    sarea_handle_low :    u32,
-    sarea_handle_high :   u32,
-    bus_id_len :          u32,
-    pad1 :                [u8,..12]
+     pub response_type :       u8,
+     pub pad0 :                u8,
+     pub sequence :            u16,
+     pub length :              u32,
+     pub sarea_handle_low :    u32,
+     pub sarea_handle_high :   u32,
+     pub bus_id_len :          u32,
+     pub pad1 :                [u8,..12]
 }
 
 
 
 pub struct close_connection_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    screen :         u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub screen :         u32
 }
 
 
@@ -115,23 +115,23 @@ pub struct get_client_driver_name_cookie {
 
 
 pub struct get_client_driver_name_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    screen :         u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub screen :         u32
 }
 
 
 pub struct get_client_driver_name_reply {
-    response_type :                 u8,
-    pad0 :                          u8,
-    sequence :                      u16,
-    length :                        u32,
-    client_driver_major_version :   u32,
-    client_driver_minor_version :   u32,
-    client_driver_patch_version :   u32,
-    client_driver_name_len :        u32,
-    pad1 :                          [u8,..8]
+     pub response_type :                 u8,
+     pub pad0 :                          u8,
+     pub sequence :                      u16,
+     pub length :                        u32,
+     pub client_driver_major_version :   u32,
+     pub client_driver_minor_version :   u32,
+     pub client_driver_patch_version :   u32,
+     pub client_driver_name_len :        u32,
+     pub pad1 :                          [u8,..8]
 }
 
 
@@ -141,31 +141,31 @@ pub struct create_context_cookie {
 
 
 pub struct create_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    screen :         u32,
-    visual :         u32,
-    context :        u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub screen :         u32,
+     pub visual :         u32,
+     pub context :        u32
 }
 
 
 pub struct create_context_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    hw_context :      u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub hw_context :      u32
 }
 
 
 
 pub struct destroy_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    screen :         u32,
-    context :        u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub screen :         u32,
+     pub context :        u32
 }
 
 
@@ -175,30 +175,30 @@ pub struct create_drawable_cookie {
 
 
 pub struct create_drawable_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    screen :         u32,
-    drawable :       u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub screen :         u32,
+     pub drawable :       u32
 }
 
 
 pub struct create_drawable_reply {
-    response_type :        u8,
-    pad0 :                 u8,
-    sequence :             u16,
-    length :               u32,
-    hw_drawable_handle :   u32
+     pub response_type :        u8,
+     pub pad0 :                 u8,
+     pub sequence :             u16,
+     pub length :               u32,
+     pub hw_drawable_handle :   u32
 }
 
 
 
 pub struct destroy_drawable_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    screen :         u32,
-    drawable :       u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub screen :         u32,
+     pub drawable :       u32
 }
 
 
@@ -208,29 +208,29 @@ pub struct get_drawable_info_cookie {
 
 
 pub struct get_drawable_info_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    screen :         u32,
-    drawable :       u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub screen :         u32,
+     pub drawable :       u32
 }
 
 
 pub struct get_drawable_info_reply {
-    response_type :          u8,
-    pad0 :                   u8,
-    sequence :               u16,
-    length :                 u32,
-    drawable_table_index :   u32,
-    drawable_table_stamp :   u32,
-    drawable_origin_X :      i16,
-    drawable_origin_Y :      i16,
-    drawable_size_W :        i16,
-    drawable_size_H :        i16,
-    num_clip_rects :         u32,
-    back_x :                 i16,
-    back_y :                 i16,
-    num_back_clip_rects :    u32
+     pub response_type :          u8,
+     pub pad0 :                   u8,
+     pub sequence :               u16,
+     pub length :                 u32,
+     pub drawable_table_index :   u32,
+     pub drawable_table_stamp :   u32,
+     pub drawable_origin_X :      i16,
+     pub drawable_origin_Y :      i16,
+     pub drawable_size_W :        i16,
+     pub drawable_size_H :        i16,
+     pub num_clip_rects :         u32,
+     pub back_x :                 i16,
+     pub back_y :                 i16,
+     pub num_back_clip_rects :    u32
 }
 
 
@@ -240,24 +240,24 @@ pub struct get_device_info_cookie {
 
 
 pub struct get_device_info_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    screen :         u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub screen :         u32
 }
 
 
 pub struct get_device_info_reply {
-    response_type :               u8,
-    pad0 :                        u8,
-    sequence :                    u16,
-    length :                      u32,
-    framebuffer_handle_low :      u32,
-    framebuffer_handle_high :     u32,
-    framebuffer_origin_offset :   u32,
-    framebuffer_size :            u32,
-    framebuffer_stride :          u32,
-    device_private_size :         u32
+     pub response_type :               u8,
+     pub pad0 :                        u8,
+     pub sequence :                    u16,
+     pub length :                      u32,
+     pub framebuffer_handle_low :      u32,
+     pub framebuffer_handle_high :     u32,
+     pub framebuffer_origin_offset :   u32,
+     pub framebuffer_size :            u32,
+     pub framebuffer_stride :          u32,
+     pub device_private_size :         u32
 }
 
 
@@ -267,24 +267,24 @@ pub struct auth_connection_cookie {
 
 
 pub struct auth_connection_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    screen :         u32,
-    magic :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub screen :         u32,
+     pub magic :          u32
 }
 
 
 pub struct auth_connection_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    authenticated :   u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub authenticated :   u32
 }
 
 #[link(name="lxcb-xf86dri")]
-pub extern "C" {
+extern "C" {
 
 /**
  * Get the next element of the iterator

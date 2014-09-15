@@ -19,24 +19,24 @@ pub type string8 = c_char;
  * @brief string8_iterator
  **/
 pub struct string8_iterator {
-    data : *mut string8,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut string8,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct printer {
-    nameLen :   u32,
-    descLen :   u32
+     pub nameLen :   u32,
+     pub descLen :   u32
 }
 
 /**
  * @brief printer_iterator
  **/
 pub struct printer_iterator {
-    data : *mut printer,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut printer,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -45,9 +45,9 @@ pub type pcontext = u32;
  * @brief pcontext_iterator
  **/
 pub struct pcontext_iterator {
-    data : *mut pcontext,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut pcontext,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -57,19 +57,19 @@ pub struct print_query_version_cookie {
 
 
 pub struct print_query_version_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct print_query_version_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    major_version :   u16,
-    minor_version :   u16
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub major_version :   u16,
+     pub minor_version :   u16
 }
 
 
@@ -79,49 +79,49 @@ pub struct print_get_printer_list_cookie {
 
 
 pub struct print_get_printer_list_request {
-    major_opcode :     u8,
-    minor_opcode :     u8,
-    length :           u16,
-    printerNameLen :   u32,
-    localeLen :        u32
+     pub major_opcode :     u8,
+     pub minor_opcode :     u8,
+     pub length :           u16,
+     pub printerNameLen :   u32,
+     pub localeLen :        u32
 }
 
 
 pub struct print_get_printer_list_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    listCount :       u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub listCount :       u32,
+     pub pad1 :            [u8,..20]
 }
 
 
 
 pub struct print_rehash_printer_list_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 
 pub struct create_context_request {
-    major_opcode :     u8,
-    minor_opcode :     u8,
-    length :           u16,
-    context_id :       u32,
-    printerNameLen :   u32,
-    localeLen :        u32
+     pub major_opcode :     u8,
+     pub minor_opcode :     u8,
+     pub length :           u16,
+     pub context_id :       u32,
+     pub printerNameLen :   u32,
+     pub localeLen :        u32
 }
 
 
 
 pub struct print_set_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context :        u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context :        u32
 }
 
 
@@ -131,27 +131,27 @@ pub struct print_get_context_cookie {
 
 
 pub struct print_get_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct print_get_context_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    context :         u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub context :         u32
 }
 
 
 
 pub struct print_destroy_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context :        u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context :        u32
 }
 
 
@@ -161,66 +161,66 @@ pub struct print_get_screen_of_context_cookie {
 
 
 pub struct print_get_screen_of_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct print_get_screen_of_context_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    root :            ffi::xproto::window
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub root :            ffi::xproto::window
 }
 
 
 
 pub struct print_start_job_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    output_mode :    u8
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub output_mode :    u8
 }
 
 
 
 pub struct print_end_job_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    cancel :         u8
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub cancel :         u8
 }
 
 
 
 pub struct print_start_doc_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    driver_mode :    u8
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub driver_mode :    u8
 }
 
 
 
 pub struct print_end_doc_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    cancel :         u8
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub cancel :         u8
 }
 
 
 
 pub struct print_put_document_data_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       ffi::xproto::drawable,
-    len_data :       u32,
-    len_fmt :        u16,
-    len_options :    u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       ffi::xproto::drawable,
+     pub len_data :       u32,
+     pub len_fmt :        u16,
+     pub len_options :    u16
 }
 
 
@@ -230,52 +230,52 @@ pub struct print_get_document_data_cookie {
 
 
 pub struct print_get_document_data_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context :        pcontext,
-    max_bytes :      u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context :        pcontext,
+     pub max_bytes :      u32
 }
 
 
 pub struct print_get_document_data_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    status_code :     u32,
-    finished_flag :   u32,
-    dataLen :         u32,
-    pad1 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub status_code :     u32,
+     pub finished_flag :   u32,
+     pub dataLen :         u32,
+     pub pad1 :            [u8,..12]
 }
 
 
 
 pub struct print_start_page_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window
 }
 
 
 
 pub struct print_end_page_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    cancel :         u8,
-    pad0 :           [u8,..3]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub cancel :         u8,
+     pub pad0 :           [u8,..3]
 }
 
 
 
 pub struct print_select_input_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context :        pcontext,
-    event_mask :     u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context :        pcontext,
+     pub event_mask :     u32
 }
 
 
@@ -285,20 +285,20 @@ pub struct print_input_selected_cookie {
 
 
 pub struct print_input_selected_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context :        pcontext
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context :        pcontext
 }
 
 
 pub struct print_input_selected_reply {
-    response_type :     u8,
-    pad0 :              u8,
-    sequence :          u16,
-    length :            u32,
-    event_mask :        u32,
-    all_events_mask :   u32
+     pub response_type :     u8,
+     pub pad0 :              u8,
+     pub sequence :          u16,
+     pub length :            u32,
+     pub event_mask :        u32,
+     pub all_events_mask :   u32
 }
 
 
@@ -308,23 +308,23 @@ pub struct print_get_attributes_cookie {
 
 
 pub struct print_get_attributes_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context :        pcontext,
-    pool :           u8,
-    pad0 :           [u8,..3]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context :        pcontext,
+     pub pool :           u8,
+     pub pad0 :           [u8,..3]
 }
 
 
 pub struct print_get_attributes_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    stringLen :       u32,
-    pad1 :            [u8,..20],
-    attributes :      string8
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub stringLen :       u32,
+     pub pad1 :            [u8,..20],
+     pub attributes :      string8
 }
 
 
@@ -334,36 +334,36 @@ pub struct print_get_one_attributes_cookie {
 
 
 pub struct print_get_one_attributes_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context :        pcontext,
-    nameLen :        u32,
-    pool :           u8,
-    pad0 :           [u8,..3]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context :        pcontext,
+     pub nameLen :        u32,
+     pub pool :           u8,
+     pub pad0 :           [u8,..3]
 }
 
 
 pub struct print_get_one_attributes_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    valueLen :        u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub valueLen :        u32,
+     pub pad1 :            [u8,..20]
 }
 
 
 
 pub struct print_set_attributes_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context :        pcontext,
-    stringLen :      u32,
-    pool :           u8,
-    rule :           u8,
-    pad0 :           [u8,..2]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context :        pcontext,
+     pub stringLen :      u32,
+     pub pool :           u8,
+     pub rule :           u8,
+     pub pad0 :           [u8,..2]
 }
 
 
@@ -373,24 +373,24 @@ pub struct print_get_page_dimensions_cookie {
 
 
 pub struct print_get_page_dimensions_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context :        pcontext
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context :        pcontext
 }
 
 
 pub struct print_get_page_dimensions_reply {
-    response_type :         u8,
-    pad0 :                  u8,
-    sequence :              u16,
-    length :                u32,
-    width :                 u16,
-    height :                u16,
-    offset_x :              u16,
-    offset_y :              u16,
-    reproducible_width :    u16,
-    reproducible_height :   u16
+     pub response_type :         u8,
+     pub pad0 :                  u8,
+     pub sequence :              u16,
+     pub length :                u32,
+     pub width :                 u16,
+     pub height :                u16,
+     pub offset_x :              u16,
+     pub offset_y :              u16,
+     pub reproducible_width :    u16,
+     pub reproducible_height :   u16
 }
 
 
@@ -400,19 +400,19 @@ pub struct print_query_screens_cookie {
 
 
 pub struct print_query_screens_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct print_query_screens_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    listCount :       u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub listCount :       u32,
+     pub pad1 :            [u8,..20]
 }
 
 
@@ -422,20 +422,20 @@ pub struct print_set_image_resolution_cookie {
 
 
 pub struct print_set_image_resolution_request {
-    major_opcode :       u8,
-    minor_opcode :       u8,
-    length :             u16,
-    context :            pcontext,
-    image_resolution :   u16
+     pub major_opcode :       u8,
+     pub minor_opcode :       u8,
+     pub length :             u16,
+     pub context :            pcontext,
+     pub image_resolution :   u16
 }
 
 
 pub struct print_set_image_resolution_reply {
-    response_type :          u8,
-    status :                 u8,
-    sequence :               u16,
-    length :                 u32,
-    previous_resolutions :   u16
+     pub response_type :          u8,
+     pub status :                 u8,
+     pub sequence :               u16,
+     pub length :                 u32,
+     pub previous_resolutions :   u16
 }
 
 
@@ -445,58 +445,58 @@ pub struct print_get_image_resolution_cookie {
 
 
 pub struct print_get_image_resolution_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context :        pcontext
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context :        pcontext
 }
 
 
 pub struct print_get_image_resolution_reply {
-    response_type :      u8,
-    pad0 :               u8,
-    sequence :           u16,
-    length :             u32,
-    image_resolution :   u16
+     pub response_type :      u8,
+     pub pad0 :               u8,
+     pub sequence :           u16,
+     pub length :             u32,
+     pub image_resolution :   u16
 }
 
 
 
 pub struct notify_event {
-    response_type :   u8,
-    detail :          u8,
-    sequence :        u16,
-    context :         pcontext,
-    cancel :          u8
+     pub response_type :   u8,
+     pub detail :          u8,
+     pub sequence :        u16,
+     pub context :         pcontext,
+     pub cancel :          u8
 }
 
 
 
 pub struct attribut_notify_event {
-    response_type :   u8,
-    detail :          u8,
-    sequence :        u16,
-    context :         pcontext
+     pub response_type :   u8,
+     pub detail :          u8,
+     pub sequence :        u16,
+     pub context :         pcontext
 }
 
 
 
 pub struct bad_context_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16
 }
 
 
 
 pub struct bad_sequence_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16
 }
 
 #[link(name="lxcb-xprint")]
-pub extern "C" {
+extern "C" {
 
 /**
  * Get the next element of the iterator

@@ -72,7 +72,7 @@ pub type GetRectanglesCookie<'s> = base::Cookie<'s, get_rectangles_cookie>;
 pub static XCB_SHAPE_GET_RECTANGLES : u8 = 8;
 
 impl<'s, Op> Iterator<&'s Op> for OpIterator {
-    pub fn next(&mut self) -> Option<&'s Op> {
+    fn next(&mut self) -> Option<&'s Op> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut op_iterator = mem::transmute(self);
@@ -87,7 +87,7 @@ pub type Kind = kind;
 
 
 impl<'s, Kind> Iterator<&'s Kind> for KindIterator {
-    pub fn next(&mut self) -> Option<&'s Kind> {
+    fn next(&mut self) -> Option<&'s Kind> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut kind_iterator = mem::transmute(self);

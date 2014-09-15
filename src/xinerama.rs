@@ -72,7 +72,7 @@ impl base::Struct<screen_info> {
 }
 
 impl<'s, ScreenInfo> Iterator<&'s ScreenInfo> for ScreenInfoIterator {
-    pub fn next(&mut self) -> Option<&'s ScreenInfo> {
+    fn next(&mut self) -> Option<&'s ScreenInfo> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter : *mut screen_info_iterator = mem::transmute(self);

@@ -19,23 +19,23 @@ pub type seg = u32;
  * @brief seg_iterator
  **/
 pub struct seg_iterator {
-    data : *mut seg,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut seg,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 
 pub struct completion_event {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    drawable :        ffi::xproto::drawable,
-    minor_event :     u16,
-    major_event :     u8,
-    pad1 :            u8,
-    shmseg :          seg,
-    offset :          u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub drawable :        ffi::xproto::drawable,
+     pub minor_event :     u16,
+     pub major_event :     u8,
+     pub pad1 :            u8,
+     pub shmseg :          seg,
+     pub offset :          u32
 }
 
 
@@ -48,68 +48,68 @@ pub struct query_version_cookie {
 
 
 pub struct query_version_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct query_version_reply {
-    response_type :    u8,
-    shared_pixmaps :   u8,
-    sequence :         u16,
-    length :           u32,
-    major_version :    u16,
-    minor_version :    u16,
-    uid :              u16,
-    gid :              u16,
-    pixmap_format :    u8,
-    pad0 :             [u8,..15]
+     pub response_type :    u8,
+     pub shared_pixmaps :   u8,
+     pub sequence :         u16,
+     pub length :           u32,
+     pub major_version :    u16,
+     pub minor_version :    u16,
+     pub uid :              u16,
+     pub gid :              u16,
+     pub pixmap_format :    u8,
+     pub pad0 :             [u8,..15]
 }
 
 
 
 pub struct attach_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    shmseg :         seg,
-    shmid :          u32,
-    read_only :      u8,
-    pad0 :           [u8,..3]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub shmseg :         seg,
+     pub shmid :          u32,
+     pub read_only :      u8,
+     pub pad0 :           [u8,..3]
 }
 
 
 
 pub struct detach_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    shmseg :         seg
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub shmseg :         seg
 }
 
 
 
 pub struct put_image_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       ffi::xproto::drawable,
-    gc :             ffi::xproto::gcontext,
-    total_width :    u16,
-    total_height :   u16,
-    src_x :          u16,
-    src_y :          u16,
-    src_width :      u16,
-    src_height :     u16,
-    dst_x :          i16,
-    dst_y :          i16,
-    depth :          u8,
-    format :         u8,
-    send_event :     u8,
-    pad0 :           u8,
-    shmseg :         seg,
-    offset :         u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       ffi::xproto::drawable,
+     pub gc :             ffi::xproto::gcontext,
+     pub total_width :    u16,
+     pub total_height :   u16,
+     pub src_x :          u16,
+     pub src_y :          u16,
+     pub src_width :      u16,
+     pub src_height :     u16,
+     pub dst_x :          i16,
+     pub dst_y :          i16,
+     pub depth :          u8,
+     pub format :         u8,
+     pub send_event :     u8,
+     pub pad0 :           u8,
+     pub shmseg :         seg,
+     pub offset :         u32
 }
 
 
@@ -119,49 +119,49 @@ pub struct get_image_cookie {
 
 
 pub struct get_image_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       ffi::xproto::drawable,
-    x :              i16,
-    y :              i16,
-    width :          u16,
-    height :         u16,
-    plane_mask :     u32,
-    format :         u8,
-    pad0 :           [u8,..3],
-    shmseg :         seg,
-    offset :         u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       ffi::xproto::drawable,
+     pub x :              i16,
+     pub y :              i16,
+     pub width :          u16,
+     pub height :         u16,
+     pub plane_mask :     u32,
+     pub format :         u8,
+     pub pad0 :           [u8,..3],
+     pub shmseg :         seg,
+     pub offset :         u32
 }
 
 
 pub struct get_image_reply {
-    response_type :   u8,
-    depth :           u8,
-    sequence :        u16,
-    length :          u32,
-    visual :          ffi::xproto::visualid,
-    size :            u32
+     pub response_type :   u8,
+     pub depth :           u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub visual :          ffi::xproto::visualid,
+     pub size :            u32
 }
 
 
 
 pub struct create_pixmap_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    pid :            ffi::xproto::pixmap,
-    drawable :       ffi::xproto::drawable,
-    width :          u16,
-    height :         u16,
-    depth :          u8,
-    pad0 :           [u8,..3],
-    shmseg :         seg,
-    offset :         u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub pid :            ffi::xproto::pixmap,
+     pub drawable :       ffi::xproto::drawable,
+     pub width :          u16,
+     pub height :         u16,
+     pub depth :          u8,
+     pub pad0 :           [u8,..3],
+     pub shmseg :         seg,
+     pub offset :         u32
 }
 
 #[link(name="lxcb-shm")]
-pub extern "C" {
+extern "C" {
 
 /**
  * Get the next element of the iterator

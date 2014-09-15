@@ -19,22 +19,22 @@ pub struct query_version_cookie {
 
 
 pub struct query_version_request {
-    major_opcode :           u8,
-    minor_opcode :           u8,
-    length :                 u16,
-    client_major_version :   u16,
-    client_minor_version :   u16
+     pub major_opcode :           u8,
+     pub minor_opcode :           u8,
+     pub length :                 u16,
+     pub client_major_version :   u16,
+     pub client_minor_version :   u16
 }
 
 
 pub struct query_version_reply {
-    response_type :          u8,
-    pad0 :                   u8,
-    sequence :               u16,
-    length :                 u32,
-    server_major_version :   u16,
-    server_minor_version :   u16,
-    pad1 :                   [u8,..20]
+     pub response_type :          u8,
+     pub pad0 :                   u8,
+     pub sequence :               u16,
+     pub length :                 u32,
+     pub server_major_version :   u16,
+     pub server_minor_version :   u16,
+     pub pad1 :                   [u8,..20]
 }
 
 
@@ -44,19 +44,19 @@ pub struct start_cookie {
 
 
 pub struct start_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    screen :         u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub screen :         u32
 }
 
 
 pub struct start_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..24]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..24]
 }
 
 
@@ -66,33 +66,33 @@ pub struct end_cookie {
 
 
 pub struct end_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    cmap :           u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub cmap :           u32
 }
 
 
 pub struct end_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..24]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..24]
 }
 
 
 pub struct event {
-    pad0 :   [u8,..32]
+     pub pad0 :   [u8,..32]
 }
 
 /**
  * @brief event_iterator
  **/
 pub struct event_iterator {
-    data : *mut event,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut event,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -102,21 +102,21 @@ pub struct send_cookie {
 
 
 pub struct send_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    event :          event,
-    data_type :      u32,
-    pad0 :           [u8,..64]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub event :          event,
+     pub data_type :      u32,
+     pub pad0 :           [u8,..64]
 }
 
 
 pub struct send_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..24]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..24]
 }
 
 
@@ -126,23 +126,23 @@ pub struct select_input_cookie {
 
 
 pub struct select_input_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    event_mask :     u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub event_mask :     u32
 }
 
 
 pub struct select_input_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pad1 :            [u8,..24]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad1 :            [u8,..24]
 }
 
 #[link(name="lxcb-xevie")]
-pub extern "C" {
+extern "C" {
 
 /**
  *

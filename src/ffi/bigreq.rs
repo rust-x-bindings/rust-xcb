@@ -19,21 +19,21 @@ pub struct enable_cookie {
 
 
 pub struct enable_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct enable_reply {
-    response_type :            u8,
-    pad0 :                     u8,
-    sequence :                 u16,
-    length :                   u32,
-    maximum_request_length :   u32
+     pub response_type :            u8,
+     pub pad0 :                     u8,
+     pub sequence :                 u16,
+     pub length :                   u32,
+     pub maximum_request_length :   u32
 }
 
-pub extern "C" {
+extern "C" {
 
 /**
  *

@@ -18,76 +18,76 @@ pub type context = u32;
  * @brief context_iterator
  **/
 pub struct context_iterator {
-    data : *mut context,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut context,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct range_8 {
-    first :   u8,
-    last :    u8
+     pub first :   u8,
+     pub last :    u8
 }
 
 /**
  * @brief range_8_iterator
  **/
 pub struct range_8_iterator {
-    data : *mut range_8,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut range_8,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct range_16 {
-    first :   u16,
-    last :    u16
+     pub first :   u16,
+     pub last :    u16
 }
 
 /**
  * @brief range_16_iterator
  **/
 pub struct range_16_iterator {
-    data : *mut range_16,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut range_16,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct ext_range {
-    major :   range_8,
-    minor :   range_16
+     pub major :   range_8,
+     pub minor :   range_16
 }
 
 /**
  * @brief ext_range_iterator
  **/
 pub struct ext_range_iterator {
-    data : *mut ext_range,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut ext_range,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct range {
-    core_requests :      range_8,
-    core_replies :       range_8,
-    ext_requests :       ext_range,
-    ext_replies :        ext_range,
-    delivered_events :   range_8,
-    device_events :      range_8,
-    errors :             range_8,
-    client_started :     u8,
-    client_died :        u8
+     pub core_requests :      range_8,
+     pub core_replies :       range_8,
+     pub ext_requests :       ext_range,
+     pub ext_replies :        ext_range,
+     pub delivered_events :   range_8,
+     pub device_events :      range_8,
+     pub errors :             range_8,
+     pub client_started :     u8,
+     pub client_died :        u8
 }
 
 /**
  * @brief range_iterator
  **/
 pub struct range_iterator {
-    data : *mut range,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut range,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -96,9 +96,9 @@ pub type element_header = u8;
  * @brief element_header_iterator
  **/
 pub struct element_header_iterator {
-    data : *mut element_header,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut element_header,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -107,33 +107,33 @@ pub type client_spec = u32;
  * @brief client_spec_iterator
  **/
 pub struct client_spec_iterator {
-    data : *mut client_spec,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut client_spec,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct client_info {
-    client_resource :   client_spec,
-    num_ranges :        u32
+     pub client_resource :   client_spec,
+     pub num_ranges :        u32
 }
 
 /**
  * @brief client_info_iterator
  **/
 pub struct client_info_iterator {
-    data : *mut client_info,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut client_info,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 
 pub struct bad_context_error {
-    response_type :    u8,
-    error_code :       u8,
-    sequence :         u16,
-    invalid_record :   u32
+     pub response_type :    u8,
+     pub error_code :       u8,
+     pub sequence :         u16,
+     pub invalid_record :   u32
 }
 
 
@@ -143,57 +143,57 @@ pub struct query_version_cookie {
 
 
 pub struct query_version_request {
-    major_opcode :    u8,
-    minor_opcode :    u8,
-    length :          u16,
-    major_version :   u16,
-    minor_version :   u16
+     pub major_opcode :    u8,
+     pub minor_opcode :    u8,
+     pub length :          u16,
+     pub major_version :   u16,
+     pub minor_version :   u16
 }
 
 
 pub struct query_version_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    major_version :   u16,
-    minor_version :   u16
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub major_version :   u16,
+     pub minor_version :   u16
 }
 
 
 
 pub struct create_context_request {
-    major_opcode :       u8,
-    minor_opcode :       u8,
-    length :             u16,
-    context :            context,
-    element_header :     element_header,
-    pad0 :               [u8,..3],
-    num_client_specs :   u32,
-    num_ranges :         u32
+     pub major_opcode :       u8,
+     pub minor_opcode :       u8,
+     pub length :             u16,
+     pub context :            context,
+     pub element_header :     element_header,
+     pub pad0 :               [u8,..3],
+     pub num_client_specs :   u32,
+     pub num_ranges :         u32
 }
 
 
 
 pub struct register_clients_request {
-    major_opcode :       u8,
-    minor_opcode :       u8,
-    length :             u16,
-    context :            context,
-    element_header :     element_header,
-    pad0 :               [u8,..3],
-    num_client_specs :   u32,
-    num_ranges :         u32
+     pub major_opcode :       u8,
+     pub minor_opcode :       u8,
+     pub length :             u16,
+     pub context :            context,
+     pub element_header :     element_header,
+     pub pad0 :               [u8,..3],
+     pub num_client_specs :   u32,
+     pub num_ranges :         u32
 }
 
 
 
 pub struct unregister_clients_request {
-    major_opcode :       u8,
-    minor_opcode :       u8,
-    length :             u16,
-    context :            context,
-    num_client_specs :   u32
+     pub major_opcode :       u8,
+     pub minor_opcode :       u8,
+     pub length :             u16,
+     pub context :            context,
+     pub num_client_specs :   u32
 }
 
 
@@ -203,22 +203,22 @@ pub struct get_context_cookie {
 
 
 pub struct get_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context :        context
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context :        context
 }
 
 
 pub struct get_context_reply {
-    response_type :             u8,
-    enabled :                   u8,
-    sequence :                  u16,
-    length :                    u32,
-    element_header :            element_header,
-    pad0 :                      [u8,..3],
-    num_intercepted_clients :   u32,
-    pad1 :                      [u8,..16]
+     pub response_type :             u8,
+     pub enabled :                   u8,
+     pub sequence :                  u16,
+     pub length :                    u32,
+     pub element_header :            element_header,
+     pub pad0 :                      [u8,..3],
+     pub num_intercepted_clients :   u32,
+     pub pad1 :                      [u8,..16]
 }
 
 
@@ -228,47 +228,47 @@ pub struct enable_context_cookie {
 
 
 pub struct enable_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context :        context
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context :        context
 }
 
 
 pub struct enable_context_reply {
-    response_type :      u8,
-    category :           u8,
-    sequence :           u16,
-    length :             u32,
-    element_header :     element_header,
-    client_swapped :     u8,
-    pad0 :               [u8,..2],
-    xid_base :           u32,
-    server_time :        u32,
-    rec_sequence_num :   u32,
-    pad1 :               [u8,..8]
+     pub response_type :      u8,
+     pub category :           u8,
+     pub sequence :           u16,
+     pub length :             u32,
+     pub element_header :     element_header,
+     pub client_swapped :     u8,
+     pub pad0 :               [u8,..2],
+     pub xid_base :           u32,
+     pub server_time :        u32,
+     pub rec_sequence_num :   u32,
+     pub pad1 :               [u8,..8]
 }
 
 
 
 pub struct disable_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context :        context
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context :        context
 }
 
 
 
 pub struct free_context_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    context :        context
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub context :        context
 }
 
 #[link(name="lxcb-record")]
-pub extern "C" {
+extern "C" {
 
 /**
  * Get the next element of the iterator
