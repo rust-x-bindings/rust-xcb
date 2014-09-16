@@ -76,7 +76,6 @@ pub mod ffi {
     pub mod xvmc;
 }
 
-/*
 pub mod base;
 pub mod macro;
 
@@ -89,7 +88,7 @@ pub mod composite;
 pub mod xfixes;
 pub mod render;
 pub mod shape;
-
+/*
 pub mod damage;
 pub mod dpms;
 pub mod dri2;
