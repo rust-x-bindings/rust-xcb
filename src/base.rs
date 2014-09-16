@@ -302,7 +302,7 @@ pub struct VoidCookie<'s> { pub base : Cookie<'s, void_cookie> }
  * event is really the correct type.
  */
 #[inline(always)]
-pub fn cast_event<'r, T>(event : &'r GenericEvent) -> &'r T {
+pub fn cast_event<'r, T>(event : &'r GenericEvent) -> &'r mut T {
     // This isn't very safe... but other options incur yet more overhead
     // that I really don't want to.
     unsafe { mem::transmute(event) }

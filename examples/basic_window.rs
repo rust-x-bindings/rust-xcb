@@ -50,7 +50,7 @@ fn main() {
     let cookie = InternAtom(&conn,0,"_TEST_ATOM");
     let rep_res = cookie.get_reply();
     match rep_res {
-        Ok(r) => {println!("Interned Atom {}", r.atom());}
+        Ok(mut r) => {println!("Interned Atom {}", r.atom());}
         Err(_) => { fail!("Failed to intern atom"); }
     }
 
@@ -61,7 +61,7 @@ fn main() {
             Some(event) => {
                 let r = event.base.response_type();
                 if r == XCB_KEY_PRESS {
-                    let key_press : &KeyPressEvent = cast_event(&event);
+                    let key_press : &mut KeyPressEvent = cast_event(&event);
                     println!("Key '{}' pressed", key_press.detail());
                     break;
                 }
