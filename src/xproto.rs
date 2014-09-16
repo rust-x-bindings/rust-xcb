@@ -3381,7 +3381,8 @@ pub fn CreateWindowChecked<'r> (c : &'r Connection,
                             visual : Visualid,
                             value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
+    let mut value_list_copy = value_list.to_owned();
+    let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_create_window_checked(c.get_raw_conn(),
         depth as u8, //1
@@ -3412,7 +3413,8 @@ pub fn CreateWindow<'r> (c : &'r Connection,
                      visual : Visualid,
                      value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
+    let mut value_list_copy = value_list.to_owned();
+    let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_create_window(c.get_raw_conn(),
         depth as u8, //1
@@ -3434,7 +3436,8 @@ pub fn ChangeWindowAttributesChecked<'r> (c : &'r Connection,
                                       window : Window,
                                       value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
+    let mut value_list_copy = value_list.to_owned();
+    let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_change_window_attributes_checked(c.get_raw_conn(),
         window as window, //1
@@ -3447,7 +3450,8 @@ pub fn ChangeWindowAttributes<'r> (c : &'r Connection,
                                window : Window,
                                value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
+    let mut value_list_copy = value_list.to_owned();
+    let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_change_window_attributes(c.get_raw_conn(),
         window as window, //1
@@ -3685,7 +3689,8 @@ pub fn ConfigureWindowChecked<'r> (c : &'r Connection,
                                window : Window,
                                value_list : &[(u16,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
+    let mut value_list_copy = value_list.to_owned();
+    let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_configure_window_checked(c.get_raw_conn(),
         window as window, //1
@@ -3698,7 +3703,8 @@ pub fn ConfigureWindow<'r> (c : &'r Connection,
                         window : Window,
                         value_list : &[(u16,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
+    let mut value_list_copy = value_list.to_owned();
+    let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_configure_window(c.get_raw_conn(),
         window as window, //1
@@ -5233,7 +5239,8 @@ pub fn CreateGcChecked<'r> (c : &'r Connection,
                         drawable : Drawable,
                         value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
+    let mut value_list_copy = value_list.to_owned();
+    let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_create_gc_checked(c.get_raw_conn(),
         cid as gcontext, //1
@@ -5248,7 +5255,8 @@ pub fn CreateGc<'r> (c : &'r Connection,
                  drawable : Drawable,
                  value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
+    let mut value_list_copy = value_list.to_owned();
+    let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_create_gc(c.get_raw_conn(),
         cid as gcontext, //1
@@ -5262,7 +5270,8 @@ pub fn ChangeGcChecked<'r> (c : &'r Connection,
                         gc : Gcontext,
                         value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
+    let mut value_list_copy = value_list.to_owned();
+    let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_change_gc_checked(c.get_raw_conn(),
         gc as gcontext, //1
@@ -5275,7 +5284,8 @@ pub fn ChangeGc<'r> (c : &'r Connection,
                  gc : Gcontext,
                  value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
+    let mut value_list_copy = value_list.to_owned();
+    let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_change_gc(c.get_raw_conn(),
         gc as gcontext, //1
@@ -7019,7 +7029,8 @@ impl_reply_cookie!(GetKeyboardMappingCookie<'s>, mk_reply_get_keyboard_mapping_r
 pub fn ChangeKeyboardControlChecked<'r> (c : &'r Connection,
                                      value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
+    let mut value_list_copy = value_list.to_owned();
+    let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_change_keyboard_control_checked(c.get_raw_conn(),
         value_list_mask as u32, //1
@@ -7030,7 +7041,8 @@ pub fn ChangeKeyboardControlChecked<'r> (c : &'r Connection,
 pub fn ChangeKeyboardControl<'r> (c : &'r Connection,
                               value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
+    let mut value_list_copy = value_list.to_owned();
+    let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_change_keyboard_control(c.get_raw_conn(),
         value_list_mask as u32, //1

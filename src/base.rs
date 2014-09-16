@@ -120,7 +120,8 @@ impl<'s> Connection {
     #[inline]
     pub fn generate_id<T>(&self) -> T {
         unsafe {
-            *(ffi::base::xcb_generate_id(self.c) as *mut T)
+            mem::transmute_copy(& *(ffi::base::xcb_generate_id(self.c) as *mut T))
+
         }
     }
 
@@ -322,7 +323,7 @@ impl<T> EventUtil for Event<T> {
     }
 }
 
-pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &mut [(T,L)]) -> (T, Vec<L>) {    ;
+pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &mut Vec<(T,L)>) -> (T, Vec<L>) {    ;
 	bf.sort_by(|a,b| {
         let &(a, _) = a;
         let &(b, _) = b;

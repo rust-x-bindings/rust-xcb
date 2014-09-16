@@ -822,7 +822,8 @@ pub fn CreatePictureChecked<'r> (c : &'r Connection,
                              format : Pictformat,
                              value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
+    let mut value_list_copy = value_list.to_owned();
+    let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_render_create_picture_checked(c.get_raw_conn(),
         pid as picture, //1
@@ -839,7 +840,8 @@ pub fn CreatePicture<'r> (c : &'r Connection,
                       format : Pictformat,
                       value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
+    let mut value_list_copy = value_list.to_owned();
+    let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_render_create_picture(c.get_raw_conn(),
         pid as picture, //1
@@ -854,7 +856,8 @@ pub fn ChangePictureChecked<'r> (c : &'r Connection,
                              picture : Picture,
                              value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
+    let mut value_list_copy = value_list.to_owned();
+    let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_render_change_picture_checked(c.get_raw_conn(),
         picture as picture, //1
@@ -867,7 +870,8 @@ pub fn ChangePicture<'r> (c : &'r Connection,
                       picture : Picture,
                       value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
+    let mut value_list_copy = value_list.to_owned();
+    let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_render_change_picture(c.get_raw_conn(),
         picture as picture, //1

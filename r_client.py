@@ -1422,8 +1422,9 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
 
         if fty.is_list:
             if fty.expr.bitfield:
-                #mk_params.append("let mut %s_copy = %s.to_owned();" % (field.c_field_name, self.c_field_name))
-                mk_params.append("let (%s_mask, %s_vec) = pack_bitfield(%s);" %
+                mk_params.append("let mut %s_copy = %s.to_owned();" % 
+                        (field.c_field_name, field.c_field_name))
+                mk_params.append("let (%s_mask, %s_vec) = pack_bitfield(&mut %s_copy);" %
                         (field.c_field_name, field.c_field_name, field.c_field_name))
                 mk_params.append("let %s_ptr = %s_vec.as_ptr();" %
                         (field.c_field_name, field.c_field_name))
