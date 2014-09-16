@@ -118,10 +118,9 @@ impl<'s> Connection {
     }
 
     #[inline]
-    pub fn generate_id<T>(&self) -> T {
+    pub fn generate_id(&self) -> xproto::Window {
         unsafe {
-            mem::transmute_copy(& *(ffi::base::xcb_generate_id(self.c) as *mut T))
-
+            ffi::base::xcb_generate_id(self.c)
         }
     }
 
