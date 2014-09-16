@@ -37,6 +37,13 @@ DEALINGS IN THE SOFTWARE.
 #![feature(globs)]
 #![feature(macro_rules)]
 #![feature(unsafe_destructor)]
+
+#![allow(dead_code)]
+#![allow(ctypes)]
+#![allow(non_snake_case)]
+#![allow(non_camel_case_types)]
+#![allow(unused_imports)]
+
 extern crate libc;
 
 pub mod ffi {
