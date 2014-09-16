@@ -160,7 +160,7 @@ pub struct create_pixmap_request {
      pub offset :         u32
 }
 
-#[link(name="lxcb-shm")]
+#[link(name="xcb-shm")]
 extern "C" {
 
 /**

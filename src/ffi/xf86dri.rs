@@ -283,7 +283,7 @@ pub struct auth_connection_reply {
      pub authenticated :   u32
 }
 
-#[link(name="lxcb-xf86dri")]
+#[link(name="xcb-xf86dri")]
 extern "C" {
 
 /**

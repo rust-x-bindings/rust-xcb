@@ -892,7 +892,7 @@ pub struct notify_event {
      pub u :               notify_data
 }
 
-#[link(name="lxcb-randr")]
+#[link(name="xcb-randr")]
 extern "C" {
 
 /**

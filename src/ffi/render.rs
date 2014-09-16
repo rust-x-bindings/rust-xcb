@@ -810,7 +810,7 @@ pub struct create_conical_gradient_request {
      pub num_stops :      u32
 }
 
-#[link(name="lxcb-render")]
+#[link(name="xcb-render")]
 extern "C" {
 
 /**

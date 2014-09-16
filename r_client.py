@@ -310,7 +310,7 @@ def c_close(self):
     for list in _hlines:
         if level == 1:
             if _ns.header in links:
-                hfile.write("#[link(name=\"lxcb-%s\")]\n" % links[_ns.header])
+                hfile.write("#[link(name=\"xcb-%s\")]\n" % links[_ns.header])
             hfile.write("extern \"C\" {\n")
         if level == 2:
             hfile.write("}\n")

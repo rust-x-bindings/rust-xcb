@@ -622,7 +622,7 @@ pub struct shm_put_image_request {
      pub pad0 :           [u8,..3]
 }
 
-#[link(name="lxcb-xv")]
+#[link(name="xcb-xv")]
 extern "C" {
 
 /**

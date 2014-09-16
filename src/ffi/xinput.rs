@@ -1566,7 +1566,7 @@ pub struct class_error {
      pub sequence :        u16
 }
 
-#[link(name="lxcb-xinput")]
+#[link(name="xcb-xinput")]
 extern "C" {
 
 /**

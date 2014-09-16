@@ -135,7 +135,7 @@ pub struct query_client_pixmap_bytes_reply {
      pub bytes_overflow :   u32
 }
 
-#[link(name="lxcb-res")]
+#[link(name="xcb-res")]
 extern "C" {
 
 /**

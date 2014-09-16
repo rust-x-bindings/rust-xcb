@@ -87,7 +87,7 @@ pub struct grab_control_request {
      pub pad0 :           [u8,..3]
 }
 
-#[link(name="lxcb-xtest")]
+#[link(name="xcb-xtest")]
 extern "C" {
 
 /**

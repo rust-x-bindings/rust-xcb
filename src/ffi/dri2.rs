@@ -389,7 +389,7 @@ pub struct invalidate_buffers_event {
      pub drawable :        ffi::xproto::drawable
 }
 
-#[link(name="lxcb-dri2")]
+#[link(name="xcb-dri2")]
 extern "C" {
 
 /**

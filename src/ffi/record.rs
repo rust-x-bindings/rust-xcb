@@ -267,7 +267,7 @@ pub struct free_context_request {
      pub context :        context
 }
 
-#[link(name="lxcb-record")]
+#[link(name="xcb-record")]
 extern "C" {
 
 /**

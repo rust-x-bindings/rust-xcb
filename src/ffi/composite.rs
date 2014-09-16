@@ -137,7 +137,7 @@ pub struct release_overlay_window_request {
      pub window :         ffi::xproto::window
 }
 
-#[link(name="lxcb-composite")]
+#[link(name="xcb-composite")]
 extern "C" {
 
 /**

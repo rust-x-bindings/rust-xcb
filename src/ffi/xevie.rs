@@ -141,7 +141,7 @@ pub struct select_input_reply {
      pub pad1 :            [u8,..24]
 }
 
-#[link(name="lxcb-xevie")]
+#[link(name="xcb-xevie")]
 extern "C" {
 
 /**

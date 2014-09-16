@@ -2279,7 +2279,7 @@ pub struct get_query_objectuiv_arb_reply {
      pub pad2 :            [u8,..12]
 }
 
-#[link(name="lxcb-glx")]
+#[link(name="xcb-glx")]
 extern "C" {
 
 /**

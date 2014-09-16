@@ -115,7 +115,7 @@ pub struct notify_event {
      pub geometry :        ffi::xproto::rectangle
 }
 
-#[link(name="lxcb-damage")]
+#[link(name="xcb-damage")]
 extern "C" {
 
 /**

@@ -141,7 +141,7 @@ pub struct info_reply {
      pub pad1 :            [u8,..21]
 }
 
-#[link(name="lxcb-dpms")]
+#[link(name="xcb-dpms")]
 extern "C" {
 
 /**

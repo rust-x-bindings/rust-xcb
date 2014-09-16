@@ -167,7 +167,7 @@ pub struct query_screens_reply {
      pub pad1 :            [u8,..20]
 }
 
-#[link(name="lxcb-xinerama")]
+#[link(name="xcb-xinerama")]
 extern "C" {
 
 /**

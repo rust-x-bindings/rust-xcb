@@ -432,7 +432,7 @@ pub struct alarm_notify_event {
      pub pad0 :            [u8,..3]
 }
 
-#[link(name="lxcb-sync")]
+#[link(name="xcb-sync")]
 extern "C" {
 
 /**

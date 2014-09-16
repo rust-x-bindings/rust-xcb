@@ -471,7 +471,7 @@ pub struct show_cursor_request {
      pub window :         ffi::xproto::window
 }
 
-#[link(name="lxcb-xfixes")]
+#[link(name="xcb-xfixes")]
 extern "C" {
 
 /**

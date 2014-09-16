@@ -495,7 +495,7 @@ pub struct bad_sequence_error {
      pub sequence :        u16
 }
 
-#[link(name="lxcb-xprint")]
+#[link(name="xcb-xprint")]
 extern "C" {
 
 /**

@@ -130,7 +130,7 @@ pub struct notify_event {
      pub pad1 :              [u8,..14]
 }
 
-#[link(name="lxcb-screensaver")]
+#[link(name="xcb-screensaver")]
 extern "C" {
 
 /**

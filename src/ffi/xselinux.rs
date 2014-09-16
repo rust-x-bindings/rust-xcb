@@ -457,7 +457,7 @@ pub struct get_client_context_reply {
      pub pad1 :            [u8,..20]
 }
 
-#[link(name="lxcb-xselinux")]
+#[link(name="xcb-xselinux")]
 extern "C" {
 
 /**

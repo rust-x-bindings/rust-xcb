@@ -250,7 +250,7 @@ pub struct list_subpicture_types_reply {
      pub pad1 :            [u8,..20]
 }
 
-#[link(name="lxcb-xvmc")]
+#[link(name="xcb-xvmc")]
 extern "C" {
 
 /**

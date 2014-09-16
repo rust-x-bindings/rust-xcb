@@ -221,7 +221,7 @@ pub struct get_rectangles_reply {
      pub pad0 :             [u8,..20]
 }
 
-#[link(name="lxcb-shape")]
+#[link(name="xcb-shape")]
 extern "C" {
 
 /**
