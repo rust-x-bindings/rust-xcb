@@ -69,7 +69,7 @@ impl<'s> Connection {
             if event.is_null() {
                 None
             } else {
-                Some(Event {event:event})
+                Some(GenericEvent { base: Event {event:event}})
             }
         }
     }
@@ -81,7 +81,7 @@ impl<'s> Connection {
             if event.is_null() {
                 None
             } else {
-                Some(Event {event:event})
+                Some(GenericEvent { base: Event {event:event}})
             }
         }
     }
@@ -93,7 +93,7 @@ impl<'s> Connection {
             if event.is_null() {
                 None
             } else {
-                Some(Event {event:event})
+                Some(GenericEvent { base : Event {event:event}})
             }
         }
     }
@@ -120,7 +120,8 @@ impl<'s> Connection {
     #[inline]
     pub fn generate_id<T>(&self) -> T {
         unsafe {
-            mem::transmute(ffi::base::xcb_generate_id(self.c))
+            mem::transmute_copy(& *(ffi::base::xcb_generate_id(self.c) as *mut T))
+
         }
     }
 
@@ -143,7 +144,7 @@ impl<'s> Connection {
 
     #[inline]
     pub fn connect() -> (Connection, int) {
-        let screen : c_int = 0;
+        let mut screen : c_int = 0;
         unsafe {
             let conn = ffi::base::xcb_connect(ptr::mut_null(), &mut screen);
             if conn.is_null() {
@@ -157,7 +158,7 @@ impl<'s> Connection {
 
     #[inline]
     pub fn connect_to_display(display:&str) -> Option<(Connection, int)> {
-        let screen : c_int = 0;
+        let mut screen : c_int = 0;
         unsafe {
             let conn = {
 		let s = display.as_ptr();
@@ -174,7 +175,7 @@ impl<'s> Connection {
 
     #[inline]
     pub fn connect_with_auth(display:&str, auth_info: &AuthInfo) -> Option<(Connection, int)> {
-        let screen : c_int = 0;
+        let mut screen : c_int = 0;
         unsafe {
             let conn = {
 		let s = display.as_ptr();
@@ -254,7 +255,7 @@ pub struct Cookie<'s, T> {
 }
 
 pub trait ReplyCookie<R> {
-    fn get_reply(&self) -> Result<Reply<R>, GenericError>;
+    fn get_reply(&self) -> Result<R, GenericError>;
 }
 
 impl<'s, T> Cookie<'s, T> {
@@ -267,7 +268,7 @@ impl<'s, T> Cookie<'s, T> {
             if err.is_null() {
                 None
             } else {
-                Some(Error {error:err})
+                Some(GenericError{base: Error {error:err}})
             }
         }
     }
@@ -291,10 +292,10 @@ impl<T> Drop for Reply<T> {
     }
 }
 
-pub type GenericReply = Reply<generic_reply>;
-pub type GenericEvent = Event<generic_event>;
-pub type GenericError = Error<generic_error>;
-pub type VoidCookie<'s> = Cookie<'s, void_cookie>;
+pub struct GenericReply { pub base : Reply<generic_reply>}
+pub struct GenericEvent { pub base : Event<generic_event>}
+pub struct GenericError { pub base : Error<generic_error>}
+pub struct VoidCookie<'s> { pub base : Cookie<'s, void_cookie> }
 
 /**
  * Casts the generic event to the right event. Assumes that the given
@@ -322,8 +323,8 @@ impl<T> EventUtil for Event<T> {
     }
 }
 
-pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &[(T,L)]) -> (T, Vec<L>) {
-    bf.sort_by(|a,b| {
+pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &mut Vec<(T,L)>) -> (T, Vec<L>) {    ;
+	bf.sort_by(|a,b| {
         let &(a, _) = a;
         let &(b, _) = b;
         if a < b { Less } else if a > b { Greater } else { Equal }       
