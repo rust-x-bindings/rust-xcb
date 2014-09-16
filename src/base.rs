@@ -99,13 +99,13 @@ impl<'s> Connection {
     }
 
     #[inline]
-    pub fn get_setup(&self) -> &'s xproto::Setup {
+    pub fn get_setup(&self) -> xproto::Setup {
         unsafe {
             let setup = ffi::base::xcb_get_setup(self.c);
             if setup.is_null() {
-                fail!(box "NULL setup on connection")
+                fail!("NULL setup on connection")
             } else {
-                mem::transmute(setup)
+               xproto::Setup { base : Struct { strct : *(setup as *mut ffi::xproto::setup) } }
             }
         }
     }
@@ -148,7 +148,7 @@ impl<'s> Connection {
         unsafe {
             let conn = ffi::base::xcb_connect(ptr::mut_null(), &mut screen);
             if conn.is_null() {
-                fail!(box "Couldn't connect")
+                fail!("Couldn't connect")
             } else {
                 ffi::base::xcb_prefetch_maximum_request_length(conn);
                 (Connection {c:conn}, screen as int)
@@ -302,7 +302,7 @@ pub struct VoidCookie<'s> { pub base : Cookie<'s, void_cookie> }
  * event is really the correct type.
  */
 #[inline(always)]
-pub fn mem_event<'r, T>(event : &'r GenericEvent) -> &'r T {
+pub fn cast_event<'r, T>(event : &'r GenericEvent) -> &'r T {
     // This isn't very safe... but other options incur yet more overhead
     // that I really don't want to.
     unsafe { mem::transmute(event) }
