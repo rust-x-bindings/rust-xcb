@@ -1086,7 +1086,7 @@ def _r_accessor(self,field):
         _r('  }\n')
     elif field.type.is_list:
         _r('  pub fn %s(&self) -> Vec<%s> {', field.c_field_name, field.r_field_type) 
-        _r('    unsafe { (%s.%s).to_owned() }',self.wrap_field_name,field.c_field_name)
+        _r('    unsafe { (%s.%s).to_vec() }',self.wrap_field_name,field.c_field_name)
         _r('  }\n')
 
     elif field.type.is_container:
@@ -1422,7 +1422,7 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
 
         if fty.is_list:
             if fty.expr.bitfield:
-                mk_params.append("let mut %s_copy = %s.to_owned();" % 
+                mk_params.append("let mut %s_copy = %s.to_vec();" % 
                         (field.c_field_name, field.c_field_name))
                 mk_params.append("let (%s_mask, %s_vec) = pack_bitfield(&mut %s_copy);" %
                         (field.c_field_name, field.c_field_name, field.c_field_name))

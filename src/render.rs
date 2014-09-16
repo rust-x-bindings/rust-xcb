@@ -822,7 +822,7 @@ pub fn CreatePictureChecked<'r> (c : &'r Connection,
                              format : Pictformat,
                              value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let mut value_list_copy = value_list.to_owned();
+    let mut value_list_copy = value_list.to_vec();
     let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_render_create_picture_checked(c.get_raw_conn(),
@@ -840,7 +840,7 @@ pub fn CreatePicture<'r> (c : &'r Connection,
                       format : Pictformat,
                       value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let mut value_list_copy = value_list.to_owned();
+    let mut value_list_copy = value_list.to_vec();
     let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_render_create_picture(c.get_raw_conn(),
@@ -856,7 +856,7 @@ pub fn ChangePictureChecked<'r> (c : &'r Connection,
                              picture : Picture,
                              value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let mut value_list_copy = value_list.to_owned();
+    let mut value_list_copy = value_list.to_vec();
     let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_render_change_picture_checked(c.get_raw_conn(),
@@ -870,7 +870,7 @@ pub fn ChangePicture<'r> (c : &'r Connection,
                       picture : Picture,
                       value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let mut value_list_copy = value_list.to_owned();
+    let mut value_list_copy = value_list.to_vec();
     let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_render_change_picture(c.get_raw_conn(),

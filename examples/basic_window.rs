@@ -1,13 +1,14 @@
-extern mod xcb;
+#![feature(globs)]
+extern crate xcb;
 
 use xcb::base::*;
 use xcb::xproto::*;
 
-use std::iterator::{Iterator};
+use std::iter::{Iterator};
 
 fn main() {
     let (conn, _) = Connection::connect();
-    let conn = ~conn;
+    let conn = box conn;
 
     let setup = conn.get_setup();
     let mut iter = setup.roots();
@@ -20,7 +21,7 @@ fn main() {
                 screen = s;
                 break;
             }
-            None => { fail!(~"Whut") }
+            None => { fail!("Whut") }
         }
     }
 
@@ -49,8 +50,8 @@ fn main() {
     let cookie = InternAtom(conn,0,"_TEST_ATOM");
     let rep_res = cookie.get_reply();
     match rep_res {
-        Ok(r) => {println(fmt!("Interned Atom %?", r.atom()));}
-        Err(_) => { fail!(~"Failed to intern atom"); }
+        Ok(r) => {println("Interned Atom %?", r.atom());}
+        Err(_) => { fail!("Failed to intern atom"); }
     }
 
     loop {
@@ -61,7 +62,7 @@ fn main() {
                 let r = event.response_type();
                 if r == XCB_KEY_PRESS {
                     let key_press : &KeyPressEvent = cast_event(&event);
-                    println(fmt!("Key '%?' pressed", key_press.detail()));
+                    println("Key '%?' pressed", key_press.detail());
                     break;
                 }
             }

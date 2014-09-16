@@ -116,11 +116,11 @@ extern {
 pub mod Xlib {
     use super::{connection};
     use libc::{c_void, c_uint};
-    struct Display;
+    pub struct Display;
 
-    type XEventQueueOwner = c_uint;
-    static XlibOwnsEventQueue : XEventQueueOwner = 0;
-    static XCBOwnsEventQueue : XEventQueueOwner  = 1;
+    pub type XEventQueueOwner = c_uint;
+    pub static XlibOwnsEventQueue : XEventQueueOwner = 0;
+    pub static XCBOwnsEventQueue : XEventQueueOwner  = 1;
 
     #[link(name="X11")]
     #[link(name="X11-xcb")]

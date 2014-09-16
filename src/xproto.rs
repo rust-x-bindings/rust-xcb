@@ -2562,7 +2562,7 @@ impl FocusInEvent {
 
 impl KeymapNotifyEvent {
   pub fn keys(&self) -> Vec<u8> {
-    unsafe { ((*self.base.event).keys).to_owned() }
+    unsafe { ((*self.base.event).keys).to_vec() }
   }
 
   pub fn new(keys : [u8,..31]) -> KeymapNotifyEvent {
@@ -3381,7 +3381,7 @@ pub fn CreateWindowChecked<'r> (c : &'r Connection,
                             visual : Visualid,
                             value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let mut value_list_copy = value_list.to_owned();
+    let mut value_list_copy = value_list.to_vec();
     let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_create_window_checked(c.get_raw_conn(),
@@ -3413,7 +3413,7 @@ pub fn CreateWindow<'r> (c : &'r Connection,
                      visual : Visualid,
                      value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let mut value_list_copy = value_list.to_owned();
+    let mut value_list_copy = value_list.to_vec();
     let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_create_window(c.get_raw_conn(),
@@ -3436,7 +3436,7 @@ pub fn ChangeWindowAttributesChecked<'r> (c : &'r Connection,
                                       window : Window,
                                       value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let mut value_list_copy = value_list.to_owned();
+    let mut value_list_copy = value_list.to_vec();
     let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_change_window_attributes_checked(c.get_raw_conn(),
@@ -3450,7 +3450,7 @@ pub fn ChangeWindowAttributes<'r> (c : &'r Connection,
                                window : Window,
                                value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let mut value_list_copy = value_list.to_owned();
+    let mut value_list_copy = value_list.to_vec();
     let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_change_window_attributes(c.get_raw_conn(),
@@ -3689,7 +3689,7 @@ pub fn ConfigureWindowChecked<'r> (c : &'r Connection,
                                window : Window,
                                value_list : &[(u16,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let mut value_list_copy = value_list.to_owned();
+    let mut value_list_copy = value_list.to_vec();
     let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_configure_window_checked(c.get_raw_conn(),
@@ -3703,7 +3703,7 @@ pub fn ConfigureWindow<'r> (c : &'r Connection,
                         window : Window,
                         value_list : &[(u16,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let mut value_list_copy = value_list.to_owned();
+    let mut value_list_copy = value_list.to_vec();
     let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_configure_window(c.get_raw_conn(),
@@ -4743,7 +4743,7 @@ pub fn QueryKeymapUnchecked<'r> (c : &'r Connection) -> QueryKeymapCookie<'r> {
 
 impl QueryKeymapReply {
   pub fn keys(&self) -> Vec<u8> {
-    unsafe { ((*self.base.reply).keys).to_owned() }
+    unsafe { ((*self.base.reply).keys).to_vec() }
   }
 
 }
@@ -5239,7 +5239,7 @@ pub fn CreateGcChecked<'r> (c : &'r Connection,
                         drawable : Drawable,
                         value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let mut value_list_copy = value_list.to_owned();
+    let mut value_list_copy = value_list.to_vec();
     let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_create_gc_checked(c.get_raw_conn(),
@@ -5255,7 +5255,7 @@ pub fn CreateGc<'r> (c : &'r Connection,
                  drawable : Drawable,
                  value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let mut value_list_copy = value_list.to_owned();
+    let mut value_list_copy = value_list.to_vec();
     let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_create_gc(c.get_raw_conn(),
@@ -5270,7 +5270,7 @@ pub fn ChangeGcChecked<'r> (c : &'r Connection,
                         gc : Gcontext,
                         value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let mut value_list_copy = value_list.to_owned();
+    let mut value_list_copy = value_list.to_vec();
     let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_change_gc_checked(c.get_raw_conn(),
@@ -5284,7 +5284,7 @@ pub fn ChangeGc<'r> (c : &'r Connection,
                  gc : Gcontext,
                  value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let mut value_list_copy = value_list.to_owned();
+    let mut value_list_copy = value_list.to_vec();
     let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_change_gc(c.get_raw_conn(),
@@ -7029,7 +7029,7 @@ impl_reply_cookie!(GetKeyboardMappingCookie<'s>, mk_reply_get_keyboard_mapping_r
 pub fn ChangeKeyboardControlChecked<'r> (c : &'r Connection,
                                      value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let mut value_list_copy = value_list.to_owned();
+    let mut value_list_copy = value_list.to_vec();
     let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_change_keyboard_control_checked(c.get_raw_conn(),
@@ -7041,7 +7041,7 @@ pub fn ChangeKeyboardControlChecked<'r> (c : &'r Connection,
 pub fn ChangeKeyboardControl<'r> (c : &'r Connection,
                               value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
-    let mut value_list_copy = value_list.to_owned();
+    let mut value_list_copy = value_list.to_vec();
     let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_change_keyboard_control(c.get_raw_conn(),
@@ -7089,7 +7089,7 @@ impl GetKeyboardControlReply {
   }
 
   pub fn auto_repeats(&self) -> Vec<u8> {
-    unsafe { ((*self.base.reply).auto_repeats).to_owned() }
+    unsafe { ((*self.base.reply).auto_repeats).to_vec() }
   }
 
 }
