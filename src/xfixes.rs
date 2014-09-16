@@ -166,11 +166,11 @@ pub fn QueryVersionUnchecked<'r> (c : &'r Connection,
 }
 
 impl QueryVersionReply {
-  pub fn major_version(&self) -> u32 {
+  pub fn major_version(&mut self) -> u32 {
     unsafe { accessor!(major_version -> u32, (*self.base.reply)) }
   }
 
-  pub fn minor_version(&self) -> u32 {
+  pub fn minor_version(&mut self) -> u32 {
     unsafe { accessor!(minor_version -> u32, (*self.base.reply)) }
   }
 
@@ -207,27 +207,27 @@ pub fn ChangeSaveSet<'r> (c : &'r Connection,
 }
 
 impl SelectionNotifyEvent {
-  pub fn subtype(&self) -> u8 {
+  pub fn subtype(&mut self) -> u8 {
     unsafe { accessor!(subtype -> u8, (*self.base.event)) }
   }
 
-  pub fn window(&self) -> xproto::Window {
+  pub fn window(&mut self) -> xproto::Window {
     unsafe { accessor!(window -> xproto::Window, (*self.base.event)) }
   }
 
-  pub fn owner(&self) -> xproto::Window {
+  pub fn owner(&mut self) -> xproto::Window {
     unsafe { accessor!(owner -> xproto::Window, (*self.base.event)) }
   }
 
-  pub fn selection(&self) -> xproto::Atom {
+  pub fn selection(&mut self) -> xproto::Atom {
     unsafe { accessor!(selection -> xproto::Atom, (*self.base.event)) }
   }
 
-  pub fn timestamp(&self) -> xproto::Timestamp {
+  pub fn timestamp(&mut self) -> xproto::Timestamp {
     unsafe { accessor!(timestamp -> xproto::Timestamp, (*self.base.event)) }
   }
 
-  pub fn selection_timestamp(&self) -> xproto::Timestamp {
+  pub fn selection_timestamp(&mut self) -> xproto::Timestamp {
     unsafe { accessor!(selection_timestamp -> xproto::Timestamp, (*self.base.event)) }
   }
 
@@ -275,23 +275,23 @@ pub fn SelectSelectionInput<'r> (c : &'r Connection,
 }
 
 impl CursorNotifyEvent {
-  pub fn subtype(&self) -> u8 {
+  pub fn subtype(&mut self) -> u8 {
     unsafe { accessor!(subtype -> u8, (*self.base.event)) }
   }
 
-  pub fn window(&self) -> xproto::Window {
+  pub fn window(&mut self) -> xproto::Window {
     unsafe { accessor!(window -> xproto::Window, (*self.base.event)) }
   }
 
-  pub fn cursor_serial(&self) -> u32 {
+  pub fn cursor_serial(&mut self) -> u32 {
     unsafe { accessor!(cursor_serial -> u32, (*self.base.event)) }
   }
 
-  pub fn timestamp(&self) -> xproto::Timestamp {
+  pub fn timestamp(&mut self) -> xproto::Timestamp {
     unsafe { accessor!(timestamp -> xproto::Timestamp, (*self.base.event)) }
   }
 
-  pub fn name(&self) -> xproto::Atom {
+  pub fn name(&mut self) -> xproto::Atom {
     unsafe { accessor!(name -> xproto::Atom, (*self.base.event)) }
   }
 
@@ -347,31 +347,31 @@ pub fn GetCursorImageUnchecked<'r> (c : &'r Connection) -> GetCursorImageCookie<
 }
 
 impl GetCursorImageReply {
-  pub fn x(&self) -> i16 {
+  pub fn x(&mut self) -> i16 {
     unsafe { accessor!(x -> i16, (*self.base.reply)) }
   }
 
-  pub fn y(&self) -> i16 {
+  pub fn y(&mut self) -> i16 {
     unsafe { accessor!(y -> i16, (*self.base.reply)) }
   }
 
-  pub fn height(&self) -> u16 {
+  pub fn height(&mut self) -> u16 {
     unsafe { accessor!(height -> u16, (*self.base.reply)) }
   }
 
-  pub fn xhot(&self) -> u16 {
+  pub fn xhot(&mut self) -> u16 {
     unsafe { accessor!(xhot -> u16, (*self.base.reply)) }
   }
 
-  pub fn yhot(&self) -> u16 {
+  pub fn yhot(&mut self) -> u16 {
     unsafe { accessor!(yhot -> u16, (*self.base.reply)) }
   }
 
-  pub fn cursor_serial(&self) -> u32 {
+  pub fn cursor_serial(&mut self) -> u32 {
     unsafe { accessor!(cursor_serial -> u32, (*self.base.reply)) }
   }
 
-  pub fn cursor_image(&self) -> Vec<u32> {
+  pub fn cursor_image(&mut self) -> Vec<u32> {
     unsafe { accessor!(u32, xcb_xfixes_get_cursor_image_cursor_image_length, xcb_xfixes_get_cursor_image_cursor_image, (*self.base.reply)) }
   }
 
@@ -398,7 +398,7 @@ pub fn CreateRegionChecked<'r> (c : &'r Connection,
                             rectangles : &[xproto::Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = rectangles.as_mut_ptr();
+    let rectangles_ptr = rectangles.as_ptr();
     let cookie = xcb_xfixes_create_region_checked(c.get_raw_conn(),
         region as region, //1
         rectangles_len as u32, //2
@@ -411,7 +411,7 @@ pub fn CreateRegion<'r> (c : &'r Connection,
                      rectangles : &[xproto::Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = rectangles.as_mut_ptr();
+    let rectangles_ptr = rectangles.as_ptr();
     let cookie = xcb_xfixes_create_region(c.get_raw_conn(),
         region as region, //1
         rectangles_len as u32, //2
@@ -524,7 +524,7 @@ pub fn SetRegionChecked<'r> (c : &'r Connection,
                          rectangles : &[xproto::Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = rectangles.as_mut_ptr();
+    let rectangles_ptr = rectangles.as_ptr();
     let cookie = xcb_xfixes_set_region_checked(c.get_raw_conn(),
         region as region, //1
         rectangles_len as u32, //2
@@ -537,7 +537,7 @@ pub fn SetRegion<'r> (c : &'r Connection,
                   rectangles : &[xproto::Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = rectangles.as_mut_ptr();
+    let rectangles_ptr = rectangles.as_ptr();
     let cookie = xcb_xfixes_set_region(c.get_raw_conn(),
         region as region, //1
         rectangles_len as u32, //2
@@ -728,7 +728,7 @@ impl FetchRegionReply {
   pub fn extents(&self) -> xproto::Rectangle {
     unsafe { mem::transmute((*self.base.reply).extents) }
   }
-  pub fn rectangles(&self) -> xproto::RectangleIterator {
+  pub fn rectangles(&mut self) -> xproto::RectangleIterator {
     unsafe { accessor!(xproto::RectangleIterator, xcb_xfixes_fetch_region_rectangles_iterator, (*self.base.reply)) }
   }
 
@@ -829,7 +829,7 @@ pub fn SetCursorNameChecked<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mut_ptr();
+    let name_ptr = name.as_ptr();
     let cookie = xcb_xfixes_set_cursor_name_checked(c.get_raw_conn(),
         cursor as ffi::xproto::cursor, //1
         name_len as u16, //2
@@ -843,7 +843,7 @@ pub fn SetCursorName<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mut_ptr();
+    let name_ptr = name.as_ptr();
     let cookie = xcb_xfixes_set_cursor_name(c.get_raw_conn(),
         cursor as ffi::xproto::cursor, //1
         name_len as u16, //2
@@ -871,11 +871,11 @@ pub fn GetCursorNameUnchecked<'r> (c : &'r Connection,
 }
 
 impl GetCursorNameReply {
-  pub fn atom(&self) -> xproto::Atom {
+  pub fn atom(&mut self) -> xproto::Atom {
     unsafe { accessor!(atom -> xproto::Atom, (*self.base.reply)) }
   }
 
-  pub fn name(&self) -> String {
+  pub fn name(&mut self) -> String {
     unsafe { accessor!(str, xcb_xfixes_get_cursor_name_name_length, xcb_xfixes_get_cursor_name_name, (*self.base.reply)) }
   }
 
@@ -898,39 +898,39 @@ pub fn GetCursorImageAndNameUnchecked<'r> (c : &'r Connection) -> GetCursorImage
 }
 
 impl GetCursorImageAndNameReply {
-  pub fn x(&self) -> i16 {
+  pub fn x(&mut self) -> i16 {
     unsafe { accessor!(x -> i16, (*self.base.reply)) }
   }
 
-  pub fn y(&self) -> i16 {
+  pub fn y(&mut self) -> i16 {
     unsafe { accessor!(y -> i16, (*self.base.reply)) }
   }
 
-  pub fn height(&self) -> u16 {
+  pub fn height(&mut self) -> u16 {
     unsafe { accessor!(height -> u16, (*self.base.reply)) }
   }
 
-  pub fn xhot(&self) -> u16 {
+  pub fn xhot(&mut self) -> u16 {
     unsafe { accessor!(xhot -> u16, (*self.base.reply)) }
   }
 
-  pub fn yhot(&self) -> u16 {
+  pub fn yhot(&mut self) -> u16 {
     unsafe { accessor!(yhot -> u16, (*self.base.reply)) }
   }
 
-  pub fn cursor_serial(&self) -> u32 {
+  pub fn cursor_serial(&mut self) -> u32 {
     unsafe { accessor!(cursor_serial -> u32, (*self.base.reply)) }
   }
 
-  pub fn cursor_atom(&self) -> xproto::Atom {
+  pub fn cursor_atom(&mut self) -> xproto::Atom {
     unsafe { accessor!(cursor_atom -> xproto::Atom, (*self.base.reply)) }
   }
 
-  pub fn name(&self) -> String {
+  pub fn name(&mut self) -> String {
     unsafe { accessor!(str, xcb_xfixes_get_cursor_image_and_name_name_length, xcb_xfixes_get_cursor_image_and_name_name, (*self.base.reply)) }
   }
 
-  pub fn cursor_image(&self) -> Vec<u32> {
+  pub fn cursor_image(&mut self) -> Vec<u32> {
     unsafe { accessor!(u32, xcb_xfixes_get_cursor_image_and_name_cursor_image_length, xcb_xfixes_get_cursor_image_and_name_cursor_image, (*self.base.reply)) }
   }
 
@@ -963,7 +963,7 @@ pub fn ChangeCursorByNameChecked<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mut_ptr();
+    let name_ptr = name.as_ptr();
     let cookie = xcb_xfixes_change_cursor_by_name_checked(c.get_raw_conn(),
         src as ffi::xproto::cursor, //1
         name_len as u16, //2
@@ -977,7 +977,7 @@ pub fn ChangeCursorByName<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mut_ptr();
+    let name_ptr = name.as_ptr();
     let cookie = xcb_xfixes_change_cursor_by_name(c.get_raw_conn(),
         src as ffi::xproto::cursor, //1
         name_len as u16, //2

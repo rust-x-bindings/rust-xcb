@@ -120,7 +120,7 @@ impl<'s> Connection {
     #[inline]
     pub fn generate_id<T>(&self) -> T {
         unsafe {
-            mem::transmute(ffi::base::xcb_generate_id(self.c))
+            *(ffi::base::xcb_generate_id(self.c) as *mut T)
         }
     }
 
@@ -143,7 +143,7 @@ impl<'s> Connection {
 
     #[inline]
     pub fn connect() -> (Connection, int) {
-        let screen : c_int = 0;
+        let mut screen : c_int = 0;
         unsafe {
             let conn = ffi::base::xcb_connect(ptr::mut_null(), &mut screen);
             if conn.is_null() {
@@ -157,7 +157,7 @@ impl<'s> Connection {
 
     #[inline]
     pub fn connect_to_display(display:&str) -> Option<(Connection, int)> {
-        let screen : c_int = 0;
+        let mut screen : c_int = 0;
         unsafe {
             let conn = {
 		let s = display.as_ptr();
@@ -174,7 +174,7 @@ impl<'s> Connection {
 
     #[inline]
     pub fn connect_with_auth(display:&str, auth_info: &AuthInfo) -> Option<(Connection, int)> {
-        let screen : c_int = 0;
+        let mut screen : c_int = 0;
         unsafe {
             let conn = {
 		let s = display.as_ptr();
@@ -322,8 +322,8 @@ impl<T> EventUtil for Event<T> {
     }
 }
 
-pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &[(T,L)]) -> (T, Vec<L>) {
-    bf.sort_by(|a,b| {
+pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &mut [(T,L)]) -> (T, Vec<L>) {    ;
+	bf.sort_by(|a,b| {
         let &(a, _) = a;
         let &(b, _) = b;
         if a < b { Less } else if a > b { Greater } else { Equal }       

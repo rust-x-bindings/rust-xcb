@@ -74,11 +74,11 @@ pub fn QueryVersionUnchecked<'r> (c : &'r Connection,
 }
 
 impl QueryVersionReply {
-  pub fn major_version(&self) -> u32 {
+  pub fn major_version(&mut self) -> u32 {
     unsafe { accessor!(major_version -> u32, (*self.base.reply)) }
   }
 
-  pub fn minor_version(&self) -> u32 {
+  pub fn minor_version(&mut self) -> u32 {
     unsafe { accessor!(minor_version -> u32, (*self.base.reply)) }
   }
 
@@ -223,7 +223,7 @@ pub fn GetOverlayWindowUnchecked<'r> (c : &'r Connection,
 }
 
 impl GetOverlayWindowReply {
-  pub fn overlay_win(&self) -> xproto::Window {
+  pub fn overlay_win(&mut self) -> xproto::Window {
     unsafe { accessor!(overlay_win -> xproto::Window, (*self.base.reply)) }
   }
 

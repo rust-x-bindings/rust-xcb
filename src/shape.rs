@@ -103,35 +103,35 @@ impl<'s, Kind> Iterator<&'s Kind> for KindIterator {
 
 
 impl NotifyEvent {
-  pub fn shape_kind(&self) -> Kind {
+  pub fn shape_kind(&mut self) -> Kind {
     unsafe { accessor!(shape_kind -> Kind, (*self.base.event)) }
   }
 
-  pub fn affected_window(&self) -> xproto::Window {
+  pub fn affected_window(&mut self) -> xproto::Window {
     unsafe { accessor!(affected_window -> xproto::Window, (*self.base.event)) }
   }
 
-  pub fn extents_x(&self) -> i16 {
+  pub fn extents_x(&mut self) -> i16 {
     unsafe { accessor!(extents_x -> i16, (*self.base.event)) }
   }
 
-  pub fn extents_y(&self) -> i16 {
+  pub fn extents_y(&mut self) -> i16 {
     unsafe { accessor!(extents_y -> i16, (*self.base.event)) }
   }
 
-  pub fn extents_width(&self) -> u16 {
+  pub fn extents_width(&mut self) -> u16 {
     unsafe { accessor!(extents_width -> u16, (*self.base.event)) }
   }
 
-  pub fn extents_height(&self) -> u16 {
+  pub fn extents_height(&mut self) -> u16 {
     unsafe { accessor!(extents_height -> u16, (*self.base.event)) }
   }
 
-  pub fn server_time(&self) -> xproto::Timestamp {
+  pub fn server_time(&mut self) -> xproto::Timestamp {
     unsafe { accessor!(server_time -> xproto::Timestamp, (*self.base.event)) }
   }
 
-  pub fn shaped(&self) -> u8 {
+  pub fn shaped(&mut self) -> u8 {
     unsafe { accessor!(shaped -> u8, (*self.base.event)) }
   }
 
@@ -171,11 +171,11 @@ pub fn QueryVersionUnchecked<'r> (c : &'r Connection) -> QueryVersionCookie<'r> 
 }
 
 impl QueryVersionReply {
-  pub fn major_version(&self) -> u16 {
+  pub fn major_version(&mut self) -> u16 {
     unsafe { accessor!(major_version -> u16, (*self.base.reply)) }
   }
 
-  pub fn minor_version(&self) -> u16 {
+  pub fn minor_version(&mut self) -> u16 {
     unsafe { accessor!(minor_version -> u16, (*self.base.reply)) }
   }
 
@@ -192,7 +192,7 @@ pub fn RectanglesChecked<'r> (c : &'r Connection,
                           rectangles : &[xproto::Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = rectangles.as_mut_ptr();
+    let rectangles_ptr = rectangles.as_ptr();
     let cookie = xcb_shape_rectangles_checked(c.get_raw_conn(),
         operation as op, //1
         destination_kind as kind, //2
@@ -215,7 +215,7 @@ pub fn Rectangles<'r> (c : &'r Connection,
                    rectangles : &[xproto::Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = rectangles.as_mut_ptr();
+    let rectangles_ptr = rectangles.as_ptr();
     let cookie = xcb_shape_rectangles(c.get_raw_conn(),
         operation as op, //1
         destination_kind as kind, //2
@@ -350,43 +350,43 @@ pub fn QueryExtentsUnchecked<'r> (c : &'r Connection,
 }
 
 impl QueryExtentsReply {
-  pub fn bounding_shaped(&self) -> u8 {
+  pub fn bounding_shaped(&mut self) -> u8 {
     unsafe { accessor!(bounding_shaped -> u8, (*self.base.reply)) }
   }
 
-  pub fn clip_shaped(&self) -> u8 {
+  pub fn clip_shaped(&mut self) -> u8 {
     unsafe { accessor!(clip_shaped -> u8, (*self.base.reply)) }
   }
 
-  pub fn bounding_shape_extents_x(&self) -> i16 {
+  pub fn bounding_shape_extents_x(&mut self) -> i16 {
     unsafe { accessor!(bounding_shape_extents_x -> i16, (*self.base.reply)) }
   }
 
-  pub fn bounding_shape_extents_y(&self) -> i16 {
+  pub fn bounding_shape_extents_y(&mut self) -> i16 {
     unsafe { accessor!(bounding_shape_extents_y -> i16, (*self.base.reply)) }
   }
 
-  pub fn bounding_shape_extents_width(&self) -> u16 {
+  pub fn bounding_shape_extents_width(&mut self) -> u16 {
     unsafe { accessor!(bounding_shape_extents_width -> u16, (*self.base.reply)) }
   }
 
-  pub fn bounding_shape_extents_height(&self) -> u16 {
+  pub fn bounding_shape_extents_height(&mut self) -> u16 {
     unsafe { accessor!(bounding_shape_extents_height -> u16, (*self.base.reply)) }
   }
 
-  pub fn clip_shape_extents_x(&self) -> i16 {
+  pub fn clip_shape_extents_x(&mut self) -> i16 {
     unsafe { accessor!(clip_shape_extents_x -> i16, (*self.base.reply)) }
   }
 
-  pub fn clip_shape_extents_y(&self) -> i16 {
+  pub fn clip_shape_extents_y(&mut self) -> i16 {
     unsafe { accessor!(clip_shape_extents_y -> i16, (*self.base.reply)) }
   }
 
-  pub fn clip_shape_extents_width(&self) -> u16 {
+  pub fn clip_shape_extents_width(&mut self) -> u16 {
     unsafe { accessor!(clip_shape_extents_width -> u16, (*self.base.reply)) }
   }
 
-  pub fn clip_shape_extents_height(&self) -> u16 {
+  pub fn clip_shape_extents_height(&mut self) -> u16 {
     unsafe { accessor!(clip_shape_extents_height -> u16, (*self.base.reply)) }
   }
 
@@ -431,7 +431,7 @@ pub fn InputSelectedUnchecked<'r> (c : &'r Connection,
 }
 
 impl InputSelectedReply {
-  pub fn enabled(&self) -> u8 {
+  pub fn enabled(&mut self) -> u8 {
     unsafe { accessor!(enabled -> u8, (*self.base.reply)) }
   }
 
@@ -462,11 +462,11 @@ pub fn GetRectanglesUnchecked<'r> (c : &'r Connection,
 }
 
 impl GetRectanglesReply {
-  pub fn ordering(&self) -> u8 {
+  pub fn ordering(&mut self) -> u8 {
     unsafe { accessor!(ordering -> u8, (*self.base.reply)) }
   }
 
-  pub fn rectangles(&self) -> xproto::RectangleIterator {
+  pub fn rectangles(&mut self) -> xproto::RectangleIterator {
     unsafe { accessor!(xproto::RectangleIterator, xcb_shape_get_rectangles_rectangles_iterator, (*self.base.reply)) }
   }
 

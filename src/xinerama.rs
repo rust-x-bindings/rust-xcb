@@ -58,19 +58,19 @@ pub struct  QueryScreensCookie<'s> { pub base : base::Cookie<'s, query_screens_c
 pub static XCB_XINERAMA_QUERY_SCREENS : u8 = 5;
 
 impl ScreenInfo {
-  pub fn x_org(&self) -> i16 {
+  pub fn x_org(&mut self) -> i16 {
     unsafe { accessor!(x_org -> i16, self.base.strct) }
   }
 
-  pub fn y_org(&self) -> i16 {
+  pub fn y_org(&mut self) -> i16 {
     unsafe { accessor!(y_org -> i16, self.base.strct) }
   }
 
-  pub fn width(&self) -> u16 {
+  pub fn width(&mut self) -> u16 {
     unsafe { accessor!(width -> u16, self.base.strct) }
   }
 
-  pub fn height(&self) -> u16 {
+  pub fn height(&mut self) -> u16 {
     unsafe { accessor!(height -> u16, self.base.strct) }
   }
 
@@ -110,11 +110,11 @@ pub fn QueryVersionUnchecked<'r> (c : &'r Connection,
 }
 
 impl QueryVersionReply {
-  pub fn major(&self) -> u16 {
+  pub fn major(&mut self) -> u16 {
     unsafe { accessor!(major -> u16, (*self.base.reply)) }
   }
 
-  pub fn minor(&self) -> u16 {
+  pub fn minor(&mut self) -> u16 {
     unsafe { accessor!(minor -> u16, (*self.base.reply)) }
   }
 
@@ -139,11 +139,11 @@ pub fn GetStateUnchecked<'r> (c : &'r Connection,
 }
 
 impl GetStateReply {
-  pub fn state(&self) -> u8 {
+  pub fn state(&mut self) -> u8 {
     unsafe { accessor!(state -> u8, (*self.base.reply)) }
   }
 
-  pub fn window(&self) -> xproto::Window {
+  pub fn window(&mut self) -> xproto::Window {
     unsafe { accessor!(window -> xproto::Window, (*self.base.reply)) }
   }
 
@@ -168,11 +168,11 @@ pub fn GetScreenCountUnchecked<'r> (c : &'r Connection,
 }
 
 impl GetScreenCountReply {
-  pub fn screen_count(&self) -> u8 {
+  pub fn screen_count(&mut self) -> u8 {
     unsafe { accessor!(screen_count -> u8, (*self.base.reply)) }
   }
 
-  pub fn window(&self) -> xproto::Window {
+  pub fn window(&mut self) -> xproto::Window {
     unsafe { accessor!(window -> xproto::Window, (*self.base.reply)) }
   }
 
@@ -201,19 +201,19 @@ pub fn GetScreenSizeUnchecked<'r> (c : &'r Connection,
 }
 
 impl GetScreenSizeReply {
-  pub fn width(&self) -> u32 {
+  pub fn width(&mut self) -> u32 {
     unsafe { accessor!(width -> u32, (*self.base.reply)) }
   }
 
-  pub fn height(&self) -> u32 {
+  pub fn height(&mut self) -> u32 {
     unsafe { accessor!(height -> u32, (*self.base.reply)) }
   }
 
-  pub fn window(&self) -> xproto::Window {
+  pub fn window(&mut self) -> xproto::Window {
     unsafe { accessor!(window -> xproto::Window, (*self.base.reply)) }
   }
 
-  pub fn screen(&self) -> u32 {
+  pub fn screen(&mut self) -> u32 {
     unsafe { accessor!(screen -> u32, (*self.base.reply)) }
   }
 
@@ -234,7 +234,7 @@ pub fn IsActiveUnchecked<'r> (c : &'r Connection) -> IsActiveCookie<'r> {
 }
 
 impl IsActiveReply {
-  pub fn state(&self) -> u32 {
+  pub fn state(&mut self) -> u32 {
     unsafe { accessor!(state -> u32, (*self.base.reply)) }
   }
 
@@ -257,7 +257,7 @@ pub fn QueryScreensUnchecked<'r> (c : &'r Connection) -> QueryScreensCookie<'r> 
 }
 
 impl QueryScreensReply {
-  pub fn screen_info(&self) -> ScreenInfoIterator {
+  pub fn screen_info(&mut self) -> ScreenInfoIterator {
     unsafe { accessor!(ScreenInfoIterator, xcb_xinerama_query_screens_screen_info_iterator, (*self.base.reply)) }
   }
 

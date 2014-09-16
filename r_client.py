@@ -1063,7 +1063,7 @@ def _c_accessors(self, name, base):
 def _r_accessor(self,field):
     _r_setlevel(1)
     if field.type.is_simple:
-        _r('  pub fn %s(&self) -> %s {', field.c_field_name, field.r_field_type)
+        _r('  pub fn %s(&mut self) -> %s {', field.c_field_name, field.r_field_type)
         _r('    unsafe { accessor!(%s -> %s, %s) }', field.c_field_name, field.r_field_type,
                                             self.wrap_field_name)
         _r('  }\n')
@@ -1076,11 +1076,11 @@ def _r_accessor(self,field):
             else:
                 rty = 'Vec<'+fty+'>'
 
-            _r('  pub fn %s(&self) -> %s {', field.c_field_name, rty)
+            _r('  pub fn %s(&mut self) -> %s {', field.c_field_name, rty)
             _r('    unsafe { accessor!(%s, %s, %s, %s) }', fty, field.c_length_name, field.c_accessor_name,
                                             self.wrap_field_name)
         else:
-            _r('  pub fn %s(&self) -> %s {', field.c_field_name, field.r_iterator_type)
+            _r('  pub fn %s(&mut self) -> %s {', field.c_field_name, field.r_iterator_type)
             _r('    unsafe { accessor!(%s, %s, %s) }', field.r_iterator_type, field.c_iterator_name,
                                             self.wrap_field_name)
         _r('  }\n')
@@ -1422,9 +1422,10 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
 
         if fty.is_list:
             if fty.expr.bitfield:
+                #mk_params.append("let mut %s_copy = %s.to_owned();" % (field.c_field_name, self.c_field_name))
                 mk_params.append("let (%s_mask, %s_vec) = pack_bitfield(%s);" %
                         (field.c_field_name, field.c_field_name, field.c_field_name))
-                mk_params.append("let %s_ptr = %s_vec.as_mut_ptr();" %
+                mk_params.append("let %s_ptr = %s_vec.as_ptr();" %
                         (field.c_field_name, field.c_field_name))
 
                 call_params.append((field.idx-1,'%s_mask as %s' %(field.c_field_name,
@@ -1448,7 +1449,7 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
                     mk_params.append("let %s_len = %s.len();" % (field.c_field_name, field.c_field_name))
                     call_params.append((field.lf.idx, '%s_len as %s' % (field.c_field_name,lfty)))
 
-                mk_params.append("let %s_ptr = %s.as_mut_ptr();" % (field.c_field_name,
+                mk_params.append("let %s_ptr = %s.as_ptr();" % (field.c_field_name,
                     field.c_field_name))
                 call_params.append((field.idx, '%s_ptr as *mut %s' % (field.c_field_name,
                     c_field_const_type)))

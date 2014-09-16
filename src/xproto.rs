@@ -1523,11 +1523,11 @@ pub static XCB_GET_MODIFIER_MAPPING : u8 = 119;
 pub static XCB_NO_OPERATION : u8 = 127;
 
 impl Char2b {
-  pub fn byte1(&self) -> u8 {
+  pub fn byte1(&mut self) -> u8 {
     unsafe { accessor!(byte1 -> u8, self.base.strct) }
   }
 
-  pub fn byte2(&self) -> u8 {
+  pub fn byte2(&mut self) -> u8 {
     unsafe { accessor!(byte2 -> u8, self.base.strct) }
   }
 
@@ -1759,11 +1759,11 @@ pub struct Point {pub base : base::Struct<point> }
 
 
 impl Point {
-  pub fn x(&self) -> i16 {
+  pub fn x(&mut self) -> i16 {
     unsafe { accessor!(x -> i16, self.base.strct) }
   }
 
-  pub fn y(&self) -> i16 {
+  pub fn y(&mut self) -> i16 {
     unsafe { accessor!(y -> i16, self.base.strct) }
   }
 
@@ -1785,19 +1785,19 @@ pub struct Rectangle {pub base : base::Struct<rectangle> }
 
 
 impl Rectangle {
-  pub fn x(&self) -> i16 {
+  pub fn x(&mut self) -> i16 {
     unsafe { accessor!(x -> i16, self.base.strct) }
   }
 
-  pub fn y(&self) -> i16 {
+  pub fn y(&mut self) -> i16 {
     unsafe { accessor!(y -> i16, self.base.strct) }
   }
 
-  pub fn width(&self) -> u16 {
+  pub fn width(&mut self) -> u16 {
     unsafe { accessor!(width -> u16, self.base.strct) }
   }
 
-  pub fn height(&self) -> u16 {
+  pub fn height(&mut self) -> u16 {
     unsafe { accessor!(height -> u16, self.base.strct) }
   }
 
@@ -1819,27 +1819,27 @@ pub struct Arc {pub base : base::Struct<arc> }
 
 
 impl Arc {
-  pub fn x(&self) -> i16 {
+  pub fn x(&mut self) -> i16 {
     unsafe { accessor!(x -> i16, self.base.strct) }
   }
 
-  pub fn y(&self) -> i16 {
+  pub fn y(&mut self) -> i16 {
     unsafe { accessor!(y -> i16, self.base.strct) }
   }
 
-  pub fn width(&self) -> u16 {
+  pub fn width(&mut self) -> u16 {
     unsafe { accessor!(width -> u16, self.base.strct) }
   }
 
-  pub fn height(&self) -> u16 {
+  pub fn height(&mut self) -> u16 {
     unsafe { accessor!(height -> u16, self.base.strct) }
   }
 
-  pub fn angle1(&self) -> i16 {
+  pub fn angle1(&mut self) -> i16 {
     unsafe { accessor!(angle1 -> i16, self.base.strct) }
   }
 
-  pub fn angle2(&self) -> i16 {
+  pub fn angle2(&mut self) -> i16 {
     unsafe { accessor!(angle2 -> i16, self.base.strct) }
   }
 
@@ -1861,15 +1861,15 @@ pub struct Format {pub base : base::Struct<format> }
 
 
 impl Format {
-  pub fn depth(&self) -> u8 {
+  pub fn depth(&mut self) -> u8 {
     unsafe { accessor!(depth -> u8, self.base.strct) }
   }
 
-  pub fn bits_per_pixel(&self) -> u8 {
+  pub fn bits_per_pixel(&mut self) -> u8 {
     unsafe { accessor!(bits_per_pixel -> u8, self.base.strct) }
   }
 
-  pub fn scanline_pad(&self) -> u8 {
+  pub fn scanline_pad(&mut self) -> u8 {
     unsafe { accessor!(scanline_pad -> u8, self.base.strct) }
   }
 
@@ -1889,31 +1889,31 @@ impl<'s, Format> Iterator<&'s Format> for FormatIterator {
 
 
 impl Visualtype {
-  pub fn visual_id(&self) -> Visualid {
+  pub fn visual_id(&mut self) -> Visualid {
     unsafe { accessor!(visual_id -> Visualid, self.base.strct) }
   }
 
-  pub fn class(&self) -> u8 {
+  pub fn class(&mut self) -> u8 {
     unsafe { accessor!(class -> u8, self.base.strct) }
   }
 
-  pub fn bits_per_rgb_value(&self) -> u8 {
+  pub fn bits_per_rgb_value(&mut self) -> u8 {
     unsafe { accessor!(bits_per_rgb_value -> u8, self.base.strct) }
   }
 
-  pub fn colormap_entries(&self) -> u16 {
+  pub fn colormap_entries(&mut self) -> u16 {
     unsafe { accessor!(colormap_entries -> u16, self.base.strct) }
   }
 
-  pub fn red_mask(&self) -> u32 {
+  pub fn red_mask(&mut self) -> u32 {
     unsafe { accessor!(red_mask -> u32, self.base.strct) }
   }
 
-  pub fn green_mask(&self) -> u32 {
+  pub fn green_mask(&mut self) -> u32 {
     unsafe { accessor!(green_mask -> u32, self.base.strct) }
   }
 
-  pub fn blue_mask(&self) -> u32 {
+  pub fn blue_mask(&mut self) -> u32 {
     unsafe { accessor!(blue_mask -> u32, self.base.strct) }
   }
 
@@ -1935,11 +1935,11 @@ pub struct Depth {pub base : base::Struct<depth> }
 
 
 impl Depth {
-  pub fn depth(&self) -> u8 {
+  pub fn depth(&mut self) -> u8 {
     unsafe { accessor!(depth -> u8, self.base.strct) }
   }
 
-  pub fn visuals(&self) -> VisualtypeIterator {
+  pub fn visuals(&mut self) -> VisualtypeIterator {
     unsafe { accessor!(VisualtypeIterator, xcb_depth_visuals_iterator, self.base.strct) }
   }
 
@@ -1961,67 +1961,67 @@ pub struct Screen {pub base : base::Struct<screen> }
 
 
 impl Screen {
-  pub fn root(&self) -> Window {
+  pub fn root(&mut self) -> Window {
     unsafe { accessor!(root -> Window, self.base.strct) }
   }
 
-  pub fn default_colormap(&self) -> Colormap {
+  pub fn default_colormap(&mut self) -> Colormap {
     unsafe { accessor!(default_colormap -> Colormap, self.base.strct) }
   }
 
-  pub fn white_pixel(&self) -> u32 {
+  pub fn white_pixel(&mut self) -> u32 {
     unsafe { accessor!(white_pixel -> u32, self.base.strct) }
   }
 
-  pub fn black_pixel(&self) -> u32 {
+  pub fn black_pixel(&mut self) -> u32 {
     unsafe { accessor!(black_pixel -> u32, self.base.strct) }
   }
 
-  pub fn current_input_masks(&self) -> u32 {
+  pub fn current_input_masks(&mut self) -> u32 {
     unsafe { accessor!(current_input_masks -> u32, self.base.strct) }
   }
 
-  pub fn width_in_pixels(&self) -> u16 {
+  pub fn width_in_pixels(&mut self) -> u16 {
     unsafe { accessor!(width_in_pixels -> u16, self.base.strct) }
   }
 
-  pub fn height_in_pixels(&self) -> u16 {
+  pub fn height_in_pixels(&mut self) -> u16 {
     unsafe { accessor!(height_in_pixels -> u16, self.base.strct) }
   }
 
-  pub fn width_in_millimeters(&self) -> u16 {
+  pub fn width_in_millimeters(&mut self) -> u16 {
     unsafe { accessor!(width_in_millimeters -> u16, self.base.strct) }
   }
 
-  pub fn height_in_millimeters(&self) -> u16 {
+  pub fn height_in_millimeters(&mut self) -> u16 {
     unsafe { accessor!(height_in_millimeters -> u16, self.base.strct) }
   }
 
-  pub fn min_installed_maps(&self) -> u16 {
+  pub fn min_installed_maps(&mut self) -> u16 {
     unsafe { accessor!(min_installed_maps -> u16, self.base.strct) }
   }
 
-  pub fn max_installed_maps(&self) -> u16 {
+  pub fn max_installed_maps(&mut self) -> u16 {
     unsafe { accessor!(max_installed_maps -> u16, self.base.strct) }
   }
 
-  pub fn root_visual(&self) -> Visualid {
+  pub fn root_visual(&mut self) -> Visualid {
     unsafe { accessor!(root_visual -> Visualid, self.base.strct) }
   }
 
-  pub fn backing_stores(&self) -> u8 {
+  pub fn backing_stores(&mut self) -> u8 {
     unsafe { accessor!(backing_stores -> u8, self.base.strct) }
   }
 
-  pub fn save_unders(&self) -> u8 {
+  pub fn save_unders(&mut self) -> u8 {
     unsafe { accessor!(save_unders -> u8, self.base.strct) }
   }
 
-  pub fn root_depth(&self) -> u8 {
+  pub fn root_depth(&mut self) -> u8 {
     unsafe { accessor!(root_depth -> u8, self.base.strct) }
   }
 
-  pub fn allowed_depths(&self) -> DepthIterator {
+  pub fn allowed_depths(&mut self) -> DepthIterator {
     unsafe { accessor!(DepthIterator, xcb_screen_allowed_depths_iterator, self.base.strct) }
   }
 
@@ -2043,23 +2043,23 @@ pub struct SetupRequest {pub base : base::Struct<setup_request> }
 
 
 impl SetupRequest {
-  pub fn byte_order(&self) -> u8 {
+  pub fn byte_order(&mut self) -> u8 {
     unsafe { accessor!(byte_order -> u8, self.base.strct) }
   }
 
-  pub fn protocol_major_version(&self) -> u16 {
+  pub fn protocol_major_version(&mut self) -> u16 {
     unsafe { accessor!(protocol_major_version -> u16, self.base.strct) }
   }
 
-  pub fn protocol_minor_version(&self) -> u16 {
+  pub fn protocol_minor_version(&mut self) -> u16 {
     unsafe { accessor!(protocol_minor_version -> u16, self.base.strct) }
   }
 
-  pub fn authorization_protocol_name(&self) -> String {
+  pub fn authorization_protocol_name(&mut self) -> String {
     unsafe { accessor!(str, xcb_setup_request_authorization_protocol_name_length, xcb_setup_request_authorization_protocol_name, self.base.strct) }
   }
 
-  pub fn authorization_protocol_data(&self) -> String {
+  pub fn authorization_protocol_data(&mut self) -> String {
     unsafe { accessor!(str, xcb_setup_request_authorization_protocol_data_length, xcb_setup_request_authorization_protocol_data, self.base.strct) }
   }
 
@@ -2081,23 +2081,23 @@ pub struct SetupFailed {pub base : base::Struct<setup_failed> }
 
 
 impl SetupFailed {
-  pub fn status(&self) -> u8 {
+  pub fn status(&mut self) -> u8 {
     unsafe { accessor!(status -> u8, self.base.strct) }
   }
 
-  pub fn protocol_major_version(&self) -> u16 {
+  pub fn protocol_major_version(&mut self) -> u16 {
     unsafe { accessor!(protocol_major_version -> u16, self.base.strct) }
   }
 
-  pub fn protocol_minor_version(&self) -> u16 {
+  pub fn protocol_minor_version(&mut self) -> u16 {
     unsafe { accessor!(protocol_minor_version -> u16, self.base.strct) }
   }
 
-  pub fn length(&self) -> u16 {
+  pub fn length(&mut self) -> u16 {
     unsafe { accessor!(length -> u16, self.base.strct) }
   }
 
-  pub fn reason(&self) -> String {
+  pub fn reason(&mut self) -> String {
     unsafe { accessor!(str, xcb_setup_failed_reason_length, xcb_setup_failed_reason, self.base.strct) }
   }
 
@@ -2119,11 +2119,11 @@ pub struct SetupAuthenticate {pub base : base::Struct<setup_authenticate> }
 
 
 impl SetupAuthenticate {
-  pub fn status(&self) -> u8 {
+  pub fn status(&mut self) -> u8 {
     unsafe { accessor!(status -> u8, self.base.strct) }
   }
 
-  pub fn reason(&self) -> String {
+  pub fn reason(&mut self) -> String {
     unsafe { accessor!(str, xcb_setup_authenticate_reason_length, xcb_setup_authenticate_reason, self.base.strct) }
   }
 
@@ -2145,75 +2145,75 @@ pub struct Setup {pub base : base::Struct<setup> }
 
 
 impl Setup {
-  pub fn status(&self) -> u8 {
+  pub fn status(&mut self) -> u8 {
     unsafe { accessor!(status -> u8, self.base.strct) }
   }
 
-  pub fn protocol_major_version(&self) -> u16 {
+  pub fn protocol_major_version(&mut self) -> u16 {
     unsafe { accessor!(protocol_major_version -> u16, self.base.strct) }
   }
 
-  pub fn protocol_minor_version(&self) -> u16 {
+  pub fn protocol_minor_version(&mut self) -> u16 {
     unsafe { accessor!(protocol_minor_version -> u16, self.base.strct) }
   }
 
-  pub fn length(&self) -> u16 {
+  pub fn length(&mut self) -> u16 {
     unsafe { accessor!(length -> u16, self.base.strct) }
   }
 
-  pub fn release_number(&self) -> u32 {
+  pub fn release_number(&mut self) -> u32 {
     unsafe { accessor!(release_number -> u32, self.base.strct) }
   }
 
-  pub fn resource_id_base(&self) -> u32 {
+  pub fn resource_id_base(&mut self) -> u32 {
     unsafe { accessor!(resource_id_base -> u32, self.base.strct) }
   }
 
-  pub fn resource_id_mask(&self) -> u32 {
+  pub fn resource_id_mask(&mut self) -> u32 {
     unsafe { accessor!(resource_id_mask -> u32, self.base.strct) }
   }
 
-  pub fn motion_buffer_size(&self) -> u32 {
+  pub fn motion_buffer_size(&mut self) -> u32 {
     unsafe { accessor!(motion_buffer_size -> u32, self.base.strct) }
   }
 
-  pub fn maximum_request_length(&self) -> u16 {
+  pub fn maximum_request_length(&mut self) -> u16 {
     unsafe { accessor!(maximum_request_length -> u16, self.base.strct) }
   }
 
-  pub fn image_byte_order(&self) -> u8 {
+  pub fn image_byte_order(&mut self) -> u8 {
     unsafe { accessor!(image_byte_order -> u8, self.base.strct) }
   }
 
-  pub fn bitmap_format_bit_order(&self) -> u8 {
+  pub fn bitmap_format_bit_order(&mut self) -> u8 {
     unsafe { accessor!(bitmap_format_bit_order -> u8, self.base.strct) }
   }
 
-  pub fn bitmap_format_scanline_unit(&self) -> u8 {
+  pub fn bitmap_format_scanline_unit(&mut self) -> u8 {
     unsafe { accessor!(bitmap_format_scanline_unit -> u8, self.base.strct) }
   }
 
-  pub fn bitmap_format_scanline_pad(&self) -> u8 {
+  pub fn bitmap_format_scanline_pad(&mut self) -> u8 {
     unsafe { accessor!(bitmap_format_scanline_pad -> u8, self.base.strct) }
   }
 
-  pub fn min_keycode(&self) -> Keycode {
+  pub fn min_keycode(&mut self) -> Keycode {
     unsafe { accessor!(min_keycode -> Keycode, self.base.strct) }
   }
 
-  pub fn max_keycode(&self) -> Keycode {
+  pub fn max_keycode(&mut self) -> Keycode {
     unsafe { accessor!(max_keycode -> Keycode, self.base.strct) }
   }
 
-  pub fn vendor(&self) -> String {
+  pub fn vendor(&mut self) -> String {
     unsafe { accessor!(str, xcb_setup_vendor_length, xcb_setup_vendor, self.base.strct) }
   }
 
-  pub fn pixmap_formats(&self) -> FormatIterator {
+  pub fn pixmap_formats(&mut self) -> FormatIterator {
     unsafe { accessor!(FormatIterator, xcb_setup_pixmap_formats_iterator, self.base.strct) }
   }
 
-  pub fn roots(&self) -> ScreenIterator {
+  pub fn roots(&mut self) -> ScreenIterator {
     unsafe { accessor!(ScreenIterator, xcb_setup_roots_iterator, self.base.strct) }
   }
 
@@ -2233,47 +2233,47 @@ impl<'s, Setup> Iterator<&'s Setup> for SetupIterator {
 
 
 impl KeyPressEvent {
-  pub fn detail(&self) -> Keycode {
+  pub fn detail(&mut self) -> Keycode {
     unsafe { accessor!(detail -> Keycode, (*self.base.event)) }
   }
 
-  pub fn time(&self) -> Timestamp {
+  pub fn time(&mut self) -> Timestamp {
     unsafe { accessor!(time -> Timestamp, (*self.base.event)) }
   }
 
-  pub fn root(&self) -> Window {
+  pub fn root(&mut self) -> Window {
     unsafe { accessor!(root -> Window, (*self.base.event)) }
   }
 
-  pub fn event(&self) -> Window {
+  pub fn event(&mut self) -> Window {
     unsafe { accessor!(event -> Window, (*self.base.event)) }
   }
 
-  pub fn child(&self) -> Window {
+  pub fn child(&mut self) -> Window {
     unsafe { accessor!(child -> Window, (*self.base.event)) }
   }
 
-  pub fn root_x(&self) -> i16 {
+  pub fn root_x(&mut self) -> i16 {
     unsafe { accessor!(root_x -> i16, (*self.base.event)) }
   }
 
-  pub fn root_y(&self) -> i16 {
+  pub fn root_y(&mut self) -> i16 {
     unsafe { accessor!(root_y -> i16, (*self.base.event)) }
   }
 
-  pub fn event_x(&self) -> i16 {
+  pub fn event_x(&mut self) -> i16 {
     unsafe { accessor!(event_x -> i16, (*self.base.event)) }
   }
 
-  pub fn event_y(&self) -> i16 {
+  pub fn event_y(&mut self) -> i16 {
     unsafe { accessor!(event_y -> i16, (*self.base.event)) }
   }
 
-  pub fn state(&self) -> u16 {
+  pub fn state(&mut self) -> u16 {
     unsafe { accessor!(state -> u16, (*self.base.event)) }
   }
 
-  pub fn same_screen(&self) -> u8 {
+  pub fn same_screen(&mut self) -> u8 {
     unsafe { accessor!(same_screen -> u8, (*self.base.event)) }
   }
 
@@ -2307,47 +2307,47 @@ impl KeyPressEvent {
 }
 
 impl ButtonPressEvent {
-  pub fn detail(&self) -> Button {
+  pub fn detail(&mut self) -> Button {
     unsafe { accessor!(detail -> Button, (*self.base.event)) }
   }
 
-  pub fn time(&self) -> Timestamp {
+  pub fn time(&mut self) -> Timestamp {
     unsafe { accessor!(time -> Timestamp, (*self.base.event)) }
   }
 
-  pub fn root(&self) -> Window {
+  pub fn root(&mut self) -> Window {
     unsafe { accessor!(root -> Window, (*self.base.event)) }
   }
 
-  pub fn event(&self) -> Window {
+  pub fn event(&mut self) -> Window {
     unsafe { accessor!(event -> Window, (*self.base.event)) }
   }
 
-  pub fn child(&self) -> Window {
+  pub fn child(&mut self) -> Window {
     unsafe { accessor!(child -> Window, (*self.base.event)) }
   }
 
-  pub fn root_x(&self) -> i16 {
+  pub fn root_x(&mut self) -> i16 {
     unsafe { accessor!(root_x -> i16, (*self.base.event)) }
   }
 
-  pub fn root_y(&self) -> i16 {
+  pub fn root_y(&mut self) -> i16 {
     unsafe { accessor!(root_y -> i16, (*self.base.event)) }
   }
 
-  pub fn event_x(&self) -> i16 {
+  pub fn event_x(&mut self) -> i16 {
     unsafe { accessor!(event_x -> i16, (*self.base.event)) }
   }
 
-  pub fn event_y(&self) -> i16 {
+  pub fn event_y(&mut self) -> i16 {
     unsafe { accessor!(event_y -> i16, (*self.base.event)) }
   }
 
-  pub fn state(&self) -> u16 {
+  pub fn state(&mut self) -> u16 {
     unsafe { accessor!(state -> u16, (*self.base.event)) }
   }
 
-  pub fn same_screen(&self) -> u8 {
+  pub fn same_screen(&mut self) -> u8 {
     unsafe { accessor!(same_screen -> u8, (*self.base.event)) }
   }
 
@@ -2381,47 +2381,47 @@ impl ButtonPressEvent {
 }
 
 impl MotionNotifyEvent {
-  pub fn detail(&self) -> u8 {
+  pub fn detail(&mut self) -> u8 {
     unsafe { accessor!(detail -> u8, (*self.base.event)) }
   }
 
-  pub fn time(&self) -> Timestamp {
+  pub fn time(&mut self) -> Timestamp {
     unsafe { accessor!(time -> Timestamp, (*self.base.event)) }
   }
 
-  pub fn root(&self) -> Window {
+  pub fn root(&mut self) -> Window {
     unsafe { accessor!(root -> Window, (*self.base.event)) }
   }
 
-  pub fn event(&self) -> Window {
+  pub fn event(&mut self) -> Window {
     unsafe { accessor!(event -> Window, (*self.base.event)) }
   }
 
-  pub fn child(&self) -> Window {
+  pub fn child(&mut self) -> Window {
     unsafe { accessor!(child -> Window, (*self.base.event)) }
   }
 
-  pub fn root_x(&self) -> i16 {
+  pub fn root_x(&mut self) -> i16 {
     unsafe { accessor!(root_x -> i16, (*self.base.event)) }
   }
 
-  pub fn root_y(&self) -> i16 {
+  pub fn root_y(&mut self) -> i16 {
     unsafe { accessor!(root_y -> i16, (*self.base.event)) }
   }
 
-  pub fn event_x(&self) -> i16 {
+  pub fn event_x(&mut self) -> i16 {
     unsafe { accessor!(event_x -> i16, (*self.base.event)) }
   }
 
-  pub fn event_y(&self) -> i16 {
+  pub fn event_y(&mut self) -> i16 {
     unsafe { accessor!(event_y -> i16, (*self.base.event)) }
   }
 
-  pub fn state(&self) -> u16 {
+  pub fn state(&mut self) -> u16 {
     unsafe { accessor!(state -> u16, (*self.base.event)) }
   }
 
-  pub fn same_screen(&self) -> u8 {
+  pub fn same_screen(&mut self) -> u8 {
     unsafe { accessor!(same_screen -> u8, (*self.base.event)) }
   }
 
@@ -2455,51 +2455,51 @@ impl MotionNotifyEvent {
 }
 
 impl EnterNotifyEvent {
-  pub fn detail(&self) -> u8 {
+  pub fn detail(&mut self) -> u8 {
     unsafe { accessor!(detail -> u8, (*self.base.event)) }
   }
 
-  pub fn time(&self) -> Timestamp {
+  pub fn time(&mut self) -> Timestamp {
     unsafe { accessor!(time -> Timestamp, (*self.base.event)) }
   }
 
-  pub fn root(&self) -> Window {
+  pub fn root(&mut self) -> Window {
     unsafe { accessor!(root -> Window, (*self.base.event)) }
   }
 
-  pub fn event(&self) -> Window {
+  pub fn event(&mut self) -> Window {
     unsafe { accessor!(event -> Window, (*self.base.event)) }
   }
 
-  pub fn child(&self) -> Window {
+  pub fn child(&mut self) -> Window {
     unsafe { accessor!(child -> Window, (*self.base.event)) }
   }
 
-  pub fn root_x(&self) -> i16 {
+  pub fn root_x(&mut self) -> i16 {
     unsafe { accessor!(root_x -> i16, (*self.base.event)) }
   }
 
-  pub fn root_y(&self) -> i16 {
+  pub fn root_y(&mut self) -> i16 {
     unsafe { accessor!(root_y -> i16, (*self.base.event)) }
   }
 
-  pub fn event_x(&self) -> i16 {
+  pub fn event_x(&mut self) -> i16 {
     unsafe { accessor!(event_x -> i16, (*self.base.event)) }
   }
 
-  pub fn event_y(&self) -> i16 {
+  pub fn event_y(&mut self) -> i16 {
     unsafe { accessor!(event_y -> i16, (*self.base.event)) }
   }
 
-  pub fn state(&self) -> u16 {
+  pub fn state(&mut self) -> u16 {
     unsafe { accessor!(state -> u16, (*self.base.event)) }
   }
 
-  pub fn mode(&self) -> u8 {
+  pub fn mode(&mut self) -> u8 {
     unsafe { accessor!(mode -> u8, (*self.base.event)) }
   }
 
-  pub fn same_screen_focus(&self) -> u8 {
+  pub fn same_screen_focus(&mut self) -> u8 {
     unsafe { accessor!(same_screen_focus -> u8, (*self.base.event)) }
   }
 
@@ -2535,15 +2535,15 @@ impl EnterNotifyEvent {
 }
 
 impl FocusInEvent {
-  pub fn detail(&self) -> u8 {
+  pub fn detail(&mut self) -> u8 {
     unsafe { accessor!(detail -> u8, (*self.base.event)) }
   }
 
-  pub fn event(&self) -> Window {
+  pub fn event(&mut self) -> Window {
     unsafe { accessor!(event -> Window, (*self.base.event)) }
   }
 
-  pub fn mode(&self) -> u8 {
+  pub fn mode(&mut self) -> u8 {
     unsafe { accessor!(mode -> u8, (*self.base.event)) }
   }
 
@@ -2575,27 +2575,27 @@ impl KeymapNotifyEvent {
 }
 
 impl ExposeEvent {
-  pub fn window(&self) -> Window {
+  pub fn window(&mut self) -> Window {
     unsafe { accessor!(window -> Window, (*self.base.event)) }
   }
 
-  pub fn x(&self) -> u16 {
+  pub fn x(&mut self) -> u16 {
     unsafe { accessor!(x -> u16, (*self.base.event)) }
   }
 
-  pub fn y(&self) -> u16 {
+  pub fn y(&mut self) -> u16 {
     unsafe { accessor!(y -> u16, (*self.base.event)) }
   }
 
-  pub fn width(&self) -> u16 {
+  pub fn width(&mut self) -> u16 {
     unsafe { accessor!(width -> u16, (*self.base.event)) }
   }
 
-  pub fn height(&self) -> u16 {
+  pub fn height(&mut self) -> u16 {
     unsafe { accessor!(height -> u16, (*self.base.event)) }
   }
 
-  pub fn count(&self) -> u16 {
+  pub fn count(&mut self) -> u16 {
     unsafe { accessor!(count -> u16, (*self.base.event)) }
   }
 
@@ -2619,35 +2619,35 @@ impl ExposeEvent {
 }
 
 impl GraphicsExposureEvent {
-  pub fn drawable(&self) -> Drawable {
+  pub fn drawable(&mut self) -> Drawable {
     unsafe { accessor!(drawable -> Drawable, (*self.base.event)) }
   }
 
-  pub fn x(&self) -> u16 {
+  pub fn x(&mut self) -> u16 {
     unsafe { accessor!(x -> u16, (*self.base.event)) }
   }
 
-  pub fn y(&self) -> u16 {
+  pub fn y(&mut self) -> u16 {
     unsafe { accessor!(y -> u16, (*self.base.event)) }
   }
 
-  pub fn width(&self) -> u16 {
+  pub fn width(&mut self) -> u16 {
     unsafe { accessor!(width -> u16, (*self.base.event)) }
   }
 
-  pub fn height(&self) -> u16 {
+  pub fn height(&mut self) -> u16 {
     unsafe { accessor!(height -> u16, (*self.base.event)) }
   }
 
-  pub fn minor_opcode(&self) -> u16 {
+  pub fn minor_opcode(&mut self) -> u16 {
     unsafe { accessor!(minor_opcode -> u16, (*self.base.event)) }
   }
 
-  pub fn count(&self) -> u16 {
+  pub fn count(&mut self) -> u16 {
     unsafe { accessor!(count -> u16, (*self.base.event)) }
   }
 
-  pub fn major_opcode(&self) -> u8 {
+  pub fn major_opcode(&mut self) -> u8 {
     unsafe { accessor!(major_opcode -> u8, (*self.base.event)) }
   }
 
@@ -2675,15 +2675,15 @@ impl GraphicsExposureEvent {
 }
 
 impl NoExposureEvent {
-  pub fn drawable(&self) -> Drawable {
+  pub fn drawable(&mut self) -> Drawable {
     unsafe { accessor!(drawable -> Drawable, (*self.base.event)) }
   }
 
-  pub fn minor_opcode(&self) -> u16 {
+  pub fn minor_opcode(&mut self) -> u16 {
     unsafe { accessor!(minor_opcode -> u16, (*self.base.event)) }
   }
 
-  pub fn major_opcode(&self) -> u8 {
+  pub fn major_opcode(&mut self) -> u8 {
     unsafe { accessor!(major_opcode -> u8, (*self.base.event)) }
   }
 
@@ -2701,11 +2701,11 @@ impl NoExposureEvent {
 }
 
 impl VisibilityNotifyEvent {
-  pub fn window(&self) -> Window {
+  pub fn window(&mut self) -> Window {
     unsafe { accessor!(window -> Window, (*self.base.event)) }
   }
 
-  pub fn state(&self) -> u8 {
+  pub fn state(&mut self) -> u8 {
     unsafe { accessor!(state -> u8, (*self.base.event)) }
   }
 
@@ -2721,35 +2721,35 @@ impl VisibilityNotifyEvent {
 }
 
 impl CreateNotifyEvent {
-  pub fn parent(&self) -> Window {
+  pub fn parent(&mut self) -> Window {
     unsafe { accessor!(parent -> Window, (*self.base.event)) }
   }
 
-  pub fn window(&self) -> Window {
+  pub fn window(&mut self) -> Window {
     unsafe { accessor!(window -> Window, (*self.base.event)) }
   }
 
-  pub fn x(&self) -> i16 {
+  pub fn x(&mut self) -> i16 {
     unsafe { accessor!(x -> i16, (*self.base.event)) }
   }
 
-  pub fn y(&self) -> i16 {
+  pub fn y(&mut self) -> i16 {
     unsafe { accessor!(y -> i16, (*self.base.event)) }
   }
 
-  pub fn width(&self) -> u16 {
+  pub fn width(&mut self) -> u16 {
     unsafe { accessor!(width -> u16, (*self.base.event)) }
   }
 
-  pub fn height(&self) -> u16 {
+  pub fn height(&mut self) -> u16 {
     unsafe { accessor!(height -> u16, (*self.base.event)) }
   }
 
-  pub fn border_width(&self) -> u16 {
+  pub fn border_width(&mut self) -> u16 {
     unsafe { accessor!(border_width -> u16, (*self.base.event)) }
   }
 
-  pub fn override_redirect(&self) -> u8 {
+  pub fn override_redirect(&mut self) -> u8 {
     unsafe { accessor!(override_redirect -> u8, (*self.base.event)) }
   }
 
@@ -2777,11 +2777,11 @@ impl CreateNotifyEvent {
 }
 
 impl DestroyNotifyEvent {
-  pub fn event(&self) -> Window {
+  pub fn event(&mut self) -> Window {
     unsafe { accessor!(event -> Window, (*self.base.event)) }
   }
 
-  pub fn window(&self) -> Window {
+  pub fn window(&mut self) -> Window {
     unsafe { accessor!(window -> Window, (*self.base.event)) }
   }
 
@@ -2797,15 +2797,15 @@ impl DestroyNotifyEvent {
 }
 
 impl UnmapNotifyEvent {
-  pub fn event(&self) -> Window {
+  pub fn event(&mut self) -> Window {
     unsafe { accessor!(event -> Window, (*self.base.event)) }
   }
 
-  pub fn window(&self) -> Window {
+  pub fn window(&mut self) -> Window {
     unsafe { accessor!(window -> Window, (*self.base.event)) }
   }
 
-  pub fn from_configure(&self) -> u8 {
+  pub fn from_configure(&mut self) -> u8 {
     unsafe { accessor!(from_configure -> u8, (*self.base.event)) }
   }
 
@@ -2823,15 +2823,15 @@ impl UnmapNotifyEvent {
 }
 
 impl MapNotifyEvent {
-  pub fn event(&self) -> Window {
+  pub fn event(&mut self) -> Window {
     unsafe { accessor!(event -> Window, (*self.base.event)) }
   }
 
-  pub fn window(&self) -> Window {
+  pub fn window(&mut self) -> Window {
     unsafe { accessor!(window -> Window, (*self.base.event)) }
   }
 
-  pub fn override_redirect(&self) -> u8 {
+  pub fn override_redirect(&mut self) -> u8 {
     unsafe { accessor!(override_redirect -> u8, (*self.base.event)) }
   }
 
@@ -2849,11 +2849,11 @@ impl MapNotifyEvent {
 }
 
 impl MapRequestEvent {
-  pub fn parent(&self) -> Window {
+  pub fn parent(&mut self) -> Window {
     unsafe { accessor!(parent -> Window, (*self.base.event)) }
   }
 
-  pub fn window(&self) -> Window {
+  pub fn window(&mut self) -> Window {
     unsafe { accessor!(window -> Window, (*self.base.event)) }
   }
 
@@ -2869,27 +2869,27 @@ impl MapRequestEvent {
 }
 
 impl ReparentNotifyEvent {
-  pub fn event(&self) -> Window {
+  pub fn event(&mut self) -> Window {
     unsafe { accessor!(event -> Window, (*self.base.event)) }
   }
 
-  pub fn window(&self) -> Window {
+  pub fn window(&mut self) -> Window {
     unsafe { accessor!(window -> Window, (*self.base.event)) }
   }
 
-  pub fn parent(&self) -> Window {
+  pub fn parent(&mut self) -> Window {
     unsafe { accessor!(parent -> Window, (*self.base.event)) }
   }
 
-  pub fn x(&self) -> i16 {
+  pub fn x(&mut self) -> i16 {
     unsafe { accessor!(x -> i16, (*self.base.event)) }
   }
 
-  pub fn y(&self) -> i16 {
+  pub fn y(&mut self) -> i16 {
     unsafe { accessor!(y -> i16, (*self.base.event)) }
   }
 
-  pub fn override_redirect(&self) -> u8 {
+  pub fn override_redirect(&mut self) -> u8 {
     unsafe { accessor!(override_redirect -> u8, (*self.base.event)) }
   }
 
@@ -2913,39 +2913,39 @@ impl ReparentNotifyEvent {
 }
 
 impl ConfigureNotifyEvent {
-  pub fn event(&self) -> Window {
+  pub fn event(&mut self) -> Window {
     unsafe { accessor!(event -> Window, (*self.base.event)) }
   }
 
-  pub fn window(&self) -> Window {
+  pub fn window(&mut self) -> Window {
     unsafe { accessor!(window -> Window, (*self.base.event)) }
   }
 
-  pub fn above_sibling(&self) -> Window {
+  pub fn above_sibling(&mut self) -> Window {
     unsafe { accessor!(above_sibling -> Window, (*self.base.event)) }
   }
 
-  pub fn x(&self) -> i16 {
+  pub fn x(&mut self) -> i16 {
     unsafe { accessor!(x -> i16, (*self.base.event)) }
   }
 
-  pub fn y(&self) -> i16 {
+  pub fn y(&mut self) -> i16 {
     unsafe { accessor!(y -> i16, (*self.base.event)) }
   }
 
-  pub fn width(&self) -> u16 {
+  pub fn width(&mut self) -> u16 {
     unsafe { accessor!(width -> u16, (*self.base.event)) }
   }
 
-  pub fn height(&self) -> u16 {
+  pub fn height(&mut self) -> u16 {
     unsafe { accessor!(height -> u16, (*self.base.event)) }
   }
 
-  pub fn border_width(&self) -> u16 {
+  pub fn border_width(&mut self) -> u16 {
     unsafe { accessor!(border_width -> u16, (*self.base.event)) }
   }
 
-  pub fn override_redirect(&self) -> u8 {
+  pub fn override_redirect(&mut self) -> u8 {
     unsafe { accessor!(override_redirect -> u8, (*self.base.event)) }
   }
 
@@ -2975,43 +2975,43 @@ impl ConfigureNotifyEvent {
 }
 
 impl ConfigureRequestEvent {
-  pub fn stack_mode(&self) -> u8 {
+  pub fn stack_mode(&mut self) -> u8 {
     unsafe { accessor!(stack_mode -> u8, (*self.base.event)) }
   }
 
-  pub fn parent(&self) -> Window {
+  pub fn parent(&mut self) -> Window {
     unsafe { accessor!(parent -> Window, (*self.base.event)) }
   }
 
-  pub fn window(&self) -> Window {
+  pub fn window(&mut self) -> Window {
     unsafe { accessor!(window -> Window, (*self.base.event)) }
   }
 
-  pub fn sibling(&self) -> Window {
+  pub fn sibling(&mut self) -> Window {
     unsafe { accessor!(sibling -> Window, (*self.base.event)) }
   }
 
-  pub fn x(&self) -> i16 {
+  pub fn x(&mut self) -> i16 {
     unsafe { accessor!(x -> i16, (*self.base.event)) }
   }
 
-  pub fn y(&self) -> i16 {
+  pub fn y(&mut self) -> i16 {
     unsafe { accessor!(y -> i16, (*self.base.event)) }
   }
 
-  pub fn width(&self) -> u16 {
+  pub fn width(&mut self) -> u16 {
     unsafe { accessor!(width -> u16, (*self.base.event)) }
   }
 
-  pub fn height(&self) -> u16 {
+  pub fn height(&mut self) -> u16 {
     unsafe { accessor!(height -> u16, (*self.base.event)) }
   }
 
-  pub fn border_width(&self) -> u16 {
+  pub fn border_width(&mut self) -> u16 {
     unsafe { accessor!(border_width -> u16, (*self.base.event)) }
   }
 
-  pub fn value_mask(&self) -> u16 {
+  pub fn value_mask(&mut self) -> u16 {
     unsafe { accessor!(value_mask -> u16, (*self.base.event)) }
   }
 
@@ -3043,19 +3043,19 @@ impl ConfigureRequestEvent {
 }
 
 impl GravityNotifyEvent {
-  pub fn event(&self) -> Window {
+  pub fn event(&mut self) -> Window {
     unsafe { accessor!(event -> Window, (*self.base.event)) }
   }
 
-  pub fn window(&self) -> Window {
+  pub fn window(&mut self) -> Window {
     unsafe { accessor!(window -> Window, (*self.base.event)) }
   }
 
-  pub fn x(&self) -> i16 {
+  pub fn x(&mut self) -> i16 {
     unsafe { accessor!(x -> i16, (*self.base.event)) }
   }
 
-  pub fn y(&self) -> i16 {
+  pub fn y(&mut self) -> i16 {
     unsafe { accessor!(y -> i16, (*self.base.event)) }
   }
 
@@ -3075,15 +3075,15 @@ impl GravityNotifyEvent {
 }
 
 impl ResizeRequestEvent {
-  pub fn window(&self) -> Window {
+  pub fn window(&mut self) -> Window {
     unsafe { accessor!(window -> Window, (*self.base.event)) }
   }
 
-  pub fn width(&self) -> u16 {
+  pub fn width(&mut self) -> u16 {
     unsafe { accessor!(width -> u16, (*self.base.event)) }
   }
 
-  pub fn height(&self) -> u16 {
+  pub fn height(&mut self) -> u16 {
     unsafe { accessor!(height -> u16, (*self.base.event)) }
   }
 
@@ -3101,15 +3101,15 @@ impl ResizeRequestEvent {
 }
 
 impl CirculateNotifyEvent {
-  pub fn event(&self) -> Window {
+  pub fn event(&mut self) -> Window {
     unsafe { accessor!(event -> Window, (*self.base.event)) }
   }
 
-  pub fn window(&self) -> Window {
+  pub fn window(&mut self) -> Window {
     unsafe { accessor!(window -> Window, (*self.base.event)) }
   }
 
-  pub fn place(&self) -> u8 {
+  pub fn place(&mut self) -> u8 {
     unsafe { accessor!(place -> u8, (*self.base.event)) }
   }
 
@@ -3127,19 +3127,19 @@ impl CirculateNotifyEvent {
 }
 
 impl PropertyNotifyEvent {
-  pub fn window(&self) -> Window {
+  pub fn window(&mut self) -> Window {
     unsafe { accessor!(window -> Window, (*self.base.event)) }
   }
 
-  pub fn atom(&self) -> Atom {
+  pub fn atom(&mut self) -> Atom {
     unsafe { accessor!(atom -> Atom, (*self.base.event)) }
   }
 
-  pub fn time(&self) -> Timestamp {
+  pub fn time(&mut self) -> Timestamp {
     unsafe { accessor!(time -> Timestamp, (*self.base.event)) }
   }
 
-  pub fn state(&self) -> u8 {
+  pub fn state(&mut self) -> u8 {
     unsafe { accessor!(state -> u8, (*self.base.event)) }
   }
 
@@ -3159,15 +3159,15 @@ impl PropertyNotifyEvent {
 }
 
 impl SelectionClearEvent {
-  pub fn time(&self) -> Timestamp {
+  pub fn time(&mut self) -> Timestamp {
     unsafe { accessor!(time -> Timestamp, (*self.base.event)) }
   }
 
-  pub fn owner(&self) -> Window {
+  pub fn owner(&mut self) -> Window {
     unsafe { accessor!(owner -> Window, (*self.base.event)) }
   }
 
-  pub fn selection(&self) -> Atom {
+  pub fn selection(&mut self) -> Atom {
     unsafe { accessor!(selection -> Atom, (*self.base.event)) }
   }
 
@@ -3185,27 +3185,27 @@ impl SelectionClearEvent {
 }
 
 impl SelectionRequestEvent {
-  pub fn time(&self) -> Timestamp {
+  pub fn time(&mut self) -> Timestamp {
     unsafe { accessor!(time -> Timestamp, (*self.base.event)) }
   }
 
-  pub fn owner(&self) -> Window {
+  pub fn owner(&mut self) -> Window {
     unsafe { accessor!(owner -> Window, (*self.base.event)) }
   }
 
-  pub fn requestor(&self) -> Window {
+  pub fn requestor(&mut self) -> Window {
     unsafe { accessor!(requestor -> Window, (*self.base.event)) }
   }
 
-  pub fn selection(&self) -> Atom {
+  pub fn selection(&mut self) -> Atom {
     unsafe { accessor!(selection -> Atom, (*self.base.event)) }
   }
 
-  pub fn target(&self) -> Atom {
+  pub fn target(&mut self) -> Atom {
     unsafe { accessor!(target -> Atom, (*self.base.event)) }
   }
 
-  pub fn property(&self) -> Atom {
+  pub fn property(&mut self) -> Atom {
     unsafe { accessor!(property -> Atom, (*self.base.event)) }
   }
 
@@ -3229,23 +3229,23 @@ impl SelectionRequestEvent {
 }
 
 impl SelectionNotifyEvent {
-  pub fn time(&self) -> Timestamp {
+  pub fn time(&mut self) -> Timestamp {
     unsafe { accessor!(time -> Timestamp, (*self.base.event)) }
   }
 
-  pub fn requestor(&self) -> Window {
+  pub fn requestor(&mut self) -> Window {
     unsafe { accessor!(requestor -> Window, (*self.base.event)) }
   }
 
-  pub fn selection(&self) -> Atom {
+  pub fn selection(&mut self) -> Atom {
     unsafe { accessor!(selection -> Atom, (*self.base.event)) }
   }
 
-  pub fn target(&self) -> Atom {
+  pub fn target(&mut self) -> Atom {
     unsafe { accessor!(target -> Atom, (*self.base.event)) }
   }
 
-  pub fn property(&self) -> Atom {
+  pub fn property(&mut self) -> Atom {
     unsafe { accessor!(property -> Atom, (*self.base.event)) }
   }
 
@@ -3267,19 +3267,19 @@ impl SelectionNotifyEvent {
 }
 
 impl ColormapNotifyEvent {
-  pub fn window(&self) -> Window {
+  pub fn window(&mut self) -> Window {
     unsafe { accessor!(window -> Window, (*self.base.event)) }
   }
 
-  pub fn colormap(&self) -> Colormap {
+  pub fn colormap(&mut self) -> Colormap {
     unsafe { accessor!(colormap -> Colormap, (*self.base.event)) }
   }
 
-  pub fn new_(&self) -> u8 {
+  pub fn new_(&mut self) -> u8 {
     unsafe { accessor!(new_ -> u8, (*self.base.event)) }
   }
 
-  pub fn state(&self) -> u8 {
+  pub fn state(&mut self) -> u8 {
     unsafe { accessor!(state -> u8, (*self.base.event)) }
   }
 
@@ -3313,15 +3313,15 @@ impl<'s, ClientMessageData> Iterator<&'s ClientMessageData> for ClientMessageDat
 
 
 impl ClientMessageEvent {
-  pub fn format(&self) -> u8 {
+  pub fn format(&mut self) -> u8 {
     unsafe { accessor!(format -> u8, (*self.base.event)) }
   }
 
-  pub fn window(&self) -> Window {
+  pub fn window(&mut self) -> Window {
     unsafe { accessor!(window -> Window, (*self.base.event)) }
   }
 
-  pub fn type_(&self) -> Atom {
+  pub fn type_(&mut self) -> Atom {
     unsafe { accessor!(type_ -> Atom, (*self.base.event)) }
   }
 
@@ -3344,15 +3344,15 @@ impl ClientMessageEvent {
 }
 
 impl MappingNotifyEvent {
-  pub fn request(&self) -> u8 {
+  pub fn request(&mut self) -> u8 {
     unsafe { accessor!(request -> u8, (*self.base.event)) }
   }
 
-  pub fn first_keycode(&self) -> Keycode {
+  pub fn first_keycode(&mut self) -> Keycode {
     unsafe { accessor!(first_keycode -> Keycode, (*self.base.event)) }
   }
 
-  pub fn count(&self) -> u8 {
+  pub fn count(&mut self) -> u8 {
     unsafe { accessor!(count -> u8, (*self.base.event)) }
   }
 
@@ -3382,7 +3382,7 @@ pub fn CreateWindowChecked<'r> (c : &'r Connection,
                             value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = value_list_vec.as_mut_ptr();
+    let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_create_window_checked(c.get_raw_conn(),
         depth as u8, //1
         wid as window, //2
@@ -3413,7 +3413,7 @@ pub fn CreateWindow<'r> (c : &'r Connection,
                      value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = value_list_vec.as_mut_ptr();
+    let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_create_window(c.get_raw_conn(),
         depth as u8, //1
         wid as window, //2
@@ -3435,7 +3435,7 @@ pub fn ChangeWindowAttributesChecked<'r> (c : &'r Connection,
                                       value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = value_list_vec.as_mut_ptr();
+    let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_change_window_attributes_checked(c.get_raw_conn(),
         window as window, //1
         value_list_mask as u32, //2
@@ -3448,7 +3448,7 @@ pub fn ChangeWindowAttributes<'r> (c : &'r Connection,
                                value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = value_list_vec.as_mut_ptr();
+    let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_change_window_attributes(c.get_raw_conn(),
         window as window, //1
         value_list_mask as u32, //2
@@ -3474,63 +3474,63 @@ pub fn GetWindowAttributesUnchecked<'r> (c : &'r Connection,
 }
 
 impl GetWindowAttributesReply {
-  pub fn backing_store(&self) -> u8 {
+  pub fn backing_store(&mut self) -> u8 {
     unsafe { accessor!(backing_store -> u8, (*self.base.reply)) }
   }
 
-  pub fn visual(&self) -> Visualid {
+  pub fn visual(&mut self) -> Visualid {
     unsafe { accessor!(visual -> Visualid, (*self.base.reply)) }
   }
 
-  pub fn class(&self) -> u16 {
+  pub fn class(&mut self) -> u16 {
     unsafe { accessor!(class -> u16, (*self.base.reply)) }
   }
 
-  pub fn bit_gravity(&self) -> u8 {
+  pub fn bit_gravity(&mut self) -> u8 {
     unsafe { accessor!(bit_gravity -> u8, (*self.base.reply)) }
   }
 
-  pub fn win_gravity(&self) -> u8 {
+  pub fn win_gravity(&mut self) -> u8 {
     unsafe { accessor!(win_gravity -> u8, (*self.base.reply)) }
   }
 
-  pub fn backing_planes(&self) -> u32 {
+  pub fn backing_planes(&mut self) -> u32 {
     unsafe { accessor!(backing_planes -> u32, (*self.base.reply)) }
   }
 
-  pub fn backing_pixel(&self) -> u32 {
+  pub fn backing_pixel(&mut self) -> u32 {
     unsafe { accessor!(backing_pixel -> u32, (*self.base.reply)) }
   }
 
-  pub fn save_under(&self) -> u8 {
+  pub fn save_under(&mut self) -> u8 {
     unsafe { accessor!(save_under -> u8, (*self.base.reply)) }
   }
 
-  pub fn map_is_installed(&self) -> u8 {
+  pub fn map_is_installed(&mut self) -> u8 {
     unsafe { accessor!(map_is_installed -> u8, (*self.base.reply)) }
   }
 
-  pub fn map_state(&self) -> u8 {
+  pub fn map_state(&mut self) -> u8 {
     unsafe { accessor!(map_state -> u8, (*self.base.reply)) }
   }
 
-  pub fn override_redirect(&self) -> u8 {
+  pub fn override_redirect(&mut self) -> u8 {
     unsafe { accessor!(override_redirect -> u8, (*self.base.reply)) }
   }
 
-  pub fn colormap(&self) -> Colormap {
+  pub fn colormap(&mut self) -> Colormap {
     unsafe { accessor!(colormap -> Colormap, (*self.base.reply)) }
   }
 
-  pub fn all_event_masks(&self) -> u32 {
+  pub fn all_event_masks(&mut self) -> u32 {
     unsafe { accessor!(all_event_masks -> u32, (*self.base.reply)) }
   }
 
-  pub fn your_event_mask(&self) -> u32 {
+  pub fn your_event_mask(&mut self) -> u32 {
     unsafe { accessor!(your_event_mask -> u32, (*self.base.reply)) }
   }
 
-  pub fn do_not_propagate_mask(&self) -> u16 {
+  pub fn do_not_propagate_mask(&mut self) -> u16 {
     unsafe { accessor!(do_not_propagate_mask -> u16, (*self.base.reply)) }
   }
 
@@ -3686,7 +3686,7 @@ pub fn ConfigureWindowChecked<'r> (c : &'r Connection,
                                value_list : &[(u16,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = value_list_vec.as_mut_ptr();
+    let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_configure_window_checked(c.get_raw_conn(),
         window as window, //1
         value_list_mask as u16, //2
@@ -3699,7 +3699,7 @@ pub fn ConfigureWindow<'r> (c : &'r Connection,
                         value_list : &[(u16,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = value_list_vec.as_mut_ptr();
+    let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_configure_window(c.get_raw_conn(),
         window as window, //1
         value_list_mask as u16, //2
@@ -3745,31 +3745,31 @@ pub fn GetGeometryUnchecked<'r> (c : &'r Connection,
 }
 
 impl GetGeometryReply {
-  pub fn depth(&self) -> u8 {
+  pub fn depth(&mut self) -> u8 {
     unsafe { accessor!(depth -> u8, (*self.base.reply)) }
   }
 
-  pub fn root(&self) -> Window {
+  pub fn root(&mut self) -> Window {
     unsafe { accessor!(root -> Window, (*self.base.reply)) }
   }
 
-  pub fn x(&self) -> i16 {
+  pub fn x(&mut self) -> i16 {
     unsafe { accessor!(x -> i16, (*self.base.reply)) }
   }
 
-  pub fn y(&self) -> i16 {
+  pub fn y(&mut self) -> i16 {
     unsafe { accessor!(y -> i16, (*self.base.reply)) }
   }
 
-  pub fn width(&self) -> u16 {
+  pub fn width(&mut self) -> u16 {
     unsafe { accessor!(width -> u16, (*self.base.reply)) }
   }
 
-  pub fn height(&self) -> u16 {
+  pub fn height(&mut self) -> u16 {
     unsafe { accessor!(height -> u16, (*self.base.reply)) }
   }
 
-  pub fn border_width(&self) -> u16 {
+  pub fn border_width(&mut self) -> u16 {
     unsafe { accessor!(border_width -> u16, (*self.base.reply)) }
   }
 
@@ -3796,15 +3796,15 @@ pub fn QueryTreeUnchecked<'r> (c : &'r Connection,
 }
 
 impl QueryTreeReply {
-  pub fn root(&self) -> Window {
+  pub fn root(&mut self) -> Window {
     unsafe { accessor!(root -> Window, (*self.base.reply)) }
   }
 
-  pub fn parent(&self) -> Window {
+  pub fn parent(&mut self) -> Window {
     unsafe { accessor!(parent -> Window, (*self.base.reply)) }
   }
 
-  pub fn children(&self) -> Vec<Window> {
+  pub fn children(&mut self) -> Vec<Window> {
     unsafe { accessor!(Window, xcb_query_tree_children_length, xcb_query_tree_children, (*self.base.reply)) }
   }
 
@@ -3817,7 +3817,7 @@ pub fn InternAtom<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mut_ptr();
+    let name_ptr = name.as_ptr();
     let cookie = xcb_intern_atom(c.get_raw_conn(),
         only_if_exists as u8, //1
         name_len as u16, //2
@@ -3831,7 +3831,7 @@ pub fn InternAtomUnchecked<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mut_ptr();
+    let name_ptr = name.as_ptr();
     let cookie = xcb_intern_atom_unchecked(c.get_raw_conn(),
         only_if_exists as u8, //1
         name_len as u16, //2
@@ -3841,7 +3841,7 @@ pub fn InternAtomUnchecked<'r> (c : &'r Connection,
 }
 
 impl InternAtomReply {
-  pub fn atom(&self) -> Atom {
+  pub fn atom(&mut self) -> Atom {
     unsafe { accessor!(atom -> Atom, (*self.base.reply)) }
   }
 
@@ -3868,7 +3868,7 @@ pub fn GetAtomNameUnchecked<'r> (c : &'r Connection,
 }
 
 impl GetAtomNameReply {
-  pub fn name(&self) -> String {
+  pub fn name(&mut self) -> String {
     unsafe { accessor!(str, xcb_get_atom_name_name_length, xcb_get_atom_name_name, (*self.base.reply)) }
   }
 
@@ -3884,7 +3884,7 @@ pub fn ChangePropertyChecked<'r> (c : &'r Connection,
                               data : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let data_len = data.len();
-    let data_ptr = data.as_mut_ptr();
+    let data_ptr = data.as_ptr();
     let cookie = xcb_change_property_checked(c.get_raw_conn(),
         mode as u8, //1
         window as window, //2
@@ -3905,7 +3905,7 @@ pub fn ChangeProperty<'r> (c : &'r Connection,
                        data : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let data_len = data.len();
-    let data_ptr = data.as_mut_ptr();
+    let data_ptr = data.as_ptr();
     let cookie = xcb_change_property(c.get_raw_conn(),
         mode as u8, //1
         window as window, //2
@@ -3977,19 +3977,19 @@ pub fn GetPropertyUnchecked<'r> (c : &'r Connection,
 }
 
 impl GetPropertyReply {
-  pub fn format(&self) -> u8 {
+  pub fn format(&mut self) -> u8 {
     unsafe { accessor!(format -> u8, (*self.base.reply)) }
   }
 
-  pub fn type_(&self) -> Atom {
+  pub fn type_(&mut self) -> Atom {
     unsafe { accessor!(type_ -> Atom, (*self.base.reply)) }
   }
 
-  pub fn bytes_after(&self) -> u32 {
+  pub fn bytes_after(&mut self) -> u32 {
     unsafe { accessor!(bytes_after -> u32, (*self.base.reply)) }
   }
 
-  pub fn value(&self) -> Vec<c_void> {
+  pub fn value(&mut self) -> Vec<c_void> {
     unsafe { accessor!(c_void, xcb_get_property_value_length, xcb_get_property_value, (*self.base.reply)) }
   }
 
@@ -4016,7 +4016,7 @@ pub fn ListPropertiesUnchecked<'r> (c : &'r Connection,
 }
 
 impl ListPropertiesReply {
-  pub fn atoms(&self) -> Vec<Atom> {
+  pub fn atoms(&mut self) -> Vec<Atom> {
     unsafe { accessor!(Atom, xcb_list_properties_atoms_length, xcb_list_properties_atoms, (*self.base.reply)) }
   }
 
@@ -4065,7 +4065,7 @@ pub fn GetSelectionOwnerUnchecked<'r> (c : &'r Connection,
 }
 
 impl GetSelectionOwnerReply {
-  pub fn owner(&self) -> Window {
+  pub fn owner(&mut self) -> Window {
     unsafe { accessor!(owner -> Window, (*self.base.reply)) }
   }
 
@@ -4111,7 +4111,7 @@ pub fn SendEventChecked<'r> (c : &'r Connection,
                          event : &str) -> base::VoidCookie<'r> {
   unsafe {
     let event = (event).as_bytes();
-    let event_ptr = event.as_mut_ptr();
+    let event_ptr = event.as_ptr();
     let cookie = xcb_send_event_checked(c.get_raw_conn(),
         propagate as u8, //1
         destination as window, //2
@@ -4127,7 +4127,7 @@ pub fn SendEvent<'r> (c : &'r Connection,
                   event : &str) -> base::VoidCookie<'r> {
   unsafe {
     let event = (event).as_bytes();
-    let event_ptr = event.as_mut_ptr();
+    let event_ptr = event.as_ptr();
     let cookie = xcb_send_event(c.get_raw_conn(),
         propagate as u8, //1
         destination as window, //2
@@ -4182,7 +4182,7 @@ pub fn GrabPointerUnchecked<'r> (c : &'r Connection,
 }
 
 impl GrabPointerReply {
-  pub fn status(&self) -> u8 {
+  pub fn status(&mut self) -> u8 {
     unsafe { accessor!(status -> u8, (*self.base.reply)) }
   }
 
@@ -4335,7 +4335,7 @@ pub fn GrabKeyboardUnchecked<'r> (c : &'r Connection,
 }
 
 impl GrabKeyboardReply {
-  pub fn status(&self) -> u8 {
+  pub fn status(&mut self) -> u8 {
     unsafe { accessor!(status -> u8, (*self.base.reply)) }
   }
 
@@ -4480,35 +4480,35 @@ pub fn QueryPointerUnchecked<'r> (c : &'r Connection,
 }
 
 impl QueryPointerReply {
-  pub fn same_screen(&self) -> u8 {
+  pub fn same_screen(&mut self) -> u8 {
     unsafe { accessor!(same_screen -> u8, (*self.base.reply)) }
   }
 
-  pub fn root(&self) -> Window {
+  pub fn root(&mut self) -> Window {
     unsafe { accessor!(root -> Window, (*self.base.reply)) }
   }
 
-  pub fn child(&self) -> Window {
+  pub fn child(&mut self) -> Window {
     unsafe { accessor!(child -> Window, (*self.base.reply)) }
   }
 
-  pub fn root_x(&self) -> i16 {
+  pub fn root_x(&mut self) -> i16 {
     unsafe { accessor!(root_x -> i16, (*self.base.reply)) }
   }
 
-  pub fn root_y(&self) -> i16 {
+  pub fn root_y(&mut self) -> i16 {
     unsafe { accessor!(root_y -> i16, (*self.base.reply)) }
   }
 
-  pub fn win_x(&self) -> i16 {
+  pub fn win_x(&mut self) -> i16 {
     unsafe { accessor!(win_x -> i16, (*self.base.reply)) }
   }
 
-  pub fn win_y(&self) -> i16 {
+  pub fn win_y(&mut self) -> i16 {
     unsafe { accessor!(win_y -> i16, (*self.base.reply)) }
   }
 
-  pub fn mask(&self) -> u16 {
+  pub fn mask(&mut self) -> u16 {
     unsafe { accessor!(mask -> u16, (*self.base.reply)) }
   }
 
@@ -4519,15 +4519,15 @@ pub struct Timecoord {pub base : base::Struct<timecoord> }
 
 
 impl Timecoord {
-  pub fn time(&self) -> Timestamp {
+  pub fn time(&mut self) -> Timestamp {
     unsafe { accessor!(time -> Timestamp, self.base.strct) }
   }
 
-  pub fn x(&self) -> i16 {
+  pub fn x(&mut self) -> i16 {
     unsafe { accessor!(x -> i16, self.base.strct) }
   }
 
-  pub fn y(&self) -> i16 {
+  pub fn y(&mut self) -> i16 {
     unsafe { accessor!(y -> i16, self.base.strct) }
   }
 
@@ -4573,7 +4573,7 @@ pub fn GetMotionEventsUnchecked<'r> (c : &'r Connection,
 }
 
 impl GetMotionEventsReply {
-  pub fn events(&self) -> TimecoordIterator {
+  pub fn events(&mut self) -> TimecoordIterator {
     unsafe { accessor!(TimecoordIterator, xcb_get_motion_events_events_iterator, (*self.base.reply)) }
   }
 
@@ -4610,19 +4610,19 @@ pub fn TranslateCoordinatesUnchecked<'r> (c : &'r Connection,
 }
 
 impl TranslateCoordinatesReply {
-  pub fn same_screen(&self) -> u8 {
+  pub fn same_screen(&mut self) -> u8 {
     unsafe { accessor!(same_screen -> u8, (*self.base.reply)) }
   }
 
-  pub fn child(&self) -> Window {
+  pub fn child(&mut self) -> Window {
     unsafe { accessor!(child -> Window, (*self.base.reply)) }
   }
 
-  pub fn dst_x(&self) -> i16 {
+  pub fn dst_x(&mut self) -> i16 {
     unsafe { accessor!(dst_x -> i16, (*self.base.reply)) }
   }
 
-  pub fn dst_y(&self) -> i16 {
+  pub fn dst_y(&mut self) -> i16 {
     unsafe { accessor!(dst_y -> i16, (*self.base.reply)) }
   }
 
@@ -4711,11 +4711,11 @@ pub fn GetInputFocusUnchecked<'r> (c : &'r Connection) -> GetInputFocusCookie<'r
 }
 
 impl GetInputFocusReply {
-  pub fn revert_to(&self) -> u8 {
+  pub fn revert_to(&mut self) -> u8 {
     unsafe { accessor!(revert_to -> u8, (*self.base.reply)) }
   }
 
-  pub fn focus(&self) -> Window {
+  pub fn focus(&mut self) -> Window {
     unsafe { accessor!(focus -> Window, (*self.base.reply)) }
   }
 
@@ -4749,7 +4749,7 @@ pub fn OpenFontChecked<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mut_ptr();
+    let name_ptr = name.as_ptr();
     let cookie = xcb_open_font_checked(c.get_raw_conn(),
         fid as font, //1
         name_len as u16, //2
@@ -4763,7 +4763,7 @@ pub fn OpenFont<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mut_ptr();
+    let name_ptr = name.as_ptr();
     let cookie = xcb_open_font(c.get_raw_conn(),
         fid as font, //1
         name_len as u16, //2
@@ -4789,11 +4789,11 @@ pub fn CloseFont<'r> (c : &'r Connection,
 }
 
 impl Fontprop {
-  pub fn name(&self) -> Atom {
+  pub fn name(&mut self) -> Atom {
     unsafe { accessor!(name -> Atom, self.base.strct) }
   }
 
-  pub fn value(&self) -> u32 {
+  pub fn value(&mut self) -> u32 {
     unsafe { accessor!(value -> u32, self.base.strct) }
   }
 
@@ -4815,27 +4815,27 @@ pub struct Charinfo {pub base : base::Struct<charinfo> }
 
 
 impl Charinfo {
-  pub fn left_side_bearing(&self) -> i16 {
+  pub fn left_side_bearing(&mut self) -> i16 {
     unsafe { accessor!(left_side_bearing -> i16, self.base.strct) }
   }
 
-  pub fn right_side_bearing(&self) -> i16 {
+  pub fn right_side_bearing(&mut self) -> i16 {
     unsafe { accessor!(right_side_bearing -> i16, self.base.strct) }
   }
 
-  pub fn character_width(&self) -> i16 {
+  pub fn character_width(&mut self) -> i16 {
     unsafe { accessor!(character_width -> i16, self.base.strct) }
   }
 
-  pub fn ascent(&self) -> i16 {
+  pub fn ascent(&mut self) -> i16 {
     unsafe { accessor!(ascent -> i16, self.base.strct) }
   }
 
-  pub fn descent(&self) -> i16 {
+  pub fn descent(&mut self) -> i16 {
     unsafe { accessor!(descent -> i16, self.base.strct) }
   }
 
-  pub fn attributes(&self) -> u16 {
+  pub fn attributes(&mut self) -> u16 {
     unsafe { accessor!(attributes -> u16, self.base.strct) }
   }
 
@@ -4879,47 +4879,47 @@ impl QueryFontReply {
   pub fn max_bounds(&self) -> Charinfo {
     unsafe { mem::transmute((*self.base.reply).max_bounds) }
   }
-  pub fn min_char_or_byte2(&self) -> u16 {
+  pub fn min_char_or_byte2(&mut self) -> u16 {
     unsafe { accessor!(min_char_or_byte2 -> u16, (*self.base.reply)) }
   }
 
-  pub fn max_char_or_byte2(&self) -> u16 {
+  pub fn max_char_or_byte2(&mut self) -> u16 {
     unsafe { accessor!(max_char_or_byte2 -> u16, (*self.base.reply)) }
   }
 
-  pub fn default_char(&self) -> u16 {
+  pub fn default_char(&mut self) -> u16 {
     unsafe { accessor!(default_char -> u16, (*self.base.reply)) }
   }
 
-  pub fn draw_direction(&self) -> u8 {
+  pub fn draw_direction(&mut self) -> u8 {
     unsafe { accessor!(draw_direction -> u8, (*self.base.reply)) }
   }
 
-  pub fn min_byte1(&self) -> u8 {
+  pub fn min_byte1(&mut self) -> u8 {
     unsafe { accessor!(min_byte1 -> u8, (*self.base.reply)) }
   }
 
-  pub fn max_byte1(&self) -> u8 {
+  pub fn max_byte1(&mut self) -> u8 {
     unsafe { accessor!(max_byte1 -> u8, (*self.base.reply)) }
   }
 
-  pub fn all_chars_exist(&self) -> u8 {
+  pub fn all_chars_exist(&mut self) -> u8 {
     unsafe { accessor!(all_chars_exist -> u8, (*self.base.reply)) }
   }
 
-  pub fn font_ascent(&self) -> i16 {
+  pub fn font_ascent(&mut self) -> i16 {
     unsafe { accessor!(font_ascent -> i16, (*self.base.reply)) }
   }
 
-  pub fn font_descent(&self) -> i16 {
+  pub fn font_descent(&mut self) -> i16 {
     unsafe { accessor!(font_descent -> i16, (*self.base.reply)) }
   }
 
-  pub fn properties(&self) -> FontpropIterator {
+  pub fn properties(&mut self) -> FontpropIterator {
     unsafe { accessor!(FontpropIterator, xcb_query_font_properties_iterator, (*self.base.reply)) }
   }
 
-  pub fn char_infos(&self) -> CharinfoIterator {
+  pub fn char_infos(&mut self) -> CharinfoIterator {
     unsafe { accessor!(CharinfoIterator, xcb_query_font_char_infos_iterator, (*self.base.reply)) }
   }
 
@@ -4931,7 +4931,7 @@ pub fn QueryTextExtents<'r> (c : &'r Connection,
                          string : &[Char2b]) -> QueryTextExtentsCookie<'r> {
   unsafe {
     let string_len = string.len();
-    let string_ptr = string.as_mut_ptr();
+    let string_ptr = string.as_ptr();
     let cookie = xcb_query_text_extents(c.get_raw_conn(),
         font as fontable, //1
         string_len as u32, //2
@@ -4944,7 +4944,7 @@ pub fn QueryTextExtentsUnchecked<'r> (c : &'r Connection,
                                   string : &[Char2b]) -> QueryTextExtentsCookie<'r> {
   unsafe {
     let string_len = string.len();
-    let string_ptr = string.as_mut_ptr();
+    let string_ptr = string.as_ptr();
     let cookie = xcb_query_text_extents_unchecked(c.get_raw_conn(),
         font as fontable, //1
         string_len as u32, //2
@@ -4954,35 +4954,35 @@ pub fn QueryTextExtentsUnchecked<'r> (c : &'r Connection,
 }
 
 impl QueryTextExtentsReply {
-  pub fn draw_direction(&self) -> u8 {
+  pub fn draw_direction(&mut self) -> u8 {
     unsafe { accessor!(draw_direction -> u8, (*self.base.reply)) }
   }
 
-  pub fn font_ascent(&self) -> i16 {
+  pub fn font_ascent(&mut self) -> i16 {
     unsafe { accessor!(font_ascent -> i16, (*self.base.reply)) }
   }
 
-  pub fn font_descent(&self) -> i16 {
+  pub fn font_descent(&mut self) -> i16 {
     unsafe { accessor!(font_descent -> i16, (*self.base.reply)) }
   }
 
-  pub fn overall_ascent(&self) -> i16 {
+  pub fn overall_ascent(&mut self) -> i16 {
     unsafe { accessor!(overall_ascent -> i16, (*self.base.reply)) }
   }
 
-  pub fn overall_descent(&self) -> i16 {
+  pub fn overall_descent(&mut self) -> i16 {
     unsafe { accessor!(overall_descent -> i16, (*self.base.reply)) }
   }
 
-  pub fn overall_width(&self) -> i32 {
+  pub fn overall_width(&mut self) -> i32 {
     unsafe { accessor!(overall_width -> i32, (*self.base.reply)) }
   }
 
-  pub fn overall_left(&self) -> i32 {
+  pub fn overall_left(&mut self) -> i32 {
     unsafe { accessor!(overall_left -> i32, (*self.base.reply)) }
   }
 
-  pub fn overall_right(&self) -> i32 {
+  pub fn overall_right(&mut self) -> i32 {
     unsafe { accessor!(overall_right -> i32, (*self.base.reply)) }
   }
 
@@ -4993,7 +4993,7 @@ pub struct Str {pub base : base::Struct<str_> }
 
 
 impl Str {
-  pub fn name(&self) -> String {
+  pub fn name(&mut self) -> String {
     unsafe { accessor!(str, xcb_str_name_length, xcb_str_name, self.base.strct) }
   }
 
@@ -5017,7 +5017,7 @@ pub fn ListFonts<'r> (c : &'r Connection,
   unsafe {
     let pattern = (pattern).as_bytes();
     let pattern_len = pattern.len();
-    let pattern_ptr = pattern.as_mut_ptr();
+    let pattern_ptr = pattern.as_ptr();
     let cookie = xcb_list_fonts(c.get_raw_conn(),
         max_names as u16, //1
         pattern_len as u16, //2
@@ -5031,7 +5031,7 @@ pub fn ListFontsUnchecked<'r> (c : &'r Connection,
   unsafe {
     let pattern = (pattern).as_bytes();
     let pattern_len = pattern.len();
-    let pattern_ptr = pattern.as_mut_ptr();
+    let pattern_ptr = pattern.as_ptr();
     let cookie = xcb_list_fonts_unchecked(c.get_raw_conn(),
         max_names as u16, //1
         pattern_len as u16, //2
@@ -5041,7 +5041,7 @@ pub fn ListFontsUnchecked<'r> (c : &'r Connection,
 }
 
 impl ListFontsReply {
-  pub fn names(&self) -> StrIterator {
+  pub fn names(&mut self) -> StrIterator {
     unsafe { accessor!(StrIterator, xcb_list_fonts_names_iterator, (*self.base.reply)) }
   }
 
@@ -5054,7 +5054,7 @@ pub fn ListFontsWithInfo<'r> (c : &'r Connection,
   unsafe {
     let pattern = (pattern).as_bytes();
     let pattern_len = pattern.len();
-    let pattern_ptr = pattern.as_mut_ptr();
+    let pattern_ptr = pattern.as_ptr();
     let cookie = xcb_list_fonts_with_info(c.get_raw_conn(),
         max_names as u16, //1
         pattern_len as u16, //2
@@ -5068,7 +5068,7 @@ pub fn ListFontsWithInfoUnchecked<'r> (c : &'r Connection,
   unsafe {
     let pattern = (pattern).as_bytes();
     let pattern_len = pattern.len();
-    let pattern_ptr = pattern.as_mut_ptr();
+    let pattern_ptr = pattern.as_ptr();
     let cookie = xcb_list_fonts_with_info_unchecked(c.get_raw_conn(),
         max_names as u16, //1
         pattern_len as u16, //2
@@ -5084,51 +5084,51 @@ impl ListFontsWithInfoReply {
   pub fn max_bounds(&self) -> Charinfo {
     unsafe { mem::transmute((*self.base.reply).max_bounds) }
   }
-  pub fn min_char_or_byte2(&self) -> u16 {
+  pub fn min_char_or_byte2(&mut self) -> u16 {
     unsafe { accessor!(min_char_or_byte2 -> u16, (*self.base.reply)) }
   }
 
-  pub fn max_char_or_byte2(&self) -> u16 {
+  pub fn max_char_or_byte2(&mut self) -> u16 {
     unsafe { accessor!(max_char_or_byte2 -> u16, (*self.base.reply)) }
   }
 
-  pub fn default_char(&self) -> u16 {
+  pub fn default_char(&mut self) -> u16 {
     unsafe { accessor!(default_char -> u16, (*self.base.reply)) }
   }
 
-  pub fn draw_direction(&self) -> u8 {
+  pub fn draw_direction(&mut self) -> u8 {
     unsafe { accessor!(draw_direction -> u8, (*self.base.reply)) }
   }
 
-  pub fn min_byte1(&self) -> u8 {
+  pub fn min_byte1(&mut self) -> u8 {
     unsafe { accessor!(min_byte1 -> u8, (*self.base.reply)) }
   }
 
-  pub fn max_byte1(&self) -> u8 {
+  pub fn max_byte1(&mut self) -> u8 {
     unsafe { accessor!(max_byte1 -> u8, (*self.base.reply)) }
   }
 
-  pub fn all_chars_exist(&self) -> u8 {
+  pub fn all_chars_exist(&mut self) -> u8 {
     unsafe { accessor!(all_chars_exist -> u8, (*self.base.reply)) }
   }
 
-  pub fn font_ascent(&self) -> i16 {
+  pub fn font_ascent(&mut self) -> i16 {
     unsafe { accessor!(font_ascent -> i16, (*self.base.reply)) }
   }
 
-  pub fn font_descent(&self) -> i16 {
+  pub fn font_descent(&mut self) -> i16 {
     unsafe { accessor!(font_descent -> i16, (*self.base.reply)) }
   }
 
-  pub fn replies_hint(&self) -> u32 {
+  pub fn replies_hint(&mut self) -> u32 {
     unsafe { accessor!(replies_hint -> u32, (*self.base.reply)) }
   }
 
-  pub fn properties(&self) -> FontpropIterator {
+  pub fn properties(&mut self) -> FontpropIterator {
     unsafe { accessor!(FontpropIterator, xcb_list_fonts_with_info_properties_iterator, (*self.base.reply)) }
   }
 
-  pub fn name(&self) -> String {
+  pub fn name(&mut self) -> String {
     unsafe { accessor!(str, xcb_list_fonts_with_info_name_length, xcb_list_fonts_with_info_name, (*self.base.reply)) }
   }
 
@@ -5139,7 +5139,7 @@ pub fn SetFontPathChecked<'r> (c : &'r Connection,
                            font : &[Str]) -> base::VoidCookie<'r> {
   unsafe {
     let font_len = font.len();
-    let font_ptr = font.as_mut_ptr();
+    let font_ptr = font.as_ptr();
     let cookie = xcb_set_font_path_checked(c.get_raw_conn(),
         font_len as u16, //1
         font_ptr as *mut str_); //2
@@ -5150,7 +5150,7 @@ pub fn SetFontPath<'r> (c : &'r Connection,
                     font : &[Str]) -> base::VoidCookie<'r> {
   unsafe {
     let font_len = font.len();
-    let font_ptr = font.as_mut_ptr();
+    let font_ptr = font.as_ptr();
     let cookie = xcb_set_font_path(c.get_raw_conn(),
         font_len as u16, //1
         font_ptr as *mut str_); //2
@@ -5173,7 +5173,7 @@ pub fn GetFontPathUnchecked<'r> (c : &'r Connection) -> GetFontPathCookie<'r> {
 }
 
 impl GetFontPathReply {
-  pub fn path(&self) -> StrIterator {
+  pub fn path(&mut self) -> StrIterator {
     unsafe { accessor!(StrIterator, xcb_get_font_path_path_iterator, (*self.base.reply)) }
   }
 
@@ -5234,7 +5234,7 @@ pub fn CreateGcChecked<'r> (c : &'r Connection,
                         value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = value_list_vec.as_mut_ptr();
+    let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_create_gc_checked(c.get_raw_conn(),
         cid as gcontext, //1
         drawable as drawable, //2
@@ -5249,7 +5249,7 @@ pub fn CreateGc<'r> (c : &'r Connection,
                  value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = value_list_vec.as_mut_ptr();
+    let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_create_gc(c.get_raw_conn(),
         cid as gcontext, //1
         drawable as drawable, //2
@@ -5263,7 +5263,7 @@ pub fn ChangeGcChecked<'r> (c : &'r Connection,
                         value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = value_list_vec.as_mut_ptr();
+    let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_change_gc_checked(c.get_raw_conn(),
         gc as gcontext, //1
         value_list_mask as u32, //2
@@ -5276,7 +5276,7 @@ pub fn ChangeGc<'r> (c : &'r Connection,
                  value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = value_list_vec.as_mut_ptr();
+    let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_change_gc(c.get_raw_conn(),
         gc as gcontext, //1
         value_list_mask as u32, //2
@@ -5314,7 +5314,7 @@ pub fn SetDashesChecked<'r> (c : &'r Connection,
                          dashes : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let dashes_len = dashes.len();
-    let dashes_ptr = dashes.as_mut_ptr();
+    let dashes_ptr = dashes.as_ptr();
     let cookie = xcb_set_dashes_checked(c.get_raw_conn(),
         gc as gcontext, //1
         dash_offset as u16, //2
@@ -5329,7 +5329,7 @@ pub fn SetDashes<'r> (c : &'r Connection,
                   dashes : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let dashes_len = dashes.len();
-    let dashes_ptr = dashes.as_mut_ptr();
+    let dashes_ptr = dashes.as_ptr();
     let cookie = xcb_set_dashes(c.get_raw_conn(),
         gc as gcontext, //1
         dash_offset as u16, //2
@@ -5346,7 +5346,7 @@ pub fn SetClipRectanglesChecked<'r> (c : &'r Connection,
                                  rectangles : &[Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = rectangles.as_mut_ptr();
+    let rectangles_ptr = rectangles.as_ptr();
     let cookie = xcb_set_clip_rectangles_checked(c.get_raw_conn(),
         ordering as u8, //1
         gc as gcontext, //2
@@ -5365,7 +5365,7 @@ pub fn SetClipRectangles<'r> (c : &'r Connection,
                           rectangles : &[Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = rectangles.as_mut_ptr();
+    let rectangles_ptr = rectangles.as_ptr();
     let cookie = xcb_set_clip_rectangles(c.get_raw_conn(),
         ordering as u8, //1
         gc as gcontext, //2
@@ -5535,7 +5535,7 @@ pub fn PolyPointChecked<'r> (c : &'r Connection,
                          points : &[Point]) -> base::VoidCookie<'r> {
   unsafe {
     let points_len = points.len();
-    let points_ptr = points.as_mut_ptr();
+    let points_ptr = points.as_ptr();
     let cookie = xcb_poly_point_checked(c.get_raw_conn(),
         coordinate_mode as u8, //1
         drawable as drawable, //2
@@ -5552,7 +5552,7 @@ pub fn PolyPoint<'r> (c : &'r Connection,
                   points : &[Point]) -> base::VoidCookie<'r> {
   unsafe {
     let points_len = points.len();
-    let points_ptr = points.as_mut_ptr();
+    let points_ptr = points.as_ptr();
     let cookie = xcb_poly_point(c.get_raw_conn(),
         coordinate_mode as u8, //1
         drawable as drawable, //2
@@ -5569,7 +5569,7 @@ pub fn PolyLineChecked<'r> (c : &'r Connection,
                         points : &[Point]) -> base::VoidCookie<'r> {
   unsafe {
     let points_len = points.len();
-    let points_ptr = points.as_mut_ptr();
+    let points_ptr = points.as_ptr();
     let cookie = xcb_poly_line_checked(c.get_raw_conn(),
         coordinate_mode as u8, //1
         drawable as drawable, //2
@@ -5586,7 +5586,7 @@ pub fn PolyLine<'r> (c : &'r Connection,
                  points : &[Point]) -> base::VoidCookie<'r> {
   unsafe {
     let points_len = points.len();
-    let points_ptr = points.as_mut_ptr();
+    let points_ptr = points.as_ptr();
     let cookie = xcb_poly_line(c.get_raw_conn(),
         coordinate_mode as u8, //1
         drawable as drawable, //2
@@ -5600,19 +5600,19 @@ pub struct Segment {pub base : base::Struct<segment> }
 
 
 impl Segment {
-  pub fn x1(&self) -> i16 {
+  pub fn x1(&mut self) -> i16 {
     unsafe { accessor!(x1 -> i16, self.base.strct) }
   }
 
-  pub fn y1(&self) -> i16 {
+  pub fn y1(&mut self) -> i16 {
     unsafe { accessor!(y1 -> i16, self.base.strct) }
   }
 
-  pub fn x2(&self) -> i16 {
+  pub fn x2(&mut self) -> i16 {
     unsafe { accessor!(x2 -> i16, self.base.strct) }
   }
 
-  pub fn y2(&self) -> i16 {
+  pub fn y2(&mut self) -> i16 {
     unsafe { accessor!(y2 -> i16, self.base.strct) }
   }
 
@@ -5636,7 +5636,7 @@ pub fn PolySegmentChecked<'r> (c : &'r Connection,
                            segments : &[Segment]) -> base::VoidCookie<'r> {
   unsafe {
     let segments_len = segments.len();
-    let segments_ptr = segments.as_mut_ptr();
+    let segments_ptr = segments.as_ptr();
     let cookie = xcb_poly_segment_checked(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5651,7 +5651,7 @@ pub fn PolySegment<'r> (c : &'r Connection,
                     segments : &[Segment]) -> base::VoidCookie<'r> {
   unsafe {
     let segments_len = segments.len();
-    let segments_ptr = segments.as_mut_ptr();
+    let segments_ptr = segments.as_ptr();
     let cookie = xcb_poly_segment(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5666,7 +5666,7 @@ pub fn PolyRectangleChecked<'r> (c : &'r Connection,
                              rectangles : &[Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = rectangles.as_mut_ptr();
+    let rectangles_ptr = rectangles.as_ptr();
     let cookie = xcb_poly_rectangle_checked(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5681,7 +5681,7 @@ pub fn PolyRectangle<'r> (c : &'r Connection,
                       rectangles : &[Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = rectangles.as_mut_ptr();
+    let rectangles_ptr = rectangles.as_ptr();
     let cookie = xcb_poly_rectangle(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5696,7 +5696,7 @@ pub fn PolyArcChecked<'r> (c : &'r Connection,
                        arcs : &[Arc]) -> base::VoidCookie<'r> {
   unsafe {
     let arcs_len = arcs.len();
-    let arcs_ptr = arcs.as_mut_ptr();
+    let arcs_ptr = arcs.as_ptr();
     let cookie = xcb_poly_arc_checked(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5711,7 +5711,7 @@ pub fn PolyArc<'r> (c : &'r Connection,
                 arcs : &[Arc]) -> base::VoidCookie<'r> {
   unsafe {
     let arcs_len = arcs.len();
-    let arcs_ptr = arcs.as_mut_ptr();
+    let arcs_ptr = arcs.as_ptr();
     let cookie = xcb_poly_arc(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5728,7 +5728,7 @@ pub fn FillPolyChecked<'r> (c : &'r Connection,
                         points : &[Point]) -> base::VoidCookie<'r> {
   unsafe {
     let points_len = points.len();
-    let points_ptr = points.as_mut_ptr();
+    let points_ptr = points.as_ptr();
     let cookie = xcb_fill_poly_checked(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5747,7 +5747,7 @@ pub fn FillPoly<'r> (c : &'r Connection,
                  points : &[Point]) -> base::VoidCookie<'r> {
   unsafe {
     let points_len = points.len();
-    let points_ptr = points.as_mut_ptr();
+    let points_ptr = points.as_ptr();
     let cookie = xcb_fill_poly(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5764,7 +5764,7 @@ pub fn PolyFillRectangleChecked<'r> (c : &'r Connection,
                                  rectangles : &[Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = rectangles.as_mut_ptr();
+    let rectangles_ptr = rectangles.as_ptr();
     let cookie = xcb_poly_fill_rectangle_checked(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5779,7 +5779,7 @@ pub fn PolyFillRectangle<'r> (c : &'r Connection,
                           rectangles : &[Rectangle]) -> base::VoidCookie<'r> {
   unsafe {
     let rectangles_len = rectangles.len();
-    let rectangles_ptr = rectangles.as_mut_ptr();
+    let rectangles_ptr = rectangles.as_ptr();
     let cookie = xcb_poly_fill_rectangle(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5794,7 +5794,7 @@ pub fn PolyFillArcChecked<'r> (c : &'r Connection,
                            arcs : &[Arc]) -> base::VoidCookie<'r> {
   unsafe {
     let arcs_len = arcs.len();
-    let arcs_ptr = arcs.as_mut_ptr();
+    let arcs_ptr = arcs.as_ptr();
     let cookie = xcb_poly_fill_arc_checked(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5809,7 +5809,7 @@ pub fn PolyFillArc<'r> (c : &'r Connection,
                     arcs : &[Arc]) -> base::VoidCookie<'r> {
   unsafe {
     let arcs_len = arcs.len();
-    let arcs_ptr = arcs.as_mut_ptr();
+    let arcs_ptr = arcs.as_ptr();
     let cookie = xcb_poly_fill_arc(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5831,7 +5831,7 @@ pub fn PutImageChecked<'r> (c : &'r Connection,
                         data : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let data_len = data.len();
-    let data_ptr = data.as_mut_ptr();
+    let data_ptr = data.as_ptr();
     let cookie = xcb_put_image_checked(c.get_raw_conn(),
         format as u8, //1
         drawable as drawable, //2
@@ -5860,7 +5860,7 @@ pub fn PutImage<'r> (c : &'r Connection,
                  data : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let data_len = data.len();
-    let data_ptr = data.as_mut_ptr();
+    let data_ptr = data.as_ptr();
     let cookie = xcb_put_image(c.get_raw_conn(),
         format as u8, //1
         drawable as drawable, //2
@@ -5920,15 +5920,15 @@ pub fn GetImageUnchecked<'r> (c : &'r Connection,
 }
 
 impl GetImageReply {
-  pub fn depth(&self) -> u8 {
+  pub fn depth(&mut self) -> u8 {
     unsafe { accessor!(depth -> u8, (*self.base.reply)) }
   }
 
-  pub fn visual(&self) -> Visualid {
+  pub fn visual(&mut self) -> Visualid {
     unsafe { accessor!(visual -> Visualid, (*self.base.reply)) }
   }
 
-  pub fn data(&self) -> Vec<u8> {
+  pub fn data(&mut self) -> Vec<u8> {
     unsafe { accessor!(u8, xcb_get_image_data_length, xcb_get_image_data, (*self.base.reply)) }
   }
 
@@ -5943,7 +5943,7 @@ pub fn PolyText8Checked<'r> (c : &'r Connection,
                          items : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let items_len = items.len();
-    let items_ptr = items.as_mut_ptr();
+    let items_ptr = items.as_ptr();
     let cookie = xcb_poly_text_8_checked(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5962,7 +5962,7 @@ pub fn PolyText8<'r> (c : &'r Connection,
                   items : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let items_len = items.len();
-    let items_ptr = items.as_mut_ptr();
+    let items_ptr = items.as_ptr();
     let cookie = xcb_poly_text_8(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -5981,7 +5981,7 @@ pub fn PolyText16Checked<'r> (c : &'r Connection,
                           items : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let items_len = items.len();
-    let items_ptr = items.as_mut_ptr();
+    let items_ptr = items.as_ptr();
     let cookie = xcb_poly_text_16_checked(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -6000,7 +6000,7 @@ pub fn PolyText16<'r> (c : &'r Connection,
                    items : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let items_len = items.len();
-    let items_ptr = items.as_mut_ptr();
+    let items_ptr = items.as_ptr();
     let cookie = xcb_poly_text_16(c.get_raw_conn(),
         drawable as drawable, //1
         gc as gcontext, //2
@@ -6020,7 +6020,7 @@ pub fn ImageText8Checked<'r> (c : &'r Connection,
   unsafe {
     let string = (string).as_bytes();
     let string_len = string.len();
-    let string_ptr = string.as_mut_ptr();
+    let string_ptr = string.as_ptr();
     let cookie = xcb_image_text_8_checked(c.get_raw_conn(),
         string_len as u8, //1
         drawable as drawable, //2
@@ -6040,7 +6040,7 @@ pub fn ImageText8<'r> (c : &'r Connection,
   unsafe {
     let string = (string).as_bytes();
     let string_len = string.len();
-    let string_ptr = string.as_mut_ptr();
+    let string_ptr = string.as_ptr();
     let cookie = xcb_image_text_8(c.get_raw_conn(),
         string_len as u8, //1
         drawable as drawable, //2
@@ -6059,7 +6059,7 @@ pub fn ImageText16Checked<'r> (c : &'r Connection,
                            string : &[Char2b]) -> base::VoidCookie<'r> {
   unsafe {
     let string_len = string.len();
-    let string_ptr = string.as_mut_ptr();
+    let string_ptr = string.as_ptr();
     let cookie = xcb_image_text_16_checked(c.get_raw_conn(),
         string_len as u8, //1
         drawable as drawable, //2
@@ -6078,7 +6078,7 @@ pub fn ImageText16<'r> (c : &'r Connection,
                     string : &[Char2b]) -> base::VoidCookie<'r> {
   unsafe {
     let string_len = string.len();
-    let string_ptr = string.as_mut_ptr();
+    let string_ptr = string.as_ptr();
     let cookie = xcb_image_text_16(c.get_raw_conn(),
         string_len as u8, //1
         drawable as drawable, //2
@@ -6205,7 +6205,7 @@ pub fn ListInstalledColormapsUnchecked<'r> (c : &'r Connection,
 }
 
 impl ListInstalledColormapsReply {
-  pub fn cmaps(&self) -> Vec<Colormap> {
+  pub fn cmaps(&mut self) -> Vec<Colormap> {
     unsafe { accessor!(Colormap, xcb_list_installed_colormaps_cmaps_length, xcb_list_installed_colormaps_cmaps, (*self.base.reply)) }
   }
 
@@ -6242,19 +6242,19 @@ pub fn AllocColorUnchecked<'r> (c : &'r Connection,
 }
 
 impl AllocColorReply {
-  pub fn red(&self) -> u16 {
+  pub fn red(&mut self) -> u16 {
     unsafe { accessor!(red -> u16, (*self.base.reply)) }
   }
 
-  pub fn green(&self) -> u16 {
+  pub fn green(&mut self) -> u16 {
     unsafe { accessor!(green -> u16, (*self.base.reply)) }
   }
 
-  pub fn blue(&self) -> u16 {
+  pub fn blue(&mut self) -> u16 {
     unsafe { accessor!(blue -> u16, (*self.base.reply)) }
   }
 
-  pub fn pixel(&self) -> u32 {
+  pub fn pixel(&mut self) -> u32 {
     unsafe { accessor!(pixel -> u32, (*self.base.reply)) }
   }
 
@@ -6267,7 +6267,7 @@ pub fn AllocNamedColor<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mut_ptr();
+    let name_ptr = name.as_ptr();
     let cookie = xcb_alloc_named_color(c.get_raw_conn(),
         cmap as colormap, //1
         name_len as u16, //2
@@ -6281,7 +6281,7 @@ pub fn AllocNamedColorUnchecked<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mut_ptr();
+    let name_ptr = name.as_ptr();
     let cookie = xcb_alloc_named_color_unchecked(c.get_raw_conn(),
         cmap as colormap, //1
         name_len as u16, //2
@@ -6291,31 +6291,31 @@ pub fn AllocNamedColorUnchecked<'r> (c : &'r Connection,
 }
 
 impl AllocNamedColorReply {
-  pub fn pixel(&self) -> u32 {
+  pub fn pixel(&mut self) -> u32 {
     unsafe { accessor!(pixel -> u32, (*self.base.reply)) }
   }
 
-  pub fn exact_red(&self) -> u16 {
+  pub fn exact_red(&mut self) -> u16 {
     unsafe { accessor!(exact_red -> u16, (*self.base.reply)) }
   }
 
-  pub fn exact_green(&self) -> u16 {
+  pub fn exact_green(&mut self) -> u16 {
     unsafe { accessor!(exact_green -> u16, (*self.base.reply)) }
   }
 
-  pub fn exact_blue(&self) -> u16 {
+  pub fn exact_blue(&mut self) -> u16 {
     unsafe { accessor!(exact_blue -> u16, (*self.base.reply)) }
   }
 
-  pub fn visual_red(&self) -> u16 {
+  pub fn visual_red(&mut self) -> u16 {
     unsafe { accessor!(visual_red -> u16, (*self.base.reply)) }
   }
 
-  pub fn visual_green(&self) -> u16 {
+  pub fn visual_green(&mut self) -> u16 {
     unsafe { accessor!(visual_green -> u16, (*self.base.reply)) }
   }
 
-  pub fn visual_blue(&self) -> u16 {
+  pub fn visual_blue(&mut self) -> u16 {
     unsafe { accessor!(visual_blue -> u16, (*self.base.reply)) }
   }
 
@@ -6354,11 +6354,11 @@ pub fn AllocColorCellsUnchecked<'r> (c : &'r Connection,
 }
 
 impl AllocColorCellsReply {
-  pub fn pixels(&self) -> Vec<u32> {
+  pub fn pixels(&mut self) -> Vec<u32> {
     unsafe { accessor!(u32, xcb_alloc_color_cells_pixels_length, xcb_alloc_color_cells_pixels, (*self.base.reply)) }
   }
 
-  pub fn masks(&self) -> Vec<u32> {
+  pub fn masks(&mut self) -> Vec<u32> {
     unsafe { accessor!(u32, xcb_alloc_color_cells_masks_length, xcb_alloc_color_cells_masks, (*self.base.reply)) }
   }
 
@@ -6405,19 +6405,19 @@ pub fn AllocColorPlanesUnchecked<'r> (c : &'r Connection,
 }
 
 impl AllocColorPlanesReply {
-  pub fn red_mask(&self) -> u32 {
+  pub fn red_mask(&mut self) -> u32 {
     unsafe { accessor!(red_mask -> u32, (*self.base.reply)) }
   }
 
-  pub fn green_mask(&self) -> u32 {
+  pub fn green_mask(&mut self) -> u32 {
     unsafe { accessor!(green_mask -> u32, (*self.base.reply)) }
   }
 
-  pub fn blue_mask(&self) -> u32 {
+  pub fn blue_mask(&mut self) -> u32 {
     unsafe { accessor!(blue_mask -> u32, (*self.base.reply)) }
   }
 
-  pub fn pixels(&self) -> Vec<u32> {
+  pub fn pixels(&mut self) -> Vec<u32> {
     unsafe { accessor!(u32, xcb_alloc_color_planes_pixels_length, xcb_alloc_color_planes_pixels, (*self.base.reply)) }
   }
 
@@ -6430,7 +6430,7 @@ pub fn FreeColorsChecked<'r> (c : &'r Connection,
                           pixels : &[u32]) -> base::VoidCookie<'r> {
   unsafe {
     let pixels_len = pixels.len();
-    let pixels_ptr = pixels.as_mut_ptr();
+    let pixels_ptr = pixels.as_ptr();
     let cookie = xcb_free_colors_checked(c.get_raw_conn(),
         cmap as colormap, //1
         plane_mask as u32, //2
@@ -6445,7 +6445,7 @@ pub fn FreeColors<'r> (c : &'r Connection,
                    pixels : &[u32]) -> base::VoidCookie<'r> {
   unsafe {
     let pixels_len = pixels.len();
-    let pixels_ptr = pixels.as_mut_ptr();
+    let pixels_ptr = pixels.as_ptr();
     let cookie = xcb_free_colors(c.get_raw_conn(),
         cmap as colormap, //1
         plane_mask as u32, //2
@@ -6456,23 +6456,23 @@ pub fn FreeColors<'r> (c : &'r Connection,
 }
 
 impl Coloritem {
-  pub fn pixel(&self) -> u32 {
+  pub fn pixel(&mut self) -> u32 {
     unsafe { accessor!(pixel -> u32, self.base.strct) }
   }
 
-  pub fn red(&self) -> u16 {
+  pub fn red(&mut self) -> u16 {
     unsafe { accessor!(red -> u16, self.base.strct) }
   }
 
-  pub fn green(&self) -> u16 {
+  pub fn green(&mut self) -> u16 {
     unsafe { accessor!(green -> u16, self.base.strct) }
   }
 
-  pub fn blue(&self) -> u16 {
+  pub fn blue(&mut self) -> u16 {
     unsafe { accessor!(blue -> u16, self.base.strct) }
   }
 
-  pub fn flags(&self) -> u8 {
+  pub fn flags(&mut self) -> u8 {
     unsafe { accessor!(flags -> u8, self.base.strct) }
   }
 
@@ -6495,7 +6495,7 @@ pub fn StoreColorsChecked<'r> (c : &'r Connection,
                            items : &[Coloritem]) -> base::VoidCookie<'r> {
   unsafe {
     let items_len = items.len();
-    let items_ptr = items.as_mut_ptr();
+    let items_ptr = items.as_ptr();
     let cookie = xcb_store_colors_checked(c.get_raw_conn(),
         cmap as colormap, //1
         items_len as u32, //2
@@ -6508,7 +6508,7 @@ pub fn StoreColors<'r> (c : &'r Connection,
                     items : &[Coloritem]) -> base::VoidCookie<'r> {
   unsafe {
     let items_len = items.len();
-    let items_ptr = items.as_mut_ptr();
+    let items_ptr = items.as_ptr();
     let cookie = xcb_store_colors(c.get_raw_conn(),
         cmap as colormap, //1
         items_len as u32, //2
@@ -6524,7 +6524,7 @@ pub fn StoreNamedColorChecked<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mut_ptr();
+    let name_ptr = name.as_ptr();
     let cookie = xcb_store_named_color_checked(c.get_raw_conn(),
         flags as u8, //1
         cmap as colormap, //2
@@ -6542,7 +6542,7 @@ pub fn StoreNamedColor<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mut_ptr();
+    let name_ptr = name.as_ptr();
     let cookie = xcb_store_named_color(c.get_raw_conn(),
         flags as u8, //1
         cmap as colormap, //2
@@ -6556,15 +6556,15 @@ pub struct Rgb {pub base : base::Struct<rgb> }
 
 
 impl Rgb {
-  pub fn red(&self) -> u16 {
+  pub fn red(&mut self) -> u16 {
     unsafe { accessor!(red -> u16, self.base.strct) }
   }
 
-  pub fn green(&self) -> u16 {
+  pub fn green(&mut self) -> u16 {
     unsafe { accessor!(green -> u16, self.base.strct) }
   }
 
-  pub fn blue(&self) -> u16 {
+  pub fn blue(&mut self) -> u16 {
     unsafe { accessor!(blue -> u16, self.base.strct) }
   }
 
@@ -6587,7 +6587,7 @@ pub fn QueryColors<'r> (c : &'r Connection,
                     pixels : &[u32]) -> QueryColorsCookie<'r> {
   unsafe {
     let pixels_len = pixels.len();
-    let pixels_ptr = pixels.as_mut_ptr();
+    let pixels_ptr = pixels.as_ptr();
     let cookie = xcb_query_colors(c.get_raw_conn(),
         cmap as colormap, //1
         pixels_len as u32, //2
@@ -6600,7 +6600,7 @@ pub fn QueryColorsUnchecked<'r> (c : &'r Connection,
                              pixels : &[u32]) -> QueryColorsCookie<'r> {
   unsafe {
     let pixels_len = pixels.len();
-    let pixels_ptr = pixels.as_mut_ptr();
+    let pixels_ptr = pixels.as_ptr();
     let cookie = xcb_query_colors_unchecked(c.get_raw_conn(),
         cmap as colormap, //1
         pixels_len as u32, //2
@@ -6610,7 +6610,7 @@ pub fn QueryColorsUnchecked<'r> (c : &'r Connection,
 }
 
 impl QueryColorsReply {
-  pub fn colors(&self) -> RgbIterator {
+  pub fn colors(&mut self) -> RgbIterator {
     unsafe { accessor!(RgbIterator, xcb_query_colors_colors_iterator, (*self.base.reply)) }
   }
 
@@ -6623,7 +6623,7 @@ pub fn LookupColor<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mut_ptr();
+    let name_ptr = name.as_ptr();
     let cookie = xcb_lookup_color(c.get_raw_conn(),
         cmap as colormap, //1
         name_len as u16, //2
@@ -6637,7 +6637,7 @@ pub fn LookupColorUnchecked<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mut_ptr();
+    let name_ptr = name.as_ptr();
     let cookie = xcb_lookup_color_unchecked(c.get_raw_conn(),
         cmap as colormap, //1
         name_len as u16, //2
@@ -6647,27 +6647,27 @@ pub fn LookupColorUnchecked<'r> (c : &'r Connection,
 }
 
 impl LookupColorReply {
-  pub fn exact_red(&self) -> u16 {
+  pub fn exact_red(&mut self) -> u16 {
     unsafe { accessor!(exact_red -> u16, (*self.base.reply)) }
   }
 
-  pub fn exact_green(&self) -> u16 {
+  pub fn exact_green(&mut self) -> u16 {
     unsafe { accessor!(exact_green -> u16, (*self.base.reply)) }
   }
 
-  pub fn exact_blue(&self) -> u16 {
+  pub fn exact_blue(&mut self) -> u16 {
     unsafe { accessor!(exact_blue -> u16, (*self.base.reply)) }
   }
 
-  pub fn visual_red(&self) -> u16 {
+  pub fn visual_red(&mut self) -> u16 {
     unsafe { accessor!(visual_red -> u16, (*self.base.reply)) }
   }
 
-  pub fn visual_green(&self) -> u16 {
+  pub fn visual_green(&mut self) -> u16 {
     unsafe { accessor!(visual_green -> u16, (*self.base.reply)) }
   }
 
-  pub fn visual_blue(&self) -> u16 {
+  pub fn visual_blue(&mut self) -> u16 {
     unsafe { accessor!(visual_blue -> u16, (*self.base.reply)) }
   }
 
@@ -6872,11 +6872,11 @@ pub fn QueryBestSizeUnchecked<'r> (c : &'r Connection,
 }
 
 impl QueryBestSizeReply {
-  pub fn width(&self) -> u16 {
+  pub fn width(&mut self) -> u16 {
     unsafe { accessor!(width -> u16, (*self.base.reply)) }
   }
 
-  pub fn height(&self) -> u16 {
+  pub fn height(&mut self) -> u16 {
     unsafe { accessor!(height -> u16, (*self.base.reply)) }
   }
 
@@ -6888,7 +6888,7 @@ pub fn QueryExtension<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mut_ptr();
+    let name_ptr = name.as_ptr();
     let cookie = xcb_query_extension(c.get_raw_conn(),
         name_len as u16, //1
         name_ptr as *mut c_char); //2
@@ -6900,7 +6900,7 @@ pub fn QueryExtensionUnchecked<'r> (c : &'r Connection,
   unsafe {
     let name = (name).as_bytes();
     let name_len = name.len();
-    let name_ptr = name.as_mut_ptr();
+    let name_ptr = name.as_ptr();
     let cookie = xcb_query_extension_unchecked(c.get_raw_conn(),
         name_len as u16, //1
         name_ptr as *mut c_char); //2
@@ -6909,19 +6909,19 @@ pub fn QueryExtensionUnchecked<'r> (c : &'r Connection,
 }
 
 impl QueryExtensionReply {
-  pub fn present(&self) -> u8 {
+  pub fn present(&mut self) -> u8 {
     unsafe { accessor!(present -> u8, (*self.base.reply)) }
   }
 
-  pub fn major_opcode(&self) -> u8 {
+  pub fn major_opcode(&mut self) -> u8 {
     unsafe { accessor!(major_opcode -> u8, (*self.base.reply)) }
   }
 
-  pub fn first_event(&self) -> u8 {
+  pub fn first_event(&mut self) -> u8 {
     unsafe { accessor!(first_event -> u8, (*self.base.reply)) }
   }
 
-  pub fn first_error(&self) -> u8 {
+  pub fn first_error(&mut self) -> u8 {
     unsafe { accessor!(first_error -> u8, (*self.base.reply)) }
   }
 
@@ -6944,7 +6944,7 @@ pub fn ListExtensionsUnchecked<'r> (c : &'r Connection) -> ListExtensionsCookie<
 }
 
 impl ListExtensionsReply {
-  pub fn names(&self) -> StrIterator {
+  pub fn names(&mut self) -> StrIterator {
     unsafe { accessor!(StrIterator, xcb_list_extensions_names_iterator, (*self.base.reply)) }
   }
 
@@ -6957,7 +6957,7 @@ pub fn ChangeKeyboardMappingChecked<'r> (c : &'r Connection,
                                      keysyms : &[Keysym]) -> base::VoidCookie<'r> {
   unsafe {
     let keysyms_len = keysyms.len();
-    let keysyms_ptr = keysyms.as_mut_ptr();
+    let keysyms_ptr = keysyms.as_ptr();
     let cookie = xcb_change_keyboard_mapping_checked(c.get_raw_conn(),
         keysyms_len as u8, //1
         first_keycode as keycode, //2
@@ -6972,7 +6972,7 @@ pub fn ChangeKeyboardMapping<'r> (c : &'r Connection,
                               keysyms : &[Keysym]) -> base::VoidCookie<'r> {
   unsafe {
     let keysyms_len = keysyms.len();
-    let keysyms_ptr = keysyms.as_mut_ptr();
+    let keysyms_ptr = keysyms.as_ptr();
     let cookie = xcb_change_keyboard_mapping(c.get_raw_conn(),
         keysyms_len as u8, //1
         first_keycode as keycode, //2
@@ -7005,11 +7005,11 @@ pub fn GetKeyboardMappingUnchecked<'r> (c : &'r Connection,
 }
 
 impl GetKeyboardMappingReply {
-  pub fn keysyms_per_keycode(&self) -> u8 {
+  pub fn keysyms_per_keycode(&mut self) -> u8 {
     unsafe { accessor!(keysyms_per_keycode -> u8, (*self.base.reply)) }
   }
 
-  pub fn keysyms(&self) -> Vec<Keysym> {
+  pub fn keysyms(&mut self) -> Vec<Keysym> {
     unsafe { accessor!(Keysym, xcb_get_keyboard_mapping_keysyms_length, xcb_get_keyboard_mapping_keysyms, (*self.base.reply)) }
   }
 
@@ -7020,7 +7020,7 @@ pub fn ChangeKeyboardControlChecked<'r> (c : &'r Connection,
                                      value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = value_list_vec.as_mut_ptr();
+    let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_change_keyboard_control_checked(c.get_raw_conn(),
         value_list_mask as u32, //1
         value_list_ptr as *mut u32); //2
@@ -7031,7 +7031,7 @@ pub fn ChangeKeyboardControl<'r> (c : &'r Connection,
                               value_list : &[(u32,u32)]) -> base::VoidCookie<'r> {
   unsafe {
     let (value_list_mask, value_list_vec) = pack_bitfield(value_list);
-    let value_list_ptr = value_list_vec.as_mut_ptr();
+    let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_change_keyboard_control(c.get_raw_conn(),
         value_list_mask as u32, //1
         value_list_ptr as *mut u32); //2
@@ -7052,27 +7052,27 @@ pub fn GetKeyboardControlUnchecked<'r> (c : &'r Connection) -> GetKeyboardContro
 }
 
 impl GetKeyboardControlReply {
-  pub fn global_auto_repeat(&self) -> u8 {
+  pub fn global_auto_repeat(&mut self) -> u8 {
     unsafe { accessor!(global_auto_repeat -> u8, (*self.base.reply)) }
   }
 
-  pub fn led_mask(&self) -> u32 {
+  pub fn led_mask(&mut self) -> u32 {
     unsafe { accessor!(led_mask -> u32, (*self.base.reply)) }
   }
 
-  pub fn key_click_percent(&self) -> u8 {
+  pub fn key_click_percent(&mut self) -> u8 {
     unsafe { accessor!(key_click_percent -> u8, (*self.base.reply)) }
   }
 
-  pub fn bell_percent(&self) -> u8 {
+  pub fn bell_percent(&mut self) -> u8 {
     unsafe { accessor!(bell_percent -> u8, (*self.base.reply)) }
   }
 
-  pub fn bell_pitch(&self) -> u16 {
+  pub fn bell_pitch(&mut self) -> u16 {
     unsafe { accessor!(bell_pitch -> u16, (*self.base.reply)) }
   }
 
-  pub fn bell_duration(&self) -> u16 {
+  pub fn bell_duration(&mut self) -> u16 {
     unsafe { accessor!(bell_duration -> u16, (*self.base.reply)) }
   }
 
@@ -7145,15 +7145,15 @@ pub fn GetPointerControlUnchecked<'r> (c : &'r Connection) -> GetPointerControlC
 }
 
 impl GetPointerControlReply {
-  pub fn acceleration_numerator(&self) -> u16 {
+  pub fn acceleration_numerator(&mut self) -> u16 {
     unsafe { accessor!(acceleration_numerator -> u16, (*self.base.reply)) }
   }
 
-  pub fn acceleration_denominator(&self) -> u16 {
+  pub fn acceleration_denominator(&mut self) -> u16 {
     unsafe { accessor!(acceleration_denominator -> u16, (*self.base.reply)) }
   }
 
-  pub fn threshold(&self) -> u16 {
+  pub fn threshold(&mut self) -> u16 {
     unsafe { accessor!(threshold -> u16, (*self.base.reply)) }
   }
 
@@ -7202,19 +7202,19 @@ pub fn GetScreenSaverUnchecked<'r> (c : &'r Connection) -> GetScreenSaverCookie<
 }
 
 impl GetScreenSaverReply {
-  pub fn timeout(&self) -> u16 {
+  pub fn timeout(&mut self) -> u16 {
     unsafe { accessor!(timeout -> u16, (*self.base.reply)) }
   }
 
-  pub fn interval(&self) -> u16 {
+  pub fn interval(&mut self) -> u16 {
     unsafe { accessor!(interval -> u16, (*self.base.reply)) }
   }
 
-  pub fn prefer_blanking(&self) -> u8 {
+  pub fn prefer_blanking(&mut self) -> u8 {
     unsafe { accessor!(prefer_blanking -> u8, (*self.base.reply)) }
   }
 
-  pub fn allow_exposures(&self) -> u8 {
+  pub fn allow_exposures(&mut self) -> u8 {
     unsafe { accessor!(allow_exposures -> u8, (*self.base.reply)) }
   }
 
@@ -7227,7 +7227,7 @@ pub fn ChangeHostsChecked<'r> (c : &'r Connection,
                            address : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let address_len = address.len();
-    let address_ptr = address.as_mut_ptr();
+    let address_ptr = address.as_ptr();
     let cookie = xcb_change_hosts_checked(c.get_raw_conn(),
         mode as u8, //1
         family as u8, //2
@@ -7242,7 +7242,7 @@ pub fn ChangeHosts<'r> (c : &'r Connection,
                     address : &[u8]) -> base::VoidCookie<'r> {
   unsafe {
     let address_len = address.len();
-    let address_ptr = address.as_mut_ptr();
+    let address_ptr = address.as_ptr();
     let cookie = xcb_change_hosts(c.get_raw_conn(),
         mode as u8, //1
         family as u8, //2
@@ -7255,11 +7255,11 @@ pub struct Host {pub base : base::Struct<host> }
 
 
 impl Host {
-  pub fn family(&self) -> u8 {
+  pub fn family(&mut self) -> u8 {
     unsafe { accessor!(family -> u8, self.base.strct) }
   }
 
-  pub fn address(&self) -> Vec<u8> {
+  pub fn address(&mut self) -> Vec<u8> {
     unsafe { accessor!(u8, xcb_host_address_length, xcb_host_address, self.base.strct) }
   }
 
@@ -7293,11 +7293,11 @@ pub fn ListHostsUnchecked<'r> (c : &'r Connection) -> ListHostsCookie<'r> {
 }
 
 impl ListHostsReply {
-  pub fn mode(&self) -> u8 {
+  pub fn mode(&mut self) -> u8 {
     unsafe { accessor!(mode -> u8, (*self.base.reply)) }
   }
 
-  pub fn hosts(&self) -> HostIterator {
+  pub fn hosts(&mut self) -> HostIterator {
     unsafe { accessor!(HostIterator, xcb_list_hosts_hosts_iterator, (*self.base.reply)) }
   }
 
@@ -7358,7 +7358,7 @@ pub fn RotatePropertiesChecked<'r> (c : &'r Connection,
                                 atoms : &[Atom]) -> base::VoidCookie<'r> {
   unsafe {
     let atoms_len = atoms.len();
-    let atoms_ptr = atoms.as_mut_ptr();
+    let atoms_ptr = atoms.as_ptr();
     let cookie = xcb_rotate_properties_checked(c.get_raw_conn(),
         window as window, //1
         atoms_len as u16, //2
@@ -7373,7 +7373,7 @@ pub fn RotateProperties<'r> (c : &'r Connection,
                          atoms : &[Atom]) -> base::VoidCookie<'r> {
   unsafe {
     let atoms_len = atoms.len();
-    let atoms_ptr = atoms.as_mut_ptr();
+    let atoms_ptr = atoms.as_ptr();
     let cookie = xcb_rotate_properties(c.get_raw_conn(),
         window as window, //1
         atoms_len as u16, //2
@@ -7402,7 +7402,7 @@ pub fn SetPointerMapping<'r> (c : &'r Connection,
                           map : &[u8]) -> SetPointerMappingCookie<'r> {
   unsafe {
     let map_len = map.len();
-    let map_ptr = map.as_mut_ptr();
+    let map_ptr = map.as_ptr();
     let cookie = xcb_set_pointer_mapping(c.get_raw_conn(),
         map_len as u8, //1
         map_ptr as *mut u8); //2
@@ -7413,7 +7413,7 @@ pub fn SetPointerMappingUnchecked<'r> (c : &'r Connection,
                                    map : &[u8]) -> SetPointerMappingCookie<'r> {
   unsafe {
     let map_len = map.len();
-    let map_ptr = map.as_mut_ptr();
+    let map_ptr = map.as_ptr();
     let cookie = xcb_set_pointer_mapping_unchecked(c.get_raw_conn(),
         map_len as u8, //1
         map_ptr as *mut u8); //2
@@ -7422,7 +7422,7 @@ pub fn SetPointerMappingUnchecked<'r> (c : &'r Connection,
 }
 
 impl SetPointerMappingReply {
-  pub fn status(&self) -> u8 {
+  pub fn status(&mut self) -> u8 {
     unsafe { accessor!(status -> u8, (*self.base.reply)) }
   }
 
@@ -7445,7 +7445,7 @@ pub fn GetPointerMappingUnchecked<'r> (c : &'r Connection) -> GetPointerMappingC
 }
 
 impl GetPointerMappingReply {
-  pub fn map(&self) -> Vec<u8> {
+  pub fn map(&mut self) -> Vec<u8> {
     unsafe { accessor!(u8, xcb_get_pointer_mapping_map_length, xcb_get_pointer_mapping_map, (*self.base.reply)) }
   }
 
@@ -7456,7 +7456,7 @@ pub fn SetModifierMapping<'r> (c : &'r Connection,
                            keycodes : &[Keycode]) -> SetModifierMappingCookie<'r> {
   unsafe {
     let keycodes_len = keycodes.len();
-    let keycodes_ptr = keycodes.as_mut_ptr();
+    let keycodes_ptr = keycodes.as_ptr();
     let cookie = xcb_set_modifier_mapping(c.get_raw_conn(),
         keycodes_len as u8, //1
         keycodes_ptr as *mut keycode); //2
@@ -7467,7 +7467,7 @@ pub fn SetModifierMappingUnchecked<'r> (c : &'r Connection,
                                     keycodes : &[Keycode]) -> SetModifierMappingCookie<'r> {
   unsafe {
     let keycodes_len = keycodes.len();
-    let keycodes_ptr = keycodes.as_mut_ptr();
+    let keycodes_ptr = keycodes.as_ptr();
     let cookie = xcb_set_modifier_mapping_unchecked(c.get_raw_conn(),
         keycodes_len as u8, //1
         keycodes_ptr as *mut keycode); //2
@@ -7476,7 +7476,7 @@ pub fn SetModifierMappingUnchecked<'r> (c : &'r Connection,
 }
 
 impl SetModifierMappingReply {
-  pub fn status(&self) -> u8 {
+  pub fn status(&mut self) -> u8 {
     unsafe { accessor!(status -> u8, (*self.base.reply)) }
   }
 
@@ -7499,7 +7499,7 @@ pub fn GetModifierMappingUnchecked<'r> (c : &'r Connection) -> GetModifierMappin
 }
 
 impl GetModifierMappingReply {
-  pub fn keycodes(&self) -> Vec<Keycode> {
+  pub fn keycodes(&mut self) -> Vec<Keycode> {
     unsafe { accessor!(Keycode, xcb_get_modifier_mapping_keycodes_length, xcb_get_modifier_mapping_keycodes, (*self.base.reply)) }
   }
 
