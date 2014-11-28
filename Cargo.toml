@@ -1,0 +1,9 @@
+[package]
+
+name = "xcb"
+version = "0.3.0"
+authors = [ "Aatch" ]
+
+[lib]
+name = "xcb"
+path = "src/xcb.rs"

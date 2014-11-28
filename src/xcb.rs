@@ -27,13 +27,24 @@ DEALINGS IN THE SOFTWARE.
 
 */
 
-#[link(name="xcb",
+#![link(name="xcb",
        vers="0.3",
        uuid="ef466d26-0620-4f5f-a1d2-1bb9c628e101",
-       url= "https://github.com/Aatch/rust-xcb")];
+       url= "https://github.com/Aatch/rust-xcb")]
 
-#[license = "MIT"];
-#[crate_type="lib"];
+#![license = "MIT"]
+#![crate_type="lib"]
+#![feature(globs)]
+#![feature(macro_rules)]
+#![feature(unsafe_destructor)]
+
+#![allow(dead_code)]
+#![allow(ctypes)]
+#![allow(non_snake_case)]
+#![allow(non_camel_case_types)]
+#![allow(unused_imports)]
+
+extern crate libc;
 
 pub mod ffi {
     pub mod xproto;
@@ -88,7 +99,6 @@ pub mod shape;
 pub mod damage;
 pub mod dpms;
 pub mod dri2;
-
 //pub mod ge; not sure about this one...
 
 pub mod glx;

@@ -4,13 +4,10 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 use std;
-use std::libc::*;
-use std::{cast,num,ptr,str,libc};
-use std::to_bytes::ToBytes;
-use ffi::base::*;
+use libc::*;
 use ffi;
 
 pub static BIGREQUESTS_MAJOR_VERSION : c_uint = 0;
@@ -22,21 +19,21 @@ pub struct enable_cookie {
 
 
 pub struct enable_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct enable_reply {
-    response_type :            u8,
-    pad0 :                     u8,
-    sequence :                 u16,
-    length :                   u32,
-    maximum_request_length :   u32
+     pub response_type :            u8,
+     pub pad0 :                     u8,
+     pub sequence :                 u16,
+     pub length :                   u32,
+     pub maximum_request_length :   u32
 }
 
-pub extern "C" {
+extern "C" {
 
 /**
  *
@@ -46,7 +43,7 @@ pub extern "C" {
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_big_requests_enable (c : *connection) -> enable_cookie;
+pub fn xcb_big_requests_enable (c : *mut ffi::base::connection) -> enable_cookie;
 
 /**
  *
@@ -59,7 +56,7 @@ pub unsafe fn xcb_big_requests_enable (c : *connection) -> enable_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_big_requests_enable_unchecked (c : *connection) -> enable_cookie;
+pub fn xcb_big_requests_enable_unchecked (c : *mut ffi::base::connection) -> enable_cookie;
 
 /**
  * Return the reply
@@ -75,8 +72,8 @@ pub unsafe fn xcb_big_requests_enable_unchecked (c : *connection) -> enable_cook
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_big_requests_enable_reply (c : *connection,
+pub fn xcb_big_requests_enable_reply (c : *mut ffi::base::connection,
                                          cookie : enable_cookie,
-                                         e : **generic_error) -> *enable_reply;
+                                         e : *mut *mut ffi::base::generic_error) -> *mut enable_reply;
 }
 

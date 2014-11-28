@@ -4,13 +4,10 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 use std;
-use std::libc::*;
-use std::{cast,num,ptr,str,libc};
-use std::to_bytes::ToBytes;
-use ffi::base::*;
+use libc::*;
 use ffi;
 use ffi::xproto;
 
@@ -18,19 +15,19 @@ pub static XINERAMA_MAJOR_VERSION : c_uint = 1;
 pub static XINERAMA_MINOR_VERSION : c_uint = 1;
 
 pub struct screen_info {
-    x_org :    i16,
-    y_org :    i16,
-    width :    u16,
-    height :   u16
+     pub x_org :    i16,
+     pub y_org :    i16,
+     pub width :    u16,
+     pub height :   u16
 }
 
 /**
  * @brief screen_info_iterator
  **/
 pub struct screen_info_iterator {
-    data : *screen_info,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut screen_info,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -40,21 +37,21 @@ pub struct query_version_cookie {
 
 
 pub struct query_version_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    major :          u8,
-    minor :          u8
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub major :          u8,
+     pub minor :          u8
 }
 
 
 pub struct query_version_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    major :           u16,
-    minor :           u16
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub major :           u16,
+     pub minor :           u16
 }
 
 
@@ -64,19 +61,19 @@ pub struct get_state_cookie {
 
 
 pub struct get_state_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window
 }
 
 
 pub struct get_state_reply {
-    response_type :   u8,
-    state :           u8,
-    sequence :        u16,
-    length :          u32,
-    window :          ffi::xproto::window
+     pub response_type :   u8,
+     pub state :           u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub window :          ffi::xproto::window
 }
 
 
@@ -86,19 +83,19 @@ pub struct get_screen_count_cookie {
 
 
 pub struct get_screen_count_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window
 }
 
 
 pub struct get_screen_count_reply {
-    response_type :   u8,
-    screen_count :    u8,
-    sequence :        u16,
-    length :          u32,
-    window :          ffi::xproto::window
+     pub response_type :   u8,
+     pub screen_count :    u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub window :          ffi::xproto::window
 }
 
 
@@ -108,23 +105,23 @@ pub struct get_screen_size_cookie {
 
 
 pub struct get_screen_size_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window,
-    screen :         u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window,
+     pub screen :         u32
 }
 
 
 pub struct get_screen_size_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    width :           u32,
-    height :          u32,
-    window :          ffi::xproto::window,
-    screen :          u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub width :           u32,
+     pub height :          u32,
+     pub window :          ffi::xproto::window,
+     pub screen :          u32
 }
 
 
@@ -134,18 +131,18 @@ pub struct is_active_cookie {
 
 
 pub struct is_active_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct is_active_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    state :           u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub state :           u32
 }
 
 
@@ -155,23 +152,23 @@ pub struct query_screens_cookie {
 
 
 pub struct query_screens_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct query_screens_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    number :          u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub number :          u32,
+     pub pad1 :            [u8,..20]
 }
 
-#[link_args="-lxcb-xinerama"]
-pub extern "C" {
+#[link(name="xcb-xinerama")]
+extern "C" {
 
 /**
  * Get the next element of the iterator
@@ -183,7 +180,7 @@ pub extern "C" {
  *
  *
  */
-pub unsafe fn xcb_xinerama_screen_info_next (i:*screen_info_iterator) -> c_void;
+pub fn xcb_xinerama_screen_info_next (i:*mut screen_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -194,7 +191,7 @@ pub unsafe fn xcb_xinerama_screen_info_next (i:*screen_info_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_xinerama_screen_info_end (i:screen_info_iterator) -> generic_iterator;
+pub fn xcb_xinerama_screen_info_end (i:screen_info_iterator) -> ffi::base::generic_iterator;
 
 /**
  *
@@ -204,7 +201,7 @@ pub unsafe fn xcb_xinerama_screen_info_end (i:screen_info_iterator) -> generic_i
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xinerama_query_version (c : *connection,
+pub fn xcb_xinerama_query_version (c : *mut ffi::base::connection,
                                       major :  u8,
                                       minor :  u8) -> query_version_cookie;
 
@@ -219,7 +216,7 @@ pub unsafe fn xcb_xinerama_query_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xinerama_query_version_unchecked (c : *connection,
+pub fn xcb_xinerama_query_version_unchecked (c : *mut ffi::base::connection,
                                                 major :  u8,
                                                 minor :  u8) -> query_version_cookie;
 
@@ -237,9 +234,9 @@ pub unsafe fn xcb_xinerama_query_version_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xinerama_query_version_reply (c : *connection,
+pub fn xcb_xinerama_query_version_reply (c : *mut ffi::base::connection,
                                             cookie : query_version_cookie,
-                                            e : **generic_error) -> *query_version_reply;
+                                            e : *mut *mut ffi::base::generic_error) -> *mut query_version_reply;
 
 /**
  *
@@ -249,7 +246,7 @@ pub unsafe fn xcb_xinerama_query_version_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xinerama_get_state (c : *connection,
+pub fn xcb_xinerama_get_state (c : *mut ffi::base::connection,
                                   window :  ffi::xproto::window) -> get_state_cookie;
 
 /**
@@ -263,7 +260,7 @@ pub unsafe fn xcb_xinerama_get_state (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xinerama_get_state_unchecked (c : *connection,
+pub fn xcb_xinerama_get_state_unchecked (c : *mut ffi::base::connection,
                                             window :  ffi::xproto::window) -> get_state_cookie;
 
 /**
@@ -280,9 +277,9 @@ pub unsafe fn xcb_xinerama_get_state_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xinerama_get_state_reply (c : *connection,
+pub fn xcb_xinerama_get_state_reply (c : *mut ffi::base::connection,
                                         cookie : get_state_cookie,
-                                        e : **generic_error) -> *get_state_reply;
+                                        e : *mut *mut ffi::base::generic_error) -> *mut get_state_reply;
 
 /**
  *
@@ -292,7 +289,7 @@ pub unsafe fn xcb_xinerama_get_state_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xinerama_get_screen_count (c : *connection,
+pub fn xcb_xinerama_get_screen_count (c : *mut ffi::base::connection,
                                          window :  ffi::xproto::window) -> get_screen_count_cookie;
 
 /**
@@ -306,7 +303,7 @@ pub unsafe fn xcb_xinerama_get_screen_count (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xinerama_get_screen_count_unchecked (c : *connection,
+pub fn xcb_xinerama_get_screen_count_unchecked (c : *mut ffi::base::connection,
                                                    window :  ffi::xproto::window) -> get_screen_count_cookie;
 
 /**
@@ -323,9 +320,9 @@ pub unsafe fn xcb_xinerama_get_screen_count_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xinerama_get_screen_count_reply (c : *connection,
+pub fn xcb_xinerama_get_screen_count_reply (c : *mut ffi::base::connection,
                                                cookie : get_screen_count_cookie,
-                                               e : **generic_error) -> *get_screen_count_reply;
+                                               e : *mut *mut ffi::base::generic_error) -> *mut get_screen_count_reply;
 
 /**
  *
@@ -335,7 +332,7 @@ pub unsafe fn xcb_xinerama_get_screen_count_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xinerama_get_screen_size (c : *connection,
+pub fn xcb_xinerama_get_screen_size (c : *mut ffi::base::connection,
                                         window :  ffi::xproto::window,
                                         screen :  u32) -> get_screen_size_cookie;
 
@@ -350,7 +347,7 @@ pub unsafe fn xcb_xinerama_get_screen_size (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xinerama_get_screen_size_unchecked (c : *connection,
+pub fn xcb_xinerama_get_screen_size_unchecked (c : *mut ffi::base::connection,
                                                   window :  ffi::xproto::window,
                                                   screen :  u32) -> get_screen_size_cookie;
 
@@ -368,9 +365,9 @@ pub unsafe fn xcb_xinerama_get_screen_size_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xinerama_get_screen_size_reply (c : *connection,
+pub fn xcb_xinerama_get_screen_size_reply (c : *mut ffi::base::connection,
                                               cookie : get_screen_size_cookie,
-                                              e : **generic_error) -> *get_screen_size_reply;
+                                              e : *mut *mut ffi::base::generic_error) -> *mut get_screen_size_reply;
 
 /**
  *
@@ -380,7 +377,7 @@ pub unsafe fn xcb_xinerama_get_screen_size_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xinerama_is_active (c : *connection) -> is_active_cookie;
+pub fn xcb_xinerama_is_active (c : *mut ffi::base::connection) -> is_active_cookie;
 
 /**
  *
@@ -393,7 +390,7 @@ pub unsafe fn xcb_xinerama_is_active (c : *connection) -> is_active_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xinerama_is_active_unchecked (c : *connection) -> is_active_cookie;
+pub fn xcb_xinerama_is_active_unchecked (c : *mut ffi::base::connection) -> is_active_cookie;
 
 /**
  * Return the reply
@@ -409,11 +406,11 @@ pub unsafe fn xcb_xinerama_is_active_unchecked (c : *connection) -> is_active_co
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xinerama_is_active_reply (c : *connection,
+pub fn xcb_xinerama_is_active_reply (c : *mut ffi::base::connection,
                                         cookie : is_active_cookie,
-                                        e : **generic_error) -> *is_active_reply;
+                                        e : *mut *mut ffi::base::generic_error) -> *mut is_active_reply;
 
-pub unsafe fn xcb_xinerama_query_screens_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xinerama_query_screens_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -423,7 +420,7 @@ pub unsafe fn xcb_xinerama_query_screens_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xinerama_query_screens (c : *connection) -> query_screens_cookie;
+pub fn xcb_xinerama_query_screens (c : *mut ffi::base::connection) -> query_screens_cookie;
 
 /**
  *
@@ -436,14 +433,14 @@ pub unsafe fn xcb_xinerama_query_screens (c : *connection) -> query_screens_cook
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xinerama_query_screens_unchecked (c : *connection) -> query_screens_cookie;
+pub fn xcb_xinerama_query_screens_unchecked (c : *mut ffi::base::connection) -> query_screens_cookie;
 
-pub unsafe fn xcb_xinerama_query_screens_screen_info (R : *query_screens_reply) -> *screen_info;
+pub fn xcb_xinerama_query_screens_screen_info (R : *mut query_screens_reply) -> *mut screen_info;
 
 
-pub unsafe fn xcb_xinerama_query_screens_screen_info_length (R : *query_screens_reply) -> c_int;
+pub fn xcb_xinerama_query_screens_screen_info_length (R : *mut query_screens_reply) -> c_int;
 
-pub unsafe fn xcb_xinerama_query_screens_screen_info_iterator (R : *query_screens_reply) -> screen_info_iterator;
+pub fn xcb_xinerama_query_screens_screen_info_iterator (R : *mut query_screens_reply) -> screen_info_iterator;
 
 /**
  * Return the reply
@@ -459,8 +456,8 @@ pub unsafe fn xcb_xinerama_query_screens_screen_info_iterator (R : *query_screen
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xinerama_query_screens_reply (c : *connection,
+pub fn xcb_xinerama_query_screens_reply (c : *mut ffi::base::connection,
                                             cookie : query_screens_cookie,
-                                            e : **generic_error) -> *query_screens_reply;
+                                            e : *mut *mut ffi::base::generic_error) -> *mut query_screens_reply;
 }
 

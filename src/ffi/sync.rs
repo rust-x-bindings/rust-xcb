@@ -4,13 +4,10 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 use std;
-use std::libc::*;
-use std::{cast,num,ptr,str,libc};
-use std::to_bytes::ToBytes;
-use ffi::base::*;
+use libc::*;
 use ffi;
 use ffi::xproto;
 
@@ -22,9 +19,9 @@ pub type alarm = u32;
  * @brief alarm_iterator
  **/
 pub struct alarm_iterator {
-    data : *alarm,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut alarm,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -33,9 +30,9 @@ pub type counter = u32;
  * @brief counter_iterator
  **/
 pub struct counter_iterator {
-    data : *counter,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut counter,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -44,94 +41,94 @@ pub type fence = u32;
  * @brief fence_iterator
  **/
 pub struct fence_iterator {
-    data : *fence,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut fence,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct int64 {
-    hi :   i32,
-    lo :   u32
+     pub hi :   i32,
+     pub lo :   u32
 }
 
 /**
  * @brief int64_iterator
  **/
 pub struct int64_iterator {
-    data : *int64,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut int64,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct systemcounter {
-    counter :      counter,
-    resolution :   int64,
-    name_len :     u16
+     pub counter :      counter,
+     pub resolution :   int64,
+     pub name_len :     u16
 }
 
 /**
  * @brief systemcounter_iterator
  **/
 pub struct systemcounter_iterator {
-    data : *systemcounter,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut systemcounter,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct trigger {
-    counter :      counter,
-    wait_type :    u32,
-    wait_value :   int64,
-    test_type :    u32
+     pub counter :      counter,
+     pub wait_type :    u32,
+     pub wait_value :   int64,
+     pub test_type :    u32
 }
 
 /**
  * @brief trigger_iterator
  **/
 pub struct trigger_iterator {
-    data : *trigger,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut trigger,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct waitcondition {
-    trigger :           trigger,
-    event_threshold :   int64
+     pub trigger :           trigger,
+     pub event_threshold :   int64
 }
 
 /**
  * @brief waitcondition_iterator
  **/
 pub struct waitcondition_iterator {
-    data : *waitcondition,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut waitcondition,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 
 pub struct counter_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16,
-    bad_counter :     u32,
-    minor_opcode :    u16,
-    major_opcode :    u8
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16,
+     pub bad_counter :     u32,
+     pub minor_opcode :    u16,
+     pub major_opcode :    u8
 }
 
 
 
 pub struct alarm_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16,
-    bad_alarm :       u32,
-    minor_opcode :    u16,
-    major_opcode :    u8
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16,
+     pub bad_alarm :       u32,
+     pub minor_opcode :    u16,
+     pub major_opcode :    u8
 }
 
 
@@ -141,22 +138,22 @@ pub struct initialize_cookie {
 
 
 pub struct initialize_request {
-    major_opcode :            u8,
-    minor_opcode :            u8,
-    length :                  u16,
-    desired_major_version :   u8,
-    desired_minor_version :   u8
+     pub major_opcode :            u8,
+     pub minor_opcode :            u8,
+     pub length :                  u16,
+     pub desired_major_version :   u8,
+     pub desired_minor_version :   u8
 }
 
 
 pub struct initialize_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    major_version :   u8,
-    minor_version :   u8,
-    pad1 :            [u8,..22]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub major_version :   u8,
+     pub minor_version :   u8,
+     pub pad1 :            [u8,..22]
 }
 
 
@@ -166,38 +163,38 @@ pub struct list_system_counters_cookie {
 
 
 pub struct list_system_counters_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct list_system_counters_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    counters_len :    u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub counters_len :    u32,
+     pub pad1 :            [u8,..20]
 }
 
 
 
 pub struct create_counter_request {
-    major_opcode :    u8,
-    minor_opcode :    u8,
-    length :          u16,
-    id :              counter,
-    initial_value :   int64
+     pub major_opcode :    u8,
+     pub minor_opcode :    u8,
+     pub length :          u16,
+     pub id :              counter,
+     pub initial_value :   int64
 }
 
 
 
 pub struct destroy_counter_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    counter :        counter
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub counter :        counter
 }
 
 
@@ -207,76 +204,76 @@ pub struct query_counter_cookie {
 
 
 pub struct query_counter_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    counter :        counter
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub counter :        counter
 }
 
 
 pub struct query_counter_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    counter_value :   int64
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub counter_value :   int64
 }
 
 
 
 pub struct await_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 
 pub struct change_counter_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    counter :        counter,
-    amount :         int64
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub counter :        counter,
+     pub amount :         int64
 }
 
 
 
 pub struct set_counter_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    counter :        counter,
-    value :          int64
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub counter :        counter,
+     pub value :          int64
 }
 
 
 
 pub struct create_alarm_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    id :             alarm,
-    value_mask :     u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub id :             alarm,
+     pub value_mask :     u32
 }
 
 
 
 pub struct change_alarm_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    id :             alarm,
-    value_mask :     u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub id :             alarm,
+     pub value_mask :     u32
 }
 
 
 
 pub struct destroy_alarm_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    alarm :          alarm
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub alarm :          alarm
 }
 
 
@@ -286,33 +283,33 @@ pub struct query_alarm_cookie {
 
 
 pub struct query_alarm_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    alarm :          alarm
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub alarm :          alarm
 }
 
 
 pub struct query_alarm_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    trigger :         trigger,
-    delta :           int64,
-    events :          u8,
-    state :           u8,
-    pad1 :            [u8,..2]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub trigger :         trigger,
+     pub delta :           int64,
+     pub events :          u8,
+     pub state :           u8,
+     pub pad1 :            [u8,..2]
 }
 
 
 
 pub struct set_priority_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    id :             u32,
-    priority :       i32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub id :             u32,
+     pub priority :       i32
 }
 
 
@@ -322,57 +319,57 @@ pub struct get_priority_cookie {
 
 
 pub struct get_priority_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    id :             u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub id :             u32
 }
 
 
 pub struct get_priority_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    priority :        i32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub priority :        i32
 }
 
 
 
 pub struct create_fence_request {
-    major_opcode :          u8,
-    minor_opcode :          u8,
-    length :                u16,
-    drawable :              ffi::xproto::drawable,
-    fence :                 fence,
-    initially_triggered :   u8
+     pub major_opcode :          u8,
+     pub minor_opcode :          u8,
+     pub length :                u16,
+     pub drawable :              ffi::xproto::drawable,
+     pub fence :                 fence,
+     pub initially_triggered :   u8
 }
 
 
 
 pub struct trigger_fence_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    fence :          fence
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub fence :          fence
 }
 
 
 
 pub struct reset_fence_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    fence :          fence
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub fence :          fence
 }
 
 
 
 pub struct destroy_fence_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    fence :          fence
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub fence :          fence
 }
 
 
@@ -382,61 +379,61 @@ pub struct query_fence_cookie {
 
 
 pub struct query_fence_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    fence :          fence
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub fence :          fence
 }
 
 
 pub struct query_fence_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    triggered :       u8,
-    pad1 :            [u8,..23]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub triggered :       u8,
+     pub pad1 :            [u8,..23]
 }
 
 
 
 pub struct await_fence_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 
 pub struct counter_notify_event {
-    response_type :   u8,
-    kind :            u8,
-    sequence :        u16,
-    counter :         counter,
-    wait_value :      int64,
-    counter_value :   int64,
-    timestamp :       ffi::xproto::timestamp,
-    count :           u16,
-    destroyed :       u8,
-    pad0 :            u8
+     pub response_type :   u8,
+     pub kind :            u8,
+     pub sequence :        u16,
+     pub counter :         counter,
+     pub wait_value :      int64,
+     pub counter_value :   int64,
+     pub timestamp :       ffi::xproto::timestamp,
+     pub count :           u16,
+     pub destroyed :       u8,
+     pub pad0 :            u8
 }
 
 
 
 pub struct alarm_notify_event {
-    response_type :   u8,
-    kind :            u8,
-    sequence :        u16,
-    alarm :           alarm,
-    counter_value :   int64,
-    alarm_value :     int64,
-    timestamp :       ffi::xproto::timestamp,
-    state :           u8,
-    pad0 :            [u8,..3]
+     pub response_type :   u8,
+     pub kind :            u8,
+     pub sequence :        u16,
+     pub alarm :           alarm,
+     pub counter_value :   int64,
+     pub alarm_value :     int64,
+     pub timestamp :       ffi::xproto::timestamp,
+     pub state :           u8,
+     pub pad0 :            [u8,..3]
 }
 
-#[link_args="-lxcb-sync"]
-pub extern "C" {
+#[link(name="xcb-sync")]
+extern "C" {
 
 /**
  * Get the next element of the iterator
@@ -448,7 +445,7 @@ pub extern "C" {
  *
  *
  */
-pub unsafe fn xcb_sync_alarm_next (i:*alarm_iterator) -> c_void;
+pub fn xcb_sync_alarm_next (i:*mut alarm_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -459,7 +456,7 @@ pub unsafe fn xcb_sync_alarm_next (i:*alarm_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_sync_alarm_end (i:alarm_iterator) -> generic_iterator;
+pub fn xcb_sync_alarm_end (i:alarm_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -471,7 +468,7 @@ pub unsafe fn xcb_sync_alarm_end (i:alarm_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_sync_counter_next (i:*counter_iterator) -> c_void;
+pub fn xcb_sync_counter_next (i:*mut counter_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -482,7 +479,7 @@ pub unsafe fn xcb_sync_counter_next (i:*counter_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_sync_counter_end (i:counter_iterator) -> generic_iterator;
+pub fn xcb_sync_counter_end (i:counter_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -494,7 +491,7 @@ pub unsafe fn xcb_sync_counter_end (i:counter_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_sync_fence_next (i:*fence_iterator) -> c_void;
+pub fn xcb_sync_fence_next (i:*mut fence_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -505,7 +502,7 @@ pub unsafe fn xcb_sync_fence_next (i:*fence_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_sync_fence_end (i:fence_iterator) -> generic_iterator;
+pub fn xcb_sync_fence_end (i:fence_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -517,7 +514,7 @@ pub unsafe fn xcb_sync_fence_end (i:fence_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_sync_int64_next (i:*int64_iterator) -> c_void;
+pub fn xcb_sync_int64_next (i:*mut int64_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -528,17 +525,17 @@ pub unsafe fn xcb_sync_int64_next (i:*int64_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_sync_int64_end (i:int64_iterator) -> generic_iterator;
+pub fn xcb_sync_int64_end (i:int64_iterator) -> ffi::base::generic_iterator;
 
-pub unsafe fn xcb_sync_systemcounter_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_sync_systemcounter_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_sync_systemcounter_name (R : *systemcounter) -> *c_char;
-
-
-pub unsafe fn xcb_sync_systemcounter_name_length (R : *systemcounter) -> c_int;
+pub fn xcb_sync_systemcounter_name (R : *mut systemcounter) -> *mut c_char;
 
 
-pub unsafe fn xcb_sync_systemcounter_name_end (R : *systemcounter) -> generic_iterator;
+pub fn xcb_sync_systemcounter_name_length (R : *mut systemcounter) -> c_int;
+
+
+pub fn xcb_sync_systemcounter_name_end (R : *mut systemcounter) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -550,7 +547,7 @@ pub unsafe fn xcb_sync_systemcounter_name_end (R : *systemcounter) -> generic_it
  *
  *
  */
-pub unsafe fn xcb_sync_systemcounter_next (i:*systemcounter_iterator) -> c_void;
+pub fn xcb_sync_systemcounter_next (i:*mut systemcounter_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -561,7 +558,7 @@ pub unsafe fn xcb_sync_systemcounter_next (i:*systemcounter_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_sync_systemcounter_end (i:systemcounter_iterator) -> generic_iterator;
+pub fn xcb_sync_systemcounter_end (i:systemcounter_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -573,7 +570,7 @@ pub unsafe fn xcb_sync_systemcounter_end (i:systemcounter_iterator) -> generic_i
  *
  *
  */
-pub unsafe fn xcb_sync_trigger_next (i:*trigger_iterator) -> c_void;
+pub fn xcb_sync_trigger_next (i:*mut trigger_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -584,7 +581,7 @@ pub unsafe fn xcb_sync_trigger_next (i:*trigger_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_sync_trigger_end (i:trigger_iterator) -> generic_iterator;
+pub fn xcb_sync_trigger_end (i:trigger_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -596,7 +593,7 @@ pub unsafe fn xcb_sync_trigger_end (i:trigger_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_sync_waitcondition_next (i:*waitcondition_iterator) -> c_void;
+pub fn xcb_sync_waitcondition_next (i:*mut waitcondition_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -607,7 +604,7 @@ pub unsafe fn xcb_sync_waitcondition_next (i:*waitcondition_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_sync_waitcondition_end (i:waitcondition_iterator) -> generic_iterator;
+pub fn xcb_sync_waitcondition_end (i:waitcondition_iterator) -> ffi::base::generic_iterator;
 
 /**
  *
@@ -617,7 +614,7 @@ pub unsafe fn xcb_sync_waitcondition_end (i:waitcondition_iterator) -> generic_i
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_sync_initialize (c : *connection,
+pub fn xcb_sync_initialize (c : *mut ffi::base::connection,
                                desired_major_version :  u8,
                                desired_minor_version :  u8) -> initialize_cookie;
 
@@ -632,7 +629,7 @@ pub unsafe fn xcb_sync_initialize (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_sync_initialize_unchecked (c : *connection,
+pub fn xcb_sync_initialize_unchecked (c : *mut ffi::base::connection,
                                          desired_major_version :  u8,
                                          desired_minor_version :  u8) -> initialize_cookie;
 
@@ -650,11 +647,11 @@ pub unsafe fn xcb_sync_initialize_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_sync_initialize_reply (c : *connection,
+pub fn xcb_sync_initialize_reply (c : *mut ffi::base::connection,
                                      cookie : initialize_cookie,
-                                     e : **generic_error) -> *initialize_reply;
+                                     e : *mut *mut ffi::base::generic_error) -> *mut initialize_reply;
 
-pub unsafe fn xcb_sync_list_system_counters_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_sync_list_system_counters_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -664,7 +661,7 @@ pub unsafe fn xcb_sync_list_system_counters_sizeof (_buffer :  *c_void) -> c_int
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_sync_list_system_counters (c : *connection) -> list_system_counters_cookie;
+pub fn xcb_sync_list_system_counters (c : *mut ffi::base::connection) -> list_system_counters_cookie;
 
 /**
  *
@@ -677,12 +674,12 @@ pub unsafe fn xcb_sync_list_system_counters (c : *connection) -> list_system_cou
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_sync_list_system_counters_unchecked (c : *connection) -> list_system_counters_cookie;
+pub fn xcb_sync_list_system_counters_unchecked (c : *mut ffi::base::connection) -> list_system_counters_cookie;
 
 
-pub unsafe fn xcb_sync_list_system_counters_counters_length (R : *list_system_counters_reply) -> c_int;
+pub fn xcb_sync_list_system_counters_counters_length (R : *mut list_system_counters_reply) -> c_int;
 
-pub unsafe fn xcb_sync_list_system_counters_counters_iterator (R : *list_system_counters_reply) -> systemcounter_iterator;
+pub fn xcb_sync_list_system_counters_counters_iterator (R : *mut list_system_counters_reply) -> systemcounter_iterator;
 
 /**
  * Return the reply
@@ -698,9 +695,9 @@ pub unsafe fn xcb_sync_list_system_counters_counters_iterator (R : *list_system_
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_sync_list_system_counters_reply (c : *connection,
+pub fn xcb_sync_list_system_counters_reply (c : *mut ffi::base::connection,
                                                cookie : list_system_counters_cookie,
-                                               e : **generic_error) -> *list_system_counters_reply;
+                                               e : *mut *mut ffi::base::generic_error) -> *mut list_system_counters_reply;
 
 /**
  *
@@ -713,9 +710,9 @@ pub unsafe fn xcb_sync_list_system_counters_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_sync_create_counter_checked (c : *connection,
+pub fn xcb_sync_create_counter_checked (c : *mut ffi::base::connection,
                                            id :  counter,
-                                           initial_value :  int64) -> void_cookie;
+                                           initial_value :  int64) -> ffi::base::void_cookie;
 
 /**
  *
@@ -725,9 +722,9 @@ pub unsafe fn xcb_sync_create_counter_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_sync_create_counter (c : *connection,
+pub fn xcb_sync_create_counter (c : *mut ffi::base::connection,
                                    id :  counter,
-                                   initial_value :  int64) -> void_cookie;
+                                   initial_value :  int64) -> ffi::base::void_cookie;
 
 /**
  *
@@ -740,8 +737,8 @@ pub unsafe fn xcb_sync_create_counter (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_sync_destroy_counter_checked (c : *connection,
-                                            counter :  counter) -> void_cookie;
+pub fn xcb_sync_destroy_counter_checked (c : *mut ffi::base::connection,
+                                            counter :  counter) -> ffi::base::void_cookie;
 
 /**
  *
@@ -751,8 +748,8 @@ pub unsafe fn xcb_sync_destroy_counter_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_sync_destroy_counter (c : *connection,
-                                    counter :  counter) -> void_cookie;
+pub fn xcb_sync_destroy_counter (c : *mut ffi::base::connection,
+                                    counter :  counter) -> ffi::base::void_cookie;
 
 /**
  *
@@ -762,7 +759,7 @@ pub unsafe fn xcb_sync_destroy_counter (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_sync_query_counter (c : *connection,
+pub fn xcb_sync_query_counter (c : *mut ffi::base::connection,
                                   counter :  counter) -> query_counter_cookie;
 
 /**
@@ -776,7 +773,7 @@ pub unsafe fn xcb_sync_query_counter (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_sync_query_counter_unchecked (c : *connection,
+pub fn xcb_sync_query_counter_unchecked (c : *mut ffi::base::connection,
                                             counter :  counter) -> query_counter_cookie;
 
 /**
@@ -793,11 +790,11 @@ pub unsafe fn xcb_sync_query_counter_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_sync_query_counter_reply (c : *connection,
+pub fn xcb_sync_query_counter_reply (c : *mut ffi::base::connection,
                                         cookie : query_counter_cookie,
-                                        e : **generic_error) -> *query_counter_reply;
+                                        e : *mut *mut ffi::base::generic_error) -> *mut query_counter_reply;
 
-pub unsafe fn xcb_sync_await_sizeof (_buffer :  *c_void,
+pub fn xcb_sync_await_sizeof (_buffer :  *mut c_void,
                        wait_list_len :  u32) -> c_int;
 
 /**
@@ -811,9 +808,9 @@ pub unsafe fn xcb_sync_await_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_sync_await_checked (c : *connection,
+pub fn xcb_sync_await_checked (c : *mut ffi::base::connection,
                                   wait_list_len :  u32,
-                                  wait_list : *waitcondition) -> void_cookie;
+                                  wait_list : *mut waitcondition) -> ffi::base::void_cookie;
 
 /**
  *
@@ -823,9 +820,9 @@ pub unsafe fn xcb_sync_await_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_sync_await (c : *connection,
+pub fn xcb_sync_await (c : *mut ffi::base::connection,
                           wait_list_len :  u32,
-                          wait_list : *waitcondition) -> void_cookie;
+                          wait_list : *mut waitcondition) -> ffi::base::void_cookie;
 
 /**
  *
@@ -838,9 +835,9 @@ pub unsafe fn xcb_sync_await (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_sync_change_counter_checked (c : *connection,
+pub fn xcb_sync_change_counter_checked (c : *mut ffi::base::connection,
                                            counter :  counter,
-                                           amount :  int64) -> void_cookie;
+                                           amount :  int64) -> ffi::base::void_cookie;
 
 /**
  *
@@ -850,9 +847,9 @@ pub unsafe fn xcb_sync_change_counter_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_sync_change_counter (c : *connection,
+pub fn xcb_sync_change_counter (c : *mut ffi::base::connection,
                                    counter :  counter,
-                                   amount :  int64) -> void_cookie;
+                                   amount :  int64) -> ffi::base::void_cookie;
 
 /**
  *
@@ -865,9 +862,9 @@ pub unsafe fn xcb_sync_change_counter (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_sync_set_counter_checked (c : *connection,
+pub fn xcb_sync_set_counter_checked (c : *mut ffi::base::connection,
                                         counter :  counter,
-                                        value :  int64) -> void_cookie;
+                                        value :  int64) -> ffi::base::void_cookie;
 
 /**
  *
@@ -877,11 +874,11 @@ pub unsafe fn xcb_sync_set_counter_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_sync_set_counter (c : *connection,
+pub fn xcb_sync_set_counter (c : *mut ffi::base::connection,
                                 counter :  counter,
-                                value :  int64) -> void_cookie;
+                                value :  int64) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_sync_create_alarm_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_sync_create_alarm_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -894,10 +891,10 @@ pub unsafe fn xcb_sync_create_alarm_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_sync_create_alarm_checked (c : *connection,
+pub fn xcb_sync_create_alarm_checked (c : *mut ffi::base::connection,
                                          id :  alarm,
                                          value_mask :  u32,
-                                         value_list : *u32) -> void_cookie;
+                                         value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -907,12 +904,12 @@ pub unsafe fn xcb_sync_create_alarm_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_sync_create_alarm (c : *connection,
+pub fn xcb_sync_create_alarm (c : *mut ffi::base::connection,
                                  id :  alarm,
                                  value_mask :  u32,
-                                 value_list : *u32) -> void_cookie;
+                                 value_list : *mut u32) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_sync_change_alarm_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_sync_change_alarm_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -925,10 +922,10 @@ pub unsafe fn xcb_sync_change_alarm_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_sync_change_alarm_checked (c : *connection,
+pub fn xcb_sync_change_alarm_checked (c : *mut ffi::base::connection,
                                          id :  alarm,
                                          value_mask :  u32,
-                                         value_list : *u32) -> void_cookie;
+                                         value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -938,10 +935,10 @@ pub unsafe fn xcb_sync_change_alarm_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_sync_change_alarm (c : *connection,
+pub fn xcb_sync_change_alarm (c : *mut ffi::base::connection,
                                  id :  alarm,
                                  value_mask :  u32,
-                                 value_list : *u32) -> void_cookie;
+                                 value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -954,8 +951,8 @@ pub unsafe fn xcb_sync_change_alarm (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_sync_destroy_alarm_checked (c : *connection,
-                                          alarm :  alarm) -> void_cookie;
+pub fn xcb_sync_destroy_alarm_checked (c : *mut ffi::base::connection,
+                                          alarm :  alarm) -> ffi::base::void_cookie;
 
 /**
  *
@@ -965,8 +962,8 @@ pub unsafe fn xcb_sync_destroy_alarm_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_sync_destroy_alarm (c : *connection,
-                                  alarm :  alarm) -> void_cookie;
+pub fn xcb_sync_destroy_alarm (c : *mut ffi::base::connection,
+                                  alarm :  alarm) -> ffi::base::void_cookie;
 
 /**
  *
@@ -976,7 +973,7 @@ pub unsafe fn xcb_sync_destroy_alarm (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_sync_query_alarm (c : *connection,
+pub fn xcb_sync_query_alarm (c : *mut ffi::base::connection,
                                 alarm :  alarm) -> query_alarm_cookie;
 
 /**
@@ -990,7 +987,7 @@ pub unsafe fn xcb_sync_query_alarm (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_sync_query_alarm_unchecked (c : *connection,
+pub fn xcb_sync_query_alarm_unchecked (c : *mut ffi::base::connection,
                                           alarm :  alarm) -> query_alarm_cookie;
 
 /**
@@ -1007,9 +1004,9 @@ pub unsafe fn xcb_sync_query_alarm_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_sync_query_alarm_reply (c : *connection,
+pub fn xcb_sync_query_alarm_reply (c : *mut ffi::base::connection,
                                       cookie : query_alarm_cookie,
-                                      e : **generic_error) -> *query_alarm_reply;
+                                      e : *mut *mut ffi::base::generic_error) -> *mut query_alarm_reply;
 
 /**
  *
@@ -1022,9 +1019,9 @@ pub unsafe fn xcb_sync_query_alarm_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_sync_set_priority_checked (c : *connection,
+pub fn xcb_sync_set_priority_checked (c : *mut ffi::base::connection,
                                          id :  u32,
-                                         priority :  i32) -> void_cookie;
+                                         priority :  i32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1034,9 +1031,9 @@ pub unsafe fn xcb_sync_set_priority_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_sync_set_priority (c : *connection,
+pub fn xcb_sync_set_priority (c : *mut ffi::base::connection,
                                  id :  u32,
-                                 priority :  i32) -> void_cookie;
+                                 priority :  i32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1046,7 +1043,7 @@ pub unsafe fn xcb_sync_set_priority (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_sync_get_priority (c : *connection,
+pub fn xcb_sync_get_priority (c : *mut ffi::base::connection,
                                  id :  u32) -> get_priority_cookie;
 
 /**
@@ -1060,7 +1057,7 @@ pub unsafe fn xcb_sync_get_priority (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_sync_get_priority_unchecked (c : *connection,
+pub fn xcb_sync_get_priority_unchecked (c : *mut ffi::base::connection,
                                            id :  u32) -> get_priority_cookie;
 
 /**
@@ -1077,9 +1074,9 @@ pub unsafe fn xcb_sync_get_priority_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_sync_get_priority_reply (c : *connection,
+pub fn xcb_sync_get_priority_reply (c : *mut ffi::base::connection,
                                        cookie : get_priority_cookie,
-                                       e : **generic_error) -> *get_priority_reply;
+                                       e : *mut *mut ffi::base::generic_error) -> *mut get_priority_reply;
 
 /**
  *
@@ -1092,10 +1089,10 @@ pub unsafe fn xcb_sync_get_priority_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_sync_create_fence_checked (c : *connection,
+pub fn xcb_sync_create_fence_checked (c : *mut ffi::base::connection,
                                          drawable :  ffi::xproto::drawable,
                                          fence :  fence,
-                                         initially_triggered :  u8) -> void_cookie;
+                                         initially_triggered :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1105,10 +1102,10 @@ pub unsafe fn xcb_sync_create_fence_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_sync_create_fence (c : *connection,
+pub fn xcb_sync_create_fence (c : *mut ffi::base::connection,
                                  drawable :  ffi::xproto::drawable,
                                  fence :  fence,
-                                 initially_triggered :  u8) -> void_cookie;
+                                 initially_triggered :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1121,8 +1118,8 @@ pub unsafe fn xcb_sync_create_fence (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_sync_trigger_fence_checked (c : *connection,
-                                          fence :  fence) -> void_cookie;
+pub fn xcb_sync_trigger_fence_checked (c : *mut ffi::base::connection,
+                                          fence :  fence) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1132,33 +1129,8 @@ pub unsafe fn xcb_sync_trigger_fence_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_sync_trigger_fence (c : *connection,
-                                  fence :  fence) -> void_cookie;
-
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- * 
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
-pub unsafe fn xcb_sync_reset_fence_checked (c : *connection,
-                                        fence :  fence) -> void_cookie;
-
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- * 
- */
-pub unsafe fn xcb_sync_reset_fence (c : *connection,
-                                fence :  fence) -> void_cookie;
+pub fn xcb_sync_trigger_fence (c : *mut ffi::base::connection,
+                                  fence :  fence) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1171,8 +1143,8 @@ pub unsafe fn xcb_sync_reset_fence (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_sync_destroy_fence_checked (c : *connection,
-                                          fence :  fence) -> void_cookie;
+pub fn xcb_sync_reset_fence_checked (c : *mut ffi::base::connection,
+                                        fence :  fence) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1182,8 +1154,22 @@ pub unsafe fn xcb_sync_destroy_fence_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_sync_destroy_fence (c : *connection,
-                                  fence :  fence) -> void_cookie;
+pub fn xcb_sync_reset_fence (c : *mut ffi::base::connection,
+                                fence :  fence) -> ffi::base::void_cookie;
+
+/**
+ *
+ * @param c The connection
+ * @return A cookie
+ *
+ * Delivers a request to the X server.
+ * 
+ * This form can be used only if the request will not cause
+ * a reply to be generated. Any returned error will be
+ * saved for handling by xcb_request_check().
+ */
+pub fn xcb_sync_destroy_fence_checked (c : *mut ffi::base::connection,
+                                          fence :  fence) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1193,7 +1179,18 @@ pub unsafe fn xcb_sync_destroy_fence (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_sync_query_fence (c : *connection,
+pub fn xcb_sync_destroy_fence (c : *mut ffi::base::connection,
+                                  fence :  fence) -> ffi::base::void_cookie;
+
+/**
+ *
+ * @param c The connection
+ * @return A cookie
+ *
+ * Delivers a request to the X server.
+ * 
+ */
+pub fn xcb_sync_query_fence (c : *mut ffi::base::connection,
                                 fence :  fence) -> query_fence_cookie;
 
 /**
@@ -1207,7 +1204,7 @@ pub unsafe fn xcb_sync_query_fence (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_sync_query_fence_unchecked (c : *connection,
+pub fn xcb_sync_query_fence_unchecked (c : *mut ffi::base::connection,
                                           fence :  fence) -> query_fence_cookie;
 
 /**
@@ -1224,11 +1221,11 @@ pub unsafe fn xcb_sync_query_fence_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_sync_query_fence_reply (c : *connection,
+pub fn xcb_sync_query_fence_reply (c : *mut ffi::base::connection,
                                       cookie : query_fence_cookie,
-                                      e : **generic_error) -> *query_fence_reply;
+                                      e : *mut *mut ffi::base::generic_error) -> *mut query_fence_reply;
 
-pub unsafe fn xcb_sync_await_fence_sizeof (_buffer :  *c_void,
+pub fn xcb_sync_await_fence_sizeof (_buffer :  *mut c_void,
                              fence_list_len :  u32) -> c_int;
 
 /**
@@ -1242,9 +1239,9 @@ pub unsafe fn xcb_sync_await_fence_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_sync_await_fence_checked (c : *connection,
+pub fn xcb_sync_await_fence_checked (c : *mut ffi::base::connection,
                                         fence_list_len :  u32,
-                                        fence_list : *fence) -> void_cookie;
+                                        fence_list : *mut fence) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1254,8 +1251,8 @@ pub unsafe fn xcb_sync_await_fence_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_sync_await_fence (c : *connection,
+pub fn xcb_sync_await_fence (c : *mut ffi::base::connection,
                                 fence_list_len :  u32,
-                                fence_list : *fence) -> void_cookie;
+                                fence_list : *mut fence) -> ffi::base::void_cookie;
 }
 

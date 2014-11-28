@@ -4,13 +4,10 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 use std;
-use std::libc::*;
-use std::{cast,num,ptr,str,libc};
-use std::to_bytes::ToBytes;
-use ffi::base::*;
+use libc::*;
 use ffi;
 use ffi::xproto;
 
@@ -18,32 +15,32 @@ pub static RES_MAJOR_VERSION : c_uint = 1;
 pub static RES_MINOR_VERSION : c_uint = 0;
 
 pub struct client {
-    resource_base :   u32,
-    resource_mask :   u32
+     pub resource_base :   u32,
+     pub resource_mask :   u32
 }
 
 /**
  * @brief client_iterator
  **/
 pub struct client_iterator {
-    data : *client,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut client,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct type_ {
-    resource_type :   ffi::xproto::atom,
-    count :           u32
+     pub resource_type :   ffi::xproto::atom,
+     pub count :           u32
 }
 
 /**
  * @brief type_iterator
  **/
 pub struct type_iterator {
-    data : *type_,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut type_,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -53,21 +50,21 @@ pub struct query_version_cookie {
 
 
 pub struct query_version_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    client_major :   u8,
-    client_minor :   u8
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub client_major :   u8,
+     pub client_minor :   u8
 }
 
 
 pub struct query_version_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    server_major :    u16,
-    server_minor :    u16
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub server_major :    u16,
+     pub server_minor :    u16
 }
 
 
@@ -77,19 +74,19 @@ pub struct query_clients_cookie {
 
 
 pub struct query_clients_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct query_clients_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    num_clients :     u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub num_clients :     u32,
+     pub pad1 :            [u8,..20]
 }
 
 
@@ -99,20 +96,20 @@ pub struct query_client_resources_cookie {
 
 
 pub struct query_client_resources_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    xid :            u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub xid :            u32
 }
 
 
 pub struct query_client_resources_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    num_types :       u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub num_types :       u32,
+     pub pad1 :            [u8,..20]
 }
 
 
@@ -122,24 +119,24 @@ pub struct query_client_pixmap_bytes_cookie {
 
 
 pub struct query_client_pixmap_bytes_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    xid :            u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub xid :            u32
 }
 
 
 pub struct query_client_pixmap_bytes_reply {
-    response_type :    u8,
-    pad0 :             u8,
-    sequence :         u16,
-    length :           u32,
-    bytes :            u32,
-    bytes_overflow :   u32
+     pub response_type :    u8,
+     pub pad0 :             u8,
+     pub sequence :         u16,
+     pub length :           u32,
+     pub bytes :            u32,
+     pub bytes_overflow :   u32
 }
 
-#[link_args="-lxcb-res"]
-pub extern "C" {
+#[link(name="xcb-res")]
+extern "C" {
 
 /**
  * Get the next element of the iterator
@@ -151,7 +148,7 @@ pub extern "C" {
  *
  *
  */
-pub unsafe fn xcb_res_client_next (i:*client_iterator) -> c_void;
+pub fn xcb_res_client_next (i:*mut client_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -162,7 +159,7 @@ pub unsafe fn xcb_res_client_next (i:*client_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_res_client_end (i:client_iterator) -> generic_iterator;
+pub fn xcb_res_client_end (i:client_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -174,7 +171,7 @@ pub unsafe fn xcb_res_client_end (i:client_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_res_type_next (i:*type_iterator) -> c_void;
+pub fn xcb_res_type_next (i:*mut type_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -185,7 +182,7 @@ pub unsafe fn xcb_res_type_next (i:*type_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_res_type_end (i:type_iterator) -> generic_iterator;
+pub fn xcb_res_type_end (i:type_iterator) -> ffi::base::generic_iterator;
 
 /**
  *
@@ -195,7 +192,7 @@ pub unsafe fn xcb_res_type_end (i:type_iterator) -> generic_iterator;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_res_query_version (c : *connection,
+pub fn xcb_res_query_version (c : *mut ffi::base::connection,
                                  client_major :  u8,
                                  client_minor :  u8) -> query_version_cookie;
 
@@ -210,7 +207,7 @@ pub unsafe fn xcb_res_query_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_res_query_version_unchecked (c : *connection,
+pub fn xcb_res_query_version_unchecked (c : *mut ffi::base::connection,
                                            client_major :  u8,
                                            client_minor :  u8) -> query_version_cookie;
 
@@ -228,11 +225,11 @@ pub unsafe fn xcb_res_query_version_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_res_query_version_reply (c : *connection,
+pub fn xcb_res_query_version_reply (c : *mut ffi::base::connection,
                                        cookie : query_version_cookie,
-                                       e : **generic_error) -> *query_version_reply;
+                                       e : *mut *mut ffi::base::generic_error) -> *mut query_version_reply;
 
-pub unsafe fn xcb_res_query_clients_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_res_query_clients_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -242,7 +239,7 @@ pub unsafe fn xcb_res_query_clients_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_res_query_clients (c : *connection) -> query_clients_cookie;
+pub fn xcb_res_query_clients (c : *mut ffi::base::connection) -> query_clients_cookie;
 
 /**
  *
@@ -255,14 +252,14 @@ pub unsafe fn xcb_res_query_clients (c : *connection) -> query_clients_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_res_query_clients_unchecked (c : *connection) -> query_clients_cookie;
+pub fn xcb_res_query_clients_unchecked (c : *mut ffi::base::connection) -> query_clients_cookie;
 
-pub unsafe fn xcb_res_query_clients_clients (R : *query_clients_reply) -> *client;
+pub fn xcb_res_query_clients_clients (R : *mut query_clients_reply) -> *mut client;
 
 
-pub unsafe fn xcb_res_query_clients_clients_length (R : *query_clients_reply) -> c_int;
+pub fn xcb_res_query_clients_clients_length (R : *mut query_clients_reply) -> c_int;
 
-pub unsafe fn xcb_res_query_clients_clients_iterator (R : *query_clients_reply) -> client_iterator;
+pub fn xcb_res_query_clients_clients_iterator (R : *mut query_clients_reply) -> client_iterator;
 
 /**
  * Return the reply
@@ -278,11 +275,11 @@ pub unsafe fn xcb_res_query_clients_clients_iterator (R : *query_clients_reply) 
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_res_query_clients_reply (c : *connection,
+pub fn xcb_res_query_clients_reply (c : *mut ffi::base::connection,
                                        cookie : query_clients_cookie,
-                                       e : **generic_error) -> *query_clients_reply;
+                                       e : *mut *mut ffi::base::generic_error) -> *mut query_clients_reply;
 
-pub unsafe fn xcb_res_query_client_resources_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_res_query_client_resources_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -292,7 +289,7 @@ pub unsafe fn xcb_res_query_client_resources_sizeof (_buffer :  *c_void) -> c_in
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_res_query_client_resources (c : *connection,
+pub fn xcb_res_query_client_resources (c : *mut ffi::base::connection,
                                           xid :  u32) -> query_client_resources_cookie;
 
 /**
@@ -306,15 +303,15 @@ pub unsafe fn xcb_res_query_client_resources (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_res_query_client_resources_unchecked (c : *connection,
+pub fn xcb_res_query_client_resources_unchecked (c : *mut ffi::base::connection,
                                                     xid :  u32) -> query_client_resources_cookie;
 
-pub unsafe fn xcb_res_query_client_resources_types (R : *query_client_resources_reply) -> *type_;
+pub fn xcb_res_query_client_resources_types (R : *mut query_client_resources_reply) -> *mut type_;
 
 
-pub unsafe fn xcb_res_query_client_resources_types_length (R : *query_client_resources_reply) -> c_int;
+pub fn xcb_res_query_client_resources_types_length (R : *mut query_client_resources_reply) -> c_int;
 
-pub unsafe fn xcb_res_query_client_resources_types_iterator (R : *query_client_resources_reply) -> type_iterator;
+pub fn xcb_res_query_client_resources_types_iterator (R : *mut query_client_resources_reply) -> type_iterator;
 
 /**
  * Return the reply
@@ -330,9 +327,9 @@ pub unsafe fn xcb_res_query_client_resources_types_iterator (R : *query_client_r
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_res_query_client_resources_reply (c : *connection,
+pub fn xcb_res_query_client_resources_reply (c : *mut ffi::base::connection,
                                                 cookie : query_client_resources_cookie,
-                                                e : **generic_error) -> *query_client_resources_reply;
+                                                e : *mut *mut ffi::base::generic_error) -> *mut query_client_resources_reply;
 
 /**
  *
@@ -342,7 +339,7 @@ pub unsafe fn xcb_res_query_client_resources_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_res_query_client_pixmap_bytes (c : *connection,
+pub fn xcb_res_query_client_pixmap_bytes (c : *mut ffi::base::connection,
                                              xid :  u32) -> query_client_pixmap_bytes_cookie;
 
 /**
@@ -356,7 +353,7 @@ pub unsafe fn xcb_res_query_client_pixmap_bytes (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_res_query_client_pixmap_bytes_unchecked (c : *connection,
+pub fn xcb_res_query_client_pixmap_bytes_unchecked (c : *mut ffi::base::connection,
                                                        xid :  u32) -> query_client_pixmap_bytes_cookie;
 
 /**
@@ -373,8 +370,8 @@ pub unsafe fn xcb_res_query_client_pixmap_bytes_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_res_query_client_pixmap_bytes_reply (c : *connection,
+pub fn xcb_res_query_client_pixmap_bytes_reply (c : *mut ffi::base::connection,
                                                    cookie : query_client_pixmap_bytes_cookie,
-                                                   e : **generic_error) -> *query_client_pixmap_bytes_reply;
+                                                   e : *mut *mut ffi::base::generic_error) -> *mut query_client_pixmap_bytes_reply;
 }
 

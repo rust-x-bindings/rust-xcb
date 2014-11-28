@@ -4,27 +4,24 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 use std;
-use std::libc::*;
-use std::{cast,num,ptr,str,libc};
-use std::to_bytes::ToBytes;
-use ffi::base::*;
+use libc::*;
 use ffi;
 
 pub struct char2b {
-    byte1 :   u8,
-    byte2 :   u8
+     pub byte1 :   u8,
+     pub byte2 :   u8
 }
 
 /**
  * @brief char2b_iterator
  **/
 pub struct char2b_iterator {
-    data : *char2b,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut char2b,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -33,9 +30,9 @@ pub type window = u32;
  * @brief window_iterator
  **/
 pub struct window_iterator {
-    data : *window,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut window,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -44,9 +41,9 @@ pub type pixmap = u32;
  * @brief pixmap_iterator
  **/
 pub struct pixmap_iterator {
-    data : *pixmap,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut pixmap,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -55,9 +52,9 @@ pub type cursor = u32;
  * @brief cursor_iterator
  **/
 pub struct cursor_iterator {
-    data : *cursor,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut cursor,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -66,9 +63,9 @@ pub type font = u32;
  * @brief font_iterator
  **/
 pub struct font_iterator {
-    data : *font,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut font,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -77,9 +74,9 @@ pub type gcontext = u32;
  * @brief gcontext_iterator
  **/
 pub struct gcontext_iterator {
-    data : *gcontext,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut gcontext,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -88,9 +85,9 @@ pub type colormap = u32;
  * @brief colormap_iterator
  **/
 pub struct colormap_iterator {
-    data : *colormap,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut colormap,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -99,9 +96,9 @@ pub type atom = u32;
  * @brief atom_iterator
  **/
 pub struct atom_iterator {
-    data : *atom,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut atom,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -110,9 +107,9 @@ pub type drawable = u32;
  * @brief drawable_iterator
  **/
 pub struct drawable_iterator {
-    data : *drawable,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut drawable,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -121,9 +118,9 @@ pub type fontable = u32;
  * @brief fontable_iterator
  **/
 pub struct fontable_iterator {
-    data : *fontable,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut fontable,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -132,9 +129,9 @@ pub type visualid = u32;
  * @brief visualid_iterator
  **/
 pub struct visualid_iterator {
-    data : *visualid,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut visualid,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -143,9 +140,9 @@ pub type timestamp = u32;
  * @brief timestamp_iterator
  **/
 pub struct timestamp_iterator {
-    data : *timestamp,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut timestamp,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -154,9 +151,9 @@ pub type keysym = u32;
  * @brief keysym_iterator
  **/
 pub struct keysym_iterator {
-    data : *keysym,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut keysym,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -165,9 +162,9 @@ pub type keycode = u8;
  * @brief keycode_iterator
  **/
 pub struct keycode_iterator {
-    data : *keycode,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut keycode,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -176,250 +173,250 @@ pub type button = u8;
  * @brief button_iterator
  **/
 pub struct button_iterator {
-    data : *button,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut button,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct point {
-    x :   i16,
-    y :   i16
+     pub x :   i16,
+     pub y :   i16
 }
 
 /**
  * @brief point_iterator
  **/
 pub struct point_iterator {
-    data : *point,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut point,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct rectangle {
-    x :        i16,
-    y :        i16,
-    width :    u16,
-    height :   u16
+     pub x :        i16,
+     pub y :        i16,
+     pub width :    u16,
+     pub height :   u16
 }
 
 /**
  * @brief rectangle_iterator
  **/
 pub struct rectangle_iterator {
-    data : *rectangle,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut rectangle,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct arc {
-    x :        i16,
-    y :        i16,
-    width :    u16,
-    height :   u16,
-    angle1 :   i16,
-    angle2 :   i16
+     pub x :        i16,
+     pub y :        i16,
+     pub width :    u16,
+     pub height :   u16,
+     pub angle1 :   i16,
+     pub angle2 :   i16
 }
 
 /**
  * @brief arc_iterator
  **/
 pub struct arc_iterator {
-    data : *arc,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut arc,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct format {
-    depth :            u8,
-    bits_per_pixel :   u8,
-    scanline_pad :     u8,
-    pad0 :             [u8,..5]
+     pub depth :            u8,
+     pub bits_per_pixel :   u8,
+     pub scanline_pad :     u8,
+     pub pad0 :             [u8,..5]
 }
 
 /**
  * @brief format_iterator
  **/
 pub struct format_iterator {
-    data : *format,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut format,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct visualtype {
-    visual_id :            visualid,
-    class :                u8,
-    bits_per_rgb_value :   u8,
-    colormap_entries :     u16,
-    red_mask :             u32,
-    green_mask :           u32,
-    blue_mask :            u32,
-    pad0 :                 [u8,..4]
+     pub visual_id :            visualid,
+     pub class :                u8,
+     pub bits_per_rgb_value :   u8,
+     pub colormap_entries :     u16,
+     pub red_mask :             u32,
+     pub green_mask :           u32,
+     pub blue_mask :            u32,
+     pub pad0 :                 [u8,..4]
 }
 
 /**
  * @brief visualtype_iterator
  **/
 pub struct visualtype_iterator {
-    data : *visualtype,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut visualtype,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct depth {
-    depth :         u8,
-    pad0 :          u8,
-    visuals_len :   u16,
-    pad1 :          [u8,..4]
+     pub depth :         u8,
+     pub pad0 :          u8,
+     pub visuals_len :   u16,
+     pub pad1 :          [u8,..4]
 }
 
 /**
  * @brief depth_iterator
  **/
 pub struct depth_iterator {
-    data : *depth,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut depth,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct screen {
-    root :                    window,
-    default_colormap :        colormap,
-    white_pixel :             u32,
-    black_pixel :             u32,
-    current_input_masks :     u32,
-    width_in_pixels :         u16,
-    height_in_pixels :        u16,
-    width_in_millimeters :    u16,
-    height_in_millimeters :   u16,
-    min_installed_maps :      u16,
-    max_installed_maps :      u16,
-    root_visual :             visualid,
-    backing_stores :          u8,
-    save_unders :             u8,
-    root_depth :              u8,
-    allowed_depths_len :      u8
+     pub root :                    window,
+     pub default_colormap :        colormap,
+     pub white_pixel :             u32,
+     pub black_pixel :             u32,
+     pub current_input_masks :     u32,
+     pub width_in_pixels :         u16,
+     pub height_in_pixels :        u16,
+     pub width_in_millimeters :    u16,
+     pub height_in_millimeters :   u16,
+     pub min_installed_maps :      u16,
+     pub max_installed_maps :      u16,
+     pub root_visual :             visualid,
+     pub backing_stores :          u8,
+     pub save_unders :             u8,
+     pub root_depth :              u8,
+     pub allowed_depths_len :      u8
 }
 
 /**
  * @brief screen_iterator
  **/
 pub struct screen_iterator {
-    data : *screen,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut screen,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct setup_request {
-    byte_order :                        u8,
-    pad0 :                              u8,
-    protocol_major_version :            u16,
-    protocol_minor_version :            u16,
-    authorization_protocol_name_len :   u16,
-    authorization_protocol_data_len :   u16,
-    pad1 :                              [u8,..2]
+     pub byte_order :                        u8,
+     pub pad0 :                              u8,
+     pub protocol_major_version :            u16,
+     pub protocol_minor_version :            u16,
+     pub authorization_protocol_name_len :   u16,
+     pub authorization_protocol_data_len :   u16,
+     pub pad1 :                              [u8,..2]
 }
 
 /**
  * @brief setup_request_iterator
  **/
 pub struct setup_request_iterator {
-    data : *setup_request,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut setup_request,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct setup_failed {
-    status :                   u8,
-    reason_len :               u8,
-    protocol_major_version :   u16,
-    protocol_minor_version :   u16,
-    length :                   u16
+     pub status :                   u8,
+     pub reason_len :               u8,
+     pub protocol_major_version :   u16,
+     pub protocol_minor_version :   u16,
+     pub length :                   u16
 }
 
 /**
  * @brief setup_failed_iterator
  **/
 pub struct setup_failed_iterator {
-    data : *setup_failed,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut setup_failed,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct setup_authenticate {
-    status :   u8,
-    pad0 :     [u8,..5],
-    length :   u16
+     pub status :   u8,
+     pub pad0 :     [u8,..5],
+     pub length :   u16
 }
 
 /**
  * @brief setup_authenticate_iterator
  **/
 pub struct setup_authenticate_iterator {
-    data : *setup_authenticate,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut setup_authenticate,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct setup {
-    status :                        u8,
-    pad0 :                          u8,
-    protocol_major_version :        u16,
-    protocol_minor_version :        u16,
-    length :                        u16,
-    release_number :                u32,
-    resource_id_base :              u32,
-    resource_id_mask :              u32,
-    motion_buffer_size :            u32,
-    vendor_len :                    u16,
-    maximum_request_length :        u16,
-    roots_len :                     u8,
-    pixmap_formats_len :            u8,
-    image_byte_order :              u8,
-    bitmap_format_bit_order :       u8,
-    bitmap_format_scanline_unit :   u8,
-    bitmap_format_scanline_pad :    u8,
-    min_keycode :                   keycode,
-    max_keycode :                   keycode,
-    pad1 :                          [u8,..4]
+     pub status :                        u8,
+     pub pad0 :                          u8,
+     pub protocol_major_version :        u16,
+     pub protocol_minor_version :        u16,
+     pub length :                        u16,
+     pub release_number :                u32,
+     pub resource_id_base :              u32,
+     pub resource_id_mask :              u32,
+     pub motion_buffer_size :            u32,
+     pub vendor_len :                    u16,
+     pub maximum_request_length :        u16,
+     pub roots_len :                     u8,
+     pub pixmap_formats_len :            u8,
+     pub image_byte_order :              u8,
+     pub bitmap_format_bit_order :       u8,
+     pub bitmap_format_scanline_unit :   u8,
+     pub bitmap_format_scanline_pad :    u8,
+     pub min_keycode :                   keycode,
+     pub max_keycode :                   keycode,
+     pub pad1 :                          [u8,..4]
 }
 
 /**
  * @brief setup_iterator
  **/
 pub struct setup_iterator {
-    data : *setup,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut setup,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 
 pub struct key_press_event {
-    response_type :   u8,
-    detail :          keycode,
-    sequence :        u16,
-    time :            timestamp,
-    root :            window,
-    event :           window,
-    child :           window,
-    root_x :          i16,
-    root_y :          i16,
-    event_x :         i16,
-    event_y :         i16,
-    state :           u16,
-    same_screen :     u8,
-    pad0 :            u8
+     pub response_type :   u8,
+     pub detail :          keycode,
+     pub sequence :        u16,
+     pub time :            timestamp,
+     pub root :            window,
+     pub event :           window,
+     pub child :           window,
+     pub root_x :          i16,
+     pub root_y :          i16,
+     pub event_x :         i16,
+     pub event_y :         i16,
+     pub state :           u16,
+     pub same_screen :     u8,
+     pub pad0 :            u8
 }
 
 
@@ -428,20 +425,20 @@ pub type key_release_event = key_press_event;
 
 
 pub struct button_press_event {
-    response_type :   u8,
-    detail :          button,
-    sequence :        u16,
-    time :            timestamp,
-    root :            window,
-    event :           window,
-    child :           window,
-    root_x :          i16,
-    root_y :          i16,
-    event_x :         i16,
-    event_y :         i16,
-    state :           u16,
-    same_screen :     u8,
-    pad0 :            u8
+     pub response_type :   u8,
+     pub detail :          button,
+     pub sequence :        u16,
+     pub time :            timestamp,
+     pub root :            window,
+     pub event :           window,
+     pub child :           window,
+     pub root_x :          i16,
+     pub root_y :          i16,
+     pub event_x :         i16,
+     pub event_y :         i16,
+     pub state :           u16,
+     pub same_screen :     u8,
+     pub pad0 :            u8
 }
 
 
@@ -450,39 +447,39 @@ pub type button_release_event = button_press_event;
 
 
 pub struct motion_notify_event {
-    response_type :   u8,
-    detail :          u8,
-    sequence :        u16,
-    time :            timestamp,
-    root :            window,
-    event :           window,
-    child :           window,
-    root_x :          i16,
-    root_y :          i16,
-    event_x :         i16,
-    event_y :         i16,
-    state :           u16,
-    same_screen :     u8,
-    pad0 :            u8
+     pub response_type :   u8,
+     pub detail :          u8,
+     pub sequence :        u16,
+     pub time :            timestamp,
+     pub root :            window,
+     pub event :           window,
+     pub child :           window,
+     pub root_x :          i16,
+     pub root_y :          i16,
+     pub event_x :         i16,
+     pub event_y :         i16,
+     pub state :           u16,
+     pub same_screen :     u8,
+     pub pad0 :            u8
 }
 
 
 
 pub struct enter_notify_event {
-    response_type :       u8,
-    detail :              u8,
-    sequence :            u16,
-    time :                timestamp,
-    root :                window,
-    event :               window,
-    child :               window,
-    root_x :              i16,
-    root_y :              i16,
-    event_x :             i16,
-    event_y :             i16,
-    state :               u16,
-    mode :                u8,
-    same_screen_focus :   u8
+     pub response_type :       u8,
+     pub detail :              u8,
+     pub sequence :            u16,
+     pub time :                timestamp,
+     pub root :                window,
+     pub event :               window,
+     pub child :               window,
+     pub root_x :              i16,
+     pub root_y :              i16,
+     pub event_x :             i16,
+     pub event_y :             i16,
+     pub state :               u16,
+     pub mode :                u8,
+     pub same_screen_focus :   u8
 }
 
 
@@ -491,12 +488,12 @@ pub type leave_notify_event = enter_notify_event;
 
 
 pub struct focus_in_event {
-    response_type :   u8,
-    detail :          u8,
-    sequence :        u16,
-    event :           window,
-    mode :            u8,
-    pad0 :            [u8,..3]
+     pub response_type :   u8,
+     pub detail :          u8,
+     pub sequence :        u16,
+     pub event :           window,
+     pub mode :            u8,
+     pub pad0 :            [u8,..3]
 }
 
 
@@ -505,210 +502,210 @@ pub type focus_out_event = focus_in_event;
 
 
 pub struct keymap_notify_event {
-    response_type :   u8,
-    keys :            [u8,..31]
+     pub response_type :   u8,
+     pub keys :            [u8,..31]
 }
 
 
 
 pub struct expose_event {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    window :          window,
-    x :               u16,
-    y :               u16,
-    width :           u16,
-    height :          u16,
-    count :           u16,
-    pad1 :            [u8,..2]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub window :          window,
+     pub x :               u16,
+     pub y :               u16,
+     pub width :           u16,
+     pub height :          u16,
+     pub count :           u16,
+     pub pad1 :            [u8,..2]
 }
 
 
 
 pub struct graphics_exposure_event {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    drawable :        drawable,
-    x :               u16,
-    y :               u16,
-    width :           u16,
-    height :          u16,
-    minor_opcode :    u16,
-    count :           u16,
-    major_opcode :    u8,
-    pad1 :            [u8,..3]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub drawable :        drawable,
+     pub x :               u16,
+     pub y :               u16,
+     pub width :           u16,
+     pub height :          u16,
+     pub minor_opcode :    u16,
+     pub count :           u16,
+     pub major_opcode :    u8,
+     pub pad1 :            [u8,..3]
 }
 
 
 
 pub struct no_exposure_event {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    drawable :        drawable,
-    minor_opcode :    u16,
-    major_opcode :    u8,
-    pad1 :            u8
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub drawable :        drawable,
+     pub minor_opcode :    u16,
+     pub major_opcode :    u8,
+     pub pad1 :            u8
 }
 
 
 
 pub struct visibility_notify_event {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    window :          window,
-    state :           u8,
-    pad1 :            [u8,..3]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub window :          window,
+     pub state :           u8,
+     pub pad1 :            [u8,..3]
 }
 
 
 
 pub struct create_notify_event {
-    response_type :       u8,
-    pad0 :                u8,
-    sequence :            u16,
-    parent :              window,
-    window :              window,
-    x :                   i16,
-    y :                   i16,
-    width :               u16,
-    height :              u16,
-    border_width :        u16,
-    override_redirect :   u8,
-    pad1 :                u8
+     pub response_type :       u8,
+     pub pad0 :                u8,
+     pub sequence :            u16,
+     pub parent :              window,
+     pub window :              window,
+     pub x :                   i16,
+     pub y :                   i16,
+     pub width :               u16,
+     pub height :              u16,
+     pub border_width :        u16,
+     pub override_redirect :   u8,
+     pub pad1 :                u8
 }
 
 
 
 pub struct destroy_notify_event {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    event :           window,
-    window :          window
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub event :           window,
+     pub window :          window
 }
 
 
 
 pub struct unmap_notify_event {
-    response_type :    u8,
-    pad0 :             u8,
-    sequence :         u16,
-    event :            window,
-    window :           window,
-    from_configure :   u8,
-    pad1 :             [u8,..3]
+     pub response_type :    u8,
+     pub pad0 :             u8,
+     pub sequence :         u16,
+     pub event :            window,
+     pub window :           window,
+     pub from_configure :   u8,
+     pub pad1 :             [u8,..3]
 }
 
 
 
 pub struct map_notify_event {
-    response_type :       u8,
-    pad0 :                u8,
-    sequence :            u16,
-    event :               window,
-    window :              window,
-    override_redirect :   u8,
-    pad1 :                [u8,..3]
+     pub response_type :       u8,
+     pub pad0 :                u8,
+     pub sequence :            u16,
+     pub event :               window,
+     pub window :              window,
+     pub override_redirect :   u8,
+     pub pad1 :                [u8,..3]
 }
 
 
 
 pub struct map_request_event {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    parent :          window,
-    window :          window
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub parent :          window,
+     pub window :          window
 }
 
 
 
 pub struct reparent_notify_event {
-    response_type :       u8,
-    pad0 :                u8,
-    sequence :            u16,
-    event :               window,
-    window :              window,
-    parent :              window,
-    x :                   i16,
-    y :                   i16,
-    override_redirect :   u8,
-    pad1 :                [u8,..3]
+     pub response_type :       u8,
+     pub pad0 :                u8,
+     pub sequence :            u16,
+     pub event :               window,
+     pub window :              window,
+     pub parent :              window,
+     pub x :                   i16,
+     pub y :                   i16,
+     pub override_redirect :   u8,
+     pub pad1 :                [u8,..3]
 }
 
 
 
 pub struct configure_notify_event {
-    response_type :       u8,
-    pad0 :                u8,
-    sequence :            u16,
-    event :               window,
-    window :              window,
-    above_sibling :       window,
-    x :                   i16,
-    y :                   i16,
-    width :               u16,
-    height :              u16,
-    border_width :        u16,
-    override_redirect :   u8,
-    pad1 :                u8
+     pub response_type :       u8,
+     pub pad0 :                u8,
+     pub sequence :            u16,
+     pub event :               window,
+     pub window :              window,
+     pub above_sibling :       window,
+     pub x :                   i16,
+     pub y :                   i16,
+     pub width :               u16,
+     pub height :              u16,
+     pub border_width :        u16,
+     pub override_redirect :   u8,
+     pub pad1 :                u8
 }
 
 
 
 pub struct configure_request_event {
-    response_type :   u8,
-    stack_mode :      u8,
-    sequence :        u16,
-    parent :          window,
-    window :          window,
-    sibling :         window,
-    x :               i16,
-    y :               i16,
-    width :           u16,
-    height :          u16,
-    border_width :    u16,
-    value_mask :      u16
+     pub response_type :   u8,
+     pub stack_mode :      u8,
+     pub sequence :        u16,
+     pub parent :          window,
+     pub window :          window,
+     pub sibling :         window,
+     pub x :               i16,
+     pub y :               i16,
+     pub width :           u16,
+     pub height :          u16,
+     pub border_width :    u16,
+     pub value_mask :      u16
 }
 
 
 
 pub struct gravity_notify_event {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    event :           window,
-    window :          window,
-    x :               i16,
-    y :               i16
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub event :           window,
+     pub window :          window,
+     pub x :               i16,
+     pub y :               i16
 }
 
 
 
 pub struct resize_request_event {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    window :          window,
-    width :           u16,
-    height :          u16
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub window :          window,
+     pub width :           u16,
+     pub height :          u16
 }
 
 
 
 pub struct circulate_notify_event {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    event :           window,
-    window :          window,
-    pad1 :            [u8,..4],
-    place :           u8,
-    pad2 :            [u8,..3]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub event :           window,
+     pub window :          window,
+     pub pad1 :            [u8,..4],
+     pub place :           u8,
+     pub pad2 :            [u8,..3]
 }
 
 
@@ -717,65 +714,65 @@ pub type circulate_request_event = circulate_notify_event;
 
 
 pub struct property_notify_event {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    window :          window,
-    atom :            atom,
-    time :            timestamp,
-    state :           u8,
-    pad1 :            [u8,..3]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub window :          window,
+     pub atom :            atom,
+     pub time :            timestamp,
+     pub state :           u8,
+     pub pad1 :            [u8,..3]
 }
 
 
 
 pub struct selection_clear_event {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    time :            timestamp,
-    owner :           window,
-    selection :       atom
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub time :            timestamp,
+     pub owner :           window,
+     pub selection :       atom
 }
 
 
 
 pub struct selection_request_event {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    time :            timestamp,
-    owner :           window,
-    requestor :       window,
-    selection :       atom,
-    target :          atom,
-    property :        atom
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub time :            timestamp,
+     pub owner :           window,
+     pub requestor :       window,
+     pub selection :       atom,
+     pub target :          atom,
+     pub property :        atom
 }
 
 
 
 pub struct selection_notify_event {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    time :            timestamp,
-    requestor :       window,
-    selection :       atom,
-    target :          atom,
-    property :        atom
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub time :            timestamp,
+     pub requestor :       window,
+     pub selection :       atom,
+     pub target :          atom,
+     pub property :        atom
 }
 
 
 
 pub struct colormap_notify_event {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    window :          window,
-    colormap :        colormap,
-    new_ :            u8,
-    state :           u8,
-    pad1 :            [u8,..2]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub window :          window,
+     pub colormap :        colormap,
+     pub new_ :            u8,
+     pub state :           u8,
+     pub pad1 :            [u8,..2]
 }
 
 
@@ -786,56 +783,56 @@ pub struct client_message_data {
  * @brief client_message_data_iterator
  **/
 pub struct client_message_data_iterator {
-    data : *client_message_data,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut client_message_data,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 
 pub struct client_message_event {
-    response_type :   u8,
-    format :          u8,
-    sequence :        u16,
-    window :          window,
-    type_ :           atom,
-    data :            client_message_data
+     pub response_type :   u8,
+     pub format :          u8,
+     pub sequence :        u16,
+     pub window :          window,
+     pub type_ :           atom,
+     pub data :            client_message_data
 }
 
 
 
 pub struct mapping_notify_event {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    request :         u8,
-    first_keycode :   keycode,
-    count :           u8,
-    pad1 :            u8
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub request :         u8,
+     pub first_keycode :   keycode,
+     pub count :           u8,
+     pub pad1 :            u8
 }
 
 
 
 pub struct request_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16,
-    bad_value :       u32,
-    minor_opcode :    u16,
-    major_opcode :    u8,
-    pad0 :            u8
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16,
+     pub bad_value :       u32,
+     pub minor_opcode :    u16,
+     pub major_opcode :    u8,
+     pub pad0 :            u8
 }
 
 
 
 pub struct value_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16,
-    bad_value :       u32,
-    minor_opcode :    u16,
-    major_opcode :    u8,
-    pad0 :            u8
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16,
+     pub bad_value :       u32,
+     pub minor_opcode :    u16,
+     pub major_opcode :    u8,
+     pub pad0 :            u8
 }
 
 
@@ -886,29 +883,29 @@ pub type implementation_error  = request_error;
 
 
 pub struct create_window_request {
-    major_opcode :   u8,
-    depth :          u8,
-    length :         u16,
-    wid :            window,
-    parent :         window,
-    x :              i16,
-    y :              i16,
-    width :          u16,
-    height :         u16,
-    border_width :   u16,
-    class :          u16,
-    visual :         visualid,
-    value_mask :     u32
+     pub major_opcode :   u8,
+     pub depth :          u8,
+     pub length :         u16,
+     pub wid :            window,
+     pub parent :         window,
+     pub x :              i16,
+     pub y :              i16,
+     pub width :          u16,
+     pub height :         u16,
+     pub border_width :   u16,
+     pub class :          u16,
+     pub visual :         visualid,
+     pub value_mask :     u32
 }
 
 
 
 pub struct change_window_attributes_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    window :         window,
-    value_mask :     u32
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub window :         window,
+     pub value_mask :     u32
 }
 
 
@@ -918,128 +915,128 @@ pub struct get_window_attributes_cookie {
 
 
 pub struct get_window_attributes_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    window :         window
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub window :         window
 }
 
 
 pub struct get_window_attributes_reply {
-    response_type :           u8,
-    backing_store :           u8,
-    sequence :                u16,
-    length :                  u32,
-    visual :                  visualid,
-    class :                   u16,
-    bit_gravity :             u8,
-    win_gravity :             u8,
-    backing_planes :          u32,
-    backing_pixel :           u32,
-    save_under :              u8,
-    map_is_installed :        u8,
-    map_state :               u8,
-    override_redirect :       u8,
-    colormap :                colormap,
-    all_event_masks :         u32,
-    your_event_mask :         u32,
-    do_not_propagate_mask :   u16,
-    pad0 :                    [u8,..2]
+     pub response_type :           u8,
+     pub backing_store :           u8,
+     pub sequence :                u16,
+     pub length :                  u32,
+     pub visual :                  visualid,
+     pub class :                   u16,
+     pub bit_gravity :             u8,
+     pub win_gravity :             u8,
+     pub backing_planes :          u32,
+     pub backing_pixel :           u32,
+     pub save_under :              u8,
+     pub map_is_installed :        u8,
+     pub map_state :               u8,
+     pub override_redirect :       u8,
+     pub colormap :                colormap,
+     pub all_event_masks :         u32,
+     pub your_event_mask :         u32,
+     pub do_not_propagate_mask :   u16,
+     pub pad0 :                    [u8,..2]
 }
 
 
 
 pub struct destroy_window_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    window :         window
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub window :         window
 }
 
 
 
 pub struct destroy_subwindows_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    window :         window
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub window :         window
 }
 
 
 
 pub struct change_save_set_request {
-    major_opcode :   u8,
-    mode :           u8,
-    length :         u16,
-    window :         window
+     pub major_opcode :   u8,
+     pub mode :           u8,
+     pub length :         u16,
+     pub window :         window
 }
 
 
 
 pub struct reparent_window_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    window :         window,
-    parent :         window,
-    x :              i16,
-    y :              i16
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub window :         window,
+     pub parent :         window,
+     pub x :              i16,
+     pub y :              i16
 }
 
 
 
 pub struct map_window_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    window :         window
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub window :         window
 }
 
 
 
 pub struct map_subwindows_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    window :         window
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub window :         window
 }
 
 
 
 pub struct unmap_window_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    window :         window
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub window :         window
 }
 
 
 
 pub struct unmap_subwindows_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    window :         window
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub window :         window
 }
 
 
 
 pub struct configure_window_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    window :         window,
-    value_mask :     u16,
-    pad1 :           [u8,..2]
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub window :         window,
+     pub value_mask :     u16,
+     pub pad1 :           [u8,..2]
 }
 
 
 
 pub struct circulate_window_request {
-    major_opcode :   u8,
-    direction :      u8,
-    length :         u16,
-    window :         window
+     pub major_opcode :   u8,
+     pub direction :      u8,
+     pub length :         u16,
+     pub window :         window
 }
 
 
@@ -1049,25 +1046,25 @@ pub struct get_geometry_cookie {
 
 
 pub struct get_geometry_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    drawable :       drawable
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub drawable :       drawable
 }
 
 
 pub struct get_geometry_reply {
-    response_type :   u8,
-    depth :           u8,
-    sequence :        u16,
-    length :          u32,
-    root :            window,
-    x :               i16,
-    y :               i16,
-    width :           u16,
-    height :          u16,
-    border_width :    u16,
-    pad0 :            [u8,..2]
+     pub response_type :   u8,
+     pub depth :           u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub root :            window,
+     pub x :               i16,
+     pub y :               i16,
+     pub width :           u16,
+     pub height :          u16,
+     pub border_width :    u16,
+     pub pad0 :            [u8,..2]
 }
 
 
@@ -1077,22 +1074,22 @@ pub struct query_tree_cookie {
 
 
 pub struct query_tree_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    window :         window
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub window :         window
 }
 
 
 pub struct query_tree_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    root :            window,
-    parent :          window,
-    children_len :    u16,
-    pad1 :            [u8,..14]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub root :            window,
+     pub parent :          window,
+     pub children_len :    u16,
+     pub pad1 :            [u8,..14]
 }
 
 
@@ -1102,20 +1099,20 @@ pub struct intern_atom_cookie {
 
 
 pub struct intern_atom_request {
-    major_opcode :     u8,
-    only_if_exists :   u8,
-    length :           u16,
-    name_len :         u16,
-    pad0 :             [u8,..2]
+     pub major_opcode :     u8,
+     pub only_if_exists :   u8,
+     pub length :           u16,
+     pub name_len :         u16,
+     pub pad0 :             [u8,..2]
 }
 
 
 pub struct intern_atom_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    atom :            atom
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub atom :            atom
 }
 
 
@@ -1125,44 +1122,44 @@ pub struct get_atom_name_cookie {
 
 
 pub struct get_atom_name_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    atom :           atom
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub atom :           atom
 }
 
 
 pub struct get_atom_name_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    name_len :        u16,
-    pad1 :            [u8,..22]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub name_len :        u16,
+     pub pad1 :            [u8,..22]
 }
 
 
 
 pub struct change_property_request {
-    major_opcode :   u8,
-    mode :           u8,
-    length :         u16,
-    window :         window,
-    property :       atom,
-    type_ :          atom,
-    format :         u8,
-    pad0 :           [u8,..3],
-    data_len :       u32
+     pub major_opcode :   u8,
+     pub mode :           u8,
+     pub length :         u16,
+     pub window :         window,
+     pub property :       atom,
+     pub type_ :          atom,
+     pub format :         u8,
+     pub pad0 :           [u8,..3],
+     pub data_len :       u32
 }
 
 
 
 pub struct delete_property_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    window :         window,
-    property :       atom
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub window :         window,
+     pub property :       atom
 }
 
 
@@ -1172,26 +1169,26 @@ pub struct get_property_cookie {
 
 
 pub struct get_property_request {
-    major_opcode :   u8,
-    delete :         u8,
-    length :         u16,
-    window :         window,
-    property :       atom,
-    type_ :          atom,
-    long_offset :    u32,
-    long_length :    u32
+     pub major_opcode :   u8,
+     pub delete :         u8,
+     pub length :         u16,
+     pub window :         window,
+     pub property :       atom,
+     pub type_ :          atom,
+     pub long_offset :    u32,
+     pub long_length :    u32
 }
 
 
 pub struct get_property_reply {
-    response_type :   u8,
-    format :          u8,
-    sequence :        u16,
-    length :          u32,
-    type_ :           atom,
-    bytes_after :     u32,
-    value_len :       u32,
-    pad0 :            [u8,..12]
+     pub response_type :   u8,
+     pub format :          u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub type_ :           atom,
+     pub bytes_after :     u32,
+     pub value_len :       u32,
+     pub pad0 :            [u8,..12]
 }
 
 
@@ -1201,31 +1198,31 @@ pub struct list_properties_cookie {
 
 
 pub struct list_properties_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    window :         window
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub window :         window
 }
 
 
 pub struct list_properties_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    atoms_len :       u16,
-    pad1 :            [u8,..22]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub atoms_len :       u16,
+     pub pad1 :            [u8,..22]
 }
 
 
 
 pub struct set_selection_owner_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    owner :          window,
-    selection :      atom,
-    time :           timestamp
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub owner :          window,
+     pub selection :      atom,
+     pub time :           timestamp
 }
 
 
@@ -1235,43 +1232,43 @@ pub struct get_selection_owner_cookie {
 
 
 pub struct get_selection_owner_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    selection :      atom
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub selection :      atom
 }
 
 
 pub struct get_selection_owner_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    owner :           window
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub owner :           window
 }
 
 
 
 pub struct convert_selection_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    requestor :      window,
-    selection :      atom,
-    target :         atom,
-    property :       atom,
-    time :           timestamp
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub requestor :      window,
+     pub selection :      atom,
+     pub target :         atom,
+     pub property :       atom,
+     pub time :           timestamp
 }
 
 
 
 pub struct send_event_request {
-    major_opcode :   u8,
-    propagate :      u8,
-    length :         u16,
-    destination :    window,
-    event_mask :     u32,
-    event :          [c_char,..32]
+     pub major_opcode :   u8,
+     pub propagate :      u8,
+     pub length :         u16,
+     pub destination :    window,
+     pub event_mask :     u32,
+     pub event :          [c_char,..32]
 }
 
 
@@ -1281,73 +1278,73 @@ pub struct grab_pointer_cookie {
 
 
 pub struct grab_pointer_request {
-    major_opcode :    u8,
-    owner_events :    u8,
-    length :          u16,
-    grab_window :     window,
-    event_mask :      u16,
-    pointer_mode :    u8,
-    keyboard_mode :   u8,
-    confine_to :      window,
-    cursor :          cursor,
-    time :            timestamp
+     pub major_opcode :    u8,
+     pub owner_events :    u8,
+     pub length :          u16,
+     pub grab_window :     window,
+     pub event_mask :      u16,
+     pub pointer_mode :    u8,
+     pub keyboard_mode :   u8,
+     pub confine_to :      window,
+     pub cursor :          cursor,
+     pub time :            timestamp
 }
 
 
 pub struct grab_pointer_reply {
-    response_type :   u8,
-    status :          u8,
-    sequence :        u16,
-    length :          u32
+     pub response_type :   u8,
+     pub status :          u8,
+     pub sequence :        u16,
+     pub length :          u32
 }
 
 
 
 pub struct ungrab_pointer_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    time :           timestamp
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub time :           timestamp
 }
 
 
 
 pub struct grab_button_request {
-    major_opcode :    u8,
-    owner_events :    u8,
-    length :          u16,
-    grab_window :     window,
-    event_mask :      u16,
-    pointer_mode :    u8,
-    keyboard_mode :   u8,
-    confine_to :      window,
-    cursor :          cursor,
-    button :          u8,
-    pad0 :            u8,
-    modifiers :       u16
+     pub major_opcode :    u8,
+     pub owner_events :    u8,
+     pub length :          u16,
+     pub grab_window :     window,
+     pub event_mask :      u16,
+     pub pointer_mode :    u8,
+     pub keyboard_mode :   u8,
+     pub confine_to :      window,
+     pub cursor :          cursor,
+     pub button :          u8,
+     pub pad0 :            u8,
+     pub modifiers :       u16
 }
 
 
 
 pub struct ungrab_button_request {
-    major_opcode :   u8,
-    button :         u8,
-    length :         u16,
-    grab_window :    window,
-    modifiers :      u16,
-    pad0 :           [u8,..2]
+     pub major_opcode :   u8,
+     pub button :         u8,
+     pub length :         u16,
+     pub grab_window :    window,
+     pub modifiers :      u16,
+     pub pad0 :           [u8,..2]
 }
 
 
 
 pub struct change_active_pointer_grab_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    cursor :         cursor,
-    time :           timestamp,
-    event_mask :     u16,
-    pad1 :           [u8,..2]
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub cursor :         cursor,
+     pub time :           timestamp,
+     pub event_mask :     u16,
+     pub pad1 :           [u8,..2]
 }
 
 
@@ -1357,81 +1354,81 @@ pub struct grab_keyboard_cookie {
 
 
 pub struct grab_keyboard_request {
-    major_opcode :    u8,
-    owner_events :    u8,
-    length :          u16,
-    grab_window :     window,
-    time :            timestamp,
-    pointer_mode :    u8,
-    keyboard_mode :   u8,
-    pad0 :            [u8,..2]
+     pub major_opcode :    u8,
+     pub owner_events :    u8,
+     pub length :          u16,
+     pub grab_window :     window,
+     pub time :            timestamp,
+     pub pointer_mode :    u8,
+     pub keyboard_mode :   u8,
+     pub pad0 :            [u8,..2]
 }
 
 
 pub struct grab_keyboard_reply {
-    response_type :   u8,
-    status :          u8,
-    sequence :        u16,
-    length :          u32
+     pub response_type :   u8,
+     pub status :          u8,
+     pub sequence :        u16,
+     pub length :          u32
 }
 
 
 
 pub struct ungrab_keyboard_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    time :           timestamp
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub time :           timestamp
 }
 
 
 
 pub struct grab_key_request {
-    major_opcode :    u8,
-    owner_events :    u8,
-    length :          u16,
-    grab_window :     window,
-    modifiers :       u16,
-    key :             keycode,
-    pointer_mode :    u8,
-    keyboard_mode :   u8,
-    pad0 :            [u8,..3]
+     pub major_opcode :    u8,
+     pub owner_events :    u8,
+     pub length :          u16,
+     pub grab_window :     window,
+     pub modifiers :       u16,
+     pub key :             keycode,
+     pub pointer_mode :    u8,
+     pub keyboard_mode :   u8,
+     pub pad0 :            [u8,..3]
 }
 
 
 
 pub struct ungrab_key_request {
-    major_opcode :   u8,
-    key :            keycode,
-    length :         u16,
-    grab_window :    window,
-    modifiers :      u16,
-    pad0 :           [u8,..2]
+     pub major_opcode :   u8,
+     pub key :            keycode,
+     pub length :         u16,
+     pub grab_window :    window,
+     pub modifiers :      u16,
+     pub pad0 :           [u8,..2]
 }
 
 
 
 pub struct allow_events_request {
-    major_opcode :   u8,
-    mode :           u8,
-    length :         u16,
-    time :           timestamp
+     pub major_opcode :   u8,
+     pub mode :           u8,
+     pub length :         u16,
+     pub time :           timestamp
 }
 
 
 
 pub struct grab_server_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16
 }
 
 
 
 pub struct ungrab_server_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16
 }
 
 
@@ -1441,42 +1438,42 @@ pub struct query_pointer_cookie {
 
 
 pub struct query_pointer_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    window :         window
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub window :         window
 }
 
 
 pub struct query_pointer_reply {
-    response_type :   u8,
-    same_screen :     u8,
-    sequence :        u16,
-    length :          u32,
-    root :            window,
-    child :           window,
-    root_x :          i16,
-    root_y :          i16,
-    win_x :           i16,
-    win_y :           i16,
-    mask :            u16,
-    pad0 :            [u8,..2]
+     pub response_type :   u8,
+     pub same_screen :     u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub root :            window,
+     pub child :           window,
+     pub root_x :          i16,
+     pub root_y :          i16,
+     pub win_x :           i16,
+     pub win_y :           i16,
+     pub mask :            u16,
+     pub pad0 :            [u8,..2]
 }
 
 
 pub struct timecoord {
-    time :   timestamp,
-    x :      i16,
-    y :      i16
+     pub time :   timestamp,
+     pub x :      i16,
+     pub y :      i16
 }
 
 /**
  * @brief timecoord_iterator
  **/
 pub struct timecoord_iterator {
-    data : *timecoord,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut timecoord,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -1486,22 +1483,22 @@ pub struct get_motion_events_cookie {
 
 
 pub struct get_motion_events_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    window :         window,
-    start :          timestamp,
-    stop :           timestamp
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub window :         window,
+     pub start :          timestamp,
+     pub stop :           timestamp
 }
 
 
 pub struct get_motion_events_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    events_len :      u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub events_len :      u32,
+     pub pad1 :            [u8,..20]
 }
 
 
@@ -1511,50 +1508,50 @@ pub struct translate_coordinates_cookie {
 
 
 pub struct translate_coordinates_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    src_window :     window,
-    dst_window :     window,
-    src_x :          i16,
-    src_y :          i16
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub src_window :     window,
+     pub dst_window :     window,
+     pub src_x :          i16,
+     pub src_y :          i16
 }
 
 
 pub struct translate_coordinates_reply {
-    response_type :   u8,
-    same_screen :     u8,
-    sequence :        u16,
-    length :          u32,
-    child :           window,
-    dst_x :           i16,
-    dst_y :           i16
+     pub response_type :   u8,
+     pub same_screen :     u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub child :           window,
+     pub dst_x :           i16,
+     pub dst_y :           i16
 }
 
 
 
 pub struct warp_pointer_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    src_window :     window,
-    dst_window :     window,
-    src_x :          i16,
-    src_y :          i16,
-    src_width :      u16,
-    src_height :     u16,
-    dst_x :          i16,
-    dst_y :          i16
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub src_window :     window,
+     pub dst_window :     window,
+     pub src_x :          i16,
+     pub src_y :          i16,
+     pub src_width :      u16,
+     pub src_height :     u16,
+     pub dst_x :          i16,
+     pub dst_y :          i16
 }
 
 
 
 pub struct set_input_focus_request {
-    major_opcode :   u8,
-    revert_to :      u8,
-    length :         u16,
-    focus :          window,
-    time :           timestamp
+     pub major_opcode :   u8,
+     pub revert_to :      u8,
+     pub length :         u16,
+     pub focus :          window,
+     pub time :           timestamp
 }
 
 
@@ -1564,18 +1561,18 @@ pub struct get_input_focus_cookie {
 
 
 pub struct get_input_focus_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16
 }
 
 
 pub struct get_input_focus_reply {
-    response_type :   u8,
-    revert_to :       u8,
-    sequence :        u16,
-    length :          u32,
-    focus :           window
+     pub response_type :   u8,
+     pub revert_to :       u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub focus :           window
 }
 
 
@@ -1585,72 +1582,72 @@ pub struct query_keymap_cookie {
 
 
 pub struct query_keymap_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16
 }
 
 
 pub struct query_keymap_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    keys :            [u8,..32]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub keys :            [u8,..32]
 }
 
 
 
 pub struct open_font_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    fid :            font,
-    name_len :       u16,
-    pad1 :           [u8,..2]
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub fid :            font,
+     pub name_len :       u16,
+     pub pad1 :           [u8,..2]
 }
 
 
 
 pub struct close_font_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    font :           font
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub font :           font
 }
 
 
 pub struct fontprop {
-    name :    atom,
-    value :   u32
+     pub name :    atom,
+     pub value :   u32
 }
 
 /**
  * @brief fontprop_iterator
  **/
 pub struct fontprop_iterator {
-    data : *fontprop,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut fontprop,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct charinfo {
-    left_side_bearing :    i16,
-    right_side_bearing :   i16,
-    character_width :      i16,
-    ascent :               i16,
-    descent :              i16,
-    attributes :           u16
+     pub left_side_bearing :    i16,
+     pub right_side_bearing :   i16,
+     pub character_width :      i16,
+     pub ascent :               i16,
+     pub descent :              i16,
+     pub attributes :           u16
 }
 
 /**
  * @brief charinfo_iterator
  **/
 pub struct charinfo_iterator {
-    data : *charinfo,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut charinfo,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -1660,33 +1657,33 @@ pub struct query_font_cookie {
 
 
 pub struct query_font_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    font :           fontable
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub font :           fontable
 }
 
 
 pub struct query_font_reply {
-    response_type :       u8,
-    pad0 :                u8,
-    sequence :            u16,
-    length :              u32,
-    min_bounds :          charinfo,
-    pad1 :                [u8,..4],
-    max_bounds :          charinfo,
-    pad2 :                [u8,..4],
-    min_char_or_byte2 :   u16,
-    max_char_or_byte2 :   u16,
-    default_char :        u16,
-    properties_len :      u16,
-    draw_direction :      u8,
-    min_byte1 :           u8,
-    max_byte1 :           u8,
-    all_chars_exist :     u8,
-    font_ascent :         i16,
-    font_descent :        i16,
-    char_infos_len :      u32
+     pub response_type :       u8,
+     pub pad0 :                u8,
+     pub sequence :            u16,
+     pub length :              u32,
+     pub min_bounds :          charinfo,
+     pub pad1 :                [u8,..4],
+     pub max_bounds :          charinfo,
+     pub pad2 :                [u8,..4],
+     pub min_char_or_byte2 :   u16,
+     pub max_char_or_byte2 :   u16,
+     pub default_char :        u16,
+     pub properties_len :      u16,
+     pub draw_direction :      u8,
+     pub min_byte1 :           u8,
+     pub max_byte1 :           u8,
+     pub all_chars_exist :     u8,
+     pub font_ascent :         i16,
+     pub font_descent :        i16,
+     pub char_infos_len :      u32
 }
 
 
@@ -1696,39 +1693,39 @@ pub struct query_text_extents_cookie {
 
 
 pub struct query_text_extents_request {
-    major_opcode :   u8,
-    odd_length :     u8,
-    length :         u16,
-    font :           fontable
+     pub major_opcode :   u8,
+     pub odd_length :     u8,
+     pub length :         u16,
+     pub font :           fontable
 }
 
 
 pub struct query_text_extents_reply {
-    response_type :     u8,
-    draw_direction :    u8,
-    sequence :          u16,
-    length :            u32,
-    font_ascent :       i16,
-    font_descent :      i16,
-    overall_ascent :    i16,
-    overall_descent :   i16,
-    overall_width :     i32,
-    overall_left :      i32,
-    overall_right :     i32
+     pub response_type :     u8,
+     pub draw_direction :    u8,
+     pub sequence :          u16,
+     pub length :            u32,
+     pub font_ascent :       i16,
+     pub font_descent :      i16,
+     pub overall_ascent :    i16,
+     pub overall_descent :   i16,
+     pub overall_width :     i32,
+     pub overall_left :      i32,
+     pub overall_right :     i32
 }
 
 
 pub struct str_ {
-    name_len :   u8
+     pub name_len :   u8
 }
 
 /**
  * @brief str_iterator
  **/
 pub struct str_iterator {
-    data : *str_,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut str_,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -1738,21 +1735,21 @@ pub struct list_fonts_cookie {
 
 
 pub struct list_fonts_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    max_names :      u16,
-    pattern_len :    u16
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub max_names :      u16,
+     pub pattern_len :    u16
 }
 
 
 pub struct list_fonts_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    names_len :       u16,
-    pad1 :            [u8,..22]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub names_len :       u16,
+     pub pad1 :            [u8,..22]
 }
 
 
@@ -1762,44 +1759,44 @@ pub struct list_fonts_with_info_cookie {
 
 
 pub struct list_fonts_with_info_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    max_names :      u16,
-    pattern_len :    u16
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub max_names :      u16,
+     pub pattern_len :    u16
 }
 
 
 pub struct list_fonts_with_info_reply {
-    response_type :       u8,
-    name_len :            u8,
-    sequence :            u16,
-    length :              u32,
-    min_bounds :          charinfo,
-    pad0 :                [u8,..4],
-    max_bounds :          charinfo,
-    pad1 :                [u8,..4],
-    min_char_or_byte2 :   u16,
-    max_char_or_byte2 :   u16,
-    default_char :        u16,
-    properties_len :      u16,
-    draw_direction :      u8,
-    min_byte1 :           u8,
-    max_byte1 :           u8,
-    all_chars_exist :     u8,
-    font_ascent :         i16,
-    font_descent :        i16,
-    replies_hint :        u32
+     pub response_type :       u8,
+     pub name_len :            u8,
+     pub sequence :            u16,
+     pub length :              u32,
+     pub min_bounds :          charinfo,
+     pub pad0 :                [u8,..4],
+     pub max_bounds :          charinfo,
+     pub pad1 :                [u8,..4],
+     pub min_char_or_byte2 :   u16,
+     pub max_char_or_byte2 :   u16,
+     pub default_char :        u16,
+     pub properties_len :      u16,
+     pub draw_direction :      u8,
+     pub min_byte1 :           u8,
+     pub max_byte1 :           u8,
+     pub all_chars_exist :     u8,
+     pub font_ascent :         i16,
+     pub font_descent :        i16,
+     pub replies_hint :        u32
 }
 
 
 
 pub struct set_font_path_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    font_qty :       u16,
-    pad1 :           [u8,..2]
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub font_qty :       u16,
+     pub pad1 :           [u8,..2]
 }
 
 
@@ -1809,268 +1806,268 @@ pub struct get_font_path_cookie {
 
 
 pub struct get_font_path_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16
 }
 
 
 pub struct get_font_path_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    path_len :        u16,
-    pad1 :            [u8,..22]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub path_len :        u16,
+     pub pad1 :            [u8,..22]
 }
 
 
 
 pub struct create_pixmap_request {
-    major_opcode :   u8,
-    depth :          u8,
-    length :         u16,
-    pid :            pixmap,
-    drawable :       drawable,
-    width :          u16,
-    height :         u16
+     pub major_opcode :   u8,
+     pub depth :          u8,
+     pub length :         u16,
+     pub pid :            pixmap,
+     pub drawable :       drawable,
+     pub width :          u16,
+     pub height :         u16
 }
 
 
 
 pub struct free_pixmap_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    pixmap :         pixmap
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub pixmap :         pixmap
 }
 
 
 
 pub struct create_gc_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    cid :            gcontext,
-    drawable :       drawable,
-    value_mask :     u32
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub cid :            gcontext,
+     pub drawable :       drawable,
+     pub value_mask :     u32
 }
 
 
 
 pub struct change_gc_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    gc :             gcontext,
-    value_mask :     u32
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub gc :             gcontext,
+     pub value_mask :     u32
 }
 
 
 
 pub struct copy_gc_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    src_gc :         gcontext,
-    dst_gc :         gcontext,
-    value_mask :     u32
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub src_gc :         gcontext,
+     pub dst_gc :         gcontext,
+     pub value_mask :     u32
 }
 
 
 
 pub struct set_dashes_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    gc :             gcontext,
-    dash_offset :    u16,
-    dashes_len :     u16
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub gc :             gcontext,
+     pub dash_offset :    u16,
+     pub dashes_len :     u16
 }
 
 
 
 pub struct set_clip_rectangles_request {
-    major_opcode :    u8,
-    ordering :        u8,
-    length :          u16,
-    gc :              gcontext,
-    clip_x_origin :   i16,
-    clip_y_origin :   i16
+     pub major_opcode :    u8,
+     pub ordering :        u8,
+     pub length :          u16,
+     pub gc :              gcontext,
+     pub clip_x_origin :   i16,
+     pub clip_y_origin :   i16
 }
 
 
 
 pub struct free_gc_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    gc :             gcontext
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub gc :             gcontext
 }
 
 
 
 pub struct clear_area_request {
-    major_opcode :   u8,
-    exposures :      u8,
-    length :         u16,
-    window :         window,
-    x :              i16,
-    y :              i16,
-    width :          u16,
-    height :         u16
+     pub major_opcode :   u8,
+     pub exposures :      u8,
+     pub length :         u16,
+     pub window :         window,
+     pub x :              i16,
+     pub y :              i16,
+     pub width :          u16,
+     pub height :         u16
 }
 
 
 
 pub struct copy_area_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    src_drawable :   drawable,
-    dst_drawable :   drawable,
-    gc :             gcontext,
-    src_x :          i16,
-    src_y :          i16,
-    dst_x :          i16,
-    dst_y :          i16,
-    width :          u16,
-    height :         u16
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub src_drawable :   drawable,
+     pub dst_drawable :   drawable,
+     pub gc :             gcontext,
+     pub src_x :          i16,
+     pub src_y :          i16,
+     pub dst_x :          i16,
+     pub dst_y :          i16,
+     pub width :          u16,
+     pub height :         u16
 }
 
 
 
 pub struct copy_plane_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    src_drawable :   drawable,
-    dst_drawable :   drawable,
-    gc :             gcontext,
-    src_x :          i16,
-    src_y :          i16,
-    dst_x :          i16,
-    dst_y :          i16,
-    width :          u16,
-    height :         u16,
-    bit_plane :      u32
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub src_drawable :   drawable,
+     pub dst_drawable :   drawable,
+     pub gc :             gcontext,
+     pub src_x :          i16,
+     pub src_y :          i16,
+     pub dst_x :          i16,
+     pub dst_y :          i16,
+     pub width :          u16,
+     pub height :         u16,
+     pub bit_plane :      u32
 }
 
 
 
 pub struct poly_point_request {
-    major_opcode :      u8,
-    coordinate_mode :   u8,
-    length :            u16,
-    drawable :          drawable,
-    gc :                gcontext
+     pub major_opcode :      u8,
+     pub coordinate_mode :   u8,
+     pub length :            u16,
+     pub drawable :          drawable,
+     pub gc :                gcontext
 }
 
 
 
 pub struct poly_line_request {
-    major_opcode :      u8,
-    coordinate_mode :   u8,
-    length :            u16,
-    drawable :          drawable,
-    gc :                gcontext
+     pub major_opcode :      u8,
+     pub coordinate_mode :   u8,
+     pub length :            u16,
+     pub drawable :          drawable,
+     pub gc :                gcontext
 }
 
 
 pub struct segment {
-    x1 :   i16,
-    y1 :   i16,
-    x2 :   i16,
-    y2 :   i16
+     pub x1 :   i16,
+     pub y1 :   i16,
+     pub x2 :   i16,
+     pub y2 :   i16
 }
 
 /**
  * @brief segment_iterator
  **/
 pub struct segment_iterator {
-    data : *segment,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut segment,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 
 pub struct poly_segment_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    drawable :       drawable,
-    gc :             gcontext
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub drawable :       drawable,
+     pub gc :             gcontext
 }
 
 
 
 pub struct poly_rectangle_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    drawable :       drawable,
-    gc :             gcontext
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub drawable :       drawable,
+     pub gc :             gcontext
 }
 
 
 
 pub struct poly_arc_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    drawable :       drawable,
-    gc :             gcontext
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub drawable :       drawable,
+     pub gc :             gcontext
 }
 
 
 
 pub struct fill_poly_request {
-    major_opcode :      u8,
-    pad0 :              u8,
-    length :            u16,
-    drawable :          drawable,
-    gc :                gcontext,
-    shape :             u8,
-    coordinate_mode :   u8,
-    pad1 :              [u8,..2]
+     pub major_opcode :      u8,
+     pub pad0 :              u8,
+     pub length :            u16,
+     pub drawable :          drawable,
+     pub gc :                gcontext,
+     pub shape :             u8,
+     pub coordinate_mode :   u8,
+     pub pad1 :              [u8,..2]
 }
 
 
 
 pub struct poly_fill_rectangle_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    drawable :       drawable,
-    gc :             gcontext
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub drawable :       drawable,
+     pub gc :             gcontext
 }
 
 
 
 pub struct poly_fill_arc_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    drawable :       drawable,
-    gc :             gcontext
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub drawable :       drawable,
+     pub gc :             gcontext
 }
 
 
 
 pub struct put_image_request {
-    major_opcode :   u8,
-    format :         u8,
-    length :         u16,
-    drawable :       drawable,
-    gc :             gcontext,
-    width :          u16,
-    height :         u16,
-    dst_x :          i16,
-    dst_y :          i16,
-    left_pad :       u8,
-    depth :          u8,
-    pad0 :           [u8,..2]
+     pub major_opcode :   u8,
+     pub format :         u8,
+     pub length :         u16,
+     pub drawable :       drawable,
+     pub gc :             gcontext,
+     pub width :          u16,
+     pub height :         u16,
+     pub dst_x :          i16,
+     pub dst_y :          i16,
+     pub left_pad :       u8,
+     pub depth :          u8,
+     pub pad0 :           [u8,..2]
 }
 
 
@@ -2080,121 +2077,121 @@ pub struct get_image_cookie {
 
 
 pub struct get_image_request {
-    major_opcode :   u8,
-    format :         u8,
-    length :         u16,
-    drawable :       drawable,
-    x :              i16,
-    y :              i16,
-    width :          u16,
-    height :         u16,
-    plane_mask :     u32
+     pub major_opcode :   u8,
+     pub format :         u8,
+     pub length :         u16,
+     pub drawable :       drawable,
+     pub x :              i16,
+     pub y :              i16,
+     pub width :          u16,
+     pub height :         u16,
+     pub plane_mask :     u32
 }
 
 
 pub struct get_image_reply {
-    response_type :   u8,
-    depth :           u8,
-    sequence :        u16,
-    length :          u32,
-    visual :          visualid,
-    pad0 :            [u8,..20]
+     pub response_type :   u8,
+     pub depth :           u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub visual :          visualid,
+     pub pad0 :            [u8,..20]
 }
 
 
 
 pub struct poly_text_8_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    drawable :       drawable,
-    gc :             gcontext,
-    x :              i16,
-    y :              i16
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub drawable :       drawable,
+     pub gc :             gcontext,
+     pub x :              i16,
+     pub y :              i16
 }
 
 
 
 pub struct poly_text_16_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    drawable :       drawable,
-    gc :             gcontext,
-    x :              i16,
-    y :              i16
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub drawable :       drawable,
+     pub gc :             gcontext,
+     pub x :              i16,
+     pub y :              i16
 }
 
 
 
 pub struct image_text_8_request {
-    major_opcode :   u8,
-    string_len :     u8,
-    length :         u16,
-    drawable :       drawable,
-    gc :             gcontext,
-    x :              i16,
-    y :              i16
+     pub major_opcode :   u8,
+     pub string_len :     u8,
+     pub length :         u16,
+     pub drawable :       drawable,
+     pub gc :             gcontext,
+     pub x :              i16,
+     pub y :              i16
 }
 
 
 
 pub struct image_text_16_request {
-    major_opcode :   u8,
-    string_len :     u8,
-    length :         u16,
-    drawable :       drawable,
-    gc :             gcontext,
-    x :              i16,
-    y :              i16
+     pub major_opcode :   u8,
+     pub string_len :     u8,
+     pub length :         u16,
+     pub drawable :       drawable,
+     pub gc :             gcontext,
+     pub x :              i16,
+     pub y :              i16
 }
 
 
 
 pub struct create_colormap_request {
-    major_opcode :   u8,
-    alloc :          u8,
-    length :         u16,
-    mid :            colormap,
-    window :         window,
-    visual :         visualid
+     pub major_opcode :   u8,
+     pub alloc :          u8,
+     pub length :         u16,
+     pub mid :            colormap,
+     pub window :         window,
+     pub visual :         visualid
 }
 
 
 
 pub struct free_colormap_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    cmap :           colormap
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub cmap :           colormap
 }
 
 
 
 pub struct copy_colormap_and_free_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    mid :            colormap,
-    src_cmap :       colormap
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub mid :            colormap,
+     pub src_cmap :       colormap
 }
 
 
 
 pub struct install_colormap_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    cmap :           colormap
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub cmap :           colormap
 }
 
 
 
 pub struct uninstall_colormap_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    cmap :           colormap
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub cmap :           colormap
 }
 
 
@@ -2204,20 +2201,20 @@ pub struct list_installed_colormaps_cookie {
 
 
 pub struct list_installed_colormaps_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    window :         window
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub window :         window
 }
 
 
 pub struct list_installed_colormaps_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    cmaps_len :       u16,
-    pad1 :            [u8,..22]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub cmaps_len :       u16,
+     pub pad1 :            [u8,..22]
 }
 
 
@@ -2227,27 +2224,27 @@ pub struct alloc_color_cookie {
 
 
 pub struct alloc_color_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    cmap :           colormap,
-    red :            u16,
-    green :          u16,
-    blue :           u16,
-    pad1 :           [u8,..2]
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub cmap :           colormap,
+     pub red :            u16,
+     pub green :          u16,
+     pub blue :           u16,
+     pub pad1 :           [u8,..2]
 }
 
 
 pub struct alloc_color_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    red :             u16,
-    green :           u16,
-    blue :            u16,
-    pad1 :            [u8,..2],
-    pixel :           u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub red :             u16,
+     pub green :           u16,
+     pub blue :            u16,
+     pub pad1 :            [u8,..2],
+     pub pixel :           u32
 }
 
 
@@ -2257,27 +2254,27 @@ pub struct alloc_named_color_cookie {
 
 
 pub struct alloc_named_color_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    cmap :           colormap,
-    name_len :       u16,
-    pad1 :           [u8,..2]
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub cmap :           colormap,
+     pub name_len :       u16,
+     pub pad1 :           [u8,..2]
 }
 
 
 pub struct alloc_named_color_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pixel :           u32,
-    exact_red :       u16,
-    exact_green :     u16,
-    exact_blue :      u16,
-    visual_red :      u16,
-    visual_green :    u16,
-    visual_blue :     u16
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pixel :           u32,
+     pub exact_red :       u16,
+     pub exact_green :     u16,
+     pub exact_blue :      u16,
+     pub visual_red :      u16,
+     pub visual_green :    u16,
+     pub visual_blue :     u16
 }
 
 
@@ -2287,23 +2284,23 @@ pub struct alloc_color_cells_cookie {
 
 
 pub struct alloc_color_cells_request {
-    major_opcode :   u8,
-    contiguous :     u8,
-    length :         u16,
-    cmap :           colormap,
-    colors :         u16,
-    planes :         u16
+     pub major_opcode :   u8,
+     pub contiguous :     u8,
+     pub length :         u16,
+     pub cmap :           colormap,
+     pub colors :         u16,
+     pub planes :         u16
 }
 
 
 pub struct alloc_color_cells_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pixels_len :      u16,
-    masks_len :       u16,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pixels_len :      u16,
+     pub masks_len :       u16,
+     pub pad1 :            [u8,..20]
 }
 
 
@@ -2313,95 +2310,95 @@ pub struct alloc_color_planes_cookie {
 
 
 pub struct alloc_color_planes_request {
-    major_opcode :   u8,
-    contiguous :     u8,
-    length :         u16,
-    cmap :           colormap,
-    colors :         u16,
-    reds :           u16,
-    greens :         u16,
-    blues :          u16
+     pub major_opcode :   u8,
+     pub contiguous :     u8,
+     pub length :         u16,
+     pub cmap :           colormap,
+     pub colors :         u16,
+     pub reds :           u16,
+     pub greens :         u16,
+     pub blues :          u16
 }
 
 
 pub struct alloc_color_planes_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    pixels_len :      u16,
-    pad1 :            [u8,..2],
-    red_mask :        u32,
-    green_mask :      u32,
-    blue_mask :       u32,
-    pad2 :            [u8,..8]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pixels_len :      u16,
+     pub pad1 :            [u8,..2],
+     pub red_mask :        u32,
+     pub green_mask :      u32,
+     pub blue_mask :       u32,
+     pub pad2 :            [u8,..8]
 }
 
 
 
 pub struct free_colors_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    cmap :           colormap,
-    plane_mask :     u32
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub cmap :           colormap,
+     pub plane_mask :     u32
 }
 
 
 pub struct coloritem {
-    pixel :   u32,
-    red :     u16,
-    green :   u16,
-    blue :    u16,
-    flags :   u8,
-    pad0 :    u8
+     pub pixel :   u32,
+     pub red :     u16,
+     pub green :   u16,
+     pub blue :    u16,
+     pub flags :   u8,
+     pub pad0 :    u8
 }
 
 /**
  * @brief coloritem_iterator
  **/
 pub struct coloritem_iterator {
-    data : *coloritem,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut coloritem,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 
 pub struct store_colors_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    cmap :           colormap
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub cmap :           colormap
 }
 
 
 
 pub struct store_named_color_request {
-    major_opcode :   u8,
-    flags :          u8,
-    length :         u16,
-    cmap :           colormap,
-    pixel :          u32,
-    name_len :       u16,
-    pad0 :           [u8,..2]
+     pub major_opcode :   u8,
+     pub flags :          u8,
+     pub length :         u16,
+     pub cmap :           colormap,
+     pub pixel :          u32,
+     pub name_len :       u16,
+     pub pad0 :           [u8,..2]
 }
 
 
 pub struct rgb {
-    red :     u16,
-    green :   u16,
-    blue :    u16,
-    pad0 :    [u8,..2]
+     pub red :     u16,
+     pub green :   u16,
+     pub blue :    u16,
+     pub pad0 :    [u8,..2]
 }
 
 /**
  * @brief rgb_iterator
  **/
 pub struct rgb_iterator {
-    data : *rgb,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut rgb,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -2411,20 +2408,20 @@ pub struct query_colors_cookie {
 
 
 pub struct query_colors_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    cmap :           colormap
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub cmap :           colormap
 }
 
 
 pub struct query_colors_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    colors_len :      u16,
-    pad1 :            [u8,..22]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub colors_len :      u16,
+     pub pad1 :            [u8,..22]
 }
 
 
@@ -2434,88 +2431,88 @@ pub struct lookup_color_cookie {
 
 
 pub struct lookup_color_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    cmap :           colormap,
-    name_len :       u16,
-    pad1 :           [u8,..2]
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub cmap :           colormap,
+     pub name_len :       u16,
+     pub pad1 :           [u8,..2]
 }
 
 
 pub struct lookup_color_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    exact_red :       u16,
-    exact_green :     u16,
-    exact_blue :      u16,
-    visual_red :      u16,
-    visual_green :    u16,
-    visual_blue :     u16
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub exact_red :       u16,
+     pub exact_green :     u16,
+     pub exact_blue :      u16,
+     pub visual_red :      u16,
+     pub visual_green :    u16,
+     pub visual_blue :     u16
 }
 
 
 
 pub struct create_cursor_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    cid :            cursor,
-    source :         pixmap,
-    mask :           pixmap,
-    fore_red :       u16,
-    fore_green :     u16,
-    fore_blue :      u16,
-    back_red :       u16,
-    back_green :     u16,
-    back_blue :      u16,
-    x :              u16,
-    y :              u16
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub cid :            cursor,
+     pub source :         pixmap,
+     pub mask :           pixmap,
+     pub fore_red :       u16,
+     pub fore_green :     u16,
+     pub fore_blue :      u16,
+     pub back_red :       u16,
+     pub back_green :     u16,
+     pub back_blue :      u16,
+     pub x :              u16,
+     pub y :              u16
 }
 
 
 
 pub struct create_glyph_cursor_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    cid :            cursor,
-    source_font :    font,
-    mask_font :      font,
-    source_char :    u16,
-    mask_char :      u16,
-    fore_red :       u16,
-    fore_green :     u16,
-    fore_blue :      u16,
-    back_red :       u16,
-    back_green :     u16,
-    back_blue :      u16
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub cid :            cursor,
+     pub source_font :    font,
+     pub mask_font :      font,
+     pub source_char :    u16,
+     pub mask_char :      u16,
+     pub fore_red :       u16,
+     pub fore_green :     u16,
+     pub fore_blue :      u16,
+     pub back_red :       u16,
+     pub back_green :     u16,
+     pub back_blue :      u16
 }
 
 
 
 pub struct free_cursor_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    cursor :         cursor
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub cursor :         cursor
 }
 
 
 
 pub struct recolor_cursor_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    cursor :         cursor,
-    fore_red :       u16,
-    fore_green :     u16,
-    fore_blue :      u16,
-    back_red :       u16,
-    back_green :     u16,
-    back_blue :      u16
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub cursor :         cursor,
+     pub fore_red :       u16,
+     pub fore_green :     u16,
+     pub fore_blue :      u16,
+     pub back_red :       u16,
+     pub back_green :     u16,
+     pub back_blue :      u16
 }
 
 
@@ -2525,22 +2522,22 @@ pub struct query_best_size_cookie {
 
 
 pub struct query_best_size_request {
-    major_opcode :   u8,
-    class :          u8,
-    length :         u16,
-    drawable :       drawable,
-    width :          u16,
-    height :         u16
+     pub major_opcode :   u8,
+     pub class :          u8,
+     pub length :         u16,
+     pub drawable :       drawable,
+     pub width :          u16,
+     pub height :         u16
 }
 
 
 pub struct query_best_size_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    width :           u16,
-    height :          u16
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub width :           u16,
+     pub height :          u16
 }
 
 
@@ -2550,23 +2547,23 @@ pub struct query_extension_cookie {
 
 
 pub struct query_extension_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    name_len :       u16,
-    pad1 :           [u8,..2]
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub name_len :       u16,
+     pub pad1 :           [u8,..2]
 }
 
 
 pub struct query_extension_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    present :         u8,
-    major_opcode :    u8,
-    first_event :     u8,
-    first_error :     u8
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub present :         u8,
+     pub major_opcode :    u8,
+     pub first_event :     u8,
+     pub first_error :     u8
 }
 
 
@@ -2576,29 +2573,29 @@ pub struct list_extensions_cookie {
 
 
 pub struct list_extensions_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16
 }
 
 
 pub struct list_extensions_reply {
-    response_type :   u8,
-    names_len :       u8,
-    sequence :        u16,
-    length :          u32,
-    pad0 :            [u8,..24]
+     pub response_type :   u8,
+     pub names_len :       u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad0 :            [u8,..24]
 }
 
 
 
 pub struct change_keyboard_mapping_request {
-    major_opcode :          u8,
-    keycode_count :         u8,
-    length :                u16,
-    first_keycode :         keycode,
-    keysyms_per_keycode :   u8,
-    pad0 :                  [u8,..2]
+     pub major_opcode :          u8,
+     pub keycode_count :         u8,
+     pub length :                u16,
+     pub first_keycode :         keycode,
+     pub keysyms_per_keycode :   u8,
+     pub pad0 :                  [u8,..2]
 }
 
 
@@ -2608,29 +2605,29 @@ pub struct get_keyboard_mapping_cookie {
 
 
 pub struct get_keyboard_mapping_request {
-    major_opcode :    u8,
-    pad0 :            u8,
-    length :          u16,
-    first_keycode :   keycode,
-    count :           u8
+     pub major_opcode :    u8,
+     pub pad0 :            u8,
+     pub length :          u16,
+     pub first_keycode :   keycode,
+     pub count :           u8
 }
 
 
 pub struct get_keyboard_mapping_reply {
-    response_type :         u8,
-    keysyms_per_keycode :   u8,
-    sequence :              u16,
-    length :                u32,
-    pad0 :                  [u8,..24]
+     pub response_type :         u8,
+     pub keysyms_per_keycode :   u8,
+     pub sequence :              u16,
+     pub length :                u32,
+     pub pad0 :                  [u8,..24]
 }
 
 
 
 pub struct change_keyboard_control_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    value_mask :     u32
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub value_mask :     u32
 }
 
 
@@ -2640,45 +2637,45 @@ pub struct get_keyboard_control_cookie {
 
 
 pub struct get_keyboard_control_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16
 }
 
 
 pub struct get_keyboard_control_reply {
-    response_type :        u8,
-    global_auto_repeat :   u8,
-    sequence :             u16,
-    length :               u32,
-    led_mask :             u32,
-    key_click_percent :    u8,
-    bell_percent :         u8,
-    bell_pitch :           u16,
-    bell_duration :        u16,
-    pad0 :                 [u8,..2],
-    auto_repeats :         [u8,..32]
+     pub response_type :        u8,
+     pub global_auto_repeat :   u8,
+     pub sequence :             u16,
+     pub length :               u32,
+     pub led_mask :             u32,
+     pub key_click_percent :    u8,
+     pub bell_percent :         u8,
+     pub bell_pitch :           u16,
+     pub bell_duration :        u16,
+     pub pad0 :                 [u8,..2],
+     pub auto_repeats :         [u8,..32]
 }
 
 
 
 pub struct bell_request {
-    major_opcode :   u8,
-    percent :        i8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub percent :        i8,
+     pub length :         u16
 }
 
 
 
 pub struct change_pointer_control_request {
-    major_opcode :               u8,
-    pad0 :                       u8,
-    length :                     u16,
-    acceleration_numerator :     i16,
-    acceleration_denominator :   i16,
-    threshold :                  i16,
-    do_acceleration :            u8,
-    do_threshold :               u8
+     pub major_opcode :               u8,
+     pub pad0 :                       u8,
+     pub length :                     u16,
+     pub acceleration_numerator :     i16,
+     pub acceleration_denominator :   i16,
+     pub threshold :                  i16,
+     pub do_acceleration :            u8,
+     pub do_threshold :               u8
 }
 
 
@@ -2688,33 +2685,33 @@ pub struct get_pointer_control_cookie {
 
 
 pub struct get_pointer_control_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16
 }
 
 
 pub struct get_pointer_control_reply {
-    response_type :              u8,
-    pad0 :                       u8,
-    sequence :                   u16,
-    length :                     u32,
-    acceleration_numerator :     u16,
-    acceleration_denominator :   u16,
-    threshold :                  u16,
-    pad1 :                       [u8,..18]
+     pub response_type :              u8,
+     pub pad0 :                       u8,
+     pub sequence :                   u16,
+     pub length :                     u32,
+     pub acceleration_numerator :     u16,
+     pub acceleration_denominator :   u16,
+     pub threshold :                  u16,
+     pub pad1 :                       [u8,..18]
 }
 
 
 
 pub struct set_screen_saver_request {
-    major_opcode :      u8,
-    pad0 :              u8,
-    length :            u16,
-    timeout :           i16,
-    interval :          i16,
-    prefer_blanking :   u8,
-    allow_exposures :   u8
+     pub major_opcode :      u8,
+     pub pad0 :              u8,
+     pub length :            u16,
+     pub timeout :           i16,
+     pub interval :          i16,
+     pub prefer_blanking :   u8,
+     pub allow_exposures :   u8
 }
 
 
@@ -2724,49 +2721,49 @@ pub struct get_screen_saver_cookie {
 
 
 pub struct get_screen_saver_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16
 }
 
 
 pub struct get_screen_saver_reply {
-    response_type :     u8,
-    pad0 :              u8,
-    sequence :          u16,
-    length :            u32,
-    timeout :           u16,
-    interval :          u16,
-    prefer_blanking :   u8,
-    allow_exposures :   u8,
-    pad1 :              [u8,..18]
+     pub response_type :     u8,
+     pub pad0 :              u8,
+     pub sequence :          u16,
+     pub length :            u32,
+     pub timeout :           u16,
+     pub interval :          u16,
+     pub prefer_blanking :   u8,
+     pub allow_exposures :   u8,
+     pub pad1 :              [u8,..18]
 }
 
 
 
 pub struct change_hosts_request {
-    major_opcode :   u8,
-    mode :           u8,
-    length :         u16,
-    family :         u8,
-    pad0 :           u8,
-    address_len :    u16
+     pub major_opcode :   u8,
+     pub mode :           u8,
+     pub length :         u16,
+     pub family :         u8,
+     pub pad0 :           u8,
+     pub address_len :    u16
 }
 
 
 pub struct host {
-    family :        u8,
-    pad0 :          u8,
-    address_len :   u16
+     pub family :        u8,
+     pub pad0 :          u8,
+     pub address_len :   u16
 }
 
 /**
  * @brief host_iterator
  **/
 pub struct host_iterator {
-    data : *host,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut host,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -2776,63 +2773,63 @@ pub struct list_hosts_cookie {
 
 
 pub struct list_hosts_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16
 }
 
 
 pub struct list_hosts_reply {
-    response_type :   u8,
-    mode :            u8,
-    sequence :        u16,
-    length :          u32,
-    hosts_len :       u16,
-    pad0 :            [u8,..22]
+     pub response_type :   u8,
+     pub mode :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub hosts_len :       u16,
+     pub pad0 :            [u8,..22]
 }
 
 
 
 pub struct set_access_control_request {
-    major_opcode :   u8,
-    mode :           u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub mode :           u8,
+     pub length :         u16
 }
 
 
 
 pub struct set_close_down_mode_request {
-    major_opcode :   u8,
-    mode :           u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub mode :           u8,
+     pub length :         u16
 }
 
 
 
 pub struct kill_client_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    resource :       u32
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub resource :       u32
 }
 
 
 
 pub struct rotate_properties_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16,
-    window :         window,
-    atoms_len :      u16,
-    delta :          i16
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub window :         window,
+     pub atoms_len :      u16,
+     pub delta :          i16
 }
 
 
 
 pub struct force_screen_saver_request {
-    major_opcode :   u8,
-    mode :           u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub mode :           u8,
+     pub length :         u16
 }
 
 
@@ -2842,17 +2839,17 @@ pub struct set_pointer_mapping_cookie {
 
 
 pub struct set_pointer_mapping_request {
-    major_opcode :   u8,
-    map_len :        u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub map_len :        u8,
+     pub length :         u16
 }
 
 
 pub struct set_pointer_mapping_reply {
-    response_type :   u8,
-    status :          u8,
-    sequence :        u16,
-    length :          u32
+     pub response_type :   u8,
+     pub status :          u8,
+     pub sequence :        u16,
+     pub length :          u32
 }
 
 
@@ -2862,18 +2859,18 @@ pub struct get_pointer_mapping_cookie {
 
 
 pub struct get_pointer_mapping_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16
 }
 
 
 pub struct get_pointer_mapping_reply {
-    response_type :   u8,
-    map_len :         u8,
-    sequence :        u16,
-    length :          u32,
-    pad0 :            [u8,..24]
+     pub response_type :   u8,
+     pub map_len :         u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub pad0 :            [u8,..24]
 }
 
 
@@ -2883,17 +2880,17 @@ pub struct set_modifier_mapping_cookie {
 
 
 pub struct set_modifier_mapping_request {
-    major_opcode :            u8,
-    keycodes_per_modifier :   u8,
-    length :                  u16
+     pub major_opcode :            u8,
+     pub keycodes_per_modifier :   u8,
+     pub length :                  u16
 }
 
 
 pub struct set_modifier_mapping_reply {
-    response_type :   u8,
-    status :          u8,
-    sequence :        u16,
-    length :          u32
+     pub response_type :   u8,
+     pub status :          u8,
+     pub sequence :        u16,
+     pub length :          u32
 }
 
 
@@ -2903,29 +2900,29 @@ pub struct get_modifier_mapping_cookie {
 
 
 pub struct get_modifier_mapping_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16
 }
 
 
 pub struct get_modifier_mapping_reply {
-    response_type :           u8,
-    keycodes_per_modifier :   u8,
-    sequence :                u16,
-    length :                  u32,
-    pad0 :                    [u8,..24]
+     pub response_type :           u8,
+     pub keycodes_per_modifier :   u8,
+     pub sequence :                u16,
+     pub length :                  u32,
+     pub pad0 :                    [u8,..24]
 }
 
 
 
 pub struct no_operation_request {
-    major_opcode :   u8,
-    pad0 :           u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16
 }
 
-pub extern "C" {
+extern "C" {
 
 /**
  * Get the next element of the iterator
@@ -2937,7 +2934,7 @@ pub extern "C" {
  *
  *
  */
-pub unsafe fn xcb_char2b_next (i:*char2b_iterator) -> c_void;
+pub fn xcb_char2b_next (i:*mut char2b_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2948,7 +2945,7 @@ pub unsafe fn xcb_char2b_next (i:*char2b_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_char2b_end (i:char2b_iterator) -> generic_iterator;
+pub fn xcb_char2b_end (i:char2b_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2960,7 +2957,7 @@ pub unsafe fn xcb_char2b_end (i:char2b_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_window_next (i:*window_iterator) -> c_void;
+pub fn xcb_window_next (i:*mut window_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2971,7 +2968,7 @@ pub unsafe fn xcb_window_next (i:*window_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_window_end (i:window_iterator) -> generic_iterator;
+pub fn xcb_window_end (i:window_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -2983,7 +2980,7 @@ pub unsafe fn xcb_window_end (i:window_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_pixmap_next (i:*pixmap_iterator) -> c_void;
+pub fn xcb_pixmap_next (i:*mut pixmap_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -2994,7 +2991,7 @@ pub unsafe fn xcb_pixmap_next (i:*pixmap_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_pixmap_end (i:pixmap_iterator) -> generic_iterator;
+pub fn xcb_pixmap_end (i:pixmap_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3006,7 +3003,7 @@ pub unsafe fn xcb_pixmap_end (i:pixmap_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_cursor_next (i:*cursor_iterator) -> c_void;
+pub fn xcb_cursor_next (i:*mut cursor_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3017,7 +3014,7 @@ pub unsafe fn xcb_cursor_next (i:*cursor_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_cursor_end (i:cursor_iterator) -> generic_iterator;
+pub fn xcb_cursor_end (i:cursor_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3029,7 +3026,7 @@ pub unsafe fn xcb_cursor_end (i:cursor_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_font_next (i:*font_iterator) -> c_void;
+pub fn xcb_font_next (i:*mut font_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3040,7 +3037,7 @@ pub unsafe fn xcb_font_next (i:*font_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_font_end (i:font_iterator) -> generic_iterator;
+pub fn xcb_font_end (i:font_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3052,7 +3049,7 @@ pub unsafe fn xcb_font_end (i:font_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_gcontext_next (i:*gcontext_iterator) -> c_void;
+pub fn xcb_gcontext_next (i:*mut gcontext_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3063,7 +3060,7 @@ pub unsafe fn xcb_gcontext_next (i:*gcontext_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_gcontext_end (i:gcontext_iterator) -> generic_iterator;
+pub fn xcb_gcontext_end (i:gcontext_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3075,7 +3072,7 @@ pub unsafe fn xcb_gcontext_end (i:gcontext_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_colormap_next (i:*colormap_iterator) -> c_void;
+pub fn xcb_colormap_next (i:*mut colormap_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3086,7 +3083,7 @@ pub unsafe fn xcb_colormap_next (i:*colormap_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_colormap_end (i:colormap_iterator) -> generic_iterator;
+pub fn xcb_colormap_end (i:colormap_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3098,7 +3095,7 @@ pub unsafe fn xcb_colormap_end (i:colormap_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_atom_next (i:*atom_iterator) -> c_void;
+pub fn xcb_atom_next (i:*mut atom_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3109,7 +3106,7 @@ pub unsafe fn xcb_atom_next (i:*atom_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_atom_end (i:atom_iterator) -> generic_iterator;
+pub fn xcb_atom_end (i:atom_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3121,7 +3118,7 @@ pub unsafe fn xcb_atom_end (i:atom_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_drawable_next (i:*drawable_iterator) -> c_void;
+pub fn xcb_drawable_next (i:*mut drawable_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3132,7 +3129,7 @@ pub unsafe fn xcb_drawable_next (i:*drawable_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_drawable_end (i:drawable_iterator) -> generic_iterator;
+pub fn xcb_drawable_end (i:drawable_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3144,7 +3141,7 @@ pub unsafe fn xcb_drawable_end (i:drawable_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_fontable_next (i:*fontable_iterator) -> c_void;
+pub fn xcb_fontable_next (i:*mut fontable_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3155,7 +3152,7 @@ pub unsafe fn xcb_fontable_next (i:*fontable_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_fontable_end (i:fontable_iterator) -> generic_iterator;
+pub fn xcb_fontable_end (i:fontable_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3167,7 +3164,7 @@ pub unsafe fn xcb_fontable_end (i:fontable_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_visualid_next (i:*visualid_iterator) -> c_void;
+pub fn xcb_visualid_next (i:*mut visualid_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3178,7 +3175,7 @@ pub unsafe fn xcb_visualid_next (i:*visualid_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_visualid_end (i:visualid_iterator) -> generic_iterator;
+pub fn xcb_visualid_end (i:visualid_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3190,7 +3187,7 @@ pub unsafe fn xcb_visualid_end (i:visualid_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_timestamp_next (i:*timestamp_iterator) -> c_void;
+pub fn xcb_timestamp_next (i:*mut timestamp_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3201,7 +3198,7 @@ pub unsafe fn xcb_timestamp_next (i:*timestamp_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_timestamp_end (i:timestamp_iterator) -> generic_iterator;
+pub fn xcb_timestamp_end (i:timestamp_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3213,7 +3210,7 @@ pub unsafe fn xcb_timestamp_end (i:timestamp_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_keysym_next (i:*keysym_iterator) -> c_void;
+pub fn xcb_keysym_next (i:*mut keysym_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3224,7 +3221,7 @@ pub unsafe fn xcb_keysym_next (i:*keysym_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_keysym_end (i:keysym_iterator) -> generic_iterator;
+pub fn xcb_keysym_end (i:keysym_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3236,7 +3233,7 @@ pub unsafe fn xcb_keysym_end (i:keysym_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_keycode_next (i:*keycode_iterator) -> c_void;
+pub fn xcb_keycode_next (i:*mut keycode_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3247,7 +3244,7 @@ pub unsafe fn xcb_keycode_next (i:*keycode_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_keycode_end (i:keycode_iterator) -> generic_iterator;
+pub fn xcb_keycode_end (i:keycode_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3259,7 +3256,7 @@ pub unsafe fn xcb_keycode_end (i:keycode_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_button_next (i:*button_iterator) -> c_void;
+pub fn xcb_button_next (i:*mut button_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3270,7 +3267,7 @@ pub unsafe fn xcb_button_next (i:*button_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_button_end (i:button_iterator) -> generic_iterator;
+pub fn xcb_button_end (i:button_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3282,7 +3279,7 @@ pub unsafe fn xcb_button_end (i:button_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_point_next (i:*point_iterator) -> c_void;
+pub fn xcb_point_next (i:*mut point_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3293,7 +3290,7 @@ pub unsafe fn xcb_point_next (i:*point_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_point_end (i:point_iterator) -> generic_iterator;
+pub fn xcb_point_end (i:point_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3305,7 +3302,7 @@ pub unsafe fn xcb_point_end (i:point_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_rectangle_next (i:*rectangle_iterator) -> c_void;
+pub fn xcb_rectangle_next (i:*mut rectangle_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3316,7 +3313,7 @@ pub unsafe fn xcb_rectangle_next (i:*rectangle_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_rectangle_end (i:rectangle_iterator) -> generic_iterator;
+pub fn xcb_rectangle_end (i:rectangle_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3328,7 +3325,7 @@ pub unsafe fn xcb_rectangle_end (i:rectangle_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_arc_next (i:*arc_iterator) -> c_void;
+pub fn xcb_arc_next (i:*mut arc_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3339,7 +3336,7 @@ pub unsafe fn xcb_arc_next (i:*arc_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_arc_end (i:arc_iterator) -> generic_iterator;
+pub fn xcb_arc_end (i:arc_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3351,7 +3348,7 @@ pub unsafe fn xcb_arc_end (i:arc_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_format_next (i:*format_iterator) -> c_void;
+pub fn xcb_format_next (i:*mut format_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3362,7 +3359,7 @@ pub unsafe fn xcb_format_next (i:*format_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_format_end (i:format_iterator) -> generic_iterator;
+pub fn xcb_format_end (i:format_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3374,7 +3371,7 @@ pub unsafe fn xcb_format_end (i:format_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_visualtype_next (i:*visualtype_iterator) -> c_void;
+pub fn xcb_visualtype_next (i:*mut visualtype_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3385,16 +3382,16 @@ pub unsafe fn xcb_visualtype_next (i:*visualtype_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_visualtype_end (i:visualtype_iterator) -> generic_iterator;
+pub fn xcb_visualtype_end (i:visualtype_iterator) -> ffi::base::generic_iterator;
 
-pub unsafe fn xcb_depth_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_depth_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_depth_visuals (R : *depth) -> *visualtype;
+pub fn xcb_depth_visuals (R : *mut depth) -> *mut visualtype;
 
 
-pub unsafe fn xcb_depth_visuals_length (R : *depth) -> c_int;
+pub fn xcb_depth_visuals_length (R : *mut depth) -> c_int;
 
-pub unsafe fn xcb_depth_visuals_iterator (R : *depth) -> visualtype_iterator;
+pub fn xcb_depth_visuals_iterator (R : *mut depth) -> visualtype_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3406,7 +3403,7 @@ pub unsafe fn xcb_depth_visuals_iterator (R : *depth) -> visualtype_iterator;
  *
  *
  */
-pub unsafe fn xcb_depth_next (i:*depth_iterator) -> c_void;
+pub fn xcb_depth_next (i:*mut depth_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3417,14 +3414,14 @@ pub unsafe fn xcb_depth_next (i:*depth_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_depth_end (i:depth_iterator) -> generic_iterator;
+pub fn xcb_depth_end (i:depth_iterator) -> ffi::base::generic_iterator;
 
-pub unsafe fn xcb_screen_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_screen_sizeof (_buffer :  *mut c_void) -> c_int;
 
 
-pub unsafe fn xcb_screen_allowed_depths_length (R : *screen) -> c_int;
+pub fn xcb_screen_allowed_depths_length (R : *mut screen) -> c_int;
 
-pub unsafe fn xcb_screen_allowed_depths_iterator (R : *screen) -> depth_iterator;
+pub fn xcb_screen_allowed_depths_iterator (R : *mut screen) -> depth_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3436,7 +3433,7 @@ pub unsafe fn xcb_screen_allowed_depths_iterator (R : *screen) -> depth_iterator
  *
  *
  */
-pub unsafe fn xcb_screen_next (i:*screen_iterator) -> c_void;
+pub fn xcb_screen_next (i:*mut screen_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3447,25 +3444,25 @@ pub unsafe fn xcb_screen_next (i:*screen_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_screen_end (i:screen_iterator) -> generic_iterator;
+pub fn xcb_screen_end (i:screen_iterator) -> ffi::base::generic_iterator;
 
-pub unsafe fn xcb_setup_request_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_setup_request_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_setup_request_authorization_protocol_name (R : *setup_request) -> *c_char;
-
-
-pub unsafe fn xcb_setup_request_authorization_protocol_name_length (R : *setup_request) -> c_int;
+pub fn xcb_setup_request_authorization_protocol_name (R : *mut setup_request) -> *mut c_char;
 
 
-pub unsafe fn xcb_setup_request_authorization_protocol_name_end (R : *setup_request) -> generic_iterator;
-
-pub unsafe fn xcb_setup_request_authorization_protocol_data (R : *setup_request) -> *c_char;
+pub fn xcb_setup_request_authorization_protocol_name_length (R : *mut setup_request) -> c_int;
 
 
-pub unsafe fn xcb_setup_request_authorization_protocol_data_length (R : *setup_request) -> c_int;
+pub fn xcb_setup_request_authorization_protocol_name_end (R : *mut setup_request) -> ffi::base::generic_iterator;
+
+pub fn xcb_setup_request_authorization_protocol_data (R : *mut setup_request) -> *mut c_char;
 
 
-pub unsafe fn xcb_setup_request_authorization_protocol_data_end (R : *setup_request) -> generic_iterator;
+pub fn xcb_setup_request_authorization_protocol_data_length (R : *mut setup_request) -> c_int;
+
+
+pub fn xcb_setup_request_authorization_protocol_data_end (R : *mut setup_request) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3477,7 +3474,7 @@ pub unsafe fn xcb_setup_request_authorization_protocol_data_end (R : *setup_requ
  *
  *
  */
-pub unsafe fn xcb_setup_request_next (i:*setup_request_iterator) -> c_void;
+pub fn xcb_setup_request_next (i:*mut setup_request_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3488,17 +3485,17 @@ pub unsafe fn xcb_setup_request_next (i:*setup_request_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_setup_request_end (i:setup_request_iterator) -> generic_iterator;
+pub fn xcb_setup_request_end (i:setup_request_iterator) -> ffi::base::generic_iterator;
 
-pub unsafe fn xcb_setup_failed_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_setup_failed_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_setup_failed_reason (R : *setup_failed) -> *c_char;
-
-
-pub unsafe fn xcb_setup_failed_reason_length (R : *setup_failed) -> c_int;
+pub fn xcb_setup_failed_reason (R : *mut setup_failed) -> *mut c_char;
 
 
-pub unsafe fn xcb_setup_failed_reason_end (R : *setup_failed) -> generic_iterator;
+pub fn xcb_setup_failed_reason_length (R : *mut setup_failed) -> c_int;
+
+
+pub fn xcb_setup_failed_reason_end (R : *mut setup_failed) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3510,7 +3507,7 @@ pub unsafe fn xcb_setup_failed_reason_end (R : *setup_failed) -> generic_iterato
  *
  *
  */
-pub unsafe fn xcb_setup_failed_next (i:*setup_failed_iterator) -> c_void;
+pub fn xcb_setup_failed_next (i:*mut setup_failed_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3521,17 +3518,17 @@ pub unsafe fn xcb_setup_failed_next (i:*setup_failed_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_setup_failed_end (i:setup_failed_iterator) -> generic_iterator;
+pub fn xcb_setup_failed_end (i:setup_failed_iterator) -> ffi::base::generic_iterator;
 
-pub unsafe fn xcb_setup_authenticate_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_setup_authenticate_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_setup_authenticate_reason (R : *setup_authenticate) -> *c_char;
-
-
-pub unsafe fn xcb_setup_authenticate_reason_length (R : *setup_authenticate) -> c_int;
+pub fn xcb_setup_authenticate_reason (R : *mut setup_authenticate) -> *mut c_char;
 
 
-pub unsafe fn xcb_setup_authenticate_reason_end (R : *setup_authenticate) -> generic_iterator;
+pub fn xcb_setup_authenticate_reason_length (R : *mut setup_authenticate) -> c_int;
+
+
+pub fn xcb_setup_authenticate_reason_end (R : *mut setup_authenticate) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3543,7 +3540,7 @@ pub unsafe fn xcb_setup_authenticate_reason_end (R : *setup_authenticate) -> gen
  *
  *
  */
-pub unsafe fn xcb_setup_authenticate_next (i:*setup_authenticate_iterator) -> c_void;
+pub fn xcb_setup_authenticate_next (i:*mut setup_authenticate_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3554,29 +3551,29 @@ pub unsafe fn xcb_setup_authenticate_next (i:*setup_authenticate_iterator) -> c_
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_setup_authenticate_end (i:setup_authenticate_iterator) -> generic_iterator;
+pub fn xcb_setup_authenticate_end (i:setup_authenticate_iterator) -> ffi::base::generic_iterator;
 
-pub unsafe fn xcb_setup_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_setup_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_setup_vendor (R : *setup) -> *c_char;
-
-
-pub unsafe fn xcb_setup_vendor_length (R : *setup) -> c_int;
+pub fn xcb_setup_vendor (R : *mut setup) -> *mut c_char;
 
 
-pub unsafe fn xcb_setup_vendor_end (R : *setup) -> generic_iterator;
-
-pub unsafe fn xcb_setup_pixmap_formats (R : *setup) -> *format;
+pub fn xcb_setup_vendor_length (R : *mut setup) -> c_int;
 
 
-pub unsafe fn xcb_setup_pixmap_formats_length (R : *setup) -> c_int;
+pub fn xcb_setup_vendor_end (R : *mut setup) -> ffi::base::generic_iterator;
 
-pub unsafe fn xcb_setup_pixmap_formats_iterator (R : *setup) -> format_iterator;
+pub fn xcb_setup_pixmap_formats (R : *mut setup) -> *mut format;
 
 
-pub unsafe fn xcb_setup_roots_length (R : *setup) -> c_int;
+pub fn xcb_setup_pixmap_formats_length (R : *mut setup) -> c_int;
 
-pub unsafe fn xcb_setup_roots_iterator (R : *setup) -> screen_iterator;
+pub fn xcb_setup_pixmap_formats_iterator (R : *mut setup) -> format_iterator;
+
+
+pub fn xcb_setup_roots_length (R : *mut setup) -> c_int;
+
+pub fn xcb_setup_roots_iterator (R : *mut setup) -> screen_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3588,7 +3585,7 @@ pub unsafe fn xcb_setup_roots_iterator (R : *setup) -> screen_iterator;
  *
  *
  */
-pub unsafe fn xcb_setup_next (i:*setup_iterator) -> c_void;
+pub fn xcb_setup_next (i:*mut setup_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3599,7 +3596,7 @@ pub unsafe fn xcb_setup_next (i:*setup_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_setup_end (i:setup_iterator) -> generic_iterator;
+pub fn xcb_setup_end (i:setup_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -3611,7 +3608,7 @@ pub unsafe fn xcb_setup_end (i:setup_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_client_message_data_next (i:*client_message_data_iterator) -> c_void;
+pub fn xcb_client_message_data_next (i:*mut client_message_data_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -3622,9 +3619,9 @@ pub unsafe fn xcb_client_message_data_next (i:*client_message_data_iterator) -> 
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_client_message_data_end (i:client_message_data_iterator) -> generic_iterator;
+pub fn xcb_client_message_data_end (i:client_message_data_iterator) -> ffi::base::generic_iterator;
 
-pub unsafe fn xcb_create_window_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_create_window_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * Creates a window
@@ -3671,7 +3668,7 @@ pub unsafe fn xcb_create_window_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_create_window_checked (c : *connection,
+pub fn xcb_create_window_checked (c : *mut ffi::base::connection,
                                      depth :  u8,
                                      wid :  window,
                                      parent :  window,
@@ -3683,7 +3680,7 @@ pub unsafe fn xcb_create_window_checked (c : *connection,
                                      class :  u16,
                                      visual :  visualid,
                                      value_mask :  u32,
-                                     value_list : *u32) -> void_cookie;
+                                     value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  * Creates a window
@@ -3727,7 +3724,7 @@ pub unsafe fn xcb_create_window_checked (c : *connection,
  * The created window will initially use the same cursor as its parent.
  * 
  */
-pub unsafe fn xcb_create_window (c : *connection,
+pub fn xcb_create_window (c : *mut ffi::base::connection,
                              depth :  u8,
                              wid :  window,
                              parent :  window,
@@ -3739,9 +3736,9 @@ pub unsafe fn xcb_create_window (c : *connection,
                              class :  u16,
                              visual :  visualid,
                              value_mask :  u32,
-                             value_list : *u32) -> void_cookie;
+                             value_list : *mut u32) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_change_window_attributes_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_change_window_attributes_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * change window attributes
@@ -3760,10 +3757,10 @@ pub unsafe fn xcb_change_window_attributes_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_change_window_attributes_checked (c : *connection,
+pub fn xcb_change_window_attributes_checked (c : *mut ffi::base::connection,
                                                 window :  window,
                                                 value_mask :  u32,
-                                                value_list : *u32) -> void_cookie;
+                                                value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  * change window attributes
@@ -3779,10 +3776,10 @@ pub unsafe fn xcb_change_window_attributes_checked (c : *connection,
  * Changes the attributes specified by \a value_mask for the specified \a window.
  * 
  */
-pub unsafe fn xcb_change_window_attributes (c : *connection,
+pub fn xcb_change_window_attributes (c : *mut ffi::base::connection,
                                         window :  window,
                                         value_mask :  u32,
-                                        value_list : *u32) -> void_cookie;
+                                        value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  * Gets window attributes
@@ -3794,7 +3791,7 @@ pub unsafe fn xcb_change_window_attributes (c : *connection,
  * Gets the current attributes for the specified \a window.
  * 
  */
-pub unsafe fn xcb_get_window_attributes (c : *connection,
+pub fn xcb_get_window_attributes (c : *mut ffi::base::connection,
                                      window :  window) -> get_window_attributes_cookie;
 
 /**
@@ -3810,7 +3807,7 @@ pub unsafe fn xcb_get_window_attributes (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_window_attributes_unchecked (c : *connection,
+pub fn xcb_get_window_attributes_unchecked (c : *mut ffi::base::connection,
                                                window :  window) -> get_window_attributes_cookie;
 
 /**
@@ -3827,9 +3824,9 @@ pub unsafe fn xcb_get_window_attributes_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_window_attributes_reply (c : *connection,
+pub fn xcb_get_window_attributes_reply (c : *mut ffi::base::connection,
                                            cookie : get_window_attributes_cookie,
-                                           e : **generic_error) -> *get_window_attributes_reply;
+                                           e : *mut *mut ffi::base::generic_error) -> *mut get_window_attributes_reply;
 
 /**
  * Destroys a window
@@ -3849,8 +3846,8 @@ pub unsafe fn xcb_get_window_attributes_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_destroy_window_checked (c : *connection,
-                                      window :  window) -> void_cookie;
+pub fn xcb_destroy_window_checked (c : *mut ffi::base::connection,
+                                      window :  window) -> ffi::base::void_cookie;
 
 /**
  * Destroys a window
@@ -3867,8 +3864,8 @@ pub unsafe fn xcb_destroy_window_checked (c : *connection,
  * Calling DestroyWindow on the root window will do nothing.
  * 
  */
-pub unsafe fn xcb_destroy_window (c : *connection,
-                              window :  window) -> void_cookie;
+pub fn xcb_destroy_window (c : *mut ffi::base::connection,
+                              window :  window) -> ffi::base::void_cookie;
 
 /**
  *
@@ -3881,8 +3878,8 @@ pub unsafe fn xcb_destroy_window (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_destroy_subwindows_checked (c : *connection,
-                                          window :  window) -> void_cookie;
+pub fn xcb_destroy_subwindows_checked (c : *mut ffi::base::connection,
+                                          window :  window) -> ffi::base::void_cookie;
 
 /**
  *
@@ -3892,8 +3889,8 @@ pub unsafe fn xcb_destroy_subwindows_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_destroy_subwindows (c : *connection,
-                                  window :  window) -> void_cookie;
+pub fn xcb_destroy_subwindows (c : *mut ffi::base::connection,
+                                  window :  window) -> ffi::base::void_cookie;
 
 /**
  * Changes a client's save set
@@ -3913,9 +3910,9 @@ pub unsafe fn xcb_destroy_subwindows (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_change_save_set_checked (c : *connection,
+pub fn xcb_change_save_set_checked (c : *mut ffi::base::connection,
                                        mode :  u8,
-                                       window :  window) -> void_cookie;
+                                       window :  window) -> ffi::base::void_cookie;
 
 /**
  * Changes a client's save set
@@ -3932,9 +3929,9 @@ pub unsafe fn xcb_change_save_set_checked (c : *connection,
  * application's) save set.
  * 
  */
-pub unsafe fn xcb_change_save_set (c : *connection,
+pub fn xcb_change_save_set (c : *mut ffi::base::connection,
                                mode :  u8,
-                               window :  window) -> void_cookie;
+                               window :  window) -> ffi::base::void_cookie;
 
 /**
  * Reparents a window
@@ -3957,11 +3954,11 @@ pub unsafe fn xcb_change_save_set (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_reparent_window_checked (c : *connection,
+pub fn xcb_reparent_window_checked (c : *mut ffi::base::connection,
                                        window :  window,
                                        parent :  window,
                                        x :  i16,
-                                       y :  i16) -> void_cookie;
+                                       y :  i16) -> ffi::base::void_cookie;
 
 /**
  * Reparents a window
@@ -3981,11 +3978,11 @@ pub unsafe fn xcb_reparent_window_checked (c : *connection,
  * After reparenting, a ReparentNotify event is generated.
  * 
  */
-pub unsafe fn xcb_reparent_window (c : *connection,
+pub fn xcb_reparent_window (c : *mut ffi::base::connection,
                                window :  window,
                                parent :  window,
                                x :  i16,
-                               y :  i16) -> void_cookie;
+                               y :  i16) -> ffi::base::void_cookie;
 
 /**
  * Makes a window visible
@@ -4018,8 +4015,8 @@ pub unsafe fn xcb_reparent_window (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_map_window_checked (c : *connection,
-                                  window :  window) -> void_cookie;
+pub fn xcb_map_window_checked (c : *mut ffi::base::connection,
+                                  window :  window) -> ffi::base::void_cookie;
 
 /**
  * Makes a window visible
@@ -4049,8 +4046,8 @@ pub unsafe fn xcb_map_window_checked (c : *connection,
  * repaint the window.
  * 
  */
-pub unsafe fn xcb_map_window (c : *connection,
-                          window :  window) -> void_cookie;
+pub fn xcb_map_window (c : *mut ffi::base::connection,
+                          window :  window) -> ffi::base::void_cookie;
 
 /**
  *
@@ -4063,8 +4060,8 @@ pub unsafe fn xcb_map_window (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_map_subwindows_checked (c : *connection,
-                                      window :  window) -> void_cookie;
+pub fn xcb_map_subwindows_checked (c : *mut ffi::base::connection,
+                                      window :  window) -> ffi::base::void_cookie;
 
 /**
  *
@@ -4074,8 +4071,8 @@ pub unsafe fn xcb_map_subwindows_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_map_subwindows (c : *connection,
-                              window :  window) -> void_cookie;
+pub fn xcb_map_subwindows (c : *mut ffi::base::connection,
+                              window :  window) -> ffi::base::void_cookie;
 
 /**
  * Makes a window invisible
@@ -4094,8 +4091,8 @@ pub unsafe fn xcb_map_subwindows (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_unmap_window_checked (c : *connection,
-                                    window :  window) -> void_cookie;
+pub fn xcb_unmap_window_checked (c : *mut ffi::base::connection,
+                                    window :  window) -> ffi::base::void_cookie;
 
 /**
  * Makes a window invisible
@@ -4111,8 +4108,8 @@ pub unsafe fn xcb_unmap_window_checked (c : *connection,
  * `Expose` events are generated for formerly obscured windows.
  * 
  */
-pub unsafe fn xcb_unmap_window (c : *connection,
-                            window :  window) -> void_cookie;
+pub fn xcb_unmap_window (c : *mut ffi::base::connection,
+                            window :  window) -> ffi::base::void_cookie;
 
 /**
  *
@@ -4125,8 +4122,8 @@ pub unsafe fn xcb_unmap_window (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_unmap_subwindows_checked (c : *connection,
-                                        window :  window) -> void_cookie;
+pub fn xcb_unmap_subwindows_checked (c : *mut ffi::base::connection,
+                                        window :  window) -> ffi::base::void_cookie;
 
 /**
  *
@@ -4136,10 +4133,10 @@ pub unsafe fn xcb_unmap_subwindows_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_unmap_subwindows (c : *connection,
-                                window :  window) -> void_cookie;
+pub fn xcb_unmap_subwindows (c : *mut ffi::base::connection,
+                                window :  window) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_configure_window_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_configure_window_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * Configures window attributes
@@ -4157,10 +4154,10 @@ pub unsafe fn xcb_configure_window_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_configure_window_checked (c : *connection,
+pub fn xcb_configure_window_checked (c : *mut ffi::base::connection,
                                         window :  window,
                                         value_mask :  u16,
-                                        value_list : *u32) -> void_cookie;
+                                        value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  * Configures window attributes
@@ -4175,10 +4172,10 @@ pub unsafe fn xcb_configure_window_checked (c : *connection,
  * Configures a window's size, position, border width and stacking order.
  * 
  */
-pub unsafe fn xcb_configure_window (c : *connection,
+pub fn xcb_configure_window (c : *mut ffi::base::connection,
                                 window :  window,
                                 value_mask :  u16,
-                                value_list : *u32) -> void_cookie;
+                                value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  * Change window stacking order
@@ -4199,9 +4196,9 @@ pub unsafe fn xcb_configure_window (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_circulate_window_checked (c : *connection,
+pub fn xcb_circulate_window_checked (c : *mut ffi::base::connection,
                                         direction :  u8,
-                                        window :  window) -> void_cookie;
+                                        window :  window) -> ffi::base::void_cookie;
 
 /**
  * Change window stacking order
@@ -4219,9 +4216,9 @@ pub unsafe fn xcb_circulate_window_checked (c : *connection,
  * be lowered to the bottom of the stack.
  * 
  */
-pub unsafe fn xcb_circulate_window (c : *connection,
+pub fn xcb_circulate_window (c : *mut ffi::base::connection,
                                 direction :  u8,
-                                window :  window) -> void_cookie;
+                                window :  window) -> ffi::base::void_cookie;
 
 /**
  * Get current window geometry
@@ -4233,7 +4230,7 @@ pub unsafe fn xcb_circulate_window (c : *connection,
  * Gets the current geometry of the specified drawable (either `Window` or `Pixmap`).
  * 
  */
-pub unsafe fn xcb_get_geometry (c : *connection,
+pub fn xcb_get_geometry (c : *mut ffi::base::connection,
                             drawable :  drawable) -> get_geometry_cookie;
 
 /**
@@ -4249,7 +4246,7 @@ pub unsafe fn xcb_get_geometry (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_geometry_unchecked (c : *connection,
+pub fn xcb_get_geometry_unchecked (c : *mut ffi::base::connection,
                                       drawable :  drawable) -> get_geometry_cookie;
 
 /**
@@ -4266,11 +4263,11 @@ pub unsafe fn xcb_get_geometry_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_geometry_reply (c : *connection,
+pub fn xcb_get_geometry_reply (c : *mut ffi::base::connection,
                                   cookie : get_geometry_cookie,
-                                  e : **generic_error) -> *get_geometry_reply;
+                                  e : *mut *mut ffi::base::generic_error) -> *mut get_geometry_reply;
 
-pub unsafe fn xcb_query_tree_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_query_tree_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * query the window tree
@@ -4283,7 +4280,7 @@ pub unsafe fn xcb_query_tree_sizeof (_buffer :  *c_void) -> c_int;
  * specified \a window. The children are listed in bottom-to-top stacking order.
  * 
  */
-pub unsafe fn xcb_query_tree (c : *connection,
+pub fn xcb_query_tree (c : *mut ffi::base::connection,
                           window :  window) -> query_tree_cookie;
 
 /**
@@ -4300,16 +4297,16 @@ pub unsafe fn xcb_query_tree (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_query_tree_unchecked (c : *connection,
+pub fn xcb_query_tree_unchecked (c : *mut ffi::base::connection,
                                     window :  window) -> query_tree_cookie;
 
-pub unsafe fn xcb_query_tree_children (R : *query_tree_reply) -> *window;
+pub fn xcb_query_tree_children (R : *mut query_tree_reply) -> *mut window;
 
 
-pub unsafe fn xcb_query_tree_children_length (R : *query_tree_reply) -> c_int;
+pub fn xcb_query_tree_children_length (R : *mut query_tree_reply) -> c_int;
 
 
-pub unsafe fn xcb_query_tree_children_end (R : *query_tree_reply) -> generic_iterator;
+pub fn xcb_query_tree_children_end (R : *mut query_tree_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -4325,11 +4322,11 @@ pub unsafe fn xcb_query_tree_children_end (R : *query_tree_reply) -> generic_ite
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_query_tree_reply (c : *connection,
+pub fn xcb_query_tree_reply (c : *mut ffi::base::connection,
                                 cookie : query_tree_cookie,
-                                e : **generic_error) -> *query_tree_reply;
+                                e : *mut *mut ffi::base::generic_error) -> *mut query_tree_reply;
 
-pub unsafe fn xcb_intern_atom_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_intern_atom_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * Get atom identifier by name
@@ -4349,10 +4346,10 @@ pub unsafe fn xcb_intern_atom_sizeof (_buffer :  *c_void) -> c_int;
  * not yet exist.
  * 
  */
-pub unsafe fn xcb_intern_atom (c : *connection,
+pub fn xcb_intern_atom (c : *mut ffi::base::connection,
                            only_if_exists :  u8,
                            name_len :  u16,
-                           name : *c_char) -> intern_atom_cookie;
+                           name : *mut c_char) -> intern_atom_cookie;
 
 /**
  * Get atom identifier by name
@@ -4375,10 +4372,10 @@ pub unsafe fn xcb_intern_atom (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_intern_atom_unchecked (c : *connection,
+pub fn xcb_intern_atom_unchecked (c : *mut ffi::base::connection,
                                      only_if_exists :  u8,
                                      name_len :  u16,
-                                     name : *c_char) -> intern_atom_cookie;
+                                     name : *mut c_char) -> intern_atom_cookie;
 
 /**
  * Return the reply
@@ -4394,11 +4391,11 @@ pub unsafe fn xcb_intern_atom_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_intern_atom_reply (c : *connection,
+pub fn xcb_intern_atom_reply (c : *mut ffi::base::connection,
                                  cookie : intern_atom_cookie,
-                                 e : **generic_error) -> *intern_atom_reply;
+                                 e : *mut *mut ffi::base::generic_error) -> *mut intern_atom_reply;
 
-pub unsafe fn xcb_get_atom_name_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_get_atom_name_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -4408,7 +4405,7 @@ pub unsafe fn xcb_get_atom_name_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_get_atom_name (c : *connection,
+pub fn xcb_get_atom_name (c : *mut ffi::base::connection,
                              atom :  atom) -> get_atom_name_cookie;
 
 /**
@@ -4422,16 +4419,16 @@ pub unsafe fn xcb_get_atom_name (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_atom_name_unchecked (c : *connection,
+pub fn xcb_get_atom_name_unchecked (c : *mut ffi::base::connection,
                                        atom :  atom) -> get_atom_name_cookie;
 
-pub unsafe fn xcb_get_atom_name_name (R : *get_atom_name_reply) -> *c_char;
+pub fn xcb_get_atom_name_name (R : *mut get_atom_name_reply) -> *mut c_char;
 
 
-pub unsafe fn xcb_get_atom_name_name_length (R : *get_atom_name_reply) -> c_int;
+pub fn xcb_get_atom_name_name_length (R : *mut get_atom_name_reply) -> c_int;
 
 
-pub unsafe fn xcb_get_atom_name_name_end (R : *get_atom_name_reply) -> generic_iterator;
+pub fn xcb_get_atom_name_name_end (R : *mut get_atom_name_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -4447,11 +4444,11 @@ pub unsafe fn xcb_get_atom_name_name_end (R : *get_atom_name_reply) -> generic_i
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_atom_name_reply (c : *connection,
+pub fn xcb_get_atom_name_reply (c : *mut ffi::base::connection,
                                    cookie : get_atom_name_cookie,
-                                   e : **generic_error) -> *get_atom_name_reply;
+                                   e : *mut *mut ffi::base::generic_error) -> *mut get_atom_name_reply;
 
-pub unsafe fn xcb_change_property_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_change_property_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * Changes a window property
@@ -4478,14 +4475,14 @@ pub unsafe fn xcb_change_property_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_change_property_checked (c : *connection,
+pub fn xcb_change_property_checked (c : *mut ffi::base::connection,
                                        mode :  u8,
                                        window :  window,
                                        property :  atom,
                                        type_ :  atom,
                                        format :  u8,
                                        data_len :  u32,
-                                       data : *c_void) -> void_cookie;
+                                       data : *mut c_void) -> ffi::base::void_cookie;
 
 /**
  * Changes a window property
@@ -4509,14 +4506,14 @@ pub unsafe fn xcb_change_property_checked (c : *connection,
  * window title, encoded as UTF-8 string, in the `_NET_WM_NAME` property.
  * 
  */
-pub unsafe fn xcb_change_property (c : *connection,
+pub fn xcb_change_property (c : *mut ffi::base::connection,
                                mode :  u8,
                                window :  window,
                                property :  atom,
                                type_ :  atom,
                                format :  u8,
                                data_len :  u32,
-                               data : *c_void) -> void_cookie;
+                               data : *mut c_void) -> ffi::base::void_cookie;
 
 /**
  *
@@ -4529,9 +4526,9 @@ pub unsafe fn xcb_change_property (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_delete_property_checked (c : *connection,
+pub fn xcb_delete_property_checked (c : *mut ffi::base::connection,
                                        window :  window,
-                                       property :  atom) -> void_cookie;
+                                       property :  atom) -> ffi::base::void_cookie;
 
 /**
  *
@@ -4541,11 +4538,11 @@ pub unsafe fn xcb_delete_property_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_delete_property (c : *connection,
+pub fn xcb_delete_property (c : *mut ffi::base::connection,
                                window :  window,
-                               property :  atom) -> void_cookie;
+                               property :  atom) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_get_property_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_get_property_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * Gets a window property
@@ -4574,7 +4571,7 @@ pub unsafe fn xcb_get_property_sizeof (_buffer :  *c_void) -> c_int;
  * TODO: talk about the offset/length thing. what's a valid use case?
  * 
  */
-pub unsafe fn xcb_get_property (c : *connection,
+pub fn xcb_get_property (c : *mut ffi::base::connection,
                             delete :  u8,
                             window :  window,
                             property :  atom,
@@ -4612,7 +4609,7 @@ pub unsafe fn xcb_get_property (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_property_unchecked (c : *connection,
+pub fn xcb_get_property_unchecked (c : *mut ffi::base::connection,
                                       delete :  u8,
                                       window :  window,
                                       property :  atom,
@@ -4620,13 +4617,13 @@ pub unsafe fn xcb_get_property_unchecked (c : *connection,
                                       long_offset :  u32,
                                       long_length :  u32) -> get_property_cookie;
 
-pub unsafe fn xcb_get_property_value (R : *get_property_reply) -> *c_void;
+pub fn xcb_get_property_value (R : *mut get_property_reply) -> *mut c_void;
 
 
-pub unsafe fn xcb_get_property_value_length (R : *get_property_reply) -> c_int;
+pub fn xcb_get_property_value_length (R : *mut get_property_reply) -> c_int;
 
 
-pub unsafe fn xcb_get_property_value_end (R : *get_property_reply) -> generic_iterator;
+pub fn xcb_get_property_value_end (R : *mut get_property_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -4642,11 +4639,11 @@ pub unsafe fn xcb_get_property_value_end (R : *get_property_reply) -> generic_it
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_property_reply (c : *connection,
+pub fn xcb_get_property_reply (c : *mut ffi::base::connection,
                                   cookie : get_property_cookie,
-                                  e : **generic_error) -> *get_property_reply;
+                                  e : *mut *mut ffi::base::generic_error) -> *mut get_property_reply;
 
-pub unsafe fn xcb_list_properties_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_list_properties_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -4656,7 +4653,7 @@ pub unsafe fn xcb_list_properties_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_list_properties (c : *connection,
+pub fn xcb_list_properties (c : *mut ffi::base::connection,
                                window :  window) -> list_properties_cookie;
 
 /**
@@ -4670,16 +4667,16 @@ pub unsafe fn xcb_list_properties (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_list_properties_unchecked (c : *connection,
+pub fn xcb_list_properties_unchecked (c : *mut ffi::base::connection,
                                          window :  window) -> list_properties_cookie;
 
-pub unsafe fn xcb_list_properties_atoms (R : *list_properties_reply) -> *atom;
+pub fn xcb_list_properties_atoms (R : *mut list_properties_reply) -> *mut atom;
 
 
-pub unsafe fn xcb_list_properties_atoms_length (R : *list_properties_reply) -> c_int;
+pub fn xcb_list_properties_atoms_length (R : *mut list_properties_reply) -> c_int;
 
 
-pub unsafe fn xcb_list_properties_atoms_end (R : *list_properties_reply) -> generic_iterator;
+pub fn xcb_list_properties_atoms_end (R : *mut list_properties_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -4695,9 +4692,9 @@ pub unsafe fn xcb_list_properties_atoms_end (R : *list_properties_reply) -> gene
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_list_properties_reply (c : *connection,
+pub fn xcb_list_properties_reply (c : *mut ffi::base::connection,
                                      cookie : list_properties_cookie,
-                                     e : **generic_error) -> *list_properties_reply;
+                                     e : *mut *mut ffi::base::generic_error) -> *mut list_properties_reply;
 
 /**
  * Sets the owner of a selection
@@ -4726,10 +4723,10 @@ pub unsafe fn xcb_list_properties_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_set_selection_owner_checked (c : *connection,
+pub fn xcb_set_selection_owner_checked (c : *mut ffi::base::connection,
                                            owner :  window,
                                            selection :  atom,
-                                           time :  timestamp) -> void_cookie;
+                                           time :  timestamp) -> ffi::base::void_cookie;
 
 /**
  * Sets the owner of a selection
@@ -4755,10 +4752,10 @@ pub unsafe fn xcb_set_selection_owner_checked (c : *connection,
  * TODO: briefly explain what a selection is.
  * 
  */
-pub unsafe fn xcb_set_selection_owner (c : *connection,
+pub fn xcb_set_selection_owner (c : *mut ffi::base::connection,
                                    owner :  window,
                                    selection :  atom,
-                                   time :  timestamp) -> void_cookie;
+                                   time :  timestamp) -> ffi::base::void_cookie;
 
 /**
  * Gets the owner of a selection
@@ -4772,7 +4769,7 @@ pub unsafe fn xcb_set_selection_owner (c : *connection,
  * TODO: briefly explain what a selection is.
  * 
  */
-pub unsafe fn xcb_get_selection_owner (c : *connection,
+pub fn xcb_get_selection_owner (c : *mut ffi::base::connection,
                                    selection :  atom) -> get_selection_owner_cookie;
 
 /**
@@ -4790,7 +4787,7 @@ pub unsafe fn xcb_get_selection_owner (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_selection_owner_unchecked (c : *connection,
+pub fn xcb_get_selection_owner_unchecked (c : *mut ffi::base::connection,
                                              selection :  atom) -> get_selection_owner_cookie;
 
 /**
@@ -4807,9 +4804,9 @@ pub unsafe fn xcb_get_selection_owner_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_selection_owner_reply (c : *connection,
+pub fn xcb_get_selection_owner_reply (c : *mut ffi::base::connection,
                                          cookie : get_selection_owner_cookie,
-                                         e : **generic_error) -> *get_selection_owner_reply;
+                                         e : *mut *mut ffi::base::generic_error) -> *mut get_selection_owner_reply;
 
 /**
  *
@@ -4822,12 +4819,12 @@ pub unsafe fn xcb_get_selection_owner_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_convert_selection_checked (c : *connection,
+pub fn xcb_convert_selection_checked (c : *mut ffi::base::connection,
                                          requestor :  window,
                                          selection :  atom,
                                          target :  atom,
                                          property :  atom,
-                                         time :  timestamp) -> void_cookie;
+                                         time :  timestamp) -> ffi::base::void_cookie;
 
 /**
  *
@@ -4837,12 +4834,12 @@ pub unsafe fn xcb_convert_selection_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_convert_selection (c : *connection,
+pub fn xcb_convert_selection (c : *mut ffi::base::connection,
                                  requestor :  window,
                                  selection :  atom,
                                  target :  atom,
                                  property :  atom,
-                                 time :  timestamp) -> void_cookie;
+                                 time :  timestamp) -> ffi::base::void_cookie;
 
 /**
  * send an event
@@ -4881,11 +4878,11 @@ pub unsafe fn xcb_convert_selection (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_send_event_checked (c : *connection,
+pub fn xcb_send_event_checked (c : *mut ffi::base::connection,
                                   propagate :  u8,
                                   destination :  window,
                                   event_mask :  u32,
-                                  event : *c_char) -> void_cookie;
+                                  event : *mut c_char) -> ffi::base::void_cookie;
 
 /**
  * send an event
@@ -4921,11 +4918,11 @@ pub unsafe fn xcb_send_event_checked (c : *connection,
  * `send_event` field which is forced to 'true'.
  * 
  */
-pub unsafe fn xcb_send_event (c : *connection,
+pub fn xcb_send_event (c : *mut ffi::base::connection,
                           propagate :  u8,
                           destination :  window,
                           event_mask :  u32,
-                          event : *c_char) -> void_cookie;
+                          event : *mut c_char) -> ffi::base::void_cookie;
 
 /**
  * Grab the pointer
@@ -4963,7 +4960,7 @@ pub unsafe fn xcb_send_event (c : *connection,
  * Actively grabs control of the pointer. Further pointer events are reported only to the grabbing client. Overrides any active pointer grab by this client.
  * 
  */
-pub unsafe fn xcb_grab_pointer (c : *connection,
+pub fn xcb_grab_pointer (c : *mut ffi::base::connection,
                             owner_events :  u8,
                             grab_window :  window,
                             event_mask :  u16,
@@ -5012,7 +5009,7 @@ pub unsafe fn xcb_grab_pointer (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_grab_pointer_unchecked (c : *connection,
+pub fn xcb_grab_pointer_unchecked (c : *mut ffi::base::connection,
                                       owner_events :  u8,
                                       grab_window :  window,
                                       event_mask :  u16,
@@ -5036,9 +5033,9 @@ pub unsafe fn xcb_grab_pointer_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_grab_pointer_reply (c : *connection,
+pub fn xcb_grab_pointer_reply (c : *mut ffi::base::connection,
                                   cookie : grab_pointer_cookie,
-                                  e : **generic_error) -> *grab_pointer_reply;
+                                  e : *mut *mut ffi::base::generic_error) -> *mut grab_pointer_reply;
 
 /**
  * release the pointer
@@ -5060,8 +5057,8 @@ pub unsafe fn xcb_grab_pointer_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_ungrab_pointer_checked (c : *connection,
-                                      time :  timestamp) -> void_cookie;
+pub fn xcb_ungrab_pointer_checked (c : *mut ffi::base::connection,
+                                      time :  timestamp) -> ffi::base::void_cookie;
 
 /**
  * release the pointer
@@ -5080,8 +5077,8 @@ pub unsafe fn xcb_ungrab_pointer_checked (c : *connection,
  * EnterNotify and LeaveNotify events are generated.
  * 
  */
-pub unsafe fn xcb_ungrab_pointer (c : *connection,
-                              time :  timestamp) -> void_cookie;
+pub fn xcb_ungrab_pointer (c : *mut ffi::base::connection,
+                              time :  timestamp) -> ffi::base::void_cookie;
 
 /**
  * Grab pointer button(s)
@@ -5151,7 +5148,7 @@ pub unsafe fn xcb_ungrab_pointer (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_grab_button_checked (c : *connection,
+pub fn xcb_grab_button_checked (c : *mut ffi::base::connection,
                                    owner_events :  u8,
                                    grab_window :  window,
                                    event_mask :  u16,
@@ -5160,7 +5157,7 @@ pub unsafe fn xcb_grab_button_checked (c : *connection,
                                    confine_to :  window,
                                    cursor :  cursor,
                                    button :  u8,
-                                   modifiers :  u16) -> void_cookie;
+                                   modifiers :  u16) -> ffi::base::void_cookie;
 
 /**
  * Grab pointer button(s)
@@ -5227,7 +5224,7 @@ pub unsafe fn xcb_grab_button_checked (c : *connection,
  * for any combination. The request has no effect on an active grab.
  * 
  */
-pub unsafe fn xcb_grab_button (c : *connection,
+pub fn xcb_grab_button (c : *mut ffi::base::connection,
                            owner_events :  u8,
                            grab_window :  window,
                            event_mask :  u16,
@@ -5236,7 +5233,7 @@ pub unsafe fn xcb_grab_button (c : *connection,
                            confine_to :  window,
                            cursor :  cursor,
                            button :  u8,
-                           modifiers :  u16) -> void_cookie;
+                           modifiers :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -5249,10 +5246,10 @@ pub unsafe fn xcb_grab_button (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_ungrab_button_checked (c : *connection,
+pub fn xcb_ungrab_button_checked (c : *mut ffi::base::connection,
                                      button :  u8,
                                      grab_window :  window,
-                                     modifiers :  u16) -> void_cookie;
+                                     modifiers :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -5262,10 +5259,10 @@ pub unsafe fn xcb_ungrab_button_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_ungrab_button (c : *connection,
+pub fn xcb_ungrab_button (c : *mut ffi::base::connection,
                              button :  u8,
                              grab_window :  window,
-                             modifiers :  u16) -> void_cookie;
+                             modifiers :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -5278,10 +5275,10 @@ pub unsafe fn xcb_ungrab_button (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_change_active_pointer_grab_checked (c : *connection,
+pub fn xcb_change_active_pointer_grab_checked (c : *mut ffi::base::connection,
                                                   cursor :  cursor,
                                                   time :  timestamp,
-                                                  event_mask :  u16) -> void_cookie;
+                                                  event_mask :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -5291,10 +5288,10 @@ pub unsafe fn xcb_change_active_pointer_grab_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_change_active_pointer_grab (c : *connection,
+pub fn xcb_change_active_pointer_grab (c : *mut ffi::base::connection,
                                           cursor :  cursor,
                                           time :  timestamp,
-                                          event_mask :  u16) -> void_cookie;
+                                          event_mask :  u16) -> ffi::base::void_cookie;
 
 /**
  * Grab the keyboard
@@ -5325,7 +5322,7 @@ pub unsafe fn xcb_change_active_pointer_grab (c : *connection,
  * last-keyboard-grab time is set to the specified time.
  * 
  */
-pub unsafe fn xcb_grab_keyboard (c : *connection,
+pub fn xcb_grab_keyboard (c : *mut ffi::base::connection,
                              owner_events :  u8,
                              grab_window :  window,
                              time :  timestamp,
@@ -5364,7 +5361,7 @@ pub unsafe fn xcb_grab_keyboard (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_grab_keyboard_unchecked (c : *connection,
+pub fn xcb_grab_keyboard_unchecked (c : *mut ffi::base::connection,
                                        owner_events :  u8,
                                        grab_window :  window,
                                        time :  timestamp,
@@ -5385,9 +5382,9 @@ pub unsafe fn xcb_grab_keyboard_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_grab_keyboard_reply (c : *connection,
+pub fn xcb_grab_keyboard_reply (c : *mut ffi::base::connection,
                                    cookie : grab_keyboard_cookie,
-                                   e : **generic_error) -> *grab_keyboard_reply;
+                                   e : *mut *mut ffi::base::generic_error) -> *mut grab_keyboard_reply;
 
 /**
  *
@@ -5400,8 +5397,8 @@ pub unsafe fn xcb_grab_keyboard_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_ungrab_keyboard_checked (c : *connection,
-                                       time :  timestamp) -> void_cookie;
+pub fn xcb_ungrab_keyboard_checked (c : *mut ffi::base::connection,
+                                       time :  timestamp) -> ffi::base::void_cookie;
 
 /**
  *
@@ -5411,8 +5408,8 @@ pub unsafe fn xcb_ungrab_keyboard_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_ungrab_keyboard (c : *connection,
-                               time :  timestamp) -> void_cookie;
+pub fn xcb_ungrab_keyboard (c : *mut ffi::base::connection,
+                               time :  timestamp) -> ffi::base::void_cookie;
 
 /**
  * Grab keyboard key(s)
@@ -5469,13 +5466,13 @@ pub unsafe fn xcb_ungrab_keyboard (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_grab_key_checked (c : *connection,
+pub fn xcb_grab_key_checked (c : *mut ffi::base::connection,
                                 owner_events :  u8,
                                 grab_window :  window,
                                 modifiers :  u16,
                                 key :  keycode,
                                 pointer_mode :  u8,
-                                keyboard_mode :  u8) -> void_cookie;
+                                keyboard_mode :  u8) -> ffi::base::void_cookie;
 
 /**
  * Grab keyboard key(s)
@@ -5529,13 +5526,13 @@ pub unsafe fn xcb_grab_key_checked (c : *connection,
  * results (no grabs are established) if there is a conflicting grab for any combination.
  * 
  */
-pub unsafe fn xcb_grab_key (c : *connection,
+pub fn xcb_grab_key (c : *mut ffi::base::connection,
                         owner_events :  u8,
                         grab_window :  window,
                         modifiers :  u16,
                         key :  keycode,
                         pointer_mode :  u8,
-                        keyboard_mode :  u8) -> void_cookie;
+                        keyboard_mode :  u8) -> ffi::base::void_cookie;
 
 /**
  * release a key combination
@@ -5558,10 +5555,10 @@ pub unsafe fn xcb_grab_key (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_ungrab_key_checked (c : *connection,
+pub fn xcb_ungrab_key_checked (c : *mut ffi::base::connection,
                                   key :  keycode,
                                   grab_window :  window,
-                                  modifiers :  u16) -> void_cookie;
+                                  modifiers :  u16) -> ffi::base::void_cookie;
 
 /**
  * release a key combination
@@ -5581,10 +5578,10 @@ pub unsafe fn xcb_ungrab_key_checked (c : *connection,
  * `xcb_grab_key` before.
  * 
  */
-pub unsafe fn xcb_ungrab_key (c : *connection,
+pub fn xcb_ungrab_key (c : *mut ffi::base::connection,
                           key :  keycode,
                           grab_window :  window,
-                          modifiers :  u16) -> void_cookie;
+                          modifiers :  u16) -> ffi::base::void_cookie;
 
 /**
  * release queued events
@@ -5607,9 +5604,9 @@ pub unsafe fn xcb_ungrab_key (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_allow_events_checked (c : *connection,
+pub fn xcb_allow_events_checked (c : *mut ffi::base::connection,
                                     mode :  u8,
-                                    time :  timestamp) -> void_cookie;
+                                    time :  timestamp) -> ffi::base::void_cookie;
 
 /**
  * release queued events
@@ -5629,9 +5626,9 @@ pub unsafe fn xcb_allow_events_checked (c : *connection,
  * or if \a time is later than the current X server time.
  * 
  */
-pub unsafe fn xcb_allow_events (c : *connection,
+pub fn xcb_allow_events (c : *mut ffi::base::connection,
                             mode :  u8,
-                            time :  timestamp) -> void_cookie;
+                            time :  timestamp) -> ffi::base::void_cookie;
 
 /**
  *
@@ -5644,7 +5641,7 @@ pub unsafe fn xcb_allow_events (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_grab_server_checked (c : *connection) -> void_cookie;
+pub fn xcb_grab_server_checked (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
 
 /**
  *
@@ -5654,7 +5651,7 @@ pub unsafe fn xcb_grab_server_checked (c : *connection) -> void_cookie;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_grab_server (c : *connection) -> void_cookie;
+pub fn xcb_grab_server (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
 
 /**
  *
@@ -5667,7 +5664,7 @@ pub unsafe fn xcb_grab_server (c : *connection) -> void_cookie;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_ungrab_server_checked (c : *connection) -> void_cookie;
+pub fn xcb_ungrab_server_checked (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
 
 /**
  *
@@ -5677,7 +5674,7 @@ pub unsafe fn xcb_ungrab_server_checked (c : *connection) -> void_cookie;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_ungrab_server (c : *connection) -> void_cookie;
+pub fn xcb_ungrab_server (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
 
 /**
  * get pointer coordinates
@@ -5691,7 +5688,7 @@ pub unsafe fn xcb_ungrab_server (c : *connection) -> void_cookie;
  * relative to the root window's origin.
  * 
  */
-pub unsafe fn xcb_query_pointer (c : *connection,
+pub fn xcb_query_pointer (c : *mut ffi::base::connection,
                              window :  window) -> query_pointer_cookie;
 
 /**
@@ -5709,7 +5706,7 @@ pub unsafe fn xcb_query_pointer (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_query_pointer_unchecked (c : *connection,
+pub fn xcb_query_pointer_unchecked (c : *mut ffi::base::connection,
                                        window :  window) -> query_pointer_cookie;
 
 /**
@@ -5726,9 +5723,9 @@ pub unsafe fn xcb_query_pointer_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_query_pointer_reply (c : *connection,
+pub fn xcb_query_pointer_reply (c : *mut ffi::base::connection,
                                    cookie : query_pointer_cookie,
-                                   e : **generic_error) -> *query_pointer_reply;
+                                   e : *mut *mut ffi::base::generic_error) -> *mut query_pointer_reply;
 
 /**
  * Get the next element of the iterator
@@ -5740,7 +5737,7 @@ pub unsafe fn xcb_query_pointer_reply (c : *connection,
  *
  *
  */
-pub unsafe fn xcb_timecoord_next (i:*timecoord_iterator) -> c_void;
+pub fn xcb_timecoord_next (i:*mut timecoord_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -5751,9 +5748,9 @@ pub unsafe fn xcb_timecoord_next (i:*timecoord_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_timecoord_end (i:timecoord_iterator) -> generic_iterator;
+pub fn xcb_timecoord_end (i:timecoord_iterator) -> ffi::base::generic_iterator;
 
-pub unsafe fn xcb_get_motion_events_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_get_motion_events_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -5763,7 +5760,7 @@ pub unsafe fn xcb_get_motion_events_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_get_motion_events (c : *connection,
+pub fn xcb_get_motion_events (c : *mut ffi::base::connection,
                                  window :  window,
                                  start :  timestamp,
                                  stop :  timestamp) -> get_motion_events_cookie;
@@ -5779,17 +5776,17 @@ pub unsafe fn xcb_get_motion_events (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_motion_events_unchecked (c : *connection,
+pub fn xcb_get_motion_events_unchecked (c : *mut ffi::base::connection,
                                            window :  window,
                                            start :  timestamp,
                                            stop :  timestamp) -> get_motion_events_cookie;
 
-pub unsafe fn xcb_get_motion_events_events (R : *get_motion_events_reply) -> *timecoord;
+pub fn xcb_get_motion_events_events (R : *mut get_motion_events_reply) -> *mut timecoord;
 
 
-pub unsafe fn xcb_get_motion_events_events_length (R : *get_motion_events_reply) -> c_int;
+pub fn xcb_get_motion_events_events_length (R : *mut get_motion_events_reply) -> c_int;
 
-pub unsafe fn xcb_get_motion_events_events_iterator (R : *get_motion_events_reply) -> timecoord_iterator;
+pub fn xcb_get_motion_events_events_iterator (R : *mut get_motion_events_reply) -> timecoord_iterator;
 
 /**
  * Return the reply
@@ -5805,9 +5802,9 @@ pub unsafe fn xcb_get_motion_events_events_iterator (R : *get_motion_events_repl
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_motion_events_reply (c : *connection,
+pub fn xcb_get_motion_events_reply (c : *mut ffi::base::connection,
                                        cookie : get_motion_events_cookie,
-                                       e : **generic_error) -> *get_motion_events_reply;
+                                       e : *mut *mut ffi::base::generic_error) -> *mut get_motion_events_reply;
 
 /**
  *
@@ -5817,7 +5814,7 @@ pub unsafe fn xcb_get_motion_events_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_translate_coordinates (c : *connection,
+pub fn xcb_translate_coordinates (c : *mut ffi::base::connection,
                                      src_window :  window,
                                      dst_window :  window,
                                      src_x :  i16,
@@ -5834,7 +5831,7 @@ pub unsafe fn xcb_translate_coordinates (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_translate_coordinates_unchecked (c : *connection,
+pub fn xcb_translate_coordinates_unchecked (c : *mut ffi::base::connection,
                                                src_window :  window,
                                                dst_window :  window,
                                                src_x :  i16,
@@ -5854,9 +5851,9 @@ pub unsafe fn xcb_translate_coordinates_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_translate_coordinates_reply (c : *connection,
+pub fn xcb_translate_coordinates_reply (c : *mut ffi::base::connection,
                                            cookie : translate_coordinates_cookie,
-                                           e : **generic_error) -> *translate_coordinates_reply;
+                                           e : *mut *mut ffi::base::generic_error) -> *mut translate_coordinates_reply;
 
 /**
  * move mouse pointer
@@ -5888,7 +5885,7 @@ pub unsafe fn xcb_translate_coordinates_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_warp_pointer_checked (c : *connection,
+pub fn xcb_warp_pointer_checked (c : *mut ffi::base::connection,
                                     src_window :  window,
                                     dst_window :  window,
                                     src_x :  i16,
@@ -5896,7 +5893,7 @@ pub unsafe fn xcb_warp_pointer_checked (c : *connection,
                                     src_width :  u16,
                                     src_height :  u16,
                                     dst_x :  i16,
-                                    dst_y :  i16) -> void_cookie;
+                                    dst_y :  i16) -> ffi::base::void_cookie;
 
 /**
  * move mouse pointer
@@ -5925,7 +5922,7 @@ pub unsafe fn xcb_warp_pointer_checked (c : *connection,
  * relative to the current position of the pointer.
  * 
  */
-pub unsafe fn xcb_warp_pointer (c : *connection,
+pub fn xcb_warp_pointer (c : *mut ffi::base::connection,
                             src_window :  window,
                             dst_window :  window,
                             src_x :  i16,
@@ -5933,7 +5930,7 @@ pub unsafe fn xcb_warp_pointer (c : *connection,
                             src_width :  u16,
                             src_height :  u16,
                             dst_x :  i16,
-                            dst_y :  i16) -> void_cookie;
+                            dst_y :  i16) -> ffi::base::void_cookie;
 
 /**
  * Sets input focus
@@ -5966,10 +5963,10 @@ pub unsafe fn xcb_warp_pointer (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_set_input_focus_checked (c : *connection,
+pub fn xcb_set_input_focus_checked (c : *mut ffi::base::connection,
                                        revert_to :  u8,
                                        focus :  window,
-                                       time :  timestamp) -> void_cookie;
+                                       time :  timestamp) -> ffi::base::void_cookie;
 
 /**
  * Sets input focus
@@ -5999,10 +5996,10 @@ pub unsafe fn xcb_set_input_focus_checked (c : *connection,
  * A FocusIn and FocusOut event is generated when focus is changed.
  * 
  */
-pub unsafe fn xcb_set_input_focus (c : *connection,
+pub fn xcb_set_input_focus (c : *mut ffi::base::connection,
                                revert_to :  u8,
                                focus :  window,
-                               time :  timestamp) -> void_cookie;
+                               time :  timestamp) -> ffi::base::void_cookie;
 
 /**
  *
@@ -6012,7 +6009,7 @@ pub unsafe fn xcb_set_input_focus (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_get_input_focus (c : *connection) -> get_input_focus_cookie;
+pub fn xcb_get_input_focus (c : *mut ffi::base::connection) -> get_input_focus_cookie;
 
 /**
  *
@@ -6025,7 +6022,7 @@ pub unsafe fn xcb_get_input_focus (c : *connection) -> get_input_focus_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_input_focus_unchecked (c : *connection) -> get_input_focus_cookie;
+pub fn xcb_get_input_focus_unchecked (c : *mut ffi::base::connection) -> get_input_focus_cookie;
 
 /**
  * Return the reply
@@ -6041,9 +6038,9 @@ pub unsafe fn xcb_get_input_focus_unchecked (c : *connection) -> get_input_focus
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_input_focus_reply (c : *connection,
+pub fn xcb_get_input_focus_reply (c : *mut ffi::base::connection,
                                      cookie : get_input_focus_cookie,
-                                     e : **generic_error) -> *get_input_focus_reply;
+                                     e : *mut *mut ffi::base::generic_error) -> *mut get_input_focus_reply;
 
 /**
  *
@@ -6053,7 +6050,7 @@ pub unsafe fn xcb_get_input_focus_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_query_keymap (c : *connection) -> query_keymap_cookie;
+pub fn xcb_query_keymap (c : *mut ffi::base::connection) -> query_keymap_cookie;
 
 /**
  *
@@ -6066,7 +6063,7 @@ pub unsafe fn xcb_query_keymap (c : *connection) -> query_keymap_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_query_keymap_unchecked (c : *connection) -> query_keymap_cookie;
+pub fn xcb_query_keymap_unchecked (c : *mut ffi::base::connection) -> query_keymap_cookie;
 
 /**
  * Return the reply
@@ -6082,11 +6079,11 @@ pub unsafe fn xcb_query_keymap_unchecked (c : *connection) -> query_keymap_cooki
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_query_keymap_reply (c : *connection,
+pub fn xcb_query_keymap_reply (c : *mut ffi::base::connection,
                                   cookie : query_keymap_cookie,
-                                  e : **generic_error) -> *query_keymap_reply;
+                                  e : *mut *mut ffi::base::generic_error) -> *mut query_keymap_reply;
 
-pub unsafe fn xcb_open_font_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_open_font_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * opens a font
@@ -6106,10 +6103,10 @@ pub unsafe fn xcb_open_font_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_open_font_checked (c : *connection,
+pub fn xcb_open_font_checked (c : *mut ffi::base::connection,
                                  fid :  font,
                                  name_len :  u16,
-                                 name : *c_char) -> void_cookie;
+                                 name : *mut c_char) -> ffi::base::void_cookie;
 
 /**
  * opens a font
@@ -6126,10 +6123,10 @@ pub unsafe fn xcb_open_font_checked (c : *connection,
  * client-side rendering using Xft.
  * 
  */
-pub unsafe fn xcb_open_font (c : *connection,
+pub fn xcb_open_font (c : *mut ffi::base::connection,
                          fid :  font,
                          name_len :  u16,
-                         name : *c_char) -> void_cookie;
+                         name : *mut c_char) -> ffi::base::void_cookie;
 
 /**
  *
@@ -6142,8 +6139,8 @@ pub unsafe fn xcb_open_font (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_close_font_checked (c : *connection,
-                                  font :  font) -> void_cookie;
+pub fn xcb_close_font_checked (c : *mut ffi::base::connection,
+                                  font :  font) -> ffi::base::void_cookie;
 
 /**
  *
@@ -6153,8 +6150,8 @@ pub unsafe fn xcb_close_font_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_close_font (c : *connection,
-                          font :  font) -> void_cookie;
+pub fn xcb_close_font (c : *mut ffi::base::connection,
+                          font :  font) -> ffi::base::void_cookie;
 
 /**
  * Get the next element of the iterator
@@ -6166,7 +6163,7 @@ pub unsafe fn xcb_close_font (c : *connection,
  *
  *
  */
-pub unsafe fn xcb_fontprop_next (i:*fontprop_iterator) -> c_void;
+pub fn xcb_fontprop_next (i:*mut fontprop_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -6177,7 +6174,7 @@ pub unsafe fn xcb_fontprop_next (i:*fontprop_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_fontprop_end (i:fontprop_iterator) -> generic_iterator;
+pub fn xcb_fontprop_end (i:fontprop_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -6189,7 +6186,7 @@ pub unsafe fn xcb_fontprop_end (i:fontprop_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_charinfo_next (i:*charinfo_iterator) -> c_void;
+pub fn xcb_charinfo_next (i:*mut charinfo_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -6200,9 +6197,9 @@ pub unsafe fn xcb_charinfo_next (i:*charinfo_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_charinfo_end (i:charinfo_iterator) -> generic_iterator;
+pub fn xcb_charinfo_end (i:charinfo_iterator) -> ffi::base::generic_iterator;
 
-pub unsafe fn xcb_query_font_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_query_font_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * query font metrics
@@ -6214,7 +6211,7 @@ pub unsafe fn xcb_query_font_sizeof (_buffer :  *c_void) -> c_int;
  * Queries information associated with the font.
  * 
  */
-pub unsafe fn xcb_query_font (c : *connection,
+pub fn xcb_query_font (c : *mut ffi::base::connection,
                           font :  fontable) -> query_font_cookie;
 
 /**
@@ -6230,22 +6227,22 @@ pub unsafe fn xcb_query_font (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_query_font_unchecked (c : *connection,
+pub fn xcb_query_font_unchecked (c : *mut ffi::base::connection,
                                     font :  fontable) -> query_font_cookie;
 
-pub unsafe fn xcb_query_font_properties (R : *query_font_reply) -> *fontprop;
+pub fn xcb_query_font_properties (R : *mut query_font_reply) -> *mut fontprop;
 
 
-pub unsafe fn xcb_query_font_properties_length (R : *query_font_reply) -> c_int;
+pub fn xcb_query_font_properties_length (R : *mut query_font_reply) -> c_int;
 
-pub unsafe fn xcb_query_font_properties_iterator (R : *query_font_reply) -> fontprop_iterator;
+pub fn xcb_query_font_properties_iterator (R : *mut query_font_reply) -> fontprop_iterator;
 
-pub unsafe fn xcb_query_font_char_infos (R : *query_font_reply) -> *charinfo;
+pub fn xcb_query_font_char_infos (R : *mut query_font_reply) -> *mut charinfo;
 
 
-pub unsafe fn xcb_query_font_char_infos_length (R : *query_font_reply) -> c_int;
+pub fn xcb_query_font_char_infos_length (R : *mut query_font_reply) -> c_int;
 
-pub unsafe fn xcb_query_font_char_infos_iterator (R : *query_font_reply) -> charinfo_iterator;
+pub fn xcb_query_font_char_infos_iterator (R : *mut query_font_reply) -> charinfo_iterator;
 
 /**
  * Return the reply
@@ -6261,12 +6258,12 @@ pub unsafe fn xcb_query_font_char_infos_iterator (R : *query_font_reply) -> char
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_query_font_reply (c : *connection,
+pub fn xcb_query_font_reply (c : *mut ffi::base::connection,
                                 cookie : query_font_cookie,
-                                e : **generic_error) -> *query_font_reply;
+                                e : *mut *mut ffi::base::generic_error) -> *mut query_font_reply;
 
-pub unsafe fn xcb_query_text_extents_sizeof (_buffer :  *c_void,
-                               string_len :  u32) -> c_int;
+pub fn xcb_query_text_extents_sizeof (_buffer :  *mut c_void,
+                               string_len :   u32) -> c_int;
 
 /**
  * get text extents
@@ -6300,10 +6297,10 @@ pub unsafe fn xcb_query_text_extents_sizeof (_buffer :  *c_void,
  * default_char, the undefined characters in the string are also ignored.
  * 
  */
-pub unsafe fn xcb_query_text_extents (c : *connection,
+pub fn xcb_query_text_extents (c : *mut ffi::base::connection,
                                   font :  fontable,
                                   string_len :  u32,
-                                  string : *char2b) -> query_text_extents_cookie;
+                                  string : *mut char2b) -> query_text_extents_cookie;
 
 /**
  * get text extents
@@ -6340,10 +6337,10 @@ pub unsafe fn xcb_query_text_extents (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_query_text_extents_unchecked (c : *connection,
+pub fn xcb_query_text_extents_unchecked (c : *mut ffi::base::connection,
                                             font :  fontable,
                                             string_len :  u32,
-                                            string : *char2b) -> query_text_extents_cookie;
+                                            string : *mut char2b) -> query_text_extents_cookie;
 
 /**
  * Return the reply
@@ -6359,19 +6356,19 @@ pub unsafe fn xcb_query_text_extents_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_query_text_extents_reply (c : *connection,
+pub fn xcb_query_text_extents_reply (c : *mut ffi::base::connection,
                                         cookie : query_text_extents_cookie,
-                                        e : **generic_error) -> *query_text_extents_reply;
+                                        e : *mut *mut ffi::base::generic_error) -> *mut query_text_extents_reply;
 
-pub unsafe fn xcb_str_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_str_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_str_name (R : *str_) -> *c_char;
-
-
-pub unsafe fn xcb_str_name_length (R : *str_) -> c_int;
+pub fn xcb_str_name (R : *mut str_) -> *mut c_char;
 
 
-pub unsafe fn xcb_str_name_end (R : *str_) -> generic_iterator;
+pub fn xcb_str_name_length (R : *mut str_) -> c_int;
+
+
+pub fn xcb_str_name_end (R : *mut str_) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -6383,7 +6380,7 @@ pub unsafe fn xcb_str_name_end (R : *str_) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_str_next (i:*str_iterator) -> c_void;
+pub fn xcb_str_next (i:*mut str_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -6394,9 +6391,9 @@ pub unsafe fn xcb_str_next (i:*str_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_str_end (i:str_iterator) -> generic_iterator;
+pub fn xcb_str_end (i:str_iterator) -> ffi::base::generic_iterator;
 
-pub unsafe fn xcb_list_fonts_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_list_fonts_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * get matching font names
@@ -6414,10 +6411,10 @@ pub unsafe fn xcb_list_fonts_sizeof (_buffer :  *c_void) -> c_int;
  * Gets a list of available font names which match the given \a pattern.
  * 
  */
-pub unsafe fn xcb_list_fonts (c : *connection,
+pub fn xcb_list_fonts (c : *mut ffi::base::connection,
                           max_names :  u16,
                           pattern_len :  u16,
-                          pattern : *c_char) -> list_fonts_cookie;
+                          pattern : *mut c_char) -> list_fonts_cookie;
 
 /**
  * get matching font names
@@ -6438,15 +6435,15 @@ pub unsafe fn xcb_list_fonts (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_list_fonts_unchecked (c : *connection,
+pub fn xcb_list_fonts_unchecked (c : *mut ffi::base::connection,
                                     max_names :  u16,
                                     pattern_len :  u16,
-                                    pattern : *c_char) -> list_fonts_cookie;
+                                    pattern : *mut c_char) -> list_fonts_cookie;
 
 
-pub unsafe fn xcb_list_fonts_names_length (R : *list_fonts_reply) -> c_int;
+pub fn xcb_list_fonts_names_length (R : *mut list_fonts_reply) -> c_int;
 
-pub unsafe fn xcb_list_fonts_names_iterator (R : *list_fonts_reply) -> str_iterator;
+pub fn xcb_list_fonts_names_iterator (R : *mut list_fonts_reply) -> str_iterator;
 
 /**
  * Return the reply
@@ -6462,11 +6459,11 @@ pub unsafe fn xcb_list_fonts_names_iterator (R : *list_fonts_reply) -> str_itera
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_list_fonts_reply (c : *connection,
+pub fn xcb_list_fonts_reply (c : *mut ffi::base::connection,
                                 cookie : list_fonts_cookie,
-                                e : **generic_error) -> *list_fonts_reply;
+                                e : *mut *mut ffi::base::generic_error) -> *mut list_fonts_reply;
 
-pub unsafe fn xcb_list_fonts_with_info_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_list_fonts_with_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * get matching font names and information
@@ -6484,10 +6481,10 @@ pub unsafe fn xcb_list_fonts_with_info_sizeof (_buffer :  *c_void) -> c_int;
  * Gets a list of available font names which match the given \a pattern.
  * 
  */
-pub unsafe fn xcb_list_fonts_with_info (c : *connection,
+pub fn xcb_list_fonts_with_info (c : *mut ffi::base::connection,
                                     max_names :  u16,
                                     pattern_len :  u16,
-                                    pattern : *c_char) -> list_fonts_with_info_cookie;
+                                    pattern : *mut c_char) -> list_fonts_with_info_cookie;
 
 /**
  * get matching font names and information
@@ -6508,25 +6505,25 @@ pub unsafe fn xcb_list_fonts_with_info (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_list_fonts_with_info_unchecked (c : *connection,
+pub fn xcb_list_fonts_with_info_unchecked (c : *mut ffi::base::connection,
                                               max_names :  u16,
                                               pattern_len :  u16,
-                                              pattern : *c_char) -> list_fonts_with_info_cookie;
+                                              pattern : *mut c_char) -> list_fonts_with_info_cookie;
 
-pub unsafe fn xcb_list_fonts_with_info_properties (R : *list_fonts_with_info_reply) -> *fontprop;
-
-
-pub unsafe fn xcb_list_fonts_with_info_properties_length (R : *list_fonts_with_info_reply) -> c_int;
-
-pub unsafe fn xcb_list_fonts_with_info_properties_iterator (R : *list_fonts_with_info_reply) -> fontprop_iterator;
-
-pub unsafe fn xcb_list_fonts_with_info_name (R : *list_fonts_with_info_reply) -> *c_char;
+pub fn xcb_list_fonts_with_info_properties (R : *mut list_fonts_with_info_reply) -> *mut fontprop;
 
 
-pub unsafe fn xcb_list_fonts_with_info_name_length (R : *list_fonts_with_info_reply) -> c_int;
+pub fn xcb_list_fonts_with_info_properties_length (R : *mut list_fonts_with_info_reply) -> c_int;
+
+pub fn xcb_list_fonts_with_info_properties_iterator (R : *mut list_fonts_with_info_reply) -> fontprop_iterator;
+
+pub fn xcb_list_fonts_with_info_name (R : *mut list_fonts_with_info_reply) -> *mut c_char;
 
 
-pub unsafe fn xcb_list_fonts_with_info_name_end (R : *list_fonts_with_info_reply) -> generic_iterator;
+pub fn xcb_list_fonts_with_info_name_length (R : *mut list_fonts_with_info_reply) -> c_int;
+
+
+pub fn xcb_list_fonts_with_info_name_end (R : *mut list_fonts_with_info_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -6542,11 +6539,11 @@ pub unsafe fn xcb_list_fonts_with_info_name_end (R : *list_fonts_with_info_reply
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_list_fonts_with_info_reply (c : *connection,
+pub fn xcb_list_fonts_with_info_reply (c : *mut ffi::base::connection,
                                           cookie : list_fonts_with_info_cookie,
-                                          e : **generic_error) -> *list_fonts_with_info_reply;
+                                          e : *mut *mut ffi::base::generic_error) -> *mut list_fonts_with_info_reply;
 
-pub unsafe fn xcb_set_font_path_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_set_font_path_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -6559,9 +6556,9 @@ pub unsafe fn xcb_set_font_path_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_set_font_path_checked (c : *connection,
+pub fn xcb_set_font_path_checked (c : *mut ffi::base::connection,
                                      font_qty :  u16,
-                                     font : *str_) -> void_cookie;
+                                     font : *mut str_) -> ffi::base::void_cookie;
 
 /**
  *
@@ -6571,11 +6568,11 @@ pub unsafe fn xcb_set_font_path_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_set_font_path (c : *connection,
+pub fn xcb_set_font_path (c : *mut ffi::base::connection,
                              font_qty :  u16,
-                             font : *str_) -> void_cookie;
+                             font : *mut str_) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_get_font_path_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_get_font_path_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -6585,7 +6582,7 @@ pub unsafe fn xcb_get_font_path_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_get_font_path (c : *connection) -> get_font_path_cookie;
+pub fn xcb_get_font_path (c : *mut ffi::base::connection) -> get_font_path_cookie;
 
 /**
  *
@@ -6598,12 +6595,12 @@ pub unsafe fn xcb_get_font_path (c : *connection) -> get_font_path_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_font_path_unchecked (c : *connection) -> get_font_path_cookie;
+pub fn xcb_get_font_path_unchecked (c : *mut ffi::base::connection) -> get_font_path_cookie;
 
 
-pub unsafe fn xcb_get_font_path_path_length (R : *get_font_path_reply) -> c_int;
+pub fn xcb_get_font_path_path_length (R : *mut get_font_path_reply) -> c_int;
 
-pub unsafe fn xcb_get_font_path_path_iterator (R : *get_font_path_reply) -> str_iterator;
+pub fn xcb_get_font_path_path_iterator (R : *mut get_font_path_reply) -> str_iterator;
 
 /**
  * Return the reply
@@ -6619,9 +6616,9 @@ pub unsafe fn xcb_get_font_path_path_iterator (R : *get_font_path_reply) -> str_
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_font_path_reply (c : *connection,
+pub fn xcb_get_font_path_reply (c : *mut ffi::base::connection,
                                    cookie : get_font_path_cookie,
-                                   e : **generic_error) -> *get_font_path_reply;
+                                   e : *mut *mut ffi::base::generic_error) -> *mut get_font_path_reply;
 
 /**
  * Creates a pixmap
@@ -6642,12 +6639,12 @@ pub unsafe fn xcb_get_font_path_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_create_pixmap_checked (c : *connection,
+pub fn xcb_create_pixmap_checked (c : *mut ffi::base::connection,
                                      depth :  u8,
                                      pid :  pixmap,
                                      drawable :  drawable,
                                      width :  u16,
-                                     height :  u16) -> void_cookie;
+                                     height :  u16) -> ffi::base::void_cookie;
 
 /**
  * Creates a pixmap
@@ -6665,12 +6662,12 @@ pub unsafe fn xcb_create_pixmap_checked (c : *connection,
  * is on and only with drawables of the same \a depth.
  * 
  */
-pub unsafe fn xcb_create_pixmap (c : *connection,
+pub fn xcb_create_pixmap (c : *mut ffi::base::connection,
                              depth :  u8,
                              pid :  pixmap,
                              drawable :  drawable,
                              width :  u16,
-                             height :  u16) -> void_cookie;
+                             height :  u16) -> ffi::base::void_cookie;
 
 /**
  * Destroys a pixmap
@@ -6686,8 +6683,8 @@ pub unsafe fn xcb_create_pixmap (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_free_pixmap_checked (c : *connection,
-                                   pixmap :  pixmap) -> void_cookie;
+pub fn xcb_free_pixmap_checked (c : *mut ffi::base::connection,
+                                   pixmap :  pixmap) -> ffi::base::void_cookie;
 
 /**
  * Destroys a pixmap
@@ -6700,10 +6697,10 @@ pub unsafe fn xcb_free_pixmap_checked (c : *connection,
  * storage will be freed when there are no more references to it.
  * 
  */
-pub unsafe fn xcb_free_pixmap (c : *connection,
-                           pixmap :  pixmap) -> void_cookie;
+pub fn xcb_free_pixmap (c : *mut ffi::base::connection,
+                           pixmap :  pixmap) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_create_gc_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_create_gc_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * Creates a graphics context
@@ -6721,11 +6718,11 @@ pub unsafe fn xcb_create_gc_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_create_gc_checked (c : *connection,
+pub fn xcb_create_gc_checked (c : *mut ffi::base::connection,
                                  cid :  gcontext,
                                  drawable :  drawable,
                                  value_mask :  u32,
-                                 value_list : *u32) -> void_cookie;
+                                 value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  * Creates a graphics context
@@ -6740,13 +6737,13 @@ pub unsafe fn xcb_create_gc_checked (c : *connection,
  * that has the same root and depth as the specified drawable.
  * 
  */
-pub unsafe fn xcb_create_gc (c : *connection,
+pub fn xcb_create_gc (c : *mut ffi::base::connection,
                          cid :  gcontext,
                          drawable :  drawable,
                          value_mask :  u32,
-                         value_list : *u32) -> void_cookie;
+                         value_list : *mut u32) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_change_gc_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_change_gc_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * change graphics context components
@@ -6765,10 +6762,10 @@ pub unsafe fn xcb_change_gc_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_change_gc_checked (c : *connection,
+pub fn xcb_change_gc_checked (c : *mut ffi::base::connection,
                                  gc :  gcontext,
                                  value_mask :  u32,
-                                 value_list : *u32) -> void_cookie;
+                                 value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  * change graphics context components
@@ -6784,10 +6781,10 @@ pub unsafe fn xcb_change_gc_checked (c : *connection,
  * Changes the components specified by \a value_mask for the specified graphics context.
  * 
  */
-pub unsafe fn xcb_change_gc (c : *connection,
+pub fn xcb_change_gc (c : *mut ffi::base::connection,
                          gc :  gcontext,
                          value_mask :  u32,
-                         value_list : *u32) -> void_cookie;
+                         value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -6800,10 +6797,10 @@ pub unsafe fn xcb_change_gc (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_copy_gc_checked (c : *connection,
+pub fn xcb_copy_gc_checked (c : *mut ffi::base::connection,
                                src_gc :  gcontext,
                                dst_gc :  gcontext,
-                               value_mask :  u32) -> void_cookie;
+                               value_mask :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -6813,12 +6810,12 @@ pub unsafe fn xcb_copy_gc_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_copy_gc (c : *connection,
+pub fn xcb_copy_gc (c : *mut ffi::base::connection,
                        src_gc :  gcontext,
                        dst_gc :  gcontext,
-                       value_mask :  u32) -> void_cookie;
+                       value_mask :  u32) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_set_dashes_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_set_dashes_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -6831,11 +6828,11 @@ pub unsafe fn xcb_set_dashes_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_set_dashes_checked (c : *connection,
+pub fn xcb_set_dashes_checked (c : *mut ffi::base::connection,
                                   gc :  gcontext,
                                   dash_offset :  u16,
                                   dashes_len :  u16,
-                                  dashes : *u8) -> void_cookie;
+                                  dashes : *mut u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -6845,13 +6842,13 @@ pub unsafe fn xcb_set_dashes_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_set_dashes (c : *connection,
+pub fn xcb_set_dashes (c : *mut ffi::base::connection,
                           gc :  gcontext,
                           dash_offset :  u16,
                           dashes_len :  u16,
-                          dashes : *u8) -> void_cookie;
+                          dashes : *mut u8) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_set_clip_rectangles_sizeof (_buffer :  *c_void,
+pub fn xcb_set_clip_rectangles_sizeof (_buffer :  *mut c_void,
                                 rectangles_len :  u32) -> c_int;
 
 /**
@@ -6865,13 +6862,13 @@ pub unsafe fn xcb_set_clip_rectangles_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_set_clip_rectangles_checked (c : *connection,
+pub fn xcb_set_clip_rectangles_checked (c : *mut ffi::base::connection,
                                            ordering :  u8,
                                            gc :  gcontext,
                                            clip_x_origin :  i16,
                                            clip_y_origin :  i16,
                                            rectangles_len :  u32,
-                                           rectangles : *rectangle) -> void_cookie;
+                                           rectangles : *mut rectangle) -> ffi::base::void_cookie;
 
 /**
  *
@@ -6881,13 +6878,13 @@ pub unsafe fn xcb_set_clip_rectangles_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_set_clip_rectangles (c : *connection,
+pub fn xcb_set_clip_rectangles (c : *mut ffi::base::connection,
                                    ordering :  u8,
                                    gc :  gcontext,
                                    clip_x_origin :  i16,
                                    clip_y_origin :  i16,
                                    rectangles_len :  u32,
-                                   rectangles : *rectangle) -> void_cookie;
+                                   rectangles : *mut rectangle) -> ffi::base::void_cookie;
 
 /**
  * Destroys a graphics context
@@ -6902,8 +6899,8 @@ pub unsafe fn xcb_set_clip_rectangles (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_free_gc_checked (c : *connection,
-                               gc :  gcontext) -> void_cookie;
+pub fn xcb_free_gc_checked (c : *mut ffi::base::connection,
+                               gc :  gcontext) -> ffi::base::void_cookie;
 
 /**
  * Destroys a graphics context
@@ -6915,8 +6912,8 @@ pub unsafe fn xcb_free_gc_checked (c : *connection,
  * Destroys the specified \a gc and all associated storage.
  * 
  */
-pub unsafe fn xcb_free_gc (c : *connection,
-                       gc :  gcontext) -> void_cookie;
+pub fn xcb_free_gc (c : *mut ffi::base::connection,
+                       gc :  gcontext) -> ffi::base::void_cookie;
 
 /**
  *
@@ -6929,13 +6926,13 @@ pub unsafe fn xcb_free_gc (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_clear_area_checked (c : *connection,
+pub fn xcb_clear_area_checked (c : *mut ffi::base::connection,
                                   exposures :  u8,
                                   window :  window,
                                   x :  i16,
                                   y :  i16,
                                   width :  u16,
-                                  height :  u16) -> void_cookie;
+                                  height :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -6945,13 +6942,13 @@ pub unsafe fn xcb_clear_area_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_clear_area (c : *connection,
+pub fn xcb_clear_area (c : *mut ffi::base::connection,
                           exposures :  u8,
                           window :  window,
                           x :  i16,
                           y :  i16,
                           width :  u16,
-                          height :  u16) -> void_cookie;
+                          height :  u16) -> ffi::base::void_cookie;
 
 /**
  * copy areas
@@ -6974,7 +6971,7 @@ pub unsafe fn xcb_clear_area (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_copy_area_checked (c : *connection,
+pub fn xcb_copy_area_checked (c : *mut ffi::base::connection,
                                  src_drawable :  drawable,
                                  dst_drawable :  drawable,
                                  gc :  gcontext,
@@ -6983,7 +6980,7 @@ pub unsafe fn xcb_copy_area_checked (c : *connection,
                                  dst_x :  i16,
                                  dst_y :  i16,
                                  width :  u16,
-                                 height :  u16) -> void_cookie;
+                                 height :  u16) -> ffi::base::void_cookie;
 
 /**
  * copy areas
@@ -7003,7 +7000,7 @@ pub unsafe fn xcb_copy_area_checked (c : *connection,
  * Copies the specified rectangle from \a src_drawable to \a dst_drawable.
  * 
  */
-pub unsafe fn xcb_copy_area (c : *connection,
+pub fn xcb_copy_area (c : *mut ffi::base::connection,
                          src_drawable :  drawable,
                          dst_drawable :  drawable,
                          gc :  gcontext,
@@ -7012,7 +7009,7 @@ pub unsafe fn xcb_copy_area (c : *connection,
                          dst_x :  i16,
                          dst_y :  i16,
                          width :  u16,
-                         height :  u16) -> void_cookie;
+                         height :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7025,7 +7022,7 @@ pub unsafe fn xcb_copy_area (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_copy_plane_checked (c : *connection,
+pub fn xcb_copy_plane_checked (c : *mut ffi::base::connection,
                                   src_drawable :  drawable,
                                   dst_drawable :  drawable,
                                   gc :  gcontext,
@@ -7035,7 +7032,7 @@ pub unsafe fn xcb_copy_plane_checked (c : *connection,
                                   dst_y :  i16,
                                   width :  u16,
                                   height :  u16,
-                                  bit_plane :  u32) -> void_cookie;
+                                  bit_plane :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7045,7 +7042,7 @@ pub unsafe fn xcb_copy_plane_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_copy_plane (c : *connection,
+pub fn xcb_copy_plane (c : *mut ffi::base::connection,
                           src_drawable :  drawable,
                           dst_drawable :  drawable,
                           gc :  gcontext,
@@ -7055,10 +7052,10 @@ pub unsafe fn xcb_copy_plane (c : *connection,
                           dst_y :  i16,
                           width :  u16,
                           height :  u16,
-                          bit_plane :  u32) -> void_cookie;
+                          bit_plane :  u32) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_poly_point_sizeof (_buffer :  *c_void,
-                       points_len :  u32) -> c_int;
+pub fn xcb_poly_point_sizeof (_buffer :  *mut c_void,
+                       points_len :   u32) -> c_int;
 
 /**
  *
@@ -7071,12 +7068,12 @@ pub unsafe fn xcb_poly_point_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_poly_point_checked (c : *connection,
+pub fn xcb_poly_point_checked (c : *mut ffi::base::connection,
                                   coordinate_mode :  u8,
                                   drawable :  drawable,
                                   gc :  gcontext,
                                   points_len :  u32,
-                                  points : *point) -> void_cookie;
+                                  points : *mut point) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7086,15 +7083,15 @@ pub unsafe fn xcb_poly_point_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_poly_point (c : *connection,
+pub fn xcb_poly_point (c : *mut ffi::base::connection,
                           coordinate_mode :  u8,
                           drawable :  drawable,
                           gc :  gcontext,
                           points_len :  u32,
-                          points : *point) -> void_cookie;
+                          points : *mut point) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_poly_line_sizeof (_buffer :  *c_void,
-                      points_len :  u32) -> c_int;
+pub fn xcb_poly_line_sizeof (_buffer :  *mut c_void,
+                      points_len :   u32) -> c_int;
 
 /**
  * draw lines
@@ -7121,12 +7118,12 @@ pub unsafe fn xcb_poly_line_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_poly_line_checked (c : *connection,
+pub fn xcb_poly_line_checked (c : *mut ffi::base::connection,
                                  coordinate_mode :  u8,
                                  drawable :  drawable,
                                  gc :  gcontext,
                                  points_len :  u32,
-                                 points : *point) -> void_cookie;
+                                 points : *mut point) -> ffi::base::void_cookie;
 
 /**
  * draw lines
@@ -7150,12 +7147,12 @@ pub unsafe fn xcb_poly_line_checked (c : *connection,
  * request were a single, filled shape.
  * 
  */
-pub unsafe fn xcb_poly_line (c : *connection,
+pub fn xcb_poly_line (c : *mut ffi::base::connection,
                          coordinate_mode :  u8,
                          drawable :  drawable,
                          gc :  gcontext,
                          points_len :  u32,
-                         points : *point) -> void_cookie;
+                         points : *mut point) -> ffi::base::void_cookie;
 
 /**
  * Get the next element of the iterator
@@ -7167,7 +7164,7 @@ pub unsafe fn xcb_poly_line (c : *connection,
  *
  *
  */
-pub unsafe fn xcb_segment_next (i:*segment_iterator) -> c_void;
+pub fn xcb_segment_next (i:*mut segment_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -7178,9 +7175,9 @@ pub unsafe fn xcb_segment_next (i:*segment_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_segment_end (i:segment_iterator) -> generic_iterator;
+pub fn xcb_segment_end (i:segment_iterator) -> ffi::base::generic_iterator;
 
-pub unsafe fn xcb_poly_segment_sizeof (_buffer :  *c_void,
+pub fn xcb_poly_segment_sizeof (_buffer :  *mut c_void,
                          segments_len :  u32) -> c_int;
 
 /**
@@ -7209,11 +7206,11 @@ pub unsafe fn xcb_poly_segment_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_poly_segment_checked (c : *connection,
+pub fn xcb_poly_segment_checked (c : *mut ffi::base::connection,
                                     drawable :  drawable,
                                     gc :  gcontext,
                                     segments_len :  u32,
-                                    segments : *segment) -> void_cookie;
+                                    segments : *mut segment) -> ffi::base::void_cookie;
 
 /**
  * draw lines
@@ -7238,13 +7235,13 @@ pub unsafe fn xcb_poly_segment_checked (c : *connection,
  * TODO: an example
  * 
  */
-pub unsafe fn xcb_poly_segment (c : *connection,
+pub fn xcb_poly_segment (c : *mut ffi::base::connection,
                             drawable :  drawable,
                             gc :  gcontext,
                             segments_len :  u32,
-                            segments : *segment) -> void_cookie;
+                            segments : *mut segment) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_poly_rectangle_sizeof (_buffer :  *c_void,
+pub fn xcb_poly_rectangle_sizeof (_buffer :  *mut c_void,
                            rectangles_len :  u32) -> c_int;
 
 /**
@@ -7258,11 +7255,11 @@ pub unsafe fn xcb_poly_rectangle_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_poly_rectangle_checked (c : *connection,
+pub fn xcb_poly_rectangle_checked (c : *mut ffi::base::connection,
                                       drawable :  drawable,
                                       gc :  gcontext,
                                       rectangles_len :  u32,
-                                      rectangles : *rectangle) -> void_cookie;
+                                      rectangles : *mut rectangle) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7272,14 +7269,14 @@ pub unsafe fn xcb_poly_rectangle_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_poly_rectangle (c : *connection,
+pub fn xcb_poly_rectangle (c : *mut ffi::base::connection,
                               drawable :  drawable,
                               gc :  gcontext,
                               rectangles_len :  u32,
-                              rectangles : *rectangle) -> void_cookie;
+                              rectangles : *mut rectangle) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_poly_arc_sizeof (_buffer :  *c_void,
-                     arcs_len :  u32) -> c_int;
+pub fn xcb_poly_arc_sizeof (_buffer :  *mut c_void,
+                     arcs_len :     u32) -> c_int;
 
 /**
  *
@@ -7292,11 +7289,11 @@ pub unsafe fn xcb_poly_arc_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_poly_arc_checked (c : *connection,
+pub fn xcb_poly_arc_checked (c : *mut ffi::base::connection,
                                 drawable :  drawable,
                                 gc :  gcontext,
                                 arcs_len :  u32,
-                                arcs : *arc) -> void_cookie;
+                                arcs : *mut arc) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7306,14 +7303,14 @@ pub unsafe fn xcb_poly_arc_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_poly_arc (c : *connection,
+pub fn xcb_poly_arc (c : *mut ffi::base::connection,
                         drawable :  drawable,
                         gc :  gcontext,
                         arcs_len :  u32,
-                        arcs : *arc) -> void_cookie;
+                        arcs : *mut arc) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_fill_poly_sizeof (_buffer :  *c_void,
-                      points_len :  u32) -> c_int;
+pub fn xcb_fill_poly_sizeof (_buffer :  *mut c_void,
+                      points_len :   u32) -> c_int;
 
 /**
  *
@@ -7326,13 +7323,13 @@ pub unsafe fn xcb_fill_poly_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_fill_poly_checked (c : *connection,
+pub fn xcb_fill_poly_checked (c : *mut ffi::base::connection,
                                  drawable :  drawable,
                                  gc :  gcontext,
                                  shape :  u8,
                                  coordinate_mode :  u8,
                                  points_len :  u32,
-                                 points : *point) -> void_cookie;
+                                 points : *mut point) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7342,15 +7339,15 @@ pub unsafe fn xcb_fill_poly_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_fill_poly (c : *connection,
+pub fn xcb_fill_poly (c : *mut ffi::base::connection,
                          drawable :  drawable,
                          gc :  gcontext,
                          shape :  u8,
                          coordinate_mode :  u8,
                          points_len :  u32,
-                         points : *point) -> void_cookie;
+                         points : *mut point) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_poly_fill_rectangle_sizeof (_buffer :  *c_void,
+pub fn xcb_poly_fill_rectangle_sizeof (_buffer :  *mut c_void,
                                 rectangles_len :  u32) -> c_int;
 
 /**
@@ -7378,11 +7375,11 @@ pub unsafe fn xcb_poly_fill_rectangle_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_poly_fill_rectangle_checked (c : *connection,
+pub fn xcb_poly_fill_rectangle_checked (c : *mut ffi::base::connection,
                                            drawable :  drawable,
                                            gc :  gcontext,
                                            rectangles_len :  u32,
-                                           rectangles : *rectangle) -> void_cookie;
+                                           rectangles : *mut rectangle) -> ffi::base::void_cookie;
 
 /**
  * Fills rectangles
@@ -7406,14 +7403,14 @@ pub unsafe fn xcb_poly_fill_rectangle_checked (c : *connection,
  * intersect, the intersecting pixels are drawn multiple times.
  * 
  */
-pub unsafe fn xcb_poly_fill_rectangle (c : *connection,
+pub fn xcb_poly_fill_rectangle (c : *mut ffi::base::connection,
                                    drawable :  drawable,
                                    gc :  gcontext,
                                    rectangles_len :  u32,
-                                   rectangles : *rectangle) -> void_cookie;
+                                   rectangles : *mut rectangle) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_poly_fill_arc_sizeof (_buffer :  *c_void,
-                          arcs_len :  u32) -> c_int;
+pub fn xcb_poly_fill_arc_sizeof (_buffer :  *mut c_void,
+                          arcs_len :     u32) -> c_int;
 
 /**
  *
@@ -7426,11 +7423,11 @@ pub unsafe fn xcb_poly_fill_arc_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_poly_fill_arc_checked (c : *connection,
+pub fn xcb_poly_fill_arc_checked (c : *mut ffi::base::connection,
                                      drawable :  drawable,
                                      gc :  gcontext,
                                      arcs_len :  u32,
-                                     arcs : *arc) -> void_cookie;
+                                     arcs : *mut arc) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7440,14 +7437,14 @@ pub unsafe fn xcb_poly_fill_arc_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_poly_fill_arc (c : *connection,
+pub fn xcb_poly_fill_arc (c : *mut ffi::base::connection,
                              drawable :  drawable,
                              gc :  gcontext,
                              arcs_len :  u32,
-                             arcs : *arc) -> void_cookie;
+                             arcs : *mut arc) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_put_image_sizeof (_buffer :  *c_void,
-                      data_len :  u32) -> c_int;
+pub fn xcb_put_image_sizeof (_buffer :  *mut c_void,
+                      data_len :     u32) -> c_int;
 
 /**
  *
@@ -7460,7 +7457,7 @@ pub unsafe fn xcb_put_image_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_put_image_checked (c : *connection,
+pub fn xcb_put_image_checked (c : *mut ffi::base::connection,
                                  format :  u8,
                                  drawable :  drawable,
                                  gc :  gcontext,
@@ -7471,7 +7468,7 @@ pub unsafe fn xcb_put_image_checked (c : *connection,
                                  left_pad :  u8,
                                  depth :  u8,
                                  data_len :  u32,
-                                 data : *u8) -> void_cookie;
+                                 data : *mut u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7481,7 +7478,7 @@ pub unsafe fn xcb_put_image_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_put_image (c : *connection,
+pub fn xcb_put_image (c : *mut ffi::base::connection,
                          format :  u8,
                          drawable :  drawable,
                          gc :  gcontext,
@@ -7492,9 +7489,9 @@ pub unsafe fn xcb_put_image (c : *connection,
                          left_pad :  u8,
                          depth :  u8,
                          data_len :  u32,
-                         data : *u8) -> void_cookie;
+                         data : *mut u8) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_get_image_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_get_image_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -7504,7 +7501,7 @@ pub unsafe fn xcb_get_image_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_get_image (c : *connection,
+pub fn xcb_get_image (c : *mut ffi::base::connection,
                          format :  u8,
                          drawable :  drawable,
                          x :  i16,
@@ -7524,7 +7521,7 @@ pub unsafe fn xcb_get_image (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_image_unchecked (c : *connection,
+pub fn xcb_get_image_unchecked (c : *mut ffi::base::connection,
                                    format :  u8,
                                    drawable :  drawable,
                                    x :  i16,
@@ -7533,13 +7530,13 @@ pub unsafe fn xcb_get_image_unchecked (c : *connection,
                                    height :  u16,
                                    plane_mask :  u32) -> get_image_cookie;
 
-pub unsafe fn xcb_get_image_data (R : *get_image_reply) -> *u8;
+pub fn xcb_get_image_data (R : *mut get_image_reply) -> *mut u8;
 
 
-pub unsafe fn xcb_get_image_data_length (R : *get_image_reply) -> c_int;
+pub fn xcb_get_image_data_length (R : *mut get_image_reply) -> c_int;
 
 
-pub unsafe fn xcb_get_image_data_end (R : *get_image_reply) -> generic_iterator;
+pub fn xcb_get_image_data_end (R : *mut get_image_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -7555,12 +7552,12 @@ pub unsafe fn xcb_get_image_data_end (R : *get_image_reply) -> generic_iterator;
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_image_reply (c : *connection,
+pub fn xcb_get_image_reply (c : *mut ffi::base::connection,
                                cookie : get_image_cookie,
-                               e : **generic_error) -> *get_image_reply;
+                               e : *mut *mut ffi::base::generic_error) -> *mut get_image_reply;
 
-pub unsafe fn xcb_poly_text_8_sizeof (_buffer :  *c_void,
-                        items_len :  u32) -> c_int;
+pub fn xcb_poly_text_8_sizeof (_buffer :  *mut c_void,
+                        items_len :    u32) -> c_int;
 
 /**
  *
@@ -7573,13 +7570,13 @@ pub unsafe fn xcb_poly_text_8_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_poly_text_8_checked (c : *connection,
+pub fn xcb_poly_text_8_checked (c : *mut ffi::base::connection,
                                    drawable :  drawable,
                                    gc :  gcontext,
                                    x :  i16,
                                    y :  i16,
                                    items_len :  u32,
-                                   items : *u8) -> void_cookie;
+                                   items : *mut u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7589,16 +7586,16 @@ pub unsafe fn xcb_poly_text_8_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_poly_text_8 (c : *connection,
+pub fn xcb_poly_text_8 (c : *mut ffi::base::connection,
                            drawable :  drawable,
                            gc :  gcontext,
                            x :  i16,
                            y :  i16,
                            items_len :  u32,
-                           items : *u8) -> void_cookie;
+                           items : *mut u8) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_poly_text_16_sizeof (_buffer :  *c_void,
-                         items_len :  u32) -> c_int;
+pub fn xcb_poly_text_16_sizeof (_buffer :  *mut c_void,
+                         items_len :    u32) -> c_int;
 
 /**
  *
@@ -7611,13 +7608,13 @@ pub unsafe fn xcb_poly_text_16_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_poly_text_16_checked (c : *connection,
+pub fn xcb_poly_text_16_checked (c : *mut ffi::base::connection,
                                     drawable :  drawable,
                                     gc :  gcontext,
                                     x :  i16,
                                     y :  i16,
                                     items_len :  u32,
-                                    items : *u8) -> void_cookie;
+                                    items : *mut u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7627,15 +7624,15 @@ pub unsafe fn xcb_poly_text_16_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_poly_text_16 (c : *connection,
+pub fn xcb_poly_text_16 (c : *mut ffi::base::connection,
                             drawable :  drawable,
                             gc :  gcontext,
                             x :  i16,
                             y :  i16,
                             items_len :  u32,
-                            items : *u8) -> void_cookie;
+                            items : *mut u8) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_image_text_8_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_image_text_8_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * Draws text
@@ -7667,13 +7664,13 @@ pub unsafe fn xcb_image_text_8_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_image_text_8_checked (c : *connection,
+pub fn xcb_image_text_8_checked (c : *mut ffi::base::connection,
                                     string_len :  u8,
                                     drawable :  drawable,
                                     gc :  gcontext,
                                     x :  i16,
                                     y :  i16,
-                                    string : *c_char) -> void_cookie;
+                                    string : *mut c_char) -> ffi::base::void_cookie;
 
 /**
  * Draws text
@@ -7702,15 +7699,15 @@ pub unsafe fn xcb_image_text_8_checked (c : *connection,
  * client-side rendering using Xft.
  * 
  */
-pub unsafe fn xcb_image_text_8 (c : *connection,
+pub fn xcb_image_text_8 (c : *mut ffi::base::connection,
                             string_len :  u8,
                             drawable :  drawable,
                             gc :  gcontext,
                             x :  i16,
                             y :  i16,
-                            string : *c_char) -> void_cookie;
+                            string : *mut c_char) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_image_text_16_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_image_text_16_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * Draws text
@@ -7743,13 +7740,13 @@ pub unsafe fn xcb_image_text_16_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_image_text_16_checked (c : *connection,
+pub fn xcb_image_text_16_checked (c : *mut ffi::base::connection,
                                      string_len :  u8,
                                      drawable :  drawable,
                                      gc :  gcontext,
                                      x :  i16,
                                      y :  i16,
-                                     string : *char2b) -> void_cookie;
+                                     string : *mut char2b) -> ffi::base::void_cookie;
 
 /**
  * Draws text
@@ -7779,13 +7776,13 @@ pub unsafe fn xcb_image_text_16_checked (c : *connection,
  * client-side rendering using Xft.
  * 
  */
-pub unsafe fn xcb_image_text_16 (c : *connection,
+pub fn xcb_image_text_16 (c : *mut ffi::base::connection,
                              string_len :  u8,
                              drawable :  drawable,
                              gc :  gcontext,
                              x :  i16,
                              y :  i16,
-                             string : *char2b) -> void_cookie;
+                             string : *mut char2b) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7798,11 +7795,11 @@ pub unsafe fn xcb_image_text_16 (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_create_colormap_checked (c : *connection,
+pub fn xcb_create_colormap_checked (c : *mut ffi::base::connection,
                                        alloc :  u8,
                                        mid :  colormap,
                                        window :  window,
-                                       visual :  visualid) -> void_cookie;
+                                       visual :  visualid) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7812,11 +7809,11 @@ pub unsafe fn xcb_create_colormap_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_create_colormap (c : *connection,
+pub fn xcb_create_colormap (c : *mut ffi::base::connection,
                                alloc :  u8,
                                mid :  colormap,
                                window :  window,
-                               visual :  visualid) -> void_cookie;
+                               visual :  visualid) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7829,8 +7826,8 @@ pub unsafe fn xcb_create_colormap (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_free_colormap_checked (c : *connection,
-                                     cmap :  colormap) -> void_cookie;
+pub fn xcb_free_colormap_checked (c : *mut ffi::base::connection,
+                                     cmap :  colormap) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7840,8 +7837,8 @@ pub unsafe fn xcb_free_colormap_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_free_colormap (c : *connection,
-                             cmap :  colormap) -> void_cookie;
+pub fn xcb_free_colormap (c : *mut ffi::base::connection,
+                             cmap :  colormap) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7854,9 +7851,9 @@ pub unsafe fn xcb_free_colormap (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_copy_colormap_and_free_checked (c : *connection,
+pub fn xcb_copy_colormap_and_free_checked (c : *mut ffi::base::connection,
                                               mid :  colormap,
-                                              src_cmap :  colormap) -> void_cookie;
+                                              src_cmap :  colormap) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7866,9 +7863,9 @@ pub unsafe fn xcb_copy_colormap_and_free_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_copy_colormap_and_free (c : *connection,
+pub fn xcb_copy_colormap_and_free (c : *mut ffi::base::connection,
                                       mid :  colormap,
-                                      src_cmap :  colormap) -> void_cookie;
+                                      src_cmap :  colormap) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7881,8 +7878,8 @@ pub unsafe fn xcb_copy_colormap_and_free (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_install_colormap_checked (c : *connection,
-                                        cmap :  colormap) -> void_cookie;
+pub fn xcb_install_colormap_checked (c : *mut ffi::base::connection,
+                                        cmap :  colormap) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7892,8 +7889,8 @@ pub unsafe fn xcb_install_colormap_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_install_colormap (c : *connection,
-                                cmap :  colormap) -> void_cookie;
+pub fn xcb_install_colormap (c : *mut ffi::base::connection,
+                                cmap :  colormap) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7906,8 +7903,8 @@ pub unsafe fn xcb_install_colormap (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_uninstall_colormap_checked (c : *connection,
-                                          cmap :  colormap) -> void_cookie;
+pub fn xcb_uninstall_colormap_checked (c : *mut ffi::base::connection,
+                                          cmap :  colormap) -> ffi::base::void_cookie;
 
 /**
  *
@@ -7917,10 +7914,10 @@ pub unsafe fn xcb_uninstall_colormap_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_uninstall_colormap (c : *connection,
-                                  cmap :  colormap) -> void_cookie;
+pub fn xcb_uninstall_colormap (c : *mut ffi::base::connection,
+                                  cmap :  colormap) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_list_installed_colormaps_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_list_installed_colormaps_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -7930,7 +7927,7 @@ pub unsafe fn xcb_list_installed_colormaps_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_list_installed_colormaps (c : *connection,
+pub fn xcb_list_installed_colormaps (c : *mut ffi::base::connection,
                                         window :  window) -> list_installed_colormaps_cookie;
 
 /**
@@ -7944,16 +7941,16 @@ pub unsafe fn xcb_list_installed_colormaps (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_list_installed_colormaps_unchecked (c : *connection,
+pub fn xcb_list_installed_colormaps_unchecked (c : *mut ffi::base::connection,
                                                   window :  window) -> list_installed_colormaps_cookie;
 
-pub unsafe fn xcb_list_installed_colormaps_cmaps (R : *list_installed_colormaps_reply) -> *colormap;
+pub fn xcb_list_installed_colormaps_cmaps (R : *mut list_installed_colormaps_reply) -> *mut colormap;
 
 
-pub unsafe fn xcb_list_installed_colormaps_cmaps_length (R : *list_installed_colormaps_reply) -> c_int;
+pub fn xcb_list_installed_colormaps_cmaps_length (R : *mut list_installed_colormaps_reply) -> c_int;
 
 
-pub unsafe fn xcb_list_installed_colormaps_cmaps_end (R : *list_installed_colormaps_reply) -> generic_iterator;
+pub fn xcb_list_installed_colormaps_cmaps_end (R : *mut list_installed_colormaps_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -7969,9 +7966,9 @@ pub unsafe fn xcb_list_installed_colormaps_cmaps_end (R : *list_installed_colorm
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_list_installed_colormaps_reply (c : *connection,
+pub fn xcb_list_installed_colormaps_reply (c : *mut ffi::base::connection,
                                               cookie : list_installed_colormaps_cookie,
-                                              e : **generic_error) -> *list_installed_colormaps_reply;
+                                              e : *mut *mut ffi::base::generic_error) -> *mut list_installed_colormaps_reply;
 
 /**
  * Allocate a color
@@ -7990,7 +7987,7 @@ pub unsafe fn xcb_list_installed_colormaps_reply (c : *connection,
  * RGB value to the RGB value you are specifying.
  * 
  */
-pub unsafe fn xcb_alloc_color (c : *connection,
+pub fn xcb_alloc_color (c : *mut ffi::base::connection,
                            cmap :  colormap,
                            red :  u16,
                            green :  u16,
@@ -8016,7 +8013,7 @@ pub unsafe fn xcb_alloc_color (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_alloc_color_unchecked (c : *connection,
+pub fn xcb_alloc_color_unchecked (c : *mut ffi::base::connection,
                                      cmap :  colormap,
                                      red :  u16,
                                      green :  u16,
@@ -8036,11 +8033,11 @@ pub unsafe fn xcb_alloc_color_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_alloc_color_reply (c : *connection,
+pub fn xcb_alloc_color_reply (c : *mut ffi::base::connection,
                                  cookie : alloc_color_cookie,
-                                 e : **generic_error) -> *alloc_color_reply;
+                                 e : *mut *mut ffi::base::generic_error) -> *mut alloc_color_reply;
 
-pub unsafe fn xcb_alloc_named_color_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_alloc_named_color_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -8050,10 +8047,10 @@ pub unsafe fn xcb_alloc_named_color_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_alloc_named_color (c : *connection,
+pub fn xcb_alloc_named_color (c : *mut ffi::base::connection,
                                  cmap :  colormap,
                                  name_len :  u16,
-                                 name : *c_char) -> alloc_named_color_cookie;
+                                 name : *mut c_char) -> alloc_named_color_cookie;
 
 /**
  *
@@ -8066,10 +8063,10 @@ pub unsafe fn xcb_alloc_named_color (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_alloc_named_color_unchecked (c : *connection,
+pub fn xcb_alloc_named_color_unchecked (c : *mut ffi::base::connection,
                                            cmap :  colormap,
                                            name_len :  u16,
-                                           name : *c_char) -> alloc_named_color_cookie;
+                                           name : *mut c_char) -> alloc_named_color_cookie;
 
 /**
  * Return the reply
@@ -8085,11 +8082,11 @@ pub unsafe fn xcb_alloc_named_color_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_alloc_named_color_reply (c : *connection,
+pub fn xcb_alloc_named_color_reply (c : *mut ffi::base::connection,
                                        cookie : alloc_named_color_cookie,
-                                       e : **generic_error) -> *alloc_named_color_reply;
+                                       e : *mut *mut ffi::base::generic_error) -> *mut alloc_named_color_reply;
 
-pub unsafe fn xcb_alloc_color_cells_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_alloc_color_cells_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -8099,7 +8096,7 @@ pub unsafe fn xcb_alloc_color_cells_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_alloc_color_cells (c : *connection,
+pub fn xcb_alloc_color_cells (c : *mut ffi::base::connection,
                                  contiguous :  u8,
                                  cmap :  colormap,
                                  colors :  u16,
@@ -8116,27 +8113,27 @@ pub unsafe fn xcb_alloc_color_cells (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_alloc_color_cells_unchecked (c : *connection,
+pub fn xcb_alloc_color_cells_unchecked (c : *mut ffi::base::connection,
                                            contiguous :  u8,
                                            cmap :  colormap,
                                            colors :  u16,
                                            planes :  u16) -> alloc_color_cells_cookie;
 
-pub unsafe fn xcb_alloc_color_cells_pixels (R : *alloc_color_cells_reply) -> *u32;
+pub fn xcb_alloc_color_cells_pixels (R : *mut alloc_color_cells_reply) -> *mut u32;
 
 
-pub unsafe fn xcb_alloc_color_cells_pixels_length (R : *alloc_color_cells_reply) -> c_int;
+pub fn xcb_alloc_color_cells_pixels_length (R : *mut alloc_color_cells_reply) -> c_int;
 
 
-pub unsafe fn xcb_alloc_color_cells_pixels_end (R : *alloc_color_cells_reply) -> generic_iterator;
+pub fn xcb_alloc_color_cells_pixels_end (R : *mut alloc_color_cells_reply) -> ffi::base::generic_iterator;
 
-pub unsafe fn xcb_alloc_color_cells_masks (R : *alloc_color_cells_reply) -> *u32;
-
-
-pub unsafe fn xcb_alloc_color_cells_masks_length (R : *alloc_color_cells_reply) -> c_int;
+pub fn xcb_alloc_color_cells_masks (R : *mut alloc_color_cells_reply) -> *mut u32;
 
 
-pub unsafe fn xcb_alloc_color_cells_masks_end (R : *alloc_color_cells_reply) -> generic_iterator;
+pub fn xcb_alloc_color_cells_masks_length (R : *mut alloc_color_cells_reply) -> c_int;
+
+
+pub fn xcb_alloc_color_cells_masks_end (R : *mut alloc_color_cells_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -8152,11 +8149,11 @@ pub unsafe fn xcb_alloc_color_cells_masks_end (R : *alloc_color_cells_reply) -> 
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_alloc_color_cells_reply (c : *connection,
+pub fn xcb_alloc_color_cells_reply (c : *mut ffi::base::connection,
                                        cookie : alloc_color_cells_cookie,
-                                       e : **generic_error) -> *alloc_color_cells_reply;
+                                       e : *mut *mut ffi::base::generic_error) -> *mut alloc_color_cells_reply;
 
-pub unsafe fn xcb_alloc_color_planes_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_alloc_color_planes_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -8166,7 +8163,7 @@ pub unsafe fn xcb_alloc_color_planes_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_alloc_color_planes (c : *connection,
+pub fn xcb_alloc_color_planes (c : *mut ffi::base::connection,
                                   contiguous :  u8,
                                   cmap :  colormap,
                                   colors :  u16,
@@ -8185,7 +8182,7 @@ pub unsafe fn xcb_alloc_color_planes (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_alloc_color_planes_unchecked (c : *connection,
+pub fn xcb_alloc_color_planes_unchecked (c : *mut ffi::base::connection,
                                             contiguous :  u8,
                                             cmap :  colormap,
                                             colors :  u16,
@@ -8193,13 +8190,13 @@ pub unsafe fn xcb_alloc_color_planes_unchecked (c : *connection,
                                             greens :  u16,
                                             blues :  u16) -> alloc_color_planes_cookie;
 
-pub unsafe fn xcb_alloc_color_planes_pixels (R : *alloc_color_planes_reply) -> *u32;
+pub fn xcb_alloc_color_planes_pixels (R : *mut alloc_color_planes_reply) -> *mut u32;
 
 
-pub unsafe fn xcb_alloc_color_planes_pixels_length (R : *alloc_color_planes_reply) -> c_int;
+pub fn xcb_alloc_color_planes_pixels_length (R : *mut alloc_color_planes_reply) -> c_int;
 
 
-pub unsafe fn xcb_alloc_color_planes_pixels_end (R : *alloc_color_planes_reply) -> generic_iterator;
+pub fn xcb_alloc_color_planes_pixels_end (R : *mut alloc_color_planes_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -8215,12 +8212,12 @@ pub unsafe fn xcb_alloc_color_planes_pixels_end (R : *alloc_color_planes_reply) 
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_alloc_color_planes_reply (c : *connection,
+pub fn xcb_alloc_color_planes_reply (c : *mut ffi::base::connection,
                                         cookie : alloc_color_planes_cookie,
-                                        e : **generic_error) -> *alloc_color_planes_reply;
+                                        e : *mut *mut ffi::base::generic_error) -> *mut alloc_color_planes_reply;
 
-pub unsafe fn xcb_free_colors_sizeof (_buffer :  *c_void,
-                        pixels_len :  u32) -> c_int;
+pub fn xcb_free_colors_sizeof (_buffer :  *mut c_void,
+                        pixels_len :   u32) -> c_int;
 
 /**
  *
@@ -8233,11 +8230,11 @@ pub unsafe fn xcb_free_colors_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_free_colors_checked (c : *connection,
+pub fn xcb_free_colors_checked (c : *mut ffi::base::connection,
                                    cmap :  colormap,
                                    plane_mask :  u32,
                                    pixels_len :  u32,
-                                   pixels : *u32) -> void_cookie;
+                                   pixels : *mut u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -8247,11 +8244,11 @@ pub unsafe fn xcb_free_colors_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_free_colors (c : *connection,
+pub fn xcb_free_colors (c : *mut ffi::base::connection,
                            cmap :  colormap,
                            plane_mask :  u32,
                            pixels_len :  u32,
-                           pixels : *u32) -> void_cookie;
+                           pixels : *mut u32) -> ffi::base::void_cookie;
 
 /**
  * Get the next element of the iterator
@@ -8263,7 +8260,7 @@ pub unsafe fn xcb_free_colors (c : *connection,
  *
  *
  */
-pub unsafe fn xcb_coloritem_next (i:*coloritem_iterator) -> c_void;
+pub fn xcb_coloritem_next (i:*mut coloritem_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -8274,10 +8271,10 @@ pub unsafe fn xcb_coloritem_next (i:*coloritem_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_coloritem_end (i:coloritem_iterator) -> generic_iterator;
+pub fn xcb_coloritem_end (i:coloritem_iterator) -> ffi::base::generic_iterator;
 
-pub unsafe fn xcb_store_colors_sizeof (_buffer :  *c_void,
-                         items_len :  u32) -> c_int;
+pub fn xcb_store_colors_sizeof (_buffer :  *mut c_void,
+                         items_len :    u32) -> c_int;
 
 /**
  *
@@ -8290,10 +8287,10 @@ pub unsafe fn xcb_store_colors_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_store_colors_checked (c : *connection,
+pub fn xcb_store_colors_checked (c : *mut ffi::base::connection,
                                     cmap :  colormap,
                                     items_len :  u32,
-                                    items : *coloritem) -> void_cookie;
+                                    items : *mut coloritem) -> ffi::base::void_cookie;
 
 /**
  *
@@ -8303,12 +8300,12 @@ pub unsafe fn xcb_store_colors_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_store_colors (c : *connection,
+pub fn xcb_store_colors (c : *mut ffi::base::connection,
                             cmap :  colormap,
                             items_len :  u32,
-                            items : *coloritem) -> void_cookie;
+                            items : *mut coloritem) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_store_named_color_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_store_named_color_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -8321,12 +8318,12 @@ pub unsafe fn xcb_store_named_color_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_store_named_color_checked (c : *connection,
+pub fn xcb_store_named_color_checked (c : *mut ffi::base::connection,
                                          flags :  u8,
                                          cmap :  colormap,
                                          pixel :  u32,
                                          name_len :  u16,
-                                         name : *c_char) -> void_cookie;
+                                         name : *mut c_char) -> ffi::base::void_cookie;
 
 /**
  *
@@ -8336,12 +8333,12 @@ pub unsafe fn xcb_store_named_color_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_store_named_color (c : *connection,
+pub fn xcb_store_named_color (c : *mut ffi::base::connection,
                                  flags :  u8,
                                  cmap :  colormap,
                                  pixel :  u32,
                                  name_len :  u16,
-                                 name : *c_char) -> void_cookie;
+                                 name : *mut c_char) -> ffi::base::void_cookie;
 
 /**
  * Get the next element of the iterator
@@ -8353,7 +8350,7 @@ pub unsafe fn xcb_store_named_color (c : *connection,
  *
  *
  */
-pub unsafe fn xcb_rgb_next (i:*rgb_iterator) -> c_void;
+pub fn xcb_rgb_next (i:*mut rgb_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -8364,10 +8361,10 @@ pub unsafe fn xcb_rgb_next (i:*rgb_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_rgb_end (i:rgb_iterator) -> generic_iterator;
+pub fn xcb_rgb_end (i:rgb_iterator) -> ffi::base::generic_iterator;
 
-pub unsafe fn xcb_query_colors_sizeof (_buffer :  *c_void,
-                         pixels_len :  u32) -> c_int;
+pub fn xcb_query_colors_sizeof (_buffer :  *mut c_void,
+                         pixels_len :   u32) -> c_int;
 
 /**
  *
@@ -8377,10 +8374,10 @@ pub unsafe fn xcb_query_colors_sizeof (_buffer :  *c_void,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_query_colors (c : *connection,
+pub fn xcb_query_colors (c : *mut ffi::base::connection,
                             cmap :  colormap,
                             pixels_len :  u32,
-                            pixels : *u32) -> query_colors_cookie;
+                            pixels : *mut u32) -> query_colors_cookie;
 
 /**
  *
@@ -8393,17 +8390,17 @@ pub unsafe fn xcb_query_colors (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_query_colors_unchecked (c : *connection,
+pub fn xcb_query_colors_unchecked (c : *mut ffi::base::connection,
                                       cmap :  colormap,
                                       pixels_len :  u32,
-                                      pixels : *u32) -> query_colors_cookie;
+                                      pixels : *mut u32) -> query_colors_cookie;
 
-pub unsafe fn xcb_query_colors_colors (R : *query_colors_reply) -> *rgb;
+pub fn xcb_query_colors_colors (R : *mut query_colors_reply) -> *mut rgb;
 
 
-pub unsafe fn xcb_query_colors_colors_length (R : *query_colors_reply) -> c_int;
+pub fn xcb_query_colors_colors_length (R : *mut query_colors_reply) -> c_int;
 
-pub unsafe fn xcb_query_colors_colors_iterator (R : *query_colors_reply) -> rgb_iterator;
+pub fn xcb_query_colors_colors_iterator (R : *mut query_colors_reply) -> rgb_iterator;
 
 /**
  * Return the reply
@@ -8419,11 +8416,11 @@ pub unsafe fn xcb_query_colors_colors_iterator (R : *query_colors_reply) -> rgb_
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_query_colors_reply (c : *connection,
+pub fn xcb_query_colors_reply (c : *mut ffi::base::connection,
                                   cookie : query_colors_cookie,
-                                  e : **generic_error) -> *query_colors_reply;
+                                  e : *mut *mut ffi::base::generic_error) -> *mut query_colors_reply;
 
-pub unsafe fn xcb_lookup_color_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_lookup_color_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -8433,10 +8430,10 @@ pub unsafe fn xcb_lookup_color_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_lookup_color (c : *connection,
+pub fn xcb_lookup_color (c : *mut ffi::base::connection,
                             cmap :  colormap,
                             name_len :  u16,
-                            name : *c_char) -> lookup_color_cookie;
+                            name : *mut c_char) -> lookup_color_cookie;
 
 /**
  *
@@ -8449,10 +8446,10 @@ pub unsafe fn xcb_lookup_color (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_lookup_color_unchecked (c : *connection,
+pub fn xcb_lookup_color_unchecked (c : *mut ffi::base::connection,
                                       cmap :  colormap,
                                       name_len :  u16,
-                                      name : *c_char) -> lookup_color_cookie;
+                                      name : *mut c_char) -> lookup_color_cookie;
 
 /**
  * Return the reply
@@ -8468,9 +8465,9 @@ pub unsafe fn xcb_lookup_color_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_lookup_color_reply (c : *connection,
+pub fn xcb_lookup_color_reply (c : *mut ffi::base::connection,
                                   cookie : lookup_color_cookie,
-                                  e : **generic_error) -> *lookup_color_reply;
+                                  e : *mut *mut ffi::base::generic_error) -> *mut lookup_color_reply;
 
 /**
  *
@@ -8483,7 +8480,7 @@ pub unsafe fn xcb_lookup_color_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_create_cursor_checked (c : *connection,
+pub fn xcb_create_cursor_checked (c : *mut ffi::base::connection,
                                      cid :  cursor,
                                      source :  pixmap,
                                      mask :  pixmap,
@@ -8494,7 +8491,7 @@ pub unsafe fn xcb_create_cursor_checked (c : *connection,
                                      back_green :  u16,
                                      back_blue :  u16,
                                      x :  u16,
-                                     y :  u16) -> void_cookie;
+                                     y :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -8504,7 +8501,7 @@ pub unsafe fn xcb_create_cursor_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_create_cursor (c : *connection,
+pub fn xcb_create_cursor (c : *mut ffi::base::connection,
                              cid :  cursor,
                              source :  pixmap,
                              mask :  pixmap,
@@ -8515,7 +8512,7 @@ pub unsafe fn xcb_create_cursor (c : *connection,
                              back_green :  u16,
                              back_blue :  u16,
                              x :  u16,
-                             y :  u16) -> void_cookie;
+                             y :  u16) -> ffi::base::void_cookie;
 
 /**
  * create cursor
@@ -8550,7 +8547,7 @@ pub unsafe fn xcb_create_cursor (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_create_glyph_cursor_checked (c : *connection,
+pub fn xcb_create_glyph_cursor_checked (c : *mut ffi::base::connection,
                                            cid :  cursor,
                                            source_font :  font,
                                            mask_font :  font,
@@ -8561,7 +8558,7 @@ pub unsafe fn xcb_create_glyph_cursor_checked (c : *connection,
                                            fore_blue :  u16,
                                            back_red :  u16,
                                            back_green :  u16,
-                                           back_blue :  u16) -> void_cookie;
+                                           back_blue :  u16) -> ffi::base::void_cookie;
 
 /**
  * create cursor
@@ -8593,7 +8590,7 @@ pub unsafe fn xcb_create_glyph_cursor_checked (c : *connection,
  * \a back_blue).
  * 
  */
-pub unsafe fn xcb_create_glyph_cursor (c : *connection,
+pub fn xcb_create_glyph_cursor (c : *mut ffi::base::connection,
                                    cid :  cursor,
                                    source_font :  font,
                                    mask_font :  font,
@@ -8604,7 +8601,7 @@ pub unsafe fn xcb_create_glyph_cursor (c : *connection,
                                    fore_blue :  u16,
                                    back_red :  u16,
                                    back_green :  u16,
-                                   back_blue :  u16) -> void_cookie;
+                                   back_blue :  u16) -> ffi::base::void_cookie;
 
 /**
  * Deletes a cursor
@@ -8620,8 +8617,8 @@ pub unsafe fn xcb_create_glyph_cursor (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_free_cursor_checked (c : *connection,
-                                   cursor :  cursor) -> void_cookie;
+pub fn xcb_free_cursor_checked (c : *mut ffi::base::connection,
+                                   cursor :  cursor) -> ffi::base::void_cookie;
 
 /**
  * Deletes a cursor
@@ -8634,8 +8631,8 @@ pub unsafe fn xcb_free_cursor_checked (c : *connection,
  * cursor. The cursor is freed when no other resource references it.
  * 
  */
-pub unsafe fn xcb_free_cursor (c : *connection,
-                           cursor :  cursor) -> void_cookie;
+pub fn xcb_free_cursor (c : *mut ffi::base::connection,
+                           cursor :  cursor) -> ffi::base::void_cookie;
 
 /**
  *
@@ -8648,14 +8645,14 @@ pub unsafe fn xcb_free_cursor (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_recolor_cursor_checked (c : *connection,
+pub fn xcb_recolor_cursor_checked (c : *mut ffi::base::connection,
                                       cursor :  cursor,
                                       fore_red :  u16,
                                       fore_green :  u16,
                                       fore_blue :  u16,
                                       back_red :  u16,
                                       back_green :  u16,
-                                      back_blue :  u16) -> void_cookie;
+                                      back_blue :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -8665,14 +8662,14 @@ pub unsafe fn xcb_recolor_cursor_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_recolor_cursor (c : *connection,
+pub fn xcb_recolor_cursor (c : *mut ffi::base::connection,
                               cursor :  cursor,
                               fore_red :  u16,
                               fore_green :  u16,
                               fore_blue :  u16,
                               back_red :  u16,
                               back_green :  u16,
-                              back_blue :  u16) -> void_cookie;
+                              back_blue :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -8682,7 +8679,7 @@ pub unsafe fn xcb_recolor_cursor (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_query_best_size (c : *connection,
+pub fn xcb_query_best_size (c : *mut ffi::base::connection,
                                class :  u8,
                                drawable :  drawable,
                                width :  u16,
@@ -8699,7 +8696,7 @@ pub unsafe fn xcb_query_best_size (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_query_best_size_unchecked (c : *connection,
+pub fn xcb_query_best_size_unchecked (c : *mut ffi::base::connection,
                                          class :  u8,
                                          drawable :  drawable,
                                          width :  u16,
@@ -8719,11 +8716,11 @@ pub unsafe fn xcb_query_best_size_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_query_best_size_reply (c : *connection,
+pub fn xcb_query_best_size_reply (c : *mut ffi::base::connection,
                                      cookie : query_best_size_cookie,
-                                     e : **generic_error) -> *query_best_size_reply;
+                                     e : *mut *mut ffi::base::generic_error) -> *mut query_best_size_reply;
 
-pub unsafe fn xcb_query_extension_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_query_extension_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * check if extension is present
@@ -8745,9 +8742,9 @@ pub unsafe fn xcb_query_extension_sizeof (_buffer :  *c_void) -> c_int;
  * `xcb_get_extension_data` function instead.
  * 
  */
-pub unsafe fn xcb_query_extension (c : *connection,
+pub fn xcb_query_extension (c : *mut ffi::base::connection,
                                name_len :  u16,
-                               name : *c_char) -> query_extension_cookie;
+                               name : *mut c_char) -> query_extension_cookie;
 
 /**
  * check if extension is present
@@ -8772,9 +8769,9 @@ pub unsafe fn xcb_query_extension (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_query_extension_unchecked (c : *connection,
+pub fn xcb_query_extension_unchecked (c : *mut ffi::base::connection,
                                          name_len :  u16,
-                                         name : *c_char) -> query_extension_cookie;
+                                         name : *mut c_char) -> query_extension_cookie;
 
 /**
  * Return the reply
@@ -8790,11 +8787,11 @@ pub unsafe fn xcb_query_extension_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_query_extension_reply (c : *connection,
+pub fn xcb_query_extension_reply (c : *mut ffi::base::connection,
                                      cookie : query_extension_cookie,
-                                     e : **generic_error) -> *query_extension_reply;
+                                     e : *mut *mut ffi::base::generic_error) -> *mut query_extension_reply;
 
-pub unsafe fn xcb_list_extensions_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_list_extensions_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -8804,7 +8801,7 @@ pub unsafe fn xcb_list_extensions_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_list_extensions (c : *connection) -> list_extensions_cookie;
+pub fn xcb_list_extensions (c : *mut ffi::base::connection) -> list_extensions_cookie;
 
 /**
  *
@@ -8817,12 +8814,12 @@ pub unsafe fn xcb_list_extensions (c : *connection) -> list_extensions_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_list_extensions_unchecked (c : *connection) -> list_extensions_cookie;
+pub fn xcb_list_extensions_unchecked (c : *mut ffi::base::connection) -> list_extensions_cookie;
 
 
-pub unsafe fn xcb_list_extensions_names_length (R : *list_extensions_reply) -> c_int;
+pub fn xcb_list_extensions_names_length (R : *mut list_extensions_reply) -> c_int;
 
-pub unsafe fn xcb_list_extensions_names_iterator (R : *list_extensions_reply) -> str_iterator;
+pub fn xcb_list_extensions_names_iterator (R : *mut list_extensions_reply) -> str_iterator;
 
 /**
  * Return the reply
@@ -8838,11 +8835,11 @@ pub unsafe fn xcb_list_extensions_names_iterator (R : *list_extensions_reply) ->
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_list_extensions_reply (c : *connection,
+pub fn xcb_list_extensions_reply (c : *mut ffi::base::connection,
                                      cookie : list_extensions_cookie,
-                                     e : **generic_error) -> *list_extensions_reply;
+                                     e : *mut *mut ffi::base::generic_error) -> *mut list_extensions_reply;
 
-pub unsafe fn xcb_change_keyboard_mapping_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_change_keyboard_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -8855,11 +8852,11 @@ pub unsafe fn xcb_change_keyboard_mapping_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_change_keyboard_mapping_checked (c : *connection,
+pub fn xcb_change_keyboard_mapping_checked (c : *mut ffi::base::connection,
                                                keycode_count :  u8,
                                                first_keycode :  keycode,
                                                keysyms_per_keycode :  u8,
-                                               keysyms : *keysym) -> void_cookie;
+                                               keysyms : *mut keysym) -> ffi::base::void_cookie;
 
 /**
  *
@@ -8869,13 +8866,13 @@ pub unsafe fn xcb_change_keyboard_mapping_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_change_keyboard_mapping (c : *connection,
+pub fn xcb_change_keyboard_mapping (c : *mut ffi::base::connection,
                                        keycode_count :  u8,
                                        first_keycode :  keycode,
                                        keysyms_per_keycode :  u8,
-                                       keysyms : *keysym) -> void_cookie;
+                                       keysyms : *mut keysym) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_get_keyboard_mapping_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_get_keyboard_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -8885,7 +8882,7 @@ pub unsafe fn xcb_get_keyboard_mapping_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_get_keyboard_mapping (c : *connection,
+pub fn xcb_get_keyboard_mapping (c : *mut ffi::base::connection,
                                     first_keycode :  keycode,
                                     count :  u8) -> get_keyboard_mapping_cookie;
 
@@ -8900,17 +8897,17 @@ pub unsafe fn xcb_get_keyboard_mapping (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_keyboard_mapping_unchecked (c : *connection,
+pub fn xcb_get_keyboard_mapping_unchecked (c : *mut ffi::base::connection,
                                               first_keycode :  keycode,
                                               count :  u8) -> get_keyboard_mapping_cookie;
 
-pub unsafe fn xcb_get_keyboard_mapping_keysyms (R : *get_keyboard_mapping_reply) -> *keysym;
+pub fn xcb_get_keyboard_mapping_keysyms (R : *mut get_keyboard_mapping_reply) -> *mut keysym;
 
 
-pub unsafe fn xcb_get_keyboard_mapping_keysyms_length (R : *get_keyboard_mapping_reply) -> c_int;
+pub fn xcb_get_keyboard_mapping_keysyms_length (R : *mut get_keyboard_mapping_reply) -> c_int;
 
 
-pub unsafe fn xcb_get_keyboard_mapping_keysyms_end (R : *get_keyboard_mapping_reply) -> generic_iterator;
+pub fn xcb_get_keyboard_mapping_keysyms_end (R : *mut get_keyboard_mapping_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -8926,11 +8923,11 @@ pub unsafe fn xcb_get_keyboard_mapping_keysyms_end (R : *get_keyboard_mapping_re
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_keyboard_mapping_reply (c : *connection,
+pub fn xcb_get_keyboard_mapping_reply (c : *mut ffi::base::connection,
                                           cookie : get_keyboard_mapping_cookie,
-                                          e : **generic_error) -> *get_keyboard_mapping_reply;
+                                          e : *mut *mut ffi::base::generic_error) -> *mut get_keyboard_mapping_reply;
 
-pub unsafe fn xcb_change_keyboard_control_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_change_keyboard_control_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -8943,9 +8940,9 @@ pub unsafe fn xcb_change_keyboard_control_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_change_keyboard_control_checked (c : *connection,
+pub fn xcb_change_keyboard_control_checked (c : *mut ffi::base::connection,
                                                value_mask :  u32,
-                                               value_list : *u32) -> void_cookie;
+                                               value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -8955,9 +8952,9 @@ pub unsafe fn xcb_change_keyboard_control_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_change_keyboard_control (c : *connection,
+pub fn xcb_change_keyboard_control (c : *mut ffi::base::connection,
                                        value_mask :  u32,
-                                       value_list : *u32) -> void_cookie;
+                                       value_list : *mut u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -8967,7 +8964,7 @@ pub unsafe fn xcb_change_keyboard_control (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_get_keyboard_control (c : *connection) -> get_keyboard_control_cookie;
+pub fn xcb_get_keyboard_control (c : *mut ffi::base::connection) -> get_keyboard_control_cookie;
 
 /**
  *
@@ -8980,7 +8977,7 @@ pub unsafe fn xcb_get_keyboard_control (c : *connection) -> get_keyboard_control
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_keyboard_control_unchecked (c : *connection) -> get_keyboard_control_cookie;
+pub fn xcb_get_keyboard_control_unchecked (c : *mut ffi::base::connection) -> get_keyboard_control_cookie;
 
 /**
  * Return the reply
@@ -8996,9 +8993,9 @@ pub unsafe fn xcb_get_keyboard_control_unchecked (c : *connection) -> get_keyboa
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_keyboard_control_reply (c : *connection,
+pub fn xcb_get_keyboard_control_reply (c : *mut ffi::base::connection,
                                           cookie : get_keyboard_control_cookie,
-                                          e : **generic_error) -> *get_keyboard_control_reply;
+                                          e : *mut *mut ffi::base::generic_error) -> *mut get_keyboard_control_reply;
 
 /**
  *
@@ -9011,8 +9008,8 @@ pub unsafe fn xcb_get_keyboard_control_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_bell_checked (c : *connection,
-                            percent :  i8) -> void_cookie;
+pub fn xcb_bell_checked (c : *mut ffi::base::connection,
+                            percent :  i8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9022,8 +9019,8 @@ pub unsafe fn xcb_bell_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_bell (c : *connection,
-                    percent :  i8) -> void_cookie;
+pub fn xcb_bell (c : *mut ffi::base::connection,
+                    percent :  i8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9036,12 +9033,12 @@ pub unsafe fn xcb_bell (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_change_pointer_control_checked (c : *connection,
+pub fn xcb_change_pointer_control_checked (c : *mut ffi::base::connection,
                                               acceleration_numerator :  i16,
                                               acceleration_denominator :  i16,
                                               threshold :  i16,
                                               do_acceleration :  u8,
-                                              do_threshold :  u8) -> void_cookie;
+                                              do_threshold :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9051,12 +9048,12 @@ pub unsafe fn xcb_change_pointer_control_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_change_pointer_control (c : *connection,
+pub fn xcb_change_pointer_control (c : *mut ffi::base::connection,
                                       acceleration_numerator :  i16,
                                       acceleration_denominator :  i16,
                                       threshold :  i16,
                                       do_acceleration :  u8,
-                                      do_threshold :  u8) -> void_cookie;
+                                      do_threshold :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9066,7 +9063,7 @@ pub unsafe fn xcb_change_pointer_control (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_get_pointer_control (c : *connection) -> get_pointer_control_cookie;
+pub fn xcb_get_pointer_control (c : *mut ffi::base::connection) -> get_pointer_control_cookie;
 
 /**
  *
@@ -9079,7 +9076,7 @@ pub unsafe fn xcb_get_pointer_control (c : *connection) -> get_pointer_control_c
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_pointer_control_unchecked (c : *connection) -> get_pointer_control_cookie;
+pub fn xcb_get_pointer_control_unchecked (c : *mut ffi::base::connection) -> get_pointer_control_cookie;
 
 /**
  * Return the reply
@@ -9095,9 +9092,9 @@ pub unsafe fn xcb_get_pointer_control_unchecked (c : *connection) -> get_pointer
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_pointer_control_reply (c : *connection,
+pub fn xcb_get_pointer_control_reply (c : *mut ffi::base::connection,
                                          cookie : get_pointer_control_cookie,
-                                         e : **generic_error) -> *get_pointer_control_reply;
+                                         e : *mut *mut ffi::base::generic_error) -> *mut get_pointer_control_reply;
 
 /**
  *
@@ -9110,11 +9107,11 @@ pub unsafe fn xcb_get_pointer_control_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_set_screen_saver_checked (c : *connection,
+pub fn xcb_set_screen_saver_checked (c : *mut ffi::base::connection,
                                         timeout :  i16,
                                         interval :  i16,
                                         prefer_blanking :  u8,
-                                        allow_exposures :  u8) -> void_cookie;
+                                        allow_exposures :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9124,11 +9121,11 @@ pub unsafe fn xcb_set_screen_saver_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_set_screen_saver (c : *connection,
+pub fn xcb_set_screen_saver (c : *mut ffi::base::connection,
                                 timeout :  i16,
                                 interval :  i16,
                                 prefer_blanking :  u8,
-                                allow_exposures :  u8) -> void_cookie;
+                                allow_exposures :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9138,7 +9135,7 @@ pub unsafe fn xcb_set_screen_saver (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_get_screen_saver (c : *connection) -> get_screen_saver_cookie;
+pub fn xcb_get_screen_saver (c : *mut ffi::base::connection) -> get_screen_saver_cookie;
 
 /**
  *
@@ -9151,7 +9148,7 @@ pub unsafe fn xcb_get_screen_saver (c : *connection) -> get_screen_saver_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_screen_saver_unchecked (c : *connection) -> get_screen_saver_cookie;
+pub fn xcb_get_screen_saver_unchecked (c : *mut ffi::base::connection) -> get_screen_saver_cookie;
 
 /**
  * Return the reply
@@ -9167,11 +9164,11 @@ pub unsafe fn xcb_get_screen_saver_unchecked (c : *connection) -> get_screen_sav
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_screen_saver_reply (c : *connection,
+pub fn xcb_get_screen_saver_reply (c : *mut ffi::base::connection,
                                       cookie : get_screen_saver_cookie,
-                                      e : **generic_error) -> *get_screen_saver_reply;
+                                      e : *mut *mut ffi::base::generic_error) -> *mut get_screen_saver_reply;
 
-pub unsafe fn xcb_change_hosts_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_change_hosts_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -9184,11 +9181,11 @@ pub unsafe fn xcb_change_hosts_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_change_hosts_checked (c : *connection,
+pub fn xcb_change_hosts_checked (c : *mut ffi::base::connection,
                                     mode :  u8,
                                     family :  u8,
                                     address_len :  u16,
-                                    address : *u8) -> void_cookie;
+                                    address : *mut u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9198,21 +9195,21 @@ pub unsafe fn xcb_change_hosts_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_change_hosts (c : *connection,
+pub fn xcb_change_hosts (c : *mut ffi::base::connection,
                             mode :  u8,
                             family :  u8,
                             address_len :  u16,
-                            address : *u8) -> void_cookie;
+                            address : *mut u8) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_host_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_host_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_host_address (R : *host) -> *u8;
-
-
-pub unsafe fn xcb_host_address_length (R : *host) -> c_int;
+pub fn xcb_host_address (R : *mut host) -> *mut u8;
 
 
-pub unsafe fn xcb_host_address_end (R : *host) -> generic_iterator;
+pub fn xcb_host_address_length (R : *mut host) -> c_int;
+
+
+pub fn xcb_host_address_end (R : *mut host) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -9224,7 +9221,7 @@ pub unsafe fn xcb_host_address_end (R : *host) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_host_next (i:*host_iterator) -> c_void;
+pub fn xcb_host_next (i:*mut host_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -9235,9 +9232,9 @@ pub unsafe fn xcb_host_next (i:*host_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_host_end (i:host_iterator) -> generic_iterator;
+pub fn xcb_host_end (i:host_iterator) -> ffi::base::generic_iterator;
 
-pub unsafe fn xcb_list_hosts_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_list_hosts_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -9247,7 +9244,7 @@ pub unsafe fn xcb_list_hosts_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_list_hosts (c : *connection) -> list_hosts_cookie;
+pub fn xcb_list_hosts (c : *mut ffi::base::connection) -> list_hosts_cookie;
 
 /**
  *
@@ -9260,12 +9257,12 @@ pub unsafe fn xcb_list_hosts (c : *connection) -> list_hosts_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_list_hosts_unchecked (c : *connection) -> list_hosts_cookie;
+pub fn xcb_list_hosts_unchecked (c : *mut ffi::base::connection) -> list_hosts_cookie;
 
 
-pub unsafe fn xcb_list_hosts_hosts_length (R : *list_hosts_reply) -> c_int;
+pub fn xcb_list_hosts_hosts_length (R : *mut list_hosts_reply) -> c_int;
 
-pub unsafe fn xcb_list_hosts_hosts_iterator (R : *list_hosts_reply) -> host_iterator;
+pub fn xcb_list_hosts_hosts_iterator (R : *mut list_hosts_reply) -> host_iterator;
 
 /**
  * Return the reply
@@ -9281,9 +9278,9 @@ pub unsafe fn xcb_list_hosts_hosts_iterator (R : *list_hosts_reply) -> host_iter
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_list_hosts_reply (c : *connection,
+pub fn xcb_list_hosts_reply (c : *mut ffi::base::connection,
                                 cookie : list_hosts_cookie,
-                                e : **generic_error) -> *list_hosts_reply;
+                                e : *mut *mut ffi::base::generic_error) -> *mut list_hosts_reply;
 
 /**
  *
@@ -9296,8 +9293,8 @@ pub unsafe fn xcb_list_hosts_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_set_access_control_checked (c : *connection,
-                                          mode :  u8) -> void_cookie;
+pub fn xcb_set_access_control_checked (c : *mut ffi::base::connection,
+                                          mode :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9307,8 +9304,8 @@ pub unsafe fn xcb_set_access_control_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_set_access_control (c : *connection,
-                                  mode :  u8) -> void_cookie;
+pub fn xcb_set_access_control (c : *mut ffi::base::connection,
+                                  mode :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9321,8 +9318,8 @@ pub unsafe fn xcb_set_access_control (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_set_close_down_mode_checked (c : *connection,
-                                           mode :  u8) -> void_cookie;
+pub fn xcb_set_close_down_mode_checked (c : *mut ffi::base::connection,
+                                           mode :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9332,8 +9329,8 @@ pub unsafe fn xcb_set_close_down_mode_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_set_close_down_mode (c : *connection,
-                                   mode :  u8) -> void_cookie;
+pub fn xcb_set_close_down_mode (c : *mut ffi::base::connection,
+                                   mode :  u8) -> ffi::base::void_cookie;
 
 /**
  * kills a client
@@ -9352,8 +9349,8 @@ pub unsafe fn xcb_set_close_down_mode (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_kill_client_checked (c : *connection,
-                                   resource :  u32) -> void_cookie;
+pub fn xcb_kill_client_checked (c : *mut ffi::base::connection,
+                                   resource :  u32) -> ffi::base::void_cookie;
 
 /**
  * kills a client
@@ -9369,10 +9366,10 @@ pub unsafe fn xcb_kill_client_checked (c : *connection,
  * Forces a close down of the client that created the specified \a resource.
  * 
  */
-pub unsafe fn xcb_kill_client (c : *connection,
-                           resource :  u32) -> void_cookie;
+pub fn xcb_kill_client (c : *mut ffi::base::connection,
+                           resource :  u32) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_rotate_properties_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_rotate_properties_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -9385,11 +9382,11 @@ pub unsafe fn xcb_rotate_properties_sizeof (_buffer :  *c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_rotate_properties_checked (c : *connection,
+pub fn xcb_rotate_properties_checked (c : *mut ffi::base::connection,
                                          window :  window,
                                          atoms_len :  u16,
                                          delta :  i16,
-                                         atoms : *atom) -> void_cookie;
+                                         atoms : *mut atom) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9399,11 +9396,11 @@ pub unsafe fn xcb_rotate_properties_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_rotate_properties (c : *connection,
+pub fn xcb_rotate_properties (c : *mut ffi::base::connection,
                                  window :  window,
                                  atoms_len :  u16,
                                  delta :  i16,
-                                 atoms : *atom) -> void_cookie;
+                                 atoms : *mut atom) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9416,8 +9413,8 @@ pub unsafe fn xcb_rotate_properties (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_force_screen_saver_checked (c : *connection,
-                                          mode :  u8) -> void_cookie;
+pub fn xcb_force_screen_saver_checked (c : *mut ffi::base::connection,
+                                          mode :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9427,10 +9424,10 @@ pub unsafe fn xcb_force_screen_saver_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_force_screen_saver (c : *connection,
-                                  mode :  u8) -> void_cookie;
+pub fn xcb_force_screen_saver (c : *mut ffi::base::connection,
+                                  mode :  u8) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_set_pointer_mapping_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_set_pointer_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -9440,9 +9437,9 @@ pub unsafe fn xcb_set_pointer_mapping_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_set_pointer_mapping (c : *connection,
+pub fn xcb_set_pointer_mapping (c : *mut ffi::base::connection,
                                    map_len :  u8,
-                                   map : *u8) -> set_pointer_mapping_cookie;
+                                   map : *mut u8) -> set_pointer_mapping_cookie;
 
 /**
  *
@@ -9455,9 +9452,9 @@ pub unsafe fn xcb_set_pointer_mapping (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_set_pointer_mapping_unchecked (c : *connection,
+pub fn xcb_set_pointer_mapping_unchecked (c : *mut ffi::base::connection,
                                              map_len :  u8,
-                                             map : *u8) -> set_pointer_mapping_cookie;
+                                             map : *mut u8) -> set_pointer_mapping_cookie;
 
 /**
  * Return the reply
@@ -9473,11 +9470,11 @@ pub unsafe fn xcb_set_pointer_mapping_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_set_pointer_mapping_reply (c : *connection,
+pub fn xcb_set_pointer_mapping_reply (c : *mut ffi::base::connection,
                                          cookie : set_pointer_mapping_cookie,
-                                         e : **generic_error) -> *set_pointer_mapping_reply;
+                                         e : *mut *mut ffi::base::generic_error) -> *mut set_pointer_mapping_reply;
 
-pub unsafe fn xcb_get_pointer_mapping_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_get_pointer_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -9487,7 +9484,7 @@ pub unsafe fn xcb_get_pointer_mapping_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_get_pointer_mapping (c : *connection) -> get_pointer_mapping_cookie;
+pub fn xcb_get_pointer_mapping (c : *mut ffi::base::connection) -> get_pointer_mapping_cookie;
 
 /**
  *
@@ -9500,15 +9497,15 @@ pub unsafe fn xcb_get_pointer_mapping (c : *connection) -> get_pointer_mapping_c
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_pointer_mapping_unchecked (c : *connection) -> get_pointer_mapping_cookie;
+pub fn xcb_get_pointer_mapping_unchecked (c : *mut ffi::base::connection) -> get_pointer_mapping_cookie;
 
-pub unsafe fn xcb_get_pointer_mapping_map (R : *get_pointer_mapping_reply) -> *u8;
-
-
-pub unsafe fn xcb_get_pointer_mapping_map_length (R : *get_pointer_mapping_reply) -> c_int;
+pub fn xcb_get_pointer_mapping_map (R : *mut get_pointer_mapping_reply) -> *mut u8;
 
 
-pub unsafe fn xcb_get_pointer_mapping_map_end (R : *get_pointer_mapping_reply) -> generic_iterator;
+pub fn xcb_get_pointer_mapping_map_length (R : *mut get_pointer_mapping_reply) -> c_int;
+
+
+pub fn xcb_get_pointer_mapping_map_end (R : *mut get_pointer_mapping_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -9524,11 +9521,11 @@ pub unsafe fn xcb_get_pointer_mapping_map_end (R : *get_pointer_mapping_reply) -
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_pointer_mapping_reply (c : *connection,
+pub fn xcb_get_pointer_mapping_reply (c : *mut ffi::base::connection,
                                          cookie : get_pointer_mapping_cookie,
-                                         e : **generic_error) -> *get_pointer_mapping_reply;
+                                         e : *mut *mut ffi::base::generic_error) -> *mut get_pointer_mapping_reply;
 
-pub unsafe fn xcb_set_modifier_mapping_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_set_modifier_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -9538,9 +9535,9 @@ pub unsafe fn xcb_set_modifier_mapping_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_set_modifier_mapping (c : *connection,
+pub fn xcb_set_modifier_mapping (c : *mut ffi::base::connection,
                                     keycodes_per_modifier :  u8,
-                                    keycodes : *keycode) -> set_modifier_mapping_cookie;
+                                    keycodes : *mut keycode) -> set_modifier_mapping_cookie;
 
 /**
  *
@@ -9553,9 +9550,9 @@ pub unsafe fn xcb_set_modifier_mapping (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_set_modifier_mapping_unchecked (c : *connection,
+pub fn xcb_set_modifier_mapping_unchecked (c : *mut ffi::base::connection,
                                               keycodes_per_modifier :  u8,
-                                              keycodes : *keycode) -> set_modifier_mapping_cookie;
+                                              keycodes : *mut keycode) -> set_modifier_mapping_cookie;
 
 /**
  * Return the reply
@@ -9571,11 +9568,11 @@ pub unsafe fn xcb_set_modifier_mapping_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_set_modifier_mapping_reply (c : *connection,
+pub fn xcb_set_modifier_mapping_reply (c : *mut ffi::base::connection,
                                           cookie : set_modifier_mapping_cookie,
-                                          e : **generic_error) -> *set_modifier_mapping_reply;
+                                          e : *mut *mut ffi::base::generic_error) -> *mut set_modifier_mapping_reply;
 
-pub unsafe fn xcb_get_modifier_mapping_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_get_modifier_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -9585,7 +9582,7 @@ pub unsafe fn xcb_get_modifier_mapping_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_get_modifier_mapping (c : *connection) -> get_modifier_mapping_cookie;
+pub fn xcb_get_modifier_mapping (c : *mut ffi::base::connection) -> get_modifier_mapping_cookie;
 
 /**
  *
@@ -9598,15 +9595,15 @@ pub unsafe fn xcb_get_modifier_mapping (c : *connection) -> get_modifier_mapping
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_get_modifier_mapping_unchecked (c : *connection) -> get_modifier_mapping_cookie;
+pub fn xcb_get_modifier_mapping_unchecked (c : *mut ffi::base::connection) -> get_modifier_mapping_cookie;
 
-pub unsafe fn xcb_get_modifier_mapping_keycodes (R : *get_modifier_mapping_reply) -> *keycode;
-
-
-pub unsafe fn xcb_get_modifier_mapping_keycodes_length (R : *get_modifier_mapping_reply) -> c_int;
+pub fn xcb_get_modifier_mapping_keycodes (R : *mut get_modifier_mapping_reply) -> *mut keycode;
 
 
-pub unsafe fn xcb_get_modifier_mapping_keycodes_end (R : *get_modifier_mapping_reply) -> generic_iterator;
+pub fn xcb_get_modifier_mapping_keycodes_length (R : *mut get_modifier_mapping_reply) -> c_int;
+
+
+pub fn xcb_get_modifier_mapping_keycodes_end (R : *mut get_modifier_mapping_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -9622,9 +9619,9 @@ pub unsafe fn xcb_get_modifier_mapping_keycodes_end (R : *get_modifier_mapping_r
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_get_modifier_mapping_reply (c : *connection,
+pub fn xcb_get_modifier_mapping_reply (c : *mut ffi::base::connection,
                                           cookie : get_modifier_mapping_cookie,
-                                          e : **generic_error) -> *get_modifier_mapping_reply;
+                                          e : *mut *mut ffi::base::generic_error) -> *mut get_modifier_mapping_reply;
 
 /**
  *
@@ -9637,7 +9634,7 @@ pub unsafe fn xcb_get_modifier_mapping_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_no_operation_checked (c : *connection) -> void_cookie;
+pub fn xcb_no_operation_checked (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
 
 /**
  *
@@ -9647,6 +9644,6 @@ pub unsafe fn xcb_no_operation_checked (c : *connection) -> void_cookie;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_no_operation (c : *connection) -> void_cookie;
+pub fn xcb_no_operation (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
 }
 

@@ -2,3 +2,5 @@
 *.so
 .*.sw*
 *.pyc
+target
+Cargo.lock

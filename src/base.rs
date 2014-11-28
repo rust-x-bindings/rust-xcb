@@ -27,46 +27,49 @@ DEALINGS IN THE SOFTWARE.
 
 */
 
-extern mod extra;
+//extern crate extra;
+extern crate libc;
 
+// I don't know enough about the module system to figure out why I can't
+// globally export the base module and see it here.
+use ffi;
 use ffi::base::*;
 
-use std::cast;
-use std::libc::{c_int,free};
+use libc::{c_int,c_char,free};
 use std::option::Option;
 
-use std::{num,ptr,vec,libc,str};
+use std::{num,ptr,vec,str,mem};
 use std::num::*;
 
 use xproto;
 
 pub struct Connection {
-    priv c : *connection
+    c : *mut connection
 }
 
-impl<'self> Connection {
+impl<'s> Connection {
     #[inline]
     pub fn flush(&self) -> bool {
         unsafe {
-            xcb_flush(self.c) > 0
+            ffi::base::xcb_flush(self.c) > 0
         }
     }
 
     #[inline]
     pub fn get_maximum_request_length(&self) -> u32 {
         unsafe {
-            xcb_get_maximum_request_length(self.c)
+            ffi::base::xcb_get_maximum_request_length(self.c)
         }
     }
 
     #[inline]
     pub fn wait_for_event(&self) -> Option<GenericEvent> {
         unsafe {
-            let event = xcb_wait_for_event(self.c);
-            if ptr::is_null(event) {
+            let event = ffi::base::xcb_wait_for_event(self.c);
+            if event.is_null() {
                 None
             } else {
-                Some(Event {event:event})
+                Some(GenericEvent { base: Event {event:event}})
             }
         }
     }
@@ -74,11 +77,11 @@ impl<'self> Connection {
     #[inline]
     pub fn poll_for_event(&self) -> Option<GenericEvent> {
         unsafe {
-            let event = xcb_poll_for_event(self.c);
-            if ptr::is_null(event) {
+            let event = ffi::base::xcb_poll_for_event(self.c);
+            if event.is_null() {
                 None
             } else {
-                Some(Event {event:event})
+                Some(GenericEvent { base: Event {event:event}})
             }
         }
     }
@@ -86,23 +89,23 @@ impl<'self> Connection {
     #[inline]
     pub fn poll_for_queued_event(&self) -> Option<GenericEvent> {
         unsafe {
-            let event = xcb_poll_for_queued_event(self.c);
-            if ptr::is_null(event) {
+            let event = ffi::base::xcb_poll_for_queued_event(self.c);
+            if event.is_null() {
                 None
             } else {
-                Some(Event {event:event})
+                Some(GenericEvent { base : Event {event:event}})
             }
         }
     }
 
     #[inline]
-    pub fn get_setup(&self) -> &'self xproto::Setup {
+    pub fn get_setup(&self) -> xproto::Setup {
         unsafe {
-            let setup = xcb_get_setup(self.c);
-            if ptr::is_null(setup) {
-                fail!(~"NULL setup on connection")
+            let setup = ffi::base::xcb_get_setup(self.c);
+            if setup.is_null() {
+                fail!("NULL setup on connection")
             } else {
-                cast::transmute(setup)
+               xproto::Setup { base : Struct { strct : *(setup as *mut ffi::xproto::setup) } }
             }
         }
     }
@@ -110,19 +113,19 @@ impl<'self> Connection {
     #[inline]
     pub fn has_error(&self) -> bool {
         unsafe {
-            xcb_connection_has_error(self.c) > 0
+            ffi::base::xcb_connection_has_error(self.c) > 0
         }
     }
 
     #[inline]
-    pub fn generate_id<T>(&self) -> T {
+    pub fn generate_id(&self) -> xproto::Window {
         unsafe {
-            cast::transmute(xcb_generate_id(self.c))
+            ffi::base::xcb_generate_id(self.c)
         }
     }
 
     #[inline]
-    pub unsafe fn get_raw_conn(&self) -> *connection {
+    pub unsafe fn get_raw_conn(&self) -> *mut connection {
         self.c
     }
 
@@ -131,23 +134,22 @@ impl<'self> Connection {
                   destination: xproto::Window,
                   event_mask : u32,
                   event : Event<T>) {
-        use ffi;
         unsafe {
         ffi::xproto::xcb_send_event(self.c,
             propogate as u8, destination as ffi::xproto::window,
-            event_mask, event.event as *libc::c_char);
+            event_mask, event.event as *mut c_char);
         }
     }
 
     #[inline]
     pub fn connect() -> (Connection, int) {
-        let screen : c_int = 0;
+        let mut screen : c_int = 0;
         unsafe {
-            let conn = xcb_connect(ptr::null(), &screen);
-            if ptr::is_null(conn) {
-                fail!(~"Couldn't connect")
+            let conn = ffi::base::xcb_connect(ptr::mut_null(), &mut screen);
+            if conn.is_null() {
+                fail!("Couldn't connect")
             } else {
-                xcb_prefetch_maximum_request_length(conn);
+                ffi::base::xcb_prefetch_maximum_request_length(conn);
                 (Connection {c:conn}, screen as int)
             }
         }
@@ -155,15 +157,16 @@ impl<'self> Connection {
 
     #[inline]
     pub fn connect_to_display(display:&str) -> Option<(Connection, int)> {
-        let screen : c_int = 0;
+        let mut screen : c_int = 0;
         unsafe {
-            let conn = do str::as_c_str(display) |s| {
-                xcb_connect(s as *u8, &screen)
+            let conn = {
+		let s = display.as_ptr();
+                ffi::base::xcb_connect(s as *mut u8, &mut screen)
             };
-            if ptr::is_null(conn) {
+            if conn.is_null() {
                 None
             } else {
-                xcb_prefetch_maximum_request_length(conn);
+                ffi::base::xcb_prefetch_maximum_request_length(conn);
                 Some((Connection {c:conn}, screen as int))
             }
         }
@@ -171,23 +174,24 @@ impl<'self> Connection {
 
     #[inline]
     pub fn connect_with_auth(display:&str, auth_info: &AuthInfo) -> Option<(Connection, int)> {
-        let screen : c_int = 0;
+        let mut screen : c_int = 0;
         unsafe {
-            let conn = do str::as_c_str(display) |s| {
-                xcb_connect_to_display_with_auth_info(s as *u8,
-                    cast::transmute(auth_info), &screen)
+            let conn = {
+		let s = display.as_ptr();
+                ffi::base::xcb_connect_to_display_with_auth_info(s as *mut u8,
+                    mem::transmute(auth_info), &mut screen)
             };
-            if ptr::is_null(conn) {
+            if conn.is_null() {
                 None
             } else {
-                xcb_prefetch_maximum_request_length(conn);
+                ffi::base::xcb_prefetch_maximum_request_length(conn);
                 Some((Connection {c:conn}, screen as int))
             }
         }
     }
 
-    pub unsafe fn from_raw_conn(conn:*connection) -> Connection {
-        if ptr::is_null(conn) {
+    pub unsafe fn from_raw_conn(conn:*mut connection) -> Connection {
+        if conn.is_null() {
             fail!("Cannot construct from null pointer");
         }
 
@@ -197,41 +201,41 @@ impl<'self> Connection {
 }
 
 impl Drop for Connection {
-    fn drop(&self) {
+    fn drop(&mut self) {
         unsafe {
-            xcb_disconnect(self.c);
+            ffi::base::xcb_disconnect(self.c);
         }
     }
 }
 
 pub struct Event<T> {
-    event:*T
+   pub event:*mut T
 }
 
 #[unsafe_destructor]
 impl<T> Drop for Event<T> {
-    fn drop(&self) {
-        use std::libc::c_void;
+    fn drop(&mut self) {
+        use libc::c_void;
         unsafe {
-            free(self.event as *c_void);
+            free(self.event as *mut c_void);
         }
     }
 }
 
 pub struct Error<T> {
-    error:*T
+    error:*mut T
 }
 
-pub fn mk_error<T>(err:*T) -> Error<T> {
+pub fn mk_error<T>(err:*mut T) -> Error<T> {
     Error {error:err}
 }
 
 #[unsafe_destructor]
 impl<T> Drop for Error<T> {
-    fn drop(&self) {
-        use std::libc::c_void;
+    fn drop(&mut self) {
+        use libc::c_void;
         unsafe {
-            free(self.error as *c_void);
+            free(self.error as *mut c_void);
         }
     }
 }
@@ -240,106 +244,104 @@ pub type AuthInfo = auth_info;
 //TODO: Implement wrapper functions for constructing auth_info
 
 pub struct Struct<T> {
-    strct: T
+    pub strct: T
 }
 
-pub struct Cookie<'self, T> {
-    cookie: T,
-    conn: &'self Connection,
-    checked: bool
+pub struct Cookie<'s, T> {
+    pub cookie: T,
+    pub conn: &'s Connection,
+    pub checked: bool
 }
 
 pub trait ReplyCookie<R> {
-    fn get_reply(&self) -> Result<Reply<R>, GenericError>;
+    fn get_reply(&self) -> Result<R, GenericError>;
 }
 
-impl<'self, T> Cookie<'self, T> {
+impl<'s, T> Cookie<'s, T> {
     pub fn request_check(&self) -> Option<GenericError> {
         unsafe {
             // Crazy pointer dance to get the right bit
             // of the struct
-            let c : *void_cookie = cast::transmute(&self.cookie);
-            let err = xcb_request_check(self.conn.c, *c);
-            if ptr::is_null(err) {
+            let c : *mut void_cookie = mem::transmute(&self.cookie);
+            let err = ffi::base::xcb_request_check(self.conn.c, *c);
+            if err.is_null() {
                 None
             } else {
-                Some(Error {error:err})
+                Some(GenericError{base: Error {error:err}})
             }
         }
     }
 }
 
 pub struct Reply<T> {
-    reply:*T
+    pub reply:*mut T
 }
 
-pub fn mk_reply<T>(reply:*T) -> Reply<T> {
+pub fn mk_reply<T>(reply:*mut T) -> Reply<T> {
     Reply {reply:reply}
 }
 
 #[unsafe_destructor]
 impl<T> Drop for Reply<T> {
-    fn drop(&self) {
-        use std::libc::c_void;
+    fn drop(&mut self) {
+        use libc::c_void;
         unsafe {
-            free(self.reply as *c_void);
+            free(self.reply as *mut c_void);
         }
     }
 }
 
-pub type GenericReply = Reply<generic_reply>;
-pub type GenericEvent = Event<generic_event>;
-pub type GenericError = Error<generic_error>;
-pub type VoidCookie<'self> = Cookie<'self, void_cookie>;
+pub struct GenericReply { pub base : Reply<generic_reply>}
+pub struct GenericEvent { pub base : Event<generic_event>}
+pub struct GenericError { pub base : Error<generic_error>}
+pub struct VoidCookie<'s> { pub base : Cookie<'s, void_cookie> }
 
 /**
  * Casts the generic event to the right event. Assumes that the given
  * event is really the correct type.
  */
 #[inline(always)]
-pub fn cast_event<'r, T>(event : &'r GenericEvent) -> &'r T {
+pub fn cast_event<'r, T>(event : &'r GenericEvent) -> &'r mut T {
     // This isn't very safe... but other options incur yet more overhead
     // that I really don't want to.
-    unsafe { cast::transmute(event) }
+    unsafe { mem::transmute(event) }
 }
 
 //Accessor methods for all Events
 pub trait EventUtil {
     #[inline(always)]
-    pub fn response_type(&self) -> u8;
+    fn response_type(&self) -> u8;
 }
 
 impl<T> EventUtil for Event<T> {
-    pub fn response_type(&self) -> u8 {
+    fn response_type(&self) -> u8 {
         unsafe {
-            let gev : *generic_event = cast::transmute(self.event);
+            let gev : *mut generic_event = mem::transmute(self.event);
             (*gev).response_type
         }
     }
 }
 
-pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &[(T,L)]) -> (T, ~[L]) {
-    let len = bf.len();
-
-    let sorted = extra::sort::merge_sort(bf, |a,b| {
+pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &mut Vec<(T,L)>) -> (T, Vec<L>) {    ;
+	bf.sort_by(|a,b| {
         let &(a, _) = a;
         let &(b, _) = b;
-        a < b});
-
+        if a < b { Less } else if a > b { Greater } else { Equal }       
+        });
+    
     let mut mask = 0u;
-    let mut list : ~[L] = vec::with_capacity(len);
+    let mut list : Vec<L> = Vec::new();
 
-
-    for sorted.iter().advance |el| {
+    for el in bf.iter() {
         let &(f, v) = el;
-        let fld = num::cast(f);
+        let fld= num::cast(f).unwrap();
         if (mask & fld) > 0 {
-            loop;
+            continue;
         } else {
             mask |= fld;
             list.push(v);
         }
     }
 
-    (num::cast(mask), list)
+    (num::cast(mask).unwrap(), list)
 }

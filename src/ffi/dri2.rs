@@ -4,13 +4,10 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 use std;
-use std::libc::*;
-use std::{cast,num,ptr,str,libc};
-use std::to_bytes::ToBytes;
-use ffi::base::*;
+use libc::*;
 use ffi;
 use ffi::xproto;
 
@@ -18,35 +15,35 @@ pub static DRI2_MAJOR_VERSION : c_uint = 1;
 pub static DRI2_MINOR_VERSION : c_uint = 4;
 
 pub struct dri2_buffer {
-    attachment :   u32,
-    name :         u32,
-    pitch :        u32,
-    cpp :          u32,
-    flags :        u32
+     pub attachment :   u32,
+     pub name :         u32,
+     pub pitch :        u32,
+     pub cpp :          u32,
+     pub flags :        u32
 }
 
 /**
  * @brief dri2_buffer_iterator
  **/
 pub struct dri2_buffer_iterator {
-    data : *dri2_buffer,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut dri2_buffer,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct attach_format {
-    attachment :   u32,
-    format :       u32
+     pub attachment :   u32,
+     pub format :       u32
 }
 
 /**
  * @brief attach_format_iterator
  **/
 pub struct attach_format_iterator {
-    data : *attach_format,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut attach_format,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -56,21 +53,21 @@ pub struct query_version_cookie {
 
 
 pub struct query_version_request {
-    major_opcode :    u8,
-    minor_opcode :    u8,
-    length :          u16,
-    major_version :   u32,
-    minor_version :   u32
+     pub major_opcode :    u8,
+     pub minor_opcode :    u8,
+     pub length :          u16,
+     pub major_version :   u32,
+     pub minor_version :   u32
 }
 
 
 pub struct query_version_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    major_version :   u32,
-    minor_version :   u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub major_version :   u32,
+     pub minor_version :   u32
 }
 
 
@@ -80,22 +77,22 @@ pub struct connect_cookie {
 
 
 pub struct connect_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window,
-    driver_type :    u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window,
+     pub driver_type :    u32
 }
 
 
 pub struct connect_reply {
-    response_type :        u8,
-    pad0 :                 u8,
-    sequence :             u16,
-    length :               u32,
-    driver_name_length :   u32,
-    device_name_length :   u32,
-    pad1 :                 [u8,..16]
+     pub response_type :        u8,
+     pub pad0 :                 u8,
+     pub sequence :             u16,
+     pub length :               u32,
+     pub driver_name_length :   u32,
+     pub device_name_length :   u32,
+     pub pad1 :                 [u8,..16]
 }
 
 
@@ -105,38 +102,38 @@ pub struct authenticate_cookie {
 
 
 pub struct authenticate_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window,
-    magic :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window,
+     pub magic :          u32
 }
 
 
 pub struct authenticate_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    authenticated :   u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub authenticated :   u32
 }
 
 
 
 pub struct create_drawable_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       ffi::xproto::drawable
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       ffi::xproto::drawable
 }
 
 
 
 pub struct destroy_drawable_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       ffi::xproto::drawable
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       ffi::xproto::drawable
 }
 
 
@@ -146,23 +143,23 @@ pub struct get_buffers_cookie {
 
 
 pub struct get_buffers_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       ffi::xproto::drawable,
-    count :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       ffi::xproto::drawable,
+     pub count :          u32
 }
 
 
 pub struct get_buffers_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    width :           u32,
-    height :          u32,
-    count :           u32,
-    pad1 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub width :           u32,
+     pub height :          u32,
+     pub count :           u32,
+     pub pad1 :            [u8,..12]
 }
 
 
@@ -172,21 +169,21 @@ pub struct copy_region_cookie {
 
 
 pub struct copy_region_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       ffi::xproto::drawable,
-    region :         u32,
-    dest :           u32,
-    src :            u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       ffi::xproto::drawable,
+     pub region :         u32,
+     pub dest :           u32,
+     pub src :            u32
 }
 
 
 pub struct copy_region_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32
 }
 
 
@@ -196,23 +193,23 @@ pub struct get_buffers_with_format_cookie {
 
 
 pub struct get_buffers_with_format_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       ffi::xproto::drawable,
-    count :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       ffi::xproto::drawable,
+     pub count :          u32
 }
 
 
 pub struct get_buffers_with_format_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    width :           u32,
-    height :          u32,
-    count :           u32,
-    pad1 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub width :           u32,
+     pub height :          u32,
+     pub count :           u32,
+     pub pad1 :            [u8,..12]
 }
 
 
@@ -222,26 +219,26 @@ pub struct swap_buffers_cookie {
 
 
 pub struct swap_buffers_request {
-    major_opcode :    u8,
-    minor_opcode :    u8,
-    length :          u16,
-    drawable :        ffi::xproto::drawable,
-    target_msc_hi :   u32,
-    target_msc_lo :   u32,
-    divisor_hi :      u32,
-    divisor_lo :      u32,
-    remainder_hi :    u32,
-    remainder_lo :    u32
+     pub major_opcode :    u8,
+     pub minor_opcode :    u8,
+     pub length :          u16,
+     pub drawable :        ffi::xproto::drawable,
+     pub target_msc_hi :   u32,
+     pub target_msc_lo :   u32,
+     pub divisor_hi :      u32,
+     pub divisor_lo :      u32,
+     pub remainder_hi :    u32,
+     pub remainder_lo :    u32
 }
 
 
 pub struct swap_buffers_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    swap_hi :         u32,
-    swap_lo :         u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub swap_hi :         u32,
+     pub swap_lo :         u32
 }
 
 
@@ -251,24 +248,24 @@ pub struct get_msc_cookie {
 
 
 pub struct get_msc_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       ffi::xproto::drawable
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       ffi::xproto::drawable
 }
 
 
 pub struct get_msc_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    ust_hi :          u32,
-    ust_lo :          u32,
-    msc_hi :          u32,
-    msc_lo :          u32,
-    sbc_hi :          u32,
-    sbc_lo :          u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub ust_hi :          u32,
+     pub ust_lo :          u32,
+     pub msc_hi :          u32,
+     pub msc_lo :          u32,
+     pub sbc_hi :          u32,
+     pub sbc_lo :          u32
 }
 
 
@@ -278,30 +275,30 @@ pub struct wait_msc_cookie {
 
 
 pub struct wait_msc_request {
-    major_opcode :    u8,
-    minor_opcode :    u8,
-    length :          u16,
-    drawable :        ffi::xproto::drawable,
-    target_msc_hi :   u32,
-    target_msc_lo :   u32,
-    divisor_hi :      u32,
-    divisor_lo :      u32,
-    remainder_hi :    u32,
-    remainder_lo :    u32
+     pub major_opcode :    u8,
+     pub minor_opcode :    u8,
+     pub length :          u16,
+     pub drawable :        ffi::xproto::drawable,
+     pub target_msc_hi :   u32,
+     pub target_msc_lo :   u32,
+     pub divisor_hi :      u32,
+     pub divisor_lo :      u32,
+     pub remainder_hi :    u32,
+     pub remainder_lo :    u32
 }
 
 
 pub struct wait_msc_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    ust_hi :          u32,
-    ust_lo :          u32,
-    msc_hi :          u32,
-    msc_lo :          u32,
-    sbc_hi :          u32,
-    sbc_lo :          u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub ust_hi :          u32,
+     pub ust_lo :          u32,
+     pub msc_hi :          u32,
+     pub msc_lo :          u32,
+     pub sbc_hi :          u32,
+     pub sbc_lo :          u32
 }
 
 
@@ -311,36 +308,36 @@ pub struct wait_sbc_cookie {
 
 
 pub struct wait_sbc_request {
-    major_opcode :    u8,
-    minor_opcode :    u8,
-    length :          u16,
-    drawable :        ffi::xproto::drawable,
-    target_sbc_hi :   u32,
-    target_sbc_lo :   u32
+     pub major_opcode :    u8,
+     pub minor_opcode :    u8,
+     pub length :          u16,
+     pub drawable :        ffi::xproto::drawable,
+     pub target_sbc_hi :   u32,
+     pub target_sbc_lo :   u32
 }
 
 
 pub struct wait_sbc_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    ust_hi :          u32,
-    ust_lo :          u32,
-    msc_hi :          u32,
-    msc_lo :          u32,
-    sbc_hi :          u32,
-    sbc_lo :          u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub ust_hi :          u32,
+     pub ust_lo :          u32,
+     pub msc_hi :          u32,
+     pub msc_lo :          u32,
+     pub sbc_hi :          u32,
+     pub sbc_lo :          u32
 }
 
 
 
 pub struct swap_interval_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       ffi::xproto::drawable,
-    interval :       u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       ffi::xproto::drawable,
+     pub interval :       u32
 }
 
 
@@ -350,50 +347,50 @@ pub struct get_param_cookie {
 
 
 pub struct get_param_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       ffi::xproto::drawable,
-    param :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       ffi::xproto::drawable,
+     pub param :          u32
 }
 
 
 pub struct get_param_reply {
-    response_type :         u8,
-    is_param_recognized :   u8,
-    sequence :              u16,
-    length :                u32,
-    value_hi :              u32,
-    value_lo :              u32
+     pub response_type :         u8,
+     pub is_param_recognized :   u8,
+     pub sequence :              u16,
+     pub length :                u32,
+     pub value_hi :              u32,
+     pub value_lo :              u32
 }
 
 
 
 pub struct buffer_swap_complete_event {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    event_type :      u16,
-    pad1 :            [u8,..2],
-    drawable :        ffi::xproto::drawable,
-    ust_hi :          u32,
-    ust_lo :          u32,
-    msc_hi :          u32,
-    msc_lo :          u32,
-    sbc :             u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub event_type :      u16,
+     pub pad1 :            [u8,..2],
+     pub drawable :        ffi::xproto::drawable,
+     pub ust_hi :          u32,
+     pub ust_lo :          u32,
+     pub msc_hi :          u32,
+     pub msc_lo :          u32,
+     pub sbc :             u32
 }
 
 
 
 pub struct invalidate_buffers_event {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    drawable :        ffi::xproto::drawable
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub drawable :        ffi::xproto::drawable
 }
 
-#[link_args="-lxcb-dri2"]
-pub extern "C" {
+#[link(name="xcb-dri2")]
+extern "C" {
 
 /**
  * Get the next element of the iterator
@@ -405,7 +402,7 @@ pub extern "C" {
  *
  *
  */
-pub unsafe fn xcb_dri2_dri2_buffer_next (i:*dri2_buffer_iterator) -> c_void;
+pub fn xcb_dri2_dri2_buffer_next (i:*mut dri2_buffer_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -416,7 +413,7 @@ pub unsafe fn xcb_dri2_dri2_buffer_next (i:*dri2_buffer_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_dri2_dri2_buffer_end (i:dri2_buffer_iterator) -> generic_iterator;
+pub fn xcb_dri2_dri2_buffer_end (i:dri2_buffer_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -428,7 +425,7 @@ pub unsafe fn xcb_dri2_dri2_buffer_end (i:dri2_buffer_iterator) -> generic_itera
  *
  *
  */
-pub unsafe fn xcb_dri2_attach_format_next (i:*attach_format_iterator) -> c_void;
+pub fn xcb_dri2_attach_format_next (i:*mut attach_format_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -439,7 +436,7 @@ pub unsafe fn xcb_dri2_attach_format_next (i:*attach_format_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_dri2_attach_format_end (i:attach_format_iterator) -> generic_iterator;
+pub fn xcb_dri2_attach_format_end (i:attach_format_iterator) -> ffi::base::generic_iterator;
 
 /**
  *
@@ -449,7 +446,7 @@ pub unsafe fn xcb_dri2_attach_format_end (i:attach_format_iterator) -> generic_i
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dri2_query_version (c : *connection,
+pub fn xcb_dri2_query_version (c : *mut ffi::base::connection,
                                   major_version :  u32,
                                   minor_version :  u32) -> query_version_cookie;
 
@@ -464,7 +461,7 @@ pub unsafe fn xcb_dri2_query_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_dri2_query_version_unchecked (c : *connection,
+pub fn xcb_dri2_query_version_unchecked (c : *mut ffi::base::connection,
                                             major_version :  u32,
                                             minor_version :  u32) -> query_version_cookie;
 
@@ -482,11 +479,11 @@ pub unsafe fn xcb_dri2_query_version_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_dri2_query_version_reply (c : *connection,
+pub fn xcb_dri2_query_version_reply (c : *mut ffi::base::connection,
                                         cookie : query_version_cookie,
-                                        e : **generic_error) -> *query_version_reply;
+                                        e : *mut *mut ffi::base::generic_error) -> *mut query_version_reply;
 
-pub unsafe fn xcb_dri2_connect_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_dri2_connect_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -496,7 +493,7 @@ pub unsafe fn xcb_dri2_connect_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dri2_connect (c : *connection,
+pub fn xcb_dri2_connect (c : *mut ffi::base::connection,
                             window :  ffi::xproto::window,
                             driver_type :  u32) -> connect_cookie;
 
@@ -511,33 +508,33 @@ pub unsafe fn xcb_dri2_connect (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_dri2_connect_unchecked (c : *connection,
+pub fn xcb_dri2_connect_unchecked (c : *mut ffi::base::connection,
                                       window :  ffi::xproto::window,
                                       driver_type :  u32) -> connect_cookie;
 
-pub unsafe fn xcb_dri2_connect_driver_name (R : *connect_reply) -> *c_char;
+pub fn xcb_dri2_connect_driver_name (R : *mut connect_reply) -> *mut c_char;
 
 
-pub unsafe fn xcb_dri2_connect_driver_name_length (R : *connect_reply) -> c_int;
+pub fn xcb_dri2_connect_driver_name_length (R : *mut connect_reply) -> c_int;
 
 
-pub unsafe fn xcb_dri2_connect_driver_name_end (R : *connect_reply) -> generic_iterator;
+pub fn xcb_dri2_connect_driver_name_end (R : *mut connect_reply) -> ffi::base::generic_iterator;
 
-pub unsafe fn xcb_dri2_connect_alignment_pad (R : *connect_reply) -> *c_void;
-
-
-pub unsafe fn xcb_dri2_connect_alignment_pad_length (R : *connect_reply) -> c_int;
+pub fn xcb_dri2_connect_alignment_pad (R : *mut connect_reply) -> *mut c_void;
 
 
-pub unsafe fn xcb_dri2_connect_alignment_pad_end (R : *connect_reply) -> generic_iterator;
-
-pub unsafe fn xcb_dri2_connect_device_name (R : *connect_reply) -> *c_char;
+pub fn xcb_dri2_connect_alignment_pad_length (R : *mut connect_reply) -> c_int;
 
 
-pub unsafe fn xcb_dri2_connect_device_name_length (R : *connect_reply) -> c_int;
+pub fn xcb_dri2_connect_alignment_pad_end (R : *mut connect_reply) -> ffi::base::generic_iterator;
+
+pub fn xcb_dri2_connect_device_name (R : *mut connect_reply) -> *mut c_char;
 
 
-pub unsafe fn xcb_dri2_connect_device_name_end (R : *connect_reply) -> generic_iterator;
+pub fn xcb_dri2_connect_device_name_length (R : *mut connect_reply) -> c_int;
+
+
+pub fn xcb_dri2_connect_device_name_end (R : *mut connect_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -553,9 +550,9 @@ pub unsafe fn xcb_dri2_connect_device_name_end (R : *connect_reply) -> generic_i
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_dri2_connect_reply (c : *connection,
+pub fn xcb_dri2_connect_reply (c : *mut ffi::base::connection,
                                   cookie : connect_cookie,
-                                  e : **generic_error) -> *connect_reply;
+                                  e : *mut *mut ffi::base::generic_error) -> *mut connect_reply;
 
 /**
  *
@@ -565,7 +562,7 @@ pub unsafe fn xcb_dri2_connect_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dri2_authenticate (c : *connection,
+pub fn xcb_dri2_authenticate (c : *mut ffi::base::connection,
                                  window :  ffi::xproto::window,
                                  magic :  u32) -> authenticate_cookie;
 
@@ -580,7 +577,7 @@ pub unsafe fn xcb_dri2_authenticate (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_dri2_authenticate_unchecked (c : *connection,
+pub fn xcb_dri2_authenticate_unchecked (c : *mut ffi::base::connection,
                                            window :  ffi::xproto::window,
                                            magic :  u32) -> authenticate_cookie;
 
@@ -598,9 +595,9 @@ pub unsafe fn xcb_dri2_authenticate_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_dri2_authenticate_reply (c : *connection,
+pub fn xcb_dri2_authenticate_reply (c : *mut ffi::base::connection,
                                        cookie : authenticate_cookie,
-                                       e : **generic_error) -> *authenticate_reply;
+                                       e : *mut *mut ffi::base::generic_error) -> *mut authenticate_reply;
 
 /**
  *
@@ -613,8 +610,8 @@ pub unsafe fn xcb_dri2_authenticate_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_dri2_create_drawable_checked (c : *connection,
-                                            drawable :  ffi::xproto::drawable) -> void_cookie;
+pub fn xcb_dri2_create_drawable_checked (c : *mut ffi::base::connection,
+                                            drawable :  ffi::xproto::drawable) -> ffi::base::void_cookie;
 
 /**
  *
@@ -624,8 +621,8 @@ pub unsafe fn xcb_dri2_create_drawable_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dri2_create_drawable (c : *connection,
-                                    drawable :  ffi::xproto::drawable) -> void_cookie;
+pub fn xcb_dri2_create_drawable (c : *mut ffi::base::connection,
+                                    drawable :  ffi::xproto::drawable) -> ffi::base::void_cookie;
 
 /**
  *
@@ -638,8 +635,8 @@ pub unsafe fn xcb_dri2_create_drawable (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_dri2_destroy_drawable_checked (c : *connection,
-                                             drawable :  ffi::xproto::drawable) -> void_cookie;
+pub fn xcb_dri2_destroy_drawable_checked (c : *mut ffi::base::connection,
+                                             drawable :  ffi::xproto::drawable) -> ffi::base::void_cookie;
 
 /**
  *
@@ -649,10 +646,10 @@ pub unsafe fn xcb_dri2_destroy_drawable_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dri2_destroy_drawable (c : *connection,
-                                     drawable :  ffi::xproto::drawable) -> void_cookie;
+pub fn xcb_dri2_destroy_drawable (c : *mut ffi::base::connection,
+                                     drawable :  ffi::xproto::drawable) -> ffi::base::void_cookie;
 
-pub unsafe fn xcb_dri2_get_buffers_sizeof (_buffer :  *c_void,
+pub fn xcb_dri2_get_buffers_sizeof (_buffer :  *mut c_void,
                              attachments_len :  u32) -> c_int;
 
 /**
@@ -663,11 +660,11 @@ pub unsafe fn xcb_dri2_get_buffers_sizeof (_buffer :  *c_void,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dri2_get_buffers (c : *connection,
+pub fn xcb_dri2_get_buffers (c : *mut ffi::base::connection,
                                 drawable :  ffi::xproto::drawable,
                                 count :  u32,
                                 attachments_len :  u32,
-                                attachments : *u32) -> get_buffers_cookie;
+                                attachments : *mut u32) -> get_buffers_cookie;
 
 /**
  *
@@ -680,18 +677,18 @@ pub unsafe fn xcb_dri2_get_buffers (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_dri2_get_buffers_unchecked (c : *connection,
+pub fn xcb_dri2_get_buffers_unchecked (c : *mut ffi::base::connection,
                                           drawable :  ffi::xproto::drawable,
                                           count :  u32,
                                           attachments_len :  u32,
-                                          attachments : *u32) -> get_buffers_cookie;
+                                          attachments : *mut u32) -> get_buffers_cookie;
 
-pub unsafe fn xcb_dri2_get_buffers_buffers (R : *get_buffers_reply) -> *dri2_buffer;
+pub fn xcb_dri2_get_buffers_buffers (R : *mut get_buffers_reply) -> *mut dri2_buffer;
 
 
-pub unsafe fn xcb_dri2_get_buffers_buffers_length (R : *get_buffers_reply) -> c_int;
+pub fn xcb_dri2_get_buffers_buffers_length (R : *mut get_buffers_reply) -> c_int;
 
-pub unsafe fn xcb_dri2_get_buffers_buffers_iterator (R : *get_buffers_reply) -> dri2_buffer_iterator;
+pub fn xcb_dri2_get_buffers_buffers_iterator (R : *mut get_buffers_reply) -> dri2_buffer_iterator;
 
 /**
  * Return the reply
@@ -707,9 +704,9 @@ pub unsafe fn xcb_dri2_get_buffers_buffers_iterator (R : *get_buffers_reply) -> 
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_dri2_get_buffers_reply (c : *connection,
+pub fn xcb_dri2_get_buffers_reply (c : *mut ffi::base::connection,
                                       cookie : get_buffers_cookie,
-                                      e : **generic_error) -> *get_buffers_reply;
+                                      e : *mut *mut ffi::base::generic_error) -> *mut get_buffers_reply;
 
 /**
  *
@@ -719,7 +716,7 @@ pub unsafe fn xcb_dri2_get_buffers_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dri2_copy_region (c : *connection,
+pub fn xcb_dri2_copy_region (c : *mut ffi::base::connection,
                                 drawable :  ffi::xproto::drawable,
                                 region :  u32,
                                 dest :  u32,
@@ -736,7 +733,7 @@ pub unsafe fn xcb_dri2_copy_region (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_dri2_copy_region_unchecked (c : *connection,
+pub fn xcb_dri2_copy_region_unchecked (c : *mut ffi::base::connection,
                                           drawable :  ffi::xproto::drawable,
                                           region :  u32,
                                           dest :  u32,
@@ -756,11 +753,11 @@ pub unsafe fn xcb_dri2_copy_region_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_dri2_copy_region_reply (c : *connection,
+pub fn xcb_dri2_copy_region_reply (c : *mut ffi::base::connection,
                                       cookie : copy_region_cookie,
-                                      e : **generic_error) -> *copy_region_reply;
+                                      e : *mut *mut ffi::base::generic_error) -> *mut copy_region_reply;
 
-pub unsafe fn xcb_dri2_get_buffers_with_format_sizeof (_buffer :  *c_void,
+pub fn xcb_dri2_get_buffers_with_format_sizeof (_buffer :  *mut c_void,
                                          attachments_len :  u32) -> c_int;
 
 /**
@@ -771,11 +768,11 @@ pub unsafe fn xcb_dri2_get_buffers_with_format_sizeof (_buffer :  *c_void,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dri2_get_buffers_with_format (c : *connection,
+pub fn xcb_dri2_get_buffers_with_format (c : *mut ffi::base::connection,
                                             drawable :  ffi::xproto::drawable,
                                             count :  u32,
                                             attachments_len :  u32,
-                                            attachments : *attach_format) -> get_buffers_with_format_cookie;
+                                            attachments : *mut attach_format) -> get_buffers_with_format_cookie;
 
 /**
  *
@@ -788,18 +785,18 @@ pub unsafe fn xcb_dri2_get_buffers_with_format (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_dri2_get_buffers_with_format_unchecked (c : *connection,
+pub fn xcb_dri2_get_buffers_with_format_unchecked (c : *mut ffi::base::connection,
                                                       drawable :  ffi::xproto::drawable,
                                                       count :  u32,
                                                       attachments_len :  u32,
-                                                      attachments : *attach_format) -> get_buffers_with_format_cookie;
+                                                      attachments : *mut attach_format) -> get_buffers_with_format_cookie;
 
-pub unsafe fn xcb_dri2_get_buffers_with_format_buffers (R : *get_buffers_with_format_reply) -> *dri2_buffer;
+pub fn xcb_dri2_get_buffers_with_format_buffers (R : *mut get_buffers_with_format_reply) -> *mut dri2_buffer;
 
 
-pub unsafe fn xcb_dri2_get_buffers_with_format_buffers_length (R : *get_buffers_with_format_reply) -> c_int;
+pub fn xcb_dri2_get_buffers_with_format_buffers_length (R : *mut get_buffers_with_format_reply) -> c_int;
 
-pub unsafe fn xcb_dri2_get_buffers_with_format_buffers_iterator (R : *get_buffers_with_format_reply) -> dri2_buffer_iterator;
+pub fn xcb_dri2_get_buffers_with_format_buffers_iterator (R : *mut get_buffers_with_format_reply) -> dri2_buffer_iterator;
 
 /**
  * Return the reply
@@ -815,9 +812,9 @@ pub unsafe fn xcb_dri2_get_buffers_with_format_buffers_iterator (R : *get_buffer
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_dri2_get_buffers_with_format_reply (c : *connection,
+pub fn xcb_dri2_get_buffers_with_format_reply (c : *mut ffi::base::connection,
                                                   cookie : get_buffers_with_format_cookie,
-                                                  e : **generic_error) -> *get_buffers_with_format_reply;
+                                                  e : *mut *mut ffi::base::generic_error) -> *mut get_buffers_with_format_reply;
 
 /**
  *
@@ -827,7 +824,7 @@ pub unsafe fn xcb_dri2_get_buffers_with_format_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dri2_swap_buffers (c : *connection,
+pub fn xcb_dri2_swap_buffers (c : *mut ffi::base::connection,
                                  drawable :  ffi::xproto::drawable,
                                  target_msc_hi :  u32,
                                  target_msc_lo :  u32,
@@ -847,7 +844,7 @@ pub unsafe fn xcb_dri2_swap_buffers (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_dri2_swap_buffers_unchecked (c : *connection,
+pub fn xcb_dri2_swap_buffers_unchecked (c : *mut ffi::base::connection,
                                            drawable :  ffi::xproto::drawable,
                                            target_msc_hi :  u32,
                                            target_msc_lo :  u32,
@@ -870,9 +867,9 @@ pub unsafe fn xcb_dri2_swap_buffers_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_dri2_swap_buffers_reply (c : *connection,
+pub fn xcb_dri2_swap_buffers_reply (c : *mut ffi::base::connection,
                                        cookie : swap_buffers_cookie,
-                                       e : **generic_error) -> *swap_buffers_reply;
+                                       e : *mut *mut ffi::base::generic_error) -> *mut swap_buffers_reply;
 
 /**
  *
@@ -882,7 +879,7 @@ pub unsafe fn xcb_dri2_swap_buffers_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dri2_get_msc (c : *connection,
+pub fn xcb_dri2_get_msc (c : *mut ffi::base::connection,
                             drawable :  ffi::xproto::drawable) -> get_msc_cookie;
 
 /**
@@ -896,7 +893,7 @@ pub unsafe fn xcb_dri2_get_msc (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_dri2_get_msc_unchecked (c : *connection,
+pub fn xcb_dri2_get_msc_unchecked (c : *mut ffi::base::connection,
                                       drawable :  ffi::xproto::drawable) -> get_msc_cookie;
 
 /**
@@ -913,9 +910,9 @@ pub unsafe fn xcb_dri2_get_msc_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_dri2_get_msc_reply (c : *connection,
+pub fn xcb_dri2_get_msc_reply (c : *mut ffi::base::connection,
                                   cookie : get_msc_cookie,
-                                  e : **generic_error) -> *get_msc_reply;
+                                  e : *mut *mut ffi::base::generic_error) -> *mut get_msc_reply;
 
 /**
  *
@@ -925,7 +922,7 @@ pub unsafe fn xcb_dri2_get_msc_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dri2_wait_msc (c : *connection,
+pub fn xcb_dri2_wait_msc (c : *mut ffi::base::connection,
                              drawable :  ffi::xproto::drawable,
                              target_msc_hi :  u32,
                              target_msc_lo :  u32,
@@ -945,7 +942,7 @@ pub unsafe fn xcb_dri2_wait_msc (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_dri2_wait_msc_unchecked (c : *connection,
+pub fn xcb_dri2_wait_msc_unchecked (c : *mut ffi::base::connection,
                                        drawable :  ffi::xproto::drawable,
                                        target_msc_hi :  u32,
                                        target_msc_lo :  u32,
@@ -968,9 +965,9 @@ pub unsafe fn xcb_dri2_wait_msc_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_dri2_wait_msc_reply (c : *connection,
+pub fn xcb_dri2_wait_msc_reply (c : *mut ffi::base::connection,
                                    cookie : wait_msc_cookie,
-                                   e : **generic_error) -> *wait_msc_reply;
+                                   e : *mut *mut ffi::base::generic_error) -> *mut wait_msc_reply;
 
 /**
  *
@@ -980,7 +977,7 @@ pub unsafe fn xcb_dri2_wait_msc_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dri2_wait_sbc (c : *connection,
+pub fn xcb_dri2_wait_sbc (c : *mut ffi::base::connection,
                              drawable :  ffi::xproto::drawable,
                              target_sbc_hi :  u32,
                              target_sbc_lo :  u32) -> wait_sbc_cookie;
@@ -996,7 +993,7 @@ pub unsafe fn xcb_dri2_wait_sbc (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_dri2_wait_sbc_unchecked (c : *connection,
+pub fn xcb_dri2_wait_sbc_unchecked (c : *mut ffi::base::connection,
                                        drawable :  ffi::xproto::drawable,
                                        target_sbc_hi :  u32,
                                        target_sbc_lo :  u32) -> wait_sbc_cookie;
@@ -1015,9 +1012,9 @@ pub unsafe fn xcb_dri2_wait_sbc_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_dri2_wait_sbc_reply (c : *connection,
+pub fn xcb_dri2_wait_sbc_reply (c : *mut ffi::base::connection,
                                    cookie : wait_sbc_cookie,
-                                   e : **generic_error) -> *wait_sbc_reply;
+                                   e : *mut *mut ffi::base::generic_error) -> *mut wait_sbc_reply;
 
 /**
  *
@@ -1030,9 +1027,9 @@ pub unsafe fn xcb_dri2_wait_sbc_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_dri2_swap_interval_checked (c : *connection,
+pub fn xcb_dri2_swap_interval_checked (c : *mut ffi::base::connection,
                                           drawable :  ffi::xproto::drawable,
-                                          interval :  u32) -> void_cookie;
+                                          interval :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1042,9 +1039,9 @@ pub unsafe fn xcb_dri2_swap_interval_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dri2_swap_interval (c : *connection,
+pub fn xcb_dri2_swap_interval (c : *mut ffi::base::connection,
                                   drawable :  ffi::xproto::drawable,
-                                  interval :  u32) -> void_cookie;
+                                  interval :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1054,7 +1051,7 @@ pub unsafe fn xcb_dri2_swap_interval (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dri2_get_param (c : *connection,
+pub fn xcb_dri2_get_param (c : *mut ffi::base::connection,
                               drawable :  ffi::xproto::drawable,
                               param :  u32) -> get_param_cookie;
 
@@ -1069,7 +1066,7 @@ pub unsafe fn xcb_dri2_get_param (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_dri2_get_param_unchecked (c : *connection,
+pub fn xcb_dri2_get_param_unchecked (c : *mut ffi::base::connection,
                                         drawable :  ffi::xproto::drawable,
                                         param :  u32) -> get_param_cookie;
 
@@ -1087,8 +1084,8 @@ pub unsafe fn xcb_dri2_get_param_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_dri2_get_param_reply (c : *connection,
+pub fn xcb_dri2_get_param_reply (c : *mut ffi::base::connection,
                                     cookie : get_param_cookie,
-                                    e : **generic_error) -> *get_param_reply;
+                                    e : *mut *mut ffi::base::generic_error) -> *mut get_param_reply;
 }
 

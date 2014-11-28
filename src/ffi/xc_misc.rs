@@ -4,13 +4,10 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 use std;
-use std::libc::*;
-use std::{cast,num,ptr,str,libc};
-use std::to_bytes::ToBytes;
-use ffi::base::*;
+use libc::*;
 use ffi;
 
 pub static XCMISC_MAJOR_VERSION : c_uint = 1;
@@ -22,21 +19,21 @@ pub struct get_version_cookie {
 
 
 pub struct get_version_request {
-    major_opcode :           u8,
-    minor_opcode :           u8,
-    length :                 u16,
-    client_major_version :   u16,
-    client_minor_version :   u16
+     pub major_opcode :           u8,
+     pub minor_opcode :           u8,
+     pub length :                 u16,
+     pub client_major_version :   u16,
+     pub client_minor_version :   u16
 }
 
 
 pub struct get_version_reply {
-    response_type :          u8,
-    pad0 :                   u8,
-    sequence :               u16,
-    length :                 u32,
-    server_major_version :   u16,
-    server_minor_version :   u16
+     pub response_type :          u8,
+     pub pad0 :                   u8,
+     pub sequence :               u16,
+     pub length :                 u32,
+     pub server_major_version :   u16,
+     pub server_minor_version :   u16
 }
 
 
@@ -46,19 +43,19 @@ pub struct get_xid_range_cookie {
 
 
 pub struct get_xid_range_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct get_xid_range_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    start_id :        u32,
-    count :           u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub start_id :        u32,
+     pub count :           u32
 }
 
 
@@ -68,23 +65,23 @@ pub struct get_xid_list_cookie {
 
 
 pub struct get_xid_list_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    count :          u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub count :          u32
 }
 
 
 pub struct get_xid_list_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    ids_len :         u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub ids_len :         u32,
+     pub pad1 :            [u8,..20]
 }
 
-pub extern "C" {
+extern "C" {
 
 /**
  *
@@ -94,7 +91,7 @@ pub extern "C" {
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xc_misc_get_version (c : *connection,
+pub fn xcb_xc_misc_get_version (c : *mut ffi::base::connection,
                                    client_major_version :  u16,
                                    client_minor_version :  u16) -> get_version_cookie;
 
@@ -109,7 +106,7 @@ pub unsafe fn xcb_xc_misc_get_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xc_misc_get_version_unchecked (c : *connection,
+pub fn xcb_xc_misc_get_version_unchecked (c : *mut ffi::base::connection,
                                              client_major_version :  u16,
                                              client_minor_version :  u16) -> get_version_cookie;
 
@@ -127,9 +124,9 @@ pub unsafe fn xcb_xc_misc_get_version_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xc_misc_get_version_reply (c : *connection,
+pub fn xcb_xc_misc_get_version_reply (c : *mut ffi::base::connection,
                                          cookie : get_version_cookie,
-                                         e : **generic_error) -> *get_version_reply;
+                                         e : *mut *mut ffi::base::generic_error) -> *mut get_version_reply;
 
 /**
  *
@@ -139,7 +136,7 @@ pub unsafe fn xcb_xc_misc_get_version_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xc_misc_get_xid_range (c : *connection) -> get_xid_range_cookie;
+pub fn xcb_xc_misc_get_xid_range (c : *mut ffi::base::connection) -> get_xid_range_cookie;
 
 /**
  *
@@ -152,7 +149,7 @@ pub unsafe fn xcb_xc_misc_get_xid_range (c : *connection) -> get_xid_range_cooki
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xc_misc_get_xid_range_unchecked (c : *connection) -> get_xid_range_cookie;
+pub fn xcb_xc_misc_get_xid_range_unchecked (c : *mut ffi::base::connection) -> get_xid_range_cookie;
 
 /**
  * Return the reply
@@ -168,11 +165,11 @@ pub unsafe fn xcb_xc_misc_get_xid_range_unchecked (c : *connection) -> get_xid_r
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xc_misc_get_xid_range_reply (c : *connection,
+pub fn xcb_xc_misc_get_xid_range_reply (c : *mut ffi::base::connection,
                                            cookie : get_xid_range_cookie,
-                                           e : **generic_error) -> *get_xid_range_reply;
+                                           e : *mut *mut ffi::base::generic_error) -> *mut get_xid_range_reply;
 
-pub unsafe fn xcb_xc_misc_get_xid_list_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xc_misc_get_xid_list_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -182,7 +179,7 @@ pub unsafe fn xcb_xc_misc_get_xid_list_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xc_misc_get_xid_list (c : *connection,
+pub fn xcb_xc_misc_get_xid_list (c : *mut ffi::base::connection,
                                     count :  u32) -> get_xid_list_cookie;
 
 /**
@@ -196,16 +193,16 @@ pub unsafe fn xcb_xc_misc_get_xid_list (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xc_misc_get_xid_list_unchecked (c : *connection,
+pub fn xcb_xc_misc_get_xid_list_unchecked (c : *mut ffi::base::connection,
                                               count :  u32) -> get_xid_list_cookie;
 
-pub unsafe fn xcb_xc_misc_get_xid_list_ids (R : *get_xid_list_reply) -> *u32;
+pub fn xcb_xc_misc_get_xid_list_ids (R : *mut get_xid_list_reply) -> *mut u32;
 
 
-pub unsafe fn xcb_xc_misc_get_xid_list_ids_length (R : *get_xid_list_reply) -> c_int;
+pub fn xcb_xc_misc_get_xid_list_ids_length (R : *mut get_xid_list_reply) -> c_int;
 
 
-pub unsafe fn xcb_xc_misc_get_xid_list_ids_end (R : *get_xid_list_reply) -> generic_iterator;
+pub fn xcb_xc_misc_get_xid_list_ids_end (R : *mut get_xid_list_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -221,8 +218,8 @@ pub unsafe fn xcb_xc_misc_get_xid_list_ids_end (R : *get_xid_list_reply) -> gene
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xc_misc_get_xid_list_reply (c : *connection,
+pub fn xcb_xc_misc_get_xid_list_reply (c : *mut ffi::base::connection,
                                           cookie : get_xid_list_cookie,
-                                          e : **generic_error) -> *get_xid_list_reply;
+                                          e : *mut *mut ffi::base::generic_error) -> *mut get_xid_list_reply;
 }
 

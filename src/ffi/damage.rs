@@ -4,13 +4,10 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 use std;
-use std::libc::*;
-use std::{cast,num,ptr,str,libc};
-use std::to_bytes::ToBytes;
-use ffi::base::*;
+use libc::*;
 use ffi;
 use ffi::xproto;
 use ffi::render;
@@ -25,17 +22,17 @@ pub type damage = u32;
  * @brief damage_iterator
  **/
 pub struct damage_iterator {
-    data : *damage,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut damage,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 
 pub struct bad_damage_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16
 }
 
 
@@ -45,81 +42,81 @@ pub struct query_version_cookie {
 
 
 pub struct query_version_request {
-    major_opcode :           u8,
-    minor_opcode :           u8,
-    length :                 u16,
-    client_major_version :   u32,
-    client_minor_version :   u32
+     pub major_opcode :           u8,
+     pub minor_opcode :           u8,
+     pub length :                 u16,
+     pub client_major_version :   u32,
+     pub client_minor_version :   u32
 }
 
 
 pub struct query_version_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    major_version :   u32,
-    minor_version :   u32,
-    pad1 :            [u8,..16]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub major_version :   u32,
+     pub minor_version :   u32,
+     pub pad1 :            [u8,..16]
 }
 
 
 
 pub struct create_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    damage :         damage,
-    drawable :       ffi::xproto::drawable,
-    level :          u8,
-    pad0 :           [u8,..3]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub damage :         damage,
+     pub drawable :       ffi::xproto::drawable,
+     pub level :          u8,
+     pub pad0 :           [u8,..3]
 }
 
 
 
 pub struct destroy_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    damage :         damage
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub damage :         damage
 }
 
 
 
 pub struct subtract_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    damage :         damage,
-    repair :         ffi::xfixes::region,
-    parts :          ffi::xfixes::region
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub damage :         damage,
+     pub repair :         ffi::xfixes::region,
+     pub parts :          ffi::xfixes::region
 }
 
 
 
 pub struct add_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       ffi::xproto::drawable,
-    region :         ffi::xfixes::region
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       ffi::xproto::drawable,
+     pub region :         ffi::xfixes::region
 }
 
 
 
 pub struct notify_event {
-    response_type :   u8,
-    level :           u8,
-    sequence :        u16,
-    drawable :        ffi::xproto::drawable,
-    damage :          damage,
-    timestamp :       ffi::xproto::timestamp,
-    area :            ffi::xproto::rectangle,
-    geometry :        ffi::xproto::rectangle
+     pub response_type :   u8,
+     pub level :           u8,
+     pub sequence :        u16,
+     pub drawable :        ffi::xproto::drawable,
+     pub damage :          damage,
+     pub timestamp :       ffi::xproto::timestamp,
+     pub area :            ffi::xproto::rectangle,
+     pub geometry :        ffi::xproto::rectangle
 }
 
-#[link_args="-lxcb-damage"]
-pub extern "C" {
+#[link(name="xcb-damage")]
+extern "C" {
 
 /**
  * Get the next element of the iterator
@@ -131,7 +128,7 @@ pub extern "C" {
  *
  *
  */
-pub unsafe fn xcb_damage_damage_next (i:*damage_iterator) -> c_void;
+pub fn xcb_damage_damage_next (i:*mut damage_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -142,7 +139,7 @@ pub unsafe fn xcb_damage_damage_next (i:*damage_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_damage_damage_end (i:damage_iterator) -> generic_iterator;
+pub fn xcb_damage_damage_end (i:damage_iterator) -> ffi::base::generic_iterator;
 
 /**
  *
@@ -152,7 +149,7 @@ pub unsafe fn xcb_damage_damage_end (i:damage_iterator) -> generic_iterator;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_damage_query_version (c : *connection,
+pub fn xcb_damage_query_version (c : *mut ffi::base::connection,
                                     client_major_version :  u32,
                                     client_minor_version :  u32) -> query_version_cookie;
 
@@ -167,7 +164,7 @@ pub unsafe fn xcb_damage_query_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_damage_query_version_unchecked (c : *connection,
+pub fn xcb_damage_query_version_unchecked (c : *mut ffi::base::connection,
                                               client_major_version :  u32,
                                               client_minor_version :  u32) -> query_version_cookie;
 
@@ -185,9 +182,9 @@ pub unsafe fn xcb_damage_query_version_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_damage_query_version_reply (c : *connection,
+pub fn xcb_damage_query_version_reply (c : *mut ffi::base::connection,
                                           cookie : query_version_cookie,
-                                          e : **generic_error) -> *query_version_reply;
+                                          e : *mut *mut ffi::base::generic_error) -> *mut query_version_reply;
 
 /**
  *
@@ -200,10 +197,10 @@ pub unsafe fn xcb_damage_query_version_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_damage_create_checked (c : *connection,
+pub fn xcb_damage_create_checked (c : *mut ffi::base::connection,
                                      damage :  damage,
                                      drawable :  ffi::xproto::drawable,
-                                     level :  u8) -> void_cookie;
+                                     level :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -213,10 +210,10 @@ pub unsafe fn xcb_damage_create_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_damage_create (c : *connection,
+pub fn xcb_damage_create (c : *mut ffi::base::connection,
                              damage :  damage,
                              drawable :  ffi::xproto::drawable,
-                             level :  u8) -> void_cookie;
+                             level :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -229,8 +226,8 @@ pub unsafe fn xcb_damage_create (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_damage_destroy_checked (c : *connection,
-                                      damage :  damage) -> void_cookie;
+pub fn xcb_damage_destroy_checked (c : *mut ffi::base::connection,
+                                      damage :  damage) -> ffi::base::void_cookie;
 
 /**
  *
@@ -240,8 +237,8 @@ pub unsafe fn xcb_damage_destroy_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_damage_destroy (c : *connection,
-                              damage :  damage) -> void_cookie;
+pub fn xcb_damage_destroy (c : *mut ffi::base::connection,
+                              damage :  damage) -> ffi::base::void_cookie;
 
 /**
  *
@@ -254,10 +251,10 @@ pub unsafe fn xcb_damage_destroy (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_damage_subtract_checked (c : *connection,
+pub fn xcb_damage_subtract_checked (c : *mut ffi::base::connection,
                                        damage :  damage,
                                        repair :  ffi::xfixes::region,
-                                       parts :  ffi::xfixes::region) -> void_cookie;
+                                       parts :  ffi::xfixes::region) -> ffi::base::void_cookie;
 
 /**
  *
@@ -267,10 +264,10 @@ pub unsafe fn xcb_damage_subtract_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_damage_subtract (c : *connection,
+pub fn xcb_damage_subtract (c : *mut ffi::base::connection,
                                damage :  damage,
                                repair :  ffi::xfixes::region,
-                               parts :  ffi::xfixes::region) -> void_cookie;
+                               parts :  ffi::xfixes::region) -> ffi::base::void_cookie;
 
 /**
  *
@@ -283,9 +280,9 @@ pub unsafe fn xcb_damage_subtract (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_damage_add_checked (c : *connection,
+pub fn xcb_damage_add_checked (c : *mut ffi::base::connection,
                                   drawable :  ffi::xproto::drawable,
-                                  region :  ffi::xfixes::region) -> void_cookie;
+                                  region :  ffi::xfixes::region) -> ffi::base::void_cookie;
 
 /**
  *
@@ -295,8 +292,8 @@ pub unsafe fn xcb_damage_add_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_damage_add (c : *connection,
+pub fn xcb_damage_add (c : *mut ffi::base::connection,
                           drawable :  ffi::xproto::drawable,
-                          region :  ffi::xfixes::region) -> void_cookie;
+                          region :  ffi::xfixes::region) -> ffi::base::void_cookie;
 }
 

@@ -4,13 +4,10 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 use std;
-use std::libc::*;
-use std::{cast,num,ptr,str,libc};
-use std::to_bytes::ToBytes;
-use ffi::base::*;
+use libc::*;
 use ffi;
 use ffi::xproto;
 
@@ -22,23 +19,23 @@ pub type seg = u32;
  * @brief seg_iterator
  **/
 pub struct seg_iterator {
-    data : *seg,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut seg,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 
 pub struct completion_event {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    drawable :        ffi::xproto::drawable,
-    minor_event :     u16,
-    major_event :     u8,
-    pad1 :            u8,
-    shmseg :          seg,
-    offset :          u32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub drawable :        ffi::xproto::drawable,
+     pub minor_event :     u16,
+     pub major_event :     u8,
+     pub pad1 :            u8,
+     pub shmseg :          seg,
+     pub offset :          u32
 }
 
 
@@ -51,68 +48,68 @@ pub struct query_version_cookie {
 
 
 pub struct query_version_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct query_version_reply {
-    response_type :    u8,
-    shared_pixmaps :   u8,
-    sequence :         u16,
-    length :           u32,
-    major_version :    u16,
-    minor_version :    u16,
-    uid :              u16,
-    gid :              u16,
-    pixmap_format :    u8,
-    pad0 :             [u8,..15]
+     pub response_type :    u8,
+     pub shared_pixmaps :   u8,
+     pub sequence :         u16,
+     pub length :           u32,
+     pub major_version :    u16,
+     pub minor_version :    u16,
+     pub uid :              u16,
+     pub gid :              u16,
+     pub pixmap_format :    u8,
+     pub pad0 :             [u8,..15]
 }
 
 
 
 pub struct attach_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    shmseg :         seg,
-    shmid :          u32,
-    read_only :      u8,
-    pad0 :           [u8,..3]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub shmseg :         seg,
+     pub shmid :          u32,
+     pub read_only :      u8,
+     pub pad0 :           [u8,..3]
 }
 
 
 
 pub struct detach_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    shmseg :         seg
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub shmseg :         seg
 }
 
 
 
 pub struct put_image_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       ffi::xproto::drawable,
-    gc :             ffi::xproto::gcontext,
-    total_width :    u16,
-    total_height :   u16,
-    src_x :          u16,
-    src_y :          u16,
-    src_width :      u16,
-    src_height :     u16,
-    dst_x :          i16,
-    dst_y :          i16,
-    depth :          u8,
-    format :         u8,
-    send_event :     u8,
-    pad0 :           u8,
-    shmseg :         seg,
-    offset :         u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       ffi::xproto::drawable,
+     pub gc :             ffi::xproto::gcontext,
+     pub total_width :    u16,
+     pub total_height :   u16,
+     pub src_x :          u16,
+     pub src_y :          u16,
+     pub src_width :      u16,
+     pub src_height :     u16,
+     pub dst_x :          i16,
+     pub dst_y :          i16,
+     pub depth :          u8,
+     pub format :         u8,
+     pub send_event :     u8,
+     pub pad0 :           u8,
+     pub shmseg :         seg,
+     pub offset :         u32
 }
 
 
@@ -122,49 +119,49 @@ pub struct get_image_cookie {
 
 
 pub struct get_image_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       ffi::xproto::drawable,
-    x :              i16,
-    y :              i16,
-    width :          u16,
-    height :         u16,
-    plane_mask :     u32,
-    format :         u8,
-    pad0 :           [u8,..3],
-    shmseg :         seg,
-    offset :         u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       ffi::xproto::drawable,
+     pub x :              i16,
+     pub y :              i16,
+     pub width :          u16,
+     pub height :         u16,
+     pub plane_mask :     u32,
+     pub format :         u8,
+     pub pad0 :           [u8,..3],
+     pub shmseg :         seg,
+     pub offset :         u32
 }
 
 
 pub struct get_image_reply {
-    response_type :   u8,
-    depth :           u8,
-    sequence :        u16,
-    length :          u32,
-    visual :          ffi::xproto::visualid,
-    size :            u32
+     pub response_type :   u8,
+     pub depth :           u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub visual :          ffi::xproto::visualid,
+     pub size :            u32
 }
 
 
 
 pub struct create_pixmap_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    pid :            ffi::xproto::pixmap,
-    drawable :       ffi::xproto::drawable,
-    width :          u16,
-    height :         u16,
-    depth :          u8,
-    pad0 :           [u8,..3],
-    shmseg :         seg,
-    offset :         u32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub pid :            ffi::xproto::pixmap,
+     pub drawable :       ffi::xproto::drawable,
+     pub width :          u16,
+     pub height :         u16,
+     pub depth :          u8,
+     pub pad0 :           [u8,..3],
+     pub shmseg :         seg,
+     pub offset :         u32
 }
 
-#[link_args="-lxcb-shm"]
-pub extern "C" {
+#[link(name="xcb-shm")]
+extern "C" {
 
 /**
  * Get the next element of the iterator
@@ -176,7 +173,7 @@ pub extern "C" {
  *
  *
  */
-pub unsafe fn xcb_shm_seg_next (i:*seg_iterator) -> c_void;
+pub fn xcb_shm_seg_next (i:*mut seg_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -187,7 +184,7 @@ pub unsafe fn xcb_shm_seg_next (i:*seg_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_shm_seg_end (i:seg_iterator) -> generic_iterator;
+pub fn xcb_shm_seg_end (i:seg_iterator) -> ffi::base::generic_iterator;
 
 /**
  *
@@ -197,7 +194,7 @@ pub unsafe fn xcb_shm_seg_end (i:seg_iterator) -> generic_iterator;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_shm_query_version (c : *connection) -> query_version_cookie;
+pub fn xcb_shm_query_version (c : *mut ffi::base::connection) -> query_version_cookie;
 
 /**
  *
@@ -210,7 +207,7 @@ pub unsafe fn xcb_shm_query_version (c : *connection) -> query_version_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_shm_query_version_unchecked (c : *connection) -> query_version_cookie;
+pub fn xcb_shm_query_version_unchecked (c : *mut ffi::base::connection) -> query_version_cookie;
 
 /**
  * Return the reply
@@ -226,9 +223,9 @@ pub unsafe fn xcb_shm_query_version_unchecked (c : *connection) -> query_version
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_shm_query_version_reply (c : *connection,
+pub fn xcb_shm_query_version_reply (c : *mut ffi::base::connection,
                                        cookie : query_version_cookie,
-                                       e : **generic_error) -> *query_version_reply;
+                                       e : *mut *mut ffi::base::generic_error) -> *mut query_version_reply;
 
 /**
  *
@@ -241,10 +238,10 @@ pub unsafe fn xcb_shm_query_version_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_shm_attach_checked (c : *connection,
+pub fn xcb_shm_attach_checked (c : *mut ffi::base::connection,
                                   shmseg :  seg,
                                   shmid :  u32,
-                                  read_only :  u8) -> void_cookie;
+                                  read_only :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -254,10 +251,10 @@ pub unsafe fn xcb_shm_attach_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_shm_attach (c : *connection,
+pub fn xcb_shm_attach (c : *mut ffi::base::connection,
                           shmseg :  seg,
                           shmid :  u32,
-                          read_only :  u8) -> void_cookie;
+                          read_only :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -270,8 +267,8 @@ pub unsafe fn xcb_shm_attach (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_shm_detach_checked (c : *connection,
-                                  shmseg :  seg) -> void_cookie;
+pub fn xcb_shm_detach_checked (c : *mut ffi::base::connection,
+                                  shmseg :  seg) -> ffi::base::void_cookie;
 
 /**
  *
@@ -281,8 +278,8 @@ pub unsafe fn xcb_shm_detach_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_shm_detach (c : *connection,
-                          shmseg :  seg) -> void_cookie;
+pub fn xcb_shm_detach (c : *mut ffi::base::connection,
+                          shmseg :  seg) -> ffi::base::void_cookie;
 
 /**
  *
@@ -295,7 +292,7 @@ pub unsafe fn xcb_shm_detach (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_shm_put_image_checked (c : *connection,
+pub fn xcb_shm_put_image_checked (c : *mut ffi::base::connection,
                                      drawable :  ffi::xproto::drawable,
                                      gc :  ffi::xproto::gcontext,
                                      total_width :  u16,
@@ -310,7 +307,7 @@ pub unsafe fn xcb_shm_put_image_checked (c : *connection,
                                      format :  u8,
                                      send_event :  u8,
                                      shmseg :  seg,
-                                     offset :  u32) -> void_cookie;
+                                     offset :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -320,7 +317,7 @@ pub unsafe fn xcb_shm_put_image_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_shm_put_image (c : *connection,
+pub fn xcb_shm_put_image (c : *mut ffi::base::connection,
                              drawable :  ffi::xproto::drawable,
                              gc :  ffi::xproto::gcontext,
                              total_width :  u16,
@@ -335,7 +332,7 @@ pub unsafe fn xcb_shm_put_image (c : *connection,
                              format :  u8,
                              send_event :  u8,
                              shmseg :  seg,
-                             offset :  u32) -> void_cookie;
+                             offset :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -345,7 +342,7 @@ pub unsafe fn xcb_shm_put_image (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_shm_get_image (c : *connection,
+pub fn xcb_shm_get_image (c : *mut ffi::base::connection,
                              drawable :  ffi::xproto::drawable,
                              x :  i16,
                              y :  i16,
@@ -367,7 +364,7 @@ pub unsafe fn xcb_shm_get_image (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_shm_get_image_unchecked (c : *connection,
+pub fn xcb_shm_get_image_unchecked (c : *mut ffi::base::connection,
                                        drawable :  ffi::xproto::drawable,
                                        x :  i16,
                                        y :  i16,
@@ -392,9 +389,9 @@ pub unsafe fn xcb_shm_get_image_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_shm_get_image_reply (c : *connection,
+pub fn xcb_shm_get_image_reply (c : *mut ffi::base::connection,
                                    cookie : get_image_cookie,
-                                   e : **generic_error) -> *get_image_reply;
+                                   e : *mut *mut ffi::base::generic_error) -> *mut get_image_reply;
 
 /**
  *
@@ -407,14 +404,14 @@ pub unsafe fn xcb_shm_get_image_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_shm_create_pixmap_checked (c : *connection,
+pub fn xcb_shm_create_pixmap_checked (c : *mut ffi::base::connection,
                                          pid :  ffi::xproto::pixmap,
                                          drawable :  ffi::xproto::drawable,
                                          width :  u16,
                                          height :  u16,
                                          depth :  u8,
                                          shmseg :  seg,
-                                         offset :  u32) -> void_cookie;
+                                         offset :  u32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -424,13 +421,13 @@ pub unsafe fn xcb_shm_create_pixmap_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_shm_create_pixmap (c : *connection,
+pub fn xcb_shm_create_pixmap (c : *mut ffi::base::connection,
                                  pid :  ffi::xproto::pixmap,
                                  drawable :  ffi::xproto::drawable,
                                  width :  u16,
                                  height :  u16,
                                  depth :  u8,
                                  shmseg :  seg,
-                                 offset :  u32) -> void_cookie;
+                                 offset :  u32) -> ffi::base::void_cookie;
 }
 

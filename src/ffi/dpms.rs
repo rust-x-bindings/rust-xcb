@@ -4,13 +4,10 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 use std;
-use std::libc::*;
-use std::{cast,num,ptr,str,libc};
-use std::to_bytes::ToBytes;
-use ffi::base::*;
+use libc::*;
 use ffi;
 
 pub static DPMS_MAJOR_VERSION : c_uint = 0;
@@ -22,21 +19,21 @@ pub struct get_version_cookie {
 
 
 pub struct get_version_request {
-    major_opcode :           u8,
-    minor_opcode :           u8,
-    length :                 u16,
-    client_major_version :   u16,
-    client_minor_version :   u16
+     pub major_opcode :           u8,
+     pub minor_opcode :           u8,
+     pub length :                 u16,
+     pub client_major_version :   u16,
+     pub client_minor_version :   u16
 }
 
 
 pub struct get_version_reply {
-    response_type :          u8,
-    pad0 :                   u8,
-    sequence :               u16,
-    length :                 u32,
-    server_major_version :   u16,
-    server_minor_version :   u16
+     pub response_type :          u8,
+     pub pad0 :                   u8,
+     pub sequence :               u16,
+     pub length :                 u32,
+     pub server_major_version :   u16,
+     pub server_minor_version :   u16
 }
 
 
@@ -46,19 +43,19 @@ pub struct capable_cookie {
 
 
 pub struct capable_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct capable_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    capable :         u8,
-    pad1 :            [u8,..23]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub capable :         u8,
+     pub pad1 :            [u8,..23]
 }
 
 
@@ -68,57 +65,57 @@ pub struct get_timeouts_cookie {
 
 
 pub struct get_timeouts_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct get_timeouts_reply {
-    response_type :     u8,
-    pad0 :              u8,
-    sequence :          u16,
-    length :            u32,
-    standby_timeout :   u16,
-    suspend_timeout :   u16,
-    off_timeout :       u16,
-    pad1 :              [u8,..18]
+     pub response_type :     u8,
+     pub pad0 :              u8,
+     pub sequence :          u16,
+     pub length :            u32,
+     pub standby_timeout :   u16,
+     pub suspend_timeout :   u16,
+     pub off_timeout :       u16,
+     pub pad1 :              [u8,..18]
 }
 
 
 
 pub struct set_timeouts_request {
-    major_opcode :      u8,
-    minor_opcode :      u8,
-    length :            u16,
-    standby_timeout :   u16,
-    suspend_timeout :   u16,
-    off_timeout :       u16
+     pub major_opcode :      u8,
+     pub minor_opcode :      u8,
+     pub length :            u16,
+     pub standby_timeout :   u16,
+     pub suspend_timeout :   u16,
+     pub off_timeout :       u16
 }
 
 
 
 pub struct enable_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 
 pub struct disable_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 
 pub struct force_level_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    power_level :    u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub power_level :    u16
 }
 
 
@@ -128,24 +125,24 @@ pub struct info_cookie {
 
 
 pub struct info_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct info_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    power_level :     u16,
-    state :           u8,
-    pad1 :            [u8,..21]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub power_level :     u16,
+     pub state :           u8,
+     pub pad1 :            [u8,..21]
 }
 
-#[link_args="-lxcb-dpms"]
-pub extern "C" {
+#[link(name="xcb-dpms")]
+extern "C" {
 
 /**
  *
@@ -155,7 +152,7 @@ pub extern "C" {
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dpms_get_version (c : *connection,
+pub fn xcb_dpms_get_version (c : *mut ffi::base::connection,
                                 client_major_version :  u16,
                                 client_minor_version :  u16) -> get_version_cookie;
 
@@ -170,7 +167,7 @@ pub unsafe fn xcb_dpms_get_version (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_dpms_get_version_unchecked (c : *connection,
+pub fn xcb_dpms_get_version_unchecked (c : *mut ffi::base::connection,
                                           client_major_version :  u16,
                                           client_minor_version :  u16) -> get_version_cookie;
 
@@ -188,9 +185,9 @@ pub unsafe fn xcb_dpms_get_version_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_dpms_get_version_reply (c : *connection,
+pub fn xcb_dpms_get_version_reply (c : *mut ffi::base::connection,
                                       cookie : get_version_cookie,
-                                      e : **generic_error) -> *get_version_reply;
+                                      e : *mut *mut ffi::base::generic_error) -> *mut get_version_reply;
 
 /**
  *
@@ -200,7 +197,7 @@ pub unsafe fn xcb_dpms_get_version_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dpms_capable (c : *connection) -> capable_cookie;
+pub fn xcb_dpms_capable (c : *mut ffi::base::connection) -> capable_cookie;
 
 /**
  *
@@ -213,7 +210,7 @@ pub unsafe fn xcb_dpms_capable (c : *connection) -> capable_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_dpms_capable_unchecked (c : *connection) -> capable_cookie;
+pub fn xcb_dpms_capable_unchecked (c : *mut ffi::base::connection) -> capable_cookie;
 
 /**
  * Return the reply
@@ -229,9 +226,9 @@ pub unsafe fn xcb_dpms_capable_unchecked (c : *connection) -> capable_cookie;
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_dpms_capable_reply (c : *connection,
+pub fn xcb_dpms_capable_reply (c : *mut ffi::base::connection,
                                   cookie : capable_cookie,
-                                  e : **generic_error) -> *capable_reply;
+                                  e : *mut *mut ffi::base::generic_error) -> *mut capable_reply;
 
 /**
  *
@@ -241,7 +238,7 @@ pub unsafe fn xcb_dpms_capable_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dpms_get_timeouts (c : *connection) -> get_timeouts_cookie;
+pub fn xcb_dpms_get_timeouts (c : *mut ffi::base::connection) -> get_timeouts_cookie;
 
 /**
  *
@@ -254,7 +251,7 @@ pub unsafe fn xcb_dpms_get_timeouts (c : *connection) -> get_timeouts_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_dpms_get_timeouts_unchecked (c : *connection) -> get_timeouts_cookie;
+pub fn xcb_dpms_get_timeouts_unchecked (c : *mut ffi::base::connection) -> get_timeouts_cookie;
 
 /**
  * Return the reply
@@ -270,9 +267,9 @@ pub unsafe fn xcb_dpms_get_timeouts_unchecked (c : *connection) -> get_timeouts_
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_dpms_get_timeouts_reply (c : *connection,
+pub fn xcb_dpms_get_timeouts_reply (c : *mut ffi::base::connection,
                                        cookie : get_timeouts_cookie,
-                                       e : **generic_error) -> *get_timeouts_reply;
+                                       e : *mut *mut ffi::base::generic_error) -> *mut get_timeouts_reply;
 
 /**
  *
@@ -285,10 +282,10 @@ pub unsafe fn xcb_dpms_get_timeouts_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_dpms_set_timeouts_checked (c : *connection,
+pub fn xcb_dpms_set_timeouts_checked (c : *mut ffi::base::connection,
                                          standby_timeout :  u16,
                                          suspend_timeout :  u16,
-                                         off_timeout :  u16) -> void_cookie;
+                                         off_timeout :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -298,10 +295,10 @@ pub unsafe fn xcb_dpms_set_timeouts_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dpms_set_timeouts (c : *connection,
+pub fn xcb_dpms_set_timeouts (c : *mut ffi::base::connection,
                                  standby_timeout :  u16,
                                  suspend_timeout :  u16,
-                                 off_timeout :  u16) -> void_cookie;
+                                 off_timeout :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -314,7 +311,7 @@ pub unsafe fn xcb_dpms_set_timeouts (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_dpms_enable_checked (c : *connection) -> void_cookie;
+pub fn xcb_dpms_enable_checked (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
 
 /**
  *
@@ -324,30 +321,7 @@ pub unsafe fn xcb_dpms_enable_checked (c : *connection) -> void_cookie;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dpms_enable (c : *connection) -> void_cookie;
-
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- * 
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
-pub unsafe fn xcb_dpms_disable_checked (c : *connection) -> void_cookie;
-
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- * 
- */
-pub unsafe fn xcb_dpms_disable (c : *connection) -> void_cookie;
+pub fn xcb_dpms_enable (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
 
 /**
  *
@@ -360,8 +334,7 @@ pub unsafe fn xcb_dpms_disable (c : *connection) -> void_cookie;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_dpms_force_level_checked (c : *connection,
-                                        power_level :  u16) -> void_cookie;
+pub fn xcb_dpms_disable_checked (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
 
 /**
  *
@@ -371,8 +344,21 @@ pub unsafe fn xcb_dpms_force_level_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dpms_force_level (c : *connection,
-                                power_level :  u16) -> void_cookie;
+pub fn xcb_dpms_disable (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
+
+/**
+ *
+ * @param c The connection
+ * @return A cookie
+ *
+ * Delivers a request to the X server.
+ * 
+ * This form can be used only if the request will not cause
+ * a reply to be generated. Any returned error will be
+ * saved for handling by xcb_request_check().
+ */
+pub fn xcb_dpms_force_level_checked (c : *mut ffi::base::connection,
+                                        power_level :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -382,7 +368,18 @@ pub unsafe fn xcb_dpms_force_level (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_dpms_info (c : *connection) -> info_cookie;
+pub fn xcb_dpms_force_level (c : *mut ffi::base::connection,
+                                power_level :  u16) -> ffi::base::void_cookie;
+
+/**
+ *
+ * @param c The connection
+ * @return A cookie
+ *
+ * Delivers a request to the X server.
+ * 
+ */
+pub fn xcb_dpms_info (c : *mut ffi::base::connection) -> info_cookie;
 
 /**
  *
@@ -395,7 +392,7 @@ pub unsafe fn xcb_dpms_info (c : *connection) -> info_cookie;
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_dpms_info_unchecked (c : *connection) -> info_cookie;
+pub fn xcb_dpms_info_unchecked (c : *mut ffi::base::connection) -> info_cookie;
 
 /**
  * Return the reply
@@ -411,8 +408,8 @@ pub unsafe fn xcb_dpms_info_unchecked (c : *connection) -> info_cookie;
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_dpms_info_reply (c : *connection,
+pub fn xcb_dpms_info_reply (c : *mut ffi::base::connection,
                                cookie : info_cookie,
-                               e : **generic_error) -> *info_reply;
+                               e : *mut *mut ffi::base::generic_error) -> *mut info_reply;
 }
 

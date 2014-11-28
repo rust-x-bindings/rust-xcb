@@ -4,13 +4,10 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 use std;
-use std::libc::*;
-use std::{cast,num,ptr,str,libc};
-use std::to_bytes::ToBytes;
-use ffi::base::*;
+use libc::*;
 use ffi;
 use ffi::xproto;
 use ffi::shm;
@@ -23,9 +20,9 @@ pub type port = u32;
  * @brief port_iterator
  **/
 pub struct port_iterator {
-    data : *port,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut port,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
@@ -34,200 +31,200 @@ pub type encoding = u32;
  * @brief encoding_iterator
  **/
 pub struct encoding_iterator {
-    data : *encoding,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut encoding,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct rational {
-    numerator :     i32,
-    denominator :   i32
+     pub numerator :     i32,
+     pub denominator :   i32
 }
 
 /**
  * @brief rational_iterator
  **/
 pub struct rational_iterator {
-    data : *rational,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut rational,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct format {
-    visual :   ffi::xproto::visualid,
-    depth :    u8,
-    pad0 :     [u8,..3]
+     pub visual :   ffi::xproto::visualid,
+     pub depth :    u8,
+     pub pad0 :     [u8,..3]
 }
 
 /**
  * @brief format_iterator
  **/
 pub struct format_iterator {
-    data : *format,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut format,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct adaptor_info {
-    base_id :       port,
-    name_size :     u16,
-    num_ports :     u16,
-    num_formats :   u16,
-    type_ :         u8,
-    pad0 :          u8
+     pub base_id :       port,
+     pub name_size :     u16,
+     pub num_ports :     u16,
+     pub num_formats :   u16,
+     pub type_ :         u8,
+     pub pad0 :          u8
 }
 
 /**
  * @brief adaptor_info_iterator
  **/
 pub struct adaptor_info_iterator {
-    data : *adaptor_info,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut adaptor_info,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct encoding_info {
-    encoding :    encoding,
-    name_size :   u16,
-    width :       u16,
-    height :      u16,
-    pad0 :        [u8,..2],
-    rate :        rational
+     pub encoding :    encoding,
+     pub name_size :   u16,
+     pub width :       u16,
+     pub height :      u16,
+     pub pad0 :        [u8,..2],
+     pub rate :        rational
 }
 
 /**
  * @brief encoding_info_iterator
  **/
 pub struct encoding_info_iterator {
-    data : *encoding_info,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut encoding_info,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct image {
-    id :           u32,
-    width :        u16,
-    height :       u16,
-    data_size :    u32,
-    num_planes :   u32
+     pub id :           u32,
+     pub width :        u16,
+     pub height :       u16,
+     pub data_size :    u32,
+     pub num_planes :   u32
 }
 
 /**
  * @brief image_iterator
  **/
 pub struct image_iterator {
-    data : *image,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut image,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct attribute_info {
-    flags :   u32,
-    min :     i32,
-    max :     i32,
-    size :    u32
+     pub flags :   u32,
+     pub min :     i32,
+     pub max :     i32,
+     pub size :    u32
 }
 
 /**
  * @brief attribute_info_iterator
  **/
 pub struct attribute_info_iterator {
-    data : *attribute_info,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut attribute_info,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 pub struct image_format_info {
-    id :                u32,
-    type_ :             u8,
-    byte_order :        u8,
-    pad0 :              [u8,..2],
-    guid :              [u8,..16],
-    bpp :               u8,
-    num_planes :        u8,
-    pad1 :              [u8,..2],
-    depth :             u8,
-    pad2 :              [u8,..3],
-    red_mask :          u32,
-    green_mask :        u32,
-    blue_mask :         u32,
-    format :            u8,
-    pad3 :              [u8,..3],
-    y_sample_bits :     u32,
-    u_sample_bits :     u32,
-    v_sample_bits :     u32,
-    vhorz_y_period :    u32,
-    vhorz_u_period :    u32,
-    vhorz_v_period :    u32,
-    vvert_y_period :    u32,
-    vvert_u_period :    u32,
-    vvert_v_period :    u32,
-    vcomp_order :       [u8,..32],
-    vscanline_order :   u8,
-    pad4 :              [u8,..11]
+     pub id :                u32,
+     pub type_ :             u8,
+     pub byte_order :        u8,
+     pub pad0 :              [u8,..2],
+     pub guid :              [u8,..16],
+     pub bpp :               u8,
+     pub num_planes :        u8,
+     pub pad1 :              [u8,..2],
+     pub depth :             u8,
+     pub pad2 :              [u8,..3],
+     pub red_mask :          u32,
+     pub green_mask :        u32,
+     pub blue_mask :         u32,
+     pub format :            u8,
+     pub pad3 :              [u8,..3],
+     pub y_sample_bits :     u32,
+     pub u_sample_bits :     u32,
+     pub v_sample_bits :     u32,
+     pub vhorz_y_period :    u32,
+     pub vhorz_u_period :    u32,
+     pub vhorz_v_period :    u32,
+     pub vvert_y_period :    u32,
+     pub vvert_u_period :    u32,
+     pub vvert_v_period :    u32,
+     pub vcomp_order :       [u8,..32],
+     pub vscanline_order :   u8,
+     pub pad4 :              [u8,..11]
 }
 
 /**
  * @brief image_format_info_iterator
  **/
 pub struct image_format_info_iterator {
-    data : *image_format_info,
-    rem  : c_int,
-    index: c_int
+    pub data : *mut image_format_info,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
 
 
 pub struct bad_port_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16
 }
 
 
 
 pub struct bad_encoding_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16
 }
 
 
 
 pub struct bad_control_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16
 }
 
 
 
 pub struct video_notify_event {
-    response_type :   u8,
-    reason :          u8,
-    sequence :        u16,
-    time :            ffi::xproto::timestamp,
-    drawable :        ffi::xproto::drawable,
-    port :            port
+     pub response_type :   u8,
+     pub reason :          u8,
+     pub sequence :        u16,
+     pub time :            ffi::xproto::timestamp,
+     pub drawable :        ffi::xproto::drawable,
+     pub port :            port
 }
 
 
 
 pub struct port_notify_event {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    time :            ffi::xproto::timestamp,
-    port :            port,
-    attribute :       ffi::xproto::atom,
-    value :           i32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub time :            ffi::xproto::timestamp,
+     pub port :            port,
+     pub attribute :       ffi::xproto::atom,
+     pub value :           i32
 }
 
 
@@ -237,19 +234,19 @@ pub struct query_extension_cookie {
 
 
 pub struct query_extension_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16
 }
 
 
 pub struct query_extension_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    major :           u16,
-    minor :           u16
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub major :           u16,
+     pub minor :           u16
 }
 
 
@@ -259,20 +256,20 @@ pub struct query_adaptors_cookie {
 
 
 pub struct query_adaptors_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    window :         ffi::xproto::window
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub window :         ffi::xproto::window
 }
 
 
 pub struct query_adaptors_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    num_adaptors :    u16,
-    pad1 :            [u8,..22]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub num_adaptors :    u16,
+     pub pad1 :            [u8,..22]
 }
 
 
@@ -282,20 +279,20 @@ pub struct query_encodings_cookie {
 
 
 pub struct query_encodings_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port
 }
 
 
 pub struct query_encodings_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    num_encodings :   u16,
-    pad1 :            [u8,..22]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub num_encodings :   u16,
+     pub pad1 :            [u8,..22]
 }
 
 
@@ -305,137 +302,137 @@ pub struct grab_port_cookie {
 
 
 pub struct grab_port_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    time :           ffi::xproto::timestamp
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub time :           ffi::xproto::timestamp
 }
 
 
 pub struct grab_port_reply {
-    response_type :   u8,
-    result :          u8,
-    sequence :        u16,
-    length :          u32
+     pub response_type :   u8,
+     pub result :          u8,
+     pub sequence :        u16,
+     pub length :          u32
 }
 
 
 
 pub struct ungrab_port_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    time :           ffi::xproto::timestamp
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub time :           ffi::xproto::timestamp
 }
 
 
 
 pub struct put_video_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    drawable :       ffi::xproto::drawable,
-    gc :             ffi::xproto::gcontext,
-    vid_x :          i16,
-    vid_y :          i16,
-    vid_w :          u16,
-    vid_h :          u16,
-    drw_x :          i16,
-    drw_y :          i16,
-    drw_w :          u16,
-    drw_h :          u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub drawable :       ffi::xproto::drawable,
+     pub gc :             ffi::xproto::gcontext,
+     pub vid_x :          i16,
+     pub vid_y :          i16,
+     pub vid_w :          u16,
+     pub vid_h :          u16,
+     pub drw_x :          i16,
+     pub drw_y :          i16,
+     pub drw_w :          u16,
+     pub drw_h :          u16
 }
 
 
 
 pub struct put_still_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    drawable :       ffi::xproto::drawable,
-    gc :             ffi::xproto::gcontext,
-    vid_x :          i16,
-    vid_y :          i16,
-    vid_w :          u16,
-    vid_h :          u16,
-    drw_x :          i16,
-    drw_y :          i16,
-    drw_w :          u16,
-    drw_h :          u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub drawable :       ffi::xproto::drawable,
+     pub gc :             ffi::xproto::gcontext,
+     pub vid_x :          i16,
+     pub vid_y :          i16,
+     pub vid_w :          u16,
+     pub vid_h :          u16,
+     pub drw_x :          i16,
+     pub drw_y :          i16,
+     pub drw_w :          u16,
+     pub drw_h :          u16
 }
 
 
 
 pub struct get_video_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    drawable :       ffi::xproto::drawable,
-    gc :             ffi::xproto::gcontext,
-    vid_x :          i16,
-    vid_y :          i16,
-    vid_w :          u16,
-    vid_h :          u16,
-    drw_x :          i16,
-    drw_y :          i16,
-    drw_w :          u16,
-    drw_h :          u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub drawable :       ffi::xproto::drawable,
+     pub gc :             ffi::xproto::gcontext,
+     pub vid_x :          i16,
+     pub vid_y :          i16,
+     pub vid_w :          u16,
+     pub vid_h :          u16,
+     pub drw_x :          i16,
+     pub drw_y :          i16,
+     pub drw_w :          u16,
+     pub drw_h :          u16
 }
 
 
 
 pub struct get_still_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    drawable :       ffi::xproto::drawable,
-    gc :             ffi::xproto::gcontext,
-    vid_x :          i16,
-    vid_y :          i16,
-    vid_w :          u16,
-    vid_h :          u16,
-    drw_x :          i16,
-    drw_y :          i16,
-    drw_w :          u16,
-    drw_h :          u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub drawable :       ffi::xproto::drawable,
+     pub gc :             ffi::xproto::gcontext,
+     pub vid_x :          i16,
+     pub vid_y :          i16,
+     pub vid_w :          u16,
+     pub vid_h :          u16,
+     pub drw_x :          i16,
+     pub drw_y :          i16,
+     pub drw_w :          u16,
+     pub drw_h :          u16
 }
 
 
 
 pub struct stop_video_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    drawable :       ffi::xproto::drawable
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub drawable :       ffi::xproto::drawable
 }
 
 
 
 pub struct select_video_notify_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    drawable :       ffi::xproto::drawable,
-    onoff :          u8,
-    pad0 :           [u8,..3]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub drawable :       ffi::xproto::drawable,
+     pub onoff :          u8,
+     pub pad0 :           [u8,..3]
 }
 
 
 
 pub struct select_port_notify_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    onoff :          u8,
-    pad0 :           [u8,..3]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub onoff :          u8,
+     pub pad0 :           [u8,..3]
 }
 
 
@@ -445,37 +442,37 @@ pub struct query_best_size_cookie {
 
 
 pub struct query_best_size_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    vid_w :          u16,
-    vid_h :          u16,
-    drw_w :          u16,
-    drw_h :          u16,
-    motion :         u8,
-    pad0 :           [u8,..3]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub vid_w :          u16,
+     pub vid_h :          u16,
+     pub drw_w :          u16,
+     pub drw_h :          u16,
+     pub motion :         u8,
+     pub pad0 :           [u8,..3]
 }
 
 
 pub struct query_best_size_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    actual_width :    u16,
-    actual_height :   u16
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub actual_width :    u16,
+     pub actual_height :   u16
 }
 
 
 
 pub struct set_port_attribute_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    attribute :      ffi::xproto::atom,
-    value :          i32
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub attribute :      ffi::xproto::atom,
+     pub value :          i32
 }
 
 
@@ -485,20 +482,20 @@ pub struct get_port_attribute_cookie {
 
 
 pub struct get_port_attribute_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    attribute :      ffi::xproto::atom
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub attribute :      ffi::xproto::atom
 }
 
 
 pub struct get_port_attribute_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    value :           i32
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub value :           i32
 }
 
 
@@ -508,21 +505,21 @@ pub struct query_port_attributes_cookie {
 
 
 pub struct query_port_attributes_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port
 }
 
 
 pub struct query_port_attributes_reply {
-    response_type :    u8,
-    pad0 :             u8,
-    sequence :         u16,
-    length :           u32,
-    num_attributes :   u32,
-    text_size :        u32,
-    pad1 :             [u8,..16]
+     pub response_type :    u8,
+     pub pad0 :             u8,
+     pub sequence :         u16,
+     pub length :           u32,
+     pub num_attributes :   u32,
+     pub text_size :        u32,
+     pub pad1 :             [u8,..16]
 }
 
 
@@ -532,20 +529,20 @@ pub struct list_image_formats_cookie {
 
 
 pub struct list_image_formats_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port
 }
 
 
 pub struct list_image_formats_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    num_formats :     u32,
-    pad1 :            [u8,..20]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub num_formats :     u32,
+     pub pad1 :            [u8,..20]
 }
 
 
@@ -555,78 +552,78 @@ pub struct query_image_attributes_cookie {
 
 
 pub struct query_image_attributes_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    id :             u32,
-    width :          u16,
-    height :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub id :             u32,
+     pub width :          u16,
+     pub height :         u16
 }
 
 
 pub struct query_image_attributes_reply {
-    response_type :   u8,
-    pad0 :            u8,
-    sequence :        u16,
-    length :          u32,
-    num_planes :      u32,
-    data_size :       u32,
-    width :           u16,
-    height :          u16,
-    pad1 :            [u8,..12]
+     pub response_type :   u8,
+     pub pad0 :            u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub num_planes :      u32,
+     pub data_size :       u32,
+     pub width :           u16,
+     pub height :          u16,
+     pub pad1 :            [u8,..12]
 }
 
 
 
 pub struct put_image_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    drawable :       ffi::xproto::drawable,
-    gc :             ffi::xproto::gcontext,
-    id :             u32,
-    src_x :          i16,
-    src_y :          i16,
-    src_w :          u16,
-    src_h :          u16,
-    drw_x :          i16,
-    drw_y :          i16,
-    drw_w :          u16,
-    drw_h :          u16,
-    width :          u16,
-    height :         u16
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub drawable :       ffi::xproto::drawable,
+     pub gc :             ffi::xproto::gcontext,
+     pub id :             u32,
+     pub src_x :          i16,
+     pub src_y :          i16,
+     pub src_w :          u16,
+     pub src_h :          u16,
+     pub drw_x :          i16,
+     pub drw_y :          i16,
+     pub drw_w :          u16,
+     pub drw_h :          u16,
+     pub width :          u16,
+     pub height :         u16
 }
 
 
 
 pub struct shm_put_image_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    port :           port,
-    drawable :       ffi::xproto::drawable,
-    gc :             ffi::xproto::gcontext,
-    shmseg :         ffi::shm::seg,
-    id :             u32,
-    offset :         u32,
-    src_x :          i16,
-    src_y :          i16,
-    src_w :          u16,
-    src_h :          u16,
-    drw_x :          i16,
-    drw_y :          i16,
-    drw_w :          u16,
-    drw_h :          u16,
-    width :          u16,
-    height :         u16,
-    send_event :     u8,
-    pad0 :           [u8,..3]
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub port :           port,
+     pub drawable :       ffi::xproto::drawable,
+     pub gc :             ffi::xproto::gcontext,
+     pub shmseg :         ffi::shm::seg,
+     pub id :             u32,
+     pub offset :         u32,
+     pub src_x :          i16,
+     pub src_y :          i16,
+     pub src_w :          u16,
+     pub src_h :          u16,
+     pub drw_x :          i16,
+     pub drw_y :          i16,
+     pub drw_w :          u16,
+     pub drw_h :          u16,
+     pub width :          u16,
+     pub height :         u16,
+     pub send_event :     u8,
+     pub pad0 :           [u8,..3]
 }
 
-#[link_args="-lxcb-xv"]
-pub extern "C" {
+#[link(name="xcb-xv")]
+extern "C" {
 
 /**
  * Get the next element of the iterator
@@ -638,7 +635,7 @@ pub extern "C" {
  *
  *
  */
-pub unsafe fn xcb_xv_port_next (i:*port_iterator) -> c_void;
+pub fn xcb_xv_port_next (i:*mut port_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -649,7 +646,7 @@ pub unsafe fn xcb_xv_port_next (i:*port_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_xv_port_end (i:port_iterator) -> generic_iterator;
+pub fn xcb_xv_port_end (i:port_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -661,7 +658,7 @@ pub unsafe fn xcb_xv_port_end (i:port_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_xv_encoding_next (i:*encoding_iterator) -> c_void;
+pub fn xcb_xv_encoding_next (i:*mut encoding_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -672,7 +669,7 @@ pub unsafe fn xcb_xv_encoding_next (i:*encoding_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_xv_encoding_end (i:encoding_iterator) -> generic_iterator;
+pub fn xcb_xv_encoding_end (i:encoding_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -684,7 +681,7 @@ pub unsafe fn xcb_xv_encoding_end (i:encoding_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_xv_rational_next (i:*rational_iterator) -> c_void;
+pub fn xcb_xv_rational_next (i:*mut rational_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -695,7 +692,7 @@ pub unsafe fn xcb_xv_rational_next (i:*rational_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_xv_rational_end (i:rational_iterator) -> generic_iterator;
+pub fn xcb_xv_rational_end (i:rational_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -707,7 +704,7 @@ pub unsafe fn xcb_xv_rational_end (i:rational_iterator) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_xv_format_next (i:*format_iterator) -> c_void;
+pub fn xcb_xv_format_next (i:*mut format_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -718,24 +715,24 @@ pub unsafe fn xcb_xv_format_next (i:*format_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_xv_format_end (i:format_iterator) -> generic_iterator;
+pub fn xcb_xv_format_end (i:format_iterator) -> ffi::base::generic_iterator;
 
-pub unsafe fn xcb_xv_adaptor_info_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xv_adaptor_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_xv_adaptor_info_name (R : *adaptor_info) -> *c_char;
-
-
-pub unsafe fn xcb_xv_adaptor_info_name_length (R : *adaptor_info) -> c_int;
+pub fn xcb_xv_adaptor_info_name (R : *mut adaptor_info) -> *mut c_char;
 
 
-pub unsafe fn xcb_xv_adaptor_info_name_end (R : *adaptor_info) -> generic_iterator;
-
-pub unsafe fn xcb_xv_adaptor_info_formats (R : *adaptor_info) -> *format;
+pub fn xcb_xv_adaptor_info_name_length (R : *mut adaptor_info) -> c_int;
 
 
-pub unsafe fn xcb_xv_adaptor_info_formats_length (R : *adaptor_info) -> c_int;
+pub fn xcb_xv_adaptor_info_name_end (R : *mut adaptor_info) -> ffi::base::generic_iterator;
 
-pub unsafe fn xcb_xv_adaptor_info_formats_iterator (R : *adaptor_info) -> format_iterator;
+pub fn xcb_xv_adaptor_info_formats (R : *mut adaptor_info) -> *mut format;
+
+
+pub fn xcb_xv_adaptor_info_formats_length (R : *mut adaptor_info) -> c_int;
+
+pub fn xcb_xv_adaptor_info_formats_iterator (R : *mut adaptor_info) -> format_iterator;
 
 /**
  * Get the next element of the iterator
@@ -747,7 +744,7 @@ pub unsafe fn xcb_xv_adaptor_info_formats_iterator (R : *adaptor_info) -> format
  *
  *
  */
-pub unsafe fn xcb_xv_adaptor_info_next (i:*adaptor_info_iterator) -> c_void;
+pub fn xcb_xv_adaptor_info_next (i:*mut adaptor_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -758,17 +755,17 @@ pub unsafe fn xcb_xv_adaptor_info_next (i:*adaptor_info_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_xv_adaptor_info_end (i:adaptor_info_iterator) -> generic_iterator;
+pub fn xcb_xv_adaptor_info_end (i:adaptor_info_iterator) -> ffi::base::generic_iterator;
 
-pub unsafe fn xcb_xv_encoding_info_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xv_encoding_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_xv_encoding_info_name (R : *encoding_info) -> *c_char;
-
-
-pub unsafe fn xcb_xv_encoding_info_name_length (R : *encoding_info) -> c_int;
+pub fn xcb_xv_encoding_info_name (R : *mut encoding_info) -> *mut c_char;
 
 
-pub unsafe fn xcb_xv_encoding_info_name_end (R : *encoding_info) -> generic_iterator;
+pub fn xcb_xv_encoding_info_name_length (R : *mut encoding_info) -> c_int;
+
+
+pub fn xcb_xv_encoding_info_name_end (R : *mut encoding_info) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -780,7 +777,7 @@ pub unsafe fn xcb_xv_encoding_info_name_end (R : *encoding_info) -> generic_iter
  *
  *
  */
-pub unsafe fn xcb_xv_encoding_info_next (i:*encoding_info_iterator) -> c_void;
+pub fn xcb_xv_encoding_info_next (i:*mut encoding_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -791,33 +788,33 @@ pub unsafe fn xcb_xv_encoding_info_next (i:*encoding_info_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_xv_encoding_info_end (i:encoding_info_iterator) -> generic_iterator;
+pub fn xcb_xv_encoding_info_end (i:encoding_info_iterator) -> ffi::base::generic_iterator;
 
-pub unsafe fn xcb_xv_image_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xv_image_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_xv_image_pitches (R : *image) -> *u32;
-
-
-pub unsafe fn xcb_xv_image_pitches_length (R : *image) -> c_int;
+pub fn xcb_xv_image_pitches (R : *mut image) -> *mut u32;
 
 
-pub unsafe fn xcb_xv_image_pitches_end (R : *image) -> generic_iterator;
-
-pub unsafe fn xcb_xv_image_offsets (R : *image) -> *u32;
+pub fn xcb_xv_image_pitches_length (R : *mut image) -> c_int;
 
 
-pub unsafe fn xcb_xv_image_offsets_length (R : *image) -> c_int;
+pub fn xcb_xv_image_pitches_end (R : *mut image) -> ffi::base::generic_iterator;
+
+pub fn xcb_xv_image_offsets (R : *mut image) -> *mut u32;
 
 
-pub unsafe fn xcb_xv_image_offsets_end (R : *image) -> generic_iterator;
-
-pub unsafe fn xcb_xv_image_data (R : *image) -> *u8;
+pub fn xcb_xv_image_offsets_length (R : *mut image) -> c_int;
 
 
-pub unsafe fn xcb_xv_image_data_length (R : *image) -> c_int;
+pub fn xcb_xv_image_offsets_end (R : *mut image) -> ffi::base::generic_iterator;
+
+pub fn xcb_xv_image_data (R : *mut image) -> *mut u8;
 
 
-pub unsafe fn xcb_xv_image_data_end (R : *image) -> generic_iterator;
+pub fn xcb_xv_image_data_length (R : *mut image) -> c_int;
+
+
+pub fn xcb_xv_image_data_end (R : *mut image) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -829,7 +826,7 @@ pub unsafe fn xcb_xv_image_data_end (R : *image) -> generic_iterator;
  *
  *
  */
-pub unsafe fn xcb_xv_image_next (i:*image_iterator) -> c_void;
+pub fn xcb_xv_image_next (i:*mut image_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -840,17 +837,17 @@ pub unsafe fn xcb_xv_image_next (i:*image_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_xv_image_end (i:image_iterator) -> generic_iterator;
+pub fn xcb_xv_image_end (i:image_iterator) -> ffi::base::generic_iterator;
 
-pub unsafe fn xcb_xv_attribute_info_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xv_attribute_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub unsafe fn xcb_xv_attribute_info_name (R : *attribute_info) -> *c_char;
-
-
-pub unsafe fn xcb_xv_attribute_info_name_length (R : *attribute_info) -> c_int;
+pub fn xcb_xv_attribute_info_name (R : *mut attribute_info) -> *mut c_char;
 
 
-pub unsafe fn xcb_xv_attribute_info_name_end (R : *attribute_info) -> generic_iterator;
+pub fn xcb_xv_attribute_info_name_length (R : *mut attribute_info) -> c_int;
+
+
+pub fn xcb_xv_attribute_info_name_end (R : *mut attribute_info) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -862,7 +859,7 @@ pub unsafe fn xcb_xv_attribute_info_name_end (R : *attribute_info) -> generic_it
  *
  *
  */
-pub unsafe fn xcb_xv_attribute_info_next (i:*attribute_info_iterator) -> c_void;
+pub fn xcb_xv_attribute_info_next (i:*mut attribute_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -873,7 +870,7 @@ pub unsafe fn xcb_xv_attribute_info_next (i:*attribute_info_iterator) -> c_void;
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_xv_attribute_info_end (i:attribute_info_iterator) -> generic_iterator;
+pub fn xcb_xv_attribute_info_end (i:attribute_info_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator
@@ -885,7 +882,7 @@ pub unsafe fn xcb_xv_attribute_info_end (i:attribute_info_iterator) -> generic_i
  *
  *
  */
-pub unsafe fn xcb_xv_image_format_info_next (i:*image_format_info_iterator) -> c_void;
+pub fn xcb_xv_image_format_info_next (i:*mut image_format_info_iterator) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
@@ -896,7 +893,7 @@ pub unsafe fn xcb_xv_image_format_info_next (i:*image_format_info_iterator) -> c
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub unsafe fn xcb_xv_image_format_info_end (i:image_format_info_iterator) -> generic_iterator;
+pub fn xcb_xv_image_format_info_end (i:image_format_info_iterator) -> ffi::base::generic_iterator;
 
 /**
  *
@@ -906,7 +903,7 @@ pub unsafe fn xcb_xv_image_format_info_end (i:image_format_info_iterator) -> gen
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xv_query_extension (c : *connection) -> query_extension_cookie;
+pub fn xcb_xv_query_extension (c : *mut ffi::base::connection) -> query_extension_cookie;
 
 /**
  *
@@ -919,7 +916,7 @@ pub unsafe fn xcb_xv_query_extension (c : *connection) -> query_extension_cookie
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xv_query_extension_unchecked (c : *connection) -> query_extension_cookie;
+pub fn xcb_xv_query_extension_unchecked (c : *mut ffi::base::connection) -> query_extension_cookie;
 
 /**
  * Return the reply
@@ -935,11 +932,11 @@ pub unsafe fn xcb_xv_query_extension_unchecked (c : *connection) -> query_extens
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xv_query_extension_reply (c : *connection,
+pub fn xcb_xv_query_extension_reply (c : *mut ffi::base::connection,
                                         cookie : query_extension_cookie,
-                                        e : **generic_error) -> *query_extension_reply;
+                                        e : *mut *mut ffi::base::generic_error) -> *mut query_extension_reply;
 
-pub unsafe fn xcb_xv_query_adaptors_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xv_query_adaptors_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -949,7 +946,7 @@ pub unsafe fn xcb_xv_query_adaptors_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xv_query_adaptors (c : *connection,
+pub fn xcb_xv_query_adaptors (c : *mut ffi::base::connection,
                                  window :  ffi::xproto::window) -> query_adaptors_cookie;
 
 /**
@@ -963,13 +960,13 @@ pub unsafe fn xcb_xv_query_adaptors (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xv_query_adaptors_unchecked (c : *connection,
+pub fn xcb_xv_query_adaptors_unchecked (c : *mut ffi::base::connection,
                                            window :  ffi::xproto::window) -> query_adaptors_cookie;
 
 
-pub unsafe fn xcb_xv_query_adaptors_info_length (R : *query_adaptors_reply) -> c_int;
+pub fn xcb_xv_query_adaptors_info_length (R : *mut query_adaptors_reply) -> c_int;
 
-pub unsafe fn xcb_xv_query_adaptors_info_iterator (R : *query_adaptors_reply) -> adaptor_info_iterator;
+pub fn xcb_xv_query_adaptors_info_iterator (R : *mut query_adaptors_reply) -> adaptor_info_iterator;
 
 /**
  * Return the reply
@@ -985,11 +982,11 @@ pub unsafe fn xcb_xv_query_adaptors_info_iterator (R : *query_adaptors_reply) ->
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xv_query_adaptors_reply (c : *connection,
+pub fn xcb_xv_query_adaptors_reply (c : *mut ffi::base::connection,
                                        cookie : query_adaptors_cookie,
-                                       e : **generic_error) -> *query_adaptors_reply;
+                                       e : *mut *mut ffi::base::generic_error) -> *mut query_adaptors_reply;
 
-pub unsafe fn xcb_xv_query_encodings_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xv_query_encodings_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -999,7 +996,7 @@ pub unsafe fn xcb_xv_query_encodings_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xv_query_encodings (c : *connection,
+pub fn xcb_xv_query_encodings (c : *mut ffi::base::connection,
                                   port :  port) -> query_encodings_cookie;
 
 /**
@@ -1013,13 +1010,13 @@ pub unsafe fn xcb_xv_query_encodings (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xv_query_encodings_unchecked (c : *connection,
+pub fn xcb_xv_query_encodings_unchecked (c : *mut ffi::base::connection,
                                             port :  port) -> query_encodings_cookie;
 
 
-pub unsafe fn xcb_xv_query_encodings_info_length (R : *query_encodings_reply) -> c_int;
+pub fn xcb_xv_query_encodings_info_length (R : *mut query_encodings_reply) -> c_int;
 
-pub unsafe fn xcb_xv_query_encodings_info_iterator (R : *query_encodings_reply) -> encoding_info_iterator;
+pub fn xcb_xv_query_encodings_info_iterator (R : *mut query_encodings_reply) -> encoding_info_iterator;
 
 /**
  * Return the reply
@@ -1035,9 +1032,9 @@ pub unsafe fn xcb_xv_query_encodings_info_iterator (R : *query_encodings_reply) 
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xv_query_encodings_reply (c : *connection,
+pub fn xcb_xv_query_encodings_reply (c : *mut ffi::base::connection,
                                         cookie : query_encodings_cookie,
-                                        e : **generic_error) -> *query_encodings_reply;
+                                        e : *mut *mut ffi::base::generic_error) -> *mut query_encodings_reply;
 
 /**
  *
@@ -1047,7 +1044,7 @@ pub unsafe fn xcb_xv_query_encodings_reply (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xv_grab_port (c : *connection,
+pub fn xcb_xv_grab_port (c : *mut ffi::base::connection,
                             port :  port,
                             time :  ffi::xproto::timestamp) -> grab_port_cookie;
 
@@ -1062,7 +1059,7 @@ pub unsafe fn xcb_xv_grab_port (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xv_grab_port_unchecked (c : *connection,
+pub fn xcb_xv_grab_port_unchecked (c : *mut ffi::base::connection,
                                       port :  port,
                                       time :  ffi::xproto::timestamp) -> grab_port_cookie;
 
@@ -1080,9 +1077,9 @@ pub unsafe fn xcb_xv_grab_port_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xv_grab_port_reply (c : *connection,
+pub fn xcb_xv_grab_port_reply (c : *mut ffi::base::connection,
                                   cookie : grab_port_cookie,
-                                  e : **generic_error) -> *grab_port_reply;
+                                  e : *mut *mut ffi::base::generic_error) -> *mut grab_port_reply;
 
 /**
  *
@@ -1095,9 +1092,9 @@ pub unsafe fn xcb_xv_grab_port_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xv_ungrab_port_checked (c : *connection,
+pub fn xcb_xv_ungrab_port_checked (c : *mut ffi::base::connection,
                                       port :  port,
-                                      time :  ffi::xproto::timestamp) -> void_cookie;
+                                      time :  ffi::xproto::timestamp) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1107,9 +1104,9 @@ pub unsafe fn xcb_xv_ungrab_port_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xv_ungrab_port (c : *connection,
+pub fn xcb_xv_ungrab_port (c : *mut ffi::base::connection,
                               port :  port,
-                              time :  ffi::xproto::timestamp) -> void_cookie;
+                              time :  ffi::xproto::timestamp) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1122,7 +1119,7 @@ pub unsafe fn xcb_xv_ungrab_port (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xv_put_video_checked (c : *connection,
+pub fn xcb_xv_put_video_checked (c : *mut ffi::base::connection,
                                     port :  port,
                                     drawable :  ffi::xproto::drawable,
                                     gc :  ffi::xproto::gcontext,
@@ -1133,7 +1130,7 @@ pub unsafe fn xcb_xv_put_video_checked (c : *connection,
                                     drw_x :  i16,
                                     drw_y :  i16,
                                     drw_w :  u16,
-                                    drw_h :  u16) -> void_cookie;
+                                    drw_h :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1143,7 +1140,7 @@ pub unsafe fn xcb_xv_put_video_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xv_put_video (c : *connection,
+pub fn xcb_xv_put_video (c : *mut ffi::base::connection,
                             port :  port,
                             drawable :  ffi::xproto::drawable,
                             gc :  ffi::xproto::gcontext,
@@ -1154,7 +1151,7 @@ pub unsafe fn xcb_xv_put_video (c : *connection,
                             drw_x :  i16,
                             drw_y :  i16,
                             drw_w :  u16,
-                            drw_h :  u16) -> void_cookie;
+                            drw_h :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1167,7 +1164,7 @@ pub unsafe fn xcb_xv_put_video (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xv_put_still_checked (c : *connection,
+pub fn xcb_xv_put_still_checked (c : *mut ffi::base::connection,
                                     port :  port,
                                     drawable :  ffi::xproto::drawable,
                                     gc :  ffi::xproto::gcontext,
@@ -1178,7 +1175,7 @@ pub unsafe fn xcb_xv_put_still_checked (c : *connection,
                                     drw_x :  i16,
                                     drw_y :  i16,
                                     drw_w :  u16,
-                                    drw_h :  u16) -> void_cookie;
+                                    drw_h :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1188,7 +1185,7 @@ pub unsafe fn xcb_xv_put_still_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xv_put_still (c : *connection,
+pub fn xcb_xv_put_still (c : *mut ffi::base::connection,
                             port :  port,
                             drawable :  ffi::xproto::drawable,
                             gc :  ffi::xproto::gcontext,
@@ -1199,7 +1196,7 @@ pub unsafe fn xcb_xv_put_still (c : *connection,
                             drw_x :  i16,
                             drw_y :  i16,
                             drw_w :  u16,
-                            drw_h :  u16) -> void_cookie;
+                            drw_h :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1212,7 +1209,7 @@ pub unsafe fn xcb_xv_put_still (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xv_get_video_checked (c : *connection,
+pub fn xcb_xv_get_video_checked (c : *mut ffi::base::connection,
                                     port :  port,
                                     drawable :  ffi::xproto::drawable,
                                     gc :  ffi::xproto::gcontext,
@@ -1223,7 +1220,7 @@ pub unsafe fn xcb_xv_get_video_checked (c : *connection,
                                     drw_x :  i16,
                                     drw_y :  i16,
                                     drw_w :  u16,
-                                    drw_h :  u16) -> void_cookie;
+                                    drw_h :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1233,7 +1230,7 @@ pub unsafe fn xcb_xv_get_video_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xv_get_video (c : *connection,
+pub fn xcb_xv_get_video (c : *mut ffi::base::connection,
                             port :  port,
                             drawable :  ffi::xproto::drawable,
                             gc :  ffi::xproto::gcontext,
@@ -1244,7 +1241,7 @@ pub unsafe fn xcb_xv_get_video (c : *connection,
                             drw_x :  i16,
                             drw_y :  i16,
                             drw_w :  u16,
-                            drw_h :  u16) -> void_cookie;
+                            drw_h :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1257,7 +1254,7 @@ pub unsafe fn xcb_xv_get_video (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xv_get_still_checked (c : *connection,
+pub fn xcb_xv_get_still_checked (c : *mut ffi::base::connection,
                                     port :  port,
                                     drawable :  ffi::xproto::drawable,
                                     gc :  ffi::xproto::gcontext,
@@ -1268,7 +1265,7 @@ pub unsafe fn xcb_xv_get_still_checked (c : *connection,
                                     drw_x :  i16,
                                     drw_y :  i16,
                                     drw_w :  u16,
-                                    drw_h :  u16) -> void_cookie;
+                                    drw_h :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1278,7 +1275,7 @@ pub unsafe fn xcb_xv_get_still_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xv_get_still (c : *connection,
+pub fn xcb_xv_get_still (c : *mut ffi::base::connection,
                             port :  port,
                             drawable :  ffi::xproto::drawable,
                             gc :  ffi::xproto::gcontext,
@@ -1289,7 +1286,7 @@ pub unsafe fn xcb_xv_get_still (c : *connection,
                             drw_x :  i16,
                             drw_y :  i16,
                             drw_w :  u16,
-                            drw_h :  u16) -> void_cookie;
+                            drw_h :  u16) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1302,9 +1299,9 @@ pub unsafe fn xcb_xv_get_still (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xv_stop_video_checked (c : *connection,
+pub fn xcb_xv_stop_video_checked (c : *mut ffi::base::connection,
                                      port :  port,
-                                     drawable :  ffi::xproto::drawable) -> void_cookie;
+                                     drawable :  ffi::xproto::drawable) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1314,9 +1311,9 @@ pub unsafe fn xcb_xv_stop_video_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xv_stop_video (c : *connection,
+pub fn xcb_xv_stop_video (c : *mut ffi::base::connection,
                              port :  port,
-                             drawable :  ffi::xproto::drawable) -> void_cookie;
+                             drawable :  ffi::xproto::drawable) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1329,9 +1326,9 @@ pub unsafe fn xcb_xv_stop_video (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xv_select_video_notify_checked (c : *connection,
+pub fn xcb_xv_select_video_notify_checked (c : *mut ffi::base::connection,
                                               drawable :  ffi::xproto::drawable,
-                                              onoff :  u8) -> void_cookie;
+                                              onoff :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1341,9 +1338,9 @@ pub unsafe fn xcb_xv_select_video_notify_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xv_select_video_notify (c : *connection,
+pub fn xcb_xv_select_video_notify (c : *mut ffi::base::connection,
                                       drawable :  ffi::xproto::drawable,
-                                      onoff :  u8) -> void_cookie;
+                                      onoff :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1356,9 +1353,9 @@ pub unsafe fn xcb_xv_select_video_notify (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xv_select_port_notify_checked (c : *connection,
+pub fn xcb_xv_select_port_notify_checked (c : *mut ffi::base::connection,
                                              port :  port,
-                                             onoff :  u8) -> void_cookie;
+                                             onoff :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1368,9 +1365,9 @@ pub unsafe fn xcb_xv_select_port_notify_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xv_select_port_notify (c : *connection,
+pub fn xcb_xv_select_port_notify (c : *mut ffi::base::connection,
                                      port :  port,
-                                     onoff :  u8) -> void_cookie;
+                                     onoff :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1380,7 +1377,7 @@ pub unsafe fn xcb_xv_select_port_notify (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xv_query_best_size (c : *connection,
+pub fn xcb_xv_query_best_size (c : *mut ffi::base::connection,
                                   port :  port,
                                   vid_w :  u16,
                                   vid_h :  u16,
@@ -1399,7 +1396,7 @@ pub unsafe fn xcb_xv_query_best_size (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xv_query_best_size_unchecked (c : *connection,
+pub fn xcb_xv_query_best_size_unchecked (c : *mut ffi::base::connection,
                                             port :  port,
                                             vid_w :  u16,
                                             vid_h :  u16,
@@ -1421,9 +1418,9 @@ pub unsafe fn xcb_xv_query_best_size_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xv_query_best_size_reply (c : *connection,
+pub fn xcb_xv_query_best_size_reply (c : *mut ffi::base::connection,
                                         cookie : query_best_size_cookie,
-                                        e : **generic_error) -> *query_best_size_reply;
+                                        e : *mut *mut ffi::base::generic_error) -> *mut query_best_size_reply;
 
 /**
  *
@@ -1436,10 +1433,10 @@ pub unsafe fn xcb_xv_query_best_size_reply (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xv_set_port_attribute_checked (c : *connection,
+pub fn xcb_xv_set_port_attribute_checked (c : *mut ffi::base::connection,
                                              port :  port,
                                              attribute :  ffi::xproto::atom,
-                                             value :  i32) -> void_cookie;
+                                             value :  i32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1449,10 +1446,10 @@ pub unsafe fn xcb_xv_set_port_attribute_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xv_set_port_attribute (c : *connection,
+pub fn xcb_xv_set_port_attribute (c : *mut ffi::base::connection,
                                      port :  port,
                                      attribute :  ffi::xproto::atom,
-                                     value :  i32) -> void_cookie;
+                                     value :  i32) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1462,7 +1459,7 @@ pub unsafe fn xcb_xv_set_port_attribute (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xv_get_port_attribute (c : *connection,
+pub fn xcb_xv_get_port_attribute (c : *mut ffi::base::connection,
                                      port :  port,
                                      attribute :  ffi::xproto::atom) -> get_port_attribute_cookie;
 
@@ -1477,7 +1474,7 @@ pub unsafe fn xcb_xv_get_port_attribute (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xv_get_port_attribute_unchecked (c : *connection,
+pub fn xcb_xv_get_port_attribute_unchecked (c : *mut ffi::base::connection,
                                                port :  port,
                                                attribute :  ffi::xproto::atom) -> get_port_attribute_cookie;
 
@@ -1495,11 +1492,11 @@ pub unsafe fn xcb_xv_get_port_attribute_unchecked (c : *connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xv_get_port_attribute_reply (c : *connection,
+pub fn xcb_xv_get_port_attribute_reply (c : *mut ffi::base::connection,
                                            cookie : get_port_attribute_cookie,
-                                           e : **generic_error) -> *get_port_attribute_reply;
+                                           e : *mut *mut ffi::base::generic_error) -> *mut get_port_attribute_reply;
 
-pub unsafe fn xcb_xv_query_port_attributes_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xv_query_port_attributes_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1509,7 +1506,7 @@ pub unsafe fn xcb_xv_query_port_attributes_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xv_query_port_attributes (c : *connection,
+pub fn xcb_xv_query_port_attributes (c : *mut ffi::base::connection,
                                         port :  port) -> query_port_attributes_cookie;
 
 /**
@@ -1523,13 +1520,13 @@ pub unsafe fn xcb_xv_query_port_attributes (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xv_query_port_attributes_unchecked (c : *connection,
+pub fn xcb_xv_query_port_attributes_unchecked (c : *mut ffi::base::connection,
                                                   port :  port) -> query_port_attributes_cookie;
 
 
-pub unsafe fn xcb_xv_query_port_attributes_attributes_length (R : *query_port_attributes_reply) -> c_int;
+pub fn xcb_xv_query_port_attributes_attributes_length (R : *mut query_port_attributes_reply) -> c_int;
 
-pub unsafe fn xcb_xv_query_port_attributes_attributes_iterator (R : *query_port_attributes_reply) -> attribute_info_iterator;
+pub fn xcb_xv_query_port_attributes_attributes_iterator (R : *mut query_port_attributes_reply) -> attribute_info_iterator;
 
 /**
  * Return the reply
@@ -1545,11 +1542,11 @@ pub unsafe fn xcb_xv_query_port_attributes_attributes_iterator (R : *query_port_
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xv_query_port_attributes_reply (c : *connection,
+pub fn xcb_xv_query_port_attributes_reply (c : *mut ffi::base::connection,
                                               cookie : query_port_attributes_cookie,
-                                              e : **generic_error) -> *query_port_attributes_reply;
+                                              e : *mut *mut ffi::base::generic_error) -> *mut query_port_attributes_reply;
 
-pub unsafe fn xcb_xv_list_image_formats_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xv_list_image_formats_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1559,7 +1556,7 @@ pub unsafe fn xcb_xv_list_image_formats_sizeof (_buffer :  *c_void) -> c_int;
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xv_list_image_formats (c : *connection,
+pub fn xcb_xv_list_image_formats (c : *mut ffi::base::connection,
                                      port :  port) -> list_image_formats_cookie;
 
 /**
@@ -1573,15 +1570,15 @@ pub unsafe fn xcb_xv_list_image_formats (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xv_list_image_formats_unchecked (c : *connection,
+pub fn xcb_xv_list_image_formats_unchecked (c : *mut ffi::base::connection,
                                                port :  port) -> list_image_formats_cookie;
 
-pub unsafe fn xcb_xv_list_image_formats_format (R : *list_image_formats_reply) -> *image_format_info;
+pub fn xcb_xv_list_image_formats_format (R : *mut list_image_formats_reply) -> *mut image_format_info;
 
 
-pub unsafe fn xcb_xv_list_image_formats_format_length (R : *list_image_formats_reply) -> c_int;
+pub fn xcb_xv_list_image_formats_format_length (R : *mut list_image_formats_reply) -> c_int;
 
-pub unsafe fn xcb_xv_list_image_formats_format_iterator (R : *list_image_formats_reply) -> image_format_info_iterator;
+pub fn xcb_xv_list_image_formats_format_iterator (R : *mut list_image_formats_reply) -> image_format_info_iterator;
 
 /**
  * Return the reply
@@ -1597,11 +1594,11 @@ pub unsafe fn xcb_xv_list_image_formats_format_iterator (R : *list_image_formats
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xv_list_image_formats_reply (c : *connection,
+pub fn xcb_xv_list_image_formats_reply (c : *mut ffi::base::connection,
                                            cookie : list_image_formats_cookie,
-                                           e : **generic_error) -> *list_image_formats_reply;
+                                           e : *mut *mut ffi::base::generic_error) -> *mut list_image_formats_reply;
 
-pub unsafe fn xcb_xv_query_image_attributes_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xv_query_image_attributes_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -1611,7 +1608,7 @@ pub unsafe fn xcb_xv_query_image_attributes_sizeof (_buffer :  *c_void) -> c_int
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xv_query_image_attributes (c : *connection,
+pub fn xcb_xv_query_image_attributes (c : *mut ffi::base::connection,
                                          port :  port,
                                          id :  u32,
                                          width :  u16,
@@ -1628,27 +1625,27 @@ pub unsafe fn xcb_xv_query_image_attributes (c : *connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub unsafe fn xcb_xv_query_image_attributes_unchecked (c : *connection,
+pub fn xcb_xv_query_image_attributes_unchecked (c : *mut ffi::base::connection,
                                                    port :  port,
                                                    id :  u32,
                                                    width :  u16,
                                                    height :  u16) -> query_image_attributes_cookie;
 
-pub unsafe fn xcb_xv_query_image_attributes_pitches (R : *query_image_attributes_reply) -> *u32;
+pub fn xcb_xv_query_image_attributes_pitches (R : *mut query_image_attributes_reply) -> *mut u32;
 
 
-pub unsafe fn xcb_xv_query_image_attributes_pitches_length (R : *query_image_attributes_reply) -> c_int;
+pub fn xcb_xv_query_image_attributes_pitches_length (R : *mut query_image_attributes_reply) -> c_int;
 
 
-pub unsafe fn xcb_xv_query_image_attributes_pitches_end (R : *query_image_attributes_reply) -> generic_iterator;
+pub fn xcb_xv_query_image_attributes_pitches_end (R : *mut query_image_attributes_reply) -> ffi::base::generic_iterator;
 
-pub unsafe fn xcb_xv_query_image_attributes_offsets (R : *query_image_attributes_reply) -> *u32;
-
-
-pub unsafe fn xcb_xv_query_image_attributes_offsets_length (R : *query_image_attributes_reply) -> c_int;
+pub fn xcb_xv_query_image_attributes_offsets (R : *mut query_image_attributes_reply) -> *mut u32;
 
 
-pub unsafe fn xcb_xv_query_image_attributes_offsets_end (R : *query_image_attributes_reply) -> generic_iterator;
+pub fn xcb_xv_query_image_attributes_offsets_length (R : *mut query_image_attributes_reply) -> c_int;
+
+
+pub fn xcb_xv_query_image_attributes_offsets_end (R : *mut query_image_attributes_reply) -> ffi::base::generic_iterator;
 
 /**
  * Return the reply
@@ -1664,12 +1661,12 @@ pub unsafe fn xcb_xv_query_image_attributes_offsets_end (R : *query_image_attrib
  *
  * The returned value must be freed by the caller using free().
  */
-pub unsafe fn xcb_xv_query_image_attributes_reply (c : *connection,
+pub fn xcb_xv_query_image_attributes_reply (c : *mut ffi::base::connection,
                                                cookie : query_image_attributes_cookie,
-                                               e : **generic_error) -> *query_image_attributes_reply;
+                                               e : *mut *mut ffi::base::generic_error) -> *mut query_image_attributes_reply;
 
-pub unsafe fn xcb_xv_put_image_sizeof (_buffer :  *c_void,
-                         data_len :  u32) -> c_int;
+pub fn xcb_xv_put_image_sizeof (_buffer :  *mut c_void,
+                         data_len :     u32) -> c_int;
 
 /**
  *
@@ -1682,7 +1679,7 @@ pub unsafe fn xcb_xv_put_image_sizeof (_buffer :  *c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xv_put_image_checked (c : *connection,
+pub fn xcb_xv_put_image_checked (c : *mut ffi::base::connection,
                                     port :  port,
                                     drawable :  ffi::xproto::drawable,
                                     gc :  ffi::xproto::gcontext,
@@ -1698,7 +1695,7 @@ pub unsafe fn xcb_xv_put_image_checked (c : *connection,
                                     width :  u16,
                                     height :  u16,
                                     data_len :  u32,
-                                    data : *u8) -> void_cookie;
+                                    data : *mut u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1708,7 +1705,7 @@ pub unsafe fn xcb_xv_put_image_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xv_put_image (c : *connection,
+pub fn xcb_xv_put_image (c : *mut ffi::base::connection,
                             port :  port,
                             drawable :  ffi::xproto::drawable,
                             gc :  ffi::xproto::gcontext,
@@ -1724,7 +1721,7 @@ pub unsafe fn xcb_xv_put_image (c : *connection,
                             width :  u16,
                             height :  u16,
                             data_len :  u32,
-                            data : *u8) -> void_cookie;
+                            data : *mut u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1737,7 +1734,7 @@ pub unsafe fn xcb_xv_put_image (c : *connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub unsafe fn xcb_xv_shm_put_image_checked (c : *connection,
+pub fn xcb_xv_shm_put_image_checked (c : *mut ffi::base::connection,
                                         port :  port,
                                         drawable :  ffi::xproto::drawable,
                                         gc :  ffi::xproto::gcontext,
@@ -1754,7 +1751,7 @@ pub unsafe fn xcb_xv_shm_put_image_checked (c : *connection,
                                         drw_h :  u16,
                                         width :  u16,
                                         height :  u16,
-                                        send_event :  u8) -> void_cookie;
+                                        send_event :  u8) -> ffi::base::void_cookie;
 
 /**
  *
@@ -1764,7 +1761,7 @@ pub unsafe fn xcb_xv_shm_put_image_checked (c : *connection,
  * Delivers a request to the X server.
  * 
  */
-pub unsafe fn xcb_xv_shm_put_image (c : *connection,
+pub fn xcb_xv_shm_put_image (c : *mut ffi::base::connection,
                                 port :  port,
                                 drawable :  ffi::xproto::drawable,
                                 gc :  ffi::xproto::gcontext,
@@ -1781,6 +1778,6 @@ pub unsafe fn xcb_xv_shm_put_image (c : *connection,
                                 drw_h :  u16,
                                 width :  u16,
                                 height :  u16,
-                                send_event :  u8) -> void_cookie;
+                                send_event :  u8) -> ffi::base::void_cookie;
 }
 

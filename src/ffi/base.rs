@@ -17,9 +17,11 @@ substantial portions of the Software.
 The conditions in the LICENSE file provided with the Software are also in effect.
 */
 
-#[allow(non_camel_case_types)]; // C types
+#![allow(non_camel_case_types)] // C types
 
-use std::libc::{c_int, c_uint, c_void};
+extern crate libc;
+
+use libc::{c_int, c_uint, c_void};
 
 use ffi::xproto;
 
@@ -28,7 +30,7 @@ pub struct connection;
 pub struct extension;
 
 pub struct generic_iterator {
-    data : *u8,
+    data : *mut u8,
     rem : int,
     index : int
 }
@@ -41,7 +43,7 @@ pub struct generic_reply {
 }
 
 pub struct generic_event {
-    response_type : u8,
+    pub response_type : u8,
     pad0 : u8,
     sequence : u16,
     pad : [u32,..7],
@@ -77,53 +79,54 @@ pub struct void_cookie {
 
 pub struct auth_info {
     namelen : int,
-    name : *u8,
+    name : *mut u8,
     datalen : int,
-    data : *u8
+    data : *mut u8
 }
 
-#[link_args="-lxcb"]
-pub extern {
-    unsafe fn xcb_flush(c : *connection) -> c_int;
+#[link(name = "xcb")]
+extern {
+    pub fn xcb_flush(c : *mut connection) -> c_int;
 
-    unsafe fn xcb_get_maximum_request_length(c:*connection) -> u32;
-    unsafe fn xcb_prefetch_maximum_request_length(c:*connection) -> c_void;
+    pub fn xcb_get_maximum_request_length(c:*mut connection) -> u32;
+    pub fn xcb_prefetch_maximum_request_length(c:*mut connection) -> c_void;
 
-    unsafe fn xcb_wait_for_event(c:*connection) -> *generic_event;
-    unsafe fn xcb_poll_for_event(c:*connection) -> *generic_event;
-    unsafe fn xcb_poll_for_queued_event(c:*connection) -> *generic_event;
-    unsafe fn xcb_request_check(c:*connection, cookie:void_cookie) -> *generic_error;
-    unsafe fn xcb_discard_reply(c:*connection, sequence:c_uint) -> c_void;
+    pub fn xcb_wait_for_event(c:*mut connection) -> *mut generic_event;
+    pub fn xcb_poll_for_event(c:*mut connection) -> *mut generic_event;
+    pub fn xcb_poll_for_queued_event(c:*mut connection) -> *mut generic_event;
+    pub fn xcb_request_check(c:*mut connection, cookie:void_cookie) -> *mut generic_error;
+    pub fn xcb_discard_reply(c:*mut connection, sequence:c_uint) -> c_void;
 
-    unsafe fn xcb_get_extension_data(c:*connection, ext:*extension) -> *xproto::query_extension_reply;
-    unsafe fn xcb_prefetch_extension_data(c:*connection, ext:*extension) -> c_void;
+    pub fn xcb_get_extension_data(c:*mut connection, ext:*mut extension) -> *mut xproto::query_extension_reply;
+    pub fn xcb_prefetch_extension_data(c:*mut connection, ext:*mut extension) -> c_void;
 
-    unsafe fn xcb_get_setup(c:*connection) -> *xproto::setup;
-    unsafe fn xcb_get_file_descriptor(c:*connection) -> c_int;
-    unsafe fn xcb_connection_has_error(c:*connection) -> c_int;
-    unsafe fn xcb_connect_to_fd(fd:c_int, auth_info:*auth_info) -> *connection;
-    unsafe fn xcb_disconnect(c:*connection) -> c_void;
+    pub fn xcb_get_setup(c:*mut connection) -> *mut xproto::setup;
+    pub fn xcb_get_file_descriptor(c:*mut connection) -> c_int;
+    pub fn xcb_connection_has_error(c:*mut connection) -> c_int;
+    pub fn xcb_connect_to_fd(fd:c_int, auth_info:*mut auth_info) -> *mut connection;
+    pub fn xcb_disconnect(c:*mut connection) -> c_void;
 
-    unsafe fn xcb_parse_display(name:*u8, host:**u8, display:*c_int, screen:*c_int) -> c_int;
-    unsafe fn xcb_connect(displayname:*u8, screenp:*c_int) -> *connection;
-    unsafe fn xcb_connect_to_display_with_auth_info(display:*u8, auth:*auth_info, screen:*c_int) -> *connection;
+    pub fn xcb_parse_display(name:*mut u8, host:*mut *mut u8, display:*mut c_int, screen:*mut c_int) -> c_int;
+    pub fn xcb_connect(displayname:*mut u8, screenp:*mut c_int) -> *mut connection;
+    pub fn xcb_connect_to_display_with_auth_info(display:*mut u8, auth:*mut auth_info, screen:*mut c_int) -> *mut connection;
 
-    unsafe fn xcb_generate_id(c:*connection) -> u32;
+    pub fn xcb_generate_id(c:*mut connection) -> u32;
 }
 
 pub mod Xlib {
     use super::{connection};
-    use std::libc::{c_void, c_uint};
-    struct Display;
+    use libc::{c_void, c_uint};
+    pub struct Display;
 
-    type XEventQueueOwner = c_uint;
-    static XlibOwnsEventQueue : XEventQueueOwner = 0;
-    static XCBOwnsEventQueue : XEventQueueOwner  = 1;
+    pub type XEventQueueOwner = c_uint;
+    pub static XlibOwnsEventQueue : XEventQueueOwner = 0;
+    pub static XCBOwnsEventQueue : XEventQueueOwner  = 1;
 
-    #[link_args="-lX11 -lX11-xcb"]
-    pub extern {
-        unsafe fn XGetXCBConnection(dpy:*Display) -> *connection;
-        unsafe fn XSetEventQueueOwner(dpy:*Display, owner:XEventQueueOwner) -> c_void;
+    #[link(name="X11")]
+    #[link(name="X11-xcb")]
+    extern {
+        pub fn XGetXCBConnection(dpy:*mut Display) -> *mut connection;
+        pub fn XSetEventQueueOwner(dpy:*mut Display, owner:XEventQueueOwner) -> c_void;
     }
 
 }
