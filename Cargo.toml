@@ -7,3 +7,6 @@ authors = [ "Aatch" ]
 [lib]
 name = "xcb"
 path = "src/xcb.rs"
+
+[dependencies]
+libc = "0.2"
