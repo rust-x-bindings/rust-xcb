@@ -13,11 +13,14 @@ use ffi;
 pub static GENERICEVENT_MAJOR_VERSION : c_uint = 1;
 pub static GENERICEVENT_MINOR_VERSION : c_uint = 0;
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_version_request {
      pub major_opcode :           u8,
      pub minor_opcode :           u8,
@@ -26,7 +29,12 @@ pub struct query_version_request {
      pub client_minor_version :   u16
 }
 
+impl Copy for query_version_request {}
+impl Clone for query_version_request {
+    fn clone(&self) -> query_version_request { *self }
+}
 
+#[repr(C)]
 pub struct query_version_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -34,9 +42,13 @@ pub struct query_version_reply {
      pub length :          u32,
      pub major_version :   u16,
      pub minor_version :   u16,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for query_version_reply {}
+impl Clone for query_version_reply {
+    fn clone(&self) -> query_version_reply { *self }
+}
 extern "C" {
 
 /**

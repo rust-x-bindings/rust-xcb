@@ -259,14 +259,15 @@ pub static XCB_RENDER_CREATE_RADIAL_GRADIENT : u8 = 35;
 /** Opcode for xcb_render_create_conical_gradient. */
 pub static XCB_RENDER_CREATE_CONICAL_GRADIENT : u8 = 36;
 
-impl<'s, Glyph> Iterator<&'s Glyph> for GlyphIterator {
-    fn next(&mut self) -> Option<&'s Glyph> {
+impl Iterator for GlyphIterator {
+    type Item = Glyph;
+    fn next(&mut self) -> Option<Glyph> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut glyph_iterator = mem::transmute(self);
+            let iter: *mut glyph_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_glyph_next(iter);
-            Some(mem::transmute(data))
+            Some(mem::transmute(*data))
         }
     }
 }
@@ -274,14 +275,15 @@ impl<'s, Glyph> Iterator<&'s Glyph> for GlyphIterator {
 pub type Glyphset = glyphset;
 
 
-impl<'s, Glyphset> Iterator<&'s Glyphset> for GlyphsetIterator {
-    fn next(&mut self) -> Option<&'s Glyphset> {
+impl Iterator for GlyphsetIterator {
+    type Item = Glyphset;
+    fn next(&mut self) -> Option<Glyphset> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut glyphset_iterator = mem::transmute(self);
+            let iter: *mut glyphset_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_glyphset_next(iter);
-            Some(mem::transmute(data))
+            Some(mem::transmute(*data))
         }
     }
 }
@@ -289,14 +291,15 @@ impl<'s, Glyphset> Iterator<&'s Glyphset> for GlyphsetIterator {
 pub type Picture = picture;
 
 
-impl<'s, Picture> Iterator<&'s Picture> for PictureIterator {
-    fn next(&mut self) -> Option<&'s Picture> {
+impl Iterator for PictureIterator {
+    type Item = Picture;
+    fn next(&mut self) -> Option<Picture> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut picture_iterator = mem::transmute(self);
+            let iter: *mut picture_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_picture_next(iter);
-            Some(mem::transmute(data))
+            Some(mem::transmute(*data))
         }
     }
 }
@@ -304,14 +307,15 @@ impl<'s, Picture> Iterator<&'s Picture> for PictureIterator {
 pub type Pictformat = pictformat;
 
 
-impl<'s, Pictformat> Iterator<&'s Pictformat> for PictformatIterator {
-    fn next(&mut self) -> Option<&'s Pictformat> {
+impl Iterator for PictformatIterator {
+    type Item = Pictformat;
+    fn next(&mut self) -> Option<Pictformat> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut pictformat_iterator = mem::transmute(self);
+            let iter: *mut pictformat_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_pictformat_next(iter);
-            Some(mem::transmute(data))
+            Some(mem::transmute(*data))
         }
     }
 }
@@ -319,14 +323,15 @@ impl<'s, Pictformat> Iterator<&'s Pictformat> for PictformatIterator {
 pub type Fixed = fixed;
 
 
-impl<'s, Fixed> Iterator<&'s Fixed> for FixedIterator {
-    fn next(&mut self) -> Option<&'s Fixed> {
+impl Iterator for FixedIterator {
+    type Item = Fixed;
+    fn next(&mut self) -> Option<Fixed> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut fixed_iterator = mem::transmute(self);
+            let iter: *mut fixed_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_fixed_next(iter);
-            Some(mem::transmute(data))
+            Some(mem::transmute(*data))
         }
     }
 }
@@ -367,14 +372,15 @@ impl Directformat {
 
 }
 
-impl<'s, Directformat> Iterator<&'s Directformat> for DirectformatIterator {
-    fn next(&mut self) -> Option<&'s Directformat> {
+impl Iterator for DirectformatIterator {
+    type Item = Directformat;
+    fn next(&mut self) -> Option<Directformat> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut directformat_iterator = mem::transmute(self);
+            let iter: *mut directformat_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_directformat_next(iter);
-            Some(mem::transmute(data))
+            Some(mem::transmute(*data))
         }
     }
 }
@@ -404,14 +410,15 @@ impl Pictforminfo {
 
 }
 
-impl<'s, Pictforminfo> Iterator<&'s Pictforminfo> for PictforminfoIterator {
-    fn next(&mut self) -> Option<&'s Pictforminfo> {
+impl Iterator for PictforminfoIterator {
+    type Item = Pictforminfo;
+    fn next(&mut self) -> Option<Pictforminfo> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut pictforminfo_iterator = mem::transmute(self);
+            let iter: *mut pictforminfo_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_pictforminfo_next(iter);
-            Some(mem::transmute(data))
+            Some(mem::transmute(*data))
         }
     }
 }
@@ -430,14 +437,15 @@ impl Pictvisual {
 
 }
 
-impl<'s, Pictvisual> Iterator<&'s Pictvisual> for PictvisualIterator {
-    fn next(&mut self) -> Option<&'s Pictvisual> {
+impl Iterator for PictvisualIterator {
+    type Item = Pictvisual;
+    fn next(&mut self) -> Option<Pictvisual> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut pictvisual_iterator = mem::transmute(self);
+            let iter: *mut pictvisual_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_pictvisual_next(iter);
-            Some(mem::transmute(data))
+            Some(mem::transmute(*data))
         }
     }
 }
@@ -456,14 +464,15 @@ impl Pictdepth {
 
 }
 
-impl<'s, Pictdepth> Iterator<&'s Pictdepth> for PictdepthIterator {
-    fn next(&mut self) -> Option<&'s Pictdepth> {
+impl Iterator for PictdepthIterator {
+    type Item = Pictdepth;
+    fn next(&mut self) -> Option<Pictdepth> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut pictdepth_iterator = mem::transmute(self);
+            let iter: *mut pictdepth_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_pictdepth_next(iter);
-            Some(mem::transmute(data))
+            Some(mem::transmute(*data))
         }
     }
 }
@@ -482,14 +491,15 @@ impl Pictscreen {
 
 }
 
-impl<'s, Pictscreen> Iterator<&'s Pictscreen> for PictscreenIterator {
-    fn next(&mut self) -> Option<&'s Pictscreen> {
+impl Iterator for PictscreenIterator {
+    type Item = Pictscreen;
+    fn next(&mut self) -> Option<Pictscreen> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut pictscreen_iterator = mem::transmute(self);
+            let iter: *mut pictscreen_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_pictscreen_next(iter);
-            Some(mem::transmute(data))
+            Some(mem::transmute(*data))
         }
     }
 }
@@ -520,14 +530,15 @@ impl Indexvalue {
 
 }
 
-impl<'s, Indexvalue> Iterator<&'s Indexvalue> for IndexvalueIterator {
-    fn next(&mut self) -> Option<&'s Indexvalue> {
+impl Iterator for IndexvalueIterator {
+    type Item = Indexvalue;
+    fn next(&mut self) -> Option<Indexvalue> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut indexvalue_iterator = mem::transmute(self);
+            let iter: *mut indexvalue_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_indexvalue_next(iter);
-            Some(mem::transmute(data))
+            Some(mem::transmute(*data))
         }
     }
 }
@@ -554,14 +565,15 @@ impl Color {
 
 }
 
-impl<'s, Color> Iterator<&'s Color> for ColorIterator {
-    fn next(&mut self) -> Option<&'s Color> {
+impl Iterator for ColorIterator {
+    type Item = Color;
+    fn next(&mut self) -> Option<Color> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut color_iterator = mem::transmute(self);
+            let iter: *mut color_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_color_next(iter);
-            Some(mem::transmute(data))
+            Some(mem::transmute(*data))
         }
     }
 }
@@ -580,14 +592,15 @@ impl Pointfix {
 
 }
 
-impl<'s, Pointfix> Iterator<&'s Pointfix> for PointfixIterator {
-    fn next(&mut self) -> Option<&'s Pointfix> {
+impl Iterator for PointfixIterator {
+    type Item = Pointfix;
+    fn next(&mut self) -> Option<Pointfix> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut pointfix_iterator = mem::transmute(self);
+            let iter: *mut pointfix_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_pointfix_next(iter);
-            Some(mem::transmute(data))
+            Some(mem::transmute(*data))
         }
     }
 }
@@ -604,14 +617,15 @@ impl Linefix {
   }
 }
 
-impl<'s, Linefix> Iterator<&'s Linefix> for LinefixIterator {
-    fn next(&mut self) -> Option<&'s Linefix> {
+impl Iterator for LinefixIterator {
+    type Item = Linefix;
+    fn next(&mut self) -> Option<Linefix> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut linefix_iterator = mem::transmute(self);
+            let iter: *mut linefix_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_linefix_next(iter);
-            Some(mem::transmute(data))
+            Some(mem::transmute(*data))
         }
     }
 }
@@ -631,14 +645,15 @@ impl Triangle {
   }
 }
 
-impl<'s, Triangle> Iterator<&'s Triangle> for TriangleIterator {
-    fn next(&mut self) -> Option<&'s Triangle> {
+impl Iterator for TriangleIterator {
+    type Item = Triangle;
+    fn next(&mut self) -> Option<Triangle> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut triangle_iterator = mem::transmute(self);
+            let iter: *mut triangle_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_triangle_next(iter);
-            Some(mem::transmute(data))
+            Some(mem::transmute(*data))
         }
     }
 }
@@ -663,14 +678,15 @@ impl Trapezoid {
   }
 }
 
-impl<'s, Trapezoid> Iterator<&'s Trapezoid> for TrapezoidIterator {
-    fn next(&mut self) -> Option<&'s Trapezoid> {
+impl Iterator for TrapezoidIterator {
+    type Item = Trapezoid;
+    fn next(&mut self) -> Option<Trapezoid> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut trapezoid_iterator = mem::transmute(self);
+            let iter: *mut trapezoid_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_trapezoid_next(iter);
-            Some(mem::transmute(data))
+            Some(mem::transmute(*data))
         }
     }
 }
@@ -705,14 +721,15 @@ impl Glyphinfo {
 
 }
 
-impl<'s, Glyphinfo> Iterator<&'s Glyphinfo> for GlyphinfoIterator {
-    fn next(&mut self) -> Option<&'s Glyphinfo> {
+impl Iterator for GlyphinfoIterator {
+    type Item = Glyphinfo;
+    fn next(&mut self) -> Option<Glyphinfo> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut glyphinfo_iterator = mem::transmute(self);
+            let iter: *mut glyphinfo_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_glyphinfo_next(iter);
-            Some(mem::transmute(data))
+            Some(mem::transmute(*data))
         }
     }
 }
@@ -748,7 +765,7 @@ impl QueryVersionReply {
   }
 
 }
-impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_query_version_reply, QueryVersionReply, xcb_render_query_version_reply)
+impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_query_version_reply, QueryVersionReply, xcb_render_query_version_reply);
 
 pub struct QueryPictFormatsReply { base:  base::Reply<query_pict_formats_reply> }
 fn mk_reply_query_pict_formats_reply(reply:*mut query_pict_formats_reply) -> QueryPictFormatsReply { QueryPictFormatsReply { base : base::mk_reply(reply) } }
@@ -787,7 +804,7 @@ impl QueryPictFormatsReply {
   }
 
 }
-impl_reply_cookie!(QueryPictFormatsCookie<'s>, mk_reply_query_pict_formats_reply, QueryPictFormatsReply, xcb_render_query_pict_formats_reply)
+impl_reply_cookie!(QueryPictFormatsCookie<'s>, mk_reply_query_pict_formats_reply, QueryPictFormatsReply, xcb_render_query_pict_formats_reply);
 
 pub struct QueryPictIndexValuesReply { base:  base::Reply<query_pict_index_values_reply> }
 fn mk_reply_query_pict_index_values_reply(reply:*mut query_pict_index_values_reply) -> QueryPictIndexValuesReply { QueryPictIndexValuesReply { base : base::mk_reply(reply) } }
@@ -814,7 +831,7 @@ impl QueryPictIndexValuesReply {
   }
 
 }
-impl_reply_cookie!(QueryPictIndexValuesCookie<'s>, mk_reply_query_pict_index_values_reply, QueryPictIndexValuesReply, xcb_render_query_pict_index_values_reply)
+impl_reply_cookie!(QueryPictIndexValuesCookie<'s>, mk_reply_query_pict_index_values_reply, QueryPictIndexValuesReply, xcb_render_query_pict_index_values_reply);
 
 pub fn CreatePictureChecked<'r> (c : &'r Connection,
                              pid : Picture,
@@ -1552,14 +1569,15 @@ impl Transform {
 
 }
 
-impl<'s, Transform> Iterator<&'s Transform> for TransformIterator {
-    fn next(&mut self) -> Option<&'s Transform> {
+impl Iterator for TransformIterator {
+    type Item = Transform;
+    fn next(&mut self) -> Option<Transform> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut transform_iterator = mem::transmute(self);
+            let iter: *mut transform_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_transform_next(iter);
-            Some(mem::transmute(data))
+            Some(mem::transmute(*data))
         }
     }
 }
@@ -1613,7 +1631,7 @@ impl QueryFiltersReply {
   }
 
 }
-impl_reply_cookie!(QueryFiltersCookie<'s>, mk_reply_query_filters_reply, QueryFiltersReply, xcb_render_query_filters_reply)
+impl_reply_cookie!(QueryFiltersCookie<'s>, mk_reply_query_filters_reply, QueryFiltersReply, xcb_render_query_filters_reply);
 
 pub fn SetPictureFilterChecked<'r> (c : &'r Connection,
                                 picture : Picture,
@@ -1667,14 +1685,15 @@ impl Animcursorelt {
 
 }
 
-impl<'s, Animcursorelt> Iterator<&'s Animcursorelt> for AnimcursoreltIterator {
-    fn next(&mut self) -> Option<&'s Animcursorelt> {
+impl Iterator for AnimcursoreltIterator {
+    type Item = Animcursorelt;
+    fn next(&mut self) -> Option<Animcursorelt> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut animcursorelt_iterator = mem::transmute(self);
+            let iter: *mut animcursorelt_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_animcursorelt_next(iter);
-            Some(mem::transmute(data))
+            Some(mem::transmute(*data))
         }
     }
 }
@@ -1723,14 +1742,15 @@ impl Spanfix {
 
 }
 
-impl<'s, Spanfix> Iterator<&'s Spanfix> for SpanfixIterator {
-    fn next(&mut self) -> Option<&'s Spanfix> {
+impl Iterator for SpanfixIterator {
+    type Item = Spanfix;
+    fn next(&mut self) -> Option<Spanfix> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut spanfix_iterator = mem::transmute(self);
+            let iter: *mut spanfix_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_spanfix_next(iter);
-            Some(mem::transmute(data))
+            Some(mem::transmute(*data))
         }
     }
 }
@@ -1747,14 +1767,15 @@ impl Trap {
   }
 }
 
-impl<'s, Trap> Iterator<&'s Trap> for TrapIterator {
-    fn next(&mut self) -> Option<&'s Trap> {
+impl Iterator for TrapIterator {
+    type Item = Trap;
+    fn next(&mut self) -> Option<Trap> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut trap_iterator = mem::transmute(self);
+            let iter: *mut trap_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_render_trap_next(iter);
-            Some(mem::transmute(data))
+            Some(mem::transmute(*data))
         }
     }
 }

@@ -14,11 +14,14 @@ use ffi::xproto;
 pub static SELINUX_MAJOR_VERSION : c_uint = 1;
 pub static SELINUX_MINOR_VERSION : c_uint = 0;
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_version_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -27,7 +30,12 @@ pub struct query_version_request {
      pub client_minor :   u8
 }
 
+impl Copy for query_version_request {}
+impl Clone for query_version_request {
+    fn clone(&self) -> query_version_request { *self }
+}
 
+#[repr(C)]
 pub struct query_version_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -37,8 +45,13 @@ pub struct query_version_reply {
      pub server_minor :    u16
 }
 
+impl Copy for query_version_reply {}
+impl Clone for query_version_reply {
+    fn clone(&self) -> query_version_reply { *self }
+}
 
 
+#[repr(C)]
 pub struct set_device_create_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -46,30 +59,47 @@ pub struct set_device_create_context_request {
      pub context_len :    u32
 }
 
+impl Copy for set_device_create_context_request {}
+impl Clone for set_device_create_context_request {
+    fn clone(&self) -> set_device_create_context_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_device_create_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_device_create_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for get_device_create_context_request {}
+impl Clone for get_device_create_context_request {
+    fn clone(&self) -> get_device_create_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_device_create_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_len :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
+}
+
+impl Copy for get_device_create_context_reply {}
+impl Clone for get_device_create_context_reply {
+    fn clone(&self) -> get_device_create_context_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct set_device_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -78,12 +108,19 @@ pub struct set_device_context_request {
      pub context_len :    u32
 }
 
+impl Copy for set_device_context_request {}
+impl Clone for set_device_context_request {
+    fn clone(&self) -> set_device_context_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_device_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_device_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -91,18 +128,28 @@ pub struct get_device_context_request {
      pub device :         u32
 }
 
+impl Copy for get_device_context_request {}
+impl Clone for get_device_context_request {
+    fn clone(&self) -> get_device_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_device_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_len :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
+}
+
+impl Copy for get_device_context_reply {}
+impl Clone for get_device_context_reply {
+    fn clone(&self) -> get_device_context_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct set_window_create_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -110,34 +157,53 @@ pub struct set_window_create_context_request {
      pub context_len :    u32
 }
 
+impl Copy for set_window_create_context_request {}
+impl Clone for set_window_create_context_request {
+    fn clone(&self) -> set_window_create_context_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_window_create_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_window_create_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for get_window_create_context_request {}
+impl Clone for get_window_create_context_request {
+    fn clone(&self) -> get_window_create_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_window_create_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_len :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for get_window_create_context_reply {}
+impl Clone for get_window_create_context_reply {
+    fn clone(&self) -> get_window_create_context_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_window_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_window_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -145,26 +211,41 @@ pub struct get_window_context_request {
      pub window :         ffi::xproto::window
 }
 
+impl Copy for get_window_context_request {}
+impl Clone for get_window_context_request {
+    fn clone(&self) -> get_window_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_window_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_len :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for get_window_context_reply {}
+impl Clone for get_window_context_reply {
+    fn clone(&self) -> get_window_context_reply { *self }
+}
 
+#[repr(C)]
 pub struct list_item {
      pub name :                 ffi::xproto::atom,
      pub object_context_len :   u32,
      pub data_context_len :     u32
 }
 
+impl Copy for list_item {}
+impl Clone for list_item {
+    fn clone(&self) -> list_item { *self }
+}
 /**
  * @brief list_item_iterator
  **/
+#[repr(C)]
 pub struct list_item_iterator {
     pub data : *mut list_item,
     pub rem  : c_int,
@@ -173,6 +254,7 @@ pub struct list_item_iterator {
 
 
 
+#[repr(C)]
 pub struct set_property_create_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -180,30 +262,47 @@ pub struct set_property_create_context_request {
      pub context_len :    u32
 }
 
+impl Copy for set_property_create_context_request {}
+impl Clone for set_property_create_context_request {
+    fn clone(&self) -> set_property_create_context_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_property_create_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_property_create_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for get_property_create_context_request {}
+impl Clone for get_property_create_context_request {
+    fn clone(&self) -> get_property_create_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_property_create_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_len :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
+}
+
+impl Copy for get_property_create_context_reply {}
+impl Clone for get_property_create_context_reply {
+    fn clone(&self) -> get_property_create_context_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct set_property_use_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -211,34 +310,53 @@ pub struct set_property_use_context_request {
      pub context_len :    u32
 }
 
+impl Copy for set_property_use_context_request {}
+impl Clone for set_property_use_context_request {
+    fn clone(&self) -> set_property_use_context_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_property_use_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_property_use_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for get_property_use_context_request {}
+impl Clone for get_property_use_context_request {
+    fn clone(&self) -> get_property_use_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_property_use_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_len :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for get_property_use_context_reply {}
+impl Clone for get_property_use_context_reply {
+    fn clone(&self) -> get_property_use_context_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_property_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_property_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -247,22 +365,34 @@ pub struct get_property_context_request {
      pub property :       ffi::xproto::atom
 }
 
+impl Copy for get_property_context_request {}
+impl Clone for get_property_context_request {
+    fn clone(&self) -> get_property_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_property_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_len :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for get_property_context_reply {}
+impl Clone for get_property_context_reply {
+    fn clone(&self) -> get_property_context_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_property_data_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_property_data_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -271,22 +401,34 @@ pub struct get_property_data_context_request {
      pub property :       ffi::xproto::atom
 }
 
+impl Copy for get_property_data_context_request {}
+impl Clone for get_property_data_context_request {
+    fn clone(&self) -> get_property_data_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_property_data_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_len :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for get_property_data_context_reply {}
+impl Clone for get_property_data_context_reply {
+    fn clone(&self) -> get_property_data_context_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct list_properties_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct list_properties_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -294,18 +436,28 @@ pub struct list_properties_request {
      pub window :         ffi::xproto::window
 }
 
+impl Copy for list_properties_request {}
+impl Clone for list_properties_request {
+    fn clone(&self) -> list_properties_request { *self }
+}
 
+#[repr(C)]
 pub struct list_properties_reply {
      pub response_type :    u8,
      pub pad0 :             u8,
      pub sequence :         u16,
      pub length :           u32,
      pub properties_len :   u32,
-     pub pad1 :             [u8,..20]
+     pub pad1 :             [u8; 20]
+}
+
+impl Copy for list_properties_reply {}
+impl Clone for list_properties_reply {
+    fn clone(&self) -> list_properties_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct set_selection_create_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -313,30 +465,47 @@ pub struct set_selection_create_context_request {
      pub context_len :    u32
 }
 
+impl Copy for set_selection_create_context_request {}
+impl Clone for set_selection_create_context_request {
+    fn clone(&self) -> set_selection_create_context_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_selection_create_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_selection_create_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for get_selection_create_context_request {}
+impl Clone for get_selection_create_context_request {
+    fn clone(&self) -> get_selection_create_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_selection_create_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_len :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
+}
+
+impl Copy for get_selection_create_context_reply {}
+impl Clone for get_selection_create_context_reply {
+    fn clone(&self) -> get_selection_create_context_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct set_selection_use_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -344,34 +513,53 @@ pub struct set_selection_use_context_request {
      pub context_len :    u32
 }
 
+impl Copy for set_selection_use_context_request {}
+impl Clone for set_selection_use_context_request {
+    fn clone(&self) -> set_selection_use_context_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_selection_use_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_selection_use_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for get_selection_use_context_request {}
+impl Clone for get_selection_use_context_request {
+    fn clone(&self) -> get_selection_use_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_selection_use_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_len :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for get_selection_use_context_reply {}
+impl Clone for get_selection_use_context_reply {
+    fn clone(&self) -> get_selection_use_context_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_selection_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_selection_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -379,22 +567,34 @@ pub struct get_selection_context_request {
      pub selection :      ffi::xproto::atom
 }
 
+impl Copy for get_selection_context_request {}
+impl Clone for get_selection_context_request {
+    fn clone(&self) -> get_selection_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_selection_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_len :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for get_selection_context_reply {}
+impl Clone for get_selection_context_reply {
+    fn clone(&self) -> get_selection_context_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_selection_data_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_selection_data_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -402,44 +602,68 @@ pub struct get_selection_data_context_request {
      pub selection :      ffi::xproto::atom
 }
 
+impl Copy for get_selection_data_context_request {}
+impl Clone for get_selection_data_context_request {
+    fn clone(&self) -> get_selection_data_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_selection_data_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_len :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for get_selection_data_context_reply {}
+impl Clone for get_selection_data_context_reply {
+    fn clone(&self) -> get_selection_data_context_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct list_selections_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct list_selections_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for list_selections_request {}
+impl Clone for list_selections_request {
+    fn clone(&self) -> list_selections_request { *self }
+}
 
+#[repr(C)]
 pub struct list_selections_reply {
      pub response_type :    u8,
      pub pad0 :             u8,
      pub sequence :         u16,
      pub length :           u32,
      pub selections_len :   u32,
-     pub pad1 :             [u8,..20]
+     pub pad1 :             [u8; 20]
 }
 
+impl Copy for list_selections_reply {}
+impl Clone for list_selections_reply {
+    fn clone(&self) -> list_selections_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_client_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_client_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -447,16 +671,25 @@ pub struct get_client_context_request {
      pub resource :       u32
 }
 
+impl Copy for get_client_context_request {}
+impl Clone for get_client_context_request {
+    fn clone(&self) -> get_client_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_client_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_len :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for get_client_context_reply {}
+impl Clone for get_client_context_reply {
+    fn clone(&self) -> get_client_context_reply { *self }
+}
 #[link(name="xcb-xselinux")]
 extern "C" {
 

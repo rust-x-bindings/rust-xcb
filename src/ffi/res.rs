@@ -14,14 +14,20 @@ use ffi::xproto;
 pub static RES_MAJOR_VERSION : c_uint = 1;
 pub static RES_MINOR_VERSION : c_uint = 0;
 
+#[repr(C)]
 pub struct client {
      pub resource_base :   u32,
      pub resource_mask :   u32
 }
 
+impl Copy for client {}
+impl Clone for client {
+    fn clone(&self) -> client { *self }
+}
 /**
  * @brief client_iterator
  **/
+#[repr(C)]
 pub struct client_iterator {
     pub data : *mut client,
     pub rem  : c_int,
@@ -29,14 +35,20 @@ pub struct client_iterator {
 }
 
 
+#[repr(C)]
 pub struct type_ {
      pub resource_type :   ffi::xproto::atom,
      pub count :           u32
 }
 
+impl Copy for type_ {}
+impl Clone for type_ {
+    fn clone(&self) -> type_ { *self }
+}
 /**
  * @brief type_iterator
  **/
+#[repr(C)]
 pub struct type_iterator {
     pub data : *mut type_,
     pub rem  : c_int,
@@ -44,11 +56,14 @@ pub struct type_iterator {
 }
 
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_version_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -57,7 +72,12 @@ pub struct query_version_request {
      pub client_minor :   u8
 }
 
+impl Copy for query_version_request {}
+impl Clone for query_version_request {
+    fn clone(&self) -> query_version_request { *self }
+}
 
+#[repr(C)]
 pub struct query_version_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -67,34 +87,53 @@ pub struct query_version_reply {
      pub server_minor :    u16
 }
 
+impl Copy for query_version_reply {}
+impl Clone for query_version_reply {
+    fn clone(&self) -> query_version_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_clients_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_clients_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for query_clients_request {}
+impl Clone for query_clients_request {
+    fn clone(&self) -> query_clients_request { *self }
+}
 
+#[repr(C)]
 pub struct query_clients_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub num_clients :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for query_clients_reply {}
+impl Clone for query_clients_reply {
+    fn clone(&self) -> query_clients_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_client_resources_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_client_resources_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -102,22 +141,34 @@ pub struct query_client_resources_request {
      pub xid :            u32
 }
 
+impl Copy for query_client_resources_request {}
+impl Clone for query_client_resources_request {
+    fn clone(&self) -> query_client_resources_request { *self }
+}
 
+#[repr(C)]
 pub struct query_client_resources_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub num_types :       u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for query_client_resources_reply {}
+impl Clone for query_client_resources_reply {
+    fn clone(&self) -> query_client_resources_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_client_pixmap_bytes_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_client_pixmap_bytes_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -125,7 +176,12 @@ pub struct query_client_pixmap_bytes_request {
      pub xid :            u32
 }
 
+impl Copy for query_client_pixmap_bytes_request {}
+impl Clone for query_client_pixmap_bytes_request {
+    fn clone(&self) -> query_client_pixmap_bytes_request { *self }
+}
 
+#[repr(C)]
 pub struct query_client_pixmap_bytes_reply {
      pub response_type :    u8,
      pub pad0 :             u8,
@@ -135,6 +191,10 @@ pub struct query_client_pixmap_bytes_reply {
      pub bytes_overflow :   u32
 }
 
+impl Copy for query_client_pixmap_bytes_reply {}
+impl Clone for query_client_pixmap_bytes_reply {
+    fn clone(&self) -> query_client_pixmap_bytes_reply { *self }
+}
 #[link(name="xcb-res")]
 extern "C" {
 

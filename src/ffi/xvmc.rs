@@ -20,6 +20,7 @@ pub type context = u32;
 /**
  * @brief context_iterator
  **/
+#[repr(C)]
 pub struct context_iterator {
     pub data : *mut context,
     pub rem  : c_int,
@@ -31,6 +32,7 @@ pub type surface = u32;
 /**
  * @brief surface_iterator
  **/
+#[repr(C)]
 pub struct surface_iterator {
     pub data : *mut surface,
     pub rem  : c_int,
@@ -42,6 +44,7 @@ pub type subpicture = u32;
 /**
  * @brief subpicture_iterator
  **/
+#[repr(C)]
 pub struct subpicture_iterator {
     pub data : *mut subpicture,
     pub rem  : c_int,
@@ -49,6 +52,7 @@ pub struct subpicture_iterator {
 }
 
 
+#[repr(C)]
 pub struct surface_info {
      pub id :                      surface,
      pub chroma_format :           u16,
@@ -61,9 +65,14 @@ pub struct surface_info {
      pub flags :                   u32
 }
 
+impl Copy for surface_info {}
+impl Clone for surface_info {
+    fn clone(&self) -> surface_info { *self }
+}
 /**
  * @brief surface_info_iterator
  **/
+#[repr(C)]
 pub struct surface_info_iterator {
     pub data : *mut surface_info,
     pub rem  : c_int,
@@ -71,18 +80,26 @@ pub struct surface_info_iterator {
 }
 
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_version_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for query_version_request {}
+impl Clone for query_version_request {
+    fn clone(&self) -> query_version_request { *self }
+}
 
+#[repr(C)]
 pub struct query_version_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -92,12 +109,19 @@ pub struct query_version_reply {
      pub minor :           u32
 }
 
+impl Copy for query_version_reply {}
+impl Clone for query_version_reply {
+    fn clone(&self) -> query_version_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct list_surface_types_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct list_surface_types_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -105,22 +129,34 @@ pub struct list_surface_types_request {
      pub port_id :        ffi::xv::port
 }
 
+impl Copy for list_surface_types_request {}
+impl Clone for list_surface_types_request {
+    fn clone(&self) -> list_surface_types_request { *self }
+}
 
+#[repr(C)]
 pub struct list_surface_types_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub num :             u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for list_surface_types_reply {}
+impl Clone for list_surface_types_reply {
+    fn clone(&self) -> list_surface_types_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct create_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct create_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -133,7 +169,12 @@ pub struct create_context_request {
      pub flags :          u32
 }
 
+impl Copy for create_context_request {}
+impl Clone for create_context_request {
+    fn clone(&self) -> create_context_request { *self }
+}
 
+#[repr(C)]
 pub struct create_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -142,11 +183,16 @@ pub struct create_context_reply {
      pub width_actual :    u16,
      pub height_actual :   u16,
      pub flags_return :    u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
+}
+
+impl Copy for create_context_reply {}
+impl Clone for create_context_reply {
+    fn clone(&self) -> create_context_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct destroy_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -154,12 +200,19 @@ pub struct destroy_context_request {
      pub context_id :     context
 }
 
+impl Copy for destroy_context_request {}
+impl Clone for destroy_context_request {
+    fn clone(&self) -> destroy_context_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct create_surface_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct create_surface_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -168,17 +221,27 @@ pub struct create_surface_request {
      pub context_id :     context
 }
 
+impl Copy for create_surface_request {}
+impl Clone for create_surface_request {
+    fn clone(&self) -> create_surface_request { *self }
+}
 
+#[repr(C)]
 pub struct create_surface_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..24]
+     pub pad1 :            [u8; 24]
+}
+
+impl Copy for create_surface_reply {}
+impl Clone for create_surface_reply {
+    fn clone(&self) -> create_surface_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct destroy_surface_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -186,12 +249,19 @@ pub struct destroy_surface_request {
      pub surface_id :     surface
 }
 
+impl Copy for destroy_surface_request {}
+impl Clone for destroy_surface_request {
+    fn clone(&self) -> destroy_surface_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct create_subpicture_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct create_subpicture_request {
      pub major_opcode :    u8,
      pub minor_opcode :    u8,
@@ -203,7 +273,12 @@ pub struct create_subpicture_request {
      pub height :          u16
 }
 
+impl Copy for create_subpicture_request {}
+impl Clone for create_subpicture_request {
+    fn clone(&self) -> create_subpicture_request { *self }
+}
 
+#[repr(C)]
 pub struct create_subpicture_reply {
      pub response_type :         u8,
      pub pad0 :                  u8,
@@ -213,12 +288,17 @@ pub struct create_subpicture_reply {
      pub height_actual :         u16,
      pub num_palette_entries :   u16,
      pub entry_bytes :           u16,
-     pub component_order :       [u8,..4],
-     pub pad1 :                  [u8,..12]
+     pub component_order :       [u8; 4],
+     pub pad1 :                  [u8; 12]
+}
+
+impl Copy for create_subpicture_reply {}
+impl Clone for create_subpicture_reply {
+    fn clone(&self) -> create_subpicture_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct destroy_subpicture_request {
      pub major_opcode :    u8,
      pub minor_opcode :    u8,
@@ -226,12 +306,19 @@ pub struct destroy_subpicture_request {
      pub subpicture_id :   subpicture
 }
 
+impl Copy for destroy_subpicture_request {}
+impl Clone for destroy_subpicture_request {
+    fn clone(&self) -> destroy_subpicture_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct list_subpicture_types_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct list_subpicture_types_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -240,16 +327,25 @@ pub struct list_subpicture_types_request {
      pub surface_id :     surface
 }
 
+impl Copy for list_subpicture_types_request {}
+impl Clone for list_subpicture_types_request {
+    fn clone(&self) -> list_subpicture_types_request { *self }
+}
 
+#[repr(C)]
 pub struct list_subpicture_types_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub num :             u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for list_subpicture_types_reply {}
+impl Clone for list_subpicture_types_reply {
+    fn clone(&self) -> list_subpicture_types_reply { *self }
+}
 #[link(name="xcb-xvmc")]
 extern "C" {
 

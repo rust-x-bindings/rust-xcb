@@ -16,11 +16,14 @@ use ffi::shape;
 pub static XFIXES_MAJOR_VERSION : c_uint = 5;
 pub static XFIXES_MINOR_VERSION : c_uint = 0;
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_version_request {
      pub major_opcode :           u8,
      pub minor_opcode :           u8,
@@ -29,7 +32,12 @@ pub struct query_version_request {
      pub client_minor_version :   u32
 }
 
+impl Copy for query_version_request {}
+impl Clone for query_version_request {
+    fn clone(&self) -> query_version_request { *self }
+}
 
+#[repr(C)]
 pub struct query_version_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -37,11 +45,16 @@ pub struct query_version_reply {
      pub length :          u32,
      pub major_version :   u32,
      pub minor_version :   u32,
-     pub pad1 :            [u8,..16]
+     pub pad1 :            [u8; 16]
+}
+
+impl Copy for query_version_reply {}
+impl Clone for query_version_reply {
+    fn clone(&self) -> query_version_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct change_save_set_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -53,8 +66,13 @@ pub struct change_save_set_request {
      pub window :         ffi::xproto::window
 }
 
+impl Copy for change_save_set_request {}
+impl Clone for change_save_set_request {
+    fn clone(&self) -> change_save_set_request { *self }
+}
 
 
+#[repr(C)]
 pub struct selection_notify_event {
      pub response_type :         u8,
      pub subtype :               u8,
@@ -64,11 +82,16 @@ pub struct selection_notify_event {
      pub selection :             ffi::xproto::atom,
      pub timestamp :             ffi::xproto::timestamp,
      pub selection_timestamp :   ffi::xproto::timestamp,
-     pub pad0 :                  [u8,..8]
+     pub pad0 :                  [u8; 8]
+}
+
+impl Copy for selection_notify_event {}
+impl Clone for selection_notify_event {
+    fn clone(&self) -> selection_notify_event { *self }
 }
 
 
-
+#[repr(C)]
 pub struct select_selection_input_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -78,8 +101,13 @@ pub struct select_selection_input_request {
      pub event_mask :     u32
 }
 
+impl Copy for select_selection_input_request {}
+impl Clone for select_selection_input_request {
+    fn clone(&self) -> select_selection_input_request { *self }
+}
 
 
+#[repr(C)]
 pub struct cursor_notify_event {
      pub response_type :   u8,
      pub subtype :         u8,
@@ -88,11 +116,16 @@ pub struct cursor_notify_event {
      pub cursor_serial :   u32,
      pub timestamp :       ffi::xproto::timestamp,
      pub name :            ffi::xproto::atom,
-     pub pad0 :            [u8,..12]
+     pub pad0 :            [u8; 12]
+}
+
+impl Copy for cursor_notify_event {}
+impl Clone for cursor_notify_event {
+    fn clone(&self) -> cursor_notify_event { *self }
 }
 
 
-
+#[repr(C)]
 pub struct select_cursor_input_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -101,19 +134,31 @@ pub struct select_cursor_input_request {
      pub event_mask :     u32
 }
 
+impl Copy for select_cursor_input_request {}
+impl Clone for select_cursor_input_request {
+    fn clone(&self) -> select_cursor_input_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_cursor_image_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_cursor_image_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for get_cursor_image_request {}
+impl Clone for get_cursor_image_request {
+    fn clone(&self) -> get_cursor_image_request { *self }
+}
 
+#[repr(C)]
 pub struct get_cursor_image_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -126,14 +171,19 @@ pub struct get_cursor_image_reply {
      pub xhot :            u16,
      pub yhot :            u16,
      pub cursor_serial :   u32,
-     pub pad1 :            [u8,..8]
+     pub pad1 :            [u8; 8]
 }
 
+impl Copy for get_cursor_image_reply {}
+impl Clone for get_cursor_image_reply {
+    fn clone(&self) -> get_cursor_image_reply { *self }
+}
 
 pub type region = u32;
 /**
  * @brief region_iterator
  **/
+#[repr(C)]
 pub struct region_iterator {
     pub data : *mut region,
     pub rem  : c_int,
@@ -142,14 +192,20 @@ pub struct region_iterator {
 
 
 
+#[repr(C)]
 pub struct bad_region_error {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
+impl Copy for bad_region_error {}
+impl Clone for bad_region_error {
+    fn clone(&self) -> bad_region_error { *self }
+}
 
 
+#[repr(C)]
 pub struct create_region_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -157,8 +213,13 @@ pub struct create_region_request {
      pub region :         region
 }
 
+impl Copy for create_region_request {}
+impl Clone for create_region_request {
+    fn clone(&self) -> create_region_request { *self }
+}
 
 
+#[repr(C)]
 pub struct create_region_from_bitmap_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -167,8 +228,13 @@ pub struct create_region_from_bitmap_request {
      pub bitmap :         ffi::xproto::pixmap
 }
 
+impl Copy for create_region_from_bitmap_request {}
+impl Clone for create_region_from_bitmap_request {
+    fn clone(&self) -> create_region_from_bitmap_request { *self }
+}
 
 
+#[repr(C)]
 pub struct create_region_from_window_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -176,11 +242,16 @@ pub struct create_region_from_window_request {
      pub region :         region,
      pub window :         ffi::xproto::window,
      pub kind :           ffi::shape::kind,
-     pub pad0 :           [u8,..3]
+     pub pad0 :           [u8; 3]
+}
+
+impl Copy for create_region_from_window_request {}
+impl Clone for create_region_from_window_request {
+    fn clone(&self) -> create_region_from_window_request { *self }
 }
 
 
-
+#[repr(C)]
 pub struct create_region_from_gc_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -189,8 +260,13 @@ pub struct create_region_from_gc_request {
      pub gc :             ffi::xproto::gcontext
 }
 
+impl Copy for create_region_from_gc_request {}
+impl Clone for create_region_from_gc_request {
+    fn clone(&self) -> create_region_from_gc_request { *self }
+}
 
 
+#[repr(C)]
 pub struct create_region_from_picture_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -199,8 +275,13 @@ pub struct create_region_from_picture_request {
      pub picture :        ffi::render::picture
 }
 
+impl Copy for create_region_from_picture_request {}
+impl Clone for create_region_from_picture_request {
+    fn clone(&self) -> create_region_from_picture_request { *self }
+}
 
 
+#[repr(C)]
 pub struct destroy_region_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -208,8 +289,13 @@ pub struct destroy_region_request {
      pub region :         region
 }
 
+impl Copy for destroy_region_request {}
+impl Clone for destroy_region_request {
+    fn clone(&self) -> destroy_region_request { *self }
+}
 
 
+#[repr(C)]
 pub struct set_region_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -217,8 +303,13 @@ pub struct set_region_request {
      pub region :         region
 }
 
+impl Copy for set_region_request {}
+impl Clone for set_region_request {
+    fn clone(&self) -> set_region_request { *self }
+}
 
 
+#[repr(C)]
 pub struct copy_region_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -227,8 +318,13 @@ pub struct copy_region_request {
      pub destination :    region
 }
 
+impl Copy for copy_region_request {}
+impl Clone for copy_region_request {
+    fn clone(&self) -> copy_region_request { *self }
+}
 
 
+#[repr(C)]
 pub struct union_region_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -238,8 +334,13 @@ pub struct union_region_request {
      pub destination :    region
 }
 
+impl Copy for union_region_request {}
+impl Clone for union_region_request {
+    fn clone(&self) -> union_region_request { *self }
+}
 
 
+#[repr(C)]
 pub struct intersect_region_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -249,8 +350,13 @@ pub struct intersect_region_request {
      pub destination :    region
 }
 
+impl Copy for intersect_region_request {}
+impl Clone for intersect_region_request {
+    fn clone(&self) -> intersect_region_request { *self }
+}
 
 
+#[repr(C)]
 pub struct subtract_region_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -260,8 +366,13 @@ pub struct subtract_region_request {
      pub destination :    region
 }
 
+impl Copy for subtract_region_request {}
+impl Clone for subtract_region_request {
+    fn clone(&self) -> subtract_region_request { *self }
+}
 
 
+#[repr(C)]
 pub struct invert_region_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -271,8 +382,13 @@ pub struct invert_region_request {
      pub destination :    region
 }
 
+impl Copy for invert_region_request {}
+impl Clone for invert_region_request {
+    fn clone(&self) -> invert_region_request { *self }
+}
 
 
+#[repr(C)]
 pub struct translate_region_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -282,8 +398,13 @@ pub struct translate_region_request {
      pub dy :             i16
 }
 
+impl Copy for translate_region_request {}
+impl Clone for translate_region_request {
+    fn clone(&self) -> translate_region_request { *self }
+}
 
 
+#[repr(C)]
 pub struct region_extents_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -292,12 +413,19 @@ pub struct region_extents_request {
      pub destination :    region
 }
 
+impl Copy for region_extents_request {}
+impl Clone for region_extents_request {
+    fn clone(&self) -> region_extents_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct fetch_region_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct fetch_region_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -305,18 +433,28 @@ pub struct fetch_region_request {
      pub region :         region
 }
 
+impl Copy for fetch_region_request {}
+impl Clone for fetch_region_request {
+    fn clone(&self) -> fetch_region_request { *self }
+}
 
+#[repr(C)]
 pub struct fetch_region_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub extents :         ffi::xproto::rectangle,
-     pub pad1 :            [u8,..16]
+     pub pad1 :            [u8; 16]
+}
+
+impl Copy for fetch_region_reply {}
+impl Clone for fetch_region_reply {
+    fn clone(&self) -> fetch_region_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct set_gc_clip_region_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -327,22 +465,32 @@ pub struct set_gc_clip_region_request {
      pub y_origin :       i16
 }
 
+impl Copy for set_gc_clip_region_request {}
+impl Clone for set_gc_clip_region_request {
+    fn clone(&self) -> set_gc_clip_region_request { *self }
+}
 
 
+#[repr(C)]
 pub struct set_window_shape_region_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub dest :           ffi::xproto::window,
      pub dest_kind :      ffi::shape::kind,
-     pub pad0 :           [u8,..3],
+     pub pad0 :           [u8; 3],
      pub x_offset :       i16,
      pub y_offset :       i16,
      pub region :         region
 }
 
+impl Copy for set_window_shape_region_request {}
+impl Clone for set_window_shape_region_request {
+    fn clone(&self) -> set_window_shape_region_request { *self }
+}
 
 
+#[repr(C)]
 pub struct set_picture_clip_region_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -353,23 +501,35 @@ pub struct set_picture_clip_region_request {
      pub y_origin :       i16
 }
 
+impl Copy for set_picture_clip_region_request {}
+impl Clone for set_picture_clip_region_request {
+    fn clone(&self) -> set_picture_clip_region_request { *self }
+}
 
 
+#[repr(C)]
 pub struct set_cursor_name_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub cursor :         ffi::xproto::cursor,
      pub nbytes :         u16,
-     pub pad0 :           [u8,..2]
+     pub pad0 :           [u8; 2]
 }
 
+impl Copy for set_cursor_name_request {}
+impl Clone for set_cursor_name_request {
+    fn clone(&self) -> set_cursor_name_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_cursor_name_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_cursor_name_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -377,7 +537,12 @@ pub struct get_cursor_name_request {
      pub cursor :         ffi::xproto::cursor
 }
 
+impl Copy for get_cursor_name_request {}
+impl Clone for get_cursor_name_request {
+    fn clone(&self) -> get_cursor_name_request { *self }
+}
 
+#[repr(C)]
 pub struct get_cursor_name_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -385,22 +550,34 @@ pub struct get_cursor_name_reply {
      pub length :          u32,
      pub atom :            ffi::xproto::atom,
      pub nbytes :          u16,
-     pub pad1 :            [u8,..18]
+     pub pad1 :            [u8; 18]
 }
 
+impl Copy for get_cursor_name_reply {}
+impl Clone for get_cursor_name_reply {
+    fn clone(&self) -> get_cursor_name_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_cursor_image_and_name_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_cursor_image_and_name_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for get_cursor_image_and_name_request {}
+impl Clone for get_cursor_image_and_name_request {
+    fn clone(&self) -> get_cursor_image_and_name_request { *self }
+}
 
+#[repr(C)]
 pub struct get_cursor_image_and_name_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -415,11 +592,16 @@ pub struct get_cursor_image_and_name_reply {
      pub cursor_serial :   u32,
      pub cursor_atom :     ffi::xproto::atom,
      pub nbytes :          u16,
-     pub pad1 :            [u8,..2]
+     pub pad1 :            [u8; 2]
+}
+
+impl Copy for get_cursor_image_and_name_reply {}
+impl Clone for get_cursor_image_and_name_reply {
+    fn clone(&self) -> get_cursor_image_and_name_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct change_cursor_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -428,19 +610,29 @@ pub struct change_cursor_request {
      pub destination :    ffi::xproto::cursor
 }
 
+impl Copy for change_cursor_request {}
+impl Clone for change_cursor_request {
+    fn clone(&self) -> change_cursor_request { *self }
+}
 
 
+#[repr(C)]
 pub struct change_cursor_by_name_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub src :            ffi::xproto::cursor,
      pub nbytes :         u16,
-     pub pad0 :           [u8,..2]
+     pub pad0 :           [u8; 2]
+}
+
+impl Copy for change_cursor_by_name_request {}
+impl Clone for change_cursor_by_name_request {
+    fn clone(&self) -> change_cursor_by_name_request { *self }
 }
 
 
-
+#[repr(C)]
 pub struct expand_region_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -453,8 +645,13 @@ pub struct expand_region_request {
      pub bottom :         u16
 }
 
+impl Copy for expand_region_request {}
+impl Clone for expand_region_request {
+    fn clone(&self) -> expand_region_request { *self }
+}
 
 
+#[repr(C)]
 pub struct hide_cursor_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -462,8 +659,13 @@ pub struct hide_cursor_request {
      pub window :         ffi::xproto::window
 }
 
+impl Copy for hide_cursor_request {}
+impl Clone for hide_cursor_request {
+    fn clone(&self) -> hide_cursor_request { *self }
+}
 
 
+#[repr(C)]
 pub struct show_cursor_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -471,6 +673,10 @@ pub struct show_cursor_request {
      pub window :         ffi::xproto::window
 }
 
+impl Copy for show_cursor_request {}
+impl Clone for show_cursor_request {
+    fn clone(&self) -> show_cursor_request { *self }
+}
 #[link(name="xcb-xfixes")]
 extern "C" {
 

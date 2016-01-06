@@ -13,18 +13,26 @@ use ffi;
 pub static BIGREQUESTS_MAJOR_VERSION : c_uint = 0;
 pub static BIGREQUESTS_MINOR_VERSION : c_uint = 0;
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct enable_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct enable_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for enable_request {}
+impl Clone for enable_request {
+    fn clone(&self) -> enable_request { *self }
+}
 
+#[repr(C)]
 pub struct enable_reply {
      pub response_type :            u8,
      pub pad0 :                     u8,
@@ -33,6 +41,10 @@ pub struct enable_reply {
      pub maximum_request_length :   u32
 }
 
+impl Copy for enable_reply {}
+impl Clone for enable_reply {
+    fn clone(&self) -> enable_reply { *self }
+}
 extern "C" {
 
 /**

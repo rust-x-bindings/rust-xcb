@@ -42,6 +42,6 @@ impl EnableReply {
   }
 
 }
-impl_reply_cookie!(EnableCookie<'s>, mk_reply_enable_reply, EnableReply, xcb_big_requests_enable_reply)
+impl_reply_cookie!(EnableCookie<'s>, mk_reply_enable_reply, EnableReply, xcb_big_requests_enable_reply);
 
 

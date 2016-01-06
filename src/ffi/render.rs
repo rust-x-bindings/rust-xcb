@@ -18,6 +18,7 @@ pub type glyph = u32;
 /**
  * @brief glyph_iterator
  **/
+#[repr(C)]
 pub struct glyph_iterator {
     pub data : *mut glyph,
     pub rem  : c_int,
@@ -29,6 +30,7 @@ pub type glyphset = u32;
 /**
  * @brief glyphset_iterator
  **/
+#[repr(C)]
 pub struct glyphset_iterator {
     pub data : *mut glyphset,
     pub rem  : c_int,
@@ -40,6 +42,7 @@ pub type picture = u32;
 /**
  * @brief picture_iterator
  **/
+#[repr(C)]
 pub struct picture_iterator {
     pub data : *mut picture,
     pub rem  : c_int,
@@ -51,6 +54,7 @@ pub type pictformat = u32;
 /**
  * @brief pictformat_iterator
  **/
+#[repr(C)]
 pub struct pictformat_iterator {
     pub data : *mut pictformat,
     pub rem  : c_int,
@@ -62,6 +66,7 @@ pub type fixed = i32;
 /**
  * @brief fixed_iterator
  **/
+#[repr(C)]
 pub struct fixed_iterator {
     pub data : *mut fixed,
     pub rem  : c_int,
@@ -70,45 +75,71 @@ pub struct fixed_iterator {
 
 
 
+#[repr(C)]
 pub struct pict_format_error {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
+impl Copy for pict_format_error {}
+impl Clone for pict_format_error {
+    fn clone(&self) -> pict_format_error { *self }
+}
 
 
+#[repr(C)]
 pub struct picture_error {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
+impl Copy for picture_error {}
+impl Clone for picture_error {
+    fn clone(&self) -> picture_error { *self }
+}
 
 
+#[repr(C)]
 pub struct pict_op_error {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
+impl Copy for pict_op_error {}
+impl Clone for pict_op_error {
+    fn clone(&self) -> pict_op_error { *self }
+}
 
 
+#[repr(C)]
 pub struct glyph_set_error {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
+impl Copy for glyph_set_error {}
+impl Clone for glyph_set_error {
+    fn clone(&self) -> glyph_set_error { *self }
+}
 
 
+#[repr(C)]
 pub struct glyph_error {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
+impl Copy for glyph_error {}
+impl Clone for glyph_error {
+    fn clone(&self) -> glyph_error { *self }
+}
 
+#[repr(C)]
 pub struct directformat {
      pub red_shift :     u16,
      pub red_mask :      u16,
@@ -120,9 +151,14 @@ pub struct directformat {
      pub alpha_mask :    u16
 }
 
+impl Copy for directformat {}
+impl Clone for directformat {
+    fn clone(&self) -> directformat { *self }
+}
 /**
  * @brief directformat_iterator
  **/
+#[repr(C)]
 pub struct directformat_iterator {
     pub data : *mut directformat,
     pub rem  : c_int,
@@ -130,18 +166,24 @@ pub struct directformat_iterator {
 }
 
 
+#[repr(C)]
 pub struct pictforminfo {
      pub id :         pictformat,
      pub type_ :      u8,
      pub depth :      u8,
-     pub pad0 :       [u8,..2],
+     pub pad0 :       [u8; 2],
      pub direct :     directformat,
      pub colormap :   ffi::xproto::colormap
 }
 
+impl Copy for pictforminfo {}
+impl Clone for pictforminfo {
+    fn clone(&self) -> pictforminfo { *self }
+}
 /**
  * @brief pictforminfo_iterator
  **/
+#[repr(C)]
 pub struct pictforminfo_iterator {
     pub data : *mut pictforminfo,
     pub rem  : c_int,
@@ -149,14 +191,20 @@ pub struct pictforminfo_iterator {
 }
 
 
+#[repr(C)]
 pub struct pictvisual {
      pub visual :   ffi::xproto::visualid,
      pub format :   pictformat
 }
 
+impl Copy for pictvisual {}
+impl Clone for pictvisual {
+    fn clone(&self) -> pictvisual { *self }
+}
 /**
  * @brief pictvisual_iterator
  **/
+#[repr(C)]
 pub struct pictvisual_iterator {
     pub data : *mut pictvisual,
     pub rem  : c_int,
@@ -164,16 +212,22 @@ pub struct pictvisual_iterator {
 }
 
 
+#[repr(C)]
 pub struct pictdepth {
      pub depth :         u8,
      pub pad0 :          u8,
      pub num_visuals :   u16,
-     pub pad1 :          [u8,..4]
+     pub pad1 :          [u8; 4]
 }
 
+impl Copy for pictdepth {}
+impl Clone for pictdepth {
+    fn clone(&self) -> pictdepth { *self }
+}
 /**
  * @brief pictdepth_iterator
  **/
+#[repr(C)]
 pub struct pictdepth_iterator {
     pub data : *mut pictdepth,
     pub rem  : c_int,
@@ -181,14 +235,20 @@ pub struct pictdepth_iterator {
 }
 
 
+#[repr(C)]
 pub struct pictscreen {
      pub num_depths :   u32,
      pub fallback :     pictformat
 }
 
+impl Copy for pictscreen {}
+impl Clone for pictscreen {
+    fn clone(&self) -> pictscreen { *self }
+}
 /**
  * @brief pictscreen_iterator
  **/
+#[repr(C)]
 pub struct pictscreen_iterator {
     pub data : *mut pictscreen,
     pub rem  : c_int,
@@ -196,6 +256,7 @@ pub struct pictscreen_iterator {
 }
 
 
+#[repr(C)]
 pub struct indexvalue {
      pub pixel :   u32,
      pub red :     u16,
@@ -204,9 +265,14 @@ pub struct indexvalue {
      pub alpha :   u16
 }
 
+impl Copy for indexvalue {}
+impl Clone for indexvalue {
+    fn clone(&self) -> indexvalue { *self }
+}
 /**
  * @brief indexvalue_iterator
  **/
+#[repr(C)]
 pub struct indexvalue_iterator {
     pub data : *mut indexvalue,
     pub rem  : c_int,
@@ -214,6 +280,7 @@ pub struct indexvalue_iterator {
 }
 
 
+#[repr(C)]
 pub struct color {
      pub red :     u16,
      pub green :   u16,
@@ -221,9 +288,14 @@ pub struct color {
      pub alpha :   u16
 }
 
+impl Copy for color {}
+impl Clone for color {
+    fn clone(&self) -> color { *self }
+}
 /**
  * @brief color_iterator
  **/
+#[repr(C)]
 pub struct color_iterator {
     pub data : *mut color,
     pub rem  : c_int,
@@ -231,14 +303,20 @@ pub struct color_iterator {
 }
 
 
+#[repr(C)]
 pub struct pointfix {
      pub x :   fixed,
      pub y :   fixed
 }
 
+impl Copy for pointfix {}
+impl Clone for pointfix {
+    fn clone(&self) -> pointfix { *self }
+}
 /**
  * @brief pointfix_iterator
  **/
+#[repr(C)]
 pub struct pointfix_iterator {
     pub data : *mut pointfix,
     pub rem  : c_int,
@@ -246,14 +324,20 @@ pub struct pointfix_iterator {
 }
 
 
+#[repr(C)]
 pub struct linefix {
      pub p1 :   pointfix,
      pub p2 :   pointfix
 }
 
+impl Copy for linefix {}
+impl Clone for linefix {
+    fn clone(&self) -> linefix { *self }
+}
 /**
  * @brief linefix_iterator
  **/
+#[repr(C)]
 pub struct linefix_iterator {
     pub data : *mut linefix,
     pub rem  : c_int,
@@ -261,15 +345,21 @@ pub struct linefix_iterator {
 }
 
 
+#[repr(C)]
 pub struct triangle {
      pub p1 :   pointfix,
      pub p2 :   pointfix,
      pub p3 :   pointfix
 }
 
+impl Copy for triangle {}
+impl Clone for triangle {
+    fn clone(&self) -> triangle { *self }
+}
 /**
  * @brief triangle_iterator
  **/
+#[repr(C)]
 pub struct triangle_iterator {
     pub data : *mut triangle,
     pub rem  : c_int,
@@ -277,6 +367,7 @@ pub struct triangle_iterator {
 }
 
 
+#[repr(C)]
 pub struct trapezoid {
      pub top :      fixed,
      pub bottom :   fixed,
@@ -284,9 +375,14 @@ pub struct trapezoid {
      pub right :    linefix
 }
 
+impl Copy for trapezoid {}
+impl Clone for trapezoid {
+    fn clone(&self) -> trapezoid { *self }
+}
 /**
  * @brief trapezoid_iterator
  **/
+#[repr(C)]
 pub struct trapezoid_iterator {
     pub data : *mut trapezoid,
     pub rem  : c_int,
@@ -294,6 +390,7 @@ pub struct trapezoid_iterator {
 }
 
 
+#[repr(C)]
 pub struct glyphinfo {
      pub width :    u16,
      pub height :   u16,
@@ -303,9 +400,14 @@ pub struct glyphinfo {
      pub y_off :    i16
 }
 
+impl Copy for glyphinfo {}
+impl Clone for glyphinfo {
+    fn clone(&self) -> glyphinfo { *self }
+}
 /**
  * @brief glyphinfo_iterator
  **/
+#[repr(C)]
 pub struct glyphinfo_iterator {
     pub data : *mut glyphinfo,
     pub rem  : c_int,
@@ -313,11 +415,14 @@ pub struct glyphinfo_iterator {
 }
 
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_version_request {
      pub major_opcode :           u8,
      pub minor_opcode :           u8,
@@ -326,7 +431,12 @@ pub struct query_version_request {
      pub client_minor_version :   u32
 }
 
+impl Copy for query_version_request {}
+impl Clone for query_version_request {
+    fn clone(&self) -> query_version_request { *self }
+}
 
+#[repr(C)]
 pub struct query_version_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -334,22 +444,34 @@ pub struct query_version_reply {
      pub length :          u32,
      pub major_version :   u32,
      pub minor_version :   u32,
-     pub pad1 :            [u8,..16]
+     pub pad1 :            [u8; 16]
 }
 
+impl Copy for query_version_reply {}
+impl Clone for query_version_reply {
+    fn clone(&self) -> query_version_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_pict_formats_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_pict_formats_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for query_pict_formats_request {}
+impl Clone for query_pict_formats_request {
+    fn clone(&self) -> query_pict_formats_request { *self }
+}
 
+#[repr(C)]
 pub struct query_pict_formats_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -360,15 +482,22 @@ pub struct query_pict_formats_reply {
      pub num_depths :      u32,
      pub num_visuals :     u32,
      pub num_subpixel :    u32,
-     pub pad1 :            [u8,..4]
+     pub pad1 :            [u8; 4]
 }
 
+impl Copy for query_pict_formats_reply {}
+impl Clone for query_pict_formats_reply {
+    fn clone(&self) -> query_pict_formats_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_pict_index_values_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_pict_index_values_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -376,18 +505,28 @@ pub struct query_pict_index_values_request {
      pub format :         pictformat
 }
 
+impl Copy for query_pict_index_values_request {}
+impl Clone for query_pict_index_values_request {
+    fn clone(&self) -> query_pict_index_values_request { *self }
+}
 
+#[repr(C)]
 pub struct query_pict_index_values_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub num_values :      u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
+}
+
+impl Copy for query_pict_index_values_reply {}
+impl Clone for query_pict_index_values_reply {
+    fn clone(&self) -> query_pict_index_values_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct create_picture_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -398,8 +537,13 @@ pub struct create_picture_request {
      pub value_mask :     u32
 }
 
+impl Copy for create_picture_request {}
+impl Clone for create_picture_request {
+    fn clone(&self) -> create_picture_request { *self }
+}
 
 
+#[repr(C)]
 pub struct change_picture_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -408,8 +552,13 @@ pub struct change_picture_request {
      pub value_mask :     u32
 }
 
+impl Copy for change_picture_request {}
+impl Clone for change_picture_request {
+    fn clone(&self) -> change_picture_request { *self }
+}
 
 
+#[repr(C)]
 pub struct set_picture_clip_rectangles_request {
      pub major_opcode :    u8,
      pub minor_opcode :    u8,
@@ -419,8 +568,13 @@ pub struct set_picture_clip_rectangles_request {
      pub clip_y_origin :   i16
 }
 
+impl Copy for set_picture_clip_rectangles_request {}
+impl Clone for set_picture_clip_rectangles_request {
+    fn clone(&self) -> set_picture_clip_rectangles_request { *self }
+}
 
 
+#[repr(C)]
 pub struct free_picture_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -428,14 +582,19 @@ pub struct free_picture_request {
      pub picture :        picture
 }
 
+impl Copy for free_picture_request {}
+impl Clone for free_picture_request {
+    fn clone(&self) -> free_picture_request { *self }
+}
 
 
+#[repr(C)]
 pub struct composite_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub op :             u8,
-     pub pad0 :           [u8,..3],
+     pub pad0 :           [u8; 3],
      pub src :            picture,
      pub mask :           picture,
      pub dst :            picture,
@@ -449,14 +608,19 @@ pub struct composite_request {
      pub height :         u16
 }
 
+impl Copy for composite_request {}
+impl Clone for composite_request {
+    fn clone(&self) -> composite_request { *self }
+}
 
 
+#[repr(C)]
 pub struct trapezoids_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub op :             u8,
-     pub pad0 :           [u8,..3],
+     pub pad0 :           [u8; 3],
      pub src :            picture,
      pub dst :            picture,
      pub mask_format :    pictformat,
@@ -464,14 +628,19 @@ pub struct trapezoids_request {
      pub src_y :          i16
 }
 
+impl Copy for trapezoids_request {}
+impl Clone for trapezoids_request {
+    fn clone(&self) -> trapezoids_request { *self }
+}
 
 
+#[repr(C)]
 pub struct triangles_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub op :             u8,
-     pub pad0 :           [u8,..3],
+     pub pad0 :           [u8; 3],
      pub src :            picture,
      pub dst :            picture,
      pub mask_format :    pictformat,
@@ -479,14 +648,19 @@ pub struct triangles_request {
      pub src_y :          i16
 }
 
+impl Copy for triangles_request {}
+impl Clone for triangles_request {
+    fn clone(&self) -> triangles_request { *self }
+}
 
 
+#[repr(C)]
 pub struct tri_strip_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub op :             u8,
-     pub pad0 :           [u8,..3],
+     pub pad0 :           [u8; 3],
      pub src :            picture,
      pub dst :            picture,
      pub mask_format :    pictformat,
@@ -494,14 +668,19 @@ pub struct tri_strip_request {
      pub src_y :          i16
 }
 
+impl Copy for tri_strip_request {}
+impl Clone for tri_strip_request {
+    fn clone(&self) -> tri_strip_request { *self }
+}
 
 
+#[repr(C)]
 pub struct tri_fan_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub op :             u8,
-     pub pad0 :           [u8,..3],
+     pub pad0 :           [u8; 3],
      pub src :            picture,
      pub dst :            picture,
      pub mask_format :    pictformat,
@@ -509,8 +688,13 @@ pub struct tri_fan_request {
      pub src_y :          i16
 }
 
+impl Copy for tri_fan_request {}
+impl Clone for tri_fan_request {
+    fn clone(&self) -> tri_fan_request { *self }
+}
 
 
+#[repr(C)]
 pub struct create_glyph_set_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -519,8 +703,13 @@ pub struct create_glyph_set_request {
      pub format :         pictformat
 }
 
+impl Copy for create_glyph_set_request {}
+impl Clone for create_glyph_set_request {
+    fn clone(&self) -> create_glyph_set_request { *self }
+}
 
 
+#[repr(C)]
 pub struct reference_glyph_set_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -529,8 +718,13 @@ pub struct reference_glyph_set_request {
      pub existing :       glyphset
 }
 
+impl Copy for reference_glyph_set_request {}
+impl Clone for reference_glyph_set_request {
+    fn clone(&self) -> reference_glyph_set_request { *self }
+}
 
 
+#[repr(C)]
 pub struct free_glyph_set_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -538,8 +732,13 @@ pub struct free_glyph_set_request {
      pub glyphset :       glyphset
 }
 
+impl Copy for free_glyph_set_request {}
+impl Clone for free_glyph_set_request {
+    fn clone(&self) -> free_glyph_set_request { *self }
+}
 
 
+#[repr(C)]
 pub struct add_glyphs_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -548,8 +747,13 @@ pub struct add_glyphs_request {
      pub glyphs_len :     u32
 }
 
+impl Copy for add_glyphs_request {}
+impl Clone for add_glyphs_request {
+    fn clone(&self) -> add_glyphs_request { *self }
+}
 
 
+#[repr(C)]
 pub struct free_glyphs_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -557,14 +761,19 @@ pub struct free_glyphs_request {
      pub glyphset :       glyphset
 }
 
+impl Copy for free_glyphs_request {}
+impl Clone for free_glyphs_request {
+    fn clone(&self) -> free_glyphs_request { *self }
+}
 
 
+#[repr(C)]
 pub struct composite_glyphs_8_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub op :             u8,
-     pub pad0 :           [u8,..3],
+     pub pad0 :           [u8; 3],
      pub src :            picture,
      pub dst :            picture,
      pub mask_format :    pictformat,
@@ -573,14 +782,19 @@ pub struct composite_glyphs_8_request {
      pub src_y :          i16
 }
 
+impl Copy for composite_glyphs_8_request {}
+impl Clone for composite_glyphs_8_request {
+    fn clone(&self) -> composite_glyphs_8_request { *self }
+}
 
 
+#[repr(C)]
 pub struct composite_glyphs_16_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub op :             u8,
-     pub pad0 :           [u8,..3],
+     pub pad0 :           [u8; 3],
      pub src :            picture,
      pub dst :            picture,
      pub mask_format :    pictformat,
@@ -589,14 +803,19 @@ pub struct composite_glyphs_16_request {
      pub src_y :          i16
 }
 
+impl Copy for composite_glyphs_16_request {}
+impl Clone for composite_glyphs_16_request {
+    fn clone(&self) -> composite_glyphs_16_request { *self }
+}
 
 
+#[repr(C)]
 pub struct composite_glyphs_32_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub op :             u8,
-     pub pad0 :           [u8,..3],
+     pub pad0 :           [u8; 3],
      pub src :            picture,
      pub dst :            picture,
      pub mask_format :    pictformat,
@@ -605,20 +824,30 @@ pub struct composite_glyphs_32_request {
      pub src_y :          i16
 }
 
+impl Copy for composite_glyphs_32_request {}
+impl Clone for composite_glyphs_32_request {
+    fn clone(&self) -> composite_glyphs_32_request { *self }
+}
 
 
+#[repr(C)]
 pub struct fill_rectangles_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub op :             u8,
-     pub pad0 :           [u8,..3],
+     pub pad0 :           [u8; 3],
      pub dst :            picture,
      pub color :          color
 }
 
+impl Copy for fill_rectangles_request {}
+impl Clone for fill_rectangles_request {
+    fn clone(&self) -> fill_rectangles_request { *self }
+}
 
 
+#[repr(C)]
 pub struct create_cursor_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -629,7 +858,12 @@ pub struct create_cursor_request {
      pub y :              u16
 }
 
+impl Copy for create_cursor_request {}
+impl Clone for create_cursor_request {
+    fn clone(&self) -> create_cursor_request { *self }
+}
 
+#[repr(C)]
 pub struct transform {
      pub matrix11 :   fixed,
      pub matrix12 :   fixed,
@@ -642,9 +876,14 @@ pub struct transform {
      pub matrix33 :   fixed
 }
 
+impl Copy for transform {}
+impl Clone for transform {
+    fn clone(&self) -> transform { *self }
+}
 /**
  * @brief transform_iterator
  **/
+#[repr(C)]
 pub struct transform_iterator {
     pub data : *mut transform,
     pub rem  : c_int,
@@ -653,6 +892,7 @@ pub struct transform_iterator {
 
 
 
+#[repr(C)]
 pub struct set_picture_transform_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -661,12 +901,19 @@ pub struct set_picture_transform_request {
      pub transform :      transform
 }
 
+impl Copy for set_picture_transform_request {}
+impl Clone for set_picture_transform_request {
+    fn clone(&self) -> set_picture_transform_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_filters_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_filters_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -674,7 +921,12 @@ pub struct query_filters_request {
      pub drawable :       ffi::xproto::drawable
 }
 
+impl Copy for query_filters_request {}
+impl Clone for query_filters_request {
+    fn clone(&self) -> query_filters_request { *self }
+}
 
+#[repr(C)]
 pub struct query_filters_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -682,29 +934,44 @@ pub struct query_filters_reply {
      pub length :          u32,
      pub num_aliases :     u32,
      pub num_filters :     u32,
-     pub pad1 :            [u8,..16]
+     pub pad1 :            [u8; 16]
+}
+
+impl Copy for query_filters_reply {}
+impl Clone for query_filters_reply {
+    fn clone(&self) -> query_filters_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct set_picture_filter_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub picture :        picture,
      pub filter_len :     u16,
-     pub pad0 :           [u8,..2]
+     pub pad0 :           [u8; 2]
 }
 
+impl Copy for set_picture_filter_request {}
+impl Clone for set_picture_filter_request {
+    fn clone(&self) -> set_picture_filter_request { *self }
+}
 
+#[repr(C)]
 pub struct animcursorelt {
      pub cursor :   ffi::xproto::cursor,
      pub delay :    u32
 }
 
+impl Copy for animcursorelt {}
+impl Clone for animcursorelt {
+    fn clone(&self) -> animcursorelt { *self }
+}
 /**
  * @brief animcursorelt_iterator
  **/
+#[repr(C)]
 pub struct animcursorelt_iterator {
     pub data : *mut animcursorelt,
     pub rem  : c_int,
@@ -713,6 +980,7 @@ pub struct animcursorelt_iterator {
 
 
 
+#[repr(C)]
 pub struct create_anim_cursor_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -720,16 +988,26 @@ pub struct create_anim_cursor_request {
      pub cid :            ffi::xproto::cursor
 }
 
+impl Copy for create_anim_cursor_request {}
+impl Clone for create_anim_cursor_request {
+    fn clone(&self) -> create_anim_cursor_request { *self }
+}
 
+#[repr(C)]
 pub struct spanfix {
      pub l :   fixed,
      pub r :   fixed,
      pub y :   fixed
 }
 
+impl Copy for spanfix {}
+impl Clone for spanfix {
+    fn clone(&self) -> spanfix { *self }
+}
 /**
  * @brief spanfix_iterator
  **/
+#[repr(C)]
 pub struct spanfix_iterator {
     pub data : *mut spanfix,
     pub rem  : c_int,
@@ -737,14 +1015,20 @@ pub struct spanfix_iterator {
 }
 
 
+#[repr(C)]
 pub struct trap {
      pub top :   spanfix,
      pub bot :   spanfix
 }
 
+impl Copy for trap {}
+impl Clone for trap {
+    fn clone(&self) -> trap { *self }
+}
 /**
  * @brief trap_iterator
  **/
+#[repr(C)]
 pub struct trap_iterator {
     pub data : *mut trap,
     pub rem  : c_int,
@@ -753,6 +1037,7 @@ pub struct trap_iterator {
 
 
 
+#[repr(C)]
 pub struct add_traps_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -762,8 +1047,13 @@ pub struct add_traps_request {
      pub y_off :          i16
 }
 
+impl Copy for add_traps_request {}
+impl Clone for add_traps_request {
+    fn clone(&self) -> add_traps_request { *self }
+}
 
 
+#[repr(C)]
 pub struct create_solid_fill_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -772,8 +1062,13 @@ pub struct create_solid_fill_request {
      pub color :          color
 }
 
+impl Copy for create_solid_fill_request {}
+impl Clone for create_solid_fill_request {
+    fn clone(&self) -> create_solid_fill_request { *self }
+}
 
 
+#[repr(C)]
 pub struct create_linear_gradient_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -784,8 +1079,13 @@ pub struct create_linear_gradient_request {
      pub num_stops :      u32
 }
 
+impl Copy for create_linear_gradient_request {}
+impl Clone for create_linear_gradient_request {
+    fn clone(&self) -> create_linear_gradient_request { *self }
+}
 
 
+#[repr(C)]
 pub struct create_radial_gradient_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -798,8 +1098,13 @@ pub struct create_radial_gradient_request {
      pub num_stops :      u32
 }
 
+impl Copy for create_radial_gradient_request {}
+impl Clone for create_radial_gradient_request {
+    fn clone(&self) -> create_radial_gradient_request { *self }
+}
 
 
+#[repr(C)]
 pub struct create_conical_gradient_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -810,6 +1115,10 @@ pub struct create_conical_gradient_request {
      pub num_stops :      u32
 }
 
+impl Copy for create_conical_gradient_request {}
+impl Clone for create_conical_gradient_request {
+    fn clone(&self) -> create_conical_gradient_request { *self }
+}
 #[link(name="xcb-render")]
 extern "C" {
 

@@ -14,21 +14,29 @@ use ffi::xproto;
 pub static SCREENSAVER_MAJOR_VERSION : c_uint = 1;
 pub static SCREENSAVER_MINOR_VERSION : c_uint = 1;
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_version_request {
      pub major_opcode :           u8,
      pub minor_opcode :           u8,
      pub length :                 u16,
      pub client_major_version :   u8,
      pub client_minor_version :   u8,
-     pub pad0 :                   [u8,..2]
+     pub pad0 :                   [u8; 2]
 }
 
+impl Copy for query_version_request {}
+impl Clone for query_version_request {
+    fn clone(&self) -> query_version_request { *self }
+}
 
+#[repr(C)]
 pub struct query_version_reply {
      pub response_type :          u8,
      pub pad0 :                   u8,
@@ -36,15 +44,22 @@ pub struct query_version_reply {
      pub length :                 u32,
      pub server_major_version :   u16,
      pub server_minor_version :   u16,
-     pub pad1 :                   [u8,..20]
+     pub pad1 :                   [u8; 20]
 }
 
+impl Copy for query_version_reply {}
+impl Clone for query_version_reply {
+    fn clone(&self) -> query_version_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_info_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_info_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -52,7 +67,12 @@ pub struct query_info_request {
      pub drawable :       ffi::xproto::drawable
 }
 
+impl Copy for query_info_request {}
+impl Clone for query_info_request {
+    fn clone(&self) -> query_info_request { *self }
+}
 
+#[repr(C)]
 pub struct query_info_reply {
      pub response_type :         u8,
      pub state :                 u8,
@@ -63,11 +83,16 @@ pub struct query_info_reply {
      pub ms_since_user_input :   u32,
      pub event_mask :            u32,
      pub kind :                  u8,
-     pub pad0 :                  [u8,..7]
+     pub pad0 :                  [u8; 7]
+}
+
+impl Copy for query_info_reply {}
+impl Clone for query_info_reply {
+    fn clone(&self) -> query_info_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct select_input_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -76,8 +101,13 @@ pub struct select_input_request {
      pub event_mask :     u32
 }
 
+impl Copy for select_input_request {}
+impl Clone for select_input_request {
+    fn clone(&self) -> select_input_request { *self }
+}
 
 
+#[repr(C)]
 pub struct set_attributes_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -94,8 +124,13 @@ pub struct set_attributes_request {
      pub value_mask :     u32
 }
 
+impl Copy for set_attributes_request {}
+impl Clone for set_attributes_request {
+    fn clone(&self) -> set_attributes_request { *self }
+}
 
 
+#[repr(C)]
 pub struct unset_attributes_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -103,18 +138,28 @@ pub struct unset_attributes_request {
      pub drawable :       ffi::xproto::drawable
 }
 
+impl Copy for unset_attributes_request {}
+impl Clone for unset_attributes_request {
+    fn clone(&self) -> unset_attributes_request { *self }
+}
 
 
+#[repr(C)]
 pub struct suspend_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub suspend :        u8,
-     pub pad0 :           [u8,..3]
+     pub pad0 :           [u8; 3]
+}
+
+impl Copy for suspend_request {}
+impl Clone for suspend_request {
+    fn clone(&self) -> suspend_request { *self }
 }
 
 
-
+#[repr(C)]
 pub struct notify_event {
      pub response_type :     u8,
      pub code :              u8,
@@ -127,9 +172,13 @@ pub struct notify_event {
      pub window :            ffi::xproto::window,
      pub kind :              u8,
      pub forced :            u8,
-     pub pad1 :              [u8,..14]
+     pub pad1 :              [u8; 14]
 }
 
+impl Copy for notify_event {}
+impl Clone for notify_event {
+    fn clone(&self) -> notify_event { *self }
+}
 #[link(name="xcb-screensaver")]
 extern "C" {
 

@@ -14,6 +14,7 @@ use ffi::xproto;
 pub static XINERAMA_MAJOR_VERSION : c_uint = 1;
 pub static XINERAMA_MINOR_VERSION : c_uint = 1;
 
+#[repr(C)]
 pub struct screen_info {
      pub x_org :    i16,
      pub y_org :    i16,
@@ -21,9 +22,14 @@ pub struct screen_info {
      pub height :   u16
 }
 
+impl Copy for screen_info {}
+impl Clone for screen_info {
+    fn clone(&self) -> screen_info { *self }
+}
 /**
  * @brief screen_info_iterator
  **/
+#[repr(C)]
 pub struct screen_info_iterator {
     pub data : *mut screen_info,
     pub rem  : c_int,
@@ -31,11 +37,14 @@ pub struct screen_info_iterator {
 }
 
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_version_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -44,7 +53,12 @@ pub struct query_version_request {
      pub minor :          u8
 }
 
+impl Copy for query_version_request {}
+impl Clone for query_version_request {
+    fn clone(&self) -> query_version_request { *self }
+}
 
+#[repr(C)]
 pub struct query_version_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -54,12 +68,19 @@ pub struct query_version_reply {
      pub minor :           u16
 }
 
+impl Copy for query_version_reply {}
+impl Clone for query_version_reply {
+    fn clone(&self) -> query_version_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_state_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_state_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -67,7 +88,12 @@ pub struct get_state_request {
      pub window :         ffi::xproto::window
 }
 
+impl Copy for get_state_request {}
+impl Clone for get_state_request {
+    fn clone(&self) -> get_state_request { *self }
+}
 
+#[repr(C)]
 pub struct get_state_reply {
      pub response_type :   u8,
      pub state :           u8,
@@ -76,12 +102,19 @@ pub struct get_state_reply {
      pub window :          ffi::xproto::window
 }
 
+impl Copy for get_state_reply {}
+impl Clone for get_state_reply {
+    fn clone(&self) -> get_state_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_screen_count_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_screen_count_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -89,7 +122,12 @@ pub struct get_screen_count_request {
      pub window :         ffi::xproto::window
 }
 
+impl Copy for get_screen_count_request {}
+impl Clone for get_screen_count_request {
+    fn clone(&self) -> get_screen_count_request { *self }
+}
 
+#[repr(C)]
 pub struct get_screen_count_reply {
      pub response_type :   u8,
      pub screen_count :    u8,
@@ -98,12 +136,19 @@ pub struct get_screen_count_reply {
      pub window :          ffi::xproto::window
 }
 
+impl Copy for get_screen_count_reply {}
+impl Clone for get_screen_count_reply {
+    fn clone(&self) -> get_screen_count_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_screen_size_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_screen_size_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -112,7 +157,12 @@ pub struct get_screen_size_request {
      pub screen :         u32
 }
 
+impl Copy for get_screen_size_request {}
+impl Clone for get_screen_size_request {
+    fn clone(&self) -> get_screen_size_request { *self }
+}
 
+#[repr(C)]
 pub struct get_screen_size_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -124,19 +174,31 @@ pub struct get_screen_size_reply {
      pub screen :          u32
 }
 
+impl Copy for get_screen_size_reply {}
+impl Clone for get_screen_size_reply {
+    fn clone(&self) -> get_screen_size_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct is_active_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct is_active_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for is_active_request {}
+impl Clone for is_active_request {
+    fn clone(&self) -> is_active_request { *self }
+}
 
+#[repr(C)]
 pub struct is_active_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -145,28 +207,44 @@ pub struct is_active_reply {
      pub state :           u32
 }
 
+impl Copy for is_active_reply {}
+impl Clone for is_active_reply {
+    fn clone(&self) -> is_active_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_screens_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_screens_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for query_screens_request {}
+impl Clone for query_screens_request {
+    fn clone(&self) -> query_screens_request { *self }
+}
 
+#[repr(C)]
 pub struct query_screens_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub number :          u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for query_screens_reply {}
+impl Clone for query_screens_reply {
+    fn clone(&self) -> query_screens_reply { *self }
+}
 #[link(name="xcb-xinerama")]
 extern "C" {
 

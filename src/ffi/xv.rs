@@ -19,6 +19,7 @@ pub type port = u32;
 /**
  * @brief port_iterator
  **/
+#[repr(C)]
 pub struct port_iterator {
     pub data : *mut port,
     pub rem  : c_int,
@@ -30,6 +31,7 @@ pub type encoding = u32;
 /**
  * @brief encoding_iterator
  **/
+#[repr(C)]
 pub struct encoding_iterator {
     pub data : *mut encoding,
     pub rem  : c_int,
@@ -37,14 +39,20 @@ pub struct encoding_iterator {
 }
 
 
+#[repr(C)]
 pub struct rational {
      pub numerator :     i32,
      pub denominator :   i32
 }
 
+impl Copy for rational {}
+impl Clone for rational {
+    fn clone(&self) -> rational { *self }
+}
 /**
  * @brief rational_iterator
  **/
+#[repr(C)]
 pub struct rational_iterator {
     pub data : *mut rational,
     pub rem  : c_int,
@@ -52,15 +60,21 @@ pub struct rational_iterator {
 }
 
 
+#[repr(C)]
 pub struct format {
      pub visual :   ffi::xproto::visualid,
      pub depth :    u8,
-     pub pad0 :     [u8,..3]
+     pub pad0 :     [u8; 3]
 }
 
+impl Copy for format {}
+impl Clone for format {
+    fn clone(&self) -> format { *self }
+}
 /**
  * @brief format_iterator
  **/
+#[repr(C)]
 pub struct format_iterator {
     pub data : *mut format,
     pub rem  : c_int,
@@ -68,6 +82,7 @@ pub struct format_iterator {
 }
 
 
+#[repr(C)]
 pub struct adaptor_info {
      pub base_id :       port,
      pub name_size :     u16,
@@ -77,9 +92,14 @@ pub struct adaptor_info {
      pub pad0 :          u8
 }
 
+impl Copy for adaptor_info {}
+impl Clone for adaptor_info {
+    fn clone(&self) -> adaptor_info { *self }
+}
 /**
  * @brief adaptor_info_iterator
  **/
+#[repr(C)]
 pub struct adaptor_info_iterator {
     pub data : *mut adaptor_info,
     pub rem  : c_int,
@@ -87,18 +107,24 @@ pub struct adaptor_info_iterator {
 }
 
 
+#[repr(C)]
 pub struct encoding_info {
      pub encoding :    encoding,
      pub name_size :   u16,
      pub width :       u16,
      pub height :      u16,
-     pub pad0 :        [u8,..2],
+     pub pad0 :        [u8; 2],
      pub rate :        rational
 }
 
+impl Copy for encoding_info {}
+impl Clone for encoding_info {
+    fn clone(&self) -> encoding_info { *self }
+}
 /**
  * @brief encoding_info_iterator
  **/
+#[repr(C)]
 pub struct encoding_info_iterator {
     pub data : *mut encoding_info,
     pub rem  : c_int,
@@ -106,6 +132,7 @@ pub struct encoding_info_iterator {
 }
 
 
+#[repr(C)]
 pub struct image {
      pub id :           u32,
      pub width :        u16,
@@ -114,9 +141,14 @@ pub struct image {
      pub num_planes :   u32
 }
 
+impl Copy for image {}
+impl Clone for image {
+    fn clone(&self) -> image { *self }
+}
 /**
  * @brief image_iterator
  **/
+#[repr(C)]
 pub struct image_iterator {
     pub data : *mut image,
     pub rem  : c_int,
@@ -124,6 +156,7 @@ pub struct image_iterator {
 }
 
 
+#[repr(C)]
 pub struct attribute_info {
      pub flags :   u32,
      pub min :     i32,
@@ -131,9 +164,14 @@ pub struct attribute_info {
      pub size :    u32
 }
 
+impl Copy for attribute_info {}
+impl Clone for attribute_info {
+    fn clone(&self) -> attribute_info { *self }
+}
 /**
  * @brief attribute_info_iterator
  **/
+#[repr(C)]
 pub struct attribute_info_iterator {
     pub data : *mut attribute_info,
     pub rem  : c_int,
@@ -141,22 +179,23 @@ pub struct attribute_info_iterator {
 }
 
 
+#[repr(C)]
 pub struct image_format_info {
      pub id :                u32,
      pub type_ :             u8,
      pub byte_order :        u8,
-     pub pad0 :              [u8,..2],
-     pub guid :              [u8,..16],
+     pub pad0 :              [u8; 2],
+     pub guid :              [u8; 16],
      pub bpp :               u8,
      pub num_planes :        u8,
-     pub pad1 :              [u8,..2],
+     pub pad1 :              [u8; 2],
      pub depth :             u8,
-     pub pad2 :              [u8,..3],
+     pub pad2 :              [u8; 3],
      pub red_mask :          u32,
      pub green_mask :        u32,
      pub blue_mask :         u32,
      pub format :            u8,
-     pub pad3 :              [u8,..3],
+     pub pad3 :              [u8; 3],
      pub y_sample_bits :     u32,
      pub u_sample_bits :     u32,
      pub v_sample_bits :     u32,
@@ -166,14 +205,19 @@ pub struct image_format_info {
      pub vvert_y_period :    u32,
      pub vvert_u_period :    u32,
      pub vvert_v_period :    u32,
-     pub vcomp_order :       [u8,..32],
+     pub vcomp_order :       [u8; 32],
      pub vscanline_order :   u8,
-     pub pad4 :              [u8,..11]
+     pub pad4 :              [u8; 11]
 }
 
+impl Copy for image_format_info {}
+impl Clone for image_format_info {
+    fn clone(&self) -> image_format_info { *self }
+}
 /**
  * @brief image_format_info_iterator
  **/
+#[repr(C)]
 pub struct image_format_info_iterator {
     pub data : *mut image_format_info,
     pub rem  : c_int,
@@ -182,30 +226,46 @@ pub struct image_format_info_iterator {
 
 
 
+#[repr(C)]
 pub struct bad_port_error {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
+impl Copy for bad_port_error {}
+impl Clone for bad_port_error {
+    fn clone(&self) -> bad_port_error { *self }
+}
 
 
+#[repr(C)]
 pub struct bad_encoding_error {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
+impl Copy for bad_encoding_error {}
+impl Clone for bad_encoding_error {
+    fn clone(&self) -> bad_encoding_error { *self }
+}
 
 
+#[repr(C)]
 pub struct bad_control_error {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
+impl Copy for bad_control_error {}
+impl Clone for bad_control_error {
+    fn clone(&self) -> bad_control_error { *self }
+}
 
 
+#[repr(C)]
 pub struct video_notify_event {
      pub response_type :   u8,
      pub reason :          u8,
@@ -215,8 +275,13 @@ pub struct video_notify_event {
      pub port :            port
 }
 
+impl Copy for video_notify_event {}
+impl Clone for video_notify_event {
+    fn clone(&self) -> video_notify_event { *self }
+}
 
 
+#[repr(C)]
 pub struct port_notify_event {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -227,19 +292,31 @@ pub struct port_notify_event {
      pub value :           i32
 }
 
+impl Copy for port_notify_event {}
+impl Clone for port_notify_event {
+    fn clone(&self) -> port_notify_event { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_extension_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_extension_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for query_extension_request {}
+impl Clone for query_extension_request {
+    fn clone(&self) -> query_extension_request { *self }
+}
 
+#[repr(C)]
 pub struct query_extension_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -249,12 +326,19 @@ pub struct query_extension_reply {
      pub minor :           u16
 }
 
+impl Copy for query_extension_reply {}
+impl Clone for query_extension_reply {
+    fn clone(&self) -> query_extension_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_adaptors_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_adaptors_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -262,22 +346,34 @@ pub struct query_adaptors_request {
      pub window :         ffi::xproto::window
 }
 
+impl Copy for query_adaptors_request {}
+impl Clone for query_adaptors_request {
+    fn clone(&self) -> query_adaptors_request { *self }
+}
 
+#[repr(C)]
 pub struct query_adaptors_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub num_adaptors :    u16,
-     pub pad1 :            [u8,..22]
+     pub pad1 :            [u8; 22]
 }
 
+impl Copy for query_adaptors_reply {}
+impl Clone for query_adaptors_reply {
+    fn clone(&self) -> query_adaptors_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_encodings_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_encodings_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -285,22 +381,34 @@ pub struct query_encodings_request {
      pub port :           port
 }
 
+impl Copy for query_encodings_request {}
+impl Clone for query_encodings_request {
+    fn clone(&self) -> query_encodings_request { *self }
+}
 
+#[repr(C)]
 pub struct query_encodings_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub num_encodings :   u16,
-     pub pad1 :            [u8,..22]
+     pub pad1 :            [u8; 22]
 }
 
+impl Copy for query_encodings_reply {}
+impl Clone for query_encodings_reply {
+    fn clone(&self) -> query_encodings_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct grab_port_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct grab_port_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -309,7 +417,12 @@ pub struct grab_port_request {
      pub time :           ffi::xproto::timestamp
 }
 
+impl Copy for grab_port_request {}
+impl Clone for grab_port_request {
+    fn clone(&self) -> grab_port_request { *self }
+}
 
+#[repr(C)]
 pub struct grab_port_reply {
      pub response_type :   u8,
      pub result :          u8,
@@ -317,8 +430,13 @@ pub struct grab_port_reply {
      pub length :          u32
 }
 
+impl Copy for grab_port_reply {}
+impl Clone for grab_port_reply {
+    fn clone(&self) -> grab_port_reply { *self }
+}
 
 
+#[repr(C)]
 pub struct ungrab_port_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -327,8 +445,13 @@ pub struct ungrab_port_request {
      pub time :           ffi::xproto::timestamp
 }
 
+impl Copy for ungrab_port_request {}
+impl Clone for ungrab_port_request {
+    fn clone(&self) -> ungrab_port_request { *self }
+}
 
 
+#[repr(C)]
 pub struct put_video_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -346,8 +469,13 @@ pub struct put_video_request {
      pub drw_h :          u16
 }
 
+impl Copy for put_video_request {}
+impl Clone for put_video_request {
+    fn clone(&self) -> put_video_request { *self }
+}
 
 
+#[repr(C)]
 pub struct put_still_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -365,8 +493,13 @@ pub struct put_still_request {
      pub drw_h :          u16
 }
 
+impl Copy for put_still_request {}
+impl Clone for put_still_request {
+    fn clone(&self) -> put_still_request { *self }
+}
 
 
+#[repr(C)]
 pub struct get_video_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -384,8 +517,13 @@ pub struct get_video_request {
      pub drw_h :          u16
 }
 
+impl Copy for get_video_request {}
+impl Clone for get_video_request {
+    fn clone(&self) -> get_video_request { *self }
+}
 
 
+#[repr(C)]
 pub struct get_still_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -403,8 +541,13 @@ pub struct get_still_request {
      pub drw_h :          u16
 }
 
+impl Copy for get_still_request {}
+impl Clone for get_still_request {
+    fn clone(&self) -> get_still_request { *self }
+}
 
 
+#[repr(C)]
 pub struct stop_video_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -413,34 +556,51 @@ pub struct stop_video_request {
      pub drawable :       ffi::xproto::drawable
 }
 
+impl Copy for stop_video_request {}
+impl Clone for stop_video_request {
+    fn clone(&self) -> stop_video_request { *self }
+}
 
 
+#[repr(C)]
 pub struct select_video_notify_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub drawable :       ffi::xproto::drawable,
      pub onoff :          u8,
-     pub pad0 :           [u8,..3]
+     pub pad0 :           [u8; 3]
+}
+
+impl Copy for select_video_notify_request {}
+impl Clone for select_video_notify_request {
+    fn clone(&self) -> select_video_notify_request { *self }
 }
 
 
-
+#[repr(C)]
 pub struct select_port_notify_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub port :           port,
      pub onoff :          u8,
-     pub pad0 :           [u8,..3]
+     pub pad0 :           [u8; 3]
 }
 
+impl Copy for select_port_notify_request {}
+impl Clone for select_port_notify_request {
+    fn clone(&self) -> select_port_notify_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_best_size_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_best_size_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -451,10 +611,15 @@ pub struct query_best_size_request {
      pub drw_w :          u16,
      pub drw_h :          u16,
      pub motion :         u8,
-     pub pad0 :           [u8,..3]
+     pub pad0 :           [u8; 3]
 }
 
+impl Copy for query_best_size_request {}
+impl Clone for query_best_size_request {
+    fn clone(&self) -> query_best_size_request { *self }
+}
 
+#[repr(C)]
 pub struct query_best_size_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -464,8 +629,13 @@ pub struct query_best_size_reply {
      pub actual_height :   u16
 }
 
+impl Copy for query_best_size_reply {}
+impl Clone for query_best_size_reply {
+    fn clone(&self) -> query_best_size_reply { *self }
+}
 
 
+#[repr(C)]
 pub struct set_port_attribute_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -475,12 +645,19 @@ pub struct set_port_attribute_request {
      pub value :          i32
 }
 
+impl Copy for set_port_attribute_request {}
+impl Clone for set_port_attribute_request {
+    fn clone(&self) -> set_port_attribute_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_port_attribute_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_port_attribute_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -489,7 +666,12 @@ pub struct get_port_attribute_request {
      pub attribute :      ffi::xproto::atom
 }
 
+impl Copy for get_port_attribute_request {}
+impl Clone for get_port_attribute_request {
+    fn clone(&self) -> get_port_attribute_request { *self }
+}
 
+#[repr(C)]
 pub struct get_port_attribute_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -498,12 +680,19 @@ pub struct get_port_attribute_reply {
      pub value :           i32
 }
 
+impl Copy for get_port_attribute_reply {}
+impl Clone for get_port_attribute_reply {
+    fn clone(&self) -> get_port_attribute_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_port_attributes_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_port_attributes_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -511,7 +700,12 @@ pub struct query_port_attributes_request {
      pub port :           port
 }
 
+impl Copy for query_port_attributes_request {}
+impl Clone for query_port_attributes_request {
+    fn clone(&self) -> query_port_attributes_request { *self }
+}
 
+#[repr(C)]
 pub struct query_port_attributes_reply {
      pub response_type :    u8,
      pub pad0 :             u8,
@@ -519,15 +713,22 @@ pub struct query_port_attributes_reply {
      pub length :           u32,
      pub num_attributes :   u32,
      pub text_size :        u32,
-     pub pad1 :             [u8,..16]
+     pub pad1 :             [u8; 16]
 }
 
+impl Copy for query_port_attributes_reply {}
+impl Clone for query_port_attributes_reply {
+    fn clone(&self) -> query_port_attributes_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct list_image_formats_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct list_image_formats_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -535,22 +736,34 @@ pub struct list_image_formats_request {
      pub port :           port
 }
 
+impl Copy for list_image_formats_request {}
+impl Clone for list_image_formats_request {
+    fn clone(&self) -> list_image_formats_request { *self }
+}
 
+#[repr(C)]
 pub struct list_image_formats_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub num_formats :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for list_image_formats_reply {}
+impl Clone for list_image_formats_reply {
+    fn clone(&self) -> list_image_formats_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_image_attributes_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_image_attributes_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -561,7 +774,12 @@ pub struct query_image_attributes_request {
      pub height :         u16
 }
 
+impl Copy for query_image_attributes_request {}
+impl Clone for query_image_attributes_request {
+    fn clone(&self) -> query_image_attributes_request { *self }
+}
 
+#[repr(C)]
 pub struct query_image_attributes_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -571,11 +789,16 @@ pub struct query_image_attributes_reply {
      pub data_size :       u32,
      pub width :           u16,
      pub height :          u16,
-     pub pad1 :            [u8,..12]
+     pub pad1 :            [u8; 12]
+}
+
+impl Copy for query_image_attributes_reply {}
+impl Clone for query_image_attributes_reply {
+    fn clone(&self) -> query_image_attributes_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct put_image_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -596,8 +819,13 @@ pub struct put_image_request {
      pub height :         u16
 }
 
+impl Copy for put_image_request {}
+impl Clone for put_image_request {
+    fn clone(&self) -> put_image_request { *self }
+}
 
 
+#[repr(C)]
 pub struct shm_put_image_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -619,9 +847,13 @@ pub struct shm_put_image_request {
      pub width :          u16,
      pub height :         u16,
      pub send_event :     u8,
-     pub pad0 :           [u8,..3]
+     pub pad0 :           [u8; 3]
 }
 
+impl Copy for shm_put_image_request {}
+impl Clone for shm_put_image_request {
+    fn clone(&self) -> shm_put_image_request { *self }
+}
 #[link(name="xcb-xv")]
 extern "C" {
 

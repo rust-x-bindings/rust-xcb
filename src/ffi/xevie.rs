@@ -13,11 +13,14 @@ use ffi;
 pub static XEVIE_MAJOR_VERSION : c_uint = 1;
 pub static XEVIE_MINOR_VERSION : c_uint = 0;
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_version_request {
      pub major_opcode :           u8,
      pub minor_opcode :           u8,
@@ -26,7 +29,12 @@ pub struct query_version_request {
      pub client_minor_version :   u16
 }
 
+impl Copy for query_version_request {}
+impl Clone for query_version_request {
+    fn clone(&self) -> query_version_request { *self }
+}
 
+#[repr(C)]
 pub struct query_version_reply {
      pub response_type :          u8,
      pub pad0 :                   u8,
@@ -34,15 +42,22 @@ pub struct query_version_reply {
      pub length :                 u32,
      pub server_major_version :   u16,
      pub server_minor_version :   u16,
-     pub pad1 :                   [u8,..20]
+     pub pad1 :                   [u8; 20]
 }
 
+impl Copy for query_version_reply {}
+impl Clone for query_version_reply {
+    fn clone(&self) -> query_version_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct start_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct start_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -50,21 +65,33 @@ pub struct start_request {
      pub screen :         u32
 }
 
+impl Copy for start_request {}
+impl Clone for start_request {
+    fn clone(&self) -> start_request { *self }
+}
 
+#[repr(C)]
 pub struct start_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..24]
+     pub pad1 :            [u8; 24]
 }
 
+impl Copy for start_reply {}
+impl Clone for start_reply {
+    fn clone(&self) -> start_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct end_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct end_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -72,23 +99,38 @@ pub struct end_request {
      pub cmap :           u32
 }
 
+impl Copy for end_request {}
+impl Clone for end_request {
+    fn clone(&self) -> end_request { *self }
+}
 
+#[repr(C)]
 pub struct end_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..24]
+     pub pad1 :            [u8; 24]
 }
 
+impl Copy for end_reply {}
+impl Clone for end_reply {
+    fn clone(&self) -> end_reply { *self }
+}
 
+#[repr(C)]
 pub struct event {
-     pub pad0 :   [u8,..32]
+     pub pad0 :   [u8; 32]
 }
 
+impl Copy for event {}
+impl Clone for event {
+    fn clone(&self) -> event { *self }
+}
 /**
  * @brief event_iterator
  **/
+#[repr(C)]
 pub struct event_iterator {
     pub data : *mut event,
     pub rem  : c_int,
@@ -96,35 +138,50 @@ pub struct event_iterator {
 }
 
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct send_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct send_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub event :          event,
      pub data_type :      u32,
-     pub pad0 :           [u8,..64]
+     pub pad0 :           [u8; 64]
 }
 
+impl Copy for send_request {}
+impl Clone for send_request {
+    fn clone(&self) -> send_request { *self }
+}
 
+#[repr(C)]
 pub struct send_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..24]
+     pub pad1 :            [u8; 24]
 }
 
+impl Copy for send_reply {}
+impl Clone for send_reply {
+    fn clone(&self) -> send_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct select_input_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct select_input_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -132,15 +189,24 @@ pub struct select_input_request {
      pub event_mask :     u32
 }
 
+impl Copy for select_input_request {}
+impl Clone for select_input_request {
+    fn clone(&self) -> select_input_request { *self }
+}
 
+#[repr(C)]
 pub struct select_input_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..24]
+     pub pad1 :            [u8; 24]
 }
 
+impl Copy for select_input_reply {}
+impl Clone for select_input_reply {
+    fn clone(&self) -> select_input_reply { *self }
+}
 #[link(name="xcb-xevie")]
 extern "C" {
 

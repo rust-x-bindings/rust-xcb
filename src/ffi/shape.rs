@@ -18,6 +18,7 @@ pub type op = u8;
 /**
  * @brief op_iterator
  **/
+#[repr(C)]
 pub struct op_iterator {
     pub data : *mut op,
     pub rem  : c_int,
@@ -29,6 +30,7 @@ pub type kind = u8;
 /**
  * @brief kind_iterator
  **/
+#[repr(C)]
 pub struct kind_iterator {
     pub data : *mut kind,
     pub rem  : c_int,
@@ -37,6 +39,7 @@ pub struct kind_iterator {
 
 
 
+#[repr(C)]
 pub struct notify_event {
      pub response_type :     u8,
      pub shape_kind :        kind,
@@ -48,22 +51,34 @@ pub struct notify_event {
      pub extents_height :    u16,
      pub server_time :       ffi::xproto::timestamp,
      pub shaped :            u8,
-     pub pad0 :              [u8,..11]
+     pub pad0 :              [u8; 11]
 }
 
+impl Copy for notify_event {}
+impl Clone for notify_event {
+    fn clone(&self) -> notify_event { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_version_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for query_version_request {}
+impl Clone for query_version_request {
+    fn clone(&self) -> query_version_request { *self }
+}
 
+#[repr(C)]
 pub struct query_version_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -73,8 +88,13 @@ pub struct query_version_reply {
      pub minor_version :   u16
 }
 
+impl Copy for query_version_reply {}
+impl Clone for query_version_reply {
+    fn clone(&self) -> query_version_reply { *self }
+}
 
 
+#[repr(C)]
 pub struct rectangles_request {
      pub major_opcode :         u8,
      pub minor_opcode :         u8,
@@ -88,23 +108,33 @@ pub struct rectangles_request {
      pub y_offset :             i16
 }
 
+impl Copy for rectangles_request {}
+impl Clone for rectangles_request {
+    fn clone(&self) -> rectangles_request { *self }
+}
 
 
+#[repr(C)]
 pub struct mask_request {
      pub major_opcode :         u8,
      pub minor_opcode :         u8,
      pub length :               u16,
      pub operation :            op,
      pub destination_kind :     kind,
-     pub pad0 :                 [u8,..2],
+     pub pad0 :                 [u8; 2],
      pub destination_window :   ffi::xproto::window,
      pub x_offset :             i16,
      pub y_offset :             i16,
      pub source_bitmap :        ffi::xproto::pixmap
 }
 
+impl Copy for mask_request {}
+impl Clone for mask_request {
+    fn clone(&self) -> mask_request { *self }
+}
 
 
+#[repr(C)]
 pub struct combine_request {
      pub major_opcode :         u8,
      pub minor_opcode :         u8,
@@ -119,25 +149,37 @@ pub struct combine_request {
      pub source_window :        ffi::xproto::window
 }
 
+impl Copy for combine_request {}
+impl Clone for combine_request {
+    fn clone(&self) -> combine_request { *self }
+}
 
 
+#[repr(C)]
 pub struct offset_request {
      pub major_opcode :         u8,
      pub minor_opcode :         u8,
      pub length :               u16,
      pub destination_kind :     kind,
-     pub pad0 :                 [u8,..3],
+     pub pad0 :                 [u8; 3],
      pub destination_window :   ffi::xproto::window,
      pub x_offset :             i16,
      pub y_offset :             i16
 }
 
+impl Copy for offset_request {}
+impl Clone for offset_request {
+    fn clone(&self) -> offset_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_extents_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_extents_request {
      pub major_opcode :         u8,
      pub minor_opcode :         u8,
@@ -145,7 +187,12 @@ pub struct query_extents_request {
      pub destination_window :   ffi::xproto::window
 }
 
+impl Copy for query_extents_request {}
+impl Clone for query_extents_request {
+    fn clone(&self) -> query_extents_request { *self }
+}
 
+#[repr(C)]
 pub struct query_extents_reply {
      pub response_type :                   u8,
      pub pad0 :                            u8,
@@ -153,7 +200,7 @@ pub struct query_extents_reply {
      pub length :                          u32,
      pub bounding_shaped :                 u8,
      pub clip_shaped :                     u8,
-     pub pad1 :                            [u8,..2],
+     pub pad1 :                            [u8; 2],
      pub bounding_shape_extents_x :        i16,
      pub bounding_shape_extents_y :        i16,
      pub bounding_shape_extents_width :    u16,
@@ -164,23 +211,35 @@ pub struct query_extents_reply {
      pub clip_shape_extents_height :       u16
 }
 
+impl Copy for query_extents_reply {}
+impl Clone for query_extents_reply {
+    fn clone(&self) -> query_extents_reply { *self }
+}
 
 
+#[repr(C)]
 pub struct select_input_request {
      pub major_opcode :         u8,
      pub minor_opcode :         u8,
      pub length :               u16,
      pub destination_window :   ffi::xproto::window,
      pub enable :               u8,
-     pub pad0 :                 [u8,..3]
+     pub pad0 :                 [u8; 3]
 }
 
+impl Copy for select_input_request {}
+impl Clone for select_input_request {
+    fn clone(&self) -> select_input_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct input_selected_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct input_selected_request {
      pub major_opcode :         u8,
      pub minor_opcode :         u8,
@@ -188,7 +247,12 @@ pub struct input_selected_request {
      pub destination_window :   ffi::xproto::window
 }
 
+impl Copy for input_selected_request {}
+impl Clone for input_selected_request {
+    fn clone(&self) -> input_selected_request { *self }
+}
 
+#[repr(C)]
 pub struct input_selected_reply {
      pub response_type :   u8,
      pub enabled :         u8,
@@ -196,31 +260,47 @@ pub struct input_selected_reply {
      pub length :          u32
 }
 
+impl Copy for input_selected_reply {}
+impl Clone for input_selected_reply {
+    fn clone(&self) -> input_selected_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_rectangles_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_rectangles_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub window :         ffi::xproto::window,
      pub source_kind :    kind,
-     pub pad0 :           [u8,..3]
+     pub pad0 :           [u8; 3]
 }
 
+impl Copy for get_rectangles_request {}
+impl Clone for get_rectangles_request {
+    fn clone(&self) -> get_rectangles_request { *self }
+}
 
+#[repr(C)]
 pub struct get_rectangles_reply {
      pub response_type :    u8,
      pub ordering :         u8,
      pub sequence :         u16,
      pub length :           u32,
      pub rectangles_len :   u32,
-     pub pad0 :             [u8,..20]
+     pub pad0 :             [u8; 20]
 }
 
+impl Copy for get_rectangles_reply {}
+impl Clone for get_rectangles_reply {
+    fn clone(&self) -> get_rectangles_reply { *self }
+}
 #[link(name="xcb-shape")]
 extern "C" {
 

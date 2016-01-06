@@ -18,6 +18,7 @@ pub type key_code = u8;
 /**
  * @brief key_code_iterator
  **/
+#[repr(C)]
 pub struct key_code_iterator {
     pub data : *mut key_code,
     pub rem  : c_int,
@@ -29,6 +30,7 @@ pub type event_class = u32;
 /**
  * @brief event_class_iterator
  **/
+#[repr(C)]
 pub struct event_class_iterator {
     pub data : *mut event_class,
     pub rem  : c_int,
@@ -36,20 +38,28 @@ pub struct event_class_iterator {
 }
 
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_extension_version_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_extension_version_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub name_len :       u16,
-     pub pad0 :           [u8,..2]
+     pub pad0 :           [u8; 2]
 }
 
+impl Copy for get_extension_version_request {}
+impl Clone for get_extension_version_request {
+    fn clone(&self) -> get_extension_version_request { *self }
+}
 
+#[repr(C)]
 pub struct get_extension_version_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -58,10 +68,15 @@ pub struct get_extension_version_reply {
      pub server_major :    u16,
      pub server_minor :    u16,
      pub present :         u8,
-     pub pad1 :            [u8,..19]
+     pub pad1 :            [u8; 19]
 }
 
+impl Copy for get_extension_version_reply {}
+impl Clone for get_extension_version_reply {
+    fn clone(&self) -> get_extension_version_reply { *self }
+}
 
+#[repr(C)]
 pub struct device_info {
      pub device_type :      ffi::xproto::atom,
      pub device_id :        u8,
@@ -70,9 +85,14 @@ pub struct device_info {
      pub pad0 :             u8
 }
 
+impl Copy for device_info {}
+impl Clone for device_info {
+    fn clone(&self) -> device_info { *self }
+}
 /**
  * @brief device_info_iterator
  **/
+#[repr(C)]
 pub struct device_info_iterator {
     pub data : *mut device_info,
     pub rem  : c_int,
@@ -80,36 +100,54 @@ pub struct device_info_iterator {
 }
 
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct list_input_devices_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct list_input_devices_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for list_input_devices_request {}
+impl Clone for list_input_devices_request {
+    fn clone(&self) -> list_input_devices_request { *self }
+}
 
+#[repr(C)]
 pub struct list_input_devices_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub devices_len :     u8,
-     pub pad1 :            [u8,..23]
+     pub pad1 :            [u8; 23]
 }
 
+impl Copy for list_input_devices_reply {}
+impl Clone for list_input_devices_reply {
+    fn clone(&self) -> list_input_devices_reply { *self }
+}
 
+#[repr(C)]
 pub struct input_info {
      pub class_id :   u8,
      pub len :        u8
 }
 
+impl Copy for input_info {}
+impl Clone for input_info {
+    fn clone(&self) -> input_info { *self }
+}
 /**
  * @brief input_info_iterator
  **/
+#[repr(C)]
 pub struct input_info_iterator {
     pub data : *mut input_info,
     pub rem  : c_int,
@@ -117,18 +155,24 @@ pub struct input_info_iterator {
 }
 
 
+#[repr(C)]
 pub struct key_info {
      pub class_id :      u8,
      pub len :           u8,
      pub min_keycode :   key_code,
      pub max_keycode :   key_code,
      pub num_keys :      u16,
-     pub pad0 :          [u8,..2]
+     pub pad0 :          [u8; 2]
 }
 
+impl Copy for key_info {}
+impl Clone for key_info {
+    fn clone(&self) -> key_info { *self }
+}
 /**
  * @brief key_info_iterator
  **/
+#[repr(C)]
 pub struct key_info_iterator {
     pub data : *mut key_info,
     pub rem  : c_int,
@@ -136,15 +180,21 @@ pub struct key_info_iterator {
 }
 
 
+#[repr(C)]
 pub struct button_info {
      pub class_id :      u8,
      pub len :           u8,
      pub num_buttons :   u16
 }
 
+impl Copy for button_info {}
+impl Clone for button_info {
+    fn clone(&self) -> button_info { *self }
+}
 /**
  * @brief button_info_iterator
  **/
+#[repr(C)]
 pub struct button_info_iterator {
     pub data : *mut button_info,
     pub rem  : c_int,
@@ -152,15 +202,21 @@ pub struct button_info_iterator {
 }
 
 
+#[repr(C)]
 pub struct axis_info {
      pub resolution :   u32,
      pub minimum :      i32,
      pub maximum :      i32
 }
 
+impl Copy for axis_info {}
+impl Clone for axis_info {
+    fn clone(&self) -> axis_info { *self }
+}
 /**
  * @brief axis_info_iterator
  **/
+#[repr(C)]
 pub struct axis_info_iterator {
     pub data : *mut axis_info,
     pub rem  : c_int,
@@ -168,6 +224,7 @@ pub struct axis_info_iterator {
 }
 
 
+#[repr(C)]
 pub struct valuator_info {
      pub class_id :      u8,
      pub len :           u8,
@@ -176,9 +233,14 @@ pub struct valuator_info {
      pub motion_size :   u32
 }
 
+impl Copy for valuator_info {}
+impl Clone for valuator_info {
+    fn clone(&self) -> valuator_info { *self }
+}
 /**
  * @brief valuator_info_iterator
  **/
+#[repr(C)]
 pub struct valuator_info_iterator {
     pub data : *mut valuator_info,
     pub rem  : c_int,
@@ -186,14 +248,20 @@ pub struct valuator_info_iterator {
 }
 
 
+#[repr(C)]
 pub struct input_class_info {
      pub class_id :          u8,
      pub event_type_base :   u8
 }
 
+impl Copy for input_class_info {}
+impl Clone for input_class_info {
+    fn clone(&self) -> input_class_info { *self }
+}
 /**
  * @brief input_class_info_iterator
  **/
+#[repr(C)]
 pub struct input_class_info_iterator {
     pub data : *mut input_class_info,
     pub rem  : c_int,
@@ -201,81 +269,118 @@ pub struct input_class_info_iterator {
 }
 
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct open_device_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct open_device_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub device_id :      u8,
-     pub pad0 :           [u8,..3]
+     pub pad0 :           [u8; 3]
 }
 
+impl Copy for open_device_request {}
+impl Clone for open_device_request {
+    fn clone(&self) -> open_device_request { *self }
+}
 
+#[repr(C)]
 pub struct open_device_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub num_classes :     u8,
-     pub pad1 :            [u8,..23]
+     pub pad1 :            [u8; 23]
+}
+
+impl Copy for open_device_reply {}
+impl Clone for open_device_reply {
+    fn clone(&self) -> open_device_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct close_device_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub device_id :      u8,
-     pub pad0 :           [u8,..3]
+     pub pad0 :           [u8; 3]
 }
 
+impl Copy for close_device_request {}
+impl Clone for close_device_request {
+    fn clone(&self) -> close_device_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct set_device_mode_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct set_device_mode_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub device_id :      u8,
      pub mode :           u8,
-     pub pad0 :           [u8,..2]
+     pub pad0 :           [u8; 2]
 }
 
+impl Copy for set_device_mode_request {}
+impl Clone for set_device_mode_request {
+    fn clone(&self) -> set_device_mode_request { *self }
+}
 
+#[repr(C)]
 pub struct set_device_mode_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub status :          u8,
-     pub pad1 :            [u8,..23]
+     pub pad1 :            [u8; 23]
+}
+
+impl Copy for set_device_mode_reply {}
+impl Clone for set_device_mode_reply {
+    fn clone(&self) -> set_device_mode_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct select_extension_event_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub window :         ffi::xproto::window,
      pub num_classes :    u16,
-     pub pad0 :           [u8,..2]
+     pub pad0 :           [u8; 2]
 }
 
+impl Copy for select_extension_event_request {}
+impl Clone for select_extension_event_request {
+    fn clone(&self) -> select_extension_event_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_selected_extension_events_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_selected_extension_events_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -283,7 +388,12 @@ pub struct get_selected_extension_events_request {
      pub window :         ffi::xproto::window
 }
 
+impl Copy for get_selected_extension_events_request {}
+impl Clone for get_selected_extension_events_request {
+    fn clone(&self) -> get_selected_extension_events_request { *self }
+}
 
+#[repr(C)]
 pub struct get_selected_extension_events_reply {
      pub response_type :      u8,
      pub pad0 :               u8,
@@ -291,11 +401,16 @@ pub struct get_selected_extension_events_reply {
      pub length :             u32,
      pub num_this_classes :   u16,
      pub num_all_classes :    u16,
-     pub pad1 :               [u8,..20]
+     pub pad1 :               [u8; 20]
+}
+
+impl Copy for get_selected_extension_events_reply {}
+impl Clone for get_selected_extension_events_reply {
+    fn clone(&self) -> get_selected_extension_events_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct change_device_dont_propagate_list_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -306,12 +421,19 @@ pub struct change_device_dont_propagate_list_request {
      pub pad0 :           u8
 }
 
+impl Copy for change_device_dont_propagate_list_request {}
+impl Clone for change_device_dont_propagate_list_request {
+    fn clone(&self) -> change_device_dont_propagate_list_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_device_dont_propagate_list_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_device_dont_propagate_list_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -319,22 +441,34 @@ pub struct get_device_dont_propagate_list_request {
      pub window :         ffi::xproto::window
 }
 
+impl Copy for get_device_dont_propagate_list_request {}
+impl Clone for get_device_dont_propagate_list_request {
+    fn clone(&self) -> get_device_dont_propagate_list_request { *self }
+}
 
+#[repr(C)]
 pub struct get_device_dont_propagate_list_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub num_classes :     u16,
-     pub pad1 :            [u8,..22]
+     pub pad1 :            [u8; 22]
 }
 
+impl Copy for get_device_dont_propagate_list_reply {}
+impl Clone for get_device_dont_propagate_list_reply {
+    fn clone(&self) -> get_device_dont_propagate_list_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_device_motion_events_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_device_motion_events_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -344,7 +478,12 @@ pub struct get_device_motion_events_request {
      pub device_id :      u8
 }
 
+impl Copy for get_device_motion_events_request {}
+impl Clone for get_device_motion_events_request {
+    fn clone(&self) -> get_device_motion_events_request { *self }
+}
 
+#[repr(C)]
 pub struct get_device_motion_events_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -353,17 +492,27 @@ pub struct get_device_motion_events_reply {
      pub num_coords :      u32,
      pub num_axes :        u8,
      pub device_mode :     u8,
-     pub pad1 :            [u8,..18]
+     pub pad1 :            [u8; 18]
 }
 
+impl Copy for get_device_motion_events_reply {}
+impl Clone for get_device_motion_events_reply {
+    fn clone(&self) -> get_device_motion_events_reply { *self }
+}
 
+#[repr(C)]
 pub struct device_time_coord {
      pub time :   ffi::xproto::timestamp
 }
 
+impl Copy for device_time_coord {}
+impl Clone for device_time_coord {
+    fn clone(&self) -> device_time_coord { *self }
+}
 /**
  * @brief device_time_coord_iterator
  **/
+#[repr(C)]
 pub struct device_time_coord_iterator {
     pub data : *mut device_time_coord,
     pub rem  : c_int,
@@ -371,35 +520,50 @@ pub struct device_time_coord_iterator {
 }
 
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct change_keyboard_device_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct change_keyboard_device_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub device_id :      u8,
-     pub pad0 :           [u8,..3]
+     pub pad0 :           [u8; 3]
 }
 
+impl Copy for change_keyboard_device_request {}
+impl Clone for change_keyboard_device_request {
+    fn clone(&self) -> change_keyboard_device_request { *self }
+}
 
+#[repr(C)]
 pub struct change_keyboard_device_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub status :          u8,
-     pub pad1 :            [u8,..23]
+     pub pad1 :            [u8; 23]
 }
 
+impl Copy for change_keyboard_device_reply {}
+impl Clone for change_keyboard_device_reply {
+    fn clone(&self) -> change_keyboard_device_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct change_pointer_device_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct change_pointer_device_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -410,22 +574,34 @@ pub struct change_pointer_device_request {
      pub pad0 :           u8
 }
 
+impl Copy for change_pointer_device_request {}
+impl Clone for change_pointer_device_request {
+    fn clone(&self) -> change_pointer_device_request { *self }
+}
 
+#[repr(C)]
 pub struct change_pointer_device_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub status :          u8,
-     pub pad1 :            [u8,..23]
+     pub pad1 :            [u8; 23]
 }
 
+impl Copy for change_pointer_device_reply {}
+impl Clone for change_pointer_device_reply {
+    fn clone(&self) -> change_pointer_device_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct grab_device_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct grab_device_request {
      pub major_opcode :        u8,
      pub minor_opcode :        u8,
@@ -437,21 +613,31 @@ pub struct grab_device_request {
      pub other_device_mode :   u8,
      pub owner_events :        u8,
      pub device_id :           u8,
-     pub pad0 :                [u8,..2]
+     pub pad0 :                [u8; 2]
 }
 
+impl Copy for grab_device_request {}
+impl Clone for grab_device_request {
+    fn clone(&self) -> grab_device_request { *self }
+}
 
+#[repr(C)]
 pub struct grab_device_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub status :          u8,
-     pub pad1 :            [u8,..23]
+     pub pad1 :            [u8; 23]
+}
+
+impl Copy for grab_device_reply {}
+impl Clone for grab_device_reply {
+    fn clone(&self) -> grab_device_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct ungrab_device_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -460,8 +646,13 @@ pub struct ungrab_device_request {
      pub device_id :      u8
 }
 
+impl Copy for ungrab_device_request {}
+impl Clone for ungrab_device_request {
+    fn clone(&self) -> ungrab_device_request { *self }
+}
 
 
+#[repr(C)]
 pub struct grab_device_key_request {
      pub major_opcode :        u8,
      pub minor_opcode :        u8,
@@ -475,11 +666,16 @@ pub struct grab_device_key_request {
      pub this_device_mode :    u8,
      pub other_device_mode :   u8,
      pub owner_events :        u8,
-     pub pad0 :                [u8,..2]
+     pub pad0 :                [u8; 2]
+}
+
+impl Copy for grab_device_key_request {}
+impl Clone for grab_device_key_request {
+    fn clone(&self) -> grab_device_key_request { *self }
 }
 
 
-
+#[repr(C)]
 pub struct ungrab_device_key_request {
      pub major_opcode :      u8,
      pub minor_opcode :      u8,
@@ -491,8 +687,13 @@ pub struct ungrab_device_key_request {
      pub grabbed_device :    u8
 }
 
+impl Copy for ungrab_device_key_request {}
+impl Clone for ungrab_device_key_request {
+    fn clone(&self) -> ungrab_device_key_request { *self }
+}
 
 
+#[repr(C)]
 pub struct grab_device_button_request {
      pub major_opcode :        u8,
      pub minor_opcode :        u8,
@@ -506,11 +707,16 @@ pub struct grab_device_button_request {
      pub other_device_mode :   u8,
      pub button :              u8,
      pub owner_events :        u8,
-     pub pad0 :                [u8,..2]
+     pub pad0 :                [u8; 2]
+}
+
+impl Copy for grab_device_button_request {}
+impl Clone for grab_device_button_request {
+    fn clone(&self) -> grab_device_button_request { *self }
 }
 
 
-
+#[repr(C)]
 pub struct ungrab_device_button_request {
      pub major_opcode :      u8,
      pub minor_opcode :      u8,
@@ -522,8 +728,13 @@ pub struct ungrab_device_button_request {
      pub grabbed_device :    u8
 }
 
+impl Copy for ungrab_device_button_request {}
+impl Clone for ungrab_device_button_request {
+    fn clone(&self) -> ungrab_device_button_request { *self }
+}
 
 
+#[repr(C)]
 pub struct allow_device_events_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -533,21 +744,33 @@ pub struct allow_device_events_request {
      pub device_id :      u8
 }
 
+impl Copy for allow_device_events_request {}
+impl Clone for allow_device_events_request {
+    fn clone(&self) -> allow_device_events_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_device_focus_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_device_focus_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub device_id :      u8,
-     pub pad0 :           [u8,..3]
+     pub pad0 :           [u8; 3]
 }
 
+impl Copy for get_device_focus_request {}
+impl Clone for get_device_focus_request {
+    fn clone(&self) -> get_device_focus_request { *self }
+}
 
+#[repr(C)]
 pub struct get_device_focus_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -556,11 +779,16 @@ pub struct get_device_focus_reply {
      pub focus :           ffi::xproto::window,
      pub time :            ffi::xproto::timestamp,
      pub revert_to :       u8,
-     pub pad1 :            [u8,..15]
+     pub pad1 :            [u8; 15]
+}
+
+impl Copy for get_device_focus_reply {}
+impl Clone for get_device_focus_reply {
+    fn clone(&self) -> get_device_focus_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct set_device_focus_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -571,40 +799,62 @@ pub struct set_device_focus_request {
      pub device_id :      u8
 }
 
+impl Copy for set_device_focus_request {}
+impl Clone for set_device_focus_request {
+    fn clone(&self) -> set_device_focus_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_feedback_control_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_feedback_control_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub device_id :      u8,
-     pub pad0 :           [u8,..3]
+     pub pad0 :           [u8; 3]
 }
 
+impl Copy for get_feedback_control_request {}
+impl Clone for get_feedback_control_request {
+    fn clone(&self) -> get_feedback_control_request { *self }
+}
 
+#[repr(C)]
 pub struct get_feedback_control_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub num_feedback :    u16,
-     pub pad1 :            [u8,..22]
+     pub pad1 :            [u8; 22]
 }
 
+impl Copy for get_feedback_control_reply {}
+impl Clone for get_feedback_control_reply {
+    fn clone(&self) -> get_feedback_control_reply { *self }
+}
 
+#[repr(C)]
 pub struct feedback_state {
      pub class_id :   u8,
      pub id :         u8,
      pub len :        u16
 }
 
+impl Copy for feedback_state {}
+impl Clone for feedback_state {
+    fn clone(&self) -> feedback_state { *self }
+}
 /**
  * @brief feedback_state_iterator
  **/
+#[repr(C)]
 pub struct feedback_state_iterator {
     pub data : *mut feedback_state,
     pub rem  : c_int,
@@ -612,6 +862,7 @@ pub struct feedback_state_iterator {
 }
 
 
+#[repr(C)]
 pub struct kbd_feedback_state {
      pub class_id :             u8,
      pub id :                   u8,
@@ -624,12 +875,17 @@ pub struct kbd_feedback_state {
      pub click :                u8,
      pub percent :              u8,
      pub pad0 :                 u8,
-     pub auto_repeats :         [u8,..32]
+     pub auto_repeats :         [u8; 32]
 }
 
+impl Copy for kbd_feedback_state {}
+impl Clone for kbd_feedback_state {
+    fn clone(&self) -> kbd_feedback_state { *self }
+}
 /**
  * @brief kbd_feedback_state_iterator
  **/
+#[repr(C)]
 pub struct kbd_feedback_state_iterator {
     pub data : *mut kbd_feedback_state,
     pub rem  : c_int,
@@ -637,19 +893,25 @@ pub struct kbd_feedback_state_iterator {
 }
 
 
+#[repr(C)]
 pub struct ptr_feedback_state {
      pub class_id :      u8,
      pub id :            u8,
      pub len :           u16,
-     pub pad0 :          [u8,..2],
+     pub pad0 :          [u8; 2],
      pub accel_num :     u16,
      pub accel_denom :   u16,
      pub threshold :     u16
 }
 
+impl Copy for ptr_feedback_state {}
+impl Clone for ptr_feedback_state {
+    fn clone(&self) -> ptr_feedback_state { *self }
+}
 /**
  * @brief ptr_feedback_state_iterator
  **/
+#[repr(C)]
 pub struct ptr_feedback_state_iterator {
     pub data : *mut ptr_feedback_state,
     pub rem  : c_int,
@@ -657,6 +919,7 @@ pub struct ptr_feedback_state_iterator {
 }
 
 
+#[repr(C)]
 pub struct integer_feedback_state {
      pub class_id :     u8,
      pub id :           u8,
@@ -666,9 +929,14 @@ pub struct integer_feedback_state {
      pub max_value :    i32
 }
 
+impl Copy for integer_feedback_state {}
+impl Clone for integer_feedback_state {
+    fn clone(&self) -> integer_feedback_state { *self }
+}
 /**
  * @brief integer_feedback_state_iterator
  **/
+#[repr(C)]
 pub struct integer_feedback_state_iterator {
     pub data : *mut integer_feedback_state,
     pub rem  : c_int,
@@ -676,6 +944,7 @@ pub struct integer_feedback_state_iterator {
 }
 
 
+#[repr(C)]
 pub struct string_feedback_state {
      pub class_id :      u8,
      pub id :            u8,
@@ -684,9 +953,14 @@ pub struct string_feedback_state {
      pub num_keysyms :   u16
 }
 
+impl Copy for string_feedback_state {}
+impl Clone for string_feedback_state {
+    fn clone(&self) -> string_feedback_state { *self }
+}
 /**
  * @brief string_feedback_state_iterator
  **/
+#[repr(C)]
 pub struct string_feedback_state_iterator {
     pub data : *mut string_feedback_state,
     pub rem  : c_int,
@@ -694,19 +968,25 @@ pub struct string_feedback_state_iterator {
 }
 
 
+#[repr(C)]
 pub struct bell_feedback_state {
      pub class_id :   u8,
      pub id :         u8,
      pub len :        u16,
      pub percent :    u8,
-     pub pad0 :       [u8,..3],
+     pub pad0 :       [u8; 3],
      pub pitch :      u16,
      pub duration :   u16
 }
 
+impl Copy for bell_feedback_state {}
+impl Clone for bell_feedback_state {
+    fn clone(&self) -> bell_feedback_state { *self }
+}
 /**
  * @brief bell_feedback_state_iterator
  **/
+#[repr(C)]
 pub struct bell_feedback_state_iterator {
     pub data : *mut bell_feedback_state,
     pub rem  : c_int,
@@ -714,6 +994,7 @@ pub struct bell_feedback_state_iterator {
 }
 
 
+#[repr(C)]
 pub struct led_feedback_state {
      pub class_id :     u8,
      pub id :           u8,
@@ -722,9 +1003,14 @@ pub struct led_feedback_state {
      pub led_values :   u32
 }
 
+impl Copy for led_feedback_state {}
+impl Clone for led_feedback_state {
+    fn clone(&self) -> led_feedback_state { *self }
+}
 /**
  * @brief led_feedback_state_iterator
  **/
+#[repr(C)]
 pub struct led_feedback_state_iterator {
     pub data : *mut led_feedback_state,
     pub rem  : c_int,
@@ -732,15 +1018,21 @@ pub struct led_feedback_state_iterator {
 }
 
 
+#[repr(C)]
 pub struct feedback_ctl {
      pub class_id :   u8,
      pub id :         u8,
      pub len :        u16
 }
 
+impl Copy for feedback_ctl {}
+impl Clone for feedback_ctl {
+    fn clone(&self) -> feedback_ctl { *self }
+}
 /**
  * @brief feedback_ctl_iterator
  **/
+#[repr(C)]
 pub struct feedback_ctl_iterator {
     pub data : *mut feedback_ctl,
     pub rem  : c_int,
@@ -748,6 +1040,7 @@ pub struct feedback_ctl_iterator {
 }
 
 
+#[repr(C)]
 pub struct kbd_feedback_ctl {
      pub class_id :            u8,
      pub id :                  u8,
@@ -762,9 +1055,14 @@ pub struct kbd_feedback_ctl {
      pub led_values :          u32
 }
 
+impl Copy for kbd_feedback_ctl {}
+impl Clone for kbd_feedback_ctl {
+    fn clone(&self) -> kbd_feedback_ctl { *self }
+}
 /**
  * @brief kbd_feedback_ctl_iterator
  **/
+#[repr(C)]
 pub struct kbd_feedback_ctl_iterator {
     pub data : *mut kbd_feedback_ctl,
     pub rem  : c_int,
@@ -772,19 +1070,25 @@ pub struct kbd_feedback_ctl_iterator {
 }
 
 
+#[repr(C)]
 pub struct ptr_feedback_ctl {
      pub class_id :    u8,
      pub id :          u8,
      pub len :         u16,
-     pub pad0 :        [u8,..2],
+     pub pad0 :        [u8; 2],
      pub num :         i16,
      pub denom :       i16,
      pub threshold :   i16
 }
 
+impl Copy for ptr_feedback_ctl {}
+impl Clone for ptr_feedback_ctl {
+    fn clone(&self) -> ptr_feedback_ctl { *self }
+}
 /**
  * @brief ptr_feedback_ctl_iterator
  **/
+#[repr(C)]
 pub struct ptr_feedback_ctl_iterator {
     pub data : *mut ptr_feedback_ctl,
     pub rem  : c_int,
@@ -792,6 +1096,7 @@ pub struct ptr_feedback_ctl_iterator {
 }
 
 
+#[repr(C)]
 pub struct integer_feedback_ctl {
      pub class_id :         u8,
      pub id :               u8,
@@ -799,9 +1104,14 @@ pub struct integer_feedback_ctl {
      pub int_to_display :   i32
 }
 
+impl Copy for integer_feedback_ctl {}
+impl Clone for integer_feedback_ctl {
+    fn clone(&self) -> integer_feedback_ctl { *self }
+}
 /**
  * @brief integer_feedback_ctl_iterator
  **/
+#[repr(C)]
 pub struct integer_feedback_ctl_iterator {
     pub data : *mut integer_feedback_ctl,
     pub rem  : c_int,
@@ -809,17 +1119,23 @@ pub struct integer_feedback_ctl_iterator {
 }
 
 
+#[repr(C)]
 pub struct string_feedback_ctl {
      pub class_id :      u8,
      pub id :            u8,
      pub len :           u16,
-     pub pad0 :          [u8,..2],
+     pub pad0 :          [u8; 2],
      pub num_keysyms :   u16
 }
 
+impl Copy for string_feedback_ctl {}
+impl Clone for string_feedback_ctl {
+    fn clone(&self) -> string_feedback_ctl { *self }
+}
 /**
  * @brief string_feedback_ctl_iterator
  **/
+#[repr(C)]
 pub struct string_feedback_ctl_iterator {
     pub data : *mut string_feedback_ctl,
     pub rem  : c_int,
@@ -827,19 +1143,25 @@ pub struct string_feedback_ctl_iterator {
 }
 
 
+#[repr(C)]
 pub struct bell_feedback_ctl {
      pub class_id :   u8,
      pub id :         u8,
      pub len :        u16,
      pub percent :    i8,
-     pub pad0 :       [u8,..3],
+     pub pad0 :       [u8; 3],
      pub pitch :      i16,
      pub duration :   i16
 }
 
+impl Copy for bell_feedback_ctl {}
+impl Clone for bell_feedback_ctl {
+    fn clone(&self) -> bell_feedback_ctl { *self }
+}
 /**
  * @brief bell_feedback_ctl_iterator
  **/
+#[repr(C)]
 pub struct bell_feedback_ctl_iterator {
     pub data : *mut bell_feedback_ctl,
     pub rem  : c_int,
@@ -847,6 +1169,7 @@ pub struct bell_feedback_ctl_iterator {
 }
 
 
+#[repr(C)]
 pub struct led_feedback_ctl {
      pub class_id :     u8,
      pub id :           u8,
@@ -855,9 +1178,14 @@ pub struct led_feedback_ctl {
      pub led_values :   u32
 }
 
+impl Copy for led_feedback_ctl {}
+impl Clone for led_feedback_ctl {
+    fn clone(&self) -> led_feedback_ctl { *self }
+}
 /**
  * @brief led_feedback_ctl_iterator
  **/
+#[repr(C)]
 pub struct led_feedback_ctl_iterator {
     pub data : *mut led_feedback_ctl,
     pub rem  : c_int,
@@ -865,11 +1193,14 @@ pub struct led_feedback_ctl_iterator {
 }
 
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_device_key_mapping_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_device_key_mapping_request {
      pub major_opcode :    u8,
      pub minor_opcode :    u8,
@@ -879,18 +1210,28 @@ pub struct get_device_key_mapping_request {
      pub count :           u8
 }
 
+impl Copy for get_device_key_mapping_request {}
+impl Clone for get_device_key_mapping_request {
+    fn clone(&self) -> get_device_key_mapping_request { *self }
+}
 
+#[repr(C)]
 pub struct get_device_key_mapping_reply {
      pub response_type :         u8,
      pub pad0 :                  u8,
      pub sequence :              u16,
      pub length :                u32,
      pub keysyms_per_keycode :   u8,
-     pub pad1 :                  [u8,..23]
+     pub pad1 :                  [u8; 23]
+}
+
+impl Copy for get_device_key_mapping_reply {}
+impl Clone for get_device_key_mapping_reply {
+    fn clone(&self) -> get_device_key_mapping_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct change_device_key_mapping_request {
      pub major_opcode :          u8,
      pub minor_opcode :          u8,
@@ -901,36 +1242,55 @@ pub struct change_device_key_mapping_request {
      pub keycode_count :         u8
 }
 
+impl Copy for change_device_key_mapping_request {}
+impl Clone for change_device_key_mapping_request {
+    fn clone(&self) -> change_device_key_mapping_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_device_modifier_mapping_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_device_modifier_mapping_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub device_id :      u8,
-     pub pad0 :           [u8,..3]
+     pub pad0 :           [u8; 3]
 }
 
+impl Copy for get_device_modifier_mapping_request {}
+impl Clone for get_device_modifier_mapping_request {
+    fn clone(&self) -> get_device_modifier_mapping_request { *self }
+}
 
+#[repr(C)]
 pub struct get_device_modifier_mapping_reply {
      pub response_type :           u8,
      pub pad0 :                    u8,
      pub sequence :                u16,
      pub length :                  u32,
      pub keycodes_per_modifier :   u8,
-     pub pad1 :                    [u8,..23]
+     pub pad1 :                    [u8; 23]
 }
 
+impl Copy for get_device_modifier_mapping_reply {}
+impl Clone for get_device_modifier_mapping_reply {
+    fn clone(&self) -> get_device_modifier_mapping_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct set_device_modifier_mapping_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct set_device_modifier_mapping_request {
      pub major_opcode :            u8,
      pub minor_opcode :            u8,
@@ -940,99 +1300,150 @@ pub struct set_device_modifier_mapping_request {
      pub pad0 :                    u8
 }
 
+impl Copy for set_device_modifier_mapping_request {}
+impl Clone for set_device_modifier_mapping_request {
+    fn clone(&self) -> set_device_modifier_mapping_request { *self }
+}
 
+#[repr(C)]
 pub struct set_device_modifier_mapping_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub status :          u8,
-     pub pad1 :            [u8,..23]
+     pub pad1 :            [u8; 23]
 }
 
+impl Copy for set_device_modifier_mapping_reply {}
+impl Clone for set_device_modifier_mapping_reply {
+    fn clone(&self) -> set_device_modifier_mapping_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_device_button_mapping_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_device_button_mapping_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub device_id :      u8,
-     pub pad0 :           [u8,..3]
+     pub pad0 :           [u8; 3]
 }
 
+impl Copy for get_device_button_mapping_request {}
+impl Clone for get_device_button_mapping_request {
+    fn clone(&self) -> get_device_button_mapping_request { *self }
+}
 
+#[repr(C)]
 pub struct get_device_button_mapping_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub map_size :        u8,
-     pub pad1 :            [u8,..23]
+     pub pad1 :            [u8; 23]
 }
 
+impl Copy for get_device_button_mapping_reply {}
+impl Clone for get_device_button_mapping_reply {
+    fn clone(&self) -> get_device_button_mapping_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct set_device_button_mapping_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct set_device_button_mapping_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub device_id :      u8,
      pub map_size :       u8,
-     pub pad0 :           [u8,..2]
+     pub pad0 :           [u8; 2]
 }
 
+impl Copy for set_device_button_mapping_request {}
+impl Clone for set_device_button_mapping_request {
+    fn clone(&self) -> set_device_button_mapping_request { *self }
+}
 
+#[repr(C)]
 pub struct set_device_button_mapping_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub status :          u8,
-     pub pad1 :            [u8,..23]
+     pub pad1 :            [u8; 23]
 }
 
+impl Copy for set_device_button_mapping_reply {}
+impl Clone for set_device_button_mapping_reply {
+    fn clone(&self) -> set_device_button_mapping_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_device_state_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_device_state_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub device_id :      u8,
-     pub pad0 :           [u8,..3]
+     pub pad0 :           [u8; 3]
 }
 
+impl Copy for query_device_state_request {}
+impl Clone for query_device_state_request {
+    fn clone(&self) -> query_device_state_request { *self }
+}
 
+#[repr(C)]
 pub struct query_device_state_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub num_classes :     u8,
-     pub pad1 :            [u8,..23]
+     pub pad1 :            [u8; 23]
 }
 
+impl Copy for query_device_state_reply {}
+impl Clone for query_device_state_reply {
+    fn clone(&self) -> query_device_state_reply { *self }
+}
 
+#[repr(C)]
 pub struct input_state {
      pub class_id :    u8,
      pub len :         u8,
      pub num_items :   u8
 }
 
+impl Copy for input_state {}
+impl Clone for input_state {
+    fn clone(&self) -> input_state { *self }
+}
 /**
  * @brief input_state_iterator
  **/
+#[repr(C)]
 pub struct input_state_iterator {
     pub data : *mut input_state,
     pub rem  : c_int,
@@ -1040,17 +1451,23 @@ pub struct input_state_iterator {
 }
 
 
+#[repr(C)]
 pub struct key_state {
      pub class_id :   u8,
      pub len :        u8,
      pub num_keys :   u8,
      pub pad0 :       u8,
-     pub keys :       [u8,..32]
+     pub keys :       [u8; 32]
 }
 
+impl Copy for key_state {}
+impl Clone for key_state {
+    fn clone(&self) -> key_state { *self }
+}
 /**
  * @brief key_state_iterator
  **/
+#[repr(C)]
 pub struct key_state_iterator {
     pub data : *mut key_state,
     pub rem  : c_int,
@@ -1058,17 +1475,23 @@ pub struct key_state_iterator {
 }
 
 
+#[repr(C)]
 pub struct button_state {
      pub class_id :      u8,
      pub len :           u8,
      pub num_buttons :   u8,
      pub pad0 :          u8,
-     pub buttons :       [u8,..32]
+     pub buttons :       [u8; 32]
 }
 
+impl Copy for button_state {}
+impl Clone for button_state {
+    fn clone(&self) -> button_state { *self }
+}
 /**
  * @brief button_state_iterator
  **/
+#[repr(C)]
 pub struct button_state_iterator {
     pub data : *mut button_state,
     pub rem  : c_int,
@@ -1076,6 +1499,7 @@ pub struct button_state_iterator {
 }
 
 
+#[repr(C)]
 pub struct valuator_state {
      pub class_id :        u8,
      pub len :             u8,
@@ -1083,9 +1507,14 @@ pub struct valuator_state {
      pub mode :            u8
 }
 
+impl Copy for valuator_state {}
+impl Clone for valuator_state {
+    fn clone(&self) -> valuator_state { *self }
+}
 /**
  * @brief valuator_state_iterator
  **/
+#[repr(C)]
 pub struct valuator_state_iterator {
     pub data : *mut valuator_state,
     pub rem  : c_int,
@@ -1094,6 +1523,7 @@ pub struct valuator_state_iterator {
 
 
 
+#[repr(C)]
 pub struct send_extension_event_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1103,11 +1533,16 @@ pub struct send_extension_event_request {
      pub propagate :      u8,
      pub num_classes :    u16,
      pub num_events :     u8,
-     pub pad0 :           [u8,..3]
+     pub pad0 :           [u8; 3]
+}
+
+impl Copy for send_extension_event_request {}
+impl Clone for send_extension_event_request {
+    fn clone(&self) -> send_extension_event_request { *self }
 }
 
 
-
+#[repr(C)]
 pub struct device_bell_request {
      pub major_opcode :     u8,
      pub minor_opcode :     u8,
@@ -1118,12 +1553,19 @@ pub struct device_bell_request {
      pub percent :          i8
 }
 
+impl Copy for device_bell_request {}
+impl Clone for device_bell_request {
+    fn clone(&self) -> device_bell_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct set_device_valuators_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct set_device_valuators_request {
      pub major_opcode :     u8,
      pub minor_opcode :     u8,
@@ -1134,22 +1576,34 @@ pub struct set_device_valuators_request {
      pub pad0 :             u8
 }
 
+impl Copy for set_device_valuators_request {}
+impl Clone for set_device_valuators_request {
+    fn clone(&self) -> set_device_valuators_request { *self }
+}
 
+#[repr(C)]
 pub struct set_device_valuators_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub status :          u8,
-     pub pad1 :            [u8,..23]
+     pub pad1 :            [u8; 23]
 }
 
+impl Copy for set_device_valuators_reply {}
+impl Clone for set_device_valuators_reply {
+    fn clone(&self) -> set_device_valuators_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_device_control_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_device_control_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1159,25 +1613,40 @@ pub struct get_device_control_request {
      pub pad0 :           u8
 }
 
+impl Copy for get_device_control_request {}
+impl Clone for get_device_control_request {
+    fn clone(&self) -> get_device_control_request { *self }
+}
 
+#[repr(C)]
 pub struct get_device_control_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub status :          u8,
-     pub pad1 :            [u8,..23]
+     pub pad1 :            [u8; 23]
 }
 
+impl Copy for get_device_control_reply {}
+impl Clone for get_device_control_reply {
+    fn clone(&self) -> get_device_control_reply { *self }
+}
 
+#[repr(C)]
 pub struct device_state {
      pub control_id :   u16,
      pub len :          u16
 }
 
+impl Copy for device_state {}
+impl Clone for device_state {
+    fn clone(&self) -> device_state { *self }
+}
 /**
  * @brief device_state_iterator
  **/
+#[repr(C)]
 pub struct device_state_iterator {
     pub data : *mut device_state,
     pub rem  : c_int,
@@ -1185,15 +1654,21 @@ pub struct device_state_iterator {
 }
 
 
+#[repr(C)]
 pub struct device_resolution_state {
      pub control_id :      u16,
      pub len :             u16,
      pub num_valuators :   u32
 }
 
+impl Copy for device_resolution_state {}
+impl Clone for device_resolution_state {
+    fn clone(&self) -> device_resolution_state { *self }
+}
 /**
  * @brief device_resolution_state_iterator
  **/
+#[repr(C)]
 pub struct device_resolution_state_iterator {
     pub data : *mut device_resolution_state,
     pub rem  : c_int,
@@ -1201,6 +1676,7 @@ pub struct device_resolution_state_iterator {
 }
 
 
+#[repr(C)]
 pub struct device_abs_calib_state {
      pub control_id :         u16,
      pub len :                u16,
@@ -1214,9 +1690,14 @@ pub struct device_abs_calib_state {
      pub button_threshold :   u32
 }
 
+impl Copy for device_abs_calib_state {}
+impl Clone for device_abs_calib_state {
+    fn clone(&self) -> device_abs_calib_state { *self }
+}
 /**
  * @brief device_abs_calib_state_iterator
  **/
+#[repr(C)]
 pub struct device_abs_calib_state_iterator {
     pub data : *mut device_abs_calib_state,
     pub rem  : c_int,
@@ -1224,6 +1705,7 @@ pub struct device_abs_calib_state_iterator {
 }
 
 
+#[repr(C)]
 pub struct device_abs_area_state {
      pub control_id :   u16,
      pub len :          u16,
@@ -1235,9 +1717,14 @@ pub struct device_abs_area_state {
      pub following :    u32
 }
 
+impl Copy for device_abs_area_state {}
+impl Clone for device_abs_area_state {
+    fn clone(&self) -> device_abs_area_state { *self }
+}
 /**
  * @brief device_abs_area_state_iterator
  **/
+#[repr(C)]
 pub struct device_abs_area_state_iterator {
     pub data : *mut device_abs_area_state,
     pub rem  : c_int,
@@ -1245,17 +1732,23 @@ pub struct device_abs_area_state_iterator {
 }
 
 
+#[repr(C)]
 pub struct device_core_state {
      pub control_id :   u16,
      pub len :          u16,
      pub status :       u8,
      pub iscore :       u8,
-     pub pad0 :         [u8,..2]
+     pub pad0 :         [u8; 2]
 }
 
+impl Copy for device_core_state {}
+impl Clone for device_core_state {
+    fn clone(&self) -> device_core_state { *self }
+}
 /**
  * @brief device_core_state_iterator
  **/
+#[repr(C)]
 pub struct device_core_state_iterator {
     pub data : *mut device_core_state,
     pub rem  : c_int,
@@ -1263,16 +1756,22 @@ pub struct device_core_state_iterator {
 }
 
 
+#[repr(C)]
 pub struct device_enable_state {
      pub control_id :   u16,
      pub len :          u16,
      pub enable :       u8,
-     pub pad0 :         [u8,..3]
+     pub pad0 :         [u8; 3]
 }
 
+impl Copy for device_enable_state {}
+impl Clone for device_enable_state {
+    fn clone(&self) -> device_enable_state { *self }
+}
 /**
  * @brief device_enable_state_iterator
  **/
+#[repr(C)]
 pub struct device_enable_state_iterator {
     pub data : *mut device_enable_state,
     pub rem  : c_int,
@@ -1280,14 +1779,20 @@ pub struct device_enable_state_iterator {
 }
 
 
+#[repr(C)]
 pub struct device_ctl {
      pub control_id :   u16,
      pub len :          u16
 }
 
+impl Copy for device_ctl {}
+impl Clone for device_ctl {
+    fn clone(&self) -> device_ctl { *self }
+}
 /**
  * @brief device_ctl_iterator
  **/
+#[repr(C)]
 pub struct device_ctl_iterator {
     pub data : *mut device_ctl,
     pub rem  : c_int,
@@ -1295,6 +1800,7 @@ pub struct device_ctl_iterator {
 }
 
 
+#[repr(C)]
 pub struct device_resolution_ctl {
      pub control_id :       u16,
      pub len :              u16,
@@ -1302,9 +1808,14 @@ pub struct device_resolution_ctl {
      pub num_valuators :    u8
 }
 
+impl Copy for device_resolution_ctl {}
+impl Clone for device_resolution_ctl {
+    fn clone(&self) -> device_resolution_ctl { *self }
+}
 /**
  * @brief device_resolution_ctl_iterator
  **/
+#[repr(C)]
 pub struct device_resolution_ctl_iterator {
     pub data : *mut device_resolution_ctl,
     pub rem  : c_int,
@@ -1312,6 +1823,7 @@ pub struct device_resolution_ctl_iterator {
 }
 
 
+#[repr(C)]
 pub struct device_abs_calib_ctl {
      pub control_id :         u16,
      pub len :                u16,
@@ -1325,9 +1837,14 @@ pub struct device_abs_calib_ctl {
      pub button_threshold :   u32
 }
 
+impl Copy for device_abs_calib_ctl {}
+impl Clone for device_abs_calib_ctl {
+    fn clone(&self) -> device_abs_calib_ctl { *self }
+}
 /**
  * @brief device_abs_calib_ctl_iterator
  **/
+#[repr(C)]
 pub struct device_abs_calib_ctl_iterator {
     pub data : *mut device_abs_calib_ctl,
     pub rem  : c_int,
@@ -1335,6 +1852,7 @@ pub struct device_abs_calib_ctl_iterator {
 }
 
 
+#[repr(C)]
 pub struct device_abs_area_ctrl {
      pub control_id :   u16,
      pub len :          u16,
@@ -1346,9 +1864,14 @@ pub struct device_abs_area_ctrl {
      pub following :    u32
 }
 
+impl Copy for device_abs_area_ctrl {}
+impl Clone for device_abs_area_ctrl {
+    fn clone(&self) -> device_abs_area_ctrl { *self }
+}
 /**
  * @brief device_abs_area_ctrl_iterator
  **/
+#[repr(C)]
 pub struct device_abs_area_ctrl_iterator {
     pub data : *mut device_abs_area_ctrl,
     pub rem  : c_int,
@@ -1356,16 +1879,22 @@ pub struct device_abs_area_ctrl_iterator {
 }
 
 
+#[repr(C)]
 pub struct device_core_ctrl {
      pub control_id :   u16,
      pub len :          u16,
      pub status :       u8,
-     pub pad0 :         [u8,..3]
+     pub pad0 :         [u8; 3]
 }
 
+impl Copy for device_core_ctrl {}
+impl Clone for device_core_ctrl {
+    fn clone(&self) -> device_core_ctrl { *self }
+}
 /**
  * @brief device_core_ctrl_iterator
  **/
+#[repr(C)]
 pub struct device_core_ctrl_iterator {
     pub data : *mut device_core_ctrl,
     pub rem  : c_int,
@@ -1373,16 +1902,22 @@ pub struct device_core_ctrl_iterator {
 }
 
 
+#[repr(C)]
 pub struct device_enable_ctrl {
      pub control_id :   u16,
      pub len :          u16,
      pub enable :       u8,
-     pub pad0 :         [u8,..3]
+     pub pad0 :         [u8; 3]
 }
 
+impl Copy for device_enable_ctrl {}
+impl Clone for device_enable_ctrl {
+    fn clone(&self) -> device_enable_ctrl { *self }
+}
 /**
  * @brief device_enable_ctrl_iterator
  **/
+#[repr(C)]
 pub struct device_enable_ctrl_iterator {
     pub data : *mut device_enable_ctrl,
     pub rem  : c_int,
@@ -1391,6 +1926,7 @@ pub struct device_enable_ctrl_iterator {
 
 
 
+#[repr(C)]
 pub struct device_valuator_event {
      pub response_type :    u8,
      pub device_id :        u8,
@@ -1398,11 +1934,16 @@ pub struct device_valuator_event {
      pub device_state :     u16,
      pub num_valuators :    u8,
      pub first_valuator :   u8,
-     pub valuators :        [i32,..6]
+     pub valuators :        [i32; 6]
+}
+
+impl Copy for device_valuator_event {}
+impl Clone for device_valuator_event {
+    fn clone(&self) -> device_valuator_event { *self }
 }
 
 
-
+#[repr(C)]
 pub struct device_key_press_event {
      pub response_type :   u8,
      pub detail :          u8,
@@ -1420,6 +1961,10 @@ pub struct device_key_press_event {
      pub device_id :       u8
 }
 
+impl Copy for device_key_press_event {}
+impl Clone for device_key_press_event {
+    fn clone(&self) -> device_key_press_event { *self }
+}
 
 
 pub type device_key_release_event = device_key_press_event;
@@ -1440,6 +1985,7 @@ pub type proximity_in_event = device_key_press_event;
 pub type proximity_out_event = device_key_press_event;
 
 
+#[repr(C)]
 pub struct focus_in_event {
      pub response_type :   u8,
      pub detail :          u8,
@@ -1448,14 +1994,19 @@ pub struct focus_in_event {
      pub window :          ffi::xproto::window,
      pub mode :            u8,
      pub device_id :       u8,
-     pub pad0 :            [u8,..18]
+     pub pad0 :            [u8; 18]
 }
 
+impl Copy for focus_in_event {}
+impl Clone for focus_in_event {
+    fn clone(&self) -> focus_in_event { *self }
+}
 
 
 pub type focus_out_event = focus_in_event;
 
 
+#[repr(C)]
 pub struct device_state_notify_event {
      pub response_type :      u8,
      pub device_id :          u8,
@@ -1465,13 +2016,18 @@ pub struct device_state_notify_event {
      pub num_buttons :        u8,
      pub num_valuators :      u8,
      pub classes_reported :   u8,
-     pub buttons :            [u8,..4],
-     pub keys :               [u8,..4],
-     pub valuators :          [u32,..3]
+     pub buttons :            [u8; 4],
+     pub keys :               [u8; 4],
+     pub valuators :          [u32; 3]
+}
+
+impl Copy for device_state_notify_event {}
+impl Clone for device_state_notify_event {
+    fn clone(&self) -> device_state_notify_event { *self }
 }
 
 
-
+#[repr(C)]
 pub struct device_mapping_notify_event {
      pub response_type :   u8,
      pub device_id :       u8,
@@ -1481,40 +2037,60 @@ pub struct device_mapping_notify_event {
      pub count :           u8,
      pub pad0 :            u8,
      pub time :            ffi::xproto::timestamp,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
+}
+
+impl Copy for device_mapping_notify_event {}
+impl Clone for device_mapping_notify_event {
+    fn clone(&self) -> device_mapping_notify_event { *self }
 }
 
 
-
+#[repr(C)]
 pub struct change_device_notify_event {
      pub response_type :   u8,
      pub device_id :       u8,
      pub sequence :        u16,
      pub time :            ffi::xproto::timestamp,
      pub request :         u8,
-     pub pad0 :            [u8,..23]
+     pub pad0 :            [u8; 23]
+}
+
+impl Copy for change_device_notify_event {}
+impl Clone for change_device_notify_event {
+    fn clone(&self) -> change_device_notify_event { *self }
 }
 
 
-
+#[repr(C)]
 pub struct device_key_state_notify_event {
      pub response_type :   u8,
      pub device_id :       u8,
      pub sequence :        u16,
-     pub keys :            [u8,..28]
+     pub keys :            [u8; 28]
+}
+
+impl Copy for device_key_state_notify_event {}
+impl Clone for device_key_state_notify_event {
+    fn clone(&self) -> device_key_state_notify_event { *self }
 }
 
 
-
+#[repr(C)]
 pub struct device_button_state_notify_event {
      pub response_type :   u8,
      pub device_id :       u8,
      pub sequence :        u16,
-     pub buttons :         [u8,..28]
+     pub buttons :         [u8; 28]
+}
+
+impl Copy for device_button_state_notify_event {}
+impl Clone for device_button_state_notify_event {
+    fn clone(&self) -> device_button_state_notify_event { *self }
 }
 
 
-
+#[repr(C)]
 pub struct device_presence_notify_event {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -1523,49 +2099,78 @@ pub struct device_presence_notify_event {
      pub devchange :       u8,
      pub device_id :       u8,
      pub control :         u16,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
+}
+
+impl Copy for device_presence_notify_event {}
+impl Clone for device_presence_notify_event {
+    fn clone(&self) -> device_presence_notify_event { *self }
 }
 
 
-
+#[repr(C)]
 pub struct device_error {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
+impl Copy for device_error {}
+impl Clone for device_error {
+    fn clone(&self) -> device_error { *self }
+}
 
 
+#[repr(C)]
 pub struct event_error {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
+impl Copy for event_error {}
+impl Clone for event_error {
+    fn clone(&self) -> event_error { *self }
+}
 
 
+#[repr(C)]
 pub struct mode_error {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
+impl Copy for mode_error {}
+impl Clone for mode_error {
+    fn clone(&self) -> mode_error { *self }
+}
 
 
+#[repr(C)]
 pub struct device_busy_error {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
+impl Copy for device_busy_error {}
+impl Clone for device_busy_error {
+    fn clone(&self) -> device_busy_error { *self }
+}
 
 
+#[repr(C)]
 pub struct class_error {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
+impl Copy for class_error {}
+impl Clone for class_error {
+    fn clone(&self) -> class_error { *self }
+}
 #[link(name="xcb-xinput")]
 extern "C" {
 

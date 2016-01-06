@@ -29,9 +29,11 @@ _ns = None
 
 _imports = []
 
+_types_not_copy_eligible = []
+
 outdir = './'
 
-# global variable to keep track of serializers and 
+# global variable to keep track of serializers and
 # switch data types due to weird dependencies
 finished_serializers = []
 finished_sizeof = []
@@ -72,14 +74,14 @@ def _h(fmt, *args):
     Writes the given line to the header file.
     '''
     _hlines[_hlevel].append(fmt % args)
-    
+
 def _r(fmt, *args):
     '''
     Writes the given line to the source file.
     '''
     _rlines[_rlevel].append(fmt % args)
     pass
-    
+
 def _hr(fmt, *args):
     '''
     Writes the given line to both the header and source files.
@@ -97,7 +99,7 @@ def _h_setlevel(idx):
     while len(_hlines) <= idx:
         _hlines.append([])
     _hlevel = idx
-    
+
 def _r_setlevel(idx):
     '''
     Changes the array that source lines are written to.
@@ -107,7 +109,7 @@ def _r_setlevel(idx):
     while len(_rlines) <= idx:
         _rlines.append([])
     _rlevel = idx
-    
+
 def _n_item(str):
     '''
     Does C-name conversion on a single string fragment.
@@ -119,7 +121,7 @@ def _n_item(str):
         split = _cname_re.finditer(str)
         name_parts = [match.group(0) for match in split]
         return '_'.join(name_parts)
-    
+
 def _r_item(str):
     split = _cname_re.finditer(str)
     name_parts = [match.group(0) for match in split]
@@ -146,7 +148,7 @@ def _ext(str):
         return _n_item(str).lower()
     else:
         return str.lower()
-    
+
 def _n(list):
     '''
     Does C-name conversion on a tuple of strings.
@@ -433,7 +435,7 @@ def _c_type_setup(self, name, postfix):
             _c_type_setup(field.type, field.field_type, ())
             if field.type.is_list:
                 _c_type_setup(field.type.member, field.field_type, ())
-                if (field.type.nmemb is None): 
+                if (field.type.nmemb is None):
                     self.need_sizeof = True
 
             field.c_field_type = _t(field.field_type)
@@ -486,17 +488,17 @@ def _c_type_setup(self, name, postfix):
             else:
                 self.last_varsized_field = field
                 prev_varsized_field = field
-                prev_varsized_offset = 0                    
+                prev_varsized_offset = 0
 
             if self.var_followed_by_fixed_fields:
                 if field.type.fixed_size():
                     field.prev_varsized_field = None
-                            
+
     if self.need_serialize:
-        # when _unserialize() is wanted, create _sizeof() as well for consistency reasons 
+        # when _unserialize() is wanted, create _sizeof() as well for consistency reasons
         self.need_sizeof = True
 
-    # as switch does never appear at toplevel, 
+    # as switch does never appear at toplevel,
     # continue here with type construction
     if self.is_switch:
         if self.c_type not in finished_switch:
@@ -506,7 +508,7 @@ def _c_type_setup(self, name, postfix):
             for bitcase in self.bitcases:
                 bitcase_name = bitcase.type.name if bitcase.type.has_name else name
                 _c_accessors(bitcase.type, bitcase_name, bitcase_name)
-                # no list with switch as element, so no call to 
+                # no list with switch as element, so no call to
                 # _c_iterator(field.type, field_name) necessary
 
     if not self.is_bitcase:
@@ -520,7 +522,7 @@ def _c_type_setup(self, name, postfix):
                 #   special cases -> unserialize
                 if self.is_switch or self.var_followed_by_fixed_fields:
                     _c_serialize('unserialize', self)
-                    
+
         if self.need_sizeof:
             if self.c_sizeof_name not in finished_sizeof:
                 if not module.namespace.is_ext or self.name[:2] == module.namespace.prefix:
@@ -547,7 +549,7 @@ def _c_helper_absolute_name(prefix, field=None):
         prefix_str += _cpp(field.field_name)
     return prefix_str
 # _c_absolute_name
-    
+
 def _c_helper_field_mapping(complex_type, prefix, flat=False):
     """
     generate absolute names, based on prefix, for all fields starting from complex_type
@@ -560,7 +562,7 @@ def _c_helper_field_mapping(complex_type, prefix, flat=False):
                 switch_name, switch_sep, switch_type = prefix[-1]
                 bitcase_prefix = prefix + [(b.type.name[-1], '.', b.type)]
             else:
-                bitcase_prefix = prefix 
+                bitcase_prefix = prefix
 
             if (True==flat and not b.type.has_name) or False==flat:
                 all_fields.update(_c_helper_field_mapping(b.type, bitcase_prefix, flat))
@@ -607,7 +609,7 @@ def _c_helper_resolve_field_names (prefix):
 
 def get_expr_fields(self):
     """
-    get the Fields referenced by switch or list expression 
+    get the Fields referenced by switch or list expression
     """
     def get_expr_field_names(expr):
         if expr.op is None:
@@ -622,7 +624,7 @@ def get_expr_fields(self):
             elif expr.op == 'popcount':
                 return get_expr_field_names(expr.rhs)
             elif expr.op == 'sumof':
-                # sumof expr references another list, 
+                # sumof expr references another list,
                 # we need that list's length field here
                 field = None
                 for f in expr.lenfield_parent.fields:
@@ -638,7 +640,7 @@ def get_expr_fields(self):
             else:
                 return get_expr_field_names(expr.lhs) + get_expr_field_names(expr.rhs)
     # get_expr_field_names()
-    
+
     # resolve the field names with the parent structure(s)
     unresolved_fields_names = get_expr_field_names(self.expr)
 
@@ -651,7 +653,7 @@ def get_expr_fields(self):
     resolved_fields_names = list(filter(lambda x: x in all_fields.keys(), unresolved_fields_names))
     if len(unresolved_fields_names) != len(resolved_fields_names):
         raise Exception("could not resolve all fields for %s" % self.name)
-    
+
     resolved_fields = [all_fields[n][1] for n in resolved_fields_names]
     return resolved_fields
 # get_expr_fields()
@@ -678,13 +680,13 @@ def resolve_expr_fields(complex_obj):
             unresolved.append(e)
     return unresolved
 # resolve_expr_fields()
-            
+
 def get_serialize_params(context, self, buffer_var='_buffer', aux_var='_aux'):
     """
     functions like _serialize(), _unserialize(), and _unpack() sometimes need additional parameters:
-    E.g. in order to unpack switch, extra parameters might be needed to evaluate the switch 
-    expression. This function tries to resolve all fields within a structure, and returns the 
-    unresolved fields as the list of external parameters. 
+    E.g. in order to unpack switch, extra parameters might be needed to evaluate the switch
+    expression. This function tries to resolve all fields within a structure, and returns the
+    unresolved fields as the list of external parameters.
     """
     def add_param(params, param):
         if param not in params:
@@ -703,9 +705,9 @@ def get_serialize_params(context, self, buffer_var='_buffer', aux_var='_aux'):
                 # field in the xcb_out structure
                 wire_fields.append(field)
         # fields like 'pad0' are skipped!
-               
+
     # in case of switch, parameters always contain any fields referenced in the switch expr
-    # we do not need any variable size fields here, as the switch data type contains both 
+    # we do not need any variable size fields here, as the switch data type contains both
     # fixed and variable size fields
     if self.is_switch:
         param_fields = get_expr_fields(self)
@@ -713,7 +715,7 @@ def get_serialize_params(context, self, buffer_var='_buffer', aux_var='_aux'):
     # _serialize()/_unserialize()/_unpack() function parameters
     # note: don't use set() for params, it is unsorted
     params = []
-    
+
     # 1. the parameter for the void * buffer
     if  'serialize' == context:
         params.append(('c_void', '*mut *mut ', buffer_var))
@@ -730,25 +732,25 @@ def get_serialize_params(context, self, buffer_var='_buffer', aux_var='_aux'):
     for p in param_fields:
         if self.is_switch:
             typespec = p.c_field_const_type
-            pointerspec = p.c_pointer 
+            pointerspec = p.c_pointer
             add_param(params, (typespec, pointerspec, p.c_field_name))
         else:
             if p.visible and not p.wire and not p.auto:
                 typespec = p.c_field_type
                 pointerspec = ''
                 add_param(params, (typespec, pointerspec, p.c_field_name))
-  
+
     # 4. aux argument
     if 'serialize' == context:
         add_param(params, ('%s' % self.c_type, '*mut ', aux_var))
-    elif 'unserialize' == context: 
+    elif 'unserialize' == context:
         add_param(params, ('%s' % self.c_type, '*mut *mut ', aux_var))
     elif 'unpack' == context:
         add_param(params, ('%s' % self.c_type, '*mut ', aux_var))
 
     # 5. switch contains all variable size fields as struct members
     #    for other data types though, these have to be supplied separately
-    #    this is important for the special case of intermixed fixed and 
+    #    this is important for the special case of intermixed fixed and
     #    variable size fields
     if not self.is_switch and 'serialize' == context:
         for p in param_fields:
@@ -760,7 +762,7 @@ def get_serialize_params(context, self, buffer_var='_buffer', aux_var='_aux'):
 
 def _c_serialize(context, self):
     """
-    depending on the context variable, generate _serialize(), _unserialize(), _unpack(), or _sizeof() 
+    depending on the context variable, generate _serialize(), _unserialize(), _unpack(), or _sizeof()
     for the ComplexType variable self
     """
     _h_setlevel(1)
@@ -772,25 +774,25 @@ def _c_serialize(context, self):
     if self.is_switch and 'unserialize' == context:
         context = 'unpack'
 
-    cases = { 'serialize'   : self.c_serialize_name, 
-              'unserialize' : self.c_unserialize_name, 
-              'unpack'      : self.c_unpack_name, 
+    cases = { 'serialize'   : self.c_serialize_name,
+              'unserialize' : self.c_unserialize_name,
+              'unpack'      : self.c_unpack_name,
               'sizeof'      : self.c_sizeof_name }
     func_name = cases[context]
-            
+
     param_fields, wire_fields, params = get_serialize_params(context, self)
     variable_size_fields = 0
     # maximum space required for type definition of function arguments
     maxtypelen = 0
 
-    # determine N(variable_fields) 
+    # determine N(variable_fields)
     for field in param_fields:
         # if self.is_switch, treat all fields as if they are variable sized
         if not field.type.fixed_size() or self.is_switch:
             variable_size_fields += 1
     # determine maxtypelen
     for p in params:
-        maxtypelen = max(maxtypelen, len(p[0]) + len(p[1]))    
+        maxtypelen = max(maxtypelen, len(p[0]) + len(p[1]))
 
     # write to .c/.h
     indent = ' '*(len(func_name)+2)
@@ -833,6 +835,7 @@ def _c_iterator(self, name):
     _h('/**')
     _h(' * @brief %s', self.c_iterator_type)
     _h(' **/')
+    _h('#[repr(C)]')
     _h('pub struct %s {', self.c_iterator_type)
     _h('    pub data : *mut %s,', self.c_type)
     _h('    pub rem  : c_int,')
@@ -869,14 +872,15 @@ def _c_iterator(self, name):
     _h('pub fn %s (i:%s) -> ffi::base::generic_iterator;', self.c_end_name, self.c_iterator_type)
 
     _r('')
-    _r('impl<\'s, %s> Iterator<&\'s %s> for %s {', self.r_type, self.r_type, self.r_iterator_type)
-    _r('    fn next(&mut self) -> Option<&\'s %s> {', self.r_type)
+    _r('impl Iterator for %s {', self.r_iterator_type)
+    _r('    type Item = %s;', self.r_type)
+    _r('    fn next(&mut self) -> Option<%s> {', self.r_type)
     _r('        if self.rem == 0 { return None; }')
     _r('        unsafe {')
-    _r('            let iter : *mut %s = mem::transmute(self);', self.c_iterator_type)
+    _r('            let iter: *mut %s = mem::transmute(self);', self.c_iterator_type)
     _r('            let data = (*iter).data;')
     _r('            %s(iter);', self.c_next_name)
-    _r('            Some(mem::transmute(data))')
+    _r('            Some(mem::transmute(*data))')
     _r('        }')
     _r('    }')
     _r('}\n')
@@ -945,7 +949,7 @@ def _c_accessors_list(self, field):
     # in case of switch, 2 params have to be supplied to certain accessor functions:
     #   1. the anchestor object (request or reply)
     #   2. the (anchestor) switch object
-    # the reason is that switch is either a child of a request/reply or nested in another switch, 
+    # the reason is that switch is either a child of a request/reply or nested in another switch,
     # so whenever we need to access a length field, we might need to refer to some anchestor type
     switch_obj = self if self.is_switch else None
     if self.is_bitcase:
@@ -956,14 +960,14 @@ def _c_accessors_list(self, field):
     params = []
     fields = {}
     parents = self.parents if hasattr(self, 'parents') else [self]
-    # 'R': parents[0] is always the 'toplevel' container type 
+    # 'R': parents[0] is always the 'toplevel' container type
     params.append(('R : *mut %s' % parents[0].c_type, parents[0]))
     fields.update(_c_helper_field_mapping(parents[0], [('R', '->', parents[0])], flat=True))
     # auxiliary object for 'R' parameters
     R_obj = parents[0]
 
     if switch_obj is not None:
-        # now look where the fields are defined that are needed to evaluate 
+        # now look where the fields are defined that are needed to evaluate
         # the switch expr, and store the parent objects in accessor_params and
         # the fields in switch_fields
 
@@ -978,7 +982,7 @@ def _c_accessors_list(self, field):
 
         # look for fields in the remaining containers
         for p in parents[2:] + [self]:
-            # the separator between parent and child is always '.' here, 
+            # the separator between parent and child is always '.' here,
             # because of nested switch statements
             if not p.is_bitcase or (p.is_bitcase and p.has_name):
                 prefix.append((p.name[-1], '.', p))
@@ -1028,7 +1032,7 @@ def _c_accessors(self, name, base):
     '''
     Declares the accessor functions for the fields of a structure.
     '''
-    # no accessors for switch itself - 
+    # no accessors for switch itself -
     # switch always needs to be unpacked explicitly
 #    if self.is_switch:
 #        pass
@@ -1085,7 +1089,7 @@ def _r_accessor(self,field):
                                             self.wrap_field_name)
         _r('  }\n')
     elif field.type.is_list:
-        _r('  pub fn %s(&self) -> Vec<%s> {', field.c_field_name, field.r_field_type) 
+        _r('  pub fn %s(&self) -> Vec<%s> {', field.c_field_name, field.r_field_type)
         _r('    unsafe { (%s.%s).to_vec() }',self.wrap_field_name,field.c_field_name)
         _r('  }\n')
 
@@ -1121,14 +1125,14 @@ def _c_complex(self):
     Called for all structs, requests, replies, events, errors.
     '''
 
-    _h_setlevel(0)
-    _h('')
-    _h('pub struct %s {', self.c_type)
-
-
+    is_copy_eligible = True
     struct_fields = []
     maxtypelen = 0
 
+    _h_setlevel(0)
+    _h('')
+    _h('#[repr(C)]')
+    _h('pub struct %s {', self.c_type)
     varfield = None
     for field in self.fields:
         if not field.type.fixed_size() and not self.is_switch and not self.is_union:
@@ -1136,14 +1140,16 @@ def _c_complex(self):
             continue
         if field.wire:
             struct_fields.append(field)
-    
+
     for field in struct_fields:
         length = len(field.c_field_name)
         # account for '*mut ' pointer_spec
         maxtypelen = max(maxtypelen, length)
 
     def _c_complex_field(self, field, space='', comma=','):
-        if (field.type.fixed_size() or 
+        if field.c_field_type in _types_not_copy_eligible:
+            is_copy_eligible = False
+        if (field.type.fixed_size() or
             # in case of switch with switch children, don't make the field a pointer
             # necessary for unserialize to work
             (self.is_switch and field.type.is_switch)):
@@ -1151,9 +1157,10 @@ def _c_complex(self):
             if field.c_subscript == 1:
                 ftype = field.c_field_type
             else:
-                ftype = "[%s,..%d]" % (field.c_field_type, field.c_subscript)
+                ftype = "[%s; %d]" % (field.c_field_type, field.c_subscript)
             _h(' %s    pub %s : %s  %s%s', space, field.c_field_name, spacing, ftype, comma)
         else:
+            is_copy_eligible = False
             ftype = field.c_field_type
             spacing = ' ' * (maxtypelen - (len(field.c_field_type) + 1))
             _h('%s    pub %s : %s  *mut %s%s', space, field.c_field_name, spacing, ftype, comma)
@@ -1183,6 +1190,16 @@ def _c_complex(self):
 
     _h('}\n')
 
+    if is_copy_eligible:
+        _h('impl Copy for %s {}', self.c_type)
+        _h('impl Clone for %s {', self.c_type)
+        _h('    fn clone(&self) -> %s { *self }', self.c_type)
+        _h('}')
+    else:
+        _types_not_copy_eligible.append(self.c_type)
+
+
+
 def c_struct(self, name):
     '''
     Exported function that handles structure declarations.
@@ -1211,8 +1228,13 @@ def c_union(self, name):
 
     _h_setlevel(0)
     _h('')
+    _h('#[repr(C)]')
     _h('pub struct %s {', self.c_type)
-    _h('    data : [u8,..%d]', field_size)
+    _h('    data : [u8; %d]', field_size)
+    _h('}')
+    _h('impl Copy for %s {}', self.c_type)
+    _h('impl Clone for %s {', self.c_type)
+    _h('    fn clone(&self) -> %s { *self }', self.c_type)
     _h('}')
 
     self.wrap_type = 'Struct'
@@ -1277,9 +1299,9 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
             wire_fields.append(field)
         if field.type.need_serialize or field.type.need_sizeof:
             serial_fields.append(field)
-        
+
     for field in param_fields:
-        c_field_const_type = field.c_field_const_type 
+        c_field_const_type = field.c_field_const_type
         if field.type.need_serialize and not aux:
             c_field_const_type = "()"
         if field.type.is_list and not field.type.member.fixed_size():
@@ -1422,7 +1444,7 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
 
         if fty.is_list:
             if fty.expr.bitfield:
-                mk_params.append("let mut %s_copy = %s.to_vec();" % 
+                mk_params.append("let mut %s_copy = %s.to_vec();" %
                         (field.c_field_name, field.c_field_name))
                 mk_params.append("let (%s_mask, %s_vec) = pack_bitfield(&mut %s_copy);" %
                         (field.c_field_name, field.c_field_name, field.c_field_name))
@@ -1487,7 +1509,7 @@ def _c_reply(self, name):
     Declares the function that returns the reply structure.
     '''
     spacing = ' ' * (len(self.c_reply_name))
-    
+
     _h('')
     _h('/**')
     _h(' * Return the reply')
@@ -1507,7 +1529,7 @@ def _c_reply(self, name):
     _h('          %s  cookie : %s,', spacing, self.c_cookie_type)
     _h('          %s  e : *mut *mut ffi::base::generic_error) -> *mut %s;', spacing, self.c_reply_type)
 
-    _r('impl_reply_cookie!(%s<\'s>, mk_reply_%s, %s, %s)\n', self.r_cookie_type, self.c_reply_type, self.r_reply_type, self.c_reply_name)
+    _r('impl_reply_cookie!(%s<\'s>, mk_reply_%s, %s, %s);\n', self.r_cookie_type, self.c_reply_type, self.r_reply_type, self.c_reply_name)
 
 def _c_opcode(name, opcode):
     '''
@@ -1518,7 +1540,7 @@ def _c_opcode(name, opcode):
     _h('')
     _r('/** Opcode for %s. */', _n(name))
     _r('pub static %s : u8 = %s;', _n(name).upper(), opcode)
-    
+
 def _c_cookie(self, name):
     '''
     Declares the cookie type for a non-void request.
@@ -1526,6 +1548,8 @@ def _c_cookie(self, name):
     _h_setlevel(0)
     _r_setlevel(0)
     _h('')
+    _h('#[derive(Copy, Clone)]')
+    _h('#[repr(C)]')
     _h('pub struct %s {', self.c_cookie_type)
     _h('    sequence : c_uint')
     _h('}')
@@ -1623,13 +1647,13 @@ def c_event(self, name):
             fty = field.type
             ftype = field.r_field_type;
             if fty.is_list:
-                ftype = '[%s,..%d]' % (ftype, fty.nmemb)
+                ftype = '[%s; %d]' % (ftype, fty.nmemb)
 
             new_params.append('%s : %s' % (field.c_field_name, ftype))
 
         _r('  pub fn new('+(',\n         '.join(new_params))+') -> %s {', self.r_type)
         _r('    unsafe {')
-        _r('      let raw = malloc(32u as size_t) as *mut %s;', self.c_type)
+        _r('      let raw = malloc(32 as size_t) as *mut %s;', self.c_type)
         for f in self.fields:
             if not f.visible: continue
             if f.type.is_container:

@@ -13,6 +13,7 @@ use ffi;
 pub static XF86DRI_MAJOR_VERSION : c_uint = 4;
 pub static XF86DRI_MINOR_VERSION : c_uint = 1;
 
+#[repr(C)]
 pub struct drm_clip_rect {
      pub x1 :   i16,
      pub y1 :   i16,
@@ -20,9 +21,14 @@ pub struct drm_clip_rect {
      pub x3 :   i16
 }
 
+impl Copy for drm_clip_rect {}
+impl Clone for drm_clip_rect {
+    fn clone(&self) -> drm_clip_rect { *self }
+}
 /**
  * @brief drm_clip_rect_iterator
  **/
+#[repr(C)]
 pub struct drm_clip_rect_iterator {
     pub data : *mut drm_clip_rect,
     pub rem  : c_int,
@@ -30,18 +36,26 @@ pub struct drm_clip_rect_iterator {
 }
 
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_version_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for query_version_request {}
+impl Clone for query_version_request {
+    fn clone(&self) -> query_version_request { *self }
+}
 
+#[repr(C)]
 pub struct query_version_reply {
      pub response_type :       u8,
      pub pad0 :                u8,
@@ -52,12 +66,19 @@ pub struct query_version_reply {
      pub dri_minor_patch :     u32
 }
 
+impl Copy for query_version_reply {}
+impl Clone for query_version_reply {
+    fn clone(&self) -> query_version_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_direct_rendering_capable_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_direct_rendering_capable_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -65,7 +86,12 @@ pub struct query_direct_rendering_capable_request {
      pub screen :         u32
 }
 
+impl Copy for query_direct_rendering_capable_request {}
+impl Clone for query_direct_rendering_capable_request {
+    fn clone(&self) -> query_direct_rendering_capable_request { *self }
+}
 
+#[repr(C)]
 pub struct query_direct_rendering_capable_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -74,12 +100,19 @@ pub struct query_direct_rendering_capable_reply {
      pub is_capable :      u8
 }
 
+impl Copy for query_direct_rendering_capable_reply {}
+impl Clone for query_direct_rendering_capable_reply {
+    fn clone(&self) -> query_direct_rendering_capable_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct open_connection_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct open_connection_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -87,7 +120,12 @@ pub struct open_connection_request {
      pub screen :         u32
 }
 
+impl Copy for open_connection_request {}
+impl Clone for open_connection_request {
+    fn clone(&self) -> open_connection_request { *self }
+}
 
+#[repr(C)]
 pub struct open_connection_reply {
      pub response_type :       u8,
      pub pad0 :                u8,
@@ -96,11 +134,16 @@ pub struct open_connection_reply {
      pub sarea_handle_low :    u32,
      pub sarea_handle_high :   u32,
      pub bus_id_len :          u32,
-     pub pad1 :                [u8,..12]
+     pub pad1 :                [u8; 12]
+}
+
+impl Copy for open_connection_reply {}
+impl Clone for open_connection_reply {
+    fn clone(&self) -> open_connection_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct close_connection_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -108,12 +151,19 @@ pub struct close_connection_request {
      pub screen :         u32
 }
 
+impl Copy for close_connection_request {}
+impl Clone for close_connection_request {
+    fn clone(&self) -> close_connection_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_client_driver_name_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_client_driver_name_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -121,7 +171,12 @@ pub struct get_client_driver_name_request {
      pub screen :         u32
 }
 
+impl Copy for get_client_driver_name_request {}
+impl Clone for get_client_driver_name_request {
+    fn clone(&self) -> get_client_driver_name_request { *self }
+}
 
+#[repr(C)]
 pub struct get_client_driver_name_reply {
      pub response_type :                 u8,
      pub pad0 :                          u8,
@@ -131,15 +186,22 @@ pub struct get_client_driver_name_reply {
      pub client_driver_minor_version :   u32,
      pub client_driver_patch_version :   u32,
      pub client_driver_name_len :        u32,
-     pub pad1 :                          [u8,..8]
+     pub pad1 :                          [u8; 8]
 }
 
+impl Copy for get_client_driver_name_reply {}
+impl Clone for get_client_driver_name_reply {
+    fn clone(&self) -> get_client_driver_name_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct create_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct create_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -149,7 +211,12 @@ pub struct create_context_request {
      pub context :        u32
 }
 
+impl Copy for create_context_request {}
+impl Clone for create_context_request {
+    fn clone(&self) -> create_context_request { *self }
+}
 
+#[repr(C)]
 pub struct create_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -158,8 +225,13 @@ pub struct create_context_reply {
      pub hw_context :      u32
 }
 
+impl Copy for create_context_reply {}
+impl Clone for create_context_reply {
+    fn clone(&self) -> create_context_reply { *self }
+}
 
 
+#[repr(C)]
 pub struct destroy_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -168,12 +240,19 @@ pub struct destroy_context_request {
      pub context :        u32
 }
 
+impl Copy for destroy_context_request {}
+impl Clone for destroy_context_request {
+    fn clone(&self) -> destroy_context_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct create_drawable_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct create_drawable_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -182,7 +261,12 @@ pub struct create_drawable_request {
      pub drawable :       u32
 }
 
+impl Copy for create_drawable_request {}
+impl Clone for create_drawable_request {
+    fn clone(&self) -> create_drawable_request { *self }
+}
 
+#[repr(C)]
 pub struct create_drawable_reply {
      pub response_type :        u8,
      pub pad0 :                 u8,
@@ -191,8 +275,13 @@ pub struct create_drawable_reply {
      pub hw_drawable_handle :   u32
 }
 
+impl Copy for create_drawable_reply {}
+impl Clone for create_drawable_reply {
+    fn clone(&self) -> create_drawable_reply { *self }
+}
 
 
+#[repr(C)]
 pub struct destroy_drawable_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -201,12 +290,19 @@ pub struct destroy_drawable_request {
      pub drawable :       u32
 }
 
+impl Copy for destroy_drawable_request {}
+impl Clone for destroy_drawable_request {
+    fn clone(&self) -> destroy_drawable_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_drawable_info_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_drawable_info_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -215,7 +311,12 @@ pub struct get_drawable_info_request {
      pub drawable :       u32
 }
 
+impl Copy for get_drawable_info_request {}
+impl Clone for get_drawable_info_request {
+    fn clone(&self) -> get_drawable_info_request { *self }
+}
 
+#[repr(C)]
 pub struct get_drawable_info_reply {
      pub response_type :          u8,
      pub pad0 :                   u8,
@@ -233,12 +334,19 @@ pub struct get_drawable_info_reply {
      pub num_back_clip_rects :    u32
 }
 
+impl Copy for get_drawable_info_reply {}
+impl Clone for get_drawable_info_reply {
+    fn clone(&self) -> get_drawable_info_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_device_info_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_device_info_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -246,7 +354,12 @@ pub struct get_device_info_request {
      pub screen :         u32
 }
 
+impl Copy for get_device_info_request {}
+impl Clone for get_device_info_request {
+    fn clone(&self) -> get_device_info_request { *self }
+}
 
+#[repr(C)]
 pub struct get_device_info_reply {
      pub response_type :               u8,
      pub pad0 :                        u8,
@@ -260,12 +373,19 @@ pub struct get_device_info_reply {
      pub device_private_size :         u32
 }
 
+impl Copy for get_device_info_reply {}
+impl Clone for get_device_info_reply {
+    fn clone(&self) -> get_device_info_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct auth_connection_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct auth_connection_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -274,7 +394,12 @@ pub struct auth_connection_request {
      pub magic :          u32
 }
 
+impl Copy for auth_connection_request {}
+impl Clone for auth_connection_request {
+    fn clone(&self) -> auth_connection_request { *self }
+}
 
+#[repr(C)]
 pub struct auth_connection_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -283,6 +408,10 @@ pub struct auth_connection_reply {
      pub authenticated :   u32
 }
 
+impl Copy for auth_connection_reply {}
+impl Clone for auth_connection_reply {
+    fn clone(&self) -> auth_connection_reply { *self }
+}
 #[link(name="xcb-xf86dri")]
 extern "C" {
 

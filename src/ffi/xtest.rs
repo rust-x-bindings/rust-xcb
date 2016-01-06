@@ -14,11 +14,14 @@ use ffi::xproto;
 pub static TEST_MAJOR_VERSION : c_uint = 2;
 pub static TEST_MINOR_VERSION : c_uint = 1;
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_version_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_version_request {
      pub major_opcode :    u8,
      pub minor_opcode :    u8,
@@ -28,7 +31,12 @@ pub struct get_version_request {
      pub minor_version :   u16
 }
 
+impl Copy for get_version_request {}
+impl Clone for get_version_request {
+    fn clone(&self) -> get_version_request { *self }
+}
 
+#[repr(C)]
 pub struct get_version_reply {
      pub response_type :   u8,
      pub major_version :   u8,
@@ -37,12 +45,19 @@ pub struct get_version_reply {
      pub minor_version :   u16
 }
 
+impl Copy for get_version_reply {}
+impl Clone for get_version_reply {
+    fn clone(&self) -> get_version_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct compare_cursor_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct compare_cursor_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -51,7 +66,12 @@ pub struct compare_cursor_request {
      pub cursor :         ffi::xproto::cursor
 }
 
+impl Copy for compare_cursor_request {}
+impl Clone for compare_cursor_request {
+    fn clone(&self) -> compare_cursor_request { *self }
+}
 
+#[repr(C)]
 pub struct compare_cursor_reply {
      pub response_type :   u8,
      pub same :            u8,
@@ -59,34 +79,48 @@ pub struct compare_cursor_reply {
      pub length :          u32
 }
 
+impl Copy for compare_cursor_reply {}
+impl Clone for compare_cursor_reply {
+    fn clone(&self) -> compare_cursor_reply { *self }
+}
 
 
+#[repr(C)]
 pub struct fake_input_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub type_ :          u8,
      pub detail :         u8,
-     pub pad0 :           [u8,..2],
+     pub pad0 :           [u8; 2],
      pub time :           u32,
      pub root :           ffi::xproto::window,
-     pub pad1 :           [u8,..8],
+     pub pad1 :           [u8; 8],
      pub rootX :          i16,
      pub rootY :          i16,
-     pub pad2 :           [u8,..7],
+     pub pad2 :           [u8; 7],
      pub deviceid :       u8
 }
 
+impl Copy for fake_input_request {}
+impl Clone for fake_input_request {
+    fn clone(&self) -> fake_input_request { *self }
+}
 
 
+#[repr(C)]
 pub struct grab_control_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub impervious :     u8,
-     pub pad0 :           [u8,..3]
+     pub pad0 :           [u8; 3]
 }
 
+impl Copy for grab_control_request {}
+impl Clone for grab_control_request {
+    fn clone(&self) -> grab_control_request { *self }
+}
 #[link(name="xcb-xtest")]
 extern "C" {
 

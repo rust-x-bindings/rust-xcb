@@ -17,6 +17,7 @@ pub type syncrange = u32;
 /**
  * @brief syncrange_iterator
  **/
+#[repr(C)]
 pub struct syncrange_iterator {
     pub data : *mut syncrange,
     pub rem  : c_int,
@@ -28,6 +29,7 @@ pub type dotclock = u32;
 /**
  * @brief dotclock_iterator
  **/
+#[repr(C)]
 pub struct dotclock_iterator {
     pub data : *mut dotclock,
     pub rem  : c_int,
@@ -35,6 +37,7 @@ pub struct dotclock_iterator {
 }
 
 
+#[repr(C)]
 pub struct mode_info {
      pub dotclock :     dotclock,
      pub hdisplay :     u16,
@@ -46,15 +49,20 @@ pub struct mode_info {
      pub vsyncstart :   u16,
      pub vsyncend :     u16,
      pub vtotal :       u16,
-     pub pad0 :         [u8,..4],
+     pub pad0 :         [u8; 4],
      pub flags :        u32,
-     pub pad1 :         [u8,..12],
+     pub pad1 :         [u8; 12],
      pub privsize :     u32
 }
 
+impl Copy for mode_info {}
+impl Clone for mode_info {
+    fn clone(&self) -> mode_info { *self }
+}
 /**
  * @brief mode_info_iterator
  **/
+#[repr(C)]
 pub struct mode_info_iterator {
     pub data : *mut mode_info,
     pub rem  : c_int,
@@ -62,18 +70,26 @@ pub struct mode_info_iterator {
 }
 
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_version_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for query_version_request {}
+impl Clone for query_version_request {
+    fn clone(&self) -> query_version_request { *self }
+}
 
+#[repr(C)]
 pub struct query_version_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -83,21 +99,33 @@ pub struct query_version_reply {
      pub minor_version :   u16
 }
 
+impl Copy for query_version_reply {}
+impl Clone for query_version_reply {
+    fn clone(&self) -> query_version_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_mode_line_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_mode_line_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub screen :         u16,
-     pub pad0 :           [u8,..2]
+     pub pad0 :           [u8; 2]
 }
 
+impl Copy for get_mode_line_request {}
+impl Clone for get_mode_line_request {
+    fn clone(&self) -> get_mode_line_request { *self }
+}
 
+#[repr(C)]
 pub struct get_mode_line_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -113,14 +141,19 @@ pub struct get_mode_line_reply {
      pub vsyncstart :      u16,
      pub vsyncend :        u16,
      pub vtotal :          u16,
-     pub pad1 :            [u8,..2],
+     pub pad1 :            [u8; 2],
      pub flags :           u32,
-     pub pad2 :            [u8,..12],
+     pub pad2 :            [u8; 12],
      pub privsize :        u32
 }
 
+impl Copy for get_mode_line_reply {}
+impl Clone for get_mode_line_reply {
+    fn clone(&self) -> get_mode_line_reply { *self }
+}
 
 
+#[repr(C)]
 pub struct mod_mode_line_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -135,14 +168,19 @@ pub struct mod_mode_line_request {
      pub vsyncstart :     u16,
      pub vsyncend :       u16,
      pub vtotal :         u16,
-     pub pad0 :           [u8,..2],
+     pub pad0 :           [u8; 2],
      pub flags :          u32,
-     pub pad1 :           [u8,..12],
+     pub pad1 :           [u8; 12],
      pub privsize :       u32
 }
 
+impl Copy for mod_mode_line_request {}
+impl Clone for mod_mode_line_request {
+    fn clone(&self) -> mod_mode_line_request { *self }
+}
 
 
+#[repr(C)]
 pub struct switch_mode_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -151,21 +189,33 @@ pub struct switch_mode_request {
      pub zoom :           u16
 }
 
+impl Copy for switch_mode_request {}
+impl Clone for switch_mode_request {
+    fn clone(&self) -> switch_mode_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_monitor_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_monitor_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub screen :         u16,
-     pub pad0 :           [u8,..2]
+     pub pad0 :           [u8; 2]
 }
 
+impl Copy for get_monitor_request {}
+impl Clone for get_monitor_request {
+    fn clone(&self) -> get_monitor_request { *self }
+}
 
+#[repr(C)]
 pub struct get_monitor_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -175,11 +225,16 @@ pub struct get_monitor_reply {
      pub model_length :    u8,
      pub num_hsync :       u8,
      pub num_vsync :       u8,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
+}
+
+impl Copy for get_monitor_reply {}
+impl Clone for get_monitor_reply {
+    fn clone(&self) -> get_monitor_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct lock_mode_switch_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -188,32 +243,49 @@ pub struct lock_mode_switch_request {
      pub lock :           u16
 }
 
+impl Copy for lock_mode_switch_request {}
+impl Clone for lock_mode_switch_request {
+    fn clone(&self) -> lock_mode_switch_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_all_mode_lines_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_all_mode_lines_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub screen :         u16,
-     pub pad0 :           [u8,..2]
+     pub pad0 :           [u8; 2]
 }
 
+impl Copy for get_all_mode_lines_request {}
+impl Clone for get_all_mode_lines_request {
+    fn clone(&self) -> get_all_mode_lines_request { *self }
+}
 
+#[repr(C)]
 pub struct get_all_mode_lines_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub modecount :       u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
+}
+
+impl Copy for get_all_mode_lines_reply {}
+impl Clone for get_all_mode_lines_reply {
+    fn clone(&self) -> get_all_mode_lines_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct add_mode_line_request {
      pub major_opcode :       u8,
      pub minor_opcode :       u8,
@@ -229,9 +301,9 @@ pub struct add_mode_line_request {
      pub vsyncstart :         u16,
      pub vsyncend :           u16,
      pub vtotal :             u16,
-     pub pad0 :               [u8,..2],
+     pub pad0 :               [u8; 2],
      pub flags :              u32,
-     pub pad1 :               [u8,..12],
+     pub pad1 :               [u8; 12],
      pub privsize :           u32,
      pub after_dotclock :     dotclock,
      pub after_hdisplay :     u16,
@@ -243,13 +315,18 @@ pub struct add_mode_line_request {
      pub after_vsyncstart :   u16,
      pub after_vsyncend :     u16,
      pub after_vtotal :       u16,
-     pub pad2 :               [u8,..2],
+     pub pad2 :               [u8; 2],
      pub after_flags :        u32,
-     pub pad3 :               [u8,..12]
+     pub pad3 :               [u8; 12]
+}
+
+impl Copy for add_mode_line_request {}
+impl Clone for add_mode_line_request {
+    fn clone(&self) -> add_mode_line_request { *self }
 }
 
 
-
+#[repr(C)]
 pub struct delete_mode_line_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -265,18 +342,25 @@ pub struct delete_mode_line_request {
      pub vsyncstart :     u16,
      pub vsyncend :       u16,
      pub vtotal :         u16,
-     pub pad0 :           [u8,..2],
+     pub pad0 :           [u8; 2],
      pub flags :          u32,
-     pub pad1 :           [u8,..12],
+     pub pad1 :           [u8; 12],
      pub privsize :       u32
 }
 
+impl Copy for delete_mode_line_request {}
+impl Clone for delete_mode_line_request {
+    fn clone(&self) -> delete_mode_line_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct validate_mode_line_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct validate_mode_line_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -292,24 +376,34 @@ pub struct validate_mode_line_request {
      pub vsyncstart :     u16,
      pub vsyncend :       u16,
      pub vtotal :         u16,
-     pub pad0 :           [u8,..2],
+     pub pad0 :           [u8; 2],
      pub flags :          u32,
-     pub pad1 :           [u8,..12],
+     pub pad1 :           [u8; 12],
      pub privsize :       u32
 }
 
+impl Copy for validate_mode_line_request {}
+impl Clone for validate_mode_line_request {
+    fn clone(&self) -> validate_mode_line_request { *self }
+}
 
+#[repr(C)]
 pub struct validate_mode_line_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub status :          u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
+}
+
+impl Copy for validate_mode_line_reply {}
+impl Clone for validate_mode_line_reply {
+    fn clone(&self) -> validate_mode_line_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct switch_to_mode_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -325,27 +419,39 @@ pub struct switch_to_mode_request {
      pub vsyncstart :     u16,
      pub vsyncend :       u16,
      pub vtotal :         u16,
-     pub pad0 :           [u8,..2],
+     pub pad0 :           [u8; 2],
      pub flags :          u32,
-     pub pad1 :           [u8,..12],
+     pub pad1 :           [u8; 12],
      pub privsize :       u32
 }
 
+impl Copy for switch_to_mode_request {}
+impl Clone for switch_to_mode_request {
+    fn clone(&self) -> switch_to_mode_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_view_port_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_view_port_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub screen :         u16,
-     pub pad0 :           [u8,..2]
+     pub pad0 :           [u8; 2]
 }
 
+impl Copy for get_view_port_request {}
+impl Clone for get_view_port_request {
+    fn clone(&self) -> get_view_port_request { *self }
+}
 
+#[repr(C)]
 pub struct get_view_port_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -353,36 +459,53 @@ pub struct get_view_port_reply {
      pub length :          u32,
      pub x :               u32,
      pub y :               u32,
-     pub pad1 :            [u8,..16]
+     pub pad1 :            [u8; 16]
+}
+
+impl Copy for get_view_port_reply {}
+impl Clone for get_view_port_reply {
+    fn clone(&self) -> get_view_port_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct set_view_port_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub screen :         u16,
-     pub pad0 :           [u8,..2],
+     pub pad0 :           [u8; 2],
      pub x :              u32,
      pub y :              u32
 }
 
+impl Copy for set_view_port_request {}
+impl Clone for set_view_port_request {
+    fn clone(&self) -> set_view_port_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_dot_clocks_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_dot_clocks_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub screen :         u16,
-     pub pad0 :           [u8,..2]
+     pub pad0 :           [u8; 2]
 }
 
+impl Copy for get_dot_clocks_request {}
+impl Clone for get_dot_clocks_request {
+    fn clone(&self) -> get_dot_clocks_request { *self }
+}
 
+#[repr(C)]
 pub struct get_dot_clocks_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -391,11 +514,16 @@ pub struct get_dot_clocks_reply {
      pub flags :           u32,
      pub clocks :          u32,
      pub maxclocks :       u32,
-     pub pad1 :            [u8,..12]
+     pub pad1 :            [u8; 12]
+}
+
+impl Copy for get_dot_clocks_reply {}
+impl Clone for get_dot_clocks_reply {
+    fn clone(&self) -> get_dot_clocks_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct set_client_version_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -404,35 +532,52 @@ pub struct set_client_version_request {
      pub minor :          u16
 }
 
+impl Copy for set_client_version_request {}
+impl Clone for set_client_version_request {
+    fn clone(&self) -> set_client_version_request { *self }
+}
 
 
+#[repr(C)]
 pub struct set_gamma_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub screen :         u16,
-     pub pad0 :           [u8,..2],
+     pub pad0 :           [u8; 2],
      pub red :            u32,
      pub green :          u32,
      pub blue :           u32,
-     pub pad1 :           [u8,..12]
+     pub pad1 :           [u8; 12]
 }
 
+impl Copy for set_gamma_request {}
+impl Clone for set_gamma_request {
+    fn clone(&self) -> set_gamma_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_gamma_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_gamma_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub screen :         u16,
-     pub pad0 :           [u8,..26]
+     pub pad0 :           [u8; 26]
 }
 
+impl Copy for get_gamma_request {}
+impl Clone for get_gamma_request {
+    fn clone(&self) -> get_gamma_request { *self }
+}
 
+#[repr(C)]
 pub struct get_gamma_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -441,15 +586,22 @@ pub struct get_gamma_reply {
      pub red :             u32,
      pub green :           u32,
      pub blue :            u32,
-     pub pad1 :            [u8,..12]
+     pub pad1 :            [u8; 12]
 }
 
+impl Copy for get_gamma_reply {}
+impl Clone for get_gamma_reply {
+    fn clone(&self) -> get_gamma_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_gamma_ramp_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_gamma_ramp_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -458,18 +610,28 @@ pub struct get_gamma_ramp_request {
      pub size :           u16
 }
 
+impl Copy for get_gamma_ramp_request {}
+impl Clone for get_gamma_ramp_request {
+    fn clone(&self) -> get_gamma_ramp_request { *self }
+}
 
+#[repr(C)]
 pub struct get_gamma_ramp_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub size :            u16,
-     pub pad1 :            [u8,..22]
+     pub pad1 :            [u8; 22]
+}
+
+impl Copy for get_gamma_ramp_reply {}
+impl Clone for get_gamma_ramp_reply {
+    fn clone(&self) -> get_gamma_ramp_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct set_gamma_ramp_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -478,110 +640,173 @@ pub struct set_gamma_ramp_request {
      pub size :           u16
 }
 
+impl Copy for set_gamma_ramp_request {}
+impl Clone for set_gamma_ramp_request {
+    fn clone(&self) -> set_gamma_ramp_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_gamma_ramp_size_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_gamma_ramp_size_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub screen :         u16,
-     pub pad0 :           [u8,..2]
+     pub pad0 :           [u8; 2]
 }
 
+impl Copy for get_gamma_ramp_size_request {}
+impl Clone for get_gamma_ramp_size_request {
+    fn clone(&self) -> get_gamma_ramp_size_request { *self }
+}
 
+#[repr(C)]
 pub struct get_gamma_ramp_size_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub size :            u16,
-     pub pad1 :            [u8,..22]
+     pub pad1 :            [u8; 22]
 }
 
+impl Copy for get_gamma_ramp_size_reply {}
+impl Clone for get_gamma_ramp_size_reply {
+    fn clone(&self) -> get_gamma_ramp_size_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_permissions_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_permissions_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub screen :         u16,
-     pub pad0 :           [u8,..2]
+     pub pad0 :           [u8; 2]
 }
 
+impl Copy for get_permissions_request {}
+impl Clone for get_permissions_request {
+    fn clone(&self) -> get_permissions_request { *self }
+}
 
+#[repr(C)]
 pub struct get_permissions_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub permissions :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
+}
+
+impl Copy for get_permissions_reply {}
+impl Clone for get_permissions_reply {
+    fn clone(&self) -> get_permissions_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct bad_clock_error {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
+impl Copy for bad_clock_error {}
+impl Clone for bad_clock_error {
+    fn clone(&self) -> bad_clock_error { *self }
+}
 
 
+#[repr(C)]
 pub struct bad_h_timings_error {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
+impl Copy for bad_h_timings_error {}
+impl Clone for bad_h_timings_error {
+    fn clone(&self) -> bad_h_timings_error { *self }
+}
 
 
+#[repr(C)]
 pub struct bad_v_timings_error {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
+impl Copy for bad_v_timings_error {}
+impl Clone for bad_v_timings_error {
+    fn clone(&self) -> bad_v_timings_error { *self }
+}
 
 
+#[repr(C)]
 pub struct mode_unsuitable_error {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
+impl Copy for mode_unsuitable_error {}
+impl Clone for mode_unsuitable_error {
+    fn clone(&self) -> mode_unsuitable_error { *self }
+}
 
 
+#[repr(C)]
 pub struct extension_disabled_error {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
+impl Copy for extension_disabled_error {}
+impl Clone for extension_disabled_error {
+    fn clone(&self) -> extension_disabled_error { *self }
+}
 
 
+#[repr(C)]
 pub struct client_not_local_error {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
+impl Copy for client_not_local_error {}
+impl Clone for client_not_local_error {
+    fn clone(&self) -> client_not_local_error { *self }
+}
 
 
+#[repr(C)]
 pub struct zoom_locked_error {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
+impl Copy for zoom_locked_error {}
+impl Clone for zoom_locked_error {
+    fn clone(&self) -> zoom_locked_error { *self }
+}
 extern "C" {
 
 /**
