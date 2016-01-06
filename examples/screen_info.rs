@@ -1,4 +1,3 @@
-#![feature(globs)]
 extern crate xcb;
 
 use std::iter::{Iterator};
@@ -13,15 +12,15 @@ fn main() {
 
     let mut screen;
     loop {
-        let n : Option<&xcb::xproto::Screen> = iter.next();
+        let n : Option<xcb::xproto::Screen> = iter.next();
         match n {
             Some(s) => {
                 if 1 == screen_num {
-                    screen = *s;
+                    screen = s;
                     break;
                 }
             }
-            None => { fail!("Whut") }
+            None => { panic!("Whut") }
         }
     }
 

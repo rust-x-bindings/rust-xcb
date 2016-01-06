@@ -1,4 +1,3 @@
-#![feature(globs)]
 extern crate xcb;
 
 use xcb::base::*;
@@ -8,26 +7,25 @@ use std::iter::{Iterator};
 
 fn main() {
     let (conn, _) = Connection::connect();
-    //let conn = box conn;
 
     let mut setup : Setup = conn.get_setup();
     let mut iter = setup.roots();
 
     let mut screen;
     loop {
-        let n : Option<&xcb::xproto::Screen> = iter.next();
+        let n : Option<xcb::xproto::Screen> = iter.next();
         match n {
             Some(s) => {
-                screen = *s;
+                screen = s;
                 break;
             }
-            None => { fail!("Whut") }
+            None => { panic!("Whut") }
         }
     }
 
     let window = conn.generate_id();
 
-    let values = [
+    let mut values = [
         (XCB_CW_BACK_PIXEL, screen.white_pixel()),
         (XCB_CW_EVENT_MASK, XCB_EVENT_MASK_EXPOSURE | XCB_EVENT_MASK_KEY_PRESS),
     ];
@@ -41,7 +39,7 @@ fn main() {
         10,
         XCB_WINDOW_CLASS_INPUT_OUTPUT as u16,
         screen.root_visual(),
-        values);
+        &mut values);
 
     MapWindow(&conn,window);
 
@@ -51,17 +49,17 @@ fn main() {
     let rep_res = cookie.get_reply();
     match rep_res {
         Ok(mut r) => {println!("Interned Atom {}", r.atom());}
-        Err(_) => { fail!("Failed to intern atom"); }
+        Err(_) => { panic!("Failed to intern atom"); }
     }
 
     loop {
         let event = conn.wait_for_event();
         match event {
             None => { break; }
-            Some(event) => {
+            Some(mut event) => {
                 let r = event.base.response_type();
                 if r == XCB_KEY_PRESS {
-                    let key_press : &mut KeyPressEvent = cast_event(&event);
+                    let key_press : &mut KeyPressEvent = cast_event(&mut event);
                     println!("Key '{}' pressed", key_press.detail());
                     break;
                 }
