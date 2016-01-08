@@ -216,7 +216,7 @@ extern "C" {
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xevie_query_version (c : *mut ffi::base::connection,
                                    client_major_version :  u16,
@@ -228,7 +228,7 @@ pub fn xcb_xevie_query_version (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -244,7 +244,7 @@ pub fn xcb_xevie_query_version_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xevie_query_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -261,7 +261,7 @@ pub fn xcb_xevie_query_version_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xevie_start (c : *mut ffi::base::connection,
                            screen :  u32) -> start_cookie;
@@ -272,7 +272,7 @@ pub fn xcb_xevie_start (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -287,7 +287,7 @@ pub fn xcb_xevie_start_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xevie_start_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -304,7 +304,7 @@ pub fn xcb_xevie_start_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xevie_end (c : *mut ffi::base::connection,
                          cmap :  u32) -> end_cookie;
@@ -315,7 +315,7 @@ pub fn xcb_xevie_end (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -330,7 +330,7 @@ pub fn xcb_xevie_end_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xevie_end_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -370,7 +370,7 @@ pub fn xcb_xevie_event_end (i:event_iterator) -> ffi::base::generic_iterator;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xevie_send (c : *mut ffi::base::connection,
                           event :  event,
@@ -382,7 +382,7 @@ pub fn xcb_xevie_send (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -398,7 +398,7 @@ pub fn xcb_xevie_send_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xevie_send_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -415,7 +415,7 @@ pub fn xcb_xevie_send_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xevie_select_input (c : *mut ffi::base::connection,
                                   event_mask :  u32) -> select_input_cookie;
@@ -426,7 +426,7 @@ pub fn xcb_xevie_select_input (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -441,7 +441,7 @@ pub fn xcb_xevie_select_input_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xevie_select_input_unchecked(). is used.
  * Otherwise, it stores the error if any.

@@ -277,7 +277,7 @@ pub fn xcb_xinerama_screen_info_end (i:screen_info_iterator) -> ffi::base::gener
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xinerama_query_version (c : *mut ffi::base::connection,
                                       major :  u8,
@@ -289,7 +289,7 @@ pub fn xcb_xinerama_query_version (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -305,7 +305,7 @@ pub fn xcb_xinerama_query_version_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xinerama_query_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -322,7 +322,7 @@ pub fn xcb_xinerama_query_version_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xinerama_get_state (c : *mut ffi::base::connection,
                                   window :  ffi::xproto::window) -> get_state_cookie;
@@ -333,7 +333,7 @@ pub fn xcb_xinerama_get_state (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -348,7 +348,7 @@ pub fn xcb_xinerama_get_state_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xinerama_get_state_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -365,7 +365,7 @@ pub fn xcb_xinerama_get_state_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xinerama_get_screen_count (c : *mut ffi::base::connection,
                                          window :  ffi::xproto::window) -> get_screen_count_cookie;
@@ -376,7 +376,7 @@ pub fn xcb_xinerama_get_screen_count (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -391,7 +391,7 @@ pub fn xcb_xinerama_get_screen_count_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xinerama_get_screen_count_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -408,7 +408,7 @@ pub fn xcb_xinerama_get_screen_count_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xinerama_get_screen_size (c : *mut ffi::base::connection,
                                         window :  ffi::xproto::window,
@@ -420,7 +420,7 @@ pub fn xcb_xinerama_get_screen_size (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -436,7 +436,7 @@ pub fn xcb_xinerama_get_screen_size_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xinerama_get_screen_size_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -453,7 +453,7 @@ pub fn xcb_xinerama_get_screen_size_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xinerama_is_active (c : *mut ffi::base::connection) -> is_active_cookie;
 
@@ -463,7 +463,7 @@ pub fn xcb_xinerama_is_active (c : *mut ffi::base::connection) -> is_active_cook
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -477,7 +477,7 @@ pub fn xcb_xinerama_is_active_unchecked (c : *mut ffi::base::connection) -> is_a
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xinerama_is_active_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -496,7 +496,7 @@ pub fn xcb_xinerama_query_screens_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xinerama_query_screens (c : *mut ffi::base::connection) -> query_screens_cookie;
 
@@ -506,7 +506,7 @@ pub fn xcb_xinerama_query_screens (c : *mut ffi::base::connection) -> query_scre
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -527,7 +527,7 @@ pub fn xcb_xinerama_query_screens_screen_info_iterator (R : *mut query_screens_r
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xinerama_query_screens_unchecked(). is used.
  * Otherwise, it stores the error if any.

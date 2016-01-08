@@ -242,7 +242,7 @@ pub fn xcb_shm_seg_end (i:seg_iterator) -> ffi::base::generic_iterator;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_shm_query_version (c : *mut ffi::base::connection) -> query_version_cookie;
 
@@ -252,7 +252,7 @@ pub fn xcb_shm_query_version (c : *mut ffi::base::connection) -> query_version_c
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -266,7 +266,7 @@ pub fn xcb_shm_query_version_unchecked (c : *mut ffi::base::connection) -> query
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_shm_query_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -283,7 +283,7 @@ pub fn xcb_shm_query_version_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -299,7 +299,7 @@ pub fn xcb_shm_attach_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_shm_attach (c : *mut ffi::base::connection,
                           shmseg :  seg,
@@ -312,7 +312,7 @@ pub fn xcb_shm_attach (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -326,7 +326,7 @@ pub fn xcb_shm_detach_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_shm_detach (c : *mut ffi::base::connection,
                           shmseg :  seg) -> ffi::base::void_cookie;
@@ -337,7 +337,7 @@ pub fn xcb_shm_detach (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -365,7 +365,7 @@ pub fn xcb_shm_put_image_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_shm_put_image (c : *mut ffi::base::connection,
                              drawable :  ffi::xproto::drawable,
@@ -390,7 +390,7 @@ pub fn xcb_shm_put_image (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_shm_get_image (c : *mut ffi::base::connection,
                              drawable :  ffi::xproto::drawable,
@@ -409,7 +409,7 @@ pub fn xcb_shm_get_image (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -432,7 +432,7 @@ pub fn xcb_shm_get_image_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_shm_get_image_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -449,7 +449,7 @@ pub fn xcb_shm_get_image_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -469,7 +469,7 @@ pub fn xcb_shm_create_pixmap_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_shm_create_pixmap (c : *mut ffi::base::connection,
                                  pid :  ffi::xproto::pixmap,

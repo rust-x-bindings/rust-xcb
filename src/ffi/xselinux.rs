@@ -699,7 +699,7 @@ extern "C" {
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_query_version (c : *mut ffi::base::connection,
                                      client_major :  u8,
@@ -711,7 +711,7 @@ pub fn xcb_selinux_query_version (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -727,7 +727,7 @@ pub fn xcb_selinux_query_version_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_query_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -746,7 +746,7 @@ pub fn xcb_selinux_set_device_create_context_sizeof (_buffer :  *mut c_void) -> 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -761,7 +761,7 @@ pub fn xcb_selinux_set_device_create_context_checked (c : *mut ffi::base::connec
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_set_device_create_context (c : *mut ffi::base::connection,
                                                  context_len :  u32,
@@ -775,7 +775,7 @@ pub fn xcb_selinux_get_device_create_context_sizeof (_buffer :  *mut c_void) -> 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_get_device_create_context (c : *mut ffi::base::connection) -> get_device_create_context_cookie;
 
@@ -785,7 +785,7 @@ pub fn xcb_selinux_get_device_create_context (c : *mut ffi::base::connection) ->
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -807,7 +807,7 @@ pub fn xcb_selinux_get_device_create_context_context_end (R : *mut get_device_cr
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_get_device_create_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -826,7 +826,7 @@ pub fn xcb_selinux_set_device_context_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -842,7 +842,7 @@ pub fn xcb_selinux_set_device_context_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_set_device_context (c : *mut ffi::base::connection,
                                           device :  u32,
@@ -857,7 +857,7 @@ pub fn xcb_selinux_get_device_context_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_get_device_context (c : *mut ffi::base::connection,
                                           device :  u32) -> get_device_context_cookie;
@@ -868,7 +868,7 @@ pub fn xcb_selinux_get_device_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -891,7 +891,7 @@ pub fn xcb_selinux_get_device_context_context_end (R : *mut get_device_context_r
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_get_device_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -910,7 +910,7 @@ pub fn xcb_selinux_set_window_create_context_sizeof (_buffer :  *mut c_void) -> 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -925,7 +925,7 @@ pub fn xcb_selinux_set_window_create_context_checked (c : *mut ffi::base::connec
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_set_window_create_context (c : *mut ffi::base::connection,
                                                  context_len :  u32,
@@ -939,7 +939,7 @@ pub fn xcb_selinux_get_window_create_context_sizeof (_buffer :  *mut c_void) -> 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_get_window_create_context (c : *mut ffi::base::connection) -> get_window_create_context_cookie;
 
@@ -949,7 +949,7 @@ pub fn xcb_selinux_get_window_create_context (c : *mut ffi::base::connection) ->
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -971,7 +971,7 @@ pub fn xcb_selinux_get_window_create_context_context_end (R : *mut get_window_cr
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_get_window_create_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -990,7 +990,7 @@ pub fn xcb_selinux_get_window_context_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_get_window_context (c : *mut ffi::base::connection,
                                           window :  ffi::xproto::window) -> get_window_context_cookie;
@@ -1001,7 +1001,7 @@ pub fn xcb_selinux_get_window_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1024,7 +1024,7 @@ pub fn xcb_selinux_get_window_context_context_end (R : *mut get_window_context_r
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_get_window_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1084,7 +1084,7 @@ pub fn xcb_selinux_set_property_create_context_sizeof (_buffer :  *mut c_void) -
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1099,7 +1099,7 @@ pub fn xcb_selinux_set_property_create_context_checked (c : *mut ffi::base::conn
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_set_property_create_context (c : *mut ffi::base::connection,
                                                    context_len :  u32,
@@ -1113,7 +1113,7 @@ pub fn xcb_selinux_get_property_create_context_sizeof (_buffer :  *mut c_void) -
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_get_property_create_context (c : *mut ffi::base::connection) -> get_property_create_context_cookie;
 
@@ -1123,7 +1123,7 @@ pub fn xcb_selinux_get_property_create_context (c : *mut ffi::base::connection) 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1145,7 +1145,7 @@ pub fn xcb_selinux_get_property_create_context_context_end (R : *mut get_propert
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_get_property_create_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1164,7 +1164,7 @@ pub fn xcb_selinux_set_property_use_context_sizeof (_buffer :  *mut c_void) -> c
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1179,7 +1179,7 @@ pub fn xcb_selinux_set_property_use_context_checked (c : *mut ffi::base::connect
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_set_property_use_context (c : *mut ffi::base::connection,
                                                 context_len :  u32,
@@ -1193,7 +1193,7 @@ pub fn xcb_selinux_get_property_use_context_sizeof (_buffer :  *mut c_void) -> c
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_get_property_use_context (c : *mut ffi::base::connection) -> get_property_use_context_cookie;
 
@@ -1203,7 +1203,7 @@ pub fn xcb_selinux_get_property_use_context (c : *mut ffi::base::connection) -> 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1225,7 +1225,7 @@ pub fn xcb_selinux_get_property_use_context_context_end (R : *mut get_property_u
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_get_property_use_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1244,7 +1244,7 @@ pub fn xcb_selinux_get_property_context_sizeof (_buffer :  *mut c_void) -> c_int
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_get_property_context (c : *mut ffi::base::connection,
                                             window :  ffi::xproto::window,
@@ -1256,7 +1256,7 @@ pub fn xcb_selinux_get_property_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1280,7 +1280,7 @@ pub fn xcb_selinux_get_property_context_context_end (R : *mut get_property_conte
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_get_property_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1299,7 +1299,7 @@ pub fn xcb_selinux_get_property_data_context_sizeof (_buffer :  *mut c_void) -> 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_get_property_data_context (c : *mut ffi::base::connection,
                                                  window :  ffi::xproto::window,
@@ -1311,7 +1311,7 @@ pub fn xcb_selinux_get_property_data_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1335,7 +1335,7 @@ pub fn xcb_selinux_get_property_data_context_context_end (R : *mut get_property_
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_get_property_data_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1354,7 +1354,7 @@ pub fn xcb_selinux_list_properties_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_list_properties (c : *mut ffi::base::connection,
                                        window :  ffi::xproto::window) -> list_properties_cookie;
@@ -1365,7 +1365,7 @@ pub fn xcb_selinux_list_properties (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1385,7 +1385,7 @@ pub fn xcb_selinux_list_properties_properties_iterator (R : *mut list_properties
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_list_properties_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1404,7 +1404,7 @@ pub fn xcb_selinux_set_selection_create_context_sizeof (_buffer :  *mut c_void) 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1419,7 +1419,7 @@ pub fn xcb_selinux_set_selection_create_context_checked (c : *mut ffi::base::con
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_set_selection_create_context (c : *mut ffi::base::connection,
                                                     context_len :  u32,
@@ -1433,7 +1433,7 @@ pub fn xcb_selinux_get_selection_create_context_sizeof (_buffer :  *mut c_void) 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_get_selection_create_context (c : *mut ffi::base::connection) -> get_selection_create_context_cookie;
 
@@ -1443,7 +1443,7 @@ pub fn xcb_selinux_get_selection_create_context (c : *mut ffi::base::connection)
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1465,7 +1465,7 @@ pub fn xcb_selinux_get_selection_create_context_context_end (R : *mut get_select
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_get_selection_create_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1484,7 +1484,7 @@ pub fn xcb_selinux_set_selection_use_context_sizeof (_buffer :  *mut c_void) -> 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1499,7 +1499,7 @@ pub fn xcb_selinux_set_selection_use_context_checked (c : *mut ffi::base::connec
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_set_selection_use_context (c : *mut ffi::base::connection,
                                                  context_len :  u32,
@@ -1513,7 +1513,7 @@ pub fn xcb_selinux_get_selection_use_context_sizeof (_buffer :  *mut c_void) -> 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_get_selection_use_context (c : *mut ffi::base::connection) -> get_selection_use_context_cookie;
 
@@ -1523,7 +1523,7 @@ pub fn xcb_selinux_get_selection_use_context (c : *mut ffi::base::connection) ->
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1545,7 +1545,7 @@ pub fn xcb_selinux_get_selection_use_context_context_end (R : *mut get_selection
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_get_selection_use_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1564,7 +1564,7 @@ pub fn xcb_selinux_get_selection_context_sizeof (_buffer :  *mut c_void) -> c_in
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_get_selection_context (c : *mut ffi::base::connection,
                                              selection :  ffi::xproto::atom) -> get_selection_context_cookie;
@@ -1575,7 +1575,7 @@ pub fn xcb_selinux_get_selection_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1598,7 +1598,7 @@ pub fn xcb_selinux_get_selection_context_context_end (R : *mut get_selection_con
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_get_selection_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1617,7 +1617,7 @@ pub fn xcb_selinux_get_selection_data_context_sizeof (_buffer :  *mut c_void) ->
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_get_selection_data_context (c : *mut ffi::base::connection,
                                                   selection :  ffi::xproto::atom) -> get_selection_data_context_cookie;
@@ -1628,7 +1628,7 @@ pub fn xcb_selinux_get_selection_data_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1651,7 +1651,7 @@ pub fn xcb_selinux_get_selection_data_context_context_end (R : *mut get_selectio
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_get_selection_data_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1670,7 +1670,7 @@ pub fn xcb_selinux_list_selections_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_list_selections (c : *mut ffi::base::connection) -> list_selections_cookie;
 
@@ -1680,7 +1680,7 @@ pub fn xcb_selinux_list_selections (c : *mut ffi::base::connection) -> list_sele
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1699,7 +1699,7 @@ pub fn xcb_selinux_list_selections_selections_iterator (R : *mut list_selections
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_list_selections_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1718,7 +1718,7 @@ pub fn xcb_selinux_get_client_context_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_get_client_context (c : *mut ffi::base::connection,
                                           resource :  u32) -> get_client_context_cookie;
@@ -1729,7 +1729,7 @@ pub fn xcb_selinux_get_client_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1752,7 +1752,7 @@ pub fn xcb_selinux_get_client_context_context_end (R : *mut get_client_context_r
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_get_client_context_unchecked(). is used.
  * Otherwise, it stores the error if any.

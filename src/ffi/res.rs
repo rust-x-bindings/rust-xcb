@@ -250,7 +250,7 @@ pub fn xcb_res_type_end (i:type_iterator) -> ffi::base::generic_iterator;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_res_query_version (c : *mut ffi::base::connection,
                                  client_major :  u8,
@@ -262,7 +262,7 @@ pub fn xcb_res_query_version (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -278,7 +278,7 @@ pub fn xcb_res_query_version_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_res_query_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -297,7 +297,7 @@ pub fn xcb_res_query_clients_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_res_query_clients (c : *mut ffi::base::connection) -> query_clients_cookie;
 
@@ -307,7 +307,7 @@ pub fn xcb_res_query_clients (c : *mut ffi::base::connection) -> query_clients_c
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -328,7 +328,7 @@ pub fn xcb_res_query_clients_clients_iterator (R : *mut query_clients_reply) -> 
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_res_query_clients_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -347,7 +347,7 @@ pub fn xcb_res_query_client_resources_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_res_query_client_resources (c : *mut ffi::base::connection,
                                           xid :  u32) -> query_client_resources_cookie;
@@ -358,7 +358,7 @@ pub fn xcb_res_query_client_resources (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -380,7 +380,7 @@ pub fn xcb_res_query_client_resources_types_iterator (R : *mut query_client_reso
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_res_query_client_resources_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -397,7 +397,7 @@ pub fn xcb_res_query_client_resources_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_res_query_client_pixmap_bytes (c : *mut ffi::base::connection,
                                              xid :  u32) -> query_client_pixmap_bytes_cookie;
@@ -408,7 +408,7 @@ pub fn xcb_res_query_client_pixmap_bytes (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -423,7 +423,7 @@ pub fn xcb_res_query_client_pixmap_bytes_unchecked (c : *mut ffi::base::connecti
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_res_query_client_pixmap_bytes_unchecked(). is used.
  * Otherwise, it stores the error if any.

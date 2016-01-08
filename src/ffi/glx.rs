@@ -3503,7 +3503,7 @@ pub fn xcb_glx_render_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3519,7 +3519,7 @@ pub fn xcb_glx_render_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_render (c : *mut ffi::base::connection,
                           context_tag :  context_tag,
@@ -3534,7 +3534,7 @@ pub fn xcb_glx_render_large_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3552,7 +3552,7 @@ pub fn xcb_glx_render_large_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_render_large (c : *mut ffi::base::connection,
                                 context_tag :  context_tag,
@@ -3567,7 +3567,7 @@ pub fn xcb_glx_render_large (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3585,7 +3585,7 @@ pub fn xcb_glx_create_context_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_create_context (c : *mut ffi::base::connection,
                                   context :  context,
@@ -3600,7 +3600,7 @@ pub fn xcb_glx_create_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3614,7 +3614,7 @@ pub fn xcb_glx_destroy_context_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_destroy_context (c : *mut ffi::base::connection,
                                    context :  context) -> ffi::base::void_cookie;
@@ -3625,7 +3625,7 @@ pub fn xcb_glx_destroy_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_make_current (c : *mut ffi::base::connection,
                                 drawable :  drawable,
@@ -3638,7 +3638,7 @@ pub fn xcb_glx_make_current (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -3655,7 +3655,7 @@ pub fn xcb_glx_make_current_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_make_current_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -3672,7 +3672,7 @@ pub fn xcb_glx_make_current_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_is_direct (c : *mut ffi::base::connection,
                              context :  context) -> is_direct_cookie;
@@ -3683,7 +3683,7 @@ pub fn xcb_glx_is_direct (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -3698,7 +3698,7 @@ pub fn xcb_glx_is_direct_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_is_direct_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -3715,7 +3715,7 @@ pub fn xcb_glx_is_direct_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_query_version (c : *mut ffi::base::connection,
                                  major_version :  u32,
@@ -3727,7 +3727,7 @@ pub fn xcb_glx_query_version (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -3743,7 +3743,7 @@ pub fn xcb_glx_query_version_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_query_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -3760,7 +3760,7 @@ pub fn xcb_glx_query_version_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3774,7 +3774,7 @@ pub fn xcb_glx_wait_gl_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_wait_gl (c : *mut ffi::base::connection,
                            context_tag :  context_tag) -> ffi::base::void_cookie;
@@ -3785,7 +3785,7 @@ pub fn xcb_glx_wait_gl (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3799,7 +3799,7 @@ pub fn xcb_glx_wait_x_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_wait_x (c : *mut ffi::base::connection,
                           context_tag :  context_tag) -> ffi::base::void_cookie;
@@ -3810,7 +3810,7 @@ pub fn xcb_glx_wait_x (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3827,7 +3827,7 @@ pub fn xcb_glx_copy_context_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_copy_context (c : *mut ffi::base::connection,
                                 src :  context,
@@ -3841,7 +3841,7 @@ pub fn xcb_glx_copy_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3856,7 +3856,7 @@ pub fn xcb_glx_swap_buffers_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_swap_buffers (c : *mut ffi::base::connection,
                                 context_tag :  context_tag,
@@ -3868,7 +3868,7 @@ pub fn xcb_glx_swap_buffers (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3886,7 +3886,7 @@ pub fn xcb_glx_use_x_font_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_use_x_font (c : *mut ffi::base::connection,
                               context_tag :  context_tag,
@@ -3901,7 +3901,7 @@ pub fn xcb_glx_use_x_font (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3918,7 +3918,7 @@ pub fn xcb_glx_create_glx_pixmap_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_create_glx_pixmap (c : *mut ffi::base::connection,
                                      screen :  u32,
@@ -3934,7 +3934,7 @@ pub fn xcb_glx_get_visual_configs_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_visual_configs (c : *mut ffi::base::connection,
                                       screen :  u32) -> get_visual_configs_cookie;
@@ -3945,7 +3945,7 @@ pub fn xcb_glx_get_visual_configs (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -3968,7 +3968,7 @@ pub fn xcb_glx_get_visual_configs_property_list_end (R : *mut get_visual_configs
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_visual_configs_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -3985,7 +3985,7 @@ pub fn xcb_glx_get_visual_configs_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3999,7 +3999,7 @@ pub fn xcb_glx_destroy_glx_pixmap_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_destroy_glx_pixmap (c : *mut ffi::base::connection,
                                       glx_pixmap :  pixmap) -> ffi::base::void_cookie;
@@ -4013,7 +4013,7 @@ pub fn xcb_glx_vendor_private_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -4030,7 +4030,7 @@ pub fn xcb_glx_vendor_private_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_vendor_private (c : *mut ffi::base::connection,
                                   vendor_code :  u32,
@@ -4047,7 +4047,7 @@ pub fn xcb_glx_vendor_private_with_reply_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_vendor_private_with_reply (c : *mut ffi::base::connection,
                                              vendor_code :  u32,
@@ -4061,7 +4061,7 @@ pub fn xcb_glx_vendor_private_with_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4087,7 +4087,7 @@ pub fn xcb_glx_vendor_private_with_reply_data_2_end (R : *mut vendor_private_wit
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_vendor_private_with_reply_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -4104,7 +4104,7 @@ pub fn xcb_glx_vendor_private_with_reply_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_query_extensions_string (c : *mut ffi::base::connection,
                                            screen :  u32) -> query_extensions_string_cookie;
@@ -4115,7 +4115,7 @@ pub fn xcb_glx_query_extensions_string (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4130,7 +4130,7 @@ pub fn xcb_glx_query_extensions_string_unchecked (c : *mut ffi::base::connection
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_query_extensions_string_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -4149,7 +4149,7 @@ pub fn xcb_glx_query_server_string_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_query_server_string (c : *mut ffi::base::connection,
                                        screen :  u32,
@@ -4161,7 +4161,7 @@ pub fn xcb_glx_query_server_string (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4185,7 +4185,7 @@ pub fn xcb_glx_query_server_string_string_end (R : *mut query_server_string_repl
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_query_server_string_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -4204,7 +4204,7 @@ pub fn xcb_glx_client_info_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -4221,7 +4221,7 @@ pub fn xcb_glx_client_info_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_client_info (c : *mut ffi::base::connection,
                                major_version :  u32,
@@ -4237,7 +4237,7 @@ pub fn xcb_glx_get_fb_configs_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_fb_configs (c : *mut ffi::base::connection,
                                   screen :  u32) -> get_fb_configs_cookie;
@@ -4248,7 +4248,7 @@ pub fn xcb_glx_get_fb_configs (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4271,7 +4271,7 @@ pub fn xcb_glx_get_fb_configs_property_list_end (R : *mut get_fb_configs_reply) 
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_fb_configs_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -4290,7 +4290,7 @@ pub fn xcb_glx_create_pixmap_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -4309,7 +4309,7 @@ pub fn xcb_glx_create_pixmap_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_create_pixmap (c : *mut ffi::base::connection,
                                  screen :  u32,
@@ -4325,7 +4325,7 @@ pub fn xcb_glx_create_pixmap (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -4339,7 +4339,7 @@ pub fn xcb_glx_destroy_pixmap_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_destroy_pixmap (c : *mut ffi::base::connection,
                                   glx_pixmap :  pixmap) -> ffi::base::void_cookie;
@@ -4350,7 +4350,7 @@ pub fn xcb_glx_destroy_pixmap (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -4369,7 +4369,7 @@ pub fn xcb_glx_create_new_context_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_create_new_context (c : *mut ffi::base::connection,
                                       context :  context,
@@ -4387,7 +4387,7 @@ pub fn xcb_glx_query_context_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_query_context (c : *mut ffi::base::connection,
                                  context :  context) -> query_context_cookie;
@@ -4398,7 +4398,7 @@ pub fn xcb_glx_query_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4421,7 +4421,7 @@ pub fn xcb_glx_query_context_attribs_end (R : *mut query_context_reply) -> ffi::
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_query_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -4438,7 +4438,7 @@ pub fn xcb_glx_query_context_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_make_context_current (c : *mut ffi::base::connection,
                                         old_context_tag :  context_tag,
@@ -4452,7 +4452,7 @@ pub fn xcb_glx_make_context_current (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4470,7 +4470,7 @@ pub fn xcb_glx_make_context_current_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_make_context_current_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -4489,7 +4489,7 @@ pub fn xcb_glx_create_pbuffer_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -4507,7 +4507,7 @@ pub fn xcb_glx_create_pbuffer_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_create_pbuffer (c : *mut ffi::base::connection,
                                   screen :  u32,
@@ -4522,7 +4522,7 @@ pub fn xcb_glx_create_pbuffer (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -4536,7 +4536,7 @@ pub fn xcb_glx_destroy_pbuffer_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_destroy_pbuffer (c : *mut ffi::base::connection,
                                    pbuffer :  pbuffer) -> ffi::base::void_cookie;
@@ -4549,7 +4549,7 @@ pub fn xcb_glx_get_drawable_attributes_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_drawable_attributes (c : *mut ffi::base::connection,
                                            drawable :  drawable) -> get_drawable_attributes_cookie;
@@ -4560,7 +4560,7 @@ pub fn xcb_glx_get_drawable_attributes (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4583,7 +4583,7 @@ pub fn xcb_glx_get_drawable_attributes_attribs_end (R : *mut get_drawable_attrib
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_drawable_attributes_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -4602,7 +4602,7 @@ pub fn xcb_glx_change_drawable_attributes_sizeof (_buffer :  *mut c_void) -> c_i
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -4618,7 +4618,7 @@ pub fn xcb_glx_change_drawable_attributes_checked (c : *mut ffi::base::connectio
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_change_drawable_attributes (c : *mut ffi::base::connection,
                                               drawable :  drawable,
@@ -4633,7 +4633,7 @@ pub fn xcb_glx_create_window_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -4652,7 +4652,7 @@ pub fn xcb_glx_create_window_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_create_window (c : *mut ffi::base::connection,
                                  screen :  u32,
@@ -4668,7 +4668,7 @@ pub fn xcb_glx_create_window (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -4682,7 +4682,7 @@ pub fn xcb_glx_delete_window_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_delete_window (c : *mut ffi::base::connection,
                                  glxwindow :  window) -> ffi::base::void_cookie;
@@ -4695,7 +4695,7 @@ pub fn xcb_glx_set_client_info_arb_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -4716,7 +4716,7 @@ pub fn xcb_glx_set_client_info_arb_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_set_client_info_arb (c : *mut ffi::base::connection,
                                        major_version :  u32,
@@ -4736,7 +4736,7 @@ pub fn xcb_glx_create_context_attribs_arb_sizeof (_buffer :  *mut c_void) -> c_i
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -4756,7 +4756,7 @@ pub fn xcb_glx_create_context_attribs_arb_checked (c : *mut ffi::base::connectio
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_create_context_attribs_arb (c : *mut ffi::base::connection,
                                               context :  context,
@@ -4775,7 +4775,7 @@ pub fn xcb_glx_set_client_info_2arb_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -4796,7 +4796,7 @@ pub fn xcb_glx_set_client_info_2arb_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_set_client_info_2arb (c : *mut ffi::base::connection,
                                         major_version :  u32,
@@ -4814,7 +4814,7 @@ pub fn xcb_glx_set_client_info_2arb (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -4830,7 +4830,7 @@ pub fn xcb_glx_new_list_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_new_list (c : *mut ffi::base::connection,
                             context_tag :  context_tag,
@@ -4843,7 +4843,7 @@ pub fn xcb_glx_new_list (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -4857,7 +4857,7 @@ pub fn xcb_glx_end_list_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_end_list (c : *mut ffi::base::connection,
                             context_tag :  context_tag) -> ffi::base::void_cookie;
@@ -4868,7 +4868,7 @@ pub fn xcb_glx_end_list (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -4884,7 +4884,7 @@ pub fn xcb_glx_delete_lists_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_delete_lists (c : *mut ffi::base::connection,
                                 context_tag :  context_tag,
@@ -4897,7 +4897,7 @@ pub fn xcb_glx_delete_lists (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_gen_lists (c : *mut ffi::base::connection,
                              context_tag :  context_tag,
@@ -4909,7 +4909,7 @@ pub fn xcb_glx_gen_lists (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4925,7 +4925,7 @@ pub fn xcb_glx_gen_lists_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_gen_lists_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -4942,7 +4942,7 @@ pub fn xcb_glx_gen_lists_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -4958,7 +4958,7 @@ pub fn xcb_glx_feedback_buffer_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_feedback_buffer (c : *mut ffi::base::connection,
                                    context_tag :  context_tag,
@@ -4971,7 +4971,7 @@ pub fn xcb_glx_feedback_buffer (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -4986,7 +4986,7 @@ pub fn xcb_glx_select_buffer_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_select_buffer (c : *mut ffi::base::connection,
                                  context_tag :  context_tag,
@@ -5000,7 +5000,7 @@ pub fn xcb_glx_render_mode_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_render_mode (c : *mut ffi::base::connection,
                                context_tag :  context_tag,
@@ -5012,7 +5012,7 @@ pub fn xcb_glx_render_mode (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5036,7 +5036,7 @@ pub fn xcb_glx_render_mode_data_end (R : *mut render_mode_reply) -> ffi::base::g
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_render_mode_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5053,7 +5053,7 @@ pub fn xcb_glx_render_mode_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_finish (c : *mut ffi::base::connection,
                           context_tag :  context_tag) -> finish_cookie;
@@ -5064,7 +5064,7 @@ pub fn xcb_glx_finish (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5079,7 +5079,7 @@ pub fn xcb_glx_finish_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_finish_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5096,7 +5096,7 @@ pub fn xcb_glx_finish_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -5112,7 +5112,7 @@ pub fn xcb_glx_pixel_storef_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_pixel_storef (c : *mut ffi::base::connection,
                                 context_tag :  context_tag,
@@ -5125,7 +5125,7 @@ pub fn xcb_glx_pixel_storef (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -5141,7 +5141,7 @@ pub fn xcb_glx_pixel_storei_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_pixel_storei (c : *mut ffi::base::connection,
                                 context_tag :  context_tag,
@@ -5156,7 +5156,7 @@ pub fn xcb_glx_read_pixels_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_read_pixels (c : *mut ffi::base::connection,
                                context_tag :  context_tag,
@@ -5175,7 +5175,7 @@ pub fn xcb_glx_read_pixels (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5206,7 +5206,7 @@ pub fn xcb_glx_read_pixels_data_end (R : *mut read_pixels_reply) -> ffi::base::g
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_read_pixels_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5225,7 +5225,7 @@ pub fn xcb_glx_get_booleanv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_booleanv (c : *mut ffi::base::connection,
                                 context_tag :  context_tag,
@@ -5237,7 +5237,7 @@ pub fn xcb_glx_get_booleanv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5261,7 +5261,7 @@ pub fn xcb_glx_get_booleanv_data_end (R : *mut get_booleanv_reply) -> ffi::base:
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_booleanv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5280,7 +5280,7 @@ pub fn xcb_glx_get_clip_plane_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_clip_plane (c : *mut ffi::base::connection,
                                   context_tag :  context_tag,
@@ -5292,7 +5292,7 @@ pub fn xcb_glx_get_clip_plane (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5316,7 +5316,7 @@ pub fn xcb_glx_get_clip_plane_data_end (R : *mut get_clip_plane_reply) -> ffi::b
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_clip_plane_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5335,7 +5335,7 @@ pub fn xcb_glx_get_doublev_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_doublev (c : *mut ffi::base::connection,
                                context_tag :  context_tag,
@@ -5347,7 +5347,7 @@ pub fn xcb_glx_get_doublev (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5371,7 +5371,7 @@ pub fn xcb_glx_get_doublev_data_end (R : *mut get_doublev_reply) -> ffi::base::g
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_doublev_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5388,7 +5388,7 @@ pub fn xcb_glx_get_doublev_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_error (c : *mut ffi::base::connection,
                              context_tag :  context_tag) -> get_error_cookie;
@@ -5399,7 +5399,7 @@ pub fn xcb_glx_get_error (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5414,7 +5414,7 @@ pub fn xcb_glx_get_error_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_error_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5433,7 +5433,7 @@ pub fn xcb_glx_get_floatv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_floatv (c : *mut ffi::base::connection,
                               context_tag :  context_tag,
@@ -5445,7 +5445,7 @@ pub fn xcb_glx_get_floatv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5469,7 +5469,7 @@ pub fn xcb_glx_get_floatv_data_end (R : *mut get_floatv_reply) -> ffi::base::gen
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_floatv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5488,7 +5488,7 @@ pub fn xcb_glx_get_integerv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_integerv (c : *mut ffi::base::connection,
                                 context_tag :  context_tag,
@@ -5500,7 +5500,7 @@ pub fn xcb_glx_get_integerv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5524,7 +5524,7 @@ pub fn xcb_glx_get_integerv_data_end (R : *mut get_integerv_reply) -> ffi::base:
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_integerv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5543,7 +5543,7 @@ pub fn xcb_glx_get_lightfv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_lightfv (c : *mut ffi::base::connection,
                                context_tag :  context_tag,
@@ -5556,7 +5556,7 @@ pub fn xcb_glx_get_lightfv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5581,7 +5581,7 @@ pub fn xcb_glx_get_lightfv_data_end (R : *mut get_lightfv_reply) -> ffi::base::g
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_lightfv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5600,7 +5600,7 @@ pub fn xcb_glx_get_lightiv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_lightiv (c : *mut ffi::base::connection,
                                context_tag :  context_tag,
@@ -5613,7 +5613,7 @@ pub fn xcb_glx_get_lightiv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5638,7 +5638,7 @@ pub fn xcb_glx_get_lightiv_data_end (R : *mut get_lightiv_reply) -> ffi::base::g
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_lightiv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5657,7 +5657,7 @@ pub fn xcb_glx_get_mapdv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_mapdv (c : *mut ffi::base::connection,
                              context_tag :  context_tag,
@@ -5670,7 +5670,7 @@ pub fn xcb_glx_get_mapdv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5695,7 +5695,7 @@ pub fn xcb_glx_get_mapdv_data_end (R : *mut get_mapdv_reply) -> ffi::base::gener
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_mapdv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5714,7 +5714,7 @@ pub fn xcb_glx_get_mapfv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_mapfv (c : *mut ffi::base::connection,
                              context_tag :  context_tag,
@@ -5727,7 +5727,7 @@ pub fn xcb_glx_get_mapfv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5752,7 +5752,7 @@ pub fn xcb_glx_get_mapfv_data_end (R : *mut get_mapfv_reply) -> ffi::base::gener
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_mapfv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5771,7 +5771,7 @@ pub fn xcb_glx_get_mapiv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_mapiv (c : *mut ffi::base::connection,
                              context_tag :  context_tag,
@@ -5784,7 +5784,7 @@ pub fn xcb_glx_get_mapiv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5809,7 +5809,7 @@ pub fn xcb_glx_get_mapiv_data_end (R : *mut get_mapiv_reply) -> ffi::base::gener
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_mapiv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5828,7 +5828,7 @@ pub fn xcb_glx_get_materialfv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_materialfv (c : *mut ffi::base::connection,
                                   context_tag :  context_tag,
@@ -5841,7 +5841,7 @@ pub fn xcb_glx_get_materialfv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5866,7 +5866,7 @@ pub fn xcb_glx_get_materialfv_data_end (R : *mut get_materialfv_reply) -> ffi::b
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_materialfv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5885,7 +5885,7 @@ pub fn xcb_glx_get_materialiv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_materialiv (c : *mut ffi::base::connection,
                                   context_tag :  context_tag,
@@ -5898,7 +5898,7 @@ pub fn xcb_glx_get_materialiv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5923,7 +5923,7 @@ pub fn xcb_glx_get_materialiv_data_end (R : *mut get_materialiv_reply) -> ffi::b
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_materialiv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5942,7 +5942,7 @@ pub fn xcb_glx_get_pixel_mapfv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_pixel_mapfv (c : *mut ffi::base::connection,
                                    context_tag :  context_tag,
@@ -5954,7 +5954,7 @@ pub fn xcb_glx_get_pixel_mapfv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5978,7 +5978,7 @@ pub fn xcb_glx_get_pixel_mapfv_data_end (R : *mut get_pixel_mapfv_reply) -> ffi:
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_pixel_mapfv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5997,7 +5997,7 @@ pub fn xcb_glx_get_pixel_mapuiv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_pixel_mapuiv (c : *mut ffi::base::connection,
                                     context_tag :  context_tag,
@@ -6009,7 +6009,7 @@ pub fn xcb_glx_get_pixel_mapuiv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6033,7 +6033,7 @@ pub fn xcb_glx_get_pixel_mapuiv_data_end (R : *mut get_pixel_mapuiv_reply) -> ff
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_pixel_mapuiv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6052,7 +6052,7 @@ pub fn xcb_glx_get_pixel_mapusv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_pixel_mapusv (c : *mut ffi::base::connection,
                                     context_tag :  context_tag,
@@ -6064,7 +6064,7 @@ pub fn xcb_glx_get_pixel_mapusv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6088,7 +6088,7 @@ pub fn xcb_glx_get_pixel_mapusv_data_end (R : *mut get_pixel_mapusv_reply) -> ff
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_pixel_mapusv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6107,7 +6107,7 @@ pub fn xcb_glx_get_polygon_stipple_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_polygon_stipple (c : *mut ffi::base::connection,
                                        context_tag :  context_tag,
@@ -6119,7 +6119,7 @@ pub fn xcb_glx_get_polygon_stipple (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6143,7 +6143,7 @@ pub fn xcb_glx_get_polygon_stipple_data_end (R : *mut get_polygon_stipple_reply)
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_polygon_stipple_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6162,7 +6162,7 @@ pub fn xcb_glx_get_string_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_string (c : *mut ffi::base::connection,
                               context_tag :  context_tag,
@@ -6174,7 +6174,7 @@ pub fn xcb_glx_get_string (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6198,7 +6198,7 @@ pub fn xcb_glx_get_string_string_end (R : *mut get_string_reply) -> ffi::base::g
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_string_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6217,7 +6217,7 @@ pub fn xcb_glx_get_tex_envfv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_tex_envfv (c : *mut ffi::base::connection,
                                  context_tag :  context_tag,
@@ -6230,7 +6230,7 @@ pub fn xcb_glx_get_tex_envfv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6255,7 +6255,7 @@ pub fn xcb_glx_get_tex_envfv_data_end (R : *mut get_tex_envfv_reply) -> ffi::bas
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_tex_envfv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6274,7 +6274,7 @@ pub fn xcb_glx_get_tex_enviv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_tex_enviv (c : *mut ffi::base::connection,
                                  context_tag :  context_tag,
@@ -6287,7 +6287,7 @@ pub fn xcb_glx_get_tex_enviv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6312,7 +6312,7 @@ pub fn xcb_glx_get_tex_enviv_data_end (R : *mut get_tex_enviv_reply) -> ffi::bas
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_tex_enviv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6331,7 +6331,7 @@ pub fn xcb_glx_get_tex_gendv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_tex_gendv (c : *mut ffi::base::connection,
                                  context_tag :  context_tag,
@@ -6344,7 +6344,7 @@ pub fn xcb_glx_get_tex_gendv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6369,7 +6369,7 @@ pub fn xcb_glx_get_tex_gendv_data_end (R : *mut get_tex_gendv_reply) -> ffi::bas
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_tex_gendv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6388,7 +6388,7 @@ pub fn xcb_glx_get_tex_genfv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_tex_genfv (c : *mut ffi::base::connection,
                                  context_tag :  context_tag,
@@ -6401,7 +6401,7 @@ pub fn xcb_glx_get_tex_genfv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6426,7 +6426,7 @@ pub fn xcb_glx_get_tex_genfv_data_end (R : *mut get_tex_genfv_reply) -> ffi::bas
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_tex_genfv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6445,7 +6445,7 @@ pub fn xcb_glx_get_tex_geniv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_tex_geniv (c : *mut ffi::base::connection,
                                  context_tag :  context_tag,
@@ -6458,7 +6458,7 @@ pub fn xcb_glx_get_tex_geniv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6483,7 +6483,7 @@ pub fn xcb_glx_get_tex_geniv_data_end (R : *mut get_tex_geniv_reply) -> ffi::bas
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_tex_geniv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6502,7 +6502,7 @@ pub fn xcb_glx_get_tex_image_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_tex_image (c : *mut ffi::base::connection,
                                  context_tag :  context_tag,
@@ -6518,7 +6518,7 @@ pub fn xcb_glx_get_tex_image (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6546,7 +6546,7 @@ pub fn xcb_glx_get_tex_image_data_end (R : *mut get_tex_image_reply) -> ffi::bas
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_tex_image_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6565,7 +6565,7 @@ pub fn xcb_glx_get_tex_parameterfv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_tex_parameterfv (c : *mut ffi::base::connection,
                                        context_tag :  context_tag,
@@ -6578,7 +6578,7 @@ pub fn xcb_glx_get_tex_parameterfv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6603,7 +6603,7 @@ pub fn xcb_glx_get_tex_parameterfv_data_end (R : *mut get_tex_parameterfv_reply)
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_tex_parameterfv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6622,7 +6622,7 @@ pub fn xcb_glx_get_tex_parameteriv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_tex_parameteriv (c : *mut ffi::base::connection,
                                        context_tag :  context_tag,
@@ -6635,7 +6635,7 @@ pub fn xcb_glx_get_tex_parameteriv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6660,7 +6660,7 @@ pub fn xcb_glx_get_tex_parameteriv_data_end (R : *mut get_tex_parameteriv_reply)
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_tex_parameteriv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6679,7 +6679,7 @@ pub fn xcb_glx_get_tex_level_parameterfv_sizeof (_buffer :  *mut c_void) -> c_in
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_tex_level_parameterfv (c : *mut ffi::base::connection,
                                              context_tag :  context_tag,
@@ -6693,7 +6693,7 @@ pub fn xcb_glx_get_tex_level_parameterfv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6719,7 +6719,7 @@ pub fn xcb_glx_get_tex_level_parameterfv_data_end (R : *mut get_tex_level_parame
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_tex_level_parameterfv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6738,7 +6738,7 @@ pub fn xcb_glx_get_tex_level_parameteriv_sizeof (_buffer :  *mut c_void) -> c_in
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_tex_level_parameteriv (c : *mut ffi::base::connection,
                                              context_tag :  context_tag,
@@ -6752,7 +6752,7 @@ pub fn xcb_glx_get_tex_level_parameteriv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6778,7 +6778,7 @@ pub fn xcb_glx_get_tex_level_parameteriv_data_end (R : *mut get_tex_level_parame
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_tex_level_parameteriv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6795,7 +6795,7 @@ pub fn xcb_glx_get_tex_level_parameteriv_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_is_list (c : *mut ffi::base::connection,
                            context_tag :  context_tag,
@@ -6807,7 +6807,7 @@ pub fn xcb_glx_is_list (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6823,7 +6823,7 @@ pub fn xcb_glx_is_list_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_is_list_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6840,7 +6840,7 @@ pub fn xcb_glx_is_list_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -6854,7 +6854,7 @@ pub fn xcb_glx_flush_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_flush (c : *mut ffi::base::connection,
                          context_tag :  context_tag) -> ffi::base::void_cookie;
@@ -6867,7 +6867,7 @@ pub fn xcb_glx_are_textures_resident_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_are_textures_resident (c : *mut ffi::base::connection,
                                          context_tag :  context_tag,
@@ -6880,7 +6880,7 @@ pub fn xcb_glx_are_textures_resident (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6905,7 +6905,7 @@ pub fn xcb_glx_are_textures_resident_data_end (R : *mut are_textures_resident_re
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_are_textures_resident_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6924,7 +6924,7 @@ pub fn xcb_glx_delete_textures_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -6940,7 +6940,7 @@ pub fn xcb_glx_delete_textures_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_delete_textures (c : *mut ffi::base::connection,
                                    context_tag :  context_tag,
@@ -6955,7 +6955,7 @@ pub fn xcb_glx_gen_textures_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_gen_textures (c : *mut ffi::base::connection,
                                 context_tag :  context_tag,
@@ -6967,7 +6967,7 @@ pub fn xcb_glx_gen_textures (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6991,7 +6991,7 @@ pub fn xcb_glx_gen_textures_data_end (R : *mut gen_textures_reply) -> ffi::base:
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_gen_textures_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -7008,7 +7008,7 @@ pub fn xcb_glx_gen_textures_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_is_texture (c : *mut ffi::base::connection,
                               context_tag :  context_tag,
@@ -7020,7 +7020,7 @@ pub fn xcb_glx_is_texture (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -7036,7 +7036,7 @@ pub fn xcb_glx_is_texture_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_is_texture_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -7055,7 +7055,7 @@ pub fn xcb_glx_get_color_table_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_color_table (c : *mut ffi::base::connection,
                                    context_tag :  context_tag,
@@ -7070,7 +7070,7 @@ pub fn xcb_glx_get_color_table (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -7097,7 +7097,7 @@ pub fn xcb_glx_get_color_table_data_end (R : *mut get_color_table_reply) -> ffi:
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_color_table_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -7116,7 +7116,7 @@ pub fn xcb_glx_get_color_table_parameterfv_sizeof (_buffer :  *mut c_void) -> c_
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_color_table_parameterfv (c : *mut ffi::base::connection,
                                                context_tag :  context_tag,
@@ -7129,7 +7129,7 @@ pub fn xcb_glx_get_color_table_parameterfv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -7154,7 +7154,7 @@ pub fn xcb_glx_get_color_table_parameterfv_data_end (R : *mut get_color_table_pa
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_color_table_parameterfv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -7173,7 +7173,7 @@ pub fn xcb_glx_get_color_table_parameteriv_sizeof (_buffer :  *mut c_void) -> c_
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_color_table_parameteriv (c : *mut ffi::base::connection,
                                                context_tag :  context_tag,
@@ -7186,7 +7186,7 @@ pub fn xcb_glx_get_color_table_parameteriv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -7211,7 +7211,7 @@ pub fn xcb_glx_get_color_table_parameteriv_data_end (R : *mut get_color_table_pa
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_color_table_parameteriv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -7230,7 +7230,7 @@ pub fn xcb_glx_get_convolution_filter_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_convolution_filter (c : *mut ffi::base::connection,
                                           context_tag :  context_tag,
@@ -7245,7 +7245,7 @@ pub fn xcb_glx_get_convolution_filter (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -7272,7 +7272,7 @@ pub fn xcb_glx_get_convolution_filter_data_end (R : *mut get_convolution_filter_
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_convolution_filter_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -7291,7 +7291,7 @@ pub fn xcb_glx_get_convolution_parameterfv_sizeof (_buffer :  *mut c_void) -> c_
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_convolution_parameterfv (c : *mut ffi::base::connection,
                                                context_tag :  context_tag,
@@ -7304,7 +7304,7 @@ pub fn xcb_glx_get_convolution_parameterfv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -7329,7 +7329,7 @@ pub fn xcb_glx_get_convolution_parameterfv_data_end (R : *mut get_convolution_pa
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_convolution_parameterfv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -7348,7 +7348,7 @@ pub fn xcb_glx_get_convolution_parameteriv_sizeof (_buffer :  *mut c_void) -> c_
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_convolution_parameteriv (c : *mut ffi::base::connection,
                                                context_tag :  context_tag,
@@ -7361,7 +7361,7 @@ pub fn xcb_glx_get_convolution_parameteriv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -7386,7 +7386,7 @@ pub fn xcb_glx_get_convolution_parameteriv_data_end (R : *mut get_convolution_pa
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_convolution_parameteriv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -7405,7 +7405,7 @@ pub fn xcb_glx_get_separable_filter_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_separable_filter (c : *mut ffi::base::connection,
                                         context_tag :  context_tag,
@@ -7420,7 +7420,7 @@ pub fn xcb_glx_get_separable_filter (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -7447,7 +7447,7 @@ pub fn xcb_glx_get_separable_filter_rows_and_cols_end (R : *mut get_separable_fi
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_separable_filter_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -7466,7 +7466,7 @@ pub fn xcb_glx_get_histogram_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_histogram (c : *mut ffi::base::connection,
                                  context_tag :  context_tag,
@@ -7482,7 +7482,7 @@ pub fn xcb_glx_get_histogram (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -7510,7 +7510,7 @@ pub fn xcb_glx_get_histogram_data_end (R : *mut get_histogram_reply) -> ffi::bas
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_histogram_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -7529,7 +7529,7 @@ pub fn xcb_glx_get_histogram_parameterfv_sizeof (_buffer :  *mut c_void) -> c_in
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_histogram_parameterfv (c : *mut ffi::base::connection,
                                              context_tag :  context_tag,
@@ -7542,7 +7542,7 @@ pub fn xcb_glx_get_histogram_parameterfv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -7567,7 +7567,7 @@ pub fn xcb_glx_get_histogram_parameterfv_data_end (R : *mut get_histogram_parame
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_histogram_parameterfv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -7586,7 +7586,7 @@ pub fn xcb_glx_get_histogram_parameteriv_sizeof (_buffer :  *mut c_void) -> c_in
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_histogram_parameteriv (c : *mut ffi::base::connection,
                                              context_tag :  context_tag,
@@ -7599,7 +7599,7 @@ pub fn xcb_glx_get_histogram_parameteriv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -7624,7 +7624,7 @@ pub fn xcb_glx_get_histogram_parameteriv_data_end (R : *mut get_histogram_parame
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_histogram_parameteriv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -7643,7 +7643,7 @@ pub fn xcb_glx_get_minmax_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_minmax (c : *mut ffi::base::connection,
                               context_tag :  context_tag,
@@ -7659,7 +7659,7 @@ pub fn xcb_glx_get_minmax (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -7687,7 +7687,7 @@ pub fn xcb_glx_get_minmax_data_end (R : *mut get_minmax_reply) -> ffi::base::gen
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_minmax_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -7706,7 +7706,7 @@ pub fn xcb_glx_get_minmax_parameterfv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_minmax_parameterfv (c : *mut ffi::base::connection,
                                           context_tag :  context_tag,
@@ -7719,7 +7719,7 @@ pub fn xcb_glx_get_minmax_parameterfv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -7744,7 +7744,7 @@ pub fn xcb_glx_get_minmax_parameterfv_data_end (R : *mut get_minmax_parameterfv_
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_minmax_parameterfv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -7763,7 +7763,7 @@ pub fn xcb_glx_get_minmax_parameteriv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_minmax_parameteriv (c : *mut ffi::base::connection,
                                           context_tag :  context_tag,
@@ -7776,7 +7776,7 @@ pub fn xcb_glx_get_minmax_parameteriv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -7801,7 +7801,7 @@ pub fn xcb_glx_get_minmax_parameteriv_data_end (R : *mut get_minmax_parameteriv_
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_minmax_parameteriv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -7820,7 +7820,7 @@ pub fn xcb_glx_get_compressed_tex_image_arb_sizeof (_buffer :  *mut c_void) -> c
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_compressed_tex_image_arb (c : *mut ffi::base::connection,
                                                 context_tag :  context_tag,
@@ -7833,7 +7833,7 @@ pub fn xcb_glx_get_compressed_tex_image_arb (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -7858,7 +7858,7 @@ pub fn xcb_glx_get_compressed_tex_image_arb_data_end (R : *mut get_compressed_te
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_compressed_tex_image_arb_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -7877,7 +7877,7 @@ pub fn xcb_glx_delete_queries_arb_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -7893,7 +7893,7 @@ pub fn xcb_glx_delete_queries_arb_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_delete_queries_arb (c : *mut ffi::base::connection,
                                       context_tag :  context_tag,
@@ -7908,7 +7908,7 @@ pub fn xcb_glx_gen_queries_arb_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_gen_queries_arb (c : *mut ffi::base::connection,
                                    context_tag :  context_tag,
@@ -7920,7 +7920,7 @@ pub fn xcb_glx_gen_queries_arb (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -7944,7 +7944,7 @@ pub fn xcb_glx_gen_queries_arb_data_end (R : *mut gen_queries_arb_reply) -> ffi:
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_gen_queries_arb_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -7961,7 +7961,7 @@ pub fn xcb_glx_gen_queries_arb_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_is_query_arb (c : *mut ffi::base::connection,
                                 context_tag :  context_tag,
@@ -7973,7 +7973,7 @@ pub fn xcb_glx_is_query_arb (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -7989,7 +7989,7 @@ pub fn xcb_glx_is_query_arb_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_is_query_arb_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -8008,7 +8008,7 @@ pub fn xcb_glx_get_queryiv_arb_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_queryiv_arb (c : *mut ffi::base::connection,
                                    context_tag :  context_tag,
@@ -8021,7 +8021,7 @@ pub fn xcb_glx_get_queryiv_arb (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -8046,7 +8046,7 @@ pub fn xcb_glx_get_queryiv_arb_data_end (R : *mut get_queryiv_arb_reply) -> ffi:
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_queryiv_arb_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -8065,7 +8065,7 @@ pub fn xcb_glx_get_query_objectiv_arb_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_query_objectiv_arb (c : *mut ffi::base::connection,
                                           context_tag :  context_tag,
@@ -8078,7 +8078,7 @@ pub fn xcb_glx_get_query_objectiv_arb (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -8103,7 +8103,7 @@ pub fn xcb_glx_get_query_objectiv_arb_data_end (R : *mut get_query_objectiv_arb_
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_query_objectiv_arb_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -8122,7 +8122,7 @@ pub fn xcb_glx_get_query_objectuiv_arb_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_query_objectuiv_arb (c : *mut ffi::base::connection,
                                            context_tag :  context_tag,
@@ -8135,7 +8135,7 @@ pub fn xcb_glx_get_query_objectuiv_arb (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -8160,7 +8160,7 @@ pub fn xcb_glx_get_query_objectuiv_arb_data_end (R : *mut get_query_objectuiv_ar
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_query_objectuiv_arb_unchecked(). is used.
  * Otherwise, it stores the error if any.

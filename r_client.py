@@ -913,9 +913,9 @@ def _c_accessors_field(self, field):
     if field.type.is_simple:
         _h('')
         _h('/**')
-        _h(' * ')
+        _h(' *')
         _h(' * %s : %s', field.c_accessor_name, field.c_field_type,)
-        _h(' * ')
+        _h(' *')
         _h(' *')
         _h(' **/')
         _h('pub fn %s (R : *mut %s) -> %s;', field.c_accessor_name, c_type, ftype)
@@ -925,7 +925,7 @@ def _c_accessors_field(self, field):
         _h('/**')
         _h(' *')
         _h(' * %s : *mut %s', field.c_accessor_name, field.c_field_type)
-        _h(' * ')
+        _h(' *')
         _h(' *')
         _h(' */')
         if field.type.is_switch and switch_obj is None:
@@ -1357,7 +1357,7 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
             _h(' * ' + "\n * ".join(desc))
     else:
         _h(' * Delivers a request to the X server.')
-    _h(' * ')
+    _h(' *')
     if checked:
         _h(' * This form can be used only if the request will not cause')
         _h(' * a reply to be generated. Any returned error will be')
@@ -1518,7 +1518,7 @@ def _c_reply(self, name):
     _h(' * @param e      The generic_error supplied')
     _h(' *')
     _h(' * Returns the reply of the request asked by')
-    _h(' * ')
+    _h(' *')
     _h(' * The parameter @p e supplied to this function must be NULL if')
     _h(' * %s(). is used.', self.c_unchecked_name)
     _h(' * Otherwise, it stores the error if any.')

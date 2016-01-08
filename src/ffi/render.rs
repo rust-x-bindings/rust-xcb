@@ -1535,7 +1535,7 @@ pub fn xcb_render_glyphinfo_end (i:glyphinfo_iterator) -> ffi::base::generic_ite
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_query_version (c : *mut ffi::base::connection,
                                     client_major_version :  u32,
@@ -1547,7 +1547,7 @@ pub fn xcb_render_query_version (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1563,7 +1563,7 @@ pub fn xcb_render_query_version_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_render_query_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1582,7 +1582,7 @@ pub fn xcb_render_query_pict_formats_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_query_pict_formats (c : *mut ffi::base::connection) -> query_pict_formats_cookie;
 
@@ -1592,7 +1592,7 @@ pub fn xcb_render_query_pict_formats (c : *mut ffi::base::connection) -> query_p
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1626,7 +1626,7 @@ pub fn xcb_render_query_pict_formats_subpixels_end (R : *mut query_pict_formats_
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_render_query_pict_formats_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1645,7 +1645,7 @@ pub fn xcb_render_query_pict_index_values_sizeof (_buffer :  *mut c_void) -> c_i
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_query_pict_index_values (c : *mut ffi::base::connection,
                                               format :  pictformat) -> query_pict_index_values_cookie;
@@ -1656,7 +1656,7 @@ pub fn xcb_render_query_pict_index_values (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1678,7 +1678,7 @@ pub fn xcb_render_query_pict_index_values_values_iterator (R : *mut query_pict_i
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_render_query_pict_index_values_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1697,7 +1697,7 @@ pub fn xcb_render_create_picture_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1715,7 +1715,7 @@ pub fn xcb_render_create_picture_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_create_picture (c : *mut ffi::base::connection,
                                      pid :  picture,
@@ -1732,7 +1732,7 @@ pub fn xcb_render_change_picture_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1748,7 +1748,7 @@ pub fn xcb_render_change_picture_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_change_picture (c : *mut ffi::base::connection,
                                      picture :  picture,
@@ -1764,7 +1764,7 @@ pub fn xcb_render_set_picture_clip_rectangles_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1782,7 +1782,7 @@ pub fn xcb_render_set_picture_clip_rectangles_checked (c : *mut ffi::base::conne
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_set_picture_clip_rectangles (c : *mut ffi::base::connection,
                                                   picture :  picture,
@@ -1797,7 +1797,7 @@ pub fn xcb_render_set_picture_clip_rectangles (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1811,7 +1811,7 @@ pub fn xcb_render_free_picture_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_free_picture (c : *mut ffi::base::connection,
                                    picture :  picture) -> ffi::base::void_cookie;
@@ -1822,7 +1822,7 @@ pub fn xcb_render_free_picture (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1847,7 +1847,7 @@ pub fn xcb_render_composite_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_composite (c : *mut ffi::base::connection,
                                 op :  u8,
@@ -1872,7 +1872,7 @@ pub fn xcb_render_trapezoids_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1893,7 +1893,7 @@ pub fn xcb_render_trapezoids_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_trapezoids (c : *mut ffi::base::connection,
                                  op :  u8,
@@ -1914,7 +1914,7 @@ pub fn xcb_render_triangles_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1935,7 +1935,7 @@ pub fn xcb_render_triangles_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_triangles (c : *mut ffi::base::connection,
                                 op :  u8,
@@ -1956,7 +1956,7 @@ pub fn xcb_render_tri_strip_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1977,7 +1977,7 @@ pub fn xcb_render_tri_strip_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_tri_strip (c : *mut ffi::base::connection,
                                 op :  u8,
@@ -1998,7 +1998,7 @@ pub fn xcb_render_tri_fan_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2019,7 +2019,7 @@ pub fn xcb_render_tri_fan_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_tri_fan (c : *mut ffi::base::connection,
                               op :  u8,
@@ -2037,7 +2037,7 @@ pub fn xcb_render_tri_fan (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2052,7 +2052,7 @@ pub fn xcb_render_create_glyph_set_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_create_glyph_set (c : *mut ffi::base::connection,
                                        gsid :  glyphset,
@@ -2064,7 +2064,7 @@ pub fn xcb_render_create_glyph_set (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2079,7 +2079,7 @@ pub fn xcb_render_reference_glyph_set_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_reference_glyph_set (c : *mut ffi::base::connection,
                                           gsid :  glyphset,
@@ -2091,7 +2091,7 @@ pub fn xcb_render_reference_glyph_set (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2105,7 +2105,7 @@ pub fn xcb_render_free_glyph_set_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_free_glyph_set (c : *mut ffi::base::connection,
                                      glyphset :  glyphset) -> ffi::base::void_cookie;
@@ -2119,7 +2119,7 @@ pub fn xcb_render_add_glyphs_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2138,7 +2138,7 @@ pub fn xcb_render_add_glyphs_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_add_glyphs (c : *mut ffi::base::connection,
                                  glyphset :  glyphset,
@@ -2157,7 +2157,7 @@ pub fn xcb_render_free_glyphs_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2173,7 +2173,7 @@ pub fn xcb_render_free_glyphs_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_free_glyphs (c : *mut ffi::base::connection,
                                   glyphset :  glyphset,
@@ -2189,7 +2189,7 @@ pub fn xcb_render_composite_glyphs_8_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2211,7 +2211,7 @@ pub fn xcb_render_composite_glyphs_8_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_composite_glyphs_8 (c : *mut ffi::base::connection,
                                          op :  u8,
@@ -2233,7 +2233,7 @@ pub fn xcb_render_composite_glyphs_16_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2255,7 +2255,7 @@ pub fn xcb_render_composite_glyphs_16_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_composite_glyphs_16 (c : *mut ffi::base::connection,
                                           op :  u8,
@@ -2277,7 +2277,7 @@ pub fn xcb_render_composite_glyphs_32_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2299,7 +2299,7 @@ pub fn xcb_render_composite_glyphs_32_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_composite_glyphs_32 (c : *mut ffi::base::connection,
                                           op :  u8,
@@ -2321,7 +2321,7 @@ pub fn xcb_render_fill_rectangles_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2339,7 +2339,7 @@ pub fn xcb_render_fill_rectangles_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_fill_rectangles (c : *mut ffi::base::connection,
                                       op :  u8,
@@ -2354,7 +2354,7 @@ pub fn xcb_render_fill_rectangles (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2371,7 +2371,7 @@ pub fn xcb_render_create_cursor_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_create_cursor (c : *mut ffi::base::connection,
                                     cid :  ffi::xproto::cursor,
@@ -2408,7 +2408,7 @@ pub fn xcb_render_transform_end (i:transform_iterator) -> ffi::base::generic_ite
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2423,7 +2423,7 @@ pub fn xcb_render_set_picture_transform_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_set_picture_transform (c : *mut ffi::base::connection,
                                             picture :  picture,
@@ -2437,7 +2437,7 @@ pub fn xcb_render_query_filters_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_query_filters (c : *mut ffi::base::connection,
                                     drawable :  ffi::xproto::drawable) -> query_filters_cookie;
@@ -2448,7 +2448,7 @@ pub fn xcb_render_query_filters (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -2476,7 +2476,7 @@ pub fn xcb_render_query_filters_filters_iterator (R : *mut query_filters_reply) 
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_render_query_filters_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -2496,7 +2496,7 @@ pub fn xcb_render_set_picture_filter_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2514,7 +2514,7 @@ pub fn xcb_render_set_picture_filter_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_set_picture_filter (c : *mut ffi::base::connection,
                                          picture :  picture,
@@ -2555,7 +2555,7 @@ pub fn xcb_render_create_anim_cursor_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2571,7 +2571,7 @@ pub fn xcb_render_create_anim_cursor_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_create_anim_cursor (c : *mut ffi::base::connection,
                                          cid :  ffi::xproto::cursor,
@@ -2633,7 +2633,7 @@ pub fn xcb_render_add_traps_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2651,7 +2651,7 @@ pub fn xcb_render_add_traps_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_add_traps (c : *mut ffi::base::connection,
                                 picture :  picture,
@@ -2666,7 +2666,7 @@ pub fn xcb_render_add_traps (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2681,7 +2681,7 @@ pub fn xcb_render_create_solid_fill_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_create_solid_fill (c : *mut ffi::base::connection,
                                         picture :  picture,
@@ -2695,7 +2695,7 @@ pub fn xcb_render_create_linear_gradient_sizeof (_buffer :  *mut c_void) -> c_in
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2714,7 +2714,7 @@ pub fn xcb_render_create_linear_gradient_checked (c : *mut ffi::base::connection
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_create_linear_gradient (c : *mut ffi::base::connection,
                                              picture :  picture,
@@ -2732,7 +2732,7 @@ pub fn xcb_render_create_radial_gradient_sizeof (_buffer :  *mut c_void) -> c_in
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2753,7 +2753,7 @@ pub fn xcb_render_create_radial_gradient_checked (c : *mut ffi::base::connection
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_create_radial_gradient (c : *mut ffi::base::connection,
                                              picture :  picture,
@@ -2773,7 +2773,7 @@ pub fn xcb_render_create_conical_gradient_sizeof (_buffer :  *mut c_void) -> c_i
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2792,7 +2792,7 @@ pub fn xcb_render_create_conical_gradient_checked (c : *mut ffi::base::connectio
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_render_create_conical_gradient (c : *mut ffi::base::connection,
                                               picture :  picture,

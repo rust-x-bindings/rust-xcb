@@ -568,7 +568,7 @@ pub fn xcb_record_client_info_end (i:client_info_iterator) -> ffi::base::generic
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_record_query_version (c : *mut ffi::base::connection,
                                     major_version :  u16,
@@ -580,7 +580,7 @@ pub fn xcb_record_query_version (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -596,7 +596,7 @@ pub fn xcb_record_query_version_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_record_query_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -615,7 +615,7 @@ pub fn xcb_record_create_context_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -634,7 +634,7 @@ pub fn xcb_record_create_context_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_record_create_context (c : *mut ffi::base::connection,
                                      context :  context,
@@ -652,7 +652,7 @@ pub fn xcb_record_register_clients_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -671,7 +671,7 @@ pub fn xcb_record_register_clients_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_record_register_clients (c : *mut ffi::base::connection,
                                        context :  context,
@@ -689,7 +689,7 @@ pub fn xcb_record_unregister_clients_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -705,7 +705,7 @@ pub fn xcb_record_unregister_clients_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_record_unregister_clients (c : *mut ffi::base::connection,
                                          context :  context,
@@ -720,7 +720,7 @@ pub fn xcb_record_get_context_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_record_get_context (c : *mut ffi::base::connection,
                                   context :  context) -> get_context_cookie;
@@ -731,7 +731,7 @@ pub fn xcb_record_get_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -751,7 +751,7 @@ pub fn xcb_record_get_context_intercepted_clients_iterator (R : *mut get_context
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_record_get_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -770,7 +770,7 @@ pub fn xcb_record_enable_context_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_record_enable_context (c : *mut ffi::base::connection,
                                      context :  context) -> enable_context_cookie;
@@ -781,7 +781,7 @@ pub fn xcb_record_enable_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -804,7 +804,7 @@ pub fn xcb_record_enable_context_data_end (R : *mut enable_context_reply) -> ffi
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_record_enable_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -821,7 +821,7 @@ pub fn xcb_record_enable_context_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -835,7 +835,7 @@ pub fn xcb_record_disable_context_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_record_disable_context (c : *mut ffi::base::connection,
                                       context :  context) -> ffi::base::void_cookie;
@@ -846,7 +846,7 @@ pub fn xcb_record_disable_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -860,7 +860,7 @@ pub fn xcb_record_free_context_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_record_free_context (c : *mut ffi::base::connection,
                                    context :  context) -> ffi::base::void_cookie;

@@ -130,7 +130,7 @@ extern "C" {
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_test_get_version (c : *mut ffi::base::connection,
                                 major_version :  u8,
@@ -142,7 +142,7 @@ pub fn xcb_test_get_version (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -158,7 +158,7 @@ pub fn xcb_test_get_version_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_test_get_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -175,7 +175,7 @@ pub fn xcb_test_get_version_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_test_compare_cursor (c : *mut ffi::base::connection,
                                    window :  ffi::xproto::window,
@@ -187,7 +187,7 @@ pub fn xcb_test_compare_cursor (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -203,7 +203,7 @@ pub fn xcb_test_compare_cursor_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_test_compare_cursor_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -220,7 +220,7 @@ pub fn xcb_test_compare_cursor_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -240,7 +240,7 @@ pub fn xcb_test_fake_input_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_test_fake_input (c : *mut ffi::base::connection,
                                type_ :  u8,
@@ -257,7 +257,7 @@ pub fn xcb_test_fake_input (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -271,7 +271,7 @@ pub fn xcb_test_grab_control_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_test_grab_control (c : *mut ffi::base::connection,
                                  impervious :  u8) -> ffi::base::void_cookie;

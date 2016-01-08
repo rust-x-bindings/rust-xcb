@@ -205,7 +205,7 @@ extern "C" {
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_composite_query_version (c : *mut ffi::base::connection,
                                        client_major_version :  u32,
@@ -217,7 +217,7 @@ pub fn xcb_composite_query_version (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -233,7 +233,7 @@ pub fn xcb_composite_query_version_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_composite_query_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -250,7 +250,7 @@ pub fn xcb_composite_query_version_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -265,7 +265,7 @@ pub fn xcb_composite_redirect_window_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_composite_redirect_window (c : *mut ffi::base::connection,
                                          window :  ffi::xproto::window,
@@ -277,7 +277,7 @@ pub fn xcb_composite_redirect_window (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -292,7 +292,7 @@ pub fn xcb_composite_redirect_subwindows_checked (c : *mut ffi::base::connection
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_composite_redirect_subwindows (c : *mut ffi::base::connection,
                                              window :  ffi::xproto::window,
@@ -304,7 +304,7 @@ pub fn xcb_composite_redirect_subwindows (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -319,7 +319,7 @@ pub fn xcb_composite_unredirect_window_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_composite_unredirect_window (c : *mut ffi::base::connection,
                                            window :  ffi::xproto::window,
@@ -331,7 +331,7 @@ pub fn xcb_composite_unredirect_window (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -346,7 +346,7 @@ pub fn xcb_composite_unredirect_subwindows_checked (c : *mut ffi::base::connecti
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_composite_unredirect_subwindows (c : *mut ffi::base::connection,
                                                window :  ffi::xproto::window,
@@ -358,7 +358,7 @@ pub fn xcb_composite_unredirect_subwindows (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -373,7 +373,7 @@ pub fn xcb_composite_create_region_from_border_clip_checked (c : *mut ffi::base:
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_composite_create_region_from_border_clip (c : *mut ffi::base::connection,
                                                         region :  ffi::xfixes::region,
@@ -385,7 +385,7 @@ pub fn xcb_composite_create_region_from_border_clip (c : *mut ffi::base::connect
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -400,7 +400,7 @@ pub fn xcb_composite_name_window_pixmap_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_composite_name_window_pixmap (c : *mut ffi::base::connection,
                                             window :  ffi::xproto::window,
@@ -412,7 +412,7 @@ pub fn xcb_composite_name_window_pixmap (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_composite_get_overlay_window (c : *mut ffi::base::connection,
                                             window :  ffi::xproto::window) -> get_overlay_window_cookie;
@@ -423,7 +423,7 @@ pub fn xcb_composite_get_overlay_window (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -438,7 +438,7 @@ pub fn xcb_composite_get_overlay_window_unchecked (c : *mut ffi::base::connectio
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_composite_get_overlay_window_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -455,7 +455,7 @@ pub fn xcb_composite_get_overlay_window_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -469,7 +469,7 @@ pub fn xcb_composite_release_overlay_window_checked (c : *mut ffi::base::connect
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_composite_release_overlay_window (c : *mut ffi::base::connection,
                                                 window :  ffi::xproto::window) -> ffi::base::void_cookie;

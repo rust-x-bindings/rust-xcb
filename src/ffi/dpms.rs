@@ -218,7 +218,7 @@ extern "C" {
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_dpms_get_version (c : *mut ffi::base::connection,
                                 client_major_version :  u16,
@@ -230,7 +230,7 @@ pub fn xcb_dpms_get_version (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -246,7 +246,7 @@ pub fn xcb_dpms_get_version_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_dpms_get_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -263,7 +263,7 @@ pub fn xcb_dpms_get_version_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_dpms_capable (c : *mut ffi::base::connection) -> capable_cookie;
 
@@ -273,7 +273,7 @@ pub fn xcb_dpms_capable (c : *mut ffi::base::connection) -> capable_cookie;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -287,7 +287,7 @@ pub fn xcb_dpms_capable_unchecked (c : *mut ffi::base::connection) -> capable_co
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_dpms_capable_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -304,7 +304,7 @@ pub fn xcb_dpms_capable_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_dpms_get_timeouts (c : *mut ffi::base::connection) -> get_timeouts_cookie;
 
@@ -314,7 +314,7 @@ pub fn xcb_dpms_get_timeouts (c : *mut ffi::base::connection) -> get_timeouts_co
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -328,7 +328,7 @@ pub fn xcb_dpms_get_timeouts_unchecked (c : *mut ffi::base::connection) -> get_t
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_dpms_get_timeouts_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -345,7 +345,7 @@ pub fn xcb_dpms_get_timeouts_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -361,7 +361,7 @@ pub fn xcb_dpms_set_timeouts_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_dpms_set_timeouts (c : *mut ffi::base::connection,
                                  standby_timeout :  u16,
@@ -374,7 +374,7 @@ pub fn xcb_dpms_set_timeouts (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -387,7 +387,7 @@ pub fn xcb_dpms_enable_checked (c : *mut ffi::base::connection) -> ffi::base::vo
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_dpms_enable (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
 
@@ -397,7 +397,7 @@ pub fn xcb_dpms_enable (c : *mut ffi::base::connection) -> ffi::base::void_cooki
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -410,7 +410,7 @@ pub fn xcb_dpms_disable_checked (c : *mut ffi::base::connection) -> ffi::base::v
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_dpms_disable (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
 
@@ -420,7 +420,7 @@ pub fn xcb_dpms_disable (c : *mut ffi::base::connection) -> ffi::base::void_cook
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -434,7 +434,7 @@ pub fn xcb_dpms_force_level_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_dpms_force_level (c : *mut ffi::base::connection,
                                 power_level :  u16) -> ffi::base::void_cookie;
@@ -445,7 +445,7 @@ pub fn xcb_dpms_force_level (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_dpms_info (c : *mut ffi::base::connection) -> info_cookie;
 
@@ -455,7 +455,7 @@ pub fn xcb_dpms_info (c : *mut ffi::base::connection) -> info_cookie;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -469,7 +469,7 @@ pub fn xcb_dpms_info_unchecked (c : *mut ffi::base::connection) -> info_cookie;
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_dpms_info_unchecked(). is used.
  * Otherwise, it stores the error if any.

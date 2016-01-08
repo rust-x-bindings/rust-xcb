@@ -356,7 +356,7 @@ pub fn xcb_shape_kind_end (i:kind_iterator) -> ffi::base::generic_iterator;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_shape_query_version (c : *mut ffi::base::connection) -> query_version_cookie;
 
@@ -366,7 +366,7 @@ pub fn xcb_shape_query_version (c : *mut ffi::base::connection) -> query_version
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -380,7 +380,7 @@ pub fn xcb_shape_query_version_unchecked (c : *mut ffi::base::connection) -> que
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_shape_query_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -400,7 +400,7 @@ pub fn xcb_shape_rectangles_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -421,7 +421,7 @@ pub fn xcb_shape_rectangles_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_shape_rectangles (c : *mut ffi::base::connection,
                                 operation :  op,
@@ -439,7 +439,7 @@ pub fn xcb_shape_rectangles (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -458,7 +458,7 @@ pub fn xcb_shape_mask_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_shape_mask (c : *mut ffi::base::connection,
                           operation :  op,
@@ -474,7 +474,7 @@ pub fn xcb_shape_mask (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -494,7 +494,7 @@ pub fn xcb_shape_combine_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_shape_combine (c : *mut ffi::base::connection,
                              operation :  op,
@@ -511,7 +511,7 @@ pub fn xcb_shape_combine (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -528,7 +528,7 @@ pub fn xcb_shape_offset_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_shape_offset (c : *mut ffi::base::connection,
                             destination_kind :  kind,
@@ -542,7 +542,7 @@ pub fn xcb_shape_offset (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_shape_query_extents (c : *mut ffi::base::connection,
                                    destination_window :  ffi::xproto::window) -> query_extents_cookie;
@@ -553,7 +553,7 @@ pub fn xcb_shape_query_extents (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -568,7 +568,7 @@ pub fn xcb_shape_query_extents_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_shape_query_extents_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -585,7 +585,7 @@ pub fn xcb_shape_query_extents_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -600,7 +600,7 @@ pub fn xcb_shape_select_input_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_shape_select_input (c : *mut ffi::base::connection,
                                   destination_window :  ffi::xproto::window,
@@ -612,7 +612,7 @@ pub fn xcb_shape_select_input (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_shape_input_selected (c : *mut ffi::base::connection,
                                     destination_window :  ffi::xproto::window) -> input_selected_cookie;
@@ -623,7 +623,7 @@ pub fn xcb_shape_input_selected (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -638,7 +638,7 @@ pub fn xcb_shape_input_selected_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_shape_input_selected_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -657,7 +657,7 @@ pub fn xcb_shape_get_rectangles_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_shape_get_rectangles (c : *mut ffi::base::connection,
                                     window :  ffi::xproto::window,
@@ -669,7 +669,7 @@ pub fn xcb_shape_get_rectangles (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -692,7 +692,7 @@ pub fn xcb_shape_get_rectangles_rectangles_iterator (R : *mut get_rectangles_rep
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_shape_get_rectangles_unchecked(). is used.
  * Otherwise, it stores the error if any.

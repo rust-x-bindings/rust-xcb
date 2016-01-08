@@ -801,7 +801,7 @@ pub fn xcb_sync_waitcondition_end (i:waitcondition_iterator) -> ffi::base::gener
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_sync_initialize (c : *mut ffi::base::connection,
                                desired_major_version :  u8,
@@ -813,7 +813,7 @@ pub fn xcb_sync_initialize (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -829,7 +829,7 @@ pub fn xcb_sync_initialize_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_sync_initialize_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -848,7 +848,7 @@ pub fn xcb_sync_list_system_counters_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_sync_list_system_counters (c : *mut ffi::base::connection) -> list_system_counters_cookie;
 
@@ -858,7 +858,7 @@ pub fn xcb_sync_list_system_counters (c : *mut ffi::base::connection) -> list_sy
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -877,7 +877,7 @@ pub fn xcb_sync_list_system_counters_counters_iterator (R : *mut list_system_cou
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_sync_list_system_counters_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -894,7 +894,7 @@ pub fn xcb_sync_list_system_counters_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -909,7 +909,7 @@ pub fn xcb_sync_create_counter_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_sync_create_counter (c : *mut ffi::base::connection,
                                    id :  counter,
@@ -921,7 +921,7 @@ pub fn xcb_sync_create_counter (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -935,7 +935,7 @@ pub fn xcb_sync_destroy_counter_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_sync_destroy_counter (c : *mut ffi::base::connection,
                                     counter :  counter) -> ffi::base::void_cookie;
@@ -946,7 +946,7 @@ pub fn xcb_sync_destroy_counter (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_sync_query_counter (c : *mut ffi::base::connection,
                                   counter :  counter) -> query_counter_cookie;
@@ -957,7 +957,7 @@ pub fn xcb_sync_query_counter (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -972,7 +972,7 @@ pub fn xcb_sync_query_counter_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_sync_query_counter_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -992,7 +992,7 @@ pub fn xcb_sync_await_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1007,7 +1007,7 @@ pub fn xcb_sync_await_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_sync_await (c : *mut ffi::base::connection,
                           wait_list_len :  u32,
@@ -1019,7 +1019,7 @@ pub fn xcb_sync_await (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1034,7 +1034,7 @@ pub fn xcb_sync_change_counter_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_sync_change_counter (c : *mut ffi::base::connection,
                                    counter :  counter,
@@ -1046,7 +1046,7 @@ pub fn xcb_sync_change_counter (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1061,7 +1061,7 @@ pub fn xcb_sync_set_counter_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_sync_set_counter (c : *mut ffi::base::connection,
                                 counter :  counter,
@@ -1075,7 +1075,7 @@ pub fn xcb_sync_create_alarm_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1091,7 +1091,7 @@ pub fn xcb_sync_create_alarm_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_sync_create_alarm (c : *mut ffi::base::connection,
                                  id :  alarm,
@@ -1106,7 +1106,7 @@ pub fn xcb_sync_change_alarm_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1122,7 +1122,7 @@ pub fn xcb_sync_change_alarm_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_sync_change_alarm (c : *mut ffi::base::connection,
                                  id :  alarm,
@@ -1135,7 +1135,7 @@ pub fn xcb_sync_change_alarm (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1149,7 +1149,7 @@ pub fn xcb_sync_destroy_alarm_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_sync_destroy_alarm (c : *mut ffi::base::connection,
                                   alarm :  alarm) -> ffi::base::void_cookie;
@@ -1160,7 +1160,7 @@ pub fn xcb_sync_destroy_alarm (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_sync_query_alarm (c : *mut ffi::base::connection,
                                 alarm :  alarm) -> query_alarm_cookie;
@@ -1171,7 +1171,7 @@ pub fn xcb_sync_query_alarm (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1186,7 +1186,7 @@ pub fn xcb_sync_query_alarm_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_sync_query_alarm_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1203,7 +1203,7 @@ pub fn xcb_sync_query_alarm_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1218,7 +1218,7 @@ pub fn xcb_sync_set_priority_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_sync_set_priority (c : *mut ffi::base::connection,
                                  id :  u32,
@@ -1230,7 +1230,7 @@ pub fn xcb_sync_set_priority (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_sync_get_priority (c : *mut ffi::base::connection,
                                  id :  u32) -> get_priority_cookie;
@@ -1241,7 +1241,7 @@ pub fn xcb_sync_get_priority (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1256,7 +1256,7 @@ pub fn xcb_sync_get_priority_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_sync_get_priority_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1273,7 +1273,7 @@ pub fn xcb_sync_get_priority_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1289,7 +1289,7 @@ pub fn xcb_sync_create_fence_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_sync_create_fence (c : *mut ffi::base::connection,
                                  drawable :  ffi::xproto::drawable,
@@ -1302,7 +1302,7 @@ pub fn xcb_sync_create_fence (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1316,7 +1316,7 @@ pub fn xcb_sync_trigger_fence_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_sync_trigger_fence (c : *mut ffi::base::connection,
                                   fence :  fence) -> ffi::base::void_cookie;
@@ -1327,7 +1327,7 @@ pub fn xcb_sync_trigger_fence (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1341,7 +1341,7 @@ pub fn xcb_sync_reset_fence_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_sync_reset_fence (c : *mut ffi::base::connection,
                                 fence :  fence) -> ffi::base::void_cookie;
@@ -1352,7 +1352,7 @@ pub fn xcb_sync_reset_fence (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1366,7 +1366,7 @@ pub fn xcb_sync_destroy_fence_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_sync_destroy_fence (c : *mut ffi::base::connection,
                                   fence :  fence) -> ffi::base::void_cookie;
@@ -1377,7 +1377,7 @@ pub fn xcb_sync_destroy_fence (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_sync_query_fence (c : *mut ffi::base::connection,
                                 fence :  fence) -> query_fence_cookie;
@@ -1388,7 +1388,7 @@ pub fn xcb_sync_query_fence (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1403,7 +1403,7 @@ pub fn xcb_sync_query_fence_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_sync_query_fence_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1423,7 +1423,7 @@ pub fn xcb_sync_await_fence_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1438,7 +1438,7 @@ pub fn xcb_sync_await_fence_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_sync_await_fence (c : *mut ffi::base::connection,
                                 fence_list_len :  u32,

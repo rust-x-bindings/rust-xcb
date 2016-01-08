@@ -884,7 +884,7 @@ pub fn xcb_xf86vidmode_mode_info_end (i:mode_info_iterator) -> ffi::base::generi
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xf86vidmode_query_version (c : *mut ffi::base::connection) -> query_version_cookie;
 
@@ -894,7 +894,7 @@ pub fn xcb_xf86vidmode_query_version (c : *mut ffi::base::connection) -> query_v
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -908,7 +908,7 @@ pub fn xcb_xf86vidmode_query_version_unchecked (c : *mut ffi::base::connection) 
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xf86vidmode_query_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -927,7 +927,7 @@ pub fn xcb_xf86vidmode_get_mode_line_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xf86vidmode_get_mode_line (c : *mut ffi::base::connection,
                                          screen :  u16) -> get_mode_line_cookie;
@@ -938,7 +938,7 @@ pub fn xcb_xf86vidmode_get_mode_line (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -961,7 +961,7 @@ pub fn xcb_xf86vidmode_get_mode_line_private_end (R : *mut get_mode_line_reply) 
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xf86vidmode_get_mode_line_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -980,7 +980,7 @@ pub fn xcb_xf86vidmode_mod_mode_line_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1006,7 +1006,7 @@ pub fn xcb_xf86vidmode_mod_mode_line_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xf86vidmode_mod_mode_line (c : *mut ffi::base::connection,
                                          screen :  u32,
@@ -1029,7 +1029,7 @@ pub fn xcb_xf86vidmode_mod_mode_line (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1044,7 +1044,7 @@ pub fn xcb_xf86vidmode_switch_mode_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xf86vidmode_switch_mode (c : *mut ffi::base::connection,
                                        screen :  u16,
@@ -1058,7 +1058,7 @@ pub fn xcb_xf86vidmode_get_monitor_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xf86vidmode_get_monitor (c : *mut ffi::base::connection,
                                        screen :  u16) -> get_monitor_cookie;
@@ -1069,7 +1069,7 @@ pub fn xcb_xf86vidmode_get_monitor (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1124,7 +1124,7 @@ pub fn xcb_xf86vidmode_get_monitor_model_end (R : *mut get_monitor_reply) -> ffi
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xf86vidmode_get_monitor_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1141,7 +1141,7 @@ pub fn xcb_xf86vidmode_get_monitor_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1156,7 +1156,7 @@ pub fn xcb_xf86vidmode_lock_mode_switch_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xf86vidmode_lock_mode_switch (c : *mut ffi::base::connection,
                                             screen :  u16,
@@ -1170,7 +1170,7 @@ pub fn xcb_xf86vidmode_get_all_mode_lines_sizeof (_buffer :  *mut c_void) -> c_i
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xf86vidmode_get_all_mode_lines (c : *mut ffi::base::connection,
                                               screen :  u16) -> get_all_mode_lines_cookie;
@@ -1181,7 +1181,7 @@ pub fn xcb_xf86vidmode_get_all_mode_lines (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1203,7 +1203,7 @@ pub fn xcb_xf86vidmode_get_all_mode_lines_modeinfo_iterator (R : *mut get_all_mo
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xf86vidmode_get_all_mode_lines_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1222,7 +1222,7 @@ pub fn xcb_xf86vidmode_add_mode_line_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1260,7 +1260,7 @@ pub fn xcb_xf86vidmode_add_mode_line_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xf86vidmode_add_mode_line (c : *mut ffi::base::connection,
                                          screen :  u32,
@@ -1297,7 +1297,7 @@ pub fn xcb_xf86vidmode_delete_mode_line_sizeof (_buffer :  *mut c_void) -> c_int
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1324,7 +1324,7 @@ pub fn xcb_xf86vidmode_delete_mode_line_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xf86vidmode_delete_mode_line (c : *mut ffi::base::connection,
                                             screen :  u32,
@@ -1350,7 +1350,7 @@ pub fn xcb_xf86vidmode_validate_mode_line_sizeof (_buffer :  *mut c_void) -> c_i
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xf86vidmode_validate_mode_line (c : *mut ffi::base::connection,
                                               screen :  u32,
@@ -1374,7 +1374,7 @@ pub fn xcb_xf86vidmode_validate_mode_line (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1402,7 +1402,7 @@ pub fn xcb_xf86vidmode_validate_mode_line_unchecked (c : *mut ffi::base::connect
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xf86vidmode_validate_mode_line_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1421,7 +1421,7 @@ pub fn xcb_xf86vidmode_switch_to_mode_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1448,7 +1448,7 @@ pub fn xcb_xf86vidmode_switch_to_mode_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xf86vidmode_switch_to_mode (c : *mut ffi::base::connection,
                                           screen :  u32,
@@ -1472,7 +1472,7 @@ pub fn xcb_xf86vidmode_switch_to_mode (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xf86vidmode_get_view_port (c : *mut ffi::base::connection,
                                          screen :  u16) -> get_view_port_cookie;
@@ -1483,7 +1483,7 @@ pub fn xcb_xf86vidmode_get_view_port (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1498,7 +1498,7 @@ pub fn xcb_xf86vidmode_get_view_port_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xf86vidmode_get_view_port_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1515,7 +1515,7 @@ pub fn xcb_xf86vidmode_get_view_port_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1531,7 +1531,7 @@ pub fn xcb_xf86vidmode_set_view_port_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xf86vidmode_set_view_port (c : *mut ffi::base::connection,
                                          screen :  u16,
@@ -1546,7 +1546,7 @@ pub fn xcb_xf86vidmode_get_dot_clocks_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xf86vidmode_get_dot_clocks (c : *mut ffi::base::connection,
                                           screen :  u16) -> get_dot_clocks_cookie;
@@ -1557,7 +1557,7 @@ pub fn xcb_xf86vidmode_get_dot_clocks (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1580,7 +1580,7 @@ pub fn xcb_xf86vidmode_get_dot_clocks_clock_end (R : *mut get_dot_clocks_reply) 
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xf86vidmode_get_dot_clocks_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1597,7 +1597,7 @@ pub fn xcb_xf86vidmode_get_dot_clocks_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1612,7 +1612,7 @@ pub fn xcb_xf86vidmode_set_client_version_checked (c : *mut ffi::base::connectio
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xf86vidmode_set_client_version (c : *mut ffi::base::connection,
                                               major :  u16,
@@ -1624,7 +1624,7 @@ pub fn xcb_xf86vidmode_set_client_version (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1641,7 +1641,7 @@ pub fn xcb_xf86vidmode_set_gamma_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xf86vidmode_set_gamma (c : *mut ffi::base::connection,
                                      screen :  u16,
@@ -1655,7 +1655,7 @@ pub fn xcb_xf86vidmode_set_gamma (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xf86vidmode_get_gamma (c : *mut ffi::base::connection,
                                      screen :  u16) -> get_gamma_cookie;
@@ -1666,7 +1666,7 @@ pub fn xcb_xf86vidmode_get_gamma (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1681,7 +1681,7 @@ pub fn xcb_xf86vidmode_get_gamma_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xf86vidmode_get_gamma_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1700,7 +1700,7 @@ pub fn xcb_xf86vidmode_get_gamma_ramp_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xf86vidmode_get_gamma_ramp (c : *mut ffi::base::connection,
                                           screen :  u16,
@@ -1712,7 +1712,7 @@ pub fn xcb_xf86vidmode_get_gamma_ramp (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1752,7 +1752,7 @@ pub fn xcb_xf86vidmode_get_gamma_ramp_blue_end (R : *mut get_gamma_ramp_reply) -
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xf86vidmode_get_gamma_ramp_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1771,7 +1771,7 @@ pub fn xcb_xf86vidmode_set_gamma_ramp_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1789,7 +1789,7 @@ pub fn xcb_xf86vidmode_set_gamma_ramp_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xf86vidmode_set_gamma_ramp (c : *mut ffi::base::connection,
                                           screen :  u16,
@@ -1804,7 +1804,7 @@ pub fn xcb_xf86vidmode_set_gamma_ramp (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xf86vidmode_get_gamma_ramp_size (c : *mut ffi::base::connection,
                                                screen :  u16) -> get_gamma_ramp_size_cookie;
@@ -1815,7 +1815,7 @@ pub fn xcb_xf86vidmode_get_gamma_ramp_size (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1830,7 +1830,7 @@ pub fn xcb_xf86vidmode_get_gamma_ramp_size_unchecked (c : *mut ffi::base::connec
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xf86vidmode_get_gamma_ramp_size_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1847,7 +1847,7 @@ pub fn xcb_xf86vidmode_get_gamma_ramp_size_reply (c : *mut ffi::base::connection
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xf86vidmode_get_permissions (c : *mut ffi::base::connection,
                                            screen :  u16) -> get_permissions_cookie;
@@ -1858,7 +1858,7 @@ pub fn xcb_xf86vidmode_get_permissions (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1873,7 +1873,7 @@ pub fn xcb_xf86vidmode_get_permissions_unchecked (c : *mut ffi::base::connection
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xf86vidmode_get_permissions_unchecked(). is used.
  * Otherwise, it stores the error if any.

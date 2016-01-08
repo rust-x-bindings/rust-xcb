@@ -125,7 +125,7 @@ extern "C" {
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xc_misc_get_version (c : *mut ffi::base::connection,
                                    client_major_version :  u16,
@@ -137,7 +137,7 @@ pub fn xcb_xc_misc_get_version (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -153,7 +153,7 @@ pub fn xcb_xc_misc_get_version_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xc_misc_get_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -170,7 +170,7 @@ pub fn xcb_xc_misc_get_version_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xc_misc_get_xid_range (c : *mut ffi::base::connection) -> get_xid_range_cookie;
 
@@ -180,7 +180,7 @@ pub fn xcb_xc_misc_get_xid_range (c : *mut ffi::base::connection) -> get_xid_ran
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -194,7 +194,7 @@ pub fn xcb_xc_misc_get_xid_range_unchecked (c : *mut ffi::base::connection) -> g
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xc_misc_get_xid_range_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -213,7 +213,7 @@ pub fn xcb_xc_misc_get_xid_list_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xc_misc_get_xid_list (c : *mut ffi::base::connection,
                                     count :  u32) -> get_xid_list_cookie;
@@ -224,7 +224,7 @@ pub fn xcb_xc_misc_get_xid_list (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -247,7 +247,7 @@ pub fn xcb_xc_misc_get_xid_list_ids_end (R : *mut get_xid_list_reply) -> ffi::ba
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xc_misc_get_xid_list_unchecked(). is used.
  * Otherwise, it stores the error if any.

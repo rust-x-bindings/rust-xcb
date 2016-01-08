@@ -836,7 +836,7 @@ pub fn xcb_x_print_pcontext_end (i:pcontext_iterator) -> ffi::base::generic_iter
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_query_version (c : *mut ffi::base::connection) -> print_query_version_cookie;
 
@@ -846,7 +846,7 @@ pub fn xcb_x_print_print_query_version (c : *mut ffi::base::connection) -> print
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -860,7 +860,7 @@ pub fn xcb_x_print_print_query_version_unchecked (c : *mut ffi::base::connection
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_x_print_print_query_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -879,7 +879,7 @@ pub fn xcb_x_print_print_get_printer_list_sizeof (_buffer :  *mut c_void) -> c_i
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_get_printer_list (c : *mut ffi::base::connection,
                                               printerNameLen :  u32,
@@ -893,7 +893,7 @@ pub fn xcb_x_print_print_get_printer_list (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -916,7 +916,7 @@ pub fn xcb_x_print_print_get_printer_list_printers_iterator (R : *mut print_get_
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_x_print_print_get_printer_list_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -933,7 +933,7 @@ pub fn xcb_x_print_print_get_printer_list_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -946,7 +946,7 @@ pub fn xcb_x_print_print_rehash_printer_list_checked (c : *mut ffi::base::connec
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_rehash_printer_list (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
 
@@ -958,7 +958,7 @@ pub fn xcb_x_print_create_context_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -976,7 +976,7 @@ pub fn xcb_x_print_create_context_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_create_context (c : *mut ffi::base::connection,
                                       context_id :  u32,
@@ -991,7 +991,7 @@ pub fn xcb_x_print_create_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1005,7 +1005,7 @@ pub fn xcb_x_print_print_set_context_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_set_context (c : *mut ffi::base::connection,
                                          context :  u32) -> ffi::base::void_cookie;
@@ -1016,7 +1016,7 @@ pub fn xcb_x_print_print_set_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_get_context (c : *mut ffi::base::connection) -> print_get_context_cookie;
 
@@ -1026,7 +1026,7 @@ pub fn xcb_x_print_print_get_context (c : *mut ffi::base::connection) -> print_g
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1040,7 +1040,7 @@ pub fn xcb_x_print_print_get_context_unchecked (c : *mut ffi::base::connection) 
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_x_print_print_get_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1057,7 +1057,7 @@ pub fn xcb_x_print_print_get_context_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1071,7 +1071,7 @@ pub fn xcb_x_print_print_destroy_context_checked (c : *mut ffi::base::connection
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_destroy_context (c : *mut ffi::base::connection,
                                              context :  u32) -> ffi::base::void_cookie;
@@ -1082,7 +1082,7 @@ pub fn xcb_x_print_print_destroy_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_get_screen_of_context (c : *mut ffi::base::connection) -> print_get_screen_of_context_cookie;
 
@@ -1092,7 +1092,7 @@ pub fn xcb_x_print_print_get_screen_of_context (c : *mut ffi::base::connection) 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1106,7 +1106,7 @@ pub fn xcb_x_print_print_get_screen_of_context_unchecked (c : *mut ffi::base::co
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_x_print_print_get_screen_of_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1123,7 +1123,7 @@ pub fn xcb_x_print_print_get_screen_of_context_reply (c : *mut ffi::base::connec
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1137,7 +1137,7 @@ pub fn xcb_x_print_print_start_job_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_start_job (c : *mut ffi::base::connection,
                                        output_mode :  u8) -> ffi::base::void_cookie;
@@ -1148,7 +1148,7 @@ pub fn xcb_x_print_print_start_job (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1162,7 +1162,7 @@ pub fn xcb_x_print_print_end_job_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_end_job (c : *mut ffi::base::connection,
                                      cancel :  u8) -> ffi::base::void_cookie;
@@ -1173,7 +1173,7 @@ pub fn xcb_x_print_print_end_job (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1187,7 +1187,7 @@ pub fn xcb_x_print_print_start_doc_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_start_doc (c : *mut ffi::base::connection,
                                        driver_mode :  u8) -> ffi::base::void_cookie;
@@ -1198,7 +1198,7 @@ pub fn xcb_x_print_print_start_doc (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1212,7 +1212,7 @@ pub fn xcb_x_print_print_end_doc_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_end_doc (c : *mut ffi::base::connection,
                                      cancel :  u8) -> ffi::base::void_cookie;
@@ -1227,7 +1227,7 @@ pub fn xcb_x_print_print_put_document_data_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1249,7 +1249,7 @@ pub fn xcb_x_print_print_put_document_data_checked (c : *mut ffi::base::connecti
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_put_document_data (c : *mut ffi::base::connection,
                                                drawable :  ffi::xproto::drawable,
@@ -1270,7 +1270,7 @@ pub fn xcb_x_print_print_get_document_data_sizeof (_buffer :  *mut c_void) -> c_
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_get_document_data (c : *mut ffi::base::connection,
                                                context :  pcontext,
@@ -1282,7 +1282,7 @@ pub fn xcb_x_print_print_get_document_data (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1306,7 +1306,7 @@ pub fn xcb_x_print_print_get_document_data_data_end (R : *mut print_get_document
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_x_print_print_get_document_data_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1323,7 +1323,7 @@ pub fn xcb_x_print_print_get_document_data_reply (c : *mut ffi::base::connection
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1337,7 +1337,7 @@ pub fn xcb_x_print_print_start_page_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_start_page (c : *mut ffi::base::connection,
                                         window :  ffi::xproto::window) -> ffi::base::void_cookie;
@@ -1348,7 +1348,7 @@ pub fn xcb_x_print_print_start_page (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1362,7 +1362,7 @@ pub fn xcb_x_print_print_end_page_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_end_page (c : *mut ffi::base::connection,
                                       cancel :  u8) -> ffi::base::void_cookie;
@@ -1375,7 +1375,7 @@ pub fn xcb_x_print_print_select_input_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1391,7 +1391,7 @@ pub fn xcb_x_print_print_select_input_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_select_input (c : *mut ffi::base::connection,
                                           context :  pcontext,
@@ -1414,7 +1414,7 @@ pub fn xcb_x_print_print_input_selected_sizeof (_buffer :  *mut c_void) -> c_int
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_input_selected (c : *mut ffi::base::connection,
                                             context :  pcontext) -> print_input_selected_cookie;
@@ -1425,7 +1425,7 @@ pub fn xcb_x_print_print_input_selected (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1456,7 +1456,7 @@ pub fn xcb_x_print_print_input_selected_all_events_list_end (R : *mut print_inpu
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_x_print_print_input_selected_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1473,7 +1473,7 @@ pub fn xcb_x_print_print_input_selected_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_get_attributes (c : *mut ffi::base::connection,
                                             context :  pcontext,
@@ -1485,7 +1485,7 @@ pub fn xcb_x_print_print_get_attributes (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1501,7 +1501,7 @@ pub fn xcb_x_print_print_get_attributes_unchecked (c : *mut ffi::base::connectio
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_x_print_print_get_attributes_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1520,7 +1520,7 @@ pub fn xcb_x_print_print_get_one_attributes_sizeof (_buffer :  *mut c_void) -> c
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_get_one_attributes (c : *mut ffi::base::connection,
                                                 context :  pcontext,
@@ -1534,7 +1534,7 @@ pub fn xcb_x_print_print_get_one_attributes (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1560,7 +1560,7 @@ pub fn xcb_x_print_print_get_one_attributes_value_end (R : *mut print_get_one_at
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_x_print_print_get_one_attributes_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1580,7 +1580,7 @@ pub fn xcb_x_print_print_set_attributes_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1599,7 +1599,7 @@ pub fn xcb_x_print_print_set_attributes_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_set_attributes (c : *mut ffi::base::connection,
                                             context :  pcontext,
@@ -1615,7 +1615,7 @@ pub fn xcb_x_print_print_set_attributes (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_get_page_dimensions (c : *mut ffi::base::connection,
                                                  context :  pcontext) -> print_get_page_dimensions_cookie;
@@ -1626,7 +1626,7 @@ pub fn xcb_x_print_print_get_page_dimensions (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1641,7 +1641,7 @@ pub fn xcb_x_print_print_get_page_dimensions_unchecked (c : *mut ffi::base::conn
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_x_print_print_get_page_dimensions_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1660,7 +1660,7 @@ pub fn xcb_x_print_print_query_screens_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_query_screens (c : *mut ffi::base::connection) -> print_query_screens_cookie;
 
@@ -1670,7 +1670,7 @@ pub fn xcb_x_print_print_query_screens (c : *mut ffi::base::connection) -> print
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1692,7 +1692,7 @@ pub fn xcb_x_print_print_query_screens_roots_end (R : *mut print_query_screens_r
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_x_print_print_query_screens_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1709,7 +1709,7 @@ pub fn xcb_x_print_print_query_screens_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_set_image_resolution (c : *mut ffi::base::connection,
                                                   context :  pcontext,
@@ -1721,7 +1721,7 @@ pub fn xcb_x_print_print_set_image_resolution (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1737,7 +1737,7 @@ pub fn xcb_x_print_print_set_image_resolution_unchecked (c : *mut ffi::base::con
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_x_print_print_set_image_resolution_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1754,7 +1754,7 @@ pub fn xcb_x_print_print_set_image_resolution_reply (c : *mut ffi::base::connect
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_get_image_resolution (c : *mut ffi::base::connection,
                                                   context :  pcontext) -> print_get_image_resolution_cookie;
@@ -1765,7 +1765,7 @@ pub fn xcb_x_print_print_get_image_resolution (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1780,7 +1780,7 @@ pub fn xcb_x_print_print_get_image_resolution_unchecked (c : *mut ffi::base::con
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_x_print_print_get_image_resolution_unchecked(). is used.
  * Otherwise, it stores the error if any.

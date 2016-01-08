@@ -2228,7 +2228,7 @@ pub fn xcb_input_get_extension_version_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_get_extension_version (c : *mut ffi::base::connection,
                                            name_len :  u16,
@@ -2240,7 +2240,7 @@ pub fn xcb_input_get_extension_version (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -2256,7 +2256,7 @@ pub fn xcb_input_get_extension_version_unchecked (c : *mut ffi::base::connection
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_input_get_extension_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -2298,7 +2298,7 @@ pub fn xcb_input_list_input_devices_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_list_input_devices (c : *mut ffi::base::connection) -> list_input_devices_cookie;
 
@@ -2308,7 +2308,7 @@ pub fn xcb_input_list_input_devices (c : *mut ffi::base::connection) -> list_inp
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -2329,7 +2329,7 @@ pub fn xcb_input_list_input_devices_devices_iterator (R : *mut list_input_device
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_input_list_input_devices_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -2495,7 +2495,7 @@ pub fn xcb_input_open_device_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_open_device (c : *mut ffi::base::connection,
                                  device_id :  u8) -> open_device_cookie;
@@ -2506,7 +2506,7 @@ pub fn xcb_input_open_device (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -2528,7 +2528,7 @@ pub fn xcb_input_open_device_class_info_iterator (R : *mut open_device_reply) ->
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_input_open_device_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -2545,7 +2545,7 @@ pub fn xcb_input_open_device_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2559,7 +2559,7 @@ pub fn xcb_input_close_device_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_close_device (c : *mut ffi::base::connection,
                                   device_id :  u8) -> ffi::base::void_cookie;
@@ -2570,7 +2570,7 @@ pub fn xcb_input_close_device (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_set_device_mode (c : *mut ffi::base::connection,
                                      device_id :  u8,
@@ -2582,7 +2582,7 @@ pub fn xcb_input_set_device_mode (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -2598,7 +2598,7 @@ pub fn xcb_input_set_device_mode_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_input_set_device_mode_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -2617,7 +2617,7 @@ pub fn xcb_input_select_extension_event_sizeof (_buffer :  *mut c_void) -> c_int
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2633,7 +2633,7 @@ pub fn xcb_input_select_extension_event_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_select_extension_event (c : *mut ffi::base::connection,
                                             window :  ffi::xproto::window,
@@ -2648,7 +2648,7 @@ pub fn xcb_input_get_selected_extension_events_sizeof (_buffer :  *mut c_void) -
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_get_selected_extension_events (c : *mut ffi::base::connection,
                                                    window :  ffi::xproto::window) -> get_selected_extension_events_cookie;
@@ -2659,7 +2659,7 @@ pub fn xcb_input_get_selected_extension_events (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -2690,7 +2690,7 @@ pub fn xcb_input_get_selected_extension_events_all_classes_end (R : *mut get_sel
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_input_get_selected_extension_events_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -2709,7 +2709,7 @@ pub fn xcb_input_change_device_dont_propagate_list_sizeof (_buffer :  *mut c_voi
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2726,7 +2726,7 @@ pub fn xcb_input_change_device_dont_propagate_list_checked (c : *mut ffi::base::
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_change_device_dont_propagate_list (c : *mut ffi::base::connection,
                                                        window :  ffi::xproto::window,
@@ -2742,7 +2742,7 @@ pub fn xcb_input_get_device_dont_propagate_list_sizeof (_buffer :  *mut c_void) 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_get_device_dont_propagate_list (c : *mut ffi::base::connection,
                                                     window :  ffi::xproto::window) -> get_device_dont_propagate_list_cookie;
@@ -2753,7 +2753,7 @@ pub fn xcb_input_get_device_dont_propagate_list (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -2776,7 +2776,7 @@ pub fn xcb_input_get_device_dont_propagate_list_classes_end (R : *mut get_device
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_input_get_device_dont_propagate_list_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -2793,7 +2793,7 @@ pub fn xcb_input_get_device_dont_propagate_list_reply (c : *mut ffi::base::conne
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_get_device_motion_events (c : *mut ffi::base::connection,
                                               start :  ffi::xproto::timestamp,
@@ -2806,7 +2806,7 @@ pub fn xcb_input_get_device_motion_events (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -2823,7 +2823,7 @@ pub fn xcb_input_get_device_motion_events_unchecked (c : *mut ffi::base::connect
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_input_get_device_motion_events_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -2863,7 +2863,7 @@ pub fn xcb_input_device_time_coord_end (i:device_time_coord_iterator) -> ffi::ba
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_change_keyboard_device (c : *mut ffi::base::connection,
                                             device_id :  u8) -> change_keyboard_device_cookie;
@@ -2874,7 +2874,7 @@ pub fn xcb_input_change_keyboard_device (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -2889,7 +2889,7 @@ pub fn xcb_input_change_keyboard_device_unchecked (c : *mut ffi::base::connectio
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_input_change_keyboard_device_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -2906,7 +2906,7 @@ pub fn xcb_input_change_keyboard_device_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_change_pointer_device (c : *mut ffi::base::connection,
                                            x_axis :  u8,
@@ -2919,7 +2919,7 @@ pub fn xcb_input_change_pointer_device (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -2936,7 +2936,7 @@ pub fn xcb_input_change_pointer_device_unchecked (c : *mut ffi::base::connection
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_input_change_pointer_device_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -2955,7 +2955,7 @@ pub fn xcb_input_grab_device_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_grab_device (c : *mut ffi::base::connection,
                                  grab_window :  ffi::xproto::window,
@@ -2973,7 +2973,7 @@ pub fn xcb_input_grab_device (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -2995,7 +2995,7 @@ pub fn xcb_input_grab_device_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_input_grab_device_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -3012,7 +3012,7 @@ pub fn xcb_input_grab_device_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3027,7 +3027,7 @@ pub fn xcb_input_ungrab_device_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_ungrab_device (c : *mut ffi::base::connection,
                                    time :  ffi::xproto::timestamp,
@@ -3041,7 +3041,7 @@ pub fn xcb_input_grab_device_key_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3064,7 +3064,7 @@ pub fn xcb_input_grab_device_key_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_grab_device_key (c : *mut ffi::base::connection,
                                      grab_window :  ffi::xproto::window,
@@ -3084,7 +3084,7 @@ pub fn xcb_input_grab_device_key (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3102,7 +3102,7 @@ pub fn xcb_input_ungrab_device_key_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_ungrab_device_key (c : *mut ffi::base::connection,
                                        grabWindow :  ffi::xproto::window,
@@ -3119,7 +3119,7 @@ pub fn xcb_input_grab_device_button_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3142,7 +3142,7 @@ pub fn xcb_input_grab_device_button_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_grab_device_button (c : *mut ffi::base::connection,
                                         grab_window :  ffi::xproto::window,
@@ -3162,7 +3162,7 @@ pub fn xcb_input_grab_device_button (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3180,7 +3180,7 @@ pub fn xcb_input_ungrab_device_button_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_ungrab_device_button (c : *mut ffi::base::connection,
                                           grab_window :  ffi::xproto::window,
@@ -3195,7 +3195,7 @@ pub fn xcb_input_ungrab_device_button (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3211,7 +3211,7 @@ pub fn xcb_input_allow_device_events_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_allow_device_events (c : *mut ffi::base::connection,
                                          time :  ffi::xproto::timestamp,
@@ -3224,7 +3224,7 @@ pub fn xcb_input_allow_device_events (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_get_device_focus (c : *mut ffi::base::connection,
                                       device_id :  u8) -> get_device_focus_cookie;
@@ -3235,7 +3235,7 @@ pub fn xcb_input_get_device_focus (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -3250,7 +3250,7 @@ pub fn xcb_input_get_device_focus_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_input_get_device_focus_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -3267,7 +3267,7 @@ pub fn xcb_input_get_device_focus_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3284,7 +3284,7 @@ pub fn xcb_input_set_device_focus_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_set_device_focus (c : *mut ffi::base::connection,
                                       focus :  ffi::xproto::window,
@@ -3298,7 +3298,7 @@ pub fn xcb_input_set_device_focus (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_get_feedback_control (c : *mut ffi::base::connection,
                                           device_id :  u8) -> get_feedback_control_cookie;
@@ -3309,7 +3309,7 @@ pub fn xcb_input_get_feedback_control (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -3324,7 +3324,7 @@ pub fn xcb_input_get_feedback_control_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_input_get_feedback_control_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -3685,7 +3685,7 @@ pub fn xcb_input_get_device_key_mapping_sizeof (_buffer :  *mut c_void) -> c_int
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_get_device_key_mapping (c : *mut ffi::base::connection,
                                             device_id :  u8,
@@ -3698,7 +3698,7 @@ pub fn xcb_input_get_device_key_mapping (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -3723,7 +3723,7 @@ pub fn xcb_input_get_device_key_mapping_keysyms_end (R : *mut get_device_key_map
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_input_get_device_key_mapping_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -3742,7 +3742,7 @@ pub fn xcb_input_change_device_key_mapping_sizeof (_buffer :  *mut c_void) -> c_
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3760,7 +3760,7 @@ pub fn xcb_input_change_device_key_mapping_checked (c : *mut ffi::base::connecti
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_change_device_key_mapping (c : *mut ffi::base::connection,
                                                device_id :  u8,
@@ -3777,7 +3777,7 @@ pub fn xcb_input_get_device_modifier_mapping_sizeof (_buffer :  *mut c_void) -> 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_get_device_modifier_mapping (c : *mut ffi::base::connection,
                                                  device_id :  u8) -> get_device_modifier_mapping_cookie;
@@ -3788,7 +3788,7 @@ pub fn xcb_input_get_device_modifier_mapping (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -3811,7 +3811,7 @@ pub fn xcb_input_get_device_modifier_mapping_keymaps_end (R : *mut get_device_mo
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_input_get_device_modifier_mapping_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -3830,7 +3830,7 @@ pub fn xcb_input_set_device_modifier_mapping_sizeof (_buffer :  *mut c_void) -> 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_set_device_modifier_mapping (c : *mut ffi::base::connection,
                                                  device_id :  u8,
@@ -3843,7 +3843,7 @@ pub fn xcb_input_set_device_modifier_mapping (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -3860,7 +3860,7 @@ pub fn xcb_input_set_device_modifier_mapping_unchecked (c : *mut ffi::base::conn
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_input_set_device_modifier_mapping_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -3879,7 +3879,7 @@ pub fn xcb_input_get_device_button_mapping_sizeof (_buffer :  *mut c_void) -> c_
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_get_device_button_mapping (c : *mut ffi::base::connection,
                                                device_id :  u8) -> get_device_button_mapping_cookie;
@@ -3890,7 +3890,7 @@ pub fn xcb_input_get_device_button_mapping (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -3913,7 +3913,7 @@ pub fn xcb_input_get_device_button_mapping_map_end (R : *mut get_device_button_m
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_input_get_device_button_mapping_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -3932,7 +3932,7 @@ pub fn xcb_input_set_device_button_mapping_sizeof (_buffer :  *mut c_void) -> c_
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_set_device_button_mapping (c : *mut ffi::base::connection,
                                                device_id :  u8,
@@ -3945,7 +3945,7 @@ pub fn xcb_input_set_device_button_mapping (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -3962,7 +3962,7 @@ pub fn xcb_input_set_device_button_mapping_unchecked (c : *mut ffi::base::connec
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_input_set_device_button_mapping_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -3979,7 +3979,7 @@ pub fn xcb_input_set_device_button_mapping_reply (c : *mut ffi::base::connection
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_query_device_state (c : *mut ffi::base::connection,
                                         device_id :  u8) -> query_device_state_cookie;
@@ -3990,7 +3990,7 @@ pub fn xcb_input_query_device_state (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4005,7 +4005,7 @@ pub fn xcb_input_query_device_state_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_input_query_device_state_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -4126,7 +4126,7 @@ pub fn xcb_input_send_extension_event_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -4146,7 +4146,7 @@ pub fn xcb_input_send_extension_event_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_send_extension_event (c : *mut ffi::base::connection,
                                           destination :  ffi::xproto::window,
@@ -4163,7 +4163,7 @@ pub fn xcb_input_send_extension_event (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -4180,7 +4180,7 @@ pub fn xcb_input_device_bell_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_device_bell (c : *mut ffi::base::connection,
                                  device_id :  u8,
@@ -4196,7 +4196,7 @@ pub fn xcb_input_set_device_valuators_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_set_device_valuators (c : *mut ffi::base::connection,
                                           device_id :  u8,
@@ -4210,7 +4210,7 @@ pub fn xcb_input_set_device_valuators (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4228,7 +4228,7 @@ pub fn xcb_input_set_device_valuators_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_input_set_device_valuators_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -4245,7 +4245,7 @@ pub fn xcb_input_set_device_valuators_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_input_get_device_control (c : *mut ffi::base::connection,
                                         control_id :  u16,
@@ -4257,7 +4257,7 @@ pub fn xcb_input_get_device_control (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4273,7 +4273,7 @@ pub fn xcb_input_get_device_control_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_input_get_device_control_unchecked(). is used.
  * Otherwise, it stores the error if any.

@@ -447,7 +447,7 @@ pub fn xcb_xvmc_surface_info_end (i:surface_info_iterator) -> ffi::base::generic
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xvmc_query_version (c : *mut ffi::base::connection) -> query_version_cookie;
 
@@ -457,7 +457,7 @@ pub fn xcb_xvmc_query_version (c : *mut ffi::base::connection) -> query_version_
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -471,7 +471,7 @@ pub fn xcb_xvmc_query_version_unchecked (c : *mut ffi::base::connection) -> quer
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xvmc_query_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -490,7 +490,7 @@ pub fn xcb_xvmc_list_surface_types_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xvmc_list_surface_types (c : *mut ffi::base::connection,
                                        port_id :  ffi::xv::port) -> list_surface_types_cookie;
@@ -501,7 +501,7 @@ pub fn xcb_xvmc_list_surface_types (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -523,7 +523,7 @@ pub fn xcb_xvmc_list_surface_types_surfaces_iterator (R : *mut list_surface_type
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xvmc_list_surface_types_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -542,7 +542,7 @@ pub fn xcb_xvmc_create_context_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xvmc_create_context (c : *mut ffi::base::connection,
                                    context_id :  context,
@@ -558,7 +558,7 @@ pub fn xcb_xvmc_create_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -586,7 +586,7 @@ pub fn xcb_xvmc_create_context_priv_data_end (R : *mut create_context_reply) -> 
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xvmc_create_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -603,7 +603,7 @@ pub fn xcb_xvmc_create_context_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -617,7 +617,7 @@ pub fn xcb_xvmc_destroy_context_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xvmc_destroy_context (c : *mut ffi::base::connection,
                                     context_id :  context) -> ffi::base::void_cookie;
@@ -630,7 +630,7 @@ pub fn xcb_xvmc_create_surface_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xvmc_create_surface (c : *mut ffi::base::connection,
                                    surface_id :  surface,
@@ -642,7 +642,7 @@ pub fn xcb_xvmc_create_surface (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -666,7 +666,7 @@ pub fn xcb_xvmc_create_surface_priv_data_end (R : *mut create_surface_reply) -> 
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xvmc_create_surface_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -683,7 +683,7 @@ pub fn xcb_xvmc_create_surface_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -697,7 +697,7 @@ pub fn xcb_xvmc_destroy_surface_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xvmc_destroy_surface (c : *mut ffi::base::connection,
                                     surface_id :  surface) -> ffi::base::void_cookie;
@@ -710,7 +710,7 @@ pub fn xcb_xvmc_create_subpicture_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xvmc_create_subpicture (c : *mut ffi::base::connection,
                                       subpicture_id :  subpicture,
@@ -725,7 +725,7 @@ pub fn xcb_xvmc_create_subpicture (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -752,7 +752,7 @@ pub fn xcb_xvmc_create_subpicture_priv_data_end (R : *mut create_subpicture_repl
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xvmc_create_subpicture_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -769,7 +769,7 @@ pub fn xcb_xvmc_create_subpicture_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -783,7 +783,7 @@ pub fn xcb_xvmc_destroy_subpicture_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xvmc_destroy_subpicture (c : *mut ffi::base::connection,
                                        subpicture_id :  subpicture) -> ffi::base::void_cookie;
@@ -796,7 +796,7 @@ pub fn xcb_xvmc_list_subpicture_types_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xvmc_list_subpicture_types (c : *mut ffi::base::connection,
                                           port_id :  ffi::xv::port,
@@ -808,7 +808,7 @@ pub fn xcb_xvmc_list_subpicture_types (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -831,7 +831,7 @@ pub fn xcb_xvmc_list_subpicture_types_types_iterator (R : *mut list_subpicture_t
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xvmc_list_subpicture_types_unchecked(). is used.
  * Otherwise, it stores the error if any.

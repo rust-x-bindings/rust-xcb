@@ -613,7 +613,7 @@ pub fn xcb_dri2_attach_format_end (i:attach_format_iterator) -> ffi::base::gener
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_dri2_query_version (c : *mut ffi::base::connection,
                                   major_version :  u32,
@@ -625,7 +625,7 @@ pub fn xcb_dri2_query_version (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -641,7 +641,7 @@ pub fn xcb_dri2_query_version_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_dri2_query_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -660,7 +660,7 @@ pub fn xcb_dri2_connect_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_dri2_connect (c : *mut ffi::base::connection,
                             window :  ffi::xproto::window,
@@ -672,7 +672,7 @@ pub fn xcb_dri2_connect (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -712,7 +712,7 @@ pub fn xcb_dri2_connect_device_name_end (R : *mut connect_reply) -> ffi::base::g
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_dri2_connect_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -729,7 +729,7 @@ pub fn xcb_dri2_connect_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_dri2_authenticate (c : *mut ffi::base::connection,
                                  window :  ffi::xproto::window,
@@ -741,7 +741,7 @@ pub fn xcb_dri2_authenticate (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -757,7 +757,7 @@ pub fn xcb_dri2_authenticate_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_dri2_authenticate_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -774,7 +774,7 @@ pub fn xcb_dri2_authenticate_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -788,7 +788,7 @@ pub fn xcb_dri2_create_drawable_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_dri2_create_drawable (c : *mut ffi::base::connection,
                                     drawable :  ffi::xproto::drawable) -> ffi::base::void_cookie;
@@ -799,7 +799,7 @@ pub fn xcb_dri2_create_drawable (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -813,7 +813,7 @@ pub fn xcb_dri2_destroy_drawable_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_dri2_destroy_drawable (c : *mut ffi::base::connection,
                                      drawable :  ffi::xproto::drawable) -> ffi::base::void_cookie;
@@ -827,7 +827,7 @@ pub fn xcb_dri2_get_buffers_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_dri2_get_buffers (c : *mut ffi::base::connection,
                                 drawable :  ffi::xproto::drawable,
@@ -841,7 +841,7 @@ pub fn xcb_dri2_get_buffers (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -866,7 +866,7 @@ pub fn xcb_dri2_get_buffers_buffers_iterator (R : *mut get_buffers_reply) -> dri
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_dri2_get_buffers_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -883,7 +883,7 @@ pub fn xcb_dri2_get_buffers_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_dri2_copy_region (c : *mut ffi::base::connection,
                                 drawable :  ffi::xproto::drawable,
@@ -897,7 +897,7 @@ pub fn xcb_dri2_copy_region (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -915,7 +915,7 @@ pub fn xcb_dri2_copy_region_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_dri2_copy_region_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -935,7 +935,7 @@ pub fn xcb_dri2_get_buffers_with_format_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_dri2_get_buffers_with_format (c : *mut ffi::base::connection,
                                             drawable :  ffi::xproto::drawable,
@@ -949,7 +949,7 @@ pub fn xcb_dri2_get_buffers_with_format (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -974,7 +974,7 @@ pub fn xcb_dri2_get_buffers_with_format_buffers_iterator (R : *mut get_buffers_w
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_dri2_get_buffers_with_format_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -991,7 +991,7 @@ pub fn xcb_dri2_get_buffers_with_format_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_dri2_swap_buffers (c : *mut ffi::base::connection,
                                  drawable :  ffi::xproto::drawable,
@@ -1008,7 +1008,7 @@ pub fn xcb_dri2_swap_buffers (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1029,7 +1029,7 @@ pub fn xcb_dri2_swap_buffers_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_dri2_swap_buffers_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1046,7 +1046,7 @@ pub fn xcb_dri2_swap_buffers_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_dri2_get_msc (c : *mut ffi::base::connection,
                             drawable :  ffi::xproto::drawable) -> get_msc_cookie;
@@ -1057,7 +1057,7 @@ pub fn xcb_dri2_get_msc (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1072,7 +1072,7 @@ pub fn xcb_dri2_get_msc_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_dri2_get_msc_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1089,7 +1089,7 @@ pub fn xcb_dri2_get_msc_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_dri2_wait_msc (c : *mut ffi::base::connection,
                              drawable :  ffi::xproto::drawable,
@@ -1106,7 +1106,7 @@ pub fn xcb_dri2_wait_msc (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1127,7 +1127,7 @@ pub fn xcb_dri2_wait_msc_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_dri2_wait_msc_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1144,7 +1144,7 @@ pub fn xcb_dri2_wait_msc_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_dri2_wait_sbc (c : *mut ffi::base::connection,
                              drawable :  ffi::xproto::drawable,
@@ -1157,7 +1157,7 @@ pub fn xcb_dri2_wait_sbc (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1174,7 +1174,7 @@ pub fn xcb_dri2_wait_sbc_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_dri2_wait_sbc_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1191,7 +1191,7 @@ pub fn xcb_dri2_wait_sbc_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1206,7 +1206,7 @@ pub fn xcb_dri2_swap_interval_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_dri2_swap_interval (c : *mut ffi::base::connection,
                                   drawable :  ffi::xproto::drawable,
@@ -1218,7 +1218,7 @@ pub fn xcb_dri2_swap_interval (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_dri2_get_param (c : *mut ffi::base::connection,
                               drawable :  ffi::xproto::drawable,
@@ -1230,7 +1230,7 @@ pub fn xcb_dri2_get_param (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1246,7 +1246,7 @@ pub fn xcb_dri2_get_param_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_dri2_get_param_unchecked(). is used.
  * Otherwise, it stores the error if any.

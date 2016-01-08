@@ -1133,7 +1133,7 @@ pub fn xcb_xv_image_format_info_end (i:image_format_info_iterator) -> ffi::base:
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xv_query_extension (c : *mut ffi::base::connection) -> query_extension_cookie;
 
@@ -1143,7 +1143,7 @@ pub fn xcb_xv_query_extension (c : *mut ffi::base::connection) -> query_extensio
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1157,7 +1157,7 @@ pub fn xcb_xv_query_extension_unchecked (c : *mut ffi::base::connection) -> quer
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xv_query_extension_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1176,7 +1176,7 @@ pub fn xcb_xv_query_adaptors_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xv_query_adaptors (c : *mut ffi::base::connection,
                                  window :  ffi::xproto::window) -> query_adaptors_cookie;
@@ -1187,7 +1187,7 @@ pub fn xcb_xv_query_adaptors (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1207,7 +1207,7 @@ pub fn xcb_xv_query_adaptors_info_iterator (R : *mut query_adaptors_reply) -> ad
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xv_query_adaptors_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1226,7 +1226,7 @@ pub fn xcb_xv_query_encodings_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xv_query_encodings (c : *mut ffi::base::connection,
                                   port :  port) -> query_encodings_cookie;
@@ -1237,7 +1237,7 @@ pub fn xcb_xv_query_encodings (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1257,7 +1257,7 @@ pub fn xcb_xv_query_encodings_info_iterator (R : *mut query_encodings_reply) -> 
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xv_query_encodings_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1274,7 +1274,7 @@ pub fn xcb_xv_query_encodings_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xv_grab_port (c : *mut ffi::base::connection,
                             port :  port,
@@ -1286,7 +1286,7 @@ pub fn xcb_xv_grab_port (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1302,7 +1302,7 @@ pub fn xcb_xv_grab_port_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xv_grab_port_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1319,7 +1319,7 @@ pub fn xcb_xv_grab_port_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1334,7 +1334,7 @@ pub fn xcb_xv_ungrab_port_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xv_ungrab_port (c : *mut ffi::base::connection,
                               port :  port,
@@ -1346,7 +1346,7 @@ pub fn xcb_xv_ungrab_port (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1370,7 +1370,7 @@ pub fn xcb_xv_put_video_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xv_put_video (c : *mut ffi::base::connection,
                             port :  port,
@@ -1391,7 +1391,7 @@ pub fn xcb_xv_put_video (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1415,7 +1415,7 @@ pub fn xcb_xv_put_still_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xv_put_still (c : *mut ffi::base::connection,
                             port :  port,
@@ -1436,7 +1436,7 @@ pub fn xcb_xv_put_still (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1460,7 +1460,7 @@ pub fn xcb_xv_get_video_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xv_get_video (c : *mut ffi::base::connection,
                             port :  port,
@@ -1481,7 +1481,7 @@ pub fn xcb_xv_get_video (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1505,7 +1505,7 @@ pub fn xcb_xv_get_still_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xv_get_still (c : *mut ffi::base::connection,
                             port :  port,
@@ -1526,7 +1526,7 @@ pub fn xcb_xv_get_still (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1541,7 +1541,7 @@ pub fn xcb_xv_stop_video_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xv_stop_video (c : *mut ffi::base::connection,
                              port :  port,
@@ -1553,7 +1553,7 @@ pub fn xcb_xv_stop_video (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1568,7 +1568,7 @@ pub fn xcb_xv_select_video_notify_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xv_select_video_notify (c : *mut ffi::base::connection,
                                       drawable :  ffi::xproto::drawable,
@@ -1580,7 +1580,7 @@ pub fn xcb_xv_select_video_notify (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1595,7 +1595,7 @@ pub fn xcb_xv_select_port_notify_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xv_select_port_notify (c : *mut ffi::base::connection,
                                      port :  port,
@@ -1607,7 +1607,7 @@ pub fn xcb_xv_select_port_notify (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xv_query_best_size (c : *mut ffi::base::connection,
                                   port :  port,
@@ -1623,7 +1623,7 @@ pub fn xcb_xv_query_best_size (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1643,7 +1643,7 @@ pub fn xcb_xv_query_best_size_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xv_query_best_size_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1660,7 +1660,7 @@ pub fn xcb_xv_query_best_size_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1676,7 +1676,7 @@ pub fn xcb_xv_set_port_attribute_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xv_set_port_attribute (c : *mut ffi::base::connection,
                                      port :  port,
@@ -1689,7 +1689,7 @@ pub fn xcb_xv_set_port_attribute (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xv_get_port_attribute (c : *mut ffi::base::connection,
                                      port :  port,
@@ -1701,7 +1701,7 @@ pub fn xcb_xv_get_port_attribute (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1717,7 +1717,7 @@ pub fn xcb_xv_get_port_attribute_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xv_get_port_attribute_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1736,7 +1736,7 @@ pub fn xcb_xv_query_port_attributes_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xv_query_port_attributes (c : *mut ffi::base::connection,
                                         port :  port) -> query_port_attributes_cookie;
@@ -1747,7 +1747,7 @@ pub fn xcb_xv_query_port_attributes (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1767,7 +1767,7 @@ pub fn xcb_xv_query_port_attributes_attributes_iterator (R : *mut query_port_att
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xv_query_port_attributes_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1786,7 +1786,7 @@ pub fn xcb_xv_list_image_formats_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xv_list_image_formats (c : *mut ffi::base::connection,
                                      port :  port) -> list_image_formats_cookie;
@@ -1797,7 +1797,7 @@ pub fn xcb_xv_list_image_formats (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1819,7 +1819,7 @@ pub fn xcb_xv_list_image_formats_format_iterator (R : *mut list_image_formats_re
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xv_list_image_formats_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1838,7 +1838,7 @@ pub fn xcb_xv_query_image_attributes_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xv_query_image_attributes (c : *mut ffi::base::connection,
                                          port :  port,
@@ -1852,7 +1852,7 @@ pub fn xcb_xv_query_image_attributes (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1886,7 +1886,7 @@ pub fn xcb_xv_query_image_attributes_offsets_end (R : *mut query_image_attribute
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xv_query_image_attributes_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1906,7 +1906,7 @@ pub fn xcb_xv_put_image_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1935,7 +1935,7 @@ pub fn xcb_xv_put_image_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xv_put_image (c : *mut ffi::base::connection,
                             port :  port,
@@ -1961,7 +1961,7 @@ pub fn xcb_xv_put_image (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1991,7 +1991,7 @@ pub fn xcb_xv_shm_put_image_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xv_shm_put_image (c : *mut ffi::base::connection,
                                 port :  port,

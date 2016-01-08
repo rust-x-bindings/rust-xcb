@@ -686,7 +686,7 @@ extern "C" {
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_query_version (c : *mut ffi::base::connection,
                                     client_major_version :  u32,
@@ -698,7 +698,7 @@ pub fn xcb_xfixes_query_version (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -714,7 +714,7 @@ pub fn xcb_xfixes_query_version_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xfixes_query_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -731,7 +731,7 @@ pub fn xcb_xfixes_query_version_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -748,7 +748,7 @@ pub fn xcb_xfixes_change_save_set_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_change_save_set (c : *mut ffi::base::connection,
                                       mode :  u8,
@@ -762,7 +762,7 @@ pub fn xcb_xfixes_change_save_set (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -778,7 +778,7 @@ pub fn xcb_xfixes_select_selection_input_checked (c : *mut ffi::base::connection
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_select_selection_input (c : *mut ffi::base::connection,
                                              window :  ffi::xproto::window,
@@ -791,7 +791,7 @@ pub fn xcb_xfixes_select_selection_input (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -806,7 +806,7 @@ pub fn xcb_xfixes_select_cursor_input_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_select_cursor_input (c : *mut ffi::base::connection,
                                           window :  ffi::xproto::window,
@@ -820,7 +820,7 @@ pub fn xcb_xfixes_get_cursor_image_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_get_cursor_image (c : *mut ffi::base::connection) -> get_cursor_image_cookie;
 
@@ -830,7 +830,7 @@ pub fn xcb_xfixes_get_cursor_image (c : *mut ffi::base::connection) -> get_curso
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -852,7 +852,7 @@ pub fn xcb_xfixes_get_cursor_image_cursor_image_end (R : *mut get_cursor_image_r
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xfixes_get_cursor_image_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -895,7 +895,7 @@ pub fn xcb_xfixes_create_region_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -911,7 +911,7 @@ pub fn xcb_xfixes_create_region_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_create_region (c : *mut ffi::base::connection,
                                     region :  region,
@@ -924,7 +924,7 @@ pub fn xcb_xfixes_create_region (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -939,7 +939,7 @@ pub fn xcb_xfixes_create_region_from_bitmap_checked (c : *mut ffi::base::connect
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_create_region_from_bitmap (c : *mut ffi::base::connection,
                                                 region :  region,
@@ -951,7 +951,7 @@ pub fn xcb_xfixes_create_region_from_bitmap (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -967,7 +967,7 @@ pub fn xcb_xfixes_create_region_from_window_checked (c : *mut ffi::base::connect
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_create_region_from_window (c : *mut ffi::base::connection,
                                                 region :  region,
@@ -980,7 +980,7 @@ pub fn xcb_xfixes_create_region_from_window (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -995,7 +995,7 @@ pub fn xcb_xfixes_create_region_from_gc_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_create_region_from_gc (c : *mut ffi::base::connection,
                                             region :  region,
@@ -1007,7 +1007,7 @@ pub fn xcb_xfixes_create_region_from_gc (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1022,7 +1022,7 @@ pub fn xcb_xfixes_create_region_from_picture_checked (c : *mut ffi::base::connec
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_create_region_from_picture (c : *mut ffi::base::connection,
                                                  region :  region,
@@ -1034,7 +1034,7 @@ pub fn xcb_xfixes_create_region_from_picture (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1048,7 +1048,7 @@ pub fn xcb_xfixes_destroy_region_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_destroy_region (c : *mut ffi::base::connection,
                                      region :  region) -> ffi::base::void_cookie;
@@ -1062,7 +1062,7 @@ pub fn xcb_xfixes_set_region_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1078,7 +1078,7 @@ pub fn xcb_xfixes_set_region_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_set_region (c : *mut ffi::base::connection,
                                  region :  region,
@@ -1091,7 +1091,7 @@ pub fn xcb_xfixes_set_region (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1106,7 +1106,7 @@ pub fn xcb_xfixes_copy_region_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_copy_region (c : *mut ffi::base::connection,
                                   source :  region,
@@ -1118,7 +1118,7 @@ pub fn xcb_xfixes_copy_region (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1134,7 +1134,7 @@ pub fn xcb_xfixes_union_region_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_union_region (c : *mut ffi::base::connection,
                                    source1 :  region,
@@ -1147,7 +1147,7 @@ pub fn xcb_xfixes_union_region (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1163,7 +1163,7 @@ pub fn xcb_xfixes_intersect_region_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_intersect_region (c : *mut ffi::base::connection,
                                        source1 :  region,
@@ -1176,7 +1176,7 @@ pub fn xcb_xfixes_intersect_region (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1192,7 +1192,7 @@ pub fn xcb_xfixes_subtract_region_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_subtract_region (c : *mut ffi::base::connection,
                                       source1 :  region,
@@ -1205,7 +1205,7 @@ pub fn xcb_xfixes_subtract_region (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1221,7 +1221,7 @@ pub fn xcb_xfixes_invert_region_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_invert_region (c : *mut ffi::base::connection,
                                     source :  region,
@@ -1234,7 +1234,7 @@ pub fn xcb_xfixes_invert_region (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1250,7 +1250,7 @@ pub fn xcb_xfixes_translate_region_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_translate_region (c : *mut ffi::base::connection,
                                        region :  region,
@@ -1263,7 +1263,7 @@ pub fn xcb_xfixes_translate_region (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1278,7 +1278,7 @@ pub fn xcb_xfixes_region_extents_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_region_extents (c : *mut ffi::base::connection,
                                      source :  region,
@@ -1292,7 +1292,7 @@ pub fn xcb_xfixes_fetch_region_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_fetch_region (c : *mut ffi::base::connection,
                                    region :  region) -> fetch_region_cookie;
@@ -1303,7 +1303,7 @@ pub fn xcb_xfixes_fetch_region (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1325,7 +1325,7 @@ pub fn xcb_xfixes_fetch_region_rectangles_iterator (R : *mut fetch_region_reply)
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xfixes_fetch_region_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1342,7 +1342,7 @@ pub fn xcb_xfixes_fetch_region_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1359,7 +1359,7 @@ pub fn xcb_xfixes_set_gc_clip_region_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_set_gc_clip_region (c : *mut ffi::base::connection,
                                          gc :  ffi::xproto::gcontext,
@@ -1373,7 +1373,7 @@ pub fn xcb_xfixes_set_gc_clip_region (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1391,7 +1391,7 @@ pub fn xcb_xfixes_set_window_shape_region_checked (c : *mut ffi::base::connectio
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_set_window_shape_region (c : *mut ffi::base::connection,
                                               dest :  ffi::xproto::window,
@@ -1406,7 +1406,7 @@ pub fn xcb_xfixes_set_window_shape_region (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1423,7 +1423,7 @@ pub fn xcb_xfixes_set_picture_clip_region_checked (c : *mut ffi::base::connectio
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_set_picture_clip_region (c : *mut ffi::base::connection,
                                               picture :  ffi::render::picture,
@@ -1439,7 +1439,7 @@ pub fn xcb_xfixes_set_cursor_name_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1455,7 +1455,7 @@ pub fn xcb_xfixes_set_cursor_name_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_set_cursor_name (c : *mut ffi::base::connection,
                                       cursor :  ffi::xproto::cursor,
@@ -1470,7 +1470,7 @@ pub fn xcb_xfixes_get_cursor_name_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_get_cursor_name (c : *mut ffi::base::connection,
                                       cursor :  ffi::xproto::cursor) -> get_cursor_name_cookie;
@@ -1481,7 +1481,7 @@ pub fn xcb_xfixes_get_cursor_name (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1504,7 +1504,7 @@ pub fn xcb_xfixes_get_cursor_name_name_end (R : *mut get_cursor_name_reply) -> f
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xfixes_get_cursor_name_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1523,7 +1523,7 @@ pub fn xcb_xfixes_get_cursor_image_and_name_sizeof (_buffer :  *mut c_void) -> c
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_get_cursor_image_and_name (c : *mut ffi::base::connection) -> get_cursor_image_and_name_cookie;
 
@@ -1533,7 +1533,7 @@ pub fn xcb_xfixes_get_cursor_image_and_name (c : *mut ffi::base::connection) -> 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1563,7 +1563,7 @@ pub fn xcb_xfixes_get_cursor_image_and_name_cursor_image_end (R : *mut get_curso
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xfixes_get_cursor_image_and_name_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1580,7 +1580,7 @@ pub fn xcb_xfixes_get_cursor_image_and_name_reply (c : *mut ffi::base::connectio
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1595,7 +1595,7 @@ pub fn xcb_xfixes_change_cursor_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_change_cursor (c : *mut ffi::base::connection,
                                     source :  ffi::xproto::cursor,
@@ -1609,7 +1609,7 @@ pub fn xcb_xfixes_change_cursor_by_name_sizeof (_buffer :  *mut c_void) -> c_int
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1625,7 +1625,7 @@ pub fn xcb_xfixes_change_cursor_by_name_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_change_cursor_by_name (c : *mut ffi::base::connection,
                                             src :  ffi::xproto::cursor,
@@ -1638,7 +1638,7 @@ pub fn xcb_xfixes_change_cursor_by_name (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1657,7 +1657,7 @@ pub fn xcb_xfixes_expand_region_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_expand_region (c : *mut ffi::base::connection,
                                     source :  region,
@@ -1673,7 +1673,7 @@ pub fn xcb_xfixes_expand_region (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1687,7 +1687,7 @@ pub fn xcb_xfixes_hide_cursor_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_hide_cursor (c : *mut ffi::base::connection,
                                   window :  ffi::xproto::window) -> ffi::base::void_cookie;
@@ -1698,7 +1698,7 @@ pub fn xcb_xfixes_hide_cursor (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1712,7 +1712,7 @@ pub fn xcb_xfixes_show_cursor_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xfixes_show_cursor (c : *mut ffi::base::connection,
                                   window :  ffi::xproto::window) -> ffi::base::void_cookie;
