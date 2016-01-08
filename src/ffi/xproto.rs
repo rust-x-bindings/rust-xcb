@@ -10,6 +10,8 @@ use std;
 use libc::*;
 use ffi;
 
+use std::marker::PhantomData;
+
 #[repr(C)]
 pub struct char2b {
      pub byte1 :   u8,
@@ -480,10 +482,11 @@ impl Clone for setup {
  * @brief setup_iterator
  **/
 #[repr(C)]
-pub struct setup_iterator {
+pub struct setup_iterator<'a> {
     pub data : *mut setup,
     pub rem  : c_int,
-    pub index: c_int
+    pub index: c_int,
+    phantom: PhantomData<&'a mut setup>
 }
 
 

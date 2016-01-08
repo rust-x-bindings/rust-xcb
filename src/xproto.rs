@@ -120,7 +120,7 @@ pub type image_order = c_uint;//{
     pub static XCB_IMAGE_ORDER_LSB_FIRST : image_order = 0;
     pub static XCB_IMAGE_ORDER_MSB_FIRST : image_order = 1;
 //}
-pub type SetupIterator = setup_iterator;
+pub type SetupIterator<'a> = setup_iterator<'a>;
 
 
 pub type mod_mask = c_uint;//{
@@ -2166,93 +2166,93 @@ impl Iterator for SetupAuthenticateIterator {
     }
 }
 
-pub struct Setup {pub base : base::Struct<setup> }
+pub struct Setup<'a> {pub base : base::StructPtr<'a, setup> }
 
 
-impl Setup {
+impl<'a> Setup<'a> {
   pub fn status(&mut self) -> u8 {
-    unsafe { accessor!(status -> u8, self.base.strct) }
+    unsafe { accessor!(status -> u8, &mut *self.base.ptr as &mut setup) }
   }
 
   pub fn protocol_major_version(&mut self) -> u16 {
-    unsafe { accessor!(protocol_major_version -> u16, self.base.strct) }
+    unsafe { accessor!(protocol_major_version -> u16, &mut *self.base.ptr as &mut setup) }
   }
 
   pub fn protocol_minor_version(&mut self) -> u16 {
-    unsafe { accessor!(protocol_minor_version -> u16, self.base.strct) }
+    unsafe { accessor!(protocol_minor_version -> u16, &mut *self.base.ptr as &mut setup) }
   }
 
   pub fn length(&mut self) -> u16 {
-    unsafe { accessor!(length -> u16, self.base.strct) }
+    unsafe { accessor!(length -> u16, &mut *self.base.ptr as &mut setup) }
   }
 
   pub fn release_number(&mut self) -> u32 {
-    unsafe { accessor!(release_number -> u32, self.base.strct) }
+    unsafe { accessor!(release_number -> u32, &mut *self.base.ptr as &mut setup) }
   }
 
   pub fn resource_id_base(&mut self) -> u32 {
-    unsafe { accessor!(resource_id_base -> u32, self.base.strct) }
+    unsafe { accessor!(resource_id_base -> u32, &mut *self.base.ptr as &mut setup) }
   }
 
   pub fn resource_id_mask(&mut self) -> u32 {
-    unsafe { accessor!(resource_id_mask -> u32, self.base.strct) }
+    unsafe { accessor!(resource_id_mask -> u32, &mut *self.base.ptr as &mut setup) }
   }
 
   pub fn motion_buffer_size(&mut self) -> u32 {
-    unsafe { accessor!(motion_buffer_size -> u32, self.base.strct) }
+    unsafe { accessor!(motion_buffer_size -> u32, &mut *self.base.ptr as &mut setup) }
   }
 
   pub fn maximum_request_length(&mut self) -> u16 {
-    unsafe { accessor!(maximum_request_length -> u16, self.base.strct) }
+    unsafe { accessor!(maximum_request_length -> u16, &mut *self.base.ptr as &mut setup) }
   }
 
   pub fn image_byte_order(&mut self) -> u8 {
-    unsafe { accessor!(image_byte_order -> u8, self.base.strct) }
+    unsafe { accessor!(image_byte_order -> u8, &mut *self.base.ptr as &mut setup) }
   }
 
   pub fn bitmap_format_bit_order(&mut self) -> u8 {
-    unsafe { accessor!(bitmap_format_bit_order -> u8, self.base.strct) }
+    unsafe { accessor!(bitmap_format_bit_order -> u8, &mut *self.base.ptr as &mut setup) }
   }
 
   pub fn bitmap_format_scanline_unit(&mut self) -> u8 {
-    unsafe { accessor!(bitmap_format_scanline_unit -> u8, self.base.strct) }
+    unsafe { accessor!(bitmap_format_scanline_unit -> u8, &mut *self.base.ptr as &mut setup) }
   }
 
   pub fn bitmap_format_scanline_pad(&mut self) -> u8 {
-    unsafe { accessor!(bitmap_format_scanline_pad -> u8, self.base.strct) }
+    unsafe { accessor!(bitmap_format_scanline_pad -> u8, &mut *self.base.ptr as &mut setup) }
   }
 
   pub fn min_keycode(&mut self) -> Keycode {
-    unsafe { accessor!(min_keycode -> Keycode, self.base.strct) }
+    unsafe { accessor!(min_keycode -> Keycode, &mut *self.base.ptr) }
   }
 
   pub fn max_keycode(&mut self) -> Keycode {
-    unsafe { accessor!(max_keycode -> Keycode, self.base.strct) }
+    unsafe { accessor!(max_keycode -> Keycode, &mut *self.base.ptr as &mut setup) }
   }
 
   pub fn vendor(&mut self) -> String {
-    unsafe { accessor!(str, xcb_setup_vendor_length, xcb_setup_vendor, self.base.strct) }
+    unsafe { accessor!(str, xcb_setup_vendor_length, xcb_setup_vendor, *self.base.ptr) }
   }
 
   pub fn pixmap_formats(&mut self) -> FormatIterator {
-    unsafe { accessor!(FormatIterator, xcb_setup_pixmap_formats_iterator, self.base.strct) }
+    unsafe { accessor!(FormatIterator, xcb_setup_pixmap_formats_iterator, *self.base.ptr) }
   }
 
   pub fn roots(&mut self) -> ScreenIterator {
-    unsafe { accessor!(ScreenIterator, xcb_setup_roots_iterator, self.base.strct) }
+    unsafe { accessor!(ScreenIterator, xcb_setup_roots_iterator, *self.base.ptr) }
   }
 
 }
 
-impl Iterator for SetupIterator {
-    type Item = Setup;
-    fn next(&mut self) -> Option<Setup> {
+impl<'a> Iterator for SetupIterator<'a> {
+    type Item = &'a mut Setup<'a>;
+    fn next(&mut self) -> Option<&'a mut Setup<'a>> {
         if self.rem == 0 { return None; }
         unsafe {
             let iter: *mut setup_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_setup_next(iter);
-            Some(mem::transmute(*data))
+            Some(mem::transmute(data))
         }
     }
 }

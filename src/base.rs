@@ -39,6 +39,7 @@ use libc::{c_int,c_char,free};
 use std::option::Option;
 
 use std::{num,ptr,vec,str,mem};
+use std::marker::PhantomData;
 // std::num::Zero is unstable in rustc 1.5 => remove impl copy
 // hereunder as soon as Zero gets stabilized (or replaced by something else)
 //use std::num::Zero;
@@ -105,12 +106,12 @@ impl<'s> Connection {
     #[inline]
     pub fn get_setup(&self) -> xproto::Setup {
         unsafe {
+
             let setup = ffi::base::xcb_get_setup(self.c);
             if setup.is_null() {
                 panic!("NULL setup on connection")
-            } else {
-               xproto::Setup { base : Struct { strct : *setup } }
             }
+            mem::transmute(setup)
         }
     }
 
@@ -147,14 +148,14 @@ impl<'s> Connection {
 
     #[inline]
     pub fn connect() -> (Connection, i32) {
-        let mut screen : c_int = 0;
+        let mut screen_num : c_int = 0;
         unsafe {
-            let conn = ffi::base::xcb_connect(ptr::null_mut() as *mut u8, &mut screen);
+            let conn = ffi::base::xcb_connect(ptr::null_mut() as *mut u8, &mut screen_num);
             if conn.is_null() {
                 panic!("Couldn't connect")
             } else {
                 ffi::base::xcb_prefetch_maximum_request_length(conn);
-                (Connection {c:conn}, screen as c_int)
+                (Connection {c:conn}, screen_num as i32)
             }
         }
     }
@@ -249,6 +250,12 @@ pub type AuthInfo = auth_info;
 pub struct Struct<T> {
     pub strct: T
 }
+
+pub struct StructPtr<'a, T: 'a> {
+    pub ptr: *mut T,
+    phantom: PhantomData<&'a T>
+}
+
 
 pub struct Cookie<'s, T: Copy> {
     pub cookie: T,
