@@ -6,22 +6,11 @@ use xcb::xproto::*;
 use std::iter::{Iterator};
 
 fn main() {
-    let (conn, _) = Connection::connect();
+    let (conn, screen_num) = Connection::connect();
 
-    let mut setup : Setup = conn.get_setup();
-    let mut iter = setup.roots();
+    let mut setup = conn.get_setup();
 
-    let mut screen;
-    loop {
-        let n : Option<xcb::xproto::Screen> = iter.next();
-        match n {
-            Some(s) => {
-                screen = s;
-                break;
-            }
-            None => { panic!("Whut") }
-        }
-    }
+    let mut screen = setup.roots().nth(screen_num as usize).unwrap();
 
     let window = conn.generate_id();
 
