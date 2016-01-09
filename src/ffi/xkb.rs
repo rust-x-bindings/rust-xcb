@@ -4,4814 +4,5187 @@
  */
 
 //Make the compiler quiet
-#[allow(unused_imports)];
-#[allow(non_camel_case_types)];
-use core::libc::*;
-use ll::base::*;
-use ll::xproto;
-
-pub static XKB_MAJOR_VERSION : c_uint = 1;
-pub static XKB_MINOR_VERSION : c_uint = 0;
-
-pub type const = c_uint;//{
-    pub static XCB_XKB_CONST_MAX_LEGAL_KEY_CODE : const = 255;
-    pub static XCB_XKB_CONST_PER_KEY_BIT_ARRAY_SIZE : const = 32;
-    pub static XCB_XKB_CONST_KEY_NAME_LENGTH : const = 4;
-//}
-
-pub type event_type = c_uint;//{
-    pub static XCB_XKB_EVENT_TYPE_NEW_KEYBOARD_NOTIFY : event_type = 1;
-    pub static XCB_XKB_EVENT_TYPE_MAP_NOTIFY : event_type = 2;
-    pub static XCB_XKB_EVENT_TYPE_STATE_NOTIFY : event_type = 4;
-    pub static XCB_XKB_EVENT_TYPE_CONTROLS_NOTIFY : event_type = 8;
-    pub static XCB_XKB_EVENT_TYPE_INDICATOR_STATE_NOTIFY : event_type = 16;
-    pub static XCB_XKB_EVENT_TYPE_INDICATOR_MAP_NOTIFY : event_type = 32;
-    pub static XCB_XKB_EVENT_TYPE_NAMES_NOTIFY : event_type = 64;
-    pub static XCB_XKB_EVENT_TYPE_COMPAT_MAP_NOTIFY : event_type = 128;
-    pub static XCB_XKB_EVENT_TYPE_BELL_NOTIFY : event_type = 256;
-    pub static XCB_XKB_EVENT_TYPE_ACTION_MESSAGE : event_type = 512;
-    pub static XCB_XKB_EVENT_TYPE_ACCESS_X_NOTIFY : event_type = 1024;
-    pub static XCB_XKB_EVENT_TYPE_EXTENSION_DEVICE_NOTIFY : event_type = 2048;
-//}
-
-pub type nkn_detail = c_uint;//{
-    pub static XCB_XKB_NKN_DETAIL_KEYCODES : nkn_detail = 1;
-    pub static XCB_XKB_NKN_DETAIL_GEOMETRY : nkn_detail = 2;
-    pub static XCB_XKB_NKN_DETAIL_DEVICE_ID : nkn_detail = 4;
-//}
-
-pub type axn_detail = c_uint;//{
-    pub static XCB_XKB_AXN_DETAIL_SK_PRESS : axn_detail = 1;
-    pub static XCB_XKB_AXN_DETAIL_SK_ACCEPT : axn_detail = 2;
-    pub static XCB_XKB_AXN_DETAIL_SK_REJECT : axn_detail = 4;
-    pub static XCB_XKB_AXN_DETAIL_SK_RELEASE : axn_detail = 8;
-    pub static XCB_XKB_AXN_DETAIL_BK_ACCEPT : axn_detail = 16;
-    pub static XCB_XKB_AXN_DETAIL_BK_REJECT : axn_detail = 32;
-    pub static XCB_XKB_AXN_DETAIL_AXK_WARNING : axn_detail = 64;
-//}
-
-pub type map_part = c_uint;//{
-    pub static XCB_XKB_MAP_PART_KEY_TYPES : map_part = 1;
-    pub static XCB_XKB_MAP_PART_KEY_SYMS : map_part = 2;
-    pub static XCB_XKB_MAP_PART_MODIFIER_MAP : map_part = 4;
-    pub static XCB_XKB_MAP_PART_EXPLICIT_COMPONENTS : map_part = 8;
-    pub static XCB_XKB_MAP_PART_KEY_ACTIONS : map_part = 16;
-    pub static XCB_XKB_MAP_PART_KEY_BEHAVIORS : map_part = 32;
-    pub static XCB_XKB_MAP_PART_VIRTUAL_MODS : map_part = 64;
-    pub static XCB_XKB_MAP_PART_VIRTUAL_MOD_MAP : map_part = 128;
-//}
-
-pub type set_map_flags = c_uint;//{
-    pub static XCB_XKB_SET_MAP_FLAGS_RESIZE_TYPES : set_map_flags = 1;
-    pub static XCB_XKB_SET_MAP_FLAGS_RECOMPUTE_ACTIONS : set_map_flags = 2;
-//}
-
-pub type state_part = c_uint;//{
-    pub static XCB_XKB_STATE_PART_MODIFIER_STATE : state_part = 1;
-    pub static XCB_XKB_STATE_PART_MODIFIER_BASE : state_part = 2;
-    pub static XCB_XKB_STATE_PART_MODIFIER_LATCH : state_part = 4;
-    pub static XCB_XKB_STATE_PART_MODIFIER_LOCK : state_part = 8;
-    pub static XCB_XKB_STATE_PART_GROUP_STATE : state_part = 16;
-    pub static XCB_XKB_STATE_PART_GROUP_BASE : state_part = 32;
-    pub static XCB_XKB_STATE_PART_GROUP_LATCH : state_part = 64;
-    pub static XCB_XKB_STATE_PART_GROUP_LOCK : state_part = 128;
-    pub static XCB_XKB_STATE_PART_COMPAT_STATE : state_part = 256;
-    pub static XCB_XKB_STATE_PART_GRAB_MODS : state_part = 512;
-    pub static XCB_XKB_STATE_PART_COMPAT_GRAB_MODS : state_part = 1024;
-    pub static XCB_XKB_STATE_PART_LOOKUP_MODS : state_part = 2048;
-    pub static XCB_XKB_STATE_PART_COMPAT_LOOKUP_MODS : state_part = 4096;
-    pub static XCB_XKB_STATE_PART_POINTER_BUTTONS : state_part = 8192;
-//}
-
-pub type bool_ctrl = c_uint;//{
-    pub static XCB_XKB_BOOL_CTRL_REPEAT_KEYS : bool_ctrl = 1;
-    pub static XCB_XKB_BOOL_CTRL_SLOW_KEYS : bool_ctrl = 2;
-    pub static XCB_XKB_BOOL_CTRL_BOUNCE_KEYS : bool_ctrl = 4;
-    pub static XCB_XKB_BOOL_CTRL_STICKY_KEYS : bool_ctrl = 8;
-    pub static XCB_XKB_BOOL_CTRL_MOUSE_KEYS : bool_ctrl = 16;
-    pub static XCB_XKB_BOOL_CTRL_MOUSE_KEYS_ACCEL : bool_ctrl = 32;
-    pub static XCB_XKB_BOOL_CTRL_ACCESS_X_KEYS : bool_ctrl = 64;
-    pub static XCB_XKB_BOOL_CTRL_ACCESS_X_TIMEOUT_MASK : bool_ctrl = 128;
-    pub static XCB_XKB_BOOL_CTRL_ACCESS_X_FEEDBACK_MASK : bool_ctrl = 256;
-    pub static XCB_XKB_BOOL_CTRL_AUDIBLE_BELL_MASK : bool_ctrl = 512;
-    pub static XCB_XKB_BOOL_CTRL_OVERLAY_1_MASK : bool_ctrl = 1024;
-    pub static XCB_XKB_BOOL_CTRL_OVERLAY_2_MASK : bool_ctrl = 2048;
-    pub static XCB_XKB_BOOL_CTRL_IGNORE_GROUP_LOCK_MASK : bool_ctrl = 4096;
-//}
-
-pub type control = c_uint;//{
-    pub static XCB_XKB_CONTROL_GROUPS_WRAP : control = 134217728;
-    pub static XCB_XKB_CONTROL_INTERNAL_MODS : control = 268435456;
-    pub static XCB_XKB_CONTROL_IGNORE_LOCK_MODS : control = 536870912;
-    pub static XCB_XKB_CONTROL_PER_KEY_REPEAT : control = 1073741824;
-    pub static XCB_XKB_CONTROL_CONTROLS_ENABLED : control = 2147483648;
-//}
+#![allow(unused_imports)]
+#![allow(non_camel_case_types)]
+use std;
+use libc::*;
+use ffi;
+use ffi::xproto;
 
-pub type axfb_opt = c_uint;//{
-    pub static XCB_XKB_AXFB_OPT_SK_PRESS_FB : axfb_opt = 1;
-    pub static XCB_XKB_AXFB_OPT_SK_ACCEPT_FB : axfb_opt = 2;
-    pub static XCB_XKB_AXFB_OPT_FEATURE_FB : axfb_opt = 4;
-    pub static XCB_XKB_AXFB_OPT_SLOW_WARN_FB : axfb_opt = 8;
-    pub static XCB_XKB_AXFB_OPT_INDICATOR_FB : axfb_opt = 16;
-    pub static XCB_XKB_AXFB_OPT_STICKY_KEYS_FB : axfb_opt = 32;
-    pub static XCB_XKB_AXFB_OPT_SK_RELEASE_FB : axfb_opt = 64;
-    pub static XCB_XKB_AXFB_OPT_SK_REJECT_FB : axfb_opt = 128;
-    pub static XCB_XKB_AXFB_OPT_BK_REJECT_FB : axfb_opt = 256;
-    pub static XCB_XKB_AXFB_OPT_DUMB_BELL : axfb_opt = 512;
-//}
+pub const XKB_MAJOR_VERSION : c_uint = 1;
+pub const XKB_MINOR_VERSION : c_uint = 0;
 
-pub type axsk_opt = c_uint;//{
-    pub static XCB_XKB_AXSK_OPT_TWO_KEYS : axsk_opt = 64;
-    pub static XCB_XKB_AXSK_OPT_LATCH_TO_LOCK : axsk_opt = 128;
-//}
-
-pub struct ax_option {
-    data : [u8,..2]
+#[repr(C)]
+pub struct xcb_xkb_ax_option_t {
+    data : [u8; 2]
+}
+impl Copy for xcb_xkb_ax_option_t {}
+impl Clone for xcb_xkb_ax_option_t {
+    fn clone(&self) -> xcb_xkb_ax_option_t { *self }
+}
+/**
+ * @brief xcb_xkb_ax_option_iterator_t
+ **/
+#[repr(C)]
+pub struct xcb_xkb_ax_option_iterator_t {
+    pub data : *mut xcb_xkb_ax_option_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
+pub type xcb_xkb_device_spec_t = u16;
 /**
- * @brief ax_option_iterator
+ * @brief xcb_xkb_device_spec_iterator_t
  **/
-pub struct ax_option_iterator {
-    data : *ax_option,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_device_spec_iterator_t {
+    pub data : *mut xcb_xkb_device_spec_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub type device_spec = u16;
 
+pub type xcb_xkb_led_class_spec_t = u16;
 /**
- * @brief device_spec_iterator
+ * @brief xcb_xkb_led_class_spec_iterator_t
  **/
-pub struct device_spec_iterator {
-    data : *device_spec,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_led_class_spec_iterator_t {
+    pub data : *mut xcb_xkb_led_class_spec_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub type led_class_result = c_uint;//{
-    pub static XCB_XKB_LED_CLASS_RESULT_KBD_FEEDBACK_CLASS : led_class_result = 0;
-    pub static XCB_XKB_LED_CLASS_RESULT_LED_FEEDBACK_CLASS : led_class_result = 4;
-//}
 
-pub type led_class = c_uint;//{
-    pub static XCB_XKB_LED_CLASS_DFLT_XI_CLASS : led_class = 768;
-    pub static XCB_XKB_LED_CLASS_ALL_XI_CLASSES : led_class = 1280;
-//}
+pub type xcb_xkb_bell_class_spec_t = u16;
+/**
+ * @brief xcb_xkb_bell_class_spec_iterator_t
+ **/
+#[repr(C)]
+pub struct xcb_xkb_bell_class_spec_iterator_t {
+    pub data : *mut xcb_xkb_bell_class_spec_t,
+    pub rem  : c_int,
+    pub index: c_int
+}
 
-pub type led_class_spec = u16;
 
+pub type xcb_xkb_id_spec_t = u16;
 /**
- * @brief led_class_spec_iterator
+ * @brief xcb_xkb_id_spec_iterator_t
  **/
-pub struct led_class_spec_iterator {
-    data : *led_class_spec,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_id_spec_iterator_t {
+    pub data : *mut xcb_xkb_id_spec_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
-
-pub type bell_class_result = c_uint;//{
-    pub static XCB_XKB_BELL_CLASS_RESULT_KBD_FEEDBACK_CLASS : bell_class_result = 0;
-    pub static XCB_XKB_BELL_CLASS_RESULT_BELL_FEEDBACK_CLASS : bell_class_result = 5;
-//}
-
-pub type bell_class = c_uint;//{
-    pub static XCB_XKB_BELL_CLASS_DFLT_XI_CLASS : bell_class = 768;
-//}
-
-pub type bell_class_spec = u16;
-
-/**
- * @brief bell_class_spec_iterator
- **/
-pub struct bell_class_spec_iterator {
-    data : *bell_class_spec,
-    rem  : c_int,
-    index: c_int
-}
-
-pub type id = c_uint;//{
-    pub static XCB_XKB_ID_USE_CORE_KBD : id = 256;
-    pub static XCB_XKB_ID_USE_CORE_PTR : id = 512;
-    pub static XCB_XKB_ID_DFLT_XI_CLASS : id = 768;
-    pub static XCB_XKB_ID_DFLT_XI_ID : id = 1024;
-    pub static XCB_XKB_ID_ALL_XI_CLASS : id = 1280;
-    pub static XCB_XKB_ID_ALL_XI_ID : id = 1536;
-    pub static XCB_XKB_ID_XI_NONE : id = 65280;
-//}
-
-pub type id_spec = u16;
-
-/**
- * @brief id_spec_iterator
- **/
-pub struct id_spec_iterator {
-    data : *id_spec,
-    rem  : c_int,
-    index: c_int
-}
-
-pub type group = c_uint;//{
-    pub static XCB_XKB_GROUP_1 : group = 0;
-    pub static XCB_XKB_GROUP_2 : group = 1;
-    pub static XCB_XKB_GROUP_3 : group = 2;
-    pub static XCB_XKB_GROUP_4 : group = 3;
-//}
-
-pub type groups = c_uint;//{
-    pub static XCB_XKB_GROUPS_ANY : groups = 254;
-    pub static XCB_XKB_GROUPS_ALL : groups = 255;
-//}
-
-pub type set_of_group = c_uint;//{
-    pub static XCB_XKB_SET_OF_GROUP_GROUP_1 : set_of_group = 1;
-    pub static XCB_XKB_SET_OF_GROUP_GROUP_2 : set_of_group = 2;
-    pub static XCB_XKB_SET_OF_GROUP_GROUP_3 : set_of_group = 4;
-    pub static XCB_XKB_SET_OF_GROUP_GROUP_4 : set_of_group = 8;
-//}
-
-pub type set_of_groups = c_uint;//{
-    pub static XCB_XKB_SET_OF_GROUPS_ANY : set_of_groups = 128;
-//}
-
-pub type groups_wrap = c_uint;//{
-    pub static XCB_XKB_GROUPS_WRAP_WRAP_INTO_RANGE : groups_wrap = 0;
-    pub static XCB_XKB_GROUPS_WRAP_CLAMP_INTO_RANGE : groups_wrap = 64;
-    pub static XCB_XKB_GROUPS_WRAP_REDIRECT_INTO_RANGE : groups_wrap = 128;
-//}
-
-pub type v_mods_high = c_uint;//{
-    pub static XCB_XKB_V_MODS_HIGH_15 : v_mods_high = 128;
-    pub static XCB_XKB_V_MODS_HIGH_14 : v_mods_high = 64;
-    pub static XCB_XKB_V_MODS_HIGH_13 : v_mods_high = 32;
-    pub static XCB_XKB_V_MODS_HIGH_12 : v_mods_high = 16;
-    pub static XCB_XKB_V_MODS_HIGH_11 : v_mods_high = 8;
-    pub static XCB_XKB_V_MODS_HIGH_10 : v_mods_high = 4;
-    pub static XCB_XKB_V_MODS_HIGH_9 : v_mods_high = 2;
-    pub static XCB_XKB_V_MODS_HIGH_8 : v_mods_high = 1;
-//}
-
-pub type v_mods_low = c_uint;//{
-    pub static XCB_XKB_V_MODS_LOW_7 : v_mods_low = 128;
-    pub static XCB_XKB_V_MODS_LOW_6 : v_mods_low = 64;
-    pub static XCB_XKB_V_MODS_LOW_5 : v_mods_low = 32;
-    pub static XCB_XKB_V_MODS_LOW_4 : v_mods_low = 16;
-    pub static XCB_XKB_V_MODS_LOW_3 : v_mods_low = 8;
-    pub static XCB_XKB_V_MODS_LOW_2 : v_mods_low = 4;
-    pub static XCB_XKB_V_MODS_LOW_1 : v_mods_low = 2;
-    pub static XCB_XKB_V_MODS_LOW_0 : v_mods_low = 1;
-//}
-
-pub type v_mod = c_uint;//{
-    pub static XCB_XKB_V_MOD_15 : v_mod = 32768;
-    pub static XCB_XKB_V_MOD_14 : v_mod = 16384;
-    pub static XCB_XKB_V_MOD_13 : v_mod = 8192;
-    pub static XCB_XKB_V_MOD_12 : v_mod = 4096;
-    pub static XCB_XKB_V_MOD_11 : v_mod = 2048;
-    pub static XCB_XKB_V_MOD_10 : v_mod = 1024;
-    pub static XCB_XKB_V_MOD_9 : v_mod = 512;
-    pub static XCB_XKB_V_MOD_8 : v_mod = 256;
-    pub static XCB_XKB_V_MOD_7 : v_mod = 128;
-    pub static XCB_XKB_V_MOD_6 : v_mod = 64;
-    pub static XCB_XKB_V_MOD_5 : v_mod = 32;
-    pub static XCB_XKB_V_MOD_4 : v_mod = 16;
-    pub static XCB_XKB_V_MOD_3 : v_mod = 8;
-    pub static XCB_XKB_V_MOD_2 : v_mod = 4;
-    pub static XCB_XKB_V_MOD_1 : v_mod = 2;
-    pub static XCB_XKB_V_MOD_0 : v_mod = 1;
-//}
-
-pub type explicit = c_uint;//{
-    pub static XCB_XKB_EXPLICIT_V_MOD_MAP : explicit = 128;
-    pub static XCB_XKB_EXPLICIT_BEHAVIOR : explicit = 64;
-    pub static XCB_XKB_EXPLICIT_AUTO_REPEAT : explicit = 32;
-    pub static XCB_XKB_EXPLICIT_INTERPRET : explicit = 16;
-    pub static XCB_XKB_EXPLICIT_KEY_TYPE_4 : explicit = 8;
-    pub static XCB_XKB_EXPLICIT_KEY_TYPE_3 : explicit = 4;
-    pub static XCB_XKB_EXPLICIT_KEY_TYPE_2 : explicit = 2;
-    pub static XCB_XKB_EXPLICIT_KEY_TYPE_1 : explicit = 1;
-//}
-
-pub type sym_interpret = c_uint;//{
-    pub static XCB_XKB_SYM_INTERPRET_NONE_OF : sym_interpret = 0;
-    pub static XCB_XKB_SYM_INTERPRET_ANY_OF_OR_NONE : sym_interpret = 1;
-    pub static XCB_XKB_SYM_INTERPRET_ANY_OF : sym_interpret = 2;
-    pub static XCB_XKB_SYM_INTERPRET_ALL_OF : sym_interpret = 3;
-    pub static XCB_XKB_SYM_INTERPRET_EXACTLY : sym_interpret = 4;
-//}
-
-pub type sym_interp_match = c_uint;//{
-    pub static XCB_XKB_SYM_INTERP_MATCH_LEVEL_ONE_ONLY : sym_interp_match = 128;
-    pub static XCB_XKB_SYM_INTERP_MATCH_OP_MASK : sym_interp_match = 127;
-//}
-
-pub type im_flag = c_uint;//{
-    pub static XCB_XKB_IM_FLAG_NO_EXPLICIT : im_flag = 128;
-    pub static XCB_XKB_IM_FLAG_NO_AUTOMATIC : im_flag = 64;
-    pub static XCB_XKB_IM_FLAG_LED_DRIVES_KB : im_flag = 32;
-//}
-
-pub type im_mods_which = c_uint;//{
-    pub static XCB_XKB_IM_MODS_WHICH_USE_COMPAT : im_mods_which = 16;
-    pub static XCB_XKB_IM_MODS_WHICH_USE_EFFECTIVE : im_mods_which = 8;
-    pub static XCB_XKB_IM_MODS_WHICH_USE_LOCKED : im_mods_which = 4;
-    pub static XCB_XKB_IM_MODS_WHICH_USE_LATCHED : im_mods_which = 2;
-    pub static XCB_XKB_IM_MODS_WHICH_USE_BASE : im_mods_which = 1;
-//}
-
-pub type im_groups_which = c_uint;//{
-    pub static XCB_XKB_IM_GROUPS_WHICH_USE_COMPAT : im_groups_which = 16;
-    pub static XCB_XKB_IM_GROUPS_WHICH_USE_EFFECTIVE : im_groups_which = 8;
-    pub static XCB_XKB_IM_GROUPS_WHICH_USE_LOCKED : im_groups_which = 4;
-    pub static XCB_XKB_IM_GROUPS_WHICH_USE_LATCHED : im_groups_which = 2;
-    pub static XCB_XKB_IM_GROUPS_WHICH_USE_BASE : im_groups_which = 1;
-//}
-
-pub struct indicator_map {
-    flags :         u8,
-    whichGroups :   u8,
-    groups :        u8,
-    whichMods :     u8,
-    mods :          u8,
-    realMods :      u8,
-    vmods :         u16,
-    ctrls :         u32
-}
-
-/**
- * @brief indicator_map_iterator
- **/
-pub struct indicator_map_iterator {
-    data : *indicator_map,
-    rem  : c_int,
-    index: c_int
-}
-
-pub type cm_detail = c_uint;//{
-    pub static XCB_XKB_CM_DETAIL_SYM_INTERP : cm_detail = 1;
-    pub static XCB_XKB_CM_DETAIL_GROUP_COMPAT : cm_detail = 2;
-//}
-
-pub type name_detail = c_uint;//{
-    pub static XCB_XKB_NAME_DETAIL_KEYCODES : name_detail = 1;
-    pub static XCB_XKB_NAME_DETAIL_GEOMETRY : name_detail = 2;
-    pub static XCB_XKB_NAME_DETAIL_SYMBOLS : name_detail = 4;
-    pub static XCB_XKB_NAME_DETAIL_PHYS_SYMBOLS : name_detail = 8;
-    pub static XCB_XKB_NAME_DETAIL_TYPES : name_detail = 16;
-    pub static XCB_XKB_NAME_DETAIL_COMPAT : name_detail = 32;
-    pub static XCB_XKB_NAME_DETAIL_KEY_TYPE_NAMES : name_detail = 64;
-    pub static XCB_XKB_NAME_DETAIL_KT_LEVEL_NAMES : name_detail = 128;
-    pub static XCB_XKB_NAME_DETAIL_INDICATOR_NAMES : name_detail = 256;
-    pub static XCB_XKB_NAME_DETAIL_KEY_NAMES : name_detail = 512;
-    pub static XCB_XKB_NAME_DETAIL_KEY_ALIASES : name_detail = 1024;
-    pub static XCB_XKB_NAME_DETAIL_VIRTUAL_MOD_NAMES : name_detail = 2048;
-    pub static XCB_XKB_NAME_DETAIL_GROUP_NAMES : name_detail = 4096;
-    pub static XCB_XKB_NAME_DETAIL_RG_NAMES : name_detail = 8192;
-//}
-
-pub type gbn_detail = c_uint;//{
-    pub static XCB_XKB_GBN_DETAIL_TYPES : gbn_detail = 1;
-    pub static XCB_XKB_GBN_DETAIL_COMPAT_MAP : gbn_detail = 2;
-    pub static XCB_XKB_GBN_DETAIL_CLIENT_SYMBOLS : gbn_detail = 4;
-    pub static XCB_XKB_GBN_DETAIL_SERVER_SYMBOLS : gbn_detail = 8;
-    pub static XCB_XKB_GBN_DETAIL_INDICATOR_MAPS : gbn_detail = 16;
-    pub static XCB_XKB_GBN_DETAIL_KEY_NAMES : gbn_detail = 32;
-    pub static XCB_XKB_GBN_DETAIL_GEOMETRY : gbn_detail = 64;
-    pub static XCB_XKB_GBN_DETAIL_OTHER_NAMES : gbn_detail = 128;
-//}
-
-pub type xi_feature = c_uint;//{
-    pub static XCB_XKB_XI_FEATURE_KEYBOARDS : xi_feature = 1;
-    pub static XCB_XKB_XI_FEATURE_BUTTON_ACTIONS : xi_feature = 2;
-    pub static XCB_XKB_XI_FEATURE_INDICATOR_NAMES : xi_feature = 4;
-    pub static XCB_XKB_XI_FEATURE_INDICATOR_MAPS : xi_feature = 8;
-    pub static XCB_XKB_XI_FEATURE_INDICATOR_STATE : xi_feature = 16;
-//}
-
-pub type per_client_flag = c_uint;//{
-    pub static XCB_XKB_PER_CLIENT_FLAG_DETECTABLE_AUTO_REPEAT : per_client_flag = 1;
-    pub static XCB_XKB_PER_CLIENT_FLAG_GRABS_USE_XKB_STATE : per_client_flag = 2;
-    pub static XCB_XKB_PER_CLIENT_FLAG_AUTO_RESET_CONTROLS : per_client_flag = 4;
-    pub static XCB_XKB_PER_CLIENT_FLAG_LOOKUP_STATE_WHEN_GRABBED : per_client_flag = 8;
-    pub static XCB_XKB_PER_CLIENT_FLAG_SEND_EVENT_USES_XKB_STATE : per_client_flag = 16;
-//}
+
 
-pub struct mod_def {
-    mask :       u8,
-    realMods :   u8,
-    vmods :      u16
+#[repr(C)]
+pub struct xcb_xkb_indicator_map_t {
+     pub flags :         u8,
+     pub whichGroups :   u8,
+     pub groups :        u8,
+     pub whichMods :     u8,
+     pub mods :          u8,
+     pub realMods :      u8,
+     pub vmods :         u16,
+     pub ctrls :         u32
 }
 
+impl Copy for xcb_xkb_indicator_map_t {}
+impl Clone for xcb_xkb_indicator_map_t {
+    fn clone(&self) -> xcb_xkb_indicator_map_t { *self }
+}
 /**
- * @brief mod_def_iterator
+ * @brief xcb_xkb_indicator_map_iterator_t
  **/
-pub struct mod_def_iterator {
-    data : *mod_def,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_indicator_map_iterator_t {
+    pub data : *mut xcb_xkb_indicator_map_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct key_name {
-    name :   [u8,..4]
+#[repr(C)]
+pub struct xcb_xkb_mod_def_t {
+     pub mask :       u8,
+     pub realMods :   u8,
+     pub vmods :      u16
 }
 
+impl Copy for xcb_xkb_mod_def_t {}
+impl Clone for xcb_xkb_mod_def_t {
+    fn clone(&self) -> xcb_xkb_mod_def_t { *self }
+}
 /**
- * @brief key_name_iterator
+ * @brief xcb_xkb_mod_def_iterator_t
  **/
-pub struct key_name_iterator {
-    data : *key_name,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_mod_def_iterator_t {
+    pub data : *mut xcb_xkb_mod_def_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct key_alias {
-    real :    [u8,..4],
-    alias :   [u8,..4]
+#[repr(C)]
+pub struct xcb_xkb_key_name_t {
+     pub name :   [u8; 4]
 }
 
+impl Copy for xcb_xkb_key_name_t {}
+impl Clone for xcb_xkb_key_name_t {
+    fn clone(&self) -> xcb_xkb_key_name_t { *self }
+}
 /**
- * @brief key_alias_iterator
+ * @brief xcb_xkb_key_name_iterator_t
  **/
-pub struct key_alias_iterator {
-    data : *key_alias,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_key_name_iterator_t {
+    pub data : *mut xcb_xkb_key_name_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub struct counted_string_8 {
-    length :   u8
+
+#[repr(C)]
+pub struct xcb_xkb_key_alias_t {
+     pub real :    [u8; 4],
+     pub alias :   [u8; 4]
 }
 
+impl Copy for xcb_xkb_key_alias_t {}
+impl Clone for xcb_xkb_key_alias_t {
+    fn clone(&self) -> xcb_xkb_key_alias_t { *self }
+}
 /**
- * @brief counted_string_8_iterator
+ * @brief xcb_xkb_key_alias_iterator_t
  **/
-pub struct counted_string_8_iterator {
-    data : *counted_string_8,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_key_alias_iterator_t {
+    pub data : *mut xcb_xkb_key_alias_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub struct counted_string_16 {
-    length :   u16,
-    pad0 :     u8
+
+#[repr(C)]
+pub struct xcb_xkb_counted_string_8_t {
+     pub length :   u8
 }
 
+impl Copy for xcb_xkb_counted_string_8_t {}
+impl Clone for xcb_xkb_counted_string_8_t {
+    fn clone(&self) -> xcb_xkb_counted_string_8_t { *self }
+}
 /**
- * @brief counted_string_16_iterator
+ * @brief xcb_xkb_counted_string_8_iterator_t
  **/
-pub struct counted_string_16_iterator {
-    data : *counted_string_16,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_counted_string_8_iterator_t {
+    pub data : *mut xcb_xkb_counted_string_8_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub struct kt_map_entry {
-    active :       u8,
-    level :        u8,
-    mods_mask :    u8,
-    mods_mods :    u8,
-    mods_vmods :   u16,
-    pad0 :         [u8,..2]
+
+#[repr(C)]
+pub struct xcb_xkb_counted_string_16_t {
+     pub length :   u16,
+     pub pad0 :     u8
 }
 
+impl Copy for xcb_xkb_counted_string_16_t {}
+impl Clone for xcb_xkb_counted_string_16_t {
+    fn clone(&self) -> xcb_xkb_counted_string_16_t { *self }
+}
 /**
- * @brief kt_map_entry_iterator
+ * @brief xcb_xkb_counted_string_16_iterator_t
  **/
-pub struct kt_map_entry_iterator {
-    data : *kt_map_entry,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_counted_string_16_iterator_t {
+    pub data : *mut xcb_xkb_counted_string_16_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub struct key_type {
-    mods_mask :     u8,
-    mods_mods :     u8,
-    mods_vmods :    u16,
-    numLevels :     u8,
-    nMapEntries :   u8,
-    hasPreserve :   u8,
-    pad0 :          u8
+
+#[repr(C)]
+pub struct xcb_xkb_kt_map_entry_t {
+     pub active :       u8,
+     pub level :        u8,
+     pub mods_mask :    u8,
+     pub mods_mods :    u8,
+     pub mods_vmods :   u16,
+     pub pad0 :         [u8; 2]
 }
 
+impl Copy for xcb_xkb_kt_map_entry_t {}
+impl Clone for xcb_xkb_kt_map_entry_t {
+    fn clone(&self) -> xcb_xkb_kt_map_entry_t { *self }
+}
 /**
- * @brief key_type_iterator
+ * @brief xcb_xkb_kt_map_entry_iterator_t
  **/
-pub struct key_type_iterator {
-    data : *key_type,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_kt_map_entry_iterator_t {
+    pub data : *mut xcb_xkb_kt_map_entry_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub struct key_sym_map {
-    kt_index :    [u8,..4],
-    groupInfo :   u8,
-    width :       u8,
-    nSyms :       u16
+
+#[repr(C)]
+pub struct xcb_xkb_key_type_t {
+     pub mods_mask :     u8,
+     pub mods_mods :     u8,
+     pub mods_vmods :    u16,
+     pub numLevels :     u8,
+     pub nMapEntries :   u8,
+     pub hasPreserve :   u8,
+     pub pad0 :          u8
 }
 
+impl Copy for xcb_xkb_key_type_t {}
+impl Clone for xcb_xkb_key_type_t {
+    fn clone(&self) -> xcb_xkb_key_type_t { *self }
+}
 /**
- * @brief key_sym_map_iterator
+ * @brief xcb_xkb_key_type_iterator_t
  **/
-pub struct key_sym_map_iterator {
-    data : *key_sym_map,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_key_type_iterator_t {
+    pub data : *mut xcb_xkb_key_type_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct common_behavior {
-    type_ :   u8,
-    data :    u8
+#[repr(C)]
+pub struct xcb_xkb_key_sym_map_t {
+     pub kt_index :    [u8; 4],
+     pub groupInfo :   u8,
+     pub width :       u8,
+     pub nSyms :       u16
 }
 
+impl Copy for xcb_xkb_key_sym_map_t {}
+impl Clone for xcb_xkb_key_sym_map_t {
+    fn clone(&self) -> xcb_xkb_key_sym_map_t { *self }
+}
 /**
- * @brief common_behavior_iterator
+ * @brief xcb_xkb_key_sym_map_iterator_t
  **/
-pub struct common_behavior_iterator {
-    data : *common_behavior,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_key_sym_map_iterator_t {
+    pub data : *mut xcb_xkb_key_sym_map_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct default_behavior {
-    type_ :   u8,
-    pad0 :    u8
+#[repr(C)]
+pub struct xcb_xkb_common_behavior_t {
+     pub type_ :   u8,
+     pub data :    u8
 }
 
+impl Copy for xcb_xkb_common_behavior_t {}
+impl Clone for xcb_xkb_common_behavior_t {
+    fn clone(&self) -> xcb_xkb_common_behavior_t { *self }
+}
 /**
- * @brief default_behavior_iterator
+ * @brief xcb_xkb_common_behavior_iterator_t
  **/
-pub struct default_behavior_iterator {
-    data : *default_behavior,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_common_behavior_iterator_t {
+    pub data : *mut xcb_xkb_common_behavior_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct lock_behavior {
-    type_ :   u8,
-    pad0 :    u8
+#[repr(C)]
+pub struct xcb_xkb_default_behavior_t {
+     pub type_ :   u8,
+     pub pad0 :    u8
 }
 
+impl Copy for xcb_xkb_default_behavior_t {}
+impl Clone for xcb_xkb_default_behavior_t {
+    fn clone(&self) -> xcb_xkb_default_behavior_t { *self }
+}
 /**
- * @brief lock_behavior_iterator
+ * @brief xcb_xkb_default_behavior_iterator_t
  **/
-pub struct lock_behavior_iterator {
-    data : *lock_behavior,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_default_behavior_iterator_t {
+    pub data : *mut xcb_xkb_default_behavior_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct radio_group_behavior {
-    type_ :   u8,
-    group :   u8
+#[repr(C)]
+pub struct xcb_xkb_lock_behavior_t {
+     pub type_ :   u8,
+     pub pad0 :    u8
 }
 
+impl Copy for xcb_xkb_lock_behavior_t {}
+impl Clone for xcb_xkb_lock_behavior_t {
+    fn clone(&self) -> xcb_xkb_lock_behavior_t { *self }
+}
 /**
- * @brief radio_group_behavior_iterator
+ * @brief xcb_xkb_lock_behavior_iterator_t
  **/
-pub struct radio_group_behavior_iterator {
-    data : *radio_group_behavior,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_lock_behavior_iterator_t {
+    pub data : *mut xcb_xkb_lock_behavior_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub struct overlay_1_behavior {
-    type_ :   u8,
-    key :     xproto::keycode
+
+#[repr(C)]
+pub struct xcb_xkb_radio_group_behavior_t {
+     pub type_ :   u8,
+     pub group :   u8
 }
 
+impl Copy for xcb_xkb_radio_group_behavior_t {}
+impl Clone for xcb_xkb_radio_group_behavior_t {
+    fn clone(&self) -> xcb_xkb_radio_group_behavior_t { *self }
+}
 /**
- * @brief overlay_1_behavior_iterator
+ * @brief xcb_xkb_radio_group_behavior_iterator_t
  **/
-pub struct overlay_1_behavior_iterator {
-    data : *overlay_1_behavior,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_radio_group_behavior_iterator_t {
+    pub data : *mut xcb_xkb_radio_group_behavior_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub struct overlay_2_behavior {
-    type_ :   u8,
-    key :     u8
+
+#[repr(C)]
+pub struct xcb_xkb_overlay_1_behavior_t {
+     pub type_ :   u8,
+     pub key :     ffi::xproto::xcb_keycode_t
 }
 
+impl Copy for xcb_xkb_overlay_1_behavior_t {}
+impl Clone for xcb_xkb_overlay_1_behavior_t {
+    fn clone(&self) -> xcb_xkb_overlay_1_behavior_t { *self }
+}
 /**
- * @brief overlay_2_behavior_iterator
+ * @brief xcb_xkb_overlay_1_behavior_iterator_t
  **/
-pub struct overlay_2_behavior_iterator {
-    data : *overlay_2_behavior,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_overlay_1_behavior_iterator_t {
+    pub data : *mut xcb_xkb_overlay_1_behavior_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub struct permament_lock_behavior {
-    type_ :   u8,
-    pad0 :    u8
+
+#[repr(C)]
+pub struct xcb_xkb_overlay_2_behavior_t {
+     pub type_ :   u8,
+     pub key :     u8
 }
 
+impl Copy for xcb_xkb_overlay_2_behavior_t {}
+impl Clone for xcb_xkb_overlay_2_behavior_t {
+    fn clone(&self) -> xcb_xkb_overlay_2_behavior_t { *self }
+}
 /**
- * @brief permament_lock_behavior_iterator
+ * @brief xcb_xkb_overlay_2_behavior_iterator_t
  **/
-pub struct permament_lock_behavior_iterator {
-    data : *permament_lock_behavior,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_overlay_2_behavior_iterator_t {
+    pub data : *mut xcb_xkb_overlay_2_behavior_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub struct permament_radio_group_behavior {
-    type_ :   u8,
-    group :   u8
+
+#[repr(C)]
+pub struct xcb_xkb_permament_lock_behavior_t {
+     pub type_ :   u8,
+     pub pad0 :    u8
 }
 
+impl Copy for xcb_xkb_permament_lock_behavior_t {}
+impl Clone for xcb_xkb_permament_lock_behavior_t {
+    fn clone(&self) -> xcb_xkb_permament_lock_behavior_t { *self }
+}
 /**
- * @brief permament_radio_group_behavior_iterator
+ * @brief xcb_xkb_permament_lock_behavior_iterator_t
  **/
-pub struct permament_radio_group_behavior_iterator {
-    data : *permament_radio_group_behavior,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_permament_lock_behavior_iterator_t {
+    pub data : *mut xcb_xkb_permament_lock_behavior_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub struct permament_overlay_1_behavior {
-    type_ :   u8,
-    key :     xproto::keycode
+
+#[repr(C)]
+pub struct xcb_xkb_permament_radio_group_behavior_t {
+     pub type_ :   u8,
+     pub group :   u8
 }
 
+impl Copy for xcb_xkb_permament_radio_group_behavior_t {}
+impl Clone for xcb_xkb_permament_radio_group_behavior_t {
+    fn clone(&self) -> xcb_xkb_permament_radio_group_behavior_t { *self }
+}
 /**
- * @brief permament_overlay_1_behavior_iterator
+ * @brief xcb_xkb_permament_radio_group_behavior_iterator_t
  **/
-pub struct permament_overlay_1_behavior_iterator {
-    data : *permament_overlay_1_behavior,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_permament_radio_group_behavior_iterator_t {
+    pub data : *mut xcb_xkb_permament_radio_group_behavior_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub struct permament_overlay_2_behavior {
-    type_ :   u8,
-    key :     u8
+
+#[repr(C)]
+pub struct xcb_xkb_permament_overlay_1_behavior_t {
+     pub type_ :   u8,
+     pub key :     ffi::xproto::xcb_keycode_t
 }
 
+impl Copy for xcb_xkb_permament_overlay_1_behavior_t {}
+impl Clone for xcb_xkb_permament_overlay_1_behavior_t {
+    fn clone(&self) -> xcb_xkb_permament_overlay_1_behavior_t { *self }
+}
 /**
- * @brief permament_overlay_2_behavior_iterator
+ * @brief xcb_xkb_permament_overlay_1_behavior_iterator_t
  **/
-pub struct permament_overlay_2_behavior_iterator {
-    data : *permament_overlay_2_behavior,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_permament_overlay_1_behavior_iterator_t {
+    pub data : *mut xcb_xkb_permament_overlay_1_behavior_t,
+    pub rem  : c_int,
+    pub index: c_int
+}
+
+
+#[repr(C)]
+pub struct xcb_xkb_permament_overlay_2_behavior_t {
+     pub type_ :   u8,
+     pub key :     u8
 }
 
-pub struct behavior {
-    data : [u8,..2]
+impl Copy for xcb_xkb_permament_overlay_2_behavior_t {}
+impl Clone for xcb_xkb_permament_overlay_2_behavior_t {
+    fn clone(&self) -> xcb_xkb_permament_overlay_2_behavior_t { *self }
+}
+/**
+ * @brief xcb_xkb_permament_overlay_2_behavior_iterator_t
+ **/
+#[repr(C)]
+pub struct xcb_xkb_permament_overlay_2_behavior_iterator_t {
+    pub data : *mut xcb_xkb_permament_overlay_2_behavior_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
+#[repr(C)]
+pub struct xcb_xkb_behavior_t {
+    data : [u8; 2]
+}
+impl Copy for xcb_xkb_behavior_t {}
+impl Clone for xcb_xkb_behavior_t {
+    fn clone(&self) -> xcb_xkb_behavior_t { *self }
+}
 /**
- * @brief behavior_iterator
+ * @brief xcb_xkb_behavior_iterator_t
  **/
-pub struct behavior_iterator {
-    data : *behavior,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_behavior_iterator_t {
+    pub data : *mut xcb_xkb_behavior_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub type behavior_type = c_uint;//{
-    pub static XCB_XKB_BEHAVIOR_TYPE_DEFAULT : behavior_type = 0;
-    pub static XCB_XKB_BEHAVIOR_TYPE_LOCK : behavior_type = 1;
-    pub static XCB_XKB_BEHAVIOR_TYPE_RADIO_GROUP : behavior_type = 2;
-    pub static XCB_XKB_BEHAVIOR_TYPE_OVERLAY_1 : behavior_type = 3;
-    pub static XCB_XKB_BEHAVIOR_TYPE_OVERLAY_2 : behavior_type = 4;
-    pub static XCB_XKB_BEHAVIOR_TYPE_PERMAMENT_LOCK : behavior_type = 129;
-    pub static XCB_XKB_BEHAVIOR_TYPE_PERMAMENT_RADIO_GROUP : behavior_type = 130;
-    pub static XCB_XKB_BEHAVIOR_TYPE_PERMAMENT_OVERLAY_1 : behavior_type = 131;
-    pub static XCB_XKB_BEHAVIOR_TYPE_PERMAMENT_OVERLAY_2 : behavior_type = 132;
-//}
 
-pub struct set_behavior {
-    keycode :    xproto::keycode,
-    behavior :   behavior,
-    pad0 :       u8
+#[repr(C)]
+pub struct xcb_xkb_set_behavior_t {
+     pub keycode :    ffi::xproto::xcb_keycode_t,
+     pub behavior :   xcb_xkb_behavior_t,
+     pub pad0 :       u8
 }
 
+impl Copy for xcb_xkb_set_behavior_t {}
+impl Clone for xcb_xkb_set_behavior_t {
+    fn clone(&self) -> xcb_xkb_set_behavior_t { *self }
+}
 /**
- * @brief set_behavior_iterator
+ * @brief xcb_xkb_set_behavior_iterator_t
  **/
-pub struct set_behavior_iterator {
-    data : *set_behavior,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_set_behavior_iterator_t {
+    pub data : *mut xcb_xkb_set_behavior_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct set_explicit {
-    keycode :    xproto::keycode,
-    explicit :   u8
+#[repr(C)]
+pub struct xcb_xkb_set_explicit_t {
+     pub keycode :    ffi::xproto::xcb_keycode_t,
+     pub explicit :   u8
 }
 
+impl Copy for xcb_xkb_set_explicit_t {}
+impl Clone for xcb_xkb_set_explicit_t {
+    fn clone(&self) -> xcb_xkb_set_explicit_t { *self }
+}
 /**
- * @brief set_explicit_iterator
+ * @brief xcb_xkb_set_explicit_iterator_t
  **/
-pub struct set_explicit_iterator {
-    data : *set_explicit,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_set_explicit_iterator_t {
+    pub data : *mut xcb_xkb_set_explicit_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct key_mod_map {
-    keycode :   xproto::keycode,
-    mods :      u8
+#[repr(C)]
+pub struct xcb_xkb_key_mod_map_t {
+     pub keycode :   ffi::xproto::xcb_keycode_t,
+     pub mods :      u8
 }
 
+impl Copy for xcb_xkb_key_mod_map_t {}
+impl Clone for xcb_xkb_key_mod_map_t {
+    fn clone(&self) -> xcb_xkb_key_mod_map_t { *self }
+}
 /**
- * @brief key_mod_map_iterator
+ * @brief xcb_xkb_key_mod_map_iterator_t
  **/
-pub struct key_mod_map_iterator {
-    data : *key_mod_map,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_key_mod_map_iterator_t {
+    pub data : *mut xcb_xkb_key_mod_map_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub struct key_v_mod_map {
-    keycode :   xproto::keycode,
-    pad0 :      u8,
-    vmods :     u16
+
+#[repr(C)]
+pub struct xcb_xkb_key_v_mod_map_t {
+     pub keycode :   ffi::xproto::xcb_keycode_t,
+     pub pad0 :      u8,
+     pub vmods :     u16
 }
 
+impl Copy for xcb_xkb_key_v_mod_map_t {}
+impl Clone for xcb_xkb_key_v_mod_map_t {
+    fn clone(&self) -> xcb_xkb_key_v_mod_map_t { *self }
+}
 /**
- * @brief key_v_mod_map_iterator
+ * @brief xcb_xkb_key_v_mod_map_iterator_t
  **/
-pub struct key_v_mod_map_iterator {
-    data : *key_v_mod_map,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_key_v_mod_map_iterator_t {
+    pub data : *mut xcb_xkb_key_v_mod_map_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub struct kt_set_map_entry {
-    level :         u8,
-    realMods :      u8,
-    virtualMods :   u16
+
+#[repr(C)]
+pub struct xcb_xkb_kt_set_map_entry_t {
+     pub level :         u8,
+     pub realMods :      u8,
+     pub virtualMods :   u16
 }
 
+impl Copy for xcb_xkb_kt_set_map_entry_t {}
+impl Clone for xcb_xkb_kt_set_map_entry_t {
+    fn clone(&self) -> xcb_xkb_kt_set_map_entry_t { *self }
+}
 /**
- * @brief kt_set_map_entry_iterator
+ * @brief xcb_xkb_kt_set_map_entry_iterator_t
  **/
-pub struct kt_set_map_entry_iterator {
-    data : *kt_set_map_entry,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_kt_set_map_entry_iterator_t {
+    pub data : *mut xcb_xkb_kt_set_map_entry_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub struct set_key_type {
-    mask :          u8,
-    realMods :      u8,
-    virtualMods :   u16,
-    numLevels :     u8,
-    nMapEntries :   u8,
-    preserve :      u8,
-    pad0 :          u8
+
+#[repr(C)]
+pub struct xcb_xkb_set_key_type_t {
+     pub mask :          u8,
+     pub realMods :      u8,
+     pub virtualMods :   u16,
+     pub numLevels :     u8,
+     pub nMapEntries :   u8,
+     pub preserve :      u8,
+     pub pad0 :          u8
 }
 
+impl Copy for xcb_xkb_set_key_type_t {}
+impl Clone for xcb_xkb_set_key_type_t {
+    fn clone(&self) -> xcb_xkb_set_key_type_t { *self }
+}
 /**
- * @brief set_key_type_iterator
+ * @brief xcb_xkb_set_key_type_iterator_t
  **/
-pub struct set_key_type_iterator {
-    data : *set_key_type,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_set_key_type_iterator_t {
+    pub data : *mut xcb_xkb_set_key_type_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub type string8 = u8;
 
+pub type xcb_xkb_string8_t = c_char;
 /**
- * @brief string8_iterator
+ * @brief xcb_xkb_string8_iterator_t
  **/
-pub struct string8_iterator {
-    data : *string8,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_string8_iterator_t {
+    pub data : *mut xcb_xkb_string8_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub struct property {
-    nameLength :    u16,
-    valueLength :   u16
+
+#[repr(C)]
+pub struct xcb_xkb_property_t {
+     pub nameLength :    u16,
+     pub valueLength :   u16
 }
 
+impl Copy for xcb_xkb_property_t {}
+impl Clone for xcb_xkb_property_t {
+    fn clone(&self) -> xcb_xkb_property_t { *self }
+}
 /**
- * @brief property_iterator
+ * @brief xcb_xkb_property_iterator_t
  **/
-pub struct property_iterator {
-    data : *property,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_property_iterator_t {
+    pub data : *mut xcb_xkb_property_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub struct outline {
-    nPoints :        u8,
-    cornerRadius :   u8,
-    pad0 :           [u8,..2]
+
+#[repr(C)]
+pub struct xcb_xkb_outline_t {
+     pub nPoints :        u8,
+     pub cornerRadius :   u8,
+     pub pad0 :           [u8; 2]
 }
 
+impl Copy for xcb_xkb_outline_t {}
+impl Clone for xcb_xkb_outline_t {
+    fn clone(&self) -> xcb_xkb_outline_t { *self }
+}
 /**
- * @brief outline_iterator
+ * @brief xcb_xkb_outline_iterator_t
  **/
-pub struct outline_iterator {
-    data : *outline,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_outline_iterator_t {
+    pub data : *mut xcb_xkb_outline_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct shape {
-    name :         xproto::atom,
-    nOutlines :    u8,
-    primaryNdx :   u8,
-    approxNdx :    u8,
-    pad0 :         u8
+#[repr(C)]
+pub struct xcb_xkb_shape_t {
+     pub name :         ffi::xproto::xcb_atom_t,
+     pub nOutlines :    u8,
+     pub primaryNdx :   u8,
+     pub approxNdx :    u8,
+     pub pad0 :         u8
 }
 
+impl Copy for xcb_xkb_shape_t {}
+impl Clone for xcb_xkb_shape_t {
+    fn clone(&self) -> xcb_xkb_shape_t { *self }
+}
 /**
- * @brief shape_iterator
+ * @brief xcb_xkb_shape_iterator_t
  **/
-pub struct shape_iterator {
-    data : *shape,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_shape_iterator_t {
+    pub data : *mut xcb_xkb_shape_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct key {
-    name :       [string8,..4],
-    gap :        i16,
-    shapeNdx :   u8,
-    colorNdx :   u8
+#[repr(C)]
+pub struct xcb_xkb_key_t {
+     pub name :       [xcb_xkb_string8_t; 4],
+     pub gap :        i16,
+     pub shapeNdx :   u8,
+     pub colorNdx :   u8
 }
 
+impl Copy for xcb_xkb_key_t {}
+impl Clone for xcb_xkb_key_t {
+    fn clone(&self) -> xcb_xkb_key_t { *self }
+}
 /**
- * @brief key_iterator
+ * @brief xcb_xkb_key_iterator_t
  **/
-pub struct key_iterator {
-    data : *key,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_key_iterator_t {
+    pub data : *mut xcb_xkb_key_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct overlay_key {
-    over :    [string8,..4],
-    under :   [string8,..4]
+#[repr(C)]
+pub struct xcb_xkb_overlay_key_t {
+     pub over :    [xcb_xkb_string8_t; 4],
+     pub under :   [xcb_xkb_string8_t; 4]
 }
 
+impl Copy for xcb_xkb_overlay_key_t {}
+impl Clone for xcb_xkb_overlay_key_t {
+    fn clone(&self) -> xcb_xkb_overlay_key_t { *self }
+}
 /**
- * @brief overlay_key_iterator
+ * @brief xcb_xkb_overlay_key_iterator_t
  **/
-pub struct overlay_key_iterator {
-    data : *overlay_key,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_overlay_key_iterator_t {
+    pub data : *mut xcb_xkb_overlay_key_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct overlay_row {
-    rowUnder :   u8,
-    nKeys :      u8,
-    pad0 :       [u8,..2]
+#[repr(C)]
+pub struct xcb_xkb_overlay_row_t {
+     pub rowUnder :   u8,
+     pub nKeys :      u8,
+     pub pad0 :       [u8; 2]
 }
 
+impl Copy for xcb_xkb_overlay_row_t {}
+impl Clone for xcb_xkb_overlay_row_t {
+    fn clone(&self) -> xcb_xkb_overlay_row_t { *self }
+}
 /**
- * @brief overlay_row_iterator
+ * @brief xcb_xkb_overlay_row_iterator_t
  **/
-pub struct overlay_row_iterator {
-    data : *overlay_row,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_overlay_row_iterator_t {
+    pub data : *mut xcb_xkb_overlay_row_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct overlay {
-    name :    xproto::atom,
-    nRows :   u8,
-    pad0 :    [u8,..3]
+#[repr(C)]
+pub struct xcb_xkb_overlay_t {
+     pub name :    ffi::xproto::xcb_atom_t,
+     pub nRows :   u8,
+     pub pad0 :    [u8; 3]
 }
 
+impl Copy for xcb_xkb_overlay_t {}
+impl Clone for xcb_xkb_overlay_t {
+    fn clone(&self) -> xcb_xkb_overlay_t { *self }
+}
 /**
- * @brief overlay_iterator
+ * @brief xcb_xkb_overlay_iterator_t
  **/
-pub struct overlay_iterator {
-    data : *overlay,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_overlay_iterator_t {
+    pub data : *mut xcb_xkb_overlay_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct row {
-    top :        i16,
-    left :       i16,
-    nKeys :      u8,
-    vertical :   u8,
-    pad0 :       [u8,..2]
+#[repr(C)]
+pub struct xcb_xkb_row_t {
+     pub top :        i16,
+     pub left :       i16,
+     pub nKeys :      u8,
+     pub vertical :   u8,
+     pub pad0 :       [u8; 2]
 }
 
+impl Copy for xcb_xkb_row_t {}
+impl Clone for xcb_xkb_row_t {
+    fn clone(&self) -> xcb_xkb_row_t { *self }
+}
 /**
- * @brief row_iterator
+ * @brief xcb_xkb_row_iterator_t
  **/
-pub struct row_iterator {
-    data : *row,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_row_iterator_t {
+    pub data : *mut xcb_xkb_row_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub type doodad_type = c_uint;//{
-    pub static XCB_XKB_DOODAD_TYPE_OUTLINE : doodad_type = 1;
-    pub static XCB_XKB_DOODAD_TYPE_SOLID : doodad_type = 2;
-    pub static XCB_XKB_DOODAD_TYPE_TEXT : doodad_type = 3;
-    pub static XCB_XKB_DOODAD_TYPE_INDICATOR : doodad_type = 4;
-    pub static XCB_XKB_DOODAD_TYPE_LOGO : doodad_type = 5;
-//}
 
-pub struct common_doodad {
-    name :       xproto::atom,
-    type_ :      u8,
-    priority :   u8,
-    top :        i16,
-    left :       i16,
-    angle :      i16
+#[repr(C)]
+pub struct xcb_xkb_common_doodad_t {
+     pub name :       ffi::xproto::xcb_atom_t,
+     pub type_ :      u8,
+     pub priority :   u8,
+     pub top :        i16,
+     pub left :       i16,
+     pub angle :      i16
 }
 
+impl Copy for xcb_xkb_common_doodad_t {}
+impl Clone for xcb_xkb_common_doodad_t {
+    fn clone(&self) -> xcb_xkb_common_doodad_t { *self }
+}
 /**
- * @brief common_doodad_iterator
+ * @brief xcb_xkb_common_doodad_iterator_t
  **/
-pub struct common_doodad_iterator {
-    data : *common_doodad,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_common_doodad_iterator_t {
+    pub data : *mut xcb_xkb_common_doodad_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub struct shape_doodad {
-    name :       xproto::atom,
-    type_ :      u8,
-    priority :   u8,
-    top :        i16,
-    left :       i16,
-    angle :      i16,
-    colorNdx :   u8,
-    shapeNdx :   u8,
-    pad0 :       [u8,..6]
+
+#[repr(C)]
+pub struct xcb_xkb_shape_doodad_t {
+     pub name :       ffi::xproto::xcb_atom_t,
+     pub type_ :      u8,
+     pub priority :   u8,
+     pub top :        i16,
+     pub left :       i16,
+     pub angle :      i16,
+     pub colorNdx :   u8,
+     pub shapeNdx :   u8,
+     pub pad0 :       [u8; 6]
 }
 
+impl Copy for xcb_xkb_shape_doodad_t {}
+impl Clone for xcb_xkb_shape_doodad_t {
+    fn clone(&self) -> xcb_xkb_shape_doodad_t { *self }
+}
 /**
- * @brief shape_doodad_iterator
+ * @brief xcb_xkb_shape_doodad_iterator_t
  **/
-pub struct shape_doodad_iterator {
-    data : *shape_doodad,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_shape_doodad_iterator_t {
+    pub data : *mut xcb_xkb_shape_doodad_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub struct text_doodad {
-    name :       xproto::atom,
-    type_ :      u8,
-    priority :   u8,
-    top :        i16,
-    left :       i16,
-    angle :      i16,
-    width :      u16,
-    height :     u16,
-    colorNdx :   u8,
-    pad0 :       [u8,..3]
+
+#[repr(C)]
+pub struct xcb_xkb_text_doodad_t {
+     pub name :       ffi::xproto::xcb_atom_t,
+     pub type_ :      u8,
+     pub priority :   u8,
+     pub top :        i16,
+     pub left :       i16,
+     pub angle :      i16,
+     pub width :      u16,
+     pub height :     u16,
+     pub colorNdx :   u8,
+     pub pad0 :       [u8; 3]
 }
 
+impl Copy for xcb_xkb_text_doodad_t {}
+impl Clone for xcb_xkb_text_doodad_t {
+    fn clone(&self) -> xcb_xkb_text_doodad_t { *self }
+}
 /**
- * @brief text_doodad_iterator
+ * @brief xcb_xkb_text_doodad_iterator_t
  **/
-pub struct text_doodad_iterator {
-    data : *text_doodad,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_text_doodad_iterator_t {
+    pub data : *mut xcb_xkb_text_doodad_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct indicator_doodad {
-    name :          xproto::atom,
-    type_ :         u8,
-    priority :      u8,
-    top :           i16,
-    left :          i16,
-    angle :         i16,
-    shapeNdx :      u8,
-    onColorNdx :    u8,
-    offColorNdx :   u8,
-    pad0 :          [u8,..5]
+#[repr(C)]
+pub struct xcb_xkb_indicator_doodad_t {
+     pub name :          ffi::xproto::xcb_atom_t,
+     pub type_ :         u8,
+     pub priority :      u8,
+     pub top :           i16,
+     pub left :          i16,
+     pub angle :         i16,
+     pub shapeNdx :      u8,
+     pub onColorNdx :    u8,
+     pub offColorNdx :   u8,
+     pub pad0 :          [u8; 5]
 }
 
+impl Copy for xcb_xkb_indicator_doodad_t {}
+impl Clone for xcb_xkb_indicator_doodad_t {
+    fn clone(&self) -> xcb_xkb_indicator_doodad_t { *self }
+}
 /**
- * @brief indicator_doodad_iterator
+ * @brief xcb_xkb_indicator_doodad_iterator_t
  **/
-pub struct indicator_doodad_iterator {
-    data : *indicator_doodad,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_indicator_doodad_iterator_t {
+    pub data : *mut xcb_xkb_indicator_doodad_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct logo_doodad {
-    name :       xproto::atom,
-    type_ :      u8,
-    priority :   u8,
-    top :        i16,
-    left :       i16,
-    angle :      i16,
-    colorNdx :   u8,
-    shapeNdx :   u8,
-    pad0 :       [u8,..6]
+#[repr(C)]
+pub struct xcb_xkb_logo_doodad_t {
+     pub name :       ffi::xproto::xcb_atom_t,
+     pub type_ :      u8,
+     pub priority :   u8,
+     pub top :        i16,
+     pub left :       i16,
+     pub angle :      i16,
+     pub colorNdx :   u8,
+     pub shapeNdx :   u8,
+     pub pad0 :       [u8; 6]
 }
 
+impl Copy for xcb_xkb_logo_doodad_t {}
+impl Clone for xcb_xkb_logo_doodad_t {
+    fn clone(&self) -> xcb_xkb_logo_doodad_t { *self }
+}
 /**
- * @brief logo_doodad_iterator
+ * @brief xcb_xkb_logo_doodad_iterator_t
  **/
-pub struct logo_doodad_iterator {
-    data : *logo_doodad,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_logo_doodad_iterator_t {
+    pub data : *mut xcb_xkb_logo_doodad_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub struct doodad {
-    data : [u8,..20]
-}
 
+#[repr(C)]
+pub struct xcb_xkb_doodad_t {
+    data : [u8; 20]
+}
+impl Copy for xcb_xkb_doodad_t {}
+impl Clone for xcb_xkb_doodad_t {
+    fn clone(&self) -> xcb_xkb_doodad_t { *self }
+}
 /**
- * @brief doodad_iterator
+ * @brief xcb_xkb_doodad_iterator_t
  **/
-pub struct doodad_iterator {
-    data : *doodad,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_doodad_iterator_t {
+    pub data : *mut xcb_xkb_doodad_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub struct section {
-    name :        xproto::atom,
-    top :         i16,
-    left :        i16,
-    width :       u16,
-    height :      u16,
-    angle :       i16,
-    priority :    u8,
-    nRows :       u8,
-    nDoodads :    u8,
-    nOverlays :   u8,
-    pad0 :        [u8,..2]
+
+#[repr(C)]
+pub struct xcb_xkb_section_t {
+     pub name :        ffi::xproto::xcb_atom_t,
+     pub top :         i16,
+     pub left :        i16,
+     pub width :       u16,
+     pub height :      u16,
+     pub angle :       i16,
+     pub priority :    u8,
+     pub nRows :       u8,
+     pub nDoodads :    u8,
+     pub nOverlays :   u8,
+     pub pad0 :        [u8; 2]
 }
 
+impl Copy for xcb_xkb_section_t {}
+impl Clone for xcb_xkb_section_t {
+    fn clone(&self) -> xcb_xkb_section_t { *self }
+}
 /**
- * @brief section_iterator
+ * @brief xcb_xkb_section_iterator_t
  **/
-pub struct section_iterator {
-    data : *section,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_section_iterator_t {
+    pub data : *mut xcb_xkb_section_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct listing {
-    flags :    u16,
-    length :   u16
+#[repr(C)]
+pub struct xcb_xkb_listing_t {
+     pub flags :    u16,
+     pub length :   u16
 }
 
+impl Copy for xcb_xkb_listing_t {}
+impl Clone for xcb_xkb_listing_t {
+    fn clone(&self) -> xcb_xkb_listing_t { *self }
+}
 /**
- * @brief listing_iterator
+ * @brief xcb_xkb_listing_iterator_t
  **/
-pub struct listing_iterator {
-    data : *listing,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_listing_iterator_t {
+    pub data : *mut xcb_xkb_listing_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct device_led_info {
-    ledClass :         led_class_spec,
-    ledID :            id_spec,
-    namesPresent :     u32,
-    mapsPresent :      u32,
-    physIndicators :   u32,
-    state :            u32
+#[repr(C)]
+pub struct xcb_xkb_device_led_info_t {
+     pub ledClass :         xcb_xkb_led_class_spec_t,
+     pub ledID :            xcb_xkb_id_spec_t,
+     pub namesPresent :     u32,
+     pub mapsPresent :      u32,
+     pub physIndicators :   u32,
+     pub state :            u32
 }
 
+impl Copy for xcb_xkb_device_led_info_t {}
+impl Clone for xcb_xkb_device_led_info_t {
+    fn clone(&self) -> xcb_xkb_device_led_info_t { *self }
+}
 /**
- * @brief device_led_info_iterator
+ * @brief xcb_xkb_device_led_info_iterator_t
  **/
-pub struct device_led_info_iterator {
-    data : *device_led_info,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_device_led_info_iterator_t {
+    pub data : *mut xcb_xkb_device_led_info_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub type error = c_uint;//{
-    pub static XCB_XKB_ERROR_BAD_DEVICE : error = 255;
-    pub static XCB_XKB_ERROR_BAD_CLASS : error = 254;
-    pub static XCB_XKB_ERROR_BAD_ID : error = 253;
-//}
 
-/** Opcode for xcb_xkb_keyboard. */
-pub static XCB_XKB_KEYBOARD : c_int = 0;
 
-pub struct keyboard_error {
-    response_type :   u8,
-    error_code :      u8,
-    sequence :        u16,
-    value :           u32,
-    minorOpcode :     u16,
-    majorOpcode :     u8,
-    pad0 :            [u8,..21]
+#[repr(C)]
+pub struct xcb_xkb_keyboard_error_t {
+     pub response_type :   u8,
+     pub error_code :      u8,
+     pub sequence :        u16,
+     pub value :           u32,
+     pub minorOpcode :     u16,
+     pub majorOpcode :     u8,
+     pub pad0 :            [u8; 21]
 }
-
-pub type sa = c_uint;//{
-    pub static XCB_XKB_SA_CLEAR_LOCKS : sa = 1;
-    pub static XCB_XKB_SA_LATCH_TO_LOCK : sa = 2;
-    pub static XCB_XKB_SA_USE_MOD_MAP_MODS : sa = 4;
-    pub static XCB_XKB_SA_GROUP_ABSOLUTE : sa = 4;
-//}
 
-pub type sa_type = c_uint;//{
-    pub static XCB_XKB_SA_TYPE_NO_ACTION : sa_type = 0;
-    pub static XCB_XKB_SA_TYPE_SET_MODS : sa_type = 1;
-    pub static XCB_XKB_SA_TYPE_LATCH_MODS : sa_type = 2;
-    pub static XCB_XKB_SA_TYPE_LOCK_MODS : sa_type = 3;
-    pub static XCB_XKB_SA_TYPE_SET_GROUP : sa_type = 4;
-    pub static XCB_XKB_SA_TYPE_LATCH_GROUP : sa_type = 5;
-    pub static XCB_XKB_SA_TYPE_LOCK_GROUP : sa_type = 6;
-    pub static XCB_XKB_SA_TYPE_MOVE_PTR : sa_type = 7;
-    pub static XCB_XKB_SA_TYPE_PTR_BTN : sa_type = 8;
-    pub static XCB_XKB_SA_TYPE_LOCK_PTR_BTN : sa_type = 9;
-    pub static XCB_XKB_SA_TYPE_SET_PTR_DFLT : sa_type = 10;
-    pub static XCB_XKB_SA_TYPE_ISO_LOCK : sa_type = 11;
-    pub static XCB_XKB_SA_TYPE_TERMINATE : sa_type = 12;
-    pub static XCB_XKB_SA_TYPE_SWITCH_SCREEN : sa_type = 13;
-    pub static XCB_XKB_SA_TYPE_SET_CONTROLS : sa_type = 14;
-    pub static XCB_XKB_SA_TYPE_LOCK_CONTROLS : sa_type = 15;
-    pub static XCB_XKB_SA_TYPE_ACTION_MESSAGE : sa_type = 16;
-    pub static XCB_XKB_SA_TYPE_REDIRECT_KEY : sa_type = 17;
-    pub static XCB_XKB_SA_TYPE_DEVICE_BTN : sa_type = 18;
-    pub static XCB_XKB_SA_TYPE_LOCK_DEVICE_BTN : sa_type = 19;
-    pub static XCB_XKB_SA_TYPE_DEVICE_VALUATOR : sa_type = 20;
-//}
+impl Copy for xcb_xkb_keyboard_error_t {}
+impl Clone for xcb_xkb_keyboard_error_t {
+    fn clone(&self) -> xcb_xkb_keyboard_error_t { *self }
+}
 
-pub struct sa_no_action {
-    type_ :   u8,
-    pad0 :    [u8,..7]
+#[repr(C)]
+pub struct xcb_xkb_sa_no_action_t {
+     pub type_ :   u8,
+     pub pad0 :    [u8; 7]
 }
 
+impl Copy for xcb_xkb_sa_no_action_t {}
+impl Clone for xcb_xkb_sa_no_action_t {
+    fn clone(&self) -> xcb_xkb_sa_no_action_t { *self }
+}
 /**
- * @brief sa_no_action_iterator
+ * @brief xcb_xkb_sa_no_action_iterator_t
  **/
-pub struct sa_no_action_iterator {
-    data : *sa_no_action,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_sa_no_action_iterator_t {
+    pub data : *mut xcb_xkb_sa_no_action_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub struct sa_set_mods {
-    type_ :       u8,
-    flags :       u8,
-    mask :        u8,
-    realMods :    u8,
-    vmodsHigh :   u8,
-    vmodsLow :    u8,
-    pad0 :        [u8,..2]
+
+#[repr(C)]
+pub struct xcb_xkb_sa_set_mods_t {
+     pub type_ :       u8,
+     pub flags :       u8,
+     pub mask :        u8,
+     pub realMods :    u8,
+     pub vmodsHigh :   u8,
+     pub vmodsLow :    u8,
+     pub pad0 :        [u8; 2]
 }
 
+impl Copy for xcb_xkb_sa_set_mods_t {}
+impl Clone for xcb_xkb_sa_set_mods_t {
+    fn clone(&self) -> xcb_xkb_sa_set_mods_t { *self }
+}
 /**
- * @brief sa_set_mods_iterator
+ * @brief xcb_xkb_sa_set_mods_iterator_t
  **/
-pub struct sa_set_mods_iterator {
-    data : *sa_set_mods,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_sa_set_mods_iterator_t {
+    pub data : *mut xcb_xkb_sa_set_mods_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct sa_latch_mods {
-    type_ :       u8,
-    flags :       u8,
-    mask :        u8,
-    realMods :    u8,
-    vmodsHigh :   u8,
-    vmodsLow :    u8,
-    pad0 :        [u8,..2]
+#[repr(C)]
+pub struct xcb_xkb_sa_latch_mods_t {
+     pub type_ :       u8,
+     pub flags :       u8,
+     pub mask :        u8,
+     pub realMods :    u8,
+     pub vmodsHigh :   u8,
+     pub vmodsLow :    u8,
+     pub pad0 :        [u8; 2]
 }
 
+impl Copy for xcb_xkb_sa_latch_mods_t {}
+impl Clone for xcb_xkb_sa_latch_mods_t {
+    fn clone(&self) -> xcb_xkb_sa_latch_mods_t { *self }
+}
 /**
- * @brief sa_latch_mods_iterator
+ * @brief xcb_xkb_sa_latch_mods_iterator_t
  **/
-pub struct sa_latch_mods_iterator {
-    data : *sa_latch_mods,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_sa_latch_mods_iterator_t {
+    pub data : *mut xcb_xkb_sa_latch_mods_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct sa_lock_mods {
-    type_ :       u8,
-    flags :       u8,
-    mask :        u8,
-    realMods :    u8,
-    vmodsHigh :   u8,
-    vmodsLow :    u8,
-    pad0 :        [u8,..2]
+#[repr(C)]
+pub struct xcb_xkb_sa_lock_mods_t {
+     pub type_ :       u8,
+     pub flags :       u8,
+     pub mask :        u8,
+     pub realMods :    u8,
+     pub vmodsHigh :   u8,
+     pub vmodsLow :    u8,
+     pub pad0 :        [u8; 2]
 }
 
+impl Copy for xcb_xkb_sa_lock_mods_t {}
+impl Clone for xcb_xkb_sa_lock_mods_t {
+    fn clone(&self) -> xcb_xkb_sa_lock_mods_t { *self }
+}
 /**
- * @brief sa_lock_mods_iterator
+ * @brief xcb_xkb_sa_lock_mods_iterator_t
  **/
-pub struct sa_lock_mods_iterator {
-    data : *sa_lock_mods,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_sa_lock_mods_iterator_t {
+    pub data : *mut xcb_xkb_sa_lock_mods_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct sa_set_group {
-    type_ :   u8,
-    flags :   u8,
-    group :   i8,
-    pad0 :    [u8,..5]
+#[repr(C)]
+pub struct xcb_xkb_sa_set_group_t {
+     pub type_ :   u8,
+     pub flags :   u8,
+     pub group :   i8,
+     pub pad0 :    [u8; 5]
 }
 
+impl Copy for xcb_xkb_sa_set_group_t {}
+impl Clone for xcb_xkb_sa_set_group_t {
+    fn clone(&self) -> xcb_xkb_sa_set_group_t { *self }
+}
 /**
- * @brief sa_set_group_iterator
+ * @brief xcb_xkb_sa_set_group_iterator_t
  **/
-pub struct sa_set_group_iterator {
-    data : *sa_set_group,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_sa_set_group_iterator_t {
+    pub data : *mut xcb_xkb_sa_set_group_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct sa_latch_group {
-    type_ :   u8,
-    flags :   u8,
-    group :   i8,
-    pad0 :    [u8,..5]
+#[repr(C)]
+pub struct xcb_xkb_sa_latch_group_t {
+     pub type_ :   u8,
+     pub flags :   u8,
+     pub group :   i8,
+     pub pad0 :    [u8; 5]
 }
 
+impl Copy for xcb_xkb_sa_latch_group_t {}
+impl Clone for xcb_xkb_sa_latch_group_t {
+    fn clone(&self) -> xcb_xkb_sa_latch_group_t { *self }
+}
 /**
- * @brief sa_latch_group_iterator
+ * @brief xcb_xkb_sa_latch_group_iterator_t
  **/
-pub struct sa_latch_group_iterator {
-    data : *sa_latch_group,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_sa_latch_group_iterator_t {
+    pub data : *mut xcb_xkb_sa_latch_group_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct sa_lock_group {
-    type_ :   u8,
-    flags :   u8,
-    group :   i8,
-    pad0 :    [u8,..5]
+#[repr(C)]
+pub struct xcb_xkb_sa_lock_group_t {
+     pub type_ :   u8,
+     pub flags :   u8,
+     pub group :   i8,
+     pub pad0 :    [u8; 5]
 }
 
+impl Copy for xcb_xkb_sa_lock_group_t {}
+impl Clone for xcb_xkb_sa_lock_group_t {
+    fn clone(&self) -> xcb_xkb_sa_lock_group_t { *self }
+}
 /**
- * @brief sa_lock_group_iterator
+ * @brief xcb_xkb_sa_lock_group_iterator_t
  **/
-pub struct sa_lock_group_iterator {
-    data : *sa_lock_group,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_sa_lock_group_iterator_t {
+    pub data : *mut xcb_xkb_sa_lock_group_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub type sa_move_ptr_flag = c_uint;//{
-    pub static XCB_XKB_SA_MOVE_PTR_FLAG_NO_ACCELERATION : sa_move_ptr_flag = 1;
-    pub static XCB_XKB_SA_MOVE_PTR_FLAG_MOVE_ABSOLUTE_X : sa_move_ptr_flag = 2;
-    pub static XCB_XKB_SA_MOVE_PTR_FLAG_MOVE_ABSOLUTE_Y : sa_move_ptr_flag = 4;
-//}
 
-pub struct sa_move_ptr {
-    type_ :   u8,
-    flags :   u8,
-    xHigh :   i8,
-    xLow :    u8,
-    yHigh :   i8,
-    yLow :    u8,
-    pad0 :    [u8,..2]
+#[repr(C)]
+pub struct xcb_xkb_sa_move_ptr_t {
+     pub type_ :   u8,
+     pub flags :   u8,
+     pub xHigh :   i8,
+     pub xLow :    u8,
+     pub yHigh :   i8,
+     pub yLow :    u8,
+     pub pad0 :    [u8; 2]
 }
 
+impl Copy for xcb_xkb_sa_move_ptr_t {}
+impl Clone for xcb_xkb_sa_move_ptr_t {
+    fn clone(&self) -> xcb_xkb_sa_move_ptr_t { *self }
+}
 /**
- * @brief sa_move_ptr_iterator
+ * @brief xcb_xkb_sa_move_ptr_iterator_t
  **/
-pub struct sa_move_ptr_iterator {
-    data : *sa_move_ptr,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_sa_move_ptr_iterator_t {
+    pub data : *mut xcb_xkb_sa_move_ptr_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub struct sa_ptr_btn {
-    type_ :    u8,
-    flags :    u8,
-    count :    u8,
-    button :   u8,
-    pad0 :     [u8,..4]
+
+#[repr(C)]
+pub struct xcb_xkb_sa_ptr_btn_t {
+     pub type_ :    u8,
+     pub flags :    u8,
+     pub count :    u8,
+     pub button :   u8,
+     pub pad0 :     [u8; 4]
 }
 
+impl Copy for xcb_xkb_sa_ptr_btn_t {}
+impl Clone for xcb_xkb_sa_ptr_btn_t {
+    fn clone(&self) -> xcb_xkb_sa_ptr_btn_t { *self }
+}
 /**
- * @brief sa_ptr_btn_iterator
+ * @brief xcb_xkb_sa_ptr_btn_iterator_t
  **/
-pub struct sa_ptr_btn_iterator {
-    data : *sa_ptr_btn,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_sa_ptr_btn_iterator_t {
+    pub data : *mut xcb_xkb_sa_ptr_btn_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub struct sa_lock_ptr_btn {
-    type_ :    u8,
-    flags :    u8,
-    pad0 :     u8,
-    button :   u8,
-    pad1 :     [u8,..4]
+
+#[repr(C)]
+pub struct xcb_xkb_sa_lock_ptr_btn_t {
+     pub type_ :    u8,
+     pub flags :    u8,
+     pub pad0 :     u8,
+     pub button :   u8,
+     pub pad1 :     [u8; 4]
 }
 
+impl Copy for xcb_xkb_sa_lock_ptr_btn_t {}
+impl Clone for xcb_xkb_sa_lock_ptr_btn_t {
+    fn clone(&self) -> xcb_xkb_sa_lock_ptr_btn_t { *self }
+}
 /**
- * @brief sa_lock_ptr_btn_iterator
+ * @brief xcb_xkb_sa_lock_ptr_btn_iterator_t
  **/
-pub struct sa_lock_ptr_btn_iterator {
-    data : *sa_lock_ptr_btn,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_sa_lock_ptr_btn_iterator_t {
+    pub data : *mut xcb_xkb_sa_lock_ptr_btn_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub type sa_set_ptr_dflt_flag = c_uint;//{
-    pub static XCB_XKB_SA_SET_PTR_DFLT_FLAG_DFLT_BTN_ABSOLUTE : sa_set_ptr_dflt_flag = 2;
-    pub static XCB_XKB_SA_SET_PTR_DFLT_FLAG_AFFECT_DFLT_BUTTON : sa_set_ptr_dflt_flag = 1;
-//}
 
-pub struct sa_set_ptr_dflt {
-    type_ :    u8,
-    flags :    u8,
-    affect :   u8,
-    value :    i8,
-    pad0 :     [u8,..4]
+#[repr(C)]
+pub struct xcb_xkb_sa_set_ptr_dflt_t {
+     pub type_ :    u8,
+     pub flags :    u8,
+     pub affect :   u8,
+     pub value :    i8,
+     pub pad0 :     [u8; 4]
 }
 
+impl Copy for xcb_xkb_sa_set_ptr_dflt_t {}
+impl Clone for xcb_xkb_sa_set_ptr_dflt_t {
+    fn clone(&self) -> xcb_xkb_sa_set_ptr_dflt_t { *self }
+}
 /**
- * @brief sa_set_ptr_dflt_iterator
+ * @brief xcb_xkb_sa_set_ptr_dflt_iterator_t
  **/
-pub struct sa_set_ptr_dflt_iterator {
-    data : *sa_set_ptr_dflt,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_sa_set_ptr_dflt_iterator_t {
+    pub data : *mut xcb_xkb_sa_set_ptr_dflt_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub type sa_iso_lock_flag = c_uint;//{
-    pub static XCB_XKB_SA_ISO_LOCK_FLAG_NO_LOCK : sa_iso_lock_flag = 1;
-    pub static XCB_XKB_SA_ISO_LOCK_FLAG_NO_UNLOCK : sa_iso_lock_flag = 2;
-    pub static XCB_XKB_SA_ISO_LOCK_FLAG_USE_MOD_MAP_MODS : sa_iso_lock_flag = 4;
-    pub static XCB_XKB_SA_ISO_LOCK_FLAG_GROUP_ABSOLUTE : sa_iso_lock_flag = 4;
-    pub static XCB_XKB_SA_ISO_LOCK_FLAG_ISO_DFLT_IS_GROUP : sa_iso_lock_flag = 8;
-//}
 
-pub type sa_iso_lock_no_affect = c_uint;//{
-    pub static XCB_XKB_SA_ISO_LOCK_NO_AFFECT_CTRLS : sa_iso_lock_no_affect = 8;
-    pub static XCB_XKB_SA_ISO_LOCK_NO_AFFECT_PTR : sa_iso_lock_no_affect = 16;
-    pub static XCB_XKB_SA_ISO_LOCK_NO_AFFECT_GROUP : sa_iso_lock_no_affect = 32;
-    pub static XCB_XKB_SA_ISO_LOCK_NO_AFFECT_MODS : sa_iso_lock_no_affect = 64;
-//}
-
-pub struct sa_iso_lock {
-    type_ :       u8,
-    flags :       u8,
-    mask :        u8,
-    realMods :    u8,
-    group :       i8,
-    affect :      u8,
-    vmodsHigh :   u8,
-    vmodsLow :    u8
+#[repr(C)]
+pub struct xcb_xkb_sa_iso_lock_t {
+     pub type_ :       u8,
+     pub flags :       u8,
+     pub mask :        u8,
+     pub realMods :    u8,
+     pub group :       i8,
+     pub affect :      u8,
+     pub vmodsHigh :   u8,
+     pub vmodsLow :    u8
 }
 
+impl Copy for xcb_xkb_sa_iso_lock_t {}
+impl Clone for xcb_xkb_sa_iso_lock_t {
+    fn clone(&self) -> xcb_xkb_sa_iso_lock_t { *self }
+}
 /**
- * @brief sa_iso_lock_iterator
+ * @brief xcb_xkb_sa_iso_lock_iterator_t
  **/
-pub struct sa_iso_lock_iterator {
-    data : *sa_iso_lock,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_sa_iso_lock_iterator_t {
+    pub data : *mut xcb_xkb_sa_iso_lock_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub struct sa_terminate {
-    type_ :   u8,
-    pad0 :    [u8,..7]
+
+#[repr(C)]
+pub struct xcb_xkb_sa_terminate_t {
+     pub type_ :   u8,
+     pub pad0 :    [u8; 7]
 }
 
+impl Copy for xcb_xkb_sa_terminate_t {}
+impl Clone for xcb_xkb_sa_terminate_t {
+    fn clone(&self) -> xcb_xkb_sa_terminate_t { *self }
+}
 /**
- * @brief sa_terminate_iterator
+ * @brief xcb_xkb_sa_terminate_iterator_t
  **/
-pub struct sa_terminate_iterator {
-    data : *sa_terminate,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_sa_terminate_iterator_t {
+    pub data : *mut xcb_xkb_sa_terminate_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub type switch_screen_flag = c_uint;//{
-    pub static XCB_XKB_SWITCH_SCREEN_FLAG_APPLICATION : switch_screen_flag = 1;
-    pub static XCB_XKB_SWITCH_SCREEN_FLAG_ABSOLUTE : switch_screen_flag = 4;
-//}
 
-pub struct sa_switch_screen {
-    type_ :       u8,
-    flags :       u8,
-    newScreen :   i8,
-    pad0 :        [u8,..5]
+#[repr(C)]
+pub struct xcb_xkb_sa_switch_screen_t {
+     pub type_ :       u8,
+     pub flags :       u8,
+     pub newScreen :   i8,
+     pub pad0 :        [u8; 5]
 }
 
+impl Copy for xcb_xkb_sa_switch_screen_t {}
+impl Clone for xcb_xkb_sa_switch_screen_t {
+    fn clone(&self) -> xcb_xkb_sa_switch_screen_t { *self }
+}
 /**
- * @brief sa_switch_screen_iterator
+ * @brief xcb_xkb_sa_switch_screen_iterator_t
  **/
-pub struct sa_switch_screen_iterator {
-    data : *sa_switch_screen,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_sa_switch_screen_iterator_t {
+    pub data : *mut xcb_xkb_sa_switch_screen_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
-
-pub type bool_ctrls_high = c_uint;//{
-    pub static XCB_XKB_BOOL_CTRLS_HIGH_ACCESS_X_FEEDBACK : bool_ctrls_high = 1;
-    pub static XCB_XKB_BOOL_CTRLS_HIGH_AUDIBLE_BELL : bool_ctrls_high = 2;
-    pub static XCB_XKB_BOOL_CTRLS_HIGH_OVERLAY_1 : bool_ctrls_high = 4;
-    pub static XCB_XKB_BOOL_CTRLS_HIGH_OVERLAY_2 : bool_ctrls_high = 8;
-    pub static XCB_XKB_BOOL_CTRLS_HIGH_IGNORE_GROUP_LOCK : bool_ctrls_high = 16;
-//}
 
-pub type bool_ctrls_low = c_uint;//{
-    pub static XCB_XKB_BOOL_CTRLS_LOW_REPEAT_KEYS : bool_ctrls_low = 1;
-    pub static XCB_XKB_BOOL_CTRLS_LOW_SLOW_KEYS : bool_ctrls_low = 2;
-    pub static XCB_XKB_BOOL_CTRLS_LOW_BOUNCE_KEYS : bool_ctrls_low = 4;
-    pub static XCB_XKB_BOOL_CTRLS_LOW_STICKY_KEYS : bool_ctrls_low = 8;
-    pub static XCB_XKB_BOOL_CTRLS_LOW_MOUSE_KEYS : bool_ctrls_low = 16;
-    pub static XCB_XKB_BOOL_CTRLS_LOW_MOUSE_KEYS_ACCEL : bool_ctrls_low = 32;
-    pub static XCB_XKB_BOOL_CTRLS_LOW_ACCESS_X_KEYS : bool_ctrls_low = 64;
-    pub static XCB_XKB_BOOL_CTRLS_LOW_ACCESS_X_TIMEOUT : bool_ctrls_low = 128;
-//}
 
-pub struct sa_set_controls {
-    type_ :           u8,
-    pad0 :            [u8,..3],
-    boolCtrlsHigh :   u8,
-    boolCtrlsLow :    u8,
-    pad1 :            [u8,..2]
+#[repr(C)]
+pub struct xcb_xkb_sa_set_controls_t {
+     pub type_ :           u8,
+     pub pad0 :            [u8; 3],
+     pub boolCtrlsHigh :   u8,
+     pub boolCtrlsLow :    u8,
+     pub pad1 :            [u8; 2]
 }
 
+impl Copy for xcb_xkb_sa_set_controls_t {}
+impl Clone for xcb_xkb_sa_set_controls_t {
+    fn clone(&self) -> xcb_xkb_sa_set_controls_t { *self }
+}
 /**
- * @brief sa_set_controls_iterator
+ * @brief xcb_xkb_sa_set_controls_iterator_t
  **/
-pub struct sa_set_controls_iterator {
-    data : *sa_set_controls,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_sa_set_controls_iterator_t {
+    pub data : *mut xcb_xkb_sa_set_controls_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct sa_lock_controls {
-    type_ :           u8,
-    pad0 :            [u8,..3],
-    boolCtrlsHigh :   u8,
-    boolCtrlsLow :    u8,
-    pad1 :            [u8,..2]
+#[repr(C)]
+pub struct xcb_xkb_sa_lock_controls_t {
+     pub type_ :           u8,
+     pub pad0 :            [u8; 3],
+     pub boolCtrlsHigh :   u8,
+     pub boolCtrlsLow :    u8,
+     pub pad1 :            [u8; 2]
 }
 
+impl Copy for xcb_xkb_sa_lock_controls_t {}
+impl Clone for xcb_xkb_sa_lock_controls_t {
+    fn clone(&self) -> xcb_xkb_sa_lock_controls_t { *self }
+}
 /**
- * @brief sa_lock_controls_iterator
+ * @brief xcb_xkb_sa_lock_controls_iterator_t
  **/
-pub struct sa_lock_controls_iterator {
-    data : *sa_lock_controls,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_sa_lock_controls_iterator_t {
+    pub data : *mut xcb_xkb_sa_lock_controls_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub type action_message_flag = c_uint;//{
-    pub static XCB_XKB_ACTION_MESSAGE_FLAG_ON_PRESS : action_message_flag = 1;
-    pub static XCB_XKB_ACTION_MESSAGE_FLAG_ON_RELEASE : action_message_flag = 2;
-    pub static XCB_XKB_ACTION_MESSAGE_FLAG_GEN_KEY_EVENT : action_message_flag = 4;
-//}
 
-pub struct sa_action_message {
-    type_ :     u8,
-    flags :     u8,
-    message :   [u8,..6]
+#[repr(C)]
+pub struct xcb_xkb_sa_action_message_t {
+     pub type_ :     u8,
+     pub flags :     u8,
+     pub message :   [u8; 6]
 }
 
+impl Copy for xcb_xkb_sa_action_message_t {}
+impl Clone for xcb_xkb_sa_action_message_t {
+    fn clone(&self) -> xcb_xkb_sa_action_message_t { *self }
+}
 /**
- * @brief sa_action_message_iterator
+ * @brief xcb_xkb_sa_action_message_iterator_t
  **/
-pub struct sa_action_message_iterator {
-    data : *sa_action_message,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_sa_action_message_iterator_t {
+    pub data : *mut xcb_xkb_sa_action_message_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct sa_redirect_key {
-    type_ :           u8,
-    newkey :          xproto::keycode,
-    mask :            u8,
-    realModifiers :   u8,
-    vmodsMaskHigh :   u8,
-    vmodsMaskLow :    u8,
-    vmodsHigh :       u8,
-    vmodsLow :        u8
+#[repr(C)]
+pub struct xcb_xkb_sa_redirect_key_t {
+     pub type_ :           u8,
+     pub newkey :          ffi::xproto::xcb_keycode_t,
+     pub mask :            u8,
+     pub realModifiers :   u8,
+     pub vmodsMaskHigh :   u8,
+     pub vmodsMaskLow :    u8,
+     pub vmodsHigh :       u8,
+     pub vmodsLow :        u8
 }
 
+impl Copy for xcb_xkb_sa_redirect_key_t {}
+impl Clone for xcb_xkb_sa_redirect_key_t {
+    fn clone(&self) -> xcb_xkb_sa_redirect_key_t { *self }
+}
 /**
- * @brief sa_redirect_key_iterator
+ * @brief xcb_xkb_sa_redirect_key_iterator_t
  **/
-pub struct sa_redirect_key_iterator {
-    data : *sa_redirect_key,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_sa_redirect_key_iterator_t {
+    pub data : *mut xcb_xkb_sa_redirect_key_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct sa_device_btn {
-    type_ :    u8,
-    flags :    u8,
-    count :    u8,
-    button :   u8,
-    device :   u8,
-    pad0 :     [u8,..3]
+#[repr(C)]
+pub struct xcb_xkb_sa_device_btn_t {
+     pub type_ :    u8,
+     pub flags :    u8,
+     pub count :    u8,
+     pub button :   u8,
+     pub device :   u8,
+     pub pad0 :     [u8; 3]
 }
 
+impl Copy for xcb_xkb_sa_device_btn_t {}
+impl Clone for xcb_xkb_sa_device_btn_t {
+    fn clone(&self) -> xcb_xkb_sa_device_btn_t { *self }
+}
 /**
- * @brief sa_device_btn_iterator
+ * @brief xcb_xkb_sa_device_btn_iterator_t
  **/
-pub struct sa_device_btn_iterator {
-    data : *sa_device_btn,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_sa_device_btn_iterator_t {
+    pub data : *mut xcb_xkb_sa_device_btn_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub type lock_device_flags = c_uint;//{
-    pub static XCB_XKB_LOCK_DEVICE_FLAGS_NO_LOCK : lock_device_flags = 1;
-    pub static XCB_XKB_LOCK_DEVICE_FLAGS_NO_UNLOCK : lock_device_flags = 2;
-//}
 
-pub struct sa_lock_device_btn {
-    type_ :    u8,
-    flags :    u8,
-    pad0 :     u8,
-    button :   u8,
-    device :   u8
+#[repr(C)]
+pub struct xcb_xkb_sa_lock_device_btn_t {
+     pub type_ :    u8,
+     pub flags :    u8,
+     pub pad0 :     u8,
+     pub button :   u8,
+     pub device :   u8
 }
 
+impl Copy for xcb_xkb_sa_lock_device_btn_t {}
+impl Clone for xcb_xkb_sa_lock_device_btn_t {
+    fn clone(&self) -> xcb_xkb_sa_lock_device_btn_t { *self }
+}
 /**
- * @brief sa_lock_device_btn_iterator
+ * @brief xcb_xkb_sa_lock_device_btn_iterator_t
  **/
-pub struct sa_lock_device_btn_iterator {
-    data : *sa_lock_device_btn,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_sa_lock_device_btn_iterator_t {
+    pub data : *mut xcb_xkb_sa_lock_device_btn_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub type sa_val_what = c_uint;//{
-    pub static XCB_XKB_SA_VAL_WHAT_IGNORE_VAL : sa_val_what = 0;
-    pub static XCB_XKB_SA_VAL_WHAT_SET_VAL_MIN : sa_val_what = 1;
-    pub static XCB_XKB_SA_VAL_WHAT_SET_VAL_CENTER : sa_val_what = 2;
-    pub static XCB_XKB_SA_VAL_WHAT_SET_VAL_MAX : sa_val_what = 3;
-    pub static XCB_XKB_SA_VAL_WHAT_SET_VAL_RELATIVE : sa_val_what = 4;
-    pub static XCB_XKB_SA_VAL_WHAT_SET_VAL_ABSOLUTE : sa_val_what = 5;
-//}
 
-pub struct sa_device_valuator {
-    type_ :       u8,
-    device :      u8,
-    val1what :    u8,
-    val1index :   u8,
-    val1value :   u8,
-    val2what :    u8,
-    val2index :   u8,
-    val2value :   u8
+#[repr(C)]
+pub struct xcb_xkb_sa_device_valuator_t {
+     pub type_ :       u8,
+     pub device :      u8,
+     pub val1what :    u8,
+     pub val1index :   u8,
+     pub val1value :   u8,
+     pub val2what :    u8,
+     pub val2index :   u8,
+     pub val2value :   u8
 }
 
+impl Copy for xcb_xkb_sa_device_valuator_t {}
+impl Clone for xcb_xkb_sa_device_valuator_t {
+    fn clone(&self) -> xcb_xkb_sa_device_valuator_t { *self }
+}
 /**
- * @brief sa_device_valuator_iterator
+ * @brief xcb_xkb_sa_device_valuator_iterator_t
  **/
-pub struct sa_device_valuator_iterator {
-    data : *sa_device_valuator,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_sa_device_valuator_iterator_t {
+    pub data : *mut xcb_xkb_sa_device_valuator_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
 
-pub struct action {
-    data : [u8,..8]
-}
 
+#[repr(C)]
+pub struct xcb_xkb_action_t {
+    data : [u8; 8]
+}
+impl Copy for xcb_xkb_action_t {}
+impl Clone for xcb_xkb_action_t {
+    fn clone(&self) -> xcb_xkb_action_t { *self }
+}
 /**
- * @brief action_iterator
+ * @brief xcb_xkb_action_iterator_t
  **/
-pub struct action_iterator {
-    data : *action,
-    rem  : c_int,
-    index: c_int
+#[repr(C)]
+pub struct xcb_xkb_action_iterator_t {
+    pub data : *mut xcb_xkb_action_t,
+    pub rem  : c_int,
+    pub index: c_int
 }
+
 
-pub struct use_extension_cookie {
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct xcb_xkb_use_extension_cookie_t {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xkb_use_extension. */
-pub static XCB_XKB_USE_EXTENSION : c_int = 0;
 
-pub struct use_extension_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    wantedMajor :    u16,
-    wantedMinor :    u16
+#[repr(C)]
+pub struct xcb_xkb_use_extension_request_t {
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub wantedMajor :    u16,
+     pub wantedMinor :    u16
 }
 
-pub struct use_extension_reply {
-    response_type :   u8,
-    supported :       u8,
-    sequence :        u16,
-    length :          u32,
-    serverMajor :     u16,
-    serverMinor :     u16,
-    pad0 :            [u8,..20]
+impl Copy for xcb_xkb_use_extension_request_t {}
+impl Clone for xcb_xkb_use_extension_request_t {
+    fn clone(&self) -> xcb_xkb_use_extension_request_t { *self }
 }
 
-pub struct select_events_details {
-    affectNewKeyboard :       u16,
-    newKeyboardDetails :      u16,
-    affectState :             u16,
-    stateDetails :            u16,
-    affectCtrls :             u32,
-    ctrlDetails :             u32,
-    affectIndicatorState :    u32,
-    indicatorStateDetails :   u32,
-    affectIndicatorMap :      u32,
-    indicatorMapDetails :     u32,
-    affectNames :             u16,
-    namesDetails :            u16,
-    affectCompat :            u8,
-    compatDetails :           u8,
-    affectBell :              u8,
-    bellDetails :             u8,
-    affectMsgDetails :        u8,
-    msgDetails :              u8,
-    affectAccessX :           u16,
-    accessXDetails :          u16,
-    affectExtDev :            u16
-    extdevDetails :           u16
+#[repr(C)]
+pub struct xcb_xkb_use_extension_reply_t {
+     pub response_type :   u8,
+     pub supported :       u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub serverMajor :     u16,
+     pub serverMinor :     u16,
+     pub pad0 :            [u8; 20]
 }
 
-/** Opcode for xcb_xkb_select_events. */
-pub static XCB_XKB_SELECT_EVENTS : c_int = 1;
-
-pub struct select_events_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    deviceSpec :     device_spec,
-    affectWhich :    u16,
-    clear :          u16,
-    selectAll :      u16,
-    affectMap :      u16,
-    map :            u16
+impl Copy for xcb_xkb_use_extension_reply_t {}
+impl Clone for xcb_xkb_use_extension_reply_t {
+    fn clone(&self) -> xcb_xkb_use_extension_reply_t { *self }
 }
 
-/** Opcode for xcb_xkb_bell. */
-pub static XCB_XKB_BELL : c_int = 3;
-
-pub struct bell_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    deviceSpec :     device_spec,
-    bellClass :      bell_class_spec,
-    bellID :         id_spec,
-    percent :        i8,
-    forceSound :     u8,
-    eventOnly :      u8,
-    pad0 :           u8,
-    pitch :          i16,
-    duration :       i16,
-    pad1 :           [u8,..2],
-    name :           xproto::atom,
-    window :         xproto::window
+#[repr(C)]
+pub struct xcb_xkb_select_events_details_t {
+     pub affectNewKeyboard :       u16,
+     pub newKeyboardDetails :      u16,
+     pub affectState :             u16,
+     pub stateDetails :            u16,
+     pub affectCtrls :             u32,
+     pub ctrlDetails :             u32,
+     pub affectIndicatorState :    u32,
+     pub indicatorStateDetails :   u32,
+     pub affectIndicatorMap :      u32,
+     pub indicatorMapDetails :     u32,
+     pub affectNames :             u16,
+     pub namesDetails :            u16,
+     pub affectCompat :            u8,
+     pub compatDetails :           u8,
+     pub affectBell :              u8,
+     pub bellDetails :             u8,
+     pub affectMsgDetails :        u8,
+     pub msgDetails :              u8,
+     pub affectAccessX :           u16,
+     pub accessXDetails :          u16,
+     pub affectExtDev :            u16
+     pub extdevDetails :           u16
 }
 
-pub struct get_state_cookie {
+impl Copy for xcb_xkb_select_events_details_t {}
+impl Clone for xcb_xkb_select_events_details_t {
+    fn clone(&self) -> xcb_xkb_select_events_details_t { *self }
+}
+
+
+#[repr(C)]
+pub struct xcb_xkb_select_events_request_t {
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub deviceSpec :     xcb_xkb_device_spec_t,
+     pub affectWhich :    u16,
+     pub clear :          u16,
+     pub selectAll :      u16,
+     pub affectMap :      u16,
+     pub map :            u16
+}
+
+impl Copy for xcb_xkb_select_events_request_t {}
+impl Clone for xcb_xkb_select_events_request_t {
+    fn clone(&self) -> xcb_xkb_select_events_request_t { *self }
+}
+
+
+#[repr(C)]
+pub struct xcb_xkb_bell_request_t {
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub deviceSpec :     xcb_xkb_device_spec_t,
+     pub bellClass :      xcb_xkb_bell_class_spec_t,
+     pub bellID :         xcb_xkb_id_spec_t,
+     pub percent :        i8,
+     pub forceSound :     u8,
+     pub eventOnly :      u8,
+     pub pad0 :           u8,
+     pub pitch :          i16,
+     pub duration :       i16,
+     pub pad1 :           [u8; 2],
+     pub name :           ffi::xproto::xcb_atom_t,
+     pub window :         ffi::xproto::xcb_window_t
+}
+
+impl Copy for xcb_xkb_bell_request_t {}
+impl Clone for xcb_xkb_bell_request_t {
+    fn clone(&self) -> xcb_xkb_bell_request_t { *self }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct xcb_xkb_get_state_cookie_t {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xkb_get_state. */
-pub static XCB_XKB_GET_STATE : c_int = 4;
 
-pub struct get_state_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    deviceSpec :     device_spec,
-    pad0 :           [u8,..2]
+#[repr(C)]
+pub struct xcb_xkb_get_state_request_t {
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub deviceSpec :     xcb_xkb_device_spec_t,
+     pub pad0 :           [u8; 2]
 }
 
-pub struct get_state_reply {
-    response_type :      u8,
-    deviceID :           u8,
-    sequence :           u16,
-    length :             u32,
-    mods :               u8,
-    baseMods :           u8,
-    latchedMods :        u8,
-    lockedMods :         u8,
-    group :              u8,
-    lockedGroup :        u8,
-    baseGroup :          i16,
-    latchedGroup :       i16,
-    compatState :        u8,
-    grabMods :           u8,
-    compatGrabMods :     u8,
-    lookupMods :         u8,
-    compatLookupMods :   u8,
-    pad0 :               u8,
-    ptrBtnState :        u16,
-    pad1 :               [u8,..6]
+impl Copy for xcb_xkb_get_state_request_t {}
+impl Clone for xcb_xkb_get_state_request_t {
+    fn clone(&self) -> xcb_xkb_get_state_request_t { *self }
 }
 
-/** Opcode for xcb_xkb_latch_lock_state. */
-pub static XCB_XKB_LATCH_LOCK_STATE : c_int = 5;
-
-pub struct latch_lock_state_request {
-    major_opcode :       u8,
-    minor_opcode :       u8,
-    length :             u16,
-    deviceSpec :         device_spec,
-    affectModLocks :     u8,
-    modLocks :           u8,
-    lockGroup :          u8,
-    groupLock :          u8,
-    affectModLatches :   u8,
-    pad0 :               u8,
-    latchGroup :         u8,
-    groupLatch :         u16
+#[repr(C)]
+pub struct xcb_xkb_get_state_reply_t {
+     pub response_type :      u8,
+     pub deviceID :           u8,
+     pub sequence :           u16,
+     pub length :             u32,
+     pub mods :               u8,
+     pub baseMods :           u8,
+     pub latchedMods :        u8,
+     pub lockedMods :         u8,
+     pub group :              u8,
+     pub lockedGroup :        u8,
+     pub baseGroup :          i16,
+     pub latchedGroup :       i16,
+     pub compatState :        u8,
+     pub grabMods :           u8,
+     pub compatGrabMods :     u8,
+     pub lookupMods :         u8,
+     pub compatLookupMods :   u8,
+     pub pad0 :               u8,
+     pub ptrBtnState :        u16,
+     pub pad1 :               [u8; 6]
 }
 
-pub struct get_controls_cookie {
+impl Copy for xcb_xkb_get_state_reply_t {}
+impl Clone for xcb_xkb_get_state_reply_t {
+    fn clone(&self) -> xcb_xkb_get_state_reply_t { *self }
+}
+
+
+#[repr(C)]
+pub struct xcb_xkb_latch_lock_state_request_t {
+     pub major_opcode :       u8,
+     pub minor_opcode :       u8,
+     pub length :             u16,
+     pub deviceSpec :         xcb_xkb_device_spec_t,
+     pub affectModLocks :     u8,
+     pub modLocks :           u8,
+     pub lockGroup :          u8,
+     pub groupLock :          u8,
+     pub affectModLatches :   u8,
+     pub pad0 :               u8,
+     pub latchGroup :         u8,
+     pub groupLatch :         u16
+}
+
+impl Copy for xcb_xkb_latch_lock_state_request_t {}
+impl Clone for xcb_xkb_latch_lock_state_request_t {
+    fn clone(&self) -> xcb_xkb_latch_lock_state_request_t { *self }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct xcb_xkb_get_controls_cookie_t {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xkb_get_controls. */
-pub static XCB_XKB_GET_CONTROLS : c_int = 6;
 
-pub struct get_controls_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    deviceSpec :     device_spec,
-    pad0 :           [u8,..2]
+#[repr(C)]
+pub struct xcb_xkb_get_controls_request_t {
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub deviceSpec :     xcb_xkb_device_spec_t,
+     pub pad0 :           [u8; 2]
 }
 
-pub struct get_controls_reply {
-    response_type :                 u8,
-    deviceID :                      u8,
-    sequence :                      u16,
-    length :                        u32,
-    mouseKeysDfltBtn :              u8,
-    numGroups :                     u8,
-    groupsWrap :                    u8,
-    internalModsMask :              u8,
-    ignoreLockModsMask :            u8,
-    internalModsRealMods :          u8,
-    ignoreLockModsRealMods :        u8,
-    pad0 :                          u8,
-    internalModsVmods :             u16,
-    ignoreLockModsVmods :           u16,
-    repeatDelay :                   u16,
-    repeatInterval :                u16,
-    slowKeysDelay :                 u16,
-    debounceDelay :                 u16,
-    mouseKeysDelay :                u16,
-    mouseKeysInterval :             u16,
-    mouseKeysTimeToMax :            u16,
-    mouseKeysMaxSpeed :             u16,
-    mouseKeysCurve :                i16,
-    accessXOption :                 ax_option,
-    accessXTimeout :                u16,
-    accessXTimeoutOptionsMask :     ax_option,
-    accessXTimeoutOptionsValues :   ax_option,
-    pad1 :                          [u8,..2],
-    accessXTimeoutMask :            u32,
-    accessXTimeoutValues :          u32,
-    enabledControls :               u32,
-    perKeyRepeat :                  [u8,..32]
+impl Copy for xcb_xkb_get_controls_request_t {}
+impl Clone for xcb_xkb_get_controls_request_t {
+    fn clone(&self) -> xcb_xkb_get_controls_request_t { *self }
 }
 
-/** Opcode for xcb_xkb_set_controls. */
-pub static XCB_XKB_SET_CONTROLS : c_int = 7;
-
-pub struct set_controls_request {
-    major_opcode :                  u8,
-    minor_opcode :                  u8,
-    length :                        u16,
-    deviceSpec :                    device_spec,
-    affectInternalRealMods :        u8,
-    internalRealMods :              u8,
-    affectIgnoreLockRealMods :      u8,
-    ignoreLockRealMods :            u8,
-    affectInternalVirtualMods :     u16,
-    internalVirtualMods :           u16,
-    affectIgnoreLockVirtualMods :   u16,
-    ignoreLockVirtualMods :         u16,
-    mouseKeysDfltBtn :              u8,
-    groupsWrap :                    u8,
-    accessXOptions :                ax_option,
-    pad0 :                          [u8,..2],
-    affectEnabledControls :         u32,
-    enabledControls :               u32,
-    changeControls :                u32,
-    repeatDelay :                   u16,
-    repeatInterval :                u16,
-    slowKeysDelay :                 u16,
-    debounceDelay :                 u16,
-    mouseKeysDelay :                u16,
-    mouseKeysInterval :             u16,
-    mouseKeysTimeToMax :            u16,
-    mouseKeysMaxSpeed :             u16,
-    mouseKeysCurve :                i16,
-    accessXTimeout :                u16,
-    accessXTimeoutMask :            u32,
-    accessXTimeoutValues :          u32,
-    accessXTimeoutOptionsMask :     ax_option,
-    accessXTimeoutOptionsValues :   ax_option,
-    perKeyRepeat :                  [u8,..32]
+#[repr(C)]
+pub struct xcb_xkb_get_controls_reply_t {
+     pub response_type :                 u8,
+     pub deviceID :                      u8,
+     pub sequence :                      u16,
+     pub length :                        u32,
+     pub mouseKeysDfltBtn :              u8,
+     pub numGroups :                     u8,
+     pub groupsWrap :                    u8,
+     pub internalModsMask :              u8,
+     pub ignoreLockModsMask :            u8,
+     pub internalModsRealMods :          u8,
+     pub ignoreLockModsRealMods :        u8,
+     pub pad0 :                          u8,
+     pub internalModsVmods :             u16,
+     pub ignoreLockModsVmods :           u16,
+     pub repeatDelay :                   u16,
+     pub repeatInterval :                u16,
+     pub slowKeysDelay :                 u16,
+     pub debounceDelay :                 u16,
+     pub mouseKeysDelay :                u16,
+     pub mouseKeysInterval :             u16,
+     pub mouseKeysTimeToMax :            u16,
+     pub mouseKeysMaxSpeed :             u16,
+     pub mouseKeysCurve :                i16,
+     pub accessXOption :                 xcb_xkb_ax_option_t,
+     pub accessXTimeout :                u16,
+     pub accessXTimeoutOptionsMask :     xcb_xkb_ax_option_t,
+     pub accessXTimeoutOptionsValues :   xcb_xkb_ax_option_t,
+     pub pad1 :                          [u8; 2],
+     pub accessXTimeoutMask :            u32,
+     pub accessXTimeoutValues :          u32,
+     pub enabledControls :               u32,
+     pub perKeyRepeat :                  [u8; 32]
 }
 
-pub struct get_map_cookie {
+impl Copy for xcb_xkb_get_controls_reply_t {}
+impl Clone for xcb_xkb_get_controls_reply_t {
+    fn clone(&self) -> xcb_xkb_get_controls_reply_t { *self }
+}
+
+
+#[repr(C)]
+pub struct xcb_xkb_set_controls_request_t {
+     pub major_opcode :                  u8,
+     pub minor_opcode :                  u8,
+     pub length :                        u16,
+     pub deviceSpec :                    xcb_xkb_device_spec_t,
+     pub affectInternalRealMods :        u8,
+     pub internalRealMods :              u8,
+     pub affectIgnoreLockRealMods :      u8,
+     pub ignoreLockRealMods :            u8,
+     pub affectInternalVirtualMods :     u16,
+     pub internalVirtualMods :           u16,
+     pub affectIgnoreLockVirtualMods :   u16,
+     pub ignoreLockVirtualMods :         u16,
+     pub mouseKeysDfltBtn :              u8,
+     pub groupsWrap :                    u8,
+     pub accessXOptions :                xcb_xkb_ax_option_t,
+     pub pad0 :                          [u8; 2],
+     pub affectEnabledControls :         u32,
+     pub enabledControls :               u32,
+     pub changeControls :                u32,
+     pub repeatDelay :                   u16,
+     pub repeatInterval :                u16,
+     pub slowKeysDelay :                 u16,
+     pub debounceDelay :                 u16,
+     pub mouseKeysDelay :                u16,
+     pub mouseKeysInterval :             u16,
+     pub mouseKeysTimeToMax :            u16,
+     pub mouseKeysMaxSpeed :             u16,
+     pub mouseKeysCurve :                i16,
+     pub accessXTimeout :                u16,
+     pub accessXTimeoutMask :            u32,
+     pub accessXTimeoutValues :          u32,
+     pub accessXTimeoutOptionsMask :     xcb_xkb_ax_option_t,
+     pub accessXTimeoutOptionsValues :   xcb_xkb_ax_option_t,
+     pub perKeyRepeat :                  [u8; 32]
+}
+
+impl Copy for xcb_xkb_set_controls_request_t {}
+impl Clone for xcb_xkb_set_controls_request_t {
+    fn clone(&self) -> xcb_xkb_set_controls_request_t { *self }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct xcb_xkb_get_map_cookie_t {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xkb_get_map. */
-pub static XCB_XKB_GET_MAP : c_int = 8;
 
-pub struct get_map_request {
-    major_opcode :       u8,
-    minor_opcode :       u8,
-    length :             u16,
-    deviceSpec :         device_spec,
-    full :               u16,
-    partial :            u16,
-    firstType :          u8,
-    nTypes :             u8,
-    firstKeySym :        xproto::keycode,
-    nKeySyms :           u8,
-    firstKeyAction :     xproto::keycode,
-    nKeyActions :        u8,
-    firstKeyBehavior :   xproto::keycode,
-    nKeyBehaviors :      u8,
-    virtualMods :        u16,
-    firstKeyExplicit :   xproto::keycode,
-    nKeyExplicit :       u8,
-    firstModMapKey :     xproto::keycode,
-    nModMapKeys :        u8,
-    firstVModMapKey :    xproto::keycode,
-    nVModMapKeys :       u8,
-    pad0 :               [u8,..2]
+#[repr(C)]
+pub struct xcb_xkb_get_map_request_t {
+     pub major_opcode :       u8,
+     pub minor_opcode :       u8,
+     pub length :             u16,
+     pub deviceSpec :         xcb_xkb_device_spec_t,
+     pub full :               u16,
+     pub partial :            u16,
+     pub firstType :          u8,
+     pub nTypes :             u8,
+     pub firstKeySym :        ffi::xproto::xcb_keycode_t,
+     pub nKeySyms :           u8,
+     pub firstKeyAction :     ffi::xproto::xcb_keycode_t,
+     pub nKeyActions :        u8,
+     pub firstKeyBehavior :   ffi::xproto::xcb_keycode_t,
+     pub nKeyBehaviors :      u8,
+     pub virtualMods :        u16,
+     pub firstKeyExplicit :   ffi::xproto::xcb_keycode_t,
+     pub nKeyExplicit :       u8,
+     pub firstModMapKey :     ffi::xproto::xcb_keycode_t,
+     pub nModMapKeys :        u8,
+     pub firstVModMapKey :    ffi::xproto::xcb_keycode_t,
+     pub nVModMapKeys :       u8,
+     pub pad0 :               [u8; 2]
 }
 
-pub struct get_map_map {
-    types_rtrn :         *key_type,
-    syms_rtrn :      *key_sym_map,
-    acts_rtrn_count :               *u8,
-    acts_rtrn_acts :           *action,
-    behaviors_rtrn :     *set_behavior,
-    vmods_rtrn :               *u8,
-    explicit_rtrn :     *set_explicit,
-    modmap_rtrn :      *key_mod_map,
-    vmodmap_rtrn :    *key_v_mod_map
+impl Copy for xcb_xkb_get_map_request_t {}
+impl Clone for xcb_xkb_get_map_request_t {
+    fn clone(&self) -> xcb_xkb_get_map_request_t { *self }
 }
 
-pub struct get_map_reply {
-    response_type :       u8,
-    deviceID :            u8,
-    sequence :            u16,
-    length :              u32,
-    pad0 :                [u8,..2],
-    minKeyCode :          xproto::keycode,
-    maxKeyCode :          xproto::keycode,
-    present :             u16,
-    firstType :           u8,
-    nTypes :              u8,
-    totalTypes :          u8,
-    firstKeySym :         xproto::keycode,
-    totalSyms :           u16,
-    nKeySyms :            u8,
-    firstKeyAction :      xproto::keycode,
-    totalActions :        u16,
-    nKeyActions :         u8,
-    firstKeyBehavior :    xproto::keycode,
-    nKeyBehaviors :       u8,
-    totalKeyBehaviors :   u8,
-    firstKeyExplicit :    xproto::keycode,
-    nKeyExplicit :        u8,
-    totalKeyExplicit :    u8,
-    firstModMapKey :      xproto::keycode,
-    nModMapKeys :         u8,
-    totalModMapKeys :     u8,
-    firstVModMapKey :     xproto::keycode,
-    nVModMapKeys :        u8,
-    totalVModMapKeys :    u8,
-    pad1 :                u8,
-    virtualMods :         u16
+#[repr(C)]
+pub struct xcb_xkb_get_map_map_t {
+    pub types_rtrn :   *mut xcb_xkb_key_type_t,
+    pub syms_rtrn :   *mut xcb_xkb_key_sym_map_t,
+    pub acts_rtrn_count :               *mut u8,
+    pub acts_rtrn_acts :   *mut xcb_xkb_action_t,
+    pub behaviors_rtrn :   *mut xcb_xkb_set_behavior_t,
+    pub vmods_rtrn :               *mut u8,
+    pub explicit_rtrn :   *mut xcb_xkb_set_explicit_t,
+    pub modmap_rtrn :   *mut xcb_xkb_key_mod_map_t,
+    pub vmodmap_rtrn :   *mut xcb_xkb_key_v_mod_map_t
 }
 
-pub struct set_map_values {
-    types :   *set_key_type,
-    syms :   *key_sym_map,
-    actionsCount :            *u8,
-    actions :        *action,
-    behaviors :   *set_behavior,
-    vmods :            *u8,
-    explicit :   *set_explicit,
-    modmap :   *key_mod_map,
-    vmodmap :   *key_v_mod_map
+impl Copy for xcb_xkb_get_map_map_t {}
+impl Clone for xcb_xkb_get_map_map_t {
+    fn clone(&self) -> xcb_xkb_get_map_map_t { *self }
 }
 
-/** Opcode for xcb_xkb_set_map. */
-pub static XCB_XKB_SET_MAP : c_int = 9;
-
-pub struct set_map_request {
-    major_opcode :        u8,
-    minor_opcode :        u8,
-    length :              u16,
-    deviceSpec :          device_spec,
-    present :             u16,
-    flags :               u16,
-    minKeyCode :          xproto::keycode,
-    maxKeyCode :          xproto::keycode,
-    firstType :           u8,
-    nTypes :              u8,
-    firstKeySym :         xproto::keycode,
-    nKeySyms :            u8,
-    totalSyms :           u16,
-    firstKeyAction :      xproto::keycode,
-    nKeyActions :         u8,
-    totalActions :        u16,
-    firstKeyBehavior :    xproto::keycode,
-    nKeyBehaviors :       u8,
-    totalKeyBehaviors :   u8,
-    firstKeyExplicit :    xproto::keycode,
-    nKeyExplicit :        u8,
-    totalKeyExplicit :    u8,
-    firstModMapKey :      xproto::keycode,
-    nModMapKeys :         u8,
-    totalModMapKeys :     u8,
-    firstVModMapKey :     xproto::keycode,
-    nVModMapKeys :        u8,
-    totalVModMapKeys :    u8,
-    virtualMods :         u16
+#[repr(C)]
+pub struct xcb_xkb_get_map_reply_t {
+     pub response_type :       u8,
+     pub deviceID :            u8,
+     pub sequence :            u16,
+     pub length :              u32,
+     pub pad0 :                [u8; 2],
+     pub minKeyCode :          ffi::xproto::xcb_keycode_t,
+     pub maxKeyCode :          ffi::xproto::xcb_keycode_t,
+     pub present :             u16,
+     pub firstType :           u8,
+     pub nTypes :              u8,
+     pub totalTypes :          u8,
+     pub firstKeySym :         ffi::xproto::xcb_keycode_t,
+     pub totalSyms :           u16,
+     pub nKeySyms :            u8,
+     pub firstKeyAction :      ffi::xproto::xcb_keycode_t,
+     pub totalActions :        u16,
+     pub nKeyActions :         u8,
+     pub firstKeyBehavior :    ffi::xproto::xcb_keycode_t,
+     pub nKeyBehaviors :       u8,
+     pub totalKeyBehaviors :   u8,
+     pub firstKeyExplicit :    ffi::xproto::xcb_keycode_t,
+     pub nKeyExplicit :        u8,
+     pub totalKeyExplicit :    u8,
+     pub firstModMapKey :      ffi::xproto::xcb_keycode_t,
+     pub nModMapKeys :         u8,
+     pub totalModMapKeys :     u8,
+     pub firstVModMapKey :     ffi::xproto::xcb_keycode_t,
+     pub nVModMapKeys :        u8,
+     pub totalVModMapKeys :    u8,
+     pub pad1 :                u8,
+     pub virtualMods :         u16
 }
 
-pub struct get_compat_map_cookie {
+impl Copy for xcb_xkb_get_map_reply_t {}
+impl Clone for xcb_xkb_get_map_reply_t {
+    fn clone(&self) -> xcb_xkb_get_map_reply_t { *self }
+}
+
+#[repr(C)]
+pub struct xcb_xkb_set_map_values_t {
+    pub types :   *mut xcb_xkb_set_key_type_t,
+    pub syms :   *mut xcb_xkb_key_sym_map_t,
+    pub actionsCount :            *mut u8,
+    pub actions :   *mut xcb_xkb_action_t,
+    pub behaviors :   *mut xcb_xkb_set_behavior_t,
+    pub vmods :            *mut u8,
+    pub explicit :   *mut xcb_xkb_set_explicit_t,
+    pub modmap :   *mut xcb_xkb_key_mod_map_t,
+    pub vmodmap :   *mut xcb_xkb_key_v_mod_map_t
+}
+
+impl Copy for xcb_xkb_set_map_values_t {}
+impl Clone for xcb_xkb_set_map_values_t {
+    fn clone(&self) -> xcb_xkb_set_map_values_t { *self }
+}
+
+
+#[repr(C)]
+pub struct xcb_xkb_set_map_request_t {
+     pub major_opcode :        u8,
+     pub minor_opcode :        u8,
+     pub length :              u16,
+     pub deviceSpec :          xcb_xkb_device_spec_t,
+     pub present :             u16,
+     pub flags :               u16,
+     pub minKeyCode :          ffi::xproto::xcb_keycode_t,
+     pub maxKeyCode :          ffi::xproto::xcb_keycode_t,
+     pub firstType :           u8,
+     pub nTypes :              u8,
+     pub firstKeySym :         ffi::xproto::xcb_keycode_t,
+     pub nKeySyms :            u8,
+     pub totalSyms :           u16,
+     pub firstKeyAction :      ffi::xproto::xcb_keycode_t,
+     pub nKeyActions :         u8,
+     pub totalActions :        u16,
+     pub firstKeyBehavior :    ffi::xproto::xcb_keycode_t,
+     pub nKeyBehaviors :       u8,
+     pub totalKeyBehaviors :   u8,
+     pub firstKeyExplicit :    ffi::xproto::xcb_keycode_t,
+     pub nKeyExplicit :        u8,
+     pub totalKeyExplicit :    u8,
+     pub firstModMapKey :      ffi::xproto::xcb_keycode_t,
+     pub nModMapKeys :         u8,
+     pub totalModMapKeys :     u8,
+     pub firstVModMapKey :     ffi::xproto::xcb_keycode_t,
+     pub nVModMapKeys :        u8,
+     pub totalVModMapKeys :    u8,
+     pub virtualMods :         u16
+}
+
+impl Copy for xcb_xkb_set_map_request_t {}
+impl Clone for xcb_xkb_set_map_request_t {
+    fn clone(&self) -> xcb_xkb_set_map_request_t { *self }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct xcb_xkb_get_compat_map_cookie_t {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xkb_get_compat_map. */
-pub static XCB_XKB_GET_COMPAT_MAP : c_int = 10;
 
-pub struct get_compat_map_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    deviceSpec :     device_spec,
-    groups :         u8,
-    getAllSI :       u8,
-    firstSI :        u16,
-    nSI :            u16
+#[repr(C)]
+pub struct xcb_xkb_get_compat_map_request_t {
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub deviceSpec :     xcb_xkb_device_spec_t,
+     pub groups :         u8,
+     pub getAllSI :       u8,
+     pub firstSI :        u16,
+     pub nSI :            u16
 }
 
-pub struct get_compat_map_reply {
-    response_type :   u8,
-    deviceID :        u8,
-    sequence :        u16,
-    length :          u32,
-    groupsRtrn :      u8,
-    pad0 :            u8,
-    firstSIRtrn :     u16,
-    nSIRtrn :         u16,
-    nTotalSI :        u16,
-    pad1 :            [u8,..16]
+impl Copy for xcb_xkb_get_compat_map_request_t {}
+impl Clone for xcb_xkb_get_compat_map_request_t {
+    fn clone(&self) -> xcb_xkb_get_compat_map_request_t { *self }
 }
 
-/** Opcode for xcb_xkb_set_compat_map. */
-pub static XCB_XKB_SET_COMPAT_MAP : c_int = 11;
-
-pub struct set_compat_map_request {
-    major_opcode :       u8,
-    minor_opcode :       u8,
-    length :             u16,
-    deviceSpec :         device_spec,
-    pad0 :               u8,
-    recomputeActions :   u8,
-    truncateSI :         u8,
-    groups :             u8,
-    firstSI :            u16,
-    nSI :                u16,
-    pad1 :               [u8,..2]
+#[repr(C)]
+pub struct xcb_xkb_get_compat_map_reply_t {
+     pub response_type :   u8,
+     pub deviceID :        u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub groupsRtrn :      u8,
+     pub pad0 :            u8,
+     pub firstSIRtrn :     u16,
+     pub nSIRtrn :         u16,
+     pub nTotalSI :        u16,
+     pub pad1 :            [u8; 16]
 }
 
-pub struct get_indicator_state_cookie {
+impl Copy for xcb_xkb_get_compat_map_reply_t {}
+impl Clone for xcb_xkb_get_compat_map_reply_t {
+    fn clone(&self) -> xcb_xkb_get_compat_map_reply_t { *self }
+}
+
+
+#[repr(C)]
+pub struct xcb_xkb_set_compat_map_request_t {
+     pub major_opcode :       u8,
+     pub minor_opcode :       u8,
+     pub length :             u16,
+     pub deviceSpec :         xcb_xkb_device_spec_t,
+     pub pad0 :               u8,
+     pub recomputeActions :   u8,
+     pub truncateSI :         u8,
+     pub groups :             u8,
+     pub firstSI :            u16,
+     pub nSI :                u16,
+     pub pad1 :               [u8; 2]
+}
+
+impl Copy for xcb_xkb_set_compat_map_request_t {}
+impl Clone for xcb_xkb_set_compat_map_request_t {
+    fn clone(&self) -> xcb_xkb_set_compat_map_request_t { *self }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct xcb_xkb_get_indicator_state_cookie_t {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xkb_get_indicator_state. */
-pub static XCB_XKB_GET_INDICATOR_STATE : c_int = 12;
 
-pub struct get_indicator_state_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    deviceSpec :     device_spec,
-    pad0 :           [u8,..2]
+#[repr(C)]
+pub struct xcb_xkb_get_indicator_state_request_t {
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub deviceSpec :     xcb_xkb_device_spec_t,
+     pub pad0 :           [u8; 2]
 }
 
-pub struct get_indicator_state_reply {
-    response_type :   u8,
-    deviceID :        u8,
-    sequence :        u16,
-    length :          u32,
-    state :           u32,
-    pad0 :            [u8,..20]
+impl Copy for xcb_xkb_get_indicator_state_request_t {}
+impl Clone for xcb_xkb_get_indicator_state_request_t {
+    fn clone(&self) -> xcb_xkb_get_indicator_state_request_t { *self }
 }
 
-pub struct get_indicator_map_cookie {
+#[repr(C)]
+pub struct xcb_xkb_get_indicator_state_reply_t {
+     pub response_type :   u8,
+     pub deviceID :        u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub state :           u32,
+     pub pad0 :            [u8; 20]
+}
+
+impl Copy for xcb_xkb_get_indicator_state_reply_t {}
+impl Clone for xcb_xkb_get_indicator_state_reply_t {
+    fn clone(&self) -> xcb_xkb_get_indicator_state_reply_t { *self }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct xcb_xkb_get_indicator_map_cookie_t {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xkb_get_indicator_map. */
-pub static XCB_XKB_GET_INDICATOR_MAP : c_int = 13;
 
-pub struct get_indicator_map_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    deviceSpec :     device_spec,
-    pad0 :           [u8,..2],
-    which :          u32
+#[repr(C)]
+pub struct xcb_xkb_get_indicator_map_request_t {
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub deviceSpec :     xcb_xkb_device_spec_t,
+     pub pad0 :           [u8; 2],
+     pub which :          u32
 }
 
-pub struct get_indicator_map_reply {
-    response_type :    u8,
-    deviceID :         u8,
-    sequence :         u16,
-    length :           u32,
-    which :            u32,
-    realIndicators :   u32,
-    nIndicators :      u8,
-    pad0 :             [u8,..15]
+impl Copy for xcb_xkb_get_indicator_map_request_t {}
+impl Clone for xcb_xkb_get_indicator_map_request_t {
+    fn clone(&self) -> xcb_xkb_get_indicator_map_request_t { *self }
 }
 
-/** Opcode for xcb_xkb_set_indicator_map. */
-pub static XCB_XKB_SET_INDICATOR_MAP : c_int = 14;
-
-pub struct set_indicator_map_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    deviceSpec :     device_spec,
-    pad0 :           [u8,..2],
-    which :          u32
+#[repr(C)]
+pub struct xcb_xkb_get_indicator_map_reply_t {
+     pub response_type :    u8,
+     pub deviceID :         u8,
+     pub sequence :         u16,
+     pub length :           u32,
+     pub which :            u32,
+     pub realIndicators :   u32,
+     pub nIndicators :      u8,
+     pub pad0 :             [u8; 15]
 }
 
-pub struct get_named_indicator_cookie {
+impl Copy for xcb_xkb_get_indicator_map_reply_t {}
+impl Clone for xcb_xkb_get_indicator_map_reply_t {
+    fn clone(&self) -> xcb_xkb_get_indicator_map_reply_t { *self }
+}
+
+
+#[repr(C)]
+pub struct xcb_xkb_set_indicator_map_request_t {
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub deviceSpec :     xcb_xkb_device_spec_t,
+     pub pad0 :           [u8; 2],
+     pub which :          u32
+}
+
+impl Copy for xcb_xkb_set_indicator_map_request_t {}
+impl Clone for xcb_xkb_set_indicator_map_request_t {
+    fn clone(&self) -> xcb_xkb_set_indicator_map_request_t { *self }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct xcb_xkb_get_named_indicator_cookie_t {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xkb_get_named_indicator. */
-pub static XCB_XKB_GET_NAMED_INDICATOR : c_int = 15;
 
-pub struct get_named_indicator_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    deviceSpec :     device_spec,
-    ledClass :       led_class_spec,
-    ledID :          id_spec,
-    pad0 :           [u8,..2],
-    indicator :      xproto::atom
+#[repr(C)]
+pub struct xcb_xkb_get_named_indicator_request_t {
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub deviceSpec :     xcb_xkb_device_spec_t,
+     pub ledClass :       xcb_xkb_led_class_spec_t,
+     pub ledID :          xcb_xkb_id_spec_t,
+     pub pad0 :           [u8; 2],
+     pub indicator :      ffi::xproto::xcb_atom_t
 }
 
-pub struct get_named_indicator_reply {
-    response_type :     u8,
-    deviceID :          u8,
-    sequence :          u16,
-    length :            u32,
-    indicator :         xproto::atom,
-    found :             u8,
-    on :                u8,
-    realIndicator :     u8,
-    ndx :               u8,
-    map_flags :         u8,
-    map_whichGroups :   u8,
-    map_groups :        u8,
-    map_whichMods :     u8,
-    map_mods :          u8,
-    map_realMods :      u8,
-    map_vmod :          u16,
-    map_ctrls :         u32,
-    pad0 :              [u8,..3]
+impl Copy for xcb_xkb_get_named_indicator_request_t {}
+impl Clone for xcb_xkb_get_named_indicator_request_t {
+    fn clone(&self) -> xcb_xkb_get_named_indicator_request_t { *self }
 }
 
-/** Opcode for xcb_xkb_set_named_indicator. */
-pub static XCB_XKB_SET_NAMED_INDICATOR : c_int = 16;
-
-pub struct set_named_indicator_request {
-    major_opcode :      u8,
-    minor_opcode :      u8,
-    length :            u16,
-    deviceSpec :        device_spec,
-    ledClass :          led_class_spec,
-    ledID :             id_spec,
-    pad0 :              [u8,..2],
-    indicator :         xproto::atom,
-    setState :          u8,
-    on :                u8,
-    setMap :            u8,
-    createMap :         u8,
-    pad1 :              u8,
-    map_flags :         u8,
-    map_whichGroups :   u8,
-    map_groups :        u8,
-    map_whichMods :     u8,
-    map_realMods :      u8,
-    map_vmods :         u16,
-    map_ctrls :         u32
+#[repr(C)]
+pub struct xcb_xkb_get_named_indicator_reply_t {
+     pub response_type :     u8,
+     pub deviceID :          u8,
+     pub sequence :          u16,
+     pub length :            u32,
+     pub indicator :         ffi::xproto::xcb_atom_t,
+     pub found :             u8,
+     pub on :                u8,
+     pub realIndicator :     u8,
+     pub ndx :               u8,
+     pub map_flags :         u8,
+     pub map_whichGroups :   u8,
+     pub map_groups :        u8,
+     pub map_whichMods :     u8,
+     pub map_mods :          u8,
+     pub map_realMods :      u8,
+     pub map_vmod :          u16,
+     pub map_ctrls :         u32,
+     pub pad0 :              [u8; 3]
 }
 
-pub struct get_names_cookie {
+impl Copy for xcb_xkb_get_named_indicator_reply_t {}
+impl Clone for xcb_xkb_get_named_indicator_reply_t {
+    fn clone(&self) -> xcb_xkb_get_named_indicator_reply_t { *self }
+}
+
+
+#[repr(C)]
+pub struct xcb_xkb_set_named_indicator_request_t {
+     pub major_opcode :      u8,
+     pub minor_opcode :      u8,
+     pub length :            u16,
+     pub deviceSpec :        xcb_xkb_device_spec_t,
+     pub ledClass :          xcb_xkb_led_class_spec_t,
+     pub ledID :             xcb_xkb_id_spec_t,
+     pub pad0 :              [u8; 2],
+     pub indicator :         ffi::xproto::xcb_atom_t,
+     pub setState :          u8,
+     pub on :                u8,
+     pub setMap :            u8,
+     pub createMap :         u8,
+     pub pad1 :              u8,
+     pub map_flags :         u8,
+     pub map_whichGroups :   u8,
+     pub map_groups :        u8,
+     pub map_whichMods :     u8,
+     pub map_realMods :      u8,
+     pub map_vmods :         u16,
+     pub map_ctrls :         u32
+}
+
+impl Copy for xcb_xkb_set_named_indicator_request_t {}
+impl Clone for xcb_xkb_set_named_indicator_request_t {
+    fn clone(&self) -> xcb_xkb_set_named_indicator_request_t { *self }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct xcb_xkb_get_names_cookie_t {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xkb_get_names. */
-pub static XCB_XKB_GET_NAMES : c_int = 17;
 
-pub struct get_names_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    deviceSpec :     device_spec,
-    pad0 :           [u8,..2],
-    which :          u32
+#[repr(C)]
+pub struct xcb_xkb_get_names_request_t {
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub deviceSpec :     xcb_xkb_device_spec_t,
+     pub pad0 :           [u8; 2],
+     pub which :          u32
 }
 
-pub struct get_names_value_list {
-    keycodesName :      xproto::atom,
-    geometryName :      xproto::atom,
-    symbolsName :       xproto::atom,
-    physSymbolsName :   xproto::atom,
-    typesName :         xproto::atom,
-    compatName :        xproto::atom,
-    typeNames :     *xproto::atom,
-    nLevelsPerType :               *u8,
-    ktLevelNames :     *xproto::atom,
-    indicatorNames :     *xproto::atom,
-    virtualModNames :     *xproto::atom,
-    groups :     *xproto::atom,
-    keyNames :         *key_name,
-    keyAliases :        *key_alias,
-    radioGroupNames :     *xproto::atom
+impl Copy for xcb_xkb_get_names_request_t {}
+impl Clone for xcb_xkb_get_names_request_t {
+    fn clone(&self) -> xcb_xkb_get_names_request_t { *self }
 }
 
-pub struct get_names_reply {
-    response_type :   u8,
-    deviceID :        u8,
-    sequence :        u16,
-    length :          u32,
-    which :           u32,
-    minKeyCode :      xproto::keycode,
-    maxKeyCode :      xproto::keycode,
-    nTypes :          u8,
-    groupNames :      u8,
-    virtualMods :     u16,
-    firstKey :        xproto::keycode,
-    nKeys :           u8,
-    indicators :      u32,
-    nRadioGroups :    u8,
-    nKeyAliases :     u8,
-    nKTLevels :       u16,
-    pad0 :            [u8,..4]
+#[repr(C)]
+pub struct xcb_xkb_get_names_value_list_t {
+     pub keycodesName :      ffi::xproto::xcb_atom_t,
+     pub geometryName :      ffi::xproto::xcb_atom_t,
+     pub symbolsName :       ffi::xproto::xcb_atom_t,
+     pub physSymbolsName :   ffi::xproto::xcb_atom_t,
+     pub typesName :         ffi::xproto::xcb_atom_t,
+     pub compatName :        ffi::xproto::xcb_atom_t,
+    pub typeNames :   *mut ffi::xproto::xcb_atom_t,
+    pub nLevelsPerType :               *mut u8,
+    pub ktLevelNames :   *mut ffi::xproto::xcb_atom_t,
+    pub indicatorNames :   *mut ffi::xproto::xcb_atom_t,
+    pub virtualModNames :   *mut ffi::xproto::xcb_atom_t,
+    pub groups :   *mut ffi::xproto::xcb_atom_t,
+    pub keyNames :   *mut xcb_xkb_key_name_t,
+    pub keyAliases :   *mut xcb_xkb_key_alias_t,
+    pub radioGroupNames :   *mut ffi::xproto::xcb_atom_t
 }
 
-pub struct set_names_values {
-    keycodesName :      xproto::atom,
-    geometryName :      xproto::atom,
-    symbolsName :       xproto::atom,
-    physSymbolsName :   xproto::atom,
-    typesName :         xproto::atom,
-    compatName :        xproto::atom,
-    typeNames :     *xproto::atom,
-    nLevelsPerType :               *u8,
-    ktLevelNames :     *xproto::atom,
-    indicatorNames :     *xproto::atom,
-    virtualModNames :     *xproto::atom,
-    groups :     *xproto::atom,
-    keyNames :         *key_name,
-    keyAliases :        *key_alias,
-    radioGroupNames :     *xproto::atom
+impl Copy for xcb_xkb_get_names_value_list_t {}
+impl Clone for xcb_xkb_get_names_value_list_t {
+    fn clone(&self) -> xcb_xkb_get_names_value_list_t { *self }
 }
 
-/** Opcode for xcb_xkb_set_names. */
-pub static XCB_XKB_SET_NAMES : c_int = 18;
-
-pub struct set_names_request {
-    major_opcode :        u8,
-    minor_opcode :        u8,
-    length :              u16,
-    deviceSpec :          device_spec,
-    virtualMods :         u16,
-    which :               u32,
-    firstType :           u8,
-    nTypes :              u8,
-    firstKTLevelt :       u8,
-    nKTLevels :           u8,
-    indicators :          u32,
-    groupNames :          u8,
-    nRadioGroups :        u8,
-    firstKey :            xproto::keycode,
-    nKeys :               u8,
-    nKeyAliases :         u8,
-    pad0 :                u8,
-    totalKTLevelNames :   u16
+#[repr(C)]
+pub struct xcb_xkb_get_names_reply_t {
+     pub response_type :   u8,
+     pub deviceID :        u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub which :           u32,
+     pub minKeyCode :      ffi::xproto::xcb_keycode_t,
+     pub maxKeyCode :      ffi::xproto::xcb_keycode_t,
+     pub nTypes :          u8,
+     pub groupNames :      u8,
+     pub virtualMods :     u16,
+     pub firstKey :        ffi::xproto::xcb_keycode_t,
+     pub nKeys :           u8,
+     pub indicators :      u32,
+     pub nRadioGroups :    u8,
+     pub nKeyAliases :     u8,
+     pub nKTLevels :       u16,
+     pub pad0 :            [u8; 4]
 }
 
-pub struct get_geometry_cookie {
+impl Copy for xcb_xkb_get_names_reply_t {}
+impl Clone for xcb_xkb_get_names_reply_t {
+    fn clone(&self) -> xcb_xkb_get_names_reply_t { *self }
+}
+
+#[repr(C)]
+pub struct xcb_xkb_set_names_values_t {
+     pub keycodesName :      ffi::xproto::xcb_atom_t,
+     pub geometryName :      ffi::xproto::xcb_atom_t,
+     pub symbolsName :       ffi::xproto::xcb_atom_t,
+     pub physSymbolsName :   ffi::xproto::xcb_atom_t,
+     pub typesName :         ffi::xproto::xcb_atom_t,
+     pub compatName :        ffi::xproto::xcb_atom_t,
+    pub typeNames :   *mut ffi::xproto::xcb_atom_t,
+    pub nLevelsPerType :               *mut u8,
+    pub ktLevelNames :   *mut ffi::xproto::xcb_atom_t,
+    pub indicatorNames :   *mut ffi::xproto::xcb_atom_t,
+    pub virtualModNames :   *mut ffi::xproto::xcb_atom_t,
+    pub groups :   *mut ffi::xproto::xcb_atom_t,
+    pub keyNames :   *mut xcb_xkb_key_name_t,
+    pub keyAliases :   *mut xcb_xkb_key_alias_t,
+    pub radioGroupNames :   *mut ffi::xproto::xcb_atom_t
+}
+
+impl Copy for xcb_xkb_set_names_values_t {}
+impl Clone for xcb_xkb_set_names_values_t {
+    fn clone(&self) -> xcb_xkb_set_names_values_t { *self }
+}
+
+
+#[repr(C)]
+pub struct xcb_xkb_set_names_request_t {
+     pub major_opcode :        u8,
+     pub minor_opcode :        u8,
+     pub length :              u16,
+     pub deviceSpec :          xcb_xkb_device_spec_t,
+     pub virtualMods :         u16,
+     pub which :               u32,
+     pub firstType :           u8,
+     pub nTypes :              u8,
+     pub firstKTLevelt :       u8,
+     pub nKTLevels :           u8,
+     pub indicators :          u32,
+     pub groupNames :          u8,
+     pub nRadioGroups :        u8,
+     pub firstKey :            ffi::xproto::xcb_keycode_t,
+     pub nKeys :               u8,
+     pub nKeyAliases :         u8,
+     pub pad0 :                u8,
+     pub totalKTLevelNames :   u16
+}
+
+impl Copy for xcb_xkb_set_names_request_t {}
+impl Clone for xcb_xkb_set_names_request_t {
+    fn clone(&self) -> xcb_xkb_set_names_request_t { *self }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct xcb_xkb_get_geometry_cookie_t {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xkb_get_geometry. */
-pub static XCB_XKB_GET_GEOMETRY : c_int = 19;
 
-pub struct get_geometry_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    deviceSpec :     device_spec,
-    pad0 :           [u8,..2],
-    name :           xproto::atom
+#[repr(C)]
+pub struct xcb_xkb_get_geometry_request_t {
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub deviceSpec :     xcb_xkb_device_spec_t,
+     pub pad0 :           [u8; 2],
+     pub name :           ffi::xproto::xcb_atom_t
 }
 
-pub struct get_geometry_reply {
-    response_type :   u8,
-    deviceID :        u8,
-    sequence :        u16,
-    length :          u32,
-    name :            xproto::atom,
-    found :           u8,
-    pad0 :            u8,
-    widthMM :         u16,
-    heightMM :        u16,
-    nProperties :     u16,
-    nColors :         u16,
-    nShapes :         u16,
-    nSections :       u16,
-    nDoodads :        u16,
-    nKeyAliases :     u16,
-    baseColorNdx :    u8,
-    labelColorNdx :   u8
+impl Copy for xcb_xkb_get_geometry_request_t {}
+impl Clone for xcb_xkb_get_geometry_request_t {
+    fn clone(&self) -> xcb_xkb_get_geometry_request_t { *self }
 }
 
-/** Opcode for xcb_xkb_set_geometry. */
-pub static XCB_XKB_SET_GEOMETRY : c_int = 20;
-
-pub struct set_geometry_request {
-    major_opcode :    u8,
-    minor_opcode :    u8,
-    length :          u16,
-    deviceSpec :      device_spec,
-    nShapes :         u8,
-    nSections :       u8,
-    name :            xproto::atom,
-    widthMM :         u16,
-    heightMM :        u16,
-    nProperties :     u16,
-    nColors :         u16,
-    nDoodads :        u16,
-    nKeyAliases :     u16,
-    baseColorNdx :    u8,
-    labelColorNdx :   u8,
-    pad0 :            [u8,..2]
+#[repr(C)]
+pub struct xcb_xkb_get_geometry_reply_t {
+     pub response_type :   u8,
+     pub deviceID :        u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub name :            ffi::xproto::xcb_atom_t,
+     pub found :           u8,
+     pub pad0 :            u8,
+     pub widthMM :         u16,
+     pub heightMM :        u16,
+     pub nProperties :     u16,
+     pub nColors :         u16,
+     pub nShapes :         u16,
+     pub nSections :       u16,
+     pub nDoodads :        u16,
+     pub nKeyAliases :     u16,
+     pub baseColorNdx :    u8,
+     pub labelColorNdx :   u8
 }
 
-pub struct per_client_flags_cookie {
+impl Copy for xcb_xkb_get_geometry_reply_t {}
+impl Clone for xcb_xkb_get_geometry_reply_t {
+    fn clone(&self) -> xcb_xkb_get_geometry_reply_t { *self }
+}
+
+
+#[repr(C)]
+pub struct xcb_xkb_set_geometry_request_t {
+     pub major_opcode :    u8,
+     pub minor_opcode :    u8,
+     pub length :          u16,
+     pub deviceSpec :      xcb_xkb_device_spec_t,
+     pub nShapes :         u8,
+     pub nSections :       u8,
+     pub name :            ffi::xproto::xcb_atom_t,
+     pub widthMM :         u16,
+     pub heightMM :        u16,
+     pub nProperties :     u16,
+     pub nColors :         u16,
+     pub nDoodads :        u16,
+     pub nKeyAliases :     u16,
+     pub baseColorNdx :    u8,
+     pub labelColorNdx :   u8,
+     pub pad0 :            [u8; 2]
+}
+
+impl Copy for xcb_xkb_set_geometry_request_t {}
+impl Clone for xcb_xkb_set_geometry_request_t {
+    fn clone(&self) -> xcb_xkb_set_geometry_request_t { *self }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct xcb_xkb_per_client_flags_cookie_t {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xkb_per_client_flags. */
-pub static XCB_XKB_PER_CLIENT_FLAGS : c_int = 21;
 
-pub struct per_client_flags_request {
-    major_opcode :      u8,
-    minor_opcode :      u8,
-    length :            u16,
-    deviceSpec :        device_spec,
-    pad0 :              [u8,..2],
-    change :            u32,
-    value :             u32,
-    ctrlsToChange :     u32,
-    autoCtrls :         u32,
-    autoCtrlsValues :   u32
+#[repr(C)]
+pub struct xcb_xkb_per_client_flags_request_t {
+     pub major_opcode :      u8,
+     pub minor_opcode :      u8,
+     pub length :            u16,
+     pub deviceSpec :        xcb_xkb_device_spec_t,
+     pub pad0 :              [u8; 2],
+     pub change :            u32,
+     pub value :             u32,
+     pub ctrlsToChange :     u32,
+     pub autoCtrls :         u32,
+     pub autoCtrlsValues :   u32
 }
 
-pub struct per_client_flags_reply {
-    response_type :     u8,
-    deviceID :          u8,
-    sequence :          u16,
-    length :            u32,
-    supported :         u32,
-    value :             u32,
-    autoCtrls :         u32,
-    autoCtrlsValues :   u32,
-    pad0 :              [u8,..8]
+impl Copy for xcb_xkb_per_client_flags_request_t {}
+impl Clone for xcb_xkb_per_client_flags_request_t {
+    fn clone(&self) -> xcb_xkb_per_client_flags_request_t { *self }
 }
 
-pub struct list_components_cookie {
+#[repr(C)]
+pub struct xcb_xkb_per_client_flags_reply_t {
+     pub response_type :     u8,
+     pub deviceID :          u8,
+     pub sequence :          u16,
+     pub length :            u32,
+     pub supported :         u32,
+     pub value :             u32,
+     pub autoCtrls :         u32,
+     pub autoCtrlsValues :   u32,
+     pub pad0 :              [u8; 8]
+}
+
+impl Copy for xcb_xkb_per_client_flags_reply_t {}
+impl Clone for xcb_xkb_per_client_flags_reply_t {
+    fn clone(&self) -> xcb_xkb_per_client_flags_reply_t { *self }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct xcb_xkb_list_components_cookie_t {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xkb_list_components. */
-pub static XCB_XKB_LIST_COMPONENTS : c_int = 22;
 
-pub struct list_components_request {
-    major_opcode :       u8,
-    minor_opcode :       u8,
-    length :             u16,
-    deviceSpec :         device_spec,
-    maxNames :           u16,
-    keymapsSpecLen :     u8,
-    keycodesSpecLen :    u8,
-    typesSpecLen :       u8,
-    compatMapSpecLen :   u8,
-    symbolsSpecLen :     u8,
-    geometrySpecLen :    u8
+#[repr(C)]
+pub struct xcb_xkb_list_components_request_t {
+     pub major_opcode :       u8,
+     pub minor_opcode :       u8,
+     pub length :             u16,
+     pub deviceSpec :         xcb_xkb_device_spec_t,
+     pub maxNames :           u16,
+     pub keymapsSpecLen :     u8,
+     pub keycodesSpecLen :    u8,
+     pub typesSpecLen :       u8,
+     pub compatMapSpecLen :   u8,
+     pub symbolsSpecLen :     u8,
+     pub geometrySpecLen :    u8
 }
 
-pub struct list_components_reply {
-    response_type :   u8,
-    deviceID :        u8,
-    sequence :        u16,
-    length :          u32,
-    nKeymaps :        u16,
-    nKeycodes :       u16,
-    nTypes :          u16,
-    nCompatMaps :     u16,
-    nSymbols :        u16,
-    nGeometries :     u16,
-    extra :           u16,
-    pad0 :            [u8,..10]
+impl Copy for xcb_xkb_list_components_request_t {}
+impl Clone for xcb_xkb_list_components_request_t {
+    fn clone(&self) -> xcb_xkb_list_components_request_t { *self }
 }
 
-pub struct get_kbd_by_name_cookie {
+#[repr(C)]
+pub struct xcb_xkb_list_components_reply_t {
+     pub response_type :   u8,
+     pub deviceID :        u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub nKeymaps :        u16,
+     pub nKeycodes :       u16,
+     pub nTypes :          u16,
+     pub nCompatMaps :     u16,
+     pub nSymbols :        u16,
+     pub nGeometries :     u16,
+     pub extra :           u16,
+     pub pad0 :            [u8; 10]
+}
+
+impl Copy for xcb_xkb_list_components_reply_t {}
+impl Clone for xcb_xkb_list_components_reply_t {
+    fn clone(&self) -> xcb_xkb_list_components_reply_t { *self }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct xcb_xkb_get_kbd_by_name_cookie_t {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xkb_get_kbd_by_name. */
-pub static XCB_XKB_GET_KBD_BY_NAME : c_int = 23;
 
-pub struct get_kbd_by_name_request {
-    major_opcode :       u8,
-    minor_opcode :       u8,
-    length :             u16,
-    deviceSpec :         device_spec,
-    need :               u16,
-    want :               u16,
-    load :               u8,
-    pad0 :               u8,
-    keymapsSpecLen :     u8,
-    keycodesSpecLen :    u8,
-    typesSpecLen :       u8,
-    compatMapSpecLen :   u8,
-    symbolsSpecLen :     u8,
-    geometrySpecLen :    u8
+#[repr(C)]
+pub struct xcb_xkb_get_kbd_by_name_request_t {
+     pub major_opcode :       u8,
+     pub minor_opcode :       u8,
+     pub length :             u16,
+     pub deviceSpec :         xcb_xkb_device_spec_t,
+     pub need :               u16,
+     pub want :               u16,
+     pub load :               u8,
+     pub pad0 :               u8,
+     pub keymapsSpecLen :     u8,
+     pub keycodesSpecLen :    u8,
+     pub typesSpecLen :       u8,
+     pub compatMapSpecLen :   u8,
+     pub symbolsSpecLen :     u8,
+     pub geometrySpecLen :    u8
 }
 
-pub struct get_kbd_by_name_replies_types_map {
-    types_rtrn :         *key_type,
-    syms_rtrn :      *key_sym_map,
-    acts_rtrn_count :               *u8,
-    acts_rtrn_acts :           *action,
-    behaviors_rtrn :     *set_behavior,
-    vmods_rtrn :               *u8,
-    explicit_rtrn :     *set_explicit,
-    modmap_rtrn :      *key_mod_map,
-    vmodmap_rtrn :    *key_v_mod_map
+impl Copy for xcb_xkb_get_kbd_by_name_request_t {}
+impl Clone for xcb_xkb_get_kbd_by_name_request_t {
+    fn clone(&self) -> xcb_xkb_get_kbd_by_name_request_t { *self }
 }
 
-pub struct get_kbd_by_name_replies_client_symbols_map {
-    types_rtrn :         *key_type,
-    syms_rtrn :      *key_sym_map,
-    acts_rtrn_count :               *u8,
-    acts_rtrn_acts :           *action,
-    behaviors_rtrn :     *set_behavior,
-    vmods_rtrn :               *u8,
-    explicit_rtrn :     *set_explicit,
-    modmap_rtrn :      *key_mod_map,
-    vmodmap_rtrn :    *key_v_mod_map
+#[repr(C)]
+pub struct xcb_xkb_get_kbd_by_name_replies_types_map_t {
+    pub types_rtrn :   *mut xcb_xkb_key_type_t,
+    pub syms_rtrn :   *mut xcb_xkb_key_sym_map_t,
+    pub acts_rtrn_count :               *mut u8,
+    pub acts_rtrn_acts :   *mut xcb_xkb_action_t,
+    pub behaviors_rtrn :   *mut xcb_xkb_set_behavior_t,
+    pub vmods_rtrn :               *mut u8,
+    pub explicit_rtrn :   *mut xcb_xkb_set_explicit_t,
+    pub modmap_rtrn :   *mut xcb_xkb_key_mod_map_t,
+    pub vmodmap_rtrn :   *mut xcb_xkb_key_v_mod_map_t
 }
 
-pub struct get_kbd_by_name_replies_server_symbols_map {
-    types_rtrn :         *key_type,
-    syms_rtrn :      *key_sym_map,
-    acts_rtrn_count :               *u8,
-    acts_rtrn_acts :           *action,
-    behaviors_rtrn :     *set_behavior,
-    vmods_rtrn :               *u8,
-    explicit_rtrn :     *set_explicit,
-    modmap_rtrn :      *key_mod_map,
-    vmodmap_rtrn :    *key_v_mod_map
+impl Copy for xcb_xkb_get_kbd_by_name_replies_types_map_t {}
+impl Clone for xcb_xkb_get_kbd_by_name_replies_types_map_t {
+    fn clone(&self) -> xcb_xkb_get_kbd_by_name_replies_types_map_t { *self }
 }
 
-pub struct get_kbd_by_name_replies_key_names_value_list {
-    keycodesName :      xproto::atom,
-    geometryName :      xproto::atom,
-    symbolsName :       xproto::atom,
-    physSymbolsName :   xproto::atom,
-    typesName :         xproto::atom,
-    compatName :        xproto::atom,
-    typeNames :     *xproto::atom,
-    nLevelsPerType :               *u8,
-    ktLevelNames :     *xproto::atom,
-    indicatorNames :     *xproto::atom,
-    virtualModNames :     *xproto::atom,
-    groups :     *xproto::atom,
-    keyNames :         *key_name,
-    keyAliases :        *key_alias,
-    radioGroupNames :     *xproto::atom
+#[repr(C)]
+pub struct xcb_xkb_get_kbd_by_name_replies_client_symbols_map_t {
+    pub types_rtrn :   *mut xcb_xkb_key_type_t,
+    pub syms_rtrn :   *mut xcb_xkb_key_sym_map_t,
+    pub acts_rtrn_count :               *mut u8,
+    pub acts_rtrn_acts :   *mut xcb_xkb_action_t,
+    pub behaviors_rtrn :   *mut xcb_xkb_set_behavior_t,
+    pub vmods_rtrn :               *mut u8,
+    pub explicit_rtrn :   *mut xcb_xkb_set_explicit_t,
+    pub modmap_rtrn :   *mut xcb_xkb_key_mod_map_t,
+    pub vmodmap_rtrn :   *mut xcb_xkb_key_v_mod_map_t
 }
 
-pub struct get_kbd_by_name_replies_other_names_value_list {
-    keycodesName :      xproto::atom,
-    geometryName :      xproto::atom,
-    symbolsName :       xproto::atom,
-    physSymbolsName :   xproto::atom,
-    typesName :         xproto::atom,
-    compatName :        xproto::atom,
-    typeNames :     *xproto::atom,
-    nLevelsPerType :               *u8,
-    ktLevelNames :     *xproto::atom,
-    indicatorNames :     *xproto::atom,
-    virtualModNames :     *xproto::atom,
-    groups :     *xproto::atom,
-    keyNames :         *key_name,
-    keyAliases :        *key_alias,
-    radioGroupNames :     *xproto::atom
+impl Copy for xcb_xkb_get_kbd_by_name_replies_client_symbols_map_t {}
+impl Clone for xcb_xkb_get_kbd_by_name_replies_client_symbols_map_t {
+    fn clone(&self) -> xcb_xkb_get_kbd_by_name_replies_client_symbols_map_t { *self }
 }
 
-pub struct get_kbd_by_name_replies {
+#[repr(C)]
+pub struct xcb_xkb_get_kbd_by_name_replies_server_symbols_map_t {
+    pub types_rtrn :   *mut xcb_xkb_key_type_t,
+    pub syms_rtrn :   *mut xcb_xkb_key_sym_map_t,
+    pub acts_rtrn_count :               *mut u8,
+    pub acts_rtrn_acts :   *mut xcb_xkb_action_t,
+    pub behaviors_rtrn :   *mut xcb_xkb_set_behavior_t,
+    pub vmods_rtrn :               *mut u8,
+    pub explicit_rtrn :   *mut xcb_xkb_set_explicit_t,
+    pub modmap_rtrn :   *mut xcb_xkb_key_mod_map_t,
+    pub vmodmap_rtrn :   *mut xcb_xkb_key_v_mod_map_t
+}
+
+impl Copy for xcb_xkb_get_kbd_by_name_replies_server_symbols_map_t {}
+impl Clone for xcb_xkb_get_kbd_by_name_replies_server_symbols_map_t {
+    fn clone(&self) -> xcb_xkb_get_kbd_by_name_replies_server_symbols_map_t { *self }
+}
+
+#[repr(C)]
+pub struct xcb_xkb_get_kbd_by_name_replies_key_names_value_list_t {
+     pub keycodesName :      ffi::xproto::xcb_atom_t,
+     pub geometryName :      ffi::xproto::xcb_atom_t,
+     pub symbolsName :       ffi::xproto::xcb_atom_t,
+     pub physSymbolsName :   ffi::xproto::xcb_atom_t,
+     pub typesName :         ffi::xproto::xcb_atom_t,
+     pub compatName :        ffi::xproto::xcb_atom_t,
+    pub typeNames :   *mut ffi::xproto::xcb_atom_t,
+    pub nLevelsPerType :               *mut u8,
+    pub ktLevelNames :   *mut ffi::xproto::xcb_atom_t,
+    pub indicatorNames :   *mut ffi::xproto::xcb_atom_t,
+    pub virtualModNames :   *mut ffi::xproto::xcb_atom_t,
+    pub groups :   *mut ffi::xproto::xcb_atom_t,
+    pub keyNames :   *mut xcb_xkb_key_name_t,
+    pub keyAliases :   *mut xcb_xkb_key_alias_t,
+    pub radioGroupNames :   *mut ffi::xproto::xcb_atom_t
+}
+
+impl Copy for xcb_xkb_get_kbd_by_name_replies_key_names_value_list_t {}
+impl Clone for xcb_xkb_get_kbd_by_name_replies_key_names_value_list_t {
+    fn clone(&self) -> xcb_xkb_get_kbd_by_name_replies_key_names_value_list_t { *self }
+}
+
+#[repr(C)]
+pub struct xcb_xkb_get_kbd_by_name_replies_other_names_value_list_t {
+     pub keycodesName :      ffi::xproto::xcb_atom_t,
+     pub geometryName :      ffi::xproto::xcb_atom_t,
+     pub symbolsName :       ffi::xproto::xcb_atom_t,
+     pub physSymbolsName :   ffi::xproto::xcb_atom_t,
+     pub typesName :         ffi::xproto::xcb_atom_t,
+     pub compatName :        ffi::xproto::xcb_atom_t,
+    pub typeNames :   *mut ffi::xproto::xcb_atom_t,
+    pub nLevelsPerType :               *mut u8,
+    pub ktLevelNames :   *mut ffi::xproto::xcb_atom_t,
+    pub indicatorNames :   *mut ffi::xproto::xcb_atom_t,
+    pub virtualModNames :   *mut ffi::xproto::xcb_atom_t,
+    pub groups :   *mut ffi::xproto::xcb_atom_t,
+    pub keyNames :   *mut xcb_xkb_key_name_t,
+    pub keyAliases :   *mut xcb_xkb_key_alias_t,
+    pub radioGroupNames :   *mut ffi::xproto::xcb_atom_t
+}
+
+impl Copy for xcb_xkb_get_kbd_by_name_replies_other_names_value_list_t {}
+impl Clone for xcb_xkb_get_kbd_by_name_replies_other_names_value_list_t {
+    fn clone(&self) -> xcb_xkb_get_kbd_by_name_replies_other_names_value_list_t { *self }
+}
+
+#[repr(C)]
+pub struct xcb_xkb_get_kbd_by_name_replies_t {
     types : struct _types {
-        getmap_type :         u8,
-        typeDeviceID :        u8,
-        getmap_sequence :     u16,
-        getmap_length :       u32,
-        pad0 :                [u8,..2],
-        typeMinKeyCode :      xproto::keycode,
-        typeMaxKeyCode :      xproto::keycode,
-        present :             u16,
-        firstType :           u8,
-        nTypes :              u8,
-        totalTypes :          u8,
-        firstKeySym :         xproto::keycode,
-        totalSyms :           u16,
-        nKeySyms :            u8,
-        firstKeyAction :      xproto::keycode,
-        totalActions :        u16,
-        nKeyActions :         u8,
-        firstKeyBehavior :    xproto::keycode,
-        nKeyBehaviors :       u8,
-        totalKeyBehaviors :   u8,
-        firstKeyExplicit :    xproto::keycode,
-        nKeyExplicit :        u8,
-        totalKeyExplicit :    u8,
-        firstModMapKey :      xproto::keycode,
-        nModMapKeys :         u8,
-        totalModMapKeys :     u8,
-        firstVModMapKey :     xproto::keycode,
-        nVModMapKeys :        u8,
-        totalVModMapKeys :    u8,
-        pad1 :                u8,
-        virtualMods :         u16,
-        map :                 get_kbd_by_name_replies_types_map,
+         pub getmap_type :         u8,
+         pub typeDeviceID :        u8,
+         pub getmap_sequence :     u16,
+         pub getmap_length :       u32,
+         pub pad0 :                [u8; 2],
+         pub typeMinKeyCode :      ffi::xproto::xcb_keycode_t,
+         pub typeMaxKeyCode :      ffi::xproto::xcb_keycode_t,
+         pub present :             u16,
+         pub firstType :           u8,
+         pub nTypes :              u8,
+         pub totalTypes :          u8,
+         pub firstKeySym :         ffi::xproto::xcb_keycode_t,
+         pub totalSyms :           u16,
+         pub nKeySyms :            u8,
+         pub firstKeyAction :      ffi::xproto::xcb_keycode_t,
+         pub totalActions :        u16,
+         pub nKeyActions :         u8,
+         pub firstKeyBehavior :    ffi::xproto::xcb_keycode_t,
+         pub nKeyBehaviors :       u8,
+         pub totalKeyBehaviors :   u8,
+         pub firstKeyExplicit :    ffi::xproto::xcb_keycode_t,
+         pub nKeyExplicit :        u8,
+         pub totalKeyExplicit :    u8,
+         pub firstModMapKey :      ffi::xproto::xcb_keycode_t,
+         pub nModMapKeys :         u8,
+         pub totalModMapKeys :     u8,
+         pub firstVModMapKey :     ffi::xproto::xcb_keycode_t,
+         pub nVModMapKeys :        u8,
+         pub totalVModMapKeys :    u8,
+         pub pad1 :                u8,
+         pub virtualMods :         u16,
+         pub map :                 xcb_xkb_get_kbd_by_name_replies_types_map_t,
     }
     compat_map : struct _compat_map {
-        compatDeviceID :      u8,
-        groupsRtrn :          u8,
-        pad0 :                u8,
-        firstSIRtrn :         u16,
-        nSIRtrn :             u16,
-        nTotalSI :            u16,
-        pad1 :                [u8,..16],
-        si_rtrn :                 *u8,
-        group_rtrn :            *mod_def,
+         pub compatDeviceID :      u8,
+         pub groupsRtrn :          u8,
+         pub pad0 :                u8,
+         pub firstSIRtrn :         u16,
+         pub nSIRtrn :             u16,
+         pub nTotalSI :            u16,
+         pub pad1 :                [u8; 16],
+        pub si_rtrn :                 *mut u8,
+        pub group_rtrn :   *mut xcb_xkb_mod_def_t,
     }
     client_symbols : struct _client_symbols {
-        clientDeviceID :      u8,
-        pad0 :                [u8,..2],
-        clientMinKeyCode :    xproto::keycode,
-        clientMaxKeyCode :    xproto::keycode,
-        present :             u16,
-        firstType :           u8,
-        nTypes :              u8,
-        totalTypes :          u8,
-        firstKeySym :         xproto::keycode,
-        totalSyms :           u16,
-        nKeySyms :            u8,
-        firstKeyAction :      xproto::keycode,
-        totalActions :        u16,
-        nKeyActions :         u8,
-        firstKeyBehavior :    xproto::keycode,
-        nKeyBehaviors :       u8,
-        totalKeyBehaviors :   u8,
-        firstKeyExplicit :    xproto::keycode,
-        nKeyExplicit :        u8,
-        totalKeyExplicit :    u8,
-        firstModMapKey :      xproto::keycode,
-        nModMapKeys :         u8,
-        totalModMapKeys :     u8,
-        firstVModMapKey :     xproto::keycode,
-        nVModMapKeys :        u8,
-        totalVModMapKeys :    u8,
-        pad1 :                u8,
-        virtualMods :         u16,
-        map :                 get_kbd_by_name_replies_client_symbols_map,
+         pub clientDeviceID :      u8,
+         pub pad0 :                [u8; 2],
+         pub clientMinKeyCode :    ffi::xproto::xcb_keycode_t,
+         pub clientMaxKeyCode :    ffi::xproto::xcb_keycode_t,
+         pub present :             u16,
+         pub firstType :           u8,
+         pub nTypes :              u8,
+         pub totalTypes :          u8,
+         pub firstKeySym :         ffi::xproto::xcb_keycode_t,
+         pub totalSyms :           u16,
+         pub nKeySyms :            u8,
+         pub firstKeyAction :      ffi::xproto::xcb_keycode_t,
+         pub totalActions :        u16,
+         pub nKeyActions :         u8,
+         pub firstKeyBehavior :    ffi::xproto::xcb_keycode_t,
+         pub nKeyBehaviors :       u8,
+         pub totalKeyBehaviors :   u8,
+         pub firstKeyExplicit :    ffi::xproto::xcb_keycode_t,
+         pub nKeyExplicit :        u8,
+         pub totalKeyExplicit :    u8,
+         pub firstModMapKey :      ffi::xproto::xcb_keycode_t,
+         pub nModMapKeys :         u8,
+         pub totalModMapKeys :     u8,
+         pub firstVModMapKey :     ffi::xproto::xcb_keycode_t,
+         pub nVModMapKeys :        u8,
+         pub totalVModMapKeys :    u8,
+         pub pad1 :                u8,
+         pub virtualMods :         u16,
+         pub map :                 xcb_xkb_get_kbd_by_name_replies_client_symbols_map_t,
     }
     server_symbols : struct _server_symbols {
-        serverDeviceID :      u8,
-        pad0 :                [u8,..2],
-        serverMinKeyCode :    xproto::keycode,
-        serverMaxKeyCode :    xproto::keycode,
-        present :             u16,
-        firstType :           u8,
-        nTypes :              u8,
-        totalTypes :          u8,
-        firstKeySym :         xproto::keycode,
-        totalSyms :           u16,
-        nKeySyms :            u8,
-        firstKeyAction :      xproto::keycode,
-        totalActions :        u16,
-        nKeyActions :         u8,
-        firstKeyBehavior :    xproto::keycode,
-        nKeyBehaviors :       u8,
-        totalKeyBehaviors :   u8,
-        firstKeyExplicit :    xproto::keycode,
-        nKeyExplicit :        u8,
-        totalKeyExplicit :    u8,
-        firstModMapKey :      xproto::keycode,
-        nModMapKeys :         u8,
-        totalModMapKeys :     u8,
-        firstVModMapKey :     xproto::keycode,
-        nVModMapKeys :        u8,
-        totalVModMapKeys :    u8,
-        pad1 :                u8,
-        virtualMods :         u16,
-        map :                 get_kbd_by_name_replies_server_symbols_map,
+         pub serverDeviceID :      u8,
+         pub pad0 :                [u8; 2],
+         pub serverMinKeyCode :    ffi::xproto::xcb_keycode_t,
+         pub serverMaxKeyCode :    ffi::xproto::xcb_keycode_t,
+         pub present :             u16,
+         pub firstType :           u8,
+         pub nTypes :              u8,
+         pub totalTypes :          u8,
+         pub firstKeySym :         ffi::xproto::xcb_keycode_t,
+         pub totalSyms :           u16,
+         pub nKeySyms :            u8,
+         pub firstKeyAction :      ffi::xproto::xcb_keycode_t,
+         pub totalActions :        u16,
+         pub nKeyActions :         u8,
+         pub firstKeyBehavior :    ffi::xproto::xcb_keycode_t,
+         pub nKeyBehaviors :       u8,
+         pub totalKeyBehaviors :   u8,
+         pub firstKeyExplicit :    ffi::xproto::xcb_keycode_t,
+         pub nKeyExplicit :        u8,
+         pub totalKeyExplicit :    u8,
+         pub firstModMapKey :      ffi::xproto::xcb_keycode_t,
+         pub nModMapKeys :         u8,
+         pub totalModMapKeys :     u8,
+         pub firstVModMapKey :     ffi::xproto::xcb_keycode_t,
+         pub nVModMapKeys :        u8,
+         pub totalVModMapKeys :    u8,
+         pub pad1 :                u8,
+         pub virtualMods :         u16,
+         pub map :                 xcb_xkb_get_kbd_by_name_replies_server_symbols_map_t,
     }
     indicator_maps : struct _indicator_maps {
-        indicatorDeviceID :   u8,
-        which :               u32,
-        realIndicators :      u32,
-        nIndicators :         u8,
-        pad0 :                [u8,..15],
-        maps :      *indicator_map,
+         pub indicatorDeviceID :   u8,
+         pub which :               u32,
+         pub realIndicators :      u32,
+         pub nIndicators :         u8,
+         pub pad0 :                [u8; 15],
+        pub maps :   *mut xcb_xkb_indicator_map_t,
     }
     key_names : struct _key_names {
-        keyDeviceID :         u8,
-        which :               u32,
-        keyMinKeyCode :       xproto::keycode,
-        keyMaxKeyCode :       xproto::keycode,
-        nTypes :              u8,
-        groupNames :          u8,
-        virtualMods :         u16,
-        firstKey :            xproto::keycode,
-        nKeys :               u8,
-        indicators :          u32,
-        nRadioGroups :        u8,
-        nKeyAliases :         u8,
-        nKTLevels :           u16,
-        pad0 :                [u8,..4],
-        valueList :           get_kbd_by_name_replies_key_names_value_list,
+         pub keyDeviceID :         u8,
+         pub which :               u32,
+         pub keyMinKeyCode :       ffi::xproto::xcb_keycode_t,
+         pub keyMaxKeyCode :       ffi::xproto::xcb_keycode_t,
+         pub nTypes :              u8,
+         pub groupNames :          u8,
+         pub virtualMods :         u16,
+         pub firstKey :            ffi::xproto::xcb_keycode_t,
+         pub nKeys :               u8,
+         pub indicators :          u32,
+         pub nRadioGroups :        u8,
+         pub nKeyAliases :         u8,
+         pub nKTLevels :           u16,
+         pub pad0 :                [u8; 4],
+         pub valueList :           xcb_xkb_get_kbd_by_name_replies_key_names_value_list_t,
     }
     other_names : struct _other_names {
-        otherDeviceID :       u8,
-        which :               u32,
-        otherMinKeyCode :     xproto::keycode,
-        otherMaxKeyCode :     xproto::keycode,
-        nTypes :              u8,
-        groupNames :          u8,
-        virtualMods :         u16,
-        firstKey :            xproto::keycode,
-        nKeys :               u8,
-        indicators :          u32,
-        nRadioGroups :        u8,
-        nKeyAliases :         u8,
-        nKTLevels :           u16,
-        pad0 :                [u8,..4],
-        valueList :           get_kbd_by_name_replies_other_names_value_list,
+         pub otherDeviceID :       u8,
+         pub which :               u32,
+         pub otherMinKeyCode :     ffi::xproto::xcb_keycode_t,
+         pub otherMaxKeyCode :     ffi::xproto::xcb_keycode_t,
+         pub nTypes :              u8,
+         pub groupNames :          u8,
+         pub virtualMods :         u16,
+         pub firstKey :            ffi::xproto::xcb_keycode_t,
+         pub nKeys :               u8,
+         pub indicators :          u32,
+         pub nRadioGroups :        u8,
+         pub nKeyAliases :         u8,
+         pub nKTLevels :           u16,
+         pub pad0 :                [u8; 4],
+         pub valueList :           xcb_xkb_get_kbd_by_name_replies_other_names_value_list_t,
     }
     geometry : struct _geometry {
-        geometryDeviceID :    u8,
-        name :                xproto::atom,
-        geometryFound :       u8,
-        pad0 :                u8,
-        widthMM :             u16,
-        heightMM :            u16,
-        nProperties :         u16,
-        nColors :             u16,
-        nShapes :             u16,
-        nSections :           u16,
-        nDoodads :            u16,
-        nKeyAliases :         u16,
-        baseColorNdx :        u8,
-        labelColorNdx :       u8,
-        labelFont :   *counted_string_16,
-        properties :           *property,
-        colors :   *counted_string_16,
-        shapes :              *shape,
-        sections :            *section,
-        doodads :             *doodad,
-        keyAliases :          *key_alias,
+         pub geometryDeviceID :    u8,
+         pub name :                ffi::xproto::xcb_atom_t,
+         pub geometryFound :       u8,
+         pub pad0 :                u8,
+         pub widthMM :             u16,
+         pub heightMM :            u16,
+         pub nProperties :         u16,
+         pub nColors :             u16,
+         pub nShapes :             u16,
+         pub nSections :           u16,
+         pub nDoodads :            u16,
+         pub nKeyAliases :         u16,
+         pub baseColorNdx :        u8,
+         pub labelColorNdx :       u8,
+        pub labelFont :   *mut xcb_xkb_counted_string_16_t,
+        pub properties :   *mut xcb_xkb_property_t,
+        pub colors :   *mut xcb_xkb_counted_string_16_t,
+        pub shapes :    *mut xcb_xkb_shape_t,
+        pub sections :   *mut xcb_xkb_section_t,
+        pub doodads :   *mut xcb_xkb_doodad_t,
+        pub keyAliases :   *mut xcb_xkb_key_alias_t,
     }
 }
 
-pub struct get_kbd_by_name_reply {
-    response_type :   u8,
-    deviceID :        u8,
-    sequence :        u16,
-    length :          u32,
-    minKeyCode :      xproto::keycode,
-    maxKeyCode :      xproto::keycode,
-    loaded :          u8,
-    newKeyboard :     u8,
-    found :           u16,
-    reported :        u16,
-    pad0 :            [u8,..16]
+impl Copy for xcb_xkb_get_kbd_by_name_replies_t {}
+impl Clone for xcb_xkb_get_kbd_by_name_replies_t {
+    fn clone(&self) -> xcb_xkb_get_kbd_by_name_replies_t { *self }
 }
 
-pub struct get_device_info_cookie {
+#[repr(C)]
+pub struct xcb_xkb_get_kbd_by_name_reply_t {
+     pub response_type :   u8,
+     pub deviceID :        u8,
+     pub sequence :        u16,
+     pub length :          u32,
+     pub minKeyCode :      ffi::xproto::xcb_keycode_t,
+     pub maxKeyCode :      ffi::xproto::xcb_keycode_t,
+     pub loaded :          u8,
+     pub newKeyboard :     u8,
+     pub found :           u16,
+     pub reported :        u16,
+     pub pad0 :            [u8; 16]
+}
+
+impl Copy for xcb_xkb_get_kbd_by_name_reply_t {}
+impl Clone for xcb_xkb_get_kbd_by_name_reply_t {
+    fn clone(&self) -> xcb_xkb_get_kbd_by_name_reply_t { *self }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct xcb_xkb_get_device_info_cookie_t {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xkb_get_device_info. */
-pub static XCB_XKB_GET_DEVICE_INFO : c_int = 24;
 
-pub struct get_device_info_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    deviceSpec :     device_spec,
-    wanted :         u16,
-    allButtons :     u8,
-    firstButton :    u8,
-    nButtons :       u8,
-    pad0 :           u8,
-    ledClass :       led_class_spec,
-    ledID :          id_spec
+#[repr(C)]
+pub struct xcb_xkb_get_device_info_request_t {
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub deviceSpec :     xcb_xkb_device_spec_t,
+     pub wanted :         u16,
+     pub allButtons :     u8,
+     pub firstButton :    u8,
+     pub nButtons :       u8,
+     pub pad0 :           u8,
+     pub ledClass :       xcb_xkb_led_class_spec_t,
+     pub ledID :          xcb_xkb_id_spec_t
 }
 
-pub struct get_device_info_reply {
-    response_type :    u8,
-    deviceID :         u8,
-    sequence :         u16,
-    length :           u32,
-    present :          u16,
-    supported :        u16,
-    unsupported :      u16,
-    nDeviceLedFBs :    u16,
-    firstBtnWanted :   u8,
-    nBtnsWanted :      u8,
-    firstBtnRtrn :     u8,
-    nBtnsRtrn :        u8,
-    totalBtns :        u8,
-    hasOwnState :      u8,
-    dfltKbdFB :        u16,
-    dfltLedFB :        u16,
-    pad0 :             [u8,..2],
-    devType :          xproto::atom,
-    nameLen :          u16
+impl Copy for xcb_xkb_get_device_info_request_t {}
+impl Clone for xcb_xkb_get_device_info_request_t {
+    fn clone(&self) -> xcb_xkb_get_device_info_request_t { *self }
 }
 
-/** Opcode for xcb_xkb_set_device_info. */
-pub static XCB_XKB_SET_DEVICE_INFO : c_int = 25;
-
-pub struct set_device_info_request {
-    major_opcode :    u8,
-    minor_opcode :    u8,
-    length :          u16,
-    deviceSpec :      device_spec,
-    firstBtn :        u8,
-    nBtns :           u8,
-    change :          u16,
-    nDeviceLedFBs :   u16
+#[repr(C)]
+pub struct xcb_xkb_get_device_info_reply_t {
+     pub response_type :    u8,
+     pub deviceID :         u8,
+     pub sequence :         u16,
+     pub length :           u32,
+     pub present :          u16,
+     pub supported :        u16,
+     pub unsupported :      u16,
+     pub nDeviceLedFBs :    u16,
+     pub firstBtnWanted :   u8,
+     pub nBtnsWanted :      u8,
+     pub firstBtnRtrn :     u8,
+     pub nBtnsRtrn :        u8,
+     pub totalBtns :        u8,
+     pub hasOwnState :      u8,
+     pub dfltKbdFB :        u16,
+     pub dfltLedFB :        u16,
+     pub pad0 :             [u8; 2],
+     pub devType :          ffi::xproto::xcb_atom_t,
+     pub nameLen :          u16
 }
 
-pub struct set_debugging_flags_cookie {
+impl Copy for xcb_xkb_get_device_info_reply_t {}
+impl Clone for xcb_xkb_get_device_info_reply_t {
+    fn clone(&self) -> xcb_xkb_get_device_info_reply_t { *self }
+}
+
+
+#[repr(C)]
+pub struct xcb_xkb_set_device_info_request_t {
+     pub major_opcode :    u8,
+     pub minor_opcode :    u8,
+     pub length :          u16,
+     pub deviceSpec :      xcb_xkb_device_spec_t,
+     pub firstBtn :        u8,
+     pub nBtns :           u8,
+     pub change :          u16,
+     pub nDeviceLedFBs :   u16
+}
+
+impl Copy for xcb_xkb_set_device_info_request_t {}
+impl Clone for xcb_xkb_set_device_info_request_t {
+    fn clone(&self) -> xcb_xkb_set_device_info_request_t { *self }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct xcb_xkb_set_debugging_flags_cookie_t {
     sequence : c_uint
 }
 
-/** Opcode for xcb_xkb_set_debugging_flags. */
-pub static XCB_XKB_SET_DEBUGGING_FLAGS : c_int = 101;
 
-pub struct set_debugging_flags_request {
-    major_opcode :   u8,
-    minor_opcode :   u8,
-    length :         u16,
-    msgLength :      u16,
-    pad0 :           [u8,..2],
-    affectFlags :    u32,
-    flags :          u32,
-    affectCtrls :    u32,
-    ctrls :          u32
+#[repr(C)]
+pub struct xcb_xkb_set_debugging_flags_request_t {
+     pub major_opcode :   u8,
+     pub minor_opcode :   u8,
+     pub length :         u16,
+     pub msgLength :      u16,
+     pub pad0 :           [u8; 2],
+     pub affectFlags :    u32,
+     pub flags :          u32,
+     pub affectCtrls :    u32,
+     pub ctrls :          u32
 }
 
-pub struct set_debugging_flags_reply {
-    response_type :    u8,
-    pad0 :             u8,
-    sequence :         u16,
-    length :           u32,
-    currentFlags :     u32,
-    currentCtrls :     u32,
-    supportedFlags :   u32,
-    supportedCtrls :   u32,
-    pad1 :             [u8,..8]
+impl Copy for xcb_xkb_set_debugging_flags_request_t {}
+impl Clone for xcb_xkb_set_debugging_flags_request_t {
+    fn clone(&self) -> xcb_xkb_set_debugging_flags_request_t { *self }
 }
 
-/** Opcode for xcb_xkb_new_keyboard_notify. */
-pub static XCB_XKB_NEW_KEYBOARD_NOTIFY : c_int = 0;
-
-pub struct new_keyboard_notify_event {
-    response_type :   u8,
-    xkbType :         u8,
-    sequence :        u16,
-    time :            xproto::timestamp,
-    deviceID :        u8,
-    oldDeviceID :     u8,
-    minKeyCode :      xproto::keycode,
-    maxKeyCode :      xproto::keycode,
-    oldMinKeyCode :   xproto::keycode,
-    oldMaxKeyCode :   xproto::keycode,
-    requestMajor :    u8,
-    requestMinor :    u8,
-    changed :         u16,
-    pad0 :            [u8,..14]
+#[repr(C)]
+pub struct xcb_xkb_set_debugging_flags_reply_t {
+     pub response_type :    u8,
+     pub pad0 :             u8,
+     pub sequence :         u16,
+     pub length :           u32,
+     pub currentFlags :     u32,
+     pub currentCtrls :     u32,
+     pub supportedFlags :   u32,
+     pub supportedCtrls :   u32,
+     pub pad1 :             [u8; 8]
 }
 
-/** Opcode for xcb_xkb_map_notify. */
-pub static XCB_XKB_MAP_NOTIFY : c_int = 1;
-
-pub struct map_notify_event {
-    response_type :      u8,
-    xkbType :            u8,
-    sequence :           u16,
-    time :               xproto::timestamp,
-    deviceID :           u8,
-    ptrBtnActions :      u8,
-    changed :            u16,
-    minKeyCode :         xproto::keycode,
-    maxKeyCode :         xproto::keycode,
-    firstType :          u8,
-    nTypes :             u8,
-    firstKeySym :        xproto::keycode,
-    nKeySyms :           u8,
-    firstKeyAct :        xproto::keycode,
-    nKeyActs :           u8,
-    firstKeyBehavior :   xproto::keycode,
-    nKeyBehavior :       u8,
-    firstKeyExplicit :   xproto::keycode,
-    nKeyExplicit :       u8,
-    firstModMapKey :     xproto::keycode,
-    nModMapKeys :        u8,
-    firstVModMapKey :    xproto::keycode,
-    nVModMapKeys :       u8,
-    virtualMods :        u16,
-    pad0 :               [u8,..2]
+impl Copy for xcb_xkb_set_debugging_flags_reply_t {}
+impl Clone for xcb_xkb_set_debugging_flags_reply_t {
+    fn clone(&self) -> xcb_xkb_set_debugging_flags_reply_t { *self }
 }
 
-/** Opcode for xcb_xkb_state_notify. */
-pub static XCB_XKB_STATE_NOTIFY : c_int = 2;
 
-pub struct state_notify_event {
-    response_type :       u8,
-    xkbType :             u8,
-    sequence :            u16,
-    time :                xproto::timestamp,
-    deviceID :            u8,
-    mods :                u8,
-    baseMods :            u8,
-    latchedMods :         u8,
-    lockedMods :          u8,
-    group :               u8,
-    baseGroup :           i16,
-    latchedGroup :        i16,
-    lockedGroup :         u8,
-    compatState :         u8,
-    grabMods :            u8,
-    compatGrabMods :      u8,
-    lookupMods :          u8,
-    compatLoockupMods :   u8,
-    ptrBtnState :         u16,
-    changed :             u16,
-    keycode :             xproto::keycode,
-    eventType :           u8,
-    requestMajor :        u8,
-    requestMinor :        u8
+#[repr(C)]
+pub struct xcb_xkb_new_keyboard_notify_event_t {
+     pub response_type :   u8,
+     pub xkbType :         u8,
+     pub sequence :        u16,
+     pub time :            ffi::xproto::xcb_timestamp_t,
+     pub deviceID :        u8,
+     pub oldDeviceID :     u8,
+     pub minKeyCode :      ffi::xproto::xcb_keycode_t,
+     pub maxKeyCode :      ffi::xproto::xcb_keycode_t,
+     pub oldMinKeyCode :   ffi::xproto::xcb_keycode_t,
+     pub oldMaxKeyCode :   ffi::xproto::xcb_keycode_t,
+     pub requestMajor :    u8,
+     pub requestMinor :    u8,
+     pub changed :         u16,
+     pub pad0 :            [u8; 14]
 }
 
-/** Opcode for xcb_xkb_controls_notify. */
-pub static XCB_XKB_CONTROLS_NOTIFY : c_int = 3;
-
-pub struct controls_notify_event {
-    response_type :           u8,
-    xkbType :                 u8,
-    sequence :                u16,
-    time :                    xproto::timestamp,
-    deviceID :                u8,
-    numGroups :               u8,
-    pad0 :                    [u8,..2],
-    changedControls :         u32,
-    enabledControls :         u32,
-    enabledControlChanges :   u32,
-    keycode :                 xproto::keycode,
-    eventType :               u8,
-    requestMajor :            u8,
-    requestMinor :            u8,
-    pad1 :                    [u8,..4]
+impl Copy for xcb_xkb_new_keyboard_notify_event_t {}
+impl Clone for xcb_xkb_new_keyboard_notify_event_t {
+    fn clone(&self) -> xcb_xkb_new_keyboard_notify_event_t { *self }
 }
 
-/** Opcode for xcb_xkb_indicator_state_notify. */
-pub static XCB_XKB_INDICATOR_STATE_NOTIFY : c_int = 4;
 
-pub struct indicator_state_notify_event {
-    response_type :   u8,
-    xkbType :         u8,
-    sequence :        u16,
-    time :            xproto::timestamp,
-    deviceID :        u8,
-    pad0 :            [u8,..3],
-    state :           u32,
-    stateChanged :    u32,
-    pad1 :            [u8,..12]
+#[repr(C)]
+pub struct xcb_xkb_map_notify_event_t {
+     pub response_type :      u8,
+     pub xkbType :            u8,
+     pub sequence :           u16,
+     pub time :               ffi::xproto::xcb_timestamp_t,
+     pub deviceID :           u8,
+     pub ptrBtnActions :      u8,
+     pub changed :            u16,
+     pub minKeyCode :         ffi::xproto::xcb_keycode_t,
+     pub maxKeyCode :         ffi::xproto::xcb_keycode_t,
+     pub firstType :          u8,
+     pub nTypes :             u8,
+     pub firstKeySym :        ffi::xproto::xcb_keycode_t,
+     pub nKeySyms :           u8,
+     pub firstKeyAct :        ffi::xproto::xcb_keycode_t,
+     pub nKeyActs :           u8,
+     pub firstKeyBehavior :   ffi::xproto::xcb_keycode_t,
+     pub nKeyBehavior :       u8,
+     pub firstKeyExplicit :   ffi::xproto::xcb_keycode_t,
+     pub nKeyExplicit :       u8,
+     pub firstModMapKey :     ffi::xproto::xcb_keycode_t,
+     pub nModMapKeys :        u8,
+     pub firstVModMapKey :    ffi::xproto::xcb_keycode_t,
+     pub nVModMapKeys :       u8,
+     pub virtualMods :        u16,
+     pub pad0 :               [u8; 2]
 }
 
-/** Opcode for xcb_xkb_indicator_map_notify. */
-pub static XCB_XKB_INDICATOR_MAP_NOTIFY : c_int = 5;
-
-pub struct indicator_map_notify_event {
-    response_type :   u8,
-    xkbType :         u8,
-    sequence :        u16,
-    time :            xproto::timestamp,
-    deviceID :        u8,
-    pad0 :            [u8,..3],
-    state :           u32,
-    mapChanged :      u32,
-    pad1 :            [u8,..12]
+impl Copy for xcb_xkb_map_notify_event_t {}
+impl Clone for xcb_xkb_map_notify_event_t {
+    fn clone(&self) -> xcb_xkb_map_notify_event_t { *self }
 }
 
-/** Opcode for xcb_xkb_names_notify. */
-pub static XCB_XKB_NAMES_NOTIFY : c_int = 6;
 
-pub struct names_notify_event {
-    response_type :        u8,
-    xkbType :              u8,
-    sequence :             u16,
-    time :                 xproto::timestamp,
-    deviceID :             u8,
-    pad0 :                 u8,
-    changed :              u16,
-    firstType :            u8,
-    nTypes :               u8,
-    firstLevelName :       u8,
-    nLevelNames :          u8,
-    pad1 :                 u8,
-    nRadioGroups :         u8,
-    nKeyAliases :          u8,
-    changedGroupNames :    u8,
-    changedVirtualMods :   u16,
-    firstKey :             xproto::keycode,
-    nKeys :                u8,
-    changedIndicators :    u32,
-    pad2 :                 [u8,..4]
+#[repr(C)]
+pub struct xcb_xkb_state_notify_event_t {
+     pub response_type :       u8,
+     pub xkbType :             u8,
+     pub sequence :            u16,
+     pub time :                ffi::xproto::xcb_timestamp_t,
+     pub deviceID :            u8,
+     pub mods :                u8,
+     pub baseMods :            u8,
+     pub latchedMods :         u8,
+     pub lockedMods :          u8,
+     pub group :               u8,
+     pub baseGroup :           i16,
+     pub latchedGroup :        i16,
+     pub lockedGroup :         u8,
+     pub compatState :         u8,
+     pub grabMods :            u8,
+     pub compatGrabMods :      u8,
+     pub lookupMods :          u8,
+     pub compatLoockupMods :   u8,
+     pub ptrBtnState :         u16,
+     pub changed :             u16,
+     pub keycode :             ffi::xproto::xcb_keycode_t,
+     pub eventType :           u8,
+     pub requestMajor :        u8,
+     pub requestMinor :        u8
 }
 
-/** Opcode for xcb_xkb_compat_map_notify. */
-pub static XCB_XKB_COMPAT_MAP_NOTIFY : c_int = 7;
-
-pub struct compat_map_notify_event {
-    response_type :   u8,
-    xkbType :         u8,
-    sequence :        u16,
-    time :            xproto::timestamp,
-    deviceID :        u8,
-    changedGroups :   u8,
-    firstSI :         u16,
-    nSI :             u16,
-    nTotalSI :        u16,
-    pad0 :            [u8,..16]
+impl Copy for xcb_xkb_state_notify_event_t {}
+impl Clone for xcb_xkb_state_notify_event_t {
+    fn clone(&self) -> xcb_xkb_state_notify_event_t { *self }
 }
 
-/** Opcode for xcb_xkb_bell_notify. */
-pub static XCB_XKB_BELL_NOTIFY : c_int = 8;
 
-pub struct bell_notify_event {
-    response_type :   u8,
-    xkbType :         u8,
-    sequence :        u16,
-    time :            xproto::timestamp,
-    deviceID :        u8,
-    bellClass :       u8,
-    bellID :          u8,
-    percent :         u8,
-    pitch :           u16,
-    duration :        u16,
-    name :            xproto::atom,
-    window :          xproto::window,
-    eventOnly :       u8,
-    pad0 :            [u8,..7]
+#[repr(C)]
+pub struct xcb_xkb_controls_notify_event_t {
+     pub response_type :           u8,
+     pub xkbType :                 u8,
+     pub sequence :                u16,
+     pub time :                    ffi::xproto::xcb_timestamp_t,
+     pub deviceID :                u8,
+     pub numGroups :               u8,
+     pub pad0 :                    [u8; 2],
+     pub changedControls :         u32,
+     pub enabledControls :         u32,
+     pub enabledControlChanges :   u32,
+     pub keycode :                 ffi::xproto::xcb_keycode_t,
+     pub eventType :               u8,
+     pub requestMajor :            u8,
+     pub requestMinor :            u8,
+     pub pad1 :                    [u8; 4]
 }
 
-/** Opcode for xcb_xkb_action_message. */
-pub static XCB_XKB_ACTION_MESSAGE : c_int = 9;
-
-pub struct action_message_event {
-    response_type :     u8,
-    xkbType :           u8,
-    sequence :          u16,
-    time :              xproto::timestamp,
-    deviceID :          u8,
-    keycode :           xproto::keycode,
-    press :             u8,
-    keyEventFollows :   u8,
-    mods :              u8,
-    group :             u8,
-    message :           [string8,..8],
-    pad0 :              [u8,..10]
+impl Copy for xcb_xkb_controls_notify_event_t {}
+impl Clone for xcb_xkb_controls_notify_event_t {
+    fn clone(&self) -> xcb_xkb_controls_notify_event_t { *self }
 }
 
-/** Opcode for xcb_xkb_access_x_notify. */
-pub static XCB_XKB_ACCESS_X_NOTIFY : c_int = 10;
 
-pub struct access_x_notify_event {
-    response_type :   u8,
-    xkbType :         u8,
-    sequence :        u16,
-    time :            xproto::timestamp,
-    deviceID :        u8,
-    keycode :         xproto::keycode,
-    detailt :         u16,
-    slowKeysDelay :   u16,
-    debounceDelay :   u16,
-    pad0 :            [u8,..16]
+#[repr(C)]
+pub struct xcb_xkb_indicator_state_notify_event_t {
+     pub response_type :   u8,
+     pub xkbType :         u8,
+     pub sequence :        u16,
+     pub time :            ffi::xproto::xcb_timestamp_t,
+     pub deviceID :        u8,
+     pub pad0 :            [u8; 3],
+     pub state :           u32,
+     pub stateChanged :    u32,
+     pub pad1 :            [u8; 12]
 }
 
-/** Opcode for xcb_xkb_extension_device_notify. */
-pub static XCB_XKB_EXTENSION_DEVICE_NOTIFY : c_int = 11;
-
-pub struct extension_device_notify_event {
-    response_type :   u8,
-    xkbType :         u8,
-    sequence :        u16,
-    time :            xproto::timestamp,
-    deviceID :        u8,
-    pad0 :            u8,
-    reason :          u16,
-    ledClass :        u16,
-    ledID :           u8,
-    ledsDefined :     u32,
-    ledState :        u32,
-    firstButton :     u8,
-    nButtons :        u8,
-    supported :       u16,
-    unsupported :     u16,
-    pad1 :            [u8,..2]
+impl Copy for xcb_xkb_indicator_state_notify_event_t {}
+impl Clone for xcb_xkb_indicator_state_notify_event_t {
+    fn clone(&self) -> xcb_xkb_indicator_state_notify_event_t { *self }
 }
-#[link_args="-lxcb-xkb"]
+
+
+#[repr(C)]
+pub struct xcb_xkb_indicator_map_notify_event_t {
+     pub response_type :   u8,
+     pub xkbType :         u8,
+     pub sequence :        u16,
+     pub time :            ffi::xproto::xcb_timestamp_t,
+     pub deviceID :        u8,
+     pub pad0 :            [u8; 3],
+     pub state :           u32,
+     pub mapChanged :      u32,
+     pub pad1 :            [u8; 12]
+}
+
+impl Copy for xcb_xkb_indicator_map_notify_event_t {}
+impl Clone for xcb_xkb_indicator_map_notify_event_t {
+    fn clone(&self) -> xcb_xkb_indicator_map_notify_event_t { *self }
+}
+
+
+#[repr(C)]
+pub struct xcb_xkb_names_notify_event_t {
+     pub response_type :        u8,
+     pub xkbType :              u8,
+     pub sequence :             u16,
+     pub time :                 ffi::xproto::xcb_timestamp_t,
+     pub deviceID :             u8,
+     pub pad0 :                 u8,
+     pub changed :              u16,
+     pub firstType :            u8,
+     pub nTypes :               u8,
+     pub firstLevelName :       u8,
+     pub nLevelNames :          u8,
+     pub pad1 :                 u8,
+     pub nRadioGroups :         u8,
+     pub nKeyAliases :          u8,
+     pub changedGroupNames :    u8,
+     pub changedVirtualMods :   u16,
+     pub firstKey :             ffi::xproto::xcb_keycode_t,
+     pub nKeys :                u8,
+     pub changedIndicators :    u32,
+     pub pad2 :                 [u8; 4]
+}
+
+impl Copy for xcb_xkb_names_notify_event_t {}
+impl Clone for xcb_xkb_names_notify_event_t {
+    fn clone(&self) -> xcb_xkb_names_notify_event_t { *self }
+}
+
+
+#[repr(C)]
+pub struct xcb_xkb_compat_map_notify_event_t {
+     pub response_type :   u8,
+     pub xkbType :         u8,
+     pub sequence :        u16,
+     pub time :            ffi::xproto::xcb_timestamp_t,
+     pub deviceID :        u8,
+     pub changedGroups :   u8,
+     pub firstSI :         u16,
+     pub nSI :             u16,
+     pub nTotalSI :        u16,
+     pub pad0 :            [u8; 16]
+}
+
+impl Copy for xcb_xkb_compat_map_notify_event_t {}
+impl Clone for xcb_xkb_compat_map_notify_event_t {
+    fn clone(&self) -> xcb_xkb_compat_map_notify_event_t { *self }
+}
+
+
+#[repr(C)]
+pub struct xcb_xkb_bell_notify_event_t {
+     pub response_type :   u8,
+     pub xkbType :         u8,
+     pub sequence :        u16,
+     pub time :            ffi::xproto::xcb_timestamp_t,
+     pub deviceID :        u8,
+     pub bellClass :       u8,
+     pub bellID :          u8,
+     pub percent :         u8,
+     pub pitch :           u16,
+     pub duration :        u16,
+     pub name :            ffi::xproto::xcb_atom_t,
+     pub window :          ffi::xproto::xcb_window_t,
+     pub eventOnly :       u8,
+     pub pad0 :            [u8; 7]
+}
+
+impl Copy for xcb_xkb_bell_notify_event_t {}
+impl Clone for xcb_xkb_bell_notify_event_t {
+    fn clone(&self) -> xcb_xkb_bell_notify_event_t { *self }
+}
+
+
+#[repr(C)]
+pub struct xcb_xkb_action_message_event_t {
+     pub response_type :     u8,
+     pub xkbType :           u8,
+     pub sequence :          u16,
+     pub time :              ffi::xproto::xcb_timestamp_t,
+     pub deviceID :          u8,
+     pub keycode :           ffi::xproto::xcb_keycode_t,
+     pub press :             u8,
+     pub keyEventFollows :   u8,
+     pub mods :              u8,
+     pub group :             u8,
+     pub message :           [xcb_xkb_string8_t; 8],
+     pub pad0 :              [u8; 10]
+}
+
+impl Copy for xcb_xkb_action_message_event_t {}
+impl Clone for xcb_xkb_action_message_event_t {
+    fn clone(&self) -> xcb_xkb_action_message_event_t { *self }
+}
+
+
+#[repr(C)]
+pub struct xcb_xkb_access_x_notify_event_t {
+     pub response_type :   u8,
+     pub xkbType :         u8,
+     pub sequence :        u16,
+     pub time :            ffi::xproto::xcb_timestamp_t,
+     pub deviceID :        u8,
+     pub keycode :         ffi::xproto::xcb_keycode_t,
+     pub detailt :         u16,
+     pub slowKeysDelay :   u16,
+     pub debounceDelay :   u16,
+     pub pad0 :            [u8; 16]
+}
+
+impl Copy for xcb_xkb_access_x_notify_event_t {}
+impl Clone for xcb_xkb_access_x_notify_event_t {
+    fn clone(&self) -> xcb_xkb_access_x_notify_event_t { *self }
+}
+
+
+#[repr(C)]
+pub struct xcb_xkb_extension_device_notify_event_t {
+     pub response_type :   u8,
+     pub xkbType :         u8,
+     pub sequence :        u16,
+     pub time :            ffi::xproto::xcb_timestamp_t,
+     pub deviceID :        u8,
+     pub pad0 :            u8,
+     pub reason :          u16,
+     pub ledClass :        u16,
+     pub ledID :           u8,
+     pub ledsDefined :     u32,
+     pub ledState :        u32,
+     pub firstButton :     u8,
+     pub nButtons :        u8,
+     pub supported :       u16,
+     pub unsupported :     u16,
+     pub pad1 :            [u8; 2]
+}
+
+impl Copy for xcb_xkb_extension_device_notify_event_t {}
+impl Clone for xcb_xkb_extension_device_notify_event_t {
+    fn clone(&self) -> xcb_xkb_extension_device_notify_event_t { *self }
+}
+#[link(name="xcb-xkb")]
 extern "C" {
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a ax_option_iterator
+ * @param i Pointer to a xcb_xkb_ax_option_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(ax_option)
+ * element. The member index is increased by sizeof(xcb_xkb_ax_option_t)
  *
  *
  */
-unsafe fn xcb_xkb_ax_option_next (i:*ax_option_iterator) -> ();
+pub fn xcb_xkb_ax_option_next (i:*mut xcb_xkb_ax_option_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An ax_option_iterator
+ * @param i An xcb_xkb_ax_option_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_ax_option_end (i:ax_option_iterator) -> generic_iterator;
+pub fn xcb_xkb_ax_option_end (i:xcb_xkb_ax_option_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a device_spec_iterator
+ * @param i Pointer to a xcb_xkb_device_spec_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(device_spec)
+ * element. The member index is increased by sizeof(xcb_xkb_device_spec_t)
  *
  *
  */
-unsafe fn xcb_xkb_device_spec_next (i:*device_spec_iterator) -> ();
+pub fn xcb_xkb_device_spec_next (i:*mut xcb_xkb_device_spec_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An device_spec_iterator
+ * @param i An xcb_xkb_device_spec_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_device_spec_end (i:device_spec_iterator) -> generic_iterator;
+pub fn xcb_xkb_device_spec_end (i:xcb_xkb_device_spec_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a led_class_spec_iterator
+ * @param i Pointer to a xcb_xkb_led_class_spec_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(led_class_spec)
+ * element. The member index is increased by sizeof(xcb_xkb_led_class_spec_t)
  *
  *
  */
-unsafe fn xcb_xkb_led_class_spec_next (i:*led_class_spec_iterator) -> ();
+pub fn xcb_xkb_led_class_spec_next (i:*mut xcb_xkb_led_class_spec_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An led_class_spec_iterator
+ * @param i An xcb_xkb_led_class_spec_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_led_class_spec_end (i:led_class_spec_iterator) -> generic_iterator;
+pub fn xcb_xkb_led_class_spec_end (i:xcb_xkb_led_class_spec_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a bell_class_spec_iterator
+ * @param i Pointer to a xcb_xkb_bell_class_spec_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(bell_class_spec)
+ * element. The member index is increased by sizeof(xcb_xkb_bell_class_spec_t)
  *
  *
  */
-unsafe fn xcb_xkb_bell_class_spec_next (i:*bell_class_spec_iterator) -> ();
+pub fn xcb_xkb_bell_class_spec_next (i:*mut xcb_xkb_bell_class_spec_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An bell_class_spec_iterator
+ * @param i An xcb_xkb_bell_class_spec_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_bell_class_spec_end (i:bell_class_spec_iterator) -> generic_iterator;
+pub fn xcb_xkb_bell_class_spec_end (i:xcb_xkb_bell_class_spec_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a id_spec_iterator
+ * @param i Pointer to a xcb_xkb_id_spec_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(id_spec)
+ * element. The member index is increased by sizeof(xcb_xkb_id_spec_t)
  *
  *
  */
-unsafe fn xcb_xkb_id_spec_next (i:*id_spec_iterator) -> ();
+pub fn xcb_xkb_id_spec_next (i:*mut xcb_xkb_id_spec_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An id_spec_iterator
+ * @param i An xcb_xkb_id_spec_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_id_spec_end (i:id_spec_iterator) -> generic_iterator;
+pub fn xcb_xkb_id_spec_end (i:xcb_xkb_id_spec_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a indicator_map_iterator
+ * @param i Pointer to a xcb_xkb_indicator_map_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(indicator_map)
+ * element. The member index is increased by sizeof(xcb_xkb_indicator_map_t)
  *
  *
  */
-unsafe fn xcb_xkb_indicator_map_next (i:*indicator_map_iterator) -> ();
+pub fn xcb_xkb_indicator_map_next (i:*mut xcb_xkb_indicator_map_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An indicator_map_iterator
+ * @param i An xcb_xkb_indicator_map_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_indicator_map_end (i:indicator_map_iterator) -> generic_iterator;
+pub fn xcb_xkb_indicator_map_end (i:xcb_xkb_indicator_map_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a mod_def_iterator
+ * @param i Pointer to a xcb_xkb_mod_def_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(mod_def)
+ * element. The member index is increased by sizeof(xcb_xkb_mod_def_t)
  *
  *
  */
-unsafe fn xcb_xkb_mod_def_next (i:*mod_def_iterator) -> ();
+pub fn xcb_xkb_mod_def_next (i:*mut xcb_xkb_mod_def_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An mod_def_iterator
+ * @param i An xcb_xkb_mod_def_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_mod_def_end (i:mod_def_iterator) -> generic_iterator;
+pub fn xcb_xkb_mod_def_end (i:xcb_xkb_mod_def_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a key_name_iterator
+ * @param i Pointer to a xcb_xkb_key_name_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(key_name)
+ * element. The member index is increased by sizeof(xcb_xkb_key_name_t)
  *
  *
  */
-unsafe fn xcb_xkb_key_name_next (i:*key_name_iterator) -> ();
+pub fn xcb_xkb_key_name_next (i:*mut xcb_xkb_key_name_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An key_name_iterator
+ * @param i An xcb_xkb_key_name_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_key_name_end (i:key_name_iterator) -> generic_iterator;
+pub fn xcb_xkb_key_name_end (i:xcb_xkb_key_name_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a key_alias_iterator
+ * @param i Pointer to a xcb_xkb_key_alias_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(key_alias)
+ * element. The member index is increased by sizeof(xcb_xkb_key_alias_t)
  *
  *
  */
-unsafe fn xcb_xkb_key_alias_next (i:*key_alias_iterator) -> ();
+pub fn xcb_xkb_key_alias_next (i:*mut xcb_xkb_key_alias_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An key_alias_iterator
+ * @param i An xcb_xkb_key_alias_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_key_alias_end (i:key_alias_iterator) -> generic_iterator;
+pub fn xcb_xkb_key_alias_end (i:xcb_xkb_key_alias_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-unsafe fn xcb_xkb_counted_string_8_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_counted_string_8_sizeof (_buffer :  *mut c_void) -> c_int;
 
-unsafe fn xcb_xkb_counted_string_8_string (R : *counted_string_8) -> *u8;
+pub fn xcb_xkb_counted_string_8_string (R : *mut xcb_xkb_counted_string_8_t) -> *mut u8;
 
 
-unsafe fn xcb_xkb_counted_string_8_string_length (R : *counted_string_8) -> c_int;
+pub fn xcb_xkb_counted_string_8_string_length (R : *mut xcb_xkb_counted_string_8_t) -> c_int;
 
 
-unsafe fn xcb_xkb_counted_string_8_string_end (R : *counted_string_8) -> generic_iterator;
+pub fn xcb_xkb_counted_string_8_string_end (R : *mut xcb_xkb_counted_string_8_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a counted_string_8_iterator
+ * @param i Pointer to a xcb_xkb_counted_string_8_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(counted_string_8)
+ * element. The member index is increased by sizeof(xcb_xkb_counted_string_8_t)
  *
  *
  */
-unsafe fn xcb_xkb_counted_string_8_next (i:*counted_string_8_iterator) -> ();
+pub fn xcb_xkb_counted_string_8_next (i:*mut xcb_xkb_counted_string_8_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An counted_string_8_iterator
+ * @param i An xcb_xkb_counted_string_8_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_counted_string_8_end (i:counted_string_8_iterator) -> generic_iterator;
+pub fn xcb_xkb_counted_string_8_end (i:xcb_xkb_counted_string_8_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-unsafe fn xcb_xkb_counted_string_16_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_counted_string_16_sizeof (_buffer :  *mut c_void) -> c_int;
 
-unsafe fn xcb_xkb_counted_string_16_string (R : *counted_string_16) -> *u8;
+pub fn xcb_xkb_counted_string_16_string (R : *mut xcb_xkb_counted_string_16_t) -> *mut u8;
 
 
-unsafe fn xcb_xkb_counted_string_16_string_length (R : *counted_string_16) -> c_int;
+pub fn xcb_xkb_counted_string_16_string_length (R : *mut xcb_xkb_counted_string_16_t) -> c_int;
 
 
-unsafe fn xcb_xkb_counted_string_16_string_end (R : *counted_string_16) -> generic_iterator;
+pub fn xcb_xkb_counted_string_16_string_end (R : *mut xcb_xkb_counted_string_16_t) -> ffi::base::xcb_generic_iterator_t;
 
 
 /**
  *
- * xcb_xkb_counted_string_16_pad_0 : *u8
- * 
+ * xcb_xkb_counted_string_16_pad_0 : *mut u8
  *
+ *
  */
-unsafe fn xcb_xkb_counted_string_16_pad_0 (R : *counted_string_16) -> *u8;
+pub fn xcb_xkb_counted_string_16_pad_0 (R : *mut xcb_xkb_counted_string_16_t) -> *mut u8;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a counted_string_16_iterator
+ * @param i Pointer to a xcb_xkb_counted_string_16_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(counted_string_16)
+ * element. The member index is increased by sizeof(xcb_xkb_counted_string_16_t)
  *
  *
  */
-unsafe fn xcb_xkb_counted_string_16_next (i:*counted_string_16_iterator) -> ();
+pub fn xcb_xkb_counted_string_16_next (i:*mut xcb_xkb_counted_string_16_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An counted_string_16_iterator
+ * @param i An xcb_xkb_counted_string_16_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_counted_string_16_end (i:counted_string_16_iterator) -> generic_iterator;
+pub fn xcb_xkb_counted_string_16_end (i:xcb_xkb_counted_string_16_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a kt_map_entry_iterator
+ * @param i Pointer to a xcb_xkb_kt_map_entry_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(kt_map_entry)
+ * element. The member index is increased by sizeof(xcb_xkb_kt_map_entry_t)
  *
  *
  */
-unsafe fn xcb_xkb_kt_map_entry_next (i:*kt_map_entry_iterator) -> ();
+pub fn xcb_xkb_kt_map_entry_next (i:*mut xcb_xkb_kt_map_entry_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An kt_map_entry_iterator
+ * @param i An xcb_xkb_kt_map_entry_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_kt_map_entry_end (i:kt_map_entry_iterator) -> generic_iterator;
+pub fn xcb_xkb_kt_map_entry_end (i:xcb_xkb_kt_map_entry_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-unsafe fn xcb_xkb_key_type_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_key_type_sizeof (_buffer :  *mut c_void) -> c_int;
 
-unsafe fn xcb_xkb_key_type_map (R : *key_type) -> *kt_map_entry;
+pub fn xcb_xkb_key_type_map (R : *mut xcb_xkb_key_type_t) -> *mut xcb_xkb_kt_map_entry_t;
 
 
-unsafe fn xcb_xkb_key_type_map_length (R : *key_type) -> c_int;
+pub fn xcb_xkb_key_type_map_length (R : *mut xcb_xkb_key_type_t) -> c_int;
 
-unsafe fn xcb_xkb_key_type_map_iterator (R : *key_type) -> kt_map_entry_iterator;
+pub fn xcb_xkb_key_type_map_iterator (R : *mut xcb_xkb_key_type_t) -> xcb_xkb_kt_map_entry_iterator_t;
 
-unsafe fn xcb_xkb_key_type_preserve (R : *key_type) -> *mod_def;
+pub fn xcb_xkb_key_type_preserve (R : *mut xcb_xkb_key_type_t) -> *mut xcb_xkb_mod_def_t;
 
 
-unsafe fn xcb_xkb_key_type_preserve_length (R : *key_type) -> c_int;
+pub fn xcb_xkb_key_type_preserve_length (R : *mut xcb_xkb_key_type_t) -> c_int;
 
-unsafe fn xcb_xkb_key_type_preserve_iterator (R : *key_type) -> mod_def_iterator;
+pub fn xcb_xkb_key_type_preserve_iterator (R : *mut xcb_xkb_key_type_t) -> xcb_xkb_mod_def_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a key_type_iterator
+ * @param i Pointer to a xcb_xkb_key_type_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(key_type)
+ * element. The member index is increased by sizeof(xcb_xkb_key_type_t)
  *
  *
  */
-unsafe fn xcb_xkb_key_type_next (i:*key_type_iterator) -> ();
+pub fn xcb_xkb_key_type_next (i:*mut xcb_xkb_key_type_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An key_type_iterator
+ * @param i An xcb_xkb_key_type_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_key_type_end (i:key_type_iterator) -> generic_iterator;
+pub fn xcb_xkb_key_type_end (i:xcb_xkb_key_type_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-unsafe fn xcb_xkb_key_sym_map_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_key_sym_map_sizeof (_buffer :  *mut c_void) -> c_int;
 
-unsafe fn xcb_xkb_key_sym_map_syms (R : *key_sym_map) -> *xproto::keysym;
+pub fn xcb_xkb_key_sym_map_syms (R : *mut xcb_xkb_key_sym_map_t) -> *mut ffi::xproto::xcb_keysym_t;
 
 
-unsafe fn xcb_xkb_key_sym_map_syms_length (R : *key_sym_map) -> c_int;
+pub fn xcb_xkb_key_sym_map_syms_length (R : *mut xcb_xkb_key_sym_map_t) -> c_int;
 
 
-unsafe fn xcb_xkb_key_sym_map_syms_end (R : *key_sym_map) -> generic_iterator;
+pub fn xcb_xkb_key_sym_map_syms_end (R : *mut xcb_xkb_key_sym_map_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a key_sym_map_iterator
+ * @param i Pointer to a xcb_xkb_key_sym_map_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(key_sym_map)
+ * element. The member index is increased by sizeof(xcb_xkb_key_sym_map_t)
  *
  *
  */
-unsafe fn xcb_xkb_key_sym_map_next (i:*key_sym_map_iterator) -> ();
+pub fn xcb_xkb_key_sym_map_next (i:*mut xcb_xkb_key_sym_map_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An key_sym_map_iterator
+ * @param i An xcb_xkb_key_sym_map_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_key_sym_map_end (i:key_sym_map_iterator) -> generic_iterator;
+pub fn xcb_xkb_key_sym_map_end (i:xcb_xkb_key_sym_map_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a common_behavior_iterator
+ * @param i Pointer to a xcb_xkb_common_behavior_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(common_behavior)
+ * element. The member index is increased by sizeof(xcb_xkb_common_behavior_t)
  *
  *
  */
-unsafe fn xcb_xkb_common_behavior_next (i:*common_behavior_iterator) -> ();
+pub fn xcb_xkb_common_behavior_next (i:*mut xcb_xkb_common_behavior_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An common_behavior_iterator
+ * @param i An xcb_xkb_common_behavior_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_common_behavior_end (i:common_behavior_iterator) -> generic_iterator;
+pub fn xcb_xkb_common_behavior_end (i:xcb_xkb_common_behavior_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a default_behavior_iterator
+ * @param i Pointer to a xcb_xkb_default_behavior_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(default_behavior)
+ * element. The member index is increased by sizeof(xcb_xkb_default_behavior_t)
  *
  *
  */
-unsafe fn xcb_xkb_default_behavior_next (i:*default_behavior_iterator) -> ();
+pub fn xcb_xkb_default_behavior_next (i:*mut xcb_xkb_default_behavior_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An default_behavior_iterator
+ * @param i An xcb_xkb_default_behavior_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_default_behavior_end (i:default_behavior_iterator) -> generic_iterator;
+pub fn xcb_xkb_default_behavior_end (i:xcb_xkb_default_behavior_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a lock_behavior_iterator
+ * @param i Pointer to a xcb_xkb_lock_behavior_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(lock_behavior)
+ * element. The member index is increased by sizeof(xcb_xkb_lock_behavior_t)
  *
  *
  */
-unsafe fn xcb_xkb_lock_behavior_next (i:*lock_behavior_iterator) -> ();
+pub fn xcb_xkb_lock_behavior_next (i:*mut xcb_xkb_lock_behavior_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An lock_behavior_iterator
+ * @param i An xcb_xkb_lock_behavior_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_lock_behavior_end (i:lock_behavior_iterator) -> generic_iterator;
+pub fn xcb_xkb_lock_behavior_end (i:xcb_xkb_lock_behavior_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a radio_group_behavior_iterator
+ * @param i Pointer to a xcb_xkb_radio_group_behavior_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(radio_group_behavior)
+ * element. The member index is increased by sizeof(xcb_xkb_radio_group_behavior_t)
  *
  *
  */
-unsafe fn xcb_xkb_radio_group_behavior_next (i:*radio_group_behavior_iterator) -> ();
+pub fn xcb_xkb_radio_group_behavior_next (i:*mut xcb_xkb_radio_group_behavior_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An radio_group_behavior_iterator
+ * @param i An xcb_xkb_radio_group_behavior_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_radio_group_behavior_end (i:radio_group_behavior_iterator) -> generic_iterator;
+pub fn xcb_xkb_radio_group_behavior_end (i:xcb_xkb_radio_group_behavior_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a overlay_1_behavior_iterator
+ * @param i Pointer to a xcb_xkb_overlay_1_behavior_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(overlay_1_behavior)
+ * element. The member index is increased by sizeof(xcb_xkb_overlay_1_behavior_t)
  *
  *
  */
-unsafe fn xcb_xkb_overlay_1_behavior_next (i:*overlay_1_behavior_iterator) -> ();
+pub fn xcb_xkb_overlay_1_behavior_next (i:*mut xcb_xkb_overlay_1_behavior_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An overlay_1_behavior_iterator
+ * @param i An xcb_xkb_overlay_1_behavior_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_overlay_1_behavior_end (i:overlay_1_behavior_iterator) -> generic_iterator;
+pub fn xcb_xkb_overlay_1_behavior_end (i:xcb_xkb_overlay_1_behavior_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a overlay_2_behavior_iterator
+ * @param i Pointer to a xcb_xkb_overlay_2_behavior_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(overlay_2_behavior)
+ * element. The member index is increased by sizeof(xcb_xkb_overlay_2_behavior_t)
  *
  *
  */
-unsafe fn xcb_xkb_overlay_2_behavior_next (i:*overlay_2_behavior_iterator) -> ();
+pub fn xcb_xkb_overlay_2_behavior_next (i:*mut xcb_xkb_overlay_2_behavior_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An overlay_2_behavior_iterator
+ * @param i An xcb_xkb_overlay_2_behavior_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_overlay_2_behavior_end (i:overlay_2_behavior_iterator) -> generic_iterator;
+pub fn xcb_xkb_overlay_2_behavior_end (i:xcb_xkb_overlay_2_behavior_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a permament_lock_behavior_iterator
+ * @param i Pointer to a xcb_xkb_permament_lock_behavior_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(permament_lock_behavior)
+ * element. The member index is increased by sizeof(xcb_xkb_permament_lock_behavior_t)
  *
  *
  */
-unsafe fn xcb_xkb_permament_lock_behavior_next (i:*permament_lock_behavior_iterator) -> ();
+pub fn xcb_xkb_permament_lock_behavior_next (i:*mut xcb_xkb_permament_lock_behavior_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An permament_lock_behavior_iterator
+ * @param i An xcb_xkb_permament_lock_behavior_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_permament_lock_behavior_end (i:permament_lock_behavior_iterator) -> generic_iterator;
+pub fn xcb_xkb_permament_lock_behavior_end (i:xcb_xkb_permament_lock_behavior_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a permament_radio_group_behavior_iterator
+ * @param i Pointer to a xcb_xkb_permament_radio_group_behavior_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(permament_radio_group_behavior)
+ * element. The member index is increased by sizeof(xcb_xkb_permament_radio_group_behavior_t)
  *
  *
  */
-unsafe fn xcb_xkb_permament_radio_group_behavior_next (i:*permament_radio_group_behavior_iterator) -> ();
+pub fn xcb_xkb_permament_radio_group_behavior_next (i:*mut xcb_xkb_permament_radio_group_behavior_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An permament_radio_group_behavior_iterator
+ * @param i An xcb_xkb_permament_radio_group_behavior_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_permament_radio_group_behavior_end (i:permament_radio_group_behavior_iterator) -> generic_iterator;
+pub fn xcb_xkb_permament_radio_group_behavior_end (i:xcb_xkb_permament_radio_group_behavior_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a permament_overlay_1_behavior_iterator
+ * @param i Pointer to a xcb_xkb_permament_overlay_1_behavior_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(permament_overlay_1_behavior)
+ * element. The member index is increased by sizeof(xcb_xkb_permament_overlay_1_behavior_t)
  *
  *
  */
-unsafe fn xcb_xkb_permament_overlay_1_behavior_next (i:*permament_overlay_1_behavior_iterator) -> ();
+pub fn xcb_xkb_permament_overlay_1_behavior_next (i:*mut xcb_xkb_permament_overlay_1_behavior_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An permament_overlay_1_behavior_iterator
+ * @param i An xcb_xkb_permament_overlay_1_behavior_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_permament_overlay_1_behavior_end (i:permament_overlay_1_behavior_iterator) -> generic_iterator;
+pub fn xcb_xkb_permament_overlay_1_behavior_end (i:xcb_xkb_permament_overlay_1_behavior_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a permament_overlay_2_behavior_iterator
+ * @param i Pointer to a xcb_xkb_permament_overlay_2_behavior_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(permament_overlay_2_behavior)
+ * element. The member index is increased by sizeof(xcb_xkb_permament_overlay_2_behavior_t)
  *
  *
  */
-unsafe fn xcb_xkb_permament_overlay_2_behavior_next (i:*permament_overlay_2_behavior_iterator) -> ();
+pub fn xcb_xkb_permament_overlay_2_behavior_next (i:*mut xcb_xkb_permament_overlay_2_behavior_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An permament_overlay_2_behavior_iterator
+ * @param i An xcb_xkb_permament_overlay_2_behavior_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_permament_overlay_2_behavior_end (i:permament_overlay_2_behavior_iterator) -> generic_iterator;
+pub fn xcb_xkb_permament_overlay_2_behavior_end (i:xcb_xkb_permament_overlay_2_behavior_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a behavior_iterator
+ * @param i Pointer to a xcb_xkb_behavior_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(behavior)
+ * element. The member index is increased by sizeof(xcb_xkb_behavior_t)
  *
  *
  */
-unsafe fn xcb_xkb_behavior_next (i:*behavior_iterator) -> ();
+pub fn xcb_xkb_behavior_next (i:*mut xcb_xkb_behavior_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An behavior_iterator
+ * @param i An xcb_xkb_behavior_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_behavior_end (i:behavior_iterator) -> generic_iterator;
+pub fn xcb_xkb_behavior_end (i:xcb_xkb_behavior_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a set_behavior_iterator
+ * @param i Pointer to a xcb_xkb_set_behavior_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(set_behavior)
+ * element. The member index is increased by sizeof(xcb_xkb_set_behavior_t)
  *
  *
  */
-unsafe fn xcb_xkb_set_behavior_next (i:*set_behavior_iterator) -> ();
+pub fn xcb_xkb_set_behavior_next (i:*mut xcb_xkb_set_behavior_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An set_behavior_iterator
+ * @param i An xcb_xkb_set_behavior_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_set_behavior_end (i:set_behavior_iterator) -> generic_iterator;
+pub fn xcb_xkb_set_behavior_end (i:xcb_xkb_set_behavior_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a set_explicit_iterator
+ * @param i Pointer to a xcb_xkb_set_explicit_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(set_explicit)
+ * element. The member index is increased by sizeof(xcb_xkb_set_explicit_t)
  *
  *
  */
-unsafe fn xcb_xkb_set_explicit_next (i:*set_explicit_iterator) -> ();
+pub fn xcb_xkb_set_explicit_next (i:*mut xcb_xkb_set_explicit_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An set_explicit_iterator
+ * @param i An xcb_xkb_set_explicit_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_set_explicit_end (i:set_explicit_iterator) -> generic_iterator;
+pub fn xcb_xkb_set_explicit_end (i:xcb_xkb_set_explicit_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a key_mod_map_iterator
+ * @param i Pointer to a xcb_xkb_key_mod_map_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(key_mod_map)
+ * element. The member index is increased by sizeof(xcb_xkb_key_mod_map_t)
  *
  *
  */
-unsafe fn xcb_xkb_key_mod_map_next (i:*key_mod_map_iterator) -> ();
+pub fn xcb_xkb_key_mod_map_next (i:*mut xcb_xkb_key_mod_map_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An key_mod_map_iterator
+ * @param i An xcb_xkb_key_mod_map_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_key_mod_map_end (i:key_mod_map_iterator) -> generic_iterator;
+pub fn xcb_xkb_key_mod_map_end (i:xcb_xkb_key_mod_map_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a key_v_mod_map_iterator
+ * @param i Pointer to a xcb_xkb_key_v_mod_map_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(key_v_mod_map)
+ * element. The member index is increased by sizeof(xcb_xkb_key_v_mod_map_t)
  *
  *
  */
-unsafe fn xcb_xkb_key_v_mod_map_next (i:*key_v_mod_map_iterator) -> ();
+pub fn xcb_xkb_key_v_mod_map_next (i:*mut xcb_xkb_key_v_mod_map_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An key_v_mod_map_iterator
+ * @param i An xcb_xkb_key_v_mod_map_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_key_v_mod_map_end (i:key_v_mod_map_iterator) -> generic_iterator;
+pub fn xcb_xkb_key_v_mod_map_end (i:xcb_xkb_key_v_mod_map_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a kt_set_map_entry_iterator
+ * @param i Pointer to a xcb_xkb_kt_set_map_entry_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(kt_set_map_entry)
+ * element. The member index is increased by sizeof(xcb_xkb_kt_set_map_entry_t)
  *
  *
  */
-unsafe fn xcb_xkb_kt_set_map_entry_next (i:*kt_set_map_entry_iterator) -> ();
+pub fn xcb_xkb_kt_set_map_entry_next (i:*mut xcb_xkb_kt_set_map_entry_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An kt_set_map_entry_iterator
+ * @param i An xcb_xkb_kt_set_map_entry_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_kt_set_map_entry_end (i:kt_set_map_entry_iterator) -> generic_iterator;
+pub fn xcb_xkb_kt_set_map_entry_end (i:xcb_xkb_kt_set_map_entry_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-unsafe fn xcb_xkb_set_key_type_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_set_key_type_sizeof (_buffer :  *mut c_void) -> c_int;
 
-unsafe fn xcb_xkb_set_key_type_entries (R : *set_key_type) -> *kt_set_map_entry;
+pub fn xcb_xkb_set_key_type_entries (R : *mut xcb_xkb_set_key_type_t) -> *mut xcb_xkb_kt_set_map_entry_t;
 
 
-unsafe fn xcb_xkb_set_key_type_entries_length (R : *set_key_type) -> c_int;
+pub fn xcb_xkb_set_key_type_entries_length (R : *mut xcb_xkb_set_key_type_t) -> c_int;
 
-unsafe fn xcb_xkb_set_key_type_entries_iterator (R : *set_key_type) -> kt_set_map_entry_iterator;
+pub fn xcb_xkb_set_key_type_entries_iterator (R : *mut xcb_xkb_set_key_type_t) -> xcb_xkb_kt_set_map_entry_iterator_t;
 
-unsafe fn xcb_xkb_set_key_type_preserve_entries (R : *set_key_type) -> *kt_set_map_entry;
+pub fn xcb_xkb_set_key_type_preserve_entries (R : *mut xcb_xkb_set_key_type_t) -> *mut xcb_xkb_kt_set_map_entry_t;
 
 
-unsafe fn xcb_xkb_set_key_type_preserve_entries_length (R : *set_key_type) -> c_int;
+pub fn xcb_xkb_set_key_type_preserve_entries_length (R : *mut xcb_xkb_set_key_type_t) -> c_int;
 
-unsafe fn xcb_xkb_set_key_type_preserve_entries_iterator (R : *set_key_type) -> kt_set_map_entry_iterator;
+pub fn xcb_xkb_set_key_type_preserve_entries_iterator (R : *mut xcb_xkb_set_key_type_t) -> xcb_xkb_kt_set_map_entry_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a set_key_type_iterator
+ * @param i Pointer to a xcb_xkb_set_key_type_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(set_key_type)
+ * element. The member index is increased by sizeof(xcb_xkb_set_key_type_t)
  *
  *
  */
-unsafe fn xcb_xkb_set_key_type_next (i:*set_key_type_iterator) -> ();
+pub fn xcb_xkb_set_key_type_next (i:*mut xcb_xkb_set_key_type_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An set_key_type_iterator
+ * @param i An xcb_xkb_set_key_type_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_set_key_type_end (i:set_key_type_iterator) -> generic_iterator;
+pub fn xcb_xkb_set_key_type_end (i:xcb_xkb_set_key_type_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a string8_iterator
+ * @param i Pointer to a xcb_xkb_string8_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(string8)
+ * element. The member index is increased by sizeof(xcb_xkb_string8_t)
  *
  *
  */
-unsafe fn xcb_xkb_string8_next (i:*string8_iterator) -> ();
+pub fn xcb_xkb_string8_next (i:*mut xcb_xkb_string8_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An string8_iterator
+ * @param i An xcb_xkb_string8_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_string8_end (i:string8_iterator) -> generic_iterator;
+pub fn xcb_xkb_string8_end (i:xcb_xkb_string8_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-unsafe fn xcb_xkb_property_serialize (_buffer :  **c_void,
-                            _aux :      *property,
-                            name :      *string8,
-                            value :     *string8) -> c_int;
+pub fn xcb_xkb_property_serialize (_buffer :        *mut *mut c_void,
+                            _aux :                *mut xcb_xkb_property_t,
+                            name :                *mut xcb_xkb_string8_t,
+                            value :               *mut xcb_xkb_string8_t) -> c_int;
 
-unsafe fn xcb_xkb_property_unserialize (_buffer :    *c_void,
-                              _aux :      **property) -> c_int;
+pub fn xcb_xkb_property_unserialize (_buffer :                  *mut c_void,
+                              _aux :                *mut *mut xcb_xkb_property_t) -> c_int;
 
-unsafe fn xcb_xkb_property_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_property_sizeof (_buffer :  *mut c_void) -> c_int;
 
-unsafe fn xcb_xkb_property_name (R : *property) -> *string8;
+pub fn xcb_xkb_property_name (R : *mut xcb_xkb_property_t) -> *mut xcb_xkb_string8_t;
 
 
-unsafe fn xcb_xkb_property_name_length (R : *property) -> c_int;
+pub fn xcb_xkb_property_name_length (R : *mut xcb_xkb_property_t) -> c_int;
 
 
-unsafe fn xcb_xkb_property_name_end (R : *property) -> generic_iterator;
+pub fn xcb_xkb_property_name_end (R : *mut xcb_xkb_property_t) -> ffi::base::xcb_generic_iterator_t;
 
-unsafe fn xcb_xkb_property_value (R : *property) -> *string8;
+pub fn xcb_xkb_property_value (R : *mut xcb_xkb_property_t) -> *mut xcb_xkb_string8_t;
 
 
-unsafe fn xcb_xkb_property_value_length (R : *property) -> c_int;
+pub fn xcb_xkb_property_value_length (R : *mut xcb_xkb_property_t) -> c_int;
 
 
-unsafe fn xcb_xkb_property_value_end (R : *property) -> generic_iterator;
+pub fn xcb_xkb_property_value_end (R : *mut xcb_xkb_property_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a property_iterator
+ * @param i Pointer to a xcb_xkb_property_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(property)
+ * element. The member index is increased by sizeof(xcb_xkb_property_t)
  *
  *
  */
-unsafe fn xcb_xkb_property_next (i:*property_iterator) -> ();
+pub fn xcb_xkb_property_next (i:*mut xcb_xkb_property_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An property_iterator
+ * @param i An xcb_xkb_property_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_property_end (i:property_iterator) -> generic_iterator;
+pub fn xcb_xkb_property_end (i:xcb_xkb_property_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-unsafe fn xcb_xkb_outline_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_outline_sizeof (_buffer :  *mut c_void) -> c_int;
 
-unsafe fn xcb_xkb_outline_points (R : *outline) -> *xproto::point;
+pub fn xcb_xkb_outline_points (R : *mut xcb_xkb_outline_t) -> *mut ffi::xproto::xcb_point_t;
 
 
-unsafe fn xcb_xkb_outline_points_length (R : *outline) -> c_int;
+pub fn xcb_xkb_outline_points_length (R : *mut xcb_xkb_outline_t) -> c_int;
 
-unsafe fn xcb_xkb_outline_points_iterator (R : *outline) -> xproto::point_iterator;
+pub fn xcb_xkb_outline_points_iterator (R : *mut xcb_xkb_outline_t) -> ffi::xproto::xcb_point_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a outline_iterator
+ * @param i Pointer to a xcb_xkb_outline_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(outline)
+ * element. The member index is increased by sizeof(xcb_xkb_outline_t)
  *
  *
  */
-unsafe fn xcb_xkb_outline_next (i:*outline_iterator) -> ();
+pub fn xcb_xkb_outline_next (i:*mut xcb_xkb_outline_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An outline_iterator
+ * @param i An xcb_xkb_outline_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_outline_end (i:outline_iterator) -> generic_iterator;
+pub fn xcb_xkb_outline_end (i:xcb_xkb_outline_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-unsafe fn xcb_xkb_shape_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_shape_sizeof (_buffer :  *mut c_void) -> c_int;
 
 
-unsafe fn xcb_xkb_shape_outlines_length (R : *shape) -> c_int;
+pub fn xcb_xkb_shape_outlines_length (R : *mut xcb_xkb_shape_t) -> c_int;
 
-unsafe fn xcb_xkb_shape_outlines_iterator (R : *shape) -> outline_iterator;
+pub fn xcb_xkb_shape_outlines_iterator (R : *mut xcb_xkb_shape_t) -> xcb_xkb_outline_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a shape_iterator
+ * @param i Pointer to a xcb_xkb_shape_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(shape)
+ * element. The member index is increased by sizeof(xcb_xkb_shape_t)
  *
  *
  */
-unsafe fn xcb_xkb_shape_next (i:*shape_iterator) -> ();
+pub fn xcb_xkb_shape_next (i:*mut xcb_xkb_shape_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An shape_iterator
+ * @param i An xcb_xkb_shape_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_shape_end (i:shape_iterator) -> generic_iterator;
+pub fn xcb_xkb_shape_end (i:xcb_xkb_shape_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a key_iterator
+ * @param i Pointer to a xcb_xkb_key_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(key)
+ * element. The member index is increased by sizeof(xcb_xkb_key_t)
  *
  *
  */
-unsafe fn xcb_xkb_key_next (i:*key_iterator) -> ();
+pub fn xcb_xkb_key_next (i:*mut xcb_xkb_key_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An key_iterator
+ * @param i An xcb_xkb_key_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_key_end (i:key_iterator) -> generic_iterator;
+pub fn xcb_xkb_key_end (i:xcb_xkb_key_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a overlay_key_iterator
+ * @param i Pointer to a xcb_xkb_overlay_key_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(overlay_key)
+ * element. The member index is increased by sizeof(xcb_xkb_overlay_key_t)
  *
  *
  */
-unsafe fn xcb_xkb_overlay_key_next (i:*overlay_key_iterator) -> ();
+pub fn xcb_xkb_overlay_key_next (i:*mut xcb_xkb_overlay_key_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An overlay_key_iterator
+ * @param i An xcb_xkb_overlay_key_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_overlay_key_end (i:overlay_key_iterator) -> generic_iterator;
+pub fn xcb_xkb_overlay_key_end (i:xcb_xkb_overlay_key_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-unsafe fn xcb_xkb_overlay_row_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_overlay_row_sizeof (_buffer :  *mut c_void) -> c_int;
 
-unsafe fn xcb_xkb_overlay_row_keys (R : *overlay_row) -> *overlay_key;
+pub fn xcb_xkb_overlay_row_keys (R : *mut xcb_xkb_overlay_row_t) -> *mut xcb_xkb_overlay_key_t;
 
 
-unsafe fn xcb_xkb_overlay_row_keys_length (R : *overlay_row) -> c_int;
+pub fn xcb_xkb_overlay_row_keys_length (R : *mut xcb_xkb_overlay_row_t) -> c_int;
 
-unsafe fn xcb_xkb_overlay_row_keys_iterator (R : *overlay_row) -> overlay_key_iterator;
+pub fn xcb_xkb_overlay_row_keys_iterator (R : *mut xcb_xkb_overlay_row_t) -> xcb_xkb_overlay_key_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a overlay_row_iterator
+ * @param i Pointer to a xcb_xkb_overlay_row_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(overlay_row)
+ * element. The member index is increased by sizeof(xcb_xkb_overlay_row_t)
  *
  *
  */
-unsafe fn xcb_xkb_overlay_row_next (i:*overlay_row_iterator) -> ();
+pub fn xcb_xkb_overlay_row_next (i:*mut xcb_xkb_overlay_row_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An overlay_row_iterator
+ * @param i An xcb_xkb_overlay_row_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_overlay_row_end (i:overlay_row_iterator) -> generic_iterator;
+pub fn xcb_xkb_overlay_row_end (i:xcb_xkb_overlay_row_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-unsafe fn xcb_xkb_overlay_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_overlay_sizeof (_buffer :  *mut c_void) -> c_int;
 
 
-unsafe fn xcb_xkb_overlay_rows_length (R : *overlay) -> c_int;
+pub fn xcb_xkb_overlay_rows_length (R : *mut xcb_xkb_overlay_t) -> c_int;
 
-unsafe fn xcb_xkb_overlay_rows_iterator (R : *overlay) -> overlay_row_iterator;
+pub fn xcb_xkb_overlay_rows_iterator (R : *mut xcb_xkb_overlay_t) -> xcb_xkb_overlay_row_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a overlay_iterator
+ * @param i Pointer to a xcb_xkb_overlay_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(overlay)
+ * element. The member index is increased by sizeof(xcb_xkb_overlay_t)
  *
  *
  */
-unsafe fn xcb_xkb_overlay_next (i:*overlay_iterator) -> ();
+pub fn xcb_xkb_overlay_next (i:*mut xcb_xkb_overlay_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An overlay_iterator
+ * @param i An xcb_xkb_overlay_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_overlay_end (i:overlay_iterator) -> generic_iterator;
+pub fn xcb_xkb_overlay_end (i:xcb_xkb_overlay_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-unsafe fn xcb_xkb_row_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_row_sizeof (_buffer :  *mut c_void) -> c_int;
 
-unsafe fn xcb_xkb_row_keys (R : *row) -> *key;
+pub fn xcb_xkb_row_keys (R : *mut xcb_xkb_row_t) -> *mut xcb_xkb_key_t;
 
 
-unsafe fn xcb_xkb_row_keys_length (R : *row) -> c_int;
+pub fn xcb_xkb_row_keys_length (R : *mut xcb_xkb_row_t) -> c_int;
 
-unsafe fn xcb_xkb_row_keys_iterator (R : *row) -> key_iterator;
+pub fn xcb_xkb_row_keys_iterator (R : *mut xcb_xkb_row_t) -> xcb_xkb_key_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a row_iterator
+ * @param i Pointer to a xcb_xkb_row_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(row)
+ * element. The member index is increased by sizeof(xcb_xkb_row_t)
  *
  *
  */
-unsafe fn xcb_xkb_row_next (i:*row_iterator) -> ();
+pub fn xcb_xkb_row_next (i:*mut xcb_xkb_row_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An row_iterator
+ * @param i An xcb_xkb_row_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_row_end (i:row_iterator) -> generic_iterator;
+pub fn xcb_xkb_row_end (i:xcb_xkb_row_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a common_doodad_iterator
+ * @param i Pointer to a xcb_xkb_common_doodad_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(common_doodad)
+ * element. The member index is increased by sizeof(xcb_xkb_common_doodad_t)
  *
  *
  */
-unsafe fn xcb_xkb_common_doodad_next (i:*common_doodad_iterator) -> ();
+pub fn xcb_xkb_common_doodad_next (i:*mut xcb_xkb_common_doodad_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An common_doodad_iterator
+ * @param i An xcb_xkb_common_doodad_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_common_doodad_end (i:common_doodad_iterator) -> generic_iterator;
+pub fn xcb_xkb_common_doodad_end (i:xcb_xkb_common_doodad_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a shape_doodad_iterator
+ * @param i Pointer to a xcb_xkb_shape_doodad_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(shape_doodad)
+ * element. The member index is increased by sizeof(xcb_xkb_shape_doodad_t)
  *
  *
  */
-unsafe fn xcb_xkb_shape_doodad_next (i:*shape_doodad_iterator) -> ();
+pub fn xcb_xkb_shape_doodad_next (i:*mut xcb_xkb_shape_doodad_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An shape_doodad_iterator
+ * @param i An xcb_xkb_shape_doodad_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_shape_doodad_end (i:shape_doodad_iterator) -> generic_iterator;
+pub fn xcb_xkb_shape_doodad_end (i:xcb_xkb_shape_doodad_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-unsafe fn xcb_xkb_text_doodad_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_text_doodad_sizeof (_buffer :  *mut c_void) -> c_int;
 
 
 /**
+ *
+ * xcb_xkb_text_doodad_text : *mut xcb_xkb_counted_string_16_t
  *
- * xcb_xkb_text_doodad_text : *counted_string_16
- * 
  *
  */
-unsafe fn xcb_xkb_text_doodad_text (R : *text_doodad) -> *counted_string_16;
+pub fn xcb_xkb_text_doodad_text (R : *mut xcb_xkb_text_doodad_t) -> *mut xcb_xkb_counted_string_16_t;
 
 
 /**
  *
- * xcb_xkb_text_doodad_font : *counted_string_16
- * 
+ * xcb_xkb_text_doodad_font : *mut xcb_xkb_counted_string_16_t
  *
+ *
  */
-unsafe fn xcb_xkb_text_doodad_font (R : *text_doodad) -> *counted_string_16;
+pub fn xcb_xkb_text_doodad_font (R : *mut xcb_xkb_text_doodad_t) -> *mut xcb_xkb_counted_string_16_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a text_doodad_iterator
+ * @param i Pointer to a xcb_xkb_text_doodad_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(text_doodad)
+ * element. The member index is increased by sizeof(xcb_xkb_text_doodad_t)
  *
  *
  */
-unsafe fn xcb_xkb_text_doodad_next (i:*text_doodad_iterator) -> ();
+pub fn xcb_xkb_text_doodad_next (i:*mut xcb_xkb_text_doodad_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An text_doodad_iterator
+ * @param i An xcb_xkb_text_doodad_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_text_doodad_end (i:text_doodad_iterator) -> generic_iterator;
+pub fn xcb_xkb_text_doodad_end (i:xcb_xkb_text_doodad_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a indicator_doodad_iterator
+ * @param i Pointer to a xcb_xkb_indicator_doodad_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(indicator_doodad)
+ * element. The member index is increased by sizeof(xcb_xkb_indicator_doodad_t)
  *
  *
  */
-unsafe fn xcb_xkb_indicator_doodad_next (i:*indicator_doodad_iterator) -> ();
+pub fn xcb_xkb_indicator_doodad_next (i:*mut xcb_xkb_indicator_doodad_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An indicator_doodad_iterator
+ * @param i An xcb_xkb_indicator_doodad_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_indicator_doodad_end (i:indicator_doodad_iterator) -> generic_iterator;
+pub fn xcb_xkb_indicator_doodad_end (i:xcb_xkb_indicator_doodad_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-unsafe fn xcb_xkb_logo_doodad_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_logo_doodad_sizeof (_buffer :  *mut c_void) -> c_int;
 
 
 /**
+ *
+ * xcb_xkb_logo_doodad_logo_name : *mut xcb_xkb_counted_string_16_t
  *
- * xcb_xkb_logo_doodad_logo_name : *counted_string_16
- * 
  *
  */
-unsafe fn xcb_xkb_logo_doodad_logo_name (R : *logo_doodad) -> *counted_string_16;
+pub fn xcb_xkb_logo_doodad_logo_name (R : *mut xcb_xkb_logo_doodad_t) -> *mut xcb_xkb_counted_string_16_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a logo_doodad_iterator
+ * @param i Pointer to a xcb_xkb_logo_doodad_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(logo_doodad)
+ * element. The member index is increased by sizeof(xcb_xkb_logo_doodad_t)
  *
  *
  */
-unsafe fn xcb_xkb_logo_doodad_next (i:*logo_doodad_iterator) -> ();
+pub fn xcb_xkb_logo_doodad_next (i:*mut xcb_xkb_logo_doodad_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An logo_doodad_iterator
+ * @param i An xcb_xkb_logo_doodad_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_logo_doodad_end (i:logo_doodad_iterator) -> generic_iterator;
+pub fn xcb_xkb_logo_doodad_end (i:xcb_xkb_logo_doodad_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-unsafe fn xcb_xkb_doodad_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_doodad_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a doodad_iterator
+ * @param i Pointer to a xcb_xkb_doodad_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(doodad)
+ * element. The member index is increased by sizeof(xcb_xkb_doodad_t)
  *
  *
  */
-unsafe fn xcb_xkb_doodad_next (i:*doodad_iterator) -> ();
+pub fn xcb_xkb_doodad_next (i:*mut xcb_xkb_doodad_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An doodad_iterator
+ * @param i An xcb_xkb_doodad_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_doodad_end (i:doodad_iterator) -> generic_iterator;
+pub fn xcb_xkb_doodad_end (i:xcb_xkb_doodad_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-unsafe fn xcb_xkb_section_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_section_sizeof (_buffer :  *mut c_void) -> c_int;
 
 
-unsafe fn xcb_xkb_section_rows_length (R : *section) -> c_int;
+pub fn xcb_xkb_section_rows_length (R : *mut xcb_xkb_section_t) -> c_int;
 
-unsafe fn xcb_xkb_section_rows_iterator (R : *section) -> row_iterator;
+pub fn xcb_xkb_section_rows_iterator (R : *mut xcb_xkb_section_t) -> xcb_xkb_row_iterator_t;
 
 
-unsafe fn xcb_xkb_section_doodads_length (R : *section) -> c_int;
+pub fn xcb_xkb_section_doodads_length (R : *mut xcb_xkb_section_t) -> c_int;
 
-unsafe fn xcb_xkb_section_doodads_iterator (R : *section) -> doodad_iterator;
+pub fn xcb_xkb_section_doodads_iterator (R : *mut xcb_xkb_section_t) -> xcb_xkb_doodad_iterator_t;
 
 
-unsafe fn xcb_xkb_section_overlays_length (R : *section) -> c_int;
+pub fn xcb_xkb_section_overlays_length (R : *mut xcb_xkb_section_t) -> c_int;
 
-unsafe fn xcb_xkb_section_overlays_iterator (R : *section) -> overlay_iterator;
+pub fn xcb_xkb_section_overlays_iterator (R : *mut xcb_xkb_section_t) -> xcb_xkb_overlay_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a section_iterator
+ * @param i Pointer to a xcb_xkb_section_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(section)
+ * element. The member index is increased by sizeof(xcb_xkb_section_t)
  *
  *
  */
-unsafe fn xcb_xkb_section_next (i:*section_iterator) -> ();
+pub fn xcb_xkb_section_next (i:*mut xcb_xkb_section_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An section_iterator
+ * @param i An xcb_xkb_section_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_section_end (i:section_iterator) -> generic_iterator;
+pub fn xcb_xkb_section_end (i:xcb_xkb_section_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-unsafe fn xcb_xkb_listing_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_listing_sizeof (_buffer :  *mut c_void) -> c_int;
 
-unsafe fn xcb_xkb_listing_string (R : *listing) -> *string8;
+pub fn xcb_xkb_listing_string (R : *mut xcb_xkb_listing_t) -> *mut xcb_xkb_string8_t;
 
 
-unsafe fn xcb_xkb_listing_string_length (R : *listing) -> c_int;
+pub fn xcb_xkb_listing_string_length (R : *mut xcb_xkb_listing_t) -> c_int;
 
 
-unsafe fn xcb_xkb_listing_string_end (R : *listing) -> generic_iterator;
+pub fn xcb_xkb_listing_string_end (R : *mut xcb_xkb_listing_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a listing_iterator
+ * @param i Pointer to a xcb_xkb_listing_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(listing)
+ * element. The member index is increased by sizeof(xcb_xkb_listing_t)
  *
  *
  */
-unsafe fn xcb_xkb_listing_next (i:*listing_iterator) -> ();
+pub fn xcb_xkb_listing_next (i:*mut xcb_xkb_listing_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An listing_iterator
+ * @param i An xcb_xkb_listing_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_listing_end (i:listing_iterator) -> generic_iterator;
+pub fn xcb_xkb_listing_end (i:xcb_xkb_listing_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-unsafe fn xcb_xkb_device_led_info_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_device_led_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
-unsafe fn xcb_xkb_device_led_info_names (R : *device_led_info) -> *xproto::atom;
+pub fn xcb_xkb_device_led_info_names (R : *mut xcb_xkb_device_led_info_t) -> *mut ffi::xproto::xcb_atom_t;
 
 
-unsafe fn xcb_xkb_device_led_info_names_length (R : *device_led_info) -> c_int;
+pub fn xcb_xkb_device_led_info_names_length (R : *mut xcb_xkb_device_led_info_t) -> c_int;
 
 
-unsafe fn xcb_xkb_device_led_info_names_end (R : *device_led_info) -> generic_iterator;
+pub fn xcb_xkb_device_led_info_names_end (R : *mut xcb_xkb_device_led_info_t) -> ffi::base::xcb_generic_iterator_t;
 
-unsafe fn xcb_xkb_device_led_info_maps (R : *device_led_info) -> *indicator_map;
+pub fn xcb_xkb_device_led_info_maps (R : *mut xcb_xkb_device_led_info_t) -> *mut xcb_xkb_indicator_map_t;
 
 
-unsafe fn xcb_xkb_device_led_info_maps_length (R : *device_led_info) -> c_int;
+pub fn xcb_xkb_device_led_info_maps_length (R : *mut xcb_xkb_device_led_info_t) -> c_int;
 
-unsafe fn xcb_xkb_device_led_info_maps_iterator (R : *device_led_info) -> indicator_map_iterator;
+pub fn xcb_xkb_device_led_info_maps_iterator (R : *mut xcb_xkb_device_led_info_t) -> xcb_xkb_indicator_map_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a device_led_info_iterator
+ * @param i Pointer to a xcb_xkb_device_led_info_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(device_led_info)
+ * element. The member index is increased by sizeof(xcb_xkb_device_led_info_t)
  *
  *
  */
-unsafe fn xcb_xkb_device_led_info_next (i:*device_led_info_iterator) -> ();
+pub fn xcb_xkb_device_led_info_next (i:*mut xcb_xkb_device_led_info_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An device_led_info_iterator
+ * @param i An xcb_xkb_device_led_info_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_device_led_info_end (i:device_led_info_iterator) -> generic_iterator;
+pub fn xcb_xkb_device_led_info_end (i:xcb_xkb_device_led_info_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a sa_no_action_iterator
+ * @param i Pointer to a xcb_xkb_sa_no_action_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(sa_no_action)
+ * element. The member index is increased by sizeof(xcb_xkb_sa_no_action_t)
  *
  *
  */
-unsafe fn xcb_xkb_sa_no_action_next (i:*sa_no_action_iterator) -> ();
+pub fn xcb_xkb_sa_no_action_next (i:*mut xcb_xkb_sa_no_action_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An sa_no_action_iterator
+ * @param i An xcb_xkb_sa_no_action_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_sa_no_action_end (i:sa_no_action_iterator) -> generic_iterator;
+pub fn xcb_xkb_sa_no_action_end (i:xcb_xkb_sa_no_action_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a sa_set_mods_iterator
+ * @param i Pointer to a xcb_xkb_sa_set_mods_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(sa_set_mods)
+ * element. The member index is increased by sizeof(xcb_xkb_sa_set_mods_t)
  *
  *
  */
-unsafe fn xcb_xkb_sa_set_mods_next (i:*sa_set_mods_iterator) -> ();
+pub fn xcb_xkb_sa_set_mods_next (i:*mut xcb_xkb_sa_set_mods_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An sa_set_mods_iterator
+ * @param i An xcb_xkb_sa_set_mods_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_sa_set_mods_end (i:sa_set_mods_iterator) -> generic_iterator;
+pub fn xcb_xkb_sa_set_mods_end (i:xcb_xkb_sa_set_mods_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a sa_latch_mods_iterator
+ * @param i Pointer to a xcb_xkb_sa_latch_mods_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(sa_latch_mods)
+ * element. The member index is increased by sizeof(xcb_xkb_sa_latch_mods_t)
  *
  *
  */
-unsafe fn xcb_xkb_sa_latch_mods_next (i:*sa_latch_mods_iterator) -> ();
+pub fn xcb_xkb_sa_latch_mods_next (i:*mut xcb_xkb_sa_latch_mods_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An sa_latch_mods_iterator
+ * @param i An xcb_xkb_sa_latch_mods_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_sa_latch_mods_end (i:sa_latch_mods_iterator) -> generic_iterator;
+pub fn xcb_xkb_sa_latch_mods_end (i:xcb_xkb_sa_latch_mods_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a sa_lock_mods_iterator
+ * @param i Pointer to a xcb_xkb_sa_lock_mods_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(sa_lock_mods)
+ * element. The member index is increased by sizeof(xcb_xkb_sa_lock_mods_t)
  *
  *
  */
-unsafe fn xcb_xkb_sa_lock_mods_next (i:*sa_lock_mods_iterator) -> ();
+pub fn xcb_xkb_sa_lock_mods_next (i:*mut xcb_xkb_sa_lock_mods_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An sa_lock_mods_iterator
+ * @param i An xcb_xkb_sa_lock_mods_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_sa_lock_mods_end (i:sa_lock_mods_iterator) -> generic_iterator;
+pub fn xcb_xkb_sa_lock_mods_end (i:xcb_xkb_sa_lock_mods_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a sa_set_group_iterator
+ * @param i Pointer to a xcb_xkb_sa_set_group_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(sa_set_group)
+ * element. The member index is increased by sizeof(xcb_xkb_sa_set_group_t)
  *
  *
  */
-unsafe fn xcb_xkb_sa_set_group_next (i:*sa_set_group_iterator) -> ();
+pub fn xcb_xkb_sa_set_group_next (i:*mut xcb_xkb_sa_set_group_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An sa_set_group_iterator
+ * @param i An xcb_xkb_sa_set_group_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_sa_set_group_end (i:sa_set_group_iterator) -> generic_iterator;
+pub fn xcb_xkb_sa_set_group_end (i:xcb_xkb_sa_set_group_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a sa_latch_group_iterator
+ * @param i Pointer to a xcb_xkb_sa_latch_group_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(sa_latch_group)
+ * element. The member index is increased by sizeof(xcb_xkb_sa_latch_group_t)
  *
  *
  */
-unsafe fn xcb_xkb_sa_latch_group_next (i:*sa_latch_group_iterator) -> ();
+pub fn xcb_xkb_sa_latch_group_next (i:*mut xcb_xkb_sa_latch_group_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An sa_latch_group_iterator
+ * @param i An xcb_xkb_sa_latch_group_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_sa_latch_group_end (i:sa_latch_group_iterator) -> generic_iterator;
+pub fn xcb_xkb_sa_latch_group_end (i:xcb_xkb_sa_latch_group_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a sa_lock_group_iterator
+ * @param i Pointer to a xcb_xkb_sa_lock_group_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(sa_lock_group)
+ * element. The member index is increased by sizeof(xcb_xkb_sa_lock_group_t)
  *
  *
  */
-unsafe fn xcb_xkb_sa_lock_group_next (i:*sa_lock_group_iterator) -> ();
+pub fn xcb_xkb_sa_lock_group_next (i:*mut xcb_xkb_sa_lock_group_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An sa_lock_group_iterator
+ * @param i An xcb_xkb_sa_lock_group_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_sa_lock_group_end (i:sa_lock_group_iterator) -> generic_iterator;
+pub fn xcb_xkb_sa_lock_group_end (i:xcb_xkb_sa_lock_group_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a sa_move_ptr_iterator
+ * @param i Pointer to a xcb_xkb_sa_move_ptr_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(sa_move_ptr)
+ * element. The member index is increased by sizeof(xcb_xkb_sa_move_ptr_t)
  *
  *
  */
-unsafe fn xcb_xkb_sa_move_ptr_next (i:*sa_move_ptr_iterator) -> ();
+pub fn xcb_xkb_sa_move_ptr_next (i:*mut xcb_xkb_sa_move_ptr_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An sa_move_ptr_iterator
+ * @param i An xcb_xkb_sa_move_ptr_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_sa_move_ptr_end (i:sa_move_ptr_iterator) -> generic_iterator;
+pub fn xcb_xkb_sa_move_ptr_end (i:xcb_xkb_sa_move_ptr_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a sa_ptr_btn_iterator
+ * @param i Pointer to a xcb_xkb_sa_ptr_btn_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(sa_ptr_btn)
+ * element. The member index is increased by sizeof(xcb_xkb_sa_ptr_btn_t)
  *
  *
  */
-unsafe fn xcb_xkb_sa_ptr_btn_next (i:*sa_ptr_btn_iterator) -> ();
+pub fn xcb_xkb_sa_ptr_btn_next (i:*mut xcb_xkb_sa_ptr_btn_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An sa_ptr_btn_iterator
+ * @param i An xcb_xkb_sa_ptr_btn_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_sa_ptr_btn_end (i:sa_ptr_btn_iterator) -> generic_iterator;
+pub fn xcb_xkb_sa_ptr_btn_end (i:xcb_xkb_sa_ptr_btn_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a sa_lock_ptr_btn_iterator
+ * @param i Pointer to a xcb_xkb_sa_lock_ptr_btn_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(sa_lock_ptr_btn)
+ * element. The member index is increased by sizeof(xcb_xkb_sa_lock_ptr_btn_t)
  *
  *
  */
-unsafe fn xcb_xkb_sa_lock_ptr_btn_next (i:*sa_lock_ptr_btn_iterator) -> ();
+pub fn xcb_xkb_sa_lock_ptr_btn_next (i:*mut xcb_xkb_sa_lock_ptr_btn_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An sa_lock_ptr_btn_iterator
+ * @param i An xcb_xkb_sa_lock_ptr_btn_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_sa_lock_ptr_btn_end (i:sa_lock_ptr_btn_iterator) -> generic_iterator;
+pub fn xcb_xkb_sa_lock_ptr_btn_end (i:xcb_xkb_sa_lock_ptr_btn_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a sa_set_ptr_dflt_iterator
+ * @param i Pointer to a xcb_xkb_sa_set_ptr_dflt_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(sa_set_ptr_dflt)
+ * element. The member index is increased by sizeof(xcb_xkb_sa_set_ptr_dflt_t)
  *
  *
  */
-unsafe fn xcb_xkb_sa_set_ptr_dflt_next (i:*sa_set_ptr_dflt_iterator) -> ();
+pub fn xcb_xkb_sa_set_ptr_dflt_next (i:*mut xcb_xkb_sa_set_ptr_dflt_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An sa_set_ptr_dflt_iterator
+ * @param i An xcb_xkb_sa_set_ptr_dflt_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_sa_set_ptr_dflt_end (i:sa_set_ptr_dflt_iterator) -> generic_iterator;
+pub fn xcb_xkb_sa_set_ptr_dflt_end (i:xcb_xkb_sa_set_ptr_dflt_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a sa_iso_lock_iterator
+ * @param i Pointer to a xcb_xkb_sa_iso_lock_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(sa_iso_lock)
+ * element. The member index is increased by sizeof(xcb_xkb_sa_iso_lock_t)
  *
  *
  */
-unsafe fn xcb_xkb_sa_iso_lock_next (i:*sa_iso_lock_iterator) -> ();
+pub fn xcb_xkb_sa_iso_lock_next (i:*mut xcb_xkb_sa_iso_lock_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An sa_iso_lock_iterator
+ * @param i An xcb_xkb_sa_iso_lock_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_sa_iso_lock_end (i:sa_iso_lock_iterator) -> generic_iterator;
+pub fn xcb_xkb_sa_iso_lock_end (i:xcb_xkb_sa_iso_lock_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a sa_terminate_iterator
+ * @param i Pointer to a xcb_xkb_sa_terminate_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(sa_terminate)
+ * element. The member index is increased by sizeof(xcb_xkb_sa_terminate_t)
  *
  *
  */
-unsafe fn xcb_xkb_sa_terminate_next (i:*sa_terminate_iterator) -> ();
+pub fn xcb_xkb_sa_terminate_next (i:*mut xcb_xkb_sa_terminate_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An sa_terminate_iterator
+ * @param i An xcb_xkb_sa_terminate_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_sa_terminate_end (i:sa_terminate_iterator) -> generic_iterator;
+pub fn xcb_xkb_sa_terminate_end (i:xcb_xkb_sa_terminate_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a sa_switch_screen_iterator
+ * @param i Pointer to a xcb_xkb_sa_switch_screen_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(sa_switch_screen)
+ * element. The member index is increased by sizeof(xcb_xkb_sa_switch_screen_t)
  *
  *
  */
-unsafe fn xcb_xkb_sa_switch_screen_next (i:*sa_switch_screen_iterator) -> ();
+pub fn xcb_xkb_sa_switch_screen_next (i:*mut xcb_xkb_sa_switch_screen_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An sa_switch_screen_iterator
+ * @param i An xcb_xkb_sa_switch_screen_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_sa_switch_screen_end (i:sa_switch_screen_iterator) -> generic_iterator;
+pub fn xcb_xkb_sa_switch_screen_end (i:xcb_xkb_sa_switch_screen_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a sa_set_controls_iterator
+ * @param i Pointer to a xcb_xkb_sa_set_controls_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(sa_set_controls)
+ * element. The member index is increased by sizeof(xcb_xkb_sa_set_controls_t)
  *
  *
  */
-unsafe fn xcb_xkb_sa_set_controls_next (i:*sa_set_controls_iterator) -> ();
+pub fn xcb_xkb_sa_set_controls_next (i:*mut xcb_xkb_sa_set_controls_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An sa_set_controls_iterator
+ * @param i An xcb_xkb_sa_set_controls_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_sa_set_controls_end (i:sa_set_controls_iterator) -> generic_iterator;
+pub fn xcb_xkb_sa_set_controls_end (i:xcb_xkb_sa_set_controls_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a sa_lock_controls_iterator
+ * @param i Pointer to a xcb_xkb_sa_lock_controls_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(sa_lock_controls)
+ * element. The member index is increased by sizeof(xcb_xkb_sa_lock_controls_t)
  *
  *
  */
-unsafe fn xcb_xkb_sa_lock_controls_next (i:*sa_lock_controls_iterator) -> ();
+pub fn xcb_xkb_sa_lock_controls_next (i:*mut xcb_xkb_sa_lock_controls_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An sa_lock_controls_iterator
+ * @param i An xcb_xkb_sa_lock_controls_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_sa_lock_controls_end (i:sa_lock_controls_iterator) -> generic_iterator;
+pub fn xcb_xkb_sa_lock_controls_end (i:xcb_xkb_sa_lock_controls_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a sa_action_message_iterator
+ * @param i Pointer to a xcb_xkb_sa_action_message_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(sa_action_message)
+ * element. The member index is increased by sizeof(xcb_xkb_sa_action_message_t)
  *
  *
  */
-unsafe fn xcb_xkb_sa_action_message_next (i:*sa_action_message_iterator) -> ();
+pub fn xcb_xkb_sa_action_message_next (i:*mut xcb_xkb_sa_action_message_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An sa_action_message_iterator
+ * @param i An xcb_xkb_sa_action_message_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_sa_action_message_end (i:sa_action_message_iterator) -> generic_iterator;
+pub fn xcb_xkb_sa_action_message_end (i:xcb_xkb_sa_action_message_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a sa_redirect_key_iterator
+ * @param i Pointer to a xcb_xkb_sa_redirect_key_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(sa_redirect_key)
+ * element. The member index is increased by sizeof(xcb_xkb_sa_redirect_key_t)
  *
  *
  */
-unsafe fn xcb_xkb_sa_redirect_key_next (i:*sa_redirect_key_iterator) -> ();
+pub fn xcb_xkb_sa_redirect_key_next (i:*mut xcb_xkb_sa_redirect_key_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An sa_redirect_key_iterator
+ * @param i An xcb_xkb_sa_redirect_key_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_sa_redirect_key_end (i:sa_redirect_key_iterator) -> generic_iterator;
+pub fn xcb_xkb_sa_redirect_key_end (i:xcb_xkb_sa_redirect_key_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a sa_device_btn_iterator
+ * @param i Pointer to a xcb_xkb_sa_device_btn_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(sa_device_btn)
+ * element. The member index is increased by sizeof(xcb_xkb_sa_device_btn_t)
  *
  *
  */
-unsafe fn xcb_xkb_sa_device_btn_next (i:*sa_device_btn_iterator) -> ();
+pub fn xcb_xkb_sa_device_btn_next (i:*mut xcb_xkb_sa_device_btn_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An sa_device_btn_iterator
+ * @param i An xcb_xkb_sa_device_btn_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_sa_device_btn_end (i:sa_device_btn_iterator) -> generic_iterator;
+pub fn xcb_xkb_sa_device_btn_end (i:xcb_xkb_sa_device_btn_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a sa_lock_device_btn_iterator
+ * @param i Pointer to a xcb_xkb_sa_lock_device_btn_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(sa_lock_device_btn)
+ * element. The member index is increased by sizeof(xcb_xkb_sa_lock_device_btn_t)
  *
  *
  */
-unsafe fn xcb_xkb_sa_lock_device_btn_next (i:*sa_lock_device_btn_iterator) -> ();
+pub fn xcb_xkb_sa_lock_device_btn_next (i:*mut xcb_xkb_sa_lock_device_btn_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An sa_lock_device_btn_iterator
+ * @param i An xcb_xkb_sa_lock_device_btn_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_sa_lock_device_btn_end (i:sa_lock_device_btn_iterator) -> generic_iterator;
+pub fn xcb_xkb_sa_lock_device_btn_end (i:xcb_xkb_sa_lock_device_btn_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a sa_device_valuator_iterator
+ * @param i Pointer to a xcb_xkb_sa_device_valuator_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(sa_device_valuator)
+ * element. The member index is increased by sizeof(xcb_xkb_sa_device_valuator_t)
  *
  *
  */
-unsafe fn xcb_xkb_sa_device_valuator_next (i:*sa_device_valuator_iterator) -> ();
+pub fn xcb_xkb_sa_device_valuator_next (i:*mut xcb_xkb_sa_device_valuator_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An sa_device_valuator_iterator
+ * @param i An xcb_xkb_sa_device_valuator_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_sa_device_valuator_end (i:sa_device_valuator_iterator) -> generic_iterator;
+pub fn xcb_xkb_sa_device_valuator_end (i:xcb_xkb_sa_device_valuator_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a action_iterator
+ * @param i Pointer to a xcb_xkb_action_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(action)
+ * element. The member index is increased by sizeof(xcb_xkb_action_t)
  *
  *
  */
-unsafe fn xcb_xkb_action_next (i:*action_iterator) -> ();
+pub fn xcb_xkb_action_next (i:*mut xcb_xkb_action_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An action_iterator
+ * @param i An xcb_xkb_action_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-unsafe fn xcb_xkb_action_end (i:action_iterator) -> generic_iterator;
+pub fn xcb_xkb_action_end (i:xcb_xkb_action_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  *
@@ -4819,11 +5192,11 @@ unsafe fn xcb_xkb_action_end (i:action_iterator) -> generic_iterator;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_use_extension (c : *connection,
+pub fn xcb_xkb_use_extension (c : *mut ffi::base::xcb_connection_t,
                                  wantedMajor :  u16,
-                                 wantedMinor :  u16) -> use_extension_cookie;
+                                 wantedMinor :  u16) -> xcb_xkb_use_extension_cookie_t;
 
 /**
  *
@@ -4831,49 +5204,49 @@ unsafe fn xcb_xkb_use_extension (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xkb_use_extension_unchecked (c : *connection,
+pub fn xcb_xkb_use_extension_unchecked (c : *mut ffi::base::xcb_connection_t,
                                            wantedMajor :  u16,
-                                           wantedMinor :  u16) -> use_extension_cookie;
+                                           wantedMinor :  u16) -> xcb_xkb_use_extension_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xkb_use_extension_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xkb_use_extension_reply (c : *connection,
-                                       cookie : use_extension_cookie,
-                                       e : **generic_error) -> *use_extension_reply;
+pub fn xcb_xkb_use_extension_reply (c : *mut ffi::base::xcb_connection_t,
+                                       cookie : xcb_xkb_use_extension_cookie_t,
+                                       e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_use_extension_reply_t;
 
-unsafe fn xcb_xkb_select_events_details_serialize (_buffer :               **c_void,
-                                         affectWhich :             u16,
-                                         clear :                   u16,
-                                         selectAll :               u16,
-                                         _aux :                   *select_events_details) -> c_int;
+pub fn xcb_xkb_select_events_details_serialize (_buffer :                     *mut *mut c_void,
+                                         affectWhich :                           u16,
+                                         clear :                                 u16,
+                                         selectAll :                             u16,
+                                         _aux :                             *mut xcb_xkb_select_events_details_t) -> c_int;
 
-unsafe fn xcb_xkb_select_events_details_unpack (_buffer :                *c_void,
-                                      affectWhich :             u16,
-                                      clear :                   u16,
-                                      selectAll :               u16,
-                                      _aux :                   *select_events_details) -> c_int;
+pub fn xcb_xkb_select_events_details_unpack (_buffer :                          *mut c_void,
+                                      affectWhich :                           u16,
+                                      clear :                                 u16,
+                                      selectAll :                             u16,
+                                      _aux :                             *mut xcb_xkb_select_events_details_t) -> c_int;
 
-unsafe fn xcb_xkb_select_events_details_sizeof (_buffer :  *c_void,
+pub fn xcb_xkb_select_events_details_sizeof (_buffer :  *mut c_void,
                                       affectWhich :   u16,
-                                      clear :    u16,
-                                      selectAll :   u16) -> c_int;
+                                      clear :        u16,
+                                      selectAll :    u16) -> c_int;
 
 /**
  *
@@ -4881,19 +5254,19 @@ unsafe fn xcb_xkb_select_events_details_sizeof (_buffer :  *c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xkb_select_events_checked (c : *connection,
-                                         deviceSpec :  device_spec,
+pub fn xcb_xkb_select_events_checked (c : *mut ffi::base::xcb_connection_t,
+                                         deviceSpec :  xcb_xkb_device_spec_t,
                                          affectWhich :  u16,
                                          clear :  u16,
                                          selectAll :  u16,
                                          affectMap :  u16,
                                          map :  u16,
-                                         details : *()) -> void_cookie;
+                                         details : *mut ()) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -4901,16 +5274,16 @@ unsafe fn xcb_xkb_select_events_checked (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_select_events (c : *connection,
-                                 deviceSpec :  device_spec,
+pub fn xcb_xkb_select_events (c : *mut ffi::base::xcb_connection_t,
+                                 deviceSpec :  xcb_xkb_device_spec_t,
                                  affectWhich :  u16,
                                  clear :  u16,
                                  selectAll :  u16,
                                  affectMap :  u16,
                                  map :  u16,
-                                 details : *()) -> void_cookie;
+                                 details : *mut ()) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -4918,19 +5291,19 @@ unsafe fn xcb_xkb_select_events (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xkb_select_events_aux_checked (c : *connection,
-                                             deviceSpec :  device_spec,
+pub fn xcb_xkb_select_events_aux_checked (c : *mut ffi::base::xcb_connection_t,
+                                             deviceSpec :  xcb_xkb_device_spec_t,
                                              affectWhich :  u16,
                                              clear :  u16,
                                              selectAll :  u16,
                                              affectMap :  u16,
                                              map :  u16,
-                                             details : *select_events_details) -> void_cookie;
+                                             details : *mut xcb_xkb_select_events_details_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -4938,16 +5311,16 @@ unsafe fn xcb_xkb_select_events_aux_checked (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_select_events_aux (c : *connection,
-                                     deviceSpec :  device_spec,
+pub fn xcb_xkb_select_events_aux (c : *mut ffi::base::xcb_connection_t,
+                                     deviceSpec :  xcb_xkb_device_spec_t,
                                      affectWhich :  u16,
                                      clear :  u16,
                                      selectAll :  u16,
                                      affectMap :  u16,
                                      map :  u16,
-                                     details : *select_events_details) -> void_cookie;
+                                     details : *mut xcb_xkb_select_events_details_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -4955,22 +5328,22 @@ unsafe fn xcb_xkb_select_events_aux (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xkb_bell_checked (c : *connection,
-                                deviceSpec :  device_spec,
-                                bellClass :  bell_class_spec,
-                                bellID :  id_spec,
+pub fn xcb_xkb_bell_checked (c : *mut ffi::base::xcb_connection_t,
+                                deviceSpec :  xcb_xkb_device_spec_t,
+                                bellClass :  xcb_xkb_bell_class_spec_t,
+                                bellID :  xcb_xkb_id_spec_t,
                                 percent :  i8,
                                 forceSound :  u8,
                                 eventOnly :  u8,
                                 pitch :  i16,
                                 duration :  i16,
-                                name :  xproto::atom,
-                                window :  xproto::window) -> void_cookie;
+                                name :  ffi::xproto::xcb_atom_t,
+                                window :  ffi::xproto::xcb_window_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -4978,19 +5351,19 @@ unsafe fn xcb_xkb_bell_checked (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_bell (c : *connection,
-                        deviceSpec :  device_spec,
-                        bellClass :  bell_class_spec,
-                        bellID :  id_spec,
+pub fn xcb_xkb_bell (c : *mut ffi::base::xcb_connection_t,
+                        deviceSpec :  xcb_xkb_device_spec_t,
+                        bellClass :  xcb_xkb_bell_class_spec_t,
+                        bellID :  xcb_xkb_id_spec_t,
                         percent :  i8,
                         forceSound :  u8,
                         eventOnly :  u8,
                         pitch :  i16,
                         duration :  i16,
-                        name :  xproto::atom,
-                        window :  xproto::window) -> void_cookie;
+                        name :  ffi::xproto::xcb_atom_t,
+                        window :  ffi::xproto::xcb_window_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -4998,10 +5371,10 @@ unsafe fn xcb_xkb_bell (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_get_state (c : *connection,
-                             deviceSpec :  device_spec) -> get_state_cookie;
+pub fn xcb_xkb_get_state (c : *mut ffi::base::xcb_connection_t,
+                             deviceSpec :  xcb_xkb_device_spec_t) -> xcb_xkb_get_state_cookie_t;
 
 /**
  *
@@ -5009,31 +5382,31 @@ unsafe fn xcb_xkb_get_state (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xkb_get_state_unchecked (c : *connection,
-                                       deviceSpec :  device_spec) -> get_state_cookie;
+pub fn xcb_xkb_get_state_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                       deviceSpec :  xcb_xkb_device_spec_t) -> xcb_xkb_get_state_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xkb_get_state_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xkb_get_state_reply (c : *connection,
-                                   cookie : get_state_cookie,
-                                   e : **generic_error) -> *get_state_reply;
+pub fn xcb_xkb_get_state_reply (c : *mut ffi::base::xcb_connection_t,
+                                   cookie : xcb_xkb_get_state_cookie_t,
+                                   e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_get_state_reply_t;
 
 /**
  *
@@ -5041,20 +5414,20 @@ unsafe fn xcb_xkb_get_state_reply (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xkb_latch_lock_state_checked (c : *connection,
-                                            deviceSpec :  device_spec,
+pub fn xcb_xkb_latch_lock_state_checked (c : *mut ffi::base::xcb_connection_t,
+                                            deviceSpec :  xcb_xkb_device_spec_t,
                                             affectModLocks :  u8,
                                             modLocks :  u8,
                                             lockGroup :  u8,
                                             groupLock :  u8,
                                             affectModLatches :  u8,
                                             latchGroup :  u8,
-                                            groupLatch :  u16) -> void_cookie;
+                                            groupLatch :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -5062,17 +5435,17 @@ unsafe fn xcb_xkb_latch_lock_state_checked (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_latch_lock_state (c : *connection,
-                                    deviceSpec :  device_spec,
+pub fn xcb_xkb_latch_lock_state (c : *mut ffi::base::xcb_connection_t,
+                                    deviceSpec :  xcb_xkb_device_spec_t,
                                     affectModLocks :  u8,
                                     modLocks :  u8,
                                     lockGroup :  u8,
                                     groupLock :  u8,
                                     affectModLatches :  u8,
                                     latchGroup :  u8,
-                                    groupLatch :  u16) -> void_cookie;
+                                    groupLatch :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -5080,10 +5453,10 @@ unsafe fn xcb_xkb_latch_lock_state (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_get_controls (c : *connection,
-                                deviceSpec :  device_spec) -> get_controls_cookie;
+pub fn xcb_xkb_get_controls (c : *mut ffi::base::xcb_connection_t,
+                                deviceSpec :  xcb_xkb_device_spec_t) -> xcb_xkb_get_controls_cookie_t;
 
 /**
  *
@@ -5091,31 +5464,31 @@ unsafe fn xcb_xkb_get_controls (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xkb_get_controls_unchecked (c : *connection,
-                                          deviceSpec :  device_spec) -> get_controls_cookie;
+pub fn xcb_xkb_get_controls_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                          deviceSpec :  xcb_xkb_device_spec_t) -> xcb_xkb_get_controls_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xkb_get_controls_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xkb_get_controls_reply (c : *connection,
-                                      cookie : get_controls_cookie,
-                                      e : **generic_error) -> *get_controls_reply;
+pub fn xcb_xkb_get_controls_reply (c : *mut ffi::base::xcb_connection_t,
+                                      cookie : xcb_xkb_get_controls_cookie_t,
+                                      e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_get_controls_reply_t;
 
 /**
  *
@@ -5123,13 +5496,13 @@ unsafe fn xcb_xkb_get_controls_reply (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xkb_set_controls_checked (c : *connection,
-                                        deviceSpec :  device_spec,
+pub fn xcb_xkb_set_controls_checked (c : *mut ffi::base::xcb_connection_t,
+                                        deviceSpec :  xcb_xkb_device_spec_t,
                                         affectInternalRealMods :  u8,
                                         internalRealMods :  u8,
                                         affectIgnoreLockRealMods :  u8,
@@ -5140,7 +5513,7 @@ unsafe fn xcb_xkb_set_controls_checked (c : *connection,
                                         ignoreLockVirtualMods :  u16,
                                         mouseKeysDfltBtn :  u8,
                                         groupsWrap :  u8,
-                                        accessXOptions :  ax_option,
+                                        accessXOptions :  xcb_xkb_ax_option_t,
                                         affectEnabledControls :  u32,
                                         enabledControls :  u32,
                                         changeControls :  u32,
@@ -5156,9 +5529,9 @@ unsafe fn xcb_xkb_set_controls_checked (c : *connection,
                                         accessXTimeout :  u16,
                                         accessXTimeoutMask :  u32,
                                         accessXTimeoutValues :  u32,
-                                        accessXTimeoutOptionsMask :  ax_option,
-                                        accessXTimeoutOptionsValues :  ax_option,
-                                        perKeyRepeat : *u8) -> void_cookie;
+                                        accessXTimeoutOptionsMask :  xcb_xkb_ax_option_t,
+                                        accessXTimeoutOptionsValues :  xcb_xkb_ax_option_t,
+                                        perKeyRepeat : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -5166,10 +5539,10 @@ unsafe fn xcb_xkb_set_controls_checked (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_set_controls (c : *connection,
-                                deviceSpec :  device_spec,
+pub fn xcb_xkb_set_controls (c : *mut ffi::base::xcb_connection_t,
+                                deviceSpec :  xcb_xkb_device_spec_t,
                                 affectInternalRealMods :  u8,
                                 internalRealMods :  u8,
                                 affectIgnoreLockRealMods :  u8,
@@ -5180,7 +5553,7 @@ unsafe fn xcb_xkb_set_controls (c : *connection,
                                 ignoreLockVirtualMods :  u16,
                                 mouseKeysDfltBtn :  u8,
                                 groupsWrap :  u8,
-                                accessXOptions :  ax_option,
+                                accessXOptions :  xcb_xkb_ax_option_t,
                                 affectEnabledControls :  u32,
                                 enabledControls :  u32,
                                 changeControls :  u32,
@@ -5196,118 +5569,39 @@ unsafe fn xcb_xkb_set_controls (c : *connection,
                                 accessXTimeout :  u16,
                                 accessXTimeoutMask :  u32,
                                 accessXTimeoutValues :  u32,
-                                accessXTimeoutOptionsMask :  ax_option,
-                                accessXTimeoutOptionsValues :  ax_option,
-                                perKeyRepeat : *u8) -> void_cookie;
+                                accessXTimeoutOptionsMask :  xcb_xkb_ax_option_t,
+                                accessXTimeoutOptionsValues :  xcb_xkb_ax_option_t,
+                                perKeyRepeat : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
+pub fn xcb_xkb_get_map_map_serialize (_buffer :           *mut *mut c_void,
+                               nTypes :                      u8,
+                               nKeySyms :                    u8,
+                               nKeyActions :                 u8,
+                               totalActions :                u16,
+                               totalKeyBehaviors :           u8,
+                               nVModMapKeys :                u8,
+                               totalKeyExplicit :            u8,
+                               totalModMapKeys :             u8,
+                               totalVModMapKeys :            u8,
+                               present :                     u16,
+                               _aux :                   *mut xcb_xkb_get_map_map_t) -> c_int;
 
-unsafe fn xcb_xkb_get_map_map_types_rtrn_length (R : *get_map_reply,
-                                            S : *get_map_map) -> c_int;
+pub fn xcb_xkb_get_map_map_unpack (_buffer :                *mut c_void,
+                            nTypes :                      u8,
+                            nKeySyms :                    u8,
+                            nKeyActions :                 u8,
+                            totalActions :                u16,
+                            totalKeyBehaviors :           u8,
+                            nVModMapKeys :                u8,
+                            totalKeyExplicit :            u8,
+                            totalModMapKeys :             u8,
+                            totalVModMapKeys :            u8,
+                            present :                     u16,
+                            _aux :                   *mut xcb_xkb_get_map_map_t) -> c_int;
 
-unsafe fn xcb_xkb_get_map_map_types_rtrn_iterator (R : get_map_reply,
-                                         S : *get_map_map /**< */) -> key_type_iterator;
-
-
-unsafe fn xcb_xkb_get_map_map_syms_rtrn_length (R : *get_map_reply,
-                                           S : *get_map_map) -> c_int;
-
-unsafe fn xcb_xkb_get_map_map_syms_rtrn_iterator (R : get_map_reply,
-                                        S : *get_map_map /**< */) -> key_sym_map_iterator;
-
-unsafe fn xcb_xkb_get_map_map_acts_rtrn_count (S : *get_map_map) -> *u8;
-
-
-unsafe fn xcb_xkb_get_map_map_acts_rtrn_count_length (R : *get_map_reply,
-                                                 S : *get_map_map) -> c_int;
-
-
-unsafe fn xcb_xkb_get_map_map_acts_rtrn_count_end (R : get_map_reply,
-                                         S : *get_map_map ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_map_map_acts_rtrn_acts (S : *get_map_map) -> *action;
-
-
-unsafe fn xcb_xkb_get_map_map_acts_rtrn_acts_length (R : *get_map_reply,
-                                                S : *get_map_map) -> c_int;
-
-unsafe fn xcb_xkb_get_map_map_acts_rtrn_acts_iterator (R : get_map_reply,
-                                             S : *get_map_map /**< */) -> action_iterator;
-
-unsafe fn xcb_xkb_get_map_map_behaviors_rtrn (S : *get_map_map) -> *set_behavior;
-
-
-unsafe fn xcb_xkb_get_map_map_behaviors_rtrn_length (R : *get_map_reply,
-                                                S : *get_map_map) -> c_int;
-
-unsafe fn xcb_xkb_get_map_map_behaviors_rtrn_iterator (R : get_map_reply,
-                                             S : *get_map_map /**< */) -> set_behavior_iterator;
-
-unsafe fn xcb_xkb_get_map_map_vmods_rtrn (S : *get_map_map) -> *u8;
-
-
-unsafe fn xcb_xkb_get_map_map_vmods_rtrn_length (R : *get_map_reply,
-                                            S : *get_map_map) -> c_int;
-
-
-unsafe fn xcb_xkb_get_map_map_vmods_rtrn_end (R : get_map_reply,
-                                    S : *get_map_map ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_map_map_explicit_rtrn (S : *get_map_map) -> *set_explicit;
-
-
-unsafe fn xcb_xkb_get_map_map_explicit_rtrn_length (R : *get_map_reply,
-                                               S : *get_map_map) -> c_int;
-
-unsafe fn xcb_xkb_get_map_map_explicit_rtrn_iterator (R : get_map_reply,
-                                            S : *get_map_map /**< */) -> set_explicit_iterator;
-
-unsafe fn xcb_xkb_get_map_map_modmap_rtrn (S : *get_map_map) -> *key_mod_map;
-
-
-unsafe fn xcb_xkb_get_map_map_modmap_rtrn_length (R : *get_map_reply,
-                                             S : *get_map_map) -> c_int;
-
-unsafe fn xcb_xkb_get_map_map_modmap_rtrn_iterator (R : get_map_reply,
-                                          S : *get_map_map /**< */) -> key_mod_map_iterator;
-
-unsafe fn xcb_xkb_get_map_map_vmodmap_rtrn (S : *get_map_map) -> *key_v_mod_map;
-
-
-unsafe fn xcb_xkb_get_map_map_vmodmap_rtrn_length (R : *get_map_reply,
-                                              S : *get_map_map) -> c_int;
-
-unsafe fn xcb_xkb_get_map_map_vmodmap_rtrn_iterator (R : get_map_reply,
-                                           S : *get_map_map /**< */) -> key_v_mod_map_iterator;
-
-unsafe fn xcb_xkb_get_map_map_serialize (_buffer :     **c_void,
-                               nTypes :        u8,
-                               nKeySyms :      u8,
-                               nKeyActions :   u8,
-                               totalActions :  u16,
-                               totalKeyBehaviors :  u8,
-                               nVModMapKeys :  u8,
-                               totalKeyExplicit :  u8,
-                               totalModMapKeys :  u8,
-                               totalVModMapKeys :  u8,
-                               present :       u16,
-                               _aux :         *get_map_map) -> c_int;
-
-unsafe fn xcb_xkb_get_map_map_unpack (_buffer :      *c_void,
-                            nTypes :        u8,
-                            nKeySyms :      u8,
-                            nKeyActions :   u8,
-                            totalActions :  u16,
-                            totalKeyBehaviors :  u8,
-                            nVModMapKeys :  u8,
-                            totalKeyExplicit :  u8,
-                            totalModMapKeys :  u8,
-                            totalVModMapKeys :  u8,
-                            present :       u16,
-                            _aux :         *get_map_map) -> c_int;
-
-unsafe fn xcb_xkb_get_map_map_sizeof (_buffer :  *c_void,
-                            nTypes :   u8,
-                            nKeySyms :  u8,
+pub fn xcb_xkb_get_map_map_sizeof (_buffer :  *mut c_void,
+                            nTypes :       u8,
+                            nKeySyms :     u8,
                             nKeyActions :  u8,
                             totalActions :  u16,
                             totalKeyBehaviors :  u8,
@@ -5315,7 +5609,7 @@ unsafe fn xcb_xkb_get_map_map_sizeof (_buffer :  *c_void,
                             totalKeyExplicit :  u8,
                             totalModMapKeys :  u8,
                             totalVModMapKeys :  u8,
-                            present :   u16) -> c_int;
+                            present :      u16) -> c_int;
 
 /**
  *
@@ -5323,27 +5617,27 @@ unsafe fn xcb_xkb_get_map_map_sizeof (_buffer :  *c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_get_map (c : *connection,
-                           deviceSpec :  device_spec,
+pub fn xcb_xkb_get_map (c : *mut ffi::base::xcb_connection_t,
+                           deviceSpec :  xcb_xkb_device_spec_t,
                            full :  u16,
                            partial :  u16,
                            firstType :  u8,
                            nTypes :  u8,
-                           firstKeySym :  xproto::keycode,
+                           firstKeySym :  ffi::xproto::xcb_keycode_t,
                            nKeySyms :  u8,
-                           firstKeyAction :  xproto::keycode,
+                           firstKeyAction :  ffi::xproto::xcb_keycode_t,
                            nKeyActions :  u8,
-                           firstKeyBehavior :  xproto::keycode,
+                           firstKeyBehavior :  ffi::xproto::xcb_keycode_t,
                            nKeyBehaviors :  u8,
                            virtualMods :  u16,
-                           firstKeyExplicit :  xproto::keycode,
+                           firstKeyExplicit :  ffi::xproto::xcb_keycode_t,
                            nKeyExplicit :  u8,
-                           firstModMapKey :  xproto::keycode,
+                           firstModMapKey :  ffi::xproto::xcb_keycode_t,
                            nModMapKeys :  u8,
-                           firstVModMapKey :  xproto::keycode,
-                           nVModMapKeys :  u8) -> get_map_cookie;
+                           firstVModMapKey :  ffi::xproto::xcb_keycode_t,
+                           nVModMapKeys :  u8) -> xcb_xkb_get_map_cookie_t;
 
 /**
  *
@@ -5351,166 +5645,87 @@ unsafe fn xcb_xkb_get_map (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xkb_get_map_unchecked (c : *connection,
-                                     deviceSpec :  device_spec,
+pub fn xcb_xkb_get_map_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                     deviceSpec :  xcb_xkb_device_spec_t,
                                      full :  u16,
                                      partial :  u16,
                                      firstType :  u8,
                                      nTypes :  u8,
-                                     firstKeySym :  xproto::keycode,
+                                     firstKeySym :  ffi::xproto::xcb_keycode_t,
                                      nKeySyms :  u8,
-                                     firstKeyAction :  xproto::keycode,
+                                     firstKeyAction :  ffi::xproto::xcb_keycode_t,
                                      nKeyActions :  u8,
-                                     firstKeyBehavior :  xproto::keycode,
+                                     firstKeyBehavior :  ffi::xproto::xcb_keycode_t,
                                      nKeyBehaviors :  u8,
                                      virtualMods :  u16,
-                                     firstKeyExplicit :  xproto::keycode,
+                                     firstKeyExplicit :  ffi::xproto::xcb_keycode_t,
                                      nKeyExplicit :  u8,
-                                     firstModMapKey :  xproto::keycode,
+                                     firstModMapKey :  ffi::xproto::xcb_keycode_t,
                                      nModMapKeys :  u8,
-                                     firstVModMapKey :  xproto::keycode,
-                                     nVModMapKeys :  u8) -> get_map_cookie;
+                                     firstVModMapKey :  ffi::xproto::xcb_keycode_t,
+                                     nVModMapKeys :  u8) -> xcb_xkb_get_map_cookie_t;
 
 
 /**
  *
- * xcb_xkb_get_map_map : *get_map_map
- * 
+ * xcb_xkb_get_map_map : *mut xcb_xkb_get_map_map_t
+ *
  *
  */
-unsafe fn xcb_xkb_get_map_map (R : *get_map_reply) -> *c_void;
+pub fn xcb_xkb_get_map_map (R : *mut xcb_xkb_get_map_reply_t) -> *mut c_void;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xkb_get_map_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xkb_get_map_reply (c : *connection,
-                                 cookie : get_map_cookie,
-                                 e : **generic_error) -> *get_map_reply;
+pub fn xcb_xkb_get_map_reply (c : *mut ffi::base::xcb_connection_t,
+                                 cookie : xcb_xkb_get_map_cookie_t,
+                                 e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_get_map_reply_t;
 
+pub fn xcb_xkb_set_map_values_serialize (_buffer :              *mut *mut c_void,
+                                  nTypes :                         u8,
+                                  nKeySyms :                       u8,
+                                  nKeyActions :                    u8,
+                                  totalActions :                   u16,
+                                  totalKeyBehaviors :              u8,
+                                  nVModMapKeys :                   u8,
+                                  totalKeyExplicit :               u8,
+                                  totalModMapKeys :                u8,
+                                  totalVModMapKeys :               u8,
+                                  present :                        u16,
+                                  _aux :                      *mut xcb_xkb_set_map_values_t) -> c_int;
 
-unsafe fn xcb_xkb_set_map_values_types_length (R : *set_map_request,
-                                          S : *set_map_values) -> c_int;
+pub fn xcb_xkb_set_map_values_unpack (_buffer :                   *mut c_void,
+                               nTypes :                         u8,
+                               nKeySyms :                       u8,
+                               nKeyActions :                    u8,
+                               totalActions :                   u16,
+                               totalKeyBehaviors :              u8,
+                               nVModMapKeys :                   u8,
+                               totalKeyExplicit :               u8,
+                               totalModMapKeys :                u8,
+                               totalVModMapKeys :               u8,
+                               present :                        u16,
+                               _aux :                      *mut xcb_xkb_set_map_values_t) -> c_int;
 
-unsafe fn xcb_xkb_set_map_values_types_iterator (R : set_map_request,
-                                       S : *set_map_values /**< */) -> set_key_type_iterator;
-
-
-unsafe fn xcb_xkb_set_map_values_syms_length (R : *set_map_request,
-                                         S : *set_map_values) -> c_int;
-
-unsafe fn xcb_xkb_set_map_values_syms_iterator (R : set_map_request,
-                                      S : *set_map_values /**< */) -> key_sym_map_iterator;
-
-unsafe fn xcb_xkb_set_map_values_actions_count (S : *set_map_values) -> *u8;
-
-
-unsafe fn xcb_xkb_set_map_values_actions_count_length (R : *set_map_request,
-                                                  S : *set_map_values) -> c_int;
-
-
-unsafe fn xcb_xkb_set_map_values_actions_count_end (R : set_map_request,
-                                          S : *set_map_values ) -> generic_iterator;
-
-unsafe fn xcb_xkb_set_map_values_actions (S : *set_map_values) -> *action;
-
-
-unsafe fn xcb_xkb_set_map_values_actions_length (R : *set_map_request,
-                                            S : *set_map_values) -> c_int;
-
-unsafe fn xcb_xkb_set_map_values_actions_iterator (R : set_map_request,
-                                         S : *set_map_values /**< */) -> action_iterator;
-
-unsafe fn xcb_xkb_set_map_values_behaviors (S : *set_map_values) -> *set_behavior;
-
-
-unsafe fn xcb_xkb_set_map_values_behaviors_length (R : *set_map_request,
-                                              S : *set_map_values) -> c_int;
-
-unsafe fn xcb_xkb_set_map_values_behaviors_iterator (R : set_map_request,
-                                           S : *set_map_values /**< */) -> set_behavior_iterator;
-
-unsafe fn xcb_xkb_set_map_values_vmods (S : *set_map_values) -> *u8;
-
-
-unsafe fn xcb_xkb_set_map_values_vmods_length (R : *set_map_request,
-                                          S : *set_map_values) -> c_int;
-
-
-unsafe fn xcb_xkb_set_map_values_vmods_end (R : set_map_request,
-                                  S : *set_map_values ) -> generic_iterator;
-
-unsafe fn xcb_xkb_set_map_values_explicit (S : *set_map_values) -> *set_explicit;
-
-
-unsafe fn xcb_xkb_set_map_values_explicit_length (R : *set_map_request,
-                                             S : *set_map_values) -> c_int;
-
-unsafe fn xcb_xkb_set_map_values_explicit_iterator (R : set_map_request,
-                                          S : *set_map_values /**< */) -> set_explicit_iterator;
-
-unsafe fn xcb_xkb_set_map_values_modmap (S : *set_map_values) -> *key_mod_map;
-
-
-unsafe fn xcb_xkb_set_map_values_modmap_length (R : *set_map_request,
-                                           S : *set_map_values) -> c_int;
-
-unsafe fn xcb_xkb_set_map_values_modmap_iterator (R : set_map_request,
-                                        S : *set_map_values /**< */) -> key_mod_map_iterator;
-
-unsafe fn xcb_xkb_set_map_values_vmodmap (S : *set_map_values) -> *key_v_mod_map;
-
-
-unsafe fn xcb_xkb_set_map_values_vmodmap_length (R : *set_map_request,
-                                            S : *set_map_values) -> c_int;
-
-unsafe fn xcb_xkb_set_map_values_vmodmap_iterator (R : set_map_request,
-                                         S : *set_map_values /**< */) -> key_v_mod_map_iterator;
-
-unsafe fn xcb_xkb_set_map_values_serialize (_buffer :        **c_void,
-                                  nTypes :           u8,
-                                  nKeySyms :         u8,
-                                  nKeyActions :      u8,
-                                  totalActions :     u16,
-                                  totalKeyBehaviors :  u8,
-                                  nVModMapKeys :     u8,
-                                  totalKeyExplicit :  u8,
-                                  totalModMapKeys :  u8,
-                                  totalVModMapKeys :  u8,
-                                  present :          u16,
-                                  _aux :            *set_map_values) -> c_int;
-
-unsafe fn xcb_xkb_set_map_values_unpack (_buffer :         *c_void,
-                               nTypes :           u8,
-                               nKeySyms :         u8,
-                               nKeyActions :      u8,
-                               totalActions :     u16,
-                               totalKeyBehaviors :  u8,
-                               nVModMapKeys :     u8,
-                               totalKeyExplicit :  u8,
-                               totalModMapKeys :  u8,
-                               totalVModMapKeys :  u8,
-                               present :          u16,
-                               _aux :            *set_map_values) -> c_int;
-
-unsafe fn xcb_xkb_set_map_values_sizeof (_buffer :  *c_void,
-                               nTypes :   u8,
-                               nKeySyms :  u8,
+pub fn xcb_xkb_set_map_values_sizeof (_buffer :  *mut c_void,
+                               nTypes :       u8,
+                               nKeySyms :     u8,
                                nKeyActions :  u8,
                                totalActions :  u16,
                                totalKeyBehaviors :  u8,
@@ -5518,7 +5733,7 @@ unsafe fn xcb_xkb_set_map_values_sizeof (_buffer :  *c_void,
                                totalKeyExplicit :  u8,
                                totalModMapKeys :  u8,
                                totalVModMapKeys :  u8,
-                               present :   u16) -> c_int;
+                               present :      u16) -> c_int;
 
 /**
  *
@@ -5526,39 +5741,39 @@ unsafe fn xcb_xkb_set_map_values_sizeof (_buffer :  *c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xkb_set_map_checked (c : *connection,
-                                   deviceSpec :  device_spec,
+pub fn xcb_xkb_set_map_checked (c : *mut ffi::base::xcb_connection_t,
+                                   deviceSpec :  xcb_xkb_device_spec_t,
                                    present :  u16,
                                    flags :  u16,
-                                   minKeyCode :  xproto::keycode,
-                                   maxKeyCode :  xproto::keycode,
+                                   minKeyCode :  ffi::xproto::xcb_keycode_t,
+                                   maxKeyCode :  ffi::xproto::xcb_keycode_t,
                                    firstType :  u8,
                                    nTypes :  u8,
-                                   firstKeySym :  xproto::keycode,
+                                   firstKeySym :  ffi::xproto::xcb_keycode_t,
                                    nKeySyms :  u8,
                                    totalSyms :  u16,
-                                   firstKeyAction :  xproto::keycode,
+                                   firstKeyAction :  ffi::xproto::xcb_keycode_t,
                                    nKeyActions :  u8,
                                    totalActions :  u16,
-                                   firstKeyBehavior :  xproto::keycode,
+                                   firstKeyBehavior :  ffi::xproto::xcb_keycode_t,
                                    nKeyBehaviors :  u8,
                                    totalKeyBehaviors :  u8,
-                                   firstKeyExplicit :  xproto::keycode,
+                                   firstKeyExplicit :  ffi::xproto::xcb_keycode_t,
                                    nKeyExplicit :  u8,
                                    totalKeyExplicit :  u8,
-                                   firstModMapKey :  xproto::keycode,
+                                   firstModMapKey :  ffi::xproto::xcb_keycode_t,
                                    nModMapKeys :  u8,
                                    totalModMapKeys :  u8,
-                                   firstVModMapKey :  xproto::keycode,
+                                   firstVModMapKey :  ffi::xproto::xcb_keycode_t,
                                    nVModMapKeys :  u8,
                                    totalVModMapKeys :  u8,
                                    virtualMods :  u16,
-                                   values : *()) -> void_cookie;
+                                   values : *mut ()) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -5566,36 +5781,36 @@ unsafe fn xcb_xkb_set_map_checked (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_set_map (c : *connection,
-                           deviceSpec :  device_spec,
+pub fn xcb_xkb_set_map (c : *mut ffi::base::xcb_connection_t,
+                           deviceSpec :  xcb_xkb_device_spec_t,
                            present :  u16,
                            flags :  u16,
-                           minKeyCode :  xproto::keycode,
-                           maxKeyCode :  xproto::keycode,
+                           minKeyCode :  ffi::xproto::xcb_keycode_t,
+                           maxKeyCode :  ffi::xproto::xcb_keycode_t,
                            firstType :  u8,
                            nTypes :  u8,
-                           firstKeySym :  xproto::keycode,
+                           firstKeySym :  ffi::xproto::xcb_keycode_t,
                            nKeySyms :  u8,
                            totalSyms :  u16,
-                           firstKeyAction :  xproto::keycode,
+                           firstKeyAction :  ffi::xproto::xcb_keycode_t,
                            nKeyActions :  u8,
                            totalActions :  u16,
-                           firstKeyBehavior :  xproto::keycode,
+                           firstKeyBehavior :  ffi::xproto::xcb_keycode_t,
                            nKeyBehaviors :  u8,
                            totalKeyBehaviors :  u8,
-                           firstKeyExplicit :  xproto::keycode,
+                           firstKeyExplicit :  ffi::xproto::xcb_keycode_t,
                            nKeyExplicit :  u8,
                            totalKeyExplicit :  u8,
-                           firstModMapKey :  xproto::keycode,
+                           firstModMapKey :  ffi::xproto::xcb_keycode_t,
                            nModMapKeys :  u8,
                            totalModMapKeys :  u8,
-                           firstVModMapKey :  xproto::keycode,
+                           firstVModMapKey :  ffi::xproto::xcb_keycode_t,
                            nVModMapKeys :  u8,
                            totalVModMapKeys :  u8,
                            virtualMods :  u16,
-                           values : *()) -> void_cookie;
+                           values : *mut ()) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -5603,39 +5818,39 @@ unsafe fn xcb_xkb_set_map (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xkb_set_map_aux_checked (c : *connection,
-                                       deviceSpec :  device_spec,
+pub fn xcb_xkb_set_map_aux_checked (c : *mut ffi::base::xcb_connection_t,
+                                       deviceSpec :  xcb_xkb_device_spec_t,
                                        present :  u16,
                                        flags :  u16,
-                                       minKeyCode :  xproto::keycode,
-                                       maxKeyCode :  xproto::keycode,
+                                       minKeyCode :  ffi::xproto::xcb_keycode_t,
+                                       maxKeyCode :  ffi::xproto::xcb_keycode_t,
                                        firstType :  u8,
                                        nTypes :  u8,
-                                       firstKeySym :  xproto::keycode,
+                                       firstKeySym :  ffi::xproto::xcb_keycode_t,
                                        nKeySyms :  u8,
                                        totalSyms :  u16,
-                                       firstKeyAction :  xproto::keycode,
+                                       firstKeyAction :  ffi::xproto::xcb_keycode_t,
                                        nKeyActions :  u8,
                                        totalActions :  u16,
-                                       firstKeyBehavior :  xproto::keycode,
+                                       firstKeyBehavior :  ffi::xproto::xcb_keycode_t,
                                        nKeyBehaviors :  u8,
                                        totalKeyBehaviors :  u8,
-                                       firstKeyExplicit :  xproto::keycode,
+                                       firstKeyExplicit :  ffi::xproto::xcb_keycode_t,
                                        nKeyExplicit :  u8,
                                        totalKeyExplicit :  u8,
-                                       firstModMapKey :  xproto::keycode,
+                                       firstModMapKey :  ffi::xproto::xcb_keycode_t,
                                        nModMapKeys :  u8,
                                        totalModMapKeys :  u8,
-                                       firstVModMapKey :  xproto::keycode,
+                                       firstVModMapKey :  ffi::xproto::xcb_keycode_t,
                                        nVModMapKeys :  u8,
                                        totalVModMapKeys :  u8,
                                        virtualMods :  u16,
-                                       values : *set_map_values) -> void_cookie;
+                                       values : *mut xcb_xkb_set_map_values_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -5643,38 +5858,38 @@ unsafe fn xcb_xkb_set_map_aux_checked (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_set_map_aux (c : *connection,
-                               deviceSpec :  device_spec,
+pub fn xcb_xkb_set_map_aux (c : *mut ffi::base::xcb_connection_t,
+                               deviceSpec :  xcb_xkb_device_spec_t,
                                present :  u16,
                                flags :  u16,
-                               minKeyCode :  xproto::keycode,
-                               maxKeyCode :  xproto::keycode,
+                               minKeyCode :  ffi::xproto::xcb_keycode_t,
+                               maxKeyCode :  ffi::xproto::xcb_keycode_t,
                                firstType :  u8,
                                nTypes :  u8,
-                               firstKeySym :  xproto::keycode,
+                               firstKeySym :  ffi::xproto::xcb_keycode_t,
                                nKeySyms :  u8,
                                totalSyms :  u16,
-                               firstKeyAction :  xproto::keycode,
+                               firstKeyAction :  ffi::xproto::xcb_keycode_t,
                                nKeyActions :  u8,
                                totalActions :  u16,
-                               firstKeyBehavior :  xproto::keycode,
+                               firstKeyBehavior :  ffi::xproto::xcb_keycode_t,
                                nKeyBehaviors :  u8,
                                totalKeyBehaviors :  u8,
-                               firstKeyExplicit :  xproto::keycode,
+                               firstKeyExplicit :  ffi::xproto::xcb_keycode_t,
                                nKeyExplicit :  u8,
                                totalKeyExplicit :  u8,
-                               firstModMapKey :  xproto::keycode,
+                               firstModMapKey :  ffi::xproto::xcb_keycode_t,
                                nModMapKeys :  u8,
                                totalModMapKeys :  u8,
-                               firstVModMapKey :  xproto::keycode,
+                               firstVModMapKey :  ffi::xproto::xcb_keycode_t,
                                nVModMapKeys :  u8,
                                totalVModMapKeys :  u8,
                                virtualMods :  u16,
-                               values : *set_map_values) -> void_cookie;
+                               values : *mut xcb_xkb_set_map_values_t) -> ffi::base::xcb_void_cookie_t;
 
-unsafe fn xcb_xkb_get_compat_map_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_get_compat_map_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -5682,14 +5897,14 @@ unsafe fn xcb_xkb_get_compat_map_sizeof (_buffer :  *c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_get_compat_map (c : *connection,
-                                  deviceSpec :  device_spec,
+pub fn xcb_xkb_get_compat_map (c : *mut ffi::base::xcb_connection_t,
+                                  deviceSpec :  xcb_xkb_device_spec_t,
                                   groups :  u8,
                                   getAllSI :  u8,
                                   firstSI :  u16,
-                                  nSI :  u16) -> get_compat_map_cookie;
+                                  nSI :  u16) -> xcb_xkb_get_compat_map_cookie_t;
 
 /**
  *
@@ -5697,52 +5912,52 @@ unsafe fn xcb_xkb_get_compat_map (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xkb_get_compat_map_unchecked (c : *connection,
-                                            deviceSpec :  device_spec,
+pub fn xcb_xkb_get_compat_map_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                            deviceSpec :  xcb_xkb_device_spec_t,
                                             groups :  u8,
                                             getAllSI :  u8,
                                             firstSI :  u16,
-                                            nSI :  u16) -> get_compat_map_cookie;
+                                            nSI :  u16) -> xcb_xkb_get_compat_map_cookie_t;
 
-unsafe fn xcb_xkb_get_compat_map_si_rtrn (R : *get_compat_map_reply) -> *u8;
-
-
-unsafe fn xcb_xkb_get_compat_map_si_rtrn_length (R : *get_compat_map_reply) -> c_int;
+pub fn xcb_xkb_get_compat_map_si_rtrn (R : *mut xcb_xkb_get_compat_map_reply_t) -> *mut u8;
 
 
-unsafe fn xcb_xkb_get_compat_map_si_rtrn_end (R : *get_compat_map_reply) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_compat_map_group_rtrn (R : *get_compat_map_reply) -> *mod_def;
+pub fn xcb_xkb_get_compat_map_si_rtrn_length (R : *mut xcb_xkb_get_compat_map_reply_t) -> c_int;
 
 
-unsafe fn xcb_xkb_get_compat_map_group_rtrn_length (R : *get_compat_map_reply) -> c_int;
+pub fn xcb_xkb_get_compat_map_si_rtrn_end (R : *mut xcb_xkb_get_compat_map_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
-unsafe fn xcb_xkb_get_compat_map_group_rtrn_iterator (R : *get_compat_map_reply) -> mod_def_iterator;
+pub fn xcb_xkb_get_compat_map_group_rtrn (R : *mut xcb_xkb_get_compat_map_reply_t) -> *mut xcb_xkb_mod_def_t;
+
+
+pub fn xcb_xkb_get_compat_map_group_rtrn_length (R : *mut xcb_xkb_get_compat_map_reply_t) -> c_int;
+
+pub fn xcb_xkb_get_compat_map_group_rtrn_iterator (R : *mut xcb_xkb_get_compat_map_reply_t) -> xcb_xkb_mod_def_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xkb_get_compat_map_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xkb_get_compat_map_reply (c : *connection,
-                                        cookie : get_compat_map_cookie,
-                                        e : **generic_error) -> *get_compat_map_reply;
+pub fn xcb_xkb_get_compat_map_reply (c : *mut ffi::base::xcb_connection_t,
+                                        cookie : xcb_xkb_get_compat_map_cookie_t,
+                                        e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_get_compat_map_reply_t;
 
-unsafe fn xcb_xkb_set_compat_map_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_set_compat_map_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -5750,20 +5965,20 @@ unsafe fn xcb_xkb_set_compat_map_sizeof (_buffer :  *c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xkb_set_compat_map_checked (c : *connection,
-                                          deviceSpec :  device_spec,
+pub fn xcb_xkb_set_compat_map_checked (c : *mut ffi::base::xcb_connection_t,
+                                          deviceSpec :  xcb_xkb_device_spec_t,
                                           recomputeActions :  u8,
                                           truncateSI :  u8,
                                           groups :  u8,
                                           firstSI :  u16,
                                           nSI :  u16,
-                                          si : *u8,
-                                          groupMaps : *mod_def) -> void_cookie;
+                                          si : *mut u8,
+                                          groupMaps : *mut xcb_xkb_mod_def_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -5771,17 +5986,17 @@ unsafe fn xcb_xkb_set_compat_map_checked (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_set_compat_map (c : *connection,
-                                  deviceSpec :  device_spec,
+pub fn xcb_xkb_set_compat_map (c : *mut ffi::base::xcb_connection_t,
+                                  deviceSpec :  xcb_xkb_device_spec_t,
                                   recomputeActions :  u8,
                                   truncateSI :  u8,
                                   groups :  u8,
                                   firstSI :  u16,
                                   nSI :  u16,
-                                  si : *u8,
-                                  groupMaps : *mod_def) -> void_cookie;
+                                  si : *mut u8,
+                                  groupMaps : *mut xcb_xkb_mod_def_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -5789,10 +6004,10 @@ unsafe fn xcb_xkb_set_compat_map (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_get_indicator_state (c : *connection,
-                                       deviceSpec :  device_spec) -> get_indicator_state_cookie;
+pub fn xcb_xkb_get_indicator_state (c : *mut ffi::base::xcb_connection_t,
+                                       deviceSpec :  xcb_xkb_device_spec_t) -> xcb_xkb_get_indicator_state_cookie_t;
 
 /**
  *
@@ -5800,33 +6015,33 @@ unsafe fn xcb_xkb_get_indicator_state (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xkb_get_indicator_state_unchecked (c : *connection,
-                                                 deviceSpec :  device_spec) -> get_indicator_state_cookie;
+pub fn xcb_xkb_get_indicator_state_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                                 deviceSpec :  xcb_xkb_device_spec_t) -> xcb_xkb_get_indicator_state_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xkb_get_indicator_state_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xkb_get_indicator_state_reply (c : *connection,
-                                             cookie : get_indicator_state_cookie,
-                                             e : **generic_error) -> *get_indicator_state_reply;
+pub fn xcb_xkb_get_indicator_state_reply (c : *mut ffi::base::xcb_connection_t,
+                                             cookie : xcb_xkb_get_indicator_state_cookie_t,
+                                             e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_get_indicator_state_reply_t;
 
-unsafe fn xcb_xkb_get_indicator_map_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_get_indicator_map_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -5834,11 +6049,11 @@ unsafe fn xcb_xkb_get_indicator_map_sizeof (_buffer :  *c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_get_indicator_map (c : *connection,
-                                     deviceSpec :  device_spec,
-                                     which :  u32) -> get_indicator_map_cookie;
+pub fn xcb_xkb_get_indicator_map (c : *mut ffi::base::xcb_connection_t,
+                                     deviceSpec :  xcb_xkb_device_spec_t,
+                                     which :  u32) -> xcb_xkb_get_indicator_map_cookie_t;
 
 /**
  *
@@ -5846,41 +6061,41 @@ unsafe fn xcb_xkb_get_indicator_map (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xkb_get_indicator_map_unchecked (c : *connection,
-                                               deviceSpec :  device_spec,
-                                               which :  u32) -> get_indicator_map_cookie;
+pub fn xcb_xkb_get_indicator_map_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                               deviceSpec :  xcb_xkb_device_spec_t,
+                                               which :  u32) -> xcb_xkb_get_indicator_map_cookie_t;
 
-unsafe fn xcb_xkb_get_indicator_map_maps (R : *get_indicator_map_reply) -> *indicator_map;
+pub fn xcb_xkb_get_indicator_map_maps (R : *mut xcb_xkb_get_indicator_map_reply_t) -> *mut xcb_xkb_indicator_map_t;
 
 
-unsafe fn xcb_xkb_get_indicator_map_maps_length (R : *get_indicator_map_reply) -> c_int;
+pub fn xcb_xkb_get_indicator_map_maps_length (R : *mut xcb_xkb_get_indicator_map_reply_t) -> c_int;
 
-unsafe fn xcb_xkb_get_indicator_map_maps_iterator (R : *get_indicator_map_reply) -> indicator_map_iterator;
+pub fn xcb_xkb_get_indicator_map_maps_iterator (R : *mut xcb_xkb_get_indicator_map_reply_t) -> xcb_xkb_indicator_map_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xkb_get_indicator_map_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xkb_get_indicator_map_reply (c : *connection,
-                                           cookie : get_indicator_map_cookie,
-                                           e : **generic_error) -> *get_indicator_map_reply;
+pub fn xcb_xkb_get_indicator_map_reply (c : *mut ffi::base::xcb_connection_t,
+                                           cookie : xcb_xkb_get_indicator_map_cookie_t,
+                                           e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_get_indicator_map_reply_t;
 
-unsafe fn xcb_xkb_set_indicator_map_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_set_indicator_map_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -5888,15 +6103,15 @@ unsafe fn xcb_xkb_set_indicator_map_sizeof (_buffer :  *c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xkb_set_indicator_map_checked (c : *connection,
-                                             deviceSpec :  device_spec,
+pub fn xcb_xkb_set_indicator_map_checked (c : *mut ffi::base::xcb_connection_t,
+                                             deviceSpec :  xcb_xkb_device_spec_t,
                                              which :  u32,
-                                             maps : *indicator_map) -> void_cookie;
+                                             maps : *mut xcb_xkb_indicator_map_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -5904,12 +6119,12 @@ unsafe fn xcb_xkb_set_indicator_map_checked (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_set_indicator_map (c : *connection,
-                                     deviceSpec :  device_spec,
+pub fn xcb_xkb_set_indicator_map (c : *mut ffi::base::xcb_connection_t,
+                                     deviceSpec :  xcb_xkb_device_spec_t,
                                      which :  u32,
-                                     maps : *indicator_map) -> void_cookie;
+                                     maps : *mut xcb_xkb_indicator_map_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -5917,13 +6132,13 @@ unsafe fn xcb_xkb_set_indicator_map (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_get_named_indicator (c : *connection,
-                                       deviceSpec :  device_spec,
-                                       ledClass :  led_class_spec,
-                                       ledID :  id_spec,
-                                       indicator :  xproto::atom) -> get_named_indicator_cookie;
+pub fn xcb_xkb_get_named_indicator (c : *mut ffi::base::xcb_connection_t,
+                                       deviceSpec :  xcb_xkb_device_spec_t,
+                                       ledClass :  xcb_xkb_led_class_spec_t,
+                                       ledID :  xcb_xkb_id_spec_t,
+                                       indicator :  ffi::xproto::xcb_atom_t) -> xcb_xkb_get_named_indicator_cookie_t;
 
 /**
  *
@@ -5931,34 +6146,34 @@ unsafe fn xcb_xkb_get_named_indicator (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xkb_get_named_indicator_unchecked (c : *connection,
-                                                 deviceSpec :  device_spec,
-                                                 ledClass :  led_class_spec,
-                                                 ledID :  id_spec,
-                                                 indicator :  xproto::atom) -> get_named_indicator_cookie;
+pub fn xcb_xkb_get_named_indicator_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                                 deviceSpec :  xcb_xkb_device_spec_t,
+                                                 ledClass :  xcb_xkb_led_class_spec_t,
+                                                 ledID :  xcb_xkb_id_spec_t,
+                                                 indicator :  ffi::xproto::xcb_atom_t) -> xcb_xkb_get_named_indicator_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xkb_get_named_indicator_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xkb_get_named_indicator_reply (c : *connection,
-                                             cookie : get_named_indicator_cookie,
-                                             e : **generic_error) -> *get_named_indicator_reply;
+pub fn xcb_xkb_get_named_indicator_reply (c : *mut ffi::base::xcb_connection_t,
+                                             cookie : xcb_xkb_get_named_indicator_cookie_t,
+                                             e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_get_named_indicator_reply_t;
 
 /**
  *
@@ -5966,16 +6181,16 @@ unsafe fn xcb_xkb_get_named_indicator_reply (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xkb_set_named_indicator_checked (c : *connection,
-                                               deviceSpec :  device_spec,
-                                               ledClass :  led_class_spec,
-                                               ledID :  id_spec,
-                                               indicator :  xproto::atom,
+pub fn xcb_xkb_set_named_indicator_checked (c : *mut ffi::base::xcb_connection_t,
+                                               deviceSpec :  xcb_xkb_device_spec_t,
+                                               ledClass :  xcb_xkb_led_class_spec_t,
+                                               ledID :  xcb_xkb_id_spec_t,
+                                               indicator :  ffi::xproto::xcb_atom_t,
                                                setState :  u8,
                                                on :  u8,
                                                setMap :  u8,
@@ -5986,7 +6201,7 @@ unsafe fn xcb_xkb_set_named_indicator_checked (c : *connection,
                                                map_whichMods :  u8,
                                                map_realMods :  u8,
                                                map_vmods :  u16,
-                                               map_ctrls :  u32) -> void_cookie;
+                                               map_ctrls :  u32) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -5994,13 +6209,13 @@ unsafe fn xcb_xkb_set_named_indicator_checked (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_set_named_indicator (c : *connection,
-                                       deviceSpec :  device_spec,
-                                       ledClass :  led_class_spec,
-                                       ledID :  id_spec,
-                                       indicator :  xproto::atom,
+pub fn xcb_xkb_set_named_indicator (c : *mut ffi::base::xcb_connection_t,
+                                       deviceSpec :  xcb_xkb_device_spec_t,
+                                       ledClass :  xcb_xkb_led_class_spec_t,
+                                       ledID :  xcb_xkb_id_spec_t,
+                                       indicator :  ffi::xproto::xcb_atom_t,
                                        setState :  u8,
                                        on :  u8,
                                        setMap :  u8,
@@ -6011,127 +6226,39 @@ unsafe fn xcb_xkb_set_named_indicator (c : *connection,
                                        map_whichMods :  u8,
                                        map_realMods :  u8,
                                        map_vmods :  u16,
-                                       map_ctrls :  u32) -> void_cookie;
+                                       map_ctrls :  u32) -> ffi::base::xcb_void_cookie_t;
 
-unsafe fn xcb_xkb_get_names_value_list_type_names (S : *get_names_value_list) -> *xproto::atom;
+pub fn xcb_xkb_get_names_value_list_serialize (_buffer :                    *mut *mut c_void,
+                                        nTypes :                               u8,
+                                        indicators :                           u32,
+                                        virtualMods :                          u16,
+                                        groupNames :                           u8,
+                                        nKeys :                                u8,
+                                        nKeyAliases :                          u8,
+                                        nRadioGroups :                         u8,
+                                        which :                                u32,
+                                        _aux :                            *mut xcb_xkb_get_names_value_list_t) -> c_int;
 
+pub fn xcb_xkb_get_names_value_list_unpack (_buffer :                         *mut c_void,
+                                     nTypes :                               u8,
+                                     indicators :                           u32,
+                                     virtualMods :                          u16,
+                                     groupNames :                           u8,
+                                     nKeys :                                u8,
+                                     nKeyAliases :                          u8,
+                                     nRadioGroups :                         u8,
+                                     which :                                u32,
+                                     _aux :                            *mut xcb_xkb_get_names_value_list_t) -> c_int;
 
-unsafe fn xcb_xkb_get_names_value_list_type_names_length (R : *get_names_reply,
-                                                     S : *get_names_value_list) -> c_int;
-
-
-unsafe fn xcb_xkb_get_names_value_list_type_names_end (R : get_names_reply,
-                                             S : *get_names_value_list ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_names_value_list_n_levels_per_type (S : *get_names_value_list) -> *u8;
-
-
-unsafe fn xcb_xkb_get_names_value_list_n_levels_per_type_length (R : *get_names_reply,
-                                                            S : *get_names_value_list) -> c_int;
-
-
-unsafe fn xcb_xkb_get_names_value_list_n_levels_per_type_end (R : get_names_reply,
-                                                    S : *get_names_value_list ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_names_value_list_kt_level_names (S : *get_names_value_list) -> *xproto::atom;
-
-
-unsafe fn xcb_xkb_get_names_value_list_kt_level_names_length (R : *get_names_reply,
-                                                         S : *get_names_value_list) -> c_int;
-
-
-unsafe fn xcb_xkb_get_names_value_list_kt_level_names_end (R : get_names_reply,
-                                                 S : *get_names_value_list ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_names_value_list_indicator_names (S : *get_names_value_list) -> *xproto::atom;
-
-
-unsafe fn xcb_xkb_get_names_value_list_indicator_names_length (R : *get_names_reply,
-                                                          S : *get_names_value_list) -> c_int;
-
-
-unsafe fn xcb_xkb_get_names_value_list_indicator_names_end (R : get_names_reply,
-                                                  S : *get_names_value_list ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_names_value_list_virtual_mod_names (S : *get_names_value_list) -> *xproto::atom;
-
-
-unsafe fn xcb_xkb_get_names_value_list_virtual_mod_names_length (R : *get_names_reply,
-                                                            S : *get_names_value_list) -> c_int;
-
-
-unsafe fn xcb_xkb_get_names_value_list_virtual_mod_names_end (R : get_names_reply,
-                                                    S : *get_names_value_list ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_names_value_list_groups (S : *get_names_value_list) -> *xproto::atom;
-
-
-unsafe fn xcb_xkb_get_names_value_list_groups_length (R : *get_names_reply,
-                                                 S : *get_names_value_list) -> c_int;
-
-
-unsafe fn xcb_xkb_get_names_value_list_groups_end (R : get_names_reply,
-                                         S : *get_names_value_list ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_names_value_list_key_names (S : *get_names_value_list) -> *key_name;
-
-
-unsafe fn xcb_xkb_get_names_value_list_key_names_length (R : *get_names_reply,
-                                                    S : *get_names_value_list) -> c_int;
-
-unsafe fn xcb_xkb_get_names_value_list_key_names_iterator (R : get_names_reply,
-                                                 S : *get_names_value_list /**< */) -> key_name_iterator;
-
-unsafe fn xcb_xkb_get_names_value_list_key_aliases (S : *get_names_value_list) -> *key_alias;
-
-
-unsafe fn xcb_xkb_get_names_value_list_key_aliases_length (R : *get_names_reply,
-                                                      S : *get_names_value_list) -> c_int;
-
-unsafe fn xcb_xkb_get_names_value_list_key_aliases_iterator (R : get_names_reply,
-                                                   S : *get_names_value_list /**< */) -> key_alias_iterator;
-
-unsafe fn xcb_xkb_get_names_value_list_radio_group_names (S : *get_names_value_list) -> *xproto::atom;
-
-
-unsafe fn xcb_xkb_get_names_value_list_radio_group_names_length (R : *get_names_reply,
-                                                            S : *get_names_value_list) -> c_int;
-
-
-unsafe fn xcb_xkb_get_names_value_list_radio_group_names_end (R : get_names_reply,
-                                                    S : *get_names_value_list ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_names_value_list_serialize (_buffer :              **c_void,
-                                        nTypes :                 u8,
-                                        indicators :             u32,
-                                        virtualMods :            u16,
-                                        groupNames :             u8,
-                                        nKeys :                  u8,
-                                        nKeyAliases :            u8,
-                                        nRadioGroups :           u8,
-                                        which :                  u32,
-                                        _aux :                  *get_names_value_list) -> c_int;
-
-unsafe fn xcb_xkb_get_names_value_list_unpack (_buffer :               *c_void,
-                                     nTypes :                 u8,
-                                     indicators :             u32,
-                                     virtualMods :            u16,
-                                     groupNames :             u8,
-                                     nKeys :                  u8,
-                                     nKeyAliases :            u8,
-                                     nRadioGroups :           u8,
-                                     which :                  u32,
-                                     _aux :                  *get_names_value_list) -> c_int;
-
-unsafe fn xcb_xkb_get_names_value_list_sizeof (_buffer :  *c_void,
-                                     nTypes :   u8,
-                                     indicators :  u32,
+pub fn xcb_xkb_get_names_value_list_sizeof (_buffer :  *mut c_void,
+                                     nTypes :       u8,
+                                     indicators :   u32,
                                      virtualMods :  u16,
-                                     groupNames :  u8,
-                                     nKeys :    u8,
+                                     groupNames :   u8,
+                                     nKeys :        u8,
                                      nKeyAliases :  u8,
                                      nRadioGroups :  u8,
-                                     which :    u32) -> c_int;
+                                     which :        u32) -> c_int;
 
 /**
  *
@@ -6139,11 +6266,11 @@ unsafe fn xcb_xkb_get_names_value_list_sizeof (_buffer :  *c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_get_names (c : *connection,
-                             deviceSpec :  device_spec,
-                             which :  u32) -> get_names_cookie;
+pub fn xcb_xkb_get_names (c : *mut ffi::base::xcb_connection_t,
+                             deviceSpec :  xcb_xkb_device_spec_t,
+                             which :  u32) -> xcb_xkb_get_names_cookie_t;
 
 /**
  *
@@ -6151,164 +6278,76 @@ unsafe fn xcb_xkb_get_names (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xkb_get_names_unchecked (c : *connection,
-                                       deviceSpec :  device_spec,
-                                       which :  u32) -> get_names_cookie;
+pub fn xcb_xkb_get_names_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                       deviceSpec :  xcb_xkb_device_spec_t,
+                                       which :  u32) -> xcb_xkb_get_names_cookie_t;
 
 
 /**
  *
- * xcb_xkb_get_names_value_list : *get_names_value_list
- * 
+ * xcb_xkb_get_names_value_list : *mut xcb_xkb_get_names_value_list_t
+ *
  *
  */
-unsafe fn xcb_xkb_get_names_value_list (R : *get_names_reply) -> *c_void;
+pub fn xcb_xkb_get_names_value_list (R : *mut xcb_xkb_get_names_reply_t) -> *mut c_void;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xkb_get_names_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xkb_get_names_reply (c : *connection,
-                                   cookie : get_names_cookie,
-                                   e : **generic_error) -> *get_names_reply;
+pub fn xcb_xkb_get_names_reply (c : *mut ffi::base::xcb_connection_t,
+                                   cookie : xcb_xkb_get_names_cookie_t,
+                                   e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_get_names_reply_t;
 
-unsafe fn xcb_xkb_set_names_values_type_names (S : *set_names_values) -> *xproto::atom;
+pub fn xcb_xkb_set_names_values_serialize (_buffer :                *mut *mut c_void,
+                                    nTypes :                           u8,
+                                    nKTLevels :                        u8,
+                                    indicators :                       u32,
+                                    virtualMods :                      u16,
+                                    groupNames :                       u8,
+                                    nKeys :                            u8,
+                                    nKeyAliases :                      u8,
+                                    nRadioGroups :                     u8,
+                                    which :                            u32,
+                                    _aux :                        *mut xcb_xkb_set_names_values_t) -> c_int;
 
+pub fn xcb_xkb_set_names_values_unpack (_buffer :                     *mut c_void,
+                                 nTypes :                           u8,
+                                 nKTLevels :                        u8,
+                                 indicators :                       u32,
+                                 virtualMods :                      u16,
+                                 groupNames :                       u8,
+                                 nKeys :                            u8,
+                                 nKeyAliases :                      u8,
+                                 nRadioGroups :                     u8,
+                                 which :                            u32,
+                                 _aux :                        *mut xcb_xkb_set_names_values_t) -> c_int;
 
-unsafe fn xcb_xkb_set_names_values_type_names_length (R : *set_names_request,
-                                                 S : *set_names_values) -> c_int;
-
-
-unsafe fn xcb_xkb_set_names_values_type_names_end (R : set_names_request,
-                                         S : *set_names_values ) -> generic_iterator;
-
-unsafe fn xcb_xkb_set_names_values_n_levels_per_type (S : *set_names_values) -> *u8;
-
-
-unsafe fn xcb_xkb_set_names_values_n_levels_per_type_length (R : *set_names_request,
-                                                        S : *set_names_values) -> c_int;
-
-
-unsafe fn xcb_xkb_set_names_values_n_levels_per_type_end (R : set_names_request,
-                                                S : *set_names_values ) -> generic_iterator;
-
-unsafe fn xcb_xkb_set_names_values_kt_level_names (S : *set_names_values) -> *xproto::atom;
-
-
-unsafe fn xcb_xkb_set_names_values_kt_level_names_length (R : *set_names_request,
-                                                     S : *set_names_values) -> c_int;
-
-
-unsafe fn xcb_xkb_set_names_values_kt_level_names_end (R : set_names_request,
-                                             S : *set_names_values ) -> generic_iterator;
-
-unsafe fn xcb_xkb_set_names_values_indicator_names (S : *set_names_values) -> *xproto::atom;
-
-
-unsafe fn xcb_xkb_set_names_values_indicator_names_length (R : *set_names_request,
-                                                      S : *set_names_values) -> c_int;
-
-
-unsafe fn xcb_xkb_set_names_values_indicator_names_end (R : set_names_request,
-                                              S : *set_names_values ) -> generic_iterator;
-
-unsafe fn xcb_xkb_set_names_values_virtual_mod_names (S : *set_names_values) -> *xproto::atom;
-
-
-unsafe fn xcb_xkb_set_names_values_virtual_mod_names_length (R : *set_names_request,
-                                                        S : *set_names_values) -> c_int;
-
-
-unsafe fn xcb_xkb_set_names_values_virtual_mod_names_end (R : set_names_request,
-                                                S : *set_names_values ) -> generic_iterator;
-
-unsafe fn xcb_xkb_set_names_values_groups (S : *set_names_values) -> *xproto::atom;
-
-
-unsafe fn xcb_xkb_set_names_values_groups_length (R : *set_names_request,
-                                             S : *set_names_values) -> c_int;
-
-
-unsafe fn xcb_xkb_set_names_values_groups_end (R : set_names_request,
-                                     S : *set_names_values ) -> generic_iterator;
-
-unsafe fn xcb_xkb_set_names_values_key_names (S : *set_names_values) -> *key_name;
-
-
-unsafe fn xcb_xkb_set_names_values_key_names_length (R : *set_names_request,
-                                                S : *set_names_values) -> c_int;
-
-unsafe fn xcb_xkb_set_names_values_key_names_iterator (R : set_names_request,
-                                             S : *set_names_values /**< */) -> key_name_iterator;
-
-unsafe fn xcb_xkb_set_names_values_key_aliases (S : *set_names_values) -> *key_alias;
-
-
-unsafe fn xcb_xkb_set_names_values_key_aliases_length (R : *set_names_request,
-                                                  S : *set_names_values) -> c_int;
-
-unsafe fn xcb_xkb_set_names_values_key_aliases_iterator (R : set_names_request,
-                                               S : *set_names_values /**< */) -> key_alias_iterator;
-
-unsafe fn xcb_xkb_set_names_values_radio_group_names (S : *set_names_values) -> *xproto::atom;
-
-
-unsafe fn xcb_xkb_set_names_values_radio_group_names_length (R : *set_names_request,
-                                                        S : *set_names_values) -> c_int;
-
-
-unsafe fn xcb_xkb_set_names_values_radio_group_names_end (R : set_names_request,
-                                                S : *set_names_values ) -> generic_iterator;
-
-unsafe fn xcb_xkb_set_names_values_serialize (_buffer :          **c_void,
-                                    nTypes :             u8,
-                                    nKTLevels :          u8,
-                                    indicators :         u32,
-                                    virtualMods :        u16,
-                                    groupNames :         u8,
-                                    nKeys :              u8,
-                                    nKeyAliases :        u8,
-                                    nRadioGroups :       u8,
-                                    which :              u32,
-                                    _aux :              *set_names_values) -> c_int;
-
-unsafe fn xcb_xkb_set_names_values_unpack (_buffer :           *c_void,
-                                 nTypes :             u8,
-                                 nKTLevels :          u8,
-                                 indicators :         u32,
-                                 virtualMods :        u16,
-                                 groupNames :         u8,
-                                 nKeys :              u8,
-                                 nKeyAliases :        u8,
-                                 nRadioGroups :       u8,
-                                 which :              u32,
-                                 _aux :              *set_names_values) -> c_int;
-
-unsafe fn xcb_xkb_set_names_values_sizeof (_buffer :  *c_void,
-                                 nTypes :   u8,
-                                 nKTLevels :  u8,
-                                 indicators :  u32,
+pub fn xcb_xkb_set_names_values_sizeof (_buffer :  *mut c_void,
+                                 nTypes :       u8,
+                                 nKTLevels :    u8,
+                                 indicators :   u32,
                                  virtualMods :  u16,
-                                 groupNames :  u8,
-                                 nKeys :    u8,
+                                 groupNames :   u8,
+                                 nKeys :        u8,
                                  nKeyAliases :  u8,
                                  nRadioGroups :  u8,
-                                 which :    u32) -> c_int;
+                                 which :        u32) -> c_int;
 
 /**
  *
@@ -6316,13 +6355,13 @@ unsafe fn xcb_xkb_set_names_values_sizeof (_buffer :  *c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xkb_set_names_checked (c : *connection,
-                                     deviceSpec :  device_spec,
+pub fn xcb_xkb_set_names_checked (c : *mut ffi::base::xcb_connection_t,
+                                     deviceSpec :  xcb_xkb_device_spec_t,
                                      virtualMods :  u16,
                                      which :  u32,
                                      firstType :  u8,
@@ -6332,11 +6371,11 @@ unsafe fn xcb_xkb_set_names_checked (c : *connection,
                                      indicators :  u32,
                                      groupNames :  u8,
                                      nRadioGroups :  u8,
-                                     firstKey :  xproto::keycode,
+                                     firstKey :  ffi::xproto::xcb_keycode_t,
                                      nKeys :  u8,
                                      nKeyAliases :  u8,
                                      totalKTLevelNames :  u16,
-                                     values : *()) -> void_cookie;
+                                     values : *mut ()) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -6344,10 +6383,10 @@ unsafe fn xcb_xkb_set_names_checked (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_set_names (c : *connection,
-                             deviceSpec :  device_spec,
+pub fn xcb_xkb_set_names (c : *mut ffi::base::xcb_connection_t,
+                             deviceSpec :  xcb_xkb_device_spec_t,
                              virtualMods :  u16,
                              which :  u32,
                              firstType :  u8,
@@ -6357,11 +6396,11 @@ unsafe fn xcb_xkb_set_names (c : *connection,
                              indicators :  u32,
                              groupNames :  u8,
                              nRadioGroups :  u8,
-                             firstKey :  xproto::keycode,
+                             firstKey :  ffi::xproto::xcb_keycode_t,
                              nKeys :  u8,
                              nKeyAliases :  u8,
                              totalKTLevelNames :  u16,
-                             values : *()) -> void_cookie;
+                             values : *mut ()) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -6369,13 +6408,13 @@ unsafe fn xcb_xkb_set_names (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xkb_set_names_aux_checked (c : *connection,
-                                         deviceSpec :  device_spec,
+pub fn xcb_xkb_set_names_aux_checked (c : *mut ffi::base::xcb_connection_t,
+                                         deviceSpec :  xcb_xkb_device_spec_t,
                                          virtualMods :  u16,
                                          which :  u32,
                                          firstType :  u8,
@@ -6385,11 +6424,11 @@ unsafe fn xcb_xkb_set_names_aux_checked (c : *connection,
                                          indicators :  u32,
                                          groupNames :  u8,
                                          nRadioGroups :  u8,
-                                         firstKey :  xproto::keycode,
+                                         firstKey :  ffi::xproto::xcb_keycode_t,
                                          nKeys :  u8,
                                          nKeyAliases :  u8,
                                          totalKTLevelNames :  u16,
-                                         values : *set_names_values) -> void_cookie;
+                                         values : *mut xcb_xkb_set_names_values_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -6397,10 +6436,10 @@ unsafe fn xcb_xkb_set_names_aux_checked (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_set_names_aux (c : *connection,
-                                 deviceSpec :  device_spec,
+pub fn xcb_xkb_set_names_aux (c : *mut ffi::base::xcb_connection_t,
+                                 deviceSpec :  xcb_xkb_device_spec_t,
                                  virtualMods :  u16,
                                  which :  u32,
                                  firstType :  u8,
@@ -6410,13 +6449,13 @@ unsafe fn xcb_xkb_set_names_aux (c : *connection,
                                  indicators :  u32,
                                  groupNames :  u8,
                                  nRadioGroups :  u8,
-                                 firstKey :  xproto::keycode,
+                                 firstKey :  ffi::xproto::xcb_keycode_t,
                                  nKeys :  u8,
                                  nKeyAliases :  u8,
                                  totalKTLevelNames :  u16,
-                                 values : *set_names_values) -> void_cookie;
+                                 values : *mut xcb_xkb_set_names_values_t) -> ffi::base::xcb_void_cookie_t;
 
-unsafe fn xcb_xkb_get_geometry_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_get_geometry_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -6424,11 +6463,11 @@ unsafe fn xcb_xkb_get_geometry_sizeof (_buffer :  *c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_get_geometry (c : *connection,
-                                deviceSpec :  device_spec,
-                                name :  xproto::atom) -> get_geometry_cookie;
+pub fn xcb_xkb_get_geometry (c : *mut ffi::base::xcb_connection_t,
+                                deviceSpec :  xcb_xkb_device_spec_t,
+                                name :  ffi::xproto::xcb_atom_t) -> xcb_xkb_get_geometry_cookie_t;
 
 /**
  *
@@ -6436,75 +6475,75 @@ unsafe fn xcb_xkb_get_geometry (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xkb_get_geometry_unchecked (c : *connection,
-                                          deviceSpec :  device_spec,
-                                          name :  xproto::atom) -> get_geometry_cookie;
+pub fn xcb_xkb_get_geometry_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                          deviceSpec :  xcb_xkb_device_spec_t,
+                                          name :  ffi::xproto::xcb_atom_t) -> xcb_xkb_get_geometry_cookie_t;
 
 
 /**
  *
- * xcb_xkb_get_geometry_label_font : *counted_string_16
- * 
+ * xcb_xkb_get_geometry_label_font : *mut xcb_xkb_counted_string_16_t
+ *
  *
  */
-unsafe fn xcb_xkb_get_geometry_label_font (R : *get_geometry_reply) -> *counted_string_16;
+pub fn xcb_xkb_get_geometry_label_font (R : *mut xcb_xkb_get_geometry_reply_t) -> *mut xcb_xkb_counted_string_16_t;
 
 
-unsafe fn xcb_xkb_get_geometry_properties_length (R : *get_geometry_reply) -> c_int;
+pub fn xcb_xkb_get_geometry_properties_length (R : *mut xcb_xkb_get_geometry_reply_t) -> c_int;
 
-unsafe fn xcb_xkb_get_geometry_properties_iterator (R : *get_geometry_reply) -> property_iterator;
-
-
-unsafe fn xcb_xkb_get_geometry_colors_length (R : *get_geometry_reply) -> c_int;
-
-unsafe fn xcb_xkb_get_geometry_colors_iterator (R : *get_geometry_reply) -> counted_string_16_iterator;
+pub fn xcb_xkb_get_geometry_properties_iterator (R : *mut xcb_xkb_get_geometry_reply_t) -> xcb_xkb_property_iterator_t;
 
 
-unsafe fn xcb_xkb_get_geometry_shapes_length (R : *get_geometry_reply) -> c_int;
+pub fn xcb_xkb_get_geometry_colors_length (R : *mut xcb_xkb_get_geometry_reply_t) -> c_int;
 
-unsafe fn xcb_xkb_get_geometry_shapes_iterator (R : *get_geometry_reply) -> shape_iterator;
-
-
-unsafe fn xcb_xkb_get_geometry_sections_length (R : *get_geometry_reply) -> c_int;
-
-unsafe fn xcb_xkb_get_geometry_sections_iterator (R : *get_geometry_reply) -> section_iterator;
+pub fn xcb_xkb_get_geometry_colors_iterator (R : *mut xcb_xkb_get_geometry_reply_t) -> xcb_xkb_counted_string_16_iterator_t;
 
 
-unsafe fn xcb_xkb_get_geometry_doodads_length (R : *get_geometry_reply) -> c_int;
+pub fn xcb_xkb_get_geometry_shapes_length (R : *mut xcb_xkb_get_geometry_reply_t) -> c_int;
 
-unsafe fn xcb_xkb_get_geometry_doodads_iterator (R : *get_geometry_reply) -> doodad_iterator;
-
-unsafe fn xcb_xkb_get_geometry_key_aliases (R : *get_geometry_reply) -> *key_alias;
+pub fn xcb_xkb_get_geometry_shapes_iterator (R : *mut xcb_xkb_get_geometry_reply_t) -> xcb_xkb_shape_iterator_t;
 
 
-unsafe fn xcb_xkb_get_geometry_key_aliases_length (R : *get_geometry_reply) -> c_int;
+pub fn xcb_xkb_get_geometry_sections_length (R : *mut xcb_xkb_get_geometry_reply_t) -> c_int;
 
-unsafe fn xcb_xkb_get_geometry_key_aliases_iterator (R : *get_geometry_reply) -> key_alias_iterator;
+pub fn xcb_xkb_get_geometry_sections_iterator (R : *mut xcb_xkb_get_geometry_reply_t) -> xcb_xkb_section_iterator_t;
+
+
+pub fn xcb_xkb_get_geometry_doodads_length (R : *mut xcb_xkb_get_geometry_reply_t) -> c_int;
+
+pub fn xcb_xkb_get_geometry_doodads_iterator (R : *mut xcb_xkb_get_geometry_reply_t) -> xcb_xkb_doodad_iterator_t;
+
+pub fn xcb_xkb_get_geometry_key_aliases (R : *mut xcb_xkb_get_geometry_reply_t) -> *mut xcb_xkb_key_alias_t;
+
+
+pub fn xcb_xkb_get_geometry_key_aliases_length (R : *mut xcb_xkb_get_geometry_reply_t) -> c_int;
+
+pub fn xcb_xkb_get_geometry_key_aliases_iterator (R : *mut xcb_xkb_get_geometry_reply_t) -> xcb_xkb_key_alias_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xkb_get_geometry_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xkb_get_geometry_reply (c : *connection,
-                                      cookie : get_geometry_cookie,
-                                      e : **generic_error) -> *get_geometry_reply;
+pub fn xcb_xkb_get_geometry_reply (c : *mut ffi::base::xcb_connection_t,
+                                      cookie : xcb_xkb_get_geometry_cookie_t,
+                                      e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_get_geometry_reply_t;
 
-unsafe fn xcb_xkb_set_geometry_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_set_geometry_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -6512,16 +6551,16 @@ unsafe fn xcb_xkb_set_geometry_sizeof (_buffer :  *c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xkb_set_geometry_checked (c : *connection,
-                                        deviceSpec :  device_spec,
+pub fn xcb_xkb_set_geometry_checked (c : *mut ffi::base::xcb_connection_t,
+                                        deviceSpec :  xcb_xkb_device_spec_t,
                                         nShapes :  u8,
                                         nSections :  u8,
-                                        name :  xproto::atom,
+                                        name :  ffi::xproto::xcb_atom_t,
                                         widthMM :  u16,
                                         heightMM :  u16,
                                         nProperties :  u16,
@@ -6530,13 +6569,13 @@ unsafe fn xcb_xkb_set_geometry_checked (c : *connection,
                                         nKeyAliases :  u16,
                                         baseColorNdx :  u8,
                                         labelColorNdx :  u8,
-                                        labelFont : *counted_string_16,
-                                        properties : *property,
-                                        colors : *counted_string_16,
-                                        shapes : *shape,
-                                        sections : *section,
-                                        doodads : *doodad,
-                                        keyAliases : *key_alias) -> void_cookie;
+                                        labelFont : *mut xcb_xkb_counted_string_16_t,
+                                        properties : *mut xcb_xkb_property_t,
+                                        colors : *mut xcb_xkb_counted_string_16_t,
+                                        shapes : *mut xcb_xkb_shape_t,
+                                        sections : *mut xcb_xkb_section_t,
+                                        doodads : *mut xcb_xkb_doodad_t,
+                                        keyAliases : *mut xcb_xkb_key_alias_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -6544,13 +6583,13 @@ unsafe fn xcb_xkb_set_geometry_checked (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_set_geometry (c : *connection,
-                                deviceSpec :  device_spec,
+pub fn xcb_xkb_set_geometry (c : *mut ffi::base::xcb_connection_t,
+                                deviceSpec :  xcb_xkb_device_spec_t,
                                 nShapes :  u8,
                                 nSections :  u8,
-                                name :  xproto::atom,
+                                name :  ffi::xproto::xcb_atom_t,
                                 widthMM :  u16,
                                 heightMM :  u16,
                                 nProperties :  u16,
@@ -6559,13 +6598,13 @@ unsafe fn xcb_xkb_set_geometry (c : *connection,
                                 nKeyAliases :  u16,
                                 baseColorNdx :  u8,
                                 labelColorNdx :  u8,
-                                labelFont : *counted_string_16,
-                                properties : *property,
-                                colors : *counted_string_16,
-                                shapes : *shape,
-                                sections : *section,
-                                doodads : *doodad,
-                                keyAliases : *key_alias) -> void_cookie;
+                                labelFont : *mut xcb_xkb_counted_string_16_t,
+                                properties : *mut xcb_xkb_property_t,
+                                colors : *mut xcb_xkb_counted_string_16_t,
+                                shapes : *mut xcb_xkb_shape_t,
+                                sections : *mut xcb_xkb_section_t,
+                                doodads : *mut xcb_xkb_doodad_t,
+                                keyAliases : *mut xcb_xkb_key_alias_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -6573,15 +6612,15 @@ unsafe fn xcb_xkb_set_geometry (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_per_client_flags (c : *connection,
-                                    deviceSpec :  device_spec,
+pub fn xcb_xkb_per_client_flags (c : *mut ffi::base::xcb_connection_t,
+                                    deviceSpec :  xcb_xkb_device_spec_t,
                                     change :  u32,
                                     value :  u32,
                                     ctrlsToChange :  u32,
                                     autoCtrls :  u32,
-                                    autoCtrlsValues :  u32) -> per_client_flags_cookie;
+                                    autoCtrlsValues :  u32) -> xcb_xkb_per_client_flags_cookie_t;
 
 /**
  *
@@ -6589,50 +6628,50 @@ unsafe fn xcb_xkb_per_client_flags (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xkb_per_client_flags_unchecked (c : *connection,
-                                              deviceSpec :  device_spec,
+pub fn xcb_xkb_per_client_flags_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                              deviceSpec :  xcb_xkb_device_spec_t,
                                               change :  u32,
                                               value :  u32,
                                               ctrlsToChange :  u32,
                                               autoCtrls :  u32,
-                                              autoCtrlsValues :  u32) -> per_client_flags_cookie;
+                                              autoCtrlsValues :  u32) -> xcb_xkb_per_client_flags_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xkb_per_client_flags_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xkb_per_client_flags_reply (c : *connection,
-                                          cookie : per_client_flags_cookie,
-                                          e : **generic_error) -> *per_client_flags_reply;
+pub fn xcb_xkb_per_client_flags_reply (c : *mut ffi::base::xcb_connection_t,
+                                          cookie : xcb_xkb_per_client_flags_cookie_t,
+                                          e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_per_client_flags_reply_t;
 
-unsafe fn xcb_xkb_list_components_serialize (_buffer :                 **c_void,
-                                   _aux :                     *list_components_request,
-                                   keymapsSpec :              *string8,
-                                   keycodesSpec :             *string8,
-                                   typesSpec :                *string8,
-                                   compatMapSpec :            *string8,
-                                   symbolsSpec :              *string8,
-                                   geometrySpec :             *string8) -> c_int;
+pub fn xcb_xkb_list_components_serialize (_buffer :                       *mut *mut c_void,
+                                   _aux :                               *mut xcb_xkb_list_components_request_t,
+                                   keymapsSpec :                        *mut xcb_xkb_string8_t,
+                                   keycodesSpec :                       *mut xcb_xkb_string8_t,
+                                   typesSpec :                          *mut xcb_xkb_string8_t,
+                                   compatMapSpec :                      *mut xcb_xkb_string8_t,
+                                   symbolsSpec :                        *mut xcb_xkb_string8_t,
+                                   geometrySpec :                       *mut xcb_xkb_string8_t) -> c_int;
 
-unsafe fn xcb_xkb_list_components_unserialize (_buffer :                   *c_void,
-                                     _aux :                     **list_components_request) -> c_int;
+pub fn xcb_xkb_list_components_unserialize (_buffer :                                 *mut c_void,
+                                     _aux :                               *mut *mut xcb_xkb_list_components_request_t) -> c_int;
 
-unsafe fn xcb_xkb_list_components_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_list_components_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -6640,23 +6679,23 @@ unsafe fn xcb_xkb_list_components_sizeof (_buffer :  *c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_list_components (c : *connection,
-                                   deviceSpec :  device_spec,
+pub fn xcb_xkb_list_components (c : *mut ffi::base::xcb_connection_t,
+                                   deviceSpec :  xcb_xkb_device_spec_t,
                                    maxNames :  u16,
                                    keymapsSpecLen :  u8,
-                                   keymapsSpec : *string8,
+                                   keymapsSpec : *mut xcb_xkb_string8_t,
                                    keycodesSpecLen :  u8,
-                                   keycodesSpec : *string8,
+                                   keycodesSpec : *mut xcb_xkb_string8_t,
                                    typesSpecLen :  u8,
-                                   typesSpec : *string8,
+                                   typesSpec : *mut xcb_xkb_string8_t,
                                    compatMapSpecLen :  u8,
-                                   compatMapSpec : *string8,
+                                   compatMapSpec : *mut xcb_xkb_string8_t,
                                    symbolsSpecLen :  u8,
-                                   symbolsSpec : *string8,
+                                   symbolsSpec : *mut xcb_xkb_string8_t,
                                    geometrySpecLen :  u8,
-                                   geometrySpec : *string8) -> list_components_cookie;
+                                   geometrySpec : *mut xcb_xkb_string8_t) -> xcb_xkb_list_components_cookie_t;
 
 /**
  *
@@ -6664,197 +6703,118 @@ unsafe fn xcb_xkb_list_components (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xkb_list_components_unchecked (c : *connection,
-                                             deviceSpec :  device_spec,
+pub fn xcb_xkb_list_components_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                             deviceSpec :  xcb_xkb_device_spec_t,
                                              maxNames :  u16,
                                              keymapsSpecLen :  u8,
-                                             keymapsSpec : *string8,
+                                             keymapsSpec : *mut xcb_xkb_string8_t,
                                              keycodesSpecLen :  u8,
-                                             keycodesSpec : *string8,
+                                             keycodesSpec : *mut xcb_xkb_string8_t,
                                              typesSpecLen :  u8,
-                                             typesSpec : *string8,
+                                             typesSpec : *mut xcb_xkb_string8_t,
                                              compatMapSpecLen :  u8,
-                                             compatMapSpec : *string8,
+                                             compatMapSpec : *mut xcb_xkb_string8_t,
                                              symbolsSpecLen :  u8,
-                                             symbolsSpec : *string8,
+                                             symbolsSpec : *mut xcb_xkb_string8_t,
                                              geometrySpecLen :  u8,
-                                             geometrySpec : *string8) -> list_components_cookie;
+                                             geometrySpec : *mut xcb_xkb_string8_t) -> xcb_xkb_list_components_cookie_t;
 
 
-unsafe fn xcb_xkb_list_components_keymaps_length (R : *list_components_reply) -> c_int;
+pub fn xcb_xkb_list_components_keymaps_length (R : *mut xcb_xkb_list_components_reply_t) -> c_int;
 
-unsafe fn xcb_xkb_list_components_keymaps_iterator (R : *list_components_reply) -> listing_iterator;
-
-
-unsafe fn xcb_xkb_list_components_keycodes_length (R : *list_components_reply) -> c_int;
-
-unsafe fn xcb_xkb_list_components_keycodes_iterator (R : *list_components_reply) -> listing_iterator;
+pub fn xcb_xkb_list_components_keymaps_iterator (R : *mut xcb_xkb_list_components_reply_t) -> xcb_xkb_listing_iterator_t;
 
 
-unsafe fn xcb_xkb_list_components_types_length (R : *list_components_reply) -> c_int;
+pub fn xcb_xkb_list_components_keycodes_length (R : *mut xcb_xkb_list_components_reply_t) -> c_int;
 
-unsafe fn xcb_xkb_list_components_types_iterator (R : *list_components_reply) -> listing_iterator;
-
-
-unsafe fn xcb_xkb_list_components_compat_maps_length (R : *list_components_reply) -> c_int;
-
-unsafe fn xcb_xkb_list_components_compat_maps_iterator (R : *list_components_reply) -> listing_iterator;
+pub fn xcb_xkb_list_components_keycodes_iterator (R : *mut xcb_xkb_list_components_reply_t) -> xcb_xkb_listing_iterator_t;
 
 
-unsafe fn xcb_xkb_list_components_symbols_length (R : *list_components_reply) -> c_int;
+pub fn xcb_xkb_list_components_types_length (R : *mut xcb_xkb_list_components_reply_t) -> c_int;
 
-unsafe fn xcb_xkb_list_components_symbols_iterator (R : *list_components_reply) -> listing_iterator;
+pub fn xcb_xkb_list_components_types_iterator (R : *mut xcb_xkb_list_components_reply_t) -> xcb_xkb_listing_iterator_t;
 
 
-unsafe fn xcb_xkb_list_components_geometries_length (R : *list_components_reply) -> c_int;
+pub fn xcb_xkb_list_components_compat_maps_length (R : *mut xcb_xkb_list_components_reply_t) -> c_int;
 
-unsafe fn xcb_xkb_list_components_geometries_iterator (R : *list_components_reply) -> listing_iterator;
+pub fn xcb_xkb_list_components_compat_maps_iterator (R : *mut xcb_xkb_list_components_reply_t) -> xcb_xkb_listing_iterator_t;
+
+
+pub fn xcb_xkb_list_components_symbols_length (R : *mut xcb_xkb_list_components_reply_t) -> c_int;
+
+pub fn xcb_xkb_list_components_symbols_iterator (R : *mut xcb_xkb_list_components_reply_t) -> xcb_xkb_listing_iterator_t;
+
+
+pub fn xcb_xkb_list_components_geometries_length (R : *mut xcb_xkb_list_components_reply_t) -> c_int;
+
+pub fn xcb_xkb_list_components_geometries_iterator (R : *mut xcb_xkb_list_components_reply_t) -> xcb_xkb_listing_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xkb_list_components_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xkb_list_components_reply (c : *connection,
-                                         cookie : list_components_cookie,
-                                         e : **generic_error) -> *list_components_reply;
+pub fn xcb_xkb_list_components_reply (c : *mut ffi::base::xcb_connection_t,
+                                         cookie : xcb_xkb_list_components_cookie_t,
+                                         e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_list_components_reply_t;
 
-unsafe fn xcb_xkb_get_kbd_by_name_serialize (_buffer :                 **c_void,
-                                   _aux :                     *get_kbd_by_name_request,
-                                   keymapsSpec :              *string8,
-                                   keycodesSpec :             *string8,
-                                   typesSpec :                *string8,
-                                   compatMapSpec :            *string8,
-                                   symbolsSpec :              *string8,
-                                   geometrySpec :             *string8) -> c_int;
+pub fn xcb_xkb_get_kbd_by_name_serialize (_buffer :                       *mut *mut c_void,
+                                   _aux :                               *mut xcb_xkb_get_kbd_by_name_request_t,
+                                   keymapsSpec :                        *mut xcb_xkb_string8_t,
+                                   keycodesSpec :                       *mut xcb_xkb_string8_t,
+                                   typesSpec :                          *mut xcb_xkb_string8_t,
+                                   compatMapSpec :                      *mut xcb_xkb_string8_t,
+                                   symbolsSpec :                        *mut xcb_xkb_string8_t,
+                                   geometrySpec :                       *mut xcb_xkb_string8_t) -> c_int;
 
-unsafe fn xcb_xkb_get_kbd_by_name_unserialize (_buffer :                   *c_void,
-                                     _aux :                     **get_kbd_by_name_request) -> c_int;
+pub fn xcb_xkb_get_kbd_by_name_unserialize (_buffer :                                 *mut c_void,
+                                     _aux :                               *mut *mut xcb_xkb_get_kbd_by_name_request_t) -> c_int;
 
-unsafe fn xcb_xkb_get_kbd_by_name_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_get_kbd_by_name_sizeof (_buffer :  *mut c_void) -> c_int;
 
+pub fn xcb_xkb_get_kbd_by_name_replies_types_map_serialize (_buffer :                                 *mut *mut c_void,
+                                                     nTypes :                                            u8,
+                                                     nKeySyms :                                          u8,
+                                                     nKeyActions :                                       u8,
+                                                     totalActions :                                      u16,
+                                                     totalKeyBehaviors :                                 u8,
+                                                     nVModMapKeys :                                      u8,
+                                                     totalKeyExplicit :                                  u8,
+                                                     totalModMapKeys :                                   u8,
+                                                     totalVModMapKeys :                                  u8,
+                                                     present :                                           u16,
+                                                     _aux :                                         *mut xcb_xkb_get_kbd_by_name_replies_types_map_t) -> c_int;
 
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_types_rtrn_length (R : *get_kbd_by_name_reply,
-                                                                  S : *get_kbd_by_name_replies) -> c_int;
+pub fn xcb_xkb_get_kbd_by_name_replies_types_map_unpack (_buffer :                                      *mut c_void,
+                                                  nTypes :                                            u8,
+                                                  nKeySyms :                                          u8,
+                                                  nKeyActions :                                       u8,
+                                                  totalActions :                                      u16,
+                                                  totalKeyBehaviors :                                 u8,
+                                                  nVModMapKeys :                                      u8,
+                                                  totalKeyExplicit :                                  u8,
+                                                  totalModMapKeys :                                   u8,
+                                                  totalVModMapKeys :                                  u8,
+                                                  present :                                           u16,
+                                                  _aux :                                         *mut xcb_xkb_get_kbd_by_name_replies_types_map_t) -> c_int;
 
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_types_rtrn_iterator (R : get_kbd_by_name_reply,
-                                                               S : *get_kbd_by_name_replies /**< */) -> key_type_iterator;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_syms_rtrn_length (R : *get_kbd_by_name_reply,
-                                                                 S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_syms_rtrn_iterator (R : get_kbd_by_name_reply,
-                                                              S : *get_kbd_by_name_replies /**< */) -> key_sym_map_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_acts_rtrn_count (S : *get_kbd_by_name_replies) -> *u8;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_acts_rtrn_count_length (R : *get_kbd_by_name_reply,
-                                                                       S : *get_kbd_by_name_replies) -> c_int;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_acts_rtrn_count_end (R : get_kbd_by_name_reply,
-                                                               S : *get_kbd_by_name_replies ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_acts_rtrn_acts (S : *get_kbd_by_name_replies) -> *action;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_acts_rtrn_acts_length (R : *get_kbd_by_name_reply,
-                                                                      S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_acts_rtrn_acts_iterator (R : get_kbd_by_name_reply,
-                                                                   S : *get_kbd_by_name_replies /**< */) -> action_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_behaviors_rtrn (S : *get_kbd_by_name_replies) -> *set_behavior;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_behaviors_rtrn_length (R : *get_kbd_by_name_reply,
-                                                                      S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_behaviors_rtrn_iterator (R : get_kbd_by_name_reply,
-                                                                   S : *get_kbd_by_name_replies /**< */) -> set_behavior_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_vmods_rtrn (S : *get_kbd_by_name_replies) -> *u8;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_vmods_rtrn_length (R : *get_kbd_by_name_reply,
-                                                                  S : *get_kbd_by_name_replies) -> c_int;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_vmods_rtrn_end (R : get_kbd_by_name_reply,
-                                                          S : *get_kbd_by_name_replies ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_explicit_rtrn (S : *get_kbd_by_name_replies) -> *set_explicit;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_explicit_rtrn_length (R : *get_kbd_by_name_reply,
-                                                                     S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_explicit_rtrn_iterator (R : get_kbd_by_name_reply,
-                                                                  S : *get_kbd_by_name_replies /**< */) -> set_explicit_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_modmap_rtrn (S : *get_kbd_by_name_replies) -> *key_mod_map;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_modmap_rtrn_length (R : *get_kbd_by_name_reply,
-                                                                   S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_modmap_rtrn_iterator (R : get_kbd_by_name_reply,
-                                                                S : *get_kbd_by_name_replies /**< */) -> key_mod_map_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_vmodmap_rtrn (S : *get_kbd_by_name_replies) -> *key_v_mod_map;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_vmodmap_rtrn_length (R : *get_kbd_by_name_reply,
-                                                                    S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_vmodmap_rtrn_iterator (R : get_kbd_by_name_reply,
-                                                                 S : *get_kbd_by_name_replies /**< */) -> key_v_mod_map_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_serialize (_buffer :                           **c_void,
-                                                     nTypes :                              u8,
-                                                     nKeySyms :                            u8,
-                                                     nKeyActions :                         u8,
-                                                     totalActions :                        u16,
-                                                     totalKeyBehaviors :                   u8,
-                                                     nVModMapKeys :                        u8,
-                                                     totalKeyExplicit :                    u8,
-                                                     totalModMapKeys :                     u8,
-                                                     totalVModMapKeys :                    u8,
-                                                     present :                             u16,
-                                                     _aux :                               *get_kbd_by_name_replies_types_map) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_unpack (_buffer :                            *c_void,
-                                                  nTypes :                              u8,
-                                                  nKeySyms :                            u8,
-                                                  nKeyActions :                         u8,
-                                                  totalActions :                        u16,
-                                                  totalKeyBehaviors :                   u8,
-                                                  nVModMapKeys :                        u8,
-                                                  totalKeyExplicit :                    u8,
-                                                  totalModMapKeys :                     u8,
-                                                  totalVModMapKeys :                    u8,
-                                                  present :                             u16,
-                                                  _aux :                               *get_kbd_by_name_replies_types_map) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_sizeof (_buffer :  *c_void,
-                                                  nTypes :   u8,
-                                                  nKeySyms :  u8,
+pub fn xcb_xkb_get_kbd_by_name_replies_types_map_sizeof (_buffer :  *mut c_void,
+                                                  nTypes :       u8,
+                                                  nKeySyms :     u8,
                                                   nKeyActions :  u8,
                                                   totalActions :  u16,
                                                   totalKeyBehaviors :  u8,
@@ -6862,116 +6822,37 @@ unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map_sizeof (_buffer :  *c_void,
                                                   totalKeyExplicit :  u8,
                                                   totalModMapKeys :  u8,
                                                   totalVModMapKeys :  u8,
-                                                  present :   u16) -> c_int;
+                                                  present :      u16) -> c_int;
 
+pub fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_serialize (_buffer :                                          *mut *mut c_void,
+                                                              nTypes :                                                     u8,
+                                                              nKeySyms :                                                   u8,
+                                                              nKeyActions :                                                u8,
+                                                              totalActions :                                               u16,
+                                                              totalKeyBehaviors :                                          u8,
+                                                              nVModMapKeys :                                               u8,
+                                                              totalKeyExplicit :                                           u8,
+                                                              totalModMapKeys :                                            u8,
+                                                              totalVModMapKeys :                                           u8,
+                                                              present :                                                    u16,
+                                                              _aux :                                                  *mut xcb_xkb_get_kbd_by_name_replies_client_symbols_map_t) -> c_int;
 
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_types_rtrn_length (R : *get_kbd_by_name_reply,
-                                                                           S : *get_kbd_by_name_replies) -> c_int;
+pub fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_unpack (_buffer :                                               *mut c_void,
+                                                           nTypes :                                                     u8,
+                                                           nKeySyms :                                                   u8,
+                                                           nKeyActions :                                                u8,
+                                                           totalActions :                                               u16,
+                                                           totalKeyBehaviors :                                          u8,
+                                                           nVModMapKeys :                                               u8,
+                                                           totalKeyExplicit :                                           u8,
+                                                           totalModMapKeys :                                            u8,
+                                                           totalVModMapKeys :                                           u8,
+                                                           present :                                                    u16,
+                                                           _aux :                                                  *mut xcb_xkb_get_kbd_by_name_replies_client_symbols_map_t) -> c_int;
 
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_types_rtrn_iterator (R : get_kbd_by_name_reply,
-                                                                        S : *get_kbd_by_name_replies /**< */) -> key_type_iterator;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_syms_rtrn_length (R : *get_kbd_by_name_reply,
-                                                                          S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_syms_rtrn_iterator (R : get_kbd_by_name_reply,
-                                                                       S : *get_kbd_by_name_replies /**< */) -> key_sym_map_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_acts_rtrn_count (S : *get_kbd_by_name_replies) -> *u8;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_acts_rtrn_count_length (R : *get_kbd_by_name_reply,
-                                                                                S : *get_kbd_by_name_replies) -> c_int;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_acts_rtrn_count_end (R : get_kbd_by_name_reply,
-                                                                        S : *get_kbd_by_name_replies ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_acts_rtrn_acts (S : *get_kbd_by_name_replies) -> *action;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_acts_rtrn_acts_length (R : *get_kbd_by_name_reply,
-                                                                               S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_acts_rtrn_acts_iterator (R : get_kbd_by_name_reply,
-                                                                            S : *get_kbd_by_name_replies /**< */) -> action_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_behaviors_rtrn (S : *get_kbd_by_name_replies) -> *set_behavior;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_behaviors_rtrn_length (R : *get_kbd_by_name_reply,
-                                                                               S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_behaviors_rtrn_iterator (R : get_kbd_by_name_reply,
-                                                                            S : *get_kbd_by_name_replies /**< */) -> set_behavior_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_vmods_rtrn (S : *get_kbd_by_name_replies) -> *u8;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_vmods_rtrn_length (R : *get_kbd_by_name_reply,
-                                                                           S : *get_kbd_by_name_replies) -> c_int;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_vmods_rtrn_end (R : get_kbd_by_name_reply,
-                                                                   S : *get_kbd_by_name_replies ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_explicit_rtrn (S : *get_kbd_by_name_replies) -> *set_explicit;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_explicit_rtrn_length (R : *get_kbd_by_name_reply,
-                                                                              S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_explicit_rtrn_iterator (R : get_kbd_by_name_reply,
-                                                                           S : *get_kbd_by_name_replies /**< */) -> set_explicit_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_modmap_rtrn (S : *get_kbd_by_name_replies) -> *key_mod_map;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_modmap_rtrn_length (R : *get_kbd_by_name_reply,
-                                                                            S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_modmap_rtrn_iterator (R : get_kbd_by_name_reply,
-                                                                         S : *get_kbd_by_name_replies /**< */) -> key_mod_map_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_vmodmap_rtrn (S : *get_kbd_by_name_replies) -> *key_v_mod_map;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_vmodmap_rtrn_length (R : *get_kbd_by_name_reply,
-                                                                             S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_vmodmap_rtrn_iterator (R : get_kbd_by_name_reply,
-                                                                          S : *get_kbd_by_name_replies /**< */) -> key_v_mod_map_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_serialize (_buffer :                                    **c_void,
-                                                              nTypes :                                       u8,
-                                                              nKeySyms :                                     u8,
-                                                              nKeyActions :                                  u8,
-                                                              totalActions :                                 u16,
-                                                              totalKeyBehaviors :                            u8,
-                                                              nVModMapKeys :                                 u8,
-                                                              totalKeyExplicit :                             u8,
-                                                              totalModMapKeys :                              u8,
-                                                              totalVModMapKeys :                             u8,
-                                                              present :                                      u16,
-                                                              _aux :                                        *get_kbd_by_name_replies_client_symbols_map) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_unpack (_buffer :                                     *c_void,
-                                                           nTypes :                                       u8,
-                                                           nKeySyms :                                     u8,
-                                                           nKeyActions :                                  u8,
-                                                           totalActions :                                 u16,
-                                                           totalKeyBehaviors :                            u8,
-                                                           nVModMapKeys :                                 u8,
-                                                           totalKeyExplicit :                             u8,
-                                                           totalModMapKeys :                              u8,
-                                                           totalVModMapKeys :                             u8,
-                                                           present :                                      u16,
-                                                           _aux :                                        *get_kbd_by_name_replies_client_symbols_map) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_sizeof (_buffer :  *c_void,
-                                                           nTypes :   u8,
-                                                           nKeySyms :  u8,
+pub fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_sizeof (_buffer :  *mut c_void,
+                                                           nTypes :       u8,
+                                                           nKeySyms :     u8,
                                                            nKeyActions :  u8,
                                                            totalActions :  u16,
                                                            totalKeyBehaviors :  u8,
@@ -6979,116 +6860,37 @@ unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map_sizeof (_buffer :  
                                                            totalKeyExplicit :  u8,
                                                            totalModMapKeys :  u8,
                                                            totalVModMapKeys :  u8,
-                                                           present :   u16) -> c_int;
+                                                           present :      u16) -> c_int;
 
+pub fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_serialize (_buffer :                                          *mut *mut c_void,
+                                                              nTypes :                                                     u8,
+                                                              nKeySyms :                                                   u8,
+                                                              nKeyActions :                                                u8,
+                                                              totalActions :                                               u16,
+                                                              totalKeyBehaviors :                                          u8,
+                                                              nVModMapKeys :                                               u8,
+                                                              totalKeyExplicit :                                           u8,
+                                                              totalModMapKeys :                                            u8,
+                                                              totalVModMapKeys :                                           u8,
+                                                              present :                                                    u16,
+                                                              _aux :                                                  *mut xcb_xkb_get_kbd_by_name_replies_server_symbols_map_t) -> c_int;
 
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_types_rtrn_length (R : *get_kbd_by_name_reply,
-                                                                           S : *get_kbd_by_name_replies) -> c_int;
+pub fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_unpack (_buffer :                                               *mut c_void,
+                                                           nTypes :                                                     u8,
+                                                           nKeySyms :                                                   u8,
+                                                           nKeyActions :                                                u8,
+                                                           totalActions :                                               u16,
+                                                           totalKeyBehaviors :                                          u8,
+                                                           nVModMapKeys :                                               u8,
+                                                           totalKeyExplicit :                                           u8,
+                                                           totalModMapKeys :                                            u8,
+                                                           totalVModMapKeys :                                           u8,
+                                                           present :                                                    u16,
+                                                           _aux :                                                  *mut xcb_xkb_get_kbd_by_name_replies_server_symbols_map_t) -> c_int;
 
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_types_rtrn_iterator (R : get_kbd_by_name_reply,
-                                                                        S : *get_kbd_by_name_replies /**< */) -> key_type_iterator;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_syms_rtrn_length (R : *get_kbd_by_name_reply,
-                                                                          S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_syms_rtrn_iterator (R : get_kbd_by_name_reply,
-                                                                       S : *get_kbd_by_name_replies /**< */) -> key_sym_map_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_acts_rtrn_count (S : *get_kbd_by_name_replies) -> *u8;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_acts_rtrn_count_length (R : *get_kbd_by_name_reply,
-                                                                                S : *get_kbd_by_name_replies) -> c_int;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_acts_rtrn_count_end (R : get_kbd_by_name_reply,
-                                                                        S : *get_kbd_by_name_replies ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_acts_rtrn_acts (S : *get_kbd_by_name_replies) -> *action;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_acts_rtrn_acts_length (R : *get_kbd_by_name_reply,
-                                                                               S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_acts_rtrn_acts_iterator (R : get_kbd_by_name_reply,
-                                                                            S : *get_kbd_by_name_replies /**< */) -> action_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_behaviors_rtrn (S : *get_kbd_by_name_replies) -> *set_behavior;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_behaviors_rtrn_length (R : *get_kbd_by_name_reply,
-                                                                               S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_behaviors_rtrn_iterator (R : get_kbd_by_name_reply,
-                                                                            S : *get_kbd_by_name_replies /**< */) -> set_behavior_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_vmods_rtrn (S : *get_kbd_by_name_replies) -> *u8;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_vmods_rtrn_length (R : *get_kbd_by_name_reply,
-                                                                           S : *get_kbd_by_name_replies) -> c_int;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_vmods_rtrn_end (R : get_kbd_by_name_reply,
-                                                                   S : *get_kbd_by_name_replies ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_explicit_rtrn (S : *get_kbd_by_name_replies) -> *set_explicit;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_explicit_rtrn_length (R : *get_kbd_by_name_reply,
-                                                                              S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_explicit_rtrn_iterator (R : get_kbd_by_name_reply,
-                                                                           S : *get_kbd_by_name_replies /**< */) -> set_explicit_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_modmap_rtrn (S : *get_kbd_by_name_replies) -> *key_mod_map;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_modmap_rtrn_length (R : *get_kbd_by_name_reply,
-                                                                            S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_modmap_rtrn_iterator (R : get_kbd_by_name_reply,
-                                                                         S : *get_kbd_by_name_replies /**< */) -> key_mod_map_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_vmodmap_rtrn (S : *get_kbd_by_name_replies) -> *key_v_mod_map;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_vmodmap_rtrn_length (R : *get_kbd_by_name_reply,
-                                                                             S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_vmodmap_rtrn_iterator (R : get_kbd_by_name_reply,
-                                                                          S : *get_kbd_by_name_replies /**< */) -> key_v_mod_map_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_serialize (_buffer :                                    **c_void,
-                                                              nTypes :                                       u8,
-                                                              nKeySyms :                                     u8,
-                                                              nKeyActions :                                  u8,
-                                                              totalActions :                                 u16,
-                                                              totalKeyBehaviors :                            u8,
-                                                              nVModMapKeys :                                 u8,
-                                                              totalKeyExplicit :                             u8,
-                                                              totalModMapKeys :                              u8,
-                                                              totalVModMapKeys :                             u8,
-                                                              present :                                      u16,
-                                                              _aux :                                        *get_kbd_by_name_replies_server_symbols_map) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_unpack (_buffer :                                     *c_void,
-                                                           nTypes :                                       u8,
-                                                           nKeySyms :                                     u8,
-                                                           nKeyActions :                                  u8,
-                                                           totalActions :                                 u16,
-                                                           totalKeyBehaviors :                            u8,
-                                                           nVModMapKeys :                                 u8,
-                                                           totalKeyExplicit :                             u8,
-                                                           totalModMapKeys :                              u8,
-                                                           totalVModMapKeys :                             u8,
-                                                           present :                                      u16,
-                                                           _aux :                                        *get_kbd_by_name_replies_server_symbols_map) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_sizeof (_buffer :  *c_void,
-                                                           nTypes :   u8,
-                                                           nKeySyms :  u8,
+pub fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_sizeof (_buffer :  *mut c_void,
+                                                           nTypes :       u8,
+                                                           nKeySyms :     u8,
                                                            nKeyActions :  u8,
                                                            totalActions :  u16,
                                                            totalKeyBehaviors :  u8,
@@ -7096,390 +6898,88 @@ unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map_sizeof (_buffer :  
                                                            totalKeyExplicit :  u8,
                                                            totalModMapKeys :  u8,
                                                            totalVModMapKeys :  u8,
-                                                           present :   u16) -> c_int;
+                                                           present :      u16) -> c_int;
 
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_type_names (S : *get_kbd_by_name_replies) -> *xproto::atom;
+pub fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_serialize (_buffer :                                            *mut *mut c_void,
+                                                                nTypes :                                                       u8,
+                                                                nKTLevels :                                                    u16,
+                                                                indicators :                                                   u32,
+                                                                virtualMods :                                                  u16,
+                                                                groupNames :                                                   u8,
+                                                                nKeys :                                                        u8,
+                                                                nKeyAliases :                                                  u8,
+                                                                nRadioGroups :                                                 u8,
+                                                                which :                                                        u32,
+                                                                _aux :                                                    *mut xcb_xkb_get_kbd_by_name_replies_key_names_value_list_t) -> c_int;
 
+pub fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_unpack (_buffer :                                                 *mut c_void,
+                                                             nTypes :                                                       u8,
+                                                             nKTLevels :                                                    u16,
+                                                             indicators :                                                   u32,
+                                                             virtualMods :                                                  u16,
+                                                             groupNames :                                                   u8,
+                                                             nKeys :                                                        u8,
+                                                             nKeyAliases :                                                  u8,
+                                                             nRadioGroups :                                                 u8,
+                                                             which :                                                        u32,
+                                                             _aux :                                                    *mut xcb_xkb_get_kbd_by_name_replies_key_names_value_list_t) -> c_int;
 
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_type_names_length (R : *get_kbd_by_name_reply,
-                                                                             S : *get_kbd_by_name_replies) -> c_int;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_type_names_end (R : get_kbd_by_name_reply,
-                                                                     S : *get_kbd_by_name_replies ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_n_levels_per_type (S : *get_kbd_by_name_replies) -> *u8;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_n_levels_per_type_length (R : *get_kbd_by_name_reply,
-                                                                                    S : *get_kbd_by_name_replies) -> c_int;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_n_levels_per_type_end (R : get_kbd_by_name_reply,
-                                                                            S : *get_kbd_by_name_replies ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_kt_level_names (S : *get_kbd_by_name_replies) -> *xproto::atom;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_kt_level_names_length (R : *get_kbd_by_name_reply,
-                                                                                 S : *get_kbd_by_name_replies) -> c_int;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_kt_level_names_end (R : get_kbd_by_name_reply,
-                                                                         S : *get_kbd_by_name_replies ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_indicator_names (S : *get_kbd_by_name_replies) -> *xproto::atom;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_indicator_names_length (R : *get_kbd_by_name_reply,
-                                                                                  S : *get_kbd_by_name_replies) -> c_int;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_indicator_names_end (R : get_kbd_by_name_reply,
-                                                                          S : *get_kbd_by_name_replies ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_virtual_mod_names (S : *get_kbd_by_name_replies) -> *xproto::atom;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_virtual_mod_names_length (R : *get_kbd_by_name_reply,
-                                                                                    S : *get_kbd_by_name_replies) -> c_int;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_virtual_mod_names_end (R : get_kbd_by_name_reply,
-                                                                            S : *get_kbd_by_name_replies ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_groups (S : *get_kbd_by_name_replies) -> *xproto::atom;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_groups_length (R : *get_kbd_by_name_reply,
-                                                                         S : *get_kbd_by_name_replies) -> c_int;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_groups_end (R : get_kbd_by_name_reply,
-                                                                 S : *get_kbd_by_name_replies ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_key_names (S : *get_kbd_by_name_replies) -> *key_name;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_key_names_length (R : *get_kbd_by_name_reply,
-                                                                            S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_key_names_iterator (R : get_kbd_by_name_reply,
-                                                                         S : *get_kbd_by_name_replies /**< */) -> key_name_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_key_aliases (S : *get_kbd_by_name_replies) -> *key_alias;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_key_aliases_length (R : *get_kbd_by_name_reply,
-                                                                              S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_key_aliases_iterator (R : get_kbd_by_name_reply,
-                                                                           S : *get_kbd_by_name_replies /**< */) -> key_alias_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_radio_group_names (S : *get_kbd_by_name_replies) -> *xproto::atom;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_radio_group_names_length (R : *get_kbd_by_name_reply,
-                                                                                    S : *get_kbd_by_name_replies) -> c_int;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_radio_group_names_end (R : get_kbd_by_name_reply,
-                                                                            S : *get_kbd_by_name_replies ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_serialize (_buffer :                                      **c_void,
-                                                                nTypes :                                         u8,
-                                                                nKTLevels :                                      u16,
-                                                                indicators :                                     u32,
-                                                                virtualMods :                                    u16,
-                                                                groupNames :                                     u8,
-                                                                nKeys :                                          u8,
-                                                                nKeyAliases :                                    u8,
-                                                                nRadioGroups :                                   u8,
-                                                                which :                                          u32,
-                                                                _aux :                                          *get_kbd_by_name_replies_key_names_value_list) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_unpack (_buffer :                                       *c_void,
-                                                             nTypes :                                         u8,
-                                                             nKTLevels :                                      u16,
-                                                             indicators :                                     u32,
-                                                             virtualMods :                                    u16,
-                                                             groupNames :                                     u8,
-                                                             nKeys :                                          u8,
-                                                             nKeyAliases :                                    u8,
-                                                             nRadioGroups :                                   u8,
-                                                             which :                                          u32,
-                                                             _aux :                                          *get_kbd_by_name_replies_key_names_value_list) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_sizeof (_buffer :  *c_void,
-                                                             nTypes :   u8,
-                                                             nKTLevels :  u16,
-                                                             indicators :  u32,
+pub fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list_sizeof (_buffer :  *mut c_void,
+                                                             nTypes :       u8,
+                                                             nKTLevels :    u16,
+                                                             indicators :   u32,
                                                              virtualMods :  u16,
-                                                             groupNames :  u8,
-                                                             nKeys :    u8,
+                                                             groupNames :   u8,
+                                                             nKeys :        u8,
                                                              nKeyAliases :  u8,
                                                              nRadioGroups :  u8,
-                                                             which :    u32) -> c_int;
+                                                             which :        u32) -> c_int;
 
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_type_names (S : *get_kbd_by_name_replies) -> *xproto::atom;
+pub fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_serialize (_buffer :                                              *mut *mut c_void,
+                                                                  nTypes :                                                         u8,
+                                                                  nKTLevels :                                                      u16,
+                                                                  indicators :                                                     u32,
+                                                                  virtualMods :                                                    u16,
+                                                                  groupNames :                                                     u8,
+                                                                  nKeys :                                                          u8,
+                                                                  nKeyAliases :                                                    u8,
+                                                                  nRadioGroups :                                                   u8,
+                                                                  which :                                                          u32,
+                                                                  _aux :                                                      *mut xcb_xkb_get_kbd_by_name_replies_other_names_value_list_t) -> c_int;
 
+pub fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_unpack (_buffer :                                                   *mut c_void,
+                                                               nTypes :                                                         u8,
+                                                               nKTLevels :                                                      u16,
+                                                               indicators :                                                     u32,
+                                                               virtualMods :                                                    u16,
+                                                               groupNames :                                                     u8,
+                                                               nKeys :                                                          u8,
+                                                               nKeyAliases :                                                    u8,
+                                                               nRadioGroups :                                                   u8,
+                                                               which :                                                          u32,
+                                                               _aux :                                                      *mut xcb_xkb_get_kbd_by_name_replies_other_names_value_list_t) -> c_int;
 
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_type_names_length (R : *get_kbd_by_name_reply,
-                                                                               S : *get_kbd_by_name_replies) -> c_int;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_type_names_end (R : get_kbd_by_name_reply,
-                                                                       S : *get_kbd_by_name_replies ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_n_levels_per_type (S : *get_kbd_by_name_replies) -> *u8;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_n_levels_per_type_length (R : *get_kbd_by_name_reply,
-                                                                                      S : *get_kbd_by_name_replies) -> c_int;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_n_levels_per_type_end (R : get_kbd_by_name_reply,
-                                                                              S : *get_kbd_by_name_replies ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_kt_level_names (S : *get_kbd_by_name_replies) -> *xproto::atom;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_kt_level_names_length (R : *get_kbd_by_name_reply,
-                                                                                   S : *get_kbd_by_name_replies) -> c_int;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_kt_level_names_end (R : get_kbd_by_name_reply,
-                                                                           S : *get_kbd_by_name_replies ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_indicator_names (S : *get_kbd_by_name_replies) -> *xproto::atom;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_indicator_names_length (R : *get_kbd_by_name_reply,
-                                                                                    S : *get_kbd_by_name_replies) -> c_int;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_indicator_names_end (R : get_kbd_by_name_reply,
-                                                                            S : *get_kbd_by_name_replies ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_virtual_mod_names (S : *get_kbd_by_name_replies) -> *xproto::atom;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_virtual_mod_names_length (R : *get_kbd_by_name_reply,
-                                                                                      S : *get_kbd_by_name_replies) -> c_int;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_virtual_mod_names_end (R : get_kbd_by_name_reply,
-                                                                              S : *get_kbd_by_name_replies ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_groups (S : *get_kbd_by_name_replies) -> *xproto::atom;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_groups_length (R : *get_kbd_by_name_reply,
-                                                                           S : *get_kbd_by_name_replies) -> c_int;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_groups_end (R : get_kbd_by_name_reply,
-                                                                   S : *get_kbd_by_name_replies ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_key_names (S : *get_kbd_by_name_replies) -> *key_name;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_key_names_length (R : *get_kbd_by_name_reply,
-                                                                              S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_key_names_iterator (R : get_kbd_by_name_reply,
-                                                                           S : *get_kbd_by_name_replies /**< */) -> key_name_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_key_aliases (S : *get_kbd_by_name_replies) -> *key_alias;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_key_aliases_length (R : *get_kbd_by_name_reply,
-                                                                                S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_key_aliases_iterator (R : get_kbd_by_name_reply,
-                                                                             S : *get_kbd_by_name_replies /**< */) -> key_alias_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_radio_group_names (S : *get_kbd_by_name_replies) -> *xproto::atom;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_radio_group_names_length (R : *get_kbd_by_name_reply,
-                                                                                      S : *get_kbd_by_name_replies) -> c_int;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_radio_group_names_end (R : get_kbd_by_name_reply,
-                                                                              S : *get_kbd_by_name_replies ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_serialize (_buffer :                                        **c_void,
-                                                                  nTypes :                                           u8,
-                                                                  nKTLevels :                                        u16,
-                                                                  indicators :                                       u32,
-                                                                  virtualMods :                                      u16,
-                                                                  groupNames :                                       u8,
-                                                                  nKeys :                                            u8,
-                                                                  nKeyAliases :                                      u8,
-                                                                  nRadioGroups :                                     u8,
-                                                                  which :                                            u32,
-                                                                  _aux :                                            *get_kbd_by_name_replies_other_names_value_list) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_unpack (_buffer :                                         *c_void,
-                                                               nTypes :                                           u8,
-                                                               nKTLevels :                                        u16,
-                                                               indicators :                                       u32,
-                                                               virtualMods :                                      u16,
-                                                               groupNames :                                       u8,
-                                                               nKeys :                                            u8,
-                                                               nKeyAliases :                                      u8,
-                                                               nRadioGroups :                                     u8,
-                                                               which :                                            u32,
-                                                               _aux :                                            *get_kbd_by_name_replies_other_names_value_list) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_sizeof (_buffer :  *c_void,
-                                                               nTypes :   u8,
-                                                               nKTLevels :  u16,
-                                                               indicators :  u32,
+pub fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list_sizeof (_buffer :  *mut c_void,
+                                                               nTypes :       u8,
+                                                               nKTLevels :    u16,
+                                                               indicators :   u32,
                                                                virtualMods :  u16,
-                                                               groupNames :  u8,
-                                                               nKeys :    u8,
+                                                               groupNames :   u8,
+                                                               nKeys :        u8,
                                                                nKeyAliases :  u8,
                                                                nRadioGroups :  u8,
-                                                               which :    u32) -> c_int;
+                                                               which :        u32) -> c_int;
 
+pub fn xcb_xkb_get_kbd_by_name_replies_serialize (_buffer :                       *mut *mut c_void,
+                                           reported :                                u16,
+                                           _aux :                               *mut xcb_xkb_get_kbd_by_name_replies_t) -> c_int;
 
-/**
- *
- * xcb_xkb_get_kbd_by_name_replies_types_map : *get_kbd_by_name_replies_types_map
- * 
- *
- */
-unsafe fn xcb_xkb_get_kbd_by_name_replies_types_map (R : *get_kbd_by_name_replies) -> *get_kbd_by_name_replies_types_map;
+pub fn xcb_xkb_get_kbd_by_name_replies_unpack (_buffer :                            *mut c_void,
+                                        reported :                                u16,
+                                        _aux :                               *mut xcb_xkb_get_kbd_by_name_replies_t) -> c_int;
 
-unsafe fn xcb_xkb_get_kbd_by_name_replies_compat_map_si_rtrn (S : *get_kbd_by_name_replies) -> *u8;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_compat_map_si_rtrn_length (R : *get_kbd_by_name_reply,
-                                                                S : *get_kbd_by_name_replies) -> c_int;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_compat_map_si_rtrn_end (R : get_kbd_by_name_reply,
-                                                        S : *get_kbd_by_name_replies ) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_compat_map_group_rtrn (S : *get_kbd_by_name_replies) -> *mod_def;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_compat_map_group_rtrn_length (R : *get_kbd_by_name_reply,
-                                                                   S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_compat_map_group_rtrn_iterator (R : get_kbd_by_name_reply,
-                                                                S : *get_kbd_by_name_replies /**< */) -> mod_def_iterator;
-
-
-/**
- *
- * xcb_xkb_get_kbd_by_name_replies_client_symbols_map : *get_kbd_by_name_replies_client_symbols_map
- * 
- *
- */
-unsafe fn xcb_xkb_get_kbd_by_name_replies_client_symbols_map (R : *get_kbd_by_name_replies) -> *get_kbd_by_name_replies_client_symbols_map;
-
-
-/**
- *
- * xcb_xkb_get_kbd_by_name_replies_server_symbols_map : *get_kbd_by_name_replies_server_symbols_map
- * 
- *
- */
-unsafe fn xcb_xkb_get_kbd_by_name_replies_server_symbols_map (R : *get_kbd_by_name_replies) -> *get_kbd_by_name_replies_server_symbols_map;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_indicator_maps_maps (S : *get_kbd_by_name_replies) -> *indicator_map;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_indicator_maps_maps_length (R : *get_kbd_by_name_reply,
-                                                                 S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_indicator_maps_maps_iterator (R : get_kbd_by_name_reply,
-                                                              S : *get_kbd_by_name_replies /**< */) -> indicator_map_iterator;
-
-
-/**
- *
- * xcb_xkb_get_kbd_by_name_replies_key_names_value_list : *get_kbd_by_name_replies_key_names_value_list
- * 
- *
- */
-unsafe fn xcb_xkb_get_kbd_by_name_replies_key_names_value_list (R : *get_kbd_by_name_replies) -> *get_kbd_by_name_replies_key_names_value_list;
-
-
-/**
- *
- * xcb_xkb_get_kbd_by_name_replies_other_names_value_list : *get_kbd_by_name_replies_other_names_value_list
- * 
- *
- */
-unsafe fn xcb_xkb_get_kbd_by_name_replies_other_names_value_list (R : *get_kbd_by_name_replies) -> *get_kbd_by_name_replies_other_names_value_list;
-
-
-/**
- *
- * xcb_xkb_get_kbd_by_name_replies_geometry_label_font : *counted_string_16
- * 
- *
- */
-unsafe fn xcb_xkb_get_kbd_by_name_replies_geometry_label_font (R : *get_kbd_by_name_replies) -> *counted_string_16;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_geometry_properties_length (R : *get_kbd_by_name_reply,
-                                                                 S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_geometry_properties_iterator (R : get_kbd_by_name_reply,
-                                                              S : *get_kbd_by_name_replies /**< */) -> property_iterator;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_geometry_colors_length (R : *get_kbd_by_name_reply,
-                                                             S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_geometry_colors_iterator (R : get_kbd_by_name_reply,
-                                                          S : *get_kbd_by_name_replies /**< */) -> counted_string_16_iterator;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_geometry_shapes_length (R : *get_kbd_by_name_reply,
-                                                             S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_geometry_shapes_iterator (R : get_kbd_by_name_reply,
-                                                          S : *get_kbd_by_name_replies /**< */) -> shape_iterator;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_geometry_sections_length (R : *get_kbd_by_name_reply,
-                                                               S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_geometry_sections_iterator (R : get_kbd_by_name_reply,
-                                                            S : *get_kbd_by_name_replies /**< */) -> section_iterator;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_geometry_doodads_length (R : *get_kbd_by_name_reply,
-                                                              S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_geometry_doodads_iterator (R : get_kbd_by_name_reply,
-                                                           S : *get_kbd_by_name_replies /**< */) -> doodad_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_geometry_key_aliases (S : *get_kbd_by_name_replies) -> *key_alias;
-
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_geometry_key_aliases_length (R : *get_kbd_by_name_reply,
-                                                                  S : *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_geometry_key_aliases_iterator (R : get_kbd_by_name_reply,
-                                                               S : *get_kbd_by_name_replies /**< */) -> key_alias_iterator;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_serialize (_buffer :                 **c_void,
-                                           reported :                  u16,
-                                           _aux :                     *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_unpack (_buffer :                  *c_void,
-                                        reported :                  u16,
-                                        _aux :                     *get_kbd_by_name_replies) -> c_int;
-
-unsafe fn xcb_xkb_get_kbd_by_name_replies_sizeof (_buffer :  *c_void,
-                                        reported :   u16) -> c_int;
+pub fn xcb_xkb_get_kbd_by_name_replies_sizeof (_buffer :  *mut c_void,
+                                        reported :     u16) -> c_int;
 
 /**
  *
@@ -7487,25 +6987,25 @@ unsafe fn xcb_xkb_get_kbd_by_name_replies_sizeof (_buffer :  *c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_get_kbd_by_name (c : *connection,
-                                   deviceSpec :  device_spec,
+pub fn xcb_xkb_get_kbd_by_name (c : *mut ffi::base::xcb_connection_t,
+                                   deviceSpec :  xcb_xkb_device_spec_t,
                                    need :  u16,
                                    want :  u16,
                                    load :  u8,
                                    keymapsSpecLen :  u8,
-                                   keymapsSpec : *string8,
+                                   keymapsSpec : *mut xcb_xkb_string8_t,
                                    keycodesSpecLen :  u8,
-                                   keycodesSpec : *string8,
+                                   keycodesSpec : *mut xcb_xkb_string8_t,
                                    typesSpecLen :  u8,
-                                   typesSpec : *string8,
+                                   typesSpec : *mut xcb_xkb_string8_t,
                                    compatMapSpecLen :  u8,
-                                   compatMapSpec : *string8,
+                                   compatMapSpec : *mut xcb_xkb_string8_t,
                                    symbolsSpecLen :  u8,
-                                   symbolsSpec : *string8,
+                                   symbolsSpec : *mut xcb_xkb_string8_t,
                                    geometrySpecLen :  u8,
-                                   geometrySpec : *string8) -> get_kbd_by_name_cookie;
+                                   geometrySpec : *mut xcb_xkb_string8_t) -> xcb_xkb_get_kbd_by_name_cookie_t;
 
 /**
  *
@@ -7513,57 +7013,57 @@ unsafe fn xcb_xkb_get_kbd_by_name (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xkb_get_kbd_by_name_unchecked (c : *connection,
-                                             deviceSpec :  device_spec,
+pub fn xcb_xkb_get_kbd_by_name_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                             deviceSpec :  xcb_xkb_device_spec_t,
                                              need :  u16,
                                              want :  u16,
                                              load :  u8,
                                              keymapsSpecLen :  u8,
-                                             keymapsSpec : *string8,
+                                             keymapsSpec : *mut xcb_xkb_string8_t,
                                              keycodesSpecLen :  u8,
-                                             keycodesSpec : *string8,
+                                             keycodesSpec : *mut xcb_xkb_string8_t,
                                              typesSpecLen :  u8,
-                                             typesSpec : *string8,
+                                             typesSpec : *mut xcb_xkb_string8_t,
                                              compatMapSpecLen :  u8,
-                                             compatMapSpec : *string8,
+                                             compatMapSpec : *mut xcb_xkb_string8_t,
                                              symbolsSpecLen :  u8,
-                                             symbolsSpec : *string8,
+                                             symbolsSpec : *mut xcb_xkb_string8_t,
                                              geometrySpecLen :  u8,
-                                             geometrySpec : *string8) -> get_kbd_by_name_cookie;
+                                             geometrySpec : *mut xcb_xkb_string8_t) -> xcb_xkb_get_kbd_by_name_cookie_t;
 
 
 /**
  *
- * xcb_xkb_get_kbd_by_name_replies : *get_kbd_by_name_replies
- * 
+ * xcb_xkb_get_kbd_by_name_replies : *mut xcb_xkb_get_kbd_by_name_replies_t
+ *
  *
  */
-unsafe fn xcb_xkb_get_kbd_by_name_replies (R : *get_kbd_by_name_reply) -> *c_void;
+pub fn xcb_xkb_get_kbd_by_name_replies (R : *mut xcb_xkb_get_kbd_by_name_reply_t) -> *mut c_void;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xkb_get_kbd_by_name_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xkb_get_kbd_by_name_reply (c : *connection,
-                                         cookie : get_kbd_by_name_cookie,
-                                         e : **generic_error) -> *get_kbd_by_name_reply;
+pub fn xcb_xkb_get_kbd_by_name_reply (c : *mut ffi::base::xcb_connection_t,
+                                         cookie : xcb_xkb_get_kbd_by_name_cookie_t,
+                                         e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_get_kbd_by_name_reply_t;
 
-unsafe fn xcb_xkb_get_device_info_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_get_device_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -7571,16 +7071,16 @@ unsafe fn xcb_xkb_get_device_info_sizeof (_buffer :  *c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_get_device_info (c : *connection,
-                                   deviceSpec :  device_spec,
+pub fn xcb_xkb_get_device_info (c : *mut ffi::base::xcb_connection_t,
+                                   deviceSpec :  xcb_xkb_device_spec_t,
                                    wanted :  u16,
                                    allButtons :  u8,
                                    firstButton :  u8,
                                    nButtons :  u8,
-                                   ledClass :  led_class_spec,
-                                   ledID :  id_spec) -> get_device_info_cookie;
+                                   ledClass :  xcb_xkb_led_class_spec_t,
+                                   ledID :  xcb_xkb_id_spec_t) -> xcb_xkb_get_device_info_cookie_t;
 
 /**
  *
@@ -7588,59 +7088,59 @@ unsafe fn xcb_xkb_get_device_info (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xkb_get_device_info_unchecked (c : *connection,
-                                             deviceSpec :  device_spec,
+pub fn xcb_xkb_get_device_info_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                             deviceSpec :  xcb_xkb_device_spec_t,
                                              wanted :  u16,
                                              allButtons :  u8,
                                              firstButton :  u8,
                                              nButtons :  u8,
-                                             ledClass :  led_class_spec,
-                                             ledID :  id_spec) -> get_device_info_cookie;
+                                             ledClass :  xcb_xkb_led_class_spec_t,
+                                             ledID :  xcb_xkb_id_spec_t) -> xcb_xkb_get_device_info_cookie_t;
 
-unsafe fn xcb_xkb_get_device_info_name (R : *get_device_info_reply) -> *string8;
-
-
-unsafe fn xcb_xkb_get_device_info_name_length (R : *get_device_info_reply) -> c_int;
+pub fn xcb_xkb_get_device_info_name (R : *mut xcb_xkb_get_device_info_reply_t) -> *mut xcb_xkb_string8_t;
 
 
-unsafe fn xcb_xkb_get_device_info_name_end (R : *get_device_info_reply) -> generic_iterator;
-
-unsafe fn xcb_xkb_get_device_info_btn_actions (R : *get_device_info_reply) -> *action;
+pub fn xcb_xkb_get_device_info_name_length (R : *mut xcb_xkb_get_device_info_reply_t) -> c_int;
 
 
-unsafe fn xcb_xkb_get_device_info_btn_actions_length (R : *get_device_info_reply) -> c_int;
+pub fn xcb_xkb_get_device_info_name_end (R : *mut xcb_xkb_get_device_info_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
-unsafe fn xcb_xkb_get_device_info_btn_actions_iterator (R : *get_device_info_reply) -> action_iterator;
+pub fn xcb_xkb_get_device_info_btn_actions (R : *mut xcb_xkb_get_device_info_reply_t) -> *mut xcb_xkb_action_t;
 
 
-unsafe fn xcb_xkb_get_device_info_leds_length (R : *get_device_info_reply) -> c_int;
+pub fn xcb_xkb_get_device_info_btn_actions_length (R : *mut xcb_xkb_get_device_info_reply_t) -> c_int;
 
-unsafe fn xcb_xkb_get_device_info_leds_iterator (R : *get_device_info_reply) -> device_led_info_iterator;
+pub fn xcb_xkb_get_device_info_btn_actions_iterator (R : *mut xcb_xkb_get_device_info_reply_t) -> xcb_xkb_action_iterator_t;
+
+
+pub fn xcb_xkb_get_device_info_leds_length (R : *mut xcb_xkb_get_device_info_reply_t) -> c_int;
+
+pub fn xcb_xkb_get_device_info_leds_iterator (R : *mut xcb_xkb_get_device_info_reply_t) -> xcb_xkb_device_led_info_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xkb_get_device_info_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xkb_get_device_info_reply (c : *connection,
-                                         cookie : get_device_info_cookie,
-                                         e : **generic_error) -> *get_device_info_reply;
+pub fn xcb_xkb_get_device_info_reply (c : *mut ffi::base::xcb_connection_t,
+                                         cookie : xcb_xkb_get_device_info_cookie_t,
+                                         e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_get_device_info_reply_t;
 
-unsafe fn xcb_xkb_set_device_info_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_set_device_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -7648,19 +7148,19 @@ unsafe fn xcb_xkb_set_device_info_sizeof (_buffer :  *c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-unsafe fn xcb_xkb_set_device_info_checked (c : *connection,
-                                           deviceSpec :  device_spec,
+pub fn xcb_xkb_set_device_info_checked (c : *mut ffi::base::xcb_connection_t,
+                                           deviceSpec :  xcb_xkb_device_spec_t,
                                            firstBtn :  u8,
                                            nBtns :  u8,
                                            change :  u16,
                                            nDeviceLedFBs :  u16,
-                                           btnActions : *action,
-                                           leds : *device_led_info) -> void_cookie;
+                                           btnActions : *mut xcb_xkb_action_t,
+                                           leds : *mut xcb_xkb_device_led_info_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -7668,18 +7168,18 @@ unsafe fn xcb_xkb_set_device_info_checked (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_set_device_info (c : *connection,
-                                   deviceSpec :  device_spec,
+pub fn xcb_xkb_set_device_info (c : *mut ffi::base::xcb_connection_t,
+                                   deviceSpec :  xcb_xkb_device_spec_t,
                                    firstBtn :  u8,
                                    nBtns :  u8,
                                    change :  u16,
                                    nDeviceLedFBs :  u16,
-                                   btnActions : *action,
-                                   leds : *device_led_info) -> void_cookie;
+                                   btnActions : *mut xcb_xkb_action_t,
+                                   leds : *mut xcb_xkb_device_led_info_t) -> ffi::base::xcb_void_cookie_t;
 
-unsafe fn xcb_xkb_set_debugging_flags_sizeof (_buffer :  *c_void) -> c_int;
+pub fn xcb_xkb_set_debugging_flags_sizeof (_buffer :  *mut c_void) -> c_int;
 
 /**
  *
@@ -7687,15 +7187,15 @@ unsafe fn xcb_xkb_set_debugging_flags_sizeof (_buffer :  *c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-unsafe fn xcb_xkb_set_debugging_flags (c : *connection,
+pub fn xcb_xkb_set_debugging_flags (c : *mut ffi::base::xcb_connection_t,
                                        msgLength :  u16,
                                        affectFlags :  u32,
                                        flags :  u32,
                                        affectCtrls :  u32,
                                        ctrls :  u32,
-                                       message : *string8) -> set_debugging_flags_cookie;
+                                       message : *mut xcb_xkb_string8_t) -> xcb_xkb_set_debugging_flags_cookie_t;
 
 /**
  *
@@ -7703,35 +7203,35 @@ unsafe fn xcb_xkb_set_debugging_flags (c : *connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-unsafe fn xcb_xkb_set_debugging_flags_unchecked (c : *connection,
+pub fn xcb_xkb_set_debugging_flags_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                  msgLength :  u16,
                                                  affectFlags :  u32,
                                                  flags :  u32,
                                                  affectCtrls :  u32,
                                                  ctrls :  u32,
-                                                 message : *string8) -> set_debugging_flags_cookie;
+                                                 message : *mut xcb_xkb_string8_t) -> xcb_xkb_set_debugging_flags_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xkb_set_debugging_flags_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-unsafe fn xcb_xkb_set_debugging_flags_reply (c : *connection,
-                                             cookie : set_debugging_flags_cookie,
-                                             e : **generic_error) -> *set_debugging_flags_reply;
+pub fn xcb_xkb_set_debugging_flags_reply (c : *mut ffi::base::xcb_connection_t,
+                                             cookie : xcb_xkb_set_debugging_flags_cookie_t,
+                                             e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_set_debugging_flags_reply_t;
 }
 

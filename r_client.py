@@ -517,9 +517,14 @@ def _c_type_setup(self, name, postfix):
             finished_switch.append(self.c_type)
             # special: switch C structs get pointer fields for variable-sized members
             _c_complex(self)
-            for bitcase in self.bitcases:
-                bitcase_name = bitcase.type.name if bitcase.type.has_name else name
-                _c_accessors(bitcase.type, bitcase_name, bitcase_name)
+            # switch do not have a wrap assigned. we are using Struct
+            # all bitcases must be flattened (calling _c_accessors directly
+            # instead of for each bitcase)
+            _wrap_struct(self)
+            _c_accessors(self, self.name, self.name)
+            #for bitcase in self.bitcases:
+            #    bitcase_name = bitcase.type.name if bitcase.type.has_name else name
+            #    _c_accessors(bitcase.type, bitcase_name, bitcase_name)
                 # no list with switch as element, so no call to
                 # _c_iterator(field.type, field_name) necessary
 
@@ -1053,10 +1058,9 @@ def _c_accessors(self, name, base):
     '''
     # no accessors for switch itself -
     # switch always needs to be unpacked explicitly
-#    if self.is_switch:
-#        pass
-#    else:
-    if True:
+    if self.is_switch:
+        pass
+    else:
         for field in self.fields:
             if field.type.is_list and not field.type.fixed_size():
                 _c_accessors_list(self, field)
