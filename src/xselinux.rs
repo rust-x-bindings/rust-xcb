@@ -21,85 +21,85 @@ use xproto;
 pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_selinux_query_version_cookie_t> }
 
 /** Opcode for xcb_selinux_query_version. */
-pub static XCB_SELINUX_QUERY_VERSION : u8 = 0;
+pub const XCB_SELINUX_QUERY_VERSION : u8 = 0;
 pub struct QueryVersionReply { base:  base::Reply<xcb_selinux_query_version_reply_t> }
 fn mk_reply_xcb_selinux_query_version_reply_t(reply:*mut xcb_selinux_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_selinux_set_device_create_context. */
-pub static XCB_SELINUX_SET_DEVICE_CREATE_CONTEXT : u8 = 1;
+pub const XCB_SELINUX_SET_DEVICE_CREATE_CONTEXT : u8 = 1;
 pub struct  GetDeviceCreateContextCookie<'s> { pub base : base::Cookie<'s, xcb_selinux_get_device_create_context_cookie_t> }
 
 /** Opcode for xcb_selinux_get_device_create_context. */
-pub static XCB_SELINUX_GET_DEVICE_CREATE_CONTEXT : u8 = 2;
+pub const XCB_SELINUX_GET_DEVICE_CREATE_CONTEXT : u8 = 2;
 /** Opcode for xcb_selinux_set_device_context. */
-pub static XCB_SELINUX_SET_DEVICE_CONTEXT : u8 = 3;
+pub const XCB_SELINUX_SET_DEVICE_CONTEXT : u8 = 3;
 pub struct  GetDeviceContextCookie<'s> { pub base : base::Cookie<'s, xcb_selinux_get_device_context_cookie_t> }
 
 /** Opcode for xcb_selinux_get_device_context. */
-pub static XCB_SELINUX_GET_DEVICE_CONTEXT : u8 = 4;
+pub const XCB_SELINUX_GET_DEVICE_CONTEXT : u8 = 4;
 /** Opcode for xcb_selinux_set_window_create_context. */
-pub static XCB_SELINUX_SET_WINDOW_CREATE_CONTEXT : u8 = 5;
+pub const XCB_SELINUX_SET_WINDOW_CREATE_CONTEXT : u8 = 5;
 pub struct  GetWindowCreateContextCookie<'s> { pub base : base::Cookie<'s, xcb_selinux_get_window_create_context_cookie_t> }
 
 /** Opcode for xcb_selinux_get_window_create_context. */
-pub static XCB_SELINUX_GET_WINDOW_CREATE_CONTEXT : u8 = 6;
+pub const XCB_SELINUX_GET_WINDOW_CREATE_CONTEXT : u8 = 6;
 pub struct  GetWindowContextCookie<'s> { pub base : base::Cookie<'s, xcb_selinux_get_window_context_cookie_t> }
 
 /** Opcode for xcb_selinux_get_window_context. */
-pub static XCB_SELINUX_GET_WINDOW_CONTEXT : u8 = 7;
+pub const XCB_SELINUX_GET_WINDOW_CONTEXT : u8 = 7;
 pub type ListItemIterator = xcb_selinux_list_item_iterator_t;
 
 /** Opcode for xcb_selinux_set_property_create_context. */
-pub static XCB_SELINUX_SET_PROPERTY_CREATE_CONTEXT : u8 = 8;
+pub const XCB_SELINUX_SET_PROPERTY_CREATE_CONTEXT : u8 = 8;
 pub struct  GetPropertyCreateContextCookie<'s> { pub base : base::Cookie<'s, xcb_selinux_get_property_create_context_cookie_t> }
 
 /** Opcode for xcb_selinux_get_property_create_context. */
-pub static XCB_SELINUX_GET_PROPERTY_CREATE_CONTEXT : u8 = 9;
+pub const XCB_SELINUX_GET_PROPERTY_CREATE_CONTEXT : u8 = 9;
 /** Opcode for xcb_selinux_set_property_use_context. */
-pub static XCB_SELINUX_SET_PROPERTY_USE_CONTEXT : u8 = 10;
+pub const XCB_SELINUX_SET_PROPERTY_USE_CONTEXT : u8 = 10;
 pub struct  GetPropertyUseContextCookie<'s> { pub base : base::Cookie<'s, xcb_selinux_get_property_use_context_cookie_t> }
 
 /** Opcode for xcb_selinux_get_property_use_context. */
-pub static XCB_SELINUX_GET_PROPERTY_USE_CONTEXT : u8 = 11;
+pub const XCB_SELINUX_GET_PROPERTY_USE_CONTEXT : u8 = 11;
 pub struct  GetPropertyContextCookie<'s> { pub base : base::Cookie<'s, xcb_selinux_get_property_context_cookie_t> }
 
 /** Opcode for xcb_selinux_get_property_context. */
-pub static XCB_SELINUX_GET_PROPERTY_CONTEXT : u8 = 12;
+pub const XCB_SELINUX_GET_PROPERTY_CONTEXT : u8 = 12;
 pub struct  GetPropertyDataContextCookie<'s> { pub base : base::Cookie<'s, xcb_selinux_get_property_data_context_cookie_t> }
 
 /** Opcode for xcb_selinux_get_property_data_context. */
-pub static XCB_SELINUX_GET_PROPERTY_DATA_CONTEXT : u8 = 13;
+pub const XCB_SELINUX_GET_PROPERTY_DATA_CONTEXT : u8 = 13;
 pub struct  ListPropertiesCookie<'s> { pub base : base::Cookie<'s, xcb_selinux_list_properties_cookie_t> }
 
 /** Opcode for xcb_selinux_list_properties. */
-pub static XCB_SELINUX_LIST_PROPERTIES : u8 = 14;
+pub const XCB_SELINUX_LIST_PROPERTIES : u8 = 14;
 /** Opcode for xcb_selinux_set_selection_create_context. */
-pub static XCB_SELINUX_SET_SELECTION_CREATE_CONTEXT : u8 = 15;
+pub const XCB_SELINUX_SET_SELECTION_CREATE_CONTEXT : u8 = 15;
 pub struct  GetSelectionCreateContextCookie<'s> { pub base : base::Cookie<'s, xcb_selinux_get_selection_create_context_cookie_t> }
 
 /** Opcode for xcb_selinux_get_selection_create_context. */
-pub static XCB_SELINUX_GET_SELECTION_CREATE_CONTEXT : u8 = 16;
+pub const XCB_SELINUX_GET_SELECTION_CREATE_CONTEXT : u8 = 16;
 /** Opcode for xcb_selinux_set_selection_use_context. */
-pub static XCB_SELINUX_SET_SELECTION_USE_CONTEXT : u8 = 17;
+pub const XCB_SELINUX_SET_SELECTION_USE_CONTEXT : u8 = 17;
 pub struct  GetSelectionUseContextCookie<'s> { pub base : base::Cookie<'s, xcb_selinux_get_selection_use_context_cookie_t> }
 
 /** Opcode for xcb_selinux_get_selection_use_context. */
-pub static XCB_SELINUX_GET_SELECTION_USE_CONTEXT : u8 = 18;
+pub const XCB_SELINUX_GET_SELECTION_USE_CONTEXT : u8 = 18;
 pub struct  GetSelectionContextCookie<'s> { pub base : base::Cookie<'s, xcb_selinux_get_selection_context_cookie_t> }
 
 /** Opcode for xcb_selinux_get_selection_context. */
-pub static XCB_SELINUX_GET_SELECTION_CONTEXT : u8 = 19;
+pub const XCB_SELINUX_GET_SELECTION_CONTEXT : u8 = 19;
 pub struct  GetSelectionDataContextCookie<'s> { pub base : base::Cookie<'s, xcb_selinux_get_selection_data_context_cookie_t> }
 
 /** Opcode for xcb_selinux_get_selection_data_context. */
-pub static XCB_SELINUX_GET_SELECTION_DATA_CONTEXT : u8 = 20;
+pub const XCB_SELINUX_GET_SELECTION_DATA_CONTEXT : u8 = 20;
 pub struct  ListSelectionsCookie<'s> { pub base : base::Cookie<'s, xcb_selinux_list_selections_cookie_t> }
 
 /** Opcode for xcb_selinux_list_selections. */
-pub static XCB_SELINUX_LIST_SELECTIONS : u8 = 21;
+pub const XCB_SELINUX_LIST_SELECTIONS : u8 = 21;
 pub struct  GetClientContextCookie<'s> { pub base : base::Cookie<'s, xcb_selinux_get_client_context_cookie_t> }
 
 /** Opcode for xcb_selinux_get_client_context. */
-pub static XCB_SELINUX_GET_CLIENT_CONTEXT : u8 = 22;
+pub const XCB_SELINUX_GET_CLIENT_CONTEXT : u8 = 22;
 pub fn QueryVersion<'r> (c : &'r Connection,
                      client_major : u8,
                      client_minor : u8) -> QueryVersionCookie<'r> {

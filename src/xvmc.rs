@@ -33,35 +33,35 @@ pub type SurfaceInfoIterator = xcb_xvmc_surface_info_iterator_t;
 pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_xvmc_query_version_cookie_t> }
 
 /** Opcode for xcb_xvmc_query_version. */
-pub static XCB_XVMC_QUERY_VERSION : u8 = 0;
+pub const XCB_XVMC_QUERY_VERSION : u8 = 0;
 pub struct QueryVersionReply { base:  base::Reply<xcb_xvmc_query_version_reply_t> }
 fn mk_reply_xcb_xvmc_query_version_reply_t(reply:*mut xcb_xvmc_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
 pub struct  ListSurfaceTypesCookie<'s> { pub base : base::Cookie<'s, xcb_xvmc_list_surface_types_cookie_t> }
 
 /** Opcode for xcb_xvmc_list_surface_types. */
-pub static XCB_XVMC_LIST_SURFACE_TYPES : u8 = 1;
+pub const XCB_XVMC_LIST_SURFACE_TYPES : u8 = 1;
 pub struct  CreateContextCookie<'s> { pub base : base::Cookie<'s, xcb_xvmc_create_context_cookie_t> }
 
 /** Opcode for xcb_xvmc_create_context. */
-pub static XCB_XVMC_CREATE_CONTEXT : u8 = 2;
+pub const XCB_XVMC_CREATE_CONTEXT : u8 = 2;
 /** Opcode for xcb_xvmc_destroy_context. */
-pub static XCB_XVMC_DESTROY_CONTEXT : u8 = 3;
+pub const XCB_XVMC_DESTROY_CONTEXT : u8 = 3;
 pub struct  CreateSurfaceCookie<'s> { pub base : base::Cookie<'s, xcb_xvmc_create_surface_cookie_t> }
 
 /** Opcode for xcb_xvmc_create_surface. */
-pub static XCB_XVMC_CREATE_SURFACE : u8 = 4;
+pub const XCB_XVMC_CREATE_SURFACE : u8 = 4;
 /** Opcode for xcb_xvmc_destroy_surface. */
-pub static XCB_XVMC_DESTROY_SURFACE : u8 = 5;
+pub const XCB_XVMC_DESTROY_SURFACE : u8 = 5;
 pub struct  CreateSubpictureCookie<'s> { pub base : base::Cookie<'s, xcb_xvmc_create_subpicture_cookie_t> }
 
 /** Opcode for xcb_xvmc_create_subpicture. */
-pub static XCB_XVMC_CREATE_SUBPICTURE : u8 = 6;
+pub const XCB_XVMC_CREATE_SUBPICTURE : u8 = 6;
 /** Opcode for xcb_xvmc_destroy_subpicture. */
-pub static XCB_XVMC_DESTROY_SUBPICTURE : u8 = 7;
+pub const XCB_XVMC_DESTROY_SUBPICTURE : u8 = 7;
 pub struct  ListSubpictureTypesCookie<'s> { pub base : base::Cookie<'s, xcb_xvmc_list_subpicture_types_cookie_t> }
 
 /** Opcode for xcb_xvmc_list_subpicture_types. */
-pub static XCB_XVMC_LIST_SUBPICTURE_TYPES : u8 = 8;
+pub const XCB_XVMC_LIST_SUBPICTURE_TYPES : u8 = 8;
 
 impl Iterator for ContextIterator {
     type Item = Context;

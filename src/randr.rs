@@ -28,22 +28,22 @@ pub type CrtcIterator = xcb_randr_crtc_iterator_t;
 pub type OutputIterator = xcb_randr_output_iterator_t;
 
 /** Opcode for xcb_randr_bad_output. */
-pub static XCB_RANDR_BAD_OUTPUT : u8 = 0;
+pub const XCB_RANDR_BAD_OUTPUT : u8 = 0;
 pub struct BadOutputError { pub base : base::Error<xcb_randr_bad_output_error_t> }
 /** Opcode for xcb_randr_bad_crtc. */
-pub static XCB_RANDR_BAD_CRTC : u8 = 1;
+pub const XCB_RANDR_BAD_CRTC : u8 = 1;
 pub struct BadCrtcError { pub base : base::Error<xcb_randr_bad_crtc_error_t> }
 /** Opcode for xcb_randr_bad_mode. */
-pub static XCB_RANDR_BAD_MODE : u8 = 2;
+pub const XCB_RANDR_BAD_MODE : u8 = 2;
 pub struct BadModeError { pub base : base::Error<xcb_randr_bad_mode_error_t> }
 
 pub type xcb_randr_rotation_t = c_uint;//{
-    pub static XCB_RANDR_ROTATION_ROTATE_0 : xcb_randr_rotation_t = 1;
-    pub static XCB_RANDR_ROTATION_ROTATE_90 : xcb_randr_rotation_t = 2;
-    pub static XCB_RANDR_ROTATION_ROTATE_180 : xcb_randr_rotation_t = 4;
-    pub static XCB_RANDR_ROTATION_ROTATE_270 : xcb_randr_rotation_t = 8;
-    pub static XCB_RANDR_ROTATION_REFLECT_X : xcb_randr_rotation_t = 16;
-    pub static XCB_RANDR_ROTATION_REFLECT_Y : xcb_randr_rotation_t = 32;
+    pub const XCB_RANDR_ROTATION_ROTATE_0 : xcb_randr_rotation_t = 1;
+    pub const XCB_RANDR_ROTATION_ROTATE_90 : xcb_randr_rotation_t = 2;
+    pub const XCB_RANDR_ROTATION_ROTATE_180 : xcb_randr_rotation_t = 4;
+    pub const XCB_RANDR_ROTATION_ROTATE_270 : xcb_randr_rotation_t = 8;
+    pub const XCB_RANDR_ROTATION_REFLECT_X : xcb_randr_rotation_t = 16;
+    pub const XCB_RANDR_ROTATION_REFLECT_Y : xcb_randr_rotation_t = 32;
 //}
 pub struct ScreenSize {pub base : base::Struct<xcb_randr_screen_size_t> }
 
@@ -54,59 +54,59 @@ pub type RefreshRatesIterator = xcb_randr_refresh_rates_iterator_t;
 pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_randr_query_version_cookie_t> }
 
 /** Opcode for xcb_randr_query_version. */
-pub static XCB_RANDR_QUERY_VERSION : u8 = 0;
+pub const XCB_RANDR_QUERY_VERSION : u8 = 0;
 pub struct QueryVersionReply { base:  base::Reply<xcb_randr_query_version_reply_t> }
 fn mk_reply_xcb_randr_query_version_reply_t(reply:*mut xcb_randr_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
 
 pub type xcb_randr_set_config_t = c_uint;//{
-    pub static XCB_RANDR_SET_CONFIG_SUCCESS : xcb_randr_set_config_t = 0;
-    pub static XCB_RANDR_SET_CONFIG_INVALID_CONFIG_TIME : xcb_randr_set_config_t = 1;
-    pub static XCB_RANDR_SET_CONFIG_INVALID_TIME : xcb_randr_set_config_t = 2;
-    pub static XCB_RANDR_SET_CONFIG_FAILED : xcb_randr_set_config_t = 3;
+    pub const XCB_RANDR_SET_CONFIG_SUCCESS : xcb_randr_set_config_t = 0;
+    pub const XCB_RANDR_SET_CONFIG_INVALID_CONFIG_TIME : xcb_randr_set_config_t = 1;
+    pub const XCB_RANDR_SET_CONFIG_INVALID_TIME : xcb_randr_set_config_t = 2;
+    pub const XCB_RANDR_SET_CONFIG_FAILED : xcb_randr_set_config_t = 3;
 //}
 pub struct  SetScreenConfigCookie<'s> { pub base : base::Cookie<'s, xcb_randr_set_screen_config_cookie_t> }
 
 /** Opcode for xcb_randr_set_screen_config. */
-pub static XCB_RANDR_SET_SCREEN_CONFIG : u8 = 2;
+pub const XCB_RANDR_SET_SCREEN_CONFIG : u8 = 2;
 pub struct SetScreenConfigReply { base:  base::Reply<xcb_randr_set_screen_config_reply_t> }
 fn mk_reply_xcb_randr_set_screen_config_reply_t(reply:*mut xcb_randr_set_screen_config_reply_t) -> SetScreenConfigReply { SetScreenConfigReply { base : base::mk_reply(reply) } }
 
 pub type xcb_randr_notify_mask_t = c_uint;//{
-    pub static XCB_RANDR_NOTIFY_MASK_SCREEN_CHANGE : xcb_randr_notify_mask_t = 1;
-    pub static XCB_RANDR_NOTIFY_MASK_CRTC_CHANGE : xcb_randr_notify_mask_t = 2;
-    pub static XCB_RANDR_NOTIFY_MASK_OUTPUT_CHANGE : xcb_randr_notify_mask_t = 4;
-    pub static XCB_RANDR_NOTIFY_MASK_OUTPUT_PROPERTY : xcb_randr_notify_mask_t = 8;
+    pub const XCB_RANDR_NOTIFY_MASK_SCREEN_CHANGE : xcb_randr_notify_mask_t = 1;
+    pub const XCB_RANDR_NOTIFY_MASK_CRTC_CHANGE : xcb_randr_notify_mask_t = 2;
+    pub const XCB_RANDR_NOTIFY_MASK_OUTPUT_CHANGE : xcb_randr_notify_mask_t = 4;
+    pub const XCB_RANDR_NOTIFY_MASK_OUTPUT_PROPERTY : xcb_randr_notify_mask_t = 8;
 //}
 /** Opcode for xcb_randr_select_input. */
-pub static XCB_RANDR_SELECT_INPUT : u8 = 4;
+pub const XCB_RANDR_SELECT_INPUT : u8 = 4;
 pub struct  GetScreenInfoCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_screen_info_cookie_t> }
 
 /** Opcode for xcb_randr_get_screen_info. */
-pub static XCB_RANDR_GET_SCREEN_INFO : u8 = 5;
+pub const XCB_RANDR_GET_SCREEN_INFO : u8 = 5;
 pub struct  GetScreenSizeRangeCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_screen_size_range_cookie_t> }
 
 /** Opcode for xcb_randr_get_screen_size_range. */
-pub static XCB_RANDR_GET_SCREEN_SIZE_RANGE : u8 = 6;
+pub const XCB_RANDR_GET_SCREEN_SIZE_RANGE : u8 = 6;
 pub struct GetScreenSizeRangeReply { base:  base::Reply<xcb_randr_get_screen_size_range_reply_t> }
 fn mk_reply_xcb_randr_get_screen_size_range_reply_t(reply:*mut xcb_randr_get_screen_size_range_reply_t) -> GetScreenSizeRangeReply { GetScreenSizeRangeReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_randr_set_screen_size. */
-pub static XCB_RANDR_SET_SCREEN_SIZE : u8 = 7;
+pub const XCB_RANDR_SET_SCREEN_SIZE : u8 = 7;
 
 pub type xcb_randr_mode_flag_t = c_uint;//{
-    pub static XCB_RANDR_MODE_FLAG_HSYNC_POSITIVE : xcb_randr_mode_flag_t = 1;
-    pub static XCB_RANDR_MODE_FLAG_HSYNC_NEGATIVE : xcb_randr_mode_flag_t = 2;
-    pub static XCB_RANDR_MODE_FLAG_VSYNC_POSITIVE : xcb_randr_mode_flag_t = 4;
-    pub static XCB_RANDR_MODE_FLAG_VSYNC_NEGATIVE : xcb_randr_mode_flag_t = 8;
-    pub static XCB_RANDR_MODE_FLAG_INTERLACE : xcb_randr_mode_flag_t = 16;
-    pub static XCB_RANDR_MODE_FLAG_DOUBLE_SCAN : xcb_randr_mode_flag_t = 32;
-    pub static XCB_RANDR_MODE_FLAG_CSYNC : xcb_randr_mode_flag_t = 64;
-    pub static XCB_RANDR_MODE_FLAG_CSYNC_POSITIVE : xcb_randr_mode_flag_t = 128;
-    pub static XCB_RANDR_MODE_FLAG_CSYNC_NEGATIVE : xcb_randr_mode_flag_t = 256;
-    pub static XCB_RANDR_MODE_FLAG_HSKEW_PRESENT : xcb_randr_mode_flag_t = 512;
-    pub static XCB_RANDR_MODE_FLAG_BCAST : xcb_randr_mode_flag_t = 1024;
-    pub static XCB_RANDR_MODE_FLAG_PIXEL_MULTIPLEX : xcb_randr_mode_flag_t = 2048;
-    pub static XCB_RANDR_MODE_FLAG_DOUBLE_CLOCK : xcb_randr_mode_flag_t = 4096;
-    pub static XCB_RANDR_MODE_FLAG_HALVE_CLOCK : xcb_randr_mode_flag_t = 8192;
+    pub const XCB_RANDR_MODE_FLAG_HSYNC_POSITIVE : xcb_randr_mode_flag_t = 1;
+    pub const XCB_RANDR_MODE_FLAG_HSYNC_NEGATIVE : xcb_randr_mode_flag_t = 2;
+    pub const XCB_RANDR_MODE_FLAG_VSYNC_POSITIVE : xcb_randr_mode_flag_t = 4;
+    pub const XCB_RANDR_MODE_FLAG_VSYNC_NEGATIVE : xcb_randr_mode_flag_t = 8;
+    pub const XCB_RANDR_MODE_FLAG_INTERLACE : xcb_randr_mode_flag_t = 16;
+    pub const XCB_RANDR_MODE_FLAG_DOUBLE_SCAN : xcb_randr_mode_flag_t = 32;
+    pub const XCB_RANDR_MODE_FLAG_CSYNC : xcb_randr_mode_flag_t = 64;
+    pub const XCB_RANDR_MODE_FLAG_CSYNC_POSITIVE : xcb_randr_mode_flag_t = 128;
+    pub const XCB_RANDR_MODE_FLAG_CSYNC_NEGATIVE : xcb_randr_mode_flag_t = 256;
+    pub const XCB_RANDR_MODE_FLAG_HSKEW_PRESENT : xcb_randr_mode_flag_t = 512;
+    pub const XCB_RANDR_MODE_FLAG_BCAST : xcb_randr_mode_flag_t = 1024;
+    pub const XCB_RANDR_MODE_FLAG_PIXEL_MULTIPLEX : xcb_randr_mode_flag_t = 2048;
+    pub const XCB_RANDR_MODE_FLAG_DOUBLE_CLOCK : xcb_randr_mode_flag_t = 4096;
+    pub const XCB_RANDR_MODE_FLAG_HALVE_CLOCK : xcb_randr_mode_flag_t = 8192;
 //}
 pub struct ModeInfo {pub base : base::Struct<xcb_randr_mode_info_t> }
 
@@ -115,107 +115,107 @@ pub type ModeInfoIterator = xcb_randr_mode_info_iterator_t;
 pub struct  GetScreenResourcesCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_screen_resources_cookie_t> }
 
 /** Opcode for xcb_randr_get_screen_resources. */
-pub static XCB_RANDR_GET_SCREEN_RESOURCES : u8 = 8;
+pub const XCB_RANDR_GET_SCREEN_RESOURCES : u8 = 8;
 
 pub type xcb_randr_connection_t = c_uint;//{
-    pub static XCB_RANDR_CONNECTION_CONNECTED : xcb_randr_connection_t = 1;
-    pub static XCB_RANDR_CONNECTION_DISCONNECTED : xcb_randr_connection_t = 2;
-    pub static XCB_RANDR_CONNECTION_UNKNOWN : xcb_randr_connection_t = 3;
+    pub const XCB_RANDR_CONNECTION_CONNECTED : xcb_randr_connection_t = 1;
+    pub const XCB_RANDR_CONNECTION_DISCONNECTED : xcb_randr_connection_t = 2;
+    pub const XCB_RANDR_CONNECTION_UNKNOWN : xcb_randr_connection_t = 3;
 //}
 pub struct  GetOutputInfoCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_output_info_cookie_t> }
 
 /** Opcode for xcb_randr_get_output_info. */
-pub static XCB_RANDR_GET_OUTPUT_INFO : u8 = 9;
+pub const XCB_RANDR_GET_OUTPUT_INFO : u8 = 9;
 pub struct  ListOutputPropertiesCookie<'s> { pub base : base::Cookie<'s, xcb_randr_list_output_properties_cookie_t> }
 
 /** Opcode for xcb_randr_list_output_properties. */
-pub static XCB_RANDR_LIST_OUTPUT_PROPERTIES : u8 = 10;
+pub const XCB_RANDR_LIST_OUTPUT_PROPERTIES : u8 = 10;
 pub struct  QueryOutputPropertyCookie<'s> { pub base : base::Cookie<'s, xcb_randr_query_output_property_cookie_t> }
 
 /** Opcode for xcb_randr_query_output_property. */
-pub static XCB_RANDR_QUERY_OUTPUT_PROPERTY : u8 = 11;
+pub const XCB_RANDR_QUERY_OUTPUT_PROPERTY : u8 = 11;
 /** Opcode for xcb_randr_configure_output_property. */
-pub static XCB_RANDR_CONFIGURE_OUTPUT_PROPERTY : u8 = 12;
+pub const XCB_RANDR_CONFIGURE_OUTPUT_PROPERTY : u8 = 12;
 /** Opcode for xcb_randr_change_output_property. */
-pub static XCB_RANDR_CHANGE_OUTPUT_PROPERTY : u8 = 13;
+pub const XCB_RANDR_CHANGE_OUTPUT_PROPERTY : u8 = 13;
 /** Opcode for xcb_randr_delete_output_property. */
-pub static XCB_RANDR_DELETE_OUTPUT_PROPERTY : u8 = 14;
+pub const XCB_RANDR_DELETE_OUTPUT_PROPERTY : u8 = 14;
 pub struct  GetOutputPropertyCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_output_property_cookie_t> }
 
 /** Opcode for xcb_randr_get_output_property. */
-pub static XCB_RANDR_GET_OUTPUT_PROPERTY : u8 = 15;
+pub const XCB_RANDR_GET_OUTPUT_PROPERTY : u8 = 15;
 pub struct  CreateModeCookie<'s> { pub base : base::Cookie<'s, xcb_randr_create_mode_cookie_t> }
 
 /** Opcode for xcb_randr_create_mode. */
-pub static XCB_RANDR_CREATE_MODE : u8 = 16;
+pub const XCB_RANDR_CREATE_MODE : u8 = 16;
 pub struct CreateModeReply { base:  base::Reply<xcb_randr_create_mode_reply_t> }
 fn mk_reply_xcb_randr_create_mode_reply_t(reply:*mut xcb_randr_create_mode_reply_t) -> CreateModeReply { CreateModeReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_randr_destroy_mode. */
-pub static XCB_RANDR_DESTROY_MODE : u8 = 17;
+pub const XCB_RANDR_DESTROY_MODE : u8 = 17;
 /** Opcode for xcb_randr_add_output_mode. */
-pub static XCB_RANDR_ADD_OUTPUT_MODE : u8 = 18;
+pub const XCB_RANDR_ADD_OUTPUT_MODE : u8 = 18;
 /** Opcode for xcb_randr_delete_output_mode. */
-pub static XCB_RANDR_DELETE_OUTPUT_MODE : u8 = 19;
+pub const XCB_RANDR_DELETE_OUTPUT_MODE : u8 = 19;
 pub struct  GetCrtcInfoCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_crtc_info_cookie_t> }
 
 /** Opcode for xcb_randr_get_crtc_info. */
-pub static XCB_RANDR_GET_CRTC_INFO : u8 = 20;
+pub const XCB_RANDR_GET_CRTC_INFO : u8 = 20;
 pub struct  SetCrtcConfigCookie<'s> { pub base : base::Cookie<'s, xcb_randr_set_crtc_config_cookie_t> }
 
 /** Opcode for xcb_randr_set_crtc_config. */
-pub static XCB_RANDR_SET_CRTC_CONFIG : u8 = 21;
+pub const XCB_RANDR_SET_CRTC_CONFIG : u8 = 21;
 pub struct SetCrtcConfigReply { base:  base::Reply<xcb_randr_set_crtc_config_reply_t> }
 fn mk_reply_xcb_randr_set_crtc_config_reply_t(reply:*mut xcb_randr_set_crtc_config_reply_t) -> SetCrtcConfigReply { SetCrtcConfigReply { base : base::mk_reply(reply) } }
 pub struct  GetCrtcGammaSizeCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_crtc_gamma_size_cookie_t> }
 
 /** Opcode for xcb_randr_get_crtc_gamma_size. */
-pub static XCB_RANDR_GET_CRTC_GAMMA_SIZE : u8 = 22;
+pub const XCB_RANDR_GET_CRTC_GAMMA_SIZE : u8 = 22;
 pub struct GetCrtcGammaSizeReply { base:  base::Reply<xcb_randr_get_crtc_gamma_size_reply_t> }
 fn mk_reply_xcb_randr_get_crtc_gamma_size_reply_t(reply:*mut xcb_randr_get_crtc_gamma_size_reply_t) -> GetCrtcGammaSizeReply { GetCrtcGammaSizeReply { base : base::mk_reply(reply) } }
 pub struct  GetCrtcGammaCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_crtc_gamma_cookie_t> }
 
 /** Opcode for xcb_randr_get_crtc_gamma. */
-pub static XCB_RANDR_GET_CRTC_GAMMA : u8 = 23;
+pub const XCB_RANDR_GET_CRTC_GAMMA : u8 = 23;
 /** Opcode for xcb_randr_set_crtc_gamma. */
-pub static XCB_RANDR_SET_CRTC_GAMMA : u8 = 24;
+pub const XCB_RANDR_SET_CRTC_GAMMA : u8 = 24;
 pub struct  GetScreenResourcesCurrentCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_screen_resources_current_cookie_t> }
 
 /** Opcode for xcb_randr_get_screen_resources_current. */
-pub static XCB_RANDR_GET_SCREEN_RESOURCES_CURRENT : u8 = 25;
+pub const XCB_RANDR_GET_SCREEN_RESOURCES_CURRENT : u8 = 25;
 /** Opcode for xcb_randr_set_crtc_transform. */
-pub static XCB_RANDR_SET_CRTC_TRANSFORM : u8 = 26;
+pub const XCB_RANDR_SET_CRTC_TRANSFORM : u8 = 26;
 pub struct  GetCrtcTransformCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_crtc_transform_cookie_t> }
 
 /** Opcode for xcb_randr_get_crtc_transform. */
-pub static XCB_RANDR_GET_CRTC_TRANSFORM : u8 = 27;
+pub const XCB_RANDR_GET_CRTC_TRANSFORM : u8 = 27;
 pub struct  GetPanningCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_panning_cookie_t> }
 
 /** Opcode for xcb_randr_get_panning. */
-pub static XCB_RANDR_GET_PANNING : u8 = 28;
+pub const XCB_RANDR_GET_PANNING : u8 = 28;
 pub struct GetPanningReply { base:  base::Reply<xcb_randr_get_panning_reply_t> }
 fn mk_reply_xcb_randr_get_panning_reply_t(reply:*mut xcb_randr_get_panning_reply_t) -> GetPanningReply { GetPanningReply { base : base::mk_reply(reply) } }
 pub struct  SetPanningCookie<'s> { pub base : base::Cookie<'s, xcb_randr_set_panning_cookie_t> }
 
 /** Opcode for xcb_randr_set_panning. */
-pub static XCB_RANDR_SET_PANNING : u8 = 29;
+pub const XCB_RANDR_SET_PANNING : u8 = 29;
 pub struct SetPanningReply { base:  base::Reply<xcb_randr_set_panning_reply_t> }
 fn mk_reply_xcb_randr_set_panning_reply_t(reply:*mut xcb_randr_set_panning_reply_t) -> SetPanningReply { SetPanningReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_randr_set_output_primary. */
-pub static XCB_RANDR_SET_OUTPUT_PRIMARY : u8 = 30;
+pub const XCB_RANDR_SET_OUTPUT_PRIMARY : u8 = 30;
 pub struct  GetOutputPrimaryCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_output_primary_cookie_t> }
 
 /** Opcode for xcb_randr_get_output_primary. */
-pub static XCB_RANDR_GET_OUTPUT_PRIMARY : u8 = 31;
+pub const XCB_RANDR_GET_OUTPUT_PRIMARY : u8 = 31;
 pub struct GetOutputPrimaryReply { base:  base::Reply<xcb_randr_get_output_primary_reply_t> }
 fn mk_reply_xcb_randr_get_output_primary_reply_t(reply:*mut xcb_randr_get_output_primary_reply_t) -> GetOutputPrimaryReply { GetOutputPrimaryReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_randr_screen_change_notify. */
-pub static XCB_RANDR_SCREEN_CHANGE_NOTIFY : u8 = 0;
+pub const XCB_RANDR_SCREEN_CHANGE_NOTIFY : u8 = 0;
 pub struct ScreenChangeNotifyEvent {pub base : base::Event<xcb_randr_screen_change_notify_event_t>}
 
 pub type xcb_randr_notify_t = c_uint;//{
-    pub static XCB_RANDR_NOTIFY_CRTC_CHANGE : xcb_randr_notify_t = 0;
-    pub static XCB_RANDR_NOTIFY_OUTPUT_CHANGE : xcb_randr_notify_t = 1;
-    pub static XCB_RANDR_NOTIFY_OUTPUT_PROPERTY : xcb_randr_notify_t = 2;
+    pub const XCB_RANDR_NOTIFY_CRTC_CHANGE : xcb_randr_notify_t = 0;
+    pub const XCB_RANDR_NOTIFY_OUTPUT_CHANGE : xcb_randr_notify_t = 1;
+    pub const XCB_RANDR_NOTIFY_OUTPUT_PROPERTY : xcb_randr_notify_t = 2;
 //}
 pub struct CrtcChange {pub base : base::Struct<xcb_randr_crtc_change_t> }
 
@@ -228,7 +228,7 @@ pub type OutputPropertyIterator = xcb_randr_output_property_iterator_t;
 pub type NotifyDataIterator = xcb_randr_notify_data_iterator_t;
 
 /** Opcode for xcb_randr_notify. */
-pub static XCB_RANDR_NOTIFY : u8 = 1;
+pub const XCB_RANDR_NOTIFY : u8 = 1;
 pub struct NotifyEvent {pub base : base::Event<xcb_randr_notify_event_t>}
 
 impl Iterator for ModeIterator {

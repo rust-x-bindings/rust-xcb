@@ -27,30 +27,30 @@ pub type DamageIterator = xcb_damage_damage_iterator_t;
 
 
 pub type xcb_damage_report_level_t = c_uint;//{
-    pub static XCB_DAMAGE_REPORT_LEVEL_RAW_RECTANGLES : xcb_damage_report_level_t = 1;
-    pub static XCB_DAMAGE_REPORT_LEVEL_DELTA_RECTANGLES : xcb_damage_report_level_t = 2;
-    pub static XCB_DAMAGE_REPORT_LEVEL_BOUNDING_BOX : xcb_damage_report_level_t = 3;
-    pub static XCB_DAMAGE_REPORT_LEVEL_NON_EMPTY : xcb_damage_report_level_t = 4;
+    pub const XCB_DAMAGE_REPORT_LEVEL_RAW_RECTANGLES : xcb_damage_report_level_t = 1;
+    pub const XCB_DAMAGE_REPORT_LEVEL_DELTA_RECTANGLES : xcb_damage_report_level_t = 2;
+    pub const XCB_DAMAGE_REPORT_LEVEL_BOUNDING_BOX : xcb_damage_report_level_t = 3;
+    pub const XCB_DAMAGE_REPORT_LEVEL_NON_EMPTY : xcb_damage_report_level_t = 4;
 //}
 /** Opcode for xcb_damage_bad_damage. */
-pub static XCB_DAMAGE_BAD_DAMAGE : u8 = 0;
+pub const XCB_DAMAGE_BAD_DAMAGE : u8 = 0;
 pub struct BadDamageError { pub base : base::Error<xcb_damage_bad_damage_error_t> }
 pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_damage_query_version_cookie_t> }
 
 /** Opcode for xcb_damage_query_version. */
-pub static XCB_DAMAGE_QUERY_VERSION : u8 = 0;
+pub const XCB_DAMAGE_QUERY_VERSION : u8 = 0;
 pub struct QueryVersionReply { base:  base::Reply<xcb_damage_query_version_reply_t> }
 fn mk_reply_xcb_damage_query_version_reply_t(reply:*mut xcb_damage_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_damage_create. */
-pub static XCB_DAMAGE_CREATE : u8 = 1;
+pub const XCB_DAMAGE_CREATE : u8 = 1;
 /** Opcode for xcb_damage_destroy. */
-pub static XCB_DAMAGE_DESTROY : u8 = 2;
+pub const XCB_DAMAGE_DESTROY : u8 = 2;
 /** Opcode for xcb_damage_subtract. */
-pub static XCB_DAMAGE_SUBTRACT : u8 = 3;
+pub const XCB_DAMAGE_SUBTRACT : u8 = 3;
 /** Opcode for xcb_damage_add. */
-pub static XCB_DAMAGE_ADD : u8 = 4;
+pub const XCB_DAMAGE_ADD : u8 = 4;
 /** Opcode for xcb_damage_notify. */
-pub static XCB_DAMAGE_NOTIFY : u8 = 0;
+pub const XCB_DAMAGE_NOTIFY : u8 = 0;
 pub struct NotifyEvent {pub base : base::Event<xcb_damage_notify_event_t>}
 
 impl Iterator for DamageIterator {

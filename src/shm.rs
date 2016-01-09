@@ -23,31 +23,31 @@ pub type Seg = xcb_shm_seg_t;
 pub type SegIterator = xcb_shm_seg_iterator_t;
 
 /** Opcode for xcb_shm_completion. */
-pub static XCB_SHM_COMPLETION : u8 = 0;
+pub const XCB_SHM_COMPLETION : u8 = 0;
 pub struct CompletionEvent {pub base : base::Event<xcb_shm_completion_event_t>}
 /** Opcode for xcb_shm_bad_seg. */
-pub static XCB_SHM_BAD_SEG : u8 = 0;
+pub const XCB_SHM_BAD_SEG : u8 = 0;
 pub struct BadSegError { pub base : base::Error<xcb_shm_bad_seg_error_t> }
 pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_shm_query_version_cookie_t> }
 
 /** Opcode for xcb_shm_query_version. */
-pub static XCB_SHM_QUERY_VERSION : u8 = 0;
+pub const XCB_SHM_QUERY_VERSION : u8 = 0;
 pub struct QueryVersionReply { base:  base::Reply<xcb_shm_query_version_reply_t> }
 fn mk_reply_xcb_shm_query_version_reply_t(reply:*mut xcb_shm_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_shm_attach. */
-pub static XCB_SHM_ATTACH : u8 = 1;
+pub const XCB_SHM_ATTACH : u8 = 1;
 /** Opcode for xcb_shm_detach. */
-pub static XCB_SHM_DETACH : u8 = 2;
+pub const XCB_SHM_DETACH : u8 = 2;
 /** Opcode for xcb_shm_put_image. */
-pub static XCB_SHM_PUT_IMAGE : u8 = 3;
+pub const XCB_SHM_PUT_IMAGE : u8 = 3;
 pub struct  GetImageCookie<'s> { pub base : base::Cookie<'s, xcb_shm_get_image_cookie_t> }
 
 /** Opcode for xcb_shm_get_image. */
-pub static XCB_SHM_GET_IMAGE : u8 = 4;
+pub const XCB_SHM_GET_IMAGE : u8 = 4;
 pub struct GetImageReply { base:  base::Reply<xcb_shm_get_image_reply_t> }
 fn mk_reply_xcb_shm_get_image_reply_t(reply:*mut xcb_shm_get_image_reply_t) -> GetImageReply { GetImageReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_shm_create_pixmap. */
-pub static XCB_SHM_CREATE_PIXMAP : u8 = 5;
+pub const XCB_SHM_CREATE_PIXMAP : u8 = 5;
 
 impl Iterator for SegIterator {
     type Item = Seg;

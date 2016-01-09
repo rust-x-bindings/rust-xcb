@@ -13,8 +13,8 @@ use ffi::xproto;
 use ffi::shm;
 use ffi::xv;
 
-pub static XVMC_MAJOR_VERSION : c_uint = 1;
-pub static XVMC_MINOR_VERSION : c_uint = 1;
+pub const XVMC_MAJOR_VERSION : c_uint = 1;
+pub const XVMC_MINOR_VERSION : c_uint = 1;
 
 pub type xcb_xvmc_context_t = u32;
 /**

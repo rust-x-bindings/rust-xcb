@@ -20,40 +20,40 @@ use std::iter::Iterator;
 pub struct  GetVersionCookie<'s> { pub base : base::Cookie<'s, xcb_dpms_get_version_cookie_t> }
 
 /** Opcode for xcb_dpms_get_version. */
-pub static XCB_DPMS_GET_VERSION : u8 = 0;
+pub const XCB_DPMS_GET_VERSION : u8 = 0;
 pub struct GetVersionReply { base:  base::Reply<xcb_dpms_get_version_reply_t> }
 fn mk_reply_xcb_dpms_get_version_reply_t(reply:*mut xcb_dpms_get_version_reply_t) -> GetVersionReply { GetVersionReply { base : base::mk_reply(reply) } }
 pub struct  CapableCookie<'s> { pub base : base::Cookie<'s, xcb_dpms_capable_cookie_t> }
 
 /** Opcode for xcb_dpms_capable. */
-pub static XCB_DPMS_CAPABLE : u8 = 1;
+pub const XCB_DPMS_CAPABLE : u8 = 1;
 pub struct CapableReply { base:  base::Reply<xcb_dpms_capable_reply_t> }
 fn mk_reply_xcb_dpms_capable_reply_t(reply:*mut xcb_dpms_capable_reply_t) -> CapableReply { CapableReply { base : base::mk_reply(reply) } }
 pub struct  GetTimeoutsCookie<'s> { pub base : base::Cookie<'s, xcb_dpms_get_timeouts_cookie_t> }
 
 /** Opcode for xcb_dpms_get_timeouts. */
-pub static XCB_DPMS_GET_TIMEOUTS : u8 = 2;
+pub const XCB_DPMS_GET_TIMEOUTS : u8 = 2;
 pub struct GetTimeoutsReply { base:  base::Reply<xcb_dpms_get_timeouts_reply_t> }
 fn mk_reply_xcb_dpms_get_timeouts_reply_t(reply:*mut xcb_dpms_get_timeouts_reply_t) -> GetTimeoutsReply { GetTimeoutsReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_dpms_set_timeouts. */
-pub static XCB_DPMS_SET_TIMEOUTS : u8 = 3;
+pub const XCB_DPMS_SET_TIMEOUTS : u8 = 3;
 /** Opcode for xcb_dpms_enable. */
-pub static XCB_DPMS_ENABLE : u8 = 4;
+pub const XCB_DPMS_ENABLE : u8 = 4;
 /** Opcode for xcb_dpms_disable. */
-pub static XCB_DPMS_DISABLE : u8 = 5;
+pub const XCB_DPMS_DISABLE : u8 = 5;
 
 pub type xcb_dpms_dpms_mode_t = c_uint;//{
-    pub static XCB_DPMS_DPMS_MODE_ON : xcb_dpms_dpms_mode_t = 1;
-    pub static XCB_DPMS_DPMS_MODE_STANDBY : xcb_dpms_dpms_mode_t = 2;
-    pub static XCB_DPMS_DPMS_MODE_SUSPEND : xcb_dpms_dpms_mode_t = 3;
-    pub static XCB_DPMS_DPMS_MODE_OFF : xcb_dpms_dpms_mode_t = 4;
+    pub const XCB_DPMS_DPMS_MODE_ON : xcb_dpms_dpms_mode_t = 1;
+    pub const XCB_DPMS_DPMS_MODE_STANDBY : xcb_dpms_dpms_mode_t = 2;
+    pub const XCB_DPMS_DPMS_MODE_SUSPEND : xcb_dpms_dpms_mode_t = 3;
+    pub const XCB_DPMS_DPMS_MODE_OFF : xcb_dpms_dpms_mode_t = 4;
 //}
 /** Opcode for xcb_dpms_force_level. */
-pub static XCB_DPMS_FORCE_LEVEL : u8 = 6;
+pub const XCB_DPMS_FORCE_LEVEL : u8 = 6;
 pub struct  InfoCookie<'s> { pub base : base::Cookie<'s, xcb_dpms_info_cookie_t> }
 
 /** Opcode for xcb_dpms_info. */
-pub static XCB_DPMS_INFO : u8 = 7;
+pub const XCB_DPMS_INFO : u8 = 7;
 pub struct InfoReply { base:  base::Reply<xcb_dpms_info_reply_t> }
 fn mk_reply_xcb_dpms_info_reply_t(reply:*mut xcb_dpms_info_reply_t) -> InfoReply { InfoReply { base : base::mk_reply(reply) } }
 pub fn GetVersion<'r> (c : &'r Connection,

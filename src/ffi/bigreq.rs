@@ -10,8 +10,8 @@ use std;
 use libc::*;
 use ffi;
 
-pub static BIGREQUESTS_MAJOR_VERSION : c_uint = 0;
-pub static BIGREQUESTS_MINOR_VERSION : c_uint = 0;
+pub const BIGREQUESTS_MAJOR_VERSION : c_uint = 0;
+pub const BIGREQUESTS_MINOR_VERSION : c_uint = 0;
 
 #[derive(Copy, Clone)]
 #[repr(C)]

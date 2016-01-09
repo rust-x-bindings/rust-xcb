@@ -11,8 +11,8 @@ use libc::*;
 use ffi;
 use ffi::xproto;
 
-pub static RENDER_MAJOR_VERSION : c_uint = 0;
-pub static RENDER_MINOR_VERSION : c_uint = 11;
+pub const RENDER_MAJOR_VERSION : c_uint = 0;
+pub const RENDER_MINOR_VERSION : c_uint = 11;
 
 pub type xcb_render_glyph_t = u32;
 /**

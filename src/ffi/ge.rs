@@ -10,8 +10,8 @@ use std;
 use libc::*;
 use ffi;
 
-pub static GENERICEVENT_MAJOR_VERSION : c_uint = 1;
-pub static GENERICEVENT_MINOR_VERSION : c_uint = 0;
+pub const GENERICEVENT_MAJOR_VERSION : c_uint = 1;
+pub const GENERICEVENT_MINOR_VERSION : c_uint = 0;
 
 #[derive(Copy, Clone)]
 #[repr(C)]

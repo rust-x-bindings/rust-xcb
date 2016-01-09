@@ -10,8 +10,8 @@ use std;
 use libc::*;
 use ffi;
 
-pub static XF86DRI_MAJOR_VERSION : c_uint = 4;
-pub static XF86DRI_MINOR_VERSION : c_uint = 1;
+pub const XF86DRI_MAJOR_VERSION : c_uint = 4;
+pub const XF86DRI_MINOR_VERSION : c_uint = 1;
 
 #[repr(C)]
 pub struct xcb_xf86dri_drm_clip_rect_t {

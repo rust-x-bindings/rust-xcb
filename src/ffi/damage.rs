@@ -14,8 +14,8 @@ use ffi::render;
 use ffi::shape;
 use ffi::xfixes;
 
-pub static DAMAGE_MAJOR_VERSION : c_uint = 1;
-pub static DAMAGE_MINOR_VERSION : c_uint = 1;
+pub const DAMAGE_MAJOR_VERSION : c_uint = 1;
+pub const DAMAGE_MINOR_VERSION : c_uint = 1;
 
 pub type xcb_damage_damage_t = u32;
 /**

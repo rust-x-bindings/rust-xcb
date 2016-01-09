@@ -305,8 +305,8 @@ def c_open(self):
             _imports.append(h)
 
         _h('')
-        _h('pub static %s_MAJOR_VERSION : c_uint = %s;', _ns.ext_name.upper(), _ns.major_version)
-        _h('pub static %s_MINOR_VERSION : c_uint = %s;', _ns.ext_name.upper(), _ns.minor_version)
+        _h('pub const %s_MAJOR_VERSION : c_uint = %s;', _ns.ext_name.upper(), _ns.major_version)
+        _h('pub const %s_MINOR_VERSION : c_uint = %s;', _ns.ext_name.upper(), _ns.minor_version)
 
 def c_close(self):
     '''
@@ -376,7 +376,7 @@ def c_enum(self, name):
         doc = ''
         if hasattr(self, "doc") and self.doc and enam in self.doc.fields:
             doc = '\n/** %s */\n    ' % self.doc.fields[enam]
-        _r('    %spub static %s : %s = %s;', doc, _n(name + (enam,)).upper(), tname, val)
+        _r('    %spub const %s : %s = %s;', doc, _n(name + (enam,)).upper(), tname, val)
 
     _r('//}')
 
@@ -1585,7 +1585,7 @@ def _c_opcode(name, opcode):
     _r_setlevel(0)
     _h('')
     _r('/** Opcode for %s. */', _n(name))
-    _r('pub static %s : u8 = %s;', _n(name).upper(), opcode)
+    _r('pub const %s : u8 = %s;', _n(name).upper(), opcode)
 
 def _c_cookie(self, name):
     '''

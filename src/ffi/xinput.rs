@@ -11,8 +11,8 @@ use libc::*;
 use ffi;
 use ffi::xproto;
 
-pub static INPUT_MAJOR_VERSION : c_uint = 1;
-pub static INPUT_MINOR_VERSION : c_uint = 4;
+pub const INPUT_MAJOR_VERSION : c_uint = 1;
+pub const INPUT_MINOR_VERSION : c_uint = 4;
 
 pub type xcb_input_key_code_t = u8;
 /**

@@ -21,24 +21,24 @@ use xproto;
 pub struct  GetVersionCookie<'s> { pub base : base::Cookie<'s, xcb_test_get_version_cookie_t> }
 
 /** Opcode for xcb_test_get_version. */
-pub static XCB_TEST_GET_VERSION : u8 = 0;
+pub const XCB_TEST_GET_VERSION : u8 = 0;
 pub struct GetVersionReply { base:  base::Reply<xcb_test_get_version_reply_t> }
 fn mk_reply_xcb_test_get_version_reply_t(reply:*mut xcb_test_get_version_reply_t) -> GetVersionReply { GetVersionReply { base : base::mk_reply(reply) } }
 
 pub type xcb_test_cursor_t = c_uint;//{
-    pub static XCB_TEST_CURSOR_NONE : xcb_test_cursor_t = 0;
-    pub static XCB_TEST_CURSOR_CURRENT : xcb_test_cursor_t = 1;
+    pub const XCB_TEST_CURSOR_NONE : xcb_test_cursor_t = 0;
+    pub const XCB_TEST_CURSOR_CURRENT : xcb_test_cursor_t = 1;
 //}
 pub struct  CompareCursorCookie<'s> { pub base : base::Cookie<'s, xcb_test_compare_cursor_cookie_t> }
 
 /** Opcode for xcb_test_compare_cursor. */
-pub static XCB_TEST_COMPARE_CURSOR : u8 = 1;
+pub const XCB_TEST_COMPARE_CURSOR : u8 = 1;
 pub struct CompareCursorReply { base:  base::Reply<xcb_test_compare_cursor_reply_t> }
 fn mk_reply_xcb_test_compare_cursor_reply_t(reply:*mut xcb_test_compare_cursor_reply_t) -> CompareCursorReply { CompareCursorReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_test_fake_input. */
-pub static XCB_TEST_FAKE_INPUT : u8 = 2;
+pub const XCB_TEST_FAKE_INPUT : u8 = 2;
 /** Opcode for xcb_test_grab_control. */
-pub static XCB_TEST_GRAB_CONTROL : u8 = 3;
+pub const XCB_TEST_GRAB_CONTROL : u8 = 3;
 pub fn GetVersion<'r> (c : &'r Connection,
                    major_version : u8,
                    minor_version : u16) -> GetVersionCookie<'r> {

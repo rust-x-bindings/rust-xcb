@@ -13,8 +13,8 @@ use ffi::xproto;
 use ffi::render;
 use ffi::shape;
 
-pub static XFIXES_MAJOR_VERSION : c_uint = 5;
-pub static XFIXES_MINOR_VERSION : c_uint = 0;
+pub const XFIXES_MAJOR_VERSION : c_uint = 5;
+pub const XFIXES_MINOR_VERSION : c_uint = 0;
 
 #[derive(Copy, Clone)]
 #[repr(C)]

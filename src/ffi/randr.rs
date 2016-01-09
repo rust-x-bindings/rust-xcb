@@ -12,8 +12,8 @@ use ffi;
 use ffi::xproto;
 use ffi::render;
 
-pub static RANDR_MAJOR_VERSION : c_uint = 1;
-pub static RANDR_MINOR_VERSION : c_uint = 3;
+pub const RANDR_MAJOR_VERSION : c_uint = 1;
+pub const RANDR_MINOR_VERSION : c_uint = 3;
 
 pub type xcb_randr_mode_t = u32;
 /**

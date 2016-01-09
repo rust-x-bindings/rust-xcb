@@ -14,8 +14,8 @@ use ffi::render;
 use ffi::shape;
 use ffi::xfixes;
 
-pub static COMPOSITE_MAJOR_VERSION : c_uint = 0;
-pub static COMPOSITE_MINOR_VERSION : c_uint = 3;
+pub const COMPOSITE_MAJOR_VERSION : c_uint = 0;
+pub const COMPOSITE_MINOR_VERSION : c_uint = 3;
 
 #[derive(Copy, Clone)]
 #[repr(C)]

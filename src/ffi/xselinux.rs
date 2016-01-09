@@ -11,8 +11,8 @@ use libc::*;
 use ffi;
 use ffi::xproto;
 
-pub static SELINUX_MAJOR_VERSION : c_uint = 1;
-pub static SELINUX_MINOR_VERSION : c_uint = 0;
+pub const SELINUX_MAJOR_VERSION : c_uint = 1;
+pub const SELINUX_MINOR_VERSION : c_uint = 0;
 
 #[derive(Copy, Clone)]
 #[repr(C)]

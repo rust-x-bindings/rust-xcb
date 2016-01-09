@@ -26,53 +26,53 @@ pub type KindIterator = xcb_shape_kind_iterator_t;
 
 
 pub type xcb_shape_so_t = c_uint;//{
-    pub static XCB_SHAPE_SO_SET : xcb_shape_so_t = 1;
-    pub static XCB_SHAPE_SO_UNION : xcb_shape_so_t = 2;
-    pub static XCB_SHAPE_SO_INTERSECT : xcb_shape_so_t = 3;
-    pub static XCB_SHAPE_SO_SUBTRACT : xcb_shape_so_t = 4;
-    pub static XCB_SHAPE_SO_INVERT : xcb_shape_so_t = 5;
+    pub const XCB_SHAPE_SO_SET : xcb_shape_so_t = 1;
+    pub const XCB_SHAPE_SO_UNION : xcb_shape_so_t = 2;
+    pub const XCB_SHAPE_SO_INTERSECT : xcb_shape_so_t = 3;
+    pub const XCB_SHAPE_SO_SUBTRACT : xcb_shape_so_t = 4;
+    pub const XCB_SHAPE_SO_INVERT : xcb_shape_so_t = 5;
 //}
 
 pub type xcb_shape_sk_t = c_uint;//{
-    pub static XCB_SHAPE_SK_BOUNDING : xcb_shape_sk_t = 1;
-    pub static XCB_SHAPE_SK_CLIP : xcb_shape_sk_t = 2;
-    pub static XCB_SHAPE_SK_INPUT : xcb_shape_sk_t = 3;
+    pub const XCB_SHAPE_SK_BOUNDING : xcb_shape_sk_t = 1;
+    pub const XCB_SHAPE_SK_CLIP : xcb_shape_sk_t = 2;
+    pub const XCB_SHAPE_SK_INPUT : xcb_shape_sk_t = 3;
 //}
 /** Opcode for xcb_shape_notify. */
-pub static XCB_SHAPE_NOTIFY : u8 = 0;
+pub const XCB_SHAPE_NOTIFY : u8 = 0;
 pub struct NotifyEvent {pub base : base::Event<xcb_shape_notify_event_t>}
 pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_shape_query_version_cookie_t> }
 
 /** Opcode for xcb_shape_query_version. */
-pub static XCB_SHAPE_QUERY_VERSION : u8 = 0;
+pub const XCB_SHAPE_QUERY_VERSION : u8 = 0;
 pub struct QueryVersionReply { base:  base::Reply<xcb_shape_query_version_reply_t> }
 fn mk_reply_xcb_shape_query_version_reply_t(reply:*mut xcb_shape_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_shape_rectangles. */
-pub static XCB_SHAPE_RECTANGLES : u8 = 1;
+pub const XCB_SHAPE_RECTANGLES : u8 = 1;
 /** Opcode for xcb_shape_mask. */
-pub static XCB_SHAPE_MASK : u8 = 2;
+pub const XCB_SHAPE_MASK : u8 = 2;
 /** Opcode for xcb_shape_combine. */
-pub static XCB_SHAPE_COMBINE : u8 = 3;
+pub const XCB_SHAPE_COMBINE : u8 = 3;
 /** Opcode for xcb_shape_offset. */
-pub static XCB_SHAPE_OFFSET : u8 = 4;
+pub const XCB_SHAPE_OFFSET : u8 = 4;
 pub struct  QueryExtentsCookie<'s> { pub base : base::Cookie<'s, xcb_shape_query_extents_cookie_t> }
 
 /** Opcode for xcb_shape_query_extents. */
-pub static XCB_SHAPE_QUERY_EXTENTS : u8 = 5;
+pub const XCB_SHAPE_QUERY_EXTENTS : u8 = 5;
 pub struct QueryExtentsReply { base:  base::Reply<xcb_shape_query_extents_reply_t> }
 fn mk_reply_xcb_shape_query_extents_reply_t(reply:*mut xcb_shape_query_extents_reply_t) -> QueryExtentsReply { QueryExtentsReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_shape_select_input. */
-pub static XCB_SHAPE_SELECT_INPUT : u8 = 6;
+pub const XCB_SHAPE_SELECT_INPUT : u8 = 6;
 pub struct  InputSelectedCookie<'s> { pub base : base::Cookie<'s, xcb_shape_input_selected_cookie_t> }
 
 /** Opcode for xcb_shape_input_selected. */
-pub static XCB_SHAPE_INPUT_SELECTED : u8 = 7;
+pub const XCB_SHAPE_INPUT_SELECTED : u8 = 7;
 pub struct InputSelectedReply { base:  base::Reply<xcb_shape_input_selected_reply_t> }
 fn mk_reply_xcb_shape_input_selected_reply_t(reply:*mut xcb_shape_input_selected_reply_t) -> InputSelectedReply { InputSelectedReply { base : base::mk_reply(reply) } }
 pub struct  GetRectanglesCookie<'s> { pub base : base::Cookie<'s, xcb_shape_get_rectangles_cookie_t> }
 
 /** Opcode for xcb_shape_get_rectangles. */
-pub static XCB_SHAPE_GET_RECTANGLES : u8 = 8;
+pub const XCB_SHAPE_GET_RECTANGLES : u8 = 8;
 
 impl Iterator for OpIterator {
     type Item = Op;

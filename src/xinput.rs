@@ -26,27 +26,27 @@ pub type EventClassIterator = xcb_input_event_class_iterator_t;
 
 
 pub type xcb_input_valuator_mode_t = c_uint;//{
-    pub static XCB_INPUT_VALUATOR_MODE_RELATIVE : xcb_input_valuator_mode_t = 0;
-    pub static XCB_INPUT_VALUATOR_MODE_ABSOLUTE : xcb_input_valuator_mode_t = 1;
+    pub const XCB_INPUT_VALUATOR_MODE_RELATIVE : xcb_input_valuator_mode_t = 0;
+    pub const XCB_INPUT_VALUATOR_MODE_ABSOLUTE : xcb_input_valuator_mode_t = 1;
 //}
 
 pub type xcb_input_propagate_mode_t = c_uint;//{
-    pub static XCB_INPUT_PROPAGATE_MODE_ADD_TO_LIST : xcb_input_propagate_mode_t = 0;
-    pub static XCB_INPUT_PROPAGATE_MODE_DELETE_FROM_LIST : xcb_input_propagate_mode_t = 1;
+    pub const XCB_INPUT_PROPAGATE_MODE_ADD_TO_LIST : xcb_input_propagate_mode_t = 0;
+    pub const XCB_INPUT_PROPAGATE_MODE_DELETE_FROM_LIST : xcb_input_propagate_mode_t = 1;
 //}
 pub struct  GetExtensionVersionCookie<'s> { pub base : base::Cookie<'s, xcb_input_get_extension_version_cookie_t> }
 
 /** Opcode for xcb_input_get_extension_version. */
-pub static XCB_INPUT_GET_EXTENSION_VERSION : u8 = 1;
+pub const XCB_INPUT_GET_EXTENSION_VERSION : u8 = 1;
 pub struct GetExtensionVersionReply { base:  base::Reply<xcb_input_get_extension_version_reply_t> }
 fn mk_reply_xcb_input_get_extension_version_reply_t(reply:*mut xcb_input_get_extension_version_reply_t) -> GetExtensionVersionReply { GetExtensionVersionReply { base : base::mk_reply(reply) } }
 
 pub type xcb_input_device_use_t = c_uint;//{
-    pub static XCB_INPUT_DEVICE_USE_IS_X_POINTER : xcb_input_device_use_t = 0;
-    pub static XCB_INPUT_DEVICE_USE_IS_X_KEYBOARD : xcb_input_device_use_t = 1;
-    pub static XCB_INPUT_DEVICE_USE_IS_X_EXTENSION_DEVICE : xcb_input_device_use_t = 2;
-    pub static XCB_INPUT_DEVICE_USE_IS_X_EXTENSION_KEYBOARD : xcb_input_device_use_t = 3;
-    pub static XCB_INPUT_DEVICE_USE_IS_X_EXTENSION_POINTER : xcb_input_device_use_t = 4;
+    pub const XCB_INPUT_DEVICE_USE_IS_X_POINTER : xcb_input_device_use_t = 0;
+    pub const XCB_INPUT_DEVICE_USE_IS_X_KEYBOARD : xcb_input_device_use_t = 1;
+    pub const XCB_INPUT_DEVICE_USE_IS_X_EXTENSION_DEVICE : xcb_input_device_use_t = 2;
+    pub const XCB_INPUT_DEVICE_USE_IS_X_EXTENSION_KEYBOARD : xcb_input_device_use_t = 3;
+    pub const XCB_INPUT_DEVICE_USE_IS_X_EXTENSION_POINTER : xcb_input_device_use_t = 4;
 //}
 pub struct DeviceInfo {pub base : base::Struct<xcb_input_device_info_t> }
 
@@ -55,16 +55,16 @@ pub type DeviceInfoIterator = xcb_input_device_info_iterator_t;
 pub struct  ListInputDevicesCookie<'s> { pub base : base::Cookie<'s, xcb_input_list_input_devices_cookie_t> }
 
 /** Opcode for xcb_input_list_input_devices. */
-pub static XCB_INPUT_LIST_INPUT_DEVICES : u8 = 2;
+pub const XCB_INPUT_LIST_INPUT_DEVICES : u8 = 2;
 
 pub type xcb_input_input_class_t = c_uint;//{
-    pub static XCB_INPUT_INPUT_CLASS_KEY : xcb_input_input_class_t = 0;
-    pub static XCB_INPUT_INPUT_CLASS_BUTTON : xcb_input_input_class_t = 1;
-    pub static XCB_INPUT_INPUT_CLASS_VALUATOR : xcb_input_input_class_t = 2;
-    pub static XCB_INPUT_INPUT_CLASS_FEEDBACK : xcb_input_input_class_t = 3;
-    pub static XCB_INPUT_INPUT_CLASS_PROXIMITY : xcb_input_input_class_t = 4;
-    pub static XCB_INPUT_INPUT_CLASS_FOCUS : xcb_input_input_class_t = 5;
-    pub static XCB_INPUT_INPUT_CLASS_OTHER : xcb_input_input_class_t = 6;
+    pub const XCB_INPUT_INPUT_CLASS_KEY : xcb_input_input_class_t = 0;
+    pub const XCB_INPUT_INPUT_CLASS_BUTTON : xcb_input_input_class_t = 1;
+    pub const XCB_INPUT_INPUT_CLASS_VALUATOR : xcb_input_input_class_t = 2;
+    pub const XCB_INPUT_INPUT_CLASS_FEEDBACK : xcb_input_input_class_t = 3;
+    pub const XCB_INPUT_INPUT_CLASS_PROXIMITY : xcb_input_input_class_t = 4;
+    pub const XCB_INPUT_INPUT_CLASS_FOCUS : xcb_input_input_class_t = 5;
+    pub const XCB_INPUT_INPUT_CLASS_OTHER : xcb_input_input_class_t = 6;
 //}
 pub struct InputInfo {pub base : base::Struct<xcb_input_input_info_t> }
 
@@ -83,31 +83,31 @@ pub type InputClassInfoIterator = xcb_input_input_class_info_iterator_t;
 pub struct  OpenDeviceCookie<'s> { pub base : base::Cookie<'s, xcb_input_open_device_cookie_t> }
 
 /** Opcode for xcb_input_open_device. */
-pub static XCB_INPUT_OPEN_DEVICE : u8 = 3;
+pub const XCB_INPUT_OPEN_DEVICE : u8 = 3;
 /** Opcode for xcb_input_close_device. */
-pub static XCB_INPUT_CLOSE_DEVICE : u8 = 4;
+pub const XCB_INPUT_CLOSE_DEVICE : u8 = 4;
 pub struct  SetDeviceModeCookie<'s> { pub base : base::Cookie<'s, xcb_input_set_device_mode_cookie_t> }
 
 /** Opcode for xcb_input_set_device_mode. */
-pub static XCB_INPUT_SET_DEVICE_MODE : u8 = 5;
+pub const XCB_INPUT_SET_DEVICE_MODE : u8 = 5;
 pub struct SetDeviceModeReply { base:  base::Reply<xcb_input_set_device_mode_reply_t> }
 fn mk_reply_xcb_input_set_device_mode_reply_t(reply:*mut xcb_input_set_device_mode_reply_t) -> SetDeviceModeReply { SetDeviceModeReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_input_select_extension_event. */
-pub static XCB_INPUT_SELECT_EXTENSION_EVENT : u8 = 6;
+pub const XCB_INPUT_SELECT_EXTENSION_EVENT : u8 = 6;
 pub struct  GetSelectedExtensionEventsCookie<'s> { pub base : base::Cookie<'s, xcb_input_get_selected_extension_events_cookie_t> }
 
 /** Opcode for xcb_input_get_selected_extension_events. */
-pub static XCB_INPUT_GET_SELECTED_EXTENSION_EVENTS : u8 = 7;
+pub const XCB_INPUT_GET_SELECTED_EXTENSION_EVENTS : u8 = 7;
 /** Opcode for xcb_input_change_device_dont_propagate_list. */
-pub static XCB_INPUT_CHANGE_DEVICE_DONT_PROPAGATE_LIST : u8 = 8;
+pub const XCB_INPUT_CHANGE_DEVICE_DONT_PROPAGATE_LIST : u8 = 8;
 pub struct  GetDeviceDontPropagateListCookie<'s> { pub base : base::Cookie<'s, xcb_input_get_device_dont_propagate_list_cookie_t> }
 
 /** Opcode for xcb_input_get_device_dont_propagate_list. */
-pub static XCB_INPUT_GET_DEVICE_DONT_PROPAGATE_LIST : u8 = 9;
+pub const XCB_INPUT_GET_DEVICE_DONT_PROPAGATE_LIST : u8 = 9;
 pub struct  GetDeviceMotionEventsCookie<'s> { pub base : base::Cookie<'s, xcb_input_get_device_motion_events_cookie_t> }
 
 /** Opcode for xcb_input_get_device_motion_events. */
-pub static XCB_INPUT_GET_DEVICE_MOTION_EVENTS : u8 = 10;
+pub const XCB_INPUT_GET_DEVICE_MOTION_EVENTS : u8 = 10;
 pub struct GetDeviceMotionEventsReply { base:  base::Reply<xcb_input_get_device_motion_events_reply_t> }
 fn mk_reply_xcb_input_get_device_motion_events_reply_t(reply:*mut xcb_input_get_device_motion_events_reply_t) -> GetDeviceMotionEventsReply { GetDeviceMotionEventsReply { base : base::mk_reply(reply) } }
 pub type DeviceTimeCoordIterator = xcb_input_device_time_coord_iterator_t;
@@ -115,64 +115,64 @@ pub type DeviceTimeCoordIterator = xcb_input_device_time_coord_iterator_t;
 pub struct  ChangeKeyboardDeviceCookie<'s> { pub base : base::Cookie<'s, xcb_input_change_keyboard_device_cookie_t> }
 
 /** Opcode for xcb_input_change_keyboard_device. */
-pub static XCB_INPUT_CHANGE_KEYBOARD_DEVICE : u8 = 11;
+pub const XCB_INPUT_CHANGE_KEYBOARD_DEVICE : u8 = 11;
 pub struct ChangeKeyboardDeviceReply { base:  base::Reply<xcb_input_change_keyboard_device_reply_t> }
 fn mk_reply_xcb_input_change_keyboard_device_reply_t(reply:*mut xcb_input_change_keyboard_device_reply_t) -> ChangeKeyboardDeviceReply { ChangeKeyboardDeviceReply { base : base::mk_reply(reply) } }
 pub struct  ChangePointerDeviceCookie<'s> { pub base : base::Cookie<'s, xcb_input_change_pointer_device_cookie_t> }
 
 /** Opcode for xcb_input_change_pointer_device. */
-pub static XCB_INPUT_CHANGE_POINTER_DEVICE : u8 = 12;
+pub const XCB_INPUT_CHANGE_POINTER_DEVICE : u8 = 12;
 pub struct ChangePointerDeviceReply { base:  base::Reply<xcb_input_change_pointer_device_reply_t> }
 fn mk_reply_xcb_input_change_pointer_device_reply_t(reply:*mut xcb_input_change_pointer_device_reply_t) -> ChangePointerDeviceReply { ChangePointerDeviceReply { base : base::mk_reply(reply) } }
 pub struct  GrabDeviceCookie<'s> { pub base : base::Cookie<'s, xcb_input_grab_device_cookie_t> }
 
 /** Opcode for xcb_input_grab_device. */
-pub static XCB_INPUT_GRAB_DEVICE : u8 = 13;
+pub const XCB_INPUT_GRAB_DEVICE : u8 = 13;
 pub struct GrabDeviceReply { base:  base::Reply<xcb_input_grab_device_reply_t> }
 fn mk_reply_xcb_input_grab_device_reply_t(reply:*mut xcb_input_grab_device_reply_t) -> GrabDeviceReply { GrabDeviceReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_input_ungrab_device. */
-pub static XCB_INPUT_UNGRAB_DEVICE : u8 = 14;
+pub const XCB_INPUT_UNGRAB_DEVICE : u8 = 14;
 /** Opcode for xcb_input_grab_device_key. */
-pub static XCB_INPUT_GRAB_DEVICE_KEY : u8 = 15;
+pub const XCB_INPUT_GRAB_DEVICE_KEY : u8 = 15;
 /** Opcode for xcb_input_ungrab_device_key. */
-pub static XCB_INPUT_UNGRAB_DEVICE_KEY : u8 = 16;
+pub const XCB_INPUT_UNGRAB_DEVICE_KEY : u8 = 16;
 /** Opcode for xcb_input_grab_device_button. */
-pub static XCB_INPUT_GRAB_DEVICE_BUTTON : u8 = 17;
+pub const XCB_INPUT_GRAB_DEVICE_BUTTON : u8 = 17;
 /** Opcode for xcb_input_ungrab_device_button. */
-pub static XCB_INPUT_UNGRAB_DEVICE_BUTTON : u8 = 18;
+pub const XCB_INPUT_UNGRAB_DEVICE_BUTTON : u8 = 18;
 
 pub type xcb_input_device_input_mode_t = c_uint;//{
-    pub static XCB_INPUT_DEVICE_INPUT_MODE_ASYNC_THIS_DEVICE : xcb_input_device_input_mode_t = 1;
-    pub static XCB_INPUT_DEVICE_INPUT_MODE_SYNC_THIS_DEVICE : xcb_input_device_input_mode_t = 2;
-    pub static XCB_INPUT_DEVICE_INPUT_MODE_REPLAY_THIS_DEVICE : xcb_input_device_input_mode_t = 3;
-    pub static XCB_INPUT_DEVICE_INPUT_MODE_ASYNC_OTHER_DEVICES : xcb_input_device_input_mode_t = 4;
-    pub static XCB_INPUT_DEVICE_INPUT_MODE_ASYNC_ALL : xcb_input_device_input_mode_t = 5;
-    pub static XCB_INPUT_DEVICE_INPUT_MODE_SYNC_ALL : xcb_input_device_input_mode_t = 6;
+    pub const XCB_INPUT_DEVICE_INPUT_MODE_ASYNC_THIS_DEVICE : xcb_input_device_input_mode_t = 1;
+    pub const XCB_INPUT_DEVICE_INPUT_MODE_SYNC_THIS_DEVICE : xcb_input_device_input_mode_t = 2;
+    pub const XCB_INPUT_DEVICE_INPUT_MODE_REPLAY_THIS_DEVICE : xcb_input_device_input_mode_t = 3;
+    pub const XCB_INPUT_DEVICE_INPUT_MODE_ASYNC_OTHER_DEVICES : xcb_input_device_input_mode_t = 4;
+    pub const XCB_INPUT_DEVICE_INPUT_MODE_ASYNC_ALL : xcb_input_device_input_mode_t = 5;
+    pub const XCB_INPUT_DEVICE_INPUT_MODE_SYNC_ALL : xcb_input_device_input_mode_t = 6;
 //}
 /** Opcode for xcb_input_allow_device_events. */
-pub static XCB_INPUT_ALLOW_DEVICE_EVENTS : u8 = 19;
+pub const XCB_INPUT_ALLOW_DEVICE_EVENTS : u8 = 19;
 pub struct  GetDeviceFocusCookie<'s> { pub base : base::Cookie<'s, xcb_input_get_device_focus_cookie_t> }
 
 /** Opcode for xcb_input_get_device_focus. */
-pub static XCB_INPUT_GET_DEVICE_FOCUS : u8 = 20;
+pub const XCB_INPUT_GET_DEVICE_FOCUS : u8 = 20;
 pub struct GetDeviceFocusReply { base:  base::Reply<xcb_input_get_device_focus_reply_t> }
 fn mk_reply_xcb_input_get_device_focus_reply_t(reply:*mut xcb_input_get_device_focus_reply_t) -> GetDeviceFocusReply { GetDeviceFocusReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_input_set_device_focus. */
-pub static XCB_INPUT_SET_DEVICE_FOCUS : u8 = 21;
+pub const XCB_INPUT_SET_DEVICE_FOCUS : u8 = 21;
 pub struct  GetFeedbackControlCookie<'s> { pub base : base::Cookie<'s, xcb_input_get_feedback_control_cookie_t> }
 
 /** Opcode for xcb_input_get_feedback_control. */
-pub static XCB_INPUT_GET_FEEDBACK_CONTROL : u8 = 22;
+pub const XCB_INPUT_GET_FEEDBACK_CONTROL : u8 = 22;
 pub struct GetFeedbackControlReply { base:  base::Reply<xcb_input_get_feedback_control_reply_t> }
 fn mk_reply_xcb_input_get_feedback_control_reply_t(reply:*mut xcb_input_get_feedback_control_reply_t) -> GetFeedbackControlReply { GetFeedbackControlReply { base : base::mk_reply(reply) } }
 
 pub type xcb_input_feedback_class_t = c_uint;//{
-    pub static XCB_INPUT_FEEDBACK_CLASS_KEYBOARD : xcb_input_feedback_class_t = 1;
-    pub static XCB_INPUT_FEEDBACK_CLASS_POINTER : xcb_input_feedback_class_t = 2;
-    pub static XCB_INPUT_FEEDBACK_CLASS_STRING : xcb_input_feedback_class_t = 3;
-    pub static XCB_INPUT_FEEDBACK_CLASS_INTEGER : xcb_input_feedback_class_t = 4;
-    pub static XCB_INPUT_FEEDBACK_CLASS_LED : xcb_input_feedback_class_t = 5;
-    pub static XCB_INPUT_FEEDBACK_CLASS_BELL : xcb_input_feedback_class_t = 6;
+    pub const XCB_INPUT_FEEDBACK_CLASS_KEYBOARD : xcb_input_feedback_class_t = 1;
+    pub const XCB_INPUT_FEEDBACK_CLASS_POINTER : xcb_input_feedback_class_t = 2;
+    pub const XCB_INPUT_FEEDBACK_CLASS_STRING : xcb_input_feedback_class_t = 3;
+    pub const XCB_INPUT_FEEDBACK_CLASS_INTEGER : xcb_input_feedback_class_t = 4;
+    pub const XCB_INPUT_FEEDBACK_CLASS_LED : xcb_input_feedback_class_t = 5;
+    pub const XCB_INPUT_FEEDBACK_CLASS_BELL : xcb_input_feedback_class_t = 6;
 //}
 pub struct FeedbackState {pub base : base::Struct<xcb_input_feedback_state_t> }
 
@@ -207,33 +207,33 @@ pub type LedFeedbackCtlIterator = xcb_input_led_feedback_ctl_iterator_t;
 pub struct  GetDeviceKeyMappingCookie<'s> { pub base : base::Cookie<'s, xcb_input_get_device_key_mapping_cookie_t> }
 
 /** Opcode for xcb_input_get_device_key_mapping. */
-pub static XCB_INPUT_GET_DEVICE_KEY_MAPPING : u8 = 24;
+pub const XCB_INPUT_GET_DEVICE_KEY_MAPPING : u8 = 24;
 /** Opcode for xcb_input_change_device_key_mapping. */
-pub static XCB_INPUT_CHANGE_DEVICE_KEY_MAPPING : u8 = 25;
+pub const XCB_INPUT_CHANGE_DEVICE_KEY_MAPPING : u8 = 25;
 pub struct  GetDeviceModifierMappingCookie<'s> { pub base : base::Cookie<'s, xcb_input_get_device_modifier_mapping_cookie_t> }
 
 /** Opcode for xcb_input_get_device_modifier_mapping. */
-pub static XCB_INPUT_GET_DEVICE_MODIFIER_MAPPING : u8 = 26;
+pub const XCB_INPUT_GET_DEVICE_MODIFIER_MAPPING : u8 = 26;
 pub struct  SetDeviceModifierMappingCookie<'s> { pub base : base::Cookie<'s, xcb_input_set_device_modifier_mapping_cookie_t> }
 
 /** Opcode for xcb_input_set_device_modifier_mapping. */
-pub static XCB_INPUT_SET_DEVICE_MODIFIER_MAPPING : u8 = 27;
+pub const XCB_INPUT_SET_DEVICE_MODIFIER_MAPPING : u8 = 27;
 pub struct SetDeviceModifierMappingReply { base:  base::Reply<xcb_input_set_device_modifier_mapping_reply_t> }
 fn mk_reply_xcb_input_set_device_modifier_mapping_reply_t(reply:*mut xcb_input_set_device_modifier_mapping_reply_t) -> SetDeviceModifierMappingReply { SetDeviceModifierMappingReply { base : base::mk_reply(reply) } }
 pub struct  GetDeviceButtonMappingCookie<'s> { pub base : base::Cookie<'s, xcb_input_get_device_button_mapping_cookie_t> }
 
 /** Opcode for xcb_input_get_device_button_mapping. */
-pub static XCB_INPUT_GET_DEVICE_BUTTON_MAPPING : u8 = 28;
+pub const XCB_INPUT_GET_DEVICE_BUTTON_MAPPING : u8 = 28;
 pub struct  SetDeviceButtonMappingCookie<'s> { pub base : base::Cookie<'s, xcb_input_set_device_button_mapping_cookie_t> }
 
 /** Opcode for xcb_input_set_device_button_mapping. */
-pub static XCB_INPUT_SET_DEVICE_BUTTON_MAPPING : u8 = 29;
+pub const XCB_INPUT_SET_DEVICE_BUTTON_MAPPING : u8 = 29;
 pub struct SetDeviceButtonMappingReply { base:  base::Reply<xcb_input_set_device_button_mapping_reply_t> }
 fn mk_reply_xcb_input_set_device_button_mapping_reply_t(reply:*mut xcb_input_set_device_button_mapping_reply_t) -> SetDeviceButtonMappingReply { SetDeviceButtonMappingReply { base : base::mk_reply(reply) } }
 pub struct  QueryDeviceStateCookie<'s> { pub base : base::Cookie<'s, xcb_input_query_device_state_cookie_t> }
 
 /** Opcode for xcb_input_query_device_state. */
-pub static XCB_INPUT_QUERY_DEVICE_STATE : u8 = 30;
+pub const XCB_INPUT_QUERY_DEVICE_STATE : u8 = 30;
 pub struct QueryDeviceStateReply { base:  base::Reply<xcb_input_query_device_state_reply_t> }
 fn mk_reply_xcb_input_query_device_state_reply_t(reply:*mut xcb_input_query_device_state_reply_t) -> QueryDeviceStateReply { QueryDeviceStateReply { base : base::mk_reply(reply) } }
 pub type InputStateIterator = xcb_input_input_state_iterator_t;
@@ -245,19 +245,19 @@ pub type ButtonStateIterator = xcb_input_button_state_iterator_t;
 pub type ValuatorStateIterator = xcb_input_valuator_state_iterator_t;
 
 /** Opcode for xcb_input_send_extension_event. */
-pub static XCB_INPUT_SEND_EXTENSION_EVENT : u8 = 31;
+pub const XCB_INPUT_SEND_EXTENSION_EVENT : u8 = 31;
 /** Opcode for xcb_input_device_bell. */
-pub static XCB_INPUT_DEVICE_BELL : u8 = 32;
+pub const XCB_INPUT_DEVICE_BELL : u8 = 32;
 pub struct  SetDeviceValuatorsCookie<'s> { pub base : base::Cookie<'s, xcb_input_set_device_valuators_cookie_t> }
 
 /** Opcode for xcb_input_set_device_valuators. */
-pub static XCB_INPUT_SET_DEVICE_VALUATORS : u8 = 33;
+pub const XCB_INPUT_SET_DEVICE_VALUATORS : u8 = 33;
 pub struct SetDeviceValuatorsReply { base:  base::Reply<xcb_input_set_device_valuators_reply_t> }
 fn mk_reply_xcb_input_set_device_valuators_reply_t(reply:*mut xcb_input_set_device_valuators_reply_t) -> SetDeviceValuatorsReply { SetDeviceValuatorsReply { base : base::mk_reply(reply) } }
 pub struct  GetDeviceControlCookie<'s> { pub base : base::Cookie<'s, xcb_input_get_device_control_cookie_t> }
 
 /** Opcode for xcb_input_get_device_control. */
-pub static XCB_INPUT_GET_DEVICE_CONTROL : u8 = 34;
+pub const XCB_INPUT_GET_DEVICE_CONTROL : u8 = 34;
 pub struct GetDeviceControlReply { base:  base::Reply<xcb_input_get_device_control_reply_t> }
 fn mk_reply_xcb_input_get_device_control_reply_t(reply:*mut xcb_input_get_device_control_reply_t) -> GetDeviceControlReply { GetDeviceControlReply { base : base::mk_reply(reply) } }
 pub type DeviceStateIterator = xcb_input_device_state_iterator_t;
@@ -285,67 +285,67 @@ pub type DeviceCoreCtrlIterator = xcb_input_device_core_ctrl_iterator_t;
 pub type DeviceEnableCtrlIterator = xcb_input_device_enable_ctrl_iterator_t;
 
 /** Opcode for xcb_input_device_valuator. */
-pub static XCB_INPUT_DEVICE_VALUATOR : u8 = 0;
+pub const XCB_INPUT_DEVICE_VALUATOR : u8 = 0;
 pub struct DeviceValuatorEvent {pub base : base::Event<xcb_input_device_valuator_event_t>}
 /** Opcode for xcb_input_device_key_press. */
-pub static XCB_INPUT_DEVICE_KEY_PRESS : u8 = 1;
+pub const XCB_INPUT_DEVICE_KEY_PRESS : u8 = 1;
 pub struct DeviceKeyPressEvent {pub base : base::Event<xcb_input_device_key_press_event_t>}
 /** Opcode for xcb_input_device_key_release. */
-pub static XCB_INPUT_DEVICE_KEY_RELEASE : u8 = 2;
+pub const XCB_INPUT_DEVICE_KEY_RELEASE : u8 = 2;
 pub struct DeviceKeyReleaseEvent {pub base : base::Event<xcb_input_device_key_release_event_t>}
 /** Opcode for xcb_input_device_button_press. */
-pub static XCB_INPUT_DEVICE_BUTTON_PRESS : u8 = 3;
+pub const XCB_INPUT_DEVICE_BUTTON_PRESS : u8 = 3;
 pub struct DeviceButtonPressEvent {pub base : base::Event<xcb_input_device_button_press_event_t>}
 /** Opcode for xcb_input_device_button_release. */
-pub static XCB_INPUT_DEVICE_BUTTON_RELEASE : u8 = 4;
+pub const XCB_INPUT_DEVICE_BUTTON_RELEASE : u8 = 4;
 pub struct DeviceButtonReleaseEvent {pub base : base::Event<xcb_input_device_button_release_event_t>}
 /** Opcode for xcb_input_device_motion_notify. */
-pub static XCB_INPUT_DEVICE_MOTION_NOTIFY : u8 = 5;
+pub const XCB_INPUT_DEVICE_MOTION_NOTIFY : u8 = 5;
 pub struct DeviceMotionNotifyEvent {pub base : base::Event<xcb_input_device_motion_notify_event_t>}
 /** Opcode for xcb_input_proximity_in. */
-pub static XCB_INPUT_PROXIMITY_IN : u8 = 8;
+pub const XCB_INPUT_PROXIMITY_IN : u8 = 8;
 pub struct ProximityInEvent {pub base : base::Event<xcb_input_proximity_in_event_t>}
 /** Opcode for xcb_input_proximity_out. */
-pub static XCB_INPUT_PROXIMITY_OUT : u8 = 9;
+pub const XCB_INPUT_PROXIMITY_OUT : u8 = 9;
 pub struct ProximityOutEvent {pub base : base::Event<xcb_input_proximity_out_event_t>}
 /** Opcode for xcb_input_focus_in. */
-pub static XCB_INPUT_FOCUS_IN : u8 = 6;
+pub const XCB_INPUT_FOCUS_IN : u8 = 6;
 pub struct FocusInEvent {pub base : base::Event<xcb_input_focus_in_event_t>}
 /** Opcode for xcb_input_focus_out. */
-pub static XCB_INPUT_FOCUS_OUT : u8 = 7;
+pub const XCB_INPUT_FOCUS_OUT : u8 = 7;
 pub struct FocusOutEvent {pub base : base::Event<xcb_input_focus_out_event_t>}
 /** Opcode for xcb_input_device_state_notify. */
-pub static XCB_INPUT_DEVICE_STATE_NOTIFY : u8 = 10;
+pub const XCB_INPUT_DEVICE_STATE_NOTIFY : u8 = 10;
 pub struct DeviceStateNotifyEvent {pub base : base::Event<xcb_input_device_state_notify_event_t>}
 /** Opcode for xcb_input_device_mapping_notify. */
-pub static XCB_INPUT_DEVICE_MAPPING_NOTIFY : u8 = 11;
+pub const XCB_INPUT_DEVICE_MAPPING_NOTIFY : u8 = 11;
 pub struct DeviceMappingNotifyEvent {pub base : base::Event<xcb_input_device_mapping_notify_event_t>}
 /** Opcode for xcb_input_change_device_notify. */
-pub static XCB_INPUT_CHANGE_DEVICE_NOTIFY : u8 = 12;
+pub const XCB_INPUT_CHANGE_DEVICE_NOTIFY : u8 = 12;
 pub struct ChangeDeviceNotifyEvent {pub base : base::Event<xcb_input_change_device_notify_event_t>}
 /** Opcode for xcb_input_device_key_state_notify. */
-pub static XCB_INPUT_DEVICE_KEY_STATE_NOTIFY : u8 = 13;
+pub const XCB_INPUT_DEVICE_KEY_STATE_NOTIFY : u8 = 13;
 pub struct DeviceKeyStateNotifyEvent {pub base : base::Event<xcb_input_device_key_state_notify_event_t>}
 /** Opcode for xcb_input_device_button_state_notify. */
-pub static XCB_INPUT_DEVICE_BUTTON_STATE_NOTIFY : u8 = 14;
+pub const XCB_INPUT_DEVICE_BUTTON_STATE_NOTIFY : u8 = 14;
 pub struct DeviceButtonStateNotifyEvent {pub base : base::Event<xcb_input_device_button_state_notify_event_t>}
 /** Opcode for xcb_input_device_presence_notify. */
-pub static XCB_INPUT_DEVICE_PRESENCE_NOTIFY : u8 = 15;
+pub const XCB_INPUT_DEVICE_PRESENCE_NOTIFY : u8 = 15;
 pub struct DevicePresenceNotifyEvent {pub base : base::Event<xcb_input_device_presence_notify_event_t>}
 /** Opcode for xcb_input_device. */
-pub static XCB_INPUT_DEVICE : u8 = 0;
+pub const XCB_INPUT_DEVICE : u8 = 0;
 pub struct DeviceError { pub base : base::Error<xcb_input_device_error_t> }
 /** Opcode for xcb_input_event. */
-pub static XCB_INPUT_EVENT : u8 = 1;
+pub const XCB_INPUT_EVENT : u8 = 1;
 pub struct EventError { pub base : base::Error<xcb_input_event_error_t> }
 /** Opcode for xcb_input_mode. */
-pub static XCB_INPUT_MODE : u8 = 2;
+pub const XCB_INPUT_MODE : u8 = 2;
 pub struct ModeError { pub base : base::Error<xcb_input_mode_error_t> }
 /** Opcode for xcb_input_device_busy. */
-pub static XCB_INPUT_DEVICE_BUSY : u8 = 3;
+pub const XCB_INPUT_DEVICE_BUSY : u8 = 3;
 pub struct DeviceBusyError { pub base : base::Error<xcb_input_device_busy_error_t> }
 /** Opcode for xcb_input_class. */
-pub static XCB_INPUT_CLASS : u8 = 4;
+pub const XCB_INPUT_CLASS : u8 = 4;
 pub struct ClassError { pub base : base::Error<xcb_input_class_error_t> }
 
 

@@ -11,8 +11,8 @@ use libc::*;
 use ffi;
 use ffi::xproto;
 
-pub static SCREENSAVER_MAJOR_VERSION : c_uint = 1;
-pub static SCREENSAVER_MINOR_VERSION : c_uint = 1;
+pub const SCREENSAVER_MAJOR_VERSION : c_uint = 1;
+pub const SCREENSAVER_MINOR_VERSION : c_uint = 1;
 
 #[derive(Copy, Clone)]
 #[repr(C)]

@@ -20,110 +20,110 @@ use std::iter::Iterator;
 use xproto;
 
 pub type xcb_render_pict_type_t = c_uint;//{
-    pub static XCB_RENDER_PICT_TYPE_INDEXED : xcb_render_pict_type_t = 1;
-    pub static XCB_RENDER_PICT_TYPE_DIRECT : xcb_render_pict_type_t = 2;
+    pub const XCB_RENDER_PICT_TYPE_INDEXED : xcb_render_pict_type_t = 1;
+    pub const XCB_RENDER_PICT_TYPE_DIRECT : xcb_render_pict_type_t = 2;
 //}
 
 pub type xcb_render_picture_enum_t = c_uint;//{
-    pub static XCB_RENDER_PICTURE_NONE : xcb_render_picture_enum_t = 1;
+    pub const XCB_RENDER_PICTURE_NONE : xcb_render_picture_enum_t = 1;
 //}
 
 pub type xcb_render_pict_op_t = c_uint;//{
-    pub static XCB_RENDER_PICT_OP_CLEAR : xcb_render_pict_op_t = 1;
-    pub static XCB_RENDER_PICT_OP_SRC : xcb_render_pict_op_t = 2;
-    pub static XCB_RENDER_PICT_OP_DST : xcb_render_pict_op_t = 3;
-    pub static XCB_RENDER_PICT_OP_OVER : xcb_render_pict_op_t = 4;
-    pub static XCB_RENDER_PICT_OP_OVER_REVERSE : xcb_render_pict_op_t = 5;
-    pub static XCB_RENDER_PICT_OP_IN : xcb_render_pict_op_t = 6;
-    pub static XCB_RENDER_PICT_OP_IN_REVERSE : xcb_render_pict_op_t = 7;
-    pub static XCB_RENDER_PICT_OP_OUT : xcb_render_pict_op_t = 8;
-    pub static XCB_RENDER_PICT_OP_OUT_REVERSE : xcb_render_pict_op_t = 9;
-    pub static XCB_RENDER_PICT_OP_ATOP : xcb_render_pict_op_t = 10;
-    pub static XCB_RENDER_PICT_OP_ATOP_REVERSE : xcb_render_pict_op_t = 11;
-    pub static XCB_RENDER_PICT_OP_XOR : xcb_render_pict_op_t = 12;
-    pub static XCB_RENDER_PICT_OP_ADD : xcb_render_pict_op_t = 13;
-    pub static XCB_RENDER_PICT_OP_SATURATE : xcb_render_pict_op_t = 14;
-    pub static XCB_RENDER_PICT_OP_DISJOINT_CLEAR : xcb_render_pict_op_t = 16;
-    pub static XCB_RENDER_PICT_OP_DISJOINT_SRC : xcb_render_pict_op_t = 17;
-    pub static XCB_RENDER_PICT_OP_DISJOINT_DST : xcb_render_pict_op_t = 18;
-    pub static XCB_RENDER_PICT_OP_DISJOINT_OVER : xcb_render_pict_op_t = 19;
-    pub static XCB_RENDER_PICT_OP_DISJOINT_OVER_REVERSE : xcb_render_pict_op_t = 20;
-    pub static XCB_RENDER_PICT_OP_DISJOINT_IN : xcb_render_pict_op_t = 21;
-    pub static XCB_RENDER_PICT_OP_DISJOINT_IN_REVERSE : xcb_render_pict_op_t = 22;
-    pub static XCB_RENDER_PICT_OP_DISJOINT_OUT : xcb_render_pict_op_t = 23;
-    pub static XCB_RENDER_PICT_OP_DISJOINT_OUT_REVERSE : xcb_render_pict_op_t = 24;
-    pub static XCB_RENDER_PICT_OP_DISJOINT_ATOP : xcb_render_pict_op_t = 25;
-    pub static XCB_RENDER_PICT_OP_DISJOINT_ATOP_REVERSE : xcb_render_pict_op_t = 26;
-    pub static XCB_RENDER_PICT_OP_DISJOINT_XOR : xcb_render_pict_op_t = 27;
-    pub static XCB_RENDER_PICT_OP_CONJOINT_CLEAR : xcb_render_pict_op_t = 32;
-    pub static XCB_RENDER_PICT_OP_CONJOINT_SRC : xcb_render_pict_op_t = 33;
-    pub static XCB_RENDER_PICT_OP_CONJOINT_DST : xcb_render_pict_op_t = 34;
-    pub static XCB_RENDER_PICT_OP_CONJOINT_OVER : xcb_render_pict_op_t = 35;
-    pub static XCB_RENDER_PICT_OP_CONJOINT_OVER_REVERSE : xcb_render_pict_op_t = 36;
-    pub static XCB_RENDER_PICT_OP_CONJOINT_IN : xcb_render_pict_op_t = 37;
-    pub static XCB_RENDER_PICT_OP_CONJOINT_IN_REVERSE : xcb_render_pict_op_t = 38;
-    pub static XCB_RENDER_PICT_OP_CONJOINT_OUT : xcb_render_pict_op_t = 39;
-    pub static XCB_RENDER_PICT_OP_CONJOINT_OUT_REVERSE : xcb_render_pict_op_t = 40;
-    pub static XCB_RENDER_PICT_OP_CONJOINT_ATOP : xcb_render_pict_op_t = 41;
-    pub static XCB_RENDER_PICT_OP_CONJOINT_ATOP_REVERSE : xcb_render_pict_op_t = 42;
-    pub static XCB_RENDER_PICT_OP_CONJOINT_XOR : xcb_render_pict_op_t = 43;
-    pub static XCB_RENDER_PICT_OP_MULTIPLY : xcb_render_pict_op_t = 48;
-    pub static XCB_RENDER_PICT_OP_SCREEN : xcb_render_pict_op_t = 49;
-    pub static XCB_RENDER_PICT_OP_OVERLAY : xcb_render_pict_op_t = 50;
-    pub static XCB_RENDER_PICT_OP_DARKEN : xcb_render_pict_op_t = 51;
-    pub static XCB_RENDER_PICT_OP_LIGHTEN : xcb_render_pict_op_t = 52;
-    pub static XCB_RENDER_PICT_OP_COLOR_DODGE : xcb_render_pict_op_t = 53;
-    pub static XCB_RENDER_PICT_OP_COLOR_BURN : xcb_render_pict_op_t = 54;
-    pub static XCB_RENDER_PICT_OP_HARD_LIGHT : xcb_render_pict_op_t = 55;
-    pub static XCB_RENDER_PICT_OP_SOFT_LIGHT : xcb_render_pict_op_t = 56;
-    pub static XCB_RENDER_PICT_OP_DIFFERENCE : xcb_render_pict_op_t = 57;
-    pub static XCB_RENDER_PICT_OP_EXCLUSION : xcb_render_pict_op_t = 58;
-    pub static XCB_RENDER_PICT_OP_HSL_HUE : xcb_render_pict_op_t = 59;
-    pub static XCB_RENDER_PICT_OP_HSL_SATURATION : xcb_render_pict_op_t = 60;
-    pub static XCB_RENDER_PICT_OP_HSL_COLOR : xcb_render_pict_op_t = 61;
-    pub static XCB_RENDER_PICT_OP_HSL_LUMINOSITY : xcb_render_pict_op_t = 62;
+    pub const XCB_RENDER_PICT_OP_CLEAR : xcb_render_pict_op_t = 1;
+    pub const XCB_RENDER_PICT_OP_SRC : xcb_render_pict_op_t = 2;
+    pub const XCB_RENDER_PICT_OP_DST : xcb_render_pict_op_t = 3;
+    pub const XCB_RENDER_PICT_OP_OVER : xcb_render_pict_op_t = 4;
+    pub const XCB_RENDER_PICT_OP_OVER_REVERSE : xcb_render_pict_op_t = 5;
+    pub const XCB_RENDER_PICT_OP_IN : xcb_render_pict_op_t = 6;
+    pub const XCB_RENDER_PICT_OP_IN_REVERSE : xcb_render_pict_op_t = 7;
+    pub const XCB_RENDER_PICT_OP_OUT : xcb_render_pict_op_t = 8;
+    pub const XCB_RENDER_PICT_OP_OUT_REVERSE : xcb_render_pict_op_t = 9;
+    pub const XCB_RENDER_PICT_OP_ATOP : xcb_render_pict_op_t = 10;
+    pub const XCB_RENDER_PICT_OP_ATOP_REVERSE : xcb_render_pict_op_t = 11;
+    pub const XCB_RENDER_PICT_OP_XOR : xcb_render_pict_op_t = 12;
+    pub const XCB_RENDER_PICT_OP_ADD : xcb_render_pict_op_t = 13;
+    pub const XCB_RENDER_PICT_OP_SATURATE : xcb_render_pict_op_t = 14;
+    pub const XCB_RENDER_PICT_OP_DISJOINT_CLEAR : xcb_render_pict_op_t = 16;
+    pub const XCB_RENDER_PICT_OP_DISJOINT_SRC : xcb_render_pict_op_t = 17;
+    pub const XCB_RENDER_PICT_OP_DISJOINT_DST : xcb_render_pict_op_t = 18;
+    pub const XCB_RENDER_PICT_OP_DISJOINT_OVER : xcb_render_pict_op_t = 19;
+    pub const XCB_RENDER_PICT_OP_DISJOINT_OVER_REVERSE : xcb_render_pict_op_t = 20;
+    pub const XCB_RENDER_PICT_OP_DISJOINT_IN : xcb_render_pict_op_t = 21;
+    pub const XCB_RENDER_PICT_OP_DISJOINT_IN_REVERSE : xcb_render_pict_op_t = 22;
+    pub const XCB_RENDER_PICT_OP_DISJOINT_OUT : xcb_render_pict_op_t = 23;
+    pub const XCB_RENDER_PICT_OP_DISJOINT_OUT_REVERSE : xcb_render_pict_op_t = 24;
+    pub const XCB_RENDER_PICT_OP_DISJOINT_ATOP : xcb_render_pict_op_t = 25;
+    pub const XCB_RENDER_PICT_OP_DISJOINT_ATOP_REVERSE : xcb_render_pict_op_t = 26;
+    pub const XCB_RENDER_PICT_OP_DISJOINT_XOR : xcb_render_pict_op_t = 27;
+    pub const XCB_RENDER_PICT_OP_CONJOINT_CLEAR : xcb_render_pict_op_t = 32;
+    pub const XCB_RENDER_PICT_OP_CONJOINT_SRC : xcb_render_pict_op_t = 33;
+    pub const XCB_RENDER_PICT_OP_CONJOINT_DST : xcb_render_pict_op_t = 34;
+    pub const XCB_RENDER_PICT_OP_CONJOINT_OVER : xcb_render_pict_op_t = 35;
+    pub const XCB_RENDER_PICT_OP_CONJOINT_OVER_REVERSE : xcb_render_pict_op_t = 36;
+    pub const XCB_RENDER_PICT_OP_CONJOINT_IN : xcb_render_pict_op_t = 37;
+    pub const XCB_RENDER_PICT_OP_CONJOINT_IN_REVERSE : xcb_render_pict_op_t = 38;
+    pub const XCB_RENDER_PICT_OP_CONJOINT_OUT : xcb_render_pict_op_t = 39;
+    pub const XCB_RENDER_PICT_OP_CONJOINT_OUT_REVERSE : xcb_render_pict_op_t = 40;
+    pub const XCB_RENDER_PICT_OP_CONJOINT_ATOP : xcb_render_pict_op_t = 41;
+    pub const XCB_RENDER_PICT_OP_CONJOINT_ATOP_REVERSE : xcb_render_pict_op_t = 42;
+    pub const XCB_RENDER_PICT_OP_CONJOINT_XOR : xcb_render_pict_op_t = 43;
+    pub const XCB_RENDER_PICT_OP_MULTIPLY : xcb_render_pict_op_t = 48;
+    pub const XCB_RENDER_PICT_OP_SCREEN : xcb_render_pict_op_t = 49;
+    pub const XCB_RENDER_PICT_OP_OVERLAY : xcb_render_pict_op_t = 50;
+    pub const XCB_RENDER_PICT_OP_DARKEN : xcb_render_pict_op_t = 51;
+    pub const XCB_RENDER_PICT_OP_LIGHTEN : xcb_render_pict_op_t = 52;
+    pub const XCB_RENDER_PICT_OP_COLOR_DODGE : xcb_render_pict_op_t = 53;
+    pub const XCB_RENDER_PICT_OP_COLOR_BURN : xcb_render_pict_op_t = 54;
+    pub const XCB_RENDER_PICT_OP_HARD_LIGHT : xcb_render_pict_op_t = 55;
+    pub const XCB_RENDER_PICT_OP_SOFT_LIGHT : xcb_render_pict_op_t = 56;
+    pub const XCB_RENDER_PICT_OP_DIFFERENCE : xcb_render_pict_op_t = 57;
+    pub const XCB_RENDER_PICT_OP_EXCLUSION : xcb_render_pict_op_t = 58;
+    pub const XCB_RENDER_PICT_OP_HSL_HUE : xcb_render_pict_op_t = 59;
+    pub const XCB_RENDER_PICT_OP_HSL_SATURATION : xcb_render_pict_op_t = 60;
+    pub const XCB_RENDER_PICT_OP_HSL_COLOR : xcb_render_pict_op_t = 61;
+    pub const XCB_RENDER_PICT_OP_HSL_LUMINOSITY : xcb_render_pict_op_t = 62;
 //}
 
 pub type xcb_render_poly_edge_t = c_uint;//{
-    pub static XCB_RENDER_POLY_EDGE_SHARP : xcb_render_poly_edge_t = 1;
-    pub static XCB_RENDER_POLY_EDGE_SMOOTH : xcb_render_poly_edge_t = 2;
+    pub const XCB_RENDER_POLY_EDGE_SHARP : xcb_render_poly_edge_t = 1;
+    pub const XCB_RENDER_POLY_EDGE_SMOOTH : xcb_render_poly_edge_t = 2;
 //}
 
 pub type xcb_render_poly_mode_t = c_uint;//{
-    pub static XCB_RENDER_POLY_MODE_PRECISE : xcb_render_poly_mode_t = 1;
-    pub static XCB_RENDER_POLY_MODE_IMPRECISE : xcb_render_poly_mode_t = 2;
+    pub const XCB_RENDER_POLY_MODE_PRECISE : xcb_render_poly_mode_t = 1;
+    pub const XCB_RENDER_POLY_MODE_IMPRECISE : xcb_render_poly_mode_t = 2;
 //}
 
 pub type xcb_render_cp_t = c_uint;//{
-    pub static XCB_RENDER_CP_REPEAT : xcb_render_cp_t = 1;
-    pub static XCB_RENDER_CP_ALPHA_MAP : xcb_render_cp_t = 2;
-    pub static XCB_RENDER_CP_ALPHA_X_ORIGIN : xcb_render_cp_t = 4;
-    pub static XCB_RENDER_CP_ALPHA_Y_ORIGIN : xcb_render_cp_t = 8;
-    pub static XCB_RENDER_CP_CLIP_X_ORIGIN : xcb_render_cp_t = 16;
-    pub static XCB_RENDER_CP_CLIP_Y_ORIGIN : xcb_render_cp_t = 32;
-    pub static XCB_RENDER_CP_CLIP_MASK : xcb_render_cp_t = 64;
-    pub static XCB_RENDER_CP_GRAPHICS_EXPOSURE : xcb_render_cp_t = 128;
-    pub static XCB_RENDER_CP_SUBWINDOW_MODE : xcb_render_cp_t = 256;
-    pub static XCB_RENDER_CP_POLY_EDGE : xcb_render_cp_t = 512;
-    pub static XCB_RENDER_CP_POLY_MODE : xcb_render_cp_t = 1024;
-    pub static XCB_RENDER_CP_DITHER : xcb_render_cp_t = 2048;
-    pub static XCB_RENDER_CP_COMPONENT_ALPHA : xcb_render_cp_t = 4096;
+    pub const XCB_RENDER_CP_REPEAT : xcb_render_cp_t = 1;
+    pub const XCB_RENDER_CP_ALPHA_MAP : xcb_render_cp_t = 2;
+    pub const XCB_RENDER_CP_ALPHA_X_ORIGIN : xcb_render_cp_t = 4;
+    pub const XCB_RENDER_CP_ALPHA_Y_ORIGIN : xcb_render_cp_t = 8;
+    pub const XCB_RENDER_CP_CLIP_X_ORIGIN : xcb_render_cp_t = 16;
+    pub const XCB_RENDER_CP_CLIP_Y_ORIGIN : xcb_render_cp_t = 32;
+    pub const XCB_RENDER_CP_CLIP_MASK : xcb_render_cp_t = 64;
+    pub const XCB_RENDER_CP_GRAPHICS_EXPOSURE : xcb_render_cp_t = 128;
+    pub const XCB_RENDER_CP_SUBWINDOW_MODE : xcb_render_cp_t = 256;
+    pub const XCB_RENDER_CP_POLY_EDGE : xcb_render_cp_t = 512;
+    pub const XCB_RENDER_CP_POLY_MODE : xcb_render_cp_t = 1024;
+    pub const XCB_RENDER_CP_DITHER : xcb_render_cp_t = 2048;
+    pub const XCB_RENDER_CP_COMPONENT_ALPHA : xcb_render_cp_t = 4096;
 //}
 
 pub type xcb_render_sub_pixel_t = c_uint;//{
-    pub static XCB_RENDER_SUB_PIXEL_UNKNOWN : xcb_render_sub_pixel_t = 1;
-    pub static XCB_RENDER_SUB_PIXEL_HORIZONTAL_RGB : xcb_render_sub_pixel_t = 2;
-    pub static XCB_RENDER_SUB_PIXEL_HORIZONTAL_BGR : xcb_render_sub_pixel_t = 3;
-    pub static XCB_RENDER_SUB_PIXEL_VERTICAL_RGB : xcb_render_sub_pixel_t = 4;
-    pub static XCB_RENDER_SUB_PIXEL_VERTICAL_BGR : xcb_render_sub_pixel_t = 5;
-    pub static XCB_RENDER_SUB_PIXEL_NONE : xcb_render_sub_pixel_t = 6;
+    pub const XCB_RENDER_SUB_PIXEL_UNKNOWN : xcb_render_sub_pixel_t = 1;
+    pub const XCB_RENDER_SUB_PIXEL_HORIZONTAL_RGB : xcb_render_sub_pixel_t = 2;
+    pub const XCB_RENDER_SUB_PIXEL_HORIZONTAL_BGR : xcb_render_sub_pixel_t = 3;
+    pub const XCB_RENDER_SUB_PIXEL_VERTICAL_RGB : xcb_render_sub_pixel_t = 4;
+    pub const XCB_RENDER_SUB_PIXEL_VERTICAL_BGR : xcb_render_sub_pixel_t = 5;
+    pub const XCB_RENDER_SUB_PIXEL_NONE : xcb_render_sub_pixel_t = 6;
 //}
 
 pub type xcb_render_repeat_t = c_uint;//{
-    pub static XCB_RENDER_REPEAT_NONE : xcb_render_repeat_t = 1;
-    pub static XCB_RENDER_REPEAT_NORMAL : xcb_render_repeat_t = 2;
-    pub static XCB_RENDER_REPEAT_PAD : xcb_render_repeat_t = 3;
-    pub static XCB_RENDER_REPEAT_REFLECT : xcb_render_repeat_t = 4;
+    pub const XCB_RENDER_REPEAT_NONE : xcb_render_repeat_t = 1;
+    pub const XCB_RENDER_REPEAT_NORMAL : xcb_render_repeat_t = 2;
+    pub const XCB_RENDER_REPEAT_PAD : xcb_render_repeat_t = 3;
+    pub const XCB_RENDER_REPEAT_REFLECT : xcb_render_repeat_t = 4;
 //}
 pub type Glyph = xcb_render_glyph_t;
 
@@ -138,19 +138,19 @@ pub type PictformatIterator = xcb_render_pictformat_iterator_t;
 pub type FixedIterator = xcb_render_fixed_iterator_t;
 
 /** Opcode for xcb_render_pict_format. */
-pub static XCB_RENDER_PICT_FORMAT : u8 = 0;
+pub const XCB_RENDER_PICT_FORMAT : u8 = 0;
 pub struct PictFormatError { pub base : base::Error<xcb_render_pict_format_error_t> }
 /** Opcode for xcb_render_picture. */
-pub static XCB_RENDER_PICTURE : u8 = 1;
+pub const XCB_RENDER_PICTURE : u8 = 1;
 pub struct PictureError { pub base : base::Error<xcb_render_picture_error_t> }
 /** Opcode for xcb_render_pict_op. */
-pub static XCB_RENDER_PICT_OP : u8 = 2;
+pub const XCB_RENDER_PICT_OP : u8 = 2;
 pub struct PictOpError { pub base : base::Error<xcb_render_pict_op_error_t> }
 /** Opcode for xcb_render_glyph_set. */
-pub static XCB_RENDER_GLYPH_SET : u8 = 3;
+pub const XCB_RENDER_GLYPH_SET : u8 = 3;
 pub struct GlyphSetError { pub base : base::Error<xcb_render_glyph_set_error_t> }
 /** Opcode for xcb_render_glyph. */
-pub static XCB_RENDER_GLYPH : u8 = 4;
+pub const XCB_RENDER_GLYPH : u8 = 4;
 pub struct GlyphError { pub base : base::Error<xcb_render_glyph_error_t> }
 pub struct Directformat {pub base : base::Struct<xcb_render_directformat_t> }
 
@@ -181,83 +181,83 @@ pub type GlyphinfoIterator = xcb_render_glyphinfo_iterator_t;
 pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_render_query_version_cookie_t> }
 
 /** Opcode for xcb_render_query_version. */
-pub static XCB_RENDER_QUERY_VERSION : u8 = 0;
+pub const XCB_RENDER_QUERY_VERSION : u8 = 0;
 pub struct QueryVersionReply { base:  base::Reply<xcb_render_query_version_reply_t> }
 fn mk_reply_xcb_render_query_version_reply_t(reply:*mut xcb_render_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
 pub struct  QueryPictFormatsCookie<'s> { pub base : base::Cookie<'s, xcb_render_query_pict_formats_cookie_t> }
 
 /** Opcode for xcb_render_query_pict_formats. */
-pub static XCB_RENDER_QUERY_PICT_FORMATS : u8 = 1;
+pub const XCB_RENDER_QUERY_PICT_FORMATS : u8 = 1;
 pub struct  QueryPictIndexValuesCookie<'s> { pub base : base::Cookie<'s, xcb_render_query_pict_index_values_cookie_t> }
 
 /** Opcode for xcb_render_query_pict_index_values. */
-pub static XCB_RENDER_QUERY_PICT_INDEX_VALUES : u8 = 2;
+pub const XCB_RENDER_QUERY_PICT_INDEX_VALUES : u8 = 2;
 /** Opcode for xcb_render_create_picture. */
-pub static XCB_RENDER_CREATE_PICTURE : u8 = 4;
+pub const XCB_RENDER_CREATE_PICTURE : u8 = 4;
 /** Opcode for xcb_render_change_picture. */
-pub static XCB_RENDER_CHANGE_PICTURE : u8 = 5;
+pub const XCB_RENDER_CHANGE_PICTURE : u8 = 5;
 /** Opcode for xcb_render_set_picture_clip_rectangles. */
-pub static XCB_RENDER_SET_PICTURE_CLIP_RECTANGLES : u8 = 6;
+pub const XCB_RENDER_SET_PICTURE_CLIP_RECTANGLES : u8 = 6;
 /** Opcode for xcb_render_free_picture. */
-pub static XCB_RENDER_FREE_PICTURE : u8 = 7;
+pub const XCB_RENDER_FREE_PICTURE : u8 = 7;
 /** Opcode for xcb_render_composite. */
-pub static XCB_RENDER_COMPOSITE : u8 = 8;
+pub const XCB_RENDER_COMPOSITE : u8 = 8;
 /** Opcode for xcb_render_trapezoids. */
-pub static XCB_RENDER_TRAPEZOIDS : u8 = 10;
+pub const XCB_RENDER_TRAPEZOIDS : u8 = 10;
 /** Opcode for xcb_render_triangles. */
-pub static XCB_RENDER_TRIANGLES : u8 = 11;
+pub const XCB_RENDER_TRIANGLES : u8 = 11;
 /** Opcode for xcb_render_tri_strip. */
-pub static XCB_RENDER_TRI_STRIP : u8 = 12;
+pub const XCB_RENDER_TRI_STRIP : u8 = 12;
 /** Opcode for xcb_render_tri_fan. */
-pub static XCB_RENDER_TRI_FAN : u8 = 13;
+pub const XCB_RENDER_TRI_FAN : u8 = 13;
 /** Opcode for xcb_render_create_glyph_set. */
-pub static XCB_RENDER_CREATE_GLYPH_SET : u8 = 17;
+pub const XCB_RENDER_CREATE_GLYPH_SET : u8 = 17;
 /** Opcode for xcb_render_reference_glyph_set. */
-pub static XCB_RENDER_REFERENCE_GLYPH_SET : u8 = 18;
+pub const XCB_RENDER_REFERENCE_GLYPH_SET : u8 = 18;
 /** Opcode for xcb_render_free_glyph_set. */
-pub static XCB_RENDER_FREE_GLYPH_SET : u8 = 19;
+pub const XCB_RENDER_FREE_GLYPH_SET : u8 = 19;
 /** Opcode for xcb_render_add_glyphs. */
-pub static XCB_RENDER_ADD_GLYPHS : u8 = 20;
+pub const XCB_RENDER_ADD_GLYPHS : u8 = 20;
 /** Opcode for xcb_render_free_glyphs. */
-pub static XCB_RENDER_FREE_GLYPHS : u8 = 22;
+pub const XCB_RENDER_FREE_GLYPHS : u8 = 22;
 /** Opcode for xcb_render_composite_glyphs_8. */
-pub static XCB_RENDER_COMPOSITE_GLYPHS_8 : u8 = 23;
+pub const XCB_RENDER_COMPOSITE_GLYPHS_8 : u8 = 23;
 /** Opcode for xcb_render_composite_glyphs_16. */
-pub static XCB_RENDER_COMPOSITE_GLYPHS_16 : u8 = 24;
+pub const XCB_RENDER_COMPOSITE_GLYPHS_16 : u8 = 24;
 /** Opcode for xcb_render_composite_glyphs_32. */
-pub static XCB_RENDER_COMPOSITE_GLYPHS_32 : u8 = 25;
+pub const XCB_RENDER_COMPOSITE_GLYPHS_32 : u8 = 25;
 /** Opcode for xcb_render_fill_rectangles. */
-pub static XCB_RENDER_FILL_RECTANGLES : u8 = 26;
+pub const XCB_RENDER_FILL_RECTANGLES : u8 = 26;
 /** Opcode for xcb_render_create_cursor. */
-pub static XCB_RENDER_CREATE_CURSOR : u8 = 27;
+pub const XCB_RENDER_CREATE_CURSOR : u8 = 27;
 pub type TransformIterator = xcb_render_transform_iterator_t;
 
 /** Opcode for xcb_render_set_picture_transform. */
-pub static XCB_RENDER_SET_PICTURE_TRANSFORM : u8 = 28;
+pub const XCB_RENDER_SET_PICTURE_TRANSFORM : u8 = 28;
 pub struct  QueryFiltersCookie<'s> { pub base : base::Cookie<'s, xcb_render_query_filters_cookie_t> }
 
 /** Opcode for xcb_render_query_filters. */
-pub static XCB_RENDER_QUERY_FILTERS : u8 = 29;
+pub const XCB_RENDER_QUERY_FILTERS : u8 = 29;
 /** Opcode for xcb_render_set_picture_filter. */
-pub static XCB_RENDER_SET_PICTURE_FILTER : u8 = 30;
+pub const XCB_RENDER_SET_PICTURE_FILTER : u8 = 30;
 pub type AnimcursoreltIterator = xcb_render_animcursorelt_iterator_t;
 
 /** Opcode for xcb_render_create_anim_cursor. */
-pub static XCB_RENDER_CREATE_ANIM_CURSOR : u8 = 31;
+pub const XCB_RENDER_CREATE_ANIM_CURSOR : u8 = 31;
 pub type SpanfixIterator = xcb_render_spanfix_iterator_t;
 
 pub type TrapIterator = xcb_render_trap_iterator_t;
 
 /** Opcode for xcb_render_add_traps. */
-pub static XCB_RENDER_ADD_TRAPS : u8 = 32;
+pub const XCB_RENDER_ADD_TRAPS : u8 = 32;
 /** Opcode for xcb_render_create_solid_fill. */
-pub static XCB_RENDER_CREATE_SOLID_FILL : u8 = 33;
+pub const XCB_RENDER_CREATE_SOLID_FILL : u8 = 33;
 /** Opcode for xcb_render_create_linear_gradient. */
-pub static XCB_RENDER_CREATE_LINEAR_GRADIENT : u8 = 34;
+pub const XCB_RENDER_CREATE_LINEAR_GRADIENT : u8 = 34;
 /** Opcode for xcb_render_create_radial_gradient. */
-pub static XCB_RENDER_CREATE_RADIAL_GRADIENT : u8 = 35;
+pub const XCB_RENDER_CREATE_RADIAL_GRADIENT : u8 = 35;
 /** Opcode for xcb_render_create_conical_gradient. */
-pub static XCB_RENDER_CREATE_CONICAL_GRADIENT : u8 = 36;
+pub const XCB_RENDER_CREATE_CONICAL_GRADIENT : u8 = 36;
 
 impl Iterator for GlyphIterator {
     type Item = Glyph;

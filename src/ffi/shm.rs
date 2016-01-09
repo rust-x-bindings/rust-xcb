@@ -11,8 +11,8 @@ use libc::*;
 use ffi;
 use ffi::xproto;
 
-pub static SHM_MAJOR_VERSION : c_uint = 1;
-pub static SHM_MINOR_VERSION : c_uint = 1;
+pub const SHM_MAJOR_VERSION : c_uint = 1;
+pub const SHM_MINOR_VERSION : c_uint = 1;
 
 pub type xcb_shm_seg_t = u32;
 /**

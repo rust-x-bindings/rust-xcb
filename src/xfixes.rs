@@ -23,127 +23,127 @@ use shape;
 pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_xfixes_query_version_cookie_t> }
 
 /** Opcode for xcb_xfixes_query_version. */
-pub static XCB_XFIXES_QUERY_VERSION : u8 = 0;
+pub const XCB_XFIXES_QUERY_VERSION : u8 = 0;
 pub struct QueryVersionReply { base:  base::Reply<xcb_xfixes_query_version_reply_t> }
 fn mk_reply_xcb_xfixes_query_version_reply_t(reply:*mut xcb_xfixes_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
 
 pub type xcb_xfixes_save_set_mode_t = c_uint;//{
-    pub static XCB_XFIXES_SAVE_SET_MODE_INSERT : xcb_xfixes_save_set_mode_t = 1;
-    pub static XCB_XFIXES_SAVE_SET_MODE_DELETE : xcb_xfixes_save_set_mode_t = 2;
+    pub const XCB_XFIXES_SAVE_SET_MODE_INSERT : xcb_xfixes_save_set_mode_t = 1;
+    pub const XCB_XFIXES_SAVE_SET_MODE_DELETE : xcb_xfixes_save_set_mode_t = 2;
 //}
 
 pub type xcb_xfixes_save_set_target_t = c_uint;//{
-    pub static XCB_XFIXES_SAVE_SET_TARGET_NEAREST : xcb_xfixes_save_set_target_t = 1;
-    pub static XCB_XFIXES_SAVE_SET_TARGET_ROOT : xcb_xfixes_save_set_target_t = 2;
+    pub const XCB_XFIXES_SAVE_SET_TARGET_NEAREST : xcb_xfixes_save_set_target_t = 1;
+    pub const XCB_XFIXES_SAVE_SET_TARGET_ROOT : xcb_xfixes_save_set_target_t = 2;
 //}
 
 pub type xcb_xfixes_save_set_mapping_t = c_uint;//{
-    pub static XCB_XFIXES_SAVE_SET_MAPPING_MAP : xcb_xfixes_save_set_mapping_t = 1;
-    pub static XCB_XFIXES_SAVE_SET_MAPPING_UNMAP : xcb_xfixes_save_set_mapping_t = 2;
+    pub const XCB_XFIXES_SAVE_SET_MAPPING_MAP : xcb_xfixes_save_set_mapping_t = 1;
+    pub const XCB_XFIXES_SAVE_SET_MAPPING_UNMAP : xcb_xfixes_save_set_mapping_t = 2;
 //}
 /** Opcode for xcb_xfixes_change_save_set. */
-pub static XCB_XFIXES_CHANGE_SAVE_SET : u8 = 1;
+pub const XCB_XFIXES_CHANGE_SAVE_SET : u8 = 1;
 
 pub type xcb_xfixes_selection_event_t = c_uint;//{
-    pub static XCB_XFIXES_SELECTION_EVENT_SET_SELECTION_OWNER : xcb_xfixes_selection_event_t = 1;
-    pub static XCB_XFIXES_SELECTION_EVENT_SELECTION_WINDOW_DESTROY : xcb_xfixes_selection_event_t = 2;
-    pub static XCB_XFIXES_SELECTION_EVENT_SELECTION_CLIENT_CLOSE : xcb_xfixes_selection_event_t = 3;
+    pub const XCB_XFIXES_SELECTION_EVENT_SET_SELECTION_OWNER : xcb_xfixes_selection_event_t = 1;
+    pub const XCB_XFIXES_SELECTION_EVENT_SELECTION_WINDOW_DESTROY : xcb_xfixes_selection_event_t = 2;
+    pub const XCB_XFIXES_SELECTION_EVENT_SELECTION_CLIENT_CLOSE : xcb_xfixes_selection_event_t = 3;
 //}
 
 pub type xcb_xfixes_selection_event_mask_t = c_uint;//{
-    pub static XCB_XFIXES_SELECTION_EVENT_MASK_SET_SELECTION_OWNER : xcb_xfixes_selection_event_mask_t = 1;
-    pub static XCB_XFIXES_SELECTION_EVENT_MASK_SELECTION_WINDOW_DESTROY : xcb_xfixes_selection_event_mask_t = 2;
-    pub static XCB_XFIXES_SELECTION_EVENT_MASK_SELECTION_CLIENT_CLOSE : xcb_xfixes_selection_event_mask_t = 4;
+    pub const XCB_XFIXES_SELECTION_EVENT_MASK_SET_SELECTION_OWNER : xcb_xfixes_selection_event_mask_t = 1;
+    pub const XCB_XFIXES_SELECTION_EVENT_MASK_SELECTION_WINDOW_DESTROY : xcb_xfixes_selection_event_mask_t = 2;
+    pub const XCB_XFIXES_SELECTION_EVENT_MASK_SELECTION_CLIENT_CLOSE : xcb_xfixes_selection_event_mask_t = 4;
 //}
 /** Opcode for xcb_xfixes_selection_notify. */
-pub static XCB_XFIXES_SELECTION_NOTIFY : u8 = 0;
+pub const XCB_XFIXES_SELECTION_NOTIFY : u8 = 0;
 pub struct SelectionNotifyEvent {pub base : base::Event<xcb_xfixes_selection_notify_event_t>}
 /** Opcode for xcb_xfixes_select_selection_input. */
-pub static XCB_XFIXES_SELECT_SELECTION_INPUT : u8 = 2;
+pub const XCB_XFIXES_SELECT_SELECTION_INPUT : u8 = 2;
 
 pub type xcb_xfixes_cursor_notify_t = c_uint;//{
-    pub static XCB_XFIXES_CURSOR_NOTIFY_DISPLAY_CURSOR : xcb_xfixes_cursor_notify_t = 1;
+    pub const XCB_XFIXES_CURSOR_NOTIFY_DISPLAY_CURSOR : xcb_xfixes_cursor_notify_t = 1;
 //}
 
 pub type xcb_xfixes_cursor_notify_mask_t = c_uint;//{
-    pub static XCB_XFIXES_CURSOR_NOTIFY_MASK_DISPLAY_CURSOR : xcb_xfixes_cursor_notify_mask_t = 1;
+    pub const XCB_XFIXES_CURSOR_NOTIFY_MASK_DISPLAY_CURSOR : xcb_xfixes_cursor_notify_mask_t = 1;
 //}
 /** Opcode for xcb_xfixes_cursor_notify. */
-pub static XCB_XFIXES_CURSOR_NOTIFY : u8 = 1;
+pub const XCB_XFIXES_CURSOR_NOTIFY : u8 = 1;
 pub struct CursorNotifyEvent {pub base : base::Event<xcb_xfixes_cursor_notify_event_t>}
 /** Opcode for xcb_xfixes_select_cursor_input. */
-pub static XCB_XFIXES_SELECT_CURSOR_INPUT : u8 = 3;
+pub const XCB_XFIXES_SELECT_CURSOR_INPUT : u8 = 3;
 pub struct  GetCursorImageCookie<'s> { pub base : base::Cookie<'s, xcb_xfixes_get_cursor_image_cookie_t> }
 
 /** Opcode for xcb_xfixes_get_cursor_image. */
-pub static XCB_XFIXES_GET_CURSOR_IMAGE : u8 = 4;
+pub const XCB_XFIXES_GET_CURSOR_IMAGE : u8 = 4;
 pub type RegionIterator = xcb_xfixes_region_iterator_t;
 
 /** Opcode for xcb_xfixes_bad_region. */
-pub static XCB_XFIXES_BAD_REGION : u8 = 0;
+pub const XCB_XFIXES_BAD_REGION : u8 = 0;
 pub struct BadRegionError { pub base : base::Error<xcb_xfixes_bad_region_error_t> }
 
 pub type xcb_xfixes_region_enum_t = c_uint;//{
-    pub static XCB_XFIXES_REGION_NONE : xcb_xfixes_region_enum_t = 1;
+    pub const XCB_XFIXES_REGION_NONE : xcb_xfixes_region_enum_t = 1;
 //}
 /** Opcode for xcb_xfixes_create_region. */
-pub static XCB_XFIXES_CREATE_REGION : u8 = 5;
+pub const XCB_XFIXES_CREATE_REGION : u8 = 5;
 /** Opcode for xcb_xfixes_create_region_from_bitmap. */
-pub static XCB_XFIXES_CREATE_REGION_FROM_BITMAP : u8 = 6;
+pub const XCB_XFIXES_CREATE_REGION_FROM_BITMAP : u8 = 6;
 /** Opcode for xcb_xfixes_create_region_from_window. */
-pub static XCB_XFIXES_CREATE_REGION_FROM_WINDOW : u8 = 7;
+pub const XCB_XFIXES_CREATE_REGION_FROM_WINDOW : u8 = 7;
 /** Opcode for xcb_xfixes_create_region_from_gc. */
-pub static XCB_XFIXES_CREATE_REGION_FROM_GC : u8 = 8;
+pub const XCB_XFIXES_CREATE_REGION_FROM_GC : u8 = 8;
 /** Opcode for xcb_xfixes_create_region_from_picture. */
-pub static XCB_XFIXES_CREATE_REGION_FROM_PICTURE : u8 = 9;
+pub const XCB_XFIXES_CREATE_REGION_FROM_PICTURE : u8 = 9;
 /** Opcode for xcb_xfixes_destroy_region. */
-pub static XCB_XFIXES_DESTROY_REGION : u8 = 10;
+pub const XCB_XFIXES_DESTROY_REGION : u8 = 10;
 /** Opcode for xcb_xfixes_set_region. */
-pub static XCB_XFIXES_SET_REGION : u8 = 11;
+pub const XCB_XFIXES_SET_REGION : u8 = 11;
 /** Opcode for xcb_xfixes_copy_region. */
-pub static XCB_XFIXES_COPY_REGION : u8 = 12;
+pub const XCB_XFIXES_COPY_REGION : u8 = 12;
 /** Opcode for xcb_xfixes_union_region. */
-pub static XCB_XFIXES_UNION_REGION : u8 = 13;
+pub const XCB_XFIXES_UNION_REGION : u8 = 13;
 /** Opcode for xcb_xfixes_intersect_region. */
-pub static XCB_XFIXES_INTERSECT_REGION : u8 = 14;
+pub const XCB_XFIXES_INTERSECT_REGION : u8 = 14;
 /** Opcode for xcb_xfixes_subtract_region. */
-pub static XCB_XFIXES_SUBTRACT_REGION : u8 = 15;
+pub const XCB_XFIXES_SUBTRACT_REGION : u8 = 15;
 /** Opcode for xcb_xfixes_invert_region. */
-pub static XCB_XFIXES_INVERT_REGION : u8 = 16;
+pub const XCB_XFIXES_INVERT_REGION : u8 = 16;
 /** Opcode for xcb_xfixes_translate_region. */
-pub static XCB_XFIXES_TRANSLATE_REGION : u8 = 17;
+pub const XCB_XFIXES_TRANSLATE_REGION : u8 = 17;
 /** Opcode for xcb_xfixes_region_extents. */
-pub static XCB_XFIXES_REGION_EXTENTS : u8 = 18;
+pub const XCB_XFIXES_REGION_EXTENTS : u8 = 18;
 pub struct  FetchRegionCookie<'s> { pub base : base::Cookie<'s, xcb_xfixes_fetch_region_cookie_t> }
 
 /** Opcode for xcb_xfixes_fetch_region. */
-pub static XCB_XFIXES_FETCH_REGION : u8 = 19;
+pub const XCB_XFIXES_FETCH_REGION : u8 = 19;
 /** Opcode for xcb_xfixes_set_gc_clip_region. */
-pub static XCB_XFIXES_SET_GC_CLIP_REGION : u8 = 20;
+pub const XCB_XFIXES_SET_GC_CLIP_REGION : u8 = 20;
 /** Opcode for xcb_xfixes_set_window_shape_region. */
-pub static XCB_XFIXES_SET_WINDOW_SHAPE_REGION : u8 = 21;
+pub const XCB_XFIXES_SET_WINDOW_SHAPE_REGION : u8 = 21;
 /** Opcode for xcb_xfixes_set_picture_clip_region. */
-pub static XCB_XFIXES_SET_PICTURE_CLIP_REGION : u8 = 22;
+pub const XCB_XFIXES_SET_PICTURE_CLIP_REGION : u8 = 22;
 /** Opcode for xcb_xfixes_set_cursor_name. */
-pub static XCB_XFIXES_SET_CURSOR_NAME : u8 = 23;
+pub const XCB_XFIXES_SET_CURSOR_NAME : u8 = 23;
 pub struct  GetCursorNameCookie<'s> { pub base : base::Cookie<'s, xcb_xfixes_get_cursor_name_cookie_t> }
 
 /** Opcode for xcb_xfixes_get_cursor_name. */
-pub static XCB_XFIXES_GET_CURSOR_NAME : u8 = 24;
+pub const XCB_XFIXES_GET_CURSOR_NAME : u8 = 24;
 pub struct  GetCursorImageAndNameCookie<'s> { pub base : base::Cookie<'s, xcb_xfixes_get_cursor_image_and_name_cookie_t> }
 
 /** Opcode for xcb_xfixes_get_cursor_image_and_name. */
-pub static XCB_XFIXES_GET_CURSOR_IMAGE_AND_NAME : u8 = 25;
+pub const XCB_XFIXES_GET_CURSOR_IMAGE_AND_NAME : u8 = 25;
 /** Opcode for xcb_xfixes_change_cursor. */
-pub static XCB_XFIXES_CHANGE_CURSOR : u8 = 26;
+pub const XCB_XFIXES_CHANGE_CURSOR : u8 = 26;
 /** Opcode for xcb_xfixes_change_cursor_by_name. */
-pub static XCB_XFIXES_CHANGE_CURSOR_BY_NAME : u8 = 27;
+pub const XCB_XFIXES_CHANGE_CURSOR_BY_NAME : u8 = 27;
 /** Opcode for xcb_xfixes_expand_region. */
-pub static XCB_XFIXES_EXPAND_REGION : u8 = 28;
+pub const XCB_XFIXES_EXPAND_REGION : u8 = 28;
 /** Opcode for xcb_xfixes_hide_cursor. */
-pub static XCB_XFIXES_HIDE_CURSOR : u8 = 29;
+pub const XCB_XFIXES_HIDE_CURSOR : u8 = 29;
 /** Opcode for xcb_xfixes_show_cursor. */
-pub static XCB_XFIXES_SHOW_CURSOR : u8 = 30;
+pub const XCB_XFIXES_SHOW_CURSOR : u8 = 30;
 pub fn QueryVersion<'r> (c : &'r Connection,
                      client_major_version : u32,
                      client_minor_version : u32) -> QueryVersionCookie<'r> {

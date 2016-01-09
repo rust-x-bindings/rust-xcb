@@ -11,8 +11,8 @@ use libc::*;
 use ffi;
 use ffi::xproto;
 
-pub static XPRINT_MAJOR_VERSION : c_uint = 1;
-pub static XPRINT_MINOR_VERSION : c_uint = 0;
+pub const XPRINT_MAJOR_VERSION : c_uint = 1;
+pub const XPRINT_MINOR_VERSION : c_uint = 0;
 
 pub type xcb_x_print_string8_t = c_char;
 /**

@@ -10,8 +10,8 @@ use std;
 use libc::*;
 use ffi;
 
-pub static RECORD_MAJOR_VERSION : c_uint = 1;
-pub static RECORD_MINOR_VERSION : c_uint = 13;
+pub const RECORD_MAJOR_VERSION : c_uint = 1;
+pub const RECORD_MINOR_VERSION : c_uint = 13;
 
 pub type xcb_record_context_t = u32;
 /**

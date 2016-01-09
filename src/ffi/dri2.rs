@@ -11,8 +11,8 @@ use libc::*;
 use ffi;
 use ffi::xproto;
 
-pub static DRI2_MAJOR_VERSION : c_uint = 1;
-pub static DRI2_MINOR_VERSION : c_uint = 4;
+pub const DRI2_MAJOR_VERSION : c_uint = 1;
+pub const DRI2_MINOR_VERSION : c_uint = 4;
 
 #[repr(C)]
 pub struct xcb_dri2_dri2_buffer_t {

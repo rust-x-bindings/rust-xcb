@@ -25,28 +25,28 @@ pub type DotclockIterator = xcb_xf86vidmode_dotclock_iterator_t;
 
 
 pub type xcb_xf86vidmode_mode_flag_t = c_uint;//{
-    pub static XCB_XF86VIDMODE_MODE_FLAG_POSITIVE_H_SYNC : xcb_xf86vidmode_mode_flag_t = 1;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_NEGATIVE_H_SYNC : xcb_xf86vidmode_mode_flag_t = 2;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_POSITIVE_V_SYNC : xcb_xf86vidmode_mode_flag_t = 4;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_NEGATIVE_V_SYNC : xcb_xf86vidmode_mode_flag_t = 8;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_INTERLACE : xcb_xf86vidmode_mode_flag_t = 16;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_COMPOSITE_SYNC : xcb_xf86vidmode_mode_flag_t = 32;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_POSITIVE_C_SYNC : xcb_xf86vidmode_mode_flag_t = 64;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_NEGATIVE_C_SYNC : xcb_xf86vidmode_mode_flag_t = 128;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_H_SKEW : xcb_xf86vidmode_mode_flag_t = 256;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_BROADCAST : xcb_xf86vidmode_mode_flag_t = 512;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_PIXMUX : xcb_xf86vidmode_mode_flag_t = 1024;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_DOUBLE_CLOCK : xcb_xf86vidmode_mode_flag_t = 2048;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_HALF_CLOCK : xcb_xf86vidmode_mode_flag_t = 4096;
+    pub const XCB_XF86VIDMODE_MODE_FLAG_POSITIVE_H_SYNC : xcb_xf86vidmode_mode_flag_t = 1;
+    pub const XCB_XF86VIDMODE_MODE_FLAG_NEGATIVE_H_SYNC : xcb_xf86vidmode_mode_flag_t = 2;
+    pub const XCB_XF86VIDMODE_MODE_FLAG_POSITIVE_V_SYNC : xcb_xf86vidmode_mode_flag_t = 4;
+    pub const XCB_XF86VIDMODE_MODE_FLAG_NEGATIVE_V_SYNC : xcb_xf86vidmode_mode_flag_t = 8;
+    pub const XCB_XF86VIDMODE_MODE_FLAG_INTERLACE : xcb_xf86vidmode_mode_flag_t = 16;
+    pub const XCB_XF86VIDMODE_MODE_FLAG_COMPOSITE_SYNC : xcb_xf86vidmode_mode_flag_t = 32;
+    pub const XCB_XF86VIDMODE_MODE_FLAG_POSITIVE_C_SYNC : xcb_xf86vidmode_mode_flag_t = 64;
+    pub const XCB_XF86VIDMODE_MODE_FLAG_NEGATIVE_C_SYNC : xcb_xf86vidmode_mode_flag_t = 128;
+    pub const XCB_XF86VIDMODE_MODE_FLAG_H_SKEW : xcb_xf86vidmode_mode_flag_t = 256;
+    pub const XCB_XF86VIDMODE_MODE_FLAG_BROADCAST : xcb_xf86vidmode_mode_flag_t = 512;
+    pub const XCB_XF86VIDMODE_MODE_FLAG_PIXMUX : xcb_xf86vidmode_mode_flag_t = 1024;
+    pub const XCB_XF86VIDMODE_MODE_FLAG_DOUBLE_CLOCK : xcb_xf86vidmode_mode_flag_t = 2048;
+    pub const XCB_XF86VIDMODE_MODE_FLAG_HALF_CLOCK : xcb_xf86vidmode_mode_flag_t = 4096;
 //}
 
 pub type xcb_xf86vidmode_clock_flag_t = c_uint;//{
-    pub static XCB_XF86VIDMODE_CLOCK_FLAG_PROGRAMABLE : xcb_xf86vidmode_clock_flag_t = 1;
+    pub const XCB_XF86VIDMODE_CLOCK_FLAG_PROGRAMABLE : xcb_xf86vidmode_clock_flag_t = 1;
 //}
 
 pub type xcb_xf86vidmode_permission_t = c_uint;//{
-    pub static XCB_XF86VIDMODE_PERMISSION_READ : xcb_xf86vidmode_permission_t = 1;
-    pub static XCB_XF86VIDMODE_PERMISSION_WRITE : xcb_xf86vidmode_permission_t = 2;
+    pub const XCB_XF86VIDMODE_PERMISSION_READ : xcb_xf86vidmode_permission_t = 1;
+    pub const XCB_XF86VIDMODE_PERMISSION_WRITE : xcb_xf86vidmode_permission_t = 2;
 //}
 pub struct ModeInfo {pub base : base::Struct<xcb_xf86vidmode_mode_info_t> }
 
@@ -55,99 +55,99 @@ pub type ModeInfoIterator = xcb_xf86vidmode_mode_info_iterator_t;
 pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_xf86vidmode_query_version_cookie_t> }
 
 /** Opcode for xcb_xf86vidmode_query_version. */
-pub static XCB_XF86VIDMODE_QUERY_VERSION : u8 = 0;
+pub const XCB_XF86VIDMODE_QUERY_VERSION : u8 = 0;
 pub struct QueryVersionReply { base:  base::Reply<xcb_xf86vidmode_query_version_reply_t> }
 fn mk_reply_xcb_xf86vidmode_query_version_reply_t(reply:*mut xcb_xf86vidmode_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
 pub struct  GetModeLineCookie<'s> { pub base : base::Cookie<'s, xcb_xf86vidmode_get_mode_line_cookie_t> }
 
 /** Opcode for xcb_xf86vidmode_get_mode_line. */
-pub static XCB_XF86VIDMODE_GET_MODE_LINE : u8 = 1;
+pub const XCB_XF86VIDMODE_GET_MODE_LINE : u8 = 1;
 /** Opcode for xcb_xf86vidmode_mod_mode_line. */
-pub static XCB_XF86VIDMODE_MOD_MODE_LINE : u8 = 2;
+pub const XCB_XF86VIDMODE_MOD_MODE_LINE : u8 = 2;
 /** Opcode for xcb_xf86vidmode_switch_mode. */
-pub static XCB_XF86VIDMODE_SWITCH_MODE : u8 = 3;
+pub const XCB_XF86VIDMODE_SWITCH_MODE : u8 = 3;
 pub struct  GetMonitorCookie<'s> { pub base : base::Cookie<'s, xcb_xf86vidmode_get_monitor_cookie_t> }
 
 /** Opcode for xcb_xf86vidmode_get_monitor. */
-pub static XCB_XF86VIDMODE_GET_MONITOR : u8 = 4;
+pub const XCB_XF86VIDMODE_GET_MONITOR : u8 = 4;
 /** Opcode for xcb_xf86vidmode_lock_mode_switch. */
-pub static XCB_XF86VIDMODE_LOCK_MODE_SWITCH : u8 = 5;
+pub const XCB_XF86VIDMODE_LOCK_MODE_SWITCH : u8 = 5;
 pub struct  GetAllModeLinesCookie<'s> { pub base : base::Cookie<'s, xcb_xf86vidmode_get_all_mode_lines_cookie_t> }
 
 /** Opcode for xcb_xf86vidmode_get_all_mode_lines. */
-pub static XCB_XF86VIDMODE_GET_ALL_MODE_LINES : u8 = 6;
+pub const XCB_XF86VIDMODE_GET_ALL_MODE_LINES : u8 = 6;
 /** Opcode for xcb_xf86vidmode_add_mode_line. */
-pub static XCB_XF86VIDMODE_ADD_MODE_LINE : u8 = 7;
+pub const XCB_XF86VIDMODE_ADD_MODE_LINE : u8 = 7;
 /** Opcode for xcb_xf86vidmode_delete_mode_line. */
-pub static XCB_XF86VIDMODE_DELETE_MODE_LINE : u8 = 8;
+pub const XCB_XF86VIDMODE_DELETE_MODE_LINE : u8 = 8;
 pub struct  ValidateModeLineCookie<'s> { pub base : base::Cookie<'s, xcb_xf86vidmode_validate_mode_line_cookie_t> }
 
 /** Opcode for xcb_xf86vidmode_validate_mode_line. */
-pub static XCB_XF86VIDMODE_VALIDATE_MODE_LINE : u8 = 9;
+pub const XCB_XF86VIDMODE_VALIDATE_MODE_LINE : u8 = 9;
 pub struct ValidateModeLineReply { base:  base::Reply<xcb_xf86vidmode_validate_mode_line_reply_t> }
 fn mk_reply_xcb_xf86vidmode_validate_mode_line_reply_t(reply:*mut xcb_xf86vidmode_validate_mode_line_reply_t) -> ValidateModeLineReply { ValidateModeLineReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_xf86vidmode_switch_to_mode. */
-pub static XCB_XF86VIDMODE_SWITCH_TO_MODE : u8 = 10;
+pub const XCB_XF86VIDMODE_SWITCH_TO_MODE : u8 = 10;
 pub struct  GetViewPortCookie<'s> { pub base : base::Cookie<'s, xcb_xf86vidmode_get_view_port_cookie_t> }
 
 /** Opcode for xcb_xf86vidmode_get_view_port. */
-pub static XCB_XF86VIDMODE_GET_VIEW_PORT : u8 = 11;
+pub const XCB_XF86VIDMODE_GET_VIEW_PORT : u8 = 11;
 pub struct GetViewPortReply { base:  base::Reply<xcb_xf86vidmode_get_view_port_reply_t> }
 fn mk_reply_xcb_xf86vidmode_get_view_port_reply_t(reply:*mut xcb_xf86vidmode_get_view_port_reply_t) -> GetViewPortReply { GetViewPortReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_xf86vidmode_set_view_port. */
-pub static XCB_XF86VIDMODE_SET_VIEW_PORT : u8 = 12;
+pub const XCB_XF86VIDMODE_SET_VIEW_PORT : u8 = 12;
 pub struct  GetDotClocksCookie<'s> { pub base : base::Cookie<'s, xcb_xf86vidmode_get_dot_clocks_cookie_t> }
 
 /** Opcode for xcb_xf86vidmode_get_dot_clocks. */
-pub static XCB_XF86VIDMODE_GET_DOT_CLOCKS : u8 = 13;
+pub const XCB_XF86VIDMODE_GET_DOT_CLOCKS : u8 = 13;
 /** Opcode for xcb_xf86vidmode_set_client_version. */
-pub static XCB_XF86VIDMODE_SET_CLIENT_VERSION : u8 = 14;
+pub const XCB_XF86VIDMODE_SET_CLIENT_VERSION : u8 = 14;
 /** Opcode for xcb_xf86vidmode_set_gamma. */
-pub static XCB_XF86VIDMODE_SET_GAMMA : u8 = 15;
+pub const XCB_XF86VIDMODE_SET_GAMMA : u8 = 15;
 pub struct  GetGammaCookie<'s> { pub base : base::Cookie<'s, xcb_xf86vidmode_get_gamma_cookie_t> }
 
 /** Opcode for xcb_xf86vidmode_get_gamma. */
-pub static XCB_XF86VIDMODE_GET_GAMMA : u8 = 16;
+pub const XCB_XF86VIDMODE_GET_GAMMA : u8 = 16;
 pub struct GetGammaReply { base:  base::Reply<xcb_xf86vidmode_get_gamma_reply_t> }
 fn mk_reply_xcb_xf86vidmode_get_gamma_reply_t(reply:*mut xcb_xf86vidmode_get_gamma_reply_t) -> GetGammaReply { GetGammaReply { base : base::mk_reply(reply) } }
 pub struct  GetGammaRampCookie<'s> { pub base : base::Cookie<'s, xcb_xf86vidmode_get_gamma_ramp_cookie_t> }
 
 /** Opcode for xcb_xf86vidmode_get_gamma_ramp. */
-pub static XCB_XF86VIDMODE_GET_GAMMA_RAMP : u8 = 17;
+pub const XCB_XF86VIDMODE_GET_GAMMA_RAMP : u8 = 17;
 /** Opcode for xcb_xf86vidmode_set_gamma_ramp. */
-pub static XCB_XF86VIDMODE_SET_GAMMA_RAMP : u8 = 18;
+pub const XCB_XF86VIDMODE_SET_GAMMA_RAMP : u8 = 18;
 pub struct  GetGammaRampSizeCookie<'s> { pub base : base::Cookie<'s, xcb_xf86vidmode_get_gamma_ramp_size_cookie_t> }
 
 /** Opcode for xcb_xf86vidmode_get_gamma_ramp_size. */
-pub static XCB_XF86VIDMODE_GET_GAMMA_RAMP_SIZE : u8 = 19;
+pub const XCB_XF86VIDMODE_GET_GAMMA_RAMP_SIZE : u8 = 19;
 pub struct GetGammaRampSizeReply { base:  base::Reply<xcb_xf86vidmode_get_gamma_ramp_size_reply_t> }
 fn mk_reply_xcb_xf86vidmode_get_gamma_ramp_size_reply_t(reply:*mut xcb_xf86vidmode_get_gamma_ramp_size_reply_t) -> GetGammaRampSizeReply { GetGammaRampSizeReply { base : base::mk_reply(reply) } }
 pub struct  GetPermissionsCookie<'s> { pub base : base::Cookie<'s, xcb_xf86vidmode_get_permissions_cookie_t> }
 
 /** Opcode for xcb_xf86vidmode_get_permissions. */
-pub static XCB_XF86VIDMODE_GET_PERMISSIONS : u8 = 20;
+pub const XCB_XF86VIDMODE_GET_PERMISSIONS : u8 = 20;
 pub struct GetPermissionsReply { base:  base::Reply<xcb_xf86vidmode_get_permissions_reply_t> }
 fn mk_reply_xcb_xf86vidmode_get_permissions_reply_t(reply:*mut xcb_xf86vidmode_get_permissions_reply_t) -> GetPermissionsReply { GetPermissionsReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_xf86vidmode_bad_clock. */
-pub static XCB_XF86VIDMODE_BAD_CLOCK : u8 = 0;
+pub const XCB_XF86VIDMODE_BAD_CLOCK : u8 = 0;
 pub struct BadClockError { pub base : base::Error<xcb_xf86vidmode_bad_clock_error_t> }
 /** Opcode for xcb_xf86vidmode_bad_h_timings. */
-pub static XCB_XF86VIDMODE_BAD_H_TIMINGS : u8 = 1;
+pub const XCB_XF86VIDMODE_BAD_H_TIMINGS : u8 = 1;
 pub struct BadHTimingsError { pub base : base::Error<xcb_xf86vidmode_bad_h_timings_error_t> }
 /** Opcode for xcb_xf86vidmode_bad_v_timings. */
-pub static XCB_XF86VIDMODE_BAD_V_TIMINGS : u8 = 2;
+pub const XCB_XF86VIDMODE_BAD_V_TIMINGS : u8 = 2;
 pub struct BadVTimingsError { pub base : base::Error<xcb_xf86vidmode_bad_v_timings_error_t> }
 /** Opcode for xcb_xf86vidmode_mode_unsuitable. */
-pub static XCB_XF86VIDMODE_MODE_UNSUITABLE : u8 = 3;
+pub const XCB_XF86VIDMODE_MODE_UNSUITABLE : u8 = 3;
 pub struct ModeUnsuitableError { pub base : base::Error<xcb_xf86vidmode_mode_unsuitable_error_t> }
 /** Opcode for xcb_xf86vidmode_extension_disabled. */
-pub static XCB_XF86VIDMODE_EXTENSION_DISABLED : u8 = 4;
+pub const XCB_XF86VIDMODE_EXTENSION_DISABLED : u8 = 4;
 pub struct ExtensionDisabledError { pub base : base::Error<xcb_xf86vidmode_extension_disabled_error_t> }
 /** Opcode for xcb_xf86vidmode_client_not_local. */
-pub static XCB_XF86VIDMODE_CLIENT_NOT_LOCAL : u8 = 5;
+pub const XCB_XF86VIDMODE_CLIENT_NOT_LOCAL : u8 = 5;
 pub struct ClientNotLocalError { pub base : base::Error<xcb_xf86vidmode_client_not_local_error_t> }
 /** Opcode for xcb_xf86vidmode_zoom_locked. */
-pub static XCB_XF86VIDMODE_ZOOM_LOCKED : u8 = 6;
+pub const XCB_XF86VIDMODE_ZOOM_LOCKED : u8 = 6;
 pub struct ZoomLockedError { pub base : base::Error<xcb_xf86vidmode_zoom_locked_error_t> }
 
 

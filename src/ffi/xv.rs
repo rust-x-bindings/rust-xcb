@@ -12,8 +12,8 @@ use ffi;
 use ffi::xproto;
 use ffi::shm;
 
-pub static XV_MAJOR_VERSION : c_uint = 2;
-pub static XV_MINOR_VERSION : c_uint = 2;
+pub const XV_MAJOR_VERSION : c_uint = 2;
+pub const XV_MINOR_VERSION : c_uint = 2;
 
 pub type xcb_xv_port_t = u32;
 /**

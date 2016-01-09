@@ -11,8 +11,8 @@ use libc::*;
 use ffi;
 use ffi::xproto;
 
-pub static RES_MAJOR_VERSION : c_uint = 1;
-pub static RES_MINOR_VERSION : c_uint = 0;
+pub const RES_MAJOR_VERSION : c_uint = 1;
+pub const RES_MINOR_VERSION : c_uint = 0;
 
 #[repr(C)]
 pub struct xcb_res_client_t {

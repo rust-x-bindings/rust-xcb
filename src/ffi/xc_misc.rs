@@ -10,8 +10,8 @@ use std;
 use libc::*;
 use ffi;
 
-pub static XCMISC_MAJOR_VERSION : c_uint = 1;
-pub static XCMISC_MINOR_VERSION : c_uint = 1;
+pub const XCMISC_MAJOR_VERSION : c_uint = 1;
+pub const XCMISC_MINOR_VERSION : c_uint = 1;
 
 #[derive(Copy, Clone)]
 #[repr(C)]

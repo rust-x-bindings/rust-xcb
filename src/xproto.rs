@@ -59,12 +59,12 @@ pub type FormatIterator = xcb_format_iterator_t;
 
 
 pub type xcb_visual_class_t = c_uint;//{
-    pub static XCB_VISUAL_CLASS_STATIC_GRAY : xcb_visual_class_t = 0;
-    pub static XCB_VISUAL_CLASS_GRAY_SCALE : xcb_visual_class_t = 1;
-    pub static XCB_VISUAL_CLASS_STATIC_COLOR : xcb_visual_class_t = 2;
-    pub static XCB_VISUAL_CLASS_PSEUDO_COLOR : xcb_visual_class_t = 3;
-    pub static XCB_VISUAL_CLASS_TRUE_COLOR : xcb_visual_class_t = 4;
-    pub static XCB_VISUAL_CLASS_DIRECT_COLOR : xcb_visual_class_t = 5;
+    pub const XCB_VISUAL_CLASS_STATIC_GRAY : xcb_visual_class_t = 0;
+    pub const XCB_VISUAL_CLASS_GRAY_SCALE : xcb_visual_class_t = 1;
+    pub const XCB_VISUAL_CLASS_STATIC_COLOR : xcb_visual_class_t = 2;
+    pub const XCB_VISUAL_CLASS_PSEUDO_COLOR : xcb_visual_class_t = 3;
+    pub const XCB_VISUAL_CLASS_TRUE_COLOR : xcb_visual_class_t = 4;
+    pub const XCB_VISUAL_CLASS_DIRECT_COLOR : xcb_visual_class_t = 5;
 //}
 pub struct Visualtype {pub base : base::Struct<xcb_visualtype_t> }
 
@@ -74,38 +74,38 @@ pub type DepthIterator = xcb_depth_iterator_t;
 
 
 pub type xcb_event_mask_t = c_uint;//{
-    pub static XCB_EVENT_MASK_NO_EVENT : xcb_event_mask_t = 0;
-    pub static XCB_EVENT_MASK_KEY_PRESS : xcb_event_mask_t = 1;
-    pub static XCB_EVENT_MASK_KEY_RELEASE : xcb_event_mask_t = 2;
-    pub static XCB_EVENT_MASK_BUTTON_PRESS : xcb_event_mask_t = 4;
-    pub static XCB_EVENT_MASK_BUTTON_RELEASE : xcb_event_mask_t = 8;
-    pub static XCB_EVENT_MASK_ENTER_WINDOW : xcb_event_mask_t = 16;
-    pub static XCB_EVENT_MASK_LEAVE_WINDOW : xcb_event_mask_t = 32;
-    pub static XCB_EVENT_MASK_POINTER_MOTION : xcb_event_mask_t = 64;
-    pub static XCB_EVENT_MASK_POINTER_MOTION_HINT : xcb_event_mask_t = 128;
-    pub static XCB_EVENT_MASK_BUTTON_1_MOTION : xcb_event_mask_t = 256;
-    pub static XCB_EVENT_MASK_BUTTON_2_MOTION : xcb_event_mask_t = 512;
-    pub static XCB_EVENT_MASK_BUTTON_3_MOTION : xcb_event_mask_t = 1024;
-    pub static XCB_EVENT_MASK_BUTTON_4_MOTION : xcb_event_mask_t = 2048;
-    pub static XCB_EVENT_MASK_BUTTON_5_MOTION : xcb_event_mask_t = 4096;
-    pub static XCB_EVENT_MASK_BUTTON_MOTION : xcb_event_mask_t = 8192;
-    pub static XCB_EVENT_MASK_KEYMAP_STATE : xcb_event_mask_t = 16384;
-    pub static XCB_EVENT_MASK_EXPOSURE : xcb_event_mask_t = 32768;
-    pub static XCB_EVENT_MASK_VISIBILITY_CHANGE : xcb_event_mask_t = 65536;
-    pub static XCB_EVENT_MASK_STRUCTURE_NOTIFY : xcb_event_mask_t = 131072;
-    pub static XCB_EVENT_MASK_RESIZE_REDIRECT : xcb_event_mask_t = 262144;
-    pub static XCB_EVENT_MASK_SUBSTRUCTURE_NOTIFY : xcb_event_mask_t = 524288;
-    pub static XCB_EVENT_MASK_SUBSTRUCTURE_REDIRECT : xcb_event_mask_t = 1048576;
-    pub static XCB_EVENT_MASK_FOCUS_CHANGE : xcb_event_mask_t = 2097152;
-    pub static XCB_EVENT_MASK_PROPERTY_CHANGE : xcb_event_mask_t = 4194304;
-    pub static XCB_EVENT_MASK_COLOR_MAP_CHANGE : xcb_event_mask_t = 8388608;
-    pub static XCB_EVENT_MASK_OWNER_GRAB_BUTTON : xcb_event_mask_t = 16777216;
+    pub const XCB_EVENT_MASK_NO_EVENT : xcb_event_mask_t = 0;
+    pub const XCB_EVENT_MASK_KEY_PRESS : xcb_event_mask_t = 1;
+    pub const XCB_EVENT_MASK_KEY_RELEASE : xcb_event_mask_t = 2;
+    pub const XCB_EVENT_MASK_BUTTON_PRESS : xcb_event_mask_t = 4;
+    pub const XCB_EVENT_MASK_BUTTON_RELEASE : xcb_event_mask_t = 8;
+    pub const XCB_EVENT_MASK_ENTER_WINDOW : xcb_event_mask_t = 16;
+    pub const XCB_EVENT_MASK_LEAVE_WINDOW : xcb_event_mask_t = 32;
+    pub const XCB_EVENT_MASK_POINTER_MOTION : xcb_event_mask_t = 64;
+    pub const XCB_EVENT_MASK_POINTER_MOTION_HINT : xcb_event_mask_t = 128;
+    pub const XCB_EVENT_MASK_BUTTON_1_MOTION : xcb_event_mask_t = 256;
+    pub const XCB_EVENT_MASK_BUTTON_2_MOTION : xcb_event_mask_t = 512;
+    pub const XCB_EVENT_MASK_BUTTON_3_MOTION : xcb_event_mask_t = 1024;
+    pub const XCB_EVENT_MASK_BUTTON_4_MOTION : xcb_event_mask_t = 2048;
+    pub const XCB_EVENT_MASK_BUTTON_5_MOTION : xcb_event_mask_t = 4096;
+    pub const XCB_EVENT_MASK_BUTTON_MOTION : xcb_event_mask_t = 8192;
+    pub const XCB_EVENT_MASK_KEYMAP_STATE : xcb_event_mask_t = 16384;
+    pub const XCB_EVENT_MASK_EXPOSURE : xcb_event_mask_t = 32768;
+    pub const XCB_EVENT_MASK_VISIBILITY_CHANGE : xcb_event_mask_t = 65536;
+    pub const XCB_EVENT_MASK_STRUCTURE_NOTIFY : xcb_event_mask_t = 131072;
+    pub const XCB_EVENT_MASK_RESIZE_REDIRECT : xcb_event_mask_t = 262144;
+    pub const XCB_EVENT_MASK_SUBSTRUCTURE_NOTIFY : xcb_event_mask_t = 524288;
+    pub const XCB_EVENT_MASK_SUBSTRUCTURE_REDIRECT : xcb_event_mask_t = 1048576;
+    pub const XCB_EVENT_MASK_FOCUS_CHANGE : xcb_event_mask_t = 2097152;
+    pub const XCB_EVENT_MASK_PROPERTY_CHANGE : xcb_event_mask_t = 4194304;
+    pub const XCB_EVENT_MASK_COLOR_MAP_CHANGE : xcb_event_mask_t = 8388608;
+    pub const XCB_EVENT_MASK_OWNER_GRAB_BUTTON : xcb_event_mask_t = 16777216;
 //}
 
 pub type xcb_backing_store_t = c_uint;//{
-    pub static XCB_BACKING_STORE_NOT_USEFUL : xcb_backing_store_t = 0;
-    pub static XCB_BACKING_STORE_WHEN_MAPPED : xcb_backing_store_t = 1;
-    pub static XCB_BACKING_STORE_ALWAYS : xcb_backing_store_t = 2;
+    pub const XCB_BACKING_STORE_NOT_USEFUL : xcb_backing_store_t = 0;
+    pub const XCB_BACKING_STORE_WHEN_MAPPED : xcb_backing_store_t = 1;
+    pub const XCB_BACKING_STORE_ALWAYS : xcb_backing_store_t = 2;
 //}
 pub type ScreenIterator = xcb_screen_iterator_t;
 
@@ -117,346 +117,346 @@ pub type SetupAuthenticateIterator = xcb_setup_authenticate_iterator_t;
 
 
 pub type xcb_image_order_t = c_uint;//{
-    pub static XCB_IMAGE_ORDER_LSB_FIRST : xcb_image_order_t = 0;
-    pub static XCB_IMAGE_ORDER_MSB_FIRST : xcb_image_order_t = 1;
+    pub const XCB_IMAGE_ORDER_LSB_FIRST : xcb_image_order_t = 0;
+    pub const XCB_IMAGE_ORDER_MSB_FIRST : xcb_image_order_t = 1;
 //}
 
 pub type xcb_mod_mask_t = c_uint;//{
-    pub static XCB_MOD_MASK_SHIFT : xcb_mod_mask_t = 1;
-    pub static XCB_MOD_MASK_LOCK : xcb_mod_mask_t = 2;
-    pub static XCB_MOD_MASK_CONTROL : xcb_mod_mask_t = 4;
-    pub static XCB_MOD_MASK_1 : xcb_mod_mask_t = 8;
-    pub static XCB_MOD_MASK_2 : xcb_mod_mask_t = 16;
-    pub static XCB_MOD_MASK_3 : xcb_mod_mask_t = 32;
-    pub static XCB_MOD_MASK_4 : xcb_mod_mask_t = 64;
-    pub static XCB_MOD_MASK_5 : xcb_mod_mask_t = 128;
-    pub static XCB_MOD_MASK_ANY : xcb_mod_mask_t = 32768;
+    pub const XCB_MOD_MASK_SHIFT : xcb_mod_mask_t = 1;
+    pub const XCB_MOD_MASK_LOCK : xcb_mod_mask_t = 2;
+    pub const XCB_MOD_MASK_CONTROL : xcb_mod_mask_t = 4;
+    pub const XCB_MOD_MASK_1 : xcb_mod_mask_t = 8;
+    pub const XCB_MOD_MASK_2 : xcb_mod_mask_t = 16;
+    pub const XCB_MOD_MASK_3 : xcb_mod_mask_t = 32;
+    pub const XCB_MOD_MASK_4 : xcb_mod_mask_t = 64;
+    pub const XCB_MOD_MASK_5 : xcb_mod_mask_t = 128;
+    pub const XCB_MOD_MASK_ANY : xcb_mod_mask_t = 32768;
 //}
 
 pub type xcb_key_but_mask_t = c_uint;//{
-    pub static XCB_KEY_BUT_MASK_SHIFT : xcb_key_but_mask_t = 1;
-    pub static XCB_KEY_BUT_MASK_LOCK : xcb_key_but_mask_t = 2;
-    pub static XCB_KEY_BUT_MASK_CONTROL : xcb_key_but_mask_t = 4;
-    pub static XCB_KEY_BUT_MASK_MOD_1 : xcb_key_but_mask_t = 8;
-    pub static XCB_KEY_BUT_MASK_MOD_2 : xcb_key_but_mask_t = 16;
-    pub static XCB_KEY_BUT_MASK_MOD_3 : xcb_key_but_mask_t = 32;
-    pub static XCB_KEY_BUT_MASK_MOD_4 : xcb_key_but_mask_t = 64;
-    pub static XCB_KEY_BUT_MASK_MOD_5 : xcb_key_but_mask_t = 128;
-    pub static XCB_KEY_BUT_MASK_BUTTON_1 : xcb_key_but_mask_t = 256;
-    pub static XCB_KEY_BUT_MASK_BUTTON_2 : xcb_key_but_mask_t = 512;
-    pub static XCB_KEY_BUT_MASK_BUTTON_3 : xcb_key_but_mask_t = 1024;
-    pub static XCB_KEY_BUT_MASK_BUTTON_4 : xcb_key_but_mask_t = 2048;
-    pub static XCB_KEY_BUT_MASK_BUTTON_5 : xcb_key_but_mask_t = 4096;
+    pub const XCB_KEY_BUT_MASK_SHIFT : xcb_key_but_mask_t = 1;
+    pub const XCB_KEY_BUT_MASK_LOCK : xcb_key_but_mask_t = 2;
+    pub const XCB_KEY_BUT_MASK_CONTROL : xcb_key_but_mask_t = 4;
+    pub const XCB_KEY_BUT_MASK_MOD_1 : xcb_key_but_mask_t = 8;
+    pub const XCB_KEY_BUT_MASK_MOD_2 : xcb_key_but_mask_t = 16;
+    pub const XCB_KEY_BUT_MASK_MOD_3 : xcb_key_but_mask_t = 32;
+    pub const XCB_KEY_BUT_MASK_MOD_4 : xcb_key_but_mask_t = 64;
+    pub const XCB_KEY_BUT_MASK_MOD_5 : xcb_key_but_mask_t = 128;
+    pub const XCB_KEY_BUT_MASK_BUTTON_1 : xcb_key_but_mask_t = 256;
+    pub const XCB_KEY_BUT_MASK_BUTTON_2 : xcb_key_but_mask_t = 512;
+    pub const XCB_KEY_BUT_MASK_BUTTON_3 : xcb_key_but_mask_t = 1024;
+    pub const XCB_KEY_BUT_MASK_BUTTON_4 : xcb_key_but_mask_t = 2048;
+    pub const XCB_KEY_BUT_MASK_BUTTON_5 : xcb_key_but_mask_t = 4096;
 //}
 
 pub type xcb_window_enum_t = c_uint;//{
-    pub static XCB_WINDOW_NONE : xcb_window_enum_t = 0;
+    pub const XCB_WINDOW_NONE : xcb_window_enum_t = 0;
 //}
 /** Opcode for xcb_key_press. */
-pub static XCB_KEY_PRESS : u8 = 2;
+pub const XCB_KEY_PRESS : u8 = 2;
 pub struct KeyPressEvent {pub base : base::Event<xcb_key_press_event_t>}
 /** Opcode for xcb_key_release. */
-pub static XCB_KEY_RELEASE : u8 = 3;
+pub const XCB_KEY_RELEASE : u8 = 3;
 pub struct KeyReleaseEvent {pub base : base::Event<xcb_key_release_event_t>}
 
 pub type xcb_button_mask_t = c_uint;//{
-    pub static XCB_BUTTON_MASK_1 : xcb_button_mask_t = 256;
-    pub static XCB_BUTTON_MASK_2 : xcb_button_mask_t = 512;
-    pub static XCB_BUTTON_MASK_3 : xcb_button_mask_t = 1024;
-    pub static XCB_BUTTON_MASK_4 : xcb_button_mask_t = 2048;
-    pub static XCB_BUTTON_MASK_5 : xcb_button_mask_t = 4096;
-    pub static XCB_BUTTON_MASK_ANY : xcb_button_mask_t = 32768;
+    pub const XCB_BUTTON_MASK_1 : xcb_button_mask_t = 256;
+    pub const XCB_BUTTON_MASK_2 : xcb_button_mask_t = 512;
+    pub const XCB_BUTTON_MASK_3 : xcb_button_mask_t = 1024;
+    pub const XCB_BUTTON_MASK_4 : xcb_button_mask_t = 2048;
+    pub const XCB_BUTTON_MASK_5 : xcb_button_mask_t = 4096;
+    pub const XCB_BUTTON_MASK_ANY : xcb_button_mask_t = 32768;
 //}
 /** Opcode for xcb_button_press. */
-pub static XCB_BUTTON_PRESS : u8 = 4;
+pub const XCB_BUTTON_PRESS : u8 = 4;
 pub struct ButtonPressEvent {pub base : base::Event<xcb_button_press_event_t>}
 /** Opcode for xcb_button_release. */
-pub static XCB_BUTTON_RELEASE : u8 = 5;
+pub const XCB_BUTTON_RELEASE : u8 = 5;
 pub struct ButtonReleaseEvent {pub base : base::Event<xcb_button_release_event_t>}
 
 pub type xcb_motion_t = c_uint;//{
-    pub static XCB_MOTION_NORMAL : xcb_motion_t = 0;
-    pub static XCB_MOTION_HINT : xcb_motion_t = 1;
+    pub const XCB_MOTION_NORMAL : xcb_motion_t = 0;
+    pub const XCB_MOTION_HINT : xcb_motion_t = 1;
 //}
 /** Opcode for xcb_motion_notify. */
-pub static XCB_MOTION_NOTIFY : u8 = 6;
+pub const XCB_MOTION_NOTIFY : u8 = 6;
 pub struct MotionNotifyEvent {pub base : base::Event<xcb_motion_notify_event_t>}
 
 pub type xcb_notify_detail_t = c_uint;//{
-    pub static XCB_NOTIFY_DETAIL_ANCESTOR : xcb_notify_detail_t = 0;
-    pub static XCB_NOTIFY_DETAIL_VIRTUAL : xcb_notify_detail_t = 1;
-    pub static XCB_NOTIFY_DETAIL_INFERIOR : xcb_notify_detail_t = 2;
-    pub static XCB_NOTIFY_DETAIL_NONLINEAR : xcb_notify_detail_t = 3;
-    pub static XCB_NOTIFY_DETAIL_NONLINEAR_VIRTUAL : xcb_notify_detail_t = 4;
-    pub static XCB_NOTIFY_DETAIL_POINTER : xcb_notify_detail_t = 5;
-    pub static XCB_NOTIFY_DETAIL_POINTER_ROOT : xcb_notify_detail_t = 6;
-    pub static XCB_NOTIFY_DETAIL_NONE : xcb_notify_detail_t = 7;
+    pub const XCB_NOTIFY_DETAIL_ANCESTOR : xcb_notify_detail_t = 0;
+    pub const XCB_NOTIFY_DETAIL_VIRTUAL : xcb_notify_detail_t = 1;
+    pub const XCB_NOTIFY_DETAIL_INFERIOR : xcb_notify_detail_t = 2;
+    pub const XCB_NOTIFY_DETAIL_NONLINEAR : xcb_notify_detail_t = 3;
+    pub const XCB_NOTIFY_DETAIL_NONLINEAR_VIRTUAL : xcb_notify_detail_t = 4;
+    pub const XCB_NOTIFY_DETAIL_POINTER : xcb_notify_detail_t = 5;
+    pub const XCB_NOTIFY_DETAIL_POINTER_ROOT : xcb_notify_detail_t = 6;
+    pub const XCB_NOTIFY_DETAIL_NONE : xcb_notify_detail_t = 7;
 //}
 
 pub type xcb_notify_mode_t = c_uint;//{
-    pub static XCB_NOTIFY_MODE_NORMAL : xcb_notify_mode_t = 0;
-    pub static XCB_NOTIFY_MODE_GRAB : xcb_notify_mode_t = 1;
-    pub static XCB_NOTIFY_MODE_UNGRAB : xcb_notify_mode_t = 2;
-    pub static XCB_NOTIFY_MODE_WHILE_GRABBED : xcb_notify_mode_t = 3;
+    pub const XCB_NOTIFY_MODE_NORMAL : xcb_notify_mode_t = 0;
+    pub const XCB_NOTIFY_MODE_GRAB : xcb_notify_mode_t = 1;
+    pub const XCB_NOTIFY_MODE_UNGRAB : xcb_notify_mode_t = 2;
+    pub const XCB_NOTIFY_MODE_WHILE_GRABBED : xcb_notify_mode_t = 3;
 //}
 /** Opcode for xcb_enter_notify. */
-pub static XCB_ENTER_NOTIFY : u8 = 7;
+pub const XCB_ENTER_NOTIFY : u8 = 7;
 pub struct EnterNotifyEvent {pub base : base::Event<xcb_enter_notify_event_t>}
 /** Opcode for xcb_leave_notify. */
-pub static XCB_LEAVE_NOTIFY : u8 = 8;
+pub const XCB_LEAVE_NOTIFY : u8 = 8;
 pub struct LeaveNotifyEvent {pub base : base::Event<xcb_leave_notify_event_t>}
 /** Opcode for xcb_focus_in. */
-pub static XCB_FOCUS_IN : u8 = 9;
+pub const XCB_FOCUS_IN : u8 = 9;
 pub struct FocusInEvent {pub base : base::Event<xcb_focus_in_event_t>}
 /** Opcode for xcb_focus_out. */
-pub static XCB_FOCUS_OUT : u8 = 10;
+pub const XCB_FOCUS_OUT : u8 = 10;
 pub struct FocusOutEvent {pub base : base::Event<xcb_focus_out_event_t>}
 /** Opcode for xcb_keymap_notify. */
-pub static XCB_KEYMAP_NOTIFY : u8 = 11;
+pub const XCB_KEYMAP_NOTIFY : u8 = 11;
 pub struct KeymapNotifyEvent {pub base : base::Event<xcb_keymap_notify_event_t>}
 /** Opcode for xcb_expose. */
-pub static XCB_EXPOSE : u8 = 12;
+pub const XCB_EXPOSE : u8 = 12;
 pub struct ExposeEvent {pub base : base::Event<xcb_expose_event_t>}
 /** Opcode for xcb_graphics_exposure. */
-pub static XCB_GRAPHICS_EXPOSURE : u8 = 13;
+pub const XCB_GRAPHICS_EXPOSURE : u8 = 13;
 pub struct GraphicsExposureEvent {pub base : base::Event<xcb_graphics_exposure_event_t>}
 /** Opcode for xcb_no_exposure. */
-pub static XCB_NO_EXPOSURE : u8 = 14;
+pub const XCB_NO_EXPOSURE : u8 = 14;
 pub struct NoExposureEvent {pub base : base::Event<xcb_no_exposure_event_t>}
 
 pub type xcb_visibility_t = c_uint;//{
-    pub static XCB_VISIBILITY_UNOBSCURED : xcb_visibility_t = 0;
-    pub static XCB_VISIBILITY_PARTIALLY_OBSCURED : xcb_visibility_t = 1;
-    pub static XCB_VISIBILITY_FULLY_OBSCURED : xcb_visibility_t = 2;
+    pub const XCB_VISIBILITY_UNOBSCURED : xcb_visibility_t = 0;
+    pub const XCB_VISIBILITY_PARTIALLY_OBSCURED : xcb_visibility_t = 1;
+    pub const XCB_VISIBILITY_FULLY_OBSCURED : xcb_visibility_t = 2;
 //}
 /** Opcode for xcb_visibility_notify. */
-pub static XCB_VISIBILITY_NOTIFY : u8 = 15;
+pub const XCB_VISIBILITY_NOTIFY : u8 = 15;
 pub struct VisibilityNotifyEvent {pub base : base::Event<xcb_visibility_notify_event_t>}
 /** Opcode for xcb_create_notify. */
-pub static XCB_CREATE_NOTIFY : u8 = 16;
+pub const XCB_CREATE_NOTIFY : u8 = 16;
 pub struct CreateNotifyEvent {pub base : base::Event<xcb_create_notify_event_t>}
 /** Opcode for xcb_destroy_notify. */
-pub static XCB_DESTROY_NOTIFY : u8 = 17;
+pub const XCB_DESTROY_NOTIFY : u8 = 17;
 pub struct DestroyNotifyEvent {pub base : base::Event<xcb_destroy_notify_event_t>}
 /** Opcode for xcb_unmap_notify. */
-pub static XCB_UNMAP_NOTIFY : u8 = 18;
+pub const XCB_UNMAP_NOTIFY : u8 = 18;
 pub struct UnmapNotifyEvent {pub base : base::Event<xcb_unmap_notify_event_t>}
 /** Opcode for xcb_map_notify. */
-pub static XCB_MAP_NOTIFY : u8 = 19;
+pub const XCB_MAP_NOTIFY : u8 = 19;
 pub struct MapNotifyEvent {pub base : base::Event<xcb_map_notify_event_t>}
 /** Opcode for xcb_map_request. */
-pub static XCB_MAP_REQUEST : u8 = 20;
+pub const XCB_MAP_REQUEST : u8 = 20;
 pub struct MapRequestEvent {pub base : base::Event<xcb_map_request_event_t>}
 /** Opcode for xcb_reparent_notify. */
-pub static XCB_REPARENT_NOTIFY : u8 = 21;
+pub const XCB_REPARENT_NOTIFY : u8 = 21;
 pub struct ReparentNotifyEvent {pub base : base::Event<xcb_reparent_notify_event_t>}
 /** Opcode for xcb_configure_notify. */
-pub static XCB_CONFIGURE_NOTIFY : u8 = 22;
+pub const XCB_CONFIGURE_NOTIFY : u8 = 22;
 pub struct ConfigureNotifyEvent {pub base : base::Event<xcb_configure_notify_event_t>}
 /** Opcode for xcb_configure_request. */
-pub static XCB_CONFIGURE_REQUEST : u8 = 23;
+pub const XCB_CONFIGURE_REQUEST : u8 = 23;
 pub struct ConfigureRequestEvent {pub base : base::Event<xcb_configure_request_event_t>}
 /** Opcode for xcb_gravity_notify. */
-pub static XCB_GRAVITY_NOTIFY : u8 = 24;
+pub const XCB_GRAVITY_NOTIFY : u8 = 24;
 pub struct GravityNotifyEvent {pub base : base::Event<xcb_gravity_notify_event_t>}
 /** Opcode for xcb_resize_request. */
-pub static XCB_RESIZE_REQUEST : u8 = 25;
+pub const XCB_RESIZE_REQUEST : u8 = 25;
 pub struct ResizeRequestEvent {pub base : base::Event<xcb_resize_request_event_t>}
 
 pub type xcb_place_t = c_uint;//{
     
 /** The window is now on top of all siblings. */
-    pub static XCB_PLACE_ON_TOP : xcb_place_t = 0;
+    pub const XCB_PLACE_ON_TOP : xcb_place_t = 0;
     
 /** The window is now below all siblings. */
-    pub static XCB_PLACE_ON_BOTTOM : xcb_place_t = 1;
+    pub const XCB_PLACE_ON_BOTTOM : xcb_place_t = 1;
 //}
 /** Opcode for xcb_circulate_notify. */
-pub static XCB_CIRCULATE_NOTIFY : u8 = 26;
+pub const XCB_CIRCULATE_NOTIFY : u8 = 26;
 pub struct CirculateNotifyEvent {pub base : base::Event<xcb_circulate_notify_event_t>}
 /** Opcode for xcb_circulate_request. */
-pub static XCB_CIRCULATE_REQUEST : u8 = 27;
+pub const XCB_CIRCULATE_REQUEST : u8 = 27;
 pub struct CirculateRequestEvent {pub base : base::Event<xcb_circulate_request_event_t>}
 
 pub type xcb_property_t = c_uint;//{
-    pub static XCB_PROPERTY_NEW_VALUE : xcb_property_t = 0;
-    pub static XCB_PROPERTY_DELETE : xcb_property_t = 1;
+    pub const XCB_PROPERTY_NEW_VALUE : xcb_property_t = 0;
+    pub const XCB_PROPERTY_DELETE : xcb_property_t = 1;
 //}
 /** Opcode for xcb_property_notify. */
-pub static XCB_PROPERTY_NOTIFY : u8 = 28;
+pub const XCB_PROPERTY_NOTIFY : u8 = 28;
 pub struct PropertyNotifyEvent {pub base : base::Event<xcb_property_notify_event_t>}
 /** Opcode for xcb_selection_clear. */
-pub static XCB_SELECTION_CLEAR : u8 = 29;
+pub const XCB_SELECTION_CLEAR : u8 = 29;
 pub struct SelectionClearEvent {pub base : base::Event<xcb_selection_clear_event_t>}
 
 pub type xcb_time_t = c_uint;//{
-    pub static XCB_TIME_CURRENT_TIME : xcb_time_t = 0;
+    pub const XCB_TIME_CURRENT_TIME : xcb_time_t = 0;
 //}
 
 pub type xcb_atom_enum_t = c_uint;//{
-    pub static XCB_ATOM_NONE : xcb_atom_enum_t = 0;
-    pub static XCB_ATOM_ANY : xcb_atom_enum_t = 0;
-    pub static XCB_ATOM_PRIMARY : xcb_atom_enum_t = 1;
-    pub static XCB_ATOM_SECONDARY : xcb_atom_enum_t = 2;
-    pub static XCB_ATOM_ARC : xcb_atom_enum_t = 3;
-    pub static XCB_ATOM_ATOM : xcb_atom_enum_t = 4;
-    pub static XCB_ATOM_BITMAP : xcb_atom_enum_t = 5;
-    pub static XCB_ATOM_CARDINAL : xcb_atom_enum_t = 6;
-    pub static XCB_ATOM_COLORMAP : xcb_atom_enum_t = 7;
-    pub static XCB_ATOM_CURSOR : xcb_atom_enum_t = 8;
-    pub static XCB_ATOM_CUT_BUFFER0 : xcb_atom_enum_t = 9;
-    pub static XCB_ATOM_CUT_BUFFER1 : xcb_atom_enum_t = 10;
-    pub static XCB_ATOM_CUT_BUFFER2 : xcb_atom_enum_t = 11;
-    pub static XCB_ATOM_CUT_BUFFER3 : xcb_atom_enum_t = 12;
-    pub static XCB_ATOM_CUT_BUFFER4 : xcb_atom_enum_t = 13;
-    pub static XCB_ATOM_CUT_BUFFER5 : xcb_atom_enum_t = 14;
-    pub static XCB_ATOM_CUT_BUFFER6 : xcb_atom_enum_t = 15;
-    pub static XCB_ATOM_CUT_BUFFER7 : xcb_atom_enum_t = 16;
-    pub static XCB_ATOM_DRAWABLE : xcb_atom_enum_t = 17;
-    pub static XCB_ATOM_FONT : xcb_atom_enum_t = 18;
-    pub static XCB_ATOM_INTEGER : xcb_atom_enum_t = 19;
-    pub static XCB_ATOM_PIXMAP : xcb_atom_enum_t = 20;
-    pub static XCB_ATOM_POINT : xcb_atom_enum_t = 21;
-    pub static XCB_ATOM_RECTANGLE : xcb_atom_enum_t = 22;
-    pub static XCB_ATOM_RESOURCE_MANAGER : xcb_atom_enum_t = 23;
-    pub static XCB_ATOM_RGB_COLOR_MAP : xcb_atom_enum_t = 24;
-    pub static XCB_ATOM_RGB_BEST_MAP : xcb_atom_enum_t = 25;
-    pub static XCB_ATOM_RGB_BLUE_MAP : xcb_atom_enum_t = 26;
-    pub static XCB_ATOM_RGB_DEFAULT_MAP : xcb_atom_enum_t = 27;
-    pub static XCB_ATOM_RGB_GRAY_MAP : xcb_atom_enum_t = 28;
-    pub static XCB_ATOM_RGB_GREEN_MAP : xcb_atom_enum_t = 29;
-    pub static XCB_ATOM_RGB_RED_MAP : xcb_atom_enum_t = 30;
-    pub static XCB_ATOM_STRING : xcb_atom_enum_t = 31;
-    pub static XCB_ATOM_VISUALID : xcb_atom_enum_t = 32;
-    pub static XCB_ATOM_WINDOW : xcb_atom_enum_t = 33;
-    pub static XCB_ATOM_WM_COMMAND : xcb_atom_enum_t = 34;
-    pub static XCB_ATOM_WM_HINTS : xcb_atom_enum_t = 35;
-    pub static XCB_ATOM_WM_CLIENT_MACHINE : xcb_atom_enum_t = 36;
-    pub static XCB_ATOM_WM_ICON_NAME : xcb_atom_enum_t = 37;
-    pub static XCB_ATOM_WM_ICON_SIZE : xcb_atom_enum_t = 38;
-    pub static XCB_ATOM_WM_NAME : xcb_atom_enum_t = 39;
-    pub static XCB_ATOM_WM_NORMAL_HINTS : xcb_atom_enum_t = 40;
-    pub static XCB_ATOM_WM_SIZE_HINTS : xcb_atom_enum_t = 41;
-    pub static XCB_ATOM_WM_ZOOM_HINTS : xcb_atom_enum_t = 42;
-    pub static XCB_ATOM_MIN_SPACE : xcb_atom_enum_t = 43;
-    pub static XCB_ATOM_NORM_SPACE : xcb_atom_enum_t = 44;
-    pub static XCB_ATOM_MAX_SPACE : xcb_atom_enum_t = 45;
-    pub static XCB_ATOM_END_SPACE : xcb_atom_enum_t = 46;
-    pub static XCB_ATOM_SUPERSCRIPT_X : xcb_atom_enum_t = 47;
-    pub static XCB_ATOM_SUPERSCRIPT_Y : xcb_atom_enum_t = 48;
-    pub static XCB_ATOM_SUBSCRIPT_X : xcb_atom_enum_t = 49;
-    pub static XCB_ATOM_SUBSCRIPT_Y : xcb_atom_enum_t = 50;
-    pub static XCB_ATOM_UNDERLINE_POSITION : xcb_atom_enum_t = 51;
-    pub static XCB_ATOM_UNDERLINE_THICKNESS : xcb_atom_enum_t = 52;
-    pub static XCB_ATOM_STRIKEOUT_ASCENT : xcb_atom_enum_t = 53;
-    pub static XCB_ATOM_STRIKEOUT_DESCENT : xcb_atom_enum_t = 54;
-    pub static XCB_ATOM_ITALIC_ANGLE : xcb_atom_enum_t = 55;
-    pub static XCB_ATOM_X_HEIGHT : xcb_atom_enum_t = 56;
-    pub static XCB_ATOM_QUAD_WIDTH : xcb_atom_enum_t = 57;
-    pub static XCB_ATOM_WEIGHT : xcb_atom_enum_t = 58;
-    pub static XCB_ATOM_POINT_SIZE : xcb_atom_enum_t = 59;
-    pub static XCB_ATOM_RESOLUTION : xcb_atom_enum_t = 60;
-    pub static XCB_ATOM_COPYRIGHT : xcb_atom_enum_t = 61;
-    pub static XCB_ATOM_NOTICE : xcb_atom_enum_t = 62;
-    pub static XCB_ATOM_FONT_NAME : xcb_atom_enum_t = 63;
-    pub static XCB_ATOM_FAMILY_NAME : xcb_atom_enum_t = 64;
-    pub static XCB_ATOM_FULL_NAME : xcb_atom_enum_t = 65;
-    pub static XCB_ATOM_CAP_HEIGHT : xcb_atom_enum_t = 66;
-    pub static XCB_ATOM_WM_CLASS : xcb_atom_enum_t = 67;
-    pub static XCB_ATOM_WM_TRANSIENT_FOR : xcb_atom_enum_t = 68;
+    pub const XCB_ATOM_NONE : xcb_atom_enum_t = 0;
+    pub const XCB_ATOM_ANY : xcb_atom_enum_t = 0;
+    pub const XCB_ATOM_PRIMARY : xcb_atom_enum_t = 1;
+    pub const XCB_ATOM_SECONDARY : xcb_atom_enum_t = 2;
+    pub const XCB_ATOM_ARC : xcb_atom_enum_t = 3;
+    pub const XCB_ATOM_ATOM : xcb_atom_enum_t = 4;
+    pub const XCB_ATOM_BITMAP : xcb_atom_enum_t = 5;
+    pub const XCB_ATOM_CARDINAL : xcb_atom_enum_t = 6;
+    pub const XCB_ATOM_COLORMAP : xcb_atom_enum_t = 7;
+    pub const XCB_ATOM_CURSOR : xcb_atom_enum_t = 8;
+    pub const XCB_ATOM_CUT_BUFFER0 : xcb_atom_enum_t = 9;
+    pub const XCB_ATOM_CUT_BUFFER1 : xcb_atom_enum_t = 10;
+    pub const XCB_ATOM_CUT_BUFFER2 : xcb_atom_enum_t = 11;
+    pub const XCB_ATOM_CUT_BUFFER3 : xcb_atom_enum_t = 12;
+    pub const XCB_ATOM_CUT_BUFFER4 : xcb_atom_enum_t = 13;
+    pub const XCB_ATOM_CUT_BUFFER5 : xcb_atom_enum_t = 14;
+    pub const XCB_ATOM_CUT_BUFFER6 : xcb_atom_enum_t = 15;
+    pub const XCB_ATOM_CUT_BUFFER7 : xcb_atom_enum_t = 16;
+    pub const XCB_ATOM_DRAWABLE : xcb_atom_enum_t = 17;
+    pub const XCB_ATOM_FONT : xcb_atom_enum_t = 18;
+    pub const XCB_ATOM_INTEGER : xcb_atom_enum_t = 19;
+    pub const XCB_ATOM_PIXMAP : xcb_atom_enum_t = 20;
+    pub const XCB_ATOM_POINT : xcb_atom_enum_t = 21;
+    pub const XCB_ATOM_RECTANGLE : xcb_atom_enum_t = 22;
+    pub const XCB_ATOM_RESOURCE_MANAGER : xcb_atom_enum_t = 23;
+    pub const XCB_ATOM_RGB_COLOR_MAP : xcb_atom_enum_t = 24;
+    pub const XCB_ATOM_RGB_BEST_MAP : xcb_atom_enum_t = 25;
+    pub const XCB_ATOM_RGB_BLUE_MAP : xcb_atom_enum_t = 26;
+    pub const XCB_ATOM_RGB_DEFAULT_MAP : xcb_atom_enum_t = 27;
+    pub const XCB_ATOM_RGB_GRAY_MAP : xcb_atom_enum_t = 28;
+    pub const XCB_ATOM_RGB_GREEN_MAP : xcb_atom_enum_t = 29;
+    pub const XCB_ATOM_RGB_RED_MAP : xcb_atom_enum_t = 30;
+    pub const XCB_ATOM_STRING : xcb_atom_enum_t = 31;
+    pub const XCB_ATOM_VISUALID : xcb_atom_enum_t = 32;
+    pub const XCB_ATOM_WINDOW : xcb_atom_enum_t = 33;
+    pub const XCB_ATOM_WM_COMMAND : xcb_atom_enum_t = 34;
+    pub const XCB_ATOM_WM_HINTS : xcb_atom_enum_t = 35;
+    pub const XCB_ATOM_WM_CLIENT_MACHINE : xcb_atom_enum_t = 36;
+    pub const XCB_ATOM_WM_ICON_NAME : xcb_atom_enum_t = 37;
+    pub const XCB_ATOM_WM_ICON_SIZE : xcb_atom_enum_t = 38;
+    pub const XCB_ATOM_WM_NAME : xcb_atom_enum_t = 39;
+    pub const XCB_ATOM_WM_NORMAL_HINTS : xcb_atom_enum_t = 40;
+    pub const XCB_ATOM_WM_SIZE_HINTS : xcb_atom_enum_t = 41;
+    pub const XCB_ATOM_WM_ZOOM_HINTS : xcb_atom_enum_t = 42;
+    pub const XCB_ATOM_MIN_SPACE : xcb_atom_enum_t = 43;
+    pub const XCB_ATOM_NORM_SPACE : xcb_atom_enum_t = 44;
+    pub const XCB_ATOM_MAX_SPACE : xcb_atom_enum_t = 45;
+    pub const XCB_ATOM_END_SPACE : xcb_atom_enum_t = 46;
+    pub const XCB_ATOM_SUPERSCRIPT_X : xcb_atom_enum_t = 47;
+    pub const XCB_ATOM_SUPERSCRIPT_Y : xcb_atom_enum_t = 48;
+    pub const XCB_ATOM_SUBSCRIPT_X : xcb_atom_enum_t = 49;
+    pub const XCB_ATOM_SUBSCRIPT_Y : xcb_atom_enum_t = 50;
+    pub const XCB_ATOM_UNDERLINE_POSITION : xcb_atom_enum_t = 51;
+    pub const XCB_ATOM_UNDERLINE_THICKNESS : xcb_atom_enum_t = 52;
+    pub const XCB_ATOM_STRIKEOUT_ASCENT : xcb_atom_enum_t = 53;
+    pub const XCB_ATOM_STRIKEOUT_DESCENT : xcb_atom_enum_t = 54;
+    pub const XCB_ATOM_ITALIC_ANGLE : xcb_atom_enum_t = 55;
+    pub const XCB_ATOM_X_HEIGHT : xcb_atom_enum_t = 56;
+    pub const XCB_ATOM_QUAD_WIDTH : xcb_atom_enum_t = 57;
+    pub const XCB_ATOM_WEIGHT : xcb_atom_enum_t = 58;
+    pub const XCB_ATOM_POINT_SIZE : xcb_atom_enum_t = 59;
+    pub const XCB_ATOM_RESOLUTION : xcb_atom_enum_t = 60;
+    pub const XCB_ATOM_COPYRIGHT : xcb_atom_enum_t = 61;
+    pub const XCB_ATOM_NOTICE : xcb_atom_enum_t = 62;
+    pub const XCB_ATOM_FONT_NAME : xcb_atom_enum_t = 63;
+    pub const XCB_ATOM_FAMILY_NAME : xcb_atom_enum_t = 64;
+    pub const XCB_ATOM_FULL_NAME : xcb_atom_enum_t = 65;
+    pub const XCB_ATOM_CAP_HEIGHT : xcb_atom_enum_t = 66;
+    pub const XCB_ATOM_WM_CLASS : xcb_atom_enum_t = 67;
+    pub const XCB_ATOM_WM_TRANSIENT_FOR : xcb_atom_enum_t = 68;
 //}
 /** Opcode for xcb_selection_request. */
-pub static XCB_SELECTION_REQUEST : u8 = 30;
+pub const XCB_SELECTION_REQUEST : u8 = 30;
 pub struct SelectionRequestEvent {pub base : base::Event<xcb_selection_request_event_t>}
 /** Opcode for xcb_selection_notify. */
-pub static XCB_SELECTION_NOTIFY : u8 = 31;
+pub const XCB_SELECTION_NOTIFY : u8 = 31;
 pub struct SelectionNotifyEvent {pub base : base::Event<xcb_selection_notify_event_t>}
 
 pub type xcb_colormap_state_t = c_uint;//{
     
 /** The colormap was uninstalled. */
-    pub static XCB_COLORMAP_STATE_UNINSTALLED : xcb_colormap_state_t = 0;
+    pub const XCB_COLORMAP_STATE_UNINSTALLED : xcb_colormap_state_t = 0;
     
 /** The colormap was installed. */
-    pub static XCB_COLORMAP_STATE_INSTALLED : xcb_colormap_state_t = 1;
+    pub const XCB_COLORMAP_STATE_INSTALLED : xcb_colormap_state_t = 1;
 //}
 
 pub type xcb_colormap_enum_t = c_uint;//{
-    pub static XCB_COLORMAP_NONE : xcb_colormap_enum_t = 0;
+    pub const XCB_COLORMAP_NONE : xcb_colormap_enum_t = 0;
 //}
 /** Opcode for xcb_colormap_notify. */
-pub static XCB_COLORMAP_NOTIFY : u8 = 32;
+pub const XCB_COLORMAP_NOTIFY : u8 = 32;
 pub struct ColormapNotifyEvent {pub base : base::Event<xcb_colormap_notify_event_t>}
 pub type ClientMessageDataIterator = xcb_client_message_data_iterator_t;
 
 /** Opcode for xcb_client_message. */
-pub static XCB_CLIENT_MESSAGE : u8 = 33;
+pub const XCB_CLIENT_MESSAGE : u8 = 33;
 pub struct ClientMessageEvent {pub base : base::Event<xcb_client_message_event_t>}
 
 pub type xcb_mapping_t = c_uint;//{
-    pub static XCB_MAPPING_MODIFIER : xcb_mapping_t = 0;
-    pub static XCB_MAPPING_KEYBOARD : xcb_mapping_t = 1;
-    pub static XCB_MAPPING_POINTER : xcb_mapping_t = 2;
+    pub const XCB_MAPPING_MODIFIER : xcb_mapping_t = 0;
+    pub const XCB_MAPPING_KEYBOARD : xcb_mapping_t = 1;
+    pub const XCB_MAPPING_POINTER : xcb_mapping_t = 2;
 //}
 /** Opcode for xcb_mapping_notify. */
-pub static XCB_MAPPING_NOTIFY : u8 = 34;
+pub const XCB_MAPPING_NOTIFY : u8 = 34;
 pub struct MappingNotifyEvent {pub base : base::Event<xcb_mapping_notify_event_t>}
 /** Opcode for xcb_request. */
-pub static XCB_REQUEST : u8 = 1;
+pub const XCB_REQUEST : u8 = 1;
 pub struct RequestError { pub base : base::Error<xcb_request_error_t> }
 /** Opcode for xcb_value. */
-pub static XCB_VALUE : u8 = 2;
+pub const XCB_VALUE : u8 = 2;
 pub struct ValueError { pub base : base::Error<xcb_value_error_t> }
 /** Opcode for xcb_window. */
-pub static XCB_WINDOW : u8 = 3;
+pub const XCB_WINDOW : u8 = 3;
 pub struct WindowError { pub base : base::Error<xcb_window_error_t> }
 /** Opcode for xcb_pixmap. */
-pub static XCB_PIXMAP : u8 = 4;
+pub const XCB_PIXMAP : u8 = 4;
 pub struct PixmapError { pub base : base::Error<xcb_pixmap_error_t> }
 /** Opcode for xcb_atom. */
-pub static XCB_ATOM : u8 = 5;
+pub const XCB_ATOM : u8 = 5;
 pub struct AtomError { pub base : base::Error<xcb_atom_error_t> }
 /** Opcode for xcb_cursor. */
-pub static XCB_CURSOR : u8 = 6;
+pub const XCB_CURSOR : u8 = 6;
 pub struct CursorError { pub base : base::Error<xcb_cursor_error_t> }
 /** Opcode for xcb_font. */
-pub static XCB_FONT : u8 = 7;
+pub const XCB_FONT : u8 = 7;
 pub struct FontError { pub base : base::Error<xcb_font_error_t> }
 /** Opcode for xcb_match. */
-pub static XCB_MATCH : u8 = 8;
+pub const XCB_MATCH : u8 = 8;
 pub struct MatchError { pub base : base::Error<xcb_match_error_t> }
 /** Opcode for xcb_drawable. */
-pub static XCB_DRAWABLE : u8 = 9;
+pub const XCB_DRAWABLE : u8 = 9;
 pub struct DrawableError { pub base : base::Error<xcb_drawable_error_t> }
 /** Opcode for xcb_access. */
-pub static XCB_ACCESS : u8 = 10;
+pub const XCB_ACCESS : u8 = 10;
 pub struct AccessError { pub base : base::Error<xcb_access_error_t> }
 /** Opcode for xcb_alloc. */
-pub static XCB_ALLOC : u8 = 11;
+pub const XCB_ALLOC : u8 = 11;
 pub struct AllocError { pub base : base::Error<xcb_alloc_error_t> }
 /** Opcode for xcb_colormap. */
-pub static XCB_COLORMAP : u8 = 12;
+pub const XCB_COLORMAP : u8 = 12;
 pub struct ColormapError { pub base : base::Error<xcb_colormap_error_t> }
 /** Opcode for xcb_g_context. */
-pub static XCB_G_CONTEXT : u8 = 13;
+pub const XCB_G_CONTEXT : u8 = 13;
 pub struct GContextError { pub base : base::Error<xcb_g_context_error_t> }
 /** Opcode for xcb_id_choice. */
-pub static XCB_ID_CHOICE : u8 = 14;
+pub const XCB_ID_CHOICE : u8 = 14;
 pub struct IdChoiceError { pub base : base::Error<xcb_id_choice_error_t> }
 /** Opcode for xcb_name. */
-pub static XCB_NAME : u8 = 15;
+pub const XCB_NAME : u8 = 15;
 pub struct NameError { pub base : base::Error<xcb_name_error_t> }
 /** Opcode for xcb_length. */
-pub static XCB_LENGTH : u8 = 16;
+pub const XCB_LENGTH : u8 = 16;
 pub struct LengthError { pub base : base::Error<xcb_length_error_t> }
 /** Opcode for xcb_implementation. */
-pub static XCB_IMPLEMENTATION : u8 = 17;
+pub const XCB_IMPLEMENTATION : u8 = 17;
 pub struct ImplementationError { pub base : base::Error<xcb_implementation_error_t> }
 
 pub type xcb_window_class_t = c_uint;//{
-    pub static XCB_WINDOW_CLASS_COPY_FROM_PARENT : xcb_window_class_t = 0;
-    pub static XCB_WINDOW_CLASS_INPUT_OUTPUT : xcb_window_class_t = 1;
-    pub static XCB_WINDOW_CLASS_INPUT_ONLY : xcb_window_class_t = 2;
+    pub const XCB_WINDOW_CLASS_COPY_FROM_PARENT : xcb_window_class_t = 0;
+    pub const XCB_WINDOW_CLASS_INPUT_OUTPUT : xcb_window_class_t = 1;
+    pub const XCB_WINDOW_CLASS_INPUT_ONLY : xcb_window_class_t = 2;
 //}
 
 pub type xcb_cw_t = c_uint;//{
@@ -473,12 +473,12 @@ If `XCB_BACK_PIXMAP_PARENT_RELATIVE` is specified, the parent's background is
 used, but the window must have the same depth as the parent (or a Match error
 results).   The parent's background is tracked, and the current version is
 used each time the window background is required. */
-    pub static XCB_CW_BACK_PIXMAP : xcb_cw_t = 1;
+    pub const XCB_CW_BACK_PIXMAP : xcb_cw_t = 1;
     
 /** Overrides `BackPixmap`. A pixmap of undefined size filled with the specified
 background pixel is used for the background. Range-checking is not performed,
 the background pixel is truncated to the appropriate number of bits. */
-    pub static XCB_CW_BACK_PIXEL : xcb_cw_t = 2;
+    pub const XCB_CW_BACK_PIXEL : xcb_cw_t = 2;
     
 /** Overrides the default border-pixmap. The border pixmap and window must have the
 same root and the same depth. Any size pixmap can be used, although some sizes
@@ -487,19 +487,19 @@ may be faster than others.
 The special value `XCB_COPY_FROM_PARENT` means the parent's border pixmap is
 copied (subsequent changes to the parent's border attribute do not affect the
 child), but the window must have the same depth as the parent. */
-    pub static XCB_CW_BORDER_PIXMAP : xcb_cw_t = 4;
+    pub const XCB_CW_BORDER_PIXMAP : xcb_cw_t = 4;
     
 /** Overrides `BorderPixmap`. A pixmap of undefined size filled with the specified
 border pixel is used for the border. Range checking is not performed on the
 border-pixel value, it is truncated to the appropriate number of bits. */
-    pub static XCB_CW_BORDER_PIXEL : xcb_cw_t = 8;
+    pub const XCB_CW_BORDER_PIXEL : xcb_cw_t = 8;
     
 /** Defines which region of the window should be retained if the window is resized. */
-    pub static XCB_CW_BIT_GRAVITY : xcb_cw_t = 16;
+    pub const XCB_CW_BIT_GRAVITY : xcb_cw_t = 16;
     
 /** Defines how the window should be repositioned if the parent is resized (see
 `ConfigureWindow`). */
-    pub static XCB_CW_WIN_GRAVITY : xcb_cw_t = 32;
+    pub const XCB_CW_WIN_GRAVITY : xcb_cw_t = 32;
     
 /** A backing-store of `WhenMapped` advises the server that maintaining contents of
 obscured regions when the window is mapped would be beneficial. A backing-store
@@ -512,36 +512,36 @@ maintains contents, then the server should maintain complete contents not just
 the region within the parent boundaries, even if the window is larger than its
 parent. While the server maintains contents, exposure events will not normally
 be generated, but the server may stop maintaining contents at any time. */
-    pub static XCB_CW_BACKING_STORE : xcb_cw_t = 64;
+    pub const XCB_CW_BACKING_STORE : xcb_cw_t = 64;
     
 /** The backing-planes indicates (with bits set to 1) which bit planes of the
 window hold dynamic data that must be preserved in backing-stores and during
 save-unders. */
-    pub static XCB_CW_BACKING_PLANES : xcb_cw_t = 128;
+    pub const XCB_CW_BACKING_PLANES : xcb_cw_t = 128;
     
 /** The backing-pixel specifies what value to use in planes not covered by
 backing-planes. The server is free to save only the specified bit planes in the
 backing-store or save-under and regenerate the remaining planes with the
 specified pixel value. Any bits beyond the specified depth of the window in
 these values are simply ignored. */
-    pub static XCB_CW_BACKING_PIXEL : xcb_cw_t = 256;
+    pub const XCB_CW_BACKING_PIXEL : xcb_cw_t = 256;
     
 /** The override-redirect specifies whether map and configure requests on this
 window should override a SubstructureRedirect on the parent, typically to
 inform a window manager not to tamper with the window. */
-    pub static XCB_CW_OVERRIDE_REDIRECT : xcb_cw_t = 512;
+    pub const XCB_CW_OVERRIDE_REDIRECT : xcb_cw_t = 512;
     
 /** If 1, the server is advised that when this window is mapped, saving the
 contents of windows it obscures would be beneficial. */
-    pub static XCB_CW_SAVE_UNDER : xcb_cw_t = 1024;
+    pub const XCB_CW_SAVE_UNDER : xcb_cw_t = 1024;
     
 /** The event-mask defines which events the client is interested in for this window
 (or for some event types, inferiors of the window). */
-    pub static XCB_CW_EVENT_MASK : xcb_cw_t = 2048;
+    pub const XCB_CW_EVENT_MASK : xcb_cw_t = 2048;
     
 /** The do-not-propagate-mask defines which events should not be propagated to
 ancestor windows when no client has the event type selected in this window. */
-    pub static XCB_CW_DONT_PROPAGATE : xcb_cw_t = 4096;
+    pub const XCB_CW_DONT_PROPAGATE : xcb_cw_t = 4096;
     
 /** The colormap specifies the colormap that best reflects the true colors of the window. Servers
 capable of supporting multiple hardware colormaps may use this information, and window man-
@@ -552,240 +552,240 @@ However, the window must have the same visual type as the parent (or a Match err
 and the parent must not have a colormap of None (or a Match error results). For an explanation
 of None, see FreeColormap request. The colormap is copied by sharing the colormap object
 between the child and the parent, not by making a complete copy of the colormap contents. */
-    pub static XCB_CW_COLORMAP : xcb_cw_t = 8192;
+    pub const XCB_CW_COLORMAP : xcb_cw_t = 8192;
     
 /** If a cursor is specified, it will be used whenever the pointer is in the window. If None is speci-
 fied, the parent's cursor will be used when the pointer is in the window, and any change in the
 parent's cursor will cause an immediate change in the displayed cursor. */
-    pub static XCB_CW_CURSOR : xcb_cw_t = 16384;
+    pub const XCB_CW_CURSOR : xcb_cw_t = 16384;
 //}
 
 pub type xcb_back_pixmap_t = c_uint;//{
-    pub static XCB_BACK_PIXMAP_NONE : xcb_back_pixmap_t = 0;
-    pub static XCB_BACK_PIXMAP_PARENT_RELATIVE : xcb_back_pixmap_t = 1;
+    pub const XCB_BACK_PIXMAP_NONE : xcb_back_pixmap_t = 0;
+    pub const XCB_BACK_PIXMAP_PARENT_RELATIVE : xcb_back_pixmap_t = 1;
 //}
 
 pub type xcb_gravity_t = c_uint;//{
-    pub static XCB_GRAVITY_BIT_FORGET : xcb_gravity_t = 0;
-    pub static XCB_GRAVITY_WIN_UNMAP : xcb_gravity_t = 0;
-    pub static XCB_GRAVITY_NORTH_WEST : xcb_gravity_t = 1;
-    pub static XCB_GRAVITY_NORTH : xcb_gravity_t = 2;
-    pub static XCB_GRAVITY_NORTH_EAST : xcb_gravity_t = 3;
-    pub static XCB_GRAVITY_WEST : xcb_gravity_t = 4;
-    pub static XCB_GRAVITY_CENTER : xcb_gravity_t = 5;
-    pub static XCB_GRAVITY_EAST : xcb_gravity_t = 6;
-    pub static XCB_GRAVITY_SOUTH_WEST : xcb_gravity_t = 7;
-    pub static XCB_GRAVITY_SOUTH : xcb_gravity_t = 8;
-    pub static XCB_GRAVITY_SOUTH_EAST : xcb_gravity_t = 9;
-    pub static XCB_GRAVITY_STATIC : xcb_gravity_t = 10;
+    pub const XCB_GRAVITY_BIT_FORGET : xcb_gravity_t = 0;
+    pub const XCB_GRAVITY_WIN_UNMAP : xcb_gravity_t = 0;
+    pub const XCB_GRAVITY_NORTH_WEST : xcb_gravity_t = 1;
+    pub const XCB_GRAVITY_NORTH : xcb_gravity_t = 2;
+    pub const XCB_GRAVITY_NORTH_EAST : xcb_gravity_t = 3;
+    pub const XCB_GRAVITY_WEST : xcb_gravity_t = 4;
+    pub const XCB_GRAVITY_CENTER : xcb_gravity_t = 5;
+    pub const XCB_GRAVITY_EAST : xcb_gravity_t = 6;
+    pub const XCB_GRAVITY_SOUTH_WEST : xcb_gravity_t = 7;
+    pub const XCB_GRAVITY_SOUTH : xcb_gravity_t = 8;
+    pub const XCB_GRAVITY_SOUTH_EAST : xcb_gravity_t = 9;
+    pub const XCB_GRAVITY_STATIC : xcb_gravity_t = 10;
 //}
 /** Opcode for xcb_create_window. */
-pub static XCB_CREATE_WINDOW : u8 = 1;
+pub const XCB_CREATE_WINDOW : u8 = 1;
 /** Opcode for xcb_change_window_attributes. */
-pub static XCB_CHANGE_WINDOW_ATTRIBUTES : u8 = 2;
+pub const XCB_CHANGE_WINDOW_ATTRIBUTES : u8 = 2;
 
 pub type xcb_map_state_t = c_uint;//{
-    pub static XCB_MAP_STATE_UNMAPPED : xcb_map_state_t = 0;
-    pub static XCB_MAP_STATE_UNVIEWABLE : xcb_map_state_t = 1;
-    pub static XCB_MAP_STATE_VIEWABLE : xcb_map_state_t = 2;
+    pub const XCB_MAP_STATE_UNMAPPED : xcb_map_state_t = 0;
+    pub const XCB_MAP_STATE_UNVIEWABLE : xcb_map_state_t = 1;
+    pub const XCB_MAP_STATE_VIEWABLE : xcb_map_state_t = 2;
 //}
 pub struct  GetWindowAttributesCookie<'s> { pub base : base::Cookie<'s, xcb_get_window_attributes_cookie_t> }
 
 /** Opcode for xcb_get_window_attributes. */
-pub static XCB_GET_WINDOW_ATTRIBUTES : u8 = 3;
+pub const XCB_GET_WINDOW_ATTRIBUTES : u8 = 3;
 pub struct GetWindowAttributesReply { base:  base::Reply<xcb_get_window_attributes_reply_t> }
 fn mk_reply_xcb_get_window_attributes_reply_t(reply:*mut xcb_get_window_attributes_reply_t) -> GetWindowAttributesReply { GetWindowAttributesReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_destroy_window. */
-pub static XCB_DESTROY_WINDOW : u8 = 4;
+pub const XCB_DESTROY_WINDOW : u8 = 4;
 /** Opcode for xcb_destroy_subwindows. */
-pub static XCB_DESTROY_SUBWINDOWS : u8 = 5;
+pub const XCB_DESTROY_SUBWINDOWS : u8 = 5;
 
 pub type xcb_set_mode_t = c_uint;//{
-    pub static XCB_SET_MODE_INSERT : xcb_set_mode_t = 0;
-    pub static XCB_SET_MODE_DELETE : xcb_set_mode_t = 1;
+    pub const XCB_SET_MODE_INSERT : xcb_set_mode_t = 0;
+    pub const XCB_SET_MODE_DELETE : xcb_set_mode_t = 1;
 //}
 /** Opcode for xcb_change_save_set. */
-pub static XCB_CHANGE_SAVE_SET : u8 = 6;
+pub const XCB_CHANGE_SAVE_SET : u8 = 6;
 /** Opcode for xcb_reparent_window. */
-pub static XCB_REPARENT_WINDOW : u8 = 7;
+pub const XCB_REPARENT_WINDOW : u8 = 7;
 /** Opcode for xcb_map_window. */
-pub static XCB_MAP_WINDOW : u8 = 8;
+pub const XCB_MAP_WINDOW : u8 = 8;
 /** Opcode for xcb_map_subwindows. */
-pub static XCB_MAP_SUBWINDOWS : u8 = 9;
+pub const XCB_MAP_SUBWINDOWS : u8 = 9;
 /** Opcode for xcb_unmap_window. */
-pub static XCB_UNMAP_WINDOW : u8 = 10;
+pub const XCB_UNMAP_WINDOW : u8 = 10;
 /** Opcode for xcb_unmap_subwindows. */
-pub static XCB_UNMAP_SUBWINDOWS : u8 = 11;
+pub const XCB_UNMAP_SUBWINDOWS : u8 = 11;
 
 pub type xcb_config_window_t = c_uint;//{
-    pub static XCB_CONFIG_WINDOW_X : xcb_config_window_t = 1;
-    pub static XCB_CONFIG_WINDOW_Y : xcb_config_window_t = 2;
-    pub static XCB_CONFIG_WINDOW_WIDTH : xcb_config_window_t = 4;
-    pub static XCB_CONFIG_WINDOW_HEIGHT : xcb_config_window_t = 8;
-    pub static XCB_CONFIG_WINDOW_BORDER_WIDTH : xcb_config_window_t = 16;
-    pub static XCB_CONFIG_WINDOW_SIBLING : xcb_config_window_t = 32;
-    pub static XCB_CONFIG_WINDOW_STACK_MODE : xcb_config_window_t = 64;
+    pub const XCB_CONFIG_WINDOW_X : xcb_config_window_t = 1;
+    pub const XCB_CONFIG_WINDOW_Y : xcb_config_window_t = 2;
+    pub const XCB_CONFIG_WINDOW_WIDTH : xcb_config_window_t = 4;
+    pub const XCB_CONFIG_WINDOW_HEIGHT : xcb_config_window_t = 8;
+    pub const XCB_CONFIG_WINDOW_BORDER_WIDTH : xcb_config_window_t = 16;
+    pub const XCB_CONFIG_WINDOW_SIBLING : xcb_config_window_t = 32;
+    pub const XCB_CONFIG_WINDOW_STACK_MODE : xcb_config_window_t = 64;
 //}
 
 pub type xcb_stack_mode_t = c_uint;//{
-    pub static XCB_STACK_MODE_ABOVE : xcb_stack_mode_t = 0;
-    pub static XCB_STACK_MODE_BELOW : xcb_stack_mode_t = 1;
-    pub static XCB_STACK_MODE_TOP_IF : xcb_stack_mode_t = 2;
-    pub static XCB_STACK_MODE_BOTTOM_IF : xcb_stack_mode_t = 3;
-    pub static XCB_STACK_MODE_OPPOSITE : xcb_stack_mode_t = 4;
+    pub const XCB_STACK_MODE_ABOVE : xcb_stack_mode_t = 0;
+    pub const XCB_STACK_MODE_BELOW : xcb_stack_mode_t = 1;
+    pub const XCB_STACK_MODE_TOP_IF : xcb_stack_mode_t = 2;
+    pub const XCB_STACK_MODE_BOTTOM_IF : xcb_stack_mode_t = 3;
+    pub const XCB_STACK_MODE_OPPOSITE : xcb_stack_mode_t = 4;
 //}
 /** Opcode for xcb_configure_window. */
-pub static XCB_CONFIGURE_WINDOW : u8 = 12;
+pub const XCB_CONFIGURE_WINDOW : u8 = 12;
 
 pub type xcb_circulate_t = c_uint;//{
-    pub static XCB_CIRCULATE_RAISE_LOWEST : xcb_circulate_t = 0;
-    pub static XCB_CIRCULATE_LOWER_HIGHEST : xcb_circulate_t = 1;
+    pub const XCB_CIRCULATE_RAISE_LOWEST : xcb_circulate_t = 0;
+    pub const XCB_CIRCULATE_LOWER_HIGHEST : xcb_circulate_t = 1;
 //}
 /** Opcode for xcb_circulate_window. */
-pub static XCB_CIRCULATE_WINDOW : u8 = 13;
+pub const XCB_CIRCULATE_WINDOW : u8 = 13;
 pub struct  GetGeometryCookie<'s> { pub base : base::Cookie<'s, xcb_get_geometry_cookie_t> }
 
 /** Opcode for xcb_get_geometry. */
-pub static XCB_GET_GEOMETRY : u8 = 14;
+pub const XCB_GET_GEOMETRY : u8 = 14;
 pub struct GetGeometryReply { base:  base::Reply<xcb_get_geometry_reply_t> }
 fn mk_reply_xcb_get_geometry_reply_t(reply:*mut xcb_get_geometry_reply_t) -> GetGeometryReply { GetGeometryReply { base : base::mk_reply(reply) } }
 pub struct  QueryTreeCookie<'s> { pub base : base::Cookie<'s, xcb_query_tree_cookie_t> }
 
 /** Opcode for xcb_query_tree. */
-pub static XCB_QUERY_TREE : u8 = 15;
+pub const XCB_QUERY_TREE : u8 = 15;
 pub struct  InternAtomCookie<'s> { pub base : base::Cookie<'s, xcb_intern_atom_cookie_t> }
 
 /** Opcode for xcb_intern_atom. */
-pub static XCB_INTERN_ATOM : u8 = 16;
+pub const XCB_INTERN_ATOM : u8 = 16;
 pub struct InternAtomReply { base:  base::Reply<xcb_intern_atom_reply_t> }
 fn mk_reply_xcb_intern_atom_reply_t(reply:*mut xcb_intern_atom_reply_t) -> InternAtomReply { InternAtomReply { base : base::mk_reply(reply) } }
 pub struct  GetAtomNameCookie<'s> { pub base : base::Cookie<'s, xcb_get_atom_name_cookie_t> }
 
 /** Opcode for xcb_get_atom_name. */
-pub static XCB_GET_ATOM_NAME : u8 = 17;
+pub const XCB_GET_ATOM_NAME : u8 = 17;
 
 pub type xcb_prop_mode_t = c_uint;//{
     
 /** Discard the previous property value and store the new data. */
-    pub static XCB_PROP_MODE_REPLACE : xcb_prop_mode_t = 0;
+    pub const XCB_PROP_MODE_REPLACE : xcb_prop_mode_t = 0;
     
 /** Insert the new data before the beginning of existing data. The `format` must
 match existing property value. If the property is undefined, it is treated as
 defined with the correct type and format with zero-length data. */
-    pub static XCB_PROP_MODE_PREPEND : xcb_prop_mode_t = 1;
+    pub const XCB_PROP_MODE_PREPEND : xcb_prop_mode_t = 1;
     
 /** Insert the new data after the beginning of existing data. The `format` must
 match existing property value. If the property is undefined, it is treated as
 defined with the correct type and format with zero-length data. */
-    pub static XCB_PROP_MODE_APPEND : xcb_prop_mode_t = 2;
+    pub const XCB_PROP_MODE_APPEND : xcb_prop_mode_t = 2;
 //}
 /** Opcode for xcb_change_property. */
-pub static XCB_CHANGE_PROPERTY : u8 = 18;
+pub const XCB_CHANGE_PROPERTY : u8 = 18;
 /** Opcode for xcb_delete_property. */
-pub static XCB_DELETE_PROPERTY : u8 = 19;
+pub const XCB_DELETE_PROPERTY : u8 = 19;
 
 pub type xcb_get_property_type_t = c_uint;//{
-    pub static XCB_GET_PROPERTY_TYPE_ANY : xcb_get_property_type_t = 0;
+    pub const XCB_GET_PROPERTY_TYPE_ANY : xcb_get_property_type_t = 0;
 //}
 pub struct  GetPropertyCookie<'s> { pub base : base::Cookie<'s, xcb_get_property_cookie_t> }
 
 /** Opcode for xcb_get_property. */
-pub static XCB_GET_PROPERTY : u8 = 20;
+pub const XCB_GET_PROPERTY : u8 = 20;
 pub struct  ListPropertiesCookie<'s> { pub base : base::Cookie<'s, xcb_list_properties_cookie_t> }
 
 /** Opcode for xcb_list_properties. */
-pub static XCB_LIST_PROPERTIES : u8 = 21;
+pub const XCB_LIST_PROPERTIES : u8 = 21;
 /** Opcode for xcb_set_selection_owner. */
-pub static XCB_SET_SELECTION_OWNER : u8 = 22;
+pub const XCB_SET_SELECTION_OWNER : u8 = 22;
 pub struct  GetSelectionOwnerCookie<'s> { pub base : base::Cookie<'s, xcb_get_selection_owner_cookie_t> }
 
 /** Opcode for xcb_get_selection_owner. */
-pub static XCB_GET_SELECTION_OWNER : u8 = 23;
+pub const XCB_GET_SELECTION_OWNER : u8 = 23;
 pub struct GetSelectionOwnerReply { base:  base::Reply<xcb_get_selection_owner_reply_t> }
 fn mk_reply_xcb_get_selection_owner_reply_t(reply:*mut xcb_get_selection_owner_reply_t) -> GetSelectionOwnerReply { GetSelectionOwnerReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_convert_selection. */
-pub static XCB_CONVERT_SELECTION : u8 = 24;
+pub const XCB_CONVERT_SELECTION : u8 = 24;
 
 pub type xcb_send_event_dest_t = c_uint;//{
-    pub static XCB_SEND_EVENT_DEST_POINTER_WINDOW : xcb_send_event_dest_t = 0;
-    pub static XCB_SEND_EVENT_DEST_ITEM_FOCUS : xcb_send_event_dest_t = 1;
+    pub const XCB_SEND_EVENT_DEST_POINTER_WINDOW : xcb_send_event_dest_t = 0;
+    pub const XCB_SEND_EVENT_DEST_ITEM_FOCUS : xcb_send_event_dest_t = 1;
 //}
 /** Opcode for xcb_send_event. */
-pub static XCB_SEND_EVENT : u8 = 25;
+pub const XCB_SEND_EVENT : u8 = 25;
 
 pub type xcb_grab_mode_t = c_uint;//{
     
 /** The state of the keyboard appears to freeze: No further keyboard events are
 generated by the server until the grabbing client issues a releasing
 `AllowEvents` request or until the keyboard grab is released. */
-    pub static XCB_GRAB_MODE_SYNC : xcb_grab_mode_t = 0;
+    pub const XCB_GRAB_MODE_SYNC : xcb_grab_mode_t = 0;
     
 /** Keyboard event processing continues normally. */
-    pub static XCB_GRAB_MODE_ASYNC : xcb_grab_mode_t = 1;
+    pub const XCB_GRAB_MODE_ASYNC : xcb_grab_mode_t = 1;
 //}
 
 pub type xcb_grab_status_t = c_uint;//{
-    pub static XCB_GRAB_STATUS_SUCCESS : xcb_grab_status_t = 0;
-    pub static XCB_GRAB_STATUS_ALREADY_GRABBED : xcb_grab_status_t = 1;
-    pub static XCB_GRAB_STATUS_INVALID_TIME : xcb_grab_status_t = 2;
-    pub static XCB_GRAB_STATUS_NOT_VIEWABLE : xcb_grab_status_t = 3;
-    pub static XCB_GRAB_STATUS_FROZEN : xcb_grab_status_t = 4;
+    pub const XCB_GRAB_STATUS_SUCCESS : xcb_grab_status_t = 0;
+    pub const XCB_GRAB_STATUS_ALREADY_GRABBED : xcb_grab_status_t = 1;
+    pub const XCB_GRAB_STATUS_INVALID_TIME : xcb_grab_status_t = 2;
+    pub const XCB_GRAB_STATUS_NOT_VIEWABLE : xcb_grab_status_t = 3;
+    pub const XCB_GRAB_STATUS_FROZEN : xcb_grab_status_t = 4;
 //}
 
 pub type xcb_cursor_enum_t = c_uint;//{
-    pub static XCB_CURSOR_NONE : xcb_cursor_enum_t = 0;
+    pub const XCB_CURSOR_NONE : xcb_cursor_enum_t = 0;
 //}
 pub struct  GrabPointerCookie<'s> { pub base : base::Cookie<'s, xcb_grab_pointer_cookie_t> }
 
 /** Opcode for xcb_grab_pointer. */
-pub static XCB_GRAB_POINTER : u8 = 26;
+pub const XCB_GRAB_POINTER : u8 = 26;
 pub struct GrabPointerReply { base:  base::Reply<xcb_grab_pointer_reply_t> }
 fn mk_reply_xcb_grab_pointer_reply_t(reply:*mut xcb_grab_pointer_reply_t) -> GrabPointerReply { GrabPointerReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_ungrab_pointer. */
-pub static XCB_UNGRAB_POINTER : u8 = 27;
+pub const XCB_UNGRAB_POINTER : u8 = 27;
 
 pub type xcb_button_index_t = c_uint;//{
     
 /** Any of the following (or none): */
-    pub static XCB_BUTTON_INDEX_ANY : xcb_button_index_t = 0;
+    pub const XCB_BUTTON_INDEX_ANY : xcb_button_index_t = 0;
     
 /** The left mouse button. */
-    pub static XCB_BUTTON_INDEX_1 : xcb_button_index_t = 1;
+    pub const XCB_BUTTON_INDEX_1 : xcb_button_index_t = 1;
     
 /** The right mouse button. */
-    pub static XCB_BUTTON_INDEX_2 : xcb_button_index_t = 2;
+    pub const XCB_BUTTON_INDEX_2 : xcb_button_index_t = 2;
     
 /** The middle mouse button. */
-    pub static XCB_BUTTON_INDEX_3 : xcb_button_index_t = 3;
+    pub const XCB_BUTTON_INDEX_3 : xcb_button_index_t = 3;
     
 /** Scroll wheel. TODO: direction? */
-    pub static XCB_BUTTON_INDEX_4 : xcb_button_index_t = 4;
+    pub const XCB_BUTTON_INDEX_4 : xcb_button_index_t = 4;
     
 /** Scroll wheel. TODO: direction? */
-    pub static XCB_BUTTON_INDEX_5 : xcb_button_index_t = 5;
+    pub const XCB_BUTTON_INDEX_5 : xcb_button_index_t = 5;
 //}
 /** Opcode for xcb_grab_button. */
-pub static XCB_GRAB_BUTTON : u8 = 28;
+pub const XCB_GRAB_BUTTON : u8 = 28;
 /** Opcode for xcb_ungrab_button. */
-pub static XCB_UNGRAB_BUTTON : u8 = 29;
+pub const XCB_UNGRAB_BUTTON : u8 = 29;
 /** Opcode for xcb_change_active_pointer_grab. */
-pub static XCB_CHANGE_ACTIVE_POINTER_GRAB : u8 = 30;
+pub const XCB_CHANGE_ACTIVE_POINTER_GRAB : u8 = 30;
 pub struct  GrabKeyboardCookie<'s> { pub base : base::Cookie<'s, xcb_grab_keyboard_cookie_t> }
 
 /** Opcode for xcb_grab_keyboard. */
-pub static XCB_GRAB_KEYBOARD : u8 = 31;
+pub const XCB_GRAB_KEYBOARD : u8 = 31;
 pub struct GrabKeyboardReply { base:  base::Reply<xcb_grab_keyboard_reply_t> }
 fn mk_reply_xcb_grab_keyboard_reply_t(reply:*mut xcb_grab_keyboard_reply_t) -> GrabKeyboardReply { GrabKeyboardReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_ungrab_keyboard. */
-pub static XCB_UNGRAB_KEYBOARD : u8 = 32;
+pub const XCB_UNGRAB_KEYBOARD : u8 = 32;
 
 pub type xcb_grab_t = c_uint;//{
-    pub static XCB_GRAB_ANY : xcb_grab_t = 0;
+    pub const XCB_GRAB_ANY : xcb_grab_t = 0;
 //}
 /** Opcode for xcb_grab_key. */
-pub static XCB_GRAB_KEY : u8 = 33;
+pub const XCB_GRAB_KEY : u8 = 33;
 /** Opcode for xcb_ungrab_key. */
-pub static XCB_UNGRAB_KEY : u8 = 34;
+pub const XCB_UNGRAB_KEY : u8 = 34;
 
 pub type xcb_allow_t = c_uint;//{
     
@@ -796,7 +796,7 @@ effect if the pointer is not frozen by the client, but the pointer need not be
 grabbed by the client.
 
 TODO: rewrite this in more understandable terms. */
-    pub static XCB_ALLOW_ASYNC_POINTER : xcb_allow_t = 0;
+    pub const XCB_ALLOW_ASYNC_POINTER : xcb_allow_t = 0;
     
 /** For SyncPointer, if the pointer is frozen and actively grabbed by the client,
 pointer event processing continues normally until the next ButtonPress or
@@ -805,7 +805,7 @@ appears to freeze. However, if the reported event causes the pointer grab to be
 released, then the pointer does not freeze. SyncPointer has no effect if the
 pointer is not frozen by the client or if the pointer is not grabbed by the
 client. */
-    pub static XCB_ALLOW_SYNC_POINTER : xcb_allow_t = 1;
+    pub const XCB_ALLOW_SYNC_POINTER : xcb_allow_t = 1;
     
 /** For ReplayPointer, if the pointer is actively grabbed by the client and is
 frozen as the result of an event having been sent to the client (either from
@@ -815,14 +815,14 @@ that event is completely reprocessed, this time ignoring any passive grabs at
 or above (towards the root) the grab-window of the grab just released. The
 request has no effect if the pointer is not grabbed by the client or if the
 pointer is not frozen as the result of an event. */
-    pub static XCB_ALLOW_REPLAY_POINTER : xcb_allow_t = 2;
+    pub const XCB_ALLOW_REPLAY_POINTER : xcb_allow_t = 2;
     
 /** For AsyncKeyboard, if the keyboard is frozen by the client, keyboard event
 processing continues normally. If the keyboard is frozen twice by the client on
 behalf of two separate grabs, AsyncKeyboard thaws for both. AsyncKeyboard has
 no effect if the keyboard is not frozen by the client, but the keyboard need
 not be grabbed by the client. */
-    pub static XCB_ALLOW_ASYNC_KEYBOARD : xcb_allow_t = 3;
+    pub const XCB_ALLOW_ASYNC_KEYBOARD : xcb_allow_t = 3;
     
 /** For SyncKeyboard, if the keyboard is frozen and actively grabbed by the client,
 keyboard event processing continues normally until the next KeyPress or
@@ -831,7 +831,7 @@ appears to freeze. However, if the reported event causes the keyboard grab to
 be released, then the keyboard does not freeze. SyncKeyboard has no effect if
 the keyboard is not frozen by the client or if the keyboard is not grabbed by
 the client. */
-    pub static XCB_ALLOW_SYNC_KEYBOARD : xcb_allow_t = 4;
+    pub const XCB_ALLOW_SYNC_KEYBOARD : xcb_allow_t = 4;
     
 /** For ReplayKeyboard, if the keyboard is actively grabbed by the client and is
 frozen as the result of an event having been sent to the client (either from
@@ -841,13 +841,13 @@ and that event is completely reprocessed, this time ignoring any passive grabs
 at or above (towards the root) the grab-window of the grab just released. The
 request has no effect if the keyboard is not grabbed by the client or if the
 keyboard is not frozen as the result of an event. */
-    pub static XCB_ALLOW_REPLAY_KEYBOARD : xcb_allow_t = 5;
+    pub const XCB_ALLOW_REPLAY_KEYBOARD : xcb_allow_t = 5;
     
 /** For AsyncBoth, if the pointer and the keyboard are frozen by the client, event
 processing for both devices continues normally. If a device is frozen twice by
 the client on behalf of two separate grabs, AsyncBoth thaws for both. AsyncBoth
 has no effect unless both pointer and keyboard are frozen by the client. */
-    pub static XCB_ALLOW_ASYNC_BOTH : xcb_allow_t = 6;
+    pub const XCB_ALLOW_ASYNC_BOTH : xcb_allow_t = 6;
     
 /** For SyncBoth, if both pointer and keyboard are frozen by the client, event
 processing (for both devices) continues normally until the next ButtonPress,
@@ -860,18 +860,18 @@ both devices to freeze). SyncBoth has no effect unless both pointer and
 keyboard are frozen by the client. If the pointer or keyboard is frozen twice
 by the client on behalf of two separate grabs, SyncBoth thaws for both (but a
 subsequent freeze for SyncBoth will only freeze each device once). */
-    pub static XCB_ALLOW_SYNC_BOTH : xcb_allow_t = 7;
+    pub const XCB_ALLOW_SYNC_BOTH : xcb_allow_t = 7;
 //}
 /** Opcode for xcb_allow_events. */
-pub static XCB_ALLOW_EVENTS : u8 = 35;
+pub const XCB_ALLOW_EVENTS : u8 = 35;
 /** Opcode for xcb_grab_server. */
-pub static XCB_GRAB_SERVER : u8 = 36;
+pub const XCB_GRAB_SERVER : u8 = 36;
 /** Opcode for xcb_ungrab_server. */
-pub static XCB_UNGRAB_SERVER : u8 = 37;
+pub const XCB_UNGRAB_SERVER : u8 = 37;
 pub struct  QueryPointerCookie<'s> { pub base : base::Cookie<'s, xcb_query_pointer_cookie_t> }
 
 /** Opcode for xcb_query_pointer. */
-pub static XCB_QUERY_POINTER : u8 = 38;
+pub const XCB_QUERY_POINTER : u8 = 38;
 pub struct QueryPointerReply { base:  base::Reply<xcb_query_pointer_reply_t> }
 fn mk_reply_xcb_query_pointer_reply_t(reply:*mut xcb_query_pointer_reply_t) -> QueryPointerReply { QueryPointerReply { base : base::mk_reply(reply) } }
 pub type TimecoordIterator = xcb_timecoord_iterator_t;
@@ -879,55 +879,55 @@ pub type TimecoordIterator = xcb_timecoord_iterator_t;
 pub struct  GetMotionEventsCookie<'s> { pub base : base::Cookie<'s, xcb_get_motion_events_cookie_t> }
 
 /** Opcode for xcb_get_motion_events. */
-pub static XCB_GET_MOTION_EVENTS : u8 = 39;
+pub const XCB_GET_MOTION_EVENTS : u8 = 39;
 pub struct  TranslateCoordinatesCookie<'s> { pub base : base::Cookie<'s, xcb_translate_coordinates_cookie_t> }
 
 /** Opcode for xcb_translate_coordinates. */
-pub static XCB_TRANSLATE_COORDINATES : u8 = 40;
+pub const XCB_TRANSLATE_COORDINATES : u8 = 40;
 pub struct TranslateCoordinatesReply { base:  base::Reply<xcb_translate_coordinates_reply_t> }
 fn mk_reply_xcb_translate_coordinates_reply_t(reply:*mut xcb_translate_coordinates_reply_t) -> TranslateCoordinatesReply { TranslateCoordinatesReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_warp_pointer. */
-pub static XCB_WARP_POINTER : u8 = 41;
+pub const XCB_WARP_POINTER : u8 = 41;
 
 pub type xcb_input_focus_t = c_uint;//{
     
 /** The focus reverts to `XCB_NONE`, so no window will have the input focus. */
-    pub static XCB_INPUT_FOCUS_NONE : xcb_input_focus_t = 0;
+    pub const XCB_INPUT_FOCUS_NONE : xcb_input_focus_t = 0;
     
 /** The focus reverts to `XCB_POINTER_ROOT` respectively. When the focus reverts,
 FocusIn and FocusOut events are generated, but the last-focus-change time is
 not changed. */
-    pub static XCB_INPUT_FOCUS_POINTER_ROOT : xcb_input_focus_t = 1;
+    pub const XCB_INPUT_FOCUS_POINTER_ROOT : xcb_input_focus_t = 1;
     
 /** The focus reverts to the parent (or closest viewable ancestor) and the new
 revert_to value is `XCB_INPUT_FOCUS_NONE`. */
-    pub static XCB_INPUT_FOCUS_PARENT : xcb_input_focus_t = 2;
+    pub const XCB_INPUT_FOCUS_PARENT : xcb_input_focus_t = 2;
     
 /** NOT YET DOCUMENTED. Only relevant for the xinput extension. */
-    pub static XCB_INPUT_FOCUS_FOLLOW_KEYBOARD : xcb_input_focus_t = 3;
+    pub const XCB_INPUT_FOCUS_FOLLOW_KEYBOARD : xcb_input_focus_t = 3;
 //}
 /** Opcode for xcb_set_input_focus. */
-pub static XCB_SET_INPUT_FOCUS : u8 = 42;
+pub const XCB_SET_INPUT_FOCUS : u8 = 42;
 pub struct  GetInputFocusCookie<'s> { pub base : base::Cookie<'s, xcb_get_input_focus_cookie_t> }
 
 /** Opcode for xcb_get_input_focus. */
-pub static XCB_GET_INPUT_FOCUS : u8 = 43;
+pub const XCB_GET_INPUT_FOCUS : u8 = 43;
 pub struct GetInputFocusReply { base:  base::Reply<xcb_get_input_focus_reply_t> }
 fn mk_reply_xcb_get_input_focus_reply_t(reply:*mut xcb_get_input_focus_reply_t) -> GetInputFocusReply { GetInputFocusReply { base : base::mk_reply(reply) } }
 pub struct  QueryKeymapCookie<'s> { pub base : base::Cookie<'s, xcb_query_keymap_cookie_t> }
 
 /** Opcode for xcb_query_keymap. */
-pub static XCB_QUERY_KEYMAP : u8 = 44;
+pub const XCB_QUERY_KEYMAP : u8 = 44;
 pub struct QueryKeymapReply { base:  base::Reply<xcb_query_keymap_reply_t> }
 fn mk_reply_xcb_query_keymap_reply_t(reply:*mut xcb_query_keymap_reply_t) -> QueryKeymapReply { QueryKeymapReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_open_font. */
-pub static XCB_OPEN_FONT : u8 = 45;
+pub const XCB_OPEN_FONT : u8 = 45;
 /** Opcode for xcb_close_font. */
-pub static XCB_CLOSE_FONT : u8 = 46;
+pub const XCB_CLOSE_FONT : u8 = 46;
 
 pub type xcb_font_draw_t = c_uint;//{
-    pub static XCB_FONT_DRAW_LEFT_TO_RIGHT : xcb_font_draw_t = 0;
-    pub static XCB_FONT_DRAW_RIGHT_TO_LEFT : xcb_font_draw_t = 1;
+    pub const XCB_FONT_DRAW_LEFT_TO_RIGHT : xcb_font_draw_t = 0;
+    pub const XCB_FONT_DRAW_RIGHT_TO_LEFT : xcb_font_draw_t = 1;
 //}
 pub struct Fontprop {pub base : base::Struct<xcb_fontprop_t> }
 
@@ -938,11 +938,11 @@ pub type CharinfoIterator = xcb_charinfo_iterator_t;
 pub struct  QueryFontCookie<'s> { pub base : base::Cookie<'s, xcb_query_font_cookie_t> }
 
 /** Opcode for xcb_query_font. */
-pub static XCB_QUERY_FONT : u8 = 47;
+pub const XCB_QUERY_FONT : u8 = 47;
 pub struct  QueryTextExtentsCookie<'s> { pub base : base::Cookie<'s, xcb_query_text_extents_cookie_t> }
 
 /** Opcode for xcb_query_text_extents. */
-pub static XCB_QUERY_TEXT_EXTENTS : u8 = 48;
+pub const XCB_QUERY_TEXT_EXTENTS : u8 = 48;
 pub struct QueryTextExtentsReply { base:  base::Reply<xcb_query_text_extents_reply_t> }
 fn mk_reply_xcb_query_text_extents_reply_t(reply:*mut xcb_query_text_extents_reply_t) -> QueryTextExtentsReply { QueryTextExtentsReply { base : base::mk_reply(reply) } }
 pub type StrIterator = xcb_str_iterator_t;
@@ -950,30 +950,30 @@ pub type StrIterator = xcb_str_iterator_t;
 pub struct  ListFontsCookie<'s> { pub base : base::Cookie<'s, xcb_list_fonts_cookie_t> }
 
 /** Opcode for xcb_list_fonts. */
-pub static XCB_LIST_FONTS : u8 = 49;
+pub const XCB_LIST_FONTS : u8 = 49;
 pub struct ListFontsReply { base:  base::Reply<xcb_list_fonts_reply_t> }
 fn mk_reply_xcb_list_fonts_reply_t(reply:*mut xcb_list_fonts_reply_t) -> ListFontsReply { ListFontsReply { base : base::mk_reply(reply) } }
 pub struct  ListFontsWithInfoCookie<'s> { pub base : base::Cookie<'s, xcb_list_fonts_with_info_cookie_t> }
 
 /** Opcode for xcb_list_fonts_with_info. */
-pub static XCB_LIST_FONTS_WITH_INFO : u8 = 50;
+pub const XCB_LIST_FONTS_WITH_INFO : u8 = 50;
 pub struct ListFontsWithInfoReply { base:  base::Reply<xcb_list_fonts_with_info_reply_t> }
 fn mk_reply_xcb_list_fonts_with_info_reply_t(reply:*mut xcb_list_fonts_with_info_reply_t) -> ListFontsWithInfoReply { ListFontsWithInfoReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_set_font_path. */
-pub static XCB_SET_FONT_PATH : u8 = 51;
+pub const XCB_SET_FONT_PATH : u8 = 51;
 pub struct  GetFontPathCookie<'s> { pub base : base::Cookie<'s, xcb_get_font_path_cookie_t> }
 
 /** Opcode for xcb_get_font_path. */
-pub static XCB_GET_FONT_PATH : u8 = 52;
+pub const XCB_GET_FONT_PATH : u8 = 52;
 /** Opcode for xcb_create_pixmap. */
-pub static XCB_CREATE_PIXMAP : u8 = 53;
+pub const XCB_CREATE_PIXMAP : u8 = 53;
 /** Opcode for xcb_free_pixmap. */
-pub static XCB_FREE_PIXMAP : u8 = 54;
+pub const XCB_FREE_PIXMAP : u8 = 54;
 
 pub type xcb_gc_t = c_uint;//{
     
 /** TODO: Refer to GX */
-    pub static XCB_GC_FUNCTION : xcb_gc_t = 1;
+    pub const XCB_GC_FUNCTION : xcb_gc_t = 1;
     
 /** In graphics operations, given a source and destination pixel, the result is
 computed bitwise on corresponding bits of the pixels; that is, a Boolean
@@ -981,17 +981,17 @@ operation is performed in each bit plane. The plane-mask restricts the
 operation to a subset of planes, so the result is:
 
         ((src FUNC dst) AND plane-mask) OR (dst AND (NOT plane-mask)) */
-    pub static XCB_GC_PLANE_MASK : xcb_gc_t = 2;
+    pub const XCB_GC_PLANE_MASK : xcb_gc_t = 2;
     
 /** Foreground colorpixel. */
-    pub static XCB_GC_FOREGROUND : xcb_gc_t = 4;
+    pub const XCB_GC_FOREGROUND : xcb_gc_t = 4;
     
 /** Background colorpixel. */
-    pub static XCB_GC_BACKGROUND : xcb_gc_t = 8;
+    pub const XCB_GC_BACKGROUND : xcb_gc_t = 8;
     
 /** The line-width is measured in pixels and can be greater than or equal to one, a wide line, or the
 special value zero, a thin line. */
-    pub static XCB_GC_LINE_WIDTH : xcb_gc_t = 16;
+    pub const XCB_GC_LINE_WIDTH : xcb_gc_t = 16;
     
 /** The line-style defines which sections of a line are drawn:
 Solid                The full path of the line is drawn.
@@ -1000,7 +1000,7 @@ DoubleDash           The full path of the line is drawn, but the even dashes are
                      odd dashes meet.
 OnOffDash            Only the even dashes are drawn, and cap-style applies to all internal ends of
                      the individual dashes (except NotLast is treated as Butt). */
-    pub static XCB_GC_LINE_STYLE : xcb_gc_t = 32;
+    pub const XCB_GC_LINE_STYLE : xcb_gc_t = 32;
     
 /** The cap-style defines how the endpoints of a path are drawn:
 NotLast    The result is equivalent to Butt, except that for a line-width of zero the final
@@ -1012,7 +1012,7 @@ Round      The result is a circular arc with its diameter equal to the line-widt
 Projecting The result is square at the end, but the path continues beyond the endpoint for
            a distance equal to half the line-width; it is equivalent to Butt for line-width
            zero. */
-    pub static XCB_GC_CAP_STYLE : xcb_gc_t = 64;
+    pub const XCB_GC_CAP_STYLE : xcb_gc_t = 64;
     
 /** The join-style defines how corners are drawn for wide lines:
 Miter               The outer edges of the two lines extend to meet at an angle. However, if the
@@ -1020,7 +1020,7 @@ Miter               The outer edges of the two lines extend to meet at an angle.
 Round               The result is a circular arc with a diameter equal to the line-width, centered
                     on the joinpoint.
 Bevel               The result is Butt endpoint styles, and then the triangular notch is filled. */
-    pub static XCB_GC_JOIN_STYLE : xcb_gc_t = 128;
+    pub const XCB_GC_JOIN_STYLE : xcb_gc_t = 128;
     
 /** The fill-style defines the contents of the source for line, text, and fill requests. For all text and fill
 requests (for example, PolyText8, PolyText16, PolyFillRectangle, FillPoly, and PolyFillArc)
@@ -1038,10 +1038,10 @@ Solid                     Background
 Tiled                     Same as for even dashes
 OpaqueStippled            Same as for even dashes
 Stippled                  Background masked by stipple */
-    pub static XCB_GC_FILL_STYLE : xcb_gc_t = 256;
+    pub const XCB_GC_FILL_STYLE : xcb_gc_t = 256;
     
 /**  */
-    pub static XCB_GC_FILL_RULE : xcb_gc_t = 512;
+    pub const XCB_GC_FILL_RULE : xcb_gc_t = 512;
     
 /** The tile/stipple represents an infinite two-dimensional plane with the tile/stipple replicated in all
 dimensions. When that plane is superimposed on the drawable for use in a graphics operation,
@@ -1055,7 +1055,7 @@ OpaqueStippled), the stipple pattern is tiled in a single plane and acts as an
 additional clip mask to be ANDed with the clip-mask.
 Any size pixmap can be used for tiling or stippling, although some sizes may be faster to use than
 others. */
-    pub static XCB_GC_TILE : xcb_gc_t = 1024;
+    pub const XCB_GC_TILE : xcb_gc_t = 1024;
     
 /** The tile/stipple represents an infinite two-dimensional plane with the tile/stipple replicated in all
 dimensions. When that plane is superimposed on the drawable for use in a graphics operation,
@@ -1069,16 +1069,16 @@ OpaqueStippled), the stipple pattern is tiled in a single plane and acts as an
 additional clip mask to be ANDed with the clip-mask.
 Any size pixmap can be used for tiling or stippling, although some sizes may be faster to use than
 others. */
-    pub static XCB_GC_STIPPLE : xcb_gc_t = 2048;
+    pub const XCB_GC_STIPPLE : xcb_gc_t = 2048;
     
 /** TODO */
-    pub static XCB_GC_TILE_STIPPLE_ORIGIN_X : xcb_gc_t = 4096;
+    pub const XCB_GC_TILE_STIPPLE_ORIGIN_X : xcb_gc_t = 4096;
     
 /** TODO */
-    pub static XCB_GC_TILE_STIPPLE_ORIGIN_Y : xcb_gc_t = 8192;
+    pub const XCB_GC_TILE_STIPPLE_ORIGIN_Y : xcb_gc_t = 8192;
     
 /** Which font to use for the `ImageText8` and `ImageText16` requests. */
-    pub static XCB_GC_FONT : xcb_gc_t = 16384;
+    pub const XCB_GC_FONT : xcb_gc_t = 16384;
     
 /** For ClipByChildren, both source and destination windows are additionally
 clipped by all viewable InputOutput children. For IncludeInferiors, neither
@@ -1087,18 +1087,18 @@ clipped by inferiors. This will result in including subwindow contents in the so
 through subwindow boundaries of the destination. The use of IncludeInferiors with a source or
 destination window of one depth with mapped inferiors of differing depth is not illegal, but the
 semantics is undefined by the core protocol. */
-    pub static XCB_GC_SUBWINDOW_MODE : xcb_gc_t = 32768;
+    pub const XCB_GC_SUBWINDOW_MODE : xcb_gc_t = 32768;
     
 /** Whether ExposureEvents should be generated (1) or not (0).
 
 The default is 1. */
-    pub static XCB_GC_GRAPHICS_EXPOSURES : xcb_gc_t = 65536;
+    pub const XCB_GC_GRAPHICS_EXPOSURES : xcb_gc_t = 65536;
     
 /** TODO */
-    pub static XCB_GC_CLIP_ORIGIN_X : xcb_gc_t = 131072;
+    pub const XCB_GC_CLIP_ORIGIN_X : xcb_gc_t = 131072;
     
 /** TODO */
-    pub static XCB_GC_CLIP_ORIGIN_Y : xcb_gc_t = 262144;
+    pub const XCB_GC_CLIP_ORIGIN_Y : xcb_gc_t = 262144;
     
 /** The clip-mask restricts writes to the destination drawable. Only pixels where the clip-mask has
 bits set to 1 are drawn. Pixels are not drawn outside the area covered by the clip-mask or where
@@ -1107,418 +1107,418 @@ sources. The clip-mask origin is interpreted relative to the origin of whatever 
 depth 1 and have the same root as the gcontext (or a Match error results). If clip-mask is None,
 then pixels are always drawn, regardless of the clip origin. The clip-mask can also be set with the
 SetClipRectangles request. */
-    pub static XCB_GC_CLIP_MASK : xcb_gc_t = 524288;
+    pub const XCB_GC_CLIP_MASK : xcb_gc_t = 524288;
     
 /** TODO */
-    pub static XCB_GC_DASH_OFFSET : xcb_gc_t = 1048576;
+    pub const XCB_GC_DASH_OFFSET : xcb_gc_t = 1048576;
     
 /** TODO */
-    pub static XCB_GC_DASH_LIST : xcb_gc_t = 2097152;
+    pub const XCB_GC_DASH_LIST : xcb_gc_t = 2097152;
     
 /** TODO */
-    pub static XCB_GC_ARC_MODE : xcb_gc_t = 4194304;
+    pub const XCB_GC_ARC_MODE : xcb_gc_t = 4194304;
 //}
 
 pub type xcb_gx_t = c_uint;//{
-    pub static XCB_GX_CLEAR : xcb_gx_t = 0;
-    pub static XCB_GX_AND : xcb_gx_t = 1;
-    pub static XCB_GX_AND_REVERSE : xcb_gx_t = 2;
-    pub static XCB_GX_COPY : xcb_gx_t = 3;
-    pub static XCB_GX_AND_INVERTED : xcb_gx_t = 4;
-    pub static XCB_GX_NOOP : xcb_gx_t = 5;
-    pub static XCB_GX_XOR : xcb_gx_t = 6;
-    pub static XCB_GX_OR : xcb_gx_t = 7;
-    pub static XCB_GX_NOR : xcb_gx_t = 8;
-    pub static XCB_GX_EQUIV : xcb_gx_t = 9;
-    pub static XCB_GX_INVERT : xcb_gx_t = 10;
-    pub static XCB_GX_OR_REVERSE : xcb_gx_t = 11;
-    pub static XCB_GX_COPY_INVERTED : xcb_gx_t = 12;
-    pub static XCB_GX_OR_INVERTED : xcb_gx_t = 13;
-    pub static XCB_GX_NAND : xcb_gx_t = 14;
-    pub static XCB_GX_SET : xcb_gx_t = 15;
+    pub const XCB_GX_CLEAR : xcb_gx_t = 0;
+    pub const XCB_GX_AND : xcb_gx_t = 1;
+    pub const XCB_GX_AND_REVERSE : xcb_gx_t = 2;
+    pub const XCB_GX_COPY : xcb_gx_t = 3;
+    pub const XCB_GX_AND_INVERTED : xcb_gx_t = 4;
+    pub const XCB_GX_NOOP : xcb_gx_t = 5;
+    pub const XCB_GX_XOR : xcb_gx_t = 6;
+    pub const XCB_GX_OR : xcb_gx_t = 7;
+    pub const XCB_GX_NOR : xcb_gx_t = 8;
+    pub const XCB_GX_EQUIV : xcb_gx_t = 9;
+    pub const XCB_GX_INVERT : xcb_gx_t = 10;
+    pub const XCB_GX_OR_REVERSE : xcb_gx_t = 11;
+    pub const XCB_GX_COPY_INVERTED : xcb_gx_t = 12;
+    pub const XCB_GX_OR_INVERTED : xcb_gx_t = 13;
+    pub const XCB_GX_NAND : xcb_gx_t = 14;
+    pub const XCB_GX_SET : xcb_gx_t = 15;
 //}
 
 pub type xcb_line_style_t = c_uint;//{
-    pub static XCB_LINE_STYLE_SOLID : xcb_line_style_t = 0;
-    pub static XCB_LINE_STYLE_ON_OFF_DASH : xcb_line_style_t = 1;
-    pub static XCB_LINE_STYLE_DOUBLE_DASH : xcb_line_style_t = 2;
+    pub const XCB_LINE_STYLE_SOLID : xcb_line_style_t = 0;
+    pub const XCB_LINE_STYLE_ON_OFF_DASH : xcb_line_style_t = 1;
+    pub const XCB_LINE_STYLE_DOUBLE_DASH : xcb_line_style_t = 2;
 //}
 
 pub type xcb_cap_style_t = c_uint;//{
-    pub static XCB_CAP_STYLE_NOT_LAST : xcb_cap_style_t = 0;
-    pub static XCB_CAP_STYLE_BUTT : xcb_cap_style_t = 1;
-    pub static XCB_CAP_STYLE_ROUND : xcb_cap_style_t = 2;
-    pub static XCB_CAP_STYLE_PROJECTING : xcb_cap_style_t = 3;
+    pub const XCB_CAP_STYLE_NOT_LAST : xcb_cap_style_t = 0;
+    pub const XCB_CAP_STYLE_BUTT : xcb_cap_style_t = 1;
+    pub const XCB_CAP_STYLE_ROUND : xcb_cap_style_t = 2;
+    pub const XCB_CAP_STYLE_PROJECTING : xcb_cap_style_t = 3;
 //}
 
 pub type xcb_join_style_t = c_uint;//{
-    pub static XCB_JOIN_STYLE_MITER : xcb_join_style_t = 0;
-    pub static XCB_JOIN_STYLE_ROUND : xcb_join_style_t = 1;
-    pub static XCB_JOIN_STYLE_BEVEL : xcb_join_style_t = 2;
+    pub const XCB_JOIN_STYLE_MITER : xcb_join_style_t = 0;
+    pub const XCB_JOIN_STYLE_ROUND : xcb_join_style_t = 1;
+    pub const XCB_JOIN_STYLE_BEVEL : xcb_join_style_t = 2;
 //}
 
 pub type xcb_fill_style_t = c_uint;//{
-    pub static XCB_FILL_STYLE_SOLID : xcb_fill_style_t = 0;
-    pub static XCB_FILL_STYLE_TILED : xcb_fill_style_t = 1;
-    pub static XCB_FILL_STYLE_STIPPLED : xcb_fill_style_t = 2;
-    pub static XCB_FILL_STYLE_OPAQUE_STIPPLED : xcb_fill_style_t = 3;
+    pub const XCB_FILL_STYLE_SOLID : xcb_fill_style_t = 0;
+    pub const XCB_FILL_STYLE_TILED : xcb_fill_style_t = 1;
+    pub const XCB_FILL_STYLE_STIPPLED : xcb_fill_style_t = 2;
+    pub const XCB_FILL_STYLE_OPAQUE_STIPPLED : xcb_fill_style_t = 3;
 //}
 
 pub type xcb_fill_rule_t = c_uint;//{
-    pub static XCB_FILL_RULE_EVEN_ODD : xcb_fill_rule_t = 0;
-    pub static XCB_FILL_RULE_WINDING : xcb_fill_rule_t = 1;
+    pub const XCB_FILL_RULE_EVEN_ODD : xcb_fill_rule_t = 0;
+    pub const XCB_FILL_RULE_WINDING : xcb_fill_rule_t = 1;
 //}
 
 pub type xcb_subwindow_mode_t = c_uint;//{
-    pub static XCB_SUBWINDOW_MODE_CLIP_BY_CHILDREN : xcb_subwindow_mode_t = 0;
-    pub static XCB_SUBWINDOW_MODE_INCLUDE_INFERIORS : xcb_subwindow_mode_t = 1;
+    pub const XCB_SUBWINDOW_MODE_CLIP_BY_CHILDREN : xcb_subwindow_mode_t = 0;
+    pub const XCB_SUBWINDOW_MODE_INCLUDE_INFERIORS : xcb_subwindow_mode_t = 1;
 //}
 
 pub type xcb_arc_mode_t = c_uint;//{
-    pub static XCB_ARC_MODE_CHORD : xcb_arc_mode_t = 0;
-    pub static XCB_ARC_MODE_PIE_SLICE : xcb_arc_mode_t = 1;
+    pub const XCB_ARC_MODE_CHORD : xcb_arc_mode_t = 0;
+    pub const XCB_ARC_MODE_PIE_SLICE : xcb_arc_mode_t = 1;
 //}
 /** Opcode for xcb_create_gc. */
-pub static XCB_CREATE_GC : u8 = 55;
+pub const XCB_CREATE_GC : u8 = 55;
 /** Opcode for xcb_change_gc. */
-pub static XCB_CHANGE_GC : u8 = 56;
+pub const XCB_CHANGE_GC : u8 = 56;
 /** Opcode for xcb_copy_gc. */
-pub static XCB_COPY_GC : u8 = 57;
+pub const XCB_COPY_GC : u8 = 57;
 /** Opcode for xcb_set_dashes. */
-pub static XCB_SET_DASHES : u8 = 58;
+pub const XCB_SET_DASHES : u8 = 58;
 
 pub type xcb_clip_ordering_t = c_uint;//{
-    pub static XCB_CLIP_ORDERING_UNSORTED : xcb_clip_ordering_t = 0;
-    pub static XCB_CLIP_ORDERING_Y_SORTED : xcb_clip_ordering_t = 1;
-    pub static XCB_CLIP_ORDERING_YX_SORTED : xcb_clip_ordering_t = 2;
-    pub static XCB_CLIP_ORDERING_YX_BANDED : xcb_clip_ordering_t = 3;
+    pub const XCB_CLIP_ORDERING_UNSORTED : xcb_clip_ordering_t = 0;
+    pub const XCB_CLIP_ORDERING_Y_SORTED : xcb_clip_ordering_t = 1;
+    pub const XCB_CLIP_ORDERING_YX_SORTED : xcb_clip_ordering_t = 2;
+    pub const XCB_CLIP_ORDERING_YX_BANDED : xcb_clip_ordering_t = 3;
 //}
 /** Opcode for xcb_set_clip_rectangles. */
-pub static XCB_SET_CLIP_RECTANGLES : u8 = 59;
+pub const XCB_SET_CLIP_RECTANGLES : u8 = 59;
 /** Opcode for xcb_free_gc. */
-pub static XCB_FREE_GC : u8 = 60;
+pub const XCB_FREE_GC : u8 = 60;
 /** Opcode for xcb_clear_area. */
-pub static XCB_CLEAR_AREA : u8 = 61;
+pub const XCB_CLEAR_AREA : u8 = 61;
 /** Opcode for xcb_copy_area. */
-pub static XCB_COPY_AREA : u8 = 62;
+pub const XCB_COPY_AREA : u8 = 62;
 /** Opcode for xcb_copy_plane. */
-pub static XCB_COPY_PLANE : u8 = 63;
+pub const XCB_COPY_PLANE : u8 = 63;
 
 pub type xcb_coord_mode_t = c_uint;//{
     
 /** Treats all coordinates as relative to the origin. */
-    pub static XCB_COORD_MODE_ORIGIN : xcb_coord_mode_t = 0;
+    pub const XCB_COORD_MODE_ORIGIN : xcb_coord_mode_t = 0;
     
 /** Treats all coordinates after the first as relative to the previous coordinate. */
-    pub static XCB_COORD_MODE_PREVIOUS : xcb_coord_mode_t = 1;
+    pub const XCB_COORD_MODE_PREVIOUS : xcb_coord_mode_t = 1;
 //}
 /** Opcode for xcb_poly_point. */
-pub static XCB_POLY_POINT : u8 = 64;
+pub const XCB_POLY_POINT : u8 = 64;
 /** Opcode for xcb_poly_line. */
-pub static XCB_POLY_LINE : u8 = 65;
+pub const XCB_POLY_LINE : u8 = 65;
 pub type SegmentIterator = xcb_segment_iterator_t;
 
 /** Opcode for xcb_poly_segment. */
-pub static XCB_POLY_SEGMENT : u8 = 66;
+pub const XCB_POLY_SEGMENT : u8 = 66;
 /** Opcode for xcb_poly_rectangle. */
-pub static XCB_POLY_RECTANGLE : u8 = 67;
+pub const XCB_POLY_RECTANGLE : u8 = 67;
 /** Opcode for xcb_poly_arc. */
-pub static XCB_POLY_ARC : u8 = 68;
+pub const XCB_POLY_ARC : u8 = 68;
 
 pub type xcb_poly_shape_t = c_uint;//{
-    pub static XCB_POLY_SHAPE_COMPLEX : xcb_poly_shape_t = 0;
-    pub static XCB_POLY_SHAPE_NONCONVEX : xcb_poly_shape_t = 1;
-    pub static XCB_POLY_SHAPE_CONVEX : xcb_poly_shape_t = 2;
+    pub const XCB_POLY_SHAPE_COMPLEX : xcb_poly_shape_t = 0;
+    pub const XCB_POLY_SHAPE_NONCONVEX : xcb_poly_shape_t = 1;
+    pub const XCB_POLY_SHAPE_CONVEX : xcb_poly_shape_t = 2;
 //}
 /** Opcode for xcb_fill_poly. */
-pub static XCB_FILL_POLY : u8 = 69;
+pub const XCB_FILL_POLY : u8 = 69;
 /** Opcode for xcb_poly_fill_rectangle. */
-pub static XCB_POLY_FILL_RECTANGLE : u8 = 70;
+pub const XCB_POLY_FILL_RECTANGLE : u8 = 70;
 /** Opcode for xcb_poly_fill_arc. */
-pub static XCB_POLY_FILL_ARC : u8 = 71;
+pub const XCB_POLY_FILL_ARC : u8 = 71;
 
 pub type xcb_image_format_t = c_uint;//{
-    pub static XCB_IMAGE_FORMAT_XY_BITMAP : xcb_image_format_t = 0;
-    pub static XCB_IMAGE_FORMAT_XY_PIXMAP : xcb_image_format_t = 1;
-    pub static XCB_IMAGE_FORMAT_Z_PIXMAP : xcb_image_format_t = 2;
+    pub const XCB_IMAGE_FORMAT_XY_BITMAP : xcb_image_format_t = 0;
+    pub const XCB_IMAGE_FORMAT_XY_PIXMAP : xcb_image_format_t = 1;
+    pub const XCB_IMAGE_FORMAT_Z_PIXMAP : xcb_image_format_t = 2;
 //}
 /** Opcode for xcb_put_image. */
-pub static XCB_PUT_IMAGE : u8 = 72;
+pub const XCB_PUT_IMAGE : u8 = 72;
 pub struct  GetImageCookie<'s> { pub base : base::Cookie<'s, xcb_get_image_cookie_t> }
 
 /** Opcode for xcb_get_image. */
-pub static XCB_GET_IMAGE : u8 = 73;
+pub const XCB_GET_IMAGE : u8 = 73;
 /** Opcode for xcb_poly_text_8. */
-pub static XCB_POLY_TEXT_8 : u8 = 74;
+pub const XCB_POLY_TEXT_8 : u8 = 74;
 /** Opcode for xcb_poly_text_16. */
-pub static XCB_POLY_TEXT_16 : u8 = 75;
+pub const XCB_POLY_TEXT_16 : u8 = 75;
 /** Opcode for xcb_image_text_8. */
-pub static XCB_IMAGE_TEXT_8 : u8 = 76;
+pub const XCB_IMAGE_TEXT_8 : u8 = 76;
 /** Opcode for xcb_image_text_16. */
-pub static XCB_IMAGE_TEXT_16 : u8 = 77;
+pub const XCB_IMAGE_TEXT_16 : u8 = 77;
 
 pub type xcb_colormap_alloc_t = c_uint;//{
-    pub static XCB_COLORMAP_ALLOC_NONE : xcb_colormap_alloc_t = 0;
-    pub static XCB_COLORMAP_ALLOC_ALL : xcb_colormap_alloc_t = 1;
+    pub const XCB_COLORMAP_ALLOC_NONE : xcb_colormap_alloc_t = 0;
+    pub const XCB_COLORMAP_ALLOC_ALL : xcb_colormap_alloc_t = 1;
 //}
 /** Opcode for xcb_create_colormap. */
-pub static XCB_CREATE_COLORMAP : u8 = 78;
+pub const XCB_CREATE_COLORMAP : u8 = 78;
 /** Opcode for xcb_free_colormap. */
-pub static XCB_FREE_COLORMAP : u8 = 79;
+pub const XCB_FREE_COLORMAP : u8 = 79;
 /** Opcode for xcb_copy_colormap_and_free. */
-pub static XCB_COPY_COLORMAP_AND_FREE : u8 = 80;
+pub const XCB_COPY_COLORMAP_AND_FREE : u8 = 80;
 /** Opcode for xcb_install_colormap. */
-pub static XCB_INSTALL_COLORMAP : u8 = 81;
+pub const XCB_INSTALL_COLORMAP : u8 = 81;
 /** Opcode for xcb_uninstall_colormap. */
-pub static XCB_UNINSTALL_COLORMAP : u8 = 82;
+pub const XCB_UNINSTALL_COLORMAP : u8 = 82;
 pub struct  ListInstalledColormapsCookie<'s> { pub base : base::Cookie<'s, xcb_list_installed_colormaps_cookie_t> }
 
 /** Opcode for xcb_list_installed_colormaps. */
-pub static XCB_LIST_INSTALLED_COLORMAPS : u8 = 83;
+pub const XCB_LIST_INSTALLED_COLORMAPS : u8 = 83;
 pub struct  AllocColorCookie<'s> { pub base : base::Cookie<'s, xcb_alloc_color_cookie_t> }
 
 /** Opcode for xcb_alloc_color. */
-pub static XCB_ALLOC_COLOR : u8 = 84;
+pub const XCB_ALLOC_COLOR : u8 = 84;
 pub struct AllocColorReply { base:  base::Reply<xcb_alloc_color_reply_t> }
 fn mk_reply_xcb_alloc_color_reply_t(reply:*mut xcb_alloc_color_reply_t) -> AllocColorReply { AllocColorReply { base : base::mk_reply(reply) } }
 pub struct  AllocNamedColorCookie<'s> { pub base : base::Cookie<'s, xcb_alloc_named_color_cookie_t> }
 
 /** Opcode for xcb_alloc_named_color. */
-pub static XCB_ALLOC_NAMED_COLOR : u8 = 85;
+pub const XCB_ALLOC_NAMED_COLOR : u8 = 85;
 pub struct AllocNamedColorReply { base:  base::Reply<xcb_alloc_named_color_reply_t> }
 fn mk_reply_xcb_alloc_named_color_reply_t(reply:*mut xcb_alloc_named_color_reply_t) -> AllocNamedColorReply { AllocNamedColorReply { base : base::mk_reply(reply) } }
 pub struct  AllocColorCellsCookie<'s> { pub base : base::Cookie<'s, xcb_alloc_color_cells_cookie_t> }
 
 /** Opcode for xcb_alloc_color_cells. */
-pub static XCB_ALLOC_COLOR_CELLS : u8 = 86;
+pub const XCB_ALLOC_COLOR_CELLS : u8 = 86;
 pub struct  AllocColorPlanesCookie<'s> { pub base : base::Cookie<'s, xcb_alloc_color_planes_cookie_t> }
 
 /** Opcode for xcb_alloc_color_planes. */
-pub static XCB_ALLOC_COLOR_PLANES : u8 = 87;
+pub const XCB_ALLOC_COLOR_PLANES : u8 = 87;
 /** Opcode for xcb_free_colors. */
-pub static XCB_FREE_COLORS : u8 = 88;
+pub const XCB_FREE_COLORS : u8 = 88;
 
 pub type xcb_color_flag_t = c_uint;//{
-    pub static XCB_COLOR_FLAG_RED : xcb_color_flag_t = 1;
-    pub static XCB_COLOR_FLAG_GREEN : xcb_color_flag_t = 2;
-    pub static XCB_COLOR_FLAG_BLUE : xcb_color_flag_t = 4;
+    pub const XCB_COLOR_FLAG_RED : xcb_color_flag_t = 1;
+    pub const XCB_COLOR_FLAG_GREEN : xcb_color_flag_t = 2;
+    pub const XCB_COLOR_FLAG_BLUE : xcb_color_flag_t = 4;
 //}
 pub struct Coloritem {pub base : base::Struct<xcb_coloritem_t> }
 
 pub type ColoritemIterator = xcb_coloritem_iterator_t;
 
 /** Opcode for xcb_store_colors. */
-pub static XCB_STORE_COLORS : u8 = 89;
+pub const XCB_STORE_COLORS : u8 = 89;
 /** Opcode for xcb_store_named_color. */
-pub static XCB_STORE_NAMED_COLOR : u8 = 90;
+pub const XCB_STORE_NAMED_COLOR : u8 = 90;
 pub type RgbIterator = xcb_rgb_iterator_t;
 
 pub struct  QueryColorsCookie<'s> { pub base : base::Cookie<'s, xcb_query_colors_cookie_t> }
 
 /** Opcode for xcb_query_colors. */
-pub static XCB_QUERY_COLORS : u8 = 91;
+pub const XCB_QUERY_COLORS : u8 = 91;
 pub struct QueryColorsReply { base:  base::Reply<xcb_query_colors_reply_t> }
 fn mk_reply_xcb_query_colors_reply_t(reply:*mut xcb_query_colors_reply_t) -> QueryColorsReply { QueryColorsReply { base : base::mk_reply(reply) } }
 pub struct  LookupColorCookie<'s> { pub base : base::Cookie<'s, xcb_lookup_color_cookie_t> }
 
 /** Opcode for xcb_lookup_color. */
-pub static XCB_LOOKUP_COLOR : u8 = 92;
+pub const XCB_LOOKUP_COLOR : u8 = 92;
 pub struct LookupColorReply { base:  base::Reply<xcb_lookup_color_reply_t> }
 fn mk_reply_xcb_lookup_color_reply_t(reply:*mut xcb_lookup_color_reply_t) -> LookupColorReply { LookupColorReply { base : base::mk_reply(reply) } }
 
 pub type xcb_pixmap_enum_t = c_uint;//{
-    pub static XCB_PIXMAP_NONE : xcb_pixmap_enum_t = 0;
+    pub const XCB_PIXMAP_NONE : xcb_pixmap_enum_t = 0;
 //}
 /** Opcode for xcb_create_cursor. */
-pub static XCB_CREATE_CURSOR : u8 = 93;
+pub const XCB_CREATE_CURSOR : u8 = 93;
 
 pub type xcb_font_enum_t = c_uint;//{
-    pub static XCB_FONT_NONE : xcb_font_enum_t = 0;
+    pub const XCB_FONT_NONE : xcb_font_enum_t = 0;
 //}
 /** Opcode for xcb_create_glyph_cursor. */
-pub static XCB_CREATE_GLYPH_CURSOR : u8 = 94;
+pub const XCB_CREATE_GLYPH_CURSOR : u8 = 94;
 /** Opcode for xcb_free_cursor. */
-pub static XCB_FREE_CURSOR : u8 = 95;
+pub const XCB_FREE_CURSOR : u8 = 95;
 /** Opcode for xcb_recolor_cursor. */
-pub static XCB_RECOLOR_CURSOR : u8 = 96;
+pub const XCB_RECOLOR_CURSOR : u8 = 96;
 
 pub type xcb_query_shape_of_t = c_uint;//{
-    pub static XCB_QUERY_SHAPE_OF_LARGEST_CURSOR : xcb_query_shape_of_t = 0;
-    pub static XCB_QUERY_SHAPE_OF_FASTEST_TILE : xcb_query_shape_of_t = 1;
-    pub static XCB_QUERY_SHAPE_OF_FASTEST_STIPPLE : xcb_query_shape_of_t = 2;
+    pub const XCB_QUERY_SHAPE_OF_LARGEST_CURSOR : xcb_query_shape_of_t = 0;
+    pub const XCB_QUERY_SHAPE_OF_FASTEST_TILE : xcb_query_shape_of_t = 1;
+    pub const XCB_QUERY_SHAPE_OF_FASTEST_STIPPLE : xcb_query_shape_of_t = 2;
 //}
 pub struct  QueryBestSizeCookie<'s> { pub base : base::Cookie<'s, xcb_query_best_size_cookie_t> }
 
 /** Opcode for xcb_query_best_size. */
-pub static XCB_QUERY_BEST_SIZE : u8 = 97;
+pub const XCB_QUERY_BEST_SIZE : u8 = 97;
 pub struct QueryBestSizeReply { base:  base::Reply<xcb_query_best_size_reply_t> }
 fn mk_reply_xcb_query_best_size_reply_t(reply:*mut xcb_query_best_size_reply_t) -> QueryBestSizeReply { QueryBestSizeReply { base : base::mk_reply(reply) } }
 pub struct  QueryExtensionCookie<'s> { pub base : base::Cookie<'s, xcb_query_extension_cookie_t> }
 
 /** Opcode for xcb_query_extension. */
-pub static XCB_QUERY_EXTENSION : u8 = 98;
+pub const XCB_QUERY_EXTENSION : u8 = 98;
 pub struct QueryExtensionReply { base:  base::Reply<xcb_query_extension_reply_t> }
 fn mk_reply_xcb_query_extension_reply_t(reply:*mut xcb_query_extension_reply_t) -> QueryExtensionReply { QueryExtensionReply { base : base::mk_reply(reply) } }
 pub struct  ListExtensionsCookie<'s> { pub base : base::Cookie<'s, xcb_list_extensions_cookie_t> }
 
 /** Opcode for xcb_list_extensions. */
-pub static XCB_LIST_EXTENSIONS : u8 = 99;
+pub const XCB_LIST_EXTENSIONS : u8 = 99;
 /** Opcode for xcb_change_keyboard_mapping. */
-pub static XCB_CHANGE_KEYBOARD_MAPPING : u8 = 100;
+pub const XCB_CHANGE_KEYBOARD_MAPPING : u8 = 100;
 pub struct  GetKeyboardMappingCookie<'s> { pub base : base::Cookie<'s, xcb_get_keyboard_mapping_cookie_t> }
 
 /** Opcode for xcb_get_keyboard_mapping. */
-pub static XCB_GET_KEYBOARD_MAPPING : u8 = 101;
+pub const XCB_GET_KEYBOARD_MAPPING : u8 = 101;
 
 pub type xcb_kb_t = c_uint;//{
-    pub static XCB_KB_KEY_CLICK_PERCENT : xcb_kb_t = 1;
-    pub static XCB_KB_BELL_PERCENT : xcb_kb_t = 2;
-    pub static XCB_KB_BELL_PITCH : xcb_kb_t = 4;
-    pub static XCB_KB_BELL_DURATION : xcb_kb_t = 8;
-    pub static XCB_KB_LED : xcb_kb_t = 16;
-    pub static XCB_KB_LED_MODE : xcb_kb_t = 32;
-    pub static XCB_KB_KEY : xcb_kb_t = 64;
-    pub static XCB_KB_AUTO_REPEAT_MODE : xcb_kb_t = 128;
+    pub const XCB_KB_KEY_CLICK_PERCENT : xcb_kb_t = 1;
+    pub const XCB_KB_BELL_PERCENT : xcb_kb_t = 2;
+    pub const XCB_KB_BELL_PITCH : xcb_kb_t = 4;
+    pub const XCB_KB_BELL_DURATION : xcb_kb_t = 8;
+    pub const XCB_KB_LED : xcb_kb_t = 16;
+    pub const XCB_KB_LED_MODE : xcb_kb_t = 32;
+    pub const XCB_KB_KEY : xcb_kb_t = 64;
+    pub const XCB_KB_AUTO_REPEAT_MODE : xcb_kb_t = 128;
 //}
 
 pub type xcb_led_mode_t = c_uint;//{
-    pub static XCB_LED_MODE_OFF : xcb_led_mode_t = 0;
-    pub static XCB_LED_MODE_ON : xcb_led_mode_t = 1;
+    pub const XCB_LED_MODE_OFF : xcb_led_mode_t = 0;
+    pub const XCB_LED_MODE_ON : xcb_led_mode_t = 1;
 //}
 
 pub type xcb_auto_repeat_mode_t = c_uint;//{
-    pub static XCB_AUTO_REPEAT_MODE_OFF : xcb_auto_repeat_mode_t = 0;
-    pub static XCB_AUTO_REPEAT_MODE_ON : xcb_auto_repeat_mode_t = 1;
-    pub static XCB_AUTO_REPEAT_MODE_DEFAULT : xcb_auto_repeat_mode_t = 2;
+    pub const XCB_AUTO_REPEAT_MODE_OFF : xcb_auto_repeat_mode_t = 0;
+    pub const XCB_AUTO_REPEAT_MODE_ON : xcb_auto_repeat_mode_t = 1;
+    pub const XCB_AUTO_REPEAT_MODE_DEFAULT : xcb_auto_repeat_mode_t = 2;
 //}
 /** Opcode for xcb_change_keyboard_control. */
-pub static XCB_CHANGE_KEYBOARD_CONTROL : u8 = 102;
+pub const XCB_CHANGE_KEYBOARD_CONTROL : u8 = 102;
 pub struct  GetKeyboardControlCookie<'s> { pub base : base::Cookie<'s, xcb_get_keyboard_control_cookie_t> }
 
 /** Opcode for xcb_get_keyboard_control. */
-pub static XCB_GET_KEYBOARD_CONTROL : u8 = 103;
+pub const XCB_GET_KEYBOARD_CONTROL : u8 = 103;
 pub struct GetKeyboardControlReply { base:  base::Reply<xcb_get_keyboard_control_reply_t> }
 fn mk_reply_xcb_get_keyboard_control_reply_t(reply:*mut xcb_get_keyboard_control_reply_t) -> GetKeyboardControlReply { GetKeyboardControlReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_bell. */
-pub static XCB_BELL : u8 = 104;
+pub const XCB_BELL : u8 = 104;
 /** Opcode for xcb_change_pointer_control. */
-pub static XCB_CHANGE_POINTER_CONTROL : u8 = 105;
+pub const XCB_CHANGE_POINTER_CONTROL : u8 = 105;
 pub struct  GetPointerControlCookie<'s> { pub base : base::Cookie<'s, xcb_get_pointer_control_cookie_t> }
 
 /** Opcode for xcb_get_pointer_control. */
-pub static XCB_GET_POINTER_CONTROL : u8 = 106;
+pub const XCB_GET_POINTER_CONTROL : u8 = 106;
 pub struct GetPointerControlReply { base:  base::Reply<xcb_get_pointer_control_reply_t> }
 fn mk_reply_xcb_get_pointer_control_reply_t(reply:*mut xcb_get_pointer_control_reply_t) -> GetPointerControlReply { GetPointerControlReply { base : base::mk_reply(reply) } }
 
 pub type xcb_blanking_t = c_uint;//{
-    pub static XCB_BLANKING_NOT_PREFERRED : xcb_blanking_t = 0;
-    pub static XCB_BLANKING_PREFERRED : xcb_blanking_t = 1;
-    pub static XCB_BLANKING_DEFAULT : xcb_blanking_t = 2;
+    pub const XCB_BLANKING_NOT_PREFERRED : xcb_blanking_t = 0;
+    pub const XCB_BLANKING_PREFERRED : xcb_blanking_t = 1;
+    pub const XCB_BLANKING_DEFAULT : xcb_blanking_t = 2;
 //}
 
 pub type xcb_exposures_t = c_uint;//{
-    pub static XCB_EXPOSURES_NOT_ALLOWED : xcb_exposures_t = 0;
-    pub static XCB_EXPOSURES_ALLOWED : xcb_exposures_t = 1;
-    pub static XCB_EXPOSURES_DEFAULT : xcb_exposures_t = 2;
+    pub const XCB_EXPOSURES_NOT_ALLOWED : xcb_exposures_t = 0;
+    pub const XCB_EXPOSURES_ALLOWED : xcb_exposures_t = 1;
+    pub const XCB_EXPOSURES_DEFAULT : xcb_exposures_t = 2;
 //}
 /** Opcode for xcb_set_screen_saver. */
-pub static XCB_SET_SCREEN_SAVER : u8 = 107;
+pub const XCB_SET_SCREEN_SAVER : u8 = 107;
 pub struct  GetScreenSaverCookie<'s> { pub base : base::Cookie<'s, xcb_get_screen_saver_cookie_t> }
 
 /** Opcode for xcb_get_screen_saver. */
-pub static XCB_GET_SCREEN_SAVER : u8 = 108;
+pub const XCB_GET_SCREEN_SAVER : u8 = 108;
 pub struct GetScreenSaverReply { base:  base::Reply<xcb_get_screen_saver_reply_t> }
 fn mk_reply_xcb_get_screen_saver_reply_t(reply:*mut xcb_get_screen_saver_reply_t) -> GetScreenSaverReply { GetScreenSaverReply { base : base::mk_reply(reply) } }
 
 pub type xcb_host_mode_t = c_uint;//{
-    pub static XCB_HOST_MODE_INSERT : xcb_host_mode_t = 0;
-    pub static XCB_HOST_MODE_DELETE : xcb_host_mode_t = 1;
+    pub const XCB_HOST_MODE_INSERT : xcb_host_mode_t = 0;
+    pub const XCB_HOST_MODE_DELETE : xcb_host_mode_t = 1;
 //}
 
 pub type xcb_family_t = c_uint;//{
-    pub static XCB_FAMILY_INTERNET : xcb_family_t = 0;
-    pub static XCB_FAMILY_DECNET : xcb_family_t = 1;
-    pub static XCB_FAMILY_CHAOS : xcb_family_t = 2;
-    pub static XCB_FAMILY_SERVER_INTERPRETED : xcb_family_t = 5;
-    pub static XCB_FAMILY_INTERNET_6 : xcb_family_t = 6;
+    pub const XCB_FAMILY_INTERNET : xcb_family_t = 0;
+    pub const XCB_FAMILY_DECNET : xcb_family_t = 1;
+    pub const XCB_FAMILY_CHAOS : xcb_family_t = 2;
+    pub const XCB_FAMILY_SERVER_INTERPRETED : xcb_family_t = 5;
+    pub const XCB_FAMILY_INTERNET_6 : xcb_family_t = 6;
 //}
 /** Opcode for xcb_change_hosts. */
-pub static XCB_CHANGE_HOSTS : u8 = 109;
+pub const XCB_CHANGE_HOSTS : u8 = 109;
 pub type HostIterator = xcb_host_iterator_t;
 
 pub struct  ListHostsCookie<'s> { pub base : base::Cookie<'s, xcb_list_hosts_cookie_t> }
 
 /** Opcode for xcb_list_hosts. */
-pub static XCB_LIST_HOSTS : u8 = 110;
+pub const XCB_LIST_HOSTS : u8 = 110;
 
 pub type xcb_access_control_t = c_uint;//{
-    pub static XCB_ACCESS_CONTROL_DISABLE : xcb_access_control_t = 0;
-    pub static XCB_ACCESS_CONTROL_ENABLE : xcb_access_control_t = 1;
+    pub const XCB_ACCESS_CONTROL_DISABLE : xcb_access_control_t = 0;
+    pub const XCB_ACCESS_CONTROL_ENABLE : xcb_access_control_t = 1;
 //}
 /** Opcode for xcb_set_access_control. */
-pub static XCB_SET_ACCESS_CONTROL : u8 = 111;
+pub const XCB_SET_ACCESS_CONTROL : u8 = 111;
 
 pub type xcb_close_down_t = c_uint;//{
-    pub static XCB_CLOSE_DOWN_DESTROY_ALL : xcb_close_down_t = 0;
-    pub static XCB_CLOSE_DOWN_RETAIN_PERMANENT : xcb_close_down_t = 1;
-    pub static XCB_CLOSE_DOWN_RETAIN_TEMPORARY : xcb_close_down_t = 2;
+    pub const XCB_CLOSE_DOWN_DESTROY_ALL : xcb_close_down_t = 0;
+    pub const XCB_CLOSE_DOWN_RETAIN_PERMANENT : xcb_close_down_t = 1;
+    pub const XCB_CLOSE_DOWN_RETAIN_TEMPORARY : xcb_close_down_t = 2;
 //}
 /** Opcode for xcb_set_close_down_mode. */
-pub static XCB_SET_CLOSE_DOWN_MODE : u8 = 112;
+pub const XCB_SET_CLOSE_DOWN_MODE : u8 = 112;
 
 pub type xcb_kill_t = c_uint;//{
-    pub static XCB_KILL_ALL_TEMPORARY : xcb_kill_t = 0;
+    pub const XCB_KILL_ALL_TEMPORARY : xcb_kill_t = 0;
 //}
 /** Opcode for xcb_kill_client. */
-pub static XCB_KILL_CLIENT : u8 = 113;
+pub const XCB_KILL_CLIENT : u8 = 113;
 /** Opcode for xcb_rotate_properties. */
-pub static XCB_ROTATE_PROPERTIES : u8 = 114;
+pub const XCB_ROTATE_PROPERTIES : u8 = 114;
 
 pub type xcb_screen_saver_t = c_uint;//{
-    pub static XCB_SCREEN_SAVER_RESET : xcb_screen_saver_t = 0;
-    pub static XCB_SCREEN_SAVER_ACTIVE : xcb_screen_saver_t = 1;
+    pub const XCB_SCREEN_SAVER_RESET : xcb_screen_saver_t = 0;
+    pub const XCB_SCREEN_SAVER_ACTIVE : xcb_screen_saver_t = 1;
 //}
 /** Opcode for xcb_force_screen_saver. */
-pub static XCB_FORCE_SCREEN_SAVER : u8 = 115;
+pub const XCB_FORCE_SCREEN_SAVER : u8 = 115;
 
 pub type xcb_mapping_status_t = c_uint;//{
-    pub static XCB_MAPPING_STATUS_SUCCESS : xcb_mapping_status_t = 0;
-    pub static XCB_MAPPING_STATUS_BUSY : xcb_mapping_status_t = 1;
-    pub static XCB_MAPPING_STATUS_FAILURE : xcb_mapping_status_t = 2;
+    pub const XCB_MAPPING_STATUS_SUCCESS : xcb_mapping_status_t = 0;
+    pub const XCB_MAPPING_STATUS_BUSY : xcb_mapping_status_t = 1;
+    pub const XCB_MAPPING_STATUS_FAILURE : xcb_mapping_status_t = 2;
 //}
 pub struct  SetPointerMappingCookie<'s> { pub base : base::Cookie<'s, xcb_set_pointer_mapping_cookie_t> }
 
 /** Opcode for xcb_set_pointer_mapping. */
-pub static XCB_SET_POINTER_MAPPING : u8 = 116;
+pub const XCB_SET_POINTER_MAPPING : u8 = 116;
 pub struct SetPointerMappingReply { base:  base::Reply<xcb_set_pointer_mapping_reply_t> }
 fn mk_reply_xcb_set_pointer_mapping_reply_t(reply:*mut xcb_set_pointer_mapping_reply_t) -> SetPointerMappingReply { SetPointerMappingReply { base : base::mk_reply(reply) } }
 pub struct  GetPointerMappingCookie<'s> { pub base : base::Cookie<'s, xcb_get_pointer_mapping_cookie_t> }
 
 /** Opcode for xcb_get_pointer_mapping. */
-pub static XCB_GET_POINTER_MAPPING : u8 = 117;
+pub const XCB_GET_POINTER_MAPPING : u8 = 117;
 
 pub type xcb_map_index_t = c_uint;//{
-    pub static XCB_MAP_INDEX_SHIFT : xcb_map_index_t = 0;
-    pub static XCB_MAP_INDEX_LOCK : xcb_map_index_t = 1;
-    pub static XCB_MAP_INDEX_CONTROL : xcb_map_index_t = 2;
-    pub static XCB_MAP_INDEX_1 : xcb_map_index_t = 3;
-    pub static XCB_MAP_INDEX_2 : xcb_map_index_t = 4;
-    pub static XCB_MAP_INDEX_3 : xcb_map_index_t = 5;
-    pub static XCB_MAP_INDEX_4 : xcb_map_index_t = 6;
-    pub static XCB_MAP_INDEX_5 : xcb_map_index_t = 7;
+    pub const XCB_MAP_INDEX_SHIFT : xcb_map_index_t = 0;
+    pub const XCB_MAP_INDEX_LOCK : xcb_map_index_t = 1;
+    pub const XCB_MAP_INDEX_CONTROL : xcb_map_index_t = 2;
+    pub const XCB_MAP_INDEX_1 : xcb_map_index_t = 3;
+    pub const XCB_MAP_INDEX_2 : xcb_map_index_t = 4;
+    pub const XCB_MAP_INDEX_3 : xcb_map_index_t = 5;
+    pub const XCB_MAP_INDEX_4 : xcb_map_index_t = 6;
+    pub const XCB_MAP_INDEX_5 : xcb_map_index_t = 7;
 //}
 pub struct  SetModifierMappingCookie<'s> { pub base : base::Cookie<'s, xcb_set_modifier_mapping_cookie_t> }
 
 /** Opcode for xcb_set_modifier_mapping. */
-pub static XCB_SET_MODIFIER_MAPPING : u8 = 118;
+pub const XCB_SET_MODIFIER_MAPPING : u8 = 118;
 pub struct SetModifierMappingReply { base:  base::Reply<xcb_set_modifier_mapping_reply_t> }
 fn mk_reply_xcb_set_modifier_mapping_reply_t(reply:*mut xcb_set_modifier_mapping_reply_t) -> SetModifierMappingReply { SetModifierMappingReply { base : base::mk_reply(reply) } }
 pub struct  GetModifierMappingCookie<'s> { pub base : base::Cookie<'s, xcb_get_modifier_mapping_cookie_t> }
 
 /** Opcode for xcb_get_modifier_mapping. */
-pub static XCB_GET_MODIFIER_MAPPING : u8 = 119;
+pub const XCB_GET_MODIFIER_MAPPING : u8 = 119;
 /** Opcode for xcb_no_operation. */
-pub static XCB_NO_OPERATION : u8 = 127;
+pub const XCB_NO_OPERATION : u8 = 127;
 
 impl Char2b {
   pub fn byte1(&mut self) -> u8 {

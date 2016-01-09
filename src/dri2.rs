@@ -20,28 +20,28 @@ use std::iter::Iterator;
 use xproto;
 
 pub type xcb_dri2_attachment_t = c_uint;//{
-    pub static XCB_DRI2_ATTACHMENT_BUFFER_FRONT_LEFT : xcb_dri2_attachment_t = 1;
-    pub static XCB_DRI2_ATTACHMENT_BUFFER_BACK_LEFT : xcb_dri2_attachment_t = 2;
-    pub static XCB_DRI2_ATTACHMENT_BUFFER_FRONT_RIGHT : xcb_dri2_attachment_t = 3;
-    pub static XCB_DRI2_ATTACHMENT_BUFFER_BACK_RIGHT : xcb_dri2_attachment_t = 4;
-    pub static XCB_DRI2_ATTACHMENT_BUFFER_DEPTH : xcb_dri2_attachment_t = 5;
-    pub static XCB_DRI2_ATTACHMENT_BUFFER_STENCIL : xcb_dri2_attachment_t = 6;
-    pub static XCB_DRI2_ATTACHMENT_BUFFER_ACCUM : xcb_dri2_attachment_t = 7;
-    pub static XCB_DRI2_ATTACHMENT_BUFFER_FAKE_FRONT_LEFT : xcb_dri2_attachment_t = 8;
-    pub static XCB_DRI2_ATTACHMENT_BUFFER_FAKE_FRONT_RIGHT : xcb_dri2_attachment_t = 9;
-    pub static XCB_DRI2_ATTACHMENT_BUFFER_DEPTH_STENCIL : xcb_dri2_attachment_t = 10;
-    pub static XCB_DRI2_ATTACHMENT_BUFFER_HIZ : xcb_dri2_attachment_t = 11;
+    pub const XCB_DRI2_ATTACHMENT_BUFFER_FRONT_LEFT : xcb_dri2_attachment_t = 1;
+    pub const XCB_DRI2_ATTACHMENT_BUFFER_BACK_LEFT : xcb_dri2_attachment_t = 2;
+    pub const XCB_DRI2_ATTACHMENT_BUFFER_FRONT_RIGHT : xcb_dri2_attachment_t = 3;
+    pub const XCB_DRI2_ATTACHMENT_BUFFER_BACK_RIGHT : xcb_dri2_attachment_t = 4;
+    pub const XCB_DRI2_ATTACHMENT_BUFFER_DEPTH : xcb_dri2_attachment_t = 5;
+    pub const XCB_DRI2_ATTACHMENT_BUFFER_STENCIL : xcb_dri2_attachment_t = 6;
+    pub const XCB_DRI2_ATTACHMENT_BUFFER_ACCUM : xcb_dri2_attachment_t = 7;
+    pub const XCB_DRI2_ATTACHMENT_BUFFER_FAKE_FRONT_LEFT : xcb_dri2_attachment_t = 8;
+    pub const XCB_DRI2_ATTACHMENT_BUFFER_FAKE_FRONT_RIGHT : xcb_dri2_attachment_t = 9;
+    pub const XCB_DRI2_ATTACHMENT_BUFFER_DEPTH_STENCIL : xcb_dri2_attachment_t = 10;
+    pub const XCB_DRI2_ATTACHMENT_BUFFER_HIZ : xcb_dri2_attachment_t = 11;
 //}
 
 pub type xcb_dri2_driver_type_t = c_uint;//{
-    pub static XCB_DRI2_DRIVER_TYPE_DRI : xcb_dri2_driver_type_t = 1;
-    pub static XCB_DRI2_DRIVER_TYPE_VDPAU : xcb_dri2_driver_type_t = 2;
+    pub const XCB_DRI2_DRIVER_TYPE_DRI : xcb_dri2_driver_type_t = 1;
+    pub const XCB_DRI2_DRIVER_TYPE_VDPAU : xcb_dri2_driver_type_t = 2;
 //}
 
 pub type xcb_dri2_event_type_t = c_uint;//{
-    pub static XCB_DRI2_EVENT_TYPE_EXCHANGE_COMPLETE : xcb_dri2_event_type_t = 1;
-    pub static XCB_DRI2_EVENT_TYPE_BLIT_COMPLETE : xcb_dri2_event_type_t = 2;
-    pub static XCB_DRI2_EVENT_TYPE_FLIP_COMPLETE : xcb_dri2_event_type_t = 3;
+    pub const XCB_DRI2_EVENT_TYPE_EXCHANGE_COMPLETE : xcb_dri2_event_type_t = 1;
+    pub const XCB_DRI2_EVENT_TYPE_BLIT_COMPLETE : xcb_dri2_event_type_t = 2;
+    pub const XCB_DRI2_EVENT_TYPE_FLIP_COMPLETE : xcb_dri2_event_type_t = 3;
 //}
 pub struct Dri2Buffer {pub base : base::Struct<xcb_dri2_dri2_buffer_t> }
 
@@ -52,78 +52,78 @@ pub type AttachFormatIterator = xcb_dri2_attach_format_iterator_t;
 pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_dri2_query_version_cookie_t> }
 
 /** Opcode for xcb_dri2_query_version. */
-pub static XCB_DRI2_QUERY_VERSION : u8 = 0;
+pub const XCB_DRI2_QUERY_VERSION : u8 = 0;
 pub struct QueryVersionReply { base:  base::Reply<xcb_dri2_query_version_reply_t> }
 fn mk_reply_xcb_dri2_query_version_reply_t(reply:*mut xcb_dri2_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
 pub struct  ConnectCookie<'s> { pub base : base::Cookie<'s, xcb_dri2_connect_cookie_t> }
 
 /** Opcode for xcb_dri2_connect. */
-pub static XCB_DRI2_CONNECT : u8 = 1;
+pub const XCB_DRI2_CONNECT : u8 = 1;
 pub struct  AuthenticateCookie<'s> { pub base : base::Cookie<'s, xcb_dri2_authenticate_cookie_t> }
 
 /** Opcode for xcb_dri2_authenticate. */
-pub static XCB_DRI2_AUTHENTICATE : u8 = 2;
+pub const XCB_DRI2_AUTHENTICATE : u8 = 2;
 pub struct AuthenticateReply { base:  base::Reply<xcb_dri2_authenticate_reply_t> }
 fn mk_reply_xcb_dri2_authenticate_reply_t(reply:*mut xcb_dri2_authenticate_reply_t) -> AuthenticateReply { AuthenticateReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_dri2_create_drawable. */
-pub static XCB_DRI2_CREATE_DRAWABLE : u8 = 3;
+pub const XCB_DRI2_CREATE_DRAWABLE : u8 = 3;
 /** Opcode for xcb_dri2_destroy_drawable. */
-pub static XCB_DRI2_DESTROY_DRAWABLE : u8 = 4;
+pub const XCB_DRI2_DESTROY_DRAWABLE : u8 = 4;
 pub struct  GetBuffersCookie<'s> { pub base : base::Cookie<'s, xcb_dri2_get_buffers_cookie_t> }
 
 /** Opcode for xcb_dri2_get_buffers. */
-pub static XCB_DRI2_GET_BUFFERS : u8 = 5;
+pub const XCB_DRI2_GET_BUFFERS : u8 = 5;
 pub struct GetBuffersReply { base:  base::Reply<xcb_dri2_get_buffers_reply_t> }
 fn mk_reply_xcb_dri2_get_buffers_reply_t(reply:*mut xcb_dri2_get_buffers_reply_t) -> GetBuffersReply { GetBuffersReply { base : base::mk_reply(reply) } }
 pub struct  CopyRegionCookie<'s> { pub base : base::Cookie<'s, xcb_dri2_copy_region_cookie_t> }
 
 /** Opcode for xcb_dri2_copy_region. */
-pub static XCB_DRI2_COPY_REGION : u8 = 6;
+pub const XCB_DRI2_COPY_REGION : u8 = 6;
 pub struct CopyRegionReply { base:  base::Reply<xcb_dri2_copy_region_reply_t> }
 fn mk_reply_xcb_dri2_copy_region_reply_t(reply:*mut xcb_dri2_copy_region_reply_t) -> CopyRegionReply { CopyRegionReply { base : base::mk_reply(reply) } }
 pub struct  GetBuffersWithFormatCookie<'s> { pub base : base::Cookie<'s, xcb_dri2_get_buffers_with_format_cookie_t> }
 
 /** Opcode for xcb_dri2_get_buffers_with_format. */
-pub static XCB_DRI2_GET_BUFFERS_WITH_FORMAT : u8 = 7;
+pub const XCB_DRI2_GET_BUFFERS_WITH_FORMAT : u8 = 7;
 pub struct GetBuffersWithFormatReply { base:  base::Reply<xcb_dri2_get_buffers_with_format_reply_t> }
 fn mk_reply_xcb_dri2_get_buffers_with_format_reply_t(reply:*mut xcb_dri2_get_buffers_with_format_reply_t) -> GetBuffersWithFormatReply { GetBuffersWithFormatReply { base : base::mk_reply(reply) } }
 pub struct  SwapBuffersCookie<'s> { pub base : base::Cookie<'s, xcb_dri2_swap_buffers_cookie_t> }
 
 /** Opcode for xcb_dri2_swap_buffers. */
-pub static XCB_DRI2_SWAP_BUFFERS : u8 = 8;
+pub const XCB_DRI2_SWAP_BUFFERS : u8 = 8;
 pub struct SwapBuffersReply { base:  base::Reply<xcb_dri2_swap_buffers_reply_t> }
 fn mk_reply_xcb_dri2_swap_buffers_reply_t(reply:*mut xcb_dri2_swap_buffers_reply_t) -> SwapBuffersReply { SwapBuffersReply { base : base::mk_reply(reply) } }
 pub struct  GetMscCookie<'s> { pub base : base::Cookie<'s, xcb_dri2_get_msc_cookie_t> }
 
 /** Opcode for xcb_dri2_get_msc. */
-pub static XCB_DRI2_GET_MSC : u8 = 9;
+pub const XCB_DRI2_GET_MSC : u8 = 9;
 pub struct GetMscReply { base:  base::Reply<xcb_dri2_get_msc_reply_t> }
 fn mk_reply_xcb_dri2_get_msc_reply_t(reply:*mut xcb_dri2_get_msc_reply_t) -> GetMscReply { GetMscReply { base : base::mk_reply(reply) } }
 pub struct  WaitMscCookie<'s> { pub base : base::Cookie<'s, xcb_dri2_wait_msc_cookie_t> }
 
 /** Opcode for xcb_dri2_wait_msc. */
-pub static XCB_DRI2_WAIT_MSC : u8 = 10;
+pub const XCB_DRI2_WAIT_MSC : u8 = 10;
 pub struct WaitMscReply { base:  base::Reply<xcb_dri2_wait_msc_reply_t> }
 fn mk_reply_xcb_dri2_wait_msc_reply_t(reply:*mut xcb_dri2_wait_msc_reply_t) -> WaitMscReply { WaitMscReply { base : base::mk_reply(reply) } }
 pub struct  WaitSbcCookie<'s> { pub base : base::Cookie<'s, xcb_dri2_wait_sbc_cookie_t> }
 
 /** Opcode for xcb_dri2_wait_sbc. */
-pub static XCB_DRI2_WAIT_SBC : u8 = 11;
+pub const XCB_DRI2_WAIT_SBC : u8 = 11;
 pub struct WaitSbcReply { base:  base::Reply<xcb_dri2_wait_sbc_reply_t> }
 fn mk_reply_xcb_dri2_wait_sbc_reply_t(reply:*mut xcb_dri2_wait_sbc_reply_t) -> WaitSbcReply { WaitSbcReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_dri2_swap_interval. */
-pub static XCB_DRI2_SWAP_INTERVAL : u8 = 12;
+pub const XCB_DRI2_SWAP_INTERVAL : u8 = 12;
 pub struct  GetParamCookie<'s> { pub base : base::Cookie<'s, xcb_dri2_get_param_cookie_t> }
 
 /** Opcode for xcb_dri2_get_param. */
-pub static XCB_DRI2_GET_PARAM : u8 = 13;
+pub const XCB_DRI2_GET_PARAM : u8 = 13;
 pub struct GetParamReply { base:  base::Reply<xcb_dri2_get_param_reply_t> }
 fn mk_reply_xcb_dri2_get_param_reply_t(reply:*mut xcb_dri2_get_param_reply_t) -> GetParamReply { GetParamReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_dri2_buffer_swap_complete. */
-pub static XCB_DRI2_BUFFER_SWAP_COMPLETE : u8 = 0;
+pub const XCB_DRI2_BUFFER_SWAP_COMPLETE : u8 = 0;
 pub struct BufferSwapCompleteEvent {pub base : base::Event<xcb_dri2_buffer_swap_complete_event_t>}
 /** Opcode for xcb_dri2_invalidate_buffers. */
-pub static XCB_DRI2_INVALIDATE_BUFFERS : u8 = 1;
+pub const XCB_DRI2_INVALIDATE_BUFFERS : u8 = 1;
 pub struct InvalidateBuffersEvent {pub base : base::Event<xcb_dri2_invalidate_buffers_event_t>}
 
 impl Dri2Buffer {

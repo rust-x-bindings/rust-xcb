@@ -24,9 +24,9 @@ pub type AlarmIterator = xcb_sync_alarm_iterator_t;
 
 
 pub type xcb_sync_alarmstate_t = c_uint;//{
-    pub static XCB_SYNC_ALARMSTATE_ACTIVE : xcb_sync_alarmstate_t = 1;
-    pub static XCB_SYNC_ALARMSTATE_INACTIVE : xcb_sync_alarmstate_t = 2;
-    pub static XCB_SYNC_ALARMSTATE_DESTROYED : xcb_sync_alarmstate_t = 3;
+    pub const XCB_SYNC_ALARMSTATE_ACTIVE : xcb_sync_alarmstate_t = 1;
+    pub const XCB_SYNC_ALARMSTATE_INACTIVE : xcb_sync_alarmstate_t = 2;
+    pub const XCB_SYNC_ALARMSTATE_DESTROYED : xcb_sync_alarmstate_t = 3;
 //}
 pub type Counter = xcb_sync_counter_t;
 
@@ -36,24 +36,24 @@ pub type FenceIterator = xcb_sync_fence_iterator_t;
 
 
 pub type xcb_sync_testtype_t = c_uint;//{
-    pub static XCB_SYNC_TESTTYPE_POSITIVE_TRANSITION : xcb_sync_testtype_t = 1;
-    pub static XCB_SYNC_TESTTYPE_NEGATIVE_TRANSITION : xcb_sync_testtype_t = 2;
-    pub static XCB_SYNC_TESTTYPE_POSITIVE_COMPARISON : xcb_sync_testtype_t = 3;
-    pub static XCB_SYNC_TESTTYPE_NEGATIVE_COMPARISON : xcb_sync_testtype_t = 4;
+    pub const XCB_SYNC_TESTTYPE_POSITIVE_TRANSITION : xcb_sync_testtype_t = 1;
+    pub const XCB_SYNC_TESTTYPE_NEGATIVE_TRANSITION : xcb_sync_testtype_t = 2;
+    pub const XCB_SYNC_TESTTYPE_POSITIVE_COMPARISON : xcb_sync_testtype_t = 3;
+    pub const XCB_SYNC_TESTTYPE_NEGATIVE_COMPARISON : xcb_sync_testtype_t = 4;
 //}
 
 pub type xcb_sync_valuetype_t = c_uint;//{
-    pub static XCB_SYNC_VALUETYPE_ABSOLUTE : xcb_sync_valuetype_t = 1;
-    pub static XCB_SYNC_VALUETYPE_RELATIVE : xcb_sync_valuetype_t = 2;
+    pub const XCB_SYNC_VALUETYPE_ABSOLUTE : xcb_sync_valuetype_t = 1;
+    pub const XCB_SYNC_VALUETYPE_RELATIVE : xcb_sync_valuetype_t = 2;
 //}
 
 pub type xcb_sync_ca_t = c_uint;//{
-    pub static XCB_SYNC_CA_COUNTER : xcb_sync_ca_t = 1;
-    pub static XCB_SYNC_CA_VALUE_TYPE : xcb_sync_ca_t = 2;
-    pub static XCB_SYNC_CA_VALUE : xcb_sync_ca_t = 4;
-    pub static XCB_SYNC_CA_TEST_TYPE : xcb_sync_ca_t = 8;
-    pub static XCB_SYNC_CA_DELTA : xcb_sync_ca_t = 16;
-    pub static XCB_SYNC_CA_EVENTS : xcb_sync_ca_t = 32;
+    pub const XCB_SYNC_CA_COUNTER : xcb_sync_ca_t = 1;
+    pub const XCB_SYNC_CA_VALUE_TYPE : xcb_sync_ca_t = 2;
+    pub const XCB_SYNC_CA_VALUE : xcb_sync_ca_t = 4;
+    pub const XCB_SYNC_CA_TEST_TYPE : xcb_sync_ca_t = 8;
+    pub const XCB_SYNC_CA_DELTA : xcb_sync_ca_t = 16;
+    pub const XCB_SYNC_CA_EVENTS : xcb_sync_ca_t = 32;
 //}
 pub struct Int64 {pub base : base::Struct<xcb_sync_int64_t> }
 
@@ -66,78 +66,78 @@ pub type TriggerIterator = xcb_sync_trigger_iterator_t;
 pub type WaitconditionIterator = xcb_sync_waitcondition_iterator_t;
 
 /** Opcode for xcb_sync_counter. */
-pub static XCB_SYNC_COUNTER : u8 = 0;
+pub const XCB_SYNC_COUNTER : u8 = 0;
 pub struct CounterError { pub base : base::Error<xcb_sync_counter_error_t> }
 /** Opcode for xcb_sync_alarm. */
-pub static XCB_SYNC_ALARM : u8 = 1;
+pub const XCB_SYNC_ALARM : u8 = 1;
 pub struct AlarmError { pub base : base::Error<xcb_sync_alarm_error_t> }
 pub struct  InitializeCookie<'s> { pub base : base::Cookie<'s, xcb_sync_initialize_cookie_t> }
 
 /** Opcode for xcb_sync_initialize. */
-pub static XCB_SYNC_INITIALIZE : u8 = 0;
+pub const XCB_SYNC_INITIALIZE : u8 = 0;
 pub struct InitializeReply { base:  base::Reply<xcb_sync_initialize_reply_t> }
 fn mk_reply_xcb_sync_initialize_reply_t(reply:*mut xcb_sync_initialize_reply_t) -> InitializeReply { InitializeReply { base : base::mk_reply(reply) } }
 pub struct  ListSystemCountersCookie<'s> { pub base : base::Cookie<'s, xcb_sync_list_system_counters_cookie_t> }
 
 /** Opcode for xcb_sync_list_system_counters. */
-pub static XCB_SYNC_LIST_SYSTEM_COUNTERS : u8 = 1;
+pub const XCB_SYNC_LIST_SYSTEM_COUNTERS : u8 = 1;
 /** Opcode for xcb_sync_create_counter. */
-pub static XCB_SYNC_CREATE_COUNTER : u8 = 2;
+pub const XCB_SYNC_CREATE_COUNTER : u8 = 2;
 /** Opcode for xcb_sync_destroy_counter. */
-pub static XCB_SYNC_DESTROY_COUNTER : u8 = 6;
+pub const XCB_SYNC_DESTROY_COUNTER : u8 = 6;
 pub struct  QueryCounterCookie<'s> { pub base : base::Cookie<'s, xcb_sync_query_counter_cookie_t> }
 
 /** Opcode for xcb_sync_query_counter. */
-pub static XCB_SYNC_QUERY_COUNTER : u8 = 5;
+pub const XCB_SYNC_QUERY_COUNTER : u8 = 5;
 pub struct QueryCounterReply { base:  base::Reply<xcb_sync_query_counter_reply_t> }
 fn mk_reply_xcb_sync_query_counter_reply_t(reply:*mut xcb_sync_query_counter_reply_t) -> QueryCounterReply { QueryCounterReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_sync_await. */
-pub static XCB_SYNC_AWAIT : u8 = 7;
+pub const XCB_SYNC_AWAIT : u8 = 7;
 /** Opcode for xcb_sync_change_counter. */
-pub static XCB_SYNC_CHANGE_COUNTER : u8 = 4;
+pub const XCB_SYNC_CHANGE_COUNTER : u8 = 4;
 /** Opcode for xcb_sync_set_counter. */
-pub static XCB_SYNC_SET_COUNTER : u8 = 3;
+pub const XCB_SYNC_SET_COUNTER : u8 = 3;
 /** Opcode for xcb_sync_create_alarm. */
-pub static XCB_SYNC_CREATE_ALARM : u8 = 8;
+pub const XCB_SYNC_CREATE_ALARM : u8 = 8;
 /** Opcode for xcb_sync_change_alarm. */
-pub static XCB_SYNC_CHANGE_ALARM : u8 = 9;
+pub const XCB_SYNC_CHANGE_ALARM : u8 = 9;
 /** Opcode for xcb_sync_destroy_alarm. */
-pub static XCB_SYNC_DESTROY_ALARM : u8 = 11;
+pub const XCB_SYNC_DESTROY_ALARM : u8 = 11;
 pub struct  QueryAlarmCookie<'s> { pub base : base::Cookie<'s, xcb_sync_query_alarm_cookie_t> }
 
 /** Opcode for xcb_sync_query_alarm. */
-pub static XCB_SYNC_QUERY_ALARM : u8 = 10;
+pub const XCB_SYNC_QUERY_ALARM : u8 = 10;
 pub struct QueryAlarmReply { base:  base::Reply<xcb_sync_query_alarm_reply_t> }
 fn mk_reply_xcb_sync_query_alarm_reply_t(reply:*mut xcb_sync_query_alarm_reply_t) -> QueryAlarmReply { QueryAlarmReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_sync_set_priority. */
-pub static XCB_SYNC_SET_PRIORITY : u8 = 12;
+pub const XCB_SYNC_SET_PRIORITY : u8 = 12;
 pub struct  GetPriorityCookie<'s> { pub base : base::Cookie<'s, xcb_sync_get_priority_cookie_t> }
 
 /** Opcode for xcb_sync_get_priority. */
-pub static XCB_SYNC_GET_PRIORITY : u8 = 13;
+pub const XCB_SYNC_GET_PRIORITY : u8 = 13;
 pub struct GetPriorityReply { base:  base::Reply<xcb_sync_get_priority_reply_t> }
 fn mk_reply_xcb_sync_get_priority_reply_t(reply:*mut xcb_sync_get_priority_reply_t) -> GetPriorityReply { GetPriorityReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_sync_create_fence. */
-pub static XCB_SYNC_CREATE_FENCE : u8 = 14;
+pub const XCB_SYNC_CREATE_FENCE : u8 = 14;
 /** Opcode for xcb_sync_trigger_fence. */
-pub static XCB_SYNC_TRIGGER_FENCE : u8 = 15;
+pub const XCB_SYNC_TRIGGER_FENCE : u8 = 15;
 /** Opcode for xcb_sync_reset_fence. */
-pub static XCB_SYNC_RESET_FENCE : u8 = 16;
+pub const XCB_SYNC_RESET_FENCE : u8 = 16;
 /** Opcode for xcb_sync_destroy_fence. */
-pub static XCB_SYNC_DESTROY_FENCE : u8 = 17;
+pub const XCB_SYNC_DESTROY_FENCE : u8 = 17;
 pub struct  QueryFenceCookie<'s> { pub base : base::Cookie<'s, xcb_sync_query_fence_cookie_t> }
 
 /** Opcode for xcb_sync_query_fence. */
-pub static XCB_SYNC_QUERY_FENCE : u8 = 18;
+pub const XCB_SYNC_QUERY_FENCE : u8 = 18;
 pub struct QueryFenceReply { base:  base::Reply<xcb_sync_query_fence_reply_t> }
 fn mk_reply_xcb_sync_query_fence_reply_t(reply:*mut xcb_sync_query_fence_reply_t) -> QueryFenceReply { QueryFenceReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_sync_await_fence. */
-pub static XCB_SYNC_AWAIT_FENCE : u8 = 19;
+pub const XCB_SYNC_AWAIT_FENCE : u8 = 19;
 /** Opcode for xcb_sync_counter_notify. */
-pub static XCB_SYNC_COUNTER_NOTIFY : u8 = 0;
+pub const XCB_SYNC_COUNTER_NOTIFY : u8 = 0;
 pub struct CounterNotifyEvent {pub base : base::Event<xcb_sync_counter_notify_event_t>}
 /** Opcode for xcb_sync_alarm_notify. */
-pub static XCB_SYNC_ALARM_NOTIFY : u8 = 1;
+pub const XCB_SYNC_ALARM_NOTIFY : u8 = 1;
 pub struct AlarmNotifyEvent {pub base : base::Event<xcb_sync_alarm_notify_event_t>}
 
 impl Iterator for AlarmIterator {

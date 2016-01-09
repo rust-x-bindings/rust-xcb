@@ -10,8 +10,8 @@ use std;
 use libc::*;
 use ffi;
 
-pub static DPMS_MAJOR_VERSION : c_uint = 0;
-pub static DPMS_MINOR_VERSION : c_uint = 0;
+pub const DPMS_MAJOR_VERSION : c_uint = 0;
+pub const DPMS_MINOR_VERSION : c_uint = 0;
 
 #[derive(Copy, Clone)]
 #[repr(C)]

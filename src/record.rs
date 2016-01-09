@@ -33,9 +33,9 @@ pub type ElementHeaderIterator = xcb_record_element_header_iterator_t;
 
 
 pub type xcb_record_h_type_t = c_uint;//{
-    pub static XCB_RECORD_H_TYPE_FROM_SERVER_TIME : xcb_record_h_type_t = 1;
-    pub static XCB_RECORD_H_TYPE_FROM_CLIENT_TIME : xcb_record_h_type_t = 2;
-    pub static XCB_RECORD_H_TYPE_FROM_CLIENT_SEQUENCE : xcb_record_h_type_t = 4;
+    pub const XCB_RECORD_H_TYPE_FROM_SERVER_TIME : xcb_record_h_type_t = 1;
+    pub const XCB_RECORD_H_TYPE_FROM_CLIENT_TIME : xcb_record_h_type_t = 2;
+    pub const XCB_RECORD_H_TYPE_FROM_CLIENT_SEQUENCE : xcb_record_h_type_t = 4;
 //}
 pub type ClientSpec = xcb_record_client_spec_t;
 
@@ -43,39 +43,39 @@ pub type ClientSpecIterator = xcb_record_client_spec_iterator_t;
 
 
 pub type xcb_record_cs_t = c_uint;//{
-    pub static XCB_RECORD_CS_CURRENT_CLIENTS : xcb_record_cs_t = 1;
-    pub static XCB_RECORD_CS_FUTURE_CLIENTS : xcb_record_cs_t = 2;
-    pub static XCB_RECORD_CS_ALL_CLIENTS : xcb_record_cs_t = 3;
+    pub const XCB_RECORD_CS_CURRENT_CLIENTS : xcb_record_cs_t = 1;
+    pub const XCB_RECORD_CS_FUTURE_CLIENTS : xcb_record_cs_t = 2;
+    pub const XCB_RECORD_CS_ALL_CLIENTS : xcb_record_cs_t = 3;
 //}
 pub type ClientInfoIterator = xcb_record_client_info_iterator_t;
 
 /** Opcode for xcb_record_bad_context. */
-pub static XCB_RECORD_BAD_CONTEXT : u8 = 0;
+pub const XCB_RECORD_BAD_CONTEXT : u8 = 0;
 pub struct BadContextError { pub base : base::Error<xcb_record_bad_context_error_t> }
 pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_record_query_version_cookie_t> }
 
 /** Opcode for xcb_record_query_version. */
-pub static XCB_RECORD_QUERY_VERSION : u8 = 0;
+pub const XCB_RECORD_QUERY_VERSION : u8 = 0;
 pub struct QueryVersionReply { base:  base::Reply<xcb_record_query_version_reply_t> }
 fn mk_reply_xcb_record_query_version_reply_t(reply:*mut xcb_record_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_record_create_context. */
-pub static XCB_RECORD_CREATE_CONTEXT : u8 = 1;
+pub const XCB_RECORD_CREATE_CONTEXT : u8 = 1;
 /** Opcode for xcb_record_register_clients. */
-pub static XCB_RECORD_REGISTER_CLIENTS : u8 = 2;
+pub const XCB_RECORD_REGISTER_CLIENTS : u8 = 2;
 /** Opcode for xcb_record_unregister_clients. */
-pub static XCB_RECORD_UNREGISTER_CLIENTS : u8 = 3;
+pub const XCB_RECORD_UNREGISTER_CLIENTS : u8 = 3;
 pub struct  GetContextCookie<'s> { pub base : base::Cookie<'s, xcb_record_get_context_cookie_t> }
 
 /** Opcode for xcb_record_get_context. */
-pub static XCB_RECORD_GET_CONTEXT : u8 = 4;
+pub const XCB_RECORD_GET_CONTEXT : u8 = 4;
 pub struct  EnableContextCookie<'s> { pub base : base::Cookie<'s, xcb_record_enable_context_cookie_t> }
 
 /** Opcode for xcb_record_enable_context. */
-pub static XCB_RECORD_ENABLE_CONTEXT : u8 = 5;
+pub const XCB_RECORD_ENABLE_CONTEXT : u8 = 5;
 /** Opcode for xcb_record_disable_context. */
-pub static XCB_RECORD_DISABLE_CONTEXT : u8 = 6;
+pub const XCB_RECORD_DISABLE_CONTEXT : u8 = 6;
 /** Opcode for xcb_record_free_context. */
-pub static XCB_RECORD_FREE_CONTEXT : u8 = 7;
+pub const XCB_RECORD_FREE_CONTEXT : u8 = 7;
 
 impl Iterator for ContextIterator {
     type Item = Context;

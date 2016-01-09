@@ -20,44 +20,44 @@ use std::iter::Iterator;
 use xproto;
 
 pub type xcb_screensaver_kind_t = c_uint;//{
-    pub static XCB_SCREENSAVER_KIND_BLANKED : xcb_screensaver_kind_t = 1;
-    pub static XCB_SCREENSAVER_KIND_INTERNAL : xcb_screensaver_kind_t = 2;
-    pub static XCB_SCREENSAVER_KIND_EXTERNAL : xcb_screensaver_kind_t = 3;
+    pub const XCB_SCREENSAVER_KIND_BLANKED : xcb_screensaver_kind_t = 1;
+    pub const XCB_SCREENSAVER_KIND_INTERNAL : xcb_screensaver_kind_t = 2;
+    pub const XCB_SCREENSAVER_KIND_EXTERNAL : xcb_screensaver_kind_t = 3;
 //}
 
 pub type xcb_screensaver_event_t = c_uint;//{
-    pub static XCB_SCREENSAVER_EVENT_NOTIFY_MASK : xcb_screensaver_event_t = 1;
-    pub static XCB_SCREENSAVER_EVENT_CYCLE_MASK : xcb_screensaver_event_t = 2;
+    pub const XCB_SCREENSAVER_EVENT_NOTIFY_MASK : xcb_screensaver_event_t = 1;
+    pub const XCB_SCREENSAVER_EVENT_CYCLE_MASK : xcb_screensaver_event_t = 2;
 //}
 
 pub type xcb_screensaver_state_t = c_uint;//{
-    pub static XCB_SCREENSAVER_STATE_OFF : xcb_screensaver_state_t = 1;
-    pub static XCB_SCREENSAVER_STATE_ON : xcb_screensaver_state_t = 2;
-    pub static XCB_SCREENSAVER_STATE_CYCLE : xcb_screensaver_state_t = 3;
-    pub static XCB_SCREENSAVER_STATE_DISABLED : xcb_screensaver_state_t = 4;
+    pub const XCB_SCREENSAVER_STATE_OFF : xcb_screensaver_state_t = 1;
+    pub const XCB_SCREENSAVER_STATE_ON : xcb_screensaver_state_t = 2;
+    pub const XCB_SCREENSAVER_STATE_CYCLE : xcb_screensaver_state_t = 3;
+    pub const XCB_SCREENSAVER_STATE_DISABLED : xcb_screensaver_state_t = 4;
 //}
 pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_screensaver_query_version_cookie_t> }
 
 /** Opcode for xcb_screensaver_query_version. */
-pub static XCB_SCREENSAVER_QUERY_VERSION : u8 = 0;
+pub const XCB_SCREENSAVER_QUERY_VERSION : u8 = 0;
 pub struct QueryVersionReply { base:  base::Reply<xcb_screensaver_query_version_reply_t> }
 fn mk_reply_xcb_screensaver_query_version_reply_t(reply:*mut xcb_screensaver_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
 pub struct  QueryInfoCookie<'s> { pub base : base::Cookie<'s, xcb_screensaver_query_info_cookie_t> }
 
 /** Opcode for xcb_screensaver_query_info. */
-pub static XCB_SCREENSAVER_QUERY_INFO : u8 = 1;
+pub const XCB_SCREENSAVER_QUERY_INFO : u8 = 1;
 pub struct QueryInfoReply { base:  base::Reply<xcb_screensaver_query_info_reply_t> }
 fn mk_reply_xcb_screensaver_query_info_reply_t(reply:*mut xcb_screensaver_query_info_reply_t) -> QueryInfoReply { QueryInfoReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_screensaver_select_input. */
-pub static XCB_SCREENSAVER_SELECT_INPUT : u8 = 2;
+pub const XCB_SCREENSAVER_SELECT_INPUT : u8 = 2;
 /** Opcode for xcb_screensaver_set_attributes. */
-pub static XCB_SCREENSAVER_SET_ATTRIBUTES : u8 = 3;
+pub const XCB_SCREENSAVER_SET_ATTRIBUTES : u8 = 3;
 /** Opcode for xcb_screensaver_unset_attributes. */
-pub static XCB_SCREENSAVER_UNSET_ATTRIBUTES : u8 = 4;
+pub const XCB_SCREENSAVER_UNSET_ATTRIBUTES : u8 = 4;
 /** Opcode for xcb_screensaver_suspend. */
-pub static XCB_SCREENSAVER_SUSPEND : u8 = 5;
+pub const XCB_SCREENSAVER_SUSPEND : u8 = 5;
 /** Opcode for xcb_screensaver_notify. */
-pub static XCB_SCREENSAVER_NOTIFY : u8 = 0;
+pub const XCB_SCREENSAVER_NOTIFY : u8 = 0;
 pub struct NotifyEvent {pub base : base::Event<xcb_screensaver_notify_event_t>}
 pub fn QueryVersion<'r> (c : &'r Connection,
                      client_major_version : u8,

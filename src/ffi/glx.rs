@@ -11,8 +11,8 @@ use libc::*;
 use ffi;
 use ffi::xproto;
 
-pub static GLX_MAJOR_VERSION : c_uint = 1;
-pub static GLX_MINOR_VERSION : c_uint = 3;
+pub const GLX_MAJOR_VERSION : c_uint = 1;
+pub const GLX_MINOR_VERSION : c_uint = 3;
 
 pub type xcb_glx_pixmap_t = u32;
 /**

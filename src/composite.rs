@@ -23,35 +23,35 @@ use shape;
 use xfixes;
 
 pub type xcb_composite_redirect_t = c_uint;//{
-    pub static XCB_COMPOSITE_REDIRECT_AUTOMATIC : xcb_composite_redirect_t = 1;
-    pub static XCB_COMPOSITE_REDIRECT_MANUAL : xcb_composite_redirect_t = 2;
+    pub const XCB_COMPOSITE_REDIRECT_AUTOMATIC : xcb_composite_redirect_t = 1;
+    pub const XCB_COMPOSITE_REDIRECT_MANUAL : xcb_composite_redirect_t = 2;
 //}
 pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_composite_query_version_cookie_t> }
 
 /** Opcode for xcb_composite_query_version. */
-pub static XCB_COMPOSITE_QUERY_VERSION : u8 = 0;
+pub const XCB_COMPOSITE_QUERY_VERSION : u8 = 0;
 pub struct QueryVersionReply { base:  base::Reply<xcb_composite_query_version_reply_t> }
 fn mk_reply_xcb_composite_query_version_reply_t(reply:*mut xcb_composite_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_composite_redirect_window. */
-pub static XCB_COMPOSITE_REDIRECT_WINDOW : u8 = 1;
+pub const XCB_COMPOSITE_REDIRECT_WINDOW : u8 = 1;
 /** Opcode for xcb_composite_redirect_subwindows. */
-pub static XCB_COMPOSITE_REDIRECT_SUBWINDOWS : u8 = 2;
+pub const XCB_COMPOSITE_REDIRECT_SUBWINDOWS : u8 = 2;
 /** Opcode for xcb_composite_unredirect_window. */
-pub static XCB_COMPOSITE_UNREDIRECT_WINDOW : u8 = 3;
+pub const XCB_COMPOSITE_UNREDIRECT_WINDOW : u8 = 3;
 /** Opcode for xcb_composite_unredirect_subwindows. */
-pub static XCB_COMPOSITE_UNREDIRECT_SUBWINDOWS : u8 = 4;
+pub const XCB_COMPOSITE_UNREDIRECT_SUBWINDOWS : u8 = 4;
 /** Opcode for xcb_composite_create_region_from_border_clip. */
-pub static XCB_COMPOSITE_CREATE_REGION_FROM_BORDER_CLIP : u8 = 5;
+pub const XCB_COMPOSITE_CREATE_REGION_FROM_BORDER_CLIP : u8 = 5;
 /** Opcode for xcb_composite_name_window_pixmap. */
-pub static XCB_COMPOSITE_NAME_WINDOW_PIXMAP : u8 = 6;
+pub const XCB_COMPOSITE_NAME_WINDOW_PIXMAP : u8 = 6;
 pub struct  GetOverlayWindowCookie<'s> { pub base : base::Cookie<'s, xcb_composite_get_overlay_window_cookie_t> }
 
 /** Opcode for xcb_composite_get_overlay_window. */
-pub static XCB_COMPOSITE_GET_OVERLAY_WINDOW : u8 = 7;
+pub const XCB_COMPOSITE_GET_OVERLAY_WINDOW : u8 = 7;
 pub struct GetOverlayWindowReply { base:  base::Reply<xcb_composite_get_overlay_window_reply_t> }
 fn mk_reply_xcb_composite_get_overlay_window_reply_t(reply:*mut xcb_composite_get_overlay_window_reply_t) -> GetOverlayWindowReply { GetOverlayWindowReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_composite_release_overlay_window. */
-pub static XCB_COMPOSITE_RELEASE_OVERLAY_WINDOW : u8 = 8;
+pub const XCB_COMPOSITE_RELEASE_OVERLAY_WINDOW : u8 = 8;
 pub fn QueryVersion<'r> (c : &'r Connection,
                      client_major_version : u32,
                      client_minor_version : u32) -> QueryVersionCookie<'r> {

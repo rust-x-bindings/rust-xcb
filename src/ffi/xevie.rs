@@ -10,8 +10,8 @@ use std;
 use libc::*;
 use ffi;
 
-pub static XEVIE_MAJOR_VERSION : c_uint = 1;
-pub static XEVIE_MINOR_VERSION : c_uint = 0;
+pub const XEVIE_MAJOR_VERSION : c_uint = 1;
+pub const XEVIE_MINOR_VERSION : c_uint = 0;
 
 #[derive(Copy, Clone)]
 #[repr(C)]

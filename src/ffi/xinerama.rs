@@ -11,8 +11,8 @@ use libc::*;
 use ffi;
 use ffi::xproto;
 
-pub static XINERAMA_MAJOR_VERSION : c_uint = 1;
-pub static XINERAMA_MINOR_VERSION : c_uint = 1;
+pub const XINERAMA_MAJOR_VERSION : c_uint = 1;
+pub const XINERAMA_MINOR_VERSION : c_uint = 1;
 
 #[repr(C)]
 pub struct xcb_xinerama_screen_info_t {

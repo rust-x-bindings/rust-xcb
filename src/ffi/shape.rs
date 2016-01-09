@@ -11,8 +11,8 @@ use libc::*;
 use ffi;
 use ffi::xproto;
 
-pub static SHAPE_MAJOR_VERSION : c_uint = 1;
-pub static SHAPE_MINOR_VERSION : c_uint = 1;
+pub const SHAPE_MAJOR_VERSION : c_uint = 1;
+pub const SHAPE_MINOR_VERSION : c_uint = 1;
 
 pub type xcb_shape_op_t = u8;
 /**

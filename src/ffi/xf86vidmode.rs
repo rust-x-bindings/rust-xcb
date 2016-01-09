@@ -10,8 +10,8 @@ use std;
 use libc::*;
 use ffi;
 
-pub static XF86VIDMODE_MAJOR_VERSION : c_uint = 2;
-pub static XF86VIDMODE_MINOR_VERSION : c_uint = 2;
+pub const XF86VIDMODE_MAJOR_VERSION : c_uint = 2;
+pub const XF86VIDMODE_MINOR_VERSION : c_uint = 2;
 
 pub type xcb_xf86vidmode_syncrange_t = u32;
 /**

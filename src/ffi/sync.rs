@@ -11,8 +11,8 @@ use libc::*;
 use ffi;
 use ffi::xproto;
 
-pub static SYNC_MAJOR_VERSION : c_uint = 3;
-pub static SYNC_MINOR_VERSION : c_uint = 1;
+pub const SYNC_MAJOR_VERSION : c_uint = 3;
+pub const SYNC_MINOR_VERSION : c_uint = 1;
 
 pub type xcb_sync_alarm_t = u32;
 /**

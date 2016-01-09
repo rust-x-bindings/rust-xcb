@@ -11,8 +11,8 @@ use libc::*;
 use ffi;
 use ffi::xproto;
 
-pub static TEST_MAJOR_VERSION : c_uint = 2;
-pub static TEST_MINOR_VERSION : c_uint = 1;
+pub const TEST_MAJOR_VERSION : c_uint = 2;
+pub const TEST_MINOR_VERSION : c_uint = 1;
 
 #[derive(Copy, Clone)]
 #[repr(C)]

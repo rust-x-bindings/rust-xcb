@@ -20,25 +20,25 @@ use std::iter::Iterator;
 pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_xevie_query_version_cookie_t> }
 
 /** Opcode for xcb_xevie_query_version. */
-pub static XCB_XEVIE_QUERY_VERSION : u8 = 0;
+pub const XCB_XEVIE_QUERY_VERSION : u8 = 0;
 pub struct QueryVersionReply { base:  base::Reply<xcb_xevie_query_version_reply_t> }
 fn mk_reply_xcb_xevie_query_version_reply_t(reply:*mut xcb_xevie_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
 pub struct  StartCookie<'s> { pub base : base::Cookie<'s, xcb_xevie_start_cookie_t> }
 
 /** Opcode for xcb_xevie_start. */
-pub static XCB_XEVIE_START : u8 = 1;
+pub const XCB_XEVIE_START : u8 = 1;
 pub struct StartReply { base:  base::Reply<xcb_xevie_start_reply_t> }
 fn mk_reply_xcb_xevie_start_reply_t(reply:*mut xcb_xevie_start_reply_t) -> StartReply { StartReply { base : base::mk_reply(reply) } }
 pub struct  EndCookie<'s> { pub base : base::Cookie<'s, xcb_xevie_end_cookie_t> }
 
 /** Opcode for xcb_xevie_end. */
-pub static XCB_XEVIE_END : u8 = 2;
+pub const XCB_XEVIE_END : u8 = 2;
 pub struct EndReply { base:  base::Reply<xcb_xevie_end_reply_t> }
 fn mk_reply_xcb_xevie_end_reply_t(reply:*mut xcb_xevie_end_reply_t) -> EndReply { EndReply { base : base::mk_reply(reply) } }
 
 pub type xcb_xevie_datatype_t = c_uint;//{
-    pub static XCB_XEVIE_DATATYPE_UNMODIFIED : xcb_xevie_datatype_t = 1;
-    pub static XCB_XEVIE_DATATYPE_MODIFIED : xcb_xevie_datatype_t = 2;
+    pub const XCB_XEVIE_DATATYPE_UNMODIFIED : xcb_xevie_datatype_t = 1;
+    pub const XCB_XEVIE_DATATYPE_MODIFIED : xcb_xevie_datatype_t = 2;
 //}
 pub struct Event {pub base : base::Struct<xcb_xevie_event_t> }
 
@@ -47,13 +47,13 @@ pub type EventIterator = xcb_xevie_event_iterator_t;
 pub struct  SendCookie<'s> { pub base : base::Cookie<'s, xcb_xevie_send_cookie_t> }
 
 /** Opcode for xcb_xevie_send. */
-pub static XCB_XEVIE_SEND : u8 = 3;
+pub const XCB_XEVIE_SEND : u8 = 3;
 pub struct SendReply { base:  base::Reply<xcb_xevie_send_reply_t> }
 fn mk_reply_xcb_xevie_send_reply_t(reply:*mut xcb_xevie_send_reply_t) -> SendReply { SendReply { base : base::mk_reply(reply) } }
 pub struct  SelectInputCookie<'s> { pub base : base::Cookie<'s, xcb_xevie_select_input_cookie_t> }
 
 /** Opcode for xcb_xevie_select_input. */
-pub static XCB_XEVIE_SELECT_INPUT : u8 = 4;
+pub const XCB_XEVIE_SELECT_INPUT : u8 = 4;
 pub struct SelectInputReply { base:  base::Reply<xcb_xevie_select_input_reply_t> }
 fn mk_reply_xcb_xevie_select_input_reply_t(reply:*mut xcb_xevie_select_input_reply_t) -> SelectInputReply { SelectInputReply { base : base::mk_reply(reply) } }
 pub fn QueryVersion<'r> (c : &'r Connection,
