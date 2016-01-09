@@ -23,8 +23,8 @@ fn main() {
         println!("Informations of screen {}:", screen.root);
         println!("  width..........: {}", screen.width_in_pixels);
         println!("  height.........: {}", screen.height_in_pixels);
-        println!("  white pixel....: {}", screen.white_pixel);
-        println!("  black pixel....: {}", screen.black_pixel);
+        println!("  white pixel....: {:x}", screen.white_pixel);
+        println!("  black pixel....: {:x}", screen.black_pixel);
 
         xcb_disconnect(c);
     }
