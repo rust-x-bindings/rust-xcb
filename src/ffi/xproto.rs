@@ -10,8 +10,6 @@ use std;
 use libc::*;
 use ffi;
 
-use std::marker::PhantomData;
-
 #[repr(C)]
 pub struct char2b {
      pub byte1 :   u8,
@@ -478,17 +476,6 @@ impl Copy for setup {}
 impl Clone for setup {
     fn clone(&self) -> setup { *self }
 }
-/**
- * @brief setup_iterator
- **/
-#[repr(C)]
-pub struct setup_iterator<'a> {
-    pub data : *mut setup,
-    pub rem  : c_int,
-    pub index: c_int,
-    phantom: PhantomData<&'a mut setup>
-}
-
 
 
 #[repr(C)]
@@ -4747,29 +4734,6 @@ pub fn xcb_setup_pixmap_formats_iterator (R : *mut setup) -> format_iterator;
 pub fn xcb_setup_roots_length (R : *mut setup) -> c_int;
 
 pub fn xcb_setup_roots_iterator (R : *mut setup) -> screen_iterator;
-
-/**
- * Get the next element of the iterator
- * @param i Pointer to a setup_iterator
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(setup)
- *
- *
- */
-pub fn xcb_setup_next (i:*mut setup_iterator) -> c_void;
-
-/**
- * Return the iterator pointing to the last element
- * @param i An setup_iterator
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
-pub fn xcb_setup_end (i:setup_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator

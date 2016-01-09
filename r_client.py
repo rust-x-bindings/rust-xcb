@@ -29,7 +29,7 @@ _ns = None
 
 _imports = []
 
-_types_not_copy_eligible = []
+_types_not_copy_eligible = ['setup']
 
 outdir = './'
 
@@ -830,6 +830,13 @@ def _c_iterator(self, name):
     '''
     Declares the iterator structure and next/end functions for a given type.
     '''
+
+    if self.c_type == 'setup':
+        # setup special case: setup is contained in connection struct
+        # no function return iterator to it, it can therefore not be
+        # iterated
+        return
+
     _h_setlevel(0)
     _r_setlevel(0)
     _h('/**')
@@ -914,7 +921,7 @@ def _c_accessors_field(self, field):
         _h('')
         _h('/**')
         _h(' *')
-        _h(' * %s : %s', field.c_accessor_name, field.c_field_type,)
+        _h(' * %s : %s', field.c_accessor_name, field.c_field_type)
         _h(' *')
         _h(' *')
         _h(' **/')
@@ -1057,7 +1064,13 @@ def _c_accessors(self, name, base):
                 pass
 
     _r_setlevel(1)
-    _r('\nimpl %s {', self.r_type)
+    impl_type = self.r_type
+    impl_decl = 'impl'
+    if self.wrap_type == 'StructPtr':
+        impl_type = impl_type+'<\'a>'
+        impl_decl = impl_decl+'<\'a>'
+
+    _r('\n%s %s {', impl_decl, impl_type)
     for field in accessor_fields:
         _r_accessor(self,field)
     _r_setlevel(1)
@@ -1065,11 +1078,15 @@ def _c_accessors(self, name, base):
 
 
 def _r_accessor(self,field):
+    wrap_field_expr = self.wrap_field_name
+    if self.wrap_type == 'StructPtr':
+        wrap_field_expr = '*' + wrap_field_expr
+
     _r_setlevel(1)
     if field.type.is_simple:
         _r('  pub fn %s(&mut self) -> %s {', field.c_field_name, field.r_field_type)
         _r('    unsafe { accessor!(%s -> %s, %s) }', field.c_field_name, field.r_field_type,
-                                            self.wrap_field_name)
+                                            wrap_field_expr)
         _r('  }\n')
     elif field.type.is_list and not field.type.fixed_size():
         if field.type.member.is_simple:
@@ -1082,20 +1099,20 @@ def _r_accessor(self,field):
 
             _r('  pub fn %s(&mut self) -> %s {', field.c_field_name, rty)
             _r('    unsafe { accessor!(%s, %s, %s, %s) }', fty, field.c_length_name, field.c_accessor_name,
-                                            self.wrap_field_name)
+                                            wrap_field_expr)
         else:
             _r('  pub fn %s(&mut self) -> %s {', field.c_field_name, field.r_iterator_type)
             _r('    unsafe { accessor!(%s, %s, %s) }', field.r_iterator_type, field.c_iterator_name,
-                                            self.wrap_field_name)
+                                            wrap_field_expr)
         _r('  }\n')
     elif field.type.is_list:
         _r('  pub fn %s(&self) -> Vec<%s> {', field.c_field_name, field.r_field_type)
-        _r('    unsafe { (%s.%s).to_vec() }',self.wrap_field_name,field.c_field_name)
+        _r('    unsafe { (%s.%s).to_vec() }',wrap_field_expr,field.c_field_name)
         _r('  }\n')
 
     elif field.type.is_container:
         _r('  pub fn %s(&self) -> %s {', field.c_field_name, field.r_field_type)
-        _r('    unsafe { mem::transmute(%s.%s) }', self.wrap_field_name, field.c_field_name)
+        _r('    unsafe { mem::transmute(%s.%s) }', wrap_field_expr, field.c_field_name)
         _r('  }')
         pass;
     else:
@@ -1208,11 +1225,28 @@ def c_struct(self, name):
 
     _c_complex(self)
 
+    if self.c_type == 'setup':
+        _setup_wrap_struct(self)
+    else:
+        _wrap_struct(self)
+    _c_accessors(self, name, name)
+    _c_iterator(self, name)
+
+
+def _wrap_struct(self):
     self.wrap_type = 'Struct'
     _r('pub struct %s {pub base : base::Struct<%s> }\n', self.r_type, self.c_type)
     self.wrap_field_name = 'self.base.strct'
-    _c_accessors(self, name, name)
-    _c_iterator(self, name)
+
+
+def _setup_wrap_struct(self):
+    '''
+    Special case of _wrap_struct for xcb_setup_t
+    '''
+    self.wrap_type = 'StructPtr'
+    _r('pub struct %s<\'a> {pub base : base::StructPtr<\'a, %s>}\n', self.r_type, self.c_type)
+    self.wrap_field_name = 'self.base.ptr'
+
 
 def c_union(self, name):
     '''

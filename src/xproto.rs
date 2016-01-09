@@ -120,8 +120,6 @@ pub type image_order = c_uint;//{
     pub static XCB_IMAGE_ORDER_LSB_FIRST : image_order = 0;
     pub static XCB_IMAGE_ORDER_MSB_FIRST : image_order = 1;
 //}
-pub type SetupIterator<'a> = setup_iterator<'a>;
-
 
 pub type mod_mask = c_uint;//{
     pub static XCB_MOD_MASK_SHIFT : mod_mask = 1;
@@ -2166,68 +2164,68 @@ impl Iterator for SetupAuthenticateIterator {
     }
 }
 
-pub struct Setup<'a> {pub base : base::StructPtr<'a, setup> }
+pub struct Setup<'a> {pub base : base::StructPtr<'a, setup>}
 
 
 impl<'a> Setup<'a> {
   pub fn status(&mut self) -> u8 {
-    unsafe { accessor!(status -> u8, &mut *self.base.ptr as &mut setup) }
+    unsafe { accessor!(status -> u8, *self.base.ptr) }
   }
 
   pub fn protocol_major_version(&mut self) -> u16 {
-    unsafe { accessor!(protocol_major_version -> u16, &mut *self.base.ptr as &mut setup) }
+    unsafe { accessor!(protocol_major_version -> u16, *self.base.ptr) }
   }
 
   pub fn protocol_minor_version(&mut self) -> u16 {
-    unsafe { accessor!(protocol_minor_version -> u16, &mut *self.base.ptr as &mut setup) }
+    unsafe { accessor!(protocol_minor_version -> u16, *self.base.ptr) }
   }
 
   pub fn length(&mut self) -> u16 {
-    unsafe { accessor!(length -> u16, &mut *self.base.ptr as &mut setup) }
+    unsafe { accessor!(length -> u16, *self.base.ptr) }
   }
 
   pub fn release_number(&mut self) -> u32 {
-    unsafe { accessor!(release_number -> u32, &mut *self.base.ptr as &mut setup) }
+    unsafe { accessor!(release_number -> u32, *self.base.ptr) }
   }
 
   pub fn resource_id_base(&mut self) -> u32 {
-    unsafe { accessor!(resource_id_base -> u32, &mut *self.base.ptr as &mut setup) }
+    unsafe { accessor!(resource_id_base -> u32, *self.base.ptr) }
   }
 
   pub fn resource_id_mask(&mut self) -> u32 {
-    unsafe { accessor!(resource_id_mask -> u32, &mut *self.base.ptr as &mut setup) }
+    unsafe { accessor!(resource_id_mask -> u32, *self.base.ptr) }
   }
 
   pub fn motion_buffer_size(&mut self) -> u32 {
-    unsafe { accessor!(motion_buffer_size -> u32, &mut *self.base.ptr as &mut setup) }
+    unsafe { accessor!(motion_buffer_size -> u32, *self.base.ptr) }
   }
 
   pub fn maximum_request_length(&mut self) -> u16 {
-    unsafe { accessor!(maximum_request_length -> u16, &mut *self.base.ptr as &mut setup) }
+    unsafe { accessor!(maximum_request_length -> u16, *self.base.ptr) }
   }
 
   pub fn image_byte_order(&mut self) -> u8 {
-    unsafe { accessor!(image_byte_order -> u8, &mut *self.base.ptr as &mut setup) }
+    unsafe { accessor!(image_byte_order -> u8, *self.base.ptr) }
   }
 
   pub fn bitmap_format_bit_order(&mut self) -> u8 {
-    unsafe { accessor!(bitmap_format_bit_order -> u8, &mut *self.base.ptr as &mut setup) }
+    unsafe { accessor!(bitmap_format_bit_order -> u8, *self.base.ptr) }
   }
 
   pub fn bitmap_format_scanline_unit(&mut self) -> u8 {
-    unsafe { accessor!(bitmap_format_scanline_unit -> u8, &mut *self.base.ptr as &mut setup) }
+    unsafe { accessor!(bitmap_format_scanline_unit -> u8, *self.base.ptr) }
   }
 
   pub fn bitmap_format_scanline_pad(&mut self) -> u8 {
-    unsafe { accessor!(bitmap_format_scanline_pad -> u8, &mut *self.base.ptr as &mut setup) }
+    unsafe { accessor!(bitmap_format_scanline_pad -> u8, *self.base.ptr) }
   }
 
   pub fn min_keycode(&mut self) -> Keycode {
-    unsafe { accessor!(min_keycode -> Keycode, &mut *self.base.ptr) }
+    unsafe { accessor!(min_keycode -> Keycode, *self.base.ptr) }
   }
 
   pub fn max_keycode(&mut self) -> Keycode {
-    unsafe { accessor!(max_keycode -> Keycode, &mut *self.base.ptr as &mut setup) }
+    unsafe { accessor!(max_keycode -> Keycode, *self.base.ptr) }
   }
 
   pub fn vendor(&mut self) -> String {
@@ -2243,20 +2241,6 @@ impl<'a> Setup<'a> {
   }
 
 }
-
-impl<'a> Iterator for SetupIterator<'a> {
-    type Item = &'a mut Setup<'a>;
-    fn next(&mut self) -> Option<&'a mut Setup<'a>> {
-        if self.rem == 0 { return None; }
-        unsafe {
-            let iter: *mut setup_iterator = mem::transmute(self);
-            let data = (*iter).data;
-            xcb_setup_next(iter);
-            Some(mem::transmute(data))
-        }
-    }
-}
-
 
 impl KeyPressEvent {
   pub fn detail(&mut self) -> Keycode {
