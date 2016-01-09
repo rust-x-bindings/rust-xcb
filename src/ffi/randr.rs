@@ -15,37 +15,37 @@ use ffi::render;
 pub static RANDR_MAJOR_VERSION : c_uint = 1;
 pub static RANDR_MINOR_VERSION : c_uint = 3;
 
-pub type mode = u32;
+pub type xcb_randr_mode_t = u32;
 /**
- * @brief mode_iterator
+ * @brief xcb_randr_mode_iterator_t
  **/
 #[repr(C)]
-pub struct mode_iterator {
-    pub data : *mut mode,
+pub struct xcb_randr_mode_iterator_t {
+    pub data : *mut xcb_randr_mode_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
-pub type crtc = u32;
+pub type xcb_randr_crtc_t = u32;
 /**
- * @brief crtc_iterator
+ * @brief xcb_randr_crtc_iterator_t
  **/
 #[repr(C)]
-pub struct crtc_iterator {
-    pub data : *mut crtc,
+pub struct xcb_randr_crtc_iterator_t {
+    pub data : *mut xcb_randr_crtc_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
-pub type output = u32;
+pub type xcb_randr_output_t = u32;
 /**
- * @brief output_iterator
+ * @brief xcb_randr_output_iterator_t
  **/
 #[repr(C)]
-pub struct output_iterator {
-    pub data : *mut output,
+pub struct xcb_randr_output_iterator_t {
+    pub data : *mut xcb_randr_output_t,
     pub rem  : c_int,
     pub index: c_int
 }
@@ -53,81 +53,81 @@ pub struct output_iterator {
 
 
 #[repr(C)]
-pub struct bad_output_error {
+pub struct xcb_randr_bad_output_error_t {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
-impl Copy for bad_output_error {}
-impl Clone for bad_output_error {
-    fn clone(&self) -> bad_output_error { *self }
+impl Copy for xcb_randr_bad_output_error_t {}
+impl Clone for xcb_randr_bad_output_error_t {
+    fn clone(&self) -> xcb_randr_bad_output_error_t { *self }
 }
 
 
 #[repr(C)]
-pub struct bad_crtc_error {
+pub struct xcb_randr_bad_crtc_error_t {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
-impl Copy for bad_crtc_error {}
-impl Clone for bad_crtc_error {
-    fn clone(&self) -> bad_crtc_error { *self }
+impl Copy for xcb_randr_bad_crtc_error_t {}
+impl Clone for xcb_randr_bad_crtc_error_t {
+    fn clone(&self) -> xcb_randr_bad_crtc_error_t { *self }
 }
 
 
 #[repr(C)]
-pub struct bad_mode_error {
+pub struct xcb_randr_bad_mode_error_t {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
-impl Copy for bad_mode_error {}
-impl Clone for bad_mode_error {
-    fn clone(&self) -> bad_mode_error { *self }
+impl Copy for xcb_randr_bad_mode_error_t {}
+impl Clone for xcb_randr_bad_mode_error_t {
+    fn clone(&self) -> xcb_randr_bad_mode_error_t { *self }
 }
 
 #[repr(C)]
-pub struct screen_size {
+pub struct xcb_randr_screen_size_t {
      pub width :     u16,
      pub height :    u16,
      pub mwidth :    u16,
      pub mheight :   u16
 }
 
-impl Copy for screen_size {}
-impl Clone for screen_size {
-    fn clone(&self) -> screen_size { *self }
+impl Copy for xcb_randr_screen_size_t {}
+impl Clone for xcb_randr_screen_size_t {
+    fn clone(&self) -> xcb_randr_screen_size_t { *self }
 }
 /**
- * @brief screen_size_iterator
+ * @brief xcb_randr_screen_size_iterator_t
  **/
 #[repr(C)]
-pub struct screen_size_iterator {
-    pub data : *mut screen_size,
+pub struct xcb_randr_screen_size_iterator_t {
+    pub data : *mut xcb_randr_screen_size_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct refresh_rates {
+pub struct xcb_randr_refresh_rates_t {
      pub nRates :   u16
 }
 
-impl Copy for refresh_rates {}
-impl Clone for refresh_rates {
-    fn clone(&self) -> refresh_rates { *self }
+impl Copy for xcb_randr_refresh_rates_t {}
+impl Clone for xcb_randr_refresh_rates_t {
+    fn clone(&self) -> xcb_randr_refresh_rates_t { *self }
 }
 /**
- * @brief refresh_rates_iterator
+ * @brief xcb_randr_refresh_rates_iterator_t
  **/
 #[repr(C)]
-pub struct refresh_rates_iterator {
-    pub data : *mut refresh_rates,
+pub struct xcb_randr_refresh_rates_iterator_t {
+    pub data : *mut xcb_randr_refresh_rates_t,
     pub rem  : c_int,
     pub index: c_int
 }
@@ -135,13 +135,13 @@ pub struct refresh_rates_iterator {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct query_version_cookie {
+pub struct xcb_randr_query_version_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct query_version_request {
+pub struct xcb_randr_query_version_request_t {
      pub major_opcode :    u8,
      pub minor_opcode :    u8,
      pub length :          u16,
@@ -149,13 +149,13 @@ pub struct query_version_request {
      pub minor_version :   u32
 }
 
-impl Copy for query_version_request {}
-impl Clone for query_version_request {
-    fn clone(&self) -> query_version_request { *self }
+impl Copy for xcb_randr_query_version_request_t {}
+impl Clone for xcb_randr_query_version_request_t {
+    fn clone(&self) -> xcb_randr_query_version_request_t { *self }
 }
 
 #[repr(C)]
-pub struct query_version_reply {
+pub struct xcb_randr_query_version_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -165,100 +165,100 @@ pub struct query_version_reply {
      pub pad1 :            [u8; 16]
 }
 
-impl Copy for query_version_reply {}
-impl Clone for query_version_reply {
-    fn clone(&self) -> query_version_reply { *self }
+impl Copy for xcb_randr_query_version_reply_t {}
+impl Clone for xcb_randr_query_version_reply_t {
+    fn clone(&self) -> xcb_randr_query_version_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct set_screen_config_cookie {
+pub struct xcb_randr_set_screen_config_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct set_screen_config_request {
+pub struct xcb_randr_set_screen_config_request_t {
      pub major_opcode :       u8,
      pub minor_opcode :       u8,
      pub length :             u16,
-     pub window :             ffi::xproto::window,
-     pub timestamp :          ffi::xproto::timestamp,
-     pub config_timestamp :   ffi::xproto::timestamp,
+     pub window :             ffi::xproto::xcb_window_t,
+     pub timestamp :          ffi::xproto::xcb_timestamp_t,
+     pub config_timestamp :   ffi::xproto::xcb_timestamp_t,
      pub sizeID :             u16,
      pub rotation :           u16,
      pub rate :               u16,
      pub pad0 :               [u8; 2]
 }
 
-impl Copy for set_screen_config_request {}
-impl Clone for set_screen_config_request {
-    fn clone(&self) -> set_screen_config_request { *self }
+impl Copy for xcb_randr_set_screen_config_request_t {}
+impl Clone for xcb_randr_set_screen_config_request_t {
+    fn clone(&self) -> xcb_randr_set_screen_config_request_t { *self }
 }
 
 #[repr(C)]
-pub struct set_screen_config_reply {
+pub struct xcb_randr_set_screen_config_reply_t {
      pub response_type :      u8,
      pub status :             u8,
      pub sequence :           u16,
      pub length :             u32,
-     pub new_timestamp :      ffi::xproto::timestamp,
-     pub config_timestamp :   ffi::xproto::timestamp,
-     pub root :               ffi::xproto::window,
+     pub new_timestamp :      ffi::xproto::xcb_timestamp_t,
+     pub config_timestamp :   ffi::xproto::xcb_timestamp_t,
+     pub root :               ffi::xproto::xcb_window_t,
      pub subpixel_order :     u16,
      pub pad0 :               [u8; 10]
 }
 
-impl Copy for set_screen_config_reply {}
-impl Clone for set_screen_config_reply {
-    fn clone(&self) -> set_screen_config_reply { *self }
+impl Copy for xcb_randr_set_screen_config_reply_t {}
+impl Clone for xcb_randr_set_screen_config_reply_t {
+    fn clone(&self) -> xcb_randr_set_screen_config_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct select_input_request {
+pub struct xcb_randr_select_input_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub window :         ffi::xproto::window,
+     pub window :         ffi::xproto::xcb_window_t,
      pub enable :         u16,
      pub pad0 :           [u8; 2]
 }
 
-impl Copy for select_input_request {}
-impl Clone for select_input_request {
-    fn clone(&self) -> select_input_request { *self }
+impl Copy for xcb_randr_select_input_request_t {}
+impl Clone for xcb_randr_select_input_request_t {
+    fn clone(&self) -> xcb_randr_select_input_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_screen_info_cookie {
+pub struct xcb_randr_get_screen_info_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_screen_info_request {
+pub struct xcb_randr_get_screen_info_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub window :         ffi::xproto::window
+     pub window :         ffi::xproto::xcb_window_t
 }
 
-impl Copy for get_screen_info_request {}
-impl Clone for get_screen_info_request {
-    fn clone(&self) -> get_screen_info_request { *self }
+impl Copy for xcb_randr_get_screen_info_request_t {}
+impl Clone for xcb_randr_get_screen_info_request_t {
+    fn clone(&self) -> xcb_randr_get_screen_info_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_screen_info_reply {
+pub struct xcb_randr_get_screen_info_reply_t {
      pub response_type :      u8,
      pub rotations :          u8,
      pub sequence :           u16,
      pub length :             u32,
-     pub root :               ffi::xproto::window,
-     pub timestamp :          ffi::xproto::timestamp,
-     pub config_timestamp :   ffi::xproto::timestamp,
+     pub root :               ffi::xproto::xcb_window_t,
+     pub timestamp :          ffi::xproto::xcb_timestamp_t,
+     pub config_timestamp :   ffi::xproto::xcb_timestamp_t,
      pub nSizes :             u16,
      pub sizeID :             u16,
      pub rotation :           u16,
@@ -267,33 +267,33 @@ pub struct get_screen_info_reply {
      pub pad0 :               [u8; 2]
 }
 
-impl Copy for get_screen_info_reply {}
-impl Clone for get_screen_info_reply {
-    fn clone(&self) -> get_screen_info_reply { *self }
+impl Copy for xcb_randr_get_screen_info_reply_t {}
+impl Clone for xcb_randr_get_screen_info_reply_t {
+    fn clone(&self) -> xcb_randr_get_screen_info_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_screen_size_range_cookie {
+pub struct xcb_randr_get_screen_size_range_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_screen_size_range_request {
+pub struct xcb_randr_get_screen_size_range_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub window :         ffi::xproto::window
+     pub window :         ffi::xproto::xcb_window_t
 }
 
-impl Copy for get_screen_size_range_request {}
-impl Clone for get_screen_size_range_request {
-    fn clone(&self) -> get_screen_size_range_request { *self }
+impl Copy for xcb_randr_get_screen_size_range_request_t {}
+impl Clone for xcb_randr_get_screen_size_range_request_t {
+    fn clone(&self) -> xcb_randr_get_screen_size_range_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_screen_size_range_reply {
+pub struct xcb_randr_get_screen_size_range_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -305,31 +305,31 @@ pub struct get_screen_size_range_reply {
      pub pad1 :            [u8; 16]
 }
 
-impl Copy for get_screen_size_range_reply {}
-impl Clone for get_screen_size_range_reply {
-    fn clone(&self) -> get_screen_size_range_reply { *self }
+impl Copy for xcb_randr_get_screen_size_range_reply_t {}
+impl Clone for xcb_randr_get_screen_size_range_reply_t {
+    fn clone(&self) -> xcb_randr_get_screen_size_range_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct set_screen_size_request {
+pub struct xcb_randr_set_screen_size_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub window :         ffi::xproto::window,
+     pub window :         ffi::xproto::xcb_window_t,
      pub width :          u16,
      pub height :         u16,
      pub mm_width :       u32,
      pub mm_height :      u32
 }
 
-impl Copy for set_screen_size_request {}
-impl Clone for set_screen_size_request {
-    fn clone(&self) -> set_screen_size_request { *self }
+impl Copy for xcb_randr_set_screen_size_request_t {}
+impl Clone for xcb_randr_set_screen_size_request_t {
+    fn clone(&self) -> xcb_randr_set_screen_size_request_t { *self }
 }
 
 #[repr(C)]
-pub struct mode_info {
+pub struct xcb_randr_mode_info_t {
      pub id :            u32,
      pub width :         u16,
      pub height :        u16,
@@ -345,16 +345,16 @@ pub struct mode_info {
      pub mode_flags :    u32
 }
 
-impl Copy for mode_info {}
-impl Clone for mode_info {
-    fn clone(&self) -> mode_info { *self }
+impl Copy for xcb_randr_mode_info_t {}
+impl Clone for xcb_randr_mode_info_t {
+    fn clone(&self) -> xcb_randr_mode_info_t { *self }
 }
 /**
- * @brief mode_info_iterator
+ * @brief xcb_randr_mode_info_iterator_t
  **/
 #[repr(C)]
-pub struct mode_info_iterator {
-    pub data : *mut mode_info,
+pub struct xcb_randr_mode_info_iterator_t {
+    pub data : *mut xcb_randr_mode_info_t,
     pub rem  : c_int,
     pub index: c_int
 }
@@ -362,32 +362,32 @@ pub struct mode_info_iterator {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_screen_resources_cookie {
+pub struct xcb_randr_get_screen_resources_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_screen_resources_request {
+pub struct xcb_randr_get_screen_resources_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub window :         ffi::xproto::window
+     pub window :         ffi::xproto::xcb_window_t
 }
 
-impl Copy for get_screen_resources_request {}
-impl Clone for get_screen_resources_request {
-    fn clone(&self) -> get_screen_resources_request { *self }
+impl Copy for xcb_randr_get_screen_resources_request_t {}
+impl Clone for xcb_randr_get_screen_resources_request_t {
+    fn clone(&self) -> xcb_randr_get_screen_resources_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_screen_resources_reply {
+pub struct xcb_randr_get_screen_resources_reply_t {
      pub response_type :      u8,
      pub pad0 :               u8,
      pub sequence :           u16,
      pub length :             u32,
-     pub timestamp :          ffi::xproto::timestamp,
-     pub config_timestamp :   ffi::xproto::timestamp,
+     pub timestamp :          ffi::xproto::xcb_timestamp_t,
+     pub config_timestamp :   ffi::xproto::xcb_timestamp_t,
      pub num_crtcs :          u16,
      pub num_outputs :        u16,
      pub num_modes :          u16,
@@ -395,40 +395,40 @@ pub struct get_screen_resources_reply {
      pub pad1 :               [u8; 8]
 }
 
-impl Copy for get_screen_resources_reply {}
-impl Clone for get_screen_resources_reply {
-    fn clone(&self) -> get_screen_resources_reply { *self }
+impl Copy for xcb_randr_get_screen_resources_reply_t {}
+impl Clone for xcb_randr_get_screen_resources_reply_t {
+    fn clone(&self) -> xcb_randr_get_screen_resources_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_output_info_cookie {
+pub struct xcb_randr_get_output_info_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_output_info_request {
+pub struct xcb_randr_get_output_info_request_t {
      pub major_opcode :       u8,
      pub minor_opcode :       u8,
      pub length :             u16,
-     pub output :             output,
-     pub config_timestamp :   ffi::xproto::timestamp
+     pub output :             xcb_randr_output_t,
+     pub config_timestamp :   ffi::xproto::xcb_timestamp_t
 }
 
-impl Copy for get_output_info_request {}
-impl Clone for get_output_info_request {
-    fn clone(&self) -> get_output_info_request { *self }
+impl Copy for xcb_randr_get_output_info_request_t {}
+impl Clone for xcb_randr_get_output_info_request_t {
+    fn clone(&self) -> xcb_randr_get_output_info_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_output_info_reply {
+pub struct xcb_randr_get_output_info_reply_t {
      pub response_type :    u8,
      pub status :           u8,
      pub sequence :         u16,
      pub length :           u32,
-     pub timestamp :        ffi::xproto::timestamp,
-     pub crtc :             crtc,
+     pub timestamp :        ffi::xproto::xcb_timestamp_t,
+     pub crtc :             xcb_randr_crtc_t,
      pub mm_width :         u32,
      pub mm_height :        u32,
      pub connection :       u8,
@@ -440,33 +440,33 @@ pub struct get_output_info_reply {
      pub name_len :         u16
 }
 
-impl Copy for get_output_info_reply {}
-impl Clone for get_output_info_reply {
-    fn clone(&self) -> get_output_info_reply { *self }
+impl Copy for xcb_randr_get_output_info_reply_t {}
+impl Clone for xcb_randr_get_output_info_reply_t {
+    fn clone(&self) -> xcb_randr_get_output_info_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct list_output_properties_cookie {
+pub struct xcb_randr_list_output_properties_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct list_output_properties_request {
+pub struct xcb_randr_list_output_properties_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub output :         output
+     pub output :         xcb_randr_output_t
 }
 
-impl Copy for list_output_properties_request {}
-impl Clone for list_output_properties_request {
-    fn clone(&self) -> list_output_properties_request { *self }
+impl Copy for xcb_randr_list_output_properties_request_t {}
+impl Clone for xcb_randr_list_output_properties_request_t {
+    fn clone(&self) -> xcb_randr_list_output_properties_request_t { *self }
 }
 
 #[repr(C)]
-pub struct list_output_properties_reply {
+pub struct xcb_randr_list_output_properties_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -475,34 +475,34 @@ pub struct list_output_properties_reply {
      pub pad1 :            [u8; 22]
 }
 
-impl Copy for list_output_properties_reply {}
-impl Clone for list_output_properties_reply {
-    fn clone(&self) -> list_output_properties_reply { *self }
+impl Copy for xcb_randr_list_output_properties_reply_t {}
+impl Clone for xcb_randr_list_output_properties_reply_t {
+    fn clone(&self) -> xcb_randr_list_output_properties_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct query_output_property_cookie {
+pub struct xcb_randr_query_output_property_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct query_output_property_request {
+pub struct xcb_randr_query_output_property_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub output :         output,
-     pub property :       ffi::xproto::atom
+     pub output :         xcb_randr_output_t,
+     pub property :       ffi::xproto::xcb_atom_t
 }
 
-impl Copy for query_output_property_request {}
-impl Clone for query_output_property_request {
-    fn clone(&self) -> query_output_property_request { *self }
+impl Copy for xcb_randr_query_output_property_request_t {}
+impl Clone for xcb_randr_query_output_property_request_t {
+    fn clone(&self) -> xcb_randr_query_output_property_request_t { *self }
 }
 
 #[repr(C)]
-pub struct query_output_property_reply {
+pub struct xcb_randr_query_output_property_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -513,79 +513,79 @@ pub struct query_output_property_reply {
      pub pad1 :            [u8; 21]
 }
 
-impl Copy for query_output_property_reply {}
-impl Clone for query_output_property_reply {
-    fn clone(&self) -> query_output_property_reply { *self }
+impl Copy for xcb_randr_query_output_property_reply_t {}
+impl Clone for xcb_randr_query_output_property_reply_t {
+    fn clone(&self) -> xcb_randr_query_output_property_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct configure_output_property_request {
+pub struct xcb_randr_configure_output_property_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub output :         output,
-     pub property :       ffi::xproto::atom,
+     pub output :         xcb_randr_output_t,
+     pub property :       ffi::xproto::xcb_atom_t,
      pub pending :        u8,
      pub range :          u8,
      pub pad0 :           [u8; 2]
 }
 
-impl Copy for configure_output_property_request {}
-impl Clone for configure_output_property_request {
-    fn clone(&self) -> configure_output_property_request { *self }
+impl Copy for xcb_randr_configure_output_property_request_t {}
+impl Clone for xcb_randr_configure_output_property_request_t {
+    fn clone(&self) -> xcb_randr_configure_output_property_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct change_output_property_request {
+pub struct xcb_randr_change_output_property_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub output :         output,
-     pub property :       ffi::xproto::atom,
-     pub type_ :          ffi::xproto::atom,
+     pub output :         xcb_randr_output_t,
+     pub property :       ffi::xproto::xcb_atom_t,
+     pub type_ :          ffi::xproto::xcb_atom_t,
      pub format :         u8,
      pub mode :           u8,
      pub pad0 :           [u8; 2],
      pub num_units :      u32
 }
 
-impl Copy for change_output_property_request {}
-impl Clone for change_output_property_request {
-    fn clone(&self) -> change_output_property_request { *self }
+impl Copy for xcb_randr_change_output_property_request_t {}
+impl Clone for xcb_randr_change_output_property_request_t {
+    fn clone(&self) -> xcb_randr_change_output_property_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct delete_output_property_request {
+pub struct xcb_randr_delete_output_property_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub output :         output,
-     pub property :       ffi::xproto::atom
+     pub output :         xcb_randr_output_t,
+     pub property :       ffi::xproto::xcb_atom_t
 }
 
-impl Copy for delete_output_property_request {}
-impl Clone for delete_output_property_request {
-    fn clone(&self) -> delete_output_property_request { *self }
+impl Copy for xcb_randr_delete_output_property_request_t {}
+impl Clone for xcb_randr_delete_output_property_request_t {
+    fn clone(&self) -> xcb_randr_delete_output_property_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_output_property_cookie {
+pub struct xcb_randr_get_output_property_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_output_property_request {
+pub struct xcb_randr_get_output_property_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub output :         output,
-     pub property :       ffi::xproto::atom,
-     pub type_ :          ffi::xproto::atom,
+     pub output :         xcb_randr_output_t,
+     pub property :       ffi::xproto::xcb_atom_t,
+     pub type_ :          ffi::xproto::xcb_atom_t,
      pub long_offset :    u32,
      pub long_length :    u32,
      pub delete :         u8,
@@ -593,216 +593,216 @@ pub struct get_output_property_request {
      pub pad0 :           [u8; 2]
 }
 
-impl Copy for get_output_property_request {}
-impl Clone for get_output_property_request {
-    fn clone(&self) -> get_output_property_request { *self }
+impl Copy for xcb_randr_get_output_property_request_t {}
+impl Clone for xcb_randr_get_output_property_request_t {
+    fn clone(&self) -> xcb_randr_get_output_property_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_output_property_reply {
+pub struct xcb_randr_get_output_property_reply_t {
      pub response_type :   u8,
      pub format :          u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub type_ :           ffi::xproto::atom,
+     pub type_ :           ffi::xproto::xcb_atom_t,
      pub bytes_after :     u32,
      pub num_items :       u32,
      pub pad0 :            [u8; 12]
 }
 
-impl Copy for get_output_property_reply {}
-impl Clone for get_output_property_reply {
-    fn clone(&self) -> get_output_property_reply { *self }
+impl Copy for xcb_randr_get_output_property_reply_t {}
+impl Clone for xcb_randr_get_output_property_reply_t {
+    fn clone(&self) -> xcb_randr_get_output_property_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct create_mode_cookie {
+pub struct xcb_randr_create_mode_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct create_mode_request {
+pub struct xcb_randr_create_mode_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub window :         ffi::xproto::window,
-     pub mode_info :      mode_info
+     pub window :         ffi::xproto::xcb_window_t,
+     pub mode_info :      xcb_randr_mode_info_t
 }
 
-impl Copy for create_mode_request {}
-impl Clone for create_mode_request {
-    fn clone(&self) -> create_mode_request { *self }
+impl Copy for xcb_randr_create_mode_request_t {}
+impl Clone for xcb_randr_create_mode_request_t {
+    fn clone(&self) -> xcb_randr_create_mode_request_t { *self }
 }
 
 #[repr(C)]
-pub struct create_mode_reply {
+pub struct xcb_randr_create_mode_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub mode :            mode,
+     pub mode :            xcb_randr_mode_t,
      pub pad1 :            [u8; 20]
 }
 
-impl Copy for create_mode_reply {}
-impl Clone for create_mode_reply {
-    fn clone(&self) -> create_mode_reply { *self }
+impl Copy for xcb_randr_create_mode_reply_t {}
+impl Clone for xcb_randr_create_mode_reply_t {
+    fn clone(&self) -> xcb_randr_create_mode_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct destroy_mode_request {
+pub struct xcb_randr_destroy_mode_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub mode :           mode
+     pub mode :           xcb_randr_mode_t
 }
 
-impl Copy for destroy_mode_request {}
-impl Clone for destroy_mode_request {
-    fn clone(&self) -> destroy_mode_request { *self }
+impl Copy for xcb_randr_destroy_mode_request_t {}
+impl Clone for xcb_randr_destroy_mode_request_t {
+    fn clone(&self) -> xcb_randr_destroy_mode_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct add_output_mode_request {
+pub struct xcb_randr_add_output_mode_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub output :         output,
-     pub mode :           mode
+     pub output :         xcb_randr_output_t,
+     pub mode :           xcb_randr_mode_t
 }
 
-impl Copy for add_output_mode_request {}
-impl Clone for add_output_mode_request {
-    fn clone(&self) -> add_output_mode_request { *self }
+impl Copy for xcb_randr_add_output_mode_request_t {}
+impl Clone for xcb_randr_add_output_mode_request_t {
+    fn clone(&self) -> xcb_randr_add_output_mode_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct delete_output_mode_request {
+pub struct xcb_randr_delete_output_mode_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub output :         output,
-     pub mode :           mode
+     pub output :         xcb_randr_output_t,
+     pub mode :           xcb_randr_mode_t
 }
 
-impl Copy for delete_output_mode_request {}
-impl Clone for delete_output_mode_request {
-    fn clone(&self) -> delete_output_mode_request { *self }
+impl Copy for xcb_randr_delete_output_mode_request_t {}
+impl Clone for xcb_randr_delete_output_mode_request_t {
+    fn clone(&self) -> xcb_randr_delete_output_mode_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_crtc_info_cookie {
+pub struct xcb_randr_get_crtc_info_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_crtc_info_request {
+pub struct xcb_randr_get_crtc_info_request_t {
      pub major_opcode :       u8,
      pub minor_opcode :       u8,
      pub length :             u16,
-     pub crtc :               crtc,
-     pub config_timestamp :   ffi::xproto::timestamp
+     pub crtc :               xcb_randr_crtc_t,
+     pub config_timestamp :   ffi::xproto::xcb_timestamp_t
 }
 
-impl Copy for get_crtc_info_request {}
-impl Clone for get_crtc_info_request {
-    fn clone(&self) -> get_crtc_info_request { *self }
+impl Copy for xcb_randr_get_crtc_info_request_t {}
+impl Clone for xcb_randr_get_crtc_info_request_t {
+    fn clone(&self) -> xcb_randr_get_crtc_info_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_crtc_info_reply {
+pub struct xcb_randr_get_crtc_info_reply_t {
      pub response_type :          u8,
      pub status :                 u8,
      pub sequence :               u16,
      pub length :                 u32,
-     pub timestamp :              ffi::xproto::timestamp,
+     pub timestamp :              ffi::xproto::xcb_timestamp_t,
      pub x :                      i16,
      pub y :                      i16,
      pub width :                  u16,
      pub height :                 u16,
-     pub mode :                   mode,
+     pub mode :                   xcb_randr_mode_t,
      pub rotation :               u16,
      pub rotations :              u16,
      pub num_outputs :            u16,
      pub num_possible_outputs :   u16
 }
 
-impl Copy for get_crtc_info_reply {}
-impl Clone for get_crtc_info_reply {
-    fn clone(&self) -> get_crtc_info_reply { *self }
+impl Copy for xcb_randr_get_crtc_info_reply_t {}
+impl Clone for xcb_randr_get_crtc_info_reply_t {
+    fn clone(&self) -> xcb_randr_get_crtc_info_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct set_crtc_config_cookie {
+pub struct xcb_randr_set_crtc_config_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct set_crtc_config_request {
+pub struct xcb_randr_set_crtc_config_request_t {
      pub major_opcode :       u8,
      pub minor_opcode :       u8,
      pub length :             u16,
-     pub crtc :               crtc,
-     pub timestamp :          ffi::xproto::timestamp,
-     pub config_timestamp :   ffi::xproto::timestamp,
+     pub crtc :               xcb_randr_crtc_t,
+     pub timestamp :          ffi::xproto::xcb_timestamp_t,
+     pub config_timestamp :   ffi::xproto::xcb_timestamp_t,
      pub x :                  i16,
      pub y :                  i16,
-     pub mode :               mode,
+     pub mode :               xcb_randr_mode_t,
      pub rotation :           u16,
      pub pad0 :               [u8; 2]
 }
 
-impl Copy for set_crtc_config_request {}
-impl Clone for set_crtc_config_request {
-    fn clone(&self) -> set_crtc_config_request { *self }
+impl Copy for xcb_randr_set_crtc_config_request_t {}
+impl Clone for xcb_randr_set_crtc_config_request_t {
+    fn clone(&self) -> xcb_randr_set_crtc_config_request_t { *self }
 }
 
 #[repr(C)]
-pub struct set_crtc_config_reply {
+pub struct xcb_randr_set_crtc_config_reply_t {
      pub response_type :   u8,
      pub status :          u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub timestamp :       ffi::xproto::timestamp,
+     pub timestamp :       ffi::xproto::xcb_timestamp_t,
      pub pad0 :            [u8; 20]
 }
 
-impl Copy for set_crtc_config_reply {}
-impl Clone for set_crtc_config_reply {
-    fn clone(&self) -> set_crtc_config_reply { *self }
+impl Copy for xcb_randr_set_crtc_config_reply_t {}
+impl Clone for xcb_randr_set_crtc_config_reply_t {
+    fn clone(&self) -> xcb_randr_set_crtc_config_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_crtc_gamma_size_cookie {
+pub struct xcb_randr_get_crtc_gamma_size_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_crtc_gamma_size_request {
+pub struct xcb_randr_get_crtc_gamma_size_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub crtc :           crtc
+     pub crtc :           xcb_randr_crtc_t
 }
 
-impl Copy for get_crtc_gamma_size_request {}
-impl Clone for get_crtc_gamma_size_request {
-    fn clone(&self) -> get_crtc_gamma_size_request { *self }
+impl Copy for xcb_randr_get_crtc_gamma_size_request_t {}
+impl Clone for xcb_randr_get_crtc_gamma_size_request_t {
+    fn clone(&self) -> xcb_randr_get_crtc_gamma_size_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_crtc_gamma_size_reply {
+pub struct xcb_randr_get_crtc_gamma_size_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -811,33 +811,33 @@ pub struct get_crtc_gamma_size_reply {
      pub pad1 :            [u8; 22]
 }
 
-impl Copy for get_crtc_gamma_size_reply {}
-impl Clone for get_crtc_gamma_size_reply {
-    fn clone(&self) -> get_crtc_gamma_size_reply { *self }
+impl Copy for xcb_randr_get_crtc_gamma_size_reply_t {}
+impl Clone for xcb_randr_get_crtc_gamma_size_reply_t {
+    fn clone(&self) -> xcb_randr_get_crtc_gamma_size_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_crtc_gamma_cookie {
+pub struct xcb_randr_get_crtc_gamma_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_crtc_gamma_request {
+pub struct xcb_randr_get_crtc_gamma_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub crtc :           crtc
+     pub crtc :           xcb_randr_crtc_t
 }
 
-impl Copy for get_crtc_gamma_request {}
-impl Clone for get_crtc_gamma_request {
-    fn clone(&self) -> get_crtc_gamma_request { *self }
+impl Copy for xcb_randr_get_crtc_gamma_request_t {}
+impl Clone for xcb_randr_get_crtc_gamma_request_t {
+    fn clone(&self) -> xcb_randr_get_crtc_gamma_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_crtc_gamma_reply {
+pub struct xcb_randr_get_crtc_gamma_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -846,55 +846,55 @@ pub struct get_crtc_gamma_reply {
      pub pad1 :            [u8; 22]
 }
 
-impl Copy for get_crtc_gamma_reply {}
-impl Clone for get_crtc_gamma_reply {
-    fn clone(&self) -> get_crtc_gamma_reply { *self }
+impl Copy for xcb_randr_get_crtc_gamma_reply_t {}
+impl Clone for xcb_randr_get_crtc_gamma_reply_t {
+    fn clone(&self) -> xcb_randr_get_crtc_gamma_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct set_crtc_gamma_request {
+pub struct xcb_randr_set_crtc_gamma_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub crtc :           crtc,
+     pub crtc :           xcb_randr_crtc_t,
      pub size :           u16,
      pub pad0 :           [u8; 2]
 }
 
-impl Copy for set_crtc_gamma_request {}
-impl Clone for set_crtc_gamma_request {
-    fn clone(&self) -> set_crtc_gamma_request { *self }
+impl Copy for xcb_randr_set_crtc_gamma_request_t {}
+impl Clone for xcb_randr_set_crtc_gamma_request_t {
+    fn clone(&self) -> xcb_randr_set_crtc_gamma_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_screen_resources_current_cookie {
+pub struct xcb_randr_get_screen_resources_current_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_screen_resources_current_request {
+pub struct xcb_randr_get_screen_resources_current_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub window :         ffi::xproto::window
+     pub window :         ffi::xproto::xcb_window_t
 }
 
-impl Copy for get_screen_resources_current_request {}
-impl Clone for get_screen_resources_current_request {
-    fn clone(&self) -> get_screen_resources_current_request { *self }
+impl Copy for xcb_randr_get_screen_resources_current_request_t {}
+impl Clone for xcb_randr_get_screen_resources_current_request_t {
+    fn clone(&self) -> xcb_randr_get_screen_resources_current_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_screen_resources_current_reply {
+pub struct xcb_randr_get_screen_resources_current_reply_t {
      pub response_type :      u8,
      pub pad0 :               u8,
      pub sequence :           u16,
      pub length :             u32,
-     pub timestamp :          ffi::xproto::timestamp,
-     pub config_timestamp :   ffi::xproto::timestamp,
+     pub timestamp :          ffi::xproto::xcb_timestamp_t,
+     pub config_timestamp :   ffi::xproto::xcb_timestamp_t,
      pub num_crtcs :          u16,
      pub num_outputs :        u16,
      pub num_modes :          u16,
@@ -902,58 +902,58 @@ pub struct get_screen_resources_current_reply {
      pub pad1 :               [u8; 8]
 }
 
-impl Copy for get_screen_resources_current_reply {}
-impl Clone for get_screen_resources_current_reply {
-    fn clone(&self) -> get_screen_resources_current_reply { *self }
+impl Copy for xcb_randr_get_screen_resources_current_reply_t {}
+impl Clone for xcb_randr_get_screen_resources_current_reply_t {
+    fn clone(&self) -> xcb_randr_get_screen_resources_current_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct set_crtc_transform_request {
+pub struct xcb_randr_set_crtc_transform_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub crtc :           crtc,
-     pub transform :      ffi::render::transform,
+     pub crtc :           xcb_randr_crtc_t,
+     pub transform :      ffi::render::xcb_render_transform_t,
      pub filter_len :     u16,
      pub pad0 :           [u8; 2]
 }
 
-impl Copy for set_crtc_transform_request {}
-impl Clone for set_crtc_transform_request {
-    fn clone(&self) -> set_crtc_transform_request { *self }
+impl Copy for xcb_randr_set_crtc_transform_request_t {}
+impl Clone for xcb_randr_set_crtc_transform_request_t {
+    fn clone(&self) -> xcb_randr_set_crtc_transform_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_crtc_transform_cookie {
+pub struct xcb_randr_get_crtc_transform_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_crtc_transform_request {
+pub struct xcb_randr_get_crtc_transform_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub crtc :           crtc
+     pub crtc :           xcb_randr_crtc_t
 }
 
-impl Copy for get_crtc_transform_request {}
-impl Clone for get_crtc_transform_request {
-    fn clone(&self) -> get_crtc_transform_request { *self }
+impl Copy for xcb_randr_get_crtc_transform_request_t {}
+impl Clone for xcb_randr_get_crtc_transform_request_t {
+    fn clone(&self) -> xcb_randr_get_crtc_transform_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_crtc_transform_reply {
+pub struct xcb_randr_get_crtc_transform_reply_t {
      pub response_type :       u8,
      pub pad0 :                u8,
      pub sequence :            u16,
      pub length :              u32,
-     pub pending_transform :   ffi::render::transform,
+     pub pending_transform :   ffi::render::xcb_render_transform_t,
      pub has_transforms :      u8,
      pub pad1 :                [u8; 3],
-     pub current_transform :   ffi::render::transform,
+     pub current_transform :   ffi::render::xcb_render_transform_t,
      pub pad2 :                [u8; 4],
      pub pending_len :         u16,
      pub pending_nparams :     u16,
@@ -961,38 +961,38 @@ pub struct get_crtc_transform_reply {
      pub current_nparams :     u16
 }
 
-impl Copy for get_crtc_transform_reply {}
-impl Clone for get_crtc_transform_reply {
-    fn clone(&self) -> get_crtc_transform_reply { *self }
+impl Copy for xcb_randr_get_crtc_transform_reply_t {}
+impl Clone for xcb_randr_get_crtc_transform_reply_t {
+    fn clone(&self) -> xcb_randr_get_crtc_transform_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_panning_cookie {
+pub struct xcb_randr_get_panning_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_panning_request {
+pub struct xcb_randr_get_panning_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub crtc :           crtc
+     pub crtc :           xcb_randr_crtc_t
 }
 
-impl Copy for get_panning_request {}
-impl Clone for get_panning_request {
-    fn clone(&self) -> get_panning_request { *self }
+impl Copy for xcb_randr_get_panning_request_t {}
+impl Clone for xcb_randr_get_panning_request_t {
+    fn clone(&self) -> xcb_randr_get_panning_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_panning_reply {
+pub struct xcb_randr_get_panning_reply_t {
      pub response_type :   u8,
      pub status :          u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub timestamp :       ffi::xproto::timestamp,
+     pub timestamp :       ffi::xproto::xcb_timestamp_t,
      pub left :            u16,
      pub top :             u16,
      pub width :           u16,
@@ -1007,25 +1007,25 @@ pub struct get_panning_reply {
      pub border_bottom :   i16
 }
 
-impl Copy for get_panning_reply {}
-impl Clone for get_panning_reply {
-    fn clone(&self) -> get_panning_reply { *self }
+impl Copy for xcb_randr_get_panning_reply_t {}
+impl Clone for xcb_randr_get_panning_reply_t {
+    fn clone(&self) -> xcb_randr_get_panning_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct set_panning_cookie {
+pub struct xcb_randr_set_panning_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct set_panning_request {
+pub struct xcb_randr_set_panning_request_t {
      pub major_opcode :    u8,
      pub minor_opcode :    u8,
      pub length :          u16,
-     pub crtc :            crtc,
-     pub timestamp :       ffi::xproto::timestamp,
+     pub crtc :            xcb_randr_crtc_t,
+     pub timestamp :       ffi::xproto::xcb_timestamp_t,
      pub left :            u16,
      pub top :             u16,
      pub width :           u16,
@@ -1040,84 +1040,84 @@ pub struct set_panning_request {
      pub border_bottom :   i16
 }
 
-impl Copy for set_panning_request {}
-impl Clone for set_panning_request {
-    fn clone(&self) -> set_panning_request { *self }
+impl Copy for xcb_randr_set_panning_request_t {}
+impl Clone for xcb_randr_set_panning_request_t {
+    fn clone(&self) -> xcb_randr_set_panning_request_t { *self }
 }
 
 #[repr(C)]
-pub struct set_panning_reply {
+pub struct xcb_randr_set_panning_reply_t {
      pub response_type :   u8,
      pub status :          u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub timestamp :       ffi::xproto::timestamp
+     pub timestamp :       ffi::xproto::xcb_timestamp_t
 }
 
-impl Copy for set_panning_reply {}
-impl Clone for set_panning_reply {
-    fn clone(&self) -> set_panning_reply { *self }
+impl Copy for xcb_randr_set_panning_reply_t {}
+impl Clone for xcb_randr_set_panning_reply_t {
+    fn clone(&self) -> xcb_randr_set_panning_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct set_output_primary_request {
+pub struct xcb_randr_set_output_primary_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub window :         ffi::xproto::window,
-     pub output :         output
+     pub window :         ffi::xproto::xcb_window_t,
+     pub output :         xcb_randr_output_t
 }
 
-impl Copy for set_output_primary_request {}
-impl Clone for set_output_primary_request {
-    fn clone(&self) -> set_output_primary_request { *self }
+impl Copy for xcb_randr_set_output_primary_request_t {}
+impl Clone for xcb_randr_set_output_primary_request_t {
+    fn clone(&self) -> xcb_randr_set_output_primary_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_output_primary_cookie {
+pub struct xcb_randr_get_output_primary_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_output_primary_request {
+pub struct xcb_randr_get_output_primary_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub window :         ffi::xproto::window
+     pub window :         ffi::xproto::xcb_window_t
 }
 
-impl Copy for get_output_primary_request {}
-impl Clone for get_output_primary_request {
-    fn clone(&self) -> get_output_primary_request { *self }
+impl Copy for xcb_randr_get_output_primary_request_t {}
+impl Clone for xcb_randr_get_output_primary_request_t {
+    fn clone(&self) -> xcb_randr_get_output_primary_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_output_primary_reply {
+pub struct xcb_randr_get_output_primary_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub output :          output
+     pub output :          xcb_randr_output_t
 }
 
-impl Copy for get_output_primary_reply {}
-impl Clone for get_output_primary_reply {
-    fn clone(&self) -> get_output_primary_reply { *self }
+impl Copy for xcb_randr_get_output_primary_reply_t {}
+impl Clone for xcb_randr_get_output_primary_reply_t {
+    fn clone(&self) -> xcb_randr_get_output_primary_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct screen_change_notify_event {
+pub struct xcb_randr_screen_change_notify_event_t {
      pub response_type :      u8,
      pub rotation :           u8,
      pub sequence :           u16,
-     pub timestamp :          ffi::xproto::timestamp,
-     pub config_timestamp :   ffi::xproto::timestamp,
-     pub root :               ffi::xproto::window,
-     pub request_window :     ffi::xproto::window,
+     pub timestamp :          ffi::xproto::xcb_timestamp_t,
+     pub config_timestamp :   ffi::xproto::xcb_timestamp_t,
+     pub root :               ffi::xproto::xcb_window_t,
+     pub request_window :     ffi::xproto::xcb_window_t,
      pub sizeID :             u16,
      pub subpixel_order :     u16,
      pub width :              u16,
@@ -1126,17 +1126,17 @@ pub struct screen_change_notify_event {
      pub mheight :            u16
 }
 
-impl Copy for screen_change_notify_event {}
-impl Clone for screen_change_notify_event {
-    fn clone(&self) -> screen_change_notify_event { *self }
+impl Copy for xcb_randr_screen_change_notify_event_t {}
+impl Clone for xcb_randr_screen_change_notify_event_t {
+    fn clone(&self) -> xcb_randr_screen_change_notify_event_t { *self }
 }
 
 #[repr(C)]
-pub struct crtc_change {
-     pub timestamp :   ffi::xproto::timestamp,
-     pub window :      ffi::xproto::window,
-     pub crtc :        crtc,
-     pub mode :        mode,
+pub struct xcb_randr_crtc_change_t {
+     pub timestamp :   ffi::xproto::xcb_timestamp_t,
+     pub window :      ffi::xproto::xcb_window_t,
+     pub crtc :        xcb_randr_crtc_t,
+     pub mode :        xcb_randr_mode_t,
      pub rotation :    u16,
      pub pad0 :        [u8; 2],
      pub x :           i16,
@@ -1145,88 +1145,88 @@ pub struct crtc_change {
      pub height :      u16
 }
 
-impl Copy for crtc_change {}
-impl Clone for crtc_change {
-    fn clone(&self) -> crtc_change { *self }
+impl Copy for xcb_randr_crtc_change_t {}
+impl Clone for xcb_randr_crtc_change_t {
+    fn clone(&self) -> xcb_randr_crtc_change_t { *self }
 }
 /**
- * @brief crtc_change_iterator
+ * @brief xcb_randr_crtc_change_iterator_t
  **/
 #[repr(C)]
-pub struct crtc_change_iterator {
-    pub data : *mut crtc_change,
+pub struct xcb_randr_crtc_change_iterator_t {
+    pub data : *mut xcb_randr_crtc_change_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct output_change {
-     pub timestamp :          ffi::xproto::timestamp,
-     pub config_timestamp :   ffi::xproto::timestamp,
-     pub window :             ffi::xproto::window,
-     pub output :             output,
-     pub crtc :               crtc,
-     pub mode :               mode,
+pub struct xcb_randr_output_change_t {
+     pub timestamp :          ffi::xproto::xcb_timestamp_t,
+     pub config_timestamp :   ffi::xproto::xcb_timestamp_t,
+     pub window :             ffi::xproto::xcb_window_t,
+     pub output :             xcb_randr_output_t,
+     pub crtc :               xcb_randr_crtc_t,
+     pub mode :               xcb_randr_mode_t,
      pub rotation :           u16,
      pub connection :         u8,
      pub subpixel_order :     u8
 }
 
-impl Copy for output_change {}
-impl Clone for output_change {
-    fn clone(&self) -> output_change { *self }
+impl Copy for xcb_randr_output_change_t {}
+impl Clone for xcb_randr_output_change_t {
+    fn clone(&self) -> xcb_randr_output_change_t { *self }
 }
 /**
- * @brief output_change_iterator
+ * @brief xcb_randr_output_change_iterator_t
  **/
 #[repr(C)]
-pub struct output_change_iterator {
-    pub data : *mut output_change,
+pub struct xcb_randr_output_change_iterator_t {
+    pub data : *mut xcb_randr_output_change_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct output_property {
-     pub window :      ffi::xproto::window,
-     pub output :      output,
-     pub atom :        ffi::xproto::atom,
-     pub timestamp :   ffi::xproto::timestamp,
+pub struct xcb_randr_output_property_t {
+     pub window :      ffi::xproto::xcb_window_t,
+     pub output :      xcb_randr_output_t,
+     pub atom :        ffi::xproto::xcb_atom_t,
+     pub timestamp :   ffi::xproto::xcb_timestamp_t,
      pub status :      u8,
      pub pad0 :        [u8; 11]
 }
 
-impl Copy for output_property {}
-impl Clone for output_property {
-    fn clone(&self) -> output_property { *self }
+impl Copy for xcb_randr_output_property_t {}
+impl Clone for xcb_randr_output_property_t {
+    fn clone(&self) -> xcb_randr_output_property_t { *self }
 }
 /**
- * @brief output_property_iterator
+ * @brief xcb_randr_output_property_iterator_t
  **/
 #[repr(C)]
-pub struct output_property_iterator {
-    pub data : *mut output_property,
+pub struct xcb_randr_output_property_iterator_t {
+    pub data : *mut xcb_randr_output_property_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct notify_data {
+pub struct xcb_randr_notify_data_t {
     data : [u8; 28]
 }
-impl Copy for notify_data {}
-impl Clone for notify_data {
-    fn clone(&self) -> notify_data { *self }
+impl Copy for xcb_randr_notify_data_t {}
+impl Clone for xcb_randr_notify_data_t {
+    fn clone(&self) -> xcb_randr_notify_data_t { *self }
 }
 /**
- * @brief notify_data_iterator
+ * @brief xcb_randr_notify_data_iterator_t
  **/
 #[repr(C)]
-pub struct notify_data_iterator {
-    pub data : *mut notify_data,
+pub struct xcb_randr_notify_data_iterator_t {
+    pub data : *mut xcb_randr_notify_data_t,
     pub rem  : c_int,
     pub index: c_int
 }
@@ -1234,144 +1234,144 @@ pub struct notify_data_iterator {
 
 
 #[repr(C)]
-pub struct notify_event {
+pub struct xcb_randr_notify_event_t {
      pub response_type :   u8,
      pub subCode :         u8,
      pub sequence :        u16,
-     pub u :               notify_data
+     pub u :               xcb_randr_notify_data_t
 }
 
-impl Copy for notify_event {}
-impl Clone for notify_event {
-    fn clone(&self) -> notify_event { *self }
+impl Copy for xcb_randr_notify_event_t {}
+impl Clone for xcb_randr_notify_event_t {
+    fn clone(&self) -> xcb_randr_notify_event_t { *self }
 }
 #[link(name="xcb-randr")]
 extern "C" {
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a mode_iterator
+ * @param i Pointer to a xcb_randr_mode_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(mode)
+ * element. The member index is increased by sizeof(xcb_randr_mode_t)
  *
  *
  */
-pub fn xcb_randr_mode_next (i:*mut mode_iterator) -> c_void;
+pub fn xcb_randr_mode_next (i:*mut xcb_randr_mode_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An mode_iterator
+ * @param i An xcb_randr_mode_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_randr_mode_end (i:mode_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_randr_mode_end (i:xcb_randr_mode_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a crtc_iterator
+ * @param i Pointer to a xcb_randr_crtc_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(crtc)
+ * element. The member index is increased by sizeof(xcb_randr_crtc_t)
  *
  *
  */
-pub fn xcb_randr_crtc_next (i:*mut crtc_iterator) -> c_void;
+pub fn xcb_randr_crtc_next (i:*mut xcb_randr_crtc_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An crtc_iterator
+ * @param i An xcb_randr_crtc_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_randr_crtc_end (i:crtc_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_randr_crtc_end (i:xcb_randr_crtc_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a output_iterator
+ * @param i Pointer to a xcb_randr_output_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(output)
+ * element. The member index is increased by sizeof(xcb_randr_output_t)
  *
  *
  */
-pub fn xcb_randr_output_next (i:*mut output_iterator) -> c_void;
+pub fn xcb_randr_output_next (i:*mut xcb_randr_output_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An output_iterator
+ * @param i An xcb_randr_output_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_randr_output_end (i:output_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_randr_output_end (i:xcb_randr_output_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a screen_size_iterator
+ * @param i Pointer to a xcb_randr_screen_size_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(screen_size)
+ * element. The member index is increased by sizeof(xcb_randr_screen_size_t)
  *
  *
  */
-pub fn xcb_randr_screen_size_next (i:*mut screen_size_iterator) -> c_void;
+pub fn xcb_randr_screen_size_next (i:*mut xcb_randr_screen_size_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An screen_size_iterator
+ * @param i An xcb_randr_screen_size_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_randr_screen_size_end (i:screen_size_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_randr_screen_size_end (i:xcb_randr_screen_size_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_randr_refresh_rates_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub fn xcb_randr_refresh_rates_rates (R : *mut refresh_rates) -> *mut u16;
+pub fn xcb_randr_refresh_rates_rates (R : *mut xcb_randr_refresh_rates_t) -> *mut u16;
 
 
-pub fn xcb_randr_refresh_rates_rates_length (R : *mut refresh_rates) -> c_int;
+pub fn xcb_randr_refresh_rates_rates_length (R : *mut xcb_randr_refresh_rates_t) -> c_int;
 
 
-pub fn xcb_randr_refresh_rates_rates_end (R : *mut refresh_rates) -> ffi::base::generic_iterator;
+pub fn xcb_randr_refresh_rates_rates_end (R : *mut xcb_randr_refresh_rates_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a refresh_rates_iterator
+ * @param i Pointer to a xcb_randr_refresh_rates_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(refresh_rates)
+ * element. The member index is increased by sizeof(xcb_randr_refresh_rates_t)
  *
  *
  */
-pub fn xcb_randr_refresh_rates_next (i:*mut refresh_rates_iterator) -> c_void;
+pub fn xcb_randr_refresh_rates_next (i:*mut xcb_randr_refresh_rates_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An refresh_rates_iterator
+ * @param i An xcb_randr_refresh_rates_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_randr_refresh_rates_end (i:refresh_rates_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_randr_refresh_rates_end (i:xcb_randr_refresh_rates_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  *
@@ -1381,9 +1381,9 @@ pub fn xcb_randr_refresh_rates_end (i:refresh_rates_iterator) -> ffi::base::gene
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_query_version (c : *mut ffi::base::connection,
+pub fn xcb_randr_query_version (c : *mut ffi::base::xcb_connection_t,
                                    major_version :  u32,
-                                   minor_version :  u32) -> query_version_cookie;
+                                   minor_version :  u32) -> xcb_randr_query_version_cookie_t;
 
 /**
  *
@@ -1396,15 +1396,15 @@ pub fn xcb_randr_query_version (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_randr_query_version_unchecked (c : *mut ffi::base::connection,
+pub fn xcb_randr_query_version_unchecked (c : *mut ffi::base::xcb_connection_t,
                                              major_version :  u32,
-                                             minor_version :  u32) -> query_version_cookie;
+                                             minor_version :  u32) -> xcb_randr_query_version_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1414,9 +1414,9 @@ pub fn xcb_randr_query_version_unchecked (c : *mut ffi::base::connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_randr_query_version_reply (c : *mut ffi::base::connection,
-                                         cookie : query_version_cookie,
-                                         e : *mut *mut ffi::base::generic_error) -> *mut query_version_reply;
+pub fn xcb_randr_query_version_reply (c : *mut ffi::base::xcb_connection_t,
+                                         cookie : xcb_randr_query_version_cookie_t,
+                                         e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_query_version_reply_t;
 
 /**
  *
@@ -1426,13 +1426,13 @@ pub fn xcb_randr_query_version_reply (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_set_screen_config (c : *mut ffi::base::connection,
-                                       window :  ffi::xproto::window,
-                                       timestamp :  ffi::xproto::timestamp,
-                                       config_timestamp :  ffi::xproto::timestamp,
+pub fn xcb_randr_set_screen_config (c : *mut ffi::base::xcb_connection_t,
+                                       window :  ffi::xproto::xcb_window_t,
+                                       timestamp :  ffi::xproto::xcb_timestamp_t,
+                                       config_timestamp :  ffi::xproto::xcb_timestamp_t,
                                        sizeID :  u16,
                                        rotation :  u16,
-                                       rate :  u16) -> set_screen_config_cookie;
+                                       rate :  u16) -> xcb_randr_set_screen_config_cookie_t;
 
 /**
  *
@@ -1445,19 +1445,19 @@ pub fn xcb_randr_set_screen_config (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_randr_set_screen_config_unchecked (c : *mut ffi::base::connection,
-                                                 window :  ffi::xproto::window,
-                                                 timestamp :  ffi::xproto::timestamp,
-                                                 config_timestamp :  ffi::xproto::timestamp,
+pub fn xcb_randr_set_screen_config_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                                 window :  ffi::xproto::xcb_window_t,
+                                                 timestamp :  ffi::xproto::xcb_timestamp_t,
+                                                 config_timestamp :  ffi::xproto::xcb_timestamp_t,
                                                  sizeID :  u16,
                                                  rotation :  u16,
-                                                 rate :  u16) -> set_screen_config_cookie;
+                                                 rate :  u16) -> xcb_randr_set_screen_config_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1467,9 +1467,9 @@ pub fn xcb_randr_set_screen_config_unchecked (c : *mut ffi::base::connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_randr_set_screen_config_reply (c : *mut ffi::base::connection,
-                                             cookie : set_screen_config_cookie,
-                                             e : *mut *mut ffi::base::generic_error) -> *mut set_screen_config_reply;
+pub fn xcb_randr_set_screen_config_reply (c : *mut ffi::base::xcb_connection_t,
+                                             cookie : xcb_randr_set_screen_config_cookie_t,
+                                             e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_set_screen_config_reply_t;
 
 /**
  *
@@ -1482,9 +1482,9 @@ pub fn xcb_randr_set_screen_config_reply (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_randr_select_input_checked (c : *mut ffi::base::connection,
-                                          window :  ffi::xproto::window,
-                                          enable :  u16) -> ffi::base::void_cookie;
+pub fn xcb_randr_select_input_checked (c : *mut ffi::base::xcb_connection_t,
+                                          window :  ffi::xproto::xcb_window_t,
+                                          enable :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1494,9 +1494,9 @@ pub fn xcb_randr_select_input_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_select_input (c : *mut ffi::base::connection,
-                                  window :  ffi::xproto::window,
-                                  enable :  u16) -> ffi::base::void_cookie;
+pub fn xcb_randr_select_input (c : *mut ffi::base::xcb_connection_t,
+                                  window :  ffi::xproto::xcb_window_t,
+                                  enable :  u16) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_randr_get_screen_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1508,8 +1508,8 @@ pub fn xcb_randr_get_screen_info_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_get_screen_info (c : *mut ffi::base::connection,
-                                     window :  ffi::xproto::window) -> get_screen_info_cookie;
+pub fn xcb_randr_get_screen_info (c : *mut ffi::base::xcb_connection_t,
+                                     window :  ffi::xproto::xcb_window_t) -> xcb_randr_get_screen_info_cookie_t;
 
 /**
  *
@@ -1522,26 +1522,26 @@ pub fn xcb_randr_get_screen_info (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_randr_get_screen_info_unchecked (c : *mut ffi::base::connection,
-                                               window :  ffi::xproto::window) -> get_screen_info_cookie;
+pub fn xcb_randr_get_screen_info_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                               window :  ffi::xproto::xcb_window_t) -> xcb_randr_get_screen_info_cookie_t;
 
-pub fn xcb_randr_get_screen_info_sizes (R : *mut get_screen_info_reply) -> *mut screen_size;
-
-
-pub fn xcb_randr_get_screen_info_sizes_length (R : *mut get_screen_info_reply) -> c_int;
-
-pub fn xcb_randr_get_screen_info_sizes_iterator (R : *mut get_screen_info_reply) -> screen_size_iterator;
+pub fn xcb_randr_get_screen_info_sizes (R : *mut xcb_randr_get_screen_info_reply_t) -> *mut xcb_randr_screen_size_t;
 
 
-pub fn xcb_randr_get_screen_info_rates_length (R : *mut get_screen_info_reply) -> c_int;
+pub fn xcb_randr_get_screen_info_sizes_length (R : *mut xcb_randr_get_screen_info_reply_t) -> c_int;
 
-pub fn xcb_randr_get_screen_info_rates_iterator (R : *mut get_screen_info_reply) -> refresh_rates_iterator;
+pub fn xcb_randr_get_screen_info_sizes_iterator (R : *mut xcb_randr_get_screen_info_reply_t) -> xcb_randr_screen_size_iterator_t;
+
+
+pub fn xcb_randr_get_screen_info_rates_length (R : *mut xcb_randr_get_screen_info_reply_t) -> c_int;
+
+pub fn xcb_randr_get_screen_info_rates_iterator (R : *mut xcb_randr_get_screen_info_reply_t) -> xcb_randr_refresh_rates_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1551,9 +1551,9 @@ pub fn xcb_randr_get_screen_info_rates_iterator (R : *mut get_screen_info_reply)
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_randr_get_screen_info_reply (c : *mut ffi::base::connection,
-                                           cookie : get_screen_info_cookie,
-                                           e : *mut *mut ffi::base::generic_error) -> *mut get_screen_info_reply;
+pub fn xcb_randr_get_screen_info_reply (c : *mut ffi::base::xcb_connection_t,
+                                           cookie : xcb_randr_get_screen_info_cookie_t,
+                                           e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_get_screen_info_reply_t;
 
 /**
  *
@@ -1563,8 +1563,8 @@ pub fn xcb_randr_get_screen_info_reply (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_get_screen_size_range (c : *mut ffi::base::connection,
-                                           window :  ffi::xproto::window) -> get_screen_size_range_cookie;
+pub fn xcb_randr_get_screen_size_range (c : *mut ffi::base::xcb_connection_t,
+                                           window :  ffi::xproto::xcb_window_t) -> xcb_randr_get_screen_size_range_cookie_t;
 
 /**
  *
@@ -1577,14 +1577,14 @@ pub fn xcb_randr_get_screen_size_range (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_randr_get_screen_size_range_unchecked (c : *mut ffi::base::connection,
-                                                     window :  ffi::xproto::window) -> get_screen_size_range_cookie;
+pub fn xcb_randr_get_screen_size_range_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                                     window :  ffi::xproto::xcb_window_t) -> xcb_randr_get_screen_size_range_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1594,9 +1594,9 @@ pub fn xcb_randr_get_screen_size_range_unchecked (c : *mut ffi::base::connection
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_randr_get_screen_size_range_reply (c : *mut ffi::base::connection,
-                                                 cookie : get_screen_size_range_cookie,
-                                                 e : *mut *mut ffi::base::generic_error) -> *mut get_screen_size_range_reply;
+pub fn xcb_randr_get_screen_size_range_reply (c : *mut ffi::base::xcb_connection_t,
+                                                 cookie : xcb_randr_get_screen_size_range_cookie_t,
+                                                 e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_get_screen_size_range_reply_t;
 
 /**
  *
@@ -1609,12 +1609,12 @@ pub fn xcb_randr_get_screen_size_range_reply (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_randr_set_screen_size_checked (c : *mut ffi::base::connection,
-                                             window :  ffi::xproto::window,
+pub fn xcb_randr_set_screen_size_checked (c : *mut ffi::base::xcb_connection_t,
+                                             window :  ffi::xproto::xcb_window_t,
                                              width :  u16,
                                              height :  u16,
                                              mm_width :  u32,
-                                             mm_height :  u32) -> ffi::base::void_cookie;
+                                             mm_height :  u32) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1624,35 +1624,35 @@ pub fn xcb_randr_set_screen_size_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_set_screen_size (c : *mut ffi::base::connection,
-                                     window :  ffi::xproto::window,
+pub fn xcb_randr_set_screen_size (c : *mut ffi::base::xcb_connection_t,
+                                     window :  ffi::xproto::xcb_window_t,
                                      width :  u16,
                                      height :  u16,
                                      mm_width :  u32,
-                                     mm_height :  u32) -> ffi::base::void_cookie;
+                                     mm_height :  u32) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a mode_info_iterator
+ * @param i Pointer to a xcb_randr_mode_info_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(mode_info)
+ * element. The member index is increased by sizeof(xcb_randr_mode_info_t)
  *
  *
  */
-pub fn xcb_randr_mode_info_next (i:*mut mode_info_iterator) -> c_void;
+pub fn xcb_randr_mode_info_next (i:*mut xcb_randr_mode_info_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An mode_info_iterator
+ * @param i An xcb_randr_mode_info_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_randr_mode_info_end (i:mode_info_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_randr_mode_info_end (i:xcb_randr_mode_info_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_randr_get_screen_resources_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1664,8 +1664,8 @@ pub fn xcb_randr_get_screen_resources_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_get_screen_resources (c : *mut ffi::base::connection,
-                                          window :  ffi::xproto::window) -> get_screen_resources_cookie;
+pub fn xcb_randr_get_screen_resources (c : *mut ffi::base::xcb_connection_t,
+                                          window :  ffi::xproto::xcb_window_t) -> xcb_randr_get_screen_resources_cookie_t;
 
 /**
  *
@@ -1678,45 +1678,45 @@ pub fn xcb_randr_get_screen_resources (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_randr_get_screen_resources_unchecked (c : *mut ffi::base::connection,
-                                                    window :  ffi::xproto::window) -> get_screen_resources_cookie;
+pub fn xcb_randr_get_screen_resources_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                                    window :  ffi::xproto::xcb_window_t) -> xcb_randr_get_screen_resources_cookie_t;
 
-pub fn xcb_randr_get_screen_resources_crtcs (R : *mut get_screen_resources_reply) -> *mut crtc;
-
-
-pub fn xcb_randr_get_screen_resources_crtcs_length (R : *mut get_screen_resources_reply) -> c_int;
+pub fn xcb_randr_get_screen_resources_crtcs (R : *mut xcb_randr_get_screen_resources_reply_t) -> *mut xcb_randr_crtc_t;
 
 
-pub fn xcb_randr_get_screen_resources_crtcs_end (R : *mut get_screen_resources_reply) -> ffi::base::generic_iterator;
-
-pub fn xcb_randr_get_screen_resources_outputs (R : *mut get_screen_resources_reply) -> *mut output;
+pub fn xcb_randr_get_screen_resources_crtcs_length (R : *mut xcb_randr_get_screen_resources_reply_t) -> c_int;
 
 
-pub fn xcb_randr_get_screen_resources_outputs_length (R : *mut get_screen_resources_reply) -> c_int;
+pub fn xcb_randr_get_screen_resources_crtcs_end (R : *mut xcb_randr_get_screen_resources_reply_t) -> ffi::base::xcb_generic_iterator_t;
+
+pub fn xcb_randr_get_screen_resources_outputs (R : *mut xcb_randr_get_screen_resources_reply_t) -> *mut xcb_randr_output_t;
 
 
-pub fn xcb_randr_get_screen_resources_outputs_end (R : *mut get_screen_resources_reply) -> ffi::base::generic_iterator;
-
-pub fn xcb_randr_get_screen_resources_modes (R : *mut get_screen_resources_reply) -> *mut mode_info;
+pub fn xcb_randr_get_screen_resources_outputs_length (R : *mut xcb_randr_get_screen_resources_reply_t) -> c_int;
 
 
-pub fn xcb_randr_get_screen_resources_modes_length (R : *mut get_screen_resources_reply) -> c_int;
+pub fn xcb_randr_get_screen_resources_outputs_end (R : *mut xcb_randr_get_screen_resources_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
-pub fn xcb_randr_get_screen_resources_modes_iterator (R : *mut get_screen_resources_reply) -> mode_info_iterator;
-
-pub fn xcb_randr_get_screen_resources_names (R : *mut get_screen_resources_reply) -> *mut u8;
+pub fn xcb_randr_get_screen_resources_modes (R : *mut xcb_randr_get_screen_resources_reply_t) -> *mut xcb_randr_mode_info_t;
 
 
-pub fn xcb_randr_get_screen_resources_names_length (R : *mut get_screen_resources_reply) -> c_int;
+pub fn xcb_randr_get_screen_resources_modes_length (R : *mut xcb_randr_get_screen_resources_reply_t) -> c_int;
+
+pub fn xcb_randr_get_screen_resources_modes_iterator (R : *mut xcb_randr_get_screen_resources_reply_t) -> xcb_randr_mode_info_iterator_t;
+
+pub fn xcb_randr_get_screen_resources_names (R : *mut xcb_randr_get_screen_resources_reply_t) -> *mut u8;
 
 
-pub fn xcb_randr_get_screen_resources_names_end (R : *mut get_screen_resources_reply) -> ffi::base::generic_iterator;
+pub fn xcb_randr_get_screen_resources_names_length (R : *mut xcb_randr_get_screen_resources_reply_t) -> c_int;
+
+
+pub fn xcb_randr_get_screen_resources_names_end (R : *mut xcb_randr_get_screen_resources_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1726,9 +1726,9 @@ pub fn xcb_randr_get_screen_resources_names_end (R : *mut get_screen_resources_r
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_randr_get_screen_resources_reply (c : *mut ffi::base::connection,
-                                                cookie : get_screen_resources_cookie,
-                                                e : *mut *mut ffi::base::generic_error) -> *mut get_screen_resources_reply;
+pub fn xcb_randr_get_screen_resources_reply (c : *mut ffi::base::xcb_connection_t,
+                                                cookie : xcb_randr_get_screen_resources_cookie_t,
+                                                e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_get_screen_resources_reply_t;
 
 pub fn xcb_randr_get_output_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1740,9 +1740,9 @@ pub fn xcb_randr_get_output_info_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_get_output_info (c : *mut ffi::base::connection,
-                                     output :  output,
-                                     config_timestamp :  ffi::xproto::timestamp) -> get_output_info_cookie;
+pub fn xcb_randr_get_output_info (c : *mut ffi::base::xcb_connection_t,
+                                     output :  xcb_randr_output_t,
+                                     config_timestamp :  ffi::xproto::xcb_timestamp_t) -> xcb_randr_get_output_info_cookie_t;
 
 /**
  *
@@ -1755,47 +1755,47 @@ pub fn xcb_randr_get_output_info (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_randr_get_output_info_unchecked (c : *mut ffi::base::connection,
-                                               output :  output,
-                                               config_timestamp :  ffi::xproto::timestamp) -> get_output_info_cookie;
+pub fn xcb_randr_get_output_info_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                               output :  xcb_randr_output_t,
+                                               config_timestamp :  ffi::xproto::xcb_timestamp_t) -> xcb_randr_get_output_info_cookie_t;
 
-pub fn xcb_randr_get_output_info_crtcs (R : *mut get_output_info_reply) -> *mut crtc;
-
-
-pub fn xcb_randr_get_output_info_crtcs_length (R : *mut get_output_info_reply) -> c_int;
+pub fn xcb_randr_get_output_info_crtcs (R : *mut xcb_randr_get_output_info_reply_t) -> *mut xcb_randr_crtc_t;
 
 
-pub fn xcb_randr_get_output_info_crtcs_end (R : *mut get_output_info_reply) -> ffi::base::generic_iterator;
-
-pub fn xcb_randr_get_output_info_modes (R : *mut get_output_info_reply) -> *mut mode;
+pub fn xcb_randr_get_output_info_crtcs_length (R : *mut xcb_randr_get_output_info_reply_t) -> c_int;
 
 
-pub fn xcb_randr_get_output_info_modes_length (R : *mut get_output_info_reply) -> c_int;
+pub fn xcb_randr_get_output_info_crtcs_end (R : *mut xcb_randr_get_output_info_reply_t) -> ffi::base::xcb_generic_iterator_t;
+
+pub fn xcb_randr_get_output_info_modes (R : *mut xcb_randr_get_output_info_reply_t) -> *mut xcb_randr_mode_t;
 
 
-pub fn xcb_randr_get_output_info_modes_end (R : *mut get_output_info_reply) -> ffi::base::generic_iterator;
-
-pub fn xcb_randr_get_output_info_clones (R : *mut get_output_info_reply) -> *mut output;
+pub fn xcb_randr_get_output_info_modes_length (R : *mut xcb_randr_get_output_info_reply_t) -> c_int;
 
 
-pub fn xcb_randr_get_output_info_clones_length (R : *mut get_output_info_reply) -> c_int;
+pub fn xcb_randr_get_output_info_modes_end (R : *mut xcb_randr_get_output_info_reply_t) -> ffi::base::xcb_generic_iterator_t;
+
+pub fn xcb_randr_get_output_info_clones (R : *mut xcb_randr_get_output_info_reply_t) -> *mut xcb_randr_output_t;
 
 
-pub fn xcb_randr_get_output_info_clones_end (R : *mut get_output_info_reply) -> ffi::base::generic_iterator;
-
-pub fn xcb_randr_get_output_info_name (R : *mut get_output_info_reply) -> *mut u8;
+pub fn xcb_randr_get_output_info_clones_length (R : *mut xcb_randr_get_output_info_reply_t) -> c_int;
 
 
-pub fn xcb_randr_get_output_info_name_length (R : *mut get_output_info_reply) -> c_int;
+pub fn xcb_randr_get_output_info_clones_end (R : *mut xcb_randr_get_output_info_reply_t) -> ffi::base::xcb_generic_iterator_t;
+
+pub fn xcb_randr_get_output_info_name (R : *mut xcb_randr_get_output_info_reply_t) -> *mut u8;
 
 
-pub fn xcb_randr_get_output_info_name_end (R : *mut get_output_info_reply) -> ffi::base::generic_iterator;
+pub fn xcb_randr_get_output_info_name_length (R : *mut xcb_randr_get_output_info_reply_t) -> c_int;
+
+
+pub fn xcb_randr_get_output_info_name_end (R : *mut xcb_randr_get_output_info_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1805,9 +1805,9 @@ pub fn xcb_randr_get_output_info_name_end (R : *mut get_output_info_reply) -> ff
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_randr_get_output_info_reply (c : *mut ffi::base::connection,
-                                           cookie : get_output_info_cookie,
-                                           e : *mut *mut ffi::base::generic_error) -> *mut get_output_info_reply;
+pub fn xcb_randr_get_output_info_reply (c : *mut ffi::base::xcb_connection_t,
+                                           cookie : xcb_randr_get_output_info_cookie_t,
+                                           e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_get_output_info_reply_t;
 
 pub fn xcb_randr_list_output_properties_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1819,8 +1819,8 @@ pub fn xcb_randr_list_output_properties_sizeof (_buffer :  *mut c_void) -> c_int
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_list_output_properties (c : *mut ffi::base::connection,
-                                            output :  output) -> list_output_properties_cookie;
+pub fn xcb_randr_list_output_properties (c : *mut ffi::base::xcb_connection_t,
+                                            output :  xcb_randr_output_t) -> xcb_randr_list_output_properties_cookie_t;
 
 /**
  *
@@ -1833,22 +1833,22 @@ pub fn xcb_randr_list_output_properties (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_randr_list_output_properties_unchecked (c : *mut ffi::base::connection,
-                                                      output :  output) -> list_output_properties_cookie;
+pub fn xcb_randr_list_output_properties_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                                      output :  xcb_randr_output_t) -> xcb_randr_list_output_properties_cookie_t;
 
-pub fn xcb_randr_list_output_properties_atoms (R : *mut list_output_properties_reply) -> *mut ffi::xproto::atom;
-
-
-pub fn xcb_randr_list_output_properties_atoms_length (R : *mut list_output_properties_reply) -> c_int;
+pub fn xcb_randr_list_output_properties_atoms (R : *mut xcb_randr_list_output_properties_reply_t) -> *mut ffi::xproto::xcb_atom_t;
 
 
-pub fn xcb_randr_list_output_properties_atoms_end (R : *mut list_output_properties_reply) -> ffi::base::generic_iterator;
+pub fn xcb_randr_list_output_properties_atoms_length (R : *mut xcb_randr_list_output_properties_reply_t) -> c_int;
+
+
+pub fn xcb_randr_list_output_properties_atoms_end (R : *mut xcb_randr_list_output_properties_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1858,9 +1858,9 @@ pub fn xcb_randr_list_output_properties_atoms_end (R : *mut list_output_properti
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_randr_list_output_properties_reply (c : *mut ffi::base::connection,
-                                                  cookie : list_output_properties_cookie,
-                                                  e : *mut *mut ffi::base::generic_error) -> *mut list_output_properties_reply;
+pub fn xcb_randr_list_output_properties_reply (c : *mut ffi::base::xcb_connection_t,
+                                                  cookie : xcb_randr_list_output_properties_cookie_t,
+                                                  e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_list_output_properties_reply_t;
 
 pub fn xcb_randr_query_output_property_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1872,9 +1872,9 @@ pub fn xcb_randr_query_output_property_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_query_output_property (c : *mut ffi::base::connection,
-                                           output :  output,
-                                           property :  ffi::xproto::atom) -> query_output_property_cookie;
+pub fn xcb_randr_query_output_property (c : *mut ffi::base::xcb_connection_t,
+                                           output :  xcb_randr_output_t,
+                                           property :  ffi::xproto::xcb_atom_t) -> xcb_randr_query_output_property_cookie_t;
 
 /**
  *
@@ -1887,23 +1887,23 @@ pub fn xcb_randr_query_output_property (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_randr_query_output_property_unchecked (c : *mut ffi::base::connection,
-                                                     output :  output,
-                                                     property :  ffi::xproto::atom) -> query_output_property_cookie;
+pub fn xcb_randr_query_output_property_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                                     output :  xcb_randr_output_t,
+                                                     property :  ffi::xproto::xcb_atom_t) -> xcb_randr_query_output_property_cookie_t;
 
-pub fn xcb_randr_query_output_property_valid_values (R : *mut query_output_property_reply) -> *mut i32;
-
-
-pub fn xcb_randr_query_output_property_valid_values_length (R : *mut query_output_property_reply) -> c_int;
+pub fn xcb_randr_query_output_property_valid_values (R : *mut xcb_randr_query_output_property_reply_t) -> *mut i32;
 
 
-pub fn xcb_randr_query_output_property_valid_values_end (R : *mut query_output_property_reply) -> ffi::base::generic_iterator;
+pub fn xcb_randr_query_output_property_valid_values_length (R : *mut xcb_randr_query_output_property_reply_t) -> c_int;
+
+
+pub fn xcb_randr_query_output_property_valid_values_end (R : *mut xcb_randr_query_output_property_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1913,9 +1913,9 @@ pub fn xcb_randr_query_output_property_valid_values_end (R : *mut query_output_p
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_randr_query_output_property_reply (c : *mut ffi::base::connection,
-                                                 cookie : query_output_property_cookie,
-                                                 e : *mut *mut ffi::base::generic_error) -> *mut query_output_property_reply;
+pub fn xcb_randr_query_output_property_reply (c : *mut ffi::base::xcb_connection_t,
+                                                 cookie : xcb_randr_query_output_property_cookie_t,
+                                                 e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_query_output_property_reply_t;
 
 pub fn xcb_randr_configure_output_property_sizeof (_buffer :  *mut c_void,
                                             values_len :   u32) -> c_int;
@@ -1931,13 +1931,13 @@ pub fn xcb_randr_configure_output_property_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_randr_configure_output_property_checked (c : *mut ffi::base::connection,
-                                                       output :  output,
-                                                       property :  ffi::xproto::atom,
+pub fn xcb_randr_configure_output_property_checked (c : *mut ffi::base::xcb_connection_t,
+                                                       output :  xcb_randr_output_t,
+                                                       property :  ffi::xproto::xcb_atom_t,
                                                        pending :  u8,
                                                        range :  u8,
                                                        values_len :  u32,
-                                                       values : *mut i32) -> ffi::base::void_cookie;
+                                                       values : *mut i32) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1947,13 +1947,13 @@ pub fn xcb_randr_configure_output_property_checked (c : *mut ffi::base::connecti
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_configure_output_property (c : *mut ffi::base::connection,
-                                               output :  output,
-                                               property :  ffi::xproto::atom,
+pub fn xcb_randr_configure_output_property (c : *mut ffi::base::xcb_connection_t,
+                                               output :  xcb_randr_output_t,
+                                               property :  ffi::xproto::xcb_atom_t,
                                                pending :  u8,
                                                range :  u8,
                                                values_len :  u32,
-                                               values : *mut i32) -> ffi::base::void_cookie;
+                                               values : *mut i32) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_randr_change_output_property_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1968,14 +1968,14 @@ pub fn xcb_randr_change_output_property_sizeof (_buffer :  *mut c_void) -> c_int
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_randr_change_output_property_checked (c : *mut ffi::base::connection,
-                                                    output :  output,
-                                                    property :  ffi::xproto::atom,
-                                                    type_ :  ffi::xproto::atom,
+pub fn xcb_randr_change_output_property_checked (c : *mut ffi::base::xcb_connection_t,
+                                                    output :  xcb_randr_output_t,
+                                                    property :  ffi::xproto::xcb_atom_t,
+                                                    type_ :  ffi::xproto::xcb_atom_t,
                                                     format :  u8,
                                                     mode :  u8,
                                                     num_units :  u32,
-                                                    data : *mut c_void) -> ffi::base::void_cookie;
+                                                    data : *mut c_void) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1985,14 +1985,14 @@ pub fn xcb_randr_change_output_property_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_change_output_property (c : *mut ffi::base::connection,
-                                            output :  output,
-                                            property :  ffi::xproto::atom,
-                                            type_ :  ffi::xproto::atom,
+pub fn xcb_randr_change_output_property (c : *mut ffi::base::xcb_connection_t,
+                                            output :  xcb_randr_output_t,
+                                            property :  ffi::xproto::xcb_atom_t,
+                                            type_ :  ffi::xproto::xcb_atom_t,
                                             format :  u8,
                                             mode :  u8,
                                             num_units :  u32,
-                                            data : *mut c_void) -> ffi::base::void_cookie;
+                                            data : *mut c_void) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2005,9 +2005,9 @@ pub fn xcb_randr_change_output_property (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_randr_delete_output_property_checked (c : *mut ffi::base::connection,
-                                                    output :  output,
-                                                    property :  ffi::xproto::atom) -> ffi::base::void_cookie;
+pub fn xcb_randr_delete_output_property_checked (c : *mut ffi::base::xcb_connection_t,
+                                                    output :  xcb_randr_output_t,
+                                                    property :  ffi::xproto::xcb_atom_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2017,9 +2017,9 @@ pub fn xcb_randr_delete_output_property_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_delete_output_property (c : *mut ffi::base::connection,
-                                            output :  output,
-                                            property :  ffi::xproto::atom) -> ffi::base::void_cookie;
+pub fn xcb_randr_delete_output_property (c : *mut ffi::base::xcb_connection_t,
+                                            output :  xcb_randr_output_t,
+                                            property :  ffi::xproto::xcb_atom_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_randr_get_output_property_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -2031,14 +2031,14 @@ pub fn xcb_randr_get_output_property_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_get_output_property (c : *mut ffi::base::connection,
-                                         output :  output,
-                                         property :  ffi::xproto::atom,
-                                         type_ :  ffi::xproto::atom,
+pub fn xcb_randr_get_output_property (c : *mut ffi::base::xcb_connection_t,
+                                         output :  xcb_randr_output_t,
+                                         property :  ffi::xproto::xcb_atom_t,
+                                         type_ :  ffi::xproto::xcb_atom_t,
                                          long_offset :  u32,
                                          long_length :  u32,
                                          delete :  u8,
-                                         pending :  u8) -> get_output_property_cookie;
+                                         pending :  u8) -> xcb_randr_get_output_property_cookie_t;
 
 /**
  *
@@ -2051,28 +2051,28 @@ pub fn xcb_randr_get_output_property (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_randr_get_output_property_unchecked (c : *mut ffi::base::connection,
-                                                   output :  output,
-                                                   property :  ffi::xproto::atom,
-                                                   type_ :  ffi::xproto::atom,
+pub fn xcb_randr_get_output_property_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                                   output :  xcb_randr_output_t,
+                                                   property :  ffi::xproto::xcb_atom_t,
+                                                   type_ :  ffi::xproto::xcb_atom_t,
                                                    long_offset :  u32,
                                                    long_length :  u32,
                                                    delete :  u8,
-                                                   pending :  u8) -> get_output_property_cookie;
+                                                   pending :  u8) -> xcb_randr_get_output_property_cookie_t;
 
-pub fn xcb_randr_get_output_property_data (R : *mut get_output_property_reply) -> *mut u8;
-
-
-pub fn xcb_randr_get_output_property_data_length (R : *mut get_output_property_reply) -> c_int;
+pub fn xcb_randr_get_output_property_data (R : *mut xcb_randr_get_output_property_reply_t) -> *mut u8;
 
 
-pub fn xcb_randr_get_output_property_data_end (R : *mut get_output_property_reply) -> ffi::base::generic_iterator;
+pub fn xcb_randr_get_output_property_data_length (R : *mut xcb_randr_get_output_property_reply_t) -> c_int;
+
+
+pub fn xcb_randr_get_output_property_data_end (R : *mut xcb_randr_get_output_property_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -2082,9 +2082,9 @@ pub fn xcb_randr_get_output_property_data_end (R : *mut get_output_property_repl
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_randr_get_output_property_reply (c : *mut ffi::base::connection,
-                                               cookie : get_output_property_cookie,
-                                               e : *mut *mut ffi::base::generic_error) -> *mut get_output_property_reply;
+pub fn xcb_randr_get_output_property_reply (c : *mut ffi::base::xcb_connection_t,
+                                               cookie : xcb_randr_get_output_property_cookie_t,
+                                               e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_get_output_property_reply_t;
 
 pub fn xcb_randr_create_mode_sizeof (_buffer :  *mut c_void,
                               name_len :     u32) -> c_int;
@@ -2097,11 +2097,11 @@ pub fn xcb_randr_create_mode_sizeof (_buffer :  *mut c_void,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_create_mode (c : *mut ffi::base::connection,
-                                 window :  ffi::xproto::window,
-                                 mode_info :  mode_info,
+pub fn xcb_randr_create_mode (c : *mut ffi::base::xcb_connection_t,
+                                 window :  ffi::xproto::xcb_window_t,
+                                 mode_info :  xcb_randr_mode_info_t,
                                  name_len :  u32,
-                                 name : *mut c_char) -> create_mode_cookie;
+                                 name : *mut c_char) -> xcb_randr_create_mode_cookie_t;
 
 /**
  *
@@ -2114,17 +2114,17 @@ pub fn xcb_randr_create_mode (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_randr_create_mode_unchecked (c : *mut ffi::base::connection,
-                                           window :  ffi::xproto::window,
-                                           mode_info :  mode_info,
+pub fn xcb_randr_create_mode_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                           window :  ffi::xproto::xcb_window_t,
+                                           mode_info :  xcb_randr_mode_info_t,
                                            name_len :  u32,
-                                           name : *mut c_char) -> create_mode_cookie;
+                                           name : *mut c_char) -> xcb_randr_create_mode_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -2134,9 +2134,9 @@ pub fn xcb_randr_create_mode_unchecked (c : *mut ffi::base::connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_randr_create_mode_reply (c : *mut ffi::base::connection,
-                                       cookie : create_mode_cookie,
-                                       e : *mut *mut ffi::base::generic_error) -> *mut create_mode_reply;
+pub fn xcb_randr_create_mode_reply (c : *mut ffi::base::xcb_connection_t,
+                                       cookie : xcb_randr_create_mode_cookie_t,
+                                       e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_create_mode_reply_t;
 
 /**
  *
@@ -2149,8 +2149,8 @@ pub fn xcb_randr_create_mode_reply (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_randr_destroy_mode_checked (c : *mut ffi::base::connection,
-                                          mode :  mode) -> ffi::base::void_cookie;
+pub fn xcb_randr_destroy_mode_checked (c : *mut ffi::base::xcb_connection_t,
+                                          mode :  xcb_randr_mode_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2160,35 +2160,8 @@ pub fn xcb_randr_destroy_mode_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_destroy_mode (c : *mut ffi::base::connection,
-                                  mode :  mode) -> ffi::base::void_cookie;
-
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
-pub fn xcb_randr_add_output_mode_checked (c : *mut ffi::base::connection,
-                                             output :  output,
-                                             mode :  mode) -> ffi::base::void_cookie;
-
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
-pub fn xcb_randr_add_output_mode (c : *mut ffi::base::connection,
-                                     output :  output,
-                                     mode :  mode) -> ffi::base::void_cookie;
+pub fn xcb_randr_destroy_mode (c : *mut ffi::base::xcb_connection_t,
+                                  mode :  xcb_randr_mode_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2201,9 +2174,9 @@ pub fn xcb_randr_add_output_mode (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_randr_delete_output_mode_checked (c : *mut ffi::base::connection,
-                                                output :  output,
-                                                mode :  mode) -> ffi::base::void_cookie;
+pub fn xcb_randr_add_output_mode_checked (c : *mut ffi::base::xcb_connection_t,
+                                             output :  xcb_randr_output_t,
+                                             mode :  xcb_randr_mode_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2213,9 +2186,36 @@ pub fn xcb_randr_delete_output_mode_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_delete_output_mode (c : *mut ffi::base::connection,
-                                        output :  output,
-                                        mode :  mode) -> ffi::base::void_cookie;
+pub fn xcb_randr_add_output_mode (c : *mut ffi::base::xcb_connection_t,
+                                     output :  xcb_randr_output_t,
+                                     mode :  xcb_randr_mode_t) -> ffi::base::xcb_void_cookie_t;
+
+/**
+ *
+ * @param c The connection
+ * @return A cookie
+ *
+ * Delivers a request to the X server.
+ *
+ * This form can be used only if the request will not cause
+ * a reply to be generated. Any returned error will be
+ * saved for handling by xcb_request_check().
+ */
+pub fn xcb_randr_delete_output_mode_checked (c : *mut ffi::base::xcb_connection_t,
+                                                output :  xcb_randr_output_t,
+                                                mode :  xcb_randr_mode_t) -> ffi::base::xcb_void_cookie_t;
+
+/**
+ *
+ * @param c The connection
+ * @return A cookie
+ *
+ * Delivers a request to the X server.
+ *
+ */
+pub fn xcb_randr_delete_output_mode (c : *mut ffi::base::xcb_connection_t,
+                                        output :  xcb_randr_output_t,
+                                        mode :  xcb_randr_mode_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_randr_get_crtc_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -2227,9 +2227,9 @@ pub fn xcb_randr_get_crtc_info_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_get_crtc_info (c : *mut ffi::base::connection,
-                                   crtc :  crtc,
-                                   config_timestamp :  ffi::xproto::timestamp) -> get_crtc_info_cookie;
+pub fn xcb_randr_get_crtc_info (c : *mut ffi::base::xcb_connection_t,
+                                   crtc :  xcb_randr_crtc_t,
+                                   config_timestamp :  ffi::xproto::xcb_timestamp_t) -> xcb_randr_get_crtc_info_cookie_t;
 
 /**
  *
@@ -2242,31 +2242,31 @@ pub fn xcb_randr_get_crtc_info (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_randr_get_crtc_info_unchecked (c : *mut ffi::base::connection,
-                                             crtc :  crtc,
-                                             config_timestamp :  ffi::xproto::timestamp) -> get_crtc_info_cookie;
+pub fn xcb_randr_get_crtc_info_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                             crtc :  xcb_randr_crtc_t,
+                                             config_timestamp :  ffi::xproto::xcb_timestamp_t) -> xcb_randr_get_crtc_info_cookie_t;
 
-pub fn xcb_randr_get_crtc_info_outputs (R : *mut get_crtc_info_reply) -> *mut output;
-
-
-pub fn xcb_randr_get_crtc_info_outputs_length (R : *mut get_crtc_info_reply) -> c_int;
+pub fn xcb_randr_get_crtc_info_outputs (R : *mut xcb_randr_get_crtc_info_reply_t) -> *mut xcb_randr_output_t;
 
 
-pub fn xcb_randr_get_crtc_info_outputs_end (R : *mut get_crtc_info_reply) -> ffi::base::generic_iterator;
-
-pub fn xcb_randr_get_crtc_info_possible (R : *mut get_crtc_info_reply) -> *mut output;
+pub fn xcb_randr_get_crtc_info_outputs_length (R : *mut xcb_randr_get_crtc_info_reply_t) -> c_int;
 
 
-pub fn xcb_randr_get_crtc_info_possible_length (R : *mut get_crtc_info_reply) -> c_int;
+pub fn xcb_randr_get_crtc_info_outputs_end (R : *mut xcb_randr_get_crtc_info_reply_t) -> ffi::base::xcb_generic_iterator_t;
+
+pub fn xcb_randr_get_crtc_info_possible (R : *mut xcb_randr_get_crtc_info_reply_t) -> *mut xcb_randr_output_t;
 
 
-pub fn xcb_randr_get_crtc_info_possible_end (R : *mut get_crtc_info_reply) -> ffi::base::generic_iterator;
+pub fn xcb_randr_get_crtc_info_possible_length (R : *mut xcb_randr_get_crtc_info_reply_t) -> c_int;
+
+
+pub fn xcb_randr_get_crtc_info_possible_end (R : *mut xcb_randr_get_crtc_info_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -2276,9 +2276,9 @@ pub fn xcb_randr_get_crtc_info_possible_end (R : *mut get_crtc_info_reply) -> ff
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_randr_get_crtc_info_reply (c : *mut ffi::base::connection,
-                                         cookie : get_crtc_info_cookie,
-                                         e : *mut *mut ffi::base::generic_error) -> *mut get_crtc_info_reply;
+pub fn xcb_randr_get_crtc_info_reply (c : *mut ffi::base::xcb_connection_t,
+                                         cookie : xcb_randr_get_crtc_info_cookie_t,
+                                         e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_get_crtc_info_reply_t;
 
 pub fn xcb_randr_set_crtc_config_sizeof (_buffer :  *mut c_void,
                                   outputs_len :  u32) -> c_int;
@@ -2291,16 +2291,16 @@ pub fn xcb_randr_set_crtc_config_sizeof (_buffer :  *mut c_void,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_set_crtc_config (c : *mut ffi::base::connection,
-                                     crtc :  crtc,
-                                     timestamp :  ffi::xproto::timestamp,
-                                     config_timestamp :  ffi::xproto::timestamp,
+pub fn xcb_randr_set_crtc_config (c : *mut ffi::base::xcb_connection_t,
+                                     crtc :  xcb_randr_crtc_t,
+                                     timestamp :  ffi::xproto::xcb_timestamp_t,
+                                     config_timestamp :  ffi::xproto::xcb_timestamp_t,
                                      x :  i16,
                                      y :  i16,
-                                     mode :  mode,
+                                     mode :  xcb_randr_mode_t,
                                      rotation :  u16,
                                      outputs_len :  u32,
-                                     outputs : *mut output) -> set_crtc_config_cookie;
+                                     outputs : *mut xcb_randr_output_t) -> xcb_randr_set_crtc_config_cookie_t;
 
 /**
  *
@@ -2313,22 +2313,22 @@ pub fn xcb_randr_set_crtc_config (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_randr_set_crtc_config_unchecked (c : *mut ffi::base::connection,
-                                               crtc :  crtc,
-                                               timestamp :  ffi::xproto::timestamp,
-                                               config_timestamp :  ffi::xproto::timestamp,
+pub fn xcb_randr_set_crtc_config_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                               crtc :  xcb_randr_crtc_t,
+                                               timestamp :  ffi::xproto::xcb_timestamp_t,
+                                               config_timestamp :  ffi::xproto::xcb_timestamp_t,
                                                x :  i16,
                                                y :  i16,
-                                               mode :  mode,
+                                               mode :  xcb_randr_mode_t,
                                                rotation :  u16,
                                                outputs_len :  u32,
-                                               outputs : *mut output) -> set_crtc_config_cookie;
+                                               outputs : *mut xcb_randr_output_t) -> xcb_randr_set_crtc_config_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -2338,9 +2338,9 @@ pub fn xcb_randr_set_crtc_config_unchecked (c : *mut ffi::base::connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_randr_set_crtc_config_reply (c : *mut ffi::base::connection,
-                                           cookie : set_crtc_config_cookie,
-                                           e : *mut *mut ffi::base::generic_error) -> *mut set_crtc_config_reply;
+pub fn xcb_randr_set_crtc_config_reply (c : *mut ffi::base::xcb_connection_t,
+                                           cookie : xcb_randr_set_crtc_config_cookie_t,
+                                           e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_set_crtc_config_reply_t;
 
 /**
  *
@@ -2350,8 +2350,8 @@ pub fn xcb_randr_set_crtc_config_reply (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_get_crtc_gamma_size (c : *mut ffi::base::connection,
-                                         crtc :  crtc) -> get_crtc_gamma_size_cookie;
+pub fn xcb_randr_get_crtc_gamma_size (c : *mut ffi::base::xcb_connection_t,
+                                         crtc :  xcb_randr_crtc_t) -> xcb_randr_get_crtc_gamma_size_cookie_t;
 
 /**
  *
@@ -2364,14 +2364,14 @@ pub fn xcb_randr_get_crtc_gamma_size (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_randr_get_crtc_gamma_size_unchecked (c : *mut ffi::base::connection,
-                                                   crtc :  crtc) -> get_crtc_gamma_size_cookie;
+pub fn xcb_randr_get_crtc_gamma_size_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                                   crtc :  xcb_randr_crtc_t) -> xcb_randr_get_crtc_gamma_size_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -2381,9 +2381,9 @@ pub fn xcb_randr_get_crtc_gamma_size_unchecked (c : *mut ffi::base::connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_randr_get_crtc_gamma_size_reply (c : *mut ffi::base::connection,
-                                               cookie : get_crtc_gamma_size_cookie,
-                                               e : *mut *mut ffi::base::generic_error) -> *mut get_crtc_gamma_size_reply;
+pub fn xcb_randr_get_crtc_gamma_size_reply (c : *mut ffi::base::xcb_connection_t,
+                                               cookie : xcb_randr_get_crtc_gamma_size_cookie_t,
+                                               e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_get_crtc_gamma_size_reply_t;
 
 pub fn xcb_randr_get_crtc_gamma_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -2395,8 +2395,8 @@ pub fn xcb_randr_get_crtc_gamma_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_get_crtc_gamma (c : *mut ffi::base::connection,
-                                    crtc :  crtc) -> get_crtc_gamma_cookie;
+pub fn xcb_randr_get_crtc_gamma (c : *mut ffi::base::xcb_connection_t,
+                                    crtc :  xcb_randr_crtc_t) -> xcb_randr_get_crtc_gamma_cookie_t;
 
 /**
  *
@@ -2409,38 +2409,38 @@ pub fn xcb_randr_get_crtc_gamma (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_randr_get_crtc_gamma_unchecked (c : *mut ffi::base::connection,
-                                              crtc :  crtc) -> get_crtc_gamma_cookie;
+pub fn xcb_randr_get_crtc_gamma_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                              crtc :  xcb_randr_crtc_t) -> xcb_randr_get_crtc_gamma_cookie_t;
 
-pub fn xcb_randr_get_crtc_gamma_red (R : *mut get_crtc_gamma_reply) -> *mut u16;
-
-
-pub fn xcb_randr_get_crtc_gamma_red_length (R : *mut get_crtc_gamma_reply) -> c_int;
+pub fn xcb_randr_get_crtc_gamma_red (R : *mut xcb_randr_get_crtc_gamma_reply_t) -> *mut u16;
 
 
-pub fn xcb_randr_get_crtc_gamma_red_end (R : *mut get_crtc_gamma_reply) -> ffi::base::generic_iterator;
-
-pub fn xcb_randr_get_crtc_gamma_green (R : *mut get_crtc_gamma_reply) -> *mut u16;
+pub fn xcb_randr_get_crtc_gamma_red_length (R : *mut xcb_randr_get_crtc_gamma_reply_t) -> c_int;
 
 
-pub fn xcb_randr_get_crtc_gamma_green_length (R : *mut get_crtc_gamma_reply) -> c_int;
+pub fn xcb_randr_get_crtc_gamma_red_end (R : *mut xcb_randr_get_crtc_gamma_reply_t) -> ffi::base::xcb_generic_iterator_t;
+
+pub fn xcb_randr_get_crtc_gamma_green (R : *mut xcb_randr_get_crtc_gamma_reply_t) -> *mut u16;
 
 
-pub fn xcb_randr_get_crtc_gamma_green_end (R : *mut get_crtc_gamma_reply) -> ffi::base::generic_iterator;
-
-pub fn xcb_randr_get_crtc_gamma_blue (R : *mut get_crtc_gamma_reply) -> *mut u16;
+pub fn xcb_randr_get_crtc_gamma_green_length (R : *mut xcb_randr_get_crtc_gamma_reply_t) -> c_int;
 
 
-pub fn xcb_randr_get_crtc_gamma_blue_length (R : *mut get_crtc_gamma_reply) -> c_int;
+pub fn xcb_randr_get_crtc_gamma_green_end (R : *mut xcb_randr_get_crtc_gamma_reply_t) -> ffi::base::xcb_generic_iterator_t;
+
+pub fn xcb_randr_get_crtc_gamma_blue (R : *mut xcb_randr_get_crtc_gamma_reply_t) -> *mut u16;
 
 
-pub fn xcb_randr_get_crtc_gamma_blue_end (R : *mut get_crtc_gamma_reply) -> ffi::base::generic_iterator;
+pub fn xcb_randr_get_crtc_gamma_blue_length (R : *mut xcb_randr_get_crtc_gamma_reply_t) -> c_int;
+
+
+pub fn xcb_randr_get_crtc_gamma_blue_end (R : *mut xcb_randr_get_crtc_gamma_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -2450,9 +2450,9 @@ pub fn xcb_randr_get_crtc_gamma_blue_end (R : *mut get_crtc_gamma_reply) -> ffi:
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_randr_get_crtc_gamma_reply (c : *mut ffi::base::connection,
-                                          cookie : get_crtc_gamma_cookie,
-                                          e : *mut *mut ffi::base::generic_error) -> *mut get_crtc_gamma_reply;
+pub fn xcb_randr_get_crtc_gamma_reply (c : *mut ffi::base::xcb_connection_t,
+                                          cookie : xcb_randr_get_crtc_gamma_cookie_t,
+                                          e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_get_crtc_gamma_reply_t;
 
 pub fn xcb_randr_set_crtc_gamma_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -2467,12 +2467,12 @@ pub fn xcb_randr_set_crtc_gamma_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_randr_set_crtc_gamma_checked (c : *mut ffi::base::connection,
-                                            crtc :  crtc,
+pub fn xcb_randr_set_crtc_gamma_checked (c : *mut ffi::base::xcb_connection_t,
+                                            crtc :  xcb_randr_crtc_t,
                                             size :  u16,
                                             red : *mut u16,
                                             green : *mut u16,
-                                            blue : *mut u16) -> ffi::base::void_cookie;
+                                            blue : *mut u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2482,12 +2482,12 @@ pub fn xcb_randr_set_crtc_gamma_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_set_crtc_gamma (c : *mut ffi::base::connection,
-                                    crtc :  crtc,
+pub fn xcb_randr_set_crtc_gamma (c : *mut ffi::base::xcb_connection_t,
+                                    crtc :  xcb_randr_crtc_t,
                                     size :  u16,
                                     red : *mut u16,
                                     green : *mut u16,
-                                    blue : *mut u16) -> ffi::base::void_cookie;
+                                    blue : *mut u16) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_randr_get_screen_resources_current_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -2499,8 +2499,8 @@ pub fn xcb_randr_get_screen_resources_current_sizeof (_buffer :  *mut c_void) ->
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_get_screen_resources_current (c : *mut ffi::base::connection,
-                                                  window :  ffi::xproto::window) -> get_screen_resources_current_cookie;
+pub fn xcb_randr_get_screen_resources_current (c : *mut ffi::base::xcb_connection_t,
+                                                  window :  ffi::xproto::xcb_window_t) -> xcb_randr_get_screen_resources_current_cookie_t;
 
 /**
  *
@@ -2513,45 +2513,45 @@ pub fn xcb_randr_get_screen_resources_current (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_randr_get_screen_resources_current_unchecked (c : *mut ffi::base::connection,
-                                                            window :  ffi::xproto::window) -> get_screen_resources_current_cookie;
+pub fn xcb_randr_get_screen_resources_current_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                                            window :  ffi::xproto::xcb_window_t) -> xcb_randr_get_screen_resources_current_cookie_t;
 
-pub fn xcb_randr_get_screen_resources_current_crtcs (R : *mut get_screen_resources_current_reply) -> *mut crtc;
-
-
-pub fn xcb_randr_get_screen_resources_current_crtcs_length (R : *mut get_screen_resources_current_reply) -> c_int;
+pub fn xcb_randr_get_screen_resources_current_crtcs (R : *mut xcb_randr_get_screen_resources_current_reply_t) -> *mut xcb_randr_crtc_t;
 
 
-pub fn xcb_randr_get_screen_resources_current_crtcs_end (R : *mut get_screen_resources_current_reply) -> ffi::base::generic_iterator;
-
-pub fn xcb_randr_get_screen_resources_current_outputs (R : *mut get_screen_resources_current_reply) -> *mut output;
+pub fn xcb_randr_get_screen_resources_current_crtcs_length (R : *mut xcb_randr_get_screen_resources_current_reply_t) -> c_int;
 
 
-pub fn xcb_randr_get_screen_resources_current_outputs_length (R : *mut get_screen_resources_current_reply) -> c_int;
+pub fn xcb_randr_get_screen_resources_current_crtcs_end (R : *mut xcb_randr_get_screen_resources_current_reply_t) -> ffi::base::xcb_generic_iterator_t;
+
+pub fn xcb_randr_get_screen_resources_current_outputs (R : *mut xcb_randr_get_screen_resources_current_reply_t) -> *mut xcb_randr_output_t;
 
 
-pub fn xcb_randr_get_screen_resources_current_outputs_end (R : *mut get_screen_resources_current_reply) -> ffi::base::generic_iterator;
-
-pub fn xcb_randr_get_screen_resources_current_modes (R : *mut get_screen_resources_current_reply) -> *mut mode_info;
+pub fn xcb_randr_get_screen_resources_current_outputs_length (R : *mut xcb_randr_get_screen_resources_current_reply_t) -> c_int;
 
 
-pub fn xcb_randr_get_screen_resources_current_modes_length (R : *mut get_screen_resources_current_reply) -> c_int;
+pub fn xcb_randr_get_screen_resources_current_outputs_end (R : *mut xcb_randr_get_screen_resources_current_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
-pub fn xcb_randr_get_screen_resources_current_modes_iterator (R : *mut get_screen_resources_current_reply) -> mode_info_iterator;
-
-pub fn xcb_randr_get_screen_resources_current_names (R : *mut get_screen_resources_current_reply) -> *mut u8;
+pub fn xcb_randr_get_screen_resources_current_modes (R : *mut xcb_randr_get_screen_resources_current_reply_t) -> *mut xcb_randr_mode_info_t;
 
 
-pub fn xcb_randr_get_screen_resources_current_names_length (R : *mut get_screen_resources_current_reply) -> c_int;
+pub fn xcb_randr_get_screen_resources_current_modes_length (R : *mut xcb_randr_get_screen_resources_current_reply_t) -> c_int;
+
+pub fn xcb_randr_get_screen_resources_current_modes_iterator (R : *mut xcb_randr_get_screen_resources_current_reply_t) -> xcb_randr_mode_info_iterator_t;
+
+pub fn xcb_randr_get_screen_resources_current_names (R : *mut xcb_randr_get_screen_resources_current_reply_t) -> *mut u8;
 
 
-pub fn xcb_randr_get_screen_resources_current_names_end (R : *mut get_screen_resources_current_reply) -> ffi::base::generic_iterator;
+pub fn xcb_randr_get_screen_resources_current_names_length (R : *mut xcb_randr_get_screen_resources_current_reply_t) -> c_int;
+
+
+pub fn xcb_randr_get_screen_resources_current_names_end (R : *mut xcb_randr_get_screen_resources_current_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -2561,9 +2561,9 @@ pub fn xcb_randr_get_screen_resources_current_names_end (R : *mut get_screen_res
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_randr_get_screen_resources_current_reply (c : *mut ffi::base::connection,
-                                                        cookie : get_screen_resources_current_cookie,
-                                                        e : *mut *mut ffi::base::generic_error) -> *mut get_screen_resources_current_reply;
+pub fn xcb_randr_get_screen_resources_current_reply (c : *mut ffi::base::xcb_connection_t,
+                                                        cookie : xcb_randr_get_screen_resources_current_cookie_t,
+                                                        e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_get_screen_resources_current_reply_t;
 
 pub fn xcb_randr_set_crtc_transform_sizeof (_buffer :  *mut c_void,
                                      filter_params_len :  u32) -> c_int;
@@ -2579,13 +2579,13 @@ pub fn xcb_randr_set_crtc_transform_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_randr_set_crtc_transform_checked (c : *mut ffi::base::connection,
-                                                crtc :  crtc,
-                                                transform :  ffi::render::transform,
+pub fn xcb_randr_set_crtc_transform_checked (c : *mut ffi::base::xcb_connection_t,
+                                                crtc :  xcb_randr_crtc_t,
+                                                transform :  ffi::render::xcb_render_transform_t,
                                                 filter_len :  u16,
                                                 filter_name : *mut c_char,
                                                 filter_params_len :  u32,
-                                                filter_params : *mut ffi::render::fixed) -> ffi::base::void_cookie;
+                                                filter_params : *mut ffi::render::xcb_render_fixed_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2595,13 +2595,13 @@ pub fn xcb_randr_set_crtc_transform_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_set_crtc_transform (c : *mut ffi::base::connection,
-                                        crtc :  crtc,
-                                        transform :  ffi::render::transform,
+pub fn xcb_randr_set_crtc_transform (c : *mut ffi::base::xcb_connection_t,
+                                        crtc :  xcb_randr_crtc_t,
+                                        transform :  ffi::render::xcb_render_transform_t,
                                         filter_len :  u16,
                                         filter_name : *mut c_char,
                                         filter_params_len :  u32,
-                                        filter_params : *mut ffi::render::fixed) -> ffi::base::void_cookie;
+                                        filter_params : *mut ffi::render::xcb_render_fixed_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_randr_get_crtc_transform_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -2613,8 +2613,8 @@ pub fn xcb_randr_get_crtc_transform_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_get_crtc_transform (c : *mut ffi::base::connection,
-                                        crtc :  crtc) -> get_crtc_transform_cookie;
+pub fn xcb_randr_get_crtc_transform (c : *mut ffi::base::xcb_connection_t,
+                                        crtc :  xcb_randr_crtc_t) -> xcb_randr_get_crtc_transform_cookie_t;
 
 /**
  *
@@ -2627,46 +2627,46 @@ pub fn xcb_randr_get_crtc_transform (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_randr_get_crtc_transform_unchecked (c : *mut ffi::base::connection,
-                                                  crtc :  crtc) -> get_crtc_transform_cookie;
+pub fn xcb_randr_get_crtc_transform_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                                  crtc :  xcb_randr_crtc_t) -> xcb_randr_get_crtc_transform_cookie_t;
 
-pub fn xcb_randr_get_crtc_transform_pending_filter_name (R : *mut get_crtc_transform_reply) -> *mut c_char;
-
-
-pub fn xcb_randr_get_crtc_transform_pending_filter_name_length (R : *mut get_crtc_transform_reply) -> c_int;
+pub fn xcb_randr_get_crtc_transform_pending_filter_name (R : *mut xcb_randr_get_crtc_transform_reply_t) -> *mut c_char;
 
 
-pub fn xcb_randr_get_crtc_transform_pending_filter_name_end (R : *mut get_crtc_transform_reply) -> ffi::base::generic_iterator;
-
-pub fn xcb_randr_get_crtc_transform_pending_params (R : *mut get_crtc_transform_reply) -> *mut ffi::render::fixed;
+pub fn xcb_randr_get_crtc_transform_pending_filter_name_length (R : *mut xcb_randr_get_crtc_transform_reply_t) -> c_int;
 
 
-pub fn xcb_randr_get_crtc_transform_pending_params_length (R : *mut get_crtc_transform_reply) -> c_int;
+pub fn xcb_randr_get_crtc_transform_pending_filter_name_end (R : *mut xcb_randr_get_crtc_transform_reply_t) -> ffi::base::xcb_generic_iterator_t;
+
+pub fn xcb_randr_get_crtc_transform_pending_params (R : *mut xcb_randr_get_crtc_transform_reply_t) -> *mut ffi::render::xcb_render_fixed_t;
 
 
-pub fn xcb_randr_get_crtc_transform_pending_params_end (R : *mut get_crtc_transform_reply) -> ffi::base::generic_iterator;
-
-pub fn xcb_randr_get_crtc_transform_current_filter_name (R : *mut get_crtc_transform_reply) -> *mut c_char;
+pub fn xcb_randr_get_crtc_transform_pending_params_length (R : *mut xcb_randr_get_crtc_transform_reply_t) -> c_int;
 
 
-pub fn xcb_randr_get_crtc_transform_current_filter_name_length (R : *mut get_crtc_transform_reply) -> c_int;
+pub fn xcb_randr_get_crtc_transform_pending_params_end (R : *mut xcb_randr_get_crtc_transform_reply_t) -> ffi::base::xcb_generic_iterator_t;
+
+pub fn xcb_randr_get_crtc_transform_current_filter_name (R : *mut xcb_randr_get_crtc_transform_reply_t) -> *mut c_char;
 
 
-pub fn xcb_randr_get_crtc_transform_current_filter_name_end (R : *mut get_crtc_transform_reply) -> ffi::base::generic_iterator;
-
-pub fn xcb_randr_get_crtc_transform_current_params (R : *mut get_crtc_transform_reply) -> *mut ffi::render::fixed;
+pub fn xcb_randr_get_crtc_transform_current_filter_name_length (R : *mut xcb_randr_get_crtc_transform_reply_t) -> c_int;
 
 
-pub fn xcb_randr_get_crtc_transform_current_params_length (R : *mut get_crtc_transform_reply) -> c_int;
+pub fn xcb_randr_get_crtc_transform_current_filter_name_end (R : *mut xcb_randr_get_crtc_transform_reply_t) -> ffi::base::xcb_generic_iterator_t;
+
+pub fn xcb_randr_get_crtc_transform_current_params (R : *mut xcb_randr_get_crtc_transform_reply_t) -> *mut ffi::render::xcb_render_fixed_t;
 
 
-pub fn xcb_randr_get_crtc_transform_current_params_end (R : *mut get_crtc_transform_reply) -> ffi::base::generic_iterator;
+pub fn xcb_randr_get_crtc_transform_current_params_length (R : *mut xcb_randr_get_crtc_transform_reply_t) -> c_int;
+
+
+pub fn xcb_randr_get_crtc_transform_current_params_end (R : *mut xcb_randr_get_crtc_transform_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -2676,9 +2676,9 @@ pub fn xcb_randr_get_crtc_transform_current_params_end (R : *mut get_crtc_transf
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_randr_get_crtc_transform_reply (c : *mut ffi::base::connection,
-                                              cookie : get_crtc_transform_cookie,
-                                              e : *mut *mut ffi::base::generic_error) -> *mut get_crtc_transform_reply;
+pub fn xcb_randr_get_crtc_transform_reply (c : *mut ffi::base::xcb_connection_t,
+                                              cookie : xcb_randr_get_crtc_transform_cookie_t,
+                                              e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_get_crtc_transform_reply_t;
 
 /**
  *
@@ -2688,8 +2688,8 @@ pub fn xcb_randr_get_crtc_transform_reply (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_get_panning (c : *mut ffi::base::connection,
-                                 crtc :  crtc) -> get_panning_cookie;
+pub fn xcb_randr_get_panning (c : *mut ffi::base::xcb_connection_t,
+                                 crtc :  xcb_randr_crtc_t) -> xcb_randr_get_panning_cookie_t;
 
 /**
  *
@@ -2702,14 +2702,14 @@ pub fn xcb_randr_get_panning (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_randr_get_panning_unchecked (c : *mut ffi::base::connection,
-                                           crtc :  crtc) -> get_panning_cookie;
+pub fn xcb_randr_get_panning_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                           crtc :  xcb_randr_crtc_t) -> xcb_randr_get_panning_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -2719,9 +2719,9 @@ pub fn xcb_randr_get_panning_unchecked (c : *mut ffi::base::connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_randr_get_panning_reply (c : *mut ffi::base::connection,
-                                       cookie : get_panning_cookie,
-                                       e : *mut *mut ffi::base::generic_error) -> *mut get_panning_reply;
+pub fn xcb_randr_get_panning_reply (c : *mut ffi::base::xcb_connection_t,
+                                       cookie : xcb_randr_get_panning_cookie_t,
+                                       e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_get_panning_reply_t;
 
 /**
  *
@@ -2731,9 +2731,9 @@ pub fn xcb_randr_get_panning_reply (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_set_panning (c : *mut ffi::base::connection,
-                                 crtc :  crtc,
-                                 timestamp :  ffi::xproto::timestamp,
+pub fn xcb_randr_set_panning (c : *mut ffi::base::xcb_connection_t,
+                                 crtc :  xcb_randr_crtc_t,
+                                 timestamp :  ffi::xproto::xcb_timestamp_t,
                                  left :  u16,
                                  top :  u16,
                                  width :  u16,
@@ -2745,7 +2745,7 @@ pub fn xcb_randr_set_panning (c : *mut ffi::base::connection,
                                  border_left :  i16,
                                  border_top :  i16,
                                  border_right :  i16,
-                                 border_bottom :  i16) -> set_panning_cookie;
+                                 border_bottom :  i16) -> xcb_randr_set_panning_cookie_t;
 
 /**
  *
@@ -2758,9 +2758,9 @@ pub fn xcb_randr_set_panning (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_randr_set_panning_unchecked (c : *mut ffi::base::connection,
-                                           crtc :  crtc,
-                                           timestamp :  ffi::xproto::timestamp,
+pub fn xcb_randr_set_panning_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                           crtc :  xcb_randr_crtc_t,
+                                           timestamp :  ffi::xproto::xcb_timestamp_t,
                                            left :  u16,
                                            top :  u16,
                                            width :  u16,
@@ -2772,13 +2772,13 @@ pub fn xcb_randr_set_panning_unchecked (c : *mut ffi::base::connection,
                                            border_left :  i16,
                                            border_top :  i16,
                                            border_right :  i16,
-                                           border_bottom :  i16) -> set_panning_cookie;
+                                           border_bottom :  i16) -> xcb_randr_set_panning_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -2788,9 +2788,9 @@ pub fn xcb_randr_set_panning_unchecked (c : *mut ffi::base::connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_randr_set_panning_reply (c : *mut ffi::base::connection,
-                                       cookie : set_panning_cookie,
-                                       e : *mut *mut ffi::base::generic_error) -> *mut set_panning_reply;
+pub fn xcb_randr_set_panning_reply (c : *mut ffi::base::xcb_connection_t,
+                                       cookie : xcb_randr_set_panning_cookie_t,
+                                       e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_set_panning_reply_t;
 
 /**
  *
@@ -2803,9 +2803,9 @@ pub fn xcb_randr_set_panning_reply (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_randr_set_output_primary_checked (c : *mut ffi::base::connection,
-                                                window :  ffi::xproto::window,
-                                                output :  output) -> ffi::base::void_cookie;
+pub fn xcb_randr_set_output_primary_checked (c : *mut ffi::base::xcb_connection_t,
+                                                window :  ffi::xproto::xcb_window_t,
+                                                output :  xcb_randr_output_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2815,9 +2815,9 @@ pub fn xcb_randr_set_output_primary_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_set_output_primary (c : *mut ffi::base::connection,
-                                        window :  ffi::xproto::window,
-                                        output :  output) -> ffi::base::void_cookie;
+pub fn xcb_randr_set_output_primary (c : *mut ffi::base::xcb_connection_t,
+                                        window :  ffi::xproto::xcb_window_t,
+                                        output :  xcb_randr_output_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2827,8 +2827,8 @@ pub fn xcb_randr_set_output_primary (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_randr_get_output_primary (c : *mut ffi::base::connection,
-                                        window :  ffi::xproto::window) -> get_output_primary_cookie;
+pub fn xcb_randr_get_output_primary (c : *mut ffi::base::xcb_connection_t,
+                                        window :  ffi::xproto::xcb_window_t) -> xcb_randr_get_output_primary_cookie_t;
 
 /**
  *
@@ -2841,14 +2841,14 @@ pub fn xcb_randr_get_output_primary (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_randr_get_output_primary_unchecked (c : *mut ffi::base::connection,
-                                                  window :  ffi::xproto::window) -> get_output_primary_cookie;
+pub fn xcb_randr_get_output_primary_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                                  window :  ffi::xproto::xcb_window_t) -> xcb_randr_get_output_primary_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -2858,100 +2858,100 @@ pub fn xcb_randr_get_output_primary_unchecked (c : *mut ffi::base::connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_randr_get_output_primary_reply (c : *mut ffi::base::connection,
-                                              cookie : get_output_primary_cookie,
-                                              e : *mut *mut ffi::base::generic_error) -> *mut get_output_primary_reply;
+pub fn xcb_randr_get_output_primary_reply (c : *mut ffi::base::xcb_connection_t,
+                                              cookie : xcb_randr_get_output_primary_cookie_t,
+                                              e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_get_output_primary_reply_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a crtc_change_iterator
+ * @param i Pointer to a xcb_randr_crtc_change_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(crtc_change)
+ * element. The member index is increased by sizeof(xcb_randr_crtc_change_t)
  *
  *
  */
-pub fn xcb_randr_crtc_change_next (i:*mut crtc_change_iterator) -> c_void;
+pub fn xcb_randr_crtc_change_next (i:*mut xcb_randr_crtc_change_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An crtc_change_iterator
+ * @param i An xcb_randr_crtc_change_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_randr_crtc_change_end (i:crtc_change_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_randr_crtc_change_end (i:xcb_randr_crtc_change_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a output_change_iterator
+ * @param i Pointer to a xcb_randr_output_change_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(output_change)
+ * element. The member index is increased by sizeof(xcb_randr_output_change_t)
  *
  *
  */
-pub fn xcb_randr_output_change_next (i:*mut output_change_iterator) -> c_void;
+pub fn xcb_randr_output_change_next (i:*mut xcb_randr_output_change_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An output_change_iterator
+ * @param i An xcb_randr_output_change_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_randr_output_change_end (i:output_change_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_randr_output_change_end (i:xcb_randr_output_change_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a output_property_iterator
+ * @param i Pointer to a xcb_randr_output_property_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(output_property)
+ * element. The member index is increased by sizeof(xcb_randr_output_property_t)
  *
  *
  */
-pub fn xcb_randr_output_property_next (i:*mut output_property_iterator) -> c_void;
+pub fn xcb_randr_output_property_next (i:*mut xcb_randr_output_property_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An output_property_iterator
+ * @param i An xcb_randr_output_property_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_randr_output_property_end (i:output_property_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_randr_output_property_end (i:xcb_randr_output_property_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a notify_data_iterator
+ * @param i Pointer to a xcb_randr_notify_data_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(notify_data)
+ * element. The member index is increased by sizeof(xcb_randr_notify_data_t)
  *
  *
  */
-pub fn xcb_randr_notify_data_next (i:*mut notify_data_iterator) -> c_void;
+pub fn xcb_randr_notify_data_next (i:*mut xcb_randr_notify_data_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An notify_data_iterator
+ * @param i An xcb_randr_notify_data_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_randr_notify_data_end (i:notify_data_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_randr_notify_data_end (i:xcb_randr_notify_data_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 }
 

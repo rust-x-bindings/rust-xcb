@@ -16,13 +16,13 @@ pub static TEST_MINOR_VERSION : c_uint = 1;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_version_cookie {
+pub struct xcb_test_get_version_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_version_request {
+pub struct xcb_test_get_version_request_t {
      pub major_opcode :    u8,
      pub minor_opcode :    u8,
      pub length :          u16,
@@ -31,13 +31,13 @@ pub struct get_version_request {
      pub minor_version :   u16
 }
 
-impl Copy for get_version_request {}
-impl Clone for get_version_request {
-    fn clone(&self) -> get_version_request { *self }
+impl Copy for xcb_test_get_version_request_t {}
+impl Clone for xcb_test_get_version_request_t {
+    fn clone(&self) -> xcb_test_get_version_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_version_reply {
+pub struct xcb_test_get_version_reply_t {
      pub response_type :   u8,
      pub major_version :   u8,
      pub sequence :        u16,
@@ -45,48 +45,48 @@ pub struct get_version_reply {
      pub minor_version :   u16
 }
 
-impl Copy for get_version_reply {}
-impl Clone for get_version_reply {
-    fn clone(&self) -> get_version_reply { *self }
+impl Copy for xcb_test_get_version_reply_t {}
+impl Clone for xcb_test_get_version_reply_t {
+    fn clone(&self) -> xcb_test_get_version_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct compare_cursor_cookie {
+pub struct xcb_test_compare_cursor_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct compare_cursor_request {
+pub struct xcb_test_compare_cursor_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub window :         ffi::xproto::window,
-     pub cursor :         ffi::xproto::cursor
+     pub window :         ffi::xproto::xcb_window_t,
+     pub cursor :         ffi::xproto::xcb_cursor_t
 }
 
-impl Copy for compare_cursor_request {}
-impl Clone for compare_cursor_request {
-    fn clone(&self) -> compare_cursor_request { *self }
+impl Copy for xcb_test_compare_cursor_request_t {}
+impl Clone for xcb_test_compare_cursor_request_t {
+    fn clone(&self) -> xcb_test_compare_cursor_request_t { *self }
 }
 
 #[repr(C)]
-pub struct compare_cursor_reply {
+pub struct xcb_test_compare_cursor_reply_t {
      pub response_type :   u8,
      pub same :            u8,
      pub sequence :        u16,
      pub length :          u32
 }
 
-impl Copy for compare_cursor_reply {}
-impl Clone for compare_cursor_reply {
-    fn clone(&self) -> compare_cursor_reply { *self }
+impl Copy for xcb_test_compare_cursor_reply_t {}
+impl Clone for xcb_test_compare_cursor_reply_t {
+    fn clone(&self) -> xcb_test_compare_cursor_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct fake_input_request {
+pub struct xcb_test_fake_input_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
@@ -94,7 +94,7 @@ pub struct fake_input_request {
      pub detail :         u8,
      pub pad0 :           [u8; 2],
      pub time :           u32,
-     pub root :           ffi::xproto::window,
+     pub root :           ffi::xproto::xcb_window_t,
      pub pad1 :           [u8; 8],
      pub rootX :          i16,
      pub rootY :          i16,
@@ -102,14 +102,14 @@ pub struct fake_input_request {
      pub deviceid :       u8
 }
 
-impl Copy for fake_input_request {}
-impl Clone for fake_input_request {
-    fn clone(&self) -> fake_input_request { *self }
+impl Copy for xcb_test_fake_input_request_t {}
+impl Clone for xcb_test_fake_input_request_t {
+    fn clone(&self) -> xcb_test_fake_input_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct grab_control_request {
+pub struct xcb_test_grab_control_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
@@ -117,9 +117,9 @@ pub struct grab_control_request {
      pub pad0 :           [u8; 3]
 }
 
-impl Copy for grab_control_request {}
-impl Clone for grab_control_request {
-    fn clone(&self) -> grab_control_request { *self }
+impl Copy for xcb_test_grab_control_request_t {}
+impl Clone for xcb_test_grab_control_request_t {
+    fn clone(&self) -> xcb_test_grab_control_request_t { *self }
 }
 #[link(name="xcb-xtest")]
 extern "C" {
@@ -132,9 +132,9 @@ extern "C" {
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_test_get_version (c : *mut ffi::base::connection,
+pub fn xcb_test_get_version (c : *mut ffi::base::xcb_connection_t,
                                 major_version :  u8,
-                                minor_version :  u16) -> get_version_cookie;
+                                minor_version :  u16) -> xcb_test_get_version_cookie_t;
 
 /**
  *
@@ -147,15 +147,15 @@ pub fn xcb_test_get_version (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_test_get_version_unchecked (c : *mut ffi::base::connection,
+pub fn xcb_test_get_version_unchecked (c : *mut ffi::base::xcb_connection_t,
                                           major_version :  u8,
-                                          minor_version :  u16) -> get_version_cookie;
+                                          minor_version :  u16) -> xcb_test_get_version_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -165,9 +165,9 @@ pub fn xcb_test_get_version_unchecked (c : *mut ffi::base::connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_test_get_version_reply (c : *mut ffi::base::connection,
-                                      cookie : get_version_cookie,
-                                      e : *mut *mut ffi::base::generic_error) -> *mut get_version_reply;
+pub fn xcb_test_get_version_reply (c : *mut ffi::base::xcb_connection_t,
+                                      cookie : xcb_test_get_version_cookie_t,
+                                      e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_test_get_version_reply_t;
 
 /**
  *
@@ -177,9 +177,9 @@ pub fn xcb_test_get_version_reply (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_test_compare_cursor (c : *mut ffi::base::connection,
-                                   window :  ffi::xproto::window,
-                                   cursor :  ffi::xproto::cursor) -> compare_cursor_cookie;
+pub fn xcb_test_compare_cursor (c : *mut ffi::base::xcb_connection_t,
+                                   window :  ffi::xproto::xcb_window_t,
+                                   cursor :  ffi::xproto::xcb_cursor_t) -> xcb_test_compare_cursor_cookie_t;
 
 /**
  *
@@ -192,15 +192,15 @@ pub fn xcb_test_compare_cursor (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_test_compare_cursor_unchecked (c : *mut ffi::base::connection,
-                                             window :  ffi::xproto::window,
-                                             cursor :  ffi::xproto::cursor) -> compare_cursor_cookie;
+pub fn xcb_test_compare_cursor_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                             window :  ffi::xproto::xcb_window_t,
+                                             cursor :  ffi::xproto::xcb_cursor_t) -> xcb_test_compare_cursor_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -210,9 +210,9 @@ pub fn xcb_test_compare_cursor_unchecked (c : *mut ffi::base::connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_test_compare_cursor_reply (c : *mut ffi::base::connection,
-                                         cookie : compare_cursor_cookie,
-                                         e : *mut *mut ffi::base::generic_error) -> *mut compare_cursor_reply;
+pub fn xcb_test_compare_cursor_reply (c : *mut ffi::base::xcb_connection_t,
+                                         cookie : xcb_test_compare_cursor_cookie_t,
+                                         e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_test_compare_cursor_reply_t;
 
 /**
  *
@@ -225,14 +225,14 @@ pub fn xcb_test_compare_cursor_reply (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_test_fake_input_checked (c : *mut ffi::base::connection,
+pub fn xcb_test_fake_input_checked (c : *mut ffi::base::xcb_connection_t,
                                        type_ :  u8,
                                        detail :  u8,
                                        time :  u32,
-                                       root :  ffi::xproto::window,
+                                       root :  ffi::xproto::xcb_window_t,
                                        rootX :  i16,
                                        rootY :  i16,
-                                       deviceid :  u8) -> ffi::base::void_cookie;
+                                       deviceid :  u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -242,14 +242,14 @@ pub fn xcb_test_fake_input_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_test_fake_input (c : *mut ffi::base::connection,
+pub fn xcb_test_fake_input (c : *mut ffi::base::xcb_connection_t,
                                type_ :  u8,
                                detail :  u8,
                                time :  u32,
-                               root :  ffi::xproto::window,
+                               root :  ffi::xproto::xcb_window_t,
                                rootX :  i16,
                                rootY :  i16,
-                               deviceid :  u8) -> ffi::base::void_cookie;
+                               deviceid :  u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -262,8 +262,8 @@ pub fn xcb_test_fake_input (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_test_grab_control_checked (c : *mut ffi::base::connection,
-                                         impervious :  u8) -> ffi::base::void_cookie;
+pub fn xcb_test_grab_control_checked (c : *mut ffi::base::xcb_connection_t,
+                                         impervious :  u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -273,7 +273,7 @@ pub fn xcb_test_grab_control_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_test_grab_control (c : *mut ffi::base::connection,
-                                 impervious :  u8) -> ffi::base::void_cookie;
+pub fn xcb_test_grab_control (c : *mut ffi::base::xcb_connection_t,
+                                 impervious :  u8) -> ffi::base::xcb_void_cookie_t;
 }
 

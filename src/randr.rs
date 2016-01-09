@@ -19,118 +19,118 @@ use std::iter::Iterator;
 
 use xproto;
 use render;
-pub type Mode = mode;
+pub type Mode = xcb_randr_mode_t;
 
-pub type ModeIterator = mode_iterator;
+pub type ModeIterator = xcb_randr_mode_iterator_t;
 
-pub type CrtcIterator = crtc_iterator;
+pub type CrtcIterator = xcb_randr_crtc_iterator_t;
 
-pub type OutputIterator = output_iterator;
+pub type OutputIterator = xcb_randr_output_iterator_t;
 
 /** Opcode for xcb_randr_bad_output. */
 pub static XCB_RANDR_BAD_OUTPUT : u8 = 0;
-pub struct BadOutputError { pub base : base::Error<bad_output_error> }
+pub struct BadOutputError { pub base : base::Error<xcb_randr_bad_output_error_t> }
 /** Opcode for xcb_randr_bad_crtc. */
 pub static XCB_RANDR_BAD_CRTC : u8 = 1;
-pub struct BadCrtcError { pub base : base::Error<bad_crtc_error> }
+pub struct BadCrtcError { pub base : base::Error<xcb_randr_bad_crtc_error_t> }
 /** Opcode for xcb_randr_bad_mode. */
 pub static XCB_RANDR_BAD_MODE : u8 = 2;
-pub struct BadModeError { pub base : base::Error<bad_mode_error> }
+pub struct BadModeError { pub base : base::Error<xcb_randr_bad_mode_error_t> }
 
-pub type rotation = c_uint;//{
-    pub static XCB_RANDR_ROTATION_ROTATE_0 : rotation = 1;
-    pub static XCB_RANDR_ROTATION_ROTATE_90 : rotation = 2;
-    pub static XCB_RANDR_ROTATION_ROTATE_180 : rotation = 4;
-    pub static XCB_RANDR_ROTATION_ROTATE_270 : rotation = 8;
-    pub static XCB_RANDR_ROTATION_REFLECT_X : rotation = 16;
-    pub static XCB_RANDR_ROTATION_REFLECT_Y : rotation = 32;
+pub type xcb_randr_rotation_t = c_uint;//{
+    pub static XCB_RANDR_ROTATION_ROTATE_0 : xcb_randr_rotation_t = 1;
+    pub static XCB_RANDR_ROTATION_ROTATE_90 : xcb_randr_rotation_t = 2;
+    pub static XCB_RANDR_ROTATION_ROTATE_180 : xcb_randr_rotation_t = 4;
+    pub static XCB_RANDR_ROTATION_ROTATE_270 : xcb_randr_rotation_t = 8;
+    pub static XCB_RANDR_ROTATION_REFLECT_X : xcb_randr_rotation_t = 16;
+    pub static XCB_RANDR_ROTATION_REFLECT_Y : xcb_randr_rotation_t = 32;
 //}
-pub struct ScreenSize {pub base : base::Struct<screen_size> }
+pub struct ScreenSize {pub base : base::Struct<xcb_randr_screen_size_t> }
 
-pub type ScreenSizeIterator = screen_size_iterator;
+pub type ScreenSizeIterator = xcb_randr_screen_size_iterator_t;
 
-pub type RefreshRatesIterator = refresh_rates_iterator;
+pub type RefreshRatesIterator = xcb_randr_refresh_rates_iterator_t;
 
-pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, query_version_cookie> }
+pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_randr_query_version_cookie_t> }
 
 /** Opcode for xcb_randr_query_version. */
 pub static XCB_RANDR_QUERY_VERSION : u8 = 0;
-pub struct QueryVersionReply { base:  base::Reply<query_version_reply> }
-fn mk_reply_query_version_reply(reply:*mut query_version_reply) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
+pub struct QueryVersionReply { base:  base::Reply<xcb_randr_query_version_reply_t> }
+fn mk_reply_xcb_randr_query_version_reply_t(reply:*mut xcb_randr_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
 
-pub type set_config = c_uint;//{
-    pub static XCB_RANDR_SET_CONFIG_SUCCESS : set_config = 0;
-    pub static XCB_RANDR_SET_CONFIG_INVALID_CONFIG_TIME : set_config = 1;
-    pub static XCB_RANDR_SET_CONFIG_INVALID_TIME : set_config = 2;
-    pub static XCB_RANDR_SET_CONFIG_FAILED : set_config = 3;
+pub type xcb_randr_set_config_t = c_uint;//{
+    pub static XCB_RANDR_SET_CONFIG_SUCCESS : xcb_randr_set_config_t = 0;
+    pub static XCB_RANDR_SET_CONFIG_INVALID_CONFIG_TIME : xcb_randr_set_config_t = 1;
+    pub static XCB_RANDR_SET_CONFIG_INVALID_TIME : xcb_randr_set_config_t = 2;
+    pub static XCB_RANDR_SET_CONFIG_FAILED : xcb_randr_set_config_t = 3;
 //}
-pub struct  SetScreenConfigCookie<'s> { pub base : base::Cookie<'s, set_screen_config_cookie> }
+pub struct  SetScreenConfigCookie<'s> { pub base : base::Cookie<'s, xcb_randr_set_screen_config_cookie_t> }
 
 /** Opcode for xcb_randr_set_screen_config. */
 pub static XCB_RANDR_SET_SCREEN_CONFIG : u8 = 2;
-pub struct SetScreenConfigReply { base:  base::Reply<set_screen_config_reply> }
-fn mk_reply_set_screen_config_reply(reply:*mut set_screen_config_reply) -> SetScreenConfigReply { SetScreenConfigReply { base : base::mk_reply(reply) } }
+pub struct SetScreenConfigReply { base:  base::Reply<xcb_randr_set_screen_config_reply_t> }
+fn mk_reply_xcb_randr_set_screen_config_reply_t(reply:*mut xcb_randr_set_screen_config_reply_t) -> SetScreenConfigReply { SetScreenConfigReply { base : base::mk_reply(reply) } }
 
-pub type notify_mask = c_uint;//{
-    pub static XCB_RANDR_NOTIFY_MASK_SCREEN_CHANGE : notify_mask = 1;
-    pub static XCB_RANDR_NOTIFY_MASK_CRTC_CHANGE : notify_mask = 2;
-    pub static XCB_RANDR_NOTIFY_MASK_OUTPUT_CHANGE : notify_mask = 4;
-    pub static XCB_RANDR_NOTIFY_MASK_OUTPUT_PROPERTY : notify_mask = 8;
+pub type xcb_randr_notify_mask_t = c_uint;//{
+    pub static XCB_RANDR_NOTIFY_MASK_SCREEN_CHANGE : xcb_randr_notify_mask_t = 1;
+    pub static XCB_RANDR_NOTIFY_MASK_CRTC_CHANGE : xcb_randr_notify_mask_t = 2;
+    pub static XCB_RANDR_NOTIFY_MASK_OUTPUT_CHANGE : xcb_randr_notify_mask_t = 4;
+    pub static XCB_RANDR_NOTIFY_MASK_OUTPUT_PROPERTY : xcb_randr_notify_mask_t = 8;
 //}
 /** Opcode for xcb_randr_select_input. */
 pub static XCB_RANDR_SELECT_INPUT : u8 = 4;
-pub struct  GetScreenInfoCookie<'s> { pub base : base::Cookie<'s, get_screen_info_cookie> }
+pub struct  GetScreenInfoCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_screen_info_cookie_t> }
 
 /** Opcode for xcb_randr_get_screen_info. */
 pub static XCB_RANDR_GET_SCREEN_INFO : u8 = 5;
-pub struct  GetScreenSizeRangeCookie<'s> { pub base : base::Cookie<'s, get_screen_size_range_cookie> }
+pub struct  GetScreenSizeRangeCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_screen_size_range_cookie_t> }
 
 /** Opcode for xcb_randr_get_screen_size_range. */
 pub static XCB_RANDR_GET_SCREEN_SIZE_RANGE : u8 = 6;
-pub struct GetScreenSizeRangeReply { base:  base::Reply<get_screen_size_range_reply> }
-fn mk_reply_get_screen_size_range_reply(reply:*mut get_screen_size_range_reply) -> GetScreenSizeRangeReply { GetScreenSizeRangeReply { base : base::mk_reply(reply) } }
+pub struct GetScreenSizeRangeReply { base:  base::Reply<xcb_randr_get_screen_size_range_reply_t> }
+fn mk_reply_xcb_randr_get_screen_size_range_reply_t(reply:*mut xcb_randr_get_screen_size_range_reply_t) -> GetScreenSizeRangeReply { GetScreenSizeRangeReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_randr_set_screen_size. */
 pub static XCB_RANDR_SET_SCREEN_SIZE : u8 = 7;
 
-pub type mode_flag = c_uint;//{
-    pub static XCB_RANDR_MODE_FLAG_HSYNC_POSITIVE : mode_flag = 1;
-    pub static XCB_RANDR_MODE_FLAG_HSYNC_NEGATIVE : mode_flag = 2;
-    pub static XCB_RANDR_MODE_FLAG_VSYNC_POSITIVE : mode_flag = 4;
-    pub static XCB_RANDR_MODE_FLAG_VSYNC_NEGATIVE : mode_flag = 8;
-    pub static XCB_RANDR_MODE_FLAG_INTERLACE : mode_flag = 16;
-    pub static XCB_RANDR_MODE_FLAG_DOUBLE_SCAN : mode_flag = 32;
-    pub static XCB_RANDR_MODE_FLAG_CSYNC : mode_flag = 64;
-    pub static XCB_RANDR_MODE_FLAG_CSYNC_POSITIVE : mode_flag = 128;
-    pub static XCB_RANDR_MODE_FLAG_CSYNC_NEGATIVE : mode_flag = 256;
-    pub static XCB_RANDR_MODE_FLAG_HSKEW_PRESENT : mode_flag = 512;
-    pub static XCB_RANDR_MODE_FLAG_BCAST : mode_flag = 1024;
-    pub static XCB_RANDR_MODE_FLAG_PIXEL_MULTIPLEX : mode_flag = 2048;
-    pub static XCB_RANDR_MODE_FLAG_DOUBLE_CLOCK : mode_flag = 4096;
-    pub static XCB_RANDR_MODE_FLAG_HALVE_CLOCK : mode_flag = 8192;
+pub type xcb_randr_mode_flag_t = c_uint;//{
+    pub static XCB_RANDR_MODE_FLAG_HSYNC_POSITIVE : xcb_randr_mode_flag_t = 1;
+    pub static XCB_RANDR_MODE_FLAG_HSYNC_NEGATIVE : xcb_randr_mode_flag_t = 2;
+    pub static XCB_RANDR_MODE_FLAG_VSYNC_POSITIVE : xcb_randr_mode_flag_t = 4;
+    pub static XCB_RANDR_MODE_FLAG_VSYNC_NEGATIVE : xcb_randr_mode_flag_t = 8;
+    pub static XCB_RANDR_MODE_FLAG_INTERLACE : xcb_randr_mode_flag_t = 16;
+    pub static XCB_RANDR_MODE_FLAG_DOUBLE_SCAN : xcb_randr_mode_flag_t = 32;
+    pub static XCB_RANDR_MODE_FLAG_CSYNC : xcb_randr_mode_flag_t = 64;
+    pub static XCB_RANDR_MODE_FLAG_CSYNC_POSITIVE : xcb_randr_mode_flag_t = 128;
+    pub static XCB_RANDR_MODE_FLAG_CSYNC_NEGATIVE : xcb_randr_mode_flag_t = 256;
+    pub static XCB_RANDR_MODE_FLAG_HSKEW_PRESENT : xcb_randr_mode_flag_t = 512;
+    pub static XCB_RANDR_MODE_FLAG_BCAST : xcb_randr_mode_flag_t = 1024;
+    pub static XCB_RANDR_MODE_FLAG_PIXEL_MULTIPLEX : xcb_randr_mode_flag_t = 2048;
+    pub static XCB_RANDR_MODE_FLAG_DOUBLE_CLOCK : xcb_randr_mode_flag_t = 4096;
+    pub static XCB_RANDR_MODE_FLAG_HALVE_CLOCK : xcb_randr_mode_flag_t = 8192;
 //}
-pub struct ModeInfo {pub base : base::Struct<mode_info> }
+pub struct ModeInfo {pub base : base::Struct<xcb_randr_mode_info_t> }
 
-pub type ModeInfoIterator = mode_info_iterator;
+pub type ModeInfoIterator = xcb_randr_mode_info_iterator_t;
 
-pub struct  GetScreenResourcesCookie<'s> { pub base : base::Cookie<'s, get_screen_resources_cookie> }
+pub struct  GetScreenResourcesCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_screen_resources_cookie_t> }
 
 /** Opcode for xcb_randr_get_screen_resources. */
 pub static XCB_RANDR_GET_SCREEN_RESOURCES : u8 = 8;
 
-pub type connection = c_uint;//{
-    pub static XCB_RANDR_CONNECTION_CONNECTED : connection = 1;
-    pub static XCB_RANDR_CONNECTION_DISCONNECTED : connection = 2;
-    pub static XCB_RANDR_CONNECTION_UNKNOWN : connection = 3;
+pub type xcb_randr_connection_t = c_uint;//{
+    pub static XCB_RANDR_CONNECTION_CONNECTED : xcb_randr_connection_t = 1;
+    pub static XCB_RANDR_CONNECTION_DISCONNECTED : xcb_randr_connection_t = 2;
+    pub static XCB_RANDR_CONNECTION_UNKNOWN : xcb_randr_connection_t = 3;
 //}
-pub struct  GetOutputInfoCookie<'s> { pub base : base::Cookie<'s, get_output_info_cookie> }
+pub struct  GetOutputInfoCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_output_info_cookie_t> }
 
 /** Opcode for xcb_randr_get_output_info. */
 pub static XCB_RANDR_GET_OUTPUT_INFO : u8 = 9;
-pub struct  ListOutputPropertiesCookie<'s> { pub base : base::Cookie<'s, list_output_properties_cookie> }
+pub struct  ListOutputPropertiesCookie<'s> { pub base : base::Cookie<'s, xcb_randr_list_output_properties_cookie_t> }
 
 /** Opcode for xcb_randr_list_output_properties. */
 pub static XCB_RANDR_LIST_OUTPUT_PROPERTIES : u8 = 10;
-pub struct  QueryOutputPropertyCookie<'s> { pub base : base::Cookie<'s, query_output_property_cookie> }
+pub struct  QueryOutputPropertyCookie<'s> { pub base : base::Cookie<'s, xcb_randr_query_output_property_cookie_t> }
 
 /** Opcode for xcb_randr_query_output_property. */
 pub static XCB_RANDR_QUERY_OUTPUT_PROPERTY : u8 = 11;
@@ -140,103 +140,103 @@ pub static XCB_RANDR_CONFIGURE_OUTPUT_PROPERTY : u8 = 12;
 pub static XCB_RANDR_CHANGE_OUTPUT_PROPERTY : u8 = 13;
 /** Opcode for xcb_randr_delete_output_property. */
 pub static XCB_RANDR_DELETE_OUTPUT_PROPERTY : u8 = 14;
-pub struct  GetOutputPropertyCookie<'s> { pub base : base::Cookie<'s, get_output_property_cookie> }
+pub struct  GetOutputPropertyCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_output_property_cookie_t> }
 
 /** Opcode for xcb_randr_get_output_property. */
 pub static XCB_RANDR_GET_OUTPUT_PROPERTY : u8 = 15;
-pub struct  CreateModeCookie<'s> { pub base : base::Cookie<'s, create_mode_cookie> }
+pub struct  CreateModeCookie<'s> { pub base : base::Cookie<'s, xcb_randr_create_mode_cookie_t> }
 
 /** Opcode for xcb_randr_create_mode. */
 pub static XCB_RANDR_CREATE_MODE : u8 = 16;
-pub struct CreateModeReply { base:  base::Reply<create_mode_reply> }
-fn mk_reply_create_mode_reply(reply:*mut create_mode_reply) -> CreateModeReply { CreateModeReply { base : base::mk_reply(reply) } }
+pub struct CreateModeReply { base:  base::Reply<xcb_randr_create_mode_reply_t> }
+fn mk_reply_xcb_randr_create_mode_reply_t(reply:*mut xcb_randr_create_mode_reply_t) -> CreateModeReply { CreateModeReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_randr_destroy_mode. */
 pub static XCB_RANDR_DESTROY_MODE : u8 = 17;
 /** Opcode for xcb_randr_add_output_mode. */
 pub static XCB_RANDR_ADD_OUTPUT_MODE : u8 = 18;
 /** Opcode for xcb_randr_delete_output_mode. */
 pub static XCB_RANDR_DELETE_OUTPUT_MODE : u8 = 19;
-pub struct  GetCrtcInfoCookie<'s> { pub base : base::Cookie<'s, get_crtc_info_cookie> }
+pub struct  GetCrtcInfoCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_crtc_info_cookie_t> }
 
 /** Opcode for xcb_randr_get_crtc_info. */
 pub static XCB_RANDR_GET_CRTC_INFO : u8 = 20;
-pub struct  SetCrtcConfigCookie<'s> { pub base : base::Cookie<'s, set_crtc_config_cookie> }
+pub struct  SetCrtcConfigCookie<'s> { pub base : base::Cookie<'s, xcb_randr_set_crtc_config_cookie_t> }
 
 /** Opcode for xcb_randr_set_crtc_config. */
 pub static XCB_RANDR_SET_CRTC_CONFIG : u8 = 21;
-pub struct SetCrtcConfigReply { base:  base::Reply<set_crtc_config_reply> }
-fn mk_reply_set_crtc_config_reply(reply:*mut set_crtc_config_reply) -> SetCrtcConfigReply { SetCrtcConfigReply { base : base::mk_reply(reply) } }
-pub struct  GetCrtcGammaSizeCookie<'s> { pub base : base::Cookie<'s, get_crtc_gamma_size_cookie> }
+pub struct SetCrtcConfigReply { base:  base::Reply<xcb_randr_set_crtc_config_reply_t> }
+fn mk_reply_xcb_randr_set_crtc_config_reply_t(reply:*mut xcb_randr_set_crtc_config_reply_t) -> SetCrtcConfigReply { SetCrtcConfigReply { base : base::mk_reply(reply) } }
+pub struct  GetCrtcGammaSizeCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_crtc_gamma_size_cookie_t> }
 
 /** Opcode for xcb_randr_get_crtc_gamma_size. */
 pub static XCB_RANDR_GET_CRTC_GAMMA_SIZE : u8 = 22;
-pub struct GetCrtcGammaSizeReply { base:  base::Reply<get_crtc_gamma_size_reply> }
-fn mk_reply_get_crtc_gamma_size_reply(reply:*mut get_crtc_gamma_size_reply) -> GetCrtcGammaSizeReply { GetCrtcGammaSizeReply { base : base::mk_reply(reply) } }
-pub struct  GetCrtcGammaCookie<'s> { pub base : base::Cookie<'s, get_crtc_gamma_cookie> }
+pub struct GetCrtcGammaSizeReply { base:  base::Reply<xcb_randr_get_crtc_gamma_size_reply_t> }
+fn mk_reply_xcb_randr_get_crtc_gamma_size_reply_t(reply:*mut xcb_randr_get_crtc_gamma_size_reply_t) -> GetCrtcGammaSizeReply { GetCrtcGammaSizeReply { base : base::mk_reply(reply) } }
+pub struct  GetCrtcGammaCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_crtc_gamma_cookie_t> }
 
 /** Opcode for xcb_randr_get_crtc_gamma. */
 pub static XCB_RANDR_GET_CRTC_GAMMA : u8 = 23;
 /** Opcode for xcb_randr_set_crtc_gamma. */
 pub static XCB_RANDR_SET_CRTC_GAMMA : u8 = 24;
-pub struct  GetScreenResourcesCurrentCookie<'s> { pub base : base::Cookie<'s, get_screen_resources_current_cookie> }
+pub struct  GetScreenResourcesCurrentCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_screen_resources_current_cookie_t> }
 
 /** Opcode for xcb_randr_get_screen_resources_current. */
 pub static XCB_RANDR_GET_SCREEN_RESOURCES_CURRENT : u8 = 25;
 /** Opcode for xcb_randr_set_crtc_transform. */
 pub static XCB_RANDR_SET_CRTC_TRANSFORM : u8 = 26;
-pub struct  GetCrtcTransformCookie<'s> { pub base : base::Cookie<'s, get_crtc_transform_cookie> }
+pub struct  GetCrtcTransformCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_crtc_transform_cookie_t> }
 
 /** Opcode for xcb_randr_get_crtc_transform. */
 pub static XCB_RANDR_GET_CRTC_TRANSFORM : u8 = 27;
-pub struct  GetPanningCookie<'s> { pub base : base::Cookie<'s, get_panning_cookie> }
+pub struct  GetPanningCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_panning_cookie_t> }
 
 /** Opcode for xcb_randr_get_panning. */
 pub static XCB_RANDR_GET_PANNING : u8 = 28;
-pub struct GetPanningReply { base:  base::Reply<get_panning_reply> }
-fn mk_reply_get_panning_reply(reply:*mut get_panning_reply) -> GetPanningReply { GetPanningReply { base : base::mk_reply(reply) } }
-pub struct  SetPanningCookie<'s> { pub base : base::Cookie<'s, set_panning_cookie> }
+pub struct GetPanningReply { base:  base::Reply<xcb_randr_get_panning_reply_t> }
+fn mk_reply_xcb_randr_get_panning_reply_t(reply:*mut xcb_randr_get_panning_reply_t) -> GetPanningReply { GetPanningReply { base : base::mk_reply(reply) } }
+pub struct  SetPanningCookie<'s> { pub base : base::Cookie<'s, xcb_randr_set_panning_cookie_t> }
 
 /** Opcode for xcb_randr_set_panning. */
 pub static XCB_RANDR_SET_PANNING : u8 = 29;
-pub struct SetPanningReply { base:  base::Reply<set_panning_reply> }
-fn mk_reply_set_panning_reply(reply:*mut set_panning_reply) -> SetPanningReply { SetPanningReply { base : base::mk_reply(reply) } }
+pub struct SetPanningReply { base:  base::Reply<xcb_randr_set_panning_reply_t> }
+fn mk_reply_xcb_randr_set_panning_reply_t(reply:*mut xcb_randr_set_panning_reply_t) -> SetPanningReply { SetPanningReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_randr_set_output_primary. */
 pub static XCB_RANDR_SET_OUTPUT_PRIMARY : u8 = 30;
-pub struct  GetOutputPrimaryCookie<'s> { pub base : base::Cookie<'s, get_output_primary_cookie> }
+pub struct  GetOutputPrimaryCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_output_primary_cookie_t> }
 
 /** Opcode for xcb_randr_get_output_primary. */
 pub static XCB_RANDR_GET_OUTPUT_PRIMARY : u8 = 31;
-pub struct GetOutputPrimaryReply { base:  base::Reply<get_output_primary_reply> }
-fn mk_reply_get_output_primary_reply(reply:*mut get_output_primary_reply) -> GetOutputPrimaryReply { GetOutputPrimaryReply { base : base::mk_reply(reply) } }
+pub struct GetOutputPrimaryReply { base:  base::Reply<xcb_randr_get_output_primary_reply_t> }
+fn mk_reply_xcb_randr_get_output_primary_reply_t(reply:*mut xcb_randr_get_output_primary_reply_t) -> GetOutputPrimaryReply { GetOutputPrimaryReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_randr_screen_change_notify. */
 pub static XCB_RANDR_SCREEN_CHANGE_NOTIFY : u8 = 0;
-pub struct ScreenChangeNotifyEvent {pub base : base::Event<screen_change_notify_event>}
+pub struct ScreenChangeNotifyEvent {pub base : base::Event<xcb_randr_screen_change_notify_event_t>}
 
-pub type notify = c_uint;//{
-    pub static XCB_RANDR_NOTIFY_CRTC_CHANGE : notify = 0;
-    pub static XCB_RANDR_NOTIFY_OUTPUT_CHANGE : notify = 1;
-    pub static XCB_RANDR_NOTIFY_OUTPUT_PROPERTY : notify = 2;
+pub type xcb_randr_notify_t = c_uint;//{
+    pub static XCB_RANDR_NOTIFY_CRTC_CHANGE : xcb_randr_notify_t = 0;
+    pub static XCB_RANDR_NOTIFY_OUTPUT_CHANGE : xcb_randr_notify_t = 1;
+    pub static XCB_RANDR_NOTIFY_OUTPUT_PROPERTY : xcb_randr_notify_t = 2;
 //}
-pub struct CrtcChange {pub base : base::Struct<crtc_change> }
+pub struct CrtcChange {pub base : base::Struct<xcb_randr_crtc_change_t> }
 
-pub type CrtcChangeIterator = crtc_change_iterator;
+pub type CrtcChangeIterator = xcb_randr_crtc_change_iterator_t;
 
-pub type OutputChangeIterator = output_change_iterator;
+pub type OutputChangeIterator = xcb_randr_output_change_iterator_t;
 
-pub type OutputPropertyIterator = output_property_iterator;
+pub type OutputPropertyIterator = xcb_randr_output_property_iterator_t;
 
-pub type NotifyDataIterator = notify_data_iterator;
+pub type NotifyDataIterator = xcb_randr_notify_data_iterator_t;
 
 /** Opcode for xcb_randr_notify. */
 pub static XCB_RANDR_NOTIFY : u8 = 1;
-pub struct NotifyEvent {pub base : base::Event<notify_event>}
+pub struct NotifyEvent {pub base : base::Event<xcb_randr_notify_event_t>}
 
 impl Iterator for ModeIterator {
     type Item = Mode;
     fn next(&mut self) -> Option<Mode> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut mode_iterator = mem::transmute(self);
+            let iter: *mut xcb_randr_mode_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_randr_mode_next(iter);
             Some(mem::transmute(*data))
@@ -244,7 +244,7 @@ impl Iterator for ModeIterator {
     }
 }
 
-pub type Crtc = crtc;
+pub type Crtc = xcb_randr_crtc_t;
 
 
 impl Iterator for CrtcIterator {
@@ -252,7 +252,7 @@ impl Iterator for CrtcIterator {
     fn next(&mut self) -> Option<Crtc> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut crtc_iterator = mem::transmute(self);
+            let iter: *mut xcb_randr_crtc_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_randr_crtc_next(iter);
             Some(mem::transmute(*data))
@@ -260,7 +260,7 @@ impl Iterator for CrtcIterator {
     }
 }
 
-pub type Output = output;
+pub type Output = xcb_randr_output_t;
 
 
 impl Iterator for OutputIterator {
@@ -268,7 +268,7 @@ impl Iterator for OutputIterator {
     fn next(&mut self) -> Option<Output> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut output_iterator = mem::transmute(self);
+            let iter: *mut xcb_randr_output_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_randr_output_next(iter);
             Some(mem::transmute(*data))
@@ -301,7 +301,7 @@ impl Iterator for ScreenSizeIterator {
     fn next(&mut self) -> Option<ScreenSize> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut screen_size_iterator = mem::transmute(self);
+            let iter: *mut xcb_randr_screen_size_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_randr_screen_size_next(iter);
             Some(mem::transmute(*data))
@@ -309,7 +309,7 @@ impl Iterator for ScreenSizeIterator {
     }
 }
 
-pub struct RefreshRates {pub base : base::Struct<refresh_rates> }
+pub struct RefreshRates {pub base : base::Struct<xcb_randr_refresh_rates_t> }
 
 
 impl RefreshRates {
@@ -324,7 +324,7 @@ impl Iterator for RefreshRatesIterator {
     fn next(&mut self) -> Option<RefreshRates> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut refresh_rates_iterator = mem::transmute(self);
+            let iter: *mut xcb_randr_refresh_rates_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_randr_refresh_rates_next(iter);
             Some(mem::transmute(*data))
@@ -363,7 +363,7 @@ impl QueryVersionReply {
   }
 
 }
-impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_query_version_reply, QueryVersionReply, xcb_randr_query_version_reply);
+impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_xcb_randr_query_version_reply_t, QueryVersionReply, xcb_randr_query_version_reply);
 
 pub fn SetScreenConfig<'r> (c : &'r Connection,
                         window : xproto::Window,
@@ -374,9 +374,9 @@ pub fn SetScreenConfig<'r> (c : &'r Connection,
                         rate : u16) -> SetScreenConfigCookie<'r> {
   unsafe {
     let cookie = xcb_randr_set_screen_config(c.get_raw_conn(),
-        window as ffi::xproto::window, //1
-        timestamp as ffi::xproto::timestamp, //2
-        config_timestamp as ffi::xproto::timestamp, //3
+        window as ffi::xproto::xcb_window_t, //1
+        timestamp as ffi::xproto::xcb_timestamp_t, //2
+        config_timestamp as ffi::xproto::xcb_timestamp_t, //3
         sizeID as u16, //4
         rotation as u16, //5
         rate as u16); //6
@@ -392,9 +392,9 @@ pub fn SetScreenConfigUnchecked<'r> (c : &'r Connection,
                                  rate : u16) -> SetScreenConfigCookie<'r> {
   unsafe {
     let cookie = xcb_randr_set_screen_config_unchecked(c.get_raw_conn(),
-        window as ffi::xproto::window, //1
-        timestamp as ffi::xproto::timestamp, //2
-        config_timestamp as ffi::xproto::timestamp, //3
+        window as ffi::xproto::xcb_window_t, //1
+        timestamp as ffi::xproto::xcb_timestamp_t, //2
+        config_timestamp as ffi::xproto::xcb_timestamp_t, //3
         sizeID as u16, //4
         rotation as u16, //5
         rate as u16); //6
@@ -424,14 +424,14 @@ impl SetScreenConfigReply {
   }
 
 }
-impl_reply_cookie!(SetScreenConfigCookie<'s>, mk_reply_set_screen_config_reply, SetScreenConfigReply, xcb_randr_set_screen_config_reply);
+impl_reply_cookie!(SetScreenConfigCookie<'s>, mk_reply_xcb_randr_set_screen_config_reply_t, SetScreenConfigReply, xcb_randr_set_screen_config_reply);
 
 pub fn SelectInputChecked<'r> (c : &'r Connection,
                            window : xproto::Window,
                            enable : u16) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_randr_select_input_checked(c.get_raw_conn(),
-        window as ffi::xproto::window, //1
+        window as ffi::xproto::xcb_window_t, //1
         enable as u16); //2
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
@@ -441,18 +441,18 @@ pub fn SelectInput<'r> (c : &'r Connection,
                     enable : u16) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_randr_select_input(c.get_raw_conn(),
-        window as ffi::xproto::window, //1
+        window as ffi::xproto::xcb_window_t, //1
         enable as u16); //2
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub struct GetScreenInfoReply { base:  base::Reply<get_screen_info_reply> }
-fn mk_reply_get_screen_info_reply(reply:*mut get_screen_info_reply) -> GetScreenInfoReply { GetScreenInfoReply { base : base::mk_reply(reply) } }
+pub struct GetScreenInfoReply { base:  base::Reply<xcb_randr_get_screen_info_reply_t> }
+fn mk_reply_xcb_randr_get_screen_info_reply_t(reply:*mut xcb_randr_get_screen_info_reply_t) -> GetScreenInfoReply { GetScreenInfoReply { base : base::mk_reply(reply) } }
 pub fn GetScreenInfo<'r> (c : &'r Connection,
                       window : xproto::Window) -> GetScreenInfoCookie<'r> {
   unsafe {
     let cookie = xcb_randr_get_screen_info(c.get_raw_conn(),
-        window as ffi::xproto::window); //1
+        window as ffi::xproto::xcb_window_t); //1
     GetScreenInfoCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -460,7 +460,7 @@ pub fn GetScreenInfoUnchecked<'r> (c : &'r Connection,
                                window : xproto::Window) -> GetScreenInfoCookie<'r> {
   unsafe {
     let cookie = xcb_randr_get_screen_info_unchecked(c.get_raw_conn(),
-        window as ffi::xproto::window); //1
+        window as ffi::xproto::xcb_window_t); //1
     GetScreenInfoCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -503,13 +503,13 @@ impl GetScreenInfoReply {
   }
 
 }
-impl_reply_cookie!(GetScreenInfoCookie<'s>, mk_reply_get_screen_info_reply, GetScreenInfoReply, xcb_randr_get_screen_info_reply);
+impl_reply_cookie!(GetScreenInfoCookie<'s>, mk_reply_xcb_randr_get_screen_info_reply_t, GetScreenInfoReply, xcb_randr_get_screen_info_reply);
 
 pub fn GetScreenSizeRange<'r> (c : &'r Connection,
                            window : xproto::Window) -> GetScreenSizeRangeCookie<'r> {
   unsafe {
     let cookie = xcb_randr_get_screen_size_range(c.get_raw_conn(),
-        window as ffi::xproto::window); //1
+        window as ffi::xproto::xcb_window_t); //1
     GetScreenSizeRangeCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -517,7 +517,7 @@ pub fn GetScreenSizeRangeUnchecked<'r> (c : &'r Connection,
                                     window : xproto::Window) -> GetScreenSizeRangeCookie<'r> {
   unsafe {
     let cookie = xcb_randr_get_screen_size_range_unchecked(c.get_raw_conn(),
-        window as ffi::xproto::window); //1
+        window as ffi::xproto::xcb_window_t); //1
     GetScreenSizeRangeCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -540,7 +540,7 @@ impl GetScreenSizeRangeReply {
   }
 
 }
-impl_reply_cookie!(GetScreenSizeRangeCookie<'s>, mk_reply_get_screen_size_range_reply, GetScreenSizeRangeReply, xcb_randr_get_screen_size_range_reply);
+impl_reply_cookie!(GetScreenSizeRangeCookie<'s>, mk_reply_xcb_randr_get_screen_size_range_reply_t, GetScreenSizeRangeReply, xcb_randr_get_screen_size_range_reply);
 
 pub fn SetScreenSizeChecked<'r> (c : &'r Connection,
                              window : xproto::Window,
@@ -550,7 +550,7 @@ pub fn SetScreenSizeChecked<'r> (c : &'r Connection,
                              mm_height : u32) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_randr_set_screen_size_checked(c.get_raw_conn(),
-        window as ffi::xproto::window, //1
+        window as ffi::xproto::xcb_window_t, //1
         width as u16, //2
         height as u16, //3
         mm_width as u32, //4
@@ -566,7 +566,7 @@ pub fn SetScreenSize<'r> (c : &'r Connection,
                       mm_height : u32) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_randr_set_screen_size(c.get_raw_conn(),
-        window as ffi::xproto::window, //1
+        window as ffi::xproto::xcb_window_t, //1
         width as u16, //2
         height as u16, //3
         mm_width as u32, //4
@@ -635,7 +635,7 @@ impl Iterator for ModeInfoIterator {
     fn next(&mut self) -> Option<ModeInfo> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut mode_info_iterator = mem::transmute(self);
+            let iter: *mut xcb_randr_mode_info_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_randr_mode_info_next(iter);
             Some(mem::transmute(*data))
@@ -643,13 +643,13 @@ impl Iterator for ModeInfoIterator {
     }
 }
 
-pub struct GetScreenResourcesReply { base:  base::Reply<get_screen_resources_reply> }
-fn mk_reply_get_screen_resources_reply(reply:*mut get_screen_resources_reply) -> GetScreenResourcesReply { GetScreenResourcesReply { base : base::mk_reply(reply) } }
+pub struct GetScreenResourcesReply { base:  base::Reply<xcb_randr_get_screen_resources_reply_t> }
+fn mk_reply_xcb_randr_get_screen_resources_reply_t(reply:*mut xcb_randr_get_screen_resources_reply_t) -> GetScreenResourcesReply { GetScreenResourcesReply { base : base::mk_reply(reply) } }
 pub fn GetScreenResources<'r> (c : &'r Connection,
                            window : xproto::Window) -> GetScreenResourcesCookie<'r> {
   unsafe {
     let cookie = xcb_randr_get_screen_resources(c.get_raw_conn(),
-        window as ffi::xproto::window); //1
+        window as ffi::xproto::xcb_window_t); //1
     GetScreenResourcesCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -657,7 +657,7 @@ pub fn GetScreenResourcesUnchecked<'r> (c : &'r Connection,
                                     window : xproto::Window) -> GetScreenResourcesCookie<'r> {
   unsafe {
     let cookie = xcb_randr_get_screen_resources_unchecked(c.get_raw_conn(),
-        window as ffi::xproto::window); //1
+        window as ffi::xproto::xcb_window_t); //1
     GetScreenResourcesCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -688,17 +688,17 @@ impl GetScreenResourcesReply {
   }
 
 }
-impl_reply_cookie!(GetScreenResourcesCookie<'s>, mk_reply_get_screen_resources_reply, GetScreenResourcesReply, xcb_randr_get_screen_resources_reply);
+impl_reply_cookie!(GetScreenResourcesCookie<'s>, mk_reply_xcb_randr_get_screen_resources_reply_t, GetScreenResourcesReply, xcb_randr_get_screen_resources_reply);
 
-pub struct GetOutputInfoReply { base:  base::Reply<get_output_info_reply> }
-fn mk_reply_get_output_info_reply(reply:*mut get_output_info_reply) -> GetOutputInfoReply { GetOutputInfoReply { base : base::mk_reply(reply) } }
+pub struct GetOutputInfoReply { base:  base::Reply<xcb_randr_get_output_info_reply_t> }
+fn mk_reply_xcb_randr_get_output_info_reply_t(reply:*mut xcb_randr_get_output_info_reply_t) -> GetOutputInfoReply { GetOutputInfoReply { base : base::mk_reply(reply) } }
 pub fn GetOutputInfo<'r> (c : &'r Connection,
                       output : Output,
                       config_timestamp : xproto::Timestamp) -> GetOutputInfoCookie<'r> {
   unsafe {
     let cookie = xcb_randr_get_output_info(c.get_raw_conn(),
-        output as output, //1
-        config_timestamp as ffi::xproto::timestamp); //2
+        output as xcb_randr_output_t, //1
+        config_timestamp as ffi::xproto::xcb_timestamp_t); //2
     GetOutputInfoCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -707,8 +707,8 @@ pub fn GetOutputInfoUnchecked<'r> (c : &'r Connection,
                                config_timestamp : xproto::Timestamp) -> GetOutputInfoCookie<'r> {
   unsafe {
     let cookie = xcb_randr_get_output_info_unchecked(c.get_raw_conn(),
-        output as output, //1
-        config_timestamp as ffi::xproto::timestamp); //2
+        output as xcb_randr_output_t, //1
+        config_timestamp as ffi::xproto::xcb_timestamp_t); //2
     GetOutputInfoCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -763,15 +763,15 @@ impl GetOutputInfoReply {
   }
 
 }
-impl_reply_cookie!(GetOutputInfoCookie<'s>, mk_reply_get_output_info_reply, GetOutputInfoReply, xcb_randr_get_output_info_reply);
+impl_reply_cookie!(GetOutputInfoCookie<'s>, mk_reply_xcb_randr_get_output_info_reply_t, GetOutputInfoReply, xcb_randr_get_output_info_reply);
 
-pub struct ListOutputPropertiesReply { base:  base::Reply<list_output_properties_reply> }
-fn mk_reply_list_output_properties_reply(reply:*mut list_output_properties_reply) -> ListOutputPropertiesReply { ListOutputPropertiesReply { base : base::mk_reply(reply) } }
+pub struct ListOutputPropertiesReply { base:  base::Reply<xcb_randr_list_output_properties_reply_t> }
+fn mk_reply_xcb_randr_list_output_properties_reply_t(reply:*mut xcb_randr_list_output_properties_reply_t) -> ListOutputPropertiesReply { ListOutputPropertiesReply { base : base::mk_reply(reply) } }
 pub fn ListOutputProperties<'r> (c : &'r Connection,
                              output : Output) -> ListOutputPropertiesCookie<'r> {
   unsafe {
     let cookie = xcb_randr_list_output_properties(c.get_raw_conn(),
-        output as output); //1
+        output as xcb_randr_output_t); //1
     ListOutputPropertiesCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -779,7 +779,7 @@ pub fn ListOutputPropertiesUnchecked<'r> (c : &'r Connection,
                                       output : Output) -> ListOutputPropertiesCookie<'r> {
   unsafe {
     let cookie = xcb_randr_list_output_properties_unchecked(c.get_raw_conn(),
-        output as output); //1
+        output as xcb_randr_output_t); //1
     ListOutputPropertiesCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -790,17 +790,17 @@ impl ListOutputPropertiesReply {
   }
 
 }
-impl_reply_cookie!(ListOutputPropertiesCookie<'s>, mk_reply_list_output_properties_reply, ListOutputPropertiesReply, xcb_randr_list_output_properties_reply);
+impl_reply_cookie!(ListOutputPropertiesCookie<'s>, mk_reply_xcb_randr_list_output_properties_reply_t, ListOutputPropertiesReply, xcb_randr_list_output_properties_reply);
 
-pub struct QueryOutputPropertyReply { base:  base::Reply<query_output_property_reply> }
-fn mk_reply_query_output_property_reply(reply:*mut query_output_property_reply) -> QueryOutputPropertyReply { QueryOutputPropertyReply { base : base::mk_reply(reply) } }
+pub struct QueryOutputPropertyReply { base:  base::Reply<xcb_randr_query_output_property_reply_t> }
+fn mk_reply_xcb_randr_query_output_property_reply_t(reply:*mut xcb_randr_query_output_property_reply_t) -> QueryOutputPropertyReply { QueryOutputPropertyReply { base : base::mk_reply(reply) } }
 pub fn QueryOutputProperty<'r> (c : &'r Connection,
                             output : Output,
                             property : xproto::Atom) -> QueryOutputPropertyCookie<'r> {
   unsafe {
     let cookie = xcb_randr_query_output_property(c.get_raw_conn(),
-        output as output, //1
-        property as ffi::xproto::atom); //2
+        output as xcb_randr_output_t, //1
+        property as ffi::xproto::xcb_atom_t); //2
     QueryOutputPropertyCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -809,8 +809,8 @@ pub fn QueryOutputPropertyUnchecked<'r> (c : &'r Connection,
                                      property : xproto::Atom) -> QueryOutputPropertyCookie<'r> {
   unsafe {
     let cookie = xcb_randr_query_output_property_unchecked(c.get_raw_conn(),
-        output as output, //1
-        property as ffi::xproto::atom); //2
+        output as xcb_randr_output_t, //1
+        property as ffi::xproto::xcb_atom_t); //2
     QueryOutputPropertyCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -833,7 +833,7 @@ impl QueryOutputPropertyReply {
   }
 
 }
-impl_reply_cookie!(QueryOutputPropertyCookie<'s>, mk_reply_query_output_property_reply, QueryOutputPropertyReply, xcb_randr_query_output_property_reply);
+impl_reply_cookie!(QueryOutputPropertyCookie<'s>, mk_reply_xcb_randr_query_output_property_reply_t, QueryOutputPropertyReply, xcb_randr_query_output_property_reply);
 
 pub fn ConfigureOutputPropertyChecked<'r> (c : &'r Connection,
                                        output : Output,
@@ -845,8 +845,8 @@ pub fn ConfigureOutputPropertyChecked<'r> (c : &'r Connection,
     let values_len = values.len();
     let values_ptr = values.as_ptr();
     let cookie = xcb_randr_configure_output_property_checked(c.get_raw_conn(),
-        output as output, //1
-        property as ffi::xproto::atom, //2
+        output as xcb_randr_output_t, //1
+        property as ffi::xproto::xcb_atom_t, //2
         pending as u8, //3
         range as u8, //4
         values_len as u32, //5
@@ -864,8 +864,8 @@ pub fn ConfigureOutputProperty<'r> (c : &'r Connection,
     let values_len = values.len();
     let values_ptr = values.as_ptr();
     let cookie = xcb_randr_configure_output_property(c.get_raw_conn(),
-        output as output, //1
-        property as ffi::xproto::atom, //2
+        output as xcb_randr_output_t, //1
+        property as ffi::xproto::xcb_atom_t, //2
         pending as u8, //3
         range as u8, //4
         values_len as u32, //5
@@ -884,9 +884,9 @@ pub fn ChangeOutputPropertyChecked<'r> (c : &'r Connection,
     let data_len = data.len();
     let data_ptr = data.as_ptr();
     let cookie = xcb_randr_change_output_property_checked(c.get_raw_conn(),
-        output as output, //1
-        property as ffi::xproto::atom, //2
-        type_ as ffi::xproto::atom, //3
+        output as xcb_randr_output_t, //1
+        property as ffi::xproto::xcb_atom_t, //2
+        type_ as ffi::xproto::xcb_atom_t, //3
         format as u8, //4
         mode as u8, //5
         data_len as u32, //6
@@ -905,9 +905,9 @@ pub fn ChangeOutputProperty<'r> (c : &'r Connection,
     let data_len = data.len();
     let data_ptr = data.as_ptr();
     let cookie = xcb_randr_change_output_property(c.get_raw_conn(),
-        output as output, //1
-        property as ffi::xproto::atom, //2
-        type_ as ffi::xproto::atom, //3
+        output as xcb_randr_output_t, //1
+        property as ffi::xproto::xcb_atom_t, //2
+        type_ as ffi::xproto::xcb_atom_t, //3
         format as u8, //4
         mode as u8, //5
         data_len as u32, //6
@@ -920,8 +920,8 @@ pub fn DeleteOutputPropertyChecked<'r> (c : &'r Connection,
                                     property : xproto::Atom) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_randr_delete_output_property_checked(c.get_raw_conn(),
-        output as output, //1
-        property as ffi::xproto::atom); //2
+        output as xcb_randr_output_t, //1
+        property as ffi::xproto::xcb_atom_t); //2
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -930,13 +930,13 @@ pub fn DeleteOutputProperty<'r> (c : &'r Connection,
                              property : xproto::Atom) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_randr_delete_output_property(c.get_raw_conn(),
-        output as output, //1
-        property as ffi::xproto::atom); //2
+        output as xcb_randr_output_t, //1
+        property as ffi::xproto::xcb_atom_t); //2
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub struct GetOutputPropertyReply { base:  base::Reply<get_output_property_reply> }
-fn mk_reply_get_output_property_reply(reply:*mut get_output_property_reply) -> GetOutputPropertyReply { GetOutputPropertyReply { base : base::mk_reply(reply) } }
+pub struct GetOutputPropertyReply { base:  base::Reply<xcb_randr_get_output_property_reply_t> }
+fn mk_reply_xcb_randr_get_output_property_reply_t(reply:*mut xcb_randr_get_output_property_reply_t) -> GetOutputPropertyReply { GetOutputPropertyReply { base : base::mk_reply(reply) } }
 pub fn GetOutputProperty<'r> (c : &'r Connection,
                           output : Output,
                           property : xproto::Atom,
@@ -947,9 +947,9 @@ pub fn GetOutputProperty<'r> (c : &'r Connection,
                           pending : u8) -> GetOutputPropertyCookie<'r> {
   unsafe {
     let cookie = xcb_randr_get_output_property(c.get_raw_conn(),
-        output as output, //1
-        property as ffi::xproto::atom, //2
-        type_ as ffi::xproto::atom, //3
+        output as xcb_randr_output_t, //1
+        property as ffi::xproto::xcb_atom_t, //2
+        type_ as ffi::xproto::xcb_atom_t, //3
         long_offset as u32, //4
         long_length as u32, //5
         delete as u8, //6
@@ -967,9 +967,9 @@ pub fn GetOutputPropertyUnchecked<'r> (c : &'r Connection,
                                    pending : u8) -> GetOutputPropertyCookie<'r> {
   unsafe {
     let cookie = xcb_randr_get_output_property_unchecked(c.get_raw_conn(),
-        output as output, //1
-        property as ffi::xproto::atom, //2
-        type_ as ffi::xproto::atom, //3
+        output as xcb_randr_output_t, //1
+        property as ffi::xproto::xcb_atom_t, //2
+        type_ as ffi::xproto::xcb_atom_t, //3
         long_offset as u32, //4
         long_length as u32, //5
         delete as u8, //6
@@ -996,7 +996,7 @@ impl GetOutputPropertyReply {
   }
 
 }
-impl_reply_cookie!(GetOutputPropertyCookie<'s>, mk_reply_get_output_property_reply, GetOutputPropertyReply, xcb_randr_get_output_property_reply);
+impl_reply_cookie!(GetOutputPropertyCookie<'s>, mk_reply_xcb_randr_get_output_property_reply_t, GetOutputPropertyReply, xcb_randr_get_output_property_reply);
 
 pub fn CreateMode<'r> (c : &'r Connection,
                    window : xproto::Window,
@@ -1007,7 +1007,7 @@ pub fn CreateMode<'r> (c : &'r Connection,
     let name_len = name.len();
     let name_ptr = name.as_ptr();
     let cookie = xcb_randr_create_mode(c.get_raw_conn(),
-        window as ffi::xproto::window, //1
+        window as ffi::xproto::xcb_window_t, //1
         mode_info.base.strct, //2
         name_len as u32, //3
         name_ptr as *mut c_char); //4
@@ -1023,7 +1023,7 @@ pub fn CreateModeUnchecked<'r> (c : &'r Connection,
     let name_len = name.len();
     let name_ptr = name.as_ptr();
     let cookie = xcb_randr_create_mode_unchecked(c.get_raw_conn(),
-        window as ffi::xproto::window, //1
+        window as ffi::xproto::xcb_window_t, //1
         mode_info.base.strct, //2
         name_len as u32, //3
         name_ptr as *mut c_char); //4
@@ -1037,13 +1037,13 @@ impl CreateModeReply {
   }
 
 }
-impl_reply_cookie!(CreateModeCookie<'s>, mk_reply_create_mode_reply, CreateModeReply, xcb_randr_create_mode_reply);
+impl_reply_cookie!(CreateModeCookie<'s>, mk_reply_xcb_randr_create_mode_reply_t, CreateModeReply, xcb_randr_create_mode_reply);
 
 pub fn DestroyModeChecked<'r> (c : &'r Connection,
                            mode : Mode) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_randr_destroy_mode_checked(c.get_raw_conn(),
-        mode as mode); //1
+        mode as xcb_randr_mode_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -1051,7 +1051,7 @@ pub fn DestroyMode<'r> (c : &'r Connection,
                     mode : Mode) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_randr_destroy_mode(c.get_raw_conn(),
-        mode as mode); //1
+        mode as xcb_randr_mode_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1060,8 +1060,8 @@ pub fn AddOutputModeChecked<'r> (c : &'r Connection,
                              mode : Mode) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_randr_add_output_mode_checked(c.get_raw_conn(),
-        output as output, //1
-        mode as mode); //2
+        output as xcb_randr_output_t, //1
+        mode as xcb_randr_mode_t); //2
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -1070,8 +1070,8 @@ pub fn AddOutputMode<'r> (c : &'r Connection,
                       mode : Mode) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_randr_add_output_mode(c.get_raw_conn(),
-        output as output, //1
-        mode as mode); //2
+        output as xcb_randr_output_t, //1
+        mode as xcb_randr_mode_t); //2
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1080,8 +1080,8 @@ pub fn DeleteOutputModeChecked<'r> (c : &'r Connection,
                                 mode : Mode) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_randr_delete_output_mode_checked(c.get_raw_conn(),
-        output as output, //1
-        mode as mode); //2
+        output as xcb_randr_output_t, //1
+        mode as xcb_randr_mode_t); //2
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -1090,20 +1090,20 @@ pub fn DeleteOutputMode<'r> (c : &'r Connection,
                          mode : Mode) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_randr_delete_output_mode(c.get_raw_conn(),
-        output as output, //1
-        mode as mode); //2
+        output as xcb_randr_output_t, //1
+        mode as xcb_randr_mode_t); //2
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub struct GetCrtcInfoReply { base:  base::Reply<get_crtc_info_reply> }
-fn mk_reply_get_crtc_info_reply(reply:*mut get_crtc_info_reply) -> GetCrtcInfoReply { GetCrtcInfoReply { base : base::mk_reply(reply) } }
+pub struct GetCrtcInfoReply { base:  base::Reply<xcb_randr_get_crtc_info_reply_t> }
+fn mk_reply_xcb_randr_get_crtc_info_reply_t(reply:*mut xcb_randr_get_crtc_info_reply_t) -> GetCrtcInfoReply { GetCrtcInfoReply { base : base::mk_reply(reply) } }
 pub fn GetCrtcInfo<'r> (c : &'r Connection,
                     crtc : Crtc,
                     config_timestamp : xproto::Timestamp) -> GetCrtcInfoCookie<'r> {
   unsafe {
     let cookie = xcb_randr_get_crtc_info(c.get_raw_conn(),
-        crtc as crtc, //1
-        config_timestamp as ffi::xproto::timestamp); //2
+        crtc as xcb_randr_crtc_t, //1
+        config_timestamp as ffi::xproto::xcb_timestamp_t); //2
     GetCrtcInfoCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1112,8 +1112,8 @@ pub fn GetCrtcInfoUnchecked<'r> (c : &'r Connection,
                              config_timestamp : xproto::Timestamp) -> GetCrtcInfoCookie<'r> {
   unsafe {
     let cookie = xcb_randr_get_crtc_info_unchecked(c.get_raw_conn(),
-        crtc as crtc, //1
-        config_timestamp as ffi::xproto::timestamp); //2
+        crtc as xcb_randr_crtc_t, //1
+        config_timestamp as ffi::xproto::xcb_timestamp_t); //2
     GetCrtcInfoCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1164,7 +1164,7 @@ impl GetCrtcInfoReply {
   }
 
 }
-impl_reply_cookie!(GetCrtcInfoCookie<'s>, mk_reply_get_crtc_info_reply, GetCrtcInfoReply, xcb_randr_get_crtc_info_reply);
+impl_reply_cookie!(GetCrtcInfoCookie<'s>, mk_reply_xcb_randr_get_crtc_info_reply_t, GetCrtcInfoReply, xcb_randr_get_crtc_info_reply);
 
 pub fn SetCrtcConfig<'r> (c : &'r Connection,
                       crtc : Crtc,
@@ -1179,15 +1179,15 @@ pub fn SetCrtcConfig<'r> (c : &'r Connection,
     let outputs_len = outputs.len();
     let outputs_ptr = outputs.as_ptr();
     let cookie = xcb_randr_set_crtc_config(c.get_raw_conn(),
-        crtc as crtc, //1
-        timestamp as ffi::xproto::timestamp, //2
-        config_timestamp as ffi::xproto::timestamp, //3
+        crtc as xcb_randr_crtc_t, //1
+        timestamp as ffi::xproto::xcb_timestamp_t, //2
+        config_timestamp as ffi::xproto::xcb_timestamp_t, //3
         x as i16, //4
         y as i16, //5
-        mode as mode, //6
+        mode as xcb_randr_mode_t, //6
         rotation as u16, //7
         outputs_len as u32, //8
-        outputs_ptr as *mut output); //9
+        outputs_ptr as *mut xcb_randr_output_t); //9
     SetCrtcConfigCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1204,15 +1204,15 @@ pub fn SetCrtcConfigUnchecked<'r> (c : &'r Connection,
     let outputs_len = outputs.len();
     let outputs_ptr = outputs.as_ptr();
     let cookie = xcb_randr_set_crtc_config_unchecked(c.get_raw_conn(),
-        crtc as crtc, //1
-        timestamp as ffi::xproto::timestamp, //2
-        config_timestamp as ffi::xproto::timestamp, //3
+        crtc as xcb_randr_crtc_t, //1
+        timestamp as ffi::xproto::xcb_timestamp_t, //2
+        config_timestamp as ffi::xproto::xcb_timestamp_t, //3
         x as i16, //4
         y as i16, //5
-        mode as mode, //6
+        mode as xcb_randr_mode_t, //6
         rotation as u16, //7
         outputs_len as u32, //8
-        outputs_ptr as *mut output); //9
+        outputs_ptr as *mut xcb_randr_output_t); //9
     SetCrtcConfigCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1227,13 +1227,13 @@ impl SetCrtcConfigReply {
   }
 
 }
-impl_reply_cookie!(SetCrtcConfigCookie<'s>, mk_reply_set_crtc_config_reply, SetCrtcConfigReply, xcb_randr_set_crtc_config_reply);
+impl_reply_cookie!(SetCrtcConfigCookie<'s>, mk_reply_xcb_randr_set_crtc_config_reply_t, SetCrtcConfigReply, xcb_randr_set_crtc_config_reply);
 
 pub fn GetCrtcGammaSize<'r> (c : &'r Connection,
                          crtc : Crtc) -> GetCrtcGammaSizeCookie<'r> {
   unsafe {
     let cookie = xcb_randr_get_crtc_gamma_size(c.get_raw_conn(),
-        crtc as crtc); //1
+        crtc as xcb_randr_crtc_t); //1
     GetCrtcGammaSizeCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1241,7 +1241,7 @@ pub fn GetCrtcGammaSizeUnchecked<'r> (c : &'r Connection,
                                   crtc : Crtc) -> GetCrtcGammaSizeCookie<'r> {
   unsafe {
     let cookie = xcb_randr_get_crtc_gamma_size_unchecked(c.get_raw_conn(),
-        crtc as crtc); //1
+        crtc as xcb_randr_crtc_t); //1
     GetCrtcGammaSizeCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1252,15 +1252,15 @@ impl GetCrtcGammaSizeReply {
   }
 
 }
-impl_reply_cookie!(GetCrtcGammaSizeCookie<'s>, mk_reply_get_crtc_gamma_size_reply, GetCrtcGammaSizeReply, xcb_randr_get_crtc_gamma_size_reply);
+impl_reply_cookie!(GetCrtcGammaSizeCookie<'s>, mk_reply_xcb_randr_get_crtc_gamma_size_reply_t, GetCrtcGammaSizeReply, xcb_randr_get_crtc_gamma_size_reply);
 
-pub struct GetCrtcGammaReply { base:  base::Reply<get_crtc_gamma_reply> }
-fn mk_reply_get_crtc_gamma_reply(reply:*mut get_crtc_gamma_reply) -> GetCrtcGammaReply { GetCrtcGammaReply { base : base::mk_reply(reply) } }
+pub struct GetCrtcGammaReply { base:  base::Reply<xcb_randr_get_crtc_gamma_reply_t> }
+fn mk_reply_xcb_randr_get_crtc_gamma_reply_t(reply:*mut xcb_randr_get_crtc_gamma_reply_t) -> GetCrtcGammaReply { GetCrtcGammaReply { base : base::mk_reply(reply) } }
 pub fn GetCrtcGamma<'r> (c : &'r Connection,
                      crtc : Crtc) -> GetCrtcGammaCookie<'r> {
   unsafe {
     let cookie = xcb_randr_get_crtc_gamma(c.get_raw_conn(),
-        crtc as crtc); //1
+        crtc as xcb_randr_crtc_t); //1
     GetCrtcGammaCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1268,7 +1268,7 @@ pub fn GetCrtcGammaUnchecked<'r> (c : &'r Connection,
                               crtc : Crtc) -> GetCrtcGammaCookie<'r> {
   unsafe {
     let cookie = xcb_randr_get_crtc_gamma_unchecked(c.get_raw_conn(),
-        crtc as crtc); //1
+        crtc as xcb_randr_crtc_t); //1
     GetCrtcGammaCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1287,7 +1287,7 @@ impl GetCrtcGammaReply {
   }
 
 }
-impl_reply_cookie!(GetCrtcGammaCookie<'s>, mk_reply_get_crtc_gamma_reply, GetCrtcGammaReply, xcb_randr_get_crtc_gamma_reply);
+impl_reply_cookie!(GetCrtcGammaCookie<'s>, mk_reply_xcb_randr_get_crtc_gamma_reply_t, GetCrtcGammaReply, xcb_randr_get_crtc_gamma_reply);
 
 pub fn SetCrtcGammaChecked<'r> (c : &'r Connection,
                             crtc : Crtc,
@@ -1300,7 +1300,7 @@ pub fn SetCrtcGammaChecked<'r> (c : &'r Connection,
     let green_ptr = green.as_ptr();
     let blue_ptr = blue.as_ptr();
     let cookie = xcb_randr_set_crtc_gamma_checked(c.get_raw_conn(),
-        crtc as crtc, //1
+        crtc as xcb_randr_crtc_t, //1
         red_len as u16, //2
         red_ptr as *mut u16, //3
         green_ptr as *mut u16, //4
@@ -1319,7 +1319,7 @@ pub fn SetCrtcGamma<'r> (c : &'r Connection,
     let green_ptr = green.as_ptr();
     let blue_ptr = blue.as_ptr();
     let cookie = xcb_randr_set_crtc_gamma(c.get_raw_conn(),
-        crtc as crtc, //1
+        crtc as xcb_randr_crtc_t, //1
         red_len as u16, //2
         red_ptr as *mut u16, //3
         green_ptr as *mut u16, //4
@@ -1327,13 +1327,13 @@ pub fn SetCrtcGamma<'r> (c : &'r Connection,
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub struct GetScreenResourcesCurrentReply { base:  base::Reply<get_screen_resources_current_reply> }
-fn mk_reply_get_screen_resources_current_reply(reply:*mut get_screen_resources_current_reply) -> GetScreenResourcesCurrentReply { GetScreenResourcesCurrentReply { base : base::mk_reply(reply) } }
+pub struct GetScreenResourcesCurrentReply { base:  base::Reply<xcb_randr_get_screen_resources_current_reply_t> }
+fn mk_reply_xcb_randr_get_screen_resources_current_reply_t(reply:*mut xcb_randr_get_screen_resources_current_reply_t) -> GetScreenResourcesCurrentReply { GetScreenResourcesCurrentReply { base : base::mk_reply(reply) } }
 pub fn GetScreenResourcesCurrent<'r> (c : &'r Connection,
                                   window : xproto::Window) -> GetScreenResourcesCurrentCookie<'r> {
   unsafe {
     let cookie = xcb_randr_get_screen_resources_current(c.get_raw_conn(),
-        window as ffi::xproto::window); //1
+        window as ffi::xproto::xcb_window_t); //1
     GetScreenResourcesCurrentCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1341,7 +1341,7 @@ pub fn GetScreenResourcesCurrentUnchecked<'r> (c : &'r Connection,
                                            window : xproto::Window) -> GetScreenResourcesCurrentCookie<'r> {
   unsafe {
     let cookie = xcb_randr_get_screen_resources_current_unchecked(c.get_raw_conn(),
-        window as ffi::xproto::window); //1
+        window as ffi::xproto::xcb_window_t); //1
     GetScreenResourcesCurrentCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1372,7 +1372,7 @@ impl GetScreenResourcesCurrentReply {
   }
 
 }
-impl_reply_cookie!(GetScreenResourcesCurrentCookie<'s>, mk_reply_get_screen_resources_current_reply, GetScreenResourcesCurrentReply, xcb_randr_get_screen_resources_current_reply);
+impl_reply_cookie!(GetScreenResourcesCurrentCookie<'s>, mk_reply_xcb_randr_get_screen_resources_current_reply_t, GetScreenResourcesCurrentReply, xcb_randr_get_screen_resources_current_reply);
 
 pub fn SetCrtcTransformChecked<'r> (c : &'r Connection,
                                 crtc : Crtc,
@@ -1386,12 +1386,12 @@ pub fn SetCrtcTransformChecked<'r> (c : &'r Connection,
     let filter_params_len = filter_params.len();
     let filter_params_ptr = filter_params.as_ptr();
     let cookie = xcb_randr_set_crtc_transform_checked(c.get_raw_conn(),
-        crtc as crtc, //1
+        crtc as xcb_randr_crtc_t, //1
         transform.base.strct, //2
         filter_name_len as u16, //3
         filter_name_ptr as *mut c_char, //4
         filter_params_len as u32, //5
-        filter_params_ptr as *mut ffi::render::fixed); //6
+        filter_params_ptr as *mut ffi::render::xcb_render_fixed_t); //6
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -1407,22 +1407,22 @@ pub fn SetCrtcTransform<'r> (c : &'r Connection,
     let filter_params_len = filter_params.len();
     let filter_params_ptr = filter_params.as_ptr();
     let cookie = xcb_randr_set_crtc_transform(c.get_raw_conn(),
-        crtc as crtc, //1
+        crtc as xcb_randr_crtc_t, //1
         transform.base.strct, //2
         filter_name_len as u16, //3
         filter_name_ptr as *mut c_char, //4
         filter_params_len as u32, //5
-        filter_params_ptr as *mut ffi::render::fixed); //6
+        filter_params_ptr as *mut ffi::render::xcb_render_fixed_t); //6
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub struct GetCrtcTransformReply { base:  base::Reply<get_crtc_transform_reply> }
-fn mk_reply_get_crtc_transform_reply(reply:*mut get_crtc_transform_reply) -> GetCrtcTransformReply { GetCrtcTransformReply { base : base::mk_reply(reply) } }
+pub struct GetCrtcTransformReply { base:  base::Reply<xcb_randr_get_crtc_transform_reply_t> }
+fn mk_reply_xcb_randr_get_crtc_transform_reply_t(reply:*mut xcb_randr_get_crtc_transform_reply_t) -> GetCrtcTransformReply { GetCrtcTransformReply { base : base::mk_reply(reply) } }
 pub fn GetCrtcTransform<'r> (c : &'r Connection,
                          crtc : Crtc) -> GetCrtcTransformCookie<'r> {
   unsafe {
     let cookie = xcb_randr_get_crtc_transform(c.get_raw_conn(),
-        crtc as crtc); //1
+        crtc as xcb_randr_crtc_t); //1
     GetCrtcTransformCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1430,7 +1430,7 @@ pub fn GetCrtcTransformUnchecked<'r> (c : &'r Connection,
                                   crtc : Crtc) -> GetCrtcTransformCookie<'r> {
   unsafe {
     let cookie = xcb_randr_get_crtc_transform_unchecked(c.get_raw_conn(),
-        crtc as crtc); //1
+        crtc as xcb_randr_crtc_t); //1
     GetCrtcTransformCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1463,13 +1463,13 @@ impl GetCrtcTransformReply {
   }
 
 }
-impl_reply_cookie!(GetCrtcTransformCookie<'s>, mk_reply_get_crtc_transform_reply, GetCrtcTransformReply, xcb_randr_get_crtc_transform_reply);
+impl_reply_cookie!(GetCrtcTransformCookie<'s>, mk_reply_xcb_randr_get_crtc_transform_reply_t, GetCrtcTransformReply, xcb_randr_get_crtc_transform_reply);
 
 pub fn GetPanning<'r> (c : &'r Connection,
                    crtc : Crtc) -> GetPanningCookie<'r> {
   unsafe {
     let cookie = xcb_randr_get_panning(c.get_raw_conn(),
-        crtc as crtc); //1
+        crtc as xcb_randr_crtc_t); //1
     GetPanningCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1477,7 +1477,7 @@ pub fn GetPanningUnchecked<'r> (c : &'r Connection,
                             crtc : Crtc) -> GetPanningCookie<'r> {
   unsafe {
     let cookie = xcb_randr_get_panning_unchecked(c.get_raw_conn(),
-        crtc as crtc); //1
+        crtc as xcb_randr_crtc_t); //1
     GetPanningCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1540,7 +1540,7 @@ impl GetPanningReply {
   }
 
 }
-impl_reply_cookie!(GetPanningCookie<'s>, mk_reply_get_panning_reply, GetPanningReply, xcb_randr_get_panning_reply);
+impl_reply_cookie!(GetPanningCookie<'s>, mk_reply_xcb_randr_get_panning_reply_t, GetPanningReply, xcb_randr_get_panning_reply);
 
 pub fn SetPanning<'r> (c : &'r Connection,
                    crtc : Crtc,
@@ -1559,8 +1559,8 @@ pub fn SetPanning<'r> (c : &'r Connection,
                    border_bottom : i16) -> SetPanningCookie<'r> {
   unsafe {
     let cookie = xcb_randr_set_panning(c.get_raw_conn(),
-        crtc as crtc, //1
-        timestamp as ffi::xproto::timestamp, //2
+        crtc as xcb_randr_crtc_t, //1
+        timestamp as ffi::xproto::xcb_timestamp_t, //2
         left as u16, //3
         top as u16, //4
         width as u16, //5
@@ -1593,8 +1593,8 @@ pub fn SetPanningUnchecked<'r> (c : &'r Connection,
                             border_bottom : i16) -> SetPanningCookie<'r> {
   unsafe {
     let cookie = xcb_randr_set_panning_unchecked(c.get_raw_conn(),
-        crtc as crtc, //1
-        timestamp as ffi::xproto::timestamp, //2
+        crtc as xcb_randr_crtc_t, //1
+        timestamp as ffi::xproto::xcb_timestamp_t, //2
         left as u16, //3
         top as u16, //4
         width as u16, //5
@@ -1621,15 +1621,15 @@ impl SetPanningReply {
   }
 
 }
-impl_reply_cookie!(SetPanningCookie<'s>, mk_reply_set_panning_reply, SetPanningReply, xcb_randr_set_panning_reply);
+impl_reply_cookie!(SetPanningCookie<'s>, mk_reply_xcb_randr_set_panning_reply_t, SetPanningReply, xcb_randr_set_panning_reply);
 
 pub fn SetOutputPrimaryChecked<'r> (c : &'r Connection,
                                 window : xproto::Window,
                                 output : Output) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_randr_set_output_primary_checked(c.get_raw_conn(),
-        window as ffi::xproto::window, //1
-        output as output); //2
+        window as ffi::xproto::xcb_window_t, //1
+        output as xcb_randr_output_t); //2
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -1638,8 +1638,8 @@ pub fn SetOutputPrimary<'r> (c : &'r Connection,
                          output : Output) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_randr_set_output_primary(c.get_raw_conn(),
-        window as ffi::xproto::window, //1
-        output as output); //2
+        window as ffi::xproto::xcb_window_t, //1
+        output as xcb_randr_output_t); //2
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1647,7 +1647,7 @@ pub fn GetOutputPrimary<'r> (c : &'r Connection,
                          window : xproto::Window) -> GetOutputPrimaryCookie<'r> {
   unsafe {
     let cookie = xcb_randr_get_output_primary(c.get_raw_conn(),
-        window as ffi::xproto::window); //1
+        window as ffi::xproto::xcb_window_t); //1
     GetOutputPrimaryCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1655,7 +1655,7 @@ pub fn GetOutputPrimaryUnchecked<'r> (c : &'r Connection,
                                   window : xproto::Window) -> GetOutputPrimaryCookie<'r> {
   unsafe {
     let cookie = xcb_randr_get_output_primary_unchecked(c.get_raw_conn(),
-        window as ffi::xproto::window); //1
+        window as ffi::xproto::xcb_window_t); //1
     GetOutputPrimaryCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1666,7 +1666,7 @@ impl GetOutputPrimaryReply {
   }
 
 }
-impl_reply_cookie!(GetOutputPrimaryCookie<'s>, mk_reply_get_output_primary_reply, GetOutputPrimaryReply, xcb_randr_get_output_primary_reply);
+impl_reply_cookie!(GetOutputPrimaryCookie<'s>, mk_reply_xcb_randr_get_output_primary_reply_t, GetOutputPrimaryReply, xcb_randr_get_output_primary_reply);
 
 
 impl ScreenChangeNotifyEvent {
@@ -1726,7 +1726,7 @@ impl ScreenChangeNotifyEvent {
          mwidth : u16,
          mheight : u16) -> ScreenChangeNotifyEvent {
     unsafe {
-      let raw = malloc(32 as size_t) as *mut screen_change_notify_event;
+      let raw = malloc(32 as size_t) as *mut xcb_randr_screen_change_notify_event_t;
       (*raw).rotation = rotation;
       (*raw).timestamp = timestamp;
       (*raw).config_timestamp = config_timestamp;
@@ -1738,7 +1738,7 @@ impl ScreenChangeNotifyEvent {
       (*raw).height = height;
       (*raw).mwidth = mwidth;
       (*raw).mheight = mheight;
-      ScreenChangeNotifyEvent { base : Event { event : raw as *mut screen_change_notify_event }}
+      ScreenChangeNotifyEvent { base : Event { event : raw as *mut xcb_randr_screen_change_notify_event_t }}
     }
   }
 }
@@ -1787,7 +1787,7 @@ impl Iterator for CrtcChangeIterator {
     fn next(&mut self) -> Option<CrtcChange> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut crtc_change_iterator = mem::transmute(self);
+            let iter: *mut xcb_randr_crtc_change_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_randr_crtc_change_next(iter);
             Some(mem::transmute(*data))
@@ -1795,7 +1795,7 @@ impl Iterator for CrtcChangeIterator {
     }
 }
 
-pub struct OutputChange {pub base : base::Struct<output_change> }
+pub struct OutputChange {pub base : base::Struct<xcb_randr_output_change_t> }
 
 
 impl OutputChange {
@@ -1842,7 +1842,7 @@ impl Iterator for OutputChangeIterator {
     fn next(&mut self) -> Option<OutputChange> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut output_change_iterator = mem::transmute(self);
+            let iter: *mut xcb_randr_output_change_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_randr_output_change_next(iter);
             Some(mem::transmute(*data))
@@ -1850,7 +1850,7 @@ impl Iterator for OutputChangeIterator {
     }
 }
 
-pub struct OutputProperty {pub base : base::Struct<output_property> }
+pub struct OutputProperty {pub base : base::Struct<xcb_randr_output_property_t> }
 
 
 impl OutputProperty {
@@ -1881,7 +1881,7 @@ impl Iterator for OutputPropertyIterator {
     fn next(&mut self) -> Option<OutputProperty> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut output_property_iterator = mem::transmute(self);
+            let iter: *mut xcb_randr_output_property_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_randr_output_property_next(iter);
             Some(mem::transmute(*data))
@@ -1889,14 +1889,14 @@ impl Iterator for OutputPropertyIterator {
     }
 }
 
-pub struct NotifyData {pub base : base::Struct<notify_data>}
+pub struct NotifyData {pub base : base::Struct<xcb_randr_notify_data_t>}
 
 impl Iterator for NotifyDataIterator {
     type Item = NotifyData;
     fn next(&mut self) -> Option<NotifyData> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut notify_data_iterator = mem::transmute(self);
+            let iter: *mut xcb_randr_notify_data_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_randr_notify_data_next(iter);
             Some(mem::transmute(*data))
@@ -1916,10 +1916,10 @@ impl NotifyEvent {
   pub fn new(subCode : u8,
          u : NotifyData) -> NotifyEvent {
     unsafe {
-      let raw = malloc(32 as size_t) as *mut notify_event;
+      let raw = malloc(32 as size_t) as *mut xcb_randr_notify_event_t;
       (*raw).subCode = subCode;
       (*raw).u = u.base.strct;
-      NotifyEvent { base : Event { event : raw as *mut notify_event }}
+      NotifyEvent { base : Event { event : raw as *mut xcb_randr_notify_event_t }}
     }
   }
 }

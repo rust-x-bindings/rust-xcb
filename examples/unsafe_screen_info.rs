@@ -16,7 +16,7 @@ fn main() {
         let setup = xcb_get_setup(c);
         let mut iter = xcb_setup_roots_iterator(setup);
         for _ in 0..screen_num {
-            xcb_screen_next(&mut iter as *mut screen_iterator);
+            xcb_screen_next(&mut iter as *mut xcb_screen_iterator_t);
         }
         let screen = *iter.data;
         println!("");

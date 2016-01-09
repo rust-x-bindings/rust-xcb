@@ -17,12 +17,12 @@ use ffi::bigreq::*;
 use std::option::Option;
 use std::iter::Iterator;
 
-pub struct  EnableCookie<'s> { pub base : base::Cookie<'s, enable_cookie> }
+pub struct  EnableCookie<'s> { pub base : base::Cookie<'s, xcb_big_requests_enable_cookie_t> }
 
 /** Opcode for xcb_big_requests_enable. */
 pub static XCB_BIG_REQUESTS_ENABLE : u8 = 0;
-pub struct EnableReply { base:  base::Reply<enable_reply> }
-fn mk_reply_enable_reply(reply:*mut enable_reply) -> EnableReply { EnableReply { base : base::mk_reply(reply) } }
+pub struct EnableReply { base:  base::Reply<xcb_big_requests_enable_reply_t> }
+fn mk_reply_xcb_big_requests_enable_reply_t(reply:*mut xcb_big_requests_enable_reply_t) -> EnableReply { EnableReply { base : base::mk_reply(reply) } }
 pub fn Enable<'r> (c : &'r Connection) -> EnableCookie<'r> {
   unsafe {
     let cookie = xcb_big_requests_enable(c.get_raw_conn());
@@ -42,6 +42,6 @@ impl EnableReply {
   }
 
 }
-impl_reply_cookie!(EnableCookie<'s>, mk_reply_enable_reply, EnableReply, xcb_big_requests_enable_reply);
+impl_reply_cookie!(EnableCookie<'s>, mk_reply_xcb_big_requests_enable_reply_t, EnableReply, xcb_big_requests_enable_reply);
 
 

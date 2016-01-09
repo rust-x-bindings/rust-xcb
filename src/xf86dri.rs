@@ -17,62 +17,62 @@ use ffi::xf86dri::*;
 use std::option::Option;
 use std::iter::Iterator;
 
-pub struct DrmClipRect {pub base : base::Struct<drm_clip_rect> }
+pub struct DrmClipRect {pub base : base::Struct<xcb_xf86dri_drm_clip_rect_t> }
 
-pub type DrmClipRectIterator = drm_clip_rect_iterator;
+pub type DrmClipRectIterator = xcb_xf86dri_drm_clip_rect_iterator_t;
 
-pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, query_version_cookie> }
+pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_xf86dri_query_version_cookie_t> }
 
 /** Opcode for xcb_xf86dri_query_version. */
 pub static XCB_XF86DRI_QUERY_VERSION : u8 = 0;
-pub struct QueryVersionReply { base:  base::Reply<query_version_reply> }
-fn mk_reply_query_version_reply(reply:*mut query_version_reply) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
-pub struct  QueryDirectRenderingCapableCookie<'s> { pub base : base::Cookie<'s, query_direct_rendering_capable_cookie> }
+pub struct QueryVersionReply { base:  base::Reply<xcb_xf86dri_query_version_reply_t> }
+fn mk_reply_xcb_xf86dri_query_version_reply_t(reply:*mut xcb_xf86dri_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
+pub struct  QueryDirectRenderingCapableCookie<'s> { pub base : base::Cookie<'s, xcb_xf86dri_query_direct_rendering_capable_cookie_t> }
 
 /** Opcode for xcb_xf86dri_query_direct_rendering_capable. */
 pub static XCB_XF86DRI_QUERY_DIRECT_RENDERING_CAPABLE : u8 = 1;
-pub struct QueryDirectRenderingCapableReply { base:  base::Reply<query_direct_rendering_capable_reply> }
-fn mk_reply_query_direct_rendering_capable_reply(reply:*mut query_direct_rendering_capable_reply) -> QueryDirectRenderingCapableReply { QueryDirectRenderingCapableReply { base : base::mk_reply(reply) } }
-pub struct  OpenConnectionCookie<'s> { pub base : base::Cookie<'s, open_connection_cookie> }
+pub struct QueryDirectRenderingCapableReply { base:  base::Reply<xcb_xf86dri_query_direct_rendering_capable_reply_t> }
+fn mk_reply_xcb_xf86dri_query_direct_rendering_capable_reply_t(reply:*mut xcb_xf86dri_query_direct_rendering_capable_reply_t) -> QueryDirectRenderingCapableReply { QueryDirectRenderingCapableReply { base : base::mk_reply(reply) } }
+pub struct  OpenConnectionCookie<'s> { pub base : base::Cookie<'s, xcb_xf86dri_open_connection_cookie_t> }
 
 /** Opcode for xcb_xf86dri_open_connection. */
 pub static XCB_XF86DRI_OPEN_CONNECTION : u8 = 2;
 /** Opcode for xcb_xf86dri_close_connection. */
 pub static XCB_XF86DRI_CLOSE_CONNECTION : u8 = 3;
-pub struct  GetClientDriverNameCookie<'s> { pub base : base::Cookie<'s, get_client_driver_name_cookie> }
+pub struct  GetClientDriverNameCookie<'s> { pub base : base::Cookie<'s, xcb_xf86dri_get_client_driver_name_cookie_t> }
 
 /** Opcode for xcb_xf86dri_get_client_driver_name. */
 pub static XCB_XF86DRI_GET_CLIENT_DRIVER_NAME : u8 = 4;
-pub struct  CreateContextCookie<'s> { pub base : base::Cookie<'s, create_context_cookie> }
+pub struct  CreateContextCookie<'s> { pub base : base::Cookie<'s, xcb_xf86dri_create_context_cookie_t> }
 
 /** Opcode for xcb_xf86dri_create_context. */
 pub static XCB_XF86DRI_CREATE_CONTEXT : u8 = 5;
-pub struct CreateContextReply { base:  base::Reply<create_context_reply> }
-fn mk_reply_create_context_reply(reply:*mut create_context_reply) -> CreateContextReply { CreateContextReply { base : base::mk_reply(reply) } }
+pub struct CreateContextReply { base:  base::Reply<xcb_xf86dri_create_context_reply_t> }
+fn mk_reply_xcb_xf86dri_create_context_reply_t(reply:*mut xcb_xf86dri_create_context_reply_t) -> CreateContextReply { CreateContextReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_xf86dri_destroy_context. */
 pub static XCB_XF86DRI_DESTROY_CONTEXT : u8 = 6;
-pub struct  CreateDrawableCookie<'s> { pub base : base::Cookie<'s, create_drawable_cookie> }
+pub struct  CreateDrawableCookie<'s> { pub base : base::Cookie<'s, xcb_xf86dri_create_drawable_cookie_t> }
 
 /** Opcode for xcb_xf86dri_create_drawable. */
 pub static XCB_XF86DRI_CREATE_DRAWABLE : u8 = 7;
-pub struct CreateDrawableReply { base:  base::Reply<create_drawable_reply> }
-fn mk_reply_create_drawable_reply(reply:*mut create_drawable_reply) -> CreateDrawableReply { CreateDrawableReply { base : base::mk_reply(reply) } }
+pub struct CreateDrawableReply { base:  base::Reply<xcb_xf86dri_create_drawable_reply_t> }
+fn mk_reply_xcb_xf86dri_create_drawable_reply_t(reply:*mut xcb_xf86dri_create_drawable_reply_t) -> CreateDrawableReply { CreateDrawableReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_xf86dri_destroy_drawable. */
 pub static XCB_XF86DRI_DESTROY_DRAWABLE : u8 = 8;
-pub struct  GetDrawableInfoCookie<'s> { pub base : base::Cookie<'s, get_drawable_info_cookie> }
+pub struct  GetDrawableInfoCookie<'s> { pub base : base::Cookie<'s, xcb_xf86dri_get_drawable_info_cookie_t> }
 
 /** Opcode for xcb_xf86dri_get_drawable_info. */
 pub static XCB_XF86DRI_GET_DRAWABLE_INFO : u8 = 9;
-pub struct  GetDeviceInfoCookie<'s> { pub base : base::Cookie<'s, get_device_info_cookie> }
+pub struct  GetDeviceInfoCookie<'s> { pub base : base::Cookie<'s, xcb_xf86dri_get_device_info_cookie_t> }
 
 /** Opcode for xcb_xf86dri_get_device_info. */
 pub static XCB_XF86DRI_GET_DEVICE_INFO : u8 = 10;
-pub struct  AuthConnectionCookie<'s> { pub base : base::Cookie<'s, auth_connection_cookie> }
+pub struct  AuthConnectionCookie<'s> { pub base : base::Cookie<'s, xcb_xf86dri_auth_connection_cookie_t> }
 
 /** Opcode for xcb_xf86dri_auth_connection. */
 pub static XCB_XF86DRI_AUTH_CONNECTION : u8 = 11;
-pub struct AuthConnectionReply { base:  base::Reply<auth_connection_reply> }
-fn mk_reply_auth_connection_reply(reply:*mut auth_connection_reply) -> AuthConnectionReply { AuthConnectionReply { base : base::mk_reply(reply) } }
+pub struct AuthConnectionReply { base:  base::Reply<xcb_xf86dri_auth_connection_reply_t> }
+fn mk_reply_xcb_xf86dri_auth_connection_reply_t(reply:*mut xcb_xf86dri_auth_connection_reply_t) -> AuthConnectionReply { AuthConnectionReply { base : base::mk_reply(reply) } }
 
 impl DrmClipRect {
   pub fn x1(&mut self) -> i16 {
@@ -98,7 +98,7 @@ impl Iterator for DrmClipRectIterator {
     fn next(&mut self) -> Option<DrmClipRect> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut drm_clip_rect_iterator = mem::transmute(self);
+            let iter: *mut xcb_xf86dri_drm_clip_rect_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_xf86dri_drm_clip_rect_next(iter);
             Some(mem::transmute(*data))
@@ -133,7 +133,7 @@ impl QueryVersionReply {
   }
 
 }
-impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_query_version_reply, QueryVersionReply, xcb_xf86dri_query_version_reply);
+impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_xcb_xf86dri_query_version_reply_t, QueryVersionReply, xcb_xf86dri_query_version_reply);
 
 pub fn QueryDirectRenderingCapable<'r> (c : &'r Connection,
                                     screen : u32) -> QueryDirectRenderingCapableCookie<'r> {
@@ -158,10 +158,10 @@ impl QueryDirectRenderingCapableReply {
   }
 
 }
-impl_reply_cookie!(QueryDirectRenderingCapableCookie<'s>, mk_reply_query_direct_rendering_capable_reply, QueryDirectRenderingCapableReply, xcb_xf86dri_query_direct_rendering_capable_reply);
+impl_reply_cookie!(QueryDirectRenderingCapableCookie<'s>, mk_reply_xcb_xf86dri_query_direct_rendering_capable_reply_t, QueryDirectRenderingCapableReply, xcb_xf86dri_query_direct_rendering_capable_reply);
 
-pub struct OpenConnectionReply { base:  base::Reply<open_connection_reply> }
-fn mk_reply_open_connection_reply(reply:*mut open_connection_reply) -> OpenConnectionReply { OpenConnectionReply { base : base::mk_reply(reply) } }
+pub struct OpenConnectionReply { base:  base::Reply<xcb_xf86dri_open_connection_reply_t> }
+fn mk_reply_xcb_xf86dri_open_connection_reply_t(reply:*mut xcb_xf86dri_open_connection_reply_t) -> OpenConnectionReply { OpenConnectionReply { base : base::mk_reply(reply) } }
 pub fn OpenConnection<'r> (c : &'r Connection,
                        screen : u32) -> OpenConnectionCookie<'r> {
   unsafe {
@@ -193,7 +193,7 @@ impl OpenConnectionReply {
   }
 
 }
-impl_reply_cookie!(OpenConnectionCookie<'s>, mk_reply_open_connection_reply, OpenConnectionReply, xcb_xf86dri_open_connection_reply);
+impl_reply_cookie!(OpenConnectionCookie<'s>, mk_reply_xcb_xf86dri_open_connection_reply_t, OpenConnectionReply, xcb_xf86dri_open_connection_reply);
 
 pub fn CloseConnectionChecked<'r> (c : &'r Connection,
                                screen : u32) -> base::VoidCookie<'r> {
@@ -211,8 +211,8 @@ pub fn CloseConnection<'r> (c : &'r Connection,
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub struct GetClientDriverNameReply { base:  base::Reply<get_client_driver_name_reply> }
-fn mk_reply_get_client_driver_name_reply(reply:*mut get_client_driver_name_reply) -> GetClientDriverNameReply { GetClientDriverNameReply { base : base::mk_reply(reply) } }
+pub struct GetClientDriverNameReply { base:  base::Reply<xcb_xf86dri_get_client_driver_name_reply_t> }
+fn mk_reply_xcb_xf86dri_get_client_driver_name_reply_t(reply:*mut xcb_xf86dri_get_client_driver_name_reply_t) -> GetClientDriverNameReply { GetClientDriverNameReply { base : base::mk_reply(reply) } }
 pub fn GetClientDriverName<'r> (c : &'r Connection,
                             screen : u32) -> GetClientDriverNameCookie<'r> {
   unsafe {
@@ -248,7 +248,7 @@ impl GetClientDriverNameReply {
   }
 
 }
-impl_reply_cookie!(GetClientDriverNameCookie<'s>, mk_reply_get_client_driver_name_reply, GetClientDriverNameReply, xcb_xf86dri_get_client_driver_name_reply);
+impl_reply_cookie!(GetClientDriverNameCookie<'s>, mk_reply_xcb_xf86dri_get_client_driver_name_reply_t, GetClientDriverNameReply, xcb_xf86dri_get_client_driver_name_reply);
 
 pub fn CreateContext<'r> (c : &'r Connection,
                       screen : u32,
@@ -281,7 +281,7 @@ impl CreateContextReply {
   }
 
 }
-impl_reply_cookie!(CreateContextCookie<'s>, mk_reply_create_context_reply, CreateContextReply, xcb_xf86dri_create_context_reply);
+impl_reply_cookie!(CreateContextCookie<'s>, mk_reply_xcb_xf86dri_create_context_reply_t, CreateContextReply, xcb_xf86dri_create_context_reply);
 
 pub fn DestroyContextChecked<'r> (c : &'r Connection,
                               screen : u32,
@@ -330,7 +330,7 @@ impl CreateDrawableReply {
   }
 
 }
-impl_reply_cookie!(CreateDrawableCookie<'s>, mk_reply_create_drawable_reply, CreateDrawableReply, xcb_xf86dri_create_drawable_reply);
+impl_reply_cookie!(CreateDrawableCookie<'s>, mk_reply_xcb_xf86dri_create_drawable_reply_t, CreateDrawableReply, xcb_xf86dri_create_drawable_reply);
 
 pub fn DestroyDrawableChecked<'r> (c : &'r Connection,
                                screen : u32,
@@ -352,8 +352,8 @@ pub fn DestroyDrawable<'r> (c : &'r Connection,
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub struct GetDrawableInfoReply { base:  base::Reply<get_drawable_info_reply> }
-fn mk_reply_get_drawable_info_reply(reply:*mut get_drawable_info_reply) -> GetDrawableInfoReply { GetDrawableInfoReply { base : base::mk_reply(reply) } }
+pub struct GetDrawableInfoReply { base:  base::Reply<xcb_xf86dri_get_drawable_info_reply_t> }
+fn mk_reply_xcb_xf86dri_get_drawable_info_reply_t(reply:*mut xcb_xf86dri_get_drawable_info_reply_t) -> GetDrawableInfoReply { GetDrawableInfoReply { base : base::mk_reply(reply) } }
 pub fn GetDrawableInfo<'r> (c : &'r Connection,
                         screen : u32,
                         drawable : u32) -> GetDrawableInfoCookie<'r> {
@@ -417,10 +417,10 @@ impl GetDrawableInfoReply {
   }
 
 }
-impl_reply_cookie!(GetDrawableInfoCookie<'s>, mk_reply_get_drawable_info_reply, GetDrawableInfoReply, xcb_xf86dri_get_drawable_info_reply);
+impl_reply_cookie!(GetDrawableInfoCookie<'s>, mk_reply_xcb_xf86dri_get_drawable_info_reply_t, GetDrawableInfoReply, xcb_xf86dri_get_drawable_info_reply);
 
-pub struct GetDeviceInfoReply { base:  base::Reply<get_device_info_reply> }
-fn mk_reply_get_device_info_reply(reply:*mut get_device_info_reply) -> GetDeviceInfoReply { GetDeviceInfoReply { base : base::mk_reply(reply) } }
+pub struct GetDeviceInfoReply { base:  base::Reply<xcb_xf86dri_get_device_info_reply_t> }
+fn mk_reply_xcb_xf86dri_get_device_info_reply_t(reply:*mut xcb_xf86dri_get_device_info_reply_t) -> GetDeviceInfoReply { GetDeviceInfoReply { base : base::mk_reply(reply) } }
 pub fn GetDeviceInfo<'r> (c : &'r Connection,
                       screen : u32) -> GetDeviceInfoCookie<'r> {
   unsafe {
@@ -464,7 +464,7 @@ impl GetDeviceInfoReply {
   }
 
 }
-impl_reply_cookie!(GetDeviceInfoCookie<'s>, mk_reply_get_device_info_reply, GetDeviceInfoReply, xcb_xf86dri_get_device_info_reply);
+impl_reply_cookie!(GetDeviceInfoCookie<'s>, mk_reply_xcb_xf86dri_get_device_info_reply_t, GetDeviceInfoReply, xcb_xf86dri_get_device_info_reply);
 
 pub fn AuthConnection<'r> (c : &'r Connection,
                        screen : u32,
@@ -493,6 +493,6 @@ impl AuthConnectionReply {
   }
 
 }
-impl_reply_cookie!(AuthConnectionCookie<'s>, mk_reply_auth_connection_reply, AuthConnectionReply, xcb_xf86dri_auth_connection_reply);
+impl_reply_cookie!(AuthConnectionCookie<'s>, mk_reply_xcb_xf86dri_auth_connection_reply_t, AuthConnectionReply, xcb_xf86dri_auth_connection_reply);
 
 

@@ -15,25 +15,25 @@ pub static BIGREQUESTS_MINOR_VERSION : c_uint = 0;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct enable_cookie {
+pub struct xcb_big_requests_enable_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct enable_request {
+pub struct xcb_big_requests_enable_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
-impl Copy for enable_request {}
-impl Clone for enable_request {
-    fn clone(&self) -> enable_request { *self }
+impl Copy for xcb_big_requests_enable_request_t {}
+impl Clone for xcb_big_requests_enable_request_t {
+    fn clone(&self) -> xcb_big_requests_enable_request_t { *self }
 }
 
 #[repr(C)]
-pub struct enable_reply {
+pub struct xcb_big_requests_enable_reply_t {
      pub response_type :            u8,
      pub pad0 :                     u8,
      pub sequence :                 u16,
@@ -41,9 +41,9 @@ pub struct enable_reply {
      pub maximum_request_length :   u32
 }
 
-impl Copy for enable_reply {}
-impl Clone for enable_reply {
-    fn clone(&self) -> enable_reply { *self }
+impl Copy for xcb_big_requests_enable_reply_t {}
+impl Clone for xcb_big_requests_enable_reply_t {
+    fn clone(&self) -> xcb_big_requests_enable_reply_t { *self }
 }
 extern "C" {
 
@@ -55,7 +55,7 @@ extern "C" {
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_big_requests_enable (c : *mut ffi::base::connection) -> enable_cookie;
+pub fn xcb_big_requests_enable (c : *mut ffi::base::xcb_connection_t) -> xcb_big_requests_enable_cookie_t;
 
 /**
  *
@@ -68,13 +68,13 @@ pub fn xcb_big_requests_enable (c : *mut ffi::base::connection) -> enable_cookie
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_big_requests_enable_unchecked (c : *mut ffi::base::connection) -> enable_cookie;
+pub fn xcb_big_requests_enable_unchecked (c : *mut ffi::base::xcb_connection_t) -> xcb_big_requests_enable_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -84,8 +84,8 @@ pub fn xcb_big_requests_enable_unchecked (c : *mut ffi::base::connection) -> ena
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_big_requests_enable_reply (c : *mut ffi::base::connection,
-                                         cookie : enable_cookie,
-                                         e : *mut *mut ffi::base::generic_error) -> *mut enable_reply;
+pub fn xcb_big_requests_enable_reply (c : *mut ffi::base::xcb_connection_t,
+                                         cookie : xcb_big_requests_enable_cookie_t,
+                                         e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_big_requests_enable_reply_t;
 }
 

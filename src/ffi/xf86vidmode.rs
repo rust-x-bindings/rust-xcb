@@ -13,33 +13,33 @@ use ffi;
 pub static XF86VIDMODE_MAJOR_VERSION : c_uint = 2;
 pub static XF86VIDMODE_MINOR_VERSION : c_uint = 2;
 
-pub type syncrange = u32;
+pub type xcb_xf86vidmode_syncrange_t = u32;
 /**
- * @brief syncrange_iterator
+ * @brief xcb_xf86vidmode_syncrange_iterator_t
  **/
 #[repr(C)]
-pub struct syncrange_iterator {
-    pub data : *mut syncrange,
+pub struct xcb_xf86vidmode_syncrange_iterator_t {
+    pub data : *mut xcb_xf86vidmode_syncrange_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
-pub type dotclock = u32;
+pub type xcb_xf86vidmode_dotclock_t = u32;
 /**
- * @brief dotclock_iterator
+ * @brief xcb_xf86vidmode_dotclock_iterator_t
  **/
 #[repr(C)]
-pub struct dotclock_iterator {
-    pub data : *mut dotclock,
+pub struct xcb_xf86vidmode_dotclock_iterator_t {
+    pub data : *mut xcb_xf86vidmode_dotclock_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct mode_info {
-     pub dotclock :     dotclock,
+pub struct xcb_xf86vidmode_mode_info_t {
+     pub dotclock :     xcb_xf86vidmode_dotclock_t,
      pub hdisplay :     u16,
      pub hsyncstart :   u16,
      pub hsyncend :     u16,
@@ -55,16 +55,16 @@ pub struct mode_info {
      pub privsize :     u32
 }
 
-impl Copy for mode_info {}
-impl Clone for mode_info {
-    fn clone(&self) -> mode_info { *self }
+impl Copy for xcb_xf86vidmode_mode_info_t {}
+impl Clone for xcb_xf86vidmode_mode_info_t {
+    fn clone(&self) -> xcb_xf86vidmode_mode_info_t { *self }
 }
 /**
- * @brief mode_info_iterator
+ * @brief xcb_xf86vidmode_mode_info_iterator_t
  **/
 #[repr(C)]
-pub struct mode_info_iterator {
-    pub data : *mut mode_info,
+pub struct xcb_xf86vidmode_mode_info_iterator_t {
+    pub data : *mut xcb_xf86vidmode_mode_info_t,
     pub rem  : c_int,
     pub index: c_int
 }
@@ -72,25 +72,25 @@ pub struct mode_info_iterator {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct query_version_cookie {
+pub struct xcb_xf86vidmode_query_version_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct query_version_request {
+pub struct xcb_xf86vidmode_query_version_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
-impl Copy for query_version_request {}
-impl Clone for query_version_request {
-    fn clone(&self) -> query_version_request { *self }
+impl Copy for xcb_xf86vidmode_query_version_request_t {}
+impl Clone for xcb_xf86vidmode_query_version_request_t {
+    fn clone(&self) -> xcb_xf86vidmode_query_version_request_t { *self }
 }
 
 #[repr(C)]
-pub struct query_version_reply {
+pub struct xcb_xf86vidmode_query_version_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -99,20 +99,20 @@ pub struct query_version_reply {
      pub minor_version :   u16
 }
 
-impl Copy for query_version_reply {}
-impl Clone for query_version_reply {
-    fn clone(&self) -> query_version_reply { *self }
+impl Copy for xcb_xf86vidmode_query_version_reply_t {}
+impl Clone for xcb_xf86vidmode_query_version_reply_t {
+    fn clone(&self) -> xcb_xf86vidmode_query_version_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_mode_line_cookie {
+pub struct xcb_xf86vidmode_get_mode_line_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_mode_line_request {
+pub struct xcb_xf86vidmode_get_mode_line_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
@@ -120,18 +120,18 @@ pub struct get_mode_line_request {
      pub pad0 :           [u8; 2]
 }
 
-impl Copy for get_mode_line_request {}
-impl Clone for get_mode_line_request {
-    fn clone(&self) -> get_mode_line_request { *self }
+impl Copy for xcb_xf86vidmode_get_mode_line_request_t {}
+impl Clone for xcb_xf86vidmode_get_mode_line_request_t {
+    fn clone(&self) -> xcb_xf86vidmode_get_mode_line_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_mode_line_reply {
+pub struct xcb_xf86vidmode_get_mode_line_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub dotclock :        dotclock,
+     pub dotclock :        xcb_xf86vidmode_dotclock_t,
      pub hdisplay :        u16,
      pub hsyncstart :      u16,
      pub hsyncend :        u16,
@@ -147,14 +147,14 @@ pub struct get_mode_line_reply {
      pub privsize :        u32
 }
 
-impl Copy for get_mode_line_reply {}
-impl Clone for get_mode_line_reply {
-    fn clone(&self) -> get_mode_line_reply { *self }
+impl Copy for xcb_xf86vidmode_get_mode_line_reply_t {}
+impl Clone for xcb_xf86vidmode_get_mode_line_reply_t {
+    fn clone(&self) -> xcb_xf86vidmode_get_mode_line_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct mod_mode_line_request {
+pub struct xcb_xf86vidmode_mod_mode_line_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
@@ -174,14 +174,14 @@ pub struct mod_mode_line_request {
      pub privsize :       u32
 }
 
-impl Copy for mod_mode_line_request {}
-impl Clone for mod_mode_line_request {
-    fn clone(&self) -> mod_mode_line_request { *self }
+impl Copy for xcb_xf86vidmode_mod_mode_line_request_t {}
+impl Clone for xcb_xf86vidmode_mod_mode_line_request_t {
+    fn clone(&self) -> xcb_xf86vidmode_mod_mode_line_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct switch_mode_request {
+pub struct xcb_xf86vidmode_switch_mode_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
@@ -189,20 +189,20 @@ pub struct switch_mode_request {
      pub zoom :           u16
 }
 
-impl Copy for switch_mode_request {}
-impl Clone for switch_mode_request {
-    fn clone(&self) -> switch_mode_request { *self }
+impl Copy for xcb_xf86vidmode_switch_mode_request_t {}
+impl Clone for xcb_xf86vidmode_switch_mode_request_t {
+    fn clone(&self) -> xcb_xf86vidmode_switch_mode_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_monitor_cookie {
+pub struct xcb_xf86vidmode_get_monitor_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_monitor_request {
+pub struct xcb_xf86vidmode_get_monitor_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
@@ -210,13 +210,13 @@ pub struct get_monitor_request {
      pub pad0 :           [u8; 2]
 }
 
-impl Copy for get_monitor_request {}
-impl Clone for get_monitor_request {
-    fn clone(&self) -> get_monitor_request { *self }
+impl Copy for xcb_xf86vidmode_get_monitor_request_t {}
+impl Clone for xcb_xf86vidmode_get_monitor_request_t {
+    fn clone(&self) -> xcb_xf86vidmode_get_monitor_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_monitor_reply {
+pub struct xcb_xf86vidmode_get_monitor_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -228,14 +228,14 @@ pub struct get_monitor_reply {
      pub pad1 :            [u8; 20]
 }
 
-impl Copy for get_monitor_reply {}
-impl Clone for get_monitor_reply {
-    fn clone(&self) -> get_monitor_reply { *self }
+impl Copy for xcb_xf86vidmode_get_monitor_reply_t {}
+impl Clone for xcb_xf86vidmode_get_monitor_reply_t {
+    fn clone(&self) -> xcb_xf86vidmode_get_monitor_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct lock_mode_switch_request {
+pub struct xcb_xf86vidmode_lock_mode_switch_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
@@ -243,20 +243,20 @@ pub struct lock_mode_switch_request {
      pub lock :           u16
 }
 
-impl Copy for lock_mode_switch_request {}
-impl Clone for lock_mode_switch_request {
-    fn clone(&self) -> lock_mode_switch_request { *self }
+impl Copy for xcb_xf86vidmode_lock_mode_switch_request_t {}
+impl Clone for xcb_xf86vidmode_lock_mode_switch_request_t {
+    fn clone(&self) -> xcb_xf86vidmode_lock_mode_switch_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_all_mode_lines_cookie {
+pub struct xcb_xf86vidmode_get_all_mode_lines_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_all_mode_lines_request {
+pub struct xcb_xf86vidmode_get_all_mode_lines_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
@@ -264,13 +264,13 @@ pub struct get_all_mode_lines_request {
      pub pad0 :           [u8; 2]
 }
 
-impl Copy for get_all_mode_lines_request {}
-impl Clone for get_all_mode_lines_request {
-    fn clone(&self) -> get_all_mode_lines_request { *self }
+impl Copy for xcb_xf86vidmode_get_all_mode_lines_request_t {}
+impl Clone for xcb_xf86vidmode_get_all_mode_lines_request_t {
+    fn clone(&self) -> xcb_xf86vidmode_get_all_mode_lines_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_all_mode_lines_reply {
+pub struct xcb_xf86vidmode_get_all_mode_lines_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -279,19 +279,19 @@ pub struct get_all_mode_lines_reply {
      pub pad1 :            [u8; 20]
 }
 
-impl Copy for get_all_mode_lines_reply {}
-impl Clone for get_all_mode_lines_reply {
-    fn clone(&self) -> get_all_mode_lines_reply { *self }
+impl Copy for xcb_xf86vidmode_get_all_mode_lines_reply_t {}
+impl Clone for xcb_xf86vidmode_get_all_mode_lines_reply_t {
+    fn clone(&self) -> xcb_xf86vidmode_get_all_mode_lines_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct add_mode_line_request {
+pub struct xcb_xf86vidmode_add_mode_line_request_t {
      pub major_opcode :       u8,
      pub minor_opcode :       u8,
      pub length :             u16,
      pub screen :             u32,
-     pub dotclock :           dotclock,
+     pub dotclock :           xcb_xf86vidmode_dotclock_t,
      pub hdisplay :           u16,
      pub hsyncstart :         u16,
      pub hsyncend :           u16,
@@ -305,7 +305,7 @@ pub struct add_mode_line_request {
      pub flags :              u32,
      pub pad1 :               [u8; 12],
      pub privsize :           u32,
-     pub after_dotclock :     dotclock,
+     pub after_dotclock :     xcb_xf86vidmode_dotclock_t,
      pub after_hdisplay :     u16,
      pub after_hsyncstart :   u16,
      pub after_hsyncend :     u16,
@@ -320,19 +320,19 @@ pub struct add_mode_line_request {
      pub pad3 :               [u8; 12]
 }
 
-impl Copy for add_mode_line_request {}
-impl Clone for add_mode_line_request {
-    fn clone(&self) -> add_mode_line_request { *self }
+impl Copy for xcb_xf86vidmode_add_mode_line_request_t {}
+impl Clone for xcb_xf86vidmode_add_mode_line_request_t {
+    fn clone(&self) -> xcb_xf86vidmode_add_mode_line_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct delete_mode_line_request {
+pub struct xcb_xf86vidmode_delete_mode_line_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub screen :         u32,
-     pub dotclock :       dotclock,
+     pub dotclock :       xcb_xf86vidmode_dotclock_t,
      pub hdisplay :       u16,
      pub hsyncstart :     u16,
      pub hsyncend :       u16,
@@ -348,25 +348,25 @@ pub struct delete_mode_line_request {
      pub privsize :       u32
 }
 
-impl Copy for delete_mode_line_request {}
-impl Clone for delete_mode_line_request {
-    fn clone(&self) -> delete_mode_line_request { *self }
+impl Copy for xcb_xf86vidmode_delete_mode_line_request_t {}
+impl Clone for xcb_xf86vidmode_delete_mode_line_request_t {
+    fn clone(&self) -> xcb_xf86vidmode_delete_mode_line_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct validate_mode_line_cookie {
+pub struct xcb_xf86vidmode_validate_mode_line_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct validate_mode_line_request {
+pub struct xcb_xf86vidmode_validate_mode_line_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub screen :         u32,
-     pub dotclock :       dotclock,
+     pub dotclock :       xcb_xf86vidmode_dotclock_t,
      pub hdisplay :       u16,
      pub hsyncstart :     u16,
      pub hsyncend :       u16,
@@ -382,13 +382,13 @@ pub struct validate_mode_line_request {
      pub privsize :       u32
 }
 
-impl Copy for validate_mode_line_request {}
-impl Clone for validate_mode_line_request {
-    fn clone(&self) -> validate_mode_line_request { *self }
+impl Copy for xcb_xf86vidmode_validate_mode_line_request_t {}
+impl Clone for xcb_xf86vidmode_validate_mode_line_request_t {
+    fn clone(&self) -> xcb_xf86vidmode_validate_mode_line_request_t { *self }
 }
 
 #[repr(C)]
-pub struct validate_mode_line_reply {
+pub struct xcb_xf86vidmode_validate_mode_line_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -397,19 +397,19 @@ pub struct validate_mode_line_reply {
      pub pad1 :            [u8; 20]
 }
 
-impl Copy for validate_mode_line_reply {}
-impl Clone for validate_mode_line_reply {
-    fn clone(&self) -> validate_mode_line_reply { *self }
+impl Copy for xcb_xf86vidmode_validate_mode_line_reply_t {}
+impl Clone for xcb_xf86vidmode_validate_mode_line_reply_t {
+    fn clone(&self) -> xcb_xf86vidmode_validate_mode_line_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct switch_to_mode_request {
+pub struct xcb_xf86vidmode_switch_to_mode_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub screen :         u32,
-     pub dotclock :       dotclock,
+     pub dotclock :       xcb_xf86vidmode_dotclock_t,
      pub hdisplay :       u16,
      pub hsyncstart :     u16,
      pub hsyncend :       u16,
@@ -425,20 +425,20 @@ pub struct switch_to_mode_request {
      pub privsize :       u32
 }
 
-impl Copy for switch_to_mode_request {}
-impl Clone for switch_to_mode_request {
-    fn clone(&self) -> switch_to_mode_request { *self }
+impl Copy for xcb_xf86vidmode_switch_to_mode_request_t {}
+impl Clone for xcb_xf86vidmode_switch_to_mode_request_t {
+    fn clone(&self) -> xcb_xf86vidmode_switch_to_mode_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_view_port_cookie {
+pub struct xcb_xf86vidmode_get_view_port_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_view_port_request {
+pub struct xcb_xf86vidmode_get_view_port_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
@@ -446,13 +446,13 @@ pub struct get_view_port_request {
      pub pad0 :           [u8; 2]
 }
 
-impl Copy for get_view_port_request {}
-impl Clone for get_view_port_request {
-    fn clone(&self) -> get_view_port_request { *self }
+impl Copy for xcb_xf86vidmode_get_view_port_request_t {}
+impl Clone for xcb_xf86vidmode_get_view_port_request_t {
+    fn clone(&self) -> xcb_xf86vidmode_get_view_port_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_view_port_reply {
+pub struct xcb_xf86vidmode_get_view_port_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -462,14 +462,14 @@ pub struct get_view_port_reply {
      pub pad1 :            [u8; 16]
 }
 
-impl Copy for get_view_port_reply {}
-impl Clone for get_view_port_reply {
-    fn clone(&self) -> get_view_port_reply { *self }
+impl Copy for xcb_xf86vidmode_get_view_port_reply_t {}
+impl Clone for xcb_xf86vidmode_get_view_port_reply_t {
+    fn clone(&self) -> xcb_xf86vidmode_get_view_port_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct set_view_port_request {
+pub struct xcb_xf86vidmode_set_view_port_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
@@ -479,20 +479,20 @@ pub struct set_view_port_request {
      pub y :              u32
 }
 
-impl Copy for set_view_port_request {}
-impl Clone for set_view_port_request {
-    fn clone(&self) -> set_view_port_request { *self }
+impl Copy for xcb_xf86vidmode_set_view_port_request_t {}
+impl Clone for xcb_xf86vidmode_set_view_port_request_t {
+    fn clone(&self) -> xcb_xf86vidmode_set_view_port_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_dot_clocks_cookie {
+pub struct xcb_xf86vidmode_get_dot_clocks_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_dot_clocks_request {
+pub struct xcb_xf86vidmode_get_dot_clocks_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
@@ -500,13 +500,13 @@ pub struct get_dot_clocks_request {
      pub pad0 :           [u8; 2]
 }
 
-impl Copy for get_dot_clocks_request {}
-impl Clone for get_dot_clocks_request {
-    fn clone(&self) -> get_dot_clocks_request { *self }
+impl Copy for xcb_xf86vidmode_get_dot_clocks_request_t {}
+impl Clone for xcb_xf86vidmode_get_dot_clocks_request_t {
+    fn clone(&self) -> xcb_xf86vidmode_get_dot_clocks_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_dot_clocks_reply {
+pub struct xcb_xf86vidmode_get_dot_clocks_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -517,14 +517,14 @@ pub struct get_dot_clocks_reply {
      pub pad1 :            [u8; 12]
 }
 
-impl Copy for get_dot_clocks_reply {}
-impl Clone for get_dot_clocks_reply {
-    fn clone(&self) -> get_dot_clocks_reply { *self }
+impl Copy for xcb_xf86vidmode_get_dot_clocks_reply_t {}
+impl Clone for xcb_xf86vidmode_get_dot_clocks_reply_t {
+    fn clone(&self) -> xcb_xf86vidmode_get_dot_clocks_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct set_client_version_request {
+pub struct xcb_xf86vidmode_set_client_version_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
@@ -532,14 +532,14 @@ pub struct set_client_version_request {
      pub minor :          u16
 }
 
-impl Copy for set_client_version_request {}
-impl Clone for set_client_version_request {
-    fn clone(&self) -> set_client_version_request { *self }
+impl Copy for xcb_xf86vidmode_set_client_version_request_t {}
+impl Clone for xcb_xf86vidmode_set_client_version_request_t {
+    fn clone(&self) -> xcb_xf86vidmode_set_client_version_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct set_gamma_request {
+pub struct xcb_xf86vidmode_set_gamma_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
@@ -551,20 +551,20 @@ pub struct set_gamma_request {
      pub pad1 :           [u8; 12]
 }
 
-impl Copy for set_gamma_request {}
-impl Clone for set_gamma_request {
-    fn clone(&self) -> set_gamma_request { *self }
+impl Copy for xcb_xf86vidmode_set_gamma_request_t {}
+impl Clone for xcb_xf86vidmode_set_gamma_request_t {
+    fn clone(&self) -> xcb_xf86vidmode_set_gamma_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_gamma_cookie {
+pub struct xcb_xf86vidmode_get_gamma_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_gamma_request {
+pub struct xcb_xf86vidmode_get_gamma_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
@@ -572,13 +572,13 @@ pub struct get_gamma_request {
      pub pad0 :           [u8; 26]
 }
 
-impl Copy for get_gamma_request {}
-impl Clone for get_gamma_request {
-    fn clone(&self) -> get_gamma_request { *self }
+impl Copy for xcb_xf86vidmode_get_gamma_request_t {}
+impl Clone for xcb_xf86vidmode_get_gamma_request_t {
+    fn clone(&self) -> xcb_xf86vidmode_get_gamma_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_gamma_reply {
+pub struct xcb_xf86vidmode_get_gamma_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -589,20 +589,20 @@ pub struct get_gamma_reply {
      pub pad1 :            [u8; 12]
 }
 
-impl Copy for get_gamma_reply {}
-impl Clone for get_gamma_reply {
-    fn clone(&self) -> get_gamma_reply { *self }
+impl Copy for xcb_xf86vidmode_get_gamma_reply_t {}
+impl Clone for xcb_xf86vidmode_get_gamma_reply_t {
+    fn clone(&self) -> xcb_xf86vidmode_get_gamma_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_gamma_ramp_cookie {
+pub struct xcb_xf86vidmode_get_gamma_ramp_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_gamma_ramp_request {
+pub struct xcb_xf86vidmode_get_gamma_ramp_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
@@ -610,13 +610,13 @@ pub struct get_gamma_ramp_request {
      pub size :           u16
 }
 
-impl Copy for get_gamma_ramp_request {}
-impl Clone for get_gamma_ramp_request {
-    fn clone(&self) -> get_gamma_ramp_request { *self }
+impl Copy for xcb_xf86vidmode_get_gamma_ramp_request_t {}
+impl Clone for xcb_xf86vidmode_get_gamma_ramp_request_t {
+    fn clone(&self) -> xcb_xf86vidmode_get_gamma_ramp_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_gamma_ramp_reply {
+pub struct xcb_xf86vidmode_get_gamma_ramp_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -625,14 +625,14 @@ pub struct get_gamma_ramp_reply {
      pub pad1 :            [u8; 22]
 }
 
-impl Copy for get_gamma_ramp_reply {}
-impl Clone for get_gamma_ramp_reply {
-    fn clone(&self) -> get_gamma_ramp_reply { *self }
+impl Copy for xcb_xf86vidmode_get_gamma_ramp_reply_t {}
+impl Clone for xcb_xf86vidmode_get_gamma_ramp_reply_t {
+    fn clone(&self) -> xcb_xf86vidmode_get_gamma_ramp_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct set_gamma_ramp_request {
+pub struct xcb_xf86vidmode_set_gamma_ramp_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
@@ -640,20 +640,20 @@ pub struct set_gamma_ramp_request {
      pub size :           u16
 }
 
-impl Copy for set_gamma_ramp_request {}
-impl Clone for set_gamma_ramp_request {
-    fn clone(&self) -> set_gamma_ramp_request { *self }
+impl Copy for xcb_xf86vidmode_set_gamma_ramp_request_t {}
+impl Clone for xcb_xf86vidmode_set_gamma_ramp_request_t {
+    fn clone(&self) -> xcb_xf86vidmode_set_gamma_ramp_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_gamma_ramp_size_cookie {
+pub struct xcb_xf86vidmode_get_gamma_ramp_size_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_gamma_ramp_size_request {
+pub struct xcb_xf86vidmode_get_gamma_ramp_size_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
@@ -661,13 +661,13 @@ pub struct get_gamma_ramp_size_request {
      pub pad0 :           [u8; 2]
 }
 
-impl Copy for get_gamma_ramp_size_request {}
-impl Clone for get_gamma_ramp_size_request {
-    fn clone(&self) -> get_gamma_ramp_size_request { *self }
+impl Copy for xcb_xf86vidmode_get_gamma_ramp_size_request_t {}
+impl Clone for xcb_xf86vidmode_get_gamma_ramp_size_request_t {
+    fn clone(&self) -> xcb_xf86vidmode_get_gamma_ramp_size_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_gamma_ramp_size_reply {
+pub struct xcb_xf86vidmode_get_gamma_ramp_size_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -676,20 +676,20 @@ pub struct get_gamma_ramp_size_reply {
      pub pad1 :            [u8; 22]
 }
 
-impl Copy for get_gamma_ramp_size_reply {}
-impl Clone for get_gamma_ramp_size_reply {
-    fn clone(&self) -> get_gamma_ramp_size_reply { *self }
+impl Copy for xcb_xf86vidmode_get_gamma_ramp_size_reply_t {}
+impl Clone for xcb_xf86vidmode_get_gamma_ramp_size_reply_t {
+    fn clone(&self) -> xcb_xf86vidmode_get_gamma_ramp_size_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_permissions_cookie {
+pub struct xcb_xf86vidmode_get_permissions_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_permissions_request {
+pub struct xcb_xf86vidmode_get_permissions_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
@@ -697,13 +697,13 @@ pub struct get_permissions_request {
      pub pad0 :           [u8; 2]
 }
 
-impl Copy for get_permissions_request {}
-impl Clone for get_permissions_request {
-    fn clone(&self) -> get_permissions_request { *self }
+impl Copy for xcb_xf86vidmode_get_permissions_request_t {}
+impl Clone for xcb_xf86vidmode_get_permissions_request_t {
+    fn clone(&self) -> xcb_xf86vidmode_get_permissions_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_permissions_reply {
+pub struct xcb_xf86vidmode_get_permissions_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -712,171 +712,171 @@ pub struct get_permissions_reply {
      pub pad1 :            [u8; 20]
 }
 
-impl Copy for get_permissions_reply {}
-impl Clone for get_permissions_reply {
-    fn clone(&self) -> get_permissions_reply { *self }
+impl Copy for xcb_xf86vidmode_get_permissions_reply_t {}
+impl Clone for xcb_xf86vidmode_get_permissions_reply_t {
+    fn clone(&self) -> xcb_xf86vidmode_get_permissions_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct bad_clock_error {
+pub struct xcb_xf86vidmode_bad_clock_error_t {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
-impl Copy for bad_clock_error {}
-impl Clone for bad_clock_error {
-    fn clone(&self) -> bad_clock_error { *self }
+impl Copy for xcb_xf86vidmode_bad_clock_error_t {}
+impl Clone for xcb_xf86vidmode_bad_clock_error_t {
+    fn clone(&self) -> xcb_xf86vidmode_bad_clock_error_t { *self }
 }
 
 
 #[repr(C)]
-pub struct bad_h_timings_error {
+pub struct xcb_xf86vidmode_bad_h_timings_error_t {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
-impl Copy for bad_h_timings_error {}
-impl Clone for bad_h_timings_error {
-    fn clone(&self) -> bad_h_timings_error { *self }
+impl Copy for xcb_xf86vidmode_bad_h_timings_error_t {}
+impl Clone for xcb_xf86vidmode_bad_h_timings_error_t {
+    fn clone(&self) -> xcb_xf86vidmode_bad_h_timings_error_t { *self }
 }
 
 
 #[repr(C)]
-pub struct bad_v_timings_error {
+pub struct xcb_xf86vidmode_bad_v_timings_error_t {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
-impl Copy for bad_v_timings_error {}
-impl Clone for bad_v_timings_error {
-    fn clone(&self) -> bad_v_timings_error { *self }
+impl Copy for xcb_xf86vidmode_bad_v_timings_error_t {}
+impl Clone for xcb_xf86vidmode_bad_v_timings_error_t {
+    fn clone(&self) -> xcb_xf86vidmode_bad_v_timings_error_t { *self }
 }
 
 
 #[repr(C)]
-pub struct mode_unsuitable_error {
+pub struct xcb_xf86vidmode_mode_unsuitable_error_t {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
-impl Copy for mode_unsuitable_error {}
-impl Clone for mode_unsuitable_error {
-    fn clone(&self) -> mode_unsuitable_error { *self }
+impl Copy for xcb_xf86vidmode_mode_unsuitable_error_t {}
+impl Clone for xcb_xf86vidmode_mode_unsuitable_error_t {
+    fn clone(&self) -> xcb_xf86vidmode_mode_unsuitable_error_t { *self }
 }
 
 
 #[repr(C)]
-pub struct extension_disabled_error {
+pub struct xcb_xf86vidmode_extension_disabled_error_t {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
-impl Copy for extension_disabled_error {}
-impl Clone for extension_disabled_error {
-    fn clone(&self) -> extension_disabled_error { *self }
+impl Copy for xcb_xf86vidmode_extension_disabled_error_t {}
+impl Clone for xcb_xf86vidmode_extension_disabled_error_t {
+    fn clone(&self) -> xcb_xf86vidmode_extension_disabled_error_t { *self }
 }
 
 
 #[repr(C)]
-pub struct client_not_local_error {
+pub struct xcb_xf86vidmode_client_not_local_error_t {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
-impl Copy for client_not_local_error {}
-impl Clone for client_not_local_error {
-    fn clone(&self) -> client_not_local_error { *self }
+impl Copy for xcb_xf86vidmode_client_not_local_error_t {}
+impl Clone for xcb_xf86vidmode_client_not_local_error_t {
+    fn clone(&self) -> xcb_xf86vidmode_client_not_local_error_t { *self }
 }
 
 
 #[repr(C)]
-pub struct zoom_locked_error {
+pub struct xcb_xf86vidmode_zoom_locked_error_t {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
-impl Copy for zoom_locked_error {}
-impl Clone for zoom_locked_error {
-    fn clone(&self) -> zoom_locked_error { *self }
+impl Copy for xcb_xf86vidmode_zoom_locked_error_t {}
+impl Clone for xcb_xf86vidmode_zoom_locked_error_t {
+    fn clone(&self) -> xcb_xf86vidmode_zoom_locked_error_t { *self }
 }
 extern "C" {
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a syncrange_iterator
+ * @param i Pointer to a xcb_xf86vidmode_syncrange_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(syncrange)
+ * element. The member index is increased by sizeof(xcb_xf86vidmode_syncrange_t)
  *
  *
  */
-pub fn xcb_xf86vidmode_syncrange_next (i:*mut syncrange_iterator) -> c_void;
+pub fn xcb_xf86vidmode_syncrange_next (i:*mut xcb_xf86vidmode_syncrange_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An syncrange_iterator
+ * @param i An xcb_xf86vidmode_syncrange_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xf86vidmode_syncrange_end (i:syncrange_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_xf86vidmode_syncrange_end (i:xcb_xf86vidmode_syncrange_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a dotclock_iterator
+ * @param i Pointer to a xcb_xf86vidmode_dotclock_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(dotclock)
+ * element. The member index is increased by sizeof(xcb_xf86vidmode_dotclock_t)
  *
  *
  */
-pub fn xcb_xf86vidmode_dotclock_next (i:*mut dotclock_iterator) -> c_void;
+pub fn xcb_xf86vidmode_dotclock_next (i:*mut xcb_xf86vidmode_dotclock_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An dotclock_iterator
+ * @param i An xcb_xf86vidmode_dotclock_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xf86vidmode_dotclock_end (i:dotclock_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_xf86vidmode_dotclock_end (i:xcb_xf86vidmode_dotclock_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a mode_info_iterator
+ * @param i Pointer to a xcb_xf86vidmode_mode_info_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(mode_info)
+ * element. The member index is increased by sizeof(xcb_xf86vidmode_mode_info_t)
  *
  *
  */
-pub fn xcb_xf86vidmode_mode_info_next (i:*mut mode_info_iterator) -> c_void;
+pub fn xcb_xf86vidmode_mode_info_next (i:*mut xcb_xf86vidmode_mode_info_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An mode_info_iterator
+ * @param i An xcb_xf86vidmode_mode_info_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xf86vidmode_mode_info_end (i:mode_info_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_xf86vidmode_mode_info_end (i:xcb_xf86vidmode_mode_info_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  *
@@ -886,7 +886,7 @@ pub fn xcb_xf86vidmode_mode_info_end (i:mode_info_iterator) -> ffi::base::generi
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xf86vidmode_query_version (c : *mut ffi::base::connection) -> query_version_cookie;
+pub fn xcb_xf86vidmode_query_version (c : *mut ffi::base::xcb_connection_t) -> xcb_xf86vidmode_query_version_cookie_t;
 
 /**
  *
@@ -899,13 +899,13 @@ pub fn xcb_xf86vidmode_query_version (c : *mut ffi::base::connection) -> query_v
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86vidmode_query_version_unchecked (c : *mut ffi::base::connection) -> query_version_cookie;
+pub fn xcb_xf86vidmode_query_version_unchecked (c : *mut ffi::base::xcb_connection_t) -> xcb_xf86vidmode_query_version_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -915,9 +915,9 @@ pub fn xcb_xf86vidmode_query_version_unchecked (c : *mut ffi::base::connection) 
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86vidmode_query_version_reply (c : *mut ffi::base::connection,
-                                               cookie : query_version_cookie,
-                                               e : *mut *mut ffi::base::generic_error) -> *mut query_version_reply;
+pub fn xcb_xf86vidmode_query_version_reply (c : *mut ffi::base::xcb_connection_t,
+                                               cookie : xcb_xf86vidmode_query_version_cookie_t,
+                                               e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xf86vidmode_query_version_reply_t;
 
 pub fn xcb_xf86vidmode_get_mode_line_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -929,8 +929,8 @@ pub fn xcb_xf86vidmode_get_mode_line_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xf86vidmode_get_mode_line (c : *mut ffi::base::connection,
-                                         screen :  u16) -> get_mode_line_cookie;
+pub fn xcb_xf86vidmode_get_mode_line (c : *mut ffi::base::xcb_connection_t,
+                                         screen :  u16) -> xcb_xf86vidmode_get_mode_line_cookie_t;
 
 /**
  *
@@ -943,22 +943,22 @@ pub fn xcb_xf86vidmode_get_mode_line (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86vidmode_get_mode_line_unchecked (c : *mut ffi::base::connection,
-                                                   screen :  u16) -> get_mode_line_cookie;
+pub fn xcb_xf86vidmode_get_mode_line_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                                   screen :  u16) -> xcb_xf86vidmode_get_mode_line_cookie_t;
 
-pub fn xcb_xf86vidmode_get_mode_line_private (R : *mut get_mode_line_reply) -> *mut u8;
-
-
-pub fn xcb_xf86vidmode_get_mode_line_private_length (R : *mut get_mode_line_reply) -> c_int;
+pub fn xcb_xf86vidmode_get_mode_line_private (R : *mut xcb_xf86vidmode_get_mode_line_reply_t) -> *mut u8;
 
 
-pub fn xcb_xf86vidmode_get_mode_line_private_end (R : *mut get_mode_line_reply) -> ffi::base::generic_iterator;
+pub fn xcb_xf86vidmode_get_mode_line_private_length (R : *mut xcb_xf86vidmode_get_mode_line_reply_t) -> c_int;
+
+
+pub fn xcb_xf86vidmode_get_mode_line_private_end (R : *mut xcb_xf86vidmode_get_mode_line_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -968,9 +968,9 @@ pub fn xcb_xf86vidmode_get_mode_line_private_end (R : *mut get_mode_line_reply) 
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86vidmode_get_mode_line_reply (c : *mut ffi::base::connection,
-                                               cookie : get_mode_line_cookie,
-                                               e : *mut *mut ffi::base::generic_error) -> *mut get_mode_line_reply;
+pub fn xcb_xf86vidmode_get_mode_line_reply (c : *mut ffi::base::xcb_connection_t,
+                                               cookie : xcb_xf86vidmode_get_mode_line_cookie_t,
+                                               e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xf86vidmode_get_mode_line_reply_t;
 
 pub fn xcb_xf86vidmode_mod_mode_line_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -985,7 +985,7 @@ pub fn xcb_xf86vidmode_mod_mode_line_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xf86vidmode_mod_mode_line_checked (c : *mut ffi::base::connection,
+pub fn xcb_xf86vidmode_mod_mode_line_checked (c : *mut ffi::base::xcb_connection_t,
                                                  screen :  u32,
                                                  hdisplay :  u16,
                                                  hsyncstart :  u16,
@@ -998,7 +998,7 @@ pub fn xcb_xf86vidmode_mod_mode_line_checked (c : *mut ffi::base::connection,
                                                  vtotal :  u16,
                                                  flags :  u32,
                                                  privsize :  u32,
-                                                 private : *mut u8) -> ffi::base::void_cookie;
+                                                 private : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1008,7 +1008,7 @@ pub fn xcb_xf86vidmode_mod_mode_line_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xf86vidmode_mod_mode_line (c : *mut ffi::base::connection,
+pub fn xcb_xf86vidmode_mod_mode_line (c : *mut ffi::base::xcb_connection_t,
                                          screen :  u32,
                                          hdisplay :  u16,
                                          hsyncstart :  u16,
@@ -1021,7 +1021,7 @@ pub fn xcb_xf86vidmode_mod_mode_line (c : *mut ffi::base::connection,
                                          vtotal :  u16,
                                          flags :  u32,
                                          privsize :  u32,
-                                         private : *mut u8) -> ffi::base::void_cookie;
+                                         private : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1034,9 +1034,9 @@ pub fn xcb_xf86vidmode_mod_mode_line (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xf86vidmode_switch_mode_checked (c : *mut ffi::base::connection,
+pub fn xcb_xf86vidmode_switch_mode_checked (c : *mut ffi::base::xcb_connection_t,
                                                screen :  u16,
-                                               zoom :  u16) -> ffi::base::void_cookie;
+                                               zoom :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1046,9 +1046,9 @@ pub fn xcb_xf86vidmode_switch_mode_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xf86vidmode_switch_mode (c : *mut ffi::base::connection,
+pub fn xcb_xf86vidmode_switch_mode (c : *mut ffi::base::xcb_connection_t,
                                        screen :  u16,
-                                       zoom :  u16) -> ffi::base::void_cookie;
+                                       zoom :  u16) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_xf86vidmode_get_monitor_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1060,8 +1060,8 @@ pub fn xcb_xf86vidmode_get_monitor_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xf86vidmode_get_monitor (c : *mut ffi::base::connection,
-                                       screen :  u16) -> get_monitor_cookie;
+pub fn xcb_xf86vidmode_get_monitor (c : *mut ffi::base::xcb_connection_t,
+                                       screen :  u16) -> xcb_xf86vidmode_get_monitor_cookie_t;
 
 /**
  *
@@ -1074,54 +1074,54 @@ pub fn xcb_xf86vidmode_get_monitor (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86vidmode_get_monitor_unchecked (c : *mut ffi::base::connection,
-                                                 screen :  u16) -> get_monitor_cookie;
+pub fn xcb_xf86vidmode_get_monitor_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                                 screen :  u16) -> xcb_xf86vidmode_get_monitor_cookie_t;
 
-pub fn xcb_xf86vidmode_get_monitor_hsync (R : *mut get_monitor_reply) -> *mut syncrange;
-
-
-pub fn xcb_xf86vidmode_get_monitor_hsync_length (R : *mut get_monitor_reply) -> c_int;
+pub fn xcb_xf86vidmode_get_monitor_hsync (R : *mut xcb_xf86vidmode_get_monitor_reply_t) -> *mut xcb_xf86vidmode_syncrange_t;
 
 
-pub fn xcb_xf86vidmode_get_monitor_hsync_end (R : *mut get_monitor_reply) -> ffi::base::generic_iterator;
-
-pub fn xcb_xf86vidmode_get_monitor_vsync (R : *mut get_monitor_reply) -> *mut syncrange;
+pub fn xcb_xf86vidmode_get_monitor_hsync_length (R : *mut xcb_xf86vidmode_get_monitor_reply_t) -> c_int;
 
 
-pub fn xcb_xf86vidmode_get_monitor_vsync_length (R : *mut get_monitor_reply) -> c_int;
+pub fn xcb_xf86vidmode_get_monitor_hsync_end (R : *mut xcb_xf86vidmode_get_monitor_reply_t) -> ffi::base::xcb_generic_iterator_t;
+
+pub fn xcb_xf86vidmode_get_monitor_vsync (R : *mut xcb_xf86vidmode_get_monitor_reply_t) -> *mut xcb_xf86vidmode_syncrange_t;
 
 
-pub fn xcb_xf86vidmode_get_monitor_vsync_end (R : *mut get_monitor_reply) -> ffi::base::generic_iterator;
-
-pub fn xcb_xf86vidmode_get_monitor_vendor (R : *mut get_monitor_reply) -> *mut c_char;
+pub fn xcb_xf86vidmode_get_monitor_vsync_length (R : *mut xcb_xf86vidmode_get_monitor_reply_t) -> c_int;
 
 
-pub fn xcb_xf86vidmode_get_monitor_vendor_length (R : *mut get_monitor_reply) -> c_int;
+pub fn xcb_xf86vidmode_get_monitor_vsync_end (R : *mut xcb_xf86vidmode_get_monitor_reply_t) -> ffi::base::xcb_generic_iterator_t;
+
+pub fn xcb_xf86vidmode_get_monitor_vendor (R : *mut xcb_xf86vidmode_get_monitor_reply_t) -> *mut c_char;
 
 
-pub fn xcb_xf86vidmode_get_monitor_vendor_end (R : *mut get_monitor_reply) -> ffi::base::generic_iterator;
-
-pub fn xcb_xf86vidmode_get_monitor_alignment_pad (R : *mut get_monitor_reply) -> *mut c_void;
+pub fn xcb_xf86vidmode_get_monitor_vendor_length (R : *mut xcb_xf86vidmode_get_monitor_reply_t) -> c_int;
 
 
-pub fn xcb_xf86vidmode_get_monitor_alignment_pad_length (R : *mut get_monitor_reply) -> c_int;
+pub fn xcb_xf86vidmode_get_monitor_vendor_end (R : *mut xcb_xf86vidmode_get_monitor_reply_t) -> ffi::base::xcb_generic_iterator_t;
+
+pub fn xcb_xf86vidmode_get_monitor_alignment_pad (R : *mut xcb_xf86vidmode_get_monitor_reply_t) -> *mut c_void;
 
 
-pub fn xcb_xf86vidmode_get_monitor_alignment_pad_end (R : *mut get_monitor_reply) -> ffi::base::generic_iterator;
-
-pub fn xcb_xf86vidmode_get_monitor_model (R : *mut get_monitor_reply) -> *mut c_char;
+pub fn xcb_xf86vidmode_get_monitor_alignment_pad_length (R : *mut xcb_xf86vidmode_get_monitor_reply_t) -> c_int;
 
 
-pub fn xcb_xf86vidmode_get_monitor_model_length (R : *mut get_monitor_reply) -> c_int;
+pub fn xcb_xf86vidmode_get_monitor_alignment_pad_end (R : *mut xcb_xf86vidmode_get_monitor_reply_t) -> ffi::base::xcb_generic_iterator_t;
+
+pub fn xcb_xf86vidmode_get_monitor_model (R : *mut xcb_xf86vidmode_get_monitor_reply_t) -> *mut c_char;
 
 
-pub fn xcb_xf86vidmode_get_monitor_model_end (R : *mut get_monitor_reply) -> ffi::base::generic_iterator;
+pub fn xcb_xf86vidmode_get_monitor_model_length (R : *mut xcb_xf86vidmode_get_monitor_reply_t) -> c_int;
+
+
+pub fn xcb_xf86vidmode_get_monitor_model_end (R : *mut xcb_xf86vidmode_get_monitor_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1131,9 +1131,9 @@ pub fn xcb_xf86vidmode_get_monitor_model_end (R : *mut get_monitor_reply) -> ffi
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86vidmode_get_monitor_reply (c : *mut ffi::base::connection,
-                                             cookie : get_monitor_cookie,
-                                             e : *mut *mut ffi::base::generic_error) -> *mut get_monitor_reply;
+pub fn xcb_xf86vidmode_get_monitor_reply (c : *mut ffi::base::xcb_connection_t,
+                                             cookie : xcb_xf86vidmode_get_monitor_cookie_t,
+                                             e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xf86vidmode_get_monitor_reply_t;
 
 /**
  *
@@ -1146,9 +1146,9 @@ pub fn xcb_xf86vidmode_get_monitor_reply (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xf86vidmode_lock_mode_switch_checked (c : *mut ffi::base::connection,
+pub fn xcb_xf86vidmode_lock_mode_switch_checked (c : *mut ffi::base::xcb_connection_t,
                                                     screen :  u16,
-                                                    lock :  u16) -> ffi::base::void_cookie;
+                                                    lock :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1158,9 +1158,9 @@ pub fn xcb_xf86vidmode_lock_mode_switch_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xf86vidmode_lock_mode_switch (c : *mut ffi::base::connection,
+pub fn xcb_xf86vidmode_lock_mode_switch (c : *mut ffi::base::xcb_connection_t,
                                             screen :  u16,
-                                            lock :  u16) -> ffi::base::void_cookie;
+                                            lock :  u16) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_xf86vidmode_get_all_mode_lines_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1172,8 +1172,8 @@ pub fn xcb_xf86vidmode_get_all_mode_lines_sizeof (_buffer :  *mut c_void) -> c_i
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xf86vidmode_get_all_mode_lines (c : *mut ffi::base::connection,
-                                              screen :  u16) -> get_all_mode_lines_cookie;
+pub fn xcb_xf86vidmode_get_all_mode_lines (c : *mut ffi::base::xcb_connection_t,
+                                              screen :  u16) -> xcb_xf86vidmode_get_all_mode_lines_cookie_t;
 
 /**
  *
@@ -1186,21 +1186,21 @@ pub fn xcb_xf86vidmode_get_all_mode_lines (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86vidmode_get_all_mode_lines_unchecked (c : *mut ffi::base::connection,
-                                                        screen :  u16) -> get_all_mode_lines_cookie;
+pub fn xcb_xf86vidmode_get_all_mode_lines_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                                        screen :  u16) -> xcb_xf86vidmode_get_all_mode_lines_cookie_t;
 
-pub fn xcb_xf86vidmode_get_all_mode_lines_modeinfo (R : *mut get_all_mode_lines_reply) -> *mut mode_info;
+pub fn xcb_xf86vidmode_get_all_mode_lines_modeinfo (R : *mut xcb_xf86vidmode_get_all_mode_lines_reply_t) -> *mut xcb_xf86vidmode_mode_info_t;
 
 
-pub fn xcb_xf86vidmode_get_all_mode_lines_modeinfo_length (R : *mut get_all_mode_lines_reply) -> c_int;
+pub fn xcb_xf86vidmode_get_all_mode_lines_modeinfo_length (R : *mut xcb_xf86vidmode_get_all_mode_lines_reply_t) -> c_int;
 
-pub fn xcb_xf86vidmode_get_all_mode_lines_modeinfo_iterator (R : *mut get_all_mode_lines_reply) -> mode_info_iterator;
+pub fn xcb_xf86vidmode_get_all_mode_lines_modeinfo_iterator (R : *mut xcb_xf86vidmode_get_all_mode_lines_reply_t) -> xcb_xf86vidmode_mode_info_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1210,9 +1210,9 @@ pub fn xcb_xf86vidmode_get_all_mode_lines_modeinfo_iterator (R : *mut get_all_mo
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86vidmode_get_all_mode_lines_reply (c : *mut ffi::base::connection,
-                                                    cookie : get_all_mode_lines_cookie,
-                                                    e : *mut *mut ffi::base::generic_error) -> *mut get_all_mode_lines_reply;
+pub fn xcb_xf86vidmode_get_all_mode_lines_reply (c : *mut ffi::base::xcb_connection_t,
+                                                    cookie : xcb_xf86vidmode_get_all_mode_lines_cookie_t,
+                                                    e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xf86vidmode_get_all_mode_lines_reply_t;
 
 pub fn xcb_xf86vidmode_add_mode_line_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1227,9 +1227,9 @@ pub fn xcb_xf86vidmode_add_mode_line_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xf86vidmode_add_mode_line_checked (c : *mut ffi::base::connection,
+pub fn xcb_xf86vidmode_add_mode_line_checked (c : *mut ffi::base::xcb_connection_t,
                                                  screen :  u32,
-                                                 dotclock :  dotclock,
+                                                 dotclock :  xcb_xf86vidmode_dotclock_t,
                                                  hdisplay :  u16,
                                                  hsyncstart :  u16,
                                                  hsyncend :  u16,
@@ -1241,7 +1241,7 @@ pub fn xcb_xf86vidmode_add_mode_line_checked (c : *mut ffi::base::connection,
                                                  vtotal :  u16,
                                                  flags :  u32,
                                                  privsize :  u32,
-                                                 after_dotclock :  dotclock,
+                                                 after_dotclock :  xcb_xf86vidmode_dotclock_t,
                                                  after_hdisplay :  u16,
                                                  after_hsyncstart :  u16,
                                                  after_hsyncend :  u16,
@@ -1252,7 +1252,7 @@ pub fn xcb_xf86vidmode_add_mode_line_checked (c : *mut ffi::base::connection,
                                                  after_vsyncend :  u16,
                                                  after_vtotal :  u16,
                                                  after_flags :  u32,
-                                                 private : *mut u8) -> ffi::base::void_cookie;
+                                                 private : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1262,9 +1262,9 @@ pub fn xcb_xf86vidmode_add_mode_line_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xf86vidmode_add_mode_line (c : *mut ffi::base::connection,
+pub fn xcb_xf86vidmode_add_mode_line (c : *mut ffi::base::xcb_connection_t,
                                          screen :  u32,
-                                         dotclock :  dotclock,
+                                         dotclock :  xcb_xf86vidmode_dotclock_t,
                                          hdisplay :  u16,
                                          hsyncstart :  u16,
                                          hsyncend :  u16,
@@ -1276,7 +1276,7 @@ pub fn xcb_xf86vidmode_add_mode_line (c : *mut ffi::base::connection,
                                          vtotal :  u16,
                                          flags :  u32,
                                          privsize :  u32,
-                                         after_dotclock :  dotclock,
+                                         after_dotclock :  xcb_xf86vidmode_dotclock_t,
                                          after_hdisplay :  u16,
                                          after_hsyncstart :  u16,
                                          after_hsyncend :  u16,
@@ -1287,7 +1287,7 @@ pub fn xcb_xf86vidmode_add_mode_line (c : *mut ffi::base::connection,
                                          after_vsyncend :  u16,
                                          after_vtotal :  u16,
                                          after_flags :  u32,
-                                         private : *mut u8) -> ffi::base::void_cookie;
+                                         private : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_xf86vidmode_delete_mode_line_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1302,9 +1302,9 @@ pub fn xcb_xf86vidmode_delete_mode_line_sizeof (_buffer :  *mut c_void) -> c_int
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xf86vidmode_delete_mode_line_checked (c : *mut ffi::base::connection,
+pub fn xcb_xf86vidmode_delete_mode_line_checked (c : *mut ffi::base::xcb_connection_t,
                                                     screen :  u32,
-                                                    dotclock :  dotclock,
+                                                    dotclock :  xcb_xf86vidmode_dotclock_t,
                                                     hdisplay :  u16,
                                                     hsyncstart :  u16,
                                                     hsyncend :  u16,
@@ -1316,7 +1316,7 @@ pub fn xcb_xf86vidmode_delete_mode_line_checked (c : *mut ffi::base::connection,
                                                     vtotal :  u16,
                                                     flags :  u32,
                                                     privsize :  u32,
-                                                    private : *mut u8) -> ffi::base::void_cookie;
+                                                    private : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1326,9 +1326,9 @@ pub fn xcb_xf86vidmode_delete_mode_line_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xf86vidmode_delete_mode_line (c : *mut ffi::base::connection,
+pub fn xcb_xf86vidmode_delete_mode_line (c : *mut ffi::base::xcb_connection_t,
                                             screen :  u32,
-                                            dotclock :  dotclock,
+                                            dotclock :  xcb_xf86vidmode_dotclock_t,
                                             hdisplay :  u16,
                                             hsyncstart :  u16,
                                             hsyncend :  u16,
@@ -1340,7 +1340,7 @@ pub fn xcb_xf86vidmode_delete_mode_line (c : *mut ffi::base::connection,
                                             vtotal :  u16,
                                             flags :  u32,
                                             privsize :  u32,
-                                            private : *mut u8) -> ffi::base::void_cookie;
+                                            private : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_xf86vidmode_validate_mode_line_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1352,9 +1352,9 @@ pub fn xcb_xf86vidmode_validate_mode_line_sizeof (_buffer :  *mut c_void) -> c_i
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xf86vidmode_validate_mode_line (c : *mut ffi::base::connection,
+pub fn xcb_xf86vidmode_validate_mode_line (c : *mut ffi::base::xcb_connection_t,
                                               screen :  u32,
-                                              dotclock :  dotclock,
+                                              dotclock :  xcb_xf86vidmode_dotclock_t,
                                               hdisplay :  u16,
                                               hsyncstart :  u16,
                                               hsyncend :  u16,
@@ -1366,7 +1366,7 @@ pub fn xcb_xf86vidmode_validate_mode_line (c : *mut ffi::base::connection,
                                               vtotal :  u16,
                                               flags :  u32,
                                               privsize :  u32,
-                                              private : *mut u8) -> validate_mode_line_cookie;
+                                              private : *mut u8) -> xcb_xf86vidmode_validate_mode_line_cookie_t;
 
 /**
  *
@@ -1379,9 +1379,9 @@ pub fn xcb_xf86vidmode_validate_mode_line (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86vidmode_validate_mode_line_unchecked (c : *mut ffi::base::connection,
+pub fn xcb_xf86vidmode_validate_mode_line_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                         screen :  u32,
-                                                        dotclock :  dotclock,
+                                                        dotclock :  xcb_xf86vidmode_dotclock_t,
                                                         hdisplay :  u16,
                                                         hsyncstart :  u16,
                                                         hsyncend :  u16,
@@ -1393,13 +1393,13 @@ pub fn xcb_xf86vidmode_validate_mode_line_unchecked (c : *mut ffi::base::connect
                                                         vtotal :  u16,
                                                         flags :  u32,
                                                         privsize :  u32,
-                                                        private : *mut u8) -> validate_mode_line_cookie;
+                                                        private : *mut u8) -> xcb_xf86vidmode_validate_mode_line_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1409,9 +1409,9 @@ pub fn xcb_xf86vidmode_validate_mode_line_unchecked (c : *mut ffi::base::connect
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86vidmode_validate_mode_line_reply (c : *mut ffi::base::connection,
-                                                    cookie : validate_mode_line_cookie,
-                                                    e : *mut *mut ffi::base::generic_error) -> *mut validate_mode_line_reply;
+pub fn xcb_xf86vidmode_validate_mode_line_reply (c : *mut ffi::base::xcb_connection_t,
+                                                    cookie : xcb_xf86vidmode_validate_mode_line_cookie_t,
+                                                    e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xf86vidmode_validate_mode_line_reply_t;
 
 pub fn xcb_xf86vidmode_switch_to_mode_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1426,9 +1426,9 @@ pub fn xcb_xf86vidmode_switch_to_mode_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xf86vidmode_switch_to_mode_checked (c : *mut ffi::base::connection,
+pub fn xcb_xf86vidmode_switch_to_mode_checked (c : *mut ffi::base::xcb_connection_t,
                                                   screen :  u32,
-                                                  dotclock :  dotclock,
+                                                  dotclock :  xcb_xf86vidmode_dotclock_t,
                                                   hdisplay :  u16,
                                                   hsyncstart :  u16,
                                                   hsyncend :  u16,
@@ -1440,7 +1440,7 @@ pub fn xcb_xf86vidmode_switch_to_mode_checked (c : *mut ffi::base::connection,
                                                   vtotal :  u16,
                                                   flags :  u32,
                                                   privsize :  u32,
-                                                  private : *mut u8) -> ffi::base::void_cookie;
+                                                  private : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1450,9 +1450,9 @@ pub fn xcb_xf86vidmode_switch_to_mode_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xf86vidmode_switch_to_mode (c : *mut ffi::base::connection,
+pub fn xcb_xf86vidmode_switch_to_mode (c : *mut ffi::base::xcb_connection_t,
                                           screen :  u32,
-                                          dotclock :  dotclock,
+                                          dotclock :  xcb_xf86vidmode_dotclock_t,
                                           hdisplay :  u16,
                                           hsyncstart :  u16,
                                           hsyncend :  u16,
@@ -1464,7 +1464,7 @@ pub fn xcb_xf86vidmode_switch_to_mode (c : *mut ffi::base::connection,
                                           vtotal :  u16,
                                           flags :  u32,
                                           privsize :  u32,
-                                          private : *mut u8) -> ffi::base::void_cookie;
+                                          private : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1474,8 +1474,8 @@ pub fn xcb_xf86vidmode_switch_to_mode (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xf86vidmode_get_view_port (c : *mut ffi::base::connection,
-                                         screen :  u16) -> get_view_port_cookie;
+pub fn xcb_xf86vidmode_get_view_port (c : *mut ffi::base::xcb_connection_t,
+                                         screen :  u16) -> xcb_xf86vidmode_get_view_port_cookie_t;
 
 /**
  *
@@ -1488,14 +1488,14 @@ pub fn xcb_xf86vidmode_get_view_port (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86vidmode_get_view_port_unchecked (c : *mut ffi::base::connection,
-                                                   screen :  u16) -> get_view_port_cookie;
+pub fn xcb_xf86vidmode_get_view_port_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                                   screen :  u16) -> xcb_xf86vidmode_get_view_port_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1505,9 +1505,9 @@ pub fn xcb_xf86vidmode_get_view_port_unchecked (c : *mut ffi::base::connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86vidmode_get_view_port_reply (c : *mut ffi::base::connection,
-                                               cookie : get_view_port_cookie,
-                                               e : *mut *mut ffi::base::generic_error) -> *mut get_view_port_reply;
+pub fn xcb_xf86vidmode_get_view_port_reply (c : *mut ffi::base::xcb_connection_t,
+                                               cookie : xcb_xf86vidmode_get_view_port_cookie_t,
+                                               e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xf86vidmode_get_view_port_reply_t;
 
 /**
  *
@@ -1520,10 +1520,10 @@ pub fn xcb_xf86vidmode_get_view_port_reply (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xf86vidmode_set_view_port_checked (c : *mut ffi::base::connection,
+pub fn xcb_xf86vidmode_set_view_port_checked (c : *mut ffi::base::xcb_connection_t,
                                                  screen :  u16,
                                                  x :  u32,
-                                                 y :  u32) -> ffi::base::void_cookie;
+                                                 y :  u32) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1533,10 +1533,10 @@ pub fn xcb_xf86vidmode_set_view_port_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xf86vidmode_set_view_port (c : *mut ffi::base::connection,
+pub fn xcb_xf86vidmode_set_view_port (c : *mut ffi::base::xcb_connection_t,
                                          screen :  u16,
                                          x :  u32,
-                                         y :  u32) -> ffi::base::void_cookie;
+                                         y :  u32) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_xf86vidmode_get_dot_clocks_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1548,8 +1548,8 @@ pub fn xcb_xf86vidmode_get_dot_clocks_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xf86vidmode_get_dot_clocks (c : *mut ffi::base::connection,
-                                          screen :  u16) -> get_dot_clocks_cookie;
+pub fn xcb_xf86vidmode_get_dot_clocks (c : *mut ffi::base::xcb_connection_t,
+                                          screen :  u16) -> xcb_xf86vidmode_get_dot_clocks_cookie_t;
 
 /**
  *
@@ -1562,22 +1562,22 @@ pub fn xcb_xf86vidmode_get_dot_clocks (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86vidmode_get_dot_clocks_unchecked (c : *mut ffi::base::connection,
-                                                    screen :  u16) -> get_dot_clocks_cookie;
+pub fn xcb_xf86vidmode_get_dot_clocks_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                                    screen :  u16) -> xcb_xf86vidmode_get_dot_clocks_cookie_t;
 
-pub fn xcb_xf86vidmode_get_dot_clocks_clock (R : *mut get_dot_clocks_reply) -> *mut u32;
-
-
-pub fn xcb_xf86vidmode_get_dot_clocks_clock_length (R : *mut get_dot_clocks_reply) -> c_int;
+pub fn xcb_xf86vidmode_get_dot_clocks_clock (R : *mut xcb_xf86vidmode_get_dot_clocks_reply_t) -> *mut u32;
 
 
-pub fn xcb_xf86vidmode_get_dot_clocks_clock_end (R : *mut get_dot_clocks_reply) -> ffi::base::generic_iterator;
+pub fn xcb_xf86vidmode_get_dot_clocks_clock_length (R : *mut xcb_xf86vidmode_get_dot_clocks_reply_t) -> c_int;
+
+
+pub fn xcb_xf86vidmode_get_dot_clocks_clock_end (R : *mut xcb_xf86vidmode_get_dot_clocks_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1587,9 +1587,9 @@ pub fn xcb_xf86vidmode_get_dot_clocks_clock_end (R : *mut get_dot_clocks_reply) 
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86vidmode_get_dot_clocks_reply (c : *mut ffi::base::connection,
-                                                cookie : get_dot_clocks_cookie,
-                                                e : *mut *mut ffi::base::generic_error) -> *mut get_dot_clocks_reply;
+pub fn xcb_xf86vidmode_get_dot_clocks_reply (c : *mut ffi::base::xcb_connection_t,
+                                                cookie : xcb_xf86vidmode_get_dot_clocks_cookie_t,
+                                                e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xf86vidmode_get_dot_clocks_reply_t;
 
 /**
  *
@@ -1602,9 +1602,9 @@ pub fn xcb_xf86vidmode_get_dot_clocks_reply (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xf86vidmode_set_client_version_checked (c : *mut ffi::base::connection,
+pub fn xcb_xf86vidmode_set_client_version_checked (c : *mut ffi::base::xcb_connection_t,
                                                       major :  u16,
-                                                      minor :  u16) -> ffi::base::void_cookie;
+                                                      minor :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1614,9 +1614,9 @@ pub fn xcb_xf86vidmode_set_client_version_checked (c : *mut ffi::base::connectio
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xf86vidmode_set_client_version (c : *mut ffi::base::connection,
+pub fn xcb_xf86vidmode_set_client_version (c : *mut ffi::base::xcb_connection_t,
                                               major :  u16,
-                                              minor :  u16) -> ffi::base::void_cookie;
+                                              minor :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1629,11 +1629,11 @@ pub fn xcb_xf86vidmode_set_client_version (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xf86vidmode_set_gamma_checked (c : *mut ffi::base::connection,
+pub fn xcb_xf86vidmode_set_gamma_checked (c : *mut ffi::base::xcb_connection_t,
                                              screen :  u16,
                                              red :  u32,
                                              green :  u32,
-                                             blue :  u32) -> ffi::base::void_cookie;
+                                             blue :  u32) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1643,11 +1643,11 @@ pub fn xcb_xf86vidmode_set_gamma_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xf86vidmode_set_gamma (c : *mut ffi::base::connection,
+pub fn xcb_xf86vidmode_set_gamma (c : *mut ffi::base::xcb_connection_t,
                                      screen :  u16,
                                      red :  u32,
                                      green :  u32,
-                                     blue :  u32) -> ffi::base::void_cookie;
+                                     blue :  u32) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1657,8 +1657,8 @@ pub fn xcb_xf86vidmode_set_gamma (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xf86vidmode_get_gamma (c : *mut ffi::base::connection,
-                                     screen :  u16) -> get_gamma_cookie;
+pub fn xcb_xf86vidmode_get_gamma (c : *mut ffi::base::xcb_connection_t,
+                                     screen :  u16) -> xcb_xf86vidmode_get_gamma_cookie_t;
 
 /**
  *
@@ -1671,14 +1671,14 @@ pub fn xcb_xf86vidmode_get_gamma (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86vidmode_get_gamma_unchecked (c : *mut ffi::base::connection,
-                                               screen :  u16) -> get_gamma_cookie;
+pub fn xcb_xf86vidmode_get_gamma_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                               screen :  u16) -> xcb_xf86vidmode_get_gamma_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1688,9 +1688,9 @@ pub fn xcb_xf86vidmode_get_gamma_unchecked (c : *mut ffi::base::connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86vidmode_get_gamma_reply (c : *mut ffi::base::connection,
-                                           cookie : get_gamma_cookie,
-                                           e : *mut *mut ffi::base::generic_error) -> *mut get_gamma_reply;
+pub fn xcb_xf86vidmode_get_gamma_reply (c : *mut ffi::base::xcb_connection_t,
+                                           cookie : xcb_xf86vidmode_get_gamma_cookie_t,
+                                           e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xf86vidmode_get_gamma_reply_t;
 
 pub fn xcb_xf86vidmode_get_gamma_ramp_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1702,9 +1702,9 @@ pub fn xcb_xf86vidmode_get_gamma_ramp_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xf86vidmode_get_gamma_ramp (c : *mut ffi::base::connection,
+pub fn xcb_xf86vidmode_get_gamma_ramp (c : *mut ffi::base::xcb_connection_t,
                                           screen :  u16,
-                                          size :  u16) -> get_gamma_ramp_cookie;
+                                          size :  u16) -> xcb_xf86vidmode_get_gamma_ramp_cookie_t;
 
 /**
  *
@@ -1717,39 +1717,39 @@ pub fn xcb_xf86vidmode_get_gamma_ramp (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86vidmode_get_gamma_ramp_unchecked (c : *mut ffi::base::connection,
+pub fn xcb_xf86vidmode_get_gamma_ramp_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                     screen :  u16,
-                                                    size :  u16) -> get_gamma_ramp_cookie;
+                                                    size :  u16) -> xcb_xf86vidmode_get_gamma_ramp_cookie_t;
 
-pub fn xcb_xf86vidmode_get_gamma_ramp_red (R : *mut get_gamma_ramp_reply) -> *mut u16;
-
-
-pub fn xcb_xf86vidmode_get_gamma_ramp_red_length (R : *mut get_gamma_ramp_reply) -> c_int;
+pub fn xcb_xf86vidmode_get_gamma_ramp_red (R : *mut xcb_xf86vidmode_get_gamma_ramp_reply_t) -> *mut u16;
 
 
-pub fn xcb_xf86vidmode_get_gamma_ramp_red_end (R : *mut get_gamma_ramp_reply) -> ffi::base::generic_iterator;
-
-pub fn xcb_xf86vidmode_get_gamma_ramp_green (R : *mut get_gamma_ramp_reply) -> *mut u16;
+pub fn xcb_xf86vidmode_get_gamma_ramp_red_length (R : *mut xcb_xf86vidmode_get_gamma_ramp_reply_t) -> c_int;
 
 
-pub fn xcb_xf86vidmode_get_gamma_ramp_green_length (R : *mut get_gamma_ramp_reply) -> c_int;
+pub fn xcb_xf86vidmode_get_gamma_ramp_red_end (R : *mut xcb_xf86vidmode_get_gamma_ramp_reply_t) -> ffi::base::xcb_generic_iterator_t;
+
+pub fn xcb_xf86vidmode_get_gamma_ramp_green (R : *mut xcb_xf86vidmode_get_gamma_ramp_reply_t) -> *mut u16;
 
 
-pub fn xcb_xf86vidmode_get_gamma_ramp_green_end (R : *mut get_gamma_ramp_reply) -> ffi::base::generic_iterator;
-
-pub fn xcb_xf86vidmode_get_gamma_ramp_blue (R : *mut get_gamma_ramp_reply) -> *mut u16;
+pub fn xcb_xf86vidmode_get_gamma_ramp_green_length (R : *mut xcb_xf86vidmode_get_gamma_ramp_reply_t) -> c_int;
 
 
-pub fn xcb_xf86vidmode_get_gamma_ramp_blue_length (R : *mut get_gamma_ramp_reply) -> c_int;
+pub fn xcb_xf86vidmode_get_gamma_ramp_green_end (R : *mut xcb_xf86vidmode_get_gamma_ramp_reply_t) -> ffi::base::xcb_generic_iterator_t;
+
+pub fn xcb_xf86vidmode_get_gamma_ramp_blue (R : *mut xcb_xf86vidmode_get_gamma_ramp_reply_t) -> *mut u16;
 
 
-pub fn xcb_xf86vidmode_get_gamma_ramp_blue_end (R : *mut get_gamma_ramp_reply) -> ffi::base::generic_iterator;
+pub fn xcb_xf86vidmode_get_gamma_ramp_blue_length (R : *mut xcb_xf86vidmode_get_gamma_ramp_reply_t) -> c_int;
+
+
+pub fn xcb_xf86vidmode_get_gamma_ramp_blue_end (R : *mut xcb_xf86vidmode_get_gamma_ramp_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1759,9 +1759,9 @@ pub fn xcb_xf86vidmode_get_gamma_ramp_blue_end (R : *mut get_gamma_ramp_reply) -
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86vidmode_get_gamma_ramp_reply (c : *mut ffi::base::connection,
-                                                cookie : get_gamma_ramp_cookie,
-                                                e : *mut *mut ffi::base::generic_error) -> *mut get_gamma_ramp_reply;
+pub fn xcb_xf86vidmode_get_gamma_ramp_reply (c : *mut ffi::base::xcb_connection_t,
+                                                cookie : xcb_xf86vidmode_get_gamma_ramp_cookie_t,
+                                                e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xf86vidmode_get_gamma_ramp_reply_t;
 
 pub fn xcb_xf86vidmode_set_gamma_ramp_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1776,12 +1776,12 @@ pub fn xcb_xf86vidmode_set_gamma_ramp_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xf86vidmode_set_gamma_ramp_checked (c : *mut ffi::base::connection,
+pub fn xcb_xf86vidmode_set_gamma_ramp_checked (c : *mut ffi::base::xcb_connection_t,
                                                   screen :  u16,
                                                   size :  u16,
                                                   red : *mut u16,
                                                   green : *mut u16,
-                                                  blue : *mut u16) -> ffi::base::void_cookie;
+                                                  blue : *mut u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1791,12 +1791,12 @@ pub fn xcb_xf86vidmode_set_gamma_ramp_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xf86vidmode_set_gamma_ramp (c : *mut ffi::base::connection,
+pub fn xcb_xf86vidmode_set_gamma_ramp (c : *mut ffi::base::xcb_connection_t,
                                           screen :  u16,
                                           size :  u16,
                                           red : *mut u16,
                                           green : *mut u16,
-                                          blue : *mut u16) -> ffi::base::void_cookie;
+                                          blue : *mut u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1806,8 +1806,8 @@ pub fn xcb_xf86vidmode_set_gamma_ramp (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xf86vidmode_get_gamma_ramp_size (c : *mut ffi::base::connection,
-                                               screen :  u16) -> get_gamma_ramp_size_cookie;
+pub fn xcb_xf86vidmode_get_gamma_ramp_size (c : *mut ffi::base::xcb_connection_t,
+                                               screen :  u16) -> xcb_xf86vidmode_get_gamma_ramp_size_cookie_t;
 
 /**
  *
@@ -1820,14 +1820,14 @@ pub fn xcb_xf86vidmode_get_gamma_ramp_size (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86vidmode_get_gamma_ramp_size_unchecked (c : *mut ffi::base::connection,
-                                                         screen :  u16) -> get_gamma_ramp_size_cookie;
+pub fn xcb_xf86vidmode_get_gamma_ramp_size_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                                         screen :  u16) -> xcb_xf86vidmode_get_gamma_ramp_size_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1837,9 +1837,9 @@ pub fn xcb_xf86vidmode_get_gamma_ramp_size_unchecked (c : *mut ffi::base::connec
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86vidmode_get_gamma_ramp_size_reply (c : *mut ffi::base::connection,
-                                                     cookie : get_gamma_ramp_size_cookie,
-                                                     e : *mut *mut ffi::base::generic_error) -> *mut get_gamma_ramp_size_reply;
+pub fn xcb_xf86vidmode_get_gamma_ramp_size_reply (c : *mut ffi::base::xcb_connection_t,
+                                                     cookie : xcb_xf86vidmode_get_gamma_ramp_size_cookie_t,
+                                                     e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xf86vidmode_get_gamma_ramp_size_reply_t;
 
 /**
  *
@@ -1849,8 +1849,8 @@ pub fn xcb_xf86vidmode_get_gamma_ramp_size_reply (c : *mut ffi::base::connection
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xf86vidmode_get_permissions (c : *mut ffi::base::connection,
-                                           screen :  u16) -> get_permissions_cookie;
+pub fn xcb_xf86vidmode_get_permissions (c : *mut ffi::base::xcb_connection_t,
+                                           screen :  u16) -> xcb_xf86vidmode_get_permissions_cookie_t;
 
 /**
  *
@@ -1863,14 +1863,14 @@ pub fn xcb_xf86vidmode_get_permissions (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xf86vidmode_get_permissions_unchecked (c : *mut ffi::base::connection,
-                                                     screen :  u16) -> get_permissions_cookie;
+pub fn xcb_xf86vidmode_get_permissions_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                                     screen :  u16) -> xcb_xf86vidmode_get_permissions_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1880,8 +1880,8 @@ pub fn xcb_xf86vidmode_get_permissions_unchecked (c : *mut ffi::base::connection
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xf86vidmode_get_permissions_reply (c : *mut ffi::base::connection,
-                                                 cookie : get_permissions_cookie,
-                                                 e : *mut *mut ffi::base::generic_error) -> *mut get_permissions_reply;
+pub fn xcb_xf86vidmode_get_permissions_reply (c : *mut ffi::base::xcb_connection_t,
+                                                 cookie : xcb_xf86vidmode_get_permissions_cookie_t,
+                                                 e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xf86vidmode_get_permissions_reply_t;
 }
 

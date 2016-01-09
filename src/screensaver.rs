@@ -19,35 +19,35 @@ use std::iter::Iterator;
 
 use xproto;
 
-pub type kind = c_uint;//{
-    pub static XCB_SCREENSAVER_KIND_BLANKED : kind = 1;
-    pub static XCB_SCREENSAVER_KIND_INTERNAL : kind = 2;
-    pub static XCB_SCREENSAVER_KIND_EXTERNAL : kind = 3;
+pub type xcb_screensaver_kind_t = c_uint;//{
+    pub static XCB_SCREENSAVER_KIND_BLANKED : xcb_screensaver_kind_t = 1;
+    pub static XCB_SCREENSAVER_KIND_INTERNAL : xcb_screensaver_kind_t = 2;
+    pub static XCB_SCREENSAVER_KIND_EXTERNAL : xcb_screensaver_kind_t = 3;
 //}
 
-pub type event = c_uint;//{
-    pub static XCB_SCREENSAVER_EVENT_NOTIFY_MASK : event = 1;
-    pub static XCB_SCREENSAVER_EVENT_CYCLE_MASK : event = 2;
+pub type xcb_screensaver_event_t = c_uint;//{
+    pub static XCB_SCREENSAVER_EVENT_NOTIFY_MASK : xcb_screensaver_event_t = 1;
+    pub static XCB_SCREENSAVER_EVENT_CYCLE_MASK : xcb_screensaver_event_t = 2;
 //}
 
-pub type state = c_uint;//{
-    pub static XCB_SCREENSAVER_STATE_OFF : state = 1;
-    pub static XCB_SCREENSAVER_STATE_ON : state = 2;
-    pub static XCB_SCREENSAVER_STATE_CYCLE : state = 3;
-    pub static XCB_SCREENSAVER_STATE_DISABLED : state = 4;
+pub type xcb_screensaver_state_t = c_uint;//{
+    pub static XCB_SCREENSAVER_STATE_OFF : xcb_screensaver_state_t = 1;
+    pub static XCB_SCREENSAVER_STATE_ON : xcb_screensaver_state_t = 2;
+    pub static XCB_SCREENSAVER_STATE_CYCLE : xcb_screensaver_state_t = 3;
+    pub static XCB_SCREENSAVER_STATE_DISABLED : xcb_screensaver_state_t = 4;
 //}
-pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, query_version_cookie> }
+pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_screensaver_query_version_cookie_t> }
 
 /** Opcode for xcb_screensaver_query_version. */
 pub static XCB_SCREENSAVER_QUERY_VERSION : u8 = 0;
-pub struct QueryVersionReply { base:  base::Reply<query_version_reply> }
-fn mk_reply_query_version_reply(reply:*mut query_version_reply) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
-pub struct  QueryInfoCookie<'s> { pub base : base::Cookie<'s, query_info_cookie> }
+pub struct QueryVersionReply { base:  base::Reply<xcb_screensaver_query_version_reply_t> }
+fn mk_reply_xcb_screensaver_query_version_reply_t(reply:*mut xcb_screensaver_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
+pub struct  QueryInfoCookie<'s> { pub base : base::Cookie<'s, xcb_screensaver_query_info_cookie_t> }
 
 /** Opcode for xcb_screensaver_query_info. */
 pub static XCB_SCREENSAVER_QUERY_INFO : u8 = 1;
-pub struct QueryInfoReply { base:  base::Reply<query_info_reply> }
-fn mk_reply_query_info_reply(reply:*mut query_info_reply) -> QueryInfoReply { QueryInfoReply { base : base::mk_reply(reply) } }
+pub struct QueryInfoReply { base:  base::Reply<xcb_screensaver_query_info_reply_t> }
+fn mk_reply_xcb_screensaver_query_info_reply_t(reply:*mut xcb_screensaver_query_info_reply_t) -> QueryInfoReply { QueryInfoReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_screensaver_select_input. */
 pub static XCB_SCREENSAVER_SELECT_INPUT : u8 = 2;
 /** Opcode for xcb_screensaver_set_attributes. */
@@ -58,7 +58,7 @@ pub static XCB_SCREENSAVER_UNSET_ATTRIBUTES : u8 = 4;
 pub static XCB_SCREENSAVER_SUSPEND : u8 = 5;
 /** Opcode for xcb_screensaver_notify. */
 pub static XCB_SCREENSAVER_NOTIFY : u8 = 0;
-pub struct NotifyEvent {pub base : base::Event<notify_event>}
+pub struct NotifyEvent {pub base : base::Event<xcb_screensaver_notify_event_t>}
 pub fn QueryVersion<'r> (c : &'r Connection,
                      client_major_version : u8,
                      client_minor_version : u8) -> QueryVersionCookie<'r> {
@@ -90,13 +90,13 @@ impl QueryVersionReply {
   }
 
 }
-impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_query_version_reply, QueryVersionReply, xcb_screensaver_query_version_reply);
+impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_xcb_screensaver_query_version_reply_t, QueryVersionReply, xcb_screensaver_query_version_reply);
 
 pub fn QueryInfo<'r> (c : &'r Connection,
                   drawable : xproto::Drawable) -> QueryInfoCookie<'r> {
   unsafe {
     let cookie = xcb_screensaver_query_info(c.get_raw_conn(),
-        drawable as ffi::xproto::drawable); //1
+        drawable as ffi::xproto::xcb_drawable_t); //1
     QueryInfoCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -104,7 +104,7 @@ pub fn QueryInfoUnchecked<'r> (c : &'r Connection,
                            drawable : xproto::Drawable) -> QueryInfoCookie<'r> {
   unsafe {
     let cookie = xcb_screensaver_query_info_unchecked(c.get_raw_conn(),
-        drawable as ffi::xproto::drawable); //1
+        drawable as ffi::xproto::xcb_drawable_t); //1
     QueryInfoCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -135,14 +135,14 @@ impl QueryInfoReply {
   }
 
 }
-impl_reply_cookie!(QueryInfoCookie<'s>, mk_reply_query_info_reply, QueryInfoReply, xcb_screensaver_query_info_reply);
+impl_reply_cookie!(QueryInfoCookie<'s>, mk_reply_xcb_screensaver_query_info_reply_t, QueryInfoReply, xcb_screensaver_query_info_reply);
 
 pub fn SelectInputChecked<'r> (c : &'r Connection,
                            drawable : xproto::Drawable,
                            event_mask : u32) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_screensaver_select_input_checked(c.get_raw_conn(),
-        drawable as ffi::xproto::drawable, //1
+        drawable as ffi::xproto::xcb_drawable_t, //1
         event_mask as u32); //2
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
@@ -152,7 +152,7 @@ pub fn SelectInput<'r> (c : &'r Connection,
                     event_mask : u32) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_screensaver_select_input(c.get_raw_conn(),
-        drawable as ffi::xproto::drawable, //1
+        drawable as ffi::xproto::xcb_drawable_t, //1
         event_mask as u32); //2
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -173,7 +173,7 @@ pub fn SetAttributesChecked<'r> (c : &'r Connection,
     let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_screensaver_set_attributes_checked(c.get_raw_conn(),
-        drawable as ffi::xproto::drawable, //1
+        drawable as ffi::xproto::xcb_drawable_t, //1
         x as i16, //2
         y as i16, //3
         width as u16, //4
@@ -181,7 +181,7 @@ pub fn SetAttributesChecked<'r> (c : &'r Connection,
         border_width as u16, //6
         class as u8, //7
         depth as u8, //8
-        visual as ffi::xproto::visualid, //9
+        visual as ffi::xproto::xcb_visualid_t, //9
         value_list_mask as u32, //10
         value_list_ptr as *mut u32); //11
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
@@ -203,7 +203,7 @@ pub fn SetAttributes<'r> (c : &'r Connection,
     let (value_list_mask, value_list_vec) = pack_bitfield(&mut value_list_copy);
     let value_list_ptr = value_list_vec.as_ptr();
     let cookie = xcb_screensaver_set_attributes(c.get_raw_conn(),
-        drawable as ffi::xproto::drawable, //1
+        drawable as ffi::xproto::xcb_drawable_t, //1
         x as i16, //2
         y as i16, //3
         width as u16, //4
@@ -211,7 +211,7 @@ pub fn SetAttributes<'r> (c : &'r Connection,
         border_width as u16, //6
         class as u8, //7
         depth as u8, //8
-        visual as ffi::xproto::visualid, //9
+        visual as ffi::xproto::xcb_visualid_t, //9
         value_list_mask as u32, //10
         value_list_ptr as *mut u32); //11
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -221,7 +221,7 @@ pub fn UnsetAttributesChecked<'r> (c : &'r Connection,
                                drawable : xproto::Drawable) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_screensaver_unset_attributes_checked(c.get_raw_conn(),
-        drawable as ffi::xproto::drawable); //1
+        drawable as ffi::xproto::xcb_drawable_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -229,7 +229,7 @@ pub fn UnsetAttributes<'r> (c : &'r Connection,
                         drawable : xproto::Drawable) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_screensaver_unset_attributes(c.get_raw_conn(),
-        drawable as ffi::xproto::drawable); //1
+        drawable as ffi::xproto::xcb_drawable_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -292,7 +292,7 @@ impl NotifyEvent {
          kind : u8,
          forced : u8) -> NotifyEvent {
     unsafe {
-      let raw = malloc(32 as size_t) as *mut notify_event;
+      let raw = malloc(32 as size_t) as *mut xcb_screensaver_notify_event_t;
       (*raw).code = code;
       (*raw).state = state;
       (*raw).sequence_number = sequence_number;
@@ -301,7 +301,7 @@ impl NotifyEvent {
       (*raw).window = window;
       (*raw).kind = kind;
       (*raw).forced = forced;
-      NotifyEvent { base : Event { event : raw as *mut notify_event }}
+      NotifyEvent { base : Event { event : raw as *mut xcb_screensaver_notify_event_t }}
     }
   }
 }

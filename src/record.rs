@@ -17,58 +17,58 @@ use ffi::record::*;
 use std::option::Option;
 use std::iter::Iterator;
 
-pub type Context = context;
+pub type Context = xcb_record_context_t;
 
-pub type ContextIterator = context_iterator;
+pub type ContextIterator = xcb_record_context_iterator_t;
 
-pub type Range8Iterator = range_8_iterator;
+pub type Range8Iterator = xcb_record_range_8_iterator_t;
 
-pub type Range16Iterator = range_16_iterator;
+pub type Range16Iterator = xcb_record_range_16_iterator_t;
 
-pub type ExtRangeIterator = ext_range_iterator;
+pub type ExtRangeIterator = xcb_record_ext_range_iterator_t;
 
-pub type RangeIterator = range_iterator;
+pub type RangeIterator = xcb_record_range_iterator_t;
 
-pub type ElementHeaderIterator = element_header_iterator;
+pub type ElementHeaderIterator = xcb_record_element_header_iterator_t;
 
 
-pub type h_type = c_uint;//{
-    pub static XCB_RECORD_H_TYPE_FROM_SERVER_TIME : h_type = 1;
-    pub static XCB_RECORD_H_TYPE_FROM_CLIENT_TIME : h_type = 2;
-    pub static XCB_RECORD_H_TYPE_FROM_CLIENT_SEQUENCE : h_type = 4;
+pub type xcb_record_h_type_t = c_uint;//{
+    pub static XCB_RECORD_H_TYPE_FROM_SERVER_TIME : xcb_record_h_type_t = 1;
+    pub static XCB_RECORD_H_TYPE_FROM_CLIENT_TIME : xcb_record_h_type_t = 2;
+    pub static XCB_RECORD_H_TYPE_FROM_CLIENT_SEQUENCE : xcb_record_h_type_t = 4;
 //}
-pub type ClientSpec = client_spec;
+pub type ClientSpec = xcb_record_client_spec_t;
 
-pub type ClientSpecIterator = client_spec_iterator;
+pub type ClientSpecIterator = xcb_record_client_spec_iterator_t;
 
 
-pub type cs = c_uint;//{
-    pub static XCB_RECORD_CS_CURRENT_CLIENTS : cs = 1;
-    pub static XCB_RECORD_CS_FUTURE_CLIENTS : cs = 2;
-    pub static XCB_RECORD_CS_ALL_CLIENTS : cs = 3;
+pub type xcb_record_cs_t = c_uint;//{
+    pub static XCB_RECORD_CS_CURRENT_CLIENTS : xcb_record_cs_t = 1;
+    pub static XCB_RECORD_CS_FUTURE_CLIENTS : xcb_record_cs_t = 2;
+    pub static XCB_RECORD_CS_ALL_CLIENTS : xcb_record_cs_t = 3;
 //}
-pub type ClientInfoIterator = client_info_iterator;
+pub type ClientInfoIterator = xcb_record_client_info_iterator_t;
 
 /** Opcode for xcb_record_bad_context. */
 pub static XCB_RECORD_BAD_CONTEXT : u8 = 0;
-pub struct BadContextError { pub base : base::Error<bad_context_error> }
-pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, query_version_cookie> }
+pub struct BadContextError { pub base : base::Error<xcb_record_bad_context_error_t> }
+pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_record_query_version_cookie_t> }
 
 /** Opcode for xcb_record_query_version. */
 pub static XCB_RECORD_QUERY_VERSION : u8 = 0;
-pub struct QueryVersionReply { base:  base::Reply<query_version_reply> }
-fn mk_reply_query_version_reply(reply:*mut query_version_reply) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
+pub struct QueryVersionReply { base:  base::Reply<xcb_record_query_version_reply_t> }
+fn mk_reply_xcb_record_query_version_reply_t(reply:*mut xcb_record_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_record_create_context. */
 pub static XCB_RECORD_CREATE_CONTEXT : u8 = 1;
 /** Opcode for xcb_record_register_clients. */
 pub static XCB_RECORD_REGISTER_CLIENTS : u8 = 2;
 /** Opcode for xcb_record_unregister_clients. */
 pub static XCB_RECORD_UNREGISTER_CLIENTS : u8 = 3;
-pub struct  GetContextCookie<'s> { pub base : base::Cookie<'s, get_context_cookie> }
+pub struct  GetContextCookie<'s> { pub base : base::Cookie<'s, xcb_record_get_context_cookie_t> }
 
 /** Opcode for xcb_record_get_context. */
 pub static XCB_RECORD_GET_CONTEXT : u8 = 4;
-pub struct  EnableContextCookie<'s> { pub base : base::Cookie<'s, enable_context_cookie> }
+pub struct  EnableContextCookie<'s> { pub base : base::Cookie<'s, xcb_record_enable_context_cookie_t> }
 
 /** Opcode for xcb_record_enable_context. */
 pub static XCB_RECORD_ENABLE_CONTEXT : u8 = 5;
@@ -82,7 +82,7 @@ impl Iterator for ContextIterator {
     fn next(&mut self) -> Option<Context> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut context_iterator = mem::transmute(self);
+            let iter: *mut xcb_record_context_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_record_context_next(iter);
             Some(mem::transmute(*data))
@@ -90,7 +90,7 @@ impl Iterator for ContextIterator {
     }
 }
 
-pub struct Range8 {pub base : base::Struct<range_8> }
+pub struct Range8 {pub base : base::Struct<xcb_record_range_8_t> }
 
 
 impl Range8 {
@@ -109,7 +109,7 @@ impl Iterator for Range8Iterator {
     fn next(&mut self) -> Option<Range8> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut range_8_iterator = mem::transmute(self);
+            let iter: *mut xcb_record_range_8_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_record_range_8_next(iter);
             Some(mem::transmute(*data))
@@ -117,7 +117,7 @@ impl Iterator for Range8Iterator {
     }
 }
 
-pub struct Range16 {pub base : base::Struct<range_16> }
+pub struct Range16 {pub base : base::Struct<xcb_record_range_16_t> }
 
 
 impl Range16 {
@@ -136,7 +136,7 @@ impl Iterator for Range16Iterator {
     fn next(&mut self) -> Option<Range16> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut range_16_iterator = mem::transmute(self);
+            let iter: *mut xcb_record_range_16_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_record_range_16_next(iter);
             Some(mem::transmute(*data))
@@ -144,7 +144,7 @@ impl Iterator for Range16Iterator {
     }
 }
 
-pub struct ExtRange {pub base : base::Struct<ext_range> }
+pub struct ExtRange {pub base : base::Struct<xcb_record_ext_range_t> }
 
 
 impl ExtRange {
@@ -161,7 +161,7 @@ impl Iterator for ExtRangeIterator {
     fn next(&mut self) -> Option<ExtRange> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut ext_range_iterator = mem::transmute(self);
+            let iter: *mut xcb_record_ext_range_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_record_ext_range_next(iter);
             Some(mem::transmute(*data))
@@ -169,7 +169,7 @@ impl Iterator for ExtRangeIterator {
     }
 }
 
-pub struct Range {pub base : base::Struct<range> }
+pub struct Range {pub base : base::Struct<xcb_record_range_t> }
 
 
 impl Range {
@@ -209,7 +209,7 @@ impl Iterator for RangeIterator {
     fn next(&mut self) -> Option<Range> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut range_iterator = mem::transmute(self);
+            let iter: *mut xcb_record_range_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_record_range_next(iter);
             Some(mem::transmute(*data))
@@ -217,7 +217,7 @@ impl Iterator for RangeIterator {
     }
 }
 
-pub type ElementHeader = element_header;
+pub type ElementHeader = xcb_record_element_header_t;
 
 
 impl Iterator for ElementHeaderIterator {
@@ -225,7 +225,7 @@ impl Iterator for ElementHeaderIterator {
     fn next(&mut self) -> Option<ElementHeader> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut element_header_iterator = mem::transmute(self);
+            let iter: *mut xcb_record_element_header_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_record_element_header_next(iter);
             Some(mem::transmute(*data))
@@ -239,7 +239,7 @@ impl Iterator for ClientSpecIterator {
     fn next(&mut self) -> Option<ClientSpec> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut client_spec_iterator = mem::transmute(self);
+            let iter: *mut xcb_record_client_spec_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_record_client_spec_next(iter);
             Some(mem::transmute(*data))
@@ -247,7 +247,7 @@ impl Iterator for ClientSpecIterator {
     }
 }
 
-pub struct ClientInfo {pub base : base::Struct<client_info> }
+pub struct ClientInfo {pub base : base::Struct<xcb_record_client_info_t> }
 
 
 impl ClientInfo {
@@ -266,7 +266,7 @@ impl Iterator for ClientInfoIterator {
     fn next(&mut self) -> Option<ClientInfo> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut client_info_iterator = mem::transmute(self);
+            let iter: *mut xcb_record_client_info_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_record_client_info_next(iter);
             Some(mem::transmute(*data))
@@ -305,7 +305,7 @@ impl QueryVersionReply {
   }
 
 }
-impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_query_version_reply, QueryVersionReply, xcb_record_query_version_reply);
+impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_xcb_record_query_version_reply_t, QueryVersionReply, xcb_record_query_version_reply);
 
 pub fn CreateContextChecked<'r> (c : &'r Connection,
                              context : Context,
@@ -318,12 +318,12 @@ pub fn CreateContextChecked<'r> (c : &'r Connection,
     let ranges_len = ranges.len();
     let ranges_ptr = ranges.as_ptr();
     let cookie = xcb_record_create_context_checked(c.get_raw_conn(),
-        context as context, //1
-        element_header as element_header, //2
+        context as xcb_record_context_t, //1
+        element_header as xcb_record_element_header_t, //2
         client_specs_len as u32, //3
         ranges_len as u32, //4
-        client_specs_ptr as *mut client_spec, //5
-        ranges_ptr as *mut range); //6
+        client_specs_ptr as *mut xcb_record_client_spec_t, //5
+        ranges_ptr as *mut xcb_record_range_t); //6
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -338,12 +338,12 @@ pub fn CreateContext<'r> (c : &'r Connection,
     let ranges_len = ranges.len();
     let ranges_ptr = ranges.as_ptr();
     let cookie = xcb_record_create_context(c.get_raw_conn(),
-        context as context, //1
-        element_header as element_header, //2
+        context as xcb_record_context_t, //1
+        element_header as xcb_record_element_header_t, //2
         client_specs_len as u32, //3
         ranges_len as u32, //4
-        client_specs_ptr as *mut client_spec, //5
-        ranges_ptr as *mut range); //6
+        client_specs_ptr as *mut xcb_record_client_spec_t, //5
+        ranges_ptr as *mut xcb_record_range_t); //6
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -358,12 +358,12 @@ pub fn RegisterClientsChecked<'r> (c : &'r Connection,
     let ranges_len = ranges.len();
     let ranges_ptr = ranges.as_ptr();
     let cookie = xcb_record_register_clients_checked(c.get_raw_conn(),
-        context as context, //1
-        element_header as element_header, //2
+        context as xcb_record_context_t, //1
+        element_header as xcb_record_element_header_t, //2
         client_specs_len as u32, //3
         ranges_len as u32, //4
-        client_specs_ptr as *mut client_spec, //5
-        ranges_ptr as *mut range); //6
+        client_specs_ptr as *mut xcb_record_client_spec_t, //5
+        ranges_ptr as *mut xcb_record_range_t); //6
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -378,12 +378,12 @@ pub fn RegisterClients<'r> (c : &'r Connection,
     let ranges_len = ranges.len();
     let ranges_ptr = ranges.as_ptr();
     let cookie = xcb_record_register_clients(c.get_raw_conn(),
-        context as context, //1
-        element_header as element_header, //2
+        context as xcb_record_context_t, //1
+        element_header as xcb_record_element_header_t, //2
         client_specs_len as u32, //3
         ranges_len as u32, //4
-        client_specs_ptr as *mut client_spec, //5
-        ranges_ptr as *mut range); //6
+        client_specs_ptr as *mut xcb_record_client_spec_t, //5
+        ranges_ptr as *mut xcb_record_range_t); //6
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -394,9 +394,9 @@ pub fn UnregisterClientsChecked<'r> (c : &'r Connection,
     let client_specs_len = client_specs.len();
     let client_specs_ptr = client_specs.as_ptr();
     let cookie = xcb_record_unregister_clients_checked(c.get_raw_conn(),
-        context as context, //1
+        context as xcb_record_context_t, //1
         client_specs_len as u32, //2
-        client_specs_ptr as *mut client_spec); //3
+        client_specs_ptr as *mut xcb_record_client_spec_t); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -407,19 +407,19 @@ pub fn UnregisterClients<'r> (c : &'r Connection,
     let client_specs_len = client_specs.len();
     let client_specs_ptr = client_specs.as_ptr();
     let cookie = xcb_record_unregister_clients(c.get_raw_conn(),
-        context as context, //1
+        context as xcb_record_context_t, //1
         client_specs_len as u32, //2
-        client_specs_ptr as *mut client_spec); //3
+        client_specs_ptr as *mut xcb_record_client_spec_t); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub struct GetContextReply { base:  base::Reply<get_context_reply> }
-fn mk_reply_get_context_reply(reply:*mut get_context_reply) -> GetContextReply { GetContextReply { base : base::mk_reply(reply) } }
+pub struct GetContextReply { base:  base::Reply<xcb_record_get_context_reply_t> }
+fn mk_reply_xcb_record_get_context_reply_t(reply:*mut xcb_record_get_context_reply_t) -> GetContextReply { GetContextReply { base : base::mk_reply(reply) } }
 pub fn GetContext<'r> (c : &'r Connection,
                    context : Context) -> GetContextCookie<'r> {
   unsafe {
     let cookie = xcb_record_get_context(c.get_raw_conn(),
-        context as context); //1
+        context as xcb_record_context_t); //1
     GetContextCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -427,7 +427,7 @@ pub fn GetContextUnchecked<'r> (c : &'r Connection,
                             context : Context) -> GetContextCookie<'r> {
   unsafe {
     let cookie = xcb_record_get_context_unchecked(c.get_raw_conn(),
-        context as context); //1
+        context as xcb_record_context_t); //1
     GetContextCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -446,15 +446,15 @@ impl GetContextReply {
   }
 
 }
-impl_reply_cookie!(GetContextCookie<'s>, mk_reply_get_context_reply, GetContextReply, xcb_record_get_context_reply);
+impl_reply_cookie!(GetContextCookie<'s>, mk_reply_xcb_record_get_context_reply_t, GetContextReply, xcb_record_get_context_reply);
 
-pub struct EnableContextReply { base:  base::Reply<enable_context_reply> }
-fn mk_reply_enable_context_reply(reply:*mut enable_context_reply) -> EnableContextReply { EnableContextReply { base : base::mk_reply(reply) } }
+pub struct EnableContextReply { base:  base::Reply<xcb_record_enable_context_reply_t> }
+fn mk_reply_xcb_record_enable_context_reply_t(reply:*mut xcb_record_enable_context_reply_t) -> EnableContextReply { EnableContextReply { base : base::mk_reply(reply) } }
 pub fn EnableContext<'r> (c : &'r Connection,
                       context : Context) -> EnableContextCookie<'r> {
   unsafe {
     let cookie = xcb_record_enable_context(c.get_raw_conn(),
-        context as context); //1
+        context as xcb_record_context_t); //1
     EnableContextCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -462,7 +462,7 @@ pub fn EnableContextUnchecked<'r> (c : &'r Connection,
                                context : Context) -> EnableContextCookie<'r> {
   unsafe {
     let cookie = xcb_record_enable_context_unchecked(c.get_raw_conn(),
-        context as context); //1
+        context as xcb_record_context_t); //1
     EnableContextCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -497,13 +497,13 @@ impl EnableContextReply {
   }
 
 }
-impl_reply_cookie!(EnableContextCookie<'s>, mk_reply_enable_context_reply, EnableContextReply, xcb_record_enable_context_reply);
+impl_reply_cookie!(EnableContextCookie<'s>, mk_reply_xcb_record_enable_context_reply_t, EnableContextReply, xcb_record_enable_context_reply);
 
 pub fn DisableContextChecked<'r> (c : &'r Connection,
                               context : Context) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_record_disable_context_checked(c.get_raw_conn(),
-        context as context); //1
+        context as xcb_record_context_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -511,7 +511,7 @@ pub fn DisableContext<'r> (c : &'r Connection,
                        context : Context) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_record_disable_context(c.get_raw_conn(),
-        context as context); //1
+        context as xcb_record_context_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -519,7 +519,7 @@ pub fn FreeContextChecked<'r> (c : &'r Connection,
                            context : Context) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_record_free_context_checked(c.get_raw_conn(),
-        context as context); //1
+        context as xcb_record_context_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -527,7 +527,7 @@ pub fn FreeContext<'r> (c : &'r Connection,
                     context : Context) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_record_free_context(c.get_raw_conn(),
-        context as context); //1
+        context as xcb_record_context_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }

@@ -18,34 +18,34 @@ use std::option::Option;
 use std::iter::Iterator;
 
 use xproto;
-pub type Seg = seg;
+pub type Seg = xcb_shm_seg_t;
 
-pub type SegIterator = seg_iterator;
+pub type SegIterator = xcb_shm_seg_iterator_t;
 
 /** Opcode for xcb_shm_completion. */
 pub static XCB_SHM_COMPLETION : u8 = 0;
-pub struct CompletionEvent {pub base : base::Event<completion_event>}
+pub struct CompletionEvent {pub base : base::Event<xcb_shm_completion_event_t>}
 /** Opcode for xcb_shm_bad_seg. */
 pub static XCB_SHM_BAD_SEG : u8 = 0;
-pub struct BadSegError { pub base : base::Error<bad_seg_error> }
-pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, query_version_cookie> }
+pub struct BadSegError { pub base : base::Error<xcb_shm_bad_seg_error_t> }
+pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_shm_query_version_cookie_t> }
 
 /** Opcode for xcb_shm_query_version. */
 pub static XCB_SHM_QUERY_VERSION : u8 = 0;
-pub struct QueryVersionReply { base:  base::Reply<query_version_reply> }
-fn mk_reply_query_version_reply(reply:*mut query_version_reply) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
+pub struct QueryVersionReply { base:  base::Reply<xcb_shm_query_version_reply_t> }
+fn mk_reply_xcb_shm_query_version_reply_t(reply:*mut xcb_shm_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_shm_attach. */
 pub static XCB_SHM_ATTACH : u8 = 1;
 /** Opcode for xcb_shm_detach. */
 pub static XCB_SHM_DETACH : u8 = 2;
 /** Opcode for xcb_shm_put_image. */
 pub static XCB_SHM_PUT_IMAGE : u8 = 3;
-pub struct  GetImageCookie<'s> { pub base : base::Cookie<'s, get_image_cookie> }
+pub struct  GetImageCookie<'s> { pub base : base::Cookie<'s, xcb_shm_get_image_cookie_t> }
 
 /** Opcode for xcb_shm_get_image. */
 pub static XCB_SHM_GET_IMAGE : u8 = 4;
-pub struct GetImageReply { base:  base::Reply<get_image_reply> }
-fn mk_reply_get_image_reply(reply:*mut get_image_reply) -> GetImageReply { GetImageReply { base : base::mk_reply(reply) } }
+pub struct GetImageReply { base:  base::Reply<xcb_shm_get_image_reply_t> }
+fn mk_reply_xcb_shm_get_image_reply_t(reply:*mut xcb_shm_get_image_reply_t) -> GetImageReply { GetImageReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_shm_create_pixmap. */
 pub static XCB_SHM_CREATE_PIXMAP : u8 = 5;
 
@@ -54,7 +54,7 @@ impl Iterator for SegIterator {
     fn next(&mut self) -> Option<Seg> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut seg_iterator = mem::transmute(self);
+            let iter: *mut xcb_shm_seg_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_shm_seg_next(iter);
             Some(mem::transmute(*data))
@@ -90,13 +90,13 @@ impl CompletionEvent {
          shmseg : Seg,
          offset : u32) -> CompletionEvent {
     unsafe {
-      let raw = malloc(32 as size_t) as *mut completion_event;
+      let raw = malloc(32 as size_t) as *mut xcb_shm_completion_event_t;
       (*raw).drawable = drawable;
       (*raw).minor_event = minor_event;
       (*raw).major_event = major_event;
       (*raw).shmseg = shmseg;
       (*raw).offset = offset;
-      CompletionEvent { base : Event { event : raw as *mut completion_event }}
+      CompletionEvent { base : Event { event : raw as *mut xcb_shm_completion_event_t }}
     }
   }
 }
@@ -139,7 +139,7 @@ impl QueryVersionReply {
   }
 
 }
-impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_query_version_reply, QueryVersionReply, xcb_shm_query_version_reply);
+impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_xcb_shm_query_version_reply_t, QueryVersionReply, xcb_shm_query_version_reply);
 
 pub fn AttachChecked<'r> (c : &'r Connection,
                       shmseg : Seg,
@@ -147,7 +147,7 @@ pub fn AttachChecked<'r> (c : &'r Connection,
                       read_only : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_shm_attach_checked(c.get_raw_conn(),
-        shmseg as seg, //1
+        shmseg as xcb_shm_seg_t, //1
         shmid as u32, //2
         read_only as u8); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
@@ -159,7 +159,7 @@ pub fn Attach<'r> (c : &'r Connection,
                read_only : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_shm_attach(c.get_raw_conn(),
-        shmseg as seg, //1
+        shmseg as xcb_shm_seg_t, //1
         shmid as u32, //2
         read_only as u8); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -169,7 +169,7 @@ pub fn DetachChecked<'r> (c : &'r Connection,
                       shmseg : Seg) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_shm_detach_checked(c.get_raw_conn(),
-        shmseg as seg); //1
+        shmseg as xcb_shm_seg_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -177,7 +177,7 @@ pub fn Detach<'r> (c : &'r Connection,
                shmseg : Seg) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_shm_detach(c.get_raw_conn(),
-        shmseg as seg); //1
+        shmseg as xcb_shm_seg_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -199,8 +199,8 @@ pub fn PutImageChecked<'r> (c : &'r Connection,
                         offset : u32) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_shm_put_image_checked(c.get_raw_conn(),
-        drawable as ffi::xproto::drawable, //1
-        gc as ffi::xproto::gcontext, //2
+        drawable as ffi::xproto::xcb_drawable_t, //1
+        gc as ffi::xproto::xcb_gcontext_t, //2
         total_width as u16, //3
         total_height as u16, //4
         src_x as u16, //5
@@ -212,7 +212,7 @@ pub fn PutImageChecked<'r> (c : &'r Connection,
         depth as u8, //11
         format as u8, //12
         send_event as u8, //13
-        shmseg as seg, //14
+        shmseg as xcb_shm_seg_t, //14
         offset as u32); //15
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
@@ -235,8 +235,8 @@ pub fn PutImage<'r> (c : &'r Connection,
                  offset : u32) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_shm_put_image(c.get_raw_conn(),
-        drawable as ffi::xproto::drawable, //1
-        gc as ffi::xproto::gcontext, //2
+        drawable as ffi::xproto::xcb_drawable_t, //1
+        gc as ffi::xproto::xcb_gcontext_t, //2
         total_width as u16, //3
         total_height as u16, //4
         src_x as u16, //5
@@ -248,7 +248,7 @@ pub fn PutImage<'r> (c : &'r Connection,
         depth as u8, //11
         format as u8, //12
         send_event as u8, //13
-        shmseg as seg, //14
+        shmseg as xcb_shm_seg_t, //14
         offset as u32); //15
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -265,14 +265,14 @@ pub fn GetImage<'r> (c : &'r Connection,
                  offset : u32) -> GetImageCookie<'r> {
   unsafe {
     let cookie = xcb_shm_get_image(c.get_raw_conn(),
-        drawable as ffi::xproto::drawable, //1
+        drawable as ffi::xproto::xcb_drawable_t, //1
         x as i16, //2
         y as i16, //3
         width as u16, //4
         height as u16, //5
         plane_mask as u32, //6
         format as u8, //7
-        shmseg as seg, //8
+        shmseg as xcb_shm_seg_t, //8
         offset as u32); //9
     GetImageCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -289,14 +289,14 @@ pub fn GetImageUnchecked<'r> (c : &'r Connection,
                           offset : u32) -> GetImageCookie<'r> {
   unsafe {
     let cookie = xcb_shm_get_image_unchecked(c.get_raw_conn(),
-        drawable as ffi::xproto::drawable, //1
+        drawable as ffi::xproto::xcb_drawable_t, //1
         x as i16, //2
         y as i16, //3
         width as u16, //4
         height as u16, //5
         plane_mask as u32, //6
         format as u8, //7
-        shmseg as seg, //8
+        shmseg as xcb_shm_seg_t, //8
         offset as u32); //9
     GetImageCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -316,7 +316,7 @@ impl GetImageReply {
   }
 
 }
-impl_reply_cookie!(GetImageCookie<'s>, mk_reply_get_image_reply, GetImageReply, xcb_shm_get_image_reply);
+impl_reply_cookie!(GetImageCookie<'s>, mk_reply_xcb_shm_get_image_reply_t, GetImageReply, xcb_shm_get_image_reply);
 
 pub fn CreatePixmapChecked<'r> (c : &'r Connection,
                             pid : xproto::Pixmap,
@@ -328,12 +328,12 @@ pub fn CreatePixmapChecked<'r> (c : &'r Connection,
                             offset : u32) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_shm_create_pixmap_checked(c.get_raw_conn(),
-        pid as ffi::xproto::pixmap, //1
-        drawable as ffi::xproto::drawable, //2
+        pid as ffi::xproto::xcb_pixmap_t, //1
+        drawable as ffi::xproto::xcb_drawable_t, //2
         width as u16, //3
         height as u16, //4
         depth as u8, //5
-        shmseg as seg, //6
+        shmseg as xcb_shm_seg_t, //6
         offset as u32); //7
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
@@ -348,12 +348,12 @@ pub fn CreatePixmap<'r> (c : &'r Connection,
                      offset : u32) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_shm_create_pixmap(c.get_raw_conn(),
-        pid as ffi::xproto::pixmap, //1
-        drawable as ffi::xproto::drawable, //2
+        pid as ffi::xproto::xcb_pixmap_t, //1
+        drawable as ffi::xproto::xcb_drawable_t, //2
         width as u16, //3
         height as u16, //4
         depth as u8, //5
-        shmseg as seg, //6
+        shmseg as xcb_shm_seg_t, //6
         offset as u32); //7
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }

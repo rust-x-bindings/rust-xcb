@@ -20,45 +20,45 @@ use std::iter::Iterator;
 use xproto;
 use shm;
 use xv;
-pub type Context = context;
+pub type Context = xcb_xvmc_context_t;
 
-pub type ContextIterator = context_iterator;
+pub type ContextIterator = xcb_xvmc_context_iterator_t;
 
-pub type SurfaceIterator = surface_iterator;
+pub type SurfaceIterator = xcb_xvmc_surface_iterator_t;
 
-pub type SubpictureIterator = subpicture_iterator;
+pub type SubpictureIterator = xcb_xvmc_subpicture_iterator_t;
 
-pub type SurfaceInfoIterator = surface_info_iterator;
+pub type SurfaceInfoIterator = xcb_xvmc_surface_info_iterator_t;
 
-pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, query_version_cookie> }
+pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_xvmc_query_version_cookie_t> }
 
 /** Opcode for xcb_xvmc_query_version. */
 pub static XCB_XVMC_QUERY_VERSION : u8 = 0;
-pub struct QueryVersionReply { base:  base::Reply<query_version_reply> }
-fn mk_reply_query_version_reply(reply:*mut query_version_reply) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
-pub struct  ListSurfaceTypesCookie<'s> { pub base : base::Cookie<'s, list_surface_types_cookie> }
+pub struct QueryVersionReply { base:  base::Reply<xcb_xvmc_query_version_reply_t> }
+fn mk_reply_xcb_xvmc_query_version_reply_t(reply:*mut xcb_xvmc_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
+pub struct  ListSurfaceTypesCookie<'s> { pub base : base::Cookie<'s, xcb_xvmc_list_surface_types_cookie_t> }
 
 /** Opcode for xcb_xvmc_list_surface_types. */
 pub static XCB_XVMC_LIST_SURFACE_TYPES : u8 = 1;
-pub struct  CreateContextCookie<'s> { pub base : base::Cookie<'s, create_context_cookie> }
+pub struct  CreateContextCookie<'s> { pub base : base::Cookie<'s, xcb_xvmc_create_context_cookie_t> }
 
 /** Opcode for xcb_xvmc_create_context. */
 pub static XCB_XVMC_CREATE_CONTEXT : u8 = 2;
 /** Opcode for xcb_xvmc_destroy_context. */
 pub static XCB_XVMC_DESTROY_CONTEXT : u8 = 3;
-pub struct  CreateSurfaceCookie<'s> { pub base : base::Cookie<'s, create_surface_cookie> }
+pub struct  CreateSurfaceCookie<'s> { pub base : base::Cookie<'s, xcb_xvmc_create_surface_cookie_t> }
 
 /** Opcode for xcb_xvmc_create_surface. */
 pub static XCB_XVMC_CREATE_SURFACE : u8 = 4;
 /** Opcode for xcb_xvmc_destroy_surface. */
 pub static XCB_XVMC_DESTROY_SURFACE : u8 = 5;
-pub struct  CreateSubpictureCookie<'s> { pub base : base::Cookie<'s, create_subpicture_cookie> }
+pub struct  CreateSubpictureCookie<'s> { pub base : base::Cookie<'s, xcb_xvmc_create_subpicture_cookie_t> }
 
 /** Opcode for xcb_xvmc_create_subpicture. */
 pub static XCB_XVMC_CREATE_SUBPICTURE : u8 = 6;
 /** Opcode for xcb_xvmc_destroy_subpicture. */
 pub static XCB_XVMC_DESTROY_SUBPICTURE : u8 = 7;
-pub struct  ListSubpictureTypesCookie<'s> { pub base : base::Cookie<'s, list_subpicture_types_cookie> }
+pub struct  ListSubpictureTypesCookie<'s> { pub base : base::Cookie<'s, xcb_xvmc_list_subpicture_types_cookie_t> }
 
 /** Opcode for xcb_xvmc_list_subpicture_types. */
 pub static XCB_XVMC_LIST_SUBPICTURE_TYPES : u8 = 8;
@@ -68,7 +68,7 @@ impl Iterator for ContextIterator {
     fn next(&mut self) -> Option<Context> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut context_iterator = mem::transmute(self);
+            let iter: *mut xcb_xvmc_context_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_xvmc_context_next(iter);
             Some(mem::transmute(*data))
@@ -76,7 +76,7 @@ impl Iterator for ContextIterator {
     }
 }
 
-pub type Surface = surface;
+pub type Surface = xcb_xvmc_surface_t;
 
 
 impl Iterator for SurfaceIterator {
@@ -84,7 +84,7 @@ impl Iterator for SurfaceIterator {
     fn next(&mut self) -> Option<Surface> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut surface_iterator = mem::transmute(self);
+            let iter: *mut xcb_xvmc_surface_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_xvmc_surface_next(iter);
             Some(mem::transmute(*data))
@@ -92,7 +92,7 @@ impl Iterator for SurfaceIterator {
     }
 }
 
-pub type Subpicture = subpicture;
+pub type Subpicture = xcb_xvmc_subpicture_t;
 
 
 impl Iterator for SubpictureIterator {
@@ -100,7 +100,7 @@ impl Iterator for SubpictureIterator {
     fn next(&mut self) -> Option<Subpicture> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut subpicture_iterator = mem::transmute(self);
+            let iter: *mut xcb_xvmc_subpicture_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_xvmc_subpicture_next(iter);
             Some(mem::transmute(*data))
@@ -108,7 +108,7 @@ impl Iterator for SubpictureIterator {
     }
 }
 
-pub struct SurfaceInfo {pub base : base::Struct<surface_info> }
+pub struct SurfaceInfo {pub base : base::Struct<xcb_xvmc_surface_info_t> }
 
 
 impl SurfaceInfo {
@@ -155,7 +155,7 @@ impl Iterator for SurfaceInfoIterator {
     fn next(&mut self) -> Option<SurfaceInfo> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut surface_info_iterator = mem::transmute(self);
+            let iter: *mut xcb_xvmc_surface_info_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_xvmc_surface_info_next(iter);
             Some(mem::transmute(*data))
@@ -186,15 +186,15 @@ impl QueryVersionReply {
   }
 
 }
-impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_query_version_reply, QueryVersionReply, xcb_xvmc_query_version_reply);
+impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_xcb_xvmc_query_version_reply_t, QueryVersionReply, xcb_xvmc_query_version_reply);
 
-pub struct ListSurfaceTypesReply { base:  base::Reply<list_surface_types_reply> }
-fn mk_reply_list_surface_types_reply(reply:*mut list_surface_types_reply) -> ListSurfaceTypesReply { ListSurfaceTypesReply { base : base::mk_reply(reply) } }
+pub struct ListSurfaceTypesReply { base:  base::Reply<xcb_xvmc_list_surface_types_reply_t> }
+fn mk_reply_xcb_xvmc_list_surface_types_reply_t(reply:*mut xcb_xvmc_list_surface_types_reply_t) -> ListSurfaceTypesReply { ListSurfaceTypesReply { base : base::mk_reply(reply) } }
 pub fn ListSurfaceTypes<'r> (c : &'r Connection,
                          port_id : xv::Port) -> ListSurfaceTypesCookie<'r> {
   unsafe {
     let cookie = xcb_xvmc_list_surface_types(c.get_raw_conn(),
-        port_id as ffi::xv::port); //1
+        port_id as ffi::xv::xcb_xv_port_t); //1
     ListSurfaceTypesCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -202,7 +202,7 @@ pub fn ListSurfaceTypesUnchecked<'r> (c : &'r Connection,
                                   port_id : xv::Port) -> ListSurfaceTypesCookie<'r> {
   unsafe {
     let cookie = xcb_xvmc_list_surface_types_unchecked(c.get_raw_conn(),
-        port_id as ffi::xv::port); //1
+        port_id as ffi::xv::xcb_xv_port_t); //1
     ListSurfaceTypesCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -213,10 +213,10 @@ impl ListSurfaceTypesReply {
   }
 
 }
-impl_reply_cookie!(ListSurfaceTypesCookie<'s>, mk_reply_list_surface_types_reply, ListSurfaceTypesReply, xcb_xvmc_list_surface_types_reply);
+impl_reply_cookie!(ListSurfaceTypesCookie<'s>, mk_reply_xcb_xvmc_list_surface_types_reply_t, ListSurfaceTypesReply, xcb_xvmc_list_surface_types_reply);
 
-pub struct CreateContextReply { base:  base::Reply<create_context_reply> }
-fn mk_reply_create_context_reply(reply:*mut create_context_reply) -> CreateContextReply { CreateContextReply { base : base::mk_reply(reply) } }
+pub struct CreateContextReply { base:  base::Reply<xcb_xvmc_create_context_reply_t> }
+fn mk_reply_xcb_xvmc_create_context_reply_t(reply:*mut xcb_xvmc_create_context_reply_t) -> CreateContextReply { CreateContextReply { base : base::mk_reply(reply) } }
 pub fn CreateContext<'r> (c : &'r Connection,
                       context_id : Context,
                       port_id : xv::Port,
@@ -226,9 +226,9 @@ pub fn CreateContext<'r> (c : &'r Connection,
                       flags : u32) -> CreateContextCookie<'r> {
   unsafe {
     let cookie = xcb_xvmc_create_context(c.get_raw_conn(),
-        context_id as context, //1
-        port_id as ffi::xv::port, //2
-        surface_id as surface, //3
+        context_id as xcb_xvmc_context_t, //1
+        port_id as ffi::xv::xcb_xv_port_t, //2
+        surface_id as xcb_xvmc_surface_t, //3
         width as u16, //4
         height as u16, //5
         flags as u32); //6
@@ -244,9 +244,9 @@ pub fn CreateContextUnchecked<'r> (c : &'r Connection,
                                flags : u32) -> CreateContextCookie<'r> {
   unsafe {
     let cookie = xcb_xvmc_create_context_unchecked(c.get_raw_conn(),
-        context_id as context, //1
-        port_id as ffi::xv::port, //2
-        surface_id as surface, //3
+        context_id as xcb_xvmc_context_t, //1
+        port_id as ffi::xv::xcb_xv_port_t, //2
+        surface_id as xcb_xvmc_surface_t, //3
         width as u16, //4
         height as u16, //5
         flags as u32); //6
@@ -272,13 +272,13 @@ impl CreateContextReply {
   }
 
 }
-impl_reply_cookie!(CreateContextCookie<'s>, mk_reply_create_context_reply, CreateContextReply, xcb_xvmc_create_context_reply);
+impl_reply_cookie!(CreateContextCookie<'s>, mk_reply_xcb_xvmc_create_context_reply_t, CreateContextReply, xcb_xvmc_create_context_reply);
 
 pub fn DestroyContextChecked<'r> (c : &'r Connection,
                               context_id : Context) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_xvmc_destroy_context_checked(c.get_raw_conn(),
-        context_id as context); //1
+        context_id as xcb_xvmc_context_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -286,19 +286,19 @@ pub fn DestroyContext<'r> (c : &'r Connection,
                        context_id : Context) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_xvmc_destroy_context(c.get_raw_conn(),
-        context_id as context); //1
+        context_id as xcb_xvmc_context_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub struct CreateSurfaceReply { base:  base::Reply<create_surface_reply> }
-fn mk_reply_create_surface_reply(reply:*mut create_surface_reply) -> CreateSurfaceReply { CreateSurfaceReply { base : base::mk_reply(reply) } }
+pub struct CreateSurfaceReply { base:  base::Reply<xcb_xvmc_create_surface_reply_t> }
+fn mk_reply_xcb_xvmc_create_surface_reply_t(reply:*mut xcb_xvmc_create_surface_reply_t) -> CreateSurfaceReply { CreateSurfaceReply { base : base::mk_reply(reply) } }
 pub fn CreateSurface<'r> (c : &'r Connection,
                       surface_id : Surface,
                       context_id : Context) -> CreateSurfaceCookie<'r> {
   unsafe {
     let cookie = xcb_xvmc_create_surface(c.get_raw_conn(),
-        surface_id as surface, //1
-        context_id as context); //2
+        surface_id as xcb_xvmc_surface_t, //1
+        context_id as xcb_xvmc_context_t); //2
     CreateSurfaceCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -307,8 +307,8 @@ pub fn CreateSurfaceUnchecked<'r> (c : &'r Connection,
                                context_id : Context) -> CreateSurfaceCookie<'r> {
   unsafe {
     let cookie = xcb_xvmc_create_surface_unchecked(c.get_raw_conn(),
-        surface_id as surface, //1
-        context_id as context); //2
+        surface_id as xcb_xvmc_surface_t, //1
+        context_id as xcb_xvmc_context_t); //2
     CreateSurfaceCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -319,13 +319,13 @@ impl CreateSurfaceReply {
   }
 
 }
-impl_reply_cookie!(CreateSurfaceCookie<'s>, mk_reply_create_surface_reply, CreateSurfaceReply, xcb_xvmc_create_surface_reply);
+impl_reply_cookie!(CreateSurfaceCookie<'s>, mk_reply_xcb_xvmc_create_surface_reply_t, CreateSurfaceReply, xcb_xvmc_create_surface_reply);
 
 pub fn DestroySurfaceChecked<'r> (c : &'r Connection,
                               surface_id : Surface) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_xvmc_destroy_surface_checked(c.get_raw_conn(),
-        surface_id as surface); //1
+        surface_id as xcb_xvmc_surface_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -333,12 +333,12 @@ pub fn DestroySurface<'r> (c : &'r Connection,
                        surface_id : Surface) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_xvmc_destroy_surface(c.get_raw_conn(),
-        surface_id as surface); //1
+        surface_id as xcb_xvmc_surface_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub struct CreateSubpictureReply { base:  base::Reply<create_subpicture_reply> }
-fn mk_reply_create_subpicture_reply(reply:*mut create_subpicture_reply) -> CreateSubpictureReply { CreateSubpictureReply { base : base::mk_reply(reply) } }
+pub struct CreateSubpictureReply { base:  base::Reply<xcb_xvmc_create_subpicture_reply_t> }
+fn mk_reply_xcb_xvmc_create_subpicture_reply_t(reply:*mut xcb_xvmc_create_subpicture_reply_t) -> CreateSubpictureReply { CreateSubpictureReply { base : base::mk_reply(reply) } }
 pub fn CreateSubpicture<'r> (c : &'r Connection,
                          subpicture_id : Subpicture,
                          context : Context,
@@ -347,8 +347,8 @@ pub fn CreateSubpicture<'r> (c : &'r Connection,
                          height : u16) -> CreateSubpictureCookie<'r> {
   unsafe {
     let cookie = xcb_xvmc_create_subpicture(c.get_raw_conn(),
-        subpicture_id as subpicture, //1
-        context as context, //2
+        subpicture_id as xcb_xvmc_subpicture_t, //1
+        context as xcb_xvmc_context_t, //2
         xvimage_id as u32, //3
         width as u16, //4
         height as u16); //5
@@ -363,8 +363,8 @@ pub fn CreateSubpictureUnchecked<'r> (c : &'r Connection,
                                   height : u16) -> CreateSubpictureCookie<'r> {
   unsafe {
     let cookie = xcb_xvmc_create_subpicture_unchecked(c.get_raw_conn(),
-        subpicture_id as subpicture, //1
-        context as context, //2
+        subpicture_id as xcb_xvmc_subpicture_t, //1
+        context as xcb_xvmc_context_t, //2
         xvimage_id as u32, //3
         width as u16, //4
         height as u16); //5
@@ -398,13 +398,13 @@ impl CreateSubpictureReply {
   }
 
 }
-impl_reply_cookie!(CreateSubpictureCookie<'s>, mk_reply_create_subpicture_reply, CreateSubpictureReply, xcb_xvmc_create_subpicture_reply);
+impl_reply_cookie!(CreateSubpictureCookie<'s>, mk_reply_xcb_xvmc_create_subpicture_reply_t, CreateSubpictureReply, xcb_xvmc_create_subpicture_reply);
 
 pub fn DestroySubpictureChecked<'r> (c : &'r Connection,
                                  subpicture_id : Subpicture) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_xvmc_destroy_subpicture_checked(c.get_raw_conn(),
-        subpicture_id as subpicture); //1
+        subpicture_id as xcb_xvmc_subpicture_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -412,19 +412,19 @@ pub fn DestroySubpicture<'r> (c : &'r Connection,
                           subpicture_id : Subpicture) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_xvmc_destroy_subpicture(c.get_raw_conn(),
-        subpicture_id as subpicture); //1
+        subpicture_id as xcb_xvmc_subpicture_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub struct ListSubpictureTypesReply { base:  base::Reply<list_subpicture_types_reply> }
-fn mk_reply_list_subpicture_types_reply(reply:*mut list_subpicture_types_reply) -> ListSubpictureTypesReply { ListSubpictureTypesReply { base : base::mk_reply(reply) } }
+pub struct ListSubpictureTypesReply { base:  base::Reply<xcb_xvmc_list_subpicture_types_reply_t> }
+fn mk_reply_xcb_xvmc_list_subpicture_types_reply_t(reply:*mut xcb_xvmc_list_subpicture_types_reply_t) -> ListSubpictureTypesReply { ListSubpictureTypesReply { base : base::mk_reply(reply) } }
 pub fn ListSubpictureTypes<'r> (c : &'r Connection,
                             port_id : xv::Port,
                             surface_id : Surface) -> ListSubpictureTypesCookie<'r> {
   unsafe {
     let cookie = xcb_xvmc_list_subpicture_types(c.get_raw_conn(),
-        port_id as ffi::xv::port, //1
-        surface_id as surface); //2
+        port_id as ffi::xv::xcb_xv_port_t, //1
+        surface_id as xcb_xvmc_surface_t); //2
     ListSubpictureTypesCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -433,8 +433,8 @@ pub fn ListSubpictureTypesUnchecked<'r> (c : &'r Connection,
                                      surface_id : Surface) -> ListSubpictureTypesCookie<'r> {
   unsafe {
     let cookie = xcb_xvmc_list_subpicture_types_unchecked(c.get_raw_conn(),
-        port_id as ffi::xv::port, //1
-        surface_id as surface); //2
+        port_id as ffi::xv::xcb_xv_port_t, //1
+        surface_id as xcb_xvmc_surface_t); //2
     ListSubpictureTypesCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -445,6 +445,6 @@ impl ListSubpictureTypesReply {
   }
 
 }
-impl_reply_cookie!(ListSubpictureTypesCookie<'s>, mk_reply_list_subpicture_types_reply, ListSubpictureTypesReply, xcb_xvmc_list_subpicture_types_reply);
+impl_reply_cookie!(ListSubpictureTypesCookie<'s>, mk_reply_xcb_xvmc_list_subpicture_types_reply_t, ListSubpictureTypesReply, xcb_xvmc_list_subpicture_types_reply);
 
 

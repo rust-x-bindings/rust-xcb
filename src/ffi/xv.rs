@@ -15,76 +15,76 @@ use ffi::shm;
 pub static XV_MAJOR_VERSION : c_uint = 2;
 pub static XV_MINOR_VERSION : c_uint = 2;
 
-pub type port = u32;
+pub type xcb_xv_port_t = u32;
 /**
- * @brief port_iterator
+ * @brief xcb_xv_port_iterator_t
  **/
 #[repr(C)]
-pub struct port_iterator {
-    pub data : *mut port,
+pub struct xcb_xv_port_iterator_t {
+    pub data : *mut xcb_xv_port_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
-pub type encoding = u32;
+pub type xcb_xv_encoding_t = u32;
 /**
- * @brief encoding_iterator
+ * @brief xcb_xv_encoding_iterator_t
  **/
 #[repr(C)]
-pub struct encoding_iterator {
-    pub data : *mut encoding,
+pub struct xcb_xv_encoding_iterator_t {
+    pub data : *mut xcb_xv_encoding_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct rational {
+pub struct xcb_xv_rational_t {
      pub numerator :     i32,
      pub denominator :   i32
 }
 
-impl Copy for rational {}
-impl Clone for rational {
-    fn clone(&self) -> rational { *self }
+impl Copy for xcb_xv_rational_t {}
+impl Clone for xcb_xv_rational_t {
+    fn clone(&self) -> xcb_xv_rational_t { *self }
 }
 /**
- * @brief rational_iterator
+ * @brief xcb_xv_rational_iterator_t
  **/
 #[repr(C)]
-pub struct rational_iterator {
-    pub data : *mut rational,
+pub struct xcb_xv_rational_iterator_t {
+    pub data : *mut xcb_xv_rational_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct format {
-     pub visual :   ffi::xproto::visualid,
+pub struct xcb_xv_format_t {
+     pub visual :   ffi::xproto::xcb_visualid_t,
      pub depth :    u8,
      pub pad0 :     [u8; 3]
 }
 
-impl Copy for format {}
-impl Clone for format {
-    fn clone(&self) -> format { *self }
+impl Copy for xcb_xv_format_t {}
+impl Clone for xcb_xv_format_t {
+    fn clone(&self) -> xcb_xv_format_t { *self }
 }
 /**
- * @brief format_iterator
+ * @brief xcb_xv_format_iterator_t
  **/
 #[repr(C)]
-pub struct format_iterator {
-    pub data : *mut format,
+pub struct xcb_xv_format_iterator_t {
+    pub data : *mut xcb_xv_format_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct adaptor_info {
-     pub base_id :       port,
+pub struct xcb_xv_adaptor_info_t {
+     pub base_id :       xcb_xv_port_t,
      pub name_size :     u16,
      pub num_ports :     u16,
      pub num_formats :   u16,
@@ -92,48 +92,48 @@ pub struct adaptor_info {
      pub pad0 :          u8
 }
 
-impl Copy for adaptor_info {}
-impl Clone for adaptor_info {
-    fn clone(&self) -> adaptor_info { *self }
+impl Copy for xcb_xv_adaptor_info_t {}
+impl Clone for xcb_xv_adaptor_info_t {
+    fn clone(&self) -> xcb_xv_adaptor_info_t { *self }
 }
 /**
- * @brief adaptor_info_iterator
+ * @brief xcb_xv_adaptor_info_iterator_t
  **/
 #[repr(C)]
-pub struct adaptor_info_iterator {
-    pub data : *mut adaptor_info,
+pub struct xcb_xv_adaptor_info_iterator_t {
+    pub data : *mut xcb_xv_adaptor_info_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct encoding_info {
-     pub encoding :    encoding,
+pub struct xcb_xv_encoding_info_t {
+     pub encoding :    xcb_xv_encoding_t,
      pub name_size :   u16,
      pub width :       u16,
      pub height :      u16,
      pub pad0 :        [u8; 2],
-     pub rate :        rational
+     pub rate :        xcb_xv_rational_t
 }
 
-impl Copy for encoding_info {}
-impl Clone for encoding_info {
-    fn clone(&self) -> encoding_info { *self }
+impl Copy for xcb_xv_encoding_info_t {}
+impl Clone for xcb_xv_encoding_info_t {
+    fn clone(&self) -> xcb_xv_encoding_info_t { *self }
 }
 /**
- * @brief encoding_info_iterator
+ * @brief xcb_xv_encoding_info_iterator_t
  **/
 #[repr(C)]
-pub struct encoding_info_iterator {
-    pub data : *mut encoding_info,
+pub struct xcb_xv_encoding_info_iterator_t {
+    pub data : *mut xcb_xv_encoding_info_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct image {
+pub struct xcb_xv_image_t {
      pub id :           u32,
      pub width :        u16,
      pub height :       u16,
@@ -141,46 +141,46 @@ pub struct image {
      pub num_planes :   u32
 }
 
-impl Copy for image {}
-impl Clone for image {
-    fn clone(&self) -> image { *self }
+impl Copy for xcb_xv_image_t {}
+impl Clone for xcb_xv_image_t {
+    fn clone(&self) -> xcb_xv_image_t { *self }
 }
 /**
- * @brief image_iterator
+ * @brief xcb_xv_image_iterator_t
  **/
 #[repr(C)]
-pub struct image_iterator {
-    pub data : *mut image,
+pub struct xcb_xv_image_iterator_t {
+    pub data : *mut xcb_xv_image_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct attribute_info {
+pub struct xcb_xv_attribute_info_t {
      pub flags :   u32,
      pub min :     i32,
      pub max :     i32,
      pub size :    u32
 }
 
-impl Copy for attribute_info {}
-impl Clone for attribute_info {
-    fn clone(&self) -> attribute_info { *self }
+impl Copy for xcb_xv_attribute_info_t {}
+impl Clone for xcb_xv_attribute_info_t {
+    fn clone(&self) -> xcb_xv_attribute_info_t { *self }
 }
 /**
- * @brief attribute_info_iterator
+ * @brief xcb_xv_attribute_info_iterator_t
  **/
 #[repr(C)]
-pub struct attribute_info_iterator {
-    pub data : *mut attribute_info,
+pub struct xcb_xv_attribute_info_iterator_t {
+    pub data : *mut xcb_xv_attribute_info_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct image_format_info {
+pub struct xcb_xv_image_format_info_t {
      pub id :                u32,
      pub type_ :             u8,
      pub byte_order :        u8,
@@ -210,16 +210,16 @@ pub struct image_format_info {
      pub pad4 :              [u8; 11]
 }
 
-impl Copy for image_format_info {}
-impl Clone for image_format_info {
-    fn clone(&self) -> image_format_info { *self }
+impl Copy for xcb_xv_image_format_info_t {}
+impl Clone for xcb_xv_image_format_info_t {
+    fn clone(&self) -> xcb_xv_image_format_info_t { *self }
 }
 /**
- * @brief image_format_info_iterator
+ * @brief xcb_xv_image_format_info_iterator_t
  **/
 #[repr(C)]
-pub struct image_format_info_iterator {
-    pub data : *mut image_format_info,
+pub struct xcb_xv_image_format_info_iterator_t {
+    pub data : *mut xcb_xv_image_format_info_t,
     pub rem  : c_int,
     pub index: c_int
 }
@@ -227,97 +227,97 @@ pub struct image_format_info_iterator {
 
 
 #[repr(C)]
-pub struct bad_port_error {
+pub struct xcb_xv_bad_port_error_t {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
-impl Copy for bad_port_error {}
-impl Clone for bad_port_error {
-    fn clone(&self) -> bad_port_error { *self }
+impl Copy for xcb_xv_bad_port_error_t {}
+impl Clone for xcb_xv_bad_port_error_t {
+    fn clone(&self) -> xcb_xv_bad_port_error_t { *self }
 }
 
 
 #[repr(C)]
-pub struct bad_encoding_error {
+pub struct xcb_xv_bad_encoding_error_t {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
-impl Copy for bad_encoding_error {}
-impl Clone for bad_encoding_error {
-    fn clone(&self) -> bad_encoding_error { *self }
+impl Copy for xcb_xv_bad_encoding_error_t {}
+impl Clone for xcb_xv_bad_encoding_error_t {
+    fn clone(&self) -> xcb_xv_bad_encoding_error_t { *self }
 }
 
 
 #[repr(C)]
-pub struct bad_control_error {
+pub struct xcb_xv_bad_control_error_t {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
-impl Copy for bad_control_error {}
-impl Clone for bad_control_error {
-    fn clone(&self) -> bad_control_error { *self }
+impl Copy for xcb_xv_bad_control_error_t {}
+impl Clone for xcb_xv_bad_control_error_t {
+    fn clone(&self) -> xcb_xv_bad_control_error_t { *self }
 }
 
 
 #[repr(C)]
-pub struct video_notify_event {
+pub struct xcb_xv_video_notify_event_t {
      pub response_type :   u8,
      pub reason :          u8,
      pub sequence :        u16,
-     pub time :            ffi::xproto::timestamp,
-     pub drawable :        ffi::xproto::drawable,
-     pub port :            port
+     pub time :            ffi::xproto::xcb_timestamp_t,
+     pub drawable :        ffi::xproto::xcb_drawable_t,
+     pub port :            xcb_xv_port_t
 }
 
-impl Copy for video_notify_event {}
-impl Clone for video_notify_event {
-    fn clone(&self) -> video_notify_event { *self }
+impl Copy for xcb_xv_video_notify_event_t {}
+impl Clone for xcb_xv_video_notify_event_t {
+    fn clone(&self) -> xcb_xv_video_notify_event_t { *self }
 }
 
 
 #[repr(C)]
-pub struct port_notify_event {
+pub struct xcb_xv_port_notify_event_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
-     pub time :            ffi::xproto::timestamp,
-     pub port :            port,
-     pub attribute :       ffi::xproto::atom,
+     pub time :            ffi::xproto::xcb_timestamp_t,
+     pub port :            xcb_xv_port_t,
+     pub attribute :       ffi::xproto::xcb_atom_t,
      pub value :           i32
 }
 
-impl Copy for port_notify_event {}
-impl Clone for port_notify_event {
-    fn clone(&self) -> port_notify_event { *self }
+impl Copy for xcb_xv_port_notify_event_t {}
+impl Clone for xcb_xv_port_notify_event_t {
+    fn clone(&self) -> xcb_xv_port_notify_event_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct query_extension_cookie {
+pub struct xcb_xv_query_extension_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct query_extension_request {
+pub struct xcb_xv_query_extension_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
-impl Copy for query_extension_request {}
-impl Clone for query_extension_request {
-    fn clone(&self) -> query_extension_request { *self }
+impl Copy for xcb_xv_query_extension_request_t {}
+impl Clone for xcb_xv_query_extension_request_t {
+    fn clone(&self) -> xcb_xv_query_extension_request_t { *self }
 }
 
 #[repr(C)]
-pub struct query_extension_reply {
+pub struct xcb_xv_query_extension_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -326,33 +326,33 @@ pub struct query_extension_reply {
      pub minor :           u16
 }
 
-impl Copy for query_extension_reply {}
-impl Clone for query_extension_reply {
-    fn clone(&self) -> query_extension_reply { *self }
+impl Copy for xcb_xv_query_extension_reply_t {}
+impl Clone for xcb_xv_query_extension_reply_t {
+    fn clone(&self) -> xcb_xv_query_extension_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct query_adaptors_cookie {
+pub struct xcb_xv_query_adaptors_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct query_adaptors_request {
+pub struct xcb_xv_query_adaptors_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub window :         ffi::xproto::window
+     pub window :         ffi::xproto::xcb_window_t
 }
 
-impl Copy for query_adaptors_request {}
-impl Clone for query_adaptors_request {
-    fn clone(&self) -> query_adaptors_request { *self }
+impl Copy for xcb_xv_query_adaptors_request_t {}
+impl Clone for xcb_xv_query_adaptors_request_t {
+    fn clone(&self) -> xcb_xv_query_adaptors_request_t { *self }
 }
 
 #[repr(C)]
-pub struct query_adaptors_reply {
+pub struct xcb_xv_query_adaptors_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -361,33 +361,33 @@ pub struct query_adaptors_reply {
      pub pad1 :            [u8; 22]
 }
 
-impl Copy for query_adaptors_reply {}
-impl Clone for query_adaptors_reply {
-    fn clone(&self) -> query_adaptors_reply { *self }
+impl Copy for xcb_xv_query_adaptors_reply_t {}
+impl Clone for xcb_xv_query_adaptors_reply_t {
+    fn clone(&self) -> xcb_xv_query_adaptors_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct query_encodings_cookie {
+pub struct xcb_xv_query_encodings_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct query_encodings_request {
+pub struct xcb_xv_query_encodings_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub port :           port
+     pub port :           xcb_xv_port_t
 }
 
-impl Copy for query_encodings_request {}
-impl Clone for query_encodings_request {
-    fn clone(&self) -> query_encodings_request { *self }
+impl Copy for xcb_xv_query_encodings_request_t {}
+impl Clone for xcb_xv_query_encodings_request_t {
+    fn clone(&self) -> xcb_xv_query_encodings_request_t { *self }
 }
 
 #[repr(C)]
-pub struct query_encodings_reply {
+pub struct xcb_xv_query_encodings_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -396,69 +396,69 @@ pub struct query_encodings_reply {
      pub pad1 :            [u8; 22]
 }
 
-impl Copy for query_encodings_reply {}
-impl Clone for query_encodings_reply {
-    fn clone(&self) -> query_encodings_reply { *self }
+impl Copy for xcb_xv_query_encodings_reply_t {}
+impl Clone for xcb_xv_query_encodings_reply_t {
+    fn clone(&self) -> xcb_xv_query_encodings_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct grab_port_cookie {
+pub struct xcb_xv_grab_port_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct grab_port_request {
+pub struct xcb_xv_grab_port_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub port :           port,
-     pub time :           ffi::xproto::timestamp
+     pub port :           xcb_xv_port_t,
+     pub time :           ffi::xproto::xcb_timestamp_t
 }
 
-impl Copy for grab_port_request {}
-impl Clone for grab_port_request {
-    fn clone(&self) -> grab_port_request { *self }
+impl Copy for xcb_xv_grab_port_request_t {}
+impl Clone for xcb_xv_grab_port_request_t {
+    fn clone(&self) -> xcb_xv_grab_port_request_t { *self }
 }
 
 #[repr(C)]
-pub struct grab_port_reply {
+pub struct xcb_xv_grab_port_reply_t {
      pub response_type :   u8,
      pub result :          u8,
      pub sequence :        u16,
      pub length :          u32
 }
 
-impl Copy for grab_port_reply {}
-impl Clone for grab_port_reply {
-    fn clone(&self) -> grab_port_reply { *self }
+impl Copy for xcb_xv_grab_port_reply_t {}
+impl Clone for xcb_xv_grab_port_reply_t {
+    fn clone(&self) -> xcb_xv_grab_port_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct ungrab_port_request {
+pub struct xcb_xv_ungrab_port_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub port :           port,
-     pub time :           ffi::xproto::timestamp
+     pub port :           xcb_xv_port_t,
+     pub time :           ffi::xproto::xcb_timestamp_t
 }
 
-impl Copy for ungrab_port_request {}
-impl Clone for ungrab_port_request {
-    fn clone(&self) -> ungrab_port_request { *self }
+impl Copy for xcb_xv_ungrab_port_request_t {}
+impl Clone for xcb_xv_ungrab_port_request_t {
+    fn clone(&self) -> xcb_xv_ungrab_port_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct put_video_request {
+pub struct xcb_xv_put_video_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub port :           port,
-     pub drawable :       ffi::xproto::drawable,
-     pub gc :             ffi::xproto::gcontext,
+     pub port :           xcb_xv_port_t,
+     pub drawable :       ffi::xproto::xcb_drawable_t,
+     pub gc :             ffi::xproto::xcb_gcontext_t,
      pub vid_x :          i16,
      pub vid_y :          i16,
      pub vid_w :          u16,
@@ -469,20 +469,20 @@ pub struct put_video_request {
      pub drw_h :          u16
 }
 
-impl Copy for put_video_request {}
-impl Clone for put_video_request {
-    fn clone(&self) -> put_video_request { *self }
+impl Copy for xcb_xv_put_video_request_t {}
+impl Clone for xcb_xv_put_video_request_t {
+    fn clone(&self) -> xcb_xv_put_video_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct put_still_request {
+pub struct xcb_xv_put_still_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub port :           port,
-     pub drawable :       ffi::xproto::drawable,
-     pub gc :             ffi::xproto::gcontext,
+     pub port :           xcb_xv_port_t,
+     pub drawable :       ffi::xproto::xcb_drawable_t,
+     pub gc :             ffi::xproto::xcb_gcontext_t,
      pub vid_x :          i16,
      pub vid_y :          i16,
      pub vid_w :          u16,
@@ -493,20 +493,20 @@ pub struct put_still_request {
      pub drw_h :          u16
 }
 
-impl Copy for put_still_request {}
-impl Clone for put_still_request {
-    fn clone(&self) -> put_still_request { *self }
+impl Copy for xcb_xv_put_still_request_t {}
+impl Clone for xcb_xv_put_still_request_t {
+    fn clone(&self) -> xcb_xv_put_still_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct get_video_request {
+pub struct xcb_xv_get_video_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub port :           port,
-     pub drawable :       ffi::xproto::drawable,
-     pub gc :             ffi::xproto::gcontext,
+     pub port :           xcb_xv_port_t,
+     pub drawable :       ffi::xproto::xcb_drawable_t,
+     pub gc :             ffi::xproto::xcb_gcontext_t,
      pub vid_x :          i16,
      pub vid_y :          i16,
      pub vid_w :          u16,
@@ -517,20 +517,20 @@ pub struct get_video_request {
      pub drw_h :          u16
 }
 
-impl Copy for get_video_request {}
-impl Clone for get_video_request {
-    fn clone(&self) -> get_video_request { *self }
+impl Copy for xcb_xv_get_video_request_t {}
+impl Clone for xcb_xv_get_video_request_t {
+    fn clone(&self) -> xcb_xv_get_video_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct get_still_request {
+pub struct xcb_xv_get_still_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub port :           port,
-     pub drawable :       ffi::xproto::drawable,
-     pub gc :             ffi::xproto::gcontext,
+     pub port :           xcb_xv_port_t,
+     pub drawable :       ffi::xproto::xcb_drawable_t,
+     pub gc :             ffi::xproto::xcb_gcontext_t,
      pub vid_x :          i16,
      pub vid_y :          i16,
      pub vid_w :          u16,
@@ -541,71 +541,71 @@ pub struct get_still_request {
      pub drw_h :          u16
 }
 
-impl Copy for get_still_request {}
-impl Clone for get_still_request {
-    fn clone(&self) -> get_still_request { *self }
+impl Copy for xcb_xv_get_still_request_t {}
+impl Clone for xcb_xv_get_still_request_t {
+    fn clone(&self) -> xcb_xv_get_still_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct stop_video_request {
+pub struct xcb_xv_stop_video_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub port :           port,
-     pub drawable :       ffi::xproto::drawable
+     pub port :           xcb_xv_port_t,
+     pub drawable :       ffi::xproto::xcb_drawable_t
 }
 
-impl Copy for stop_video_request {}
-impl Clone for stop_video_request {
-    fn clone(&self) -> stop_video_request { *self }
+impl Copy for xcb_xv_stop_video_request_t {}
+impl Clone for xcb_xv_stop_video_request_t {
+    fn clone(&self) -> xcb_xv_stop_video_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct select_video_notify_request {
+pub struct xcb_xv_select_video_notify_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub drawable :       ffi::xproto::drawable,
+     pub drawable :       ffi::xproto::xcb_drawable_t,
      pub onoff :          u8,
      pub pad0 :           [u8; 3]
 }
 
-impl Copy for select_video_notify_request {}
-impl Clone for select_video_notify_request {
-    fn clone(&self) -> select_video_notify_request { *self }
+impl Copy for xcb_xv_select_video_notify_request_t {}
+impl Clone for xcb_xv_select_video_notify_request_t {
+    fn clone(&self) -> xcb_xv_select_video_notify_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct select_port_notify_request {
+pub struct xcb_xv_select_port_notify_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub port :           port,
+     pub port :           xcb_xv_port_t,
      pub onoff :          u8,
      pub pad0 :           [u8; 3]
 }
 
-impl Copy for select_port_notify_request {}
-impl Clone for select_port_notify_request {
-    fn clone(&self) -> select_port_notify_request { *self }
+impl Copy for xcb_xv_select_port_notify_request_t {}
+impl Clone for xcb_xv_select_port_notify_request_t {
+    fn clone(&self) -> xcb_xv_select_port_notify_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct query_best_size_cookie {
+pub struct xcb_xv_query_best_size_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct query_best_size_request {
+pub struct xcb_xv_query_best_size_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub port :           port,
+     pub port :           xcb_xv_port_t,
      pub vid_w :          u16,
      pub vid_h :          u16,
      pub drw_w :          u16,
@@ -614,13 +614,13 @@ pub struct query_best_size_request {
      pub pad0 :           [u8; 3]
 }
 
-impl Copy for query_best_size_request {}
-impl Clone for query_best_size_request {
-    fn clone(&self) -> query_best_size_request { *self }
+impl Copy for xcb_xv_query_best_size_request_t {}
+impl Clone for xcb_xv_query_best_size_request_t {
+    fn clone(&self) -> xcb_xv_query_best_size_request_t { *self }
 }
 
 #[repr(C)]
-pub struct query_best_size_reply {
+pub struct xcb_xv_query_best_size_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -629,50 +629,50 @@ pub struct query_best_size_reply {
      pub actual_height :   u16
 }
 
-impl Copy for query_best_size_reply {}
-impl Clone for query_best_size_reply {
-    fn clone(&self) -> query_best_size_reply { *self }
+impl Copy for xcb_xv_query_best_size_reply_t {}
+impl Clone for xcb_xv_query_best_size_reply_t {
+    fn clone(&self) -> xcb_xv_query_best_size_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct set_port_attribute_request {
+pub struct xcb_xv_set_port_attribute_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub port :           port,
-     pub attribute :      ffi::xproto::atom,
+     pub port :           xcb_xv_port_t,
+     pub attribute :      ffi::xproto::xcb_atom_t,
      pub value :          i32
 }
 
-impl Copy for set_port_attribute_request {}
-impl Clone for set_port_attribute_request {
-    fn clone(&self) -> set_port_attribute_request { *self }
+impl Copy for xcb_xv_set_port_attribute_request_t {}
+impl Clone for xcb_xv_set_port_attribute_request_t {
+    fn clone(&self) -> xcb_xv_set_port_attribute_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_port_attribute_cookie {
+pub struct xcb_xv_get_port_attribute_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_port_attribute_request {
+pub struct xcb_xv_get_port_attribute_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub port :           port,
-     pub attribute :      ffi::xproto::atom
+     pub port :           xcb_xv_port_t,
+     pub attribute :      ffi::xproto::xcb_atom_t
 }
 
-impl Copy for get_port_attribute_request {}
-impl Clone for get_port_attribute_request {
-    fn clone(&self) -> get_port_attribute_request { *self }
+impl Copy for xcb_xv_get_port_attribute_request_t {}
+impl Clone for xcb_xv_get_port_attribute_request_t {
+    fn clone(&self) -> xcb_xv_get_port_attribute_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_port_attribute_reply {
+pub struct xcb_xv_get_port_attribute_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -680,33 +680,33 @@ pub struct get_port_attribute_reply {
      pub value :           i32
 }
 
-impl Copy for get_port_attribute_reply {}
-impl Clone for get_port_attribute_reply {
-    fn clone(&self) -> get_port_attribute_reply { *self }
+impl Copy for xcb_xv_get_port_attribute_reply_t {}
+impl Clone for xcb_xv_get_port_attribute_reply_t {
+    fn clone(&self) -> xcb_xv_get_port_attribute_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct query_port_attributes_cookie {
+pub struct xcb_xv_query_port_attributes_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct query_port_attributes_request {
+pub struct xcb_xv_query_port_attributes_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub port :           port
+     pub port :           xcb_xv_port_t
 }
 
-impl Copy for query_port_attributes_request {}
-impl Clone for query_port_attributes_request {
-    fn clone(&self) -> query_port_attributes_request { *self }
+impl Copy for xcb_xv_query_port_attributes_request_t {}
+impl Clone for xcb_xv_query_port_attributes_request_t {
+    fn clone(&self) -> xcb_xv_query_port_attributes_request_t { *self }
 }
 
 #[repr(C)]
-pub struct query_port_attributes_reply {
+pub struct xcb_xv_query_port_attributes_reply_t {
      pub response_type :    u8,
      pub pad0 :             u8,
      pub sequence :         u16,
@@ -716,33 +716,33 @@ pub struct query_port_attributes_reply {
      pub pad1 :             [u8; 16]
 }
 
-impl Copy for query_port_attributes_reply {}
-impl Clone for query_port_attributes_reply {
-    fn clone(&self) -> query_port_attributes_reply { *self }
+impl Copy for xcb_xv_query_port_attributes_reply_t {}
+impl Clone for xcb_xv_query_port_attributes_reply_t {
+    fn clone(&self) -> xcb_xv_query_port_attributes_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct list_image_formats_cookie {
+pub struct xcb_xv_list_image_formats_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct list_image_formats_request {
+pub struct xcb_xv_list_image_formats_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub port :           port
+     pub port :           xcb_xv_port_t
 }
 
-impl Copy for list_image_formats_request {}
-impl Clone for list_image_formats_request {
-    fn clone(&self) -> list_image_formats_request { *self }
+impl Copy for xcb_xv_list_image_formats_request_t {}
+impl Clone for xcb_xv_list_image_formats_request_t {
+    fn clone(&self) -> xcb_xv_list_image_formats_request_t { *self }
 }
 
 #[repr(C)]
-pub struct list_image_formats_reply {
+pub struct xcb_xv_list_image_formats_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -751,36 +751,36 @@ pub struct list_image_formats_reply {
      pub pad1 :            [u8; 20]
 }
 
-impl Copy for list_image_formats_reply {}
-impl Clone for list_image_formats_reply {
-    fn clone(&self) -> list_image_formats_reply { *self }
+impl Copy for xcb_xv_list_image_formats_reply_t {}
+impl Clone for xcb_xv_list_image_formats_reply_t {
+    fn clone(&self) -> xcb_xv_list_image_formats_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct query_image_attributes_cookie {
+pub struct xcb_xv_query_image_attributes_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct query_image_attributes_request {
+pub struct xcb_xv_query_image_attributes_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub port :           port,
+     pub port :           xcb_xv_port_t,
      pub id :             u32,
      pub width :          u16,
      pub height :         u16
 }
 
-impl Copy for query_image_attributes_request {}
-impl Clone for query_image_attributes_request {
-    fn clone(&self) -> query_image_attributes_request { *self }
+impl Copy for xcb_xv_query_image_attributes_request_t {}
+impl Clone for xcb_xv_query_image_attributes_request_t {
+    fn clone(&self) -> xcb_xv_query_image_attributes_request_t { *self }
 }
 
 #[repr(C)]
-pub struct query_image_attributes_reply {
+pub struct xcb_xv_query_image_attributes_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -792,20 +792,20 @@ pub struct query_image_attributes_reply {
      pub pad1 :            [u8; 12]
 }
 
-impl Copy for query_image_attributes_reply {}
-impl Clone for query_image_attributes_reply {
-    fn clone(&self) -> query_image_attributes_reply { *self }
+impl Copy for xcb_xv_query_image_attributes_reply_t {}
+impl Clone for xcb_xv_query_image_attributes_reply_t {
+    fn clone(&self) -> xcb_xv_query_image_attributes_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct put_image_request {
+pub struct xcb_xv_put_image_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub port :           port,
-     pub drawable :       ffi::xproto::drawable,
-     pub gc :             ffi::xproto::gcontext,
+     pub port :           xcb_xv_port_t,
+     pub drawable :       ffi::xproto::xcb_drawable_t,
+     pub gc :             ffi::xproto::xcb_gcontext_t,
      pub id :             u32,
      pub src_x :          i16,
      pub src_y :          i16,
@@ -819,21 +819,21 @@ pub struct put_image_request {
      pub height :         u16
 }
 
-impl Copy for put_image_request {}
-impl Clone for put_image_request {
-    fn clone(&self) -> put_image_request { *self }
+impl Copy for xcb_xv_put_image_request_t {}
+impl Clone for xcb_xv_put_image_request_t {
+    fn clone(&self) -> xcb_xv_put_image_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct shm_put_image_request {
+pub struct xcb_xv_shm_put_image_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub port :           port,
-     pub drawable :       ffi::xproto::drawable,
-     pub gc :             ffi::xproto::gcontext,
-     pub shmseg :         ffi::shm::seg,
+     pub port :           xcb_xv_port_t,
+     pub drawable :       ffi::xproto::xcb_drawable_t,
+     pub gc :             ffi::xproto::xcb_gcontext_t,
+     pub shmseg :         ffi::shm::xcb_shm_seg_t,
      pub id :             u32,
      pub offset :         u32,
      pub src_x :          i16,
@@ -850,282 +850,282 @@ pub struct shm_put_image_request {
      pub pad0 :           [u8; 3]
 }
 
-impl Copy for shm_put_image_request {}
-impl Clone for shm_put_image_request {
-    fn clone(&self) -> shm_put_image_request { *self }
+impl Copy for xcb_xv_shm_put_image_request_t {}
+impl Clone for xcb_xv_shm_put_image_request_t {
+    fn clone(&self) -> xcb_xv_shm_put_image_request_t { *self }
 }
 #[link(name="xcb-xv")]
 extern "C" {
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a port_iterator
+ * @param i Pointer to a xcb_xv_port_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(port)
+ * element. The member index is increased by sizeof(xcb_xv_port_t)
  *
  *
  */
-pub fn xcb_xv_port_next (i:*mut port_iterator) -> c_void;
+pub fn xcb_xv_port_next (i:*mut xcb_xv_port_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An port_iterator
+ * @param i An xcb_xv_port_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xv_port_end (i:port_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_xv_port_end (i:xcb_xv_port_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a encoding_iterator
+ * @param i Pointer to a xcb_xv_encoding_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(encoding)
+ * element. The member index is increased by sizeof(xcb_xv_encoding_t)
  *
  *
  */
-pub fn xcb_xv_encoding_next (i:*mut encoding_iterator) -> c_void;
+pub fn xcb_xv_encoding_next (i:*mut xcb_xv_encoding_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An encoding_iterator
+ * @param i An xcb_xv_encoding_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xv_encoding_end (i:encoding_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_xv_encoding_end (i:xcb_xv_encoding_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a rational_iterator
+ * @param i Pointer to a xcb_xv_rational_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(rational)
+ * element. The member index is increased by sizeof(xcb_xv_rational_t)
  *
  *
  */
-pub fn xcb_xv_rational_next (i:*mut rational_iterator) -> c_void;
+pub fn xcb_xv_rational_next (i:*mut xcb_xv_rational_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An rational_iterator
+ * @param i An xcb_xv_rational_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xv_rational_end (i:rational_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_xv_rational_end (i:xcb_xv_rational_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a format_iterator
+ * @param i Pointer to a xcb_xv_format_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(format)
+ * element. The member index is increased by sizeof(xcb_xv_format_t)
  *
  *
  */
-pub fn xcb_xv_format_next (i:*mut format_iterator) -> c_void;
+pub fn xcb_xv_format_next (i:*mut xcb_xv_format_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An format_iterator
+ * @param i An xcb_xv_format_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xv_format_end (i:format_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_xv_format_end (i:xcb_xv_format_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_xv_adaptor_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub fn xcb_xv_adaptor_info_name (R : *mut adaptor_info) -> *mut c_char;
+pub fn xcb_xv_adaptor_info_name (R : *mut xcb_xv_adaptor_info_t) -> *mut c_char;
 
 
-pub fn xcb_xv_adaptor_info_name_length (R : *mut adaptor_info) -> c_int;
+pub fn xcb_xv_adaptor_info_name_length (R : *mut xcb_xv_adaptor_info_t) -> c_int;
 
 
-pub fn xcb_xv_adaptor_info_name_end (R : *mut adaptor_info) -> ffi::base::generic_iterator;
+pub fn xcb_xv_adaptor_info_name_end (R : *mut xcb_xv_adaptor_info_t) -> ffi::base::xcb_generic_iterator_t;
 
-pub fn xcb_xv_adaptor_info_formats (R : *mut adaptor_info) -> *mut format;
+pub fn xcb_xv_adaptor_info_formats (R : *mut xcb_xv_adaptor_info_t) -> *mut xcb_xv_format_t;
 
 
-pub fn xcb_xv_adaptor_info_formats_length (R : *mut adaptor_info) -> c_int;
+pub fn xcb_xv_adaptor_info_formats_length (R : *mut xcb_xv_adaptor_info_t) -> c_int;
 
-pub fn xcb_xv_adaptor_info_formats_iterator (R : *mut adaptor_info) -> format_iterator;
+pub fn xcb_xv_adaptor_info_formats_iterator (R : *mut xcb_xv_adaptor_info_t) -> xcb_xv_format_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a adaptor_info_iterator
+ * @param i Pointer to a xcb_xv_adaptor_info_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(adaptor_info)
+ * element. The member index is increased by sizeof(xcb_xv_adaptor_info_t)
  *
  *
  */
-pub fn xcb_xv_adaptor_info_next (i:*mut adaptor_info_iterator) -> c_void;
+pub fn xcb_xv_adaptor_info_next (i:*mut xcb_xv_adaptor_info_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An adaptor_info_iterator
+ * @param i An xcb_xv_adaptor_info_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xv_adaptor_info_end (i:adaptor_info_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_xv_adaptor_info_end (i:xcb_xv_adaptor_info_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_xv_encoding_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub fn xcb_xv_encoding_info_name (R : *mut encoding_info) -> *mut c_char;
+pub fn xcb_xv_encoding_info_name (R : *mut xcb_xv_encoding_info_t) -> *mut c_char;
 
 
-pub fn xcb_xv_encoding_info_name_length (R : *mut encoding_info) -> c_int;
+pub fn xcb_xv_encoding_info_name_length (R : *mut xcb_xv_encoding_info_t) -> c_int;
 
 
-pub fn xcb_xv_encoding_info_name_end (R : *mut encoding_info) -> ffi::base::generic_iterator;
+pub fn xcb_xv_encoding_info_name_end (R : *mut xcb_xv_encoding_info_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a encoding_info_iterator
+ * @param i Pointer to a xcb_xv_encoding_info_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(encoding_info)
+ * element. The member index is increased by sizeof(xcb_xv_encoding_info_t)
  *
  *
  */
-pub fn xcb_xv_encoding_info_next (i:*mut encoding_info_iterator) -> c_void;
+pub fn xcb_xv_encoding_info_next (i:*mut xcb_xv_encoding_info_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An encoding_info_iterator
+ * @param i An xcb_xv_encoding_info_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xv_encoding_info_end (i:encoding_info_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_xv_encoding_info_end (i:xcb_xv_encoding_info_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_xv_image_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub fn xcb_xv_image_pitches (R : *mut image) -> *mut u32;
+pub fn xcb_xv_image_pitches (R : *mut xcb_xv_image_t) -> *mut u32;
 
 
-pub fn xcb_xv_image_pitches_length (R : *mut image) -> c_int;
+pub fn xcb_xv_image_pitches_length (R : *mut xcb_xv_image_t) -> c_int;
 
 
-pub fn xcb_xv_image_pitches_end (R : *mut image) -> ffi::base::generic_iterator;
+pub fn xcb_xv_image_pitches_end (R : *mut xcb_xv_image_t) -> ffi::base::xcb_generic_iterator_t;
 
-pub fn xcb_xv_image_offsets (R : *mut image) -> *mut u32;
-
-
-pub fn xcb_xv_image_offsets_length (R : *mut image) -> c_int;
+pub fn xcb_xv_image_offsets (R : *mut xcb_xv_image_t) -> *mut u32;
 
 
-pub fn xcb_xv_image_offsets_end (R : *mut image) -> ffi::base::generic_iterator;
-
-pub fn xcb_xv_image_data (R : *mut image) -> *mut u8;
+pub fn xcb_xv_image_offsets_length (R : *mut xcb_xv_image_t) -> c_int;
 
 
-pub fn xcb_xv_image_data_length (R : *mut image) -> c_int;
+pub fn xcb_xv_image_offsets_end (R : *mut xcb_xv_image_t) -> ffi::base::xcb_generic_iterator_t;
+
+pub fn xcb_xv_image_data (R : *mut xcb_xv_image_t) -> *mut u8;
 
 
-pub fn xcb_xv_image_data_end (R : *mut image) -> ffi::base::generic_iterator;
+pub fn xcb_xv_image_data_length (R : *mut xcb_xv_image_t) -> c_int;
+
+
+pub fn xcb_xv_image_data_end (R : *mut xcb_xv_image_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a image_iterator
+ * @param i Pointer to a xcb_xv_image_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(image)
+ * element. The member index is increased by sizeof(xcb_xv_image_t)
  *
  *
  */
-pub fn xcb_xv_image_next (i:*mut image_iterator) -> c_void;
+pub fn xcb_xv_image_next (i:*mut xcb_xv_image_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An image_iterator
+ * @param i An xcb_xv_image_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xv_image_end (i:image_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_xv_image_end (i:xcb_xv_image_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_xv_attribute_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub fn xcb_xv_attribute_info_name (R : *mut attribute_info) -> *mut c_char;
+pub fn xcb_xv_attribute_info_name (R : *mut xcb_xv_attribute_info_t) -> *mut c_char;
 
 
-pub fn xcb_xv_attribute_info_name_length (R : *mut attribute_info) -> c_int;
+pub fn xcb_xv_attribute_info_name_length (R : *mut xcb_xv_attribute_info_t) -> c_int;
 
 
-pub fn xcb_xv_attribute_info_name_end (R : *mut attribute_info) -> ffi::base::generic_iterator;
+pub fn xcb_xv_attribute_info_name_end (R : *mut xcb_xv_attribute_info_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a attribute_info_iterator
+ * @param i Pointer to a xcb_xv_attribute_info_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(attribute_info)
+ * element. The member index is increased by sizeof(xcb_xv_attribute_info_t)
  *
  *
  */
-pub fn xcb_xv_attribute_info_next (i:*mut attribute_info_iterator) -> c_void;
+pub fn xcb_xv_attribute_info_next (i:*mut xcb_xv_attribute_info_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An attribute_info_iterator
+ * @param i An xcb_xv_attribute_info_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xv_attribute_info_end (i:attribute_info_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_xv_attribute_info_end (i:xcb_xv_attribute_info_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a image_format_info_iterator
+ * @param i Pointer to a xcb_xv_image_format_info_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(image_format_info)
+ * element. The member index is increased by sizeof(xcb_xv_image_format_info_t)
  *
  *
  */
-pub fn xcb_xv_image_format_info_next (i:*mut image_format_info_iterator) -> c_void;
+pub fn xcb_xv_image_format_info_next (i:*mut xcb_xv_image_format_info_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An image_format_info_iterator
+ * @param i An xcb_xv_image_format_info_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_xv_image_format_info_end (i:image_format_info_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_xv_image_format_info_end (i:xcb_xv_image_format_info_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  *
@@ -1135,7 +1135,7 @@ pub fn xcb_xv_image_format_info_end (i:image_format_info_iterator) -> ffi::base:
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xv_query_extension (c : *mut ffi::base::connection) -> query_extension_cookie;
+pub fn xcb_xv_query_extension (c : *mut ffi::base::xcb_connection_t) -> xcb_xv_query_extension_cookie_t;
 
 /**
  *
@@ -1148,13 +1148,13 @@ pub fn xcb_xv_query_extension (c : *mut ffi::base::connection) -> query_extensio
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xv_query_extension_unchecked (c : *mut ffi::base::connection) -> query_extension_cookie;
+pub fn xcb_xv_query_extension_unchecked (c : *mut ffi::base::xcb_connection_t) -> xcb_xv_query_extension_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1164,9 +1164,9 @@ pub fn xcb_xv_query_extension_unchecked (c : *mut ffi::base::connection) -> quer
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xv_query_extension_reply (c : *mut ffi::base::connection,
-                                        cookie : query_extension_cookie,
-                                        e : *mut *mut ffi::base::generic_error) -> *mut query_extension_reply;
+pub fn xcb_xv_query_extension_reply (c : *mut ffi::base::xcb_connection_t,
+                                        cookie : xcb_xv_query_extension_cookie_t,
+                                        e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xv_query_extension_reply_t;
 
 pub fn xcb_xv_query_adaptors_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1178,8 +1178,8 @@ pub fn xcb_xv_query_adaptors_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xv_query_adaptors (c : *mut ffi::base::connection,
-                                 window :  ffi::xproto::window) -> query_adaptors_cookie;
+pub fn xcb_xv_query_adaptors (c : *mut ffi::base::xcb_connection_t,
+                                 window :  ffi::xproto::xcb_window_t) -> xcb_xv_query_adaptors_cookie_t;
 
 /**
  *
@@ -1192,19 +1192,19 @@ pub fn xcb_xv_query_adaptors (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xv_query_adaptors_unchecked (c : *mut ffi::base::connection,
-                                           window :  ffi::xproto::window) -> query_adaptors_cookie;
+pub fn xcb_xv_query_adaptors_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                           window :  ffi::xproto::xcb_window_t) -> xcb_xv_query_adaptors_cookie_t;
 
 
-pub fn xcb_xv_query_adaptors_info_length (R : *mut query_adaptors_reply) -> c_int;
+pub fn xcb_xv_query_adaptors_info_length (R : *mut xcb_xv_query_adaptors_reply_t) -> c_int;
 
-pub fn xcb_xv_query_adaptors_info_iterator (R : *mut query_adaptors_reply) -> adaptor_info_iterator;
+pub fn xcb_xv_query_adaptors_info_iterator (R : *mut xcb_xv_query_adaptors_reply_t) -> xcb_xv_adaptor_info_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1214,9 +1214,9 @@ pub fn xcb_xv_query_adaptors_info_iterator (R : *mut query_adaptors_reply) -> ad
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xv_query_adaptors_reply (c : *mut ffi::base::connection,
-                                       cookie : query_adaptors_cookie,
-                                       e : *mut *mut ffi::base::generic_error) -> *mut query_adaptors_reply;
+pub fn xcb_xv_query_adaptors_reply (c : *mut ffi::base::xcb_connection_t,
+                                       cookie : xcb_xv_query_adaptors_cookie_t,
+                                       e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xv_query_adaptors_reply_t;
 
 pub fn xcb_xv_query_encodings_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1228,8 +1228,8 @@ pub fn xcb_xv_query_encodings_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xv_query_encodings (c : *mut ffi::base::connection,
-                                  port :  port) -> query_encodings_cookie;
+pub fn xcb_xv_query_encodings (c : *mut ffi::base::xcb_connection_t,
+                                  port :  xcb_xv_port_t) -> xcb_xv_query_encodings_cookie_t;
 
 /**
  *
@@ -1242,19 +1242,19 @@ pub fn xcb_xv_query_encodings (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xv_query_encodings_unchecked (c : *mut ffi::base::connection,
-                                            port :  port) -> query_encodings_cookie;
+pub fn xcb_xv_query_encodings_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                            port :  xcb_xv_port_t) -> xcb_xv_query_encodings_cookie_t;
 
 
-pub fn xcb_xv_query_encodings_info_length (R : *mut query_encodings_reply) -> c_int;
+pub fn xcb_xv_query_encodings_info_length (R : *mut xcb_xv_query_encodings_reply_t) -> c_int;
 
-pub fn xcb_xv_query_encodings_info_iterator (R : *mut query_encodings_reply) -> encoding_info_iterator;
+pub fn xcb_xv_query_encodings_info_iterator (R : *mut xcb_xv_query_encodings_reply_t) -> xcb_xv_encoding_info_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1264,9 +1264,9 @@ pub fn xcb_xv_query_encodings_info_iterator (R : *mut query_encodings_reply) -> 
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xv_query_encodings_reply (c : *mut ffi::base::connection,
-                                        cookie : query_encodings_cookie,
-                                        e : *mut *mut ffi::base::generic_error) -> *mut query_encodings_reply;
+pub fn xcb_xv_query_encodings_reply (c : *mut ffi::base::xcb_connection_t,
+                                        cookie : xcb_xv_query_encodings_cookie_t,
+                                        e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xv_query_encodings_reply_t;
 
 /**
  *
@@ -1276,9 +1276,9 @@ pub fn xcb_xv_query_encodings_reply (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xv_grab_port (c : *mut ffi::base::connection,
-                            port :  port,
-                            time :  ffi::xproto::timestamp) -> grab_port_cookie;
+pub fn xcb_xv_grab_port (c : *mut ffi::base::xcb_connection_t,
+                            port :  xcb_xv_port_t,
+                            time :  ffi::xproto::xcb_timestamp_t) -> xcb_xv_grab_port_cookie_t;
 
 /**
  *
@@ -1291,15 +1291,15 @@ pub fn xcb_xv_grab_port (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xv_grab_port_unchecked (c : *mut ffi::base::connection,
-                                      port :  port,
-                                      time :  ffi::xproto::timestamp) -> grab_port_cookie;
+pub fn xcb_xv_grab_port_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                      port :  xcb_xv_port_t,
+                                      time :  ffi::xproto::xcb_timestamp_t) -> xcb_xv_grab_port_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1309,9 +1309,9 @@ pub fn xcb_xv_grab_port_unchecked (c : *mut ffi::base::connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xv_grab_port_reply (c : *mut ffi::base::connection,
-                                  cookie : grab_port_cookie,
-                                  e : *mut *mut ffi::base::generic_error) -> *mut grab_port_reply;
+pub fn xcb_xv_grab_port_reply (c : *mut ffi::base::xcb_connection_t,
+                                  cookie : xcb_xv_grab_port_cookie_t,
+                                  e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xv_grab_port_reply_t;
 
 /**
  *
@@ -1324,9 +1324,9 @@ pub fn xcb_xv_grab_port_reply (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xv_ungrab_port_checked (c : *mut ffi::base::connection,
-                                      port :  port,
-                                      time :  ffi::xproto::timestamp) -> ffi::base::void_cookie;
+pub fn xcb_xv_ungrab_port_checked (c : *mut ffi::base::xcb_connection_t,
+                                      port :  xcb_xv_port_t,
+                                      time :  ffi::xproto::xcb_timestamp_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1336,9 +1336,9 @@ pub fn xcb_xv_ungrab_port_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xv_ungrab_port (c : *mut ffi::base::connection,
-                              port :  port,
-                              time :  ffi::xproto::timestamp) -> ffi::base::void_cookie;
+pub fn xcb_xv_ungrab_port (c : *mut ffi::base::xcb_connection_t,
+                              port :  xcb_xv_port_t,
+                              time :  ffi::xproto::xcb_timestamp_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1351,10 +1351,10 @@ pub fn xcb_xv_ungrab_port (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xv_put_video_checked (c : *mut ffi::base::connection,
-                                    port :  port,
-                                    drawable :  ffi::xproto::drawable,
-                                    gc :  ffi::xproto::gcontext,
+pub fn xcb_xv_put_video_checked (c : *mut ffi::base::xcb_connection_t,
+                                    port :  xcb_xv_port_t,
+                                    drawable :  ffi::xproto::xcb_drawable_t,
+                                    gc :  ffi::xproto::xcb_gcontext_t,
                                     vid_x :  i16,
                                     vid_y :  i16,
                                     vid_w :  u16,
@@ -1362,7 +1362,7 @@ pub fn xcb_xv_put_video_checked (c : *mut ffi::base::connection,
                                     drw_x :  i16,
                                     drw_y :  i16,
                                     drw_w :  u16,
-                                    drw_h :  u16) -> ffi::base::void_cookie;
+                                    drw_h :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1372,10 +1372,10 @@ pub fn xcb_xv_put_video_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xv_put_video (c : *mut ffi::base::connection,
-                            port :  port,
-                            drawable :  ffi::xproto::drawable,
-                            gc :  ffi::xproto::gcontext,
+pub fn xcb_xv_put_video (c : *mut ffi::base::xcb_connection_t,
+                            port :  xcb_xv_port_t,
+                            drawable :  ffi::xproto::xcb_drawable_t,
+                            gc :  ffi::xproto::xcb_gcontext_t,
                             vid_x :  i16,
                             vid_y :  i16,
                             vid_w :  u16,
@@ -1383,7 +1383,7 @@ pub fn xcb_xv_put_video (c : *mut ffi::base::connection,
                             drw_x :  i16,
                             drw_y :  i16,
                             drw_w :  u16,
-                            drw_h :  u16) -> ffi::base::void_cookie;
+                            drw_h :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1396,10 +1396,10 @@ pub fn xcb_xv_put_video (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xv_put_still_checked (c : *mut ffi::base::connection,
-                                    port :  port,
-                                    drawable :  ffi::xproto::drawable,
-                                    gc :  ffi::xproto::gcontext,
+pub fn xcb_xv_put_still_checked (c : *mut ffi::base::xcb_connection_t,
+                                    port :  xcb_xv_port_t,
+                                    drawable :  ffi::xproto::xcb_drawable_t,
+                                    gc :  ffi::xproto::xcb_gcontext_t,
                                     vid_x :  i16,
                                     vid_y :  i16,
                                     vid_w :  u16,
@@ -1407,7 +1407,7 @@ pub fn xcb_xv_put_still_checked (c : *mut ffi::base::connection,
                                     drw_x :  i16,
                                     drw_y :  i16,
                                     drw_w :  u16,
-                                    drw_h :  u16) -> ffi::base::void_cookie;
+                                    drw_h :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1417,10 +1417,10 @@ pub fn xcb_xv_put_still_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xv_put_still (c : *mut ffi::base::connection,
-                            port :  port,
-                            drawable :  ffi::xproto::drawable,
-                            gc :  ffi::xproto::gcontext,
+pub fn xcb_xv_put_still (c : *mut ffi::base::xcb_connection_t,
+                            port :  xcb_xv_port_t,
+                            drawable :  ffi::xproto::xcb_drawable_t,
+                            gc :  ffi::xproto::xcb_gcontext_t,
                             vid_x :  i16,
                             vid_y :  i16,
                             vid_w :  u16,
@@ -1428,7 +1428,7 @@ pub fn xcb_xv_put_still (c : *mut ffi::base::connection,
                             drw_x :  i16,
                             drw_y :  i16,
                             drw_w :  u16,
-                            drw_h :  u16) -> ffi::base::void_cookie;
+                            drw_h :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1441,10 +1441,10 @@ pub fn xcb_xv_put_still (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xv_get_video_checked (c : *mut ffi::base::connection,
-                                    port :  port,
-                                    drawable :  ffi::xproto::drawable,
-                                    gc :  ffi::xproto::gcontext,
+pub fn xcb_xv_get_video_checked (c : *mut ffi::base::xcb_connection_t,
+                                    port :  xcb_xv_port_t,
+                                    drawable :  ffi::xproto::xcb_drawable_t,
+                                    gc :  ffi::xproto::xcb_gcontext_t,
                                     vid_x :  i16,
                                     vid_y :  i16,
                                     vid_w :  u16,
@@ -1452,7 +1452,7 @@ pub fn xcb_xv_get_video_checked (c : *mut ffi::base::connection,
                                     drw_x :  i16,
                                     drw_y :  i16,
                                     drw_w :  u16,
-                                    drw_h :  u16) -> ffi::base::void_cookie;
+                                    drw_h :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1462,10 +1462,10 @@ pub fn xcb_xv_get_video_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xv_get_video (c : *mut ffi::base::connection,
-                            port :  port,
-                            drawable :  ffi::xproto::drawable,
-                            gc :  ffi::xproto::gcontext,
+pub fn xcb_xv_get_video (c : *mut ffi::base::xcb_connection_t,
+                            port :  xcb_xv_port_t,
+                            drawable :  ffi::xproto::xcb_drawable_t,
+                            gc :  ffi::xproto::xcb_gcontext_t,
                             vid_x :  i16,
                             vid_y :  i16,
                             vid_w :  u16,
@@ -1473,7 +1473,7 @@ pub fn xcb_xv_get_video (c : *mut ffi::base::connection,
                             drw_x :  i16,
                             drw_y :  i16,
                             drw_w :  u16,
-                            drw_h :  u16) -> ffi::base::void_cookie;
+                            drw_h :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1486,10 +1486,10 @@ pub fn xcb_xv_get_video (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xv_get_still_checked (c : *mut ffi::base::connection,
-                                    port :  port,
-                                    drawable :  ffi::xproto::drawable,
-                                    gc :  ffi::xproto::gcontext,
+pub fn xcb_xv_get_still_checked (c : *mut ffi::base::xcb_connection_t,
+                                    port :  xcb_xv_port_t,
+                                    drawable :  ffi::xproto::xcb_drawable_t,
+                                    gc :  ffi::xproto::xcb_gcontext_t,
                                     vid_x :  i16,
                                     vid_y :  i16,
                                     vid_w :  u16,
@@ -1497,7 +1497,7 @@ pub fn xcb_xv_get_still_checked (c : *mut ffi::base::connection,
                                     drw_x :  i16,
                                     drw_y :  i16,
                                     drw_w :  u16,
-                                    drw_h :  u16) -> ffi::base::void_cookie;
+                                    drw_h :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1507,10 +1507,10 @@ pub fn xcb_xv_get_still_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xv_get_still (c : *mut ffi::base::connection,
-                            port :  port,
-                            drawable :  ffi::xproto::drawable,
-                            gc :  ffi::xproto::gcontext,
+pub fn xcb_xv_get_still (c : *mut ffi::base::xcb_connection_t,
+                            port :  xcb_xv_port_t,
+                            drawable :  ffi::xproto::xcb_drawable_t,
+                            gc :  ffi::xproto::xcb_gcontext_t,
                             vid_x :  i16,
                             vid_y :  i16,
                             vid_w :  u16,
@@ -1518,7 +1518,7 @@ pub fn xcb_xv_get_still (c : *mut ffi::base::connection,
                             drw_x :  i16,
                             drw_y :  i16,
                             drw_w :  u16,
-                            drw_h :  u16) -> ffi::base::void_cookie;
+                            drw_h :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1531,9 +1531,9 @@ pub fn xcb_xv_get_still (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xv_stop_video_checked (c : *mut ffi::base::connection,
-                                     port :  port,
-                                     drawable :  ffi::xproto::drawable) -> ffi::base::void_cookie;
+pub fn xcb_xv_stop_video_checked (c : *mut ffi::base::xcb_connection_t,
+                                     port :  xcb_xv_port_t,
+                                     drawable :  ffi::xproto::xcb_drawable_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1543,36 +1543,9 @@ pub fn xcb_xv_stop_video_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xv_stop_video (c : *mut ffi::base::connection,
-                             port :  port,
-                             drawable :  ffi::xproto::drawable) -> ffi::base::void_cookie;
-
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
-pub fn xcb_xv_select_video_notify_checked (c : *mut ffi::base::connection,
-                                              drawable :  ffi::xproto::drawable,
-                                              onoff :  u8) -> ffi::base::void_cookie;
-
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
-pub fn xcb_xv_select_video_notify (c : *mut ffi::base::connection,
-                                      drawable :  ffi::xproto::drawable,
-                                      onoff :  u8) -> ffi::base::void_cookie;
+pub fn xcb_xv_stop_video (c : *mut ffi::base::xcb_connection_t,
+                             port :  xcb_xv_port_t,
+                             drawable :  ffi::xproto::xcb_drawable_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1585,9 +1558,9 @@ pub fn xcb_xv_select_video_notify (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xv_select_port_notify_checked (c : *mut ffi::base::connection,
-                                             port :  port,
-                                             onoff :  u8) -> ffi::base::void_cookie;
+pub fn xcb_xv_select_video_notify_checked (c : *mut ffi::base::xcb_connection_t,
+                                              drawable :  ffi::xproto::xcb_drawable_t,
+                                              onoff :  u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1597,9 +1570,24 @@ pub fn xcb_xv_select_port_notify_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xv_select_port_notify (c : *mut ffi::base::connection,
-                                     port :  port,
-                                     onoff :  u8) -> ffi::base::void_cookie;
+pub fn xcb_xv_select_video_notify (c : *mut ffi::base::xcb_connection_t,
+                                      drawable :  ffi::xproto::xcb_drawable_t,
+                                      onoff :  u8) -> ffi::base::xcb_void_cookie_t;
+
+/**
+ *
+ * @param c The connection
+ * @return A cookie
+ *
+ * Delivers a request to the X server.
+ *
+ * This form can be used only if the request will not cause
+ * a reply to be generated. Any returned error will be
+ * saved for handling by xcb_request_check().
+ */
+pub fn xcb_xv_select_port_notify_checked (c : *mut ffi::base::xcb_connection_t,
+                                             port :  xcb_xv_port_t,
+                                             onoff :  u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1609,13 +1597,25 @@ pub fn xcb_xv_select_port_notify (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xv_query_best_size (c : *mut ffi::base::connection,
-                                  port :  port,
+pub fn xcb_xv_select_port_notify (c : *mut ffi::base::xcb_connection_t,
+                                     port :  xcb_xv_port_t,
+                                     onoff :  u8) -> ffi::base::xcb_void_cookie_t;
+
+/**
+ *
+ * @param c The connection
+ * @return A cookie
+ *
+ * Delivers a request to the X server.
+ *
+ */
+pub fn xcb_xv_query_best_size (c : *mut ffi::base::xcb_connection_t,
+                                  port :  xcb_xv_port_t,
                                   vid_w :  u16,
                                   vid_h :  u16,
                                   drw_w :  u16,
                                   drw_h :  u16,
-                                  motion :  u8) -> query_best_size_cookie;
+                                  motion :  u8) -> xcb_xv_query_best_size_cookie_t;
 
 /**
  *
@@ -1628,19 +1628,19 @@ pub fn xcb_xv_query_best_size (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xv_query_best_size_unchecked (c : *mut ffi::base::connection,
-                                            port :  port,
+pub fn xcb_xv_query_best_size_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                            port :  xcb_xv_port_t,
                                             vid_w :  u16,
                                             vid_h :  u16,
                                             drw_w :  u16,
                                             drw_h :  u16,
-                                            motion :  u8) -> query_best_size_cookie;
+                                            motion :  u8) -> xcb_xv_query_best_size_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1650,9 +1650,9 @@ pub fn xcb_xv_query_best_size_unchecked (c : *mut ffi::base::connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xv_query_best_size_reply (c : *mut ffi::base::connection,
-                                        cookie : query_best_size_cookie,
-                                        e : *mut *mut ffi::base::generic_error) -> *mut query_best_size_reply;
+pub fn xcb_xv_query_best_size_reply (c : *mut ffi::base::xcb_connection_t,
+                                        cookie : xcb_xv_query_best_size_cookie_t,
+                                        e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xv_query_best_size_reply_t;
 
 /**
  *
@@ -1665,10 +1665,10 @@ pub fn xcb_xv_query_best_size_reply (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xv_set_port_attribute_checked (c : *mut ffi::base::connection,
-                                             port :  port,
-                                             attribute :  ffi::xproto::atom,
-                                             value :  i32) -> ffi::base::void_cookie;
+pub fn xcb_xv_set_port_attribute_checked (c : *mut ffi::base::xcb_connection_t,
+                                             port :  xcb_xv_port_t,
+                                             attribute :  ffi::xproto::xcb_atom_t,
+                                             value :  i32) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1678,10 +1678,10 @@ pub fn xcb_xv_set_port_attribute_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xv_set_port_attribute (c : *mut ffi::base::connection,
-                                     port :  port,
-                                     attribute :  ffi::xproto::atom,
-                                     value :  i32) -> ffi::base::void_cookie;
+pub fn xcb_xv_set_port_attribute (c : *mut ffi::base::xcb_connection_t,
+                                     port :  xcb_xv_port_t,
+                                     attribute :  ffi::xproto::xcb_atom_t,
+                                     value :  i32) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1691,9 +1691,9 @@ pub fn xcb_xv_set_port_attribute (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xv_get_port_attribute (c : *mut ffi::base::connection,
-                                     port :  port,
-                                     attribute :  ffi::xproto::atom) -> get_port_attribute_cookie;
+pub fn xcb_xv_get_port_attribute (c : *mut ffi::base::xcb_connection_t,
+                                     port :  xcb_xv_port_t,
+                                     attribute :  ffi::xproto::xcb_atom_t) -> xcb_xv_get_port_attribute_cookie_t;
 
 /**
  *
@@ -1706,15 +1706,15 @@ pub fn xcb_xv_get_port_attribute (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xv_get_port_attribute_unchecked (c : *mut ffi::base::connection,
-                                               port :  port,
-                                               attribute :  ffi::xproto::atom) -> get_port_attribute_cookie;
+pub fn xcb_xv_get_port_attribute_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                               port :  xcb_xv_port_t,
+                                               attribute :  ffi::xproto::xcb_atom_t) -> xcb_xv_get_port_attribute_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1724,9 +1724,9 @@ pub fn xcb_xv_get_port_attribute_unchecked (c : *mut ffi::base::connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xv_get_port_attribute_reply (c : *mut ffi::base::connection,
-                                           cookie : get_port_attribute_cookie,
-                                           e : *mut *mut ffi::base::generic_error) -> *mut get_port_attribute_reply;
+pub fn xcb_xv_get_port_attribute_reply (c : *mut ffi::base::xcb_connection_t,
+                                           cookie : xcb_xv_get_port_attribute_cookie_t,
+                                           e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xv_get_port_attribute_reply_t;
 
 pub fn xcb_xv_query_port_attributes_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1738,8 +1738,8 @@ pub fn xcb_xv_query_port_attributes_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xv_query_port_attributes (c : *mut ffi::base::connection,
-                                        port :  port) -> query_port_attributes_cookie;
+pub fn xcb_xv_query_port_attributes (c : *mut ffi::base::xcb_connection_t,
+                                        port :  xcb_xv_port_t) -> xcb_xv_query_port_attributes_cookie_t;
 
 /**
  *
@@ -1752,19 +1752,19 @@ pub fn xcb_xv_query_port_attributes (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xv_query_port_attributes_unchecked (c : *mut ffi::base::connection,
-                                                  port :  port) -> query_port_attributes_cookie;
+pub fn xcb_xv_query_port_attributes_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                                  port :  xcb_xv_port_t) -> xcb_xv_query_port_attributes_cookie_t;
 
 
-pub fn xcb_xv_query_port_attributes_attributes_length (R : *mut query_port_attributes_reply) -> c_int;
+pub fn xcb_xv_query_port_attributes_attributes_length (R : *mut xcb_xv_query_port_attributes_reply_t) -> c_int;
 
-pub fn xcb_xv_query_port_attributes_attributes_iterator (R : *mut query_port_attributes_reply) -> attribute_info_iterator;
+pub fn xcb_xv_query_port_attributes_attributes_iterator (R : *mut xcb_xv_query_port_attributes_reply_t) -> xcb_xv_attribute_info_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1774,9 +1774,9 @@ pub fn xcb_xv_query_port_attributes_attributes_iterator (R : *mut query_port_att
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xv_query_port_attributes_reply (c : *mut ffi::base::connection,
-                                              cookie : query_port_attributes_cookie,
-                                              e : *mut *mut ffi::base::generic_error) -> *mut query_port_attributes_reply;
+pub fn xcb_xv_query_port_attributes_reply (c : *mut ffi::base::xcb_connection_t,
+                                              cookie : xcb_xv_query_port_attributes_cookie_t,
+                                              e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xv_query_port_attributes_reply_t;
 
 pub fn xcb_xv_list_image_formats_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1788,8 +1788,8 @@ pub fn xcb_xv_list_image_formats_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xv_list_image_formats (c : *mut ffi::base::connection,
-                                     port :  port) -> list_image_formats_cookie;
+pub fn xcb_xv_list_image_formats (c : *mut ffi::base::xcb_connection_t,
+                                     port :  xcb_xv_port_t) -> xcb_xv_list_image_formats_cookie_t;
 
 /**
  *
@@ -1802,21 +1802,21 @@ pub fn xcb_xv_list_image_formats (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xv_list_image_formats_unchecked (c : *mut ffi::base::connection,
-                                               port :  port) -> list_image_formats_cookie;
+pub fn xcb_xv_list_image_formats_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                               port :  xcb_xv_port_t) -> xcb_xv_list_image_formats_cookie_t;
 
-pub fn xcb_xv_list_image_formats_format (R : *mut list_image_formats_reply) -> *mut image_format_info;
+pub fn xcb_xv_list_image_formats_format (R : *mut xcb_xv_list_image_formats_reply_t) -> *mut xcb_xv_image_format_info_t;
 
 
-pub fn xcb_xv_list_image_formats_format_length (R : *mut list_image_formats_reply) -> c_int;
+pub fn xcb_xv_list_image_formats_format_length (R : *mut xcb_xv_list_image_formats_reply_t) -> c_int;
 
-pub fn xcb_xv_list_image_formats_format_iterator (R : *mut list_image_formats_reply) -> image_format_info_iterator;
+pub fn xcb_xv_list_image_formats_format_iterator (R : *mut xcb_xv_list_image_formats_reply_t) -> xcb_xv_image_format_info_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1826,9 +1826,9 @@ pub fn xcb_xv_list_image_formats_format_iterator (R : *mut list_image_formats_re
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xv_list_image_formats_reply (c : *mut ffi::base::connection,
-                                           cookie : list_image_formats_cookie,
-                                           e : *mut *mut ffi::base::generic_error) -> *mut list_image_formats_reply;
+pub fn xcb_xv_list_image_formats_reply (c : *mut ffi::base::xcb_connection_t,
+                                           cookie : xcb_xv_list_image_formats_cookie_t,
+                                           e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xv_list_image_formats_reply_t;
 
 pub fn xcb_xv_query_image_attributes_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1840,11 +1840,11 @@ pub fn xcb_xv_query_image_attributes_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xv_query_image_attributes (c : *mut ffi::base::connection,
-                                         port :  port,
+pub fn xcb_xv_query_image_attributes (c : *mut ffi::base::xcb_connection_t,
+                                         port :  xcb_xv_port_t,
                                          id :  u32,
                                          width :  u16,
-                                         height :  u16) -> query_image_attributes_cookie;
+                                         height :  u16) -> xcb_xv_query_image_attributes_cookie_t;
 
 /**
  *
@@ -1857,33 +1857,33 @@ pub fn xcb_xv_query_image_attributes (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_xv_query_image_attributes_unchecked (c : *mut ffi::base::connection,
-                                                   port :  port,
+pub fn xcb_xv_query_image_attributes_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                                   port :  xcb_xv_port_t,
                                                    id :  u32,
                                                    width :  u16,
-                                                   height :  u16) -> query_image_attributes_cookie;
+                                                   height :  u16) -> xcb_xv_query_image_attributes_cookie_t;
 
-pub fn xcb_xv_query_image_attributes_pitches (R : *mut query_image_attributes_reply) -> *mut u32;
-
-
-pub fn xcb_xv_query_image_attributes_pitches_length (R : *mut query_image_attributes_reply) -> c_int;
+pub fn xcb_xv_query_image_attributes_pitches (R : *mut xcb_xv_query_image_attributes_reply_t) -> *mut u32;
 
 
-pub fn xcb_xv_query_image_attributes_pitches_end (R : *mut query_image_attributes_reply) -> ffi::base::generic_iterator;
-
-pub fn xcb_xv_query_image_attributes_offsets (R : *mut query_image_attributes_reply) -> *mut u32;
+pub fn xcb_xv_query_image_attributes_pitches_length (R : *mut xcb_xv_query_image_attributes_reply_t) -> c_int;
 
 
-pub fn xcb_xv_query_image_attributes_offsets_length (R : *mut query_image_attributes_reply) -> c_int;
+pub fn xcb_xv_query_image_attributes_pitches_end (R : *mut xcb_xv_query_image_attributes_reply_t) -> ffi::base::xcb_generic_iterator_t;
+
+pub fn xcb_xv_query_image_attributes_offsets (R : *mut xcb_xv_query_image_attributes_reply_t) -> *mut u32;
 
 
-pub fn xcb_xv_query_image_attributes_offsets_end (R : *mut query_image_attributes_reply) -> ffi::base::generic_iterator;
+pub fn xcb_xv_query_image_attributes_offsets_length (R : *mut xcb_xv_query_image_attributes_reply_t) -> c_int;
+
+
+pub fn xcb_xv_query_image_attributes_offsets_end (R : *mut xcb_xv_query_image_attributes_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1893,9 +1893,9 @@ pub fn xcb_xv_query_image_attributes_offsets_end (R : *mut query_image_attribute
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_xv_query_image_attributes_reply (c : *mut ffi::base::connection,
-                                               cookie : query_image_attributes_cookie,
-                                               e : *mut *mut ffi::base::generic_error) -> *mut query_image_attributes_reply;
+pub fn xcb_xv_query_image_attributes_reply (c : *mut ffi::base::xcb_connection_t,
+                                               cookie : xcb_xv_query_image_attributes_cookie_t,
+                                               e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xv_query_image_attributes_reply_t;
 
 pub fn xcb_xv_put_image_sizeof (_buffer :  *mut c_void,
                          data_len :     u32) -> c_int;
@@ -1911,10 +1911,10 @@ pub fn xcb_xv_put_image_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xv_put_image_checked (c : *mut ffi::base::connection,
-                                    port :  port,
-                                    drawable :  ffi::xproto::drawable,
-                                    gc :  ffi::xproto::gcontext,
+pub fn xcb_xv_put_image_checked (c : *mut ffi::base::xcb_connection_t,
+                                    port :  xcb_xv_port_t,
+                                    drawable :  ffi::xproto::xcb_drawable_t,
+                                    gc :  ffi::xproto::xcb_gcontext_t,
                                     id :  u32,
                                     src_x :  i16,
                                     src_y :  i16,
@@ -1927,7 +1927,7 @@ pub fn xcb_xv_put_image_checked (c : *mut ffi::base::connection,
                                     width :  u16,
                                     height :  u16,
                                     data_len :  u32,
-                                    data : *mut u8) -> ffi::base::void_cookie;
+                                    data : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1937,10 +1937,10 @@ pub fn xcb_xv_put_image_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xv_put_image (c : *mut ffi::base::connection,
-                            port :  port,
-                            drawable :  ffi::xproto::drawable,
-                            gc :  ffi::xproto::gcontext,
+pub fn xcb_xv_put_image (c : *mut ffi::base::xcb_connection_t,
+                            port :  xcb_xv_port_t,
+                            drawable :  ffi::xproto::xcb_drawable_t,
+                            gc :  ffi::xproto::xcb_gcontext_t,
                             id :  u32,
                             src_x :  i16,
                             src_y :  i16,
@@ -1953,7 +1953,7 @@ pub fn xcb_xv_put_image (c : *mut ffi::base::connection,
                             width :  u16,
                             height :  u16,
                             data_len :  u32,
-                            data : *mut u8) -> ffi::base::void_cookie;
+                            data : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1966,11 +1966,11 @@ pub fn xcb_xv_put_image (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_xv_shm_put_image_checked (c : *mut ffi::base::connection,
-                                        port :  port,
-                                        drawable :  ffi::xproto::drawable,
-                                        gc :  ffi::xproto::gcontext,
-                                        shmseg :  ffi::shm::seg,
+pub fn xcb_xv_shm_put_image_checked (c : *mut ffi::base::xcb_connection_t,
+                                        port :  xcb_xv_port_t,
+                                        drawable :  ffi::xproto::xcb_drawable_t,
+                                        gc :  ffi::xproto::xcb_gcontext_t,
+                                        shmseg :  ffi::shm::xcb_shm_seg_t,
                                         id :  u32,
                                         offset :  u32,
                                         src_x :  i16,
@@ -1983,7 +1983,7 @@ pub fn xcb_xv_shm_put_image_checked (c : *mut ffi::base::connection,
                                         drw_h :  u16,
                                         width :  u16,
                                         height :  u16,
-                                        send_event :  u8) -> ffi::base::void_cookie;
+                                        send_event :  u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1993,11 +1993,11 @@ pub fn xcb_xv_shm_put_image_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_xv_shm_put_image (c : *mut ffi::base::connection,
-                                port :  port,
-                                drawable :  ffi::xproto::drawable,
-                                gc :  ffi::xproto::gcontext,
-                                shmseg :  ffi::shm::seg,
+pub fn xcb_xv_shm_put_image (c : *mut ffi::base::xcb_connection_t,
+                                port :  xcb_xv_port_t,
+                                drawable :  ffi::xproto::xcb_drawable_t,
+                                gc :  ffi::xproto::xcb_gcontext_t,
+                                shmseg :  ffi::shm::xcb_shm_seg_t,
                                 id :  u32,
                                 offset :  u32,
                                 src_x :  i16,
@@ -2010,6 +2010,6 @@ pub fn xcb_xv_shm_put_image (c : *mut ffi::base::connection,
                                 drw_h :  u16,
                                 width :  u16,
                                 height :  u16,
-                                send_event :  u8) -> ffi::base::void_cookie;
+                                send_event :  u8) -> ffi::base::xcb_void_cookie_t;
 }
 

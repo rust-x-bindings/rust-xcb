@@ -21,26 +21,26 @@ use xproto;
 use render;
 use shape;
 use xfixes;
-pub type Damage = damage;
+pub type Damage = xcb_damage_damage_t;
 
-pub type DamageIterator = damage_iterator;
+pub type DamageIterator = xcb_damage_damage_iterator_t;
 
 
-pub type report_level = c_uint;//{
-    pub static XCB_DAMAGE_REPORT_LEVEL_RAW_RECTANGLES : report_level = 1;
-    pub static XCB_DAMAGE_REPORT_LEVEL_DELTA_RECTANGLES : report_level = 2;
-    pub static XCB_DAMAGE_REPORT_LEVEL_BOUNDING_BOX : report_level = 3;
-    pub static XCB_DAMAGE_REPORT_LEVEL_NON_EMPTY : report_level = 4;
+pub type xcb_damage_report_level_t = c_uint;//{
+    pub static XCB_DAMAGE_REPORT_LEVEL_RAW_RECTANGLES : xcb_damage_report_level_t = 1;
+    pub static XCB_DAMAGE_REPORT_LEVEL_DELTA_RECTANGLES : xcb_damage_report_level_t = 2;
+    pub static XCB_DAMAGE_REPORT_LEVEL_BOUNDING_BOX : xcb_damage_report_level_t = 3;
+    pub static XCB_DAMAGE_REPORT_LEVEL_NON_EMPTY : xcb_damage_report_level_t = 4;
 //}
 /** Opcode for xcb_damage_bad_damage. */
 pub static XCB_DAMAGE_BAD_DAMAGE : u8 = 0;
-pub struct BadDamageError { pub base : base::Error<bad_damage_error> }
-pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, query_version_cookie> }
+pub struct BadDamageError { pub base : base::Error<xcb_damage_bad_damage_error_t> }
+pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_damage_query_version_cookie_t> }
 
 /** Opcode for xcb_damage_query_version. */
 pub static XCB_DAMAGE_QUERY_VERSION : u8 = 0;
-pub struct QueryVersionReply { base:  base::Reply<query_version_reply> }
-fn mk_reply_query_version_reply(reply:*mut query_version_reply) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
+pub struct QueryVersionReply { base:  base::Reply<xcb_damage_query_version_reply_t> }
+fn mk_reply_xcb_damage_query_version_reply_t(reply:*mut xcb_damage_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_damage_create. */
 pub static XCB_DAMAGE_CREATE : u8 = 1;
 /** Opcode for xcb_damage_destroy. */
@@ -51,14 +51,14 @@ pub static XCB_DAMAGE_SUBTRACT : u8 = 3;
 pub static XCB_DAMAGE_ADD : u8 = 4;
 /** Opcode for xcb_damage_notify. */
 pub static XCB_DAMAGE_NOTIFY : u8 = 0;
-pub struct NotifyEvent {pub base : base::Event<notify_event>}
+pub struct NotifyEvent {pub base : base::Event<xcb_damage_notify_event_t>}
 
 impl Iterator for DamageIterator {
     type Item = Damage;
     fn next(&mut self) -> Option<Damage> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut damage_iterator = mem::transmute(self);
+            let iter: *mut xcb_damage_damage_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_damage_damage_next(iter);
             Some(mem::transmute(*data))
@@ -97,7 +97,7 @@ impl QueryVersionReply {
   }
 
 }
-impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_query_version_reply, QueryVersionReply, xcb_damage_query_version_reply);
+impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_xcb_damage_query_version_reply_t, QueryVersionReply, xcb_damage_query_version_reply);
 
 pub fn CreateChecked<'r> (c : &'r Connection,
                       damage : Damage,
@@ -105,8 +105,8 @@ pub fn CreateChecked<'r> (c : &'r Connection,
                       level : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_damage_create_checked(c.get_raw_conn(),
-        damage as damage, //1
-        drawable as ffi::xproto::drawable, //2
+        damage as xcb_damage_damage_t, //1
+        drawable as ffi::xproto::xcb_drawable_t, //2
         level as u8); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
@@ -117,8 +117,8 @@ pub fn Create<'r> (c : &'r Connection,
                level : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_damage_create(c.get_raw_conn(),
-        damage as damage, //1
-        drawable as ffi::xproto::drawable, //2
+        damage as xcb_damage_damage_t, //1
+        drawable as ffi::xproto::xcb_drawable_t, //2
         level as u8); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -127,7 +127,7 @@ pub fn DestroyChecked<'r> (c : &'r Connection,
                        damage : Damage) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_damage_destroy_checked(c.get_raw_conn(),
-        damage as damage); //1
+        damage as xcb_damage_damage_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -135,7 +135,7 @@ pub fn Destroy<'r> (c : &'r Connection,
                 damage : Damage) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_damage_destroy(c.get_raw_conn(),
-        damage as damage); //1
+        damage as xcb_damage_damage_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -145,9 +145,9 @@ pub fn SubtractChecked<'r> (c : &'r Connection,
                         parts : xfixes::Region) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_damage_subtract_checked(c.get_raw_conn(),
-        damage as damage, //1
-        repair as ffi::xfixes::region, //2
-        parts as ffi::xfixes::region); //3
+        damage as xcb_damage_damage_t, //1
+        repair as ffi::xfixes::xcb_xfixes_region_t, //2
+        parts as ffi::xfixes::xcb_xfixes_region_t); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -157,9 +157,9 @@ pub fn Subtract<'r> (c : &'r Connection,
                  parts : xfixes::Region) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_damage_subtract(c.get_raw_conn(),
-        damage as damage, //1
-        repair as ffi::xfixes::region, //2
-        parts as ffi::xfixes::region); //3
+        damage as xcb_damage_damage_t, //1
+        repair as ffi::xfixes::xcb_xfixes_region_t, //2
+        parts as ffi::xfixes::xcb_xfixes_region_t); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -168,8 +168,8 @@ pub fn AddChecked<'r> (c : &'r Connection,
                    region : xfixes::Region) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_damage_add_checked(c.get_raw_conn(),
-        drawable as ffi::xproto::drawable, //1
-        region as ffi::xfixes::region); //2
+        drawable as ffi::xproto::xcb_drawable_t, //1
+        region as ffi::xfixes::xcb_xfixes_region_t); //2
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -178,8 +178,8 @@ pub fn Add<'r> (c : &'r Connection,
             region : xfixes::Region) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_damage_add(c.get_raw_conn(),
-        drawable as ffi::xproto::drawable, //1
-        region as ffi::xfixes::region); //2
+        drawable as ffi::xproto::xcb_drawable_t, //1
+        region as ffi::xfixes::xcb_xfixes_region_t); //2
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -214,14 +214,14 @@ impl NotifyEvent {
          area : xproto::Rectangle,
          geometry : xproto::Rectangle) -> NotifyEvent {
     unsafe {
-      let raw = malloc(32 as size_t) as *mut notify_event;
+      let raw = malloc(32 as size_t) as *mut xcb_damage_notify_event_t;
       (*raw).level = level;
       (*raw).drawable = drawable;
       (*raw).damage = damage;
       (*raw).timestamp = timestamp;
       (*raw).area = area.base.strct;
       (*raw).geometry = geometry.base.strct;
-      NotifyEvent { base : Event { event : raw as *mut notify_event }}
+      NotifyEvent { base : Event { event : raw as *mut xcb_damage_notify_event_t }}
     }
   }
 }

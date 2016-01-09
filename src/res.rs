@@ -18,32 +18,32 @@ use std::option::Option;
 use std::iter::Iterator;
 
 use xproto;
-pub struct Client {pub base : base::Struct<client> }
+pub struct Client {pub base : base::Struct<xcb_res_client_t> }
 
-pub type ClientIterator = client_iterator;
+pub type ClientIterator = xcb_res_client_iterator_t;
 
-pub type TypeIterator = type_iterator;
+pub type TypeIterator = xcb_res_type_iterator_t;
 
-pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, query_version_cookie> }
+pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_res_query_version_cookie_t> }
 
 /** Opcode for xcb_res_query_version. */
 pub static XCB_RES_QUERY_VERSION : u8 = 0;
-pub struct QueryVersionReply { base:  base::Reply<query_version_reply> }
-fn mk_reply_query_version_reply(reply:*mut query_version_reply) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
-pub struct  QueryClientsCookie<'s> { pub base : base::Cookie<'s, query_clients_cookie> }
+pub struct QueryVersionReply { base:  base::Reply<xcb_res_query_version_reply_t> }
+fn mk_reply_xcb_res_query_version_reply_t(reply:*mut xcb_res_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
+pub struct  QueryClientsCookie<'s> { pub base : base::Cookie<'s, xcb_res_query_clients_cookie_t> }
 
 /** Opcode for xcb_res_query_clients. */
 pub static XCB_RES_QUERY_CLIENTS : u8 = 1;
-pub struct  QueryClientResourcesCookie<'s> { pub base : base::Cookie<'s, query_client_resources_cookie> }
+pub struct  QueryClientResourcesCookie<'s> { pub base : base::Cookie<'s, xcb_res_query_client_resources_cookie_t> }
 
 /** Opcode for xcb_res_query_client_resources. */
 pub static XCB_RES_QUERY_CLIENT_RESOURCES : u8 = 2;
-pub struct  QueryClientPixmapBytesCookie<'s> { pub base : base::Cookie<'s, query_client_pixmap_bytes_cookie> }
+pub struct  QueryClientPixmapBytesCookie<'s> { pub base : base::Cookie<'s, xcb_res_query_client_pixmap_bytes_cookie_t> }
 
 /** Opcode for xcb_res_query_client_pixmap_bytes. */
 pub static XCB_RES_QUERY_CLIENT_PIXMAP_BYTES : u8 = 3;
-pub struct QueryClientPixmapBytesReply { base:  base::Reply<query_client_pixmap_bytes_reply> }
-fn mk_reply_query_client_pixmap_bytes_reply(reply:*mut query_client_pixmap_bytes_reply) -> QueryClientPixmapBytesReply { QueryClientPixmapBytesReply { base : base::mk_reply(reply) } }
+pub struct QueryClientPixmapBytesReply { base:  base::Reply<xcb_res_query_client_pixmap_bytes_reply_t> }
+fn mk_reply_xcb_res_query_client_pixmap_bytes_reply_t(reply:*mut xcb_res_query_client_pixmap_bytes_reply_t) -> QueryClientPixmapBytesReply { QueryClientPixmapBytesReply { base : base::mk_reply(reply) } }
 
 impl Client {
   pub fn resource_base(&mut self) -> u32 {
@@ -61,7 +61,7 @@ impl Iterator for ClientIterator {
     fn next(&mut self) -> Option<Client> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut client_iterator = mem::transmute(self);
+            let iter: *mut xcb_res_client_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_res_client_next(iter);
             Some(mem::transmute(*data))
@@ -69,7 +69,7 @@ impl Iterator for ClientIterator {
     }
 }
 
-pub struct Type {pub base : base::Struct<type_> }
+pub struct Type {pub base : base::Struct<xcb_res_type_t> }
 
 
 impl Type {
@@ -88,7 +88,7 @@ impl Iterator for TypeIterator {
     fn next(&mut self) -> Option<Type> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut type_iterator = mem::transmute(self);
+            let iter: *mut xcb_res_type_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_res_type_next(iter);
             Some(mem::transmute(*data))
@@ -127,10 +127,10 @@ impl QueryVersionReply {
   }
 
 }
-impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_query_version_reply, QueryVersionReply, xcb_res_query_version_reply);
+impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_xcb_res_query_version_reply_t, QueryVersionReply, xcb_res_query_version_reply);
 
-pub struct QueryClientsReply { base:  base::Reply<query_clients_reply> }
-fn mk_reply_query_clients_reply(reply:*mut query_clients_reply) -> QueryClientsReply { QueryClientsReply { base : base::mk_reply(reply) } }
+pub struct QueryClientsReply { base:  base::Reply<xcb_res_query_clients_reply_t> }
+fn mk_reply_xcb_res_query_clients_reply_t(reply:*mut xcb_res_query_clients_reply_t) -> QueryClientsReply { QueryClientsReply { base : base::mk_reply(reply) } }
 pub fn QueryClients<'r> (c : &'r Connection) -> QueryClientsCookie<'r> {
   unsafe {
     let cookie = xcb_res_query_clients(c.get_raw_conn());
@@ -150,10 +150,10 @@ impl QueryClientsReply {
   }
 
 }
-impl_reply_cookie!(QueryClientsCookie<'s>, mk_reply_query_clients_reply, QueryClientsReply, xcb_res_query_clients_reply);
+impl_reply_cookie!(QueryClientsCookie<'s>, mk_reply_xcb_res_query_clients_reply_t, QueryClientsReply, xcb_res_query_clients_reply);
 
-pub struct QueryClientResourcesReply { base:  base::Reply<query_client_resources_reply> }
-fn mk_reply_query_client_resources_reply(reply:*mut query_client_resources_reply) -> QueryClientResourcesReply { QueryClientResourcesReply { base : base::mk_reply(reply) } }
+pub struct QueryClientResourcesReply { base:  base::Reply<xcb_res_query_client_resources_reply_t> }
+fn mk_reply_xcb_res_query_client_resources_reply_t(reply:*mut xcb_res_query_client_resources_reply_t) -> QueryClientResourcesReply { QueryClientResourcesReply { base : base::mk_reply(reply) } }
 pub fn QueryClientResources<'r> (c : &'r Connection,
                              xid : u32) -> QueryClientResourcesCookie<'r> {
   unsafe {
@@ -177,7 +177,7 @@ impl QueryClientResourcesReply {
   }
 
 }
-impl_reply_cookie!(QueryClientResourcesCookie<'s>, mk_reply_query_client_resources_reply, QueryClientResourcesReply, xcb_res_query_client_resources_reply);
+impl_reply_cookie!(QueryClientResourcesCookie<'s>, mk_reply_xcb_res_query_client_resources_reply_t, QueryClientResourcesReply, xcb_res_query_client_resources_reply);
 
 pub fn QueryClientPixmapBytes<'r> (c : &'r Connection,
                                xid : u32) -> QueryClientPixmapBytesCookie<'r> {
@@ -206,6 +206,6 @@ impl QueryClientPixmapBytesReply {
   }
 
 }
-impl_reply_cookie!(QueryClientPixmapBytesCookie<'s>, mk_reply_query_client_pixmap_bytes_reply, QueryClientPixmapBytesReply, xcb_res_query_client_pixmap_bytes_reply);
+impl_reply_cookie!(QueryClientPixmapBytesCookie<'s>, mk_reply_xcb_res_query_client_pixmap_bytes_reply_t, QueryClientPixmapBytesReply, xcb_res_query_client_pixmap_bytes_reply);
 
 

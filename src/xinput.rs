@@ -18,118 +18,118 @@ use std::option::Option;
 use std::iter::Iterator;
 
 use xproto;
-pub type KeyCode = key_code;
+pub type KeyCode = xcb_input_key_code_t;
 
-pub type KeyCodeIterator = key_code_iterator;
+pub type KeyCodeIterator = xcb_input_key_code_iterator_t;
 
-pub type EventClassIterator = event_class_iterator;
+pub type EventClassIterator = xcb_input_event_class_iterator_t;
 
 
-pub type valuator_mode = c_uint;//{
-    pub static XCB_INPUT_VALUATOR_MODE_RELATIVE : valuator_mode = 0;
-    pub static XCB_INPUT_VALUATOR_MODE_ABSOLUTE : valuator_mode = 1;
+pub type xcb_input_valuator_mode_t = c_uint;//{
+    pub static XCB_INPUT_VALUATOR_MODE_RELATIVE : xcb_input_valuator_mode_t = 0;
+    pub static XCB_INPUT_VALUATOR_MODE_ABSOLUTE : xcb_input_valuator_mode_t = 1;
 //}
 
-pub type propagate_mode = c_uint;//{
-    pub static XCB_INPUT_PROPAGATE_MODE_ADD_TO_LIST : propagate_mode = 0;
-    pub static XCB_INPUT_PROPAGATE_MODE_DELETE_FROM_LIST : propagate_mode = 1;
+pub type xcb_input_propagate_mode_t = c_uint;//{
+    pub static XCB_INPUT_PROPAGATE_MODE_ADD_TO_LIST : xcb_input_propagate_mode_t = 0;
+    pub static XCB_INPUT_PROPAGATE_MODE_DELETE_FROM_LIST : xcb_input_propagate_mode_t = 1;
 //}
-pub struct  GetExtensionVersionCookie<'s> { pub base : base::Cookie<'s, get_extension_version_cookie> }
+pub struct  GetExtensionVersionCookie<'s> { pub base : base::Cookie<'s, xcb_input_get_extension_version_cookie_t> }
 
 /** Opcode for xcb_input_get_extension_version. */
 pub static XCB_INPUT_GET_EXTENSION_VERSION : u8 = 1;
-pub struct GetExtensionVersionReply { base:  base::Reply<get_extension_version_reply> }
-fn mk_reply_get_extension_version_reply(reply:*mut get_extension_version_reply) -> GetExtensionVersionReply { GetExtensionVersionReply { base : base::mk_reply(reply) } }
+pub struct GetExtensionVersionReply { base:  base::Reply<xcb_input_get_extension_version_reply_t> }
+fn mk_reply_xcb_input_get_extension_version_reply_t(reply:*mut xcb_input_get_extension_version_reply_t) -> GetExtensionVersionReply { GetExtensionVersionReply { base : base::mk_reply(reply) } }
 
-pub type device_use = c_uint;//{
-    pub static XCB_INPUT_DEVICE_USE_IS_X_POINTER : device_use = 0;
-    pub static XCB_INPUT_DEVICE_USE_IS_X_KEYBOARD : device_use = 1;
-    pub static XCB_INPUT_DEVICE_USE_IS_X_EXTENSION_DEVICE : device_use = 2;
-    pub static XCB_INPUT_DEVICE_USE_IS_X_EXTENSION_KEYBOARD : device_use = 3;
-    pub static XCB_INPUT_DEVICE_USE_IS_X_EXTENSION_POINTER : device_use = 4;
+pub type xcb_input_device_use_t = c_uint;//{
+    pub static XCB_INPUT_DEVICE_USE_IS_X_POINTER : xcb_input_device_use_t = 0;
+    pub static XCB_INPUT_DEVICE_USE_IS_X_KEYBOARD : xcb_input_device_use_t = 1;
+    pub static XCB_INPUT_DEVICE_USE_IS_X_EXTENSION_DEVICE : xcb_input_device_use_t = 2;
+    pub static XCB_INPUT_DEVICE_USE_IS_X_EXTENSION_KEYBOARD : xcb_input_device_use_t = 3;
+    pub static XCB_INPUT_DEVICE_USE_IS_X_EXTENSION_POINTER : xcb_input_device_use_t = 4;
 //}
-pub struct DeviceInfo {pub base : base::Struct<device_info> }
+pub struct DeviceInfo {pub base : base::Struct<xcb_input_device_info_t> }
 
-pub type DeviceInfoIterator = device_info_iterator;
+pub type DeviceInfoIterator = xcb_input_device_info_iterator_t;
 
-pub struct  ListInputDevicesCookie<'s> { pub base : base::Cookie<'s, list_input_devices_cookie> }
+pub struct  ListInputDevicesCookie<'s> { pub base : base::Cookie<'s, xcb_input_list_input_devices_cookie_t> }
 
 /** Opcode for xcb_input_list_input_devices. */
 pub static XCB_INPUT_LIST_INPUT_DEVICES : u8 = 2;
 
-pub type input_class = c_uint;//{
-    pub static XCB_INPUT_INPUT_CLASS_KEY : input_class = 0;
-    pub static XCB_INPUT_INPUT_CLASS_BUTTON : input_class = 1;
-    pub static XCB_INPUT_INPUT_CLASS_VALUATOR : input_class = 2;
-    pub static XCB_INPUT_INPUT_CLASS_FEEDBACK : input_class = 3;
-    pub static XCB_INPUT_INPUT_CLASS_PROXIMITY : input_class = 4;
-    pub static XCB_INPUT_INPUT_CLASS_FOCUS : input_class = 5;
-    pub static XCB_INPUT_INPUT_CLASS_OTHER : input_class = 6;
+pub type xcb_input_input_class_t = c_uint;//{
+    pub static XCB_INPUT_INPUT_CLASS_KEY : xcb_input_input_class_t = 0;
+    pub static XCB_INPUT_INPUT_CLASS_BUTTON : xcb_input_input_class_t = 1;
+    pub static XCB_INPUT_INPUT_CLASS_VALUATOR : xcb_input_input_class_t = 2;
+    pub static XCB_INPUT_INPUT_CLASS_FEEDBACK : xcb_input_input_class_t = 3;
+    pub static XCB_INPUT_INPUT_CLASS_PROXIMITY : xcb_input_input_class_t = 4;
+    pub static XCB_INPUT_INPUT_CLASS_FOCUS : xcb_input_input_class_t = 5;
+    pub static XCB_INPUT_INPUT_CLASS_OTHER : xcb_input_input_class_t = 6;
 //}
-pub struct InputInfo {pub base : base::Struct<input_info> }
+pub struct InputInfo {pub base : base::Struct<xcb_input_input_info_t> }
 
-pub type InputInfoIterator = input_info_iterator;
+pub type InputInfoIterator = xcb_input_input_info_iterator_t;
 
-pub type KeyInfoIterator = key_info_iterator;
+pub type KeyInfoIterator = xcb_input_key_info_iterator_t;
 
-pub type ButtonInfoIterator = button_info_iterator;
+pub type ButtonInfoIterator = xcb_input_button_info_iterator_t;
 
-pub type AxisInfoIterator = axis_info_iterator;
+pub type AxisInfoIterator = xcb_input_axis_info_iterator_t;
 
-pub type ValuatorInfoIterator = valuator_info_iterator;
+pub type ValuatorInfoIterator = xcb_input_valuator_info_iterator_t;
 
-pub type InputClassInfoIterator = input_class_info_iterator;
+pub type InputClassInfoIterator = xcb_input_input_class_info_iterator_t;
 
-pub struct  OpenDeviceCookie<'s> { pub base : base::Cookie<'s, open_device_cookie> }
+pub struct  OpenDeviceCookie<'s> { pub base : base::Cookie<'s, xcb_input_open_device_cookie_t> }
 
 /** Opcode for xcb_input_open_device. */
 pub static XCB_INPUT_OPEN_DEVICE : u8 = 3;
 /** Opcode for xcb_input_close_device. */
 pub static XCB_INPUT_CLOSE_DEVICE : u8 = 4;
-pub struct  SetDeviceModeCookie<'s> { pub base : base::Cookie<'s, set_device_mode_cookie> }
+pub struct  SetDeviceModeCookie<'s> { pub base : base::Cookie<'s, xcb_input_set_device_mode_cookie_t> }
 
 /** Opcode for xcb_input_set_device_mode. */
 pub static XCB_INPUT_SET_DEVICE_MODE : u8 = 5;
-pub struct SetDeviceModeReply { base:  base::Reply<set_device_mode_reply> }
-fn mk_reply_set_device_mode_reply(reply:*mut set_device_mode_reply) -> SetDeviceModeReply { SetDeviceModeReply { base : base::mk_reply(reply) } }
+pub struct SetDeviceModeReply { base:  base::Reply<xcb_input_set_device_mode_reply_t> }
+fn mk_reply_xcb_input_set_device_mode_reply_t(reply:*mut xcb_input_set_device_mode_reply_t) -> SetDeviceModeReply { SetDeviceModeReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_input_select_extension_event. */
 pub static XCB_INPUT_SELECT_EXTENSION_EVENT : u8 = 6;
-pub struct  GetSelectedExtensionEventsCookie<'s> { pub base : base::Cookie<'s, get_selected_extension_events_cookie> }
+pub struct  GetSelectedExtensionEventsCookie<'s> { pub base : base::Cookie<'s, xcb_input_get_selected_extension_events_cookie_t> }
 
 /** Opcode for xcb_input_get_selected_extension_events. */
 pub static XCB_INPUT_GET_SELECTED_EXTENSION_EVENTS : u8 = 7;
 /** Opcode for xcb_input_change_device_dont_propagate_list. */
 pub static XCB_INPUT_CHANGE_DEVICE_DONT_PROPAGATE_LIST : u8 = 8;
-pub struct  GetDeviceDontPropagateListCookie<'s> { pub base : base::Cookie<'s, get_device_dont_propagate_list_cookie> }
+pub struct  GetDeviceDontPropagateListCookie<'s> { pub base : base::Cookie<'s, xcb_input_get_device_dont_propagate_list_cookie_t> }
 
 /** Opcode for xcb_input_get_device_dont_propagate_list. */
 pub static XCB_INPUT_GET_DEVICE_DONT_PROPAGATE_LIST : u8 = 9;
-pub struct  GetDeviceMotionEventsCookie<'s> { pub base : base::Cookie<'s, get_device_motion_events_cookie> }
+pub struct  GetDeviceMotionEventsCookie<'s> { pub base : base::Cookie<'s, xcb_input_get_device_motion_events_cookie_t> }
 
 /** Opcode for xcb_input_get_device_motion_events. */
 pub static XCB_INPUT_GET_DEVICE_MOTION_EVENTS : u8 = 10;
-pub struct GetDeviceMotionEventsReply { base:  base::Reply<get_device_motion_events_reply> }
-fn mk_reply_get_device_motion_events_reply(reply:*mut get_device_motion_events_reply) -> GetDeviceMotionEventsReply { GetDeviceMotionEventsReply { base : base::mk_reply(reply) } }
-pub type DeviceTimeCoordIterator = device_time_coord_iterator;
+pub struct GetDeviceMotionEventsReply { base:  base::Reply<xcb_input_get_device_motion_events_reply_t> }
+fn mk_reply_xcb_input_get_device_motion_events_reply_t(reply:*mut xcb_input_get_device_motion_events_reply_t) -> GetDeviceMotionEventsReply { GetDeviceMotionEventsReply { base : base::mk_reply(reply) } }
+pub type DeviceTimeCoordIterator = xcb_input_device_time_coord_iterator_t;
 
-pub struct  ChangeKeyboardDeviceCookie<'s> { pub base : base::Cookie<'s, change_keyboard_device_cookie> }
+pub struct  ChangeKeyboardDeviceCookie<'s> { pub base : base::Cookie<'s, xcb_input_change_keyboard_device_cookie_t> }
 
 /** Opcode for xcb_input_change_keyboard_device. */
 pub static XCB_INPUT_CHANGE_KEYBOARD_DEVICE : u8 = 11;
-pub struct ChangeKeyboardDeviceReply { base:  base::Reply<change_keyboard_device_reply> }
-fn mk_reply_change_keyboard_device_reply(reply:*mut change_keyboard_device_reply) -> ChangeKeyboardDeviceReply { ChangeKeyboardDeviceReply { base : base::mk_reply(reply) } }
-pub struct  ChangePointerDeviceCookie<'s> { pub base : base::Cookie<'s, change_pointer_device_cookie> }
+pub struct ChangeKeyboardDeviceReply { base:  base::Reply<xcb_input_change_keyboard_device_reply_t> }
+fn mk_reply_xcb_input_change_keyboard_device_reply_t(reply:*mut xcb_input_change_keyboard_device_reply_t) -> ChangeKeyboardDeviceReply { ChangeKeyboardDeviceReply { base : base::mk_reply(reply) } }
+pub struct  ChangePointerDeviceCookie<'s> { pub base : base::Cookie<'s, xcb_input_change_pointer_device_cookie_t> }
 
 /** Opcode for xcb_input_change_pointer_device. */
 pub static XCB_INPUT_CHANGE_POINTER_DEVICE : u8 = 12;
-pub struct ChangePointerDeviceReply { base:  base::Reply<change_pointer_device_reply> }
-fn mk_reply_change_pointer_device_reply(reply:*mut change_pointer_device_reply) -> ChangePointerDeviceReply { ChangePointerDeviceReply { base : base::mk_reply(reply) } }
-pub struct  GrabDeviceCookie<'s> { pub base : base::Cookie<'s, grab_device_cookie> }
+pub struct ChangePointerDeviceReply { base:  base::Reply<xcb_input_change_pointer_device_reply_t> }
+fn mk_reply_xcb_input_change_pointer_device_reply_t(reply:*mut xcb_input_change_pointer_device_reply_t) -> ChangePointerDeviceReply { ChangePointerDeviceReply { base : base::mk_reply(reply) } }
+pub struct  GrabDeviceCookie<'s> { pub base : base::Cookie<'s, xcb_input_grab_device_cookie_t> }
 
 /** Opcode for xcb_input_grab_device. */
 pub static XCB_INPUT_GRAB_DEVICE : u8 = 13;
-pub struct GrabDeviceReply { base:  base::Reply<grab_device_reply> }
-fn mk_reply_grab_device_reply(reply:*mut grab_device_reply) -> GrabDeviceReply { GrabDeviceReply { base : base::mk_reply(reply) } }
+pub struct GrabDeviceReply { base:  base::Reply<xcb_input_grab_device_reply_t> }
+fn mk_reply_xcb_input_grab_device_reply_t(reply:*mut xcb_input_grab_device_reply_t) -> GrabDeviceReply { GrabDeviceReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_input_ungrab_device. */
 pub static XCB_INPUT_UNGRAB_DEVICE : u8 = 14;
 /** Opcode for xcb_input_grab_device_key. */
@@ -141,212 +141,212 @@ pub static XCB_INPUT_GRAB_DEVICE_BUTTON : u8 = 17;
 /** Opcode for xcb_input_ungrab_device_button. */
 pub static XCB_INPUT_UNGRAB_DEVICE_BUTTON : u8 = 18;
 
-pub type device_input_mode = c_uint;//{
-    pub static XCB_INPUT_DEVICE_INPUT_MODE_ASYNC_THIS_DEVICE : device_input_mode = 1;
-    pub static XCB_INPUT_DEVICE_INPUT_MODE_SYNC_THIS_DEVICE : device_input_mode = 2;
-    pub static XCB_INPUT_DEVICE_INPUT_MODE_REPLAY_THIS_DEVICE : device_input_mode = 3;
-    pub static XCB_INPUT_DEVICE_INPUT_MODE_ASYNC_OTHER_DEVICES : device_input_mode = 4;
-    pub static XCB_INPUT_DEVICE_INPUT_MODE_ASYNC_ALL : device_input_mode = 5;
-    pub static XCB_INPUT_DEVICE_INPUT_MODE_SYNC_ALL : device_input_mode = 6;
+pub type xcb_input_device_input_mode_t = c_uint;//{
+    pub static XCB_INPUT_DEVICE_INPUT_MODE_ASYNC_THIS_DEVICE : xcb_input_device_input_mode_t = 1;
+    pub static XCB_INPUT_DEVICE_INPUT_MODE_SYNC_THIS_DEVICE : xcb_input_device_input_mode_t = 2;
+    pub static XCB_INPUT_DEVICE_INPUT_MODE_REPLAY_THIS_DEVICE : xcb_input_device_input_mode_t = 3;
+    pub static XCB_INPUT_DEVICE_INPUT_MODE_ASYNC_OTHER_DEVICES : xcb_input_device_input_mode_t = 4;
+    pub static XCB_INPUT_DEVICE_INPUT_MODE_ASYNC_ALL : xcb_input_device_input_mode_t = 5;
+    pub static XCB_INPUT_DEVICE_INPUT_MODE_SYNC_ALL : xcb_input_device_input_mode_t = 6;
 //}
 /** Opcode for xcb_input_allow_device_events. */
 pub static XCB_INPUT_ALLOW_DEVICE_EVENTS : u8 = 19;
-pub struct  GetDeviceFocusCookie<'s> { pub base : base::Cookie<'s, get_device_focus_cookie> }
+pub struct  GetDeviceFocusCookie<'s> { pub base : base::Cookie<'s, xcb_input_get_device_focus_cookie_t> }
 
 /** Opcode for xcb_input_get_device_focus. */
 pub static XCB_INPUT_GET_DEVICE_FOCUS : u8 = 20;
-pub struct GetDeviceFocusReply { base:  base::Reply<get_device_focus_reply> }
-fn mk_reply_get_device_focus_reply(reply:*mut get_device_focus_reply) -> GetDeviceFocusReply { GetDeviceFocusReply { base : base::mk_reply(reply) } }
+pub struct GetDeviceFocusReply { base:  base::Reply<xcb_input_get_device_focus_reply_t> }
+fn mk_reply_xcb_input_get_device_focus_reply_t(reply:*mut xcb_input_get_device_focus_reply_t) -> GetDeviceFocusReply { GetDeviceFocusReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_input_set_device_focus. */
 pub static XCB_INPUT_SET_DEVICE_FOCUS : u8 = 21;
-pub struct  GetFeedbackControlCookie<'s> { pub base : base::Cookie<'s, get_feedback_control_cookie> }
+pub struct  GetFeedbackControlCookie<'s> { pub base : base::Cookie<'s, xcb_input_get_feedback_control_cookie_t> }
 
 /** Opcode for xcb_input_get_feedback_control. */
 pub static XCB_INPUT_GET_FEEDBACK_CONTROL : u8 = 22;
-pub struct GetFeedbackControlReply { base:  base::Reply<get_feedback_control_reply> }
-fn mk_reply_get_feedback_control_reply(reply:*mut get_feedback_control_reply) -> GetFeedbackControlReply { GetFeedbackControlReply { base : base::mk_reply(reply) } }
+pub struct GetFeedbackControlReply { base:  base::Reply<xcb_input_get_feedback_control_reply_t> }
+fn mk_reply_xcb_input_get_feedback_control_reply_t(reply:*mut xcb_input_get_feedback_control_reply_t) -> GetFeedbackControlReply { GetFeedbackControlReply { base : base::mk_reply(reply) } }
 
-pub type feedback_class = c_uint;//{
-    pub static XCB_INPUT_FEEDBACK_CLASS_KEYBOARD : feedback_class = 1;
-    pub static XCB_INPUT_FEEDBACK_CLASS_POINTER : feedback_class = 2;
-    pub static XCB_INPUT_FEEDBACK_CLASS_STRING : feedback_class = 3;
-    pub static XCB_INPUT_FEEDBACK_CLASS_INTEGER : feedback_class = 4;
-    pub static XCB_INPUT_FEEDBACK_CLASS_LED : feedback_class = 5;
-    pub static XCB_INPUT_FEEDBACK_CLASS_BELL : feedback_class = 6;
+pub type xcb_input_feedback_class_t = c_uint;//{
+    pub static XCB_INPUT_FEEDBACK_CLASS_KEYBOARD : xcb_input_feedback_class_t = 1;
+    pub static XCB_INPUT_FEEDBACK_CLASS_POINTER : xcb_input_feedback_class_t = 2;
+    pub static XCB_INPUT_FEEDBACK_CLASS_STRING : xcb_input_feedback_class_t = 3;
+    pub static XCB_INPUT_FEEDBACK_CLASS_INTEGER : xcb_input_feedback_class_t = 4;
+    pub static XCB_INPUT_FEEDBACK_CLASS_LED : xcb_input_feedback_class_t = 5;
+    pub static XCB_INPUT_FEEDBACK_CLASS_BELL : xcb_input_feedback_class_t = 6;
 //}
-pub struct FeedbackState {pub base : base::Struct<feedback_state> }
+pub struct FeedbackState {pub base : base::Struct<xcb_input_feedback_state_t> }
 
-pub type FeedbackStateIterator = feedback_state_iterator;
+pub type FeedbackStateIterator = xcb_input_feedback_state_iterator_t;
 
-pub type KbdFeedbackStateIterator = kbd_feedback_state_iterator;
+pub type KbdFeedbackStateIterator = xcb_input_kbd_feedback_state_iterator_t;
 
-pub type PtrFeedbackStateIterator = ptr_feedback_state_iterator;
+pub type PtrFeedbackStateIterator = xcb_input_ptr_feedback_state_iterator_t;
 
-pub type IntegerFeedbackStateIterator = integer_feedback_state_iterator;
+pub type IntegerFeedbackStateIterator = xcb_input_integer_feedback_state_iterator_t;
 
-pub type StringFeedbackStateIterator = string_feedback_state_iterator;
+pub type StringFeedbackStateIterator = xcb_input_string_feedback_state_iterator_t;
 
-pub type BellFeedbackStateIterator = bell_feedback_state_iterator;
+pub type BellFeedbackStateIterator = xcb_input_bell_feedback_state_iterator_t;
 
-pub type LedFeedbackStateIterator = led_feedback_state_iterator;
+pub type LedFeedbackStateIterator = xcb_input_led_feedback_state_iterator_t;
 
-pub type FeedbackCtlIterator = feedback_ctl_iterator;
+pub type FeedbackCtlIterator = xcb_input_feedback_ctl_iterator_t;
 
-pub type KbdFeedbackCtlIterator = kbd_feedback_ctl_iterator;
+pub type KbdFeedbackCtlIterator = xcb_input_kbd_feedback_ctl_iterator_t;
 
-pub type PtrFeedbackCtlIterator = ptr_feedback_ctl_iterator;
+pub type PtrFeedbackCtlIterator = xcb_input_ptr_feedback_ctl_iterator_t;
 
-pub type IntegerFeedbackCtlIterator = integer_feedback_ctl_iterator;
+pub type IntegerFeedbackCtlIterator = xcb_input_integer_feedback_ctl_iterator_t;
 
-pub type StringFeedbackCtlIterator = string_feedback_ctl_iterator;
+pub type StringFeedbackCtlIterator = xcb_input_string_feedback_ctl_iterator_t;
 
-pub type BellFeedbackCtlIterator = bell_feedback_ctl_iterator;
+pub type BellFeedbackCtlIterator = xcb_input_bell_feedback_ctl_iterator_t;
 
-pub type LedFeedbackCtlIterator = led_feedback_ctl_iterator;
+pub type LedFeedbackCtlIterator = xcb_input_led_feedback_ctl_iterator_t;
 
-pub struct  GetDeviceKeyMappingCookie<'s> { pub base : base::Cookie<'s, get_device_key_mapping_cookie> }
+pub struct  GetDeviceKeyMappingCookie<'s> { pub base : base::Cookie<'s, xcb_input_get_device_key_mapping_cookie_t> }
 
 /** Opcode for xcb_input_get_device_key_mapping. */
 pub static XCB_INPUT_GET_DEVICE_KEY_MAPPING : u8 = 24;
 /** Opcode for xcb_input_change_device_key_mapping. */
 pub static XCB_INPUT_CHANGE_DEVICE_KEY_MAPPING : u8 = 25;
-pub struct  GetDeviceModifierMappingCookie<'s> { pub base : base::Cookie<'s, get_device_modifier_mapping_cookie> }
+pub struct  GetDeviceModifierMappingCookie<'s> { pub base : base::Cookie<'s, xcb_input_get_device_modifier_mapping_cookie_t> }
 
 /** Opcode for xcb_input_get_device_modifier_mapping. */
 pub static XCB_INPUT_GET_DEVICE_MODIFIER_MAPPING : u8 = 26;
-pub struct  SetDeviceModifierMappingCookie<'s> { pub base : base::Cookie<'s, set_device_modifier_mapping_cookie> }
+pub struct  SetDeviceModifierMappingCookie<'s> { pub base : base::Cookie<'s, xcb_input_set_device_modifier_mapping_cookie_t> }
 
 /** Opcode for xcb_input_set_device_modifier_mapping. */
 pub static XCB_INPUT_SET_DEVICE_MODIFIER_MAPPING : u8 = 27;
-pub struct SetDeviceModifierMappingReply { base:  base::Reply<set_device_modifier_mapping_reply> }
-fn mk_reply_set_device_modifier_mapping_reply(reply:*mut set_device_modifier_mapping_reply) -> SetDeviceModifierMappingReply { SetDeviceModifierMappingReply { base : base::mk_reply(reply) } }
-pub struct  GetDeviceButtonMappingCookie<'s> { pub base : base::Cookie<'s, get_device_button_mapping_cookie> }
+pub struct SetDeviceModifierMappingReply { base:  base::Reply<xcb_input_set_device_modifier_mapping_reply_t> }
+fn mk_reply_xcb_input_set_device_modifier_mapping_reply_t(reply:*mut xcb_input_set_device_modifier_mapping_reply_t) -> SetDeviceModifierMappingReply { SetDeviceModifierMappingReply { base : base::mk_reply(reply) } }
+pub struct  GetDeviceButtonMappingCookie<'s> { pub base : base::Cookie<'s, xcb_input_get_device_button_mapping_cookie_t> }
 
 /** Opcode for xcb_input_get_device_button_mapping. */
 pub static XCB_INPUT_GET_DEVICE_BUTTON_MAPPING : u8 = 28;
-pub struct  SetDeviceButtonMappingCookie<'s> { pub base : base::Cookie<'s, set_device_button_mapping_cookie> }
+pub struct  SetDeviceButtonMappingCookie<'s> { pub base : base::Cookie<'s, xcb_input_set_device_button_mapping_cookie_t> }
 
 /** Opcode for xcb_input_set_device_button_mapping. */
 pub static XCB_INPUT_SET_DEVICE_BUTTON_MAPPING : u8 = 29;
-pub struct SetDeviceButtonMappingReply { base:  base::Reply<set_device_button_mapping_reply> }
-fn mk_reply_set_device_button_mapping_reply(reply:*mut set_device_button_mapping_reply) -> SetDeviceButtonMappingReply { SetDeviceButtonMappingReply { base : base::mk_reply(reply) } }
-pub struct  QueryDeviceStateCookie<'s> { pub base : base::Cookie<'s, query_device_state_cookie> }
+pub struct SetDeviceButtonMappingReply { base:  base::Reply<xcb_input_set_device_button_mapping_reply_t> }
+fn mk_reply_xcb_input_set_device_button_mapping_reply_t(reply:*mut xcb_input_set_device_button_mapping_reply_t) -> SetDeviceButtonMappingReply { SetDeviceButtonMappingReply { base : base::mk_reply(reply) } }
+pub struct  QueryDeviceStateCookie<'s> { pub base : base::Cookie<'s, xcb_input_query_device_state_cookie_t> }
 
 /** Opcode for xcb_input_query_device_state. */
 pub static XCB_INPUT_QUERY_DEVICE_STATE : u8 = 30;
-pub struct QueryDeviceStateReply { base:  base::Reply<query_device_state_reply> }
-fn mk_reply_query_device_state_reply(reply:*mut query_device_state_reply) -> QueryDeviceStateReply { QueryDeviceStateReply { base : base::mk_reply(reply) } }
-pub type InputStateIterator = input_state_iterator;
+pub struct QueryDeviceStateReply { base:  base::Reply<xcb_input_query_device_state_reply_t> }
+fn mk_reply_xcb_input_query_device_state_reply_t(reply:*mut xcb_input_query_device_state_reply_t) -> QueryDeviceStateReply { QueryDeviceStateReply { base : base::mk_reply(reply) } }
+pub type InputStateIterator = xcb_input_input_state_iterator_t;
 
-pub type KeyStateIterator = key_state_iterator;
+pub type KeyStateIterator = xcb_input_key_state_iterator_t;
 
-pub type ButtonStateIterator = button_state_iterator;
+pub type ButtonStateIterator = xcb_input_button_state_iterator_t;
 
-pub type ValuatorStateIterator = valuator_state_iterator;
+pub type ValuatorStateIterator = xcb_input_valuator_state_iterator_t;
 
 /** Opcode for xcb_input_send_extension_event. */
 pub static XCB_INPUT_SEND_EXTENSION_EVENT : u8 = 31;
 /** Opcode for xcb_input_device_bell. */
 pub static XCB_INPUT_DEVICE_BELL : u8 = 32;
-pub struct  SetDeviceValuatorsCookie<'s> { pub base : base::Cookie<'s, set_device_valuators_cookie> }
+pub struct  SetDeviceValuatorsCookie<'s> { pub base : base::Cookie<'s, xcb_input_set_device_valuators_cookie_t> }
 
 /** Opcode for xcb_input_set_device_valuators. */
 pub static XCB_INPUT_SET_DEVICE_VALUATORS : u8 = 33;
-pub struct SetDeviceValuatorsReply { base:  base::Reply<set_device_valuators_reply> }
-fn mk_reply_set_device_valuators_reply(reply:*mut set_device_valuators_reply) -> SetDeviceValuatorsReply { SetDeviceValuatorsReply { base : base::mk_reply(reply) } }
-pub struct  GetDeviceControlCookie<'s> { pub base : base::Cookie<'s, get_device_control_cookie> }
+pub struct SetDeviceValuatorsReply { base:  base::Reply<xcb_input_set_device_valuators_reply_t> }
+fn mk_reply_xcb_input_set_device_valuators_reply_t(reply:*mut xcb_input_set_device_valuators_reply_t) -> SetDeviceValuatorsReply { SetDeviceValuatorsReply { base : base::mk_reply(reply) } }
+pub struct  GetDeviceControlCookie<'s> { pub base : base::Cookie<'s, xcb_input_get_device_control_cookie_t> }
 
 /** Opcode for xcb_input_get_device_control. */
 pub static XCB_INPUT_GET_DEVICE_CONTROL : u8 = 34;
-pub struct GetDeviceControlReply { base:  base::Reply<get_device_control_reply> }
-fn mk_reply_get_device_control_reply(reply:*mut get_device_control_reply) -> GetDeviceControlReply { GetDeviceControlReply { base : base::mk_reply(reply) } }
-pub type DeviceStateIterator = device_state_iterator;
+pub struct GetDeviceControlReply { base:  base::Reply<xcb_input_get_device_control_reply_t> }
+fn mk_reply_xcb_input_get_device_control_reply_t(reply:*mut xcb_input_get_device_control_reply_t) -> GetDeviceControlReply { GetDeviceControlReply { base : base::mk_reply(reply) } }
+pub type DeviceStateIterator = xcb_input_device_state_iterator_t;
 
-pub type DeviceResolutionStateIterator = device_resolution_state_iterator;
+pub type DeviceResolutionStateIterator = xcb_input_device_resolution_state_iterator_t;
 
-pub type DeviceAbsCalibStateIterator = device_abs_calib_state_iterator;
+pub type DeviceAbsCalibStateIterator = xcb_input_device_abs_calib_state_iterator_t;
 
-pub type DeviceAbsAreaStateIterator = device_abs_area_state_iterator;
+pub type DeviceAbsAreaStateIterator = xcb_input_device_abs_area_state_iterator_t;
 
-pub type DeviceCoreStateIterator = device_core_state_iterator;
+pub type DeviceCoreStateIterator = xcb_input_device_core_state_iterator_t;
 
-pub type DeviceEnableStateIterator = device_enable_state_iterator;
+pub type DeviceEnableStateIterator = xcb_input_device_enable_state_iterator_t;
 
-pub type DeviceCtlIterator = device_ctl_iterator;
+pub type DeviceCtlIterator = xcb_input_device_ctl_iterator_t;
 
-pub type DeviceResolutionCtlIterator = device_resolution_ctl_iterator;
+pub type DeviceResolutionCtlIterator = xcb_input_device_resolution_ctl_iterator_t;
 
-pub type DeviceAbsCalibCtlIterator = device_abs_calib_ctl_iterator;
+pub type DeviceAbsCalibCtlIterator = xcb_input_device_abs_calib_ctl_iterator_t;
 
-pub type DeviceAbsAreaCtrlIterator = device_abs_area_ctrl_iterator;
+pub type DeviceAbsAreaCtrlIterator = xcb_input_device_abs_area_ctrl_iterator_t;
 
-pub type DeviceCoreCtrlIterator = device_core_ctrl_iterator;
+pub type DeviceCoreCtrlIterator = xcb_input_device_core_ctrl_iterator_t;
 
-pub type DeviceEnableCtrlIterator = device_enable_ctrl_iterator;
+pub type DeviceEnableCtrlIterator = xcb_input_device_enable_ctrl_iterator_t;
 
 /** Opcode for xcb_input_device_valuator. */
 pub static XCB_INPUT_DEVICE_VALUATOR : u8 = 0;
-pub struct DeviceValuatorEvent {pub base : base::Event<device_valuator_event>}
+pub struct DeviceValuatorEvent {pub base : base::Event<xcb_input_device_valuator_event_t>}
 /** Opcode for xcb_input_device_key_press. */
 pub static XCB_INPUT_DEVICE_KEY_PRESS : u8 = 1;
-pub struct DeviceKeyPressEvent {pub base : base::Event<device_key_press_event>}
+pub struct DeviceKeyPressEvent {pub base : base::Event<xcb_input_device_key_press_event_t>}
 /** Opcode for xcb_input_device_key_release. */
 pub static XCB_INPUT_DEVICE_KEY_RELEASE : u8 = 2;
-pub struct DeviceKeyReleaseEvent {pub base : base::Event<device_key_release_event>}
+pub struct DeviceKeyReleaseEvent {pub base : base::Event<xcb_input_device_key_release_event_t>}
 /** Opcode for xcb_input_device_button_press. */
 pub static XCB_INPUT_DEVICE_BUTTON_PRESS : u8 = 3;
-pub struct DeviceButtonPressEvent {pub base : base::Event<device_button_press_event>}
+pub struct DeviceButtonPressEvent {pub base : base::Event<xcb_input_device_button_press_event_t>}
 /** Opcode for xcb_input_device_button_release. */
 pub static XCB_INPUT_DEVICE_BUTTON_RELEASE : u8 = 4;
-pub struct DeviceButtonReleaseEvent {pub base : base::Event<device_button_release_event>}
+pub struct DeviceButtonReleaseEvent {pub base : base::Event<xcb_input_device_button_release_event_t>}
 /** Opcode for xcb_input_device_motion_notify. */
 pub static XCB_INPUT_DEVICE_MOTION_NOTIFY : u8 = 5;
-pub struct DeviceMotionNotifyEvent {pub base : base::Event<device_motion_notify_event>}
+pub struct DeviceMotionNotifyEvent {pub base : base::Event<xcb_input_device_motion_notify_event_t>}
 /** Opcode for xcb_input_proximity_in. */
 pub static XCB_INPUT_PROXIMITY_IN : u8 = 8;
-pub struct ProximityInEvent {pub base : base::Event<proximity_in_event>}
+pub struct ProximityInEvent {pub base : base::Event<xcb_input_proximity_in_event_t>}
 /** Opcode for xcb_input_proximity_out. */
 pub static XCB_INPUT_PROXIMITY_OUT : u8 = 9;
-pub struct ProximityOutEvent {pub base : base::Event<proximity_out_event>}
+pub struct ProximityOutEvent {pub base : base::Event<xcb_input_proximity_out_event_t>}
 /** Opcode for xcb_input_focus_in. */
 pub static XCB_INPUT_FOCUS_IN : u8 = 6;
-pub struct FocusInEvent {pub base : base::Event<focus_in_event>}
+pub struct FocusInEvent {pub base : base::Event<xcb_input_focus_in_event_t>}
 /** Opcode for xcb_input_focus_out. */
 pub static XCB_INPUT_FOCUS_OUT : u8 = 7;
-pub struct FocusOutEvent {pub base : base::Event<focus_out_event>}
+pub struct FocusOutEvent {pub base : base::Event<xcb_input_focus_out_event_t>}
 /** Opcode for xcb_input_device_state_notify. */
 pub static XCB_INPUT_DEVICE_STATE_NOTIFY : u8 = 10;
-pub struct DeviceStateNotifyEvent {pub base : base::Event<device_state_notify_event>}
+pub struct DeviceStateNotifyEvent {pub base : base::Event<xcb_input_device_state_notify_event_t>}
 /** Opcode for xcb_input_device_mapping_notify. */
 pub static XCB_INPUT_DEVICE_MAPPING_NOTIFY : u8 = 11;
-pub struct DeviceMappingNotifyEvent {pub base : base::Event<device_mapping_notify_event>}
+pub struct DeviceMappingNotifyEvent {pub base : base::Event<xcb_input_device_mapping_notify_event_t>}
 /** Opcode for xcb_input_change_device_notify. */
 pub static XCB_INPUT_CHANGE_DEVICE_NOTIFY : u8 = 12;
-pub struct ChangeDeviceNotifyEvent {pub base : base::Event<change_device_notify_event>}
+pub struct ChangeDeviceNotifyEvent {pub base : base::Event<xcb_input_change_device_notify_event_t>}
 /** Opcode for xcb_input_device_key_state_notify. */
 pub static XCB_INPUT_DEVICE_KEY_STATE_NOTIFY : u8 = 13;
-pub struct DeviceKeyStateNotifyEvent {pub base : base::Event<device_key_state_notify_event>}
+pub struct DeviceKeyStateNotifyEvent {pub base : base::Event<xcb_input_device_key_state_notify_event_t>}
 /** Opcode for xcb_input_device_button_state_notify. */
 pub static XCB_INPUT_DEVICE_BUTTON_STATE_NOTIFY : u8 = 14;
-pub struct DeviceButtonStateNotifyEvent {pub base : base::Event<device_button_state_notify_event>}
+pub struct DeviceButtonStateNotifyEvent {pub base : base::Event<xcb_input_device_button_state_notify_event_t>}
 /** Opcode for xcb_input_device_presence_notify. */
 pub static XCB_INPUT_DEVICE_PRESENCE_NOTIFY : u8 = 15;
-pub struct DevicePresenceNotifyEvent {pub base : base::Event<device_presence_notify_event>}
+pub struct DevicePresenceNotifyEvent {pub base : base::Event<xcb_input_device_presence_notify_event_t>}
 /** Opcode for xcb_input_device. */
 pub static XCB_INPUT_DEVICE : u8 = 0;
-pub struct DeviceError { pub base : base::Error<device_error> }
+pub struct DeviceError { pub base : base::Error<xcb_input_device_error_t> }
 /** Opcode for xcb_input_event. */
 pub static XCB_INPUT_EVENT : u8 = 1;
-pub struct EventError { pub base : base::Error<event_error> }
+pub struct EventError { pub base : base::Error<xcb_input_event_error_t> }
 /** Opcode for xcb_input_mode. */
 pub static XCB_INPUT_MODE : u8 = 2;
-pub struct ModeError { pub base : base::Error<mode_error> }
+pub struct ModeError { pub base : base::Error<xcb_input_mode_error_t> }
 /** Opcode for xcb_input_device_busy. */
 pub static XCB_INPUT_DEVICE_BUSY : u8 = 3;
-pub struct DeviceBusyError { pub base : base::Error<device_busy_error> }
+pub struct DeviceBusyError { pub base : base::Error<xcb_input_device_busy_error_t> }
 /** Opcode for xcb_input_class. */
 pub static XCB_INPUT_CLASS : u8 = 4;
-pub struct ClassError { pub base : base::Error<class_error> }
+pub struct ClassError { pub base : base::Error<xcb_input_class_error_t> }
 
 
 impl Iterator for KeyCodeIterator {
@@ -354,7 +354,7 @@ impl Iterator for KeyCodeIterator {
     fn next(&mut self) -> Option<KeyCode> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut key_code_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_key_code_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_key_code_next(iter);
             Some(mem::transmute(*data))
@@ -362,7 +362,7 @@ impl Iterator for KeyCodeIterator {
     }
 }
 
-pub type EventClass = event_class;
+pub type EventClass = xcb_input_event_class_t;
 
 
 impl Iterator for EventClassIterator {
@@ -370,7 +370,7 @@ impl Iterator for EventClassIterator {
     fn next(&mut self) -> Option<EventClass> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut event_class_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_event_class_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_event_class_next(iter);
             Some(mem::transmute(*data))
@@ -417,7 +417,7 @@ impl GetExtensionVersionReply {
   }
 
 }
-impl_reply_cookie!(GetExtensionVersionCookie<'s>, mk_reply_get_extension_version_reply, GetExtensionVersionReply, xcb_input_get_extension_version_reply);
+impl_reply_cookie!(GetExtensionVersionCookie<'s>, mk_reply_xcb_input_get_extension_version_reply_t, GetExtensionVersionReply, xcb_input_get_extension_version_reply);
 
 
 impl DeviceInfo {
@@ -444,7 +444,7 @@ impl Iterator for DeviceInfoIterator {
     fn next(&mut self) -> Option<DeviceInfo> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut device_info_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_device_info_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_device_info_next(iter);
             Some(mem::transmute(*data))
@@ -452,8 +452,8 @@ impl Iterator for DeviceInfoIterator {
     }
 }
 
-pub struct ListInputDevicesReply { base:  base::Reply<list_input_devices_reply> }
-fn mk_reply_list_input_devices_reply(reply:*mut list_input_devices_reply) -> ListInputDevicesReply { ListInputDevicesReply { base : base::mk_reply(reply) } }
+pub struct ListInputDevicesReply { base:  base::Reply<xcb_input_list_input_devices_reply_t> }
+fn mk_reply_xcb_input_list_input_devices_reply_t(reply:*mut xcb_input_list_input_devices_reply_t) -> ListInputDevicesReply { ListInputDevicesReply { base : base::mk_reply(reply) } }
 pub fn ListInputDevices<'r> (c : &'r Connection) -> ListInputDevicesCookie<'r> {
   unsafe {
     let cookie = xcb_input_list_input_devices(c.get_raw_conn());
@@ -473,7 +473,7 @@ impl ListInputDevicesReply {
   }
 
 }
-impl_reply_cookie!(ListInputDevicesCookie<'s>, mk_reply_list_input_devices_reply, ListInputDevicesReply, xcb_input_list_input_devices_reply);
+impl_reply_cookie!(ListInputDevicesCookie<'s>, mk_reply_xcb_input_list_input_devices_reply_t, ListInputDevicesReply, xcb_input_list_input_devices_reply);
 
 
 impl InputInfo {
@@ -492,7 +492,7 @@ impl Iterator for InputInfoIterator {
     fn next(&mut self) -> Option<InputInfo> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut input_info_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_input_info_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_input_info_next(iter);
             Some(mem::transmute(*data))
@@ -500,7 +500,7 @@ impl Iterator for InputInfoIterator {
     }
 }
 
-pub struct KeyInfo {pub base : base::Struct<key_info> }
+pub struct KeyInfo {pub base : base::Struct<xcb_input_key_info_t> }
 
 
 impl KeyInfo {
@@ -531,7 +531,7 @@ impl Iterator for KeyInfoIterator {
     fn next(&mut self) -> Option<KeyInfo> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut key_info_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_key_info_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_key_info_next(iter);
             Some(mem::transmute(*data))
@@ -539,7 +539,7 @@ impl Iterator for KeyInfoIterator {
     }
 }
 
-pub struct ButtonInfo {pub base : base::Struct<button_info> }
+pub struct ButtonInfo {pub base : base::Struct<xcb_input_button_info_t> }
 
 
 impl ButtonInfo {
@@ -562,7 +562,7 @@ impl Iterator for ButtonInfoIterator {
     fn next(&mut self) -> Option<ButtonInfo> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut button_info_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_button_info_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_button_info_next(iter);
             Some(mem::transmute(*data))
@@ -570,7 +570,7 @@ impl Iterator for ButtonInfoIterator {
     }
 }
 
-pub struct AxisInfo {pub base : base::Struct<axis_info> }
+pub struct AxisInfo {pub base : base::Struct<xcb_input_axis_info_t> }
 
 
 impl AxisInfo {
@@ -593,7 +593,7 @@ impl Iterator for AxisInfoIterator {
     fn next(&mut self) -> Option<AxisInfo> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut axis_info_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_axis_info_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_axis_info_next(iter);
             Some(mem::transmute(*data))
@@ -601,7 +601,7 @@ impl Iterator for AxisInfoIterator {
     }
 }
 
-pub struct ValuatorInfo {pub base : base::Struct<valuator_info> }
+pub struct ValuatorInfo {pub base : base::Struct<xcb_input_valuator_info_t> }
 
 
 impl ValuatorInfo {
@@ -632,7 +632,7 @@ impl Iterator for ValuatorInfoIterator {
     fn next(&mut self) -> Option<ValuatorInfo> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut valuator_info_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_valuator_info_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_valuator_info_next(iter);
             Some(mem::transmute(*data))
@@ -640,7 +640,7 @@ impl Iterator for ValuatorInfoIterator {
     }
 }
 
-pub struct InputClassInfo {pub base : base::Struct<input_class_info> }
+pub struct InputClassInfo {pub base : base::Struct<xcb_input_input_class_info_t> }
 
 
 impl InputClassInfo {
@@ -659,7 +659,7 @@ impl Iterator for InputClassInfoIterator {
     fn next(&mut self) -> Option<InputClassInfo> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut input_class_info_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_input_class_info_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_input_class_info_next(iter);
             Some(mem::transmute(*data))
@@ -667,8 +667,8 @@ impl Iterator for InputClassInfoIterator {
     }
 }
 
-pub struct OpenDeviceReply { base:  base::Reply<open_device_reply> }
-fn mk_reply_open_device_reply(reply:*mut open_device_reply) -> OpenDeviceReply { OpenDeviceReply { base : base::mk_reply(reply) } }
+pub struct OpenDeviceReply { base:  base::Reply<xcb_input_open_device_reply_t> }
+fn mk_reply_xcb_input_open_device_reply_t(reply:*mut xcb_input_open_device_reply_t) -> OpenDeviceReply { OpenDeviceReply { base : base::mk_reply(reply) } }
 pub fn OpenDevice<'r> (c : &'r Connection,
                    device_id : u8) -> OpenDeviceCookie<'r> {
   unsafe {
@@ -692,7 +692,7 @@ impl OpenDeviceReply {
   }
 
 }
-impl_reply_cookie!(OpenDeviceCookie<'s>, mk_reply_open_device_reply, OpenDeviceReply, xcb_input_open_device_reply);
+impl_reply_cookie!(OpenDeviceCookie<'s>, mk_reply_xcb_input_open_device_reply_t, OpenDeviceReply, xcb_input_open_device_reply);
 
 pub fn CloseDeviceChecked<'r> (c : &'r Connection,
                            device_id : u8) -> base::VoidCookie<'r> {
@@ -737,7 +737,7 @@ impl SetDeviceModeReply {
   }
 
 }
-impl_reply_cookie!(SetDeviceModeCookie<'s>, mk_reply_set_device_mode_reply, SetDeviceModeReply, xcb_input_set_device_mode_reply);
+impl_reply_cookie!(SetDeviceModeCookie<'s>, mk_reply_xcb_input_set_device_mode_reply_t, SetDeviceModeReply, xcb_input_set_device_mode_reply);
 
 pub fn SelectExtensionEventChecked<'r> (c : &'r Connection,
                                     window : xproto::Window,
@@ -746,9 +746,9 @@ pub fn SelectExtensionEventChecked<'r> (c : &'r Connection,
     let classes_len = classes.len();
     let classes_ptr = classes.as_ptr();
     let cookie = xcb_input_select_extension_event_checked(c.get_raw_conn(),
-        window as ffi::xproto::window, //1
+        window as ffi::xproto::xcb_window_t, //1
         classes_len as u16, //2
-        classes_ptr as *mut event_class); //3
+        classes_ptr as *mut xcb_input_event_class_t); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -759,19 +759,19 @@ pub fn SelectExtensionEvent<'r> (c : &'r Connection,
     let classes_len = classes.len();
     let classes_ptr = classes.as_ptr();
     let cookie = xcb_input_select_extension_event(c.get_raw_conn(),
-        window as ffi::xproto::window, //1
+        window as ffi::xproto::xcb_window_t, //1
         classes_len as u16, //2
-        classes_ptr as *mut event_class); //3
+        classes_ptr as *mut xcb_input_event_class_t); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub struct GetSelectedExtensionEventsReply { base:  base::Reply<get_selected_extension_events_reply> }
-fn mk_reply_get_selected_extension_events_reply(reply:*mut get_selected_extension_events_reply) -> GetSelectedExtensionEventsReply { GetSelectedExtensionEventsReply { base : base::mk_reply(reply) } }
+pub struct GetSelectedExtensionEventsReply { base:  base::Reply<xcb_input_get_selected_extension_events_reply_t> }
+fn mk_reply_xcb_input_get_selected_extension_events_reply_t(reply:*mut xcb_input_get_selected_extension_events_reply_t) -> GetSelectedExtensionEventsReply { GetSelectedExtensionEventsReply { base : base::mk_reply(reply) } }
 pub fn GetSelectedExtensionEvents<'r> (c : &'r Connection,
                                    window : xproto::Window) -> GetSelectedExtensionEventsCookie<'r> {
   unsafe {
     let cookie = xcb_input_get_selected_extension_events(c.get_raw_conn(),
-        window as ffi::xproto::window); //1
+        window as ffi::xproto::xcb_window_t); //1
     GetSelectedExtensionEventsCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -779,7 +779,7 @@ pub fn GetSelectedExtensionEventsUnchecked<'r> (c : &'r Connection,
                                             window : xproto::Window) -> GetSelectedExtensionEventsCookie<'r> {
   unsafe {
     let cookie = xcb_input_get_selected_extension_events_unchecked(c.get_raw_conn(),
-        window as ffi::xproto::window); //1
+        window as ffi::xproto::xcb_window_t); //1
     GetSelectedExtensionEventsCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -794,7 +794,7 @@ impl GetSelectedExtensionEventsReply {
   }
 
 }
-impl_reply_cookie!(GetSelectedExtensionEventsCookie<'s>, mk_reply_get_selected_extension_events_reply, GetSelectedExtensionEventsReply, xcb_input_get_selected_extension_events_reply);
+impl_reply_cookie!(GetSelectedExtensionEventsCookie<'s>, mk_reply_xcb_input_get_selected_extension_events_reply_t, GetSelectedExtensionEventsReply, xcb_input_get_selected_extension_events_reply);
 
 pub fn ChangeDeviceDontPropagateListChecked<'r> (c : &'r Connection,
                                              window : xproto::Window,
@@ -804,10 +804,10 @@ pub fn ChangeDeviceDontPropagateListChecked<'r> (c : &'r Connection,
     let classes_len = classes.len();
     let classes_ptr = classes.as_ptr();
     let cookie = xcb_input_change_device_dont_propagate_list_checked(c.get_raw_conn(),
-        window as ffi::xproto::window, //1
+        window as ffi::xproto::xcb_window_t, //1
         classes_len as u16, //2
         mode as u8, //3
-        classes_ptr as *mut event_class); //4
+        classes_ptr as *mut xcb_input_event_class_t); //4
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -819,20 +819,20 @@ pub fn ChangeDeviceDontPropagateList<'r> (c : &'r Connection,
     let classes_len = classes.len();
     let classes_ptr = classes.as_ptr();
     let cookie = xcb_input_change_device_dont_propagate_list(c.get_raw_conn(),
-        window as ffi::xproto::window, //1
+        window as ffi::xproto::xcb_window_t, //1
         classes_len as u16, //2
         mode as u8, //3
-        classes_ptr as *mut event_class); //4
+        classes_ptr as *mut xcb_input_event_class_t); //4
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub struct GetDeviceDontPropagateListReply { base:  base::Reply<get_device_dont_propagate_list_reply> }
-fn mk_reply_get_device_dont_propagate_list_reply(reply:*mut get_device_dont_propagate_list_reply) -> GetDeviceDontPropagateListReply { GetDeviceDontPropagateListReply { base : base::mk_reply(reply) } }
+pub struct GetDeviceDontPropagateListReply { base:  base::Reply<xcb_input_get_device_dont_propagate_list_reply_t> }
+fn mk_reply_xcb_input_get_device_dont_propagate_list_reply_t(reply:*mut xcb_input_get_device_dont_propagate_list_reply_t) -> GetDeviceDontPropagateListReply { GetDeviceDontPropagateListReply { base : base::mk_reply(reply) } }
 pub fn GetDeviceDontPropagateList<'r> (c : &'r Connection,
                                    window : xproto::Window) -> GetDeviceDontPropagateListCookie<'r> {
   unsafe {
     let cookie = xcb_input_get_device_dont_propagate_list(c.get_raw_conn(),
-        window as ffi::xproto::window); //1
+        window as ffi::xproto::xcb_window_t); //1
     GetDeviceDontPropagateListCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -840,7 +840,7 @@ pub fn GetDeviceDontPropagateListUnchecked<'r> (c : &'r Connection,
                                             window : xproto::Window) -> GetDeviceDontPropagateListCookie<'r> {
   unsafe {
     let cookie = xcb_input_get_device_dont_propagate_list_unchecked(c.get_raw_conn(),
-        window as ffi::xproto::window); //1
+        window as ffi::xproto::xcb_window_t); //1
     GetDeviceDontPropagateListCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -851,7 +851,7 @@ impl GetDeviceDontPropagateListReply {
   }
 
 }
-impl_reply_cookie!(GetDeviceDontPropagateListCookie<'s>, mk_reply_get_device_dont_propagate_list_reply, GetDeviceDontPropagateListReply, xcb_input_get_device_dont_propagate_list_reply);
+impl_reply_cookie!(GetDeviceDontPropagateListCookie<'s>, mk_reply_xcb_input_get_device_dont_propagate_list_reply_t, GetDeviceDontPropagateListReply, xcb_input_get_device_dont_propagate_list_reply);
 
 pub fn GetDeviceMotionEvents<'r> (c : &'r Connection,
                               start : xproto::Timestamp,
@@ -859,8 +859,8 @@ pub fn GetDeviceMotionEvents<'r> (c : &'r Connection,
                               device_id : u8) -> GetDeviceMotionEventsCookie<'r> {
   unsafe {
     let cookie = xcb_input_get_device_motion_events(c.get_raw_conn(),
-        start as ffi::xproto::timestamp, //1
-        stop as ffi::xproto::timestamp, //2
+        start as ffi::xproto::xcb_timestamp_t, //1
+        stop as ffi::xproto::xcb_timestamp_t, //2
         device_id as u8); //3
     GetDeviceMotionEventsCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -871,8 +871,8 @@ pub fn GetDeviceMotionEventsUnchecked<'r> (c : &'r Connection,
                                        device_id : u8) -> GetDeviceMotionEventsCookie<'r> {
   unsafe {
     let cookie = xcb_input_get_device_motion_events_unchecked(c.get_raw_conn(),
-        start as ffi::xproto::timestamp, //1
-        stop as ffi::xproto::timestamp, //2
+        start as ffi::xproto::xcb_timestamp_t, //1
+        stop as ffi::xproto::xcb_timestamp_t, //2
         device_id as u8); //3
     GetDeviceMotionEventsCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -892,9 +892,9 @@ impl GetDeviceMotionEventsReply {
   }
 
 }
-impl_reply_cookie!(GetDeviceMotionEventsCookie<'s>, mk_reply_get_device_motion_events_reply, GetDeviceMotionEventsReply, xcb_input_get_device_motion_events_reply);
+impl_reply_cookie!(GetDeviceMotionEventsCookie<'s>, mk_reply_xcb_input_get_device_motion_events_reply_t, GetDeviceMotionEventsReply, xcb_input_get_device_motion_events_reply);
 
-pub struct DeviceTimeCoord {pub base : base::Struct<device_time_coord> }
+pub struct DeviceTimeCoord {pub base : base::Struct<xcb_input_device_time_coord_t> }
 
 
 impl DeviceTimeCoord {
@@ -909,7 +909,7 @@ impl Iterator for DeviceTimeCoordIterator {
     fn next(&mut self) -> Option<DeviceTimeCoord> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut device_time_coord_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_device_time_coord_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_device_time_coord_next(iter);
             Some(mem::transmute(*data))
@@ -940,7 +940,7 @@ impl ChangeKeyboardDeviceReply {
   }
 
 }
-impl_reply_cookie!(ChangeKeyboardDeviceCookie<'s>, mk_reply_change_keyboard_device_reply, ChangeKeyboardDeviceReply, xcb_input_change_keyboard_device_reply);
+impl_reply_cookie!(ChangeKeyboardDeviceCookie<'s>, mk_reply_xcb_input_change_keyboard_device_reply_t, ChangeKeyboardDeviceReply, xcb_input_change_keyboard_device_reply);
 
 pub fn ChangePointerDevice<'r> (c : &'r Connection,
                             x_axis : u8,
@@ -973,7 +973,7 @@ impl ChangePointerDeviceReply {
   }
 
 }
-impl_reply_cookie!(ChangePointerDeviceCookie<'s>, mk_reply_change_pointer_device_reply, ChangePointerDeviceReply, xcb_input_change_pointer_device_reply);
+impl_reply_cookie!(ChangePointerDeviceCookie<'s>, mk_reply_xcb_input_change_pointer_device_reply_t, ChangePointerDeviceReply, xcb_input_change_pointer_device_reply);
 
 pub fn GrabDevice<'r> (c : &'r Connection,
                    grab_window : xproto::Window,
@@ -987,14 +987,14 @@ pub fn GrabDevice<'r> (c : &'r Connection,
     let classes_len = classes.len();
     let classes_ptr = classes.as_ptr();
     let cookie = xcb_input_grab_device(c.get_raw_conn(),
-        grab_window as ffi::xproto::window, //1
-        time as ffi::xproto::timestamp, //2
+        grab_window as ffi::xproto::xcb_window_t, //1
+        time as ffi::xproto::xcb_timestamp_t, //2
         classes_len as u16, //3
         this_device_mode as u8, //4
         other_device_mode as u8, //5
         owner_events as u8, //6
         device_id as u8, //7
-        classes_ptr as *mut event_class); //8
+        classes_ptr as *mut xcb_input_event_class_t); //8
     GrabDeviceCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1010,14 +1010,14 @@ pub fn GrabDeviceUnchecked<'r> (c : &'r Connection,
     let classes_len = classes.len();
     let classes_ptr = classes.as_ptr();
     let cookie = xcb_input_grab_device_unchecked(c.get_raw_conn(),
-        grab_window as ffi::xproto::window, //1
-        time as ffi::xproto::timestamp, //2
+        grab_window as ffi::xproto::xcb_window_t, //1
+        time as ffi::xproto::xcb_timestamp_t, //2
         classes_len as u16, //3
         this_device_mode as u8, //4
         other_device_mode as u8, //5
         owner_events as u8, //6
         device_id as u8, //7
-        classes_ptr as *mut event_class); //8
+        classes_ptr as *mut xcb_input_event_class_t); //8
     GrabDeviceCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1028,14 +1028,14 @@ impl GrabDeviceReply {
   }
 
 }
-impl_reply_cookie!(GrabDeviceCookie<'s>, mk_reply_grab_device_reply, GrabDeviceReply, xcb_input_grab_device_reply);
+impl_reply_cookie!(GrabDeviceCookie<'s>, mk_reply_xcb_input_grab_device_reply_t, GrabDeviceReply, xcb_input_grab_device_reply);
 
 pub fn UngrabDeviceChecked<'r> (c : &'r Connection,
                             time : xproto::Timestamp,
                             device_id : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_input_ungrab_device_checked(c.get_raw_conn(),
-        time as ffi::xproto::timestamp, //1
+        time as ffi::xproto::xcb_timestamp_t, //1
         device_id as u8); //2
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
@@ -1045,7 +1045,7 @@ pub fn UngrabDevice<'r> (c : &'r Connection,
                      device_id : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_input_ungrab_device(c.get_raw_conn(),
-        time as ffi::xproto::timestamp, //1
+        time as ffi::xproto::xcb_timestamp_t, //1
         device_id as u8); //2
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -1064,7 +1064,7 @@ pub fn GrabDeviceKeyChecked<'r> (c : &'r Connection,
     let classes_len = classes.len();
     let classes_ptr = classes.as_ptr();
     let cookie = xcb_input_grab_device_key_checked(c.get_raw_conn(),
-        grab_window as ffi::xproto::window, //1
+        grab_window as ffi::xproto::xcb_window_t, //1
         classes_len as u16, //2
         modifiers as u16, //3
         modifier_device as u8, //4
@@ -1073,7 +1073,7 @@ pub fn GrabDeviceKeyChecked<'r> (c : &'r Connection,
         this_device_mode as u8, //7
         other_device_mode as u8, //8
         owner_events as u8, //9
-        classes_ptr as *mut event_class); //10
+        classes_ptr as *mut xcb_input_event_class_t); //10
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -1091,7 +1091,7 @@ pub fn GrabDeviceKey<'r> (c : &'r Connection,
     let classes_len = classes.len();
     let classes_ptr = classes.as_ptr();
     let cookie = xcb_input_grab_device_key(c.get_raw_conn(),
-        grab_window as ffi::xproto::window, //1
+        grab_window as ffi::xproto::xcb_window_t, //1
         classes_len as u16, //2
         modifiers as u16, //3
         modifier_device as u8, //4
@@ -1100,7 +1100,7 @@ pub fn GrabDeviceKey<'r> (c : &'r Connection,
         this_device_mode as u8, //7
         other_device_mode as u8, //8
         owner_events as u8, //9
-        classes_ptr as *mut event_class); //10
+        classes_ptr as *mut xcb_input_event_class_t); //10
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1112,7 +1112,7 @@ pub fn UngrabDeviceKeyChecked<'r> (c : &'r Connection,
                                grabbed_device : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_input_ungrab_device_key_checked(c.get_raw_conn(),
-        grabWindow as ffi::xproto::window, //1
+        grabWindow as ffi::xproto::xcb_window_t, //1
         modifiers as u16, //2
         modifier_device as u8, //3
         key as u8, //4
@@ -1128,7 +1128,7 @@ pub fn UngrabDeviceKey<'r> (c : &'r Connection,
                         grabbed_device : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_input_ungrab_device_key(c.get_raw_conn(),
-        grabWindow as ffi::xproto::window, //1
+        grabWindow as ffi::xproto::xcb_window_t, //1
         modifiers as u16, //2
         modifier_device as u8, //3
         key as u8, //4
@@ -1150,7 +1150,7 @@ pub fn GrabDeviceButtonChecked<'r> (c : &'r Connection,
     let classes_len = classes.len();
     let classes_ptr = classes.as_ptr();
     let cookie = xcb_input_grab_device_button_checked(c.get_raw_conn(),
-        grab_window as ffi::xproto::window, //1
+        grab_window as ffi::xproto::xcb_window_t, //1
         grabbed_device as u8, //2
         modifier_device as u8, //3
         classes_len as u16, //4
@@ -1159,7 +1159,7 @@ pub fn GrabDeviceButtonChecked<'r> (c : &'r Connection,
         other_device_mode as u8, //7
         button as u8, //8
         owner_events as u8, //9
-        classes_ptr as *mut event_class); //10
+        classes_ptr as *mut xcb_input_event_class_t); //10
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -1177,7 +1177,7 @@ pub fn GrabDeviceButton<'r> (c : &'r Connection,
     let classes_len = classes.len();
     let classes_ptr = classes.as_ptr();
     let cookie = xcb_input_grab_device_button(c.get_raw_conn(),
-        grab_window as ffi::xproto::window, //1
+        grab_window as ffi::xproto::xcb_window_t, //1
         grabbed_device as u8, //2
         modifier_device as u8, //3
         classes_len as u16, //4
@@ -1186,7 +1186,7 @@ pub fn GrabDeviceButton<'r> (c : &'r Connection,
         other_device_mode as u8, //7
         button as u8, //8
         owner_events as u8, //9
-        classes_ptr as *mut event_class); //10
+        classes_ptr as *mut xcb_input_event_class_t); //10
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1198,7 +1198,7 @@ pub fn UngrabDeviceButtonChecked<'r> (c : &'r Connection,
                                   grabbed_device : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_input_ungrab_device_button_checked(c.get_raw_conn(),
-        grab_window as ffi::xproto::window, //1
+        grab_window as ffi::xproto::xcb_window_t, //1
         modifiers as u16, //2
         modifier_device as u8, //3
         button as u8, //4
@@ -1214,7 +1214,7 @@ pub fn UngrabDeviceButton<'r> (c : &'r Connection,
                            grabbed_device : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_input_ungrab_device_button(c.get_raw_conn(),
-        grab_window as ffi::xproto::window, //1
+        grab_window as ffi::xproto::xcb_window_t, //1
         modifiers as u16, //2
         modifier_device as u8, //3
         button as u8, //4
@@ -1228,7 +1228,7 @@ pub fn AllowDeviceEventsChecked<'r> (c : &'r Connection,
                                  device_id : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_input_allow_device_events_checked(c.get_raw_conn(),
-        time as ffi::xproto::timestamp, //1
+        time as ffi::xproto::xcb_timestamp_t, //1
         mode as u8, //2
         device_id as u8); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
@@ -1240,7 +1240,7 @@ pub fn AllowDeviceEvents<'r> (c : &'r Connection,
                           device_id : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_input_allow_device_events(c.get_raw_conn(),
-        time as ffi::xproto::timestamp, //1
+        time as ffi::xproto::xcb_timestamp_t, //1
         mode as u8, //2
         device_id as u8); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -1277,7 +1277,7 @@ impl GetDeviceFocusReply {
   }
 
 }
-impl_reply_cookie!(GetDeviceFocusCookie<'s>, mk_reply_get_device_focus_reply, GetDeviceFocusReply, xcb_input_get_device_focus_reply);
+impl_reply_cookie!(GetDeviceFocusCookie<'s>, mk_reply_xcb_input_get_device_focus_reply_t, GetDeviceFocusReply, xcb_input_get_device_focus_reply);
 
 pub fn SetDeviceFocusChecked<'r> (c : &'r Connection,
                               focus : xproto::Window,
@@ -1286,8 +1286,8 @@ pub fn SetDeviceFocusChecked<'r> (c : &'r Connection,
                               device_id : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_input_set_device_focus_checked(c.get_raw_conn(),
-        focus as ffi::xproto::window, //1
-        time as ffi::xproto::timestamp, //2
+        focus as ffi::xproto::xcb_window_t, //1
+        time as ffi::xproto::xcb_timestamp_t, //2
         revert_to as u8, //3
         device_id as u8); //4
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
@@ -1300,8 +1300,8 @@ pub fn SetDeviceFocus<'r> (c : &'r Connection,
                        device_id : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_input_set_device_focus(c.get_raw_conn(),
-        focus as ffi::xproto::window, //1
-        time as ffi::xproto::timestamp, //2
+        focus as ffi::xproto::xcb_window_t, //1
+        time as ffi::xproto::xcb_timestamp_t, //2
         revert_to as u8, //3
         device_id as u8); //4
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -1330,7 +1330,7 @@ impl GetFeedbackControlReply {
   }
 
 }
-impl_reply_cookie!(GetFeedbackControlCookie<'s>, mk_reply_get_feedback_control_reply, GetFeedbackControlReply, xcb_input_get_feedback_control_reply);
+impl_reply_cookie!(GetFeedbackControlCookie<'s>, mk_reply_xcb_input_get_feedback_control_reply_t, GetFeedbackControlReply, xcb_input_get_feedback_control_reply);
 
 
 impl FeedbackState {
@@ -1353,7 +1353,7 @@ impl Iterator for FeedbackStateIterator {
     fn next(&mut self) -> Option<FeedbackState> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut feedback_state_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_feedback_state_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_feedback_state_next(iter);
             Some(mem::transmute(*data))
@@ -1361,7 +1361,7 @@ impl Iterator for FeedbackStateIterator {
     }
 }
 
-pub struct KbdFeedbackState {pub base : base::Struct<kbd_feedback_state> }
+pub struct KbdFeedbackState {pub base : base::Struct<xcb_input_kbd_feedback_state_t> }
 
 
 impl KbdFeedbackState {
@@ -1416,7 +1416,7 @@ impl Iterator for KbdFeedbackStateIterator {
     fn next(&mut self) -> Option<KbdFeedbackState> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut kbd_feedback_state_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_kbd_feedback_state_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_kbd_feedback_state_next(iter);
             Some(mem::transmute(*data))
@@ -1424,7 +1424,7 @@ impl Iterator for KbdFeedbackStateIterator {
     }
 }
 
-pub struct PtrFeedbackState {pub base : base::Struct<ptr_feedback_state> }
+pub struct PtrFeedbackState {pub base : base::Struct<xcb_input_ptr_feedback_state_t> }
 
 
 impl PtrFeedbackState {
@@ -1459,7 +1459,7 @@ impl Iterator for PtrFeedbackStateIterator {
     fn next(&mut self) -> Option<PtrFeedbackState> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut ptr_feedback_state_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_ptr_feedback_state_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_ptr_feedback_state_next(iter);
             Some(mem::transmute(*data))
@@ -1467,7 +1467,7 @@ impl Iterator for PtrFeedbackStateIterator {
     }
 }
 
-pub struct IntegerFeedbackState {pub base : base::Struct<integer_feedback_state> }
+pub struct IntegerFeedbackState {pub base : base::Struct<xcb_input_integer_feedback_state_t> }
 
 
 impl IntegerFeedbackState {
@@ -1502,7 +1502,7 @@ impl Iterator for IntegerFeedbackStateIterator {
     fn next(&mut self) -> Option<IntegerFeedbackState> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut integer_feedback_state_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_integer_feedback_state_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_integer_feedback_state_next(iter);
             Some(mem::transmute(*data))
@@ -1510,7 +1510,7 @@ impl Iterator for IntegerFeedbackStateIterator {
     }
 }
 
-pub struct StringFeedbackState {pub base : base::Struct<string_feedback_state> }
+pub struct StringFeedbackState {pub base : base::Struct<xcb_input_string_feedback_state_t> }
 
 
 impl StringFeedbackState {
@@ -1541,7 +1541,7 @@ impl Iterator for StringFeedbackStateIterator {
     fn next(&mut self) -> Option<StringFeedbackState> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut string_feedback_state_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_string_feedback_state_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_string_feedback_state_next(iter);
             Some(mem::transmute(*data))
@@ -1549,7 +1549,7 @@ impl Iterator for StringFeedbackStateIterator {
     }
 }
 
-pub struct BellFeedbackState {pub base : base::Struct<bell_feedback_state> }
+pub struct BellFeedbackState {pub base : base::Struct<xcb_input_bell_feedback_state_t> }
 
 
 impl BellFeedbackState {
@@ -1584,7 +1584,7 @@ impl Iterator for BellFeedbackStateIterator {
     fn next(&mut self) -> Option<BellFeedbackState> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut bell_feedback_state_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_bell_feedback_state_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_bell_feedback_state_next(iter);
             Some(mem::transmute(*data))
@@ -1592,7 +1592,7 @@ impl Iterator for BellFeedbackStateIterator {
     }
 }
 
-pub struct LedFeedbackState {pub base : base::Struct<led_feedback_state> }
+pub struct LedFeedbackState {pub base : base::Struct<xcb_input_led_feedback_state_t> }
 
 
 impl LedFeedbackState {
@@ -1623,7 +1623,7 @@ impl Iterator for LedFeedbackStateIterator {
     fn next(&mut self) -> Option<LedFeedbackState> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut led_feedback_state_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_led_feedback_state_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_led_feedback_state_next(iter);
             Some(mem::transmute(*data))
@@ -1631,7 +1631,7 @@ impl Iterator for LedFeedbackStateIterator {
     }
 }
 
-pub struct FeedbackCtl {pub base : base::Struct<feedback_ctl> }
+pub struct FeedbackCtl {pub base : base::Struct<xcb_input_feedback_ctl_t> }
 
 
 impl FeedbackCtl {
@@ -1654,7 +1654,7 @@ impl Iterator for FeedbackCtlIterator {
     fn next(&mut self) -> Option<FeedbackCtl> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut feedback_ctl_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_feedback_ctl_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_feedback_ctl_next(iter);
             Some(mem::transmute(*data))
@@ -1662,7 +1662,7 @@ impl Iterator for FeedbackCtlIterator {
     }
 }
 
-pub struct KbdFeedbackCtl {pub base : base::Struct<kbd_feedback_ctl> }
+pub struct KbdFeedbackCtl {pub base : base::Struct<xcb_input_kbd_feedback_ctl_t> }
 
 
 impl KbdFeedbackCtl {
@@ -1717,7 +1717,7 @@ impl Iterator for KbdFeedbackCtlIterator {
     fn next(&mut self) -> Option<KbdFeedbackCtl> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut kbd_feedback_ctl_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_kbd_feedback_ctl_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_kbd_feedback_ctl_next(iter);
             Some(mem::transmute(*data))
@@ -1725,7 +1725,7 @@ impl Iterator for KbdFeedbackCtlIterator {
     }
 }
 
-pub struct PtrFeedbackCtl {pub base : base::Struct<ptr_feedback_ctl> }
+pub struct PtrFeedbackCtl {pub base : base::Struct<xcb_input_ptr_feedback_ctl_t> }
 
 
 impl PtrFeedbackCtl {
@@ -1760,7 +1760,7 @@ impl Iterator for PtrFeedbackCtlIterator {
     fn next(&mut self) -> Option<PtrFeedbackCtl> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut ptr_feedback_ctl_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_ptr_feedback_ctl_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_ptr_feedback_ctl_next(iter);
             Some(mem::transmute(*data))
@@ -1768,7 +1768,7 @@ impl Iterator for PtrFeedbackCtlIterator {
     }
 }
 
-pub struct IntegerFeedbackCtl {pub base : base::Struct<integer_feedback_ctl> }
+pub struct IntegerFeedbackCtl {pub base : base::Struct<xcb_input_integer_feedback_ctl_t> }
 
 
 impl IntegerFeedbackCtl {
@@ -1795,7 +1795,7 @@ impl Iterator for IntegerFeedbackCtlIterator {
     fn next(&mut self) -> Option<IntegerFeedbackCtl> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut integer_feedback_ctl_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_integer_feedback_ctl_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_integer_feedback_ctl_next(iter);
             Some(mem::transmute(*data))
@@ -1803,7 +1803,7 @@ impl Iterator for IntegerFeedbackCtlIterator {
     }
 }
 
-pub struct StringFeedbackCtl {pub base : base::Struct<string_feedback_ctl> }
+pub struct StringFeedbackCtl {pub base : base::Struct<xcb_input_string_feedback_ctl_t> }
 
 
 impl StringFeedbackCtl {
@@ -1830,7 +1830,7 @@ impl Iterator for StringFeedbackCtlIterator {
     fn next(&mut self) -> Option<StringFeedbackCtl> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut string_feedback_ctl_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_string_feedback_ctl_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_string_feedback_ctl_next(iter);
             Some(mem::transmute(*data))
@@ -1838,7 +1838,7 @@ impl Iterator for StringFeedbackCtlIterator {
     }
 }
 
-pub struct BellFeedbackCtl {pub base : base::Struct<bell_feedback_ctl> }
+pub struct BellFeedbackCtl {pub base : base::Struct<xcb_input_bell_feedback_ctl_t> }
 
 
 impl BellFeedbackCtl {
@@ -1873,7 +1873,7 @@ impl Iterator for BellFeedbackCtlIterator {
     fn next(&mut self) -> Option<BellFeedbackCtl> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut bell_feedback_ctl_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_bell_feedback_ctl_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_bell_feedback_ctl_next(iter);
             Some(mem::transmute(*data))
@@ -1881,7 +1881,7 @@ impl Iterator for BellFeedbackCtlIterator {
     }
 }
 
-pub struct LedFeedbackCtl {pub base : base::Struct<led_feedback_ctl> }
+pub struct LedFeedbackCtl {pub base : base::Struct<xcb_input_led_feedback_ctl_t> }
 
 
 impl LedFeedbackCtl {
@@ -1912,7 +1912,7 @@ impl Iterator for LedFeedbackCtlIterator {
     fn next(&mut self) -> Option<LedFeedbackCtl> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut led_feedback_ctl_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_led_feedback_ctl_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_led_feedback_ctl_next(iter);
             Some(mem::transmute(*data))
@@ -1920,8 +1920,8 @@ impl Iterator for LedFeedbackCtlIterator {
     }
 }
 
-pub struct GetDeviceKeyMappingReply { base:  base::Reply<get_device_key_mapping_reply> }
-fn mk_reply_get_device_key_mapping_reply(reply:*mut get_device_key_mapping_reply) -> GetDeviceKeyMappingReply { GetDeviceKeyMappingReply { base : base::mk_reply(reply) } }
+pub struct GetDeviceKeyMappingReply { base:  base::Reply<xcb_input_get_device_key_mapping_reply_t> }
+fn mk_reply_xcb_input_get_device_key_mapping_reply_t(reply:*mut xcb_input_get_device_key_mapping_reply_t) -> GetDeviceKeyMappingReply { GetDeviceKeyMappingReply { base : base::mk_reply(reply) } }
 pub fn GetDeviceKeyMapping<'r> (c : &'r Connection,
                             device_id : u8,
                             first_keycode : KeyCode,
@@ -1929,7 +1929,7 @@ pub fn GetDeviceKeyMapping<'r> (c : &'r Connection,
   unsafe {
     let cookie = xcb_input_get_device_key_mapping(c.get_raw_conn(),
         device_id as u8, //1
-        first_keycode as key_code, //2
+        first_keycode as xcb_input_key_code_t, //2
         count as u8); //3
     GetDeviceKeyMappingCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -1941,7 +1941,7 @@ pub fn GetDeviceKeyMappingUnchecked<'r> (c : &'r Connection,
   unsafe {
     let cookie = xcb_input_get_device_key_mapping_unchecked(c.get_raw_conn(),
         device_id as u8, //1
-        first_keycode as key_code, //2
+        first_keycode as xcb_input_key_code_t, //2
         count as u8); //3
     GetDeviceKeyMappingCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -1957,7 +1957,7 @@ impl GetDeviceKeyMappingReply {
   }
 
 }
-impl_reply_cookie!(GetDeviceKeyMappingCookie<'s>, mk_reply_get_device_key_mapping_reply, GetDeviceKeyMappingReply, xcb_input_get_device_key_mapping_reply);
+impl_reply_cookie!(GetDeviceKeyMappingCookie<'s>, mk_reply_xcb_input_get_device_key_mapping_reply_t, GetDeviceKeyMappingReply, xcb_input_get_device_key_mapping_reply);
 
 pub fn ChangeDeviceKeyMappingChecked<'r> (c : &'r Connection,
                                       device_id : u8,
@@ -1969,10 +1969,10 @@ pub fn ChangeDeviceKeyMappingChecked<'r> (c : &'r Connection,
     let keysyms_ptr = keysyms.as_ptr();
     let cookie = xcb_input_change_device_key_mapping_checked(c.get_raw_conn(),
         device_id as u8, //1
-        first_keycode as key_code, //2
+        first_keycode as xcb_input_key_code_t, //2
         keysyms_per_keycode as u8, //3
         keysyms_len as u8, //4
-        keysyms_ptr as *mut ffi::xproto::keysym); //5
+        keysyms_ptr as *mut ffi::xproto::xcb_keysym_t); //5
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -1986,15 +1986,15 @@ pub fn ChangeDeviceKeyMapping<'r> (c : &'r Connection,
     let keysyms_ptr = keysyms.as_ptr();
     let cookie = xcb_input_change_device_key_mapping(c.get_raw_conn(),
         device_id as u8, //1
-        first_keycode as key_code, //2
+        first_keycode as xcb_input_key_code_t, //2
         keysyms_per_keycode as u8, //3
         keysyms_len as u8, //4
-        keysyms_ptr as *mut ffi::xproto::keysym); //5
+        keysyms_ptr as *mut ffi::xproto::xcb_keysym_t); //5
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub struct GetDeviceModifierMappingReply { base:  base::Reply<get_device_modifier_mapping_reply> }
-fn mk_reply_get_device_modifier_mapping_reply(reply:*mut get_device_modifier_mapping_reply) -> GetDeviceModifierMappingReply { GetDeviceModifierMappingReply { base : base::mk_reply(reply) } }
+pub struct GetDeviceModifierMappingReply { base:  base::Reply<xcb_input_get_device_modifier_mapping_reply_t> }
+fn mk_reply_xcb_input_get_device_modifier_mapping_reply_t(reply:*mut xcb_input_get_device_modifier_mapping_reply_t) -> GetDeviceModifierMappingReply { GetDeviceModifierMappingReply { base : base::mk_reply(reply) } }
 pub fn GetDeviceModifierMapping<'r> (c : &'r Connection,
                                  device_id : u8) -> GetDeviceModifierMappingCookie<'r> {
   unsafe {
@@ -2018,7 +2018,7 @@ impl GetDeviceModifierMappingReply {
   }
 
 }
-impl_reply_cookie!(GetDeviceModifierMappingCookie<'s>, mk_reply_get_device_modifier_mapping_reply, GetDeviceModifierMappingReply, xcb_input_get_device_modifier_mapping_reply);
+impl_reply_cookie!(GetDeviceModifierMappingCookie<'s>, mk_reply_xcb_input_get_device_modifier_mapping_reply_t, GetDeviceModifierMappingReply, xcb_input_get_device_modifier_mapping_reply);
 
 pub fn SetDeviceModifierMapping<'r> (c : &'r Connection,
                                  device_id : u8,
@@ -2053,10 +2053,10 @@ impl SetDeviceModifierMappingReply {
   }
 
 }
-impl_reply_cookie!(SetDeviceModifierMappingCookie<'s>, mk_reply_set_device_modifier_mapping_reply, SetDeviceModifierMappingReply, xcb_input_set_device_modifier_mapping_reply);
+impl_reply_cookie!(SetDeviceModifierMappingCookie<'s>, mk_reply_xcb_input_set_device_modifier_mapping_reply_t, SetDeviceModifierMappingReply, xcb_input_set_device_modifier_mapping_reply);
 
-pub struct GetDeviceButtonMappingReply { base:  base::Reply<get_device_button_mapping_reply> }
-fn mk_reply_get_device_button_mapping_reply(reply:*mut get_device_button_mapping_reply) -> GetDeviceButtonMappingReply { GetDeviceButtonMappingReply { base : base::mk_reply(reply) } }
+pub struct GetDeviceButtonMappingReply { base:  base::Reply<xcb_input_get_device_button_mapping_reply_t> }
+fn mk_reply_xcb_input_get_device_button_mapping_reply_t(reply:*mut xcb_input_get_device_button_mapping_reply_t) -> GetDeviceButtonMappingReply { GetDeviceButtonMappingReply { base : base::mk_reply(reply) } }
 pub fn GetDeviceButtonMapping<'r> (c : &'r Connection,
                                device_id : u8) -> GetDeviceButtonMappingCookie<'r> {
   unsafe {
@@ -2080,7 +2080,7 @@ impl GetDeviceButtonMappingReply {
   }
 
 }
-impl_reply_cookie!(GetDeviceButtonMappingCookie<'s>, mk_reply_get_device_button_mapping_reply, GetDeviceButtonMappingReply, xcb_input_get_device_button_mapping_reply);
+impl_reply_cookie!(GetDeviceButtonMappingCookie<'s>, mk_reply_xcb_input_get_device_button_mapping_reply_t, GetDeviceButtonMappingReply, xcb_input_get_device_button_mapping_reply);
 
 pub fn SetDeviceButtonMapping<'r> (c : &'r Connection,
                                device_id : u8,
@@ -2115,7 +2115,7 @@ impl SetDeviceButtonMappingReply {
   }
 
 }
-impl_reply_cookie!(SetDeviceButtonMappingCookie<'s>, mk_reply_set_device_button_mapping_reply, SetDeviceButtonMappingReply, xcb_input_set_device_button_mapping_reply);
+impl_reply_cookie!(SetDeviceButtonMappingCookie<'s>, mk_reply_xcb_input_set_device_button_mapping_reply_t, SetDeviceButtonMappingReply, xcb_input_set_device_button_mapping_reply);
 
 pub fn QueryDeviceState<'r> (c : &'r Connection,
                          device_id : u8) -> QueryDeviceStateCookie<'r> {
@@ -2140,9 +2140,9 @@ impl QueryDeviceStateReply {
   }
 
 }
-impl_reply_cookie!(QueryDeviceStateCookie<'s>, mk_reply_query_device_state_reply, QueryDeviceStateReply, xcb_input_query_device_state_reply);
+impl_reply_cookie!(QueryDeviceStateCookie<'s>, mk_reply_xcb_input_query_device_state_reply_t, QueryDeviceStateReply, xcb_input_query_device_state_reply);
 
-pub struct InputState {pub base : base::Struct<input_state> }
+pub struct InputState {pub base : base::Struct<xcb_input_input_state_t> }
 
 
 impl InputState {
@@ -2165,7 +2165,7 @@ impl Iterator for InputStateIterator {
     fn next(&mut self) -> Option<InputState> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut input_state_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_input_state_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_input_state_next(iter);
             Some(mem::transmute(*data))
@@ -2173,7 +2173,7 @@ impl Iterator for InputStateIterator {
     }
 }
 
-pub struct KeyState {pub base : base::Struct<key_state> }
+pub struct KeyState {pub base : base::Struct<xcb_input_key_state_t> }
 
 
 impl KeyState {
@@ -2200,7 +2200,7 @@ impl Iterator for KeyStateIterator {
     fn next(&mut self) -> Option<KeyState> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut key_state_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_key_state_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_key_state_next(iter);
             Some(mem::transmute(*data))
@@ -2208,7 +2208,7 @@ impl Iterator for KeyStateIterator {
     }
 }
 
-pub struct ButtonState {pub base : base::Struct<button_state> }
+pub struct ButtonState {pub base : base::Struct<xcb_input_button_state_t> }
 
 
 impl ButtonState {
@@ -2235,7 +2235,7 @@ impl Iterator for ButtonStateIterator {
     fn next(&mut self) -> Option<ButtonState> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut button_state_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_button_state_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_button_state_next(iter);
             Some(mem::transmute(*data))
@@ -2243,7 +2243,7 @@ impl Iterator for ButtonStateIterator {
     }
 }
 
-pub struct ValuatorState {pub base : base::Struct<valuator_state> }
+pub struct ValuatorState {pub base : base::Struct<xcb_input_valuator_state_t> }
 
 
 impl ValuatorState {
@@ -2270,7 +2270,7 @@ impl Iterator for ValuatorStateIterator {
     fn next(&mut self) -> Option<ValuatorState> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut valuator_state_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_valuator_state_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_valuator_state_next(iter);
             Some(mem::transmute(*data))
@@ -2291,13 +2291,13 @@ pub fn SendExtensionEventChecked<'r> (c : &'r Connection,
     let classes_len = classes.len();
     let classes_ptr = classes.as_ptr();
     let cookie = xcb_input_send_extension_event_checked(c.get_raw_conn(),
-        destination as ffi::xproto::window, //1
+        destination as ffi::xproto::xcb_window_t, //1
         device_id as u8, //2
         propagate as u8, //3
         classes_len as u16, //4
         events_len as u8, //5
         events_ptr as *mut c_char, //6
-        classes_ptr as *mut event_class); //7
+        classes_ptr as *mut xcb_input_event_class_t); //7
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -2314,13 +2314,13 @@ pub fn SendExtensionEvent<'r> (c : &'r Connection,
     let classes_len = classes.len();
     let classes_ptr = classes.as_ptr();
     let cookie = xcb_input_send_extension_event(c.get_raw_conn(),
-        destination as ffi::xproto::window, //1
+        destination as ffi::xproto::xcb_window_t, //1
         device_id as u8, //2
         propagate as u8, //3
         classes_len as u16, //4
         events_len as u8, //5
         events_ptr as *mut c_char, //6
-        classes_ptr as *mut event_class); //7
+        classes_ptr as *mut xcb_input_event_class_t); //7
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -2389,7 +2389,7 @@ impl SetDeviceValuatorsReply {
   }
 
 }
-impl_reply_cookie!(SetDeviceValuatorsCookie<'s>, mk_reply_set_device_valuators_reply, SetDeviceValuatorsReply, xcb_input_set_device_valuators_reply);
+impl_reply_cookie!(SetDeviceValuatorsCookie<'s>, mk_reply_xcb_input_set_device_valuators_reply_t, SetDeviceValuatorsReply, xcb_input_set_device_valuators_reply);
 
 pub fn GetDeviceControl<'r> (c : &'r Connection,
                          control_id : u16,
@@ -2418,9 +2418,9 @@ impl GetDeviceControlReply {
   }
 
 }
-impl_reply_cookie!(GetDeviceControlCookie<'s>, mk_reply_get_device_control_reply, GetDeviceControlReply, xcb_input_get_device_control_reply);
+impl_reply_cookie!(GetDeviceControlCookie<'s>, mk_reply_xcb_input_get_device_control_reply_t, GetDeviceControlReply, xcb_input_get_device_control_reply);
 
-pub struct DeviceState {pub base : base::Struct<device_state> }
+pub struct DeviceState {pub base : base::Struct<xcb_input_device_state_t> }
 
 
 impl DeviceState {
@@ -2439,7 +2439,7 @@ impl Iterator for DeviceStateIterator {
     fn next(&mut self) -> Option<DeviceState> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut device_state_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_device_state_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_device_state_next(iter);
             Some(mem::transmute(*data))
@@ -2447,7 +2447,7 @@ impl Iterator for DeviceStateIterator {
     }
 }
 
-pub struct DeviceResolutionState {pub base : base::Struct<device_resolution_state> }
+pub struct DeviceResolutionState {pub base : base::Struct<xcb_input_device_resolution_state_t> }
 
 
 impl DeviceResolutionState {
@@ -2478,7 +2478,7 @@ impl Iterator for DeviceResolutionStateIterator {
     fn next(&mut self) -> Option<DeviceResolutionState> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut device_resolution_state_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_device_resolution_state_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_device_resolution_state_next(iter);
             Some(mem::transmute(*data))
@@ -2486,7 +2486,7 @@ impl Iterator for DeviceResolutionStateIterator {
     }
 }
 
-pub struct DeviceAbsCalibState {pub base : base::Struct<device_abs_calib_state> }
+pub struct DeviceAbsCalibState {pub base : base::Struct<xcb_input_device_abs_calib_state_t> }
 
 
 impl DeviceAbsCalibState {
@@ -2537,7 +2537,7 @@ impl Iterator for DeviceAbsCalibStateIterator {
     fn next(&mut self) -> Option<DeviceAbsCalibState> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut device_abs_calib_state_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_device_abs_calib_state_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_device_abs_calib_state_next(iter);
             Some(mem::transmute(*data))
@@ -2545,7 +2545,7 @@ impl Iterator for DeviceAbsCalibStateIterator {
     }
 }
 
-pub struct DeviceAbsAreaState {pub base : base::Struct<device_abs_area_state> }
+pub struct DeviceAbsAreaState {pub base : base::Struct<xcb_input_device_abs_area_state_t> }
 
 
 impl DeviceAbsAreaState {
@@ -2588,7 +2588,7 @@ impl Iterator for DeviceAbsAreaStateIterator {
     fn next(&mut self) -> Option<DeviceAbsAreaState> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut device_abs_area_state_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_device_abs_area_state_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_device_abs_area_state_next(iter);
             Some(mem::transmute(*data))
@@ -2596,7 +2596,7 @@ impl Iterator for DeviceAbsAreaStateIterator {
     }
 }
 
-pub struct DeviceCoreState {pub base : base::Struct<device_core_state> }
+pub struct DeviceCoreState {pub base : base::Struct<xcb_input_device_core_state_t> }
 
 
 impl DeviceCoreState {
@@ -2623,7 +2623,7 @@ impl Iterator for DeviceCoreStateIterator {
     fn next(&mut self) -> Option<DeviceCoreState> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut device_core_state_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_device_core_state_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_device_core_state_next(iter);
             Some(mem::transmute(*data))
@@ -2631,7 +2631,7 @@ impl Iterator for DeviceCoreStateIterator {
     }
 }
 
-pub struct DeviceEnableState {pub base : base::Struct<device_enable_state> }
+pub struct DeviceEnableState {pub base : base::Struct<xcb_input_device_enable_state_t> }
 
 
 impl DeviceEnableState {
@@ -2654,7 +2654,7 @@ impl Iterator for DeviceEnableStateIterator {
     fn next(&mut self) -> Option<DeviceEnableState> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut device_enable_state_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_device_enable_state_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_device_enable_state_next(iter);
             Some(mem::transmute(*data))
@@ -2662,7 +2662,7 @@ impl Iterator for DeviceEnableStateIterator {
     }
 }
 
-pub struct DeviceCtl {pub base : base::Struct<device_ctl> }
+pub struct DeviceCtl {pub base : base::Struct<xcb_input_device_ctl_t> }
 
 
 impl DeviceCtl {
@@ -2681,7 +2681,7 @@ impl Iterator for DeviceCtlIterator {
     fn next(&mut self) -> Option<DeviceCtl> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut device_ctl_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_device_ctl_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_device_ctl_next(iter);
             Some(mem::transmute(*data))
@@ -2689,7 +2689,7 @@ impl Iterator for DeviceCtlIterator {
     }
 }
 
-pub struct DeviceResolutionCtl {pub base : base::Struct<device_resolution_ctl> }
+pub struct DeviceResolutionCtl {pub base : base::Struct<xcb_input_device_resolution_ctl_t> }
 
 
 impl DeviceResolutionCtl {
@@ -2716,7 +2716,7 @@ impl Iterator for DeviceResolutionCtlIterator {
     fn next(&mut self) -> Option<DeviceResolutionCtl> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut device_resolution_ctl_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_device_resolution_ctl_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_device_resolution_ctl_next(iter);
             Some(mem::transmute(*data))
@@ -2724,7 +2724,7 @@ impl Iterator for DeviceResolutionCtlIterator {
     }
 }
 
-pub struct DeviceAbsCalibCtl {pub base : base::Struct<device_abs_calib_ctl> }
+pub struct DeviceAbsCalibCtl {pub base : base::Struct<xcb_input_device_abs_calib_ctl_t> }
 
 
 impl DeviceAbsCalibCtl {
@@ -2775,7 +2775,7 @@ impl Iterator for DeviceAbsCalibCtlIterator {
     fn next(&mut self) -> Option<DeviceAbsCalibCtl> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut device_abs_calib_ctl_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_device_abs_calib_ctl_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_device_abs_calib_ctl_next(iter);
             Some(mem::transmute(*data))
@@ -2783,7 +2783,7 @@ impl Iterator for DeviceAbsCalibCtlIterator {
     }
 }
 
-pub struct DeviceAbsAreaCtrl {pub base : base::Struct<device_abs_area_ctrl> }
+pub struct DeviceAbsAreaCtrl {pub base : base::Struct<xcb_input_device_abs_area_ctrl_t> }
 
 
 impl DeviceAbsAreaCtrl {
@@ -2826,7 +2826,7 @@ impl Iterator for DeviceAbsAreaCtrlIterator {
     fn next(&mut self) -> Option<DeviceAbsAreaCtrl> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut device_abs_area_ctrl_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_device_abs_area_ctrl_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_device_abs_area_ctrl_next(iter);
             Some(mem::transmute(*data))
@@ -2834,7 +2834,7 @@ impl Iterator for DeviceAbsAreaCtrlIterator {
     }
 }
 
-pub struct DeviceCoreCtrl {pub base : base::Struct<device_core_ctrl> }
+pub struct DeviceCoreCtrl {pub base : base::Struct<xcb_input_device_core_ctrl_t> }
 
 
 impl DeviceCoreCtrl {
@@ -2857,7 +2857,7 @@ impl Iterator for DeviceCoreCtrlIterator {
     fn next(&mut self) -> Option<DeviceCoreCtrl> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut device_core_ctrl_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_device_core_ctrl_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_device_core_ctrl_next(iter);
             Some(mem::transmute(*data))
@@ -2865,7 +2865,7 @@ impl Iterator for DeviceCoreCtrlIterator {
     }
 }
 
-pub struct DeviceEnableCtrl {pub base : base::Struct<device_enable_ctrl> }
+pub struct DeviceEnableCtrl {pub base : base::Struct<xcb_input_device_enable_ctrl_t> }
 
 
 impl DeviceEnableCtrl {
@@ -2888,7 +2888,7 @@ impl Iterator for DeviceEnableCtrlIterator {
     fn next(&mut self) -> Option<DeviceEnableCtrl> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut device_enable_ctrl_iterator = mem::transmute(self);
+            let iter: *mut xcb_input_device_enable_ctrl_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_input_device_enable_ctrl_next(iter);
             Some(mem::transmute(*data))
@@ -2924,13 +2924,13 @@ impl DeviceValuatorEvent {
          first_valuator : u8,
          valuators : [i32; 6]) -> DeviceValuatorEvent {
     unsafe {
-      let raw = malloc(32 as size_t) as *mut device_valuator_event;
+      let raw = malloc(32 as size_t) as *mut xcb_input_device_valuator_event_t;
       (*raw).device_id = device_id;
       (*raw).device_state = device_state;
       (*raw).num_valuators = num_valuators;
       (*raw).first_valuator = first_valuator;
       (*raw).valuators = valuators;
-      DeviceValuatorEvent { base : Event { event : raw as *mut device_valuator_event }}
+      DeviceValuatorEvent { base : Event { event : raw as *mut xcb_input_device_valuator_event_t }}
     }
   }
 }
@@ -2997,7 +2997,7 @@ impl DeviceKeyPressEvent {
          same_screen : u8,
          device_id : u8) -> DeviceKeyPressEvent {
     unsafe {
-      let raw = malloc(32 as size_t) as *mut device_key_press_event;
+      let raw = malloc(32 as size_t) as *mut xcb_input_device_key_press_event_t;
       (*raw).detail = detail;
       (*raw).time = time;
       (*raw).root = root;
@@ -3010,7 +3010,7 @@ impl DeviceKeyPressEvent {
       (*raw).state = state;
       (*raw).same_screen = same_screen;
       (*raw).device_id = device_id;
-      DeviceKeyPressEvent { base : Event { event : raw as *mut device_key_press_event }}
+      DeviceKeyPressEvent { base : Event { event : raw as *mut xcb_input_device_key_press_event_t }}
     }
   }
 }
@@ -3042,13 +3042,13 @@ impl FocusInEvent {
          mode : u8,
          device_id : u8) -> FocusInEvent {
     unsafe {
-      let raw = malloc(32 as size_t) as *mut focus_in_event;
+      let raw = malloc(32 as size_t) as *mut xcb_input_focus_in_event_t;
       (*raw).detail = detail;
       (*raw).time = time;
       (*raw).window = window;
       (*raw).mode = mode;
       (*raw).device_id = device_id;
-      FocusInEvent { base : Event { event : raw as *mut focus_in_event }}
+      FocusInEvent { base : Event { event : raw as *mut xcb_input_focus_in_event_t }}
     }
   }
 }
@@ -3100,7 +3100,7 @@ impl DeviceStateNotifyEvent {
          keys : [u8; 4],
          valuators : [u32; 3]) -> DeviceStateNotifyEvent {
     unsafe {
-      let raw = malloc(32 as size_t) as *mut device_state_notify_event;
+      let raw = malloc(32 as size_t) as *mut xcb_input_device_state_notify_event_t;
       (*raw).device_id = device_id;
       (*raw).time = time;
       (*raw).num_keys = num_keys;
@@ -3110,7 +3110,7 @@ impl DeviceStateNotifyEvent {
       (*raw).buttons = buttons;
       (*raw).keys = keys;
       (*raw).valuators = valuators;
-      DeviceStateNotifyEvent { base : Event { event : raw as *mut device_state_notify_event }}
+      DeviceStateNotifyEvent { base : Event { event : raw as *mut xcb_input_device_state_notify_event_t }}
     }
   }
 }
@@ -3142,13 +3142,13 @@ impl DeviceMappingNotifyEvent {
          count : u8,
          time : xproto::Timestamp) -> DeviceMappingNotifyEvent {
     unsafe {
-      let raw = malloc(32 as size_t) as *mut device_mapping_notify_event;
+      let raw = malloc(32 as size_t) as *mut xcb_input_device_mapping_notify_event_t;
       (*raw).device_id = device_id;
       (*raw).request = request;
       (*raw).first_keycode = first_keycode;
       (*raw).count = count;
       (*raw).time = time;
-      DeviceMappingNotifyEvent { base : Event { event : raw as *mut device_mapping_notify_event }}
+      DeviceMappingNotifyEvent { base : Event { event : raw as *mut xcb_input_device_mapping_notify_event_t }}
     }
   }
 }
@@ -3170,11 +3170,11 @@ impl ChangeDeviceNotifyEvent {
          time : xproto::Timestamp,
          request : u8) -> ChangeDeviceNotifyEvent {
     unsafe {
-      let raw = malloc(32 as size_t) as *mut change_device_notify_event;
+      let raw = malloc(32 as size_t) as *mut xcb_input_change_device_notify_event_t;
       (*raw).device_id = device_id;
       (*raw).time = time;
       (*raw).request = request;
-      ChangeDeviceNotifyEvent { base : Event { event : raw as *mut change_device_notify_event }}
+      ChangeDeviceNotifyEvent { base : Event { event : raw as *mut xcb_input_change_device_notify_event_t }}
     }
   }
 }
@@ -3191,10 +3191,10 @@ impl DeviceKeyStateNotifyEvent {
   pub fn new(device_id : u8,
          keys : [u8; 28]) -> DeviceKeyStateNotifyEvent {
     unsafe {
-      let raw = malloc(32 as size_t) as *mut device_key_state_notify_event;
+      let raw = malloc(32 as size_t) as *mut xcb_input_device_key_state_notify_event_t;
       (*raw).device_id = device_id;
       (*raw).keys = keys;
-      DeviceKeyStateNotifyEvent { base : Event { event : raw as *mut device_key_state_notify_event }}
+      DeviceKeyStateNotifyEvent { base : Event { event : raw as *mut xcb_input_device_key_state_notify_event_t }}
     }
   }
 }
@@ -3211,10 +3211,10 @@ impl DeviceButtonStateNotifyEvent {
   pub fn new(device_id : u8,
          buttons : [u8; 28]) -> DeviceButtonStateNotifyEvent {
     unsafe {
-      let raw = malloc(32 as size_t) as *mut device_button_state_notify_event;
+      let raw = malloc(32 as size_t) as *mut xcb_input_device_button_state_notify_event_t;
       (*raw).device_id = device_id;
       (*raw).buttons = buttons;
-      DeviceButtonStateNotifyEvent { base : Event { event : raw as *mut device_button_state_notify_event }}
+      DeviceButtonStateNotifyEvent { base : Event { event : raw as *mut xcb_input_device_button_state_notify_event_t }}
     }
   }
 }
@@ -3241,12 +3241,12 @@ impl DevicePresenceNotifyEvent {
          device_id : u8,
          control : u16) -> DevicePresenceNotifyEvent {
     unsafe {
-      let raw = malloc(32 as size_t) as *mut device_presence_notify_event;
+      let raw = malloc(32 as size_t) as *mut xcb_input_device_presence_notify_event_t;
       (*raw).time = time;
       (*raw).devchange = devchange;
       (*raw).device_id = device_id;
       (*raw).control = control;
-      DevicePresenceNotifyEvent { base : Event { event : raw as *mut device_presence_notify_event }}
+      DevicePresenceNotifyEvent { base : Event { event : raw as *mut xcb_input_device_presence_notify_event_t }}
     }
   }
 }

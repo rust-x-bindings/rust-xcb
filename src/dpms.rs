@@ -17,24 +17,24 @@ use ffi::dpms::*;
 use std::option::Option;
 use std::iter::Iterator;
 
-pub struct  GetVersionCookie<'s> { pub base : base::Cookie<'s, get_version_cookie> }
+pub struct  GetVersionCookie<'s> { pub base : base::Cookie<'s, xcb_dpms_get_version_cookie_t> }
 
 /** Opcode for xcb_dpms_get_version. */
 pub static XCB_DPMS_GET_VERSION : u8 = 0;
-pub struct GetVersionReply { base:  base::Reply<get_version_reply> }
-fn mk_reply_get_version_reply(reply:*mut get_version_reply) -> GetVersionReply { GetVersionReply { base : base::mk_reply(reply) } }
-pub struct  CapableCookie<'s> { pub base : base::Cookie<'s, capable_cookie> }
+pub struct GetVersionReply { base:  base::Reply<xcb_dpms_get_version_reply_t> }
+fn mk_reply_xcb_dpms_get_version_reply_t(reply:*mut xcb_dpms_get_version_reply_t) -> GetVersionReply { GetVersionReply { base : base::mk_reply(reply) } }
+pub struct  CapableCookie<'s> { pub base : base::Cookie<'s, xcb_dpms_capable_cookie_t> }
 
 /** Opcode for xcb_dpms_capable. */
 pub static XCB_DPMS_CAPABLE : u8 = 1;
-pub struct CapableReply { base:  base::Reply<capable_reply> }
-fn mk_reply_capable_reply(reply:*mut capable_reply) -> CapableReply { CapableReply { base : base::mk_reply(reply) } }
-pub struct  GetTimeoutsCookie<'s> { pub base : base::Cookie<'s, get_timeouts_cookie> }
+pub struct CapableReply { base:  base::Reply<xcb_dpms_capable_reply_t> }
+fn mk_reply_xcb_dpms_capable_reply_t(reply:*mut xcb_dpms_capable_reply_t) -> CapableReply { CapableReply { base : base::mk_reply(reply) } }
+pub struct  GetTimeoutsCookie<'s> { pub base : base::Cookie<'s, xcb_dpms_get_timeouts_cookie_t> }
 
 /** Opcode for xcb_dpms_get_timeouts. */
 pub static XCB_DPMS_GET_TIMEOUTS : u8 = 2;
-pub struct GetTimeoutsReply { base:  base::Reply<get_timeouts_reply> }
-fn mk_reply_get_timeouts_reply(reply:*mut get_timeouts_reply) -> GetTimeoutsReply { GetTimeoutsReply { base : base::mk_reply(reply) } }
+pub struct GetTimeoutsReply { base:  base::Reply<xcb_dpms_get_timeouts_reply_t> }
+fn mk_reply_xcb_dpms_get_timeouts_reply_t(reply:*mut xcb_dpms_get_timeouts_reply_t) -> GetTimeoutsReply { GetTimeoutsReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_dpms_set_timeouts. */
 pub static XCB_DPMS_SET_TIMEOUTS : u8 = 3;
 /** Opcode for xcb_dpms_enable. */
@@ -42,20 +42,20 @@ pub static XCB_DPMS_ENABLE : u8 = 4;
 /** Opcode for xcb_dpms_disable. */
 pub static XCB_DPMS_DISABLE : u8 = 5;
 
-pub type dpms_mode = c_uint;//{
-    pub static XCB_DPMS_DPMS_MODE_ON : dpms_mode = 1;
-    pub static XCB_DPMS_DPMS_MODE_STANDBY : dpms_mode = 2;
-    pub static XCB_DPMS_DPMS_MODE_SUSPEND : dpms_mode = 3;
-    pub static XCB_DPMS_DPMS_MODE_OFF : dpms_mode = 4;
+pub type xcb_dpms_dpms_mode_t = c_uint;//{
+    pub static XCB_DPMS_DPMS_MODE_ON : xcb_dpms_dpms_mode_t = 1;
+    pub static XCB_DPMS_DPMS_MODE_STANDBY : xcb_dpms_dpms_mode_t = 2;
+    pub static XCB_DPMS_DPMS_MODE_SUSPEND : xcb_dpms_dpms_mode_t = 3;
+    pub static XCB_DPMS_DPMS_MODE_OFF : xcb_dpms_dpms_mode_t = 4;
 //}
 /** Opcode for xcb_dpms_force_level. */
 pub static XCB_DPMS_FORCE_LEVEL : u8 = 6;
-pub struct  InfoCookie<'s> { pub base : base::Cookie<'s, info_cookie> }
+pub struct  InfoCookie<'s> { pub base : base::Cookie<'s, xcb_dpms_info_cookie_t> }
 
 /** Opcode for xcb_dpms_info. */
 pub static XCB_DPMS_INFO : u8 = 7;
-pub struct InfoReply { base:  base::Reply<info_reply> }
-fn mk_reply_info_reply(reply:*mut info_reply) -> InfoReply { InfoReply { base : base::mk_reply(reply) } }
+pub struct InfoReply { base:  base::Reply<xcb_dpms_info_reply_t> }
+fn mk_reply_xcb_dpms_info_reply_t(reply:*mut xcb_dpms_info_reply_t) -> InfoReply { InfoReply { base : base::mk_reply(reply) } }
 pub fn GetVersion<'r> (c : &'r Connection,
                    client_major_version : u16,
                    client_minor_version : u16) -> GetVersionCookie<'r> {
@@ -87,7 +87,7 @@ impl GetVersionReply {
   }
 
 }
-impl_reply_cookie!(GetVersionCookie<'s>, mk_reply_get_version_reply, GetVersionReply, xcb_dpms_get_version_reply);
+impl_reply_cookie!(GetVersionCookie<'s>, mk_reply_xcb_dpms_get_version_reply_t, GetVersionReply, xcb_dpms_get_version_reply);
 
 pub fn Capable<'r> (c : &'r Connection) -> CapableCookie<'r> {
   unsafe {
@@ -108,7 +108,7 @@ impl CapableReply {
   }
 
 }
-impl_reply_cookie!(CapableCookie<'s>, mk_reply_capable_reply, CapableReply, xcb_dpms_capable_reply);
+impl_reply_cookie!(CapableCookie<'s>, mk_reply_xcb_dpms_capable_reply_t, CapableReply, xcb_dpms_capable_reply);
 
 pub fn GetTimeouts<'r> (c : &'r Connection) -> GetTimeoutsCookie<'r> {
   unsafe {
@@ -137,7 +137,7 @@ impl GetTimeoutsReply {
   }
 
 }
-impl_reply_cookie!(GetTimeoutsCookie<'s>, mk_reply_get_timeouts_reply, GetTimeoutsReply, xcb_dpms_get_timeouts_reply);
+impl_reply_cookie!(GetTimeoutsCookie<'s>, mk_reply_xcb_dpms_get_timeouts_reply_t, GetTimeoutsReply, xcb_dpms_get_timeouts_reply);
 
 pub fn SetTimeoutsChecked<'r> (c : &'r Connection,
                            standby_timeout : u16,
@@ -226,6 +226,6 @@ impl InfoReply {
   }
 
 }
-impl_reply_cookie!(InfoCookie<'s>, mk_reply_info_reply, InfoReply, xcb_dpms_info_reply);
+impl_reply_cookie!(InfoCookie<'s>, mk_reply_xcb_dpms_info_reply_t, InfoReply, xcb_dpms_info_reply);
 
 

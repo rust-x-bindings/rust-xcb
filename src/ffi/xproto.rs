@@ -11,240 +11,240 @@ use libc::*;
 use ffi;
 
 #[repr(C)]
-pub struct char2b {
+pub struct xcb_char2b_t {
      pub byte1 :   u8,
      pub byte2 :   u8
 }
 
-impl Copy for char2b {}
-impl Clone for char2b {
-    fn clone(&self) -> char2b { *self }
+impl Copy for xcb_char2b_t {}
+impl Clone for xcb_char2b_t {
+    fn clone(&self) -> xcb_char2b_t { *self }
 }
 /**
- * @brief char2b_iterator
+ * @brief xcb_char2b_iterator_t
  **/
 #[repr(C)]
-pub struct char2b_iterator {
-    pub data : *mut char2b,
+pub struct xcb_char2b_iterator_t {
+    pub data : *mut xcb_char2b_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
-pub type window = u32;
+pub type xcb_window_t = u32;
 /**
- * @brief window_iterator
+ * @brief xcb_window_iterator_t
  **/
 #[repr(C)]
-pub struct window_iterator {
-    pub data : *mut window,
+pub struct xcb_window_iterator_t {
+    pub data : *mut xcb_window_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
-pub type pixmap = u32;
+pub type xcb_pixmap_t = u32;
 /**
- * @brief pixmap_iterator
+ * @brief xcb_pixmap_iterator_t
  **/
 #[repr(C)]
-pub struct pixmap_iterator {
-    pub data : *mut pixmap,
+pub struct xcb_pixmap_iterator_t {
+    pub data : *mut xcb_pixmap_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
-pub type cursor = u32;
+pub type xcb_cursor_t = u32;
 /**
- * @brief cursor_iterator
+ * @brief xcb_cursor_iterator_t
  **/
 #[repr(C)]
-pub struct cursor_iterator {
-    pub data : *mut cursor,
+pub struct xcb_cursor_iterator_t {
+    pub data : *mut xcb_cursor_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
-pub type font = u32;
+pub type xcb_font_t = u32;
 /**
- * @brief font_iterator
+ * @brief xcb_font_iterator_t
  **/
 #[repr(C)]
-pub struct font_iterator {
-    pub data : *mut font,
+pub struct xcb_font_iterator_t {
+    pub data : *mut xcb_font_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
-pub type gcontext = u32;
+pub type xcb_gcontext_t = u32;
 /**
- * @brief gcontext_iterator
+ * @brief xcb_gcontext_iterator_t
  **/
 #[repr(C)]
-pub struct gcontext_iterator {
-    pub data : *mut gcontext,
+pub struct xcb_gcontext_iterator_t {
+    pub data : *mut xcb_gcontext_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
-pub type colormap = u32;
+pub type xcb_colormap_t = u32;
 /**
- * @brief colormap_iterator
+ * @brief xcb_colormap_iterator_t
  **/
 #[repr(C)]
-pub struct colormap_iterator {
-    pub data : *mut colormap,
+pub struct xcb_colormap_iterator_t {
+    pub data : *mut xcb_colormap_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
-pub type atom = u32;
+pub type xcb_atom_t = u32;
 /**
- * @brief atom_iterator
+ * @brief xcb_atom_iterator_t
  **/
 #[repr(C)]
-pub struct atom_iterator {
-    pub data : *mut atom,
+pub struct xcb_atom_iterator_t {
+    pub data : *mut xcb_atom_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
-pub type drawable = u32;
+pub type xcb_drawable_t = u32;
 /**
- * @brief drawable_iterator
+ * @brief xcb_drawable_iterator_t
  **/
 #[repr(C)]
-pub struct drawable_iterator {
-    pub data : *mut drawable,
+pub struct xcb_drawable_iterator_t {
+    pub data : *mut xcb_drawable_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
-pub type fontable = u32;
+pub type xcb_fontable_t = u32;
 /**
- * @brief fontable_iterator
+ * @brief xcb_fontable_iterator_t
  **/
 #[repr(C)]
-pub struct fontable_iterator {
-    pub data : *mut fontable,
+pub struct xcb_fontable_iterator_t {
+    pub data : *mut xcb_fontable_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
-pub type visualid = u32;
+pub type xcb_visualid_t = u32;
 /**
- * @brief visualid_iterator
+ * @brief xcb_visualid_iterator_t
  **/
 #[repr(C)]
-pub struct visualid_iterator {
-    pub data : *mut visualid,
+pub struct xcb_visualid_iterator_t {
+    pub data : *mut xcb_visualid_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
-pub type timestamp = u32;
+pub type xcb_timestamp_t = u32;
 /**
- * @brief timestamp_iterator
+ * @brief xcb_timestamp_iterator_t
  **/
 #[repr(C)]
-pub struct timestamp_iterator {
-    pub data : *mut timestamp,
+pub struct xcb_timestamp_iterator_t {
+    pub data : *mut xcb_timestamp_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
-pub type keysym = u32;
+pub type xcb_keysym_t = u32;
 /**
- * @brief keysym_iterator
+ * @brief xcb_keysym_iterator_t
  **/
 #[repr(C)]
-pub struct keysym_iterator {
-    pub data : *mut keysym,
+pub struct xcb_keysym_iterator_t {
+    pub data : *mut xcb_keysym_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
-pub type keycode = u8;
+pub type xcb_keycode_t = u8;
 /**
- * @brief keycode_iterator
+ * @brief xcb_keycode_iterator_t
  **/
 #[repr(C)]
-pub struct keycode_iterator {
-    pub data : *mut keycode,
+pub struct xcb_keycode_iterator_t {
+    pub data : *mut xcb_keycode_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
-pub type button = u8;
+pub type xcb_button_t = u8;
 /**
- * @brief button_iterator
+ * @brief xcb_button_iterator_t
  **/
 #[repr(C)]
-pub struct button_iterator {
-    pub data : *mut button,
+pub struct xcb_button_iterator_t {
+    pub data : *mut xcb_button_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct point {
+pub struct xcb_point_t {
      pub x :   i16,
      pub y :   i16
 }
 
-impl Copy for point {}
-impl Clone for point {
-    fn clone(&self) -> point { *self }
+impl Copy for xcb_point_t {}
+impl Clone for xcb_point_t {
+    fn clone(&self) -> xcb_point_t { *self }
 }
 /**
- * @brief point_iterator
+ * @brief xcb_point_iterator_t
  **/
 #[repr(C)]
-pub struct point_iterator {
-    pub data : *mut point,
+pub struct xcb_point_iterator_t {
+    pub data : *mut xcb_point_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct rectangle {
+pub struct xcb_rectangle_t {
      pub x :        i16,
      pub y :        i16,
      pub width :    u16,
      pub height :   u16
 }
 
-impl Copy for rectangle {}
-impl Clone for rectangle {
-    fn clone(&self) -> rectangle { *self }
+impl Copy for xcb_rectangle_t {}
+impl Clone for xcb_rectangle_t {
+    fn clone(&self) -> xcb_rectangle_t { *self }
 }
 /**
- * @brief rectangle_iterator
+ * @brief xcb_rectangle_iterator_t
  **/
 #[repr(C)]
-pub struct rectangle_iterator {
-    pub data : *mut rectangle,
+pub struct xcb_rectangle_iterator_t {
+    pub data : *mut xcb_rectangle_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct arc {
+pub struct xcb_arc_t {
      pub x :        i16,
      pub y :        i16,
      pub width :    u16,
@@ -253,47 +253,47 @@ pub struct arc {
      pub angle2 :   i16
 }
 
-impl Copy for arc {}
-impl Clone for arc {
-    fn clone(&self) -> arc { *self }
+impl Copy for xcb_arc_t {}
+impl Clone for xcb_arc_t {
+    fn clone(&self) -> xcb_arc_t { *self }
 }
 /**
- * @brief arc_iterator
+ * @brief xcb_arc_iterator_t
  **/
 #[repr(C)]
-pub struct arc_iterator {
-    pub data : *mut arc,
+pub struct xcb_arc_iterator_t {
+    pub data : *mut xcb_arc_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct format {
+pub struct xcb_format_t {
      pub depth :            u8,
      pub bits_per_pixel :   u8,
      pub scanline_pad :     u8,
      pub pad0 :             [u8; 5]
 }
 
-impl Copy for format {}
-impl Clone for format {
-    fn clone(&self) -> format { *self }
+impl Copy for xcb_format_t {}
+impl Clone for xcb_format_t {
+    fn clone(&self) -> xcb_format_t { *self }
 }
 /**
- * @brief format_iterator
+ * @brief xcb_format_iterator_t
  **/
 #[repr(C)]
-pub struct format_iterator {
-    pub data : *mut format,
+pub struct xcb_format_iterator_t {
+    pub data : *mut xcb_format_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct visualtype {
-     pub visual_id :            visualid,
+pub struct xcb_visualtype_t {
+     pub visual_id :            xcb_visualid_t,
      pub class :                u8,
      pub bits_per_rgb_value :   u8,
      pub colormap_entries :     u16,
@@ -303,48 +303,48 @@ pub struct visualtype {
      pub pad0 :                 [u8; 4]
 }
 
-impl Copy for visualtype {}
-impl Clone for visualtype {
-    fn clone(&self) -> visualtype { *self }
+impl Copy for xcb_visualtype_t {}
+impl Clone for xcb_visualtype_t {
+    fn clone(&self) -> xcb_visualtype_t { *self }
 }
 /**
- * @brief visualtype_iterator
+ * @brief xcb_visualtype_iterator_t
  **/
 #[repr(C)]
-pub struct visualtype_iterator {
-    pub data : *mut visualtype,
+pub struct xcb_visualtype_iterator_t {
+    pub data : *mut xcb_visualtype_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct depth {
+pub struct xcb_depth_t {
      pub depth :         u8,
      pub pad0 :          u8,
      pub visuals_len :   u16,
      pub pad1 :          [u8; 4]
 }
 
-impl Copy for depth {}
-impl Clone for depth {
-    fn clone(&self) -> depth { *self }
+impl Copy for xcb_depth_t {}
+impl Clone for xcb_depth_t {
+    fn clone(&self) -> xcb_depth_t { *self }
 }
 /**
- * @brief depth_iterator
+ * @brief xcb_depth_iterator_t
  **/
 #[repr(C)]
-pub struct depth_iterator {
-    pub data : *mut depth,
+pub struct xcb_depth_iterator_t {
+    pub data : *mut xcb_depth_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct screen {
-     pub root :                    window,
-     pub default_colormap :        colormap,
+pub struct xcb_screen_t {
+     pub root :                    xcb_window_t,
+     pub default_colormap :        xcb_colormap_t,
      pub white_pixel :             u32,
      pub black_pixel :             u32,
      pub current_input_masks :     u32,
@@ -354,30 +354,30 @@ pub struct screen {
      pub height_in_millimeters :   u16,
      pub min_installed_maps :      u16,
      pub max_installed_maps :      u16,
-     pub root_visual :             visualid,
+     pub root_visual :             xcb_visualid_t,
      pub backing_stores :          u8,
      pub save_unders :             u8,
      pub root_depth :              u8,
      pub allowed_depths_len :      u8
 }
 
-impl Copy for screen {}
-impl Clone for screen {
-    fn clone(&self) -> screen { *self }
+impl Copy for xcb_screen_t {}
+impl Clone for xcb_screen_t {
+    fn clone(&self) -> xcb_screen_t { *self }
 }
 /**
- * @brief screen_iterator
+ * @brief xcb_screen_iterator_t
  **/
 #[repr(C)]
-pub struct screen_iterator {
-    pub data : *mut screen,
+pub struct xcb_screen_iterator_t {
+    pub data : *mut xcb_screen_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct setup_request {
+pub struct xcb_setup_request_t {
      pub byte_order :                        u8,
      pub pad0 :                              u8,
      pub protocol_major_version :            u16,
@@ -387,23 +387,23 @@ pub struct setup_request {
      pub pad1 :                              [u8; 2]
 }
 
-impl Copy for setup_request {}
-impl Clone for setup_request {
-    fn clone(&self) -> setup_request { *self }
+impl Copy for xcb_setup_request_t {}
+impl Clone for xcb_setup_request_t {
+    fn clone(&self) -> xcb_setup_request_t { *self }
 }
 /**
- * @brief setup_request_iterator
+ * @brief xcb_setup_request_iterator_t
  **/
 #[repr(C)]
-pub struct setup_request_iterator {
-    pub data : *mut setup_request,
+pub struct xcb_setup_request_iterator_t {
+    pub data : *mut xcb_setup_request_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct setup_failed {
+pub struct xcb_setup_failed_t {
      pub status :                   u8,
      pub reason_len :               u8,
      pub protocol_major_version :   u16,
@@ -411,45 +411,45 @@ pub struct setup_failed {
      pub length :                   u16
 }
 
-impl Copy for setup_failed {}
-impl Clone for setup_failed {
-    fn clone(&self) -> setup_failed { *self }
+impl Copy for xcb_setup_failed_t {}
+impl Clone for xcb_setup_failed_t {
+    fn clone(&self) -> xcb_setup_failed_t { *self }
 }
 /**
- * @brief setup_failed_iterator
+ * @brief xcb_setup_failed_iterator_t
  **/
 #[repr(C)]
-pub struct setup_failed_iterator {
-    pub data : *mut setup_failed,
+pub struct xcb_setup_failed_iterator_t {
+    pub data : *mut xcb_setup_failed_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct setup_authenticate {
+pub struct xcb_setup_authenticate_t {
      pub status :   u8,
      pub pad0 :     [u8; 5],
      pub length :   u16
 }
 
-impl Copy for setup_authenticate {}
-impl Clone for setup_authenticate {
-    fn clone(&self) -> setup_authenticate { *self }
+impl Copy for xcb_setup_authenticate_t {}
+impl Clone for xcb_setup_authenticate_t {
+    fn clone(&self) -> xcb_setup_authenticate_t { *self }
 }
 /**
- * @brief setup_authenticate_iterator
+ * @brief xcb_setup_authenticate_iterator_t
  **/
 #[repr(C)]
-pub struct setup_authenticate_iterator {
-    pub data : *mut setup_authenticate,
+pub struct xcb_setup_authenticate_iterator_t {
+    pub data : *mut xcb_setup_authenticate_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct setup {
+pub struct xcb_setup_t {
      pub status :                        u8,
      pub pad0 :                          u8,
      pub protocol_major_version :        u16,
@@ -467,26 +467,26 @@ pub struct setup {
      pub bitmap_format_bit_order :       u8,
      pub bitmap_format_scanline_unit :   u8,
      pub bitmap_format_scanline_pad :    u8,
-     pub min_keycode :                   keycode,
-     pub max_keycode :                   keycode,
+     pub min_keycode :                   xcb_keycode_t,
+     pub max_keycode :                   xcb_keycode_t,
      pub pad1 :                          [u8; 4]
 }
 
-impl Copy for setup {}
-impl Clone for setup {
-    fn clone(&self) -> setup { *self }
+impl Copy for xcb_setup_t {}
+impl Clone for xcb_setup_t {
+    fn clone(&self) -> xcb_setup_t { *self }
 }
 
 
 #[repr(C)]
-pub struct key_press_event {
+pub struct xcb_key_press_event_t {
      pub response_type :   u8,
-     pub detail :          keycode,
+     pub detail :          xcb_keycode_t,
      pub sequence :        u16,
-     pub time :            timestamp,
-     pub root :            window,
-     pub event :           window,
-     pub child :           window,
+     pub time :            xcb_timestamp_t,
+     pub root :            xcb_window_t,
+     pub event :           xcb_window_t,
+     pub child :           xcb_window_t,
      pub root_x :          i16,
      pub root_y :          i16,
      pub event_x :         i16,
@@ -496,24 +496,24 @@ pub struct key_press_event {
      pub pad0 :            u8
 }
 
-impl Copy for key_press_event {}
-impl Clone for key_press_event {
-    fn clone(&self) -> key_press_event { *self }
+impl Copy for xcb_key_press_event_t {}
+impl Clone for xcb_key_press_event_t {
+    fn clone(&self) -> xcb_key_press_event_t { *self }
 }
 
 
-pub type key_release_event = key_press_event;
+pub type xcb_key_release_event_t = xcb_key_press_event_t;
 
 
 #[repr(C)]
-pub struct button_press_event {
+pub struct xcb_button_press_event_t {
      pub response_type :   u8,
-     pub detail :          button,
+     pub detail :          xcb_button_t,
      pub sequence :        u16,
-     pub time :            timestamp,
-     pub root :            window,
-     pub event :           window,
-     pub child :           window,
+     pub time :            xcb_timestamp_t,
+     pub root :            xcb_window_t,
+     pub event :           xcb_window_t,
+     pub child :           xcb_window_t,
      pub root_x :          i16,
      pub root_y :          i16,
      pub event_x :         i16,
@@ -523,24 +523,24 @@ pub struct button_press_event {
      pub pad0 :            u8
 }
 
-impl Copy for button_press_event {}
-impl Clone for button_press_event {
-    fn clone(&self) -> button_press_event { *self }
+impl Copy for xcb_button_press_event_t {}
+impl Clone for xcb_button_press_event_t {
+    fn clone(&self) -> xcb_button_press_event_t { *self }
 }
 
 
-pub type button_release_event = button_press_event;
+pub type xcb_button_release_event_t = xcb_button_press_event_t;
 
 
 #[repr(C)]
-pub struct motion_notify_event {
+pub struct xcb_motion_notify_event_t {
      pub response_type :   u8,
      pub detail :          u8,
      pub sequence :        u16,
-     pub time :            timestamp,
-     pub root :            window,
-     pub event :           window,
-     pub child :           window,
+     pub time :            xcb_timestamp_t,
+     pub root :            xcb_window_t,
+     pub event :           xcb_window_t,
+     pub child :           xcb_window_t,
      pub root_x :          i16,
      pub root_y :          i16,
      pub event_x :         i16,
@@ -550,21 +550,21 @@ pub struct motion_notify_event {
      pub pad0 :            u8
 }
 
-impl Copy for motion_notify_event {}
-impl Clone for motion_notify_event {
-    fn clone(&self) -> motion_notify_event { *self }
+impl Copy for xcb_motion_notify_event_t {}
+impl Clone for xcb_motion_notify_event_t {
+    fn clone(&self) -> xcb_motion_notify_event_t { *self }
 }
 
 
 #[repr(C)]
-pub struct enter_notify_event {
+pub struct xcb_enter_notify_event_t {
      pub response_type :       u8,
      pub detail :              u8,
      pub sequence :            u16,
-     pub time :                timestamp,
-     pub root :                window,
-     pub event :               window,
-     pub child :               window,
+     pub time :                xcb_timestamp_t,
+     pub root :                xcb_window_t,
+     pub event :               xcb_window_t,
+     pub child :               xcb_window_t,
      pub root_x :              i16,
      pub root_y :              i16,
      pub event_x :             i16,
@@ -574,52 +574,52 @@ pub struct enter_notify_event {
      pub same_screen_focus :   u8
 }
 
-impl Copy for enter_notify_event {}
-impl Clone for enter_notify_event {
-    fn clone(&self) -> enter_notify_event { *self }
+impl Copy for xcb_enter_notify_event_t {}
+impl Clone for xcb_enter_notify_event_t {
+    fn clone(&self) -> xcb_enter_notify_event_t { *self }
 }
 
 
-pub type leave_notify_event = enter_notify_event;
+pub type xcb_leave_notify_event_t = xcb_enter_notify_event_t;
 
 
 #[repr(C)]
-pub struct focus_in_event {
+pub struct xcb_focus_in_event_t {
      pub response_type :   u8,
      pub detail :          u8,
      pub sequence :        u16,
-     pub event :           window,
+     pub event :           xcb_window_t,
      pub mode :            u8,
      pub pad0 :            [u8; 3]
 }
 
-impl Copy for focus_in_event {}
-impl Clone for focus_in_event {
-    fn clone(&self) -> focus_in_event { *self }
+impl Copy for xcb_focus_in_event_t {}
+impl Clone for xcb_focus_in_event_t {
+    fn clone(&self) -> xcb_focus_in_event_t { *self }
 }
 
 
-pub type focus_out_event = focus_in_event;
+pub type xcb_focus_out_event_t = xcb_focus_in_event_t;
 
 
 #[repr(C)]
-pub struct keymap_notify_event {
+pub struct xcb_keymap_notify_event_t {
      pub response_type :   u8,
      pub keys :            [u8; 31]
 }
 
-impl Copy for keymap_notify_event {}
-impl Clone for keymap_notify_event {
-    fn clone(&self) -> keymap_notify_event { *self }
+impl Copy for xcb_keymap_notify_event_t {}
+impl Clone for xcb_keymap_notify_event_t {
+    fn clone(&self) -> xcb_keymap_notify_event_t { *self }
 }
 
 
 #[repr(C)]
-pub struct expose_event {
+pub struct xcb_expose_event_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
-     pub window :          window,
+     pub window :          xcb_window_t,
      pub x :               u16,
      pub y :               u16,
      pub width :           u16,
@@ -628,18 +628,18 @@ pub struct expose_event {
      pub pad1 :            [u8; 2]
 }
 
-impl Copy for expose_event {}
-impl Clone for expose_event {
-    fn clone(&self) -> expose_event { *self }
+impl Copy for xcb_expose_event_t {}
+impl Clone for xcb_expose_event_t {
+    fn clone(&self) -> xcb_expose_event_t { *self }
 }
 
 
 #[repr(C)]
-pub struct graphics_exposure_event {
+pub struct xcb_graphics_exposure_event_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
-     pub drawable :        drawable,
+     pub drawable :        xcb_drawable_t,
      pub x :               u16,
      pub y :               u16,
      pub width :           u16,
@@ -650,52 +650,52 @@ pub struct graphics_exposure_event {
      pub pad1 :            [u8; 3]
 }
 
-impl Copy for graphics_exposure_event {}
-impl Clone for graphics_exposure_event {
-    fn clone(&self) -> graphics_exposure_event { *self }
+impl Copy for xcb_graphics_exposure_event_t {}
+impl Clone for xcb_graphics_exposure_event_t {
+    fn clone(&self) -> xcb_graphics_exposure_event_t { *self }
 }
 
 
 #[repr(C)]
-pub struct no_exposure_event {
+pub struct xcb_no_exposure_event_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
-     pub drawable :        drawable,
+     pub drawable :        xcb_drawable_t,
      pub minor_opcode :    u16,
      pub major_opcode :    u8,
      pub pad1 :            u8
 }
 
-impl Copy for no_exposure_event {}
-impl Clone for no_exposure_event {
-    fn clone(&self) -> no_exposure_event { *self }
+impl Copy for xcb_no_exposure_event_t {}
+impl Clone for xcb_no_exposure_event_t {
+    fn clone(&self) -> xcb_no_exposure_event_t { *self }
 }
 
 
 #[repr(C)]
-pub struct visibility_notify_event {
+pub struct xcb_visibility_notify_event_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
-     pub window :          window,
+     pub window :          xcb_window_t,
      pub state :           u8,
      pub pad1 :            [u8; 3]
 }
 
-impl Copy for visibility_notify_event {}
-impl Clone for visibility_notify_event {
-    fn clone(&self) -> visibility_notify_event { *self }
+impl Copy for xcb_visibility_notify_event_t {}
+impl Clone for xcb_visibility_notify_event_t {
+    fn clone(&self) -> xcb_visibility_notify_event_t { *self }
 }
 
 
 #[repr(C)]
-pub struct create_notify_event {
+pub struct xcb_create_notify_event_t {
      pub response_type :       u8,
      pub pad0 :                u8,
      pub sequence :            u16,
-     pub parent :              window,
-     pub window :              window,
+     pub parent :              xcb_window_t,
+     pub window :              xcb_window_t,
      pub x :                   i16,
      pub y :                   i16,
      pub width :               u16,
@@ -705,104 +705,104 @@ pub struct create_notify_event {
      pub pad1 :                u8
 }
 
-impl Copy for create_notify_event {}
-impl Clone for create_notify_event {
-    fn clone(&self) -> create_notify_event { *self }
+impl Copy for xcb_create_notify_event_t {}
+impl Clone for xcb_create_notify_event_t {
+    fn clone(&self) -> xcb_create_notify_event_t { *self }
 }
 
 
 #[repr(C)]
-pub struct destroy_notify_event {
+pub struct xcb_destroy_notify_event_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
-     pub event :           window,
-     pub window :          window
+     pub event :           xcb_window_t,
+     pub window :          xcb_window_t
 }
 
-impl Copy for destroy_notify_event {}
-impl Clone for destroy_notify_event {
-    fn clone(&self) -> destroy_notify_event { *self }
+impl Copy for xcb_destroy_notify_event_t {}
+impl Clone for xcb_destroy_notify_event_t {
+    fn clone(&self) -> xcb_destroy_notify_event_t { *self }
 }
 
 
 #[repr(C)]
-pub struct unmap_notify_event {
+pub struct xcb_unmap_notify_event_t {
      pub response_type :    u8,
      pub pad0 :             u8,
      pub sequence :         u16,
-     pub event :            window,
-     pub window :           window,
+     pub event :            xcb_window_t,
+     pub window :           xcb_window_t,
      pub from_configure :   u8,
      pub pad1 :             [u8; 3]
 }
 
-impl Copy for unmap_notify_event {}
-impl Clone for unmap_notify_event {
-    fn clone(&self) -> unmap_notify_event { *self }
+impl Copy for xcb_unmap_notify_event_t {}
+impl Clone for xcb_unmap_notify_event_t {
+    fn clone(&self) -> xcb_unmap_notify_event_t { *self }
 }
 
 
 #[repr(C)]
-pub struct map_notify_event {
+pub struct xcb_map_notify_event_t {
      pub response_type :       u8,
      pub pad0 :                u8,
      pub sequence :            u16,
-     pub event :               window,
-     pub window :              window,
+     pub event :               xcb_window_t,
+     pub window :              xcb_window_t,
      pub override_redirect :   u8,
      pub pad1 :                [u8; 3]
 }
 
-impl Copy for map_notify_event {}
-impl Clone for map_notify_event {
-    fn clone(&self) -> map_notify_event { *self }
+impl Copy for xcb_map_notify_event_t {}
+impl Clone for xcb_map_notify_event_t {
+    fn clone(&self) -> xcb_map_notify_event_t { *self }
 }
 
 
 #[repr(C)]
-pub struct map_request_event {
+pub struct xcb_map_request_event_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
-     pub parent :          window,
-     pub window :          window
+     pub parent :          xcb_window_t,
+     pub window :          xcb_window_t
 }
 
-impl Copy for map_request_event {}
-impl Clone for map_request_event {
-    fn clone(&self) -> map_request_event { *self }
+impl Copy for xcb_map_request_event_t {}
+impl Clone for xcb_map_request_event_t {
+    fn clone(&self) -> xcb_map_request_event_t { *self }
 }
 
 
 #[repr(C)]
-pub struct reparent_notify_event {
+pub struct xcb_reparent_notify_event_t {
      pub response_type :       u8,
      pub pad0 :                u8,
      pub sequence :            u16,
-     pub event :               window,
-     pub window :              window,
-     pub parent :              window,
+     pub event :               xcb_window_t,
+     pub window :              xcb_window_t,
+     pub parent :              xcb_window_t,
      pub x :                   i16,
      pub y :                   i16,
      pub override_redirect :   u8,
      pub pad1 :                [u8; 3]
 }
 
-impl Copy for reparent_notify_event {}
-impl Clone for reparent_notify_event {
-    fn clone(&self) -> reparent_notify_event { *self }
+impl Copy for xcb_reparent_notify_event_t {}
+impl Clone for xcb_reparent_notify_event_t {
+    fn clone(&self) -> xcb_reparent_notify_event_t { *self }
 }
 
 
 #[repr(C)]
-pub struct configure_notify_event {
+pub struct xcb_configure_notify_event_t {
      pub response_type :       u8,
      pub pad0 :                u8,
      pub sequence :            u16,
-     pub event :               window,
-     pub window :              window,
-     pub above_sibling :       window,
+     pub event :               xcb_window_t,
+     pub window :              xcb_window_t,
+     pub above_sibling :       xcb_window_t,
      pub x :                   i16,
      pub y :                   i16,
      pub width :               u16,
@@ -812,20 +812,20 @@ pub struct configure_notify_event {
      pub pad1 :                u8
 }
 
-impl Copy for configure_notify_event {}
-impl Clone for configure_notify_event {
-    fn clone(&self) -> configure_notify_event { *self }
+impl Copy for xcb_configure_notify_event_t {}
+impl Clone for xcb_configure_notify_event_t {
+    fn clone(&self) -> xcb_configure_notify_event_t { *self }
 }
 
 
 #[repr(C)]
-pub struct configure_request_event {
+pub struct xcb_configure_request_event_t {
      pub response_type :   u8,
      pub stack_mode :      u8,
      pub sequence :        u16,
-     pub parent :          window,
-     pub window :          window,
-     pub sibling :         window,
+     pub parent :          xcb_window_t,
+     pub window :          xcb_window_t,
+     pub sibling :         xcb_window_t,
      pub x :               i16,
      pub y :               i16,
      pub width :           u16,
@@ -834,168 +834,168 @@ pub struct configure_request_event {
      pub value_mask :      u16
 }
 
-impl Copy for configure_request_event {}
-impl Clone for configure_request_event {
-    fn clone(&self) -> configure_request_event { *self }
+impl Copy for xcb_configure_request_event_t {}
+impl Clone for xcb_configure_request_event_t {
+    fn clone(&self) -> xcb_configure_request_event_t { *self }
 }
 
 
 #[repr(C)]
-pub struct gravity_notify_event {
+pub struct xcb_gravity_notify_event_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
-     pub event :           window,
-     pub window :          window,
+     pub event :           xcb_window_t,
+     pub window :          xcb_window_t,
      pub x :               i16,
      pub y :               i16
 }
 
-impl Copy for gravity_notify_event {}
-impl Clone for gravity_notify_event {
-    fn clone(&self) -> gravity_notify_event { *self }
+impl Copy for xcb_gravity_notify_event_t {}
+impl Clone for xcb_gravity_notify_event_t {
+    fn clone(&self) -> xcb_gravity_notify_event_t { *self }
 }
 
 
 #[repr(C)]
-pub struct resize_request_event {
+pub struct xcb_resize_request_event_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
-     pub window :          window,
+     pub window :          xcb_window_t,
      pub width :           u16,
      pub height :          u16
 }
 
-impl Copy for resize_request_event {}
-impl Clone for resize_request_event {
-    fn clone(&self) -> resize_request_event { *self }
+impl Copy for xcb_resize_request_event_t {}
+impl Clone for xcb_resize_request_event_t {
+    fn clone(&self) -> xcb_resize_request_event_t { *self }
 }
 
 
 #[repr(C)]
-pub struct circulate_notify_event {
+pub struct xcb_circulate_notify_event_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
-     pub event :           window,
-     pub window :          window,
+     pub event :           xcb_window_t,
+     pub window :          xcb_window_t,
      pub pad1 :            [u8; 4],
      pub place :           u8,
      pub pad2 :            [u8; 3]
 }
 
-impl Copy for circulate_notify_event {}
-impl Clone for circulate_notify_event {
-    fn clone(&self) -> circulate_notify_event { *self }
+impl Copy for xcb_circulate_notify_event_t {}
+impl Clone for xcb_circulate_notify_event_t {
+    fn clone(&self) -> xcb_circulate_notify_event_t { *self }
 }
 
 
-pub type circulate_request_event = circulate_notify_event;
+pub type xcb_circulate_request_event_t = xcb_circulate_notify_event_t;
 
 
 #[repr(C)]
-pub struct property_notify_event {
+pub struct xcb_property_notify_event_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
-     pub window :          window,
-     pub atom :            atom,
-     pub time :            timestamp,
+     pub window :          xcb_window_t,
+     pub atom :            xcb_atom_t,
+     pub time :            xcb_timestamp_t,
      pub state :           u8,
      pub pad1 :            [u8; 3]
 }
 
-impl Copy for property_notify_event {}
-impl Clone for property_notify_event {
-    fn clone(&self) -> property_notify_event { *self }
+impl Copy for xcb_property_notify_event_t {}
+impl Clone for xcb_property_notify_event_t {
+    fn clone(&self) -> xcb_property_notify_event_t { *self }
 }
 
 
 #[repr(C)]
-pub struct selection_clear_event {
+pub struct xcb_selection_clear_event_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
-     pub time :            timestamp,
-     pub owner :           window,
-     pub selection :       atom
+     pub time :            xcb_timestamp_t,
+     pub owner :           xcb_window_t,
+     pub selection :       xcb_atom_t
 }
 
-impl Copy for selection_clear_event {}
-impl Clone for selection_clear_event {
-    fn clone(&self) -> selection_clear_event { *self }
+impl Copy for xcb_selection_clear_event_t {}
+impl Clone for xcb_selection_clear_event_t {
+    fn clone(&self) -> xcb_selection_clear_event_t { *self }
 }
 
 
 #[repr(C)]
-pub struct selection_request_event {
+pub struct xcb_selection_request_event_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
-     pub time :            timestamp,
-     pub owner :           window,
-     pub requestor :       window,
-     pub selection :       atom,
-     pub target :          atom,
-     pub property :        atom
+     pub time :            xcb_timestamp_t,
+     pub owner :           xcb_window_t,
+     pub requestor :       xcb_window_t,
+     pub selection :       xcb_atom_t,
+     pub target :          xcb_atom_t,
+     pub property :        xcb_atom_t
 }
 
-impl Copy for selection_request_event {}
-impl Clone for selection_request_event {
-    fn clone(&self) -> selection_request_event { *self }
+impl Copy for xcb_selection_request_event_t {}
+impl Clone for xcb_selection_request_event_t {
+    fn clone(&self) -> xcb_selection_request_event_t { *self }
 }
 
 
 #[repr(C)]
-pub struct selection_notify_event {
+pub struct xcb_selection_notify_event_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
-     pub time :            timestamp,
-     pub requestor :       window,
-     pub selection :       atom,
-     pub target :          atom,
-     pub property :        atom
+     pub time :            xcb_timestamp_t,
+     pub requestor :       xcb_window_t,
+     pub selection :       xcb_atom_t,
+     pub target :          xcb_atom_t,
+     pub property :        xcb_atom_t
 }
 
-impl Copy for selection_notify_event {}
-impl Clone for selection_notify_event {
-    fn clone(&self) -> selection_notify_event { *self }
+impl Copy for xcb_selection_notify_event_t {}
+impl Clone for xcb_selection_notify_event_t {
+    fn clone(&self) -> xcb_selection_notify_event_t { *self }
 }
 
 
 #[repr(C)]
-pub struct colormap_notify_event {
+pub struct xcb_colormap_notify_event_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
-     pub window :          window,
-     pub colormap :        colormap,
+     pub window :          xcb_window_t,
+     pub colormap :        xcb_colormap_t,
      pub new_ :            u8,
      pub state :           u8,
      pub pad1 :            [u8; 2]
 }
 
-impl Copy for colormap_notify_event {}
-impl Clone for colormap_notify_event {
-    fn clone(&self) -> colormap_notify_event { *self }
+impl Copy for xcb_colormap_notify_event_t {}
+impl Clone for xcb_colormap_notify_event_t {
+    fn clone(&self) -> xcb_colormap_notify_event_t { *self }
 }
 
 #[repr(C)]
-pub struct client_message_data {
+pub struct xcb_client_message_data_t {
     data : [u8; 20]
 }
-impl Copy for client_message_data {}
-impl Clone for client_message_data {
-    fn clone(&self) -> client_message_data { *self }
+impl Copy for xcb_client_message_data_t {}
+impl Clone for xcb_client_message_data_t {
+    fn clone(&self) -> xcb_client_message_data_t { *self }
 }
 /**
- * @brief client_message_data_iterator
+ * @brief xcb_client_message_data_iterator_t
  **/
 #[repr(C)]
-pub struct client_message_data_iterator {
-    pub data : *mut client_message_data,
+pub struct xcb_client_message_data_iterator_t {
+    pub data : *mut xcb_client_message_data_t,
     pub rem  : c_int,
     pub index: c_int
 }
@@ -1003,40 +1003,40 @@ pub struct client_message_data_iterator {
 
 
 #[repr(C)]
-pub struct client_message_event {
+pub struct xcb_client_message_event_t {
      pub response_type :   u8,
      pub format :          u8,
      pub sequence :        u16,
-     pub window :          window,
-     pub type_ :           atom,
-     pub data :            client_message_data
+     pub window :          xcb_window_t,
+     pub type_ :           xcb_atom_t,
+     pub data :            xcb_client_message_data_t
 }
 
-impl Copy for client_message_event {}
-impl Clone for client_message_event {
-    fn clone(&self) -> client_message_event { *self }
+impl Copy for xcb_client_message_event_t {}
+impl Clone for xcb_client_message_event_t {
+    fn clone(&self) -> xcb_client_message_event_t { *self }
 }
 
 
 #[repr(C)]
-pub struct mapping_notify_event {
+pub struct xcb_mapping_notify_event_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub request :         u8,
-     pub first_keycode :   keycode,
+     pub first_keycode :   xcb_keycode_t,
      pub count :           u8,
      pub pad1 :            u8
 }
 
-impl Copy for mapping_notify_event {}
-impl Clone for mapping_notify_event {
-    fn clone(&self) -> mapping_notify_event { *self }
+impl Copy for xcb_mapping_notify_event_t {}
+impl Clone for xcb_mapping_notify_event_t {
+    fn clone(&self) -> xcb_mapping_notify_event_t { *self }
 }
 
 
 #[repr(C)]
-pub struct request_error {
+pub struct xcb_request_error_t {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16,
@@ -1046,14 +1046,14 @@ pub struct request_error {
      pub pad0 :            u8
 }
 
-impl Copy for request_error {}
-impl Clone for request_error {
-    fn clone(&self) -> request_error { *self }
+impl Copy for xcb_request_error_t {}
+impl Clone for xcb_request_error_t {
+    fn clone(&self) -> xcb_request_error_t { *self }
 }
 
 
 #[repr(C)]
-pub struct value_error {
+pub struct xcb_value_error_t {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16,
@@ -1063,121 +1063,121 @@ pub struct value_error {
      pub pad0 :            u8
 }
 
-impl Copy for value_error {}
-impl Clone for value_error {
-    fn clone(&self) -> value_error { *self }
+impl Copy for xcb_value_error_t {}
+impl Clone for xcb_value_error_t {
+    fn clone(&self) -> xcb_value_error_t { *self }
 }
 
 
-pub type window_error  = value_error;
+pub type xcb_window_error_t  = xcb_value_error_t;
 
 
-pub type pixmap_error  = value_error;
+pub type xcb_pixmap_error_t  = xcb_value_error_t;
 
 
-pub type atom_error  = value_error;
+pub type xcb_atom_error_t  = xcb_value_error_t;
 
 
-pub type cursor_error  = value_error;
+pub type xcb_cursor_error_t  = xcb_value_error_t;
 
 
-pub type font_error  = value_error;
+pub type xcb_font_error_t  = xcb_value_error_t;
 
 
-pub type match_error  = request_error;
+pub type xcb_match_error_t  = xcb_request_error_t;
 
 
-pub type drawable_error  = value_error;
+pub type xcb_drawable_error_t  = xcb_value_error_t;
 
 
-pub type access_error  = request_error;
+pub type xcb_access_error_t  = xcb_request_error_t;
 
 
-pub type alloc_error  = request_error;
+pub type xcb_alloc_error_t  = xcb_request_error_t;
 
 
-pub type colormap_error  = value_error;
+pub type xcb_colormap_error_t  = xcb_value_error_t;
 
 
-pub type g_context_error  = value_error;
+pub type xcb_g_context_error_t  = xcb_value_error_t;
 
 
-pub type id_choice_error  = value_error;
+pub type xcb_id_choice_error_t  = xcb_value_error_t;
 
 
-pub type name_error  = request_error;
+pub type xcb_name_error_t  = xcb_request_error_t;
 
 
-pub type length_error  = request_error;
+pub type xcb_length_error_t  = xcb_request_error_t;
 
 
-pub type implementation_error  = request_error;
+pub type xcb_implementation_error_t  = xcb_request_error_t;
 
 
 #[repr(C)]
-pub struct create_window_request {
+pub struct xcb_create_window_request_t {
      pub major_opcode :   u8,
      pub depth :          u8,
      pub length :         u16,
-     pub wid :            window,
-     pub parent :         window,
+     pub wid :            xcb_window_t,
+     pub parent :         xcb_window_t,
      pub x :              i16,
      pub y :              i16,
      pub width :          u16,
      pub height :         u16,
      pub border_width :   u16,
      pub class :          u16,
-     pub visual :         visualid,
+     pub visual :         xcb_visualid_t,
      pub value_mask :     u32
 }
 
-impl Copy for create_window_request {}
-impl Clone for create_window_request {
-    fn clone(&self) -> create_window_request { *self }
+impl Copy for xcb_create_window_request_t {}
+impl Clone for xcb_create_window_request_t {
+    fn clone(&self) -> xcb_create_window_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct change_window_attributes_request {
+pub struct xcb_change_window_attributes_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub window :         window,
+     pub window :         xcb_window_t,
      pub value_mask :     u32
 }
 
-impl Copy for change_window_attributes_request {}
-impl Clone for change_window_attributes_request {
-    fn clone(&self) -> change_window_attributes_request { *self }
+impl Copy for xcb_change_window_attributes_request_t {}
+impl Clone for xcb_change_window_attributes_request_t {
+    fn clone(&self) -> xcb_change_window_attributes_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_window_attributes_cookie {
+pub struct xcb_get_window_attributes_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_window_attributes_request {
+pub struct xcb_get_window_attributes_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub window :         window
+     pub window :         xcb_window_t
 }
 
-impl Copy for get_window_attributes_request {}
-impl Clone for get_window_attributes_request {
-    fn clone(&self) -> get_window_attributes_request { *self }
+impl Copy for xcb_get_window_attributes_request_t {}
+impl Clone for xcb_get_window_attributes_request_t {
+    fn clone(&self) -> xcb_get_window_attributes_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_window_attributes_reply {
+pub struct xcb_get_window_attributes_reply_t {
      pub response_type :           u8,
      pub backing_store :           u8,
      pub sequence :                u16,
      pub length :                  u32,
-     pub visual :                  visualid,
+     pub visual :                  xcb_visualid_t,
      pub class :                   u16,
      pub bit_gravity :             u8,
      pub win_gravity :             u8,
@@ -1187,190 +1187,190 @@ pub struct get_window_attributes_reply {
      pub map_is_installed :        u8,
      pub map_state :               u8,
      pub override_redirect :       u8,
-     pub colormap :                colormap,
+     pub colormap :                xcb_colormap_t,
      pub all_event_masks :         u32,
      pub your_event_mask :         u32,
      pub do_not_propagate_mask :   u16,
      pub pad0 :                    [u8; 2]
 }
 
-impl Copy for get_window_attributes_reply {}
-impl Clone for get_window_attributes_reply {
-    fn clone(&self) -> get_window_attributes_reply { *self }
+impl Copy for xcb_get_window_attributes_reply_t {}
+impl Clone for xcb_get_window_attributes_reply_t {
+    fn clone(&self) -> xcb_get_window_attributes_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct destroy_window_request {
+pub struct xcb_destroy_window_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub window :         window
+     pub window :         xcb_window_t
 }
 
-impl Copy for destroy_window_request {}
-impl Clone for destroy_window_request {
-    fn clone(&self) -> destroy_window_request { *self }
+impl Copy for xcb_destroy_window_request_t {}
+impl Clone for xcb_destroy_window_request_t {
+    fn clone(&self) -> xcb_destroy_window_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct destroy_subwindows_request {
+pub struct xcb_destroy_subwindows_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub window :         window
+     pub window :         xcb_window_t
 }
 
-impl Copy for destroy_subwindows_request {}
-impl Clone for destroy_subwindows_request {
-    fn clone(&self) -> destroy_subwindows_request { *self }
+impl Copy for xcb_destroy_subwindows_request_t {}
+impl Clone for xcb_destroy_subwindows_request_t {
+    fn clone(&self) -> xcb_destroy_subwindows_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct change_save_set_request {
+pub struct xcb_change_save_set_request_t {
      pub major_opcode :   u8,
      pub mode :           u8,
      pub length :         u16,
-     pub window :         window
+     pub window :         xcb_window_t
 }
 
-impl Copy for change_save_set_request {}
-impl Clone for change_save_set_request {
-    fn clone(&self) -> change_save_set_request { *self }
+impl Copy for xcb_change_save_set_request_t {}
+impl Clone for xcb_change_save_set_request_t {
+    fn clone(&self) -> xcb_change_save_set_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct reparent_window_request {
+pub struct xcb_reparent_window_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub window :         window,
-     pub parent :         window,
+     pub window :         xcb_window_t,
+     pub parent :         xcb_window_t,
      pub x :              i16,
      pub y :              i16
 }
 
-impl Copy for reparent_window_request {}
-impl Clone for reparent_window_request {
-    fn clone(&self) -> reparent_window_request { *self }
+impl Copy for xcb_reparent_window_request_t {}
+impl Clone for xcb_reparent_window_request_t {
+    fn clone(&self) -> xcb_reparent_window_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct map_window_request {
+pub struct xcb_map_window_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub window :         window
+     pub window :         xcb_window_t
 }
 
-impl Copy for map_window_request {}
-impl Clone for map_window_request {
-    fn clone(&self) -> map_window_request { *self }
+impl Copy for xcb_map_window_request_t {}
+impl Clone for xcb_map_window_request_t {
+    fn clone(&self) -> xcb_map_window_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct map_subwindows_request {
+pub struct xcb_map_subwindows_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub window :         window
+     pub window :         xcb_window_t
 }
 
-impl Copy for map_subwindows_request {}
-impl Clone for map_subwindows_request {
-    fn clone(&self) -> map_subwindows_request { *self }
+impl Copy for xcb_map_subwindows_request_t {}
+impl Clone for xcb_map_subwindows_request_t {
+    fn clone(&self) -> xcb_map_subwindows_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct unmap_window_request {
+pub struct xcb_unmap_window_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub window :         window
+     pub window :         xcb_window_t
 }
 
-impl Copy for unmap_window_request {}
-impl Clone for unmap_window_request {
-    fn clone(&self) -> unmap_window_request { *self }
+impl Copy for xcb_unmap_window_request_t {}
+impl Clone for xcb_unmap_window_request_t {
+    fn clone(&self) -> xcb_unmap_window_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct unmap_subwindows_request {
+pub struct xcb_unmap_subwindows_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub window :         window
+     pub window :         xcb_window_t
 }
 
-impl Copy for unmap_subwindows_request {}
-impl Clone for unmap_subwindows_request {
-    fn clone(&self) -> unmap_subwindows_request { *self }
+impl Copy for xcb_unmap_subwindows_request_t {}
+impl Clone for xcb_unmap_subwindows_request_t {
+    fn clone(&self) -> xcb_unmap_subwindows_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct configure_window_request {
+pub struct xcb_configure_window_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub window :         window,
+     pub window :         xcb_window_t,
      pub value_mask :     u16,
      pub pad1 :           [u8; 2]
 }
 
-impl Copy for configure_window_request {}
-impl Clone for configure_window_request {
-    fn clone(&self) -> configure_window_request { *self }
+impl Copy for xcb_configure_window_request_t {}
+impl Clone for xcb_configure_window_request_t {
+    fn clone(&self) -> xcb_configure_window_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct circulate_window_request {
+pub struct xcb_circulate_window_request_t {
      pub major_opcode :   u8,
      pub direction :      u8,
      pub length :         u16,
-     pub window :         window
+     pub window :         xcb_window_t
 }
 
-impl Copy for circulate_window_request {}
-impl Clone for circulate_window_request {
-    fn clone(&self) -> circulate_window_request { *self }
+impl Copy for xcb_circulate_window_request_t {}
+impl Clone for xcb_circulate_window_request_t {
+    fn clone(&self) -> xcb_circulate_window_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_geometry_cookie {
+pub struct xcb_get_geometry_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_geometry_request {
+pub struct xcb_get_geometry_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub drawable :       drawable
+     pub drawable :       xcb_drawable_t
 }
 
-impl Copy for get_geometry_request {}
-impl Clone for get_geometry_request {
-    fn clone(&self) -> get_geometry_request { *self }
+impl Copy for xcb_get_geometry_request_t {}
+impl Clone for xcb_get_geometry_request_t {
+    fn clone(&self) -> xcb_get_geometry_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_geometry_reply {
+pub struct xcb_get_geometry_reply_t {
      pub response_type :   u8,
      pub depth :           u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub root :            window,
+     pub root :            xcb_window_t,
      pub x :               i16,
      pub y :               i16,
      pub width :           u16,
@@ -1379,57 +1379,57 @@ pub struct get_geometry_reply {
      pub pad0 :            [u8; 2]
 }
 
-impl Copy for get_geometry_reply {}
-impl Clone for get_geometry_reply {
-    fn clone(&self) -> get_geometry_reply { *self }
+impl Copy for xcb_get_geometry_reply_t {}
+impl Clone for xcb_get_geometry_reply_t {
+    fn clone(&self) -> xcb_get_geometry_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct query_tree_cookie {
+pub struct xcb_query_tree_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct query_tree_request {
+pub struct xcb_query_tree_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub window :         window
+     pub window :         xcb_window_t
 }
 
-impl Copy for query_tree_request {}
-impl Clone for query_tree_request {
-    fn clone(&self) -> query_tree_request { *self }
+impl Copy for xcb_query_tree_request_t {}
+impl Clone for xcb_query_tree_request_t {
+    fn clone(&self) -> xcb_query_tree_request_t { *self }
 }
 
 #[repr(C)]
-pub struct query_tree_reply {
+pub struct xcb_query_tree_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub root :            window,
-     pub parent :          window,
+     pub root :            xcb_window_t,
+     pub parent :          xcb_window_t,
      pub children_len :    u16,
      pub pad1 :            [u8; 14]
 }
 
-impl Copy for query_tree_reply {}
-impl Clone for query_tree_reply {
-    fn clone(&self) -> query_tree_reply { *self }
+impl Copy for xcb_query_tree_reply_t {}
+impl Clone for xcb_query_tree_reply_t {
+    fn clone(&self) -> xcb_query_tree_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct intern_atom_cookie {
+pub struct xcb_intern_atom_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct intern_atom_request {
+pub struct xcb_intern_atom_request_t {
      pub major_opcode :     u8,
      pub only_if_exists :   u8,
      pub length :           u16,
@@ -1437,47 +1437,47 @@ pub struct intern_atom_request {
      pub pad0 :             [u8; 2]
 }
 
-impl Copy for intern_atom_request {}
-impl Clone for intern_atom_request {
-    fn clone(&self) -> intern_atom_request { *self }
+impl Copy for xcb_intern_atom_request_t {}
+impl Clone for xcb_intern_atom_request_t {
+    fn clone(&self) -> xcb_intern_atom_request_t { *self }
 }
 
 #[repr(C)]
-pub struct intern_atom_reply {
+pub struct xcb_intern_atom_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub atom :            atom
+     pub atom :            xcb_atom_t
 }
 
-impl Copy for intern_atom_reply {}
-impl Clone for intern_atom_reply {
-    fn clone(&self) -> intern_atom_reply { *self }
+impl Copy for xcb_intern_atom_reply_t {}
+impl Clone for xcb_intern_atom_reply_t {
+    fn clone(&self) -> xcb_intern_atom_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_atom_name_cookie {
+pub struct xcb_get_atom_name_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_atom_name_request {
+pub struct xcb_get_atom_name_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub atom :           atom
+     pub atom :           xcb_atom_t
 }
 
-impl Copy for get_atom_name_request {}
-impl Clone for get_atom_name_request {
-    fn clone(&self) -> get_atom_name_request { *self }
+impl Copy for xcb_get_atom_name_request_t {}
+impl Clone for xcb_get_atom_name_request_t {
+    fn clone(&self) -> xcb_get_atom_name_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_atom_name_reply {
+pub struct xcb_get_atom_name_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -1486,108 +1486,108 @@ pub struct get_atom_name_reply {
      pub pad1 :            [u8; 22]
 }
 
-impl Copy for get_atom_name_reply {}
-impl Clone for get_atom_name_reply {
-    fn clone(&self) -> get_atom_name_reply { *self }
+impl Copy for xcb_get_atom_name_reply_t {}
+impl Clone for xcb_get_atom_name_reply_t {
+    fn clone(&self) -> xcb_get_atom_name_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct change_property_request {
+pub struct xcb_change_property_request_t {
      pub major_opcode :   u8,
      pub mode :           u8,
      pub length :         u16,
-     pub window :         window,
-     pub property :       atom,
-     pub type_ :          atom,
+     pub window :         xcb_window_t,
+     pub property :       xcb_atom_t,
+     pub type_ :          xcb_atom_t,
      pub format :         u8,
      pub pad0 :           [u8; 3],
      pub data_len :       u32
 }
 
-impl Copy for change_property_request {}
-impl Clone for change_property_request {
-    fn clone(&self) -> change_property_request { *self }
+impl Copy for xcb_change_property_request_t {}
+impl Clone for xcb_change_property_request_t {
+    fn clone(&self) -> xcb_change_property_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct delete_property_request {
+pub struct xcb_delete_property_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub window :         window,
-     pub property :       atom
+     pub window :         xcb_window_t,
+     pub property :       xcb_atom_t
 }
 
-impl Copy for delete_property_request {}
-impl Clone for delete_property_request {
-    fn clone(&self) -> delete_property_request { *self }
+impl Copy for xcb_delete_property_request_t {}
+impl Clone for xcb_delete_property_request_t {
+    fn clone(&self) -> xcb_delete_property_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_property_cookie {
+pub struct xcb_get_property_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_property_request {
+pub struct xcb_get_property_request_t {
      pub major_opcode :   u8,
      pub delete :         u8,
      pub length :         u16,
-     pub window :         window,
-     pub property :       atom,
-     pub type_ :          atom,
+     pub window :         xcb_window_t,
+     pub property :       xcb_atom_t,
+     pub type_ :          xcb_atom_t,
      pub long_offset :    u32,
      pub long_length :    u32
 }
 
-impl Copy for get_property_request {}
-impl Clone for get_property_request {
-    fn clone(&self) -> get_property_request { *self }
+impl Copy for xcb_get_property_request_t {}
+impl Clone for xcb_get_property_request_t {
+    fn clone(&self) -> xcb_get_property_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_property_reply {
+pub struct xcb_get_property_reply_t {
      pub response_type :   u8,
      pub format :          u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub type_ :           atom,
+     pub type_ :           xcb_atom_t,
      pub bytes_after :     u32,
      pub value_len :       u32,
      pub pad0 :            [u8; 12]
 }
 
-impl Copy for get_property_reply {}
-impl Clone for get_property_reply {
-    fn clone(&self) -> get_property_reply { *self }
+impl Copy for xcb_get_property_reply_t {}
+impl Clone for xcb_get_property_reply_t {
+    fn clone(&self) -> xcb_get_property_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct list_properties_cookie {
+pub struct xcb_list_properties_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct list_properties_request {
+pub struct xcb_list_properties_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub window :         window
+     pub window :         xcb_window_t
 }
 
-impl Copy for list_properties_request {}
-impl Clone for list_properties_request {
-    fn clone(&self) -> list_properties_request { *self }
+impl Copy for xcb_list_properties_request_t {}
+impl Clone for xcb_list_properties_request_t {
+    fn clone(&self) -> xcb_list_properties_request_t { *self }
 }
 
 #[repr(C)]
-pub struct list_properties_reply {
+pub struct xcb_list_properties_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -1596,357 +1596,357 @@ pub struct list_properties_reply {
      pub pad1 :            [u8; 22]
 }
 
-impl Copy for list_properties_reply {}
-impl Clone for list_properties_reply {
-    fn clone(&self) -> list_properties_reply { *self }
+impl Copy for xcb_list_properties_reply_t {}
+impl Clone for xcb_list_properties_reply_t {
+    fn clone(&self) -> xcb_list_properties_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct set_selection_owner_request {
+pub struct xcb_set_selection_owner_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub owner :          window,
-     pub selection :      atom,
-     pub time :           timestamp
+     pub owner :          xcb_window_t,
+     pub selection :      xcb_atom_t,
+     pub time :           xcb_timestamp_t
 }
 
-impl Copy for set_selection_owner_request {}
-impl Clone for set_selection_owner_request {
-    fn clone(&self) -> set_selection_owner_request { *self }
+impl Copy for xcb_set_selection_owner_request_t {}
+impl Clone for xcb_set_selection_owner_request_t {
+    fn clone(&self) -> xcb_set_selection_owner_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_selection_owner_cookie {
+pub struct xcb_get_selection_owner_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_selection_owner_request {
+pub struct xcb_get_selection_owner_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub selection :      atom
+     pub selection :      xcb_atom_t
 }
 
-impl Copy for get_selection_owner_request {}
-impl Clone for get_selection_owner_request {
-    fn clone(&self) -> get_selection_owner_request { *self }
+impl Copy for xcb_get_selection_owner_request_t {}
+impl Clone for xcb_get_selection_owner_request_t {
+    fn clone(&self) -> xcb_get_selection_owner_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_selection_owner_reply {
+pub struct xcb_get_selection_owner_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub owner :           window
+     pub owner :           xcb_window_t
 }
 
-impl Copy for get_selection_owner_reply {}
-impl Clone for get_selection_owner_reply {
-    fn clone(&self) -> get_selection_owner_reply { *self }
+impl Copy for xcb_get_selection_owner_reply_t {}
+impl Clone for xcb_get_selection_owner_reply_t {
+    fn clone(&self) -> xcb_get_selection_owner_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct convert_selection_request {
+pub struct xcb_convert_selection_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub requestor :      window,
-     pub selection :      atom,
-     pub target :         atom,
-     pub property :       atom,
-     pub time :           timestamp
+     pub requestor :      xcb_window_t,
+     pub selection :      xcb_atom_t,
+     pub target :         xcb_atom_t,
+     pub property :       xcb_atom_t,
+     pub time :           xcb_timestamp_t
 }
 
-impl Copy for convert_selection_request {}
-impl Clone for convert_selection_request {
-    fn clone(&self) -> convert_selection_request { *self }
+impl Copy for xcb_convert_selection_request_t {}
+impl Clone for xcb_convert_selection_request_t {
+    fn clone(&self) -> xcb_convert_selection_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct send_event_request {
+pub struct xcb_send_event_request_t {
      pub major_opcode :   u8,
      pub propagate :      u8,
      pub length :         u16,
-     pub destination :    window,
+     pub destination :    xcb_window_t,
      pub event_mask :     u32,
      pub event :          [c_char; 32]
 }
 
-impl Copy for send_event_request {}
-impl Clone for send_event_request {
-    fn clone(&self) -> send_event_request { *self }
+impl Copy for xcb_send_event_request_t {}
+impl Clone for xcb_send_event_request_t {
+    fn clone(&self) -> xcb_send_event_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct grab_pointer_cookie {
+pub struct xcb_grab_pointer_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct grab_pointer_request {
+pub struct xcb_grab_pointer_request_t {
      pub major_opcode :    u8,
      pub owner_events :    u8,
      pub length :          u16,
-     pub grab_window :     window,
+     pub grab_window :     xcb_window_t,
      pub event_mask :      u16,
      pub pointer_mode :    u8,
      pub keyboard_mode :   u8,
-     pub confine_to :      window,
-     pub cursor :          cursor,
-     pub time :            timestamp
+     pub confine_to :      xcb_window_t,
+     pub cursor :          xcb_cursor_t,
+     pub time :            xcb_timestamp_t
 }
 
-impl Copy for grab_pointer_request {}
-impl Clone for grab_pointer_request {
-    fn clone(&self) -> grab_pointer_request { *self }
+impl Copy for xcb_grab_pointer_request_t {}
+impl Clone for xcb_grab_pointer_request_t {
+    fn clone(&self) -> xcb_grab_pointer_request_t { *self }
 }
 
 #[repr(C)]
-pub struct grab_pointer_reply {
+pub struct xcb_grab_pointer_reply_t {
      pub response_type :   u8,
      pub status :          u8,
      pub sequence :        u16,
      pub length :          u32
 }
 
-impl Copy for grab_pointer_reply {}
-impl Clone for grab_pointer_reply {
-    fn clone(&self) -> grab_pointer_reply { *self }
+impl Copy for xcb_grab_pointer_reply_t {}
+impl Clone for xcb_grab_pointer_reply_t {
+    fn clone(&self) -> xcb_grab_pointer_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct ungrab_pointer_request {
+pub struct xcb_ungrab_pointer_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub time :           timestamp
+     pub time :           xcb_timestamp_t
 }
 
-impl Copy for ungrab_pointer_request {}
-impl Clone for ungrab_pointer_request {
-    fn clone(&self) -> ungrab_pointer_request { *self }
+impl Copy for xcb_ungrab_pointer_request_t {}
+impl Clone for xcb_ungrab_pointer_request_t {
+    fn clone(&self) -> xcb_ungrab_pointer_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct grab_button_request {
+pub struct xcb_grab_button_request_t {
      pub major_opcode :    u8,
      pub owner_events :    u8,
      pub length :          u16,
-     pub grab_window :     window,
+     pub grab_window :     xcb_window_t,
      pub event_mask :      u16,
      pub pointer_mode :    u8,
      pub keyboard_mode :   u8,
-     pub confine_to :      window,
-     pub cursor :          cursor,
+     pub confine_to :      xcb_window_t,
+     pub cursor :          xcb_cursor_t,
      pub button :          u8,
      pub pad0 :            u8,
      pub modifiers :       u16
 }
 
-impl Copy for grab_button_request {}
-impl Clone for grab_button_request {
-    fn clone(&self) -> grab_button_request { *self }
+impl Copy for xcb_grab_button_request_t {}
+impl Clone for xcb_grab_button_request_t {
+    fn clone(&self) -> xcb_grab_button_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct ungrab_button_request {
+pub struct xcb_ungrab_button_request_t {
      pub major_opcode :   u8,
      pub button :         u8,
      pub length :         u16,
-     pub grab_window :    window,
+     pub grab_window :    xcb_window_t,
      pub modifiers :      u16,
      pub pad0 :           [u8; 2]
 }
 
-impl Copy for ungrab_button_request {}
-impl Clone for ungrab_button_request {
-    fn clone(&self) -> ungrab_button_request { *self }
+impl Copy for xcb_ungrab_button_request_t {}
+impl Clone for xcb_ungrab_button_request_t {
+    fn clone(&self) -> xcb_ungrab_button_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct change_active_pointer_grab_request {
+pub struct xcb_change_active_pointer_grab_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub cursor :         cursor,
-     pub time :           timestamp,
+     pub cursor :         xcb_cursor_t,
+     pub time :           xcb_timestamp_t,
      pub event_mask :     u16,
      pub pad1 :           [u8; 2]
 }
 
-impl Copy for change_active_pointer_grab_request {}
-impl Clone for change_active_pointer_grab_request {
-    fn clone(&self) -> change_active_pointer_grab_request { *self }
+impl Copy for xcb_change_active_pointer_grab_request_t {}
+impl Clone for xcb_change_active_pointer_grab_request_t {
+    fn clone(&self) -> xcb_change_active_pointer_grab_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct grab_keyboard_cookie {
+pub struct xcb_grab_keyboard_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct grab_keyboard_request {
+pub struct xcb_grab_keyboard_request_t {
      pub major_opcode :    u8,
      pub owner_events :    u8,
      pub length :          u16,
-     pub grab_window :     window,
-     pub time :            timestamp,
+     pub grab_window :     xcb_window_t,
+     pub time :            xcb_timestamp_t,
      pub pointer_mode :    u8,
      pub keyboard_mode :   u8,
      pub pad0 :            [u8; 2]
 }
 
-impl Copy for grab_keyboard_request {}
-impl Clone for grab_keyboard_request {
-    fn clone(&self) -> grab_keyboard_request { *self }
+impl Copy for xcb_grab_keyboard_request_t {}
+impl Clone for xcb_grab_keyboard_request_t {
+    fn clone(&self) -> xcb_grab_keyboard_request_t { *self }
 }
 
 #[repr(C)]
-pub struct grab_keyboard_reply {
+pub struct xcb_grab_keyboard_reply_t {
      pub response_type :   u8,
      pub status :          u8,
      pub sequence :        u16,
      pub length :          u32
 }
 
-impl Copy for grab_keyboard_reply {}
-impl Clone for grab_keyboard_reply {
-    fn clone(&self) -> grab_keyboard_reply { *self }
+impl Copy for xcb_grab_keyboard_reply_t {}
+impl Clone for xcb_grab_keyboard_reply_t {
+    fn clone(&self) -> xcb_grab_keyboard_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct ungrab_keyboard_request {
+pub struct xcb_ungrab_keyboard_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub time :           timestamp
+     pub time :           xcb_timestamp_t
 }
 
-impl Copy for ungrab_keyboard_request {}
-impl Clone for ungrab_keyboard_request {
-    fn clone(&self) -> ungrab_keyboard_request { *self }
+impl Copy for xcb_ungrab_keyboard_request_t {}
+impl Clone for xcb_ungrab_keyboard_request_t {
+    fn clone(&self) -> xcb_ungrab_keyboard_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct grab_key_request {
+pub struct xcb_grab_key_request_t {
      pub major_opcode :    u8,
      pub owner_events :    u8,
      pub length :          u16,
-     pub grab_window :     window,
+     pub grab_window :     xcb_window_t,
      pub modifiers :       u16,
-     pub key :             keycode,
+     pub key :             xcb_keycode_t,
      pub pointer_mode :    u8,
      pub keyboard_mode :   u8,
      pub pad0 :            [u8; 3]
 }
 
-impl Copy for grab_key_request {}
-impl Clone for grab_key_request {
-    fn clone(&self) -> grab_key_request { *self }
+impl Copy for xcb_grab_key_request_t {}
+impl Clone for xcb_grab_key_request_t {
+    fn clone(&self) -> xcb_grab_key_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct ungrab_key_request {
+pub struct xcb_ungrab_key_request_t {
      pub major_opcode :   u8,
-     pub key :            keycode,
+     pub key :            xcb_keycode_t,
      pub length :         u16,
-     pub grab_window :    window,
+     pub grab_window :    xcb_window_t,
      pub modifiers :      u16,
      pub pad0 :           [u8; 2]
 }
 
-impl Copy for ungrab_key_request {}
-impl Clone for ungrab_key_request {
-    fn clone(&self) -> ungrab_key_request { *self }
+impl Copy for xcb_ungrab_key_request_t {}
+impl Clone for xcb_ungrab_key_request_t {
+    fn clone(&self) -> xcb_ungrab_key_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct allow_events_request {
+pub struct xcb_allow_events_request_t {
      pub major_opcode :   u8,
      pub mode :           u8,
      pub length :         u16,
-     pub time :           timestamp
+     pub time :           xcb_timestamp_t
 }
 
-impl Copy for allow_events_request {}
-impl Clone for allow_events_request {
-    fn clone(&self) -> allow_events_request { *self }
+impl Copy for xcb_allow_events_request_t {}
+impl Clone for xcb_allow_events_request_t {
+    fn clone(&self) -> xcb_allow_events_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct grab_server_request {
+pub struct xcb_grab_server_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16
 }
 
-impl Copy for grab_server_request {}
-impl Clone for grab_server_request {
-    fn clone(&self) -> grab_server_request { *self }
+impl Copy for xcb_grab_server_request_t {}
+impl Clone for xcb_grab_server_request_t {
+    fn clone(&self) -> xcb_grab_server_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct ungrab_server_request {
+pub struct xcb_ungrab_server_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16
 }
 
-impl Copy for ungrab_server_request {}
-impl Clone for ungrab_server_request {
-    fn clone(&self) -> ungrab_server_request { *self }
+impl Copy for xcb_ungrab_server_request_t {}
+impl Clone for xcb_ungrab_server_request_t {
+    fn clone(&self) -> xcb_ungrab_server_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct query_pointer_cookie {
+pub struct xcb_query_pointer_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct query_pointer_request {
+pub struct xcb_query_pointer_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub window :         window
+     pub window :         xcb_window_t
 }
 
-impl Copy for query_pointer_request {}
-impl Clone for query_pointer_request {
-    fn clone(&self) -> query_pointer_request { *self }
+impl Copy for xcb_query_pointer_request_t {}
+impl Clone for xcb_query_pointer_request_t {
+    fn clone(&self) -> xcb_query_pointer_request_t { *self }
 }
 
 #[repr(C)]
-pub struct query_pointer_reply {
+pub struct xcb_query_pointer_reply_t {
      pub response_type :   u8,
      pub same_screen :     u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub root :            window,
-     pub child :           window,
+     pub root :            xcb_window_t,
+     pub child :           xcb_window_t,
      pub root_x :          i16,
      pub root_y :          i16,
      pub win_x :           i16,
@@ -1955,28 +1955,28 @@ pub struct query_pointer_reply {
      pub pad0 :            [u8; 2]
 }
 
-impl Copy for query_pointer_reply {}
-impl Clone for query_pointer_reply {
-    fn clone(&self) -> query_pointer_reply { *self }
+impl Copy for xcb_query_pointer_reply_t {}
+impl Clone for xcb_query_pointer_reply_t {
+    fn clone(&self) -> xcb_query_pointer_reply_t { *self }
 }
 
 #[repr(C)]
-pub struct timecoord {
-     pub time :   timestamp,
+pub struct xcb_timecoord_t {
+     pub time :   xcb_timestamp_t,
      pub x :      i16,
      pub y :      i16
 }
 
-impl Copy for timecoord {}
-impl Clone for timecoord {
-    fn clone(&self) -> timecoord { *self }
+impl Copy for xcb_timecoord_t {}
+impl Clone for xcb_timecoord_t {
+    fn clone(&self) -> xcb_timecoord_t { *self }
 }
 /**
- * @brief timecoord_iterator
+ * @brief xcb_timecoord_iterator_t
  **/
 #[repr(C)]
-pub struct timecoord_iterator {
-    pub data : *mut timecoord,
+pub struct xcb_timecoord_iterator_t {
+    pub data : *mut xcb_timecoord_t,
     pub rem  : c_int,
     pub index: c_int
 }
@@ -1984,28 +1984,28 @@ pub struct timecoord_iterator {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_motion_events_cookie {
+pub struct xcb_get_motion_events_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_motion_events_request {
+pub struct xcb_get_motion_events_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub window :         window,
-     pub start :          timestamp,
-     pub stop :           timestamp
+     pub window :         xcb_window_t,
+     pub start :          xcb_timestamp_t,
+     pub stop :           xcb_timestamp_t
 }
 
-impl Copy for get_motion_events_request {}
-impl Clone for get_motion_events_request {
-    fn clone(&self) -> get_motion_events_request { *self }
+impl Copy for xcb_get_motion_events_request_t {}
+impl Clone for xcb_get_motion_events_request_t {
+    fn clone(&self) -> xcb_get_motion_events_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_motion_events_reply {
+pub struct xcb_get_motion_events_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -2014,58 +2014,58 @@ pub struct get_motion_events_reply {
      pub pad1 :            [u8; 20]
 }
 
-impl Copy for get_motion_events_reply {}
-impl Clone for get_motion_events_reply {
-    fn clone(&self) -> get_motion_events_reply { *self }
+impl Copy for xcb_get_motion_events_reply_t {}
+impl Clone for xcb_get_motion_events_reply_t {
+    fn clone(&self) -> xcb_get_motion_events_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct translate_coordinates_cookie {
+pub struct xcb_translate_coordinates_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct translate_coordinates_request {
+pub struct xcb_translate_coordinates_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub src_window :     window,
-     pub dst_window :     window,
+     pub src_window :     xcb_window_t,
+     pub dst_window :     xcb_window_t,
      pub src_x :          i16,
      pub src_y :          i16
 }
 
-impl Copy for translate_coordinates_request {}
-impl Clone for translate_coordinates_request {
-    fn clone(&self) -> translate_coordinates_request { *self }
+impl Copy for xcb_translate_coordinates_request_t {}
+impl Clone for xcb_translate_coordinates_request_t {
+    fn clone(&self) -> xcb_translate_coordinates_request_t { *self }
 }
 
 #[repr(C)]
-pub struct translate_coordinates_reply {
+pub struct xcb_translate_coordinates_reply_t {
      pub response_type :   u8,
      pub same_screen :     u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub child :           window,
+     pub child :           xcb_window_t,
      pub dst_x :           i16,
      pub dst_y :           i16
 }
 
-impl Copy for translate_coordinates_reply {}
-impl Clone for translate_coordinates_reply {
-    fn clone(&self) -> translate_coordinates_reply { *self }
+impl Copy for xcb_translate_coordinates_reply_t {}
+impl Clone for xcb_translate_coordinates_reply_t {
+    fn clone(&self) -> xcb_translate_coordinates_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct warp_pointer_request {
+pub struct xcb_warp_pointer_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub src_window :     window,
-     pub dst_window :     window,
+     pub src_window :     xcb_window_t,
+     pub dst_window :     xcb_window_t,
      pub src_x :          i16,
      pub src_y :          i16,
      pub src_width :      u16,
@@ -2074,80 +2074,80 @@ pub struct warp_pointer_request {
      pub dst_y :          i16
 }
 
-impl Copy for warp_pointer_request {}
-impl Clone for warp_pointer_request {
-    fn clone(&self) -> warp_pointer_request { *self }
+impl Copy for xcb_warp_pointer_request_t {}
+impl Clone for xcb_warp_pointer_request_t {
+    fn clone(&self) -> xcb_warp_pointer_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct set_input_focus_request {
+pub struct xcb_set_input_focus_request_t {
      pub major_opcode :   u8,
      pub revert_to :      u8,
      pub length :         u16,
-     pub focus :          window,
-     pub time :           timestamp
+     pub focus :          xcb_window_t,
+     pub time :           xcb_timestamp_t
 }
 
-impl Copy for set_input_focus_request {}
-impl Clone for set_input_focus_request {
-    fn clone(&self) -> set_input_focus_request { *self }
+impl Copy for xcb_set_input_focus_request_t {}
+impl Clone for xcb_set_input_focus_request_t {
+    fn clone(&self) -> xcb_set_input_focus_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_input_focus_cookie {
+pub struct xcb_get_input_focus_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_input_focus_request {
+pub struct xcb_get_input_focus_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16
 }
 
-impl Copy for get_input_focus_request {}
-impl Clone for get_input_focus_request {
-    fn clone(&self) -> get_input_focus_request { *self }
+impl Copy for xcb_get_input_focus_request_t {}
+impl Clone for xcb_get_input_focus_request_t {
+    fn clone(&self) -> xcb_get_input_focus_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_input_focus_reply {
+pub struct xcb_get_input_focus_reply_t {
      pub response_type :   u8,
      pub revert_to :       u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub focus :           window
+     pub focus :           xcb_window_t
 }
 
-impl Copy for get_input_focus_reply {}
-impl Clone for get_input_focus_reply {
-    fn clone(&self) -> get_input_focus_reply { *self }
+impl Copy for xcb_get_input_focus_reply_t {}
+impl Clone for xcb_get_input_focus_reply_t {
+    fn clone(&self) -> xcb_get_input_focus_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct query_keymap_cookie {
+pub struct xcb_query_keymap_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct query_keymap_request {
+pub struct xcb_query_keymap_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16
 }
 
-impl Copy for query_keymap_request {}
-impl Clone for query_keymap_request {
-    fn clone(&self) -> query_keymap_request { *self }
+impl Copy for xcb_query_keymap_request_t {}
+impl Clone for xcb_query_keymap_request_t {
+    fn clone(&self) -> xcb_query_keymap_request_t { *self }
 }
 
 #[repr(C)]
-pub struct query_keymap_reply {
+pub struct xcb_query_keymap_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -2155,64 +2155,64 @@ pub struct query_keymap_reply {
      pub keys :            [u8; 32]
 }
 
-impl Copy for query_keymap_reply {}
-impl Clone for query_keymap_reply {
-    fn clone(&self) -> query_keymap_reply { *self }
+impl Copy for xcb_query_keymap_reply_t {}
+impl Clone for xcb_query_keymap_reply_t {
+    fn clone(&self) -> xcb_query_keymap_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct open_font_request {
+pub struct xcb_open_font_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub fid :            font,
+     pub fid :            xcb_font_t,
      pub name_len :       u16,
      pub pad1 :           [u8; 2]
 }
 
-impl Copy for open_font_request {}
-impl Clone for open_font_request {
-    fn clone(&self) -> open_font_request { *self }
+impl Copy for xcb_open_font_request_t {}
+impl Clone for xcb_open_font_request_t {
+    fn clone(&self) -> xcb_open_font_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct close_font_request {
+pub struct xcb_close_font_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub font :           font
+     pub font :           xcb_font_t
 }
 
-impl Copy for close_font_request {}
-impl Clone for close_font_request {
-    fn clone(&self) -> close_font_request { *self }
+impl Copy for xcb_close_font_request_t {}
+impl Clone for xcb_close_font_request_t {
+    fn clone(&self) -> xcb_close_font_request_t { *self }
 }
 
 #[repr(C)]
-pub struct fontprop {
-     pub name :    atom,
+pub struct xcb_fontprop_t {
+     pub name :    xcb_atom_t,
      pub value :   u32
 }
 
-impl Copy for fontprop {}
-impl Clone for fontprop {
-    fn clone(&self) -> fontprop { *self }
+impl Copy for xcb_fontprop_t {}
+impl Clone for xcb_fontprop_t {
+    fn clone(&self) -> xcb_fontprop_t { *self }
 }
 /**
- * @brief fontprop_iterator
+ * @brief xcb_fontprop_iterator_t
  **/
 #[repr(C)]
-pub struct fontprop_iterator {
-    pub data : *mut fontprop,
+pub struct xcb_fontprop_iterator_t {
+    pub data : *mut xcb_fontprop_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct charinfo {
+pub struct xcb_charinfo_t {
      pub left_side_bearing :    i16,
      pub right_side_bearing :   i16,
      pub character_width :      i16,
@@ -2221,16 +2221,16 @@ pub struct charinfo {
      pub attributes :           u16
 }
 
-impl Copy for charinfo {}
-impl Clone for charinfo {
-    fn clone(&self) -> charinfo { *self }
+impl Copy for xcb_charinfo_t {}
+impl Clone for xcb_charinfo_t {
+    fn clone(&self) -> xcb_charinfo_t { *self }
 }
 /**
- * @brief charinfo_iterator
+ * @brief xcb_charinfo_iterator_t
  **/
 #[repr(C)]
-pub struct charinfo_iterator {
-    pub data : *mut charinfo,
+pub struct xcb_charinfo_iterator_t {
+    pub data : *mut xcb_charinfo_t,
     pub rem  : c_int,
     pub index: c_int
 }
@@ -2238,33 +2238,33 @@ pub struct charinfo_iterator {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct query_font_cookie {
+pub struct xcb_query_font_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct query_font_request {
+pub struct xcb_query_font_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub font :           fontable
+     pub font :           xcb_fontable_t
 }
 
-impl Copy for query_font_request {}
-impl Clone for query_font_request {
-    fn clone(&self) -> query_font_request { *self }
+impl Copy for xcb_query_font_request_t {}
+impl Clone for xcb_query_font_request_t {
+    fn clone(&self) -> xcb_query_font_request_t { *self }
 }
 
 #[repr(C)]
-pub struct query_font_reply {
+pub struct xcb_query_font_reply_t {
      pub response_type :       u8,
      pub pad0 :                u8,
      pub sequence :            u16,
      pub length :              u32,
-     pub min_bounds :          charinfo,
+     pub min_bounds :          xcb_charinfo_t,
      pub pad1 :                [u8; 4],
-     pub max_bounds :          charinfo,
+     pub max_bounds :          xcb_charinfo_t,
      pub pad2 :                [u8; 4],
      pub min_char_or_byte2 :   u16,
      pub max_char_or_byte2 :   u16,
@@ -2279,33 +2279,33 @@ pub struct query_font_reply {
      pub char_infos_len :      u32
 }
 
-impl Copy for query_font_reply {}
-impl Clone for query_font_reply {
-    fn clone(&self) -> query_font_reply { *self }
+impl Copy for xcb_query_font_reply_t {}
+impl Clone for xcb_query_font_reply_t {
+    fn clone(&self) -> xcb_query_font_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct query_text_extents_cookie {
+pub struct xcb_query_text_extents_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct query_text_extents_request {
+pub struct xcb_query_text_extents_request_t {
      pub major_opcode :   u8,
      pub odd_length :     u8,
      pub length :         u16,
-     pub font :           fontable
+     pub font :           xcb_fontable_t
 }
 
-impl Copy for query_text_extents_request {}
-impl Clone for query_text_extents_request {
-    fn clone(&self) -> query_text_extents_request { *self }
+impl Copy for xcb_query_text_extents_request_t {}
+impl Clone for xcb_query_text_extents_request_t {
+    fn clone(&self) -> xcb_query_text_extents_request_t { *self }
 }
 
 #[repr(C)]
-pub struct query_text_extents_reply {
+pub struct xcb_query_text_extents_reply_t {
      pub response_type :     u8,
      pub draw_direction :    u8,
      pub sequence :          u16,
@@ -2319,26 +2319,26 @@ pub struct query_text_extents_reply {
      pub overall_right :     i32
 }
 
-impl Copy for query_text_extents_reply {}
-impl Clone for query_text_extents_reply {
-    fn clone(&self) -> query_text_extents_reply { *self }
+impl Copy for xcb_query_text_extents_reply_t {}
+impl Clone for xcb_query_text_extents_reply_t {
+    fn clone(&self) -> xcb_query_text_extents_reply_t { *self }
 }
 
 #[repr(C)]
-pub struct str_ {
+pub struct xcb_str_t {
      pub name_len :   u8
 }
 
-impl Copy for str_ {}
-impl Clone for str_ {
-    fn clone(&self) -> str_ { *self }
+impl Copy for xcb_str_t {}
+impl Clone for xcb_str_t {
+    fn clone(&self) -> xcb_str_t { *self }
 }
 /**
- * @brief str_iterator
+ * @brief xcb_str_iterator_t
  **/
 #[repr(C)]
-pub struct str_iterator {
-    pub data : *mut str_,
+pub struct xcb_str_iterator_t {
+    pub data : *mut xcb_str_t,
     pub rem  : c_int,
     pub index: c_int
 }
@@ -2346,13 +2346,13 @@ pub struct str_iterator {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct list_fonts_cookie {
+pub struct xcb_list_fonts_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct list_fonts_request {
+pub struct xcb_list_fonts_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
@@ -2360,13 +2360,13 @@ pub struct list_fonts_request {
      pub pattern_len :    u16
 }
 
-impl Copy for list_fonts_request {}
-impl Clone for list_fonts_request {
-    fn clone(&self) -> list_fonts_request { *self }
+impl Copy for xcb_list_fonts_request_t {}
+impl Clone for xcb_list_fonts_request_t {
+    fn clone(&self) -> xcb_list_fonts_request_t { *self }
 }
 
 #[repr(C)]
-pub struct list_fonts_reply {
+pub struct xcb_list_fonts_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -2375,20 +2375,20 @@ pub struct list_fonts_reply {
      pub pad1 :            [u8; 22]
 }
 
-impl Copy for list_fonts_reply {}
-impl Clone for list_fonts_reply {
-    fn clone(&self) -> list_fonts_reply { *self }
+impl Copy for xcb_list_fonts_reply_t {}
+impl Clone for xcb_list_fonts_reply_t {
+    fn clone(&self) -> xcb_list_fonts_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct list_fonts_with_info_cookie {
+pub struct xcb_list_fonts_with_info_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct list_fonts_with_info_request {
+pub struct xcb_list_fonts_with_info_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
@@ -2396,20 +2396,20 @@ pub struct list_fonts_with_info_request {
      pub pattern_len :    u16
 }
 
-impl Copy for list_fonts_with_info_request {}
-impl Clone for list_fonts_with_info_request {
-    fn clone(&self) -> list_fonts_with_info_request { *self }
+impl Copy for xcb_list_fonts_with_info_request_t {}
+impl Clone for xcb_list_fonts_with_info_request_t {
+    fn clone(&self) -> xcb_list_fonts_with_info_request_t { *self }
 }
 
 #[repr(C)]
-pub struct list_fonts_with_info_reply {
+pub struct xcb_list_fonts_with_info_reply_t {
      pub response_type :       u8,
      pub name_len :            u8,
      pub sequence :            u16,
      pub length :              u32,
-     pub min_bounds :          charinfo,
+     pub min_bounds :          xcb_charinfo_t,
      pub pad0 :                [u8; 4],
-     pub max_bounds :          charinfo,
+     pub max_bounds :          xcb_charinfo_t,
      pub pad1 :                [u8; 4],
      pub min_char_or_byte2 :   u16,
      pub max_char_or_byte2 :   u16,
@@ -2424,14 +2424,14 @@ pub struct list_fonts_with_info_reply {
      pub replies_hint :        u32
 }
 
-impl Copy for list_fonts_with_info_reply {}
-impl Clone for list_fonts_with_info_reply {
-    fn clone(&self) -> list_fonts_with_info_reply { *self }
+impl Copy for xcb_list_fonts_with_info_reply_t {}
+impl Clone for xcb_list_fonts_with_info_reply_t {
+    fn clone(&self) -> xcb_list_fonts_with_info_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct set_font_path_request {
+pub struct xcb_set_font_path_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
@@ -2439,32 +2439,32 @@ pub struct set_font_path_request {
      pub pad1 :           [u8; 2]
 }
 
-impl Copy for set_font_path_request {}
-impl Clone for set_font_path_request {
-    fn clone(&self) -> set_font_path_request { *self }
+impl Copy for xcb_set_font_path_request_t {}
+impl Clone for xcb_set_font_path_request_t {
+    fn clone(&self) -> xcb_set_font_path_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_font_path_cookie {
+pub struct xcb_get_font_path_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_font_path_request {
+pub struct xcb_get_font_path_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16
 }
 
-impl Copy for get_font_path_request {}
-impl Clone for get_font_path_request {
-    fn clone(&self) -> get_font_path_request { *self }
+impl Copy for xcb_get_font_path_request_t {}
+impl Clone for xcb_get_font_path_request_t {
+    fn clone(&self) -> xcb_get_font_path_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_font_path_reply {
+pub struct xcb_get_font_path_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -2473,162 +2473,162 @@ pub struct get_font_path_reply {
      pub pad1 :            [u8; 22]
 }
 
-impl Copy for get_font_path_reply {}
-impl Clone for get_font_path_reply {
-    fn clone(&self) -> get_font_path_reply { *self }
+impl Copy for xcb_get_font_path_reply_t {}
+impl Clone for xcb_get_font_path_reply_t {
+    fn clone(&self) -> xcb_get_font_path_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct create_pixmap_request {
+pub struct xcb_create_pixmap_request_t {
      pub major_opcode :   u8,
      pub depth :          u8,
      pub length :         u16,
-     pub pid :            pixmap,
-     pub drawable :       drawable,
+     pub pid :            xcb_pixmap_t,
+     pub drawable :       xcb_drawable_t,
      pub width :          u16,
      pub height :         u16
 }
 
-impl Copy for create_pixmap_request {}
-impl Clone for create_pixmap_request {
-    fn clone(&self) -> create_pixmap_request { *self }
+impl Copy for xcb_create_pixmap_request_t {}
+impl Clone for xcb_create_pixmap_request_t {
+    fn clone(&self) -> xcb_create_pixmap_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct free_pixmap_request {
+pub struct xcb_free_pixmap_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub pixmap :         pixmap
+     pub pixmap :         xcb_pixmap_t
 }
 
-impl Copy for free_pixmap_request {}
-impl Clone for free_pixmap_request {
-    fn clone(&self) -> free_pixmap_request { *self }
+impl Copy for xcb_free_pixmap_request_t {}
+impl Clone for xcb_free_pixmap_request_t {
+    fn clone(&self) -> xcb_free_pixmap_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct create_gc_request {
+pub struct xcb_create_gc_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub cid :            gcontext,
-     pub drawable :       drawable,
+     pub cid :            xcb_gcontext_t,
+     pub drawable :       xcb_drawable_t,
      pub value_mask :     u32
 }
 
-impl Copy for create_gc_request {}
-impl Clone for create_gc_request {
-    fn clone(&self) -> create_gc_request { *self }
+impl Copy for xcb_create_gc_request_t {}
+impl Clone for xcb_create_gc_request_t {
+    fn clone(&self) -> xcb_create_gc_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct change_gc_request {
+pub struct xcb_change_gc_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub gc :             gcontext,
+     pub gc :             xcb_gcontext_t,
      pub value_mask :     u32
 }
 
-impl Copy for change_gc_request {}
-impl Clone for change_gc_request {
-    fn clone(&self) -> change_gc_request { *self }
+impl Copy for xcb_change_gc_request_t {}
+impl Clone for xcb_change_gc_request_t {
+    fn clone(&self) -> xcb_change_gc_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct copy_gc_request {
+pub struct xcb_copy_gc_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub src_gc :         gcontext,
-     pub dst_gc :         gcontext,
+     pub src_gc :         xcb_gcontext_t,
+     pub dst_gc :         xcb_gcontext_t,
      pub value_mask :     u32
 }
 
-impl Copy for copy_gc_request {}
-impl Clone for copy_gc_request {
-    fn clone(&self) -> copy_gc_request { *self }
+impl Copy for xcb_copy_gc_request_t {}
+impl Clone for xcb_copy_gc_request_t {
+    fn clone(&self) -> xcb_copy_gc_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct set_dashes_request {
+pub struct xcb_set_dashes_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub gc :             gcontext,
+     pub gc :             xcb_gcontext_t,
      pub dash_offset :    u16,
      pub dashes_len :     u16
 }
 
-impl Copy for set_dashes_request {}
-impl Clone for set_dashes_request {
-    fn clone(&self) -> set_dashes_request { *self }
+impl Copy for xcb_set_dashes_request_t {}
+impl Clone for xcb_set_dashes_request_t {
+    fn clone(&self) -> xcb_set_dashes_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct set_clip_rectangles_request {
+pub struct xcb_set_clip_rectangles_request_t {
      pub major_opcode :    u8,
      pub ordering :        u8,
      pub length :          u16,
-     pub gc :              gcontext,
+     pub gc :              xcb_gcontext_t,
      pub clip_x_origin :   i16,
      pub clip_y_origin :   i16
 }
 
-impl Copy for set_clip_rectangles_request {}
-impl Clone for set_clip_rectangles_request {
-    fn clone(&self) -> set_clip_rectangles_request { *self }
+impl Copy for xcb_set_clip_rectangles_request_t {}
+impl Clone for xcb_set_clip_rectangles_request_t {
+    fn clone(&self) -> xcb_set_clip_rectangles_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct free_gc_request {
+pub struct xcb_free_gc_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub gc :             gcontext
+     pub gc :             xcb_gcontext_t
 }
 
-impl Copy for free_gc_request {}
-impl Clone for free_gc_request {
-    fn clone(&self) -> free_gc_request { *self }
+impl Copy for xcb_free_gc_request_t {}
+impl Clone for xcb_free_gc_request_t {
+    fn clone(&self) -> xcb_free_gc_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct clear_area_request {
+pub struct xcb_clear_area_request_t {
      pub major_opcode :   u8,
      pub exposures :      u8,
      pub length :         u16,
-     pub window :         window,
+     pub window :         xcb_window_t,
      pub x :              i16,
      pub y :              i16,
      pub width :          u16,
      pub height :         u16
 }
 
-impl Copy for clear_area_request {}
-impl Clone for clear_area_request {
-    fn clone(&self) -> clear_area_request { *self }
+impl Copy for xcb_clear_area_request_t {}
+impl Clone for xcb_clear_area_request_t {
+    fn clone(&self) -> xcb_clear_area_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct copy_area_request {
+pub struct xcb_copy_area_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub src_drawable :   drawable,
-     pub dst_drawable :   drawable,
-     pub gc :             gcontext,
+     pub src_drawable :   xcb_drawable_t,
+     pub dst_drawable :   xcb_drawable_t,
+     pub gc :             xcb_gcontext_t,
      pub src_x :          i16,
      pub src_y :          i16,
      pub dst_x :          i16,
@@ -2637,20 +2637,20 @@ pub struct copy_area_request {
      pub height :         u16
 }
 
-impl Copy for copy_area_request {}
-impl Clone for copy_area_request {
-    fn clone(&self) -> copy_area_request { *self }
+impl Copy for xcb_copy_area_request_t {}
+impl Clone for xcb_copy_area_request_t {
+    fn clone(&self) -> xcb_copy_area_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct copy_plane_request {
+pub struct xcb_copy_plane_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub src_drawable :   drawable,
-     pub dst_drawable :   drawable,
-     pub gc :             gcontext,
+     pub src_drawable :   xcb_drawable_t,
+     pub dst_drawable :   xcb_drawable_t,
+     pub gc :             xcb_gcontext_t,
      pub src_x :          i16,
      pub src_y :          i16,
      pub dst_x :          i16,
@@ -2660,59 +2660,59 @@ pub struct copy_plane_request {
      pub bit_plane :      u32
 }
 
-impl Copy for copy_plane_request {}
-impl Clone for copy_plane_request {
-    fn clone(&self) -> copy_plane_request { *self }
+impl Copy for xcb_copy_plane_request_t {}
+impl Clone for xcb_copy_plane_request_t {
+    fn clone(&self) -> xcb_copy_plane_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct poly_point_request {
+pub struct xcb_poly_point_request_t {
      pub major_opcode :      u8,
      pub coordinate_mode :   u8,
      pub length :            u16,
-     pub drawable :          drawable,
-     pub gc :                gcontext
+     pub drawable :          xcb_drawable_t,
+     pub gc :                xcb_gcontext_t
 }
 
-impl Copy for poly_point_request {}
-impl Clone for poly_point_request {
-    fn clone(&self) -> poly_point_request { *self }
+impl Copy for xcb_poly_point_request_t {}
+impl Clone for xcb_poly_point_request_t {
+    fn clone(&self) -> xcb_poly_point_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct poly_line_request {
+pub struct xcb_poly_line_request_t {
      pub major_opcode :      u8,
      pub coordinate_mode :   u8,
      pub length :            u16,
-     pub drawable :          drawable,
-     pub gc :                gcontext
+     pub drawable :          xcb_drawable_t,
+     pub gc :                xcb_gcontext_t
 }
 
-impl Copy for poly_line_request {}
-impl Clone for poly_line_request {
-    fn clone(&self) -> poly_line_request { *self }
+impl Copy for xcb_poly_line_request_t {}
+impl Clone for xcb_poly_line_request_t {
+    fn clone(&self) -> xcb_poly_line_request_t { *self }
 }
 
 #[repr(C)]
-pub struct segment {
+pub struct xcb_segment_t {
      pub x1 :   i16,
      pub y1 :   i16,
      pub x2 :   i16,
      pub y2 :   i16
 }
 
-impl Copy for segment {}
-impl Clone for segment {
-    fn clone(&self) -> segment { *self }
+impl Copy for xcb_segment_t {}
+impl Clone for xcb_segment_t {
+    fn clone(&self) -> xcb_segment_t { *self }
 }
 /**
- * @brief segment_iterator
+ * @brief xcb_segment_iterator_t
  **/
 #[repr(C)]
-pub struct segment_iterator {
-    pub data : *mut segment,
+pub struct xcb_segment_iterator_t {
+    pub data : *mut xcb_segment_t,
     pub rem  : c_int,
     pub index: c_int
 }
@@ -2720,105 +2720,105 @@ pub struct segment_iterator {
 
 
 #[repr(C)]
-pub struct poly_segment_request {
+pub struct xcb_poly_segment_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub drawable :       drawable,
-     pub gc :             gcontext
+     pub drawable :       xcb_drawable_t,
+     pub gc :             xcb_gcontext_t
 }
 
-impl Copy for poly_segment_request {}
-impl Clone for poly_segment_request {
-    fn clone(&self) -> poly_segment_request { *self }
+impl Copy for xcb_poly_segment_request_t {}
+impl Clone for xcb_poly_segment_request_t {
+    fn clone(&self) -> xcb_poly_segment_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct poly_rectangle_request {
+pub struct xcb_poly_rectangle_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub drawable :       drawable,
-     pub gc :             gcontext
+     pub drawable :       xcb_drawable_t,
+     pub gc :             xcb_gcontext_t
 }
 
-impl Copy for poly_rectangle_request {}
-impl Clone for poly_rectangle_request {
-    fn clone(&self) -> poly_rectangle_request { *self }
+impl Copy for xcb_poly_rectangle_request_t {}
+impl Clone for xcb_poly_rectangle_request_t {
+    fn clone(&self) -> xcb_poly_rectangle_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct poly_arc_request {
+pub struct xcb_poly_arc_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub drawable :       drawable,
-     pub gc :             gcontext
+     pub drawable :       xcb_drawable_t,
+     pub gc :             xcb_gcontext_t
 }
 
-impl Copy for poly_arc_request {}
-impl Clone for poly_arc_request {
-    fn clone(&self) -> poly_arc_request { *self }
+impl Copy for xcb_poly_arc_request_t {}
+impl Clone for xcb_poly_arc_request_t {
+    fn clone(&self) -> xcb_poly_arc_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct fill_poly_request {
+pub struct xcb_fill_poly_request_t {
      pub major_opcode :      u8,
      pub pad0 :              u8,
      pub length :            u16,
-     pub drawable :          drawable,
-     pub gc :                gcontext,
+     pub drawable :          xcb_drawable_t,
+     pub gc :                xcb_gcontext_t,
      pub shape :             u8,
      pub coordinate_mode :   u8,
      pub pad1 :              [u8; 2]
 }
 
-impl Copy for fill_poly_request {}
-impl Clone for fill_poly_request {
-    fn clone(&self) -> fill_poly_request { *self }
+impl Copy for xcb_fill_poly_request_t {}
+impl Clone for xcb_fill_poly_request_t {
+    fn clone(&self) -> xcb_fill_poly_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct poly_fill_rectangle_request {
+pub struct xcb_poly_fill_rectangle_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub drawable :       drawable,
-     pub gc :             gcontext
+     pub drawable :       xcb_drawable_t,
+     pub gc :             xcb_gcontext_t
 }
 
-impl Copy for poly_fill_rectangle_request {}
-impl Clone for poly_fill_rectangle_request {
-    fn clone(&self) -> poly_fill_rectangle_request { *self }
+impl Copy for xcb_poly_fill_rectangle_request_t {}
+impl Clone for xcb_poly_fill_rectangle_request_t {
+    fn clone(&self) -> xcb_poly_fill_rectangle_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct poly_fill_arc_request {
+pub struct xcb_poly_fill_arc_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub drawable :       drawable,
-     pub gc :             gcontext
+     pub drawable :       xcb_drawable_t,
+     pub gc :             xcb_gcontext_t
 }
 
-impl Copy for poly_fill_arc_request {}
-impl Clone for poly_fill_arc_request {
-    fn clone(&self) -> poly_fill_arc_request { *self }
+impl Copy for xcb_poly_fill_arc_request_t {}
+impl Clone for xcb_poly_fill_arc_request_t {
+    fn clone(&self) -> xcb_poly_fill_arc_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct put_image_request {
+pub struct xcb_put_image_request_t {
      pub major_opcode :   u8,
      pub format :         u8,
      pub length :         u16,
-     pub drawable :       drawable,
-     pub gc :             gcontext,
+     pub drawable :       xcb_drawable_t,
+     pub gc :             xcb_gcontext_t,
      pub width :          u16,
      pub height :         u16,
      pub dst_x :          i16,
@@ -2828,24 +2828,24 @@ pub struct put_image_request {
      pub pad0 :           [u8; 2]
 }
 
-impl Copy for put_image_request {}
-impl Clone for put_image_request {
-    fn clone(&self) -> put_image_request { *self }
+impl Copy for xcb_put_image_request_t {}
+impl Clone for xcb_put_image_request_t {
+    fn clone(&self) -> xcb_put_image_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_image_cookie {
+pub struct xcb_get_image_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_image_request {
+pub struct xcb_get_image_request_t {
      pub major_opcode :   u8,
      pub format :         u8,
      pub length :         u16,
-     pub drawable :       drawable,
+     pub drawable :       xcb_drawable_t,
      pub x :              i16,
      pub y :              i16,
      pub width :          u16,
@@ -2853,189 +2853,189 @@ pub struct get_image_request {
      pub plane_mask :     u32
 }
 
-impl Copy for get_image_request {}
-impl Clone for get_image_request {
-    fn clone(&self) -> get_image_request { *self }
+impl Copy for xcb_get_image_request_t {}
+impl Clone for xcb_get_image_request_t {
+    fn clone(&self) -> xcb_get_image_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_image_reply {
+pub struct xcb_get_image_reply_t {
      pub response_type :   u8,
      pub depth :           u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub visual :          visualid,
+     pub visual :          xcb_visualid_t,
      pub pad0 :            [u8; 20]
 }
 
-impl Copy for get_image_reply {}
-impl Clone for get_image_reply {
-    fn clone(&self) -> get_image_reply { *self }
+impl Copy for xcb_get_image_reply_t {}
+impl Clone for xcb_get_image_reply_t {
+    fn clone(&self) -> xcb_get_image_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct poly_text_8_request {
+pub struct xcb_poly_text_8_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub drawable :       drawable,
-     pub gc :             gcontext,
+     pub drawable :       xcb_drawable_t,
+     pub gc :             xcb_gcontext_t,
      pub x :              i16,
      pub y :              i16
 }
 
-impl Copy for poly_text_8_request {}
-impl Clone for poly_text_8_request {
-    fn clone(&self) -> poly_text_8_request { *self }
+impl Copy for xcb_poly_text_8_request_t {}
+impl Clone for xcb_poly_text_8_request_t {
+    fn clone(&self) -> xcb_poly_text_8_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct poly_text_16_request {
+pub struct xcb_poly_text_16_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub drawable :       drawable,
-     pub gc :             gcontext,
+     pub drawable :       xcb_drawable_t,
+     pub gc :             xcb_gcontext_t,
      pub x :              i16,
      pub y :              i16
 }
 
-impl Copy for poly_text_16_request {}
-impl Clone for poly_text_16_request {
-    fn clone(&self) -> poly_text_16_request { *self }
+impl Copy for xcb_poly_text_16_request_t {}
+impl Clone for xcb_poly_text_16_request_t {
+    fn clone(&self) -> xcb_poly_text_16_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct image_text_8_request {
+pub struct xcb_image_text_8_request_t {
      pub major_opcode :   u8,
      pub string_len :     u8,
      pub length :         u16,
-     pub drawable :       drawable,
-     pub gc :             gcontext,
+     pub drawable :       xcb_drawable_t,
+     pub gc :             xcb_gcontext_t,
      pub x :              i16,
      pub y :              i16
 }
 
-impl Copy for image_text_8_request {}
-impl Clone for image_text_8_request {
-    fn clone(&self) -> image_text_8_request { *self }
+impl Copy for xcb_image_text_8_request_t {}
+impl Clone for xcb_image_text_8_request_t {
+    fn clone(&self) -> xcb_image_text_8_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct image_text_16_request {
+pub struct xcb_image_text_16_request_t {
      pub major_opcode :   u8,
      pub string_len :     u8,
      pub length :         u16,
-     pub drawable :       drawable,
-     pub gc :             gcontext,
+     pub drawable :       xcb_drawable_t,
+     pub gc :             xcb_gcontext_t,
      pub x :              i16,
      pub y :              i16
 }
 
-impl Copy for image_text_16_request {}
-impl Clone for image_text_16_request {
-    fn clone(&self) -> image_text_16_request { *self }
+impl Copy for xcb_image_text_16_request_t {}
+impl Clone for xcb_image_text_16_request_t {
+    fn clone(&self) -> xcb_image_text_16_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct create_colormap_request {
+pub struct xcb_create_colormap_request_t {
      pub major_opcode :   u8,
      pub alloc :          u8,
      pub length :         u16,
-     pub mid :            colormap,
-     pub window :         window,
-     pub visual :         visualid
+     pub mid :            xcb_colormap_t,
+     pub window :         xcb_window_t,
+     pub visual :         xcb_visualid_t
 }
 
-impl Copy for create_colormap_request {}
-impl Clone for create_colormap_request {
-    fn clone(&self) -> create_colormap_request { *self }
-}
-
-
-#[repr(C)]
-pub struct free_colormap_request {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub cmap :           colormap
-}
-
-impl Copy for free_colormap_request {}
-impl Clone for free_colormap_request {
-    fn clone(&self) -> free_colormap_request { *self }
+impl Copy for xcb_create_colormap_request_t {}
+impl Clone for xcb_create_colormap_request_t {
+    fn clone(&self) -> xcb_create_colormap_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct copy_colormap_and_free_request {
+pub struct xcb_free_colormap_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub mid :            colormap,
-     pub src_cmap :       colormap
+     pub cmap :           xcb_colormap_t
 }
 
-impl Copy for copy_colormap_and_free_request {}
-impl Clone for copy_colormap_and_free_request {
-    fn clone(&self) -> copy_colormap_and_free_request { *self }
+impl Copy for xcb_free_colormap_request_t {}
+impl Clone for xcb_free_colormap_request_t {
+    fn clone(&self) -> xcb_free_colormap_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct install_colormap_request {
+pub struct xcb_copy_colormap_and_free_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub cmap :           colormap
+     pub mid :            xcb_colormap_t,
+     pub src_cmap :       xcb_colormap_t
 }
 
-impl Copy for install_colormap_request {}
-impl Clone for install_colormap_request {
-    fn clone(&self) -> install_colormap_request { *self }
+impl Copy for xcb_copy_colormap_and_free_request_t {}
+impl Clone for xcb_copy_colormap_and_free_request_t {
+    fn clone(&self) -> xcb_copy_colormap_and_free_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct uninstall_colormap_request {
+pub struct xcb_install_colormap_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub cmap :           colormap
+     pub cmap :           xcb_colormap_t
 }
 
-impl Copy for uninstall_colormap_request {}
-impl Clone for uninstall_colormap_request {
-    fn clone(&self) -> uninstall_colormap_request { *self }
+impl Copy for xcb_install_colormap_request_t {}
+impl Clone for xcb_install_colormap_request_t {
+    fn clone(&self) -> xcb_install_colormap_request_t { *self }
+}
+
+
+#[repr(C)]
+pub struct xcb_uninstall_colormap_request_t {
+     pub major_opcode :   u8,
+     pub pad0 :           u8,
+     pub length :         u16,
+     pub cmap :           xcb_colormap_t
+}
+
+impl Copy for xcb_uninstall_colormap_request_t {}
+impl Clone for xcb_uninstall_colormap_request_t {
+    fn clone(&self) -> xcb_uninstall_colormap_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct list_installed_colormaps_cookie {
+pub struct xcb_list_installed_colormaps_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct list_installed_colormaps_request {
+pub struct xcb_list_installed_colormaps_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub window :         window
+     pub window :         xcb_window_t
 }
 
-impl Copy for list_installed_colormaps_request {}
-impl Clone for list_installed_colormaps_request {
-    fn clone(&self) -> list_installed_colormaps_request { *self }
+impl Copy for xcb_list_installed_colormaps_request_t {}
+impl Clone for xcb_list_installed_colormaps_request_t {
+    fn clone(&self) -> xcb_list_installed_colormaps_request_t { *self }
 }
 
 #[repr(C)]
-pub struct list_installed_colormaps_reply {
+pub struct xcb_list_installed_colormaps_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -3044,37 +3044,37 @@ pub struct list_installed_colormaps_reply {
      pub pad1 :            [u8; 22]
 }
 
-impl Copy for list_installed_colormaps_reply {}
-impl Clone for list_installed_colormaps_reply {
-    fn clone(&self) -> list_installed_colormaps_reply { *self }
+impl Copy for xcb_list_installed_colormaps_reply_t {}
+impl Clone for xcb_list_installed_colormaps_reply_t {
+    fn clone(&self) -> xcb_list_installed_colormaps_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct alloc_color_cookie {
+pub struct xcb_alloc_color_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct alloc_color_request {
+pub struct xcb_alloc_color_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub cmap :           colormap,
+     pub cmap :           xcb_colormap_t,
      pub red :            u16,
      pub green :          u16,
      pub blue :           u16,
      pub pad1 :           [u8; 2]
 }
 
-impl Copy for alloc_color_request {}
-impl Clone for alloc_color_request {
-    fn clone(&self) -> alloc_color_request { *self }
+impl Copy for xcb_alloc_color_request_t {}
+impl Clone for xcb_alloc_color_request_t {
+    fn clone(&self) -> xcb_alloc_color_request_t { *self }
 }
 
 #[repr(C)]
-pub struct alloc_color_reply {
+pub struct xcb_alloc_color_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -3086,35 +3086,35 @@ pub struct alloc_color_reply {
      pub pixel :           u32
 }
 
-impl Copy for alloc_color_reply {}
-impl Clone for alloc_color_reply {
-    fn clone(&self) -> alloc_color_reply { *self }
+impl Copy for xcb_alloc_color_reply_t {}
+impl Clone for xcb_alloc_color_reply_t {
+    fn clone(&self) -> xcb_alloc_color_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct alloc_named_color_cookie {
+pub struct xcb_alloc_named_color_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct alloc_named_color_request {
+pub struct xcb_alloc_named_color_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub cmap :           colormap,
+     pub cmap :           xcb_colormap_t,
      pub name_len :       u16,
      pub pad1 :           [u8; 2]
 }
 
-impl Copy for alloc_named_color_request {}
-impl Clone for alloc_named_color_request {
-    fn clone(&self) -> alloc_named_color_request { *self }
+impl Copy for xcb_alloc_named_color_request_t {}
+impl Clone for xcb_alloc_named_color_request_t {
+    fn clone(&self) -> xcb_alloc_named_color_request_t { *self }
 }
 
 #[repr(C)]
-pub struct alloc_named_color_reply {
+pub struct xcb_alloc_named_color_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -3128,35 +3128,35 @@ pub struct alloc_named_color_reply {
      pub visual_blue :     u16
 }
 
-impl Copy for alloc_named_color_reply {}
-impl Clone for alloc_named_color_reply {
-    fn clone(&self) -> alloc_named_color_reply { *self }
+impl Copy for xcb_alloc_named_color_reply_t {}
+impl Clone for xcb_alloc_named_color_reply_t {
+    fn clone(&self) -> xcb_alloc_named_color_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct alloc_color_cells_cookie {
+pub struct xcb_alloc_color_cells_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct alloc_color_cells_request {
+pub struct xcb_alloc_color_cells_request_t {
      pub major_opcode :   u8,
      pub contiguous :     u8,
      pub length :         u16,
-     pub cmap :           colormap,
+     pub cmap :           xcb_colormap_t,
      pub colors :         u16,
      pub planes :         u16
 }
 
-impl Copy for alloc_color_cells_request {}
-impl Clone for alloc_color_cells_request {
-    fn clone(&self) -> alloc_color_cells_request { *self }
+impl Copy for xcb_alloc_color_cells_request_t {}
+impl Clone for xcb_alloc_color_cells_request_t {
+    fn clone(&self) -> xcb_alloc_color_cells_request_t { *self }
 }
 
 #[repr(C)]
-pub struct alloc_color_cells_reply {
+pub struct xcb_alloc_color_cells_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -3166,37 +3166,37 @@ pub struct alloc_color_cells_reply {
      pub pad1 :            [u8; 20]
 }
 
-impl Copy for alloc_color_cells_reply {}
-impl Clone for alloc_color_cells_reply {
-    fn clone(&self) -> alloc_color_cells_reply { *self }
+impl Copy for xcb_alloc_color_cells_reply_t {}
+impl Clone for xcb_alloc_color_cells_reply_t {
+    fn clone(&self) -> xcb_alloc_color_cells_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct alloc_color_planes_cookie {
+pub struct xcb_alloc_color_planes_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct alloc_color_planes_request {
+pub struct xcb_alloc_color_planes_request_t {
      pub major_opcode :   u8,
      pub contiguous :     u8,
      pub length :         u16,
-     pub cmap :           colormap,
+     pub cmap :           xcb_colormap_t,
      pub colors :         u16,
      pub reds :           u16,
      pub greens :         u16,
      pub blues :          u16
 }
 
-impl Copy for alloc_color_planes_request {}
-impl Clone for alloc_color_planes_request {
-    fn clone(&self) -> alloc_color_planes_request { *self }
+impl Copy for xcb_alloc_color_planes_request_t {}
+impl Clone for xcb_alloc_color_planes_request_t {
+    fn clone(&self) -> xcb_alloc_color_planes_request_t { *self }
 }
 
 #[repr(C)]
-pub struct alloc_color_planes_reply {
+pub struct xcb_alloc_color_planes_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -3209,28 +3209,28 @@ pub struct alloc_color_planes_reply {
      pub pad2 :            [u8; 8]
 }
 
-impl Copy for alloc_color_planes_reply {}
-impl Clone for alloc_color_planes_reply {
-    fn clone(&self) -> alloc_color_planes_reply { *self }
+impl Copy for xcb_alloc_color_planes_reply_t {}
+impl Clone for xcb_alloc_color_planes_reply_t {
+    fn clone(&self) -> xcb_alloc_color_planes_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct free_colors_request {
+pub struct xcb_free_colors_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub cmap :           colormap,
+     pub cmap :           xcb_colormap_t,
      pub plane_mask :     u32
 }
 
-impl Copy for free_colors_request {}
-impl Clone for free_colors_request {
-    fn clone(&self) -> free_colors_request { *self }
+impl Copy for xcb_free_colors_request_t {}
+impl Clone for xcb_free_colors_request_t {
+    fn clone(&self) -> xcb_free_colors_request_t { *self }
 }
 
 #[repr(C)]
-pub struct coloritem {
+pub struct xcb_coloritem_t {
      pub pixel :   u32,
      pub red :     u16,
      pub green :   u16,
@@ -3239,16 +3239,16 @@ pub struct coloritem {
      pub pad0 :    u8
 }
 
-impl Copy for coloritem {}
-impl Clone for coloritem {
-    fn clone(&self) -> coloritem { *self }
+impl Copy for xcb_coloritem_t {}
+impl Clone for xcb_coloritem_t {
+    fn clone(&self) -> xcb_coloritem_t { *self }
 }
 /**
- * @brief coloritem_iterator
+ * @brief xcb_coloritem_iterator_t
  **/
 #[repr(C)]
-pub struct coloritem_iterator {
-    pub data : *mut coloritem,
+pub struct xcb_coloritem_iterator_t {
+    pub data : *mut xcb_coloritem_t,
     pub rem  : c_int,
     pub index: c_int
 }
@@ -3256,53 +3256,53 @@ pub struct coloritem_iterator {
 
 
 #[repr(C)]
-pub struct store_colors_request {
+pub struct xcb_store_colors_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub cmap :           colormap
+     pub cmap :           xcb_colormap_t
 }
 
-impl Copy for store_colors_request {}
-impl Clone for store_colors_request {
-    fn clone(&self) -> store_colors_request { *self }
+impl Copy for xcb_store_colors_request_t {}
+impl Clone for xcb_store_colors_request_t {
+    fn clone(&self) -> xcb_store_colors_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct store_named_color_request {
+pub struct xcb_store_named_color_request_t {
      pub major_opcode :   u8,
      pub flags :          u8,
      pub length :         u16,
-     pub cmap :           colormap,
+     pub cmap :           xcb_colormap_t,
      pub pixel :          u32,
      pub name_len :       u16,
      pub pad0 :           [u8; 2]
 }
 
-impl Copy for store_named_color_request {}
-impl Clone for store_named_color_request {
-    fn clone(&self) -> store_named_color_request { *self }
+impl Copy for xcb_store_named_color_request_t {}
+impl Clone for xcb_store_named_color_request_t {
+    fn clone(&self) -> xcb_store_named_color_request_t { *self }
 }
 
 #[repr(C)]
-pub struct rgb {
+pub struct xcb_rgb_t {
      pub red :     u16,
      pub green :   u16,
      pub blue :    u16,
      pub pad0 :    [u8; 2]
 }
 
-impl Copy for rgb {}
-impl Clone for rgb {
-    fn clone(&self) -> rgb { *self }
+impl Copy for xcb_rgb_t {}
+impl Clone for xcb_rgb_t {
+    fn clone(&self) -> xcb_rgb_t { *self }
 }
 /**
- * @brief rgb_iterator
+ * @brief xcb_rgb_iterator_t
  **/
 #[repr(C)]
-pub struct rgb_iterator {
-    pub data : *mut rgb,
+pub struct xcb_rgb_iterator_t {
+    pub data : *mut xcb_rgb_t,
     pub rem  : c_int,
     pub index: c_int
 }
@@ -3310,26 +3310,26 @@ pub struct rgb_iterator {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct query_colors_cookie {
+pub struct xcb_query_colors_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct query_colors_request {
+pub struct xcb_query_colors_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub cmap :           colormap
+     pub cmap :           xcb_colormap_t
 }
 
-impl Copy for query_colors_request {}
-impl Clone for query_colors_request {
-    fn clone(&self) -> query_colors_request { *self }
+impl Copy for xcb_query_colors_request_t {}
+impl Clone for xcb_query_colors_request_t {
+    fn clone(&self) -> xcb_query_colors_request_t { *self }
 }
 
 #[repr(C)]
-pub struct query_colors_reply {
+pub struct xcb_query_colors_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -3338,35 +3338,35 @@ pub struct query_colors_reply {
      pub pad1 :            [u8; 22]
 }
 
-impl Copy for query_colors_reply {}
-impl Clone for query_colors_reply {
-    fn clone(&self) -> query_colors_reply { *self }
+impl Copy for xcb_query_colors_reply_t {}
+impl Clone for xcb_query_colors_reply_t {
+    fn clone(&self) -> xcb_query_colors_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct lookup_color_cookie {
+pub struct xcb_lookup_color_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct lookup_color_request {
+pub struct xcb_lookup_color_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub cmap :           colormap,
+     pub cmap :           xcb_colormap_t,
      pub name_len :       u16,
      pub pad1 :           [u8; 2]
 }
 
-impl Copy for lookup_color_request {}
-impl Clone for lookup_color_request {
-    fn clone(&self) -> lookup_color_request { *self }
+impl Copy for xcb_lookup_color_request_t {}
+impl Clone for xcb_lookup_color_request_t {
+    fn clone(&self) -> xcb_lookup_color_request_t { *self }
 }
 
 #[repr(C)]
-pub struct lookup_color_reply {
+pub struct xcb_lookup_color_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -3379,20 +3379,20 @@ pub struct lookup_color_reply {
      pub visual_blue :     u16
 }
 
-impl Copy for lookup_color_reply {}
-impl Clone for lookup_color_reply {
-    fn clone(&self) -> lookup_color_reply { *self }
+impl Copy for xcb_lookup_color_reply_t {}
+impl Clone for xcb_lookup_color_reply_t {
+    fn clone(&self) -> xcb_lookup_color_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct create_cursor_request {
+pub struct xcb_create_cursor_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub cid :            cursor,
-     pub source :         pixmap,
-     pub mask :           pixmap,
+     pub cid :            xcb_cursor_t,
+     pub source :         xcb_pixmap_t,
+     pub mask :           xcb_pixmap_t,
      pub fore_red :       u16,
      pub fore_green :     u16,
      pub fore_blue :      u16,
@@ -3403,20 +3403,20 @@ pub struct create_cursor_request {
      pub y :              u16
 }
 
-impl Copy for create_cursor_request {}
-impl Clone for create_cursor_request {
-    fn clone(&self) -> create_cursor_request { *self }
+impl Copy for xcb_create_cursor_request_t {}
+impl Clone for xcb_create_cursor_request_t {
+    fn clone(&self) -> xcb_create_cursor_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct create_glyph_cursor_request {
+pub struct xcb_create_glyph_cursor_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub cid :            cursor,
-     pub source_font :    font,
-     pub mask_font :      font,
+     pub cid :            xcb_cursor_t,
+     pub source_font :    xcb_font_t,
+     pub mask_font :      xcb_font_t,
      pub source_char :    u16,
      pub mask_char :      u16,
      pub fore_red :       u16,
@@ -3427,32 +3427,32 @@ pub struct create_glyph_cursor_request {
      pub back_blue :      u16
 }
 
-impl Copy for create_glyph_cursor_request {}
-impl Clone for create_glyph_cursor_request {
-    fn clone(&self) -> create_glyph_cursor_request { *self }
+impl Copy for xcb_create_glyph_cursor_request_t {}
+impl Clone for xcb_create_glyph_cursor_request_t {
+    fn clone(&self) -> xcb_create_glyph_cursor_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct free_cursor_request {
+pub struct xcb_free_cursor_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub cursor :         cursor
+     pub cursor :         xcb_cursor_t
 }
 
-impl Copy for free_cursor_request {}
-impl Clone for free_cursor_request {
-    fn clone(&self) -> free_cursor_request { *self }
+impl Copy for xcb_free_cursor_request_t {}
+impl Clone for xcb_free_cursor_request_t {
+    fn clone(&self) -> xcb_free_cursor_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct recolor_cursor_request {
+pub struct xcb_recolor_cursor_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub cursor :         cursor,
+     pub cursor :         xcb_cursor_t,
      pub fore_red :       u16,
      pub fore_green :     u16,
      pub fore_blue :      u16,
@@ -3461,35 +3461,35 @@ pub struct recolor_cursor_request {
      pub back_blue :      u16
 }
 
-impl Copy for recolor_cursor_request {}
-impl Clone for recolor_cursor_request {
-    fn clone(&self) -> recolor_cursor_request { *self }
+impl Copy for xcb_recolor_cursor_request_t {}
+impl Clone for xcb_recolor_cursor_request_t {
+    fn clone(&self) -> xcb_recolor_cursor_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct query_best_size_cookie {
+pub struct xcb_query_best_size_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct query_best_size_request {
+pub struct xcb_query_best_size_request_t {
      pub major_opcode :   u8,
      pub class :          u8,
      pub length :         u16,
-     pub drawable :       drawable,
+     pub drawable :       xcb_drawable_t,
      pub width :          u16,
      pub height :         u16
 }
 
-impl Copy for query_best_size_request {}
-impl Clone for query_best_size_request {
-    fn clone(&self) -> query_best_size_request { *self }
+impl Copy for xcb_query_best_size_request_t {}
+impl Clone for xcb_query_best_size_request_t {
+    fn clone(&self) -> xcb_query_best_size_request_t { *self }
 }
 
 #[repr(C)]
-pub struct query_best_size_reply {
+pub struct xcb_query_best_size_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -3498,20 +3498,20 @@ pub struct query_best_size_reply {
      pub height :          u16
 }
 
-impl Copy for query_best_size_reply {}
-impl Clone for query_best_size_reply {
-    fn clone(&self) -> query_best_size_reply { *self }
+impl Copy for xcb_query_best_size_reply_t {}
+impl Clone for xcb_query_best_size_reply_t {
+    fn clone(&self) -> xcb_query_best_size_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct query_extension_cookie {
+pub struct xcb_query_extension_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct query_extension_request {
+pub struct xcb_query_extension_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
@@ -3519,13 +3519,13 @@ pub struct query_extension_request {
      pub pad1 :           [u8; 2]
 }
 
-impl Copy for query_extension_request {}
-impl Clone for query_extension_request {
-    fn clone(&self) -> query_extension_request { *self }
+impl Copy for xcb_query_extension_request_t {}
+impl Clone for xcb_query_extension_request_t {
+    fn clone(&self) -> xcb_query_extension_request_t { *self }
 }
 
 #[repr(C)]
-pub struct query_extension_reply {
+pub struct xcb_query_extension_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -3536,32 +3536,32 @@ pub struct query_extension_reply {
      pub first_error :     u8
 }
 
-impl Copy for query_extension_reply {}
-impl Clone for query_extension_reply {
-    fn clone(&self) -> query_extension_reply { *self }
+impl Copy for xcb_query_extension_reply_t {}
+impl Clone for xcb_query_extension_reply_t {
+    fn clone(&self) -> xcb_query_extension_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct list_extensions_cookie {
+pub struct xcb_list_extensions_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct list_extensions_request {
+pub struct xcb_list_extensions_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16
 }
 
-impl Copy for list_extensions_request {}
-impl Clone for list_extensions_request {
-    fn clone(&self) -> list_extensions_request { *self }
+impl Copy for xcb_list_extensions_request_t {}
+impl Clone for xcb_list_extensions_request_t {
+    fn clone(&self) -> xcb_list_extensions_request_t { *self }
 }
 
 #[repr(C)]
-pub struct list_extensions_reply {
+pub struct xcb_list_extensions_reply_t {
      pub response_type :   u8,
      pub names_len :       u8,
      pub sequence :        u16,
@@ -3569,50 +3569,50 @@ pub struct list_extensions_reply {
      pub pad0 :            [u8; 24]
 }
 
-impl Copy for list_extensions_reply {}
-impl Clone for list_extensions_reply {
-    fn clone(&self) -> list_extensions_reply { *self }
+impl Copy for xcb_list_extensions_reply_t {}
+impl Clone for xcb_list_extensions_reply_t {
+    fn clone(&self) -> xcb_list_extensions_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct change_keyboard_mapping_request {
+pub struct xcb_change_keyboard_mapping_request_t {
      pub major_opcode :          u8,
      pub keycode_count :         u8,
      pub length :                u16,
-     pub first_keycode :         keycode,
+     pub first_keycode :         xcb_keycode_t,
      pub keysyms_per_keycode :   u8,
      pub pad0 :                  [u8; 2]
 }
 
-impl Copy for change_keyboard_mapping_request {}
-impl Clone for change_keyboard_mapping_request {
-    fn clone(&self) -> change_keyboard_mapping_request { *self }
+impl Copy for xcb_change_keyboard_mapping_request_t {}
+impl Clone for xcb_change_keyboard_mapping_request_t {
+    fn clone(&self) -> xcb_change_keyboard_mapping_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_keyboard_mapping_cookie {
+pub struct xcb_get_keyboard_mapping_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_keyboard_mapping_request {
+pub struct xcb_get_keyboard_mapping_request_t {
      pub major_opcode :    u8,
      pub pad0 :            u8,
      pub length :          u16,
-     pub first_keycode :   keycode,
+     pub first_keycode :   xcb_keycode_t,
      pub count :           u8
 }
 
-impl Copy for get_keyboard_mapping_request {}
-impl Clone for get_keyboard_mapping_request {
-    fn clone(&self) -> get_keyboard_mapping_request { *self }
+impl Copy for xcb_get_keyboard_mapping_request_t {}
+impl Clone for xcb_get_keyboard_mapping_request_t {
+    fn clone(&self) -> xcb_get_keyboard_mapping_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_keyboard_mapping_reply {
+pub struct xcb_get_keyboard_mapping_reply_t {
      pub response_type :         u8,
      pub keysyms_per_keycode :   u8,
      pub sequence :              u16,
@@ -3620,46 +3620,46 @@ pub struct get_keyboard_mapping_reply {
      pub pad0 :                  [u8; 24]
 }
 
-impl Copy for get_keyboard_mapping_reply {}
-impl Clone for get_keyboard_mapping_reply {
-    fn clone(&self) -> get_keyboard_mapping_reply { *self }
+impl Copy for xcb_get_keyboard_mapping_reply_t {}
+impl Clone for xcb_get_keyboard_mapping_reply_t {
+    fn clone(&self) -> xcb_get_keyboard_mapping_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct change_keyboard_control_request {
+pub struct xcb_change_keyboard_control_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
      pub value_mask :     u32
 }
 
-impl Copy for change_keyboard_control_request {}
-impl Clone for change_keyboard_control_request {
-    fn clone(&self) -> change_keyboard_control_request { *self }
+impl Copy for xcb_change_keyboard_control_request_t {}
+impl Clone for xcb_change_keyboard_control_request_t {
+    fn clone(&self) -> xcb_change_keyboard_control_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_keyboard_control_cookie {
+pub struct xcb_get_keyboard_control_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_keyboard_control_request {
+pub struct xcb_get_keyboard_control_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16
 }
 
-impl Copy for get_keyboard_control_request {}
-impl Clone for get_keyboard_control_request {
-    fn clone(&self) -> get_keyboard_control_request { *self }
+impl Copy for xcb_get_keyboard_control_request_t {}
+impl Clone for xcb_get_keyboard_control_request_t {
+    fn clone(&self) -> xcb_get_keyboard_control_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_keyboard_control_reply {
+pub struct xcb_get_keyboard_control_reply_t {
      pub response_type :        u8,
      pub global_auto_repeat :   u8,
      pub sequence :             u16,
@@ -3673,27 +3673,27 @@ pub struct get_keyboard_control_reply {
      pub auto_repeats :         [u8; 32]
 }
 
-impl Copy for get_keyboard_control_reply {}
-impl Clone for get_keyboard_control_reply {
-    fn clone(&self) -> get_keyboard_control_reply { *self }
+impl Copy for xcb_get_keyboard_control_reply_t {}
+impl Clone for xcb_get_keyboard_control_reply_t {
+    fn clone(&self) -> xcb_get_keyboard_control_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct bell_request {
+pub struct xcb_bell_request_t {
      pub major_opcode :   u8,
      pub percent :        i8,
      pub length :         u16
 }
 
-impl Copy for bell_request {}
-impl Clone for bell_request {
-    fn clone(&self) -> bell_request { *self }
+impl Copy for xcb_bell_request_t {}
+impl Clone for xcb_bell_request_t {
+    fn clone(&self) -> xcb_bell_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct change_pointer_control_request {
+pub struct xcb_change_pointer_control_request_t {
      pub major_opcode :               u8,
      pub pad0 :                       u8,
      pub length :                     u16,
@@ -3704,32 +3704,32 @@ pub struct change_pointer_control_request {
      pub do_threshold :               u8
 }
 
-impl Copy for change_pointer_control_request {}
-impl Clone for change_pointer_control_request {
-    fn clone(&self) -> change_pointer_control_request { *self }
+impl Copy for xcb_change_pointer_control_request_t {}
+impl Clone for xcb_change_pointer_control_request_t {
+    fn clone(&self) -> xcb_change_pointer_control_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_pointer_control_cookie {
+pub struct xcb_get_pointer_control_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_pointer_control_request {
+pub struct xcb_get_pointer_control_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16
 }
 
-impl Copy for get_pointer_control_request {}
-impl Clone for get_pointer_control_request {
-    fn clone(&self) -> get_pointer_control_request { *self }
+impl Copy for xcb_get_pointer_control_request_t {}
+impl Clone for xcb_get_pointer_control_request_t {
+    fn clone(&self) -> xcb_get_pointer_control_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_pointer_control_reply {
+pub struct xcb_get_pointer_control_reply_t {
      pub response_type :              u8,
      pub pad0 :                       u8,
      pub sequence :                   u16,
@@ -3740,14 +3740,14 @@ pub struct get_pointer_control_reply {
      pub pad1 :                       [u8; 18]
 }
 
-impl Copy for get_pointer_control_reply {}
-impl Clone for get_pointer_control_reply {
-    fn clone(&self) -> get_pointer_control_reply { *self }
+impl Copy for xcb_get_pointer_control_reply_t {}
+impl Clone for xcb_get_pointer_control_reply_t {
+    fn clone(&self) -> xcb_get_pointer_control_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct set_screen_saver_request {
+pub struct xcb_set_screen_saver_request_t {
      pub major_opcode :      u8,
      pub pad0 :              u8,
      pub length :            u16,
@@ -3757,32 +3757,32 @@ pub struct set_screen_saver_request {
      pub allow_exposures :   u8
 }
 
-impl Copy for set_screen_saver_request {}
-impl Clone for set_screen_saver_request {
-    fn clone(&self) -> set_screen_saver_request { *self }
+impl Copy for xcb_set_screen_saver_request_t {}
+impl Clone for xcb_set_screen_saver_request_t {
+    fn clone(&self) -> xcb_set_screen_saver_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_screen_saver_cookie {
+pub struct xcb_get_screen_saver_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_screen_saver_request {
+pub struct xcb_get_screen_saver_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16
 }
 
-impl Copy for get_screen_saver_request {}
-impl Clone for get_screen_saver_request {
-    fn clone(&self) -> get_screen_saver_request { *self }
+impl Copy for xcb_get_screen_saver_request_t {}
+impl Clone for xcb_get_screen_saver_request_t {
+    fn clone(&self) -> xcb_get_screen_saver_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_screen_saver_reply {
+pub struct xcb_get_screen_saver_reply_t {
      pub response_type :     u8,
      pub pad0 :              u8,
      pub sequence :          u16,
@@ -3794,14 +3794,14 @@ pub struct get_screen_saver_reply {
      pub pad1 :              [u8; 18]
 }
 
-impl Copy for get_screen_saver_reply {}
-impl Clone for get_screen_saver_reply {
-    fn clone(&self) -> get_screen_saver_reply { *self }
+impl Copy for xcb_get_screen_saver_reply_t {}
+impl Clone for xcb_get_screen_saver_reply_t {
+    fn clone(&self) -> xcb_get_screen_saver_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct change_hosts_request {
+pub struct xcb_change_hosts_request_t {
      pub major_opcode :   u8,
      pub mode :           u8,
      pub length :         u16,
@@ -3810,28 +3810,28 @@ pub struct change_hosts_request {
      pub address_len :    u16
 }
 
-impl Copy for change_hosts_request {}
-impl Clone for change_hosts_request {
-    fn clone(&self) -> change_hosts_request { *self }
+impl Copy for xcb_change_hosts_request_t {}
+impl Clone for xcb_change_hosts_request_t {
+    fn clone(&self) -> xcb_change_hosts_request_t { *self }
 }
 
 #[repr(C)]
-pub struct host {
+pub struct xcb_host_t {
      pub family :        u8,
      pub pad0 :          u8,
      pub address_len :   u16
 }
 
-impl Copy for host {}
-impl Clone for host {
-    fn clone(&self) -> host { *self }
+impl Copy for xcb_host_t {}
+impl Clone for xcb_host_t {
+    fn clone(&self) -> xcb_host_t { *self }
 }
 /**
- * @brief host_iterator
+ * @brief xcb_host_iterator_t
  **/
 #[repr(C)]
-pub struct host_iterator {
-    pub data : *mut host,
+pub struct xcb_host_iterator_t {
+    pub data : *mut xcb_host_t,
     pub rem  : c_int,
     pub index: c_int
 }
@@ -3839,25 +3839,25 @@ pub struct host_iterator {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct list_hosts_cookie {
+pub struct xcb_list_hosts_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct list_hosts_request {
+pub struct xcb_list_hosts_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16
 }
 
-impl Copy for list_hosts_request {}
-impl Clone for list_hosts_request {
-    fn clone(&self) -> list_hosts_request { *self }
+impl Copy for xcb_list_hosts_request_t {}
+impl Clone for xcb_list_hosts_request_t {
+    fn clone(&self) -> xcb_list_hosts_request_t { *self }
 }
 
 #[repr(C)]
-pub struct list_hosts_reply {
+pub struct xcb_list_hosts_reply_t {
      pub response_type :   u8,
      pub mode :            u8,
      pub sequence :        u16,
@@ -3866,133 +3866,133 @@ pub struct list_hosts_reply {
      pub pad0 :            [u8; 22]
 }
 
-impl Copy for list_hosts_reply {}
-impl Clone for list_hosts_reply {
-    fn clone(&self) -> list_hosts_reply { *self }
+impl Copy for xcb_list_hosts_reply_t {}
+impl Clone for xcb_list_hosts_reply_t {
+    fn clone(&self) -> xcb_list_hosts_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct set_access_control_request {
+pub struct xcb_set_access_control_request_t {
      pub major_opcode :   u8,
      pub mode :           u8,
      pub length :         u16
 }
 
-impl Copy for set_access_control_request {}
-impl Clone for set_access_control_request {
-    fn clone(&self) -> set_access_control_request { *self }
+impl Copy for xcb_set_access_control_request_t {}
+impl Clone for xcb_set_access_control_request_t {
+    fn clone(&self) -> xcb_set_access_control_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct set_close_down_mode_request {
+pub struct xcb_set_close_down_mode_request_t {
      pub major_opcode :   u8,
      pub mode :           u8,
      pub length :         u16
 }
 
-impl Copy for set_close_down_mode_request {}
-impl Clone for set_close_down_mode_request {
-    fn clone(&self) -> set_close_down_mode_request { *self }
+impl Copy for xcb_set_close_down_mode_request_t {}
+impl Clone for xcb_set_close_down_mode_request_t {
+    fn clone(&self) -> xcb_set_close_down_mode_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct kill_client_request {
+pub struct xcb_kill_client_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
      pub resource :       u32
 }
 
-impl Copy for kill_client_request {}
-impl Clone for kill_client_request {
-    fn clone(&self) -> kill_client_request { *self }
+impl Copy for xcb_kill_client_request_t {}
+impl Clone for xcb_kill_client_request_t {
+    fn clone(&self) -> xcb_kill_client_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct rotate_properties_request {
+pub struct xcb_rotate_properties_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
-     pub window :         window,
+     pub window :         xcb_window_t,
      pub atoms_len :      u16,
      pub delta :          i16
 }
 
-impl Copy for rotate_properties_request {}
-impl Clone for rotate_properties_request {
-    fn clone(&self) -> rotate_properties_request { *self }
+impl Copy for xcb_rotate_properties_request_t {}
+impl Clone for xcb_rotate_properties_request_t {
+    fn clone(&self) -> xcb_rotate_properties_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct force_screen_saver_request {
+pub struct xcb_force_screen_saver_request_t {
      pub major_opcode :   u8,
      pub mode :           u8,
      pub length :         u16
 }
 
-impl Copy for force_screen_saver_request {}
-impl Clone for force_screen_saver_request {
-    fn clone(&self) -> force_screen_saver_request { *self }
+impl Copy for xcb_force_screen_saver_request_t {}
+impl Clone for xcb_force_screen_saver_request_t {
+    fn clone(&self) -> xcb_force_screen_saver_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct set_pointer_mapping_cookie {
+pub struct xcb_set_pointer_mapping_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct set_pointer_mapping_request {
+pub struct xcb_set_pointer_mapping_request_t {
      pub major_opcode :   u8,
      pub map_len :        u8,
      pub length :         u16
 }
 
-impl Copy for set_pointer_mapping_request {}
-impl Clone for set_pointer_mapping_request {
-    fn clone(&self) -> set_pointer_mapping_request { *self }
+impl Copy for xcb_set_pointer_mapping_request_t {}
+impl Clone for xcb_set_pointer_mapping_request_t {
+    fn clone(&self) -> xcb_set_pointer_mapping_request_t { *self }
 }
 
 #[repr(C)]
-pub struct set_pointer_mapping_reply {
+pub struct xcb_set_pointer_mapping_reply_t {
      pub response_type :   u8,
      pub status :          u8,
      pub sequence :        u16,
      pub length :          u32
 }
 
-impl Copy for set_pointer_mapping_reply {}
-impl Clone for set_pointer_mapping_reply {
-    fn clone(&self) -> set_pointer_mapping_reply { *self }
+impl Copy for xcb_set_pointer_mapping_reply_t {}
+impl Clone for xcb_set_pointer_mapping_reply_t {
+    fn clone(&self) -> xcb_set_pointer_mapping_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_pointer_mapping_cookie {
+pub struct xcb_get_pointer_mapping_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_pointer_mapping_request {
+pub struct xcb_get_pointer_mapping_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16
 }
 
-impl Copy for get_pointer_mapping_request {}
-impl Clone for get_pointer_mapping_request {
-    fn clone(&self) -> get_pointer_mapping_request { *self }
+impl Copy for xcb_get_pointer_mapping_request_t {}
+impl Clone for xcb_get_pointer_mapping_request_t {
+    fn clone(&self) -> xcb_get_pointer_mapping_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_pointer_mapping_reply {
+pub struct xcb_get_pointer_mapping_reply_t {
      pub response_type :   u8,
      pub map_len :         u8,
      pub sequence :        u16,
@@ -4000,64 +4000,64 @@ pub struct get_pointer_mapping_reply {
      pub pad0 :            [u8; 24]
 }
 
-impl Copy for get_pointer_mapping_reply {}
-impl Clone for get_pointer_mapping_reply {
-    fn clone(&self) -> get_pointer_mapping_reply { *self }
+impl Copy for xcb_get_pointer_mapping_reply_t {}
+impl Clone for xcb_get_pointer_mapping_reply_t {
+    fn clone(&self) -> xcb_get_pointer_mapping_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct set_modifier_mapping_cookie {
+pub struct xcb_set_modifier_mapping_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct set_modifier_mapping_request {
+pub struct xcb_set_modifier_mapping_request_t {
      pub major_opcode :            u8,
      pub keycodes_per_modifier :   u8,
      pub length :                  u16
 }
 
-impl Copy for set_modifier_mapping_request {}
-impl Clone for set_modifier_mapping_request {
-    fn clone(&self) -> set_modifier_mapping_request { *self }
+impl Copy for xcb_set_modifier_mapping_request_t {}
+impl Clone for xcb_set_modifier_mapping_request_t {
+    fn clone(&self) -> xcb_set_modifier_mapping_request_t { *self }
 }
 
 #[repr(C)]
-pub struct set_modifier_mapping_reply {
+pub struct xcb_set_modifier_mapping_reply_t {
      pub response_type :   u8,
      pub status :          u8,
      pub sequence :        u16,
      pub length :          u32
 }
 
-impl Copy for set_modifier_mapping_reply {}
-impl Clone for set_modifier_mapping_reply {
-    fn clone(&self) -> set_modifier_mapping_reply { *self }
+impl Copy for xcb_set_modifier_mapping_reply_t {}
+impl Clone for xcb_set_modifier_mapping_reply_t {
+    fn clone(&self) -> xcb_set_modifier_mapping_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct get_modifier_mapping_cookie {
+pub struct xcb_get_modifier_mapping_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct get_modifier_mapping_request {
+pub struct xcb_get_modifier_mapping_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16
 }
 
-impl Copy for get_modifier_mapping_request {}
-impl Clone for get_modifier_mapping_request {
-    fn clone(&self) -> get_modifier_mapping_request { *self }
+impl Copy for xcb_get_modifier_mapping_request_t {}
+impl Clone for xcb_get_modifier_mapping_request_t {
+    fn clone(&self) -> xcb_get_modifier_mapping_request_t { *self }
 }
 
 #[repr(C)]
-pub struct get_modifier_mapping_reply {
+pub struct xcb_get_modifier_mapping_reply_t {
      pub response_type :           u8,
      pub keycodes_per_modifier :   u8,
      pub sequence :                u16,
@@ -4065,698 +4065,698 @@ pub struct get_modifier_mapping_reply {
      pub pad0 :                    [u8; 24]
 }
 
-impl Copy for get_modifier_mapping_reply {}
-impl Clone for get_modifier_mapping_reply {
-    fn clone(&self) -> get_modifier_mapping_reply { *self }
+impl Copy for xcb_get_modifier_mapping_reply_t {}
+impl Clone for xcb_get_modifier_mapping_reply_t {
+    fn clone(&self) -> xcb_get_modifier_mapping_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct no_operation_request {
+pub struct xcb_no_operation_request_t {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16
 }
 
-impl Copy for no_operation_request {}
-impl Clone for no_operation_request {
-    fn clone(&self) -> no_operation_request { *self }
+impl Copy for xcb_no_operation_request_t {}
+impl Clone for xcb_no_operation_request_t {
+    fn clone(&self) -> xcb_no_operation_request_t { *self }
 }
 extern "C" {
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a char2b_iterator
+ * @param i Pointer to a xcb_char2b_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(char2b)
+ * element. The member index is increased by sizeof(xcb_char2b_t)
  *
  *
  */
-pub fn xcb_char2b_next (i:*mut char2b_iterator) -> c_void;
+pub fn xcb_char2b_next (i:*mut xcb_char2b_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An char2b_iterator
+ * @param i An xcb_char2b_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_char2b_end (i:char2b_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_char2b_end (i:xcb_char2b_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a window_iterator
+ * @param i Pointer to a xcb_window_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(window)
+ * element. The member index is increased by sizeof(xcb_window_t)
  *
  *
  */
-pub fn xcb_window_next (i:*mut window_iterator) -> c_void;
+pub fn xcb_window_next (i:*mut xcb_window_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An window_iterator
+ * @param i An xcb_window_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_window_end (i:window_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_window_end (i:xcb_window_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a pixmap_iterator
+ * @param i Pointer to a xcb_pixmap_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(pixmap)
+ * element. The member index is increased by sizeof(xcb_pixmap_t)
  *
  *
  */
-pub fn xcb_pixmap_next (i:*mut pixmap_iterator) -> c_void;
+pub fn xcb_pixmap_next (i:*mut xcb_pixmap_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An pixmap_iterator
+ * @param i An xcb_pixmap_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_pixmap_end (i:pixmap_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_pixmap_end (i:xcb_pixmap_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a cursor_iterator
+ * @param i Pointer to a xcb_cursor_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(cursor)
+ * element. The member index is increased by sizeof(xcb_cursor_t)
  *
  *
  */
-pub fn xcb_cursor_next (i:*mut cursor_iterator) -> c_void;
+pub fn xcb_cursor_next (i:*mut xcb_cursor_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An cursor_iterator
+ * @param i An xcb_cursor_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_cursor_end (i:cursor_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_cursor_end (i:xcb_cursor_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a font_iterator
+ * @param i Pointer to a xcb_font_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(font)
+ * element. The member index is increased by sizeof(xcb_font_t)
  *
  *
  */
-pub fn xcb_font_next (i:*mut font_iterator) -> c_void;
+pub fn xcb_font_next (i:*mut xcb_font_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An font_iterator
+ * @param i An xcb_font_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_font_end (i:font_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_font_end (i:xcb_font_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a gcontext_iterator
+ * @param i Pointer to a xcb_gcontext_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(gcontext)
+ * element. The member index is increased by sizeof(xcb_gcontext_t)
  *
  *
  */
-pub fn xcb_gcontext_next (i:*mut gcontext_iterator) -> c_void;
+pub fn xcb_gcontext_next (i:*mut xcb_gcontext_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An gcontext_iterator
+ * @param i An xcb_gcontext_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_gcontext_end (i:gcontext_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_gcontext_end (i:xcb_gcontext_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a colormap_iterator
+ * @param i Pointer to a xcb_colormap_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(colormap)
+ * element. The member index is increased by sizeof(xcb_colormap_t)
  *
  *
  */
-pub fn xcb_colormap_next (i:*mut colormap_iterator) -> c_void;
+pub fn xcb_colormap_next (i:*mut xcb_colormap_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An colormap_iterator
+ * @param i An xcb_colormap_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_colormap_end (i:colormap_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_colormap_end (i:xcb_colormap_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a atom_iterator
+ * @param i Pointer to a xcb_atom_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(atom)
+ * element. The member index is increased by sizeof(xcb_atom_t)
  *
  *
  */
-pub fn xcb_atom_next (i:*mut atom_iterator) -> c_void;
+pub fn xcb_atom_next (i:*mut xcb_atom_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An atom_iterator
+ * @param i An xcb_atom_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_atom_end (i:atom_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_atom_end (i:xcb_atom_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a drawable_iterator
+ * @param i Pointer to a xcb_drawable_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(drawable)
+ * element. The member index is increased by sizeof(xcb_drawable_t)
  *
  *
  */
-pub fn xcb_drawable_next (i:*mut drawable_iterator) -> c_void;
+pub fn xcb_drawable_next (i:*mut xcb_drawable_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An drawable_iterator
+ * @param i An xcb_drawable_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_drawable_end (i:drawable_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_drawable_end (i:xcb_drawable_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a fontable_iterator
+ * @param i Pointer to a xcb_fontable_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(fontable)
+ * element. The member index is increased by sizeof(xcb_fontable_t)
  *
  *
  */
-pub fn xcb_fontable_next (i:*mut fontable_iterator) -> c_void;
+pub fn xcb_fontable_next (i:*mut xcb_fontable_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An fontable_iterator
+ * @param i An xcb_fontable_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_fontable_end (i:fontable_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_fontable_end (i:xcb_fontable_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a visualid_iterator
+ * @param i Pointer to a xcb_visualid_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(visualid)
+ * element. The member index is increased by sizeof(xcb_visualid_t)
  *
  *
  */
-pub fn xcb_visualid_next (i:*mut visualid_iterator) -> c_void;
+pub fn xcb_visualid_next (i:*mut xcb_visualid_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An visualid_iterator
+ * @param i An xcb_visualid_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_visualid_end (i:visualid_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_visualid_end (i:xcb_visualid_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a timestamp_iterator
+ * @param i Pointer to a xcb_timestamp_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(timestamp)
+ * element. The member index is increased by sizeof(xcb_timestamp_t)
  *
  *
  */
-pub fn xcb_timestamp_next (i:*mut timestamp_iterator) -> c_void;
+pub fn xcb_timestamp_next (i:*mut xcb_timestamp_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An timestamp_iterator
+ * @param i An xcb_timestamp_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_timestamp_end (i:timestamp_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_timestamp_end (i:xcb_timestamp_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a keysym_iterator
+ * @param i Pointer to a xcb_keysym_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(keysym)
+ * element. The member index is increased by sizeof(xcb_keysym_t)
  *
  *
  */
-pub fn xcb_keysym_next (i:*mut keysym_iterator) -> c_void;
+pub fn xcb_keysym_next (i:*mut xcb_keysym_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An keysym_iterator
+ * @param i An xcb_keysym_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_keysym_end (i:keysym_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_keysym_end (i:xcb_keysym_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a keycode_iterator
+ * @param i Pointer to a xcb_keycode_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(keycode)
+ * element. The member index is increased by sizeof(xcb_keycode_t)
  *
  *
  */
-pub fn xcb_keycode_next (i:*mut keycode_iterator) -> c_void;
+pub fn xcb_keycode_next (i:*mut xcb_keycode_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An keycode_iterator
+ * @param i An xcb_keycode_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_keycode_end (i:keycode_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_keycode_end (i:xcb_keycode_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a button_iterator
+ * @param i Pointer to a xcb_button_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(button)
+ * element. The member index is increased by sizeof(xcb_button_t)
  *
  *
  */
-pub fn xcb_button_next (i:*mut button_iterator) -> c_void;
+pub fn xcb_button_next (i:*mut xcb_button_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An button_iterator
+ * @param i An xcb_button_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_button_end (i:button_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_button_end (i:xcb_button_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a point_iterator
+ * @param i Pointer to a xcb_point_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(point)
+ * element. The member index is increased by sizeof(xcb_point_t)
  *
  *
  */
-pub fn xcb_point_next (i:*mut point_iterator) -> c_void;
+pub fn xcb_point_next (i:*mut xcb_point_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An point_iterator
+ * @param i An xcb_point_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_point_end (i:point_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_point_end (i:xcb_point_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a rectangle_iterator
+ * @param i Pointer to a xcb_rectangle_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(rectangle)
+ * element. The member index is increased by sizeof(xcb_rectangle_t)
  *
  *
  */
-pub fn xcb_rectangle_next (i:*mut rectangle_iterator) -> c_void;
+pub fn xcb_rectangle_next (i:*mut xcb_rectangle_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An rectangle_iterator
+ * @param i An xcb_rectangle_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_rectangle_end (i:rectangle_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_rectangle_end (i:xcb_rectangle_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a arc_iterator
+ * @param i Pointer to a xcb_arc_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(arc)
+ * element. The member index is increased by sizeof(xcb_arc_t)
  *
  *
  */
-pub fn xcb_arc_next (i:*mut arc_iterator) -> c_void;
+pub fn xcb_arc_next (i:*mut xcb_arc_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An arc_iterator
+ * @param i An xcb_arc_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_arc_end (i:arc_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_arc_end (i:xcb_arc_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a format_iterator
+ * @param i Pointer to a xcb_format_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(format)
+ * element. The member index is increased by sizeof(xcb_format_t)
  *
  *
  */
-pub fn xcb_format_next (i:*mut format_iterator) -> c_void;
+pub fn xcb_format_next (i:*mut xcb_format_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An format_iterator
+ * @param i An xcb_format_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_format_end (i:format_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_format_end (i:xcb_format_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a visualtype_iterator
+ * @param i Pointer to a xcb_visualtype_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(visualtype)
+ * element. The member index is increased by sizeof(xcb_visualtype_t)
  *
  *
  */
-pub fn xcb_visualtype_next (i:*mut visualtype_iterator) -> c_void;
+pub fn xcb_visualtype_next (i:*mut xcb_visualtype_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An visualtype_iterator
+ * @param i An xcb_visualtype_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_visualtype_end (i:visualtype_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_visualtype_end (i:xcb_visualtype_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_depth_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub fn xcb_depth_visuals (R : *mut depth) -> *mut visualtype;
+pub fn xcb_depth_visuals (R : *mut xcb_depth_t) -> *mut xcb_visualtype_t;
 
 
-pub fn xcb_depth_visuals_length (R : *mut depth) -> c_int;
+pub fn xcb_depth_visuals_length (R : *mut xcb_depth_t) -> c_int;
 
-pub fn xcb_depth_visuals_iterator (R : *mut depth) -> visualtype_iterator;
+pub fn xcb_depth_visuals_iterator (R : *mut xcb_depth_t) -> xcb_visualtype_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a depth_iterator
+ * @param i Pointer to a xcb_depth_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(depth)
+ * element. The member index is increased by sizeof(xcb_depth_t)
  *
  *
  */
-pub fn xcb_depth_next (i:*mut depth_iterator) -> c_void;
+pub fn xcb_depth_next (i:*mut xcb_depth_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An depth_iterator
+ * @param i An xcb_depth_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_depth_end (i:depth_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_depth_end (i:xcb_depth_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_screen_sizeof (_buffer :  *mut c_void) -> c_int;
 
 
-pub fn xcb_screen_allowed_depths_length (R : *mut screen) -> c_int;
+pub fn xcb_screen_allowed_depths_length (R : *mut xcb_screen_t) -> c_int;
 
-pub fn xcb_screen_allowed_depths_iterator (R : *mut screen) -> depth_iterator;
+pub fn xcb_screen_allowed_depths_iterator (R : *mut xcb_screen_t) -> xcb_depth_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a screen_iterator
+ * @param i Pointer to a xcb_screen_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(screen)
+ * element. The member index is increased by sizeof(xcb_screen_t)
  *
  *
  */
-pub fn xcb_screen_next (i:*mut screen_iterator) -> c_void;
+pub fn xcb_screen_next (i:*mut xcb_screen_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An screen_iterator
+ * @param i An xcb_screen_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_screen_end (i:screen_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_screen_end (i:xcb_screen_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_setup_request_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub fn xcb_setup_request_authorization_protocol_name (R : *mut setup_request) -> *mut c_char;
+pub fn xcb_setup_request_authorization_protocol_name (R : *mut xcb_setup_request_t) -> *mut c_char;
 
 
-pub fn xcb_setup_request_authorization_protocol_name_length (R : *mut setup_request) -> c_int;
+pub fn xcb_setup_request_authorization_protocol_name_length (R : *mut xcb_setup_request_t) -> c_int;
 
 
-pub fn xcb_setup_request_authorization_protocol_name_end (R : *mut setup_request) -> ffi::base::generic_iterator;
+pub fn xcb_setup_request_authorization_protocol_name_end (R : *mut xcb_setup_request_t) -> ffi::base::xcb_generic_iterator_t;
 
-pub fn xcb_setup_request_authorization_protocol_data (R : *mut setup_request) -> *mut c_char;
-
-
-pub fn xcb_setup_request_authorization_protocol_data_length (R : *mut setup_request) -> c_int;
+pub fn xcb_setup_request_authorization_protocol_data (R : *mut xcb_setup_request_t) -> *mut c_char;
 
 
-pub fn xcb_setup_request_authorization_protocol_data_end (R : *mut setup_request) -> ffi::base::generic_iterator;
+pub fn xcb_setup_request_authorization_protocol_data_length (R : *mut xcb_setup_request_t) -> c_int;
+
+
+pub fn xcb_setup_request_authorization_protocol_data_end (R : *mut xcb_setup_request_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a setup_request_iterator
+ * @param i Pointer to a xcb_setup_request_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(setup_request)
+ * element. The member index is increased by sizeof(xcb_setup_request_t)
  *
  *
  */
-pub fn xcb_setup_request_next (i:*mut setup_request_iterator) -> c_void;
+pub fn xcb_setup_request_next (i:*mut xcb_setup_request_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An setup_request_iterator
+ * @param i An xcb_setup_request_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_setup_request_end (i:setup_request_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_setup_request_end (i:xcb_setup_request_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_setup_failed_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub fn xcb_setup_failed_reason (R : *mut setup_failed) -> *mut c_char;
+pub fn xcb_setup_failed_reason (R : *mut xcb_setup_failed_t) -> *mut c_char;
 
 
-pub fn xcb_setup_failed_reason_length (R : *mut setup_failed) -> c_int;
+pub fn xcb_setup_failed_reason_length (R : *mut xcb_setup_failed_t) -> c_int;
 
 
-pub fn xcb_setup_failed_reason_end (R : *mut setup_failed) -> ffi::base::generic_iterator;
+pub fn xcb_setup_failed_reason_end (R : *mut xcb_setup_failed_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a setup_failed_iterator
+ * @param i Pointer to a xcb_setup_failed_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(setup_failed)
+ * element. The member index is increased by sizeof(xcb_setup_failed_t)
  *
  *
  */
-pub fn xcb_setup_failed_next (i:*mut setup_failed_iterator) -> c_void;
+pub fn xcb_setup_failed_next (i:*mut xcb_setup_failed_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An setup_failed_iterator
+ * @param i An xcb_setup_failed_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_setup_failed_end (i:setup_failed_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_setup_failed_end (i:xcb_setup_failed_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_setup_authenticate_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub fn xcb_setup_authenticate_reason (R : *mut setup_authenticate) -> *mut c_char;
+pub fn xcb_setup_authenticate_reason (R : *mut xcb_setup_authenticate_t) -> *mut c_char;
 
 
-pub fn xcb_setup_authenticate_reason_length (R : *mut setup_authenticate) -> c_int;
+pub fn xcb_setup_authenticate_reason_length (R : *mut xcb_setup_authenticate_t) -> c_int;
 
 
-pub fn xcb_setup_authenticate_reason_end (R : *mut setup_authenticate) -> ffi::base::generic_iterator;
+pub fn xcb_setup_authenticate_reason_end (R : *mut xcb_setup_authenticate_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a setup_authenticate_iterator
+ * @param i Pointer to a xcb_setup_authenticate_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(setup_authenticate)
+ * element. The member index is increased by sizeof(xcb_setup_authenticate_t)
  *
  *
  */
-pub fn xcb_setup_authenticate_next (i:*mut setup_authenticate_iterator) -> c_void;
+pub fn xcb_setup_authenticate_next (i:*mut xcb_setup_authenticate_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An setup_authenticate_iterator
+ * @param i An xcb_setup_authenticate_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_setup_authenticate_end (i:setup_authenticate_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_setup_authenticate_end (i:xcb_setup_authenticate_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_setup_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub fn xcb_setup_vendor (R : *mut setup) -> *mut c_char;
+pub fn xcb_setup_vendor (R : *mut xcb_setup_t) -> *mut c_char;
 
 
-pub fn xcb_setup_vendor_length (R : *mut setup) -> c_int;
+pub fn xcb_setup_vendor_length (R : *mut xcb_setup_t) -> c_int;
 
 
-pub fn xcb_setup_vendor_end (R : *mut setup) -> ffi::base::generic_iterator;
+pub fn xcb_setup_vendor_end (R : *mut xcb_setup_t) -> ffi::base::xcb_generic_iterator_t;
 
-pub fn xcb_setup_pixmap_formats (R : *mut setup) -> *mut format;
-
-
-pub fn xcb_setup_pixmap_formats_length (R : *mut setup) -> c_int;
-
-pub fn xcb_setup_pixmap_formats_iterator (R : *mut setup) -> format_iterator;
+pub fn xcb_setup_pixmap_formats (R : *mut xcb_setup_t) -> *mut xcb_format_t;
 
 
-pub fn xcb_setup_roots_length (R : *mut setup) -> c_int;
+pub fn xcb_setup_pixmap_formats_length (R : *mut xcb_setup_t) -> c_int;
 
-pub fn xcb_setup_roots_iterator (R : *mut setup) -> screen_iterator;
+pub fn xcb_setup_pixmap_formats_iterator (R : *mut xcb_setup_t) -> xcb_format_iterator_t;
+
+
+pub fn xcb_setup_roots_length (R : *mut xcb_setup_t) -> c_int;
+
+pub fn xcb_setup_roots_iterator (R : *mut xcb_setup_t) -> xcb_screen_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a client_message_data_iterator
+ * @param i Pointer to a xcb_client_message_data_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(client_message_data)
+ * element. The member index is increased by sizeof(xcb_client_message_data_t)
  *
  *
  */
-pub fn xcb_client_message_data_next (i:*mut client_message_data_iterator) -> c_void;
+pub fn xcb_client_message_data_next (i:*mut xcb_client_message_data_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An client_message_data_iterator
+ * @param i An xcb_client_message_data_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_client_message_data_end (i:client_message_data_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_client_message_data_end (i:xcb_client_message_data_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_create_window_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -4778,7 +4778,7 @@ pub fn xcb_create_window_sizeof (_buffer :  *mut c_void) -> c_int;
  * @param border_width TODO:
  * \n
  * Must be zero if the \a class is `InputOnly` or a `xcb_match_error_t` occurs.
- * @param class A bitmask of #window_class values.
+ * @param class A bitmask of #xcb_window_class_t values.
  * @param class \n
  * @param visual Specifies the id for the new window's visual.
  * \n
@@ -4800,24 +4800,24 @@ pub fn xcb_create_window_sizeof (_buffer :  *mut c_void) -> c_int;
  * display it.
  * 
  * The created window will initially use the same cursor as its parent.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_create_window_checked (c : *mut ffi::base::connection,
+pub fn xcb_create_window_checked (c : *mut ffi::base::xcb_connection_t,
                                      depth :  u8,
-                                     wid :  window,
-                                     parent :  window,
+                                     wid :  xcb_window_t,
+                                     parent :  xcb_window_t,
                                      x :  i16,
                                      y :  i16,
                                      width :  u16,
                                      height :  u16,
                                      border_width :  u16,
                                      class :  u16,
-                                     visual :  visualid,
+                                     visual :  xcb_visualid_t,
                                      value_mask :  u32,
-                                     value_list : *mut u32) -> ffi::base::void_cookie;
+                                     value_list : *mut u32) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Creates a window
@@ -4837,7 +4837,7 @@ pub fn xcb_create_window_checked (c : *mut ffi::base::connection,
  * @param border_width TODO:
  * \n
  * Must be zero if the \a class is `InputOnly` or a `xcb_match_error_t` occurs.
- * @param class A bitmask of #window_class values.
+ * @param class A bitmask of #xcb_window_class_t values.
  * @param class \n
  * @param visual Specifies the id for the new window's visual.
  * \n
@@ -4859,21 +4859,21 @@ pub fn xcb_create_window_checked (c : *mut ffi::base::connection,
  * display it.
  * 
  * The created window will initially use the same cursor as its parent.
- * 
+ *
  */
-pub fn xcb_create_window (c : *mut ffi::base::connection,
+pub fn xcb_create_window (c : *mut ffi::base::xcb_connection_t,
                              depth :  u8,
-                             wid :  window,
-                             parent :  window,
+                             wid :  xcb_window_t,
+                             parent :  xcb_window_t,
                              x :  i16,
                              y :  i16,
                              width :  u16,
                              height :  u16,
                              border_width :  u16,
                              class :  u16,
-                             visual :  visualid,
+                             visual :  xcb_visualid_t,
                              value_mask :  u32,
-                             value_list : *mut u32) -> ffi::base::void_cookie;
+                             value_list : *mut u32) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_change_window_attributes_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -4889,15 +4889,15 @@ pub fn xcb_change_window_attributes_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Changes the attributes specified by \a value_mask for the specified \a window.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_change_window_attributes_checked (c : *mut ffi::base::connection,
-                                                window :  window,
+pub fn xcb_change_window_attributes_checked (c : *mut ffi::base::xcb_connection_t,
+                                                window :  xcb_window_t,
                                                 value_mask :  u32,
-                                                value_list : *mut u32) -> ffi::base::void_cookie;
+                                                value_list : *mut u32) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * change window attributes
@@ -4911,12 +4911,12 @@ pub fn xcb_change_window_attributes_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Changes the attributes specified by \a value_mask for the specified \a window.
- * 
+ *
  */
-pub fn xcb_change_window_attributes (c : *mut ffi::base::connection,
-                                        window :  window,
+pub fn xcb_change_window_attributes (c : *mut ffi::base::xcb_connection_t,
+                                        window :  xcb_window_t,
                                         value_mask :  u32,
-                                        value_list : *mut u32) -> ffi::base::void_cookie;
+                                        value_list : *mut u32) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Gets window attributes
@@ -4926,10 +4926,10 @@ pub fn xcb_change_window_attributes (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Gets the current attributes for the specified \a window.
- * 
+ *
  */
-pub fn xcb_get_window_attributes (c : *mut ffi::base::connection,
-                                     window :  window) -> get_window_attributes_cookie;
+pub fn xcb_get_window_attributes (c : *mut ffi::base::xcb_connection_t,
+                                     window :  xcb_window_t) -> xcb_get_window_attributes_cookie_t;
 
 /**
  * Gets window attributes
@@ -4939,31 +4939,31 @@ pub fn xcb_get_window_attributes (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Gets the current attributes for the specified \a window.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_window_attributes_unchecked (c : *mut ffi::base::connection,
-                                               window :  window) -> get_window_attributes_cookie;
+pub fn xcb_get_window_attributes_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                               window :  xcb_window_t) -> xcb_get_window_attributes_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_get_window_attributes_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_window_attributes_reply (c : *mut ffi::base::connection,
-                                           cookie : get_window_attributes_cookie,
-                                           e : *mut *mut ffi::base::generic_error) -> *mut get_window_attributes_reply;
+pub fn xcb_get_window_attributes_reply (c : *mut ffi::base::xcb_connection_t,
+                                           cookie : xcb_get_window_attributes_cookie_t,
+                                           e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_get_window_attributes_reply_t;
 
 /**
  * Destroys a window
@@ -4978,13 +4978,13 @@ pub fn xcb_get_window_attributes_reply (c : *mut ffi::base::connection,
  * automatically unmapped before destroying.
  * 
  * Calling DestroyWindow on the root window will do nothing.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_destroy_window_checked (c : *mut ffi::base::connection,
-                                      window :  window) -> ffi::base::void_cookie;
+pub fn xcb_destroy_window_checked (c : *mut ffi::base::xcb_connection_t,
+                                      window :  xcb_window_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Destroys a window
@@ -4999,10 +4999,10 @@ pub fn xcb_destroy_window_checked (c : *mut ffi::base::connection,
  * automatically unmapped before destroying.
  * 
  * Calling DestroyWindow on the root window will do nothing.
- * 
+ *
  */
-pub fn xcb_destroy_window (c : *mut ffi::base::connection,
-                              window :  window) -> ffi::base::void_cookie;
+pub fn xcb_destroy_window (c : *mut ffi::base::xcb_connection_t,
+                              window :  xcb_window_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -5010,13 +5010,13 @@ pub fn xcb_destroy_window (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_destroy_subwindows_checked (c : *mut ffi::base::connection,
-                                          window :  window) -> ffi::base::void_cookie;
+pub fn xcb_destroy_subwindows_checked (c : *mut ffi::base::xcb_connection_t,
+                                          window :  xcb_window_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -5024,16 +5024,16 @@ pub fn xcb_destroy_subwindows_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_destroy_subwindows (c : *mut ffi::base::connection,
-                                  window :  window) -> ffi::base::void_cookie;
+pub fn xcb_destroy_subwindows (c : *mut ffi::base::xcb_connection_t,
+                                  window :  xcb_window_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Changes a client's save set
  *
  * @param c The connection
- * @param mode A bitmask of #set_mode values.
+ * @param mode A bitmask of #xcb_set_mode_t values.
  * @param mode Insert to add the specified window to the save set or Delete to delete it from the save set.
  * @param window The window to add or delete to/from your save set.
  * @return A cookie
@@ -5042,20 +5042,20 @@ pub fn xcb_destroy_subwindows (c : *mut ffi::base::connection,
  * 
  * This function either adds or removes the specified window to the client's (your
  * application's) save set.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_change_save_set_checked (c : *mut ffi::base::connection,
+pub fn xcb_change_save_set_checked (c : *mut ffi::base::xcb_connection_t,
                                        mode :  u8,
-                                       window :  window) -> ffi::base::void_cookie;
+                                       window :  xcb_window_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Changes a client's save set
  *
  * @param c The connection
- * @param mode A bitmask of #set_mode values.
+ * @param mode A bitmask of #xcb_set_mode_t values.
  * @param mode Insert to add the specified window to the save set or Delete to delete it from the save set.
  * @param window The window to add or delete to/from your save set.
  * @return A cookie
@@ -5064,11 +5064,11 @@ pub fn xcb_change_save_set_checked (c : *mut ffi::base::connection,
  * 
  * This function either adds or removes the specified window to the client's (your
  * application's) save set.
- * 
+ *
  */
-pub fn xcb_change_save_set (c : *mut ffi::base::connection,
+pub fn xcb_change_save_set (c : *mut ffi::base::xcb_connection_t,
                                mode :  u8,
-                               window :  window) -> ffi::base::void_cookie;
+                               window :  xcb_window_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Reparents a window
@@ -5086,16 +5086,16 @@ pub fn xcb_change_save_set (c : *mut ffi::base::connection,
  * with respect to sibling windows.
  * 
  * After reparenting, a ReparentNotify event is generated.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_reparent_window_checked (c : *mut ffi::base::connection,
-                                       window :  window,
-                                       parent :  window,
+pub fn xcb_reparent_window_checked (c : *mut ffi::base::xcb_connection_t,
+                                       window :  xcb_window_t,
+                                       parent :  xcb_window_t,
                                        x :  i16,
-                                       y :  i16) -> ffi::base::void_cookie;
+                                       y :  i16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Reparents a window
@@ -5113,13 +5113,13 @@ pub fn xcb_reparent_window_checked (c : *mut ffi::base::connection,
  * with respect to sibling windows.
  * 
  * After reparenting, a ReparentNotify event is generated.
- * 
+ *
  */
-pub fn xcb_reparent_window (c : *mut ffi::base::connection,
-                               window :  window,
-                               parent :  window,
+pub fn xcb_reparent_window (c : *mut ffi::base::xcb_connection_t,
+                               window :  xcb_window_t,
+                               parent :  xcb_window_t,
                                x :  i16,
-                               y :  i16) -> ffi::base::void_cookie;
+                               y :  i16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Makes a window visible
@@ -5147,13 +5147,13 @@ pub fn xcb_reparent_window (c : *mut ffi::base::connection,
  * If the window type is InputOutput, an Expose event will be generated when the
  * window becomes visible. The normal response to an Expose event should be to
  * repaint the window.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_map_window_checked (c : *mut ffi::base::connection,
-                                  window :  window) -> ffi::base::void_cookie;
+pub fn xcb_map_window_checked (c : *mut ffi::base::xcb_connection_t,
+                                  window :  xcb_window_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Makes a window visible
@@ -5181,10 +5181,10 @@ pub fn xcb_map_window_checked (c : *mut ffi::base::connection,
  * If the window type is InputOutput, an Expose event will be generated when the
  * window becomes visible. The normal response to an Expose event should be to
  * repaint the window.
- * 
+ *
  */
-pub fn xcb_map_window (c : *mut ffi::base::connection,
-                          window :  window) -> ffi::base::void_cookie;
+pub fn xcb_map_window (c : *mut ffi::base::xcb_connection_t,
+                          window :  xcb_window_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -5192,13 +5192,13 @@ pub fn xcb_map_window (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_map_subwindows_checked (c : *mut ffi::base::connection,
-                                      window :  window) -> ffi::base::void_cookie;
+pub fn xcb_map_subwindows_checked (c : *mut ffi::base::xcb_connection_t,
+                                      window :  xcb_window_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -5206,10 +5206,10 @@ pub fn xcb_map_subwindows_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_map_subwindows (c : *mut ffi::base::connection,
-                              window :  window) -> ffi::base::void_cookie;
+pub fn xcb_map_subwindows (c : *mut ffi::base::xcb_connection_t,
+                              window :  xcb_window_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Makes a window invisible
@@ -5223,13 +5223,13 @@ pub fn xcb_map_subwindows (c : *mut ffi::base::connection,
  * 
  * Unmapping a window leads to the `UnmapNotify` event being generated. Also,
  * `Expose` events are generated for formerly obscured windows.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_unmap_window_checked (c : *mut ffi::base::connection,
-                                    window :  window) -> ffi::base::void_cookie;
+pub fn xcb_unmap_window_checked (c : *mut ffi::base::xcb_connection_t,
+                                    window :  xcb_window_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Makes a window invisible
@@ -5243,10 +5243,10 @@ pub fn xcb_unmap_window_checked (c : *mut ffi::base::connection,
  * 
  * Unmapping a window leads to the `UnmapNotify` event being generated. Also,
  * `Expose` events are generated for formerly obscured windows.
- * 
+ *
  */
-pub fn xcb_unmap_window (c : *mut ffi::base::connection,
-                            window :  window) -> ffi::base::void_cookie;
+pub fn xcb_unmap_window (c : *mut ffi::base::xcb_connection_t,
+                            window :  xcb_window_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -5254,13 +5254,13 @@ pub fn xcb_unmap_window (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_unmap_subwindows_checked (c : *mut ffi::base::connection,
-                                        window :  window) -> ffi::base::void_cookie;
+pub fn xcb_unmap_subwindows_checked (c : *mut ffi::base::xcb_connection_t,
+                                        window :  xcb_window_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -5268,10 +5268,10 @@ pub fn xcb_unmap_subwindows_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_unmap_subwindows (c : *mut ffi::base::connection,
-                                window :  window) -> ffi::base::void_cookie;
+pub fn xcb_unmap_subwindows (c : *mut ffi::base::xcb_connection_t,
+                                window :  xcb_window_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_configure_window_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -5286,15 +5286,15 @@ pub fn xcb_configure_window_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Configures a window's size, position, border width and stacking order.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_configure_window_checked (c : *mut ffi::base::connection,
-                                        window :  window,
+pub fn xcb_configure_window_checked (c : *mut ffi::base::xcb_connection_t,
+                                        window :  xcb_window_t,
                                         value_mask :  u16,
-                                        value_list : *mut u32) -> ffi::base::void_cookie;
+                                        value_list : *mut u32) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Configures window attributes
@@ -5307,18 +5307,18 @@ pub fn xcb_configure_window_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Configures a window's size, position, border width and stacking order.
- * 
+ *
  */
-pub fn xcb_configure_window (c : *mut ffi::base::connection,
-                                window :  window,
+pub fn xcb_configure_window (c : *mut ffi::base::xcb_connection_t,
+                                window :  xcb_window_t,
                                 value_mask :  u16,
-                                value_list : *mut u32) -> ffi::base::void_cookie;
+                                value_list : *mut u32) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Change window stacking order
  *
  * @param c The connection
- * @param direction A bitmask of #circulate values.
+ * @param direction A bitmask of #xcb_circulate_t values.
  * @param direction \n
  * @param window The window to raise/lower (depending on \a direction).
  * @return A cookie
@@ -5328,20 +5328,20 @@ pub fn xcb_configure_window (c : *mut ffi::base::connection,
  * 
  * If \a direction is `XCB_CIRCULATE_LOWER_HIGHEST`, the highest mapped child will
  * be lowered to the bottom of the stack.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_circulate_window_checked (c : *mut ffi::base::connection,
+pub fn xcb_circulate_window_checked (c : *mut ffi::base::xcb_connection_t,
                                         direction :  u8,
-                                        window :  window) -> ffi::base::void_cookie;
+                                        window :  xcb_window_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Change window stacking order
  *
  * @param c The connection
- * @param direction A bitmask of #circulate values.
+ * @param direction A bitmask of #xcb_circulate_t values.
  * @param direction \n
  * @param window The window to raise/lower (depending on \a direction).
  * @return A cookie
@@ -5351,11 +5351,11 @@ pub fn xcb_circulate_window_checked (c : *mut ffi::base::connection,
  * 
  * If \a direction is `XCB_CIRCULATE_LOWER_HIGHEST`, the highest mapped child will
  * be lowered to the bottom of the stack.
- * 
+ *
  */
-pub fn xcb_circulate_window (c : *mut ffi::base::connection,
+pub fn xcb_circulate_window (c : *mut ffi::base::xcb_connection_t,
                                 direction :  u8,
-                                window :  window) -> ffi::base::void_cookie;
+                                window :  xcb_window_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Get current window geometry
@@ -5365,10 +5365,10 @@ pub fn xcb_circulate_window (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Gets the current geometry of the specified drawable (either `Window` or `Pixmap`).
- * 
+ *
  */
-pub fn xcb_get_geometry (c : *mut ffi::base::connection,
-                            drawable :  drawable) -> get_geometry_cookie;
+pub fn xcb_get_geometry (c : *mut ffi::base::xcb_connection_t,
+                            drawable :  xcb_drawable_t) -> xcb_get_geometry_cookie_t;
 
 /**
  * Get current window geometry
@@ -5378,31 +5378,31 @@ pub fn xcb_get_geometry (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Gets the current geometry of the specified drawable (either `Window` or `Pixmap`).
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_geometry_unchecked (c : *mut ffi::base::connection,
-                                      drawable :  drawable) -> get_geometry_cookie;
+pub fn xcb_get_geometry_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                      drawable :  xcb_drawable_t) -> xcb_get_geometry_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_get_geometry_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_geometry_reply (c : *mut ffi::base::connection,
-                                  cookie : get_geometry_cookie,
-                                  e : *mut *mut ffi::base::generic_error) -> *mut get_geometry_reply;
+pub fn xcb_get_geometry_reply (c : *mut ffi::base::xcb_connection_t,
+                                  cookie : xcb_get_geometry_cookie_t,
+                                  e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_get_geometry_reply_t;
 
 pub fn xcb_query_tree_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -5415,10 +5415,10 @@ pub fn xcb_query_tree_sizeof (_buffer :  *mut c_void) -> c_int;
  *
  * Gets the root window ID, parent window ID and list of children windows for the
  * specified \a window. The children are listed in bottom-to-top stacking order.
- * 
+ *
  */
-pub fn xcb_query_tree (c : *mut ffi::base::connection,
-                          window :  window) -> query_tree_cookie;
+pub fn xcb_query_tree (c : *mut ffi::base::xcb_connection_t,
+                          window :  xcb_window_t) -> xcb_query_tree_cookie_t;
 
 /**
  * query the window tree
@@ -5429,39 +5429,39 @@ pub fn xcb_query_tree (c : *mut ffi::base::connection,
  *
  * Gets the root window ID, parent window ID and list of children windows for the
  * specified \a window. The children are listed in bottom-to-top stacking order.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_query_tree_unchecked (c : *mut ffi::base::connection,
-                                    window :  window) -> query_tree_cookie;
+pub fn xcb_query_tree_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                    window :  xcb_window_t) -> xcb_query_tree_cookie_t;
 
-pub fn xcb_query_tree_children (R : *mut query_tree_reply) -> *mut window;
-
-
-pub fn xcb_query_tree_children_length (R : *mut query_tree_reply) -> c_int;
+pub fn xcb_query_tree_children (R : *mut xcb_query_tree_reply_t) -> *mut xcb_window_t;
 
 
-pub fn xcb_query_tree_children_end (R : *mut query_tree_reply) -> ffi::base::generic_iterator;
+pub fn xcb_query_tree_children_length (R : *mut xcb_query_tree_reply_t) -> c_int;
+
+
+pub fn xcb_query_tree_children_end (R : *mut xcb_query_tree_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_query_tree_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_query_tree_reply (c : *mut ffi::base::connection,
-                                cookie : query_tree_cookie,
-                                e : *mut *mut ffi::base::generic_error) -> *mut query_tree_reply;
+pub fn xcb_query_tree_reply (c : *mut ffi::base::xcb_connection_t,
+                                cookie : xcb_query_tree_cookie_t,
+                                e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_query_tree_reply_t;
 
 pub fn xcb_intern_atom_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -5481,12 +5481,12 @@ pub fn xcb_intern_atom_sizeof (_buffer :  *mut c_void) -> c_int;
  * If \a only_if_exists is 0, the atom will be created if it does not already exist.
  * If \a only_if_exists is 1, `XCB_ATOM_NONE` will be returned if the atom does
  * not yet exist.
- * 
+ *
  */
-pub fn xcb_intern_atom (c : *mut ffi::base::connection,
+pub fn xcb_intern_atom (c : *mut ffi::base::xcb_connection_t,
                            only_if_exists :  u8,
                            name_len :  u16,
-                           name : *mut c_char) -> intern_atom_cookie;
+                           name : *mut c_char) -> xcb_intern_atom_cookie_t;
 
 /**
  * Get atom identifier by name
@@ -5504,33 +5504,33 @@ pub fn xcb_intern_atom (c : *mut ffi::base::connection,
  * If \a only_if_exists is 0, the atom will be created if it does not already exist.
  * If \a only_if_exists is 1, `XCB_ATOM_NONE` will be returned if the atom does
  * not yet exist.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_intern_atom_unchecked (c : *mut ffi::base::connection,
+pub fn xcb_intern_atom_unchecked (c : *mut ffi::base::xcb_connection_t,
                                      only_if_exists :  u8,
                                      name_len :  u16,
-                                     name : *mut c_char) -> intern_atom_cookie;
+                                     name : *mut c_char) -> xcb_intern_atom_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_intern_atom_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_intern_atom_reply (c : *mut ffi::base::connection,
-                                 cookie : intern_atom_cookie,
-                                 e : *mut *mut ffi::base::generic_error) -> *mut intern_atom_reply;
+pub fn xcb_intern_atom_reply (c : *mut ffi::base::xcb_connection_t,
+                                 cookie : xcb_intern_atom_cookie_t,
+                                 e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_intern_atom_reply_t;
 
 pub fn xcb_get_atom_name_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -5540,10 +5540,10 @@ pub fn xcb_get_atom_name_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_get_atom_name (c : *mut ffi::base::connection,
-                             atom :  atom) -> get_atom_name_cookie;
+pub fn xcb_get_atom_name (c : *mut ffi::base::xcb_connection_t,
+                             atom :  xcb_atom_t) -> xcb_get_atom_name_cookie_t;
 
 /**
  *
@@ -5551,39 +5551,39 @@ pub fn xcb_get_atom_name (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_atom_name_unchecked (c : *mut ffi::base::connection,
-                                       atom :  atom) -> get_atom_name_cookie;
+pub fn xcb_get_atom_name_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                       atom :  xcb_atom_t) -> xcb_get_atom_name_cookie_t;
 
-pub fn xcb_get_atom_name_name (R : *mut get_atom_name_reply) -> *mut c_char;
-
-
-pub fn xcb_get_atom_name_name_length (R : *mut get_atom_name_reply) -> c_int;
+pub fn xcb_get_atom_name_name (R : *mut xcb_get_atom_name_reply_t) -> *mut c_char;
 
 
-pub fn xcb_get_atom_name_name_end (R : *mut get_atom_name_reply) -> ffi::base::generic_iterator;
+pub fn xcb_get_atom_name_name_length (R : *mut xcb_get_atom_name_reply_t) -> c_int;
+
+
+pub fn xcb_get_atom_name_name_end (R : *mut xcb_get_atom_name_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_get_atom_name_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_atom_name_reply (c : *mut ffi::base::connection,
-                                   cookie : get_atom_name_cookie,
-                                   e : *mut *mut ffi::base::generic_error) -> *mut get_atom_name_reply;
+pub fn xcb_get_atom_name_reply (c : *mut ffi::base::xcb_connection_t,
+                                   cookie : xcb_get_atom_name_cookie_t,
+                                   e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_get_atom_name_reply_t;
 
 pub fn xcb_change_property_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -5591,7 +5591,7 @@ pub fn xcb_change_property_sizeof (_buffer :  *mut c_void) -> c_int;
  * Changes a window property
  *
  * @param c The connection
- * @param mode A bitmask of #prop_mode values.
+ * @param mode A bitmask of #xcb_prop_mode_t values.
  * @param mode \n
  * @param window The window whose property you want to change.
  * @param property The property you want to change (an atom).
@@ -5607,25 +5607,25 @@ pub fn xcb_change_property_sizeof (_buffer :  *mut c_void) -> c_int;
  * example the window title (`WM_NAME`) or its minimum size (`WM_NORMAL_HINTS`).
  * Protocols such as EWMH also use properties - for example EWMH defines the
  * window title, encoded as UTF-8 string, in the `_NET_WM_NAME` property.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_change_property_checked (c : *mut ffi::base::connection,
+pub fn xcb_change_property_checked (c : *mut ffi::base::xcb_connection_t,
                                        mode :  u8,
-                                       window :  window,
-                                       property :  atom,
-                                       type_ :  atom,
+                                       window :  xcb_window_t,
+                                       property :  xcb_atom_t,
+                                       type_ :  xcb_atom_t,
                                        format :  u8,
                                        data_len :  u32,
-                                       data : *mut c_void) -> ffi::base::void_cookie;
+                                       data : *mut c_void) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Changes a window property
  *
  * @param c The connection
- * @param mode A bitmask of #prop_mode values.
+ * @param mode A bitmask of #xcb_prop_mode_t values.
  * @param mode \n
  * @param window The window whose property you want to change.
  * @param property The property you want to change (an atom).
@@ -5641,16 +5641,16 @@ pub fn xcb_change_property_checked (c : *mut ffi::base::connection,
  * example the window title (`WM_NAME`) or its minimum size (`WM_NORMAL_HINTS`).
  * Protocols such as EWMH also use properties - for example EWMH defines the
  * window title, encoded as UTF-8 string, in the `_NET_WM_NAME` property.
- * 
+ *
  */
-pub fn xcb_change_property (c : *mut ffi::base::connection,
+pub fn xcb_change_property (c : *mut ffi::base::xcb_connection_t,
                                mode :  u8,
-                               window :  window,
-                               property :  atom,
-                               type_ :  atom,
+                               window :  xcb_window_t,
+                               property :  xcb_atom_t,
+                               type_ :  xcb_atom_t,
                                format :  u8,
                                data_len :  u32,
-                               data : *mut c_void) -> ffi::base::void_cookie;
+                               data : *mut c_void) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -5658,14 +5658,14 @@ pub fn xcb_change_property (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_delete_property_checked (c : *mut ffi::base::connection,
-                                       window :  window,
-                                       property :  atom) -> ffi::base::void_cookie;
+pub fn xcb_delete_property_checked (c : *mut ffi::base::xcb_connection_t,
+                                       window :  xcb_window_t,
+                                       property :  xcb_atom_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -5673,11 +5673,11 @@ pub fn xcb_delete_property_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_delete_property (c : *mut ffi::base::connection,
-                               window :  window,
-                               property :  atom) -> ffi::base::void_cookie;
+pub fn xcb_delete_property (c : *mut ffi::base::xcb_connection_t,
+                               window :  xcb_window_t,
+                               property :  xcb_atom_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_get_property_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -5706,15 +5706,15 @@ pub fn xcb_get_property_sizeof (_buffer :  *mut c_void) -> c_int;
  * TODO: talk about \a delete
  * 
  * TODO: talk about the offset/length thing. what's a valid use case?
- * 
+ *
  */
-pub fn xcb_get_property (c : *mut ffi::base::connection,
+pub fn xcb_get_property (c : *mut ffi::base::xcb_connection_t,
                             delete :  u8,
-                            window :  window,
-                            property :  atom,
-                            type_ :  atom,
+                            window :  xcb_window_t,
+                            property :  xcb_atom_t,
+                            type_ :  xcb_atom_t,
                             long_offset :  u32,
-                            long_length :  u32) -> get_property_cookie;
+                            long_length :  u32) -> xcb_get_property_cookie_t;
 
 /**
  * Gets a window property
@@ -5741,44 +5741,44 @@ pub fn xcb_get_property (c : *mut ffi::base::connection,
  * TODO: talk about \a delete
  * 
  * TODO: talk about the offset/length thing. what's a valid use case?
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_property_unchecked (c : *mut ffi::base::connection,
+pub fn xcb_get_property_unchecked (c : *mut ffi::base::xcb_connection_t,
                                       delete :  u8,
-                                      window :  window,
-                                      property :  atom,
-                                      type_ :  atom,
+                                      window :  xcb_window_t,
+                                      property :  xcb_atom_t,
+                                      type_ :  xcb_atom_t,
                                       long_offset :  u32,
-                                      long_length :  u32) -> get_property_cookie;
+                                      long_length :  u32) -> xcb_get_property_cookie_t;
 
-pub fn xcb_get_property_value (R : *mut get_property_reply) -> *mut c_void;
-
-
-pub fn xcb_get_property_value_length (R : *mut get_property_reply) -> c_int;
+pub fn xcb_get_property_value (R : *mut xcb_get_property_reply_t) -> *mut c_void;
 
 
-pub fn xcb_get_property_value_end (R : *mut get_property_reply) -> ffi::base::generic_iterator;
+pub fn xcb_get_property_value_length (R : *mut xcb_get_property_reply_t) -> c_int;
+
+
+pub fn xcb_get_property_value_end (R : *mut xcb_get_property_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_get_property_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_property_reply (c : *mut ffi::base::connection,
-                                  cookie : get_property_cookie,
-                                  e : *mut *mut ffi::base::generic_error) -> *mut get_property_reply;
+pub fn xcb_get_property_reply (c : *mut ffi::base::xcb_connection_t,
+                                  cookie : xcb_get_property_cookie_t,
+                                  e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_get_property_reply_t;
 
 pub fn xcb_list_properties_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -5788,10 +5788,10 @@ pub fn xcb_list_properties_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_list_properties (c : *mut ffi::base::connection,
-                               window :  window) -> list_properties_cookie;
+pub fn xcb_list_properties (c : *mut ffi::base::xcb_connection_t,
+                               window :  xcb_window_t) -> xcb_list_properties_cookie_t;
 
 /**
  *
@@ -5799,39 +5799,39 @@ pub fn xcb_list_properties (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_list_properties_unchecked (c : *mut ffi::base::connection,
-                                         window :  window) -> list_properties_cookie;
+pub fn xcb_list_properties_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                         window :  xcb_window_t) -> xcb_list_properties_cookie_t;
 
-pub fn xcb_list_properties_atoms (R : *mut list_properties_reply) -> *mut atom;
-
-
-pub fn xcb_list_properties_atoms_length (R : *mut list_properties_reply) -> c_int;
+pub fn xcb_list_properties_atoms (R : *mut xcb_list_properties_reply_t) -> *mut xcb_atom_t;
 
 
-pub fn xcb_list_properties_atoms_end (R : *mut list_properties_reply) -> ffi::base::generic_iterator;
+pub fn xcb_list_properties_atoms_length (R : *mut xcb_list_properties_reply_t) -> c_int;
+
+
+pub fn xcb_list_properties_atoms_end (R : *mut xcb_list_properties_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_list_properties_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_list_properties_reply (c : *mut ffi::base::connection,
-                                     cookie : list_properties_cookie,
-                                     e : *mut *mut ffi::base::generic_error) -> *mut list_properties_reply;
+pub fn xcb_list_properties_reply (c : *mut ffi::base::xcb_connection_t,
+                                     cookie : xcb_list_properties_cookie_t,
+                                     e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_list_properties_reply_t;
 
 /**
  * Sets the owner of a selection
@@ -5855,15 +5855,15 @@ pub fn xcb_list_properties_reply (c : *mut ffi::base::connection,
  * last-change time of the specified selection.
  * 
  * TODO: briefly explain what a selection is.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_set_selection_owner_checked (c : *mut ffi::base::connection,
-                                           owner :  window,
-                                           selection :  atom,
-                                           time :  timestamp) -> ffi::base::void_cookie;
+pub fn xcb_set_selection_owner_checked (c : *mut ffi::base::xcb_connection_t,
+                                           owner :  xcb_window_t,
+                                           selection :  xcb_atom_t,
+                                           time :  xcb_timestamp_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Sets the owner of a selection
@@ -5887,12 +5887,12 @@ pub fn xcb_set_selection_owner_checked (c : *mut ffi::base::connection,
  * last-change time of the specified selection.
  * 
  * TODO: briefly explain what a selection is.
- * 
+ *
  */
-pub fn xcb_set_selection_owner (c : *mut ffi::base::connection,
-                                   owner :  window,
-                                   selection :  atom,
-                                   time :  timestamp) -> ffi::base::void_cookie;
+pub fn xcb_set_selection_owner (c : *mut ffi::base::xcb_connection_t,
+                                   owner :  xcb_window_t,
+                                   selection :  xcb_atom_t,
+                                   time :  xcb_timestamp_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Gets the owner of a selection
@@ -5904,10 +5904,10 @@ pub fn xcb_set_selection_owner (c : *mut ffi::base::connection,
  * Gets the owner of the specified selection.
  * 
  * TODO: briefly explain what a selection is.
- * 
+ *
  */
-pub fn xcb_get_selection_owner (c : *mut ffi::base::connection,
-                                   selection :  atom) -> get_selection_owner_cookie;
+pub fn xcb_get_selection_owner (c : *mut ffi::base::xcb_connection_t,
+                                   selection :  xcb_atom_t) -> xcb_get_selection_owner_cookie_t;
 
 /**
  * Gets the owner of a selection
@@ -5919,31 +5919,31 @@ pub fn xcb_get_selection_owner (c : *mut ffi::base::connection,
  * Gets the owner of the specified selection.
  * 
  * TODO: briefly explain what a selection is.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_selection_owner_unchecked (c : *mut ffi::base::connection,
-                                             selection :  atom) -> get_selection_owner_cookie;
+pub fn xcb_get_selection_owner_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                             selection :  xcb_atom_t) -> xcb_get_selection_owner_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_get_selection_owner_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_selection_owner_reply (c : *mut ffi::base::connection,
-                                         cookie : get_selection_owner_cookie,
-                                         e : *mut *mut ffi::base::generic_error) -> *mut get_selection_owner_reply;
+pub fn xcb_get_selection_owner_reply (c : *mut ffi::base::xcb_connection_t,
+                                         cookie : xcb_get_selection_owner_cookie_t,
+                                         e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_get_selection_owner_reply_t;
 
 /**
  *
@@ -5951,17 +5951,17 @@ pub fn xcb_get_selection_owner_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_convert_selection_checked (c : *mut ffi::base::connection,
-                                         requestor :  window,
-                                         selection :  atom,
-                                         target :  atom,
-                                         property :  atom,
-                                         time :  timestamp) -> ffi::base::void_cookie;
+pub fn xcb_convert_selection_checked (c : *mut ffi::base::xcb_connection_t,
+                                         requestor :  xcb_window_t,
+                                         selection :  xcb_atom_t,
+                                         target :  xcb_atom_t,
+                                         property :  xcb_atom_t,
+                                         time :  xcb_timestamp_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -5969,14 +5969,14 @@ pub fn xcb_convert_selection_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_convert_selection (c : *mut ffi::base::connection,
-                                 requestor :  window,
-                                 selection :  atom,
-                                 target :  atom,
-                                 property :  atom,
-                                 time :  timestamp) -> ffi::base::void_cookie;
+pub fn xcb_convert_selection (c : *mut ffi::base::xcb_connection_t,
+                                 requestor :  xcb_window_t,
+                                 selection :  xcb_atom_t,
+                                 target :  xcb_atom_t,
+                                 property :  xcb_atom_t,
+                                 time :  xcb_timestamp_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * send an event
@@ -6010,16 +6010,16 @@ pub fn xcb_convert_selection (c : *mut ffi::base::connection,
  * so that the X server can correctly byte-swap the contents as necessary. The
  * contents of \a event are otherwise unaltered and unchecked except for the
  * `send_event` field which is forced to 'true'.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_send_event_checked (c : *mut ffi::base::connection,
+pub fn xcb_send_event_checked (c : *mut ffi::base::xcb_connection_t,
                                   propagate :  u8,
-                                  destination :  window,
+                                  destination :  xcb_window_t,
                                   event_mask :  u32,
-                                  event : *mut c_char) -> ffi::base::void_cookie;
+                                  event : *mut c_char) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * send an event
@@ -6053,13 +6053,13 @@ pub fn xcb_send_event_checked (c : *mut ffi::base::connection,
  * so that the X server can correctly byte-swap the contents as necessary. The
  * contents of \a event are otherwise unaltered and unchecked except for the
  * `send_event` field which is forced to 'true'.
- * 
+ *
  */
-pub fn xcb_send_event (c : *mut ffi::base::connection,
+pub fn xcb_send_event (c : *mut ffi::base::xcb_connection_t,
                           propagate :  u8,
-                          destination :  window,
+                          destination :  xcb_window_t,
                           event_mask :  u32,
-                          event : *mut c_char) -> ffi::base::void_cookie;
+                          event : *mut c_char) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Grab the pointer
@@ -6071,9 +6071,9 @@ pub fn xcb_send_event (c : *mut ffi::base::connection,
  * @param event_mask Specifies which pointer events are reported to the client.
  * \n
  * TODO: which values?
- * @param pointer_mode A bitmask of #grab_mode values.
+ * @param pointer_mode A bitmask of #xcb_grab_mode_t values.
  * @param pointer_mode \n
- * @param keyboard_mode A bitmask of #grab_mode values.
+ * @param keyboard_mode A bitmask of #xcb_grab_mode_t values.
  * @param keyboard_mode \n
  * @param confine_to Specifies the window to confine the pointer in (the user will not be able to
  * move the pointer out of that window).
@@ -6095,17 +6095,17 @@ pub fn xcb_send_event (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Actively grabs control of the pointer. Further pointer events are reported only to the grabbing client. Overrides any active pointer grab by this client.
- * 
+ *
  */
-pub fn xcb_grab_pointer (c : *mut ffi::base::connection,
+pub fn xcb_grab_pointer (c : *mut ffi::base::xcb_connection_t,
                             owner_events :  u8,
-                            grab_window :  window,
+                            grab_window :  xcb_window_t,
                             event_mask :  u16,
                             pointer_mode :  u8,
                             keyboard_mode :  u8,
-                            confine_to :  window,
-                            cursor :  cursor,
-                            time :  timestamp) -> grab_pointer_cookie;
+                            confine_to :  xcb_window_t,
+                            cursor :  xcb_cursor_t,
+                            time :  xcb_timestamp_t) -> xcb_grab_pointer_cookie_t;
 
 /**
  * Grab the pointer
@@ -6117,9 +6117,9 @@ pub fn xcb_grab_pointer (c : *mut ffi::base::connection,
  * @param event_mask Specifies which pointer events are reported to the client.
  * \n
  * TODO: which values?
- * @param pointer_mode A bitmask of #grab_mode values.
+ * @param pointer_mode A bitmask of #xcb_grab_mode_t values.
  * @param pointer_mode \n
- * @param keyboard_mode A bitmask of #grab_mode values.
+ * @param keyboard_mode A bitmask of #xcb_grab_mode_t values.
  * @param keyboard_mode \n
  * @param confine_to Specifies the window to confine the pointer in (the user will not be able to
  * move the pointer out of that window).
@@ -6141,38 +6141,38 @@ pub fn xcb_grab_pointer (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Actively grabs control of the pointer. Further pointer events are reported only to the grabbing client. Overrides any active pointer grab by this client.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_grab_pointer_unchecked (c : *mut ffi::base::connection,
+pub fn xcb_grab_pointer_unchecked (c : *mut ffi::base::xcb_connection_t,
                                       owner_events :  u8,
-                                      grab_window :  window,
+                                      grab_window :  xcb_window_t,
                                       event_mask :  u16,
                                       pointer_mode :  u8,
                                       keyboard_mode :  u8,
-                                      confine_to :  window,
-                                      cursor :  cursor,
-                                      time :  timestamp) -> grab_pointer_cookie;
+                                      confine_to :  xcb_window_t,
+                                      cursor :  xcb_cursor_t,
+                                      time :  xcb_timestamp_t) -> xcb_grab_pointer_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_grab_pointer_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_grab_pointer_reply (c : *mut ffi::base::connection,
-                                  cookie : grab_pointer_cookie,
-                                  e : *mut *mut ffi::base::generic_error) -> *mut grab_pointer_reply;
+pub fn xcb_grab_pointer_reply (c : *mut ffi::base::xcb_connection_t,
+                                  cookie : xcb_grab_pointer_cookie_t,
+                                  e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_grab_pointer_reply_t;
 
 /**
  * release the pointer
@@ -6189,13 +6189,13 @@ pub fn xcb_grab_pointer_reply (c : *mut ffi::base::connection,
  * press.
  * 
  * EnterNotify and LeaveNotify events are generated.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_ungrab_pointer_checked (c : *mut ffi::base::connection,
-                                      time :  timestamp) -> ffi::base::void_cookie;
+pub fn xcb_ungrab_pointer_checked (c : *mut ffi::base::xcb_connection_t,
+                                      time :  xcb_timestamp_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * release the pointer
@@ -6212,10 +6212,10 @@ pub fn xcb_ungrab_pointer_checked (c : *mut ffi::base::connection,
  * press.
  * 
  * EnterNotify and LeaveNotify events are generated.
- * 
+ *
  */
-pub fn xcb_ungrab_pointer (c : *mut ffi::base::connection,
-                              time :  timestamp) -> ffi::base::void_cookie;
+pub fn xcb_ungrab_pointer (c : *mut ffi::base::xcb_connection_t,
+                              time :  xcb_timestamp_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Grab pointer button(s)
@@ -6227,9 +6227,9 @@ pub fn xcb_ungrab_pointer (c : *mut ffi::base::connection,
  * @param event_mask Specifies which pointer events are reported to the client.
  * \n
  * TODO: which values?
- * @param pointer_mode A bitmask of #grab_mode values.
+ * @param pointer_mode A bitmask of #xcb_grab_mode_t values.
  * @param pointer_mode \n
- * @param keyboard_mode A bitmask of #grab_mode values.
+ * @param keyboard_mode A bitmask of #xcb_grab_mode_t values.
  * @param keyboard_mode \n
  * @param confine_to Specifies the window to confine the pointer in (the user will not be able to
  * move the pointer out of that window).
@@ -6237,7 +6237,7 @@ pub fn xcb_ungrab_pointer (c : *mut ffi::base::connection,
  * The special value `XCB_NONE` means don't confine the pointer.
  * @param cursor Specifies the cursor that should be displayed or `XCB_NONE` to not change the
  * cursor.
- * @param button A bitmask of #button_index values.
+ * @param button A bitmask of #xcb_button_index_t values.
  * @param button \n
  * @param modifiers The modifiers to grab.
  * \n
@@ -6280,21 +6280,21 @@ pub fn xcb_ungrab_pointer (c : *mut ffi::base::connection,
  * When using AnyModifier or AnyButton, the request fails completely (no grabs are
  * established), and an Access error is generated if there is a conflicting grab
  * for any combination. The request has no effect on an active grab.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_grab_button_checked (c : *mut ffi::base::connection,
+pub fn xcb_grab_button_checked (c : *mut ffi::base::xcb_connection_t,
                                    owner_events :  u8,
-                                   grab_window :  window,
+                                   grab_window :  xcb_window_t,
                                    event_mask :  u16,
                                    pointer_mode :  u8,
                                    keyboard_mode :  u8,
-                                   confine_to :  window,
-                                   cursor :  cursor,
+                                   confine_to :  xcb_window_t,
+                                   cursor :  xcb_cursor_t,
                                    button :  u8,
-                                   modifiers :  u16) -> ffi::base::void_cookie;
+                                   modifiers :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Grab pointer button(s)
@@ -6306,9 +6306,9 @@ pub fn xcb_grab_button_checked (c : *mut ffi::base::connection,
  * @param event_mask Specifies which pointer events are reported to the client.
  * \n
  * TODO: which values?
- * @param pointer_mode A bitmask of #grab_mode values.
+ * @param pointer_mode A bitmask of #xcb_grab_mode_t values.
  * @param pointer_mode \n
- * @param keyboard_mode A bitmask of #grab_mode values.
+ * @param keyboard_mode A bitmask of #xcb_grab_mode_t values.
  * @param keyboard_mode \n
  * @param confine_to Specifies the window to confine the pointer in (the user will not be able to
  * move the pointer out of that window).
@@ -6316,7 +6316,7 @@ pub fn xcb_grab_button_checked (c : *mut ffi::base::connection,
  * The special value `XCB_NONE` means don't confine the pointer.
  * @param cursor Specifies the cursor that should be displayed or `XCB_NONE` to not change the
  * cursor.
- * @param button A bitmask of #button_index values.
+ * @param button A bitmask of #xcb_button_index_t values.
  * @param button \n
  * @param modifiers The modifiers to grab.
  * \n
@@ -6359,18 +6359,18 @@ pub fn xcb_grab_button_checked (c : *mut ffi::base::connection,
  * When using AnyModifier or AnyButton, the request fails completely (no grabs are
  * established), and an Access error is generated if there is a conflicting grab
  * for any combination. The request has no effect on an active grab.
- * 
+ *
  */
-pub fn xcb_grab_button (c : *mut ffi::base::connection,
+pub fn xcb_grab_button (c : *mut ffi::base::xcb_connection_t,
                            owner_events :  u8,
-                           grab_window :  window,
+                           grab_window :  xcb_window_t,
                            event_mask :  u16,
                            pointer_mode :  u8,
                            keyboard_mode :  u8,
-                           confine_to :  window,
-                           cursor :  cursor,
+                           confine_to :  xcb_window_t,
+                           cursor :  xcb_cursor_t,
                            button :  u8,
-                           modifiers :  u16) -> ffi::base::void_cookie;
+                           modifiers :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -6378,15 +6378,15 @@ pub fn xcb_grab_button (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_ungrab_button_checked (c : *mut ffi::base::connection,
+pub fn xcb_ungrab_button_checked (c : *mut ffi::base::xcb_connection_t,
                                      button :  u8,
-                                     grab_window :  window,
-                                     modifiers :  u16) -> ffi::base::void_cookie;
+                                     grab_window :  xcb_window_t,
+                                     modifiers :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -6394,12 +6394,12 @@ pub fn xcb_ungrab_button_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_ungrab_button (c : *mut ffi::base::connection,
+pub fn xcb_ungrab_button (c : *mut ffi::base::xcb_connection_t,
                              button :  u8,
-                             grab_window :  window,
-                             modifiers :  u16) -> ffi::base::void_cookie;
+                             grab_window :  xcb_window_t,
+                             modifiers :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -6407,15 +6407,15 @@ pub fn xcb_ungrab_button (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_change_active_pointer_grab_checked (c : *mut ffi::base::connection,
-                                                  cursor :  cursor,
-                                                  time :  timestamp,
-                                                  event_mask :  u16) -> ffi::base::void_cookie;
+pub fn xcb_change_active_pointer_grab_checked (c : *mut ffi::base::xcb_connection_t,
+                                                  cursor :  xcb_cursor_t,
+                                                  time :  xcb_timestamp_t,
+                                                  event_mask :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -6423,12 +6423,12 @@ pub fn xcb_change_active_pointer_grab_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_change_active_pointer_grab (c : *mut ffi::base::connection,
-                                          cursor :  cursor,
-                                          time :  timestamp,
-                                          event_mask :  u16) -> ffi::base::void_cookie;
+pub fn xcb_change_active_pointer_grab (c : *mut ffi::base::xcb_connection_t,
+                                          cursor :  xcb_cursor_t,
+                                          time :  xcb_timestamp_t,
+                                          event_mask :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Grab the keyboard
@@ -6441,9 +6441,9 @@ pub fn xcb_change_active_pointer_grab (c : *mut ffi::base::connection,
  * \n
  * The special value `XCB_CURRENT_TIME` will be replaced with the current server
  * time.
- * @param pointer_mode A bitmask of #grab_mode values.
+ * @param pointer_mode A bitmask of #xcb_grab_mode_t values.
  * @param pointer_mode \n
- * @param keyboard_mode A bitmask of #grab_mode values.
+ * @param keyboard_mode A bitmask of #xcb_grab_mode_t values.
  * @param keyboard_mode \n
  * @return A cookie
  *
@@ -6457,14 +6457,14 @@ pub fn xcb_change_active_pointer_grab (c : *mut ffi::base::connection,
  * specified \a time is earlier than the last-keyboard-grab time or later than the
  * current X server time, `GrabInvalidTime` is returned. Otherwise, the
  * last-keyboard-grab time is set to the specified time.
- * 
+ *
  */
-pub fn xcb_grab_keyboard (c : *mut ffi::base::connection,
+pub fn xcb_grab_keyboard (c : *mut ffi::base::xcb_connection_t,
                              owner_events :  u8,
-                             grab_window :  window,
-                             time :  timestamp,
+                             grab_window :  xcb_window_t,
+                             time :  xcb_timestamp_t,
                              pointer_mode :  u8,
-                             keyboard_mode :  u8) -> grab_keyboard_cookie;
+                             keyboard_mode :  u8) -> xcb_grab_keyboard_cookie_t;
 
 /**
  * Grab the keyboard
@@ -6477,9 +6477,9 @@ pub fn xcb_grab_keyboard (c : *mut ffi::base::connection,
  * \n
  * The special value `XCB_CURRENT_TIME` will be replaced with the current server
  * time.
- * @param pointer_mode A bitmask of #grab_mode values.
+ * @param pointer_mode A bitmask of #xcb_grab_mode_t values.
  * @param pointer_mode \n
- * @param keyboard_mode A bitmask of #grab_mode values.
+ * @param keyboard_mode A bitmask of #xcb_grab_mode_t values.
  * @param keyboard_mode \n
  * @return A cookie
  *
@@ -6493,35 +6493,35 @@ pub fn xcb_grab_keyboard (c : *mut ffi::base::connection,
  * specified \a time is earlier than the last-keyboard-grab time or later than the
  * current X server time, `GrabInvalidTime` is returned. Otherwise, the
  * last-keyboard-grab time is set to the specified time.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_grab_keyboard_unchecked (c : *mut ffi::base::connection,
+pub fn xcb_grab_keyboard_unchecked (c : *mut ffi::base::xcb_connection_t,
                                        owner_events :  u8,
-                                       grab_window :  window,
-                                       time :  timestamp,
+                                       grab_window :  xcb_window_t,
+                                       time :  xcb_timestamp_t,
                                        pointer_mode :  u8,
-                                       keyboard_mode :  u8) -> grab_keyboard_cookie;
+                                       keyboard_mode :  u8) -> xcb_grab_keyboard_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_grab_keyboard_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_grab_keyboard_reply (c : *mut ffi::base::connection,
-                                   cookie : grab_keyboard_cookie,
-                                   e : *mut *mut ffi::base::generic_error) -> *mut grab_keyboard_reply;
+pub fn xcb_grab_keyboard_reply (c : *mut ffi::base::xcb_connection_t,
+                                   cookie : xcb_grab_keyboard_cookie_t,
+                                   e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_grab_keyboard_reply_t;
 
 /**
  *
@@ -6529,13 +6529,13 @@ pub fn xcb_grab_keyboard_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_ungrab_keyboard_checked (c : *mut ffi::base::connection,
-                                       time :  timestamp) -> ffi::base::void_cookie;
+pub fn xcb_ungrab_keyboard_checked (c : *mut ffi::base::xcb_connection_t,
+                                       time :  xcb_timestamp_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -6543,10 +6543,10 @@ pub fn xcb_ungrab_keyboard_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_ungrab_keyboard (c : *mut ffi::base::connection,
-                               time :  timestamp) -> ffi::base::void_cookie;
+pub fn xcb_ungrab_keyboard (c : *mut ffi::base::xcb_connection_t,
+                               time :  xcb_timestamp_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Grab keyboard key(s)
@@ -6562,9 +6562,9 @@ pub fn xcb_ungrab_keyboard (c : *mut ffi::base::connection,
  * @param key The keycode of the key to grab.
  * \n
  * The special value `XCB_GRAB_ANY` means grab any key.
- * @param pointer_mode A bitmask of #grab_mode values.
+ * @param pointer_mode A bitmask of #xcb_grab_mode_t values.
  * @param pointer_mode \n
- * @param keyboard_mode A bitmask of #grab_mode values.
+ * @param keyboard_mode A bitmask of #xcb_grab_mode_t values.
  * @param keyboard_mode \n
  * @return A cookie
  *
@@ -6598,18 +6598,18 @@ pub fn xcb_ungrab_keyboard (c : *mut ffi::base::connection,
  * If some other client has issued a XGrabKey with the same key combination on the same window, a BadAccess
  * error results.  When using AnyModifier or AnyKey, the request fails completely, and a BadAccess error
  * results (no grabs are established) if there is a conflicting grab for any combination.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_grab_key_checked (c : *mut ffi::base::connection,
+pub fn xcb_grab_key_checked (c : *mut ffi::base::xcb_connection_t,
                                 owner_events :  u8,
-                                grab_window :  window,
+                                grab_window :  xcb_window_t,
                                 modifiers :  u16,
-                                key :  keycode,
+                                key :  xcb_keycode_t,
                                 pointer_mode :  u8,
-                                keyboard_mode :  u8) -> ffi::base::void_cookie;
+                                keyboard_mode :  u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Grab keyboard key(s)
@@ -6625,9 +6625,9 @@ pub fn xcb_grab_key_checked (c : *mut ffi::base::connection,
  * @param key The keycode of the key to grab.
  * \n
  * The special value `XCB_GRAB_ANY` means grab any key.
- * @param pointer_mode A bitmask of #grab_mode values.
+ * @param pointer_mode A bitmask of #xcb_grab_mode_t values.
  * @param pointer_mode \n
- * @param keyboard_mode A bitmask of #grab_mode values.
+ * @param keyboard_mode A bitmask of #xcb_grab_mode_t values.
  * @param keyboard_mode \n
  * @return A cookie
  *
@@ -6661,15 +6661,15 @@ pub fn xcb_grab_key_checked (c : *mut ffi::base::connection,
  * If some other client has issued a XGrabKey with the same key combination on the same window, a BadAccess
  * error results.  When using AnyModifier or AnyKey, the request fails completely, and a BadAccess error
  * results (no grabs are established) if there is a conflicting grab for any combination.
- * 
+ *
  */
-pub fn xcb_grab_key (c : *mut ffi::base::connection,
+pub fn xcb_grab_key (c : *mut ffi::base::xcb_connection_t,
                         owner_events :  u8,
-                        grab_window :  window,
+                        grab_window :  xcb_window_t,
                         modifiers :  u16,
-                        key :  keycode,
+                        key :  xcb_keycode_t,
                         pointer_mode :  u8,
-                        keyboard_mode :  u8) -> ffi::base::void_cookie;
+                        keyboard_mode :  u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * release a key combination
@@ -6687,15 +6687,15 @@ pub fn xcb_grab_key (c : *mut ffi::base::connection,
  *
  * Releases the key combination on \a grab_window if you grabbed it using
  * `xcb_grab_key` before.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_ungrab_key_checked (c : *mut ffi::base::connection,
-                                  key :  keycode,
-                                  grab_window :  window,
-                                  modifiers :  u16) -> ffi::base::void_cookie;
+pub fn xcb_ungrab_key_checked (c : *mut ffi::base::xcb_connection_t,
+                                  key :  xcb_keycode_t,
+                                  grab_window :  xcb_window_t,
+                                  modifiers :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * release a key combination
@@ -6713,18 +6713,18 @@ pub fn xcb_ungrab_key_checked (c : *mut ffi::base::connection,
  *
  * Releases the key combination on \a grab_window if you grabbed it using
  * `xcb_grab_key` before.
- * 
+ *
  */
-pub fn xcb_ungrab_key (c : *mut ffi::base::connection,
-                          key :  keycode,
-                          grab_window :  window,
-                          modifiers :  u16) -> ffi::base::void_cookie;
+pub fn xcb_ungrab_key (c : *mut ffi::base::xcb_connection_t,
+                          key :  xcb_keycode_t,
+                          grab_window :  xcb_window_t,
+                          modifiers :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * release queued events
  *
  * @param c The connection
- * @param mode A bitmask of #allow values.
+ * @param mode A bitmask of #xcb_allow_t values.
  * @param mode \n
  * @param time Timestamp to avoid race conditions when running X over the network.
  * \n
@@ -6736,20 +6736,20 @@ pub fn xcb_ungrab_key (c : *mut ffi::base::connection,
  * freeze due to grabbing it actively. This request has no effect if \a time is
  * earlier than the last-grab time of the most recent active grab for this client
  * or if \a time is later than the current X server time.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_allow_events_checked (c : *mut ffi::base::connection,
+pub fn xcb_allow_events_checked (c : *mut ffi::base::xcb_connection_t,
                                     mode :  u8,
-                                    time :  timestamp) -> ffi::base::void_cookie;
+                                    time :  xcb_timestamp_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * release queued events
  *
  * @param c The connection
- * @param mode A bitmask of #allow values.
+ * @param mode A bitmask of #xcb_allow_t values.
  * @param mode \n
  * @param time Timestamp to avoid race conditions when running X over the network.
  * \n
@@ -6761,11 +6761,11 @@ pub fn xcb_allow_events_checked (c : *mut ffi::base::connection,
  * freeze due to grabbing it actively. This request has no effect if \a time is
  * earlier than the last-grab time of the most recent active grab for this client
  * or if \a time is later than the current X server time.
- * 
+ *
  */
-pub fn xcb_allow_events (c : *mut ffi::base::connection,
+pub fn xcb_allow_events (c : *mut ffi::base::xcb_connection_t,
                             mode :  u8,
-                            time :  timestamp) -> ffi::base::void_cookie;
+                            time :  xcb_timestamp_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -6773,12 +6773,12 @@ pub fn xcb_allow_events (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_grab_server_checked (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
+pub fn xcb_grab_server_checked (c : *mut ffi::base::xcb_connection_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -6786,9 +6786,9 @@ pub fn xcb_grab_server_checked (c : *mut ffi::base::connection) -> ffi::base::vo
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_grab_server (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
+pub fn xcb_grab_server (c : *mut ffi::base::xcb_connection_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -6796,12 +6796,12 @@ pub fn xcb_grab_server (c : *mut ffi::base::connection) -> ffi::base::void_cooki
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_ungrab_server_checked (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
+pub fn xcb_ungrab_server_checked (c : *mut ffi::base::xcb_connection_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -6809,9 +6809,9 @@ pub fn xcb_ungrab_server_checked (c : *mut ffi::base::connection) -> ffi::base::
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_ungrab_server (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
+pub fn xcb_ungrab_server (c : *mut ffi::base::xcb_connection_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * get pointer coordinates
@@ -6823,10 +6823,10 @@ pub fn xcb_ungrab_server (c : *mut ffi::base::connection) -> ffi::base::void_coo
  *
  * Gets the root window the pointer is logically on and the pointer coordinates
  * relative to the root window's origin.
- * 
+ *
  */
-pub fn xcb_query_pointer (c : *mut ffi::base::connection,
-                             window :  window) -> query_pointer_cookie;
+pub fn xcb_query_pointer (c : *mut ffi::base::xcb_connection_t,
+                             window :  xcb_window_t) -> xcb_query_pointer_cookie_t;
 
 /**
  * get pointer coordinates
@@ -6838,54 +6838,54 @@ pub fn xcb_query_pointer (c : *mut ffi::base::connection,
  *
  * Gets the root window the pointer is logically on and the pointer coordinates
  * relative to the root window's origin.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_query_pointer_unchecked (c : *mut ffi::base::connection,
-                                       window :  window) -> query_pointer_cookie;
+pub fn xcb_query_pointer_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                       window :  xcb_window_t) -> xcb_query_pointer_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_query_pointer_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_query_pointer_reply (c : *mut ffi::base::connection,
-                                   cookie : query_pointer_cookie,
-                                   e : *mut *mut ffi::base::generic_error) -> *mut query_pointer_reply;
+pub fn xcb_query_pointer_reply (c : *mut ffi::base::xcb_connection_t,
+                                   cookie : xcb_query_pointer_cookie_t,
+                                   e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_query_pointer_reply_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a timecoord_iterator
+ * @param i Pointer to a xcb_timecoord_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(timecoord)
+ * element. The member index is increased by sizeof(xcb_timecoord_t)
  *
  *
  */
-pub fn xcb_timecoord_next (i:*mut timecoord_iterator) -> c_void;
+pub fn xcb_timecoord_next (i:*mut xcb_timecoord_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An timecoord_iterator
+ * @param i An xcb_timecoord_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_timecoord_end (i:timecoord_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_timecoord_end (i:xcb_timecoord_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_get_motion_events_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -6895,12 +6895,12 @@ pub fn xcb_get_motion_events_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_get_motion_events (c : *mut ffi::base::connection,
-                                 window :  window,
-                                 start :  timestamp,
-                                 stop :  timestamp) -> get_motion_events_cookie;
+pub fn xcb_get_motion_events (c : *mut ffi::base::xcb_connection_t,
+                                 window :  xcb_window_t,
+                                 start :  xcb_timestamp_t,
+                                 stop :  xcb_timestamp_t) -> xcb_get_motion_events_cookie_t;
 
 /**
  *
@@ -6908,40 +6908,40 @@ pub fn xcb_get_motion_events (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_motion_events_unchecked (c : *mut ffi::base::connection,
-                                           window :  window,
-                                           start :  timestamp,
-                                           stop :  timestamp) -> get_motion_events_cookie;
+pub fn xcb_get_motion_events_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                           window :  xcb_window_t,
+                                           start :  xcb_timestamp_t,
+                                           stop :  xcb_timestamp_t) -> xcb_get_motion_events_cookie_t;
 
-pub fn xcb_get_motion_events_events (R : *mut get_motion_events_reply) -> *mut timecoord;
+pub fn xcb_get_motion_events_events (R : *mut xcb_get_motion_events_reply_t) -> *mut xcb_timecoord_t;
 
 
-pub fn xcb_get_motion_events_events_length (R : *mut get_motion_events_reply) -> c_int;
+pub fn xcb_get_motion_events_events_length (R : *mut xcb_get_motion_events_reply_t) -> c_int;
 
-pub fn xcb_get_motion_events_events_iterator (R : *mut get_motion_events_reply) -> timecoord_iterator;
+pub fn xcb_get_motion_events_events_iterator (R : *mut xcb_get_motion_events_reply_t) -> xcb_timecoord_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_get_motion_events_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_motion_events_reply (c : *mut ffi::base::connection,
-                                       cookie : get_motion_events_cookie,
-                                       e : *mut *mut ffi::base::generic_error) -> *mut get_motion_events_reply;
+pub fn xcb_get_motion_events_reply (c : *mut ffi::base::xcb_connection_t,
+                                       cookie : xcb_get_motion_events_cookie_t,
+                                       e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_get_motion_events_reply_t;
 
 /**
  *
@@ -6949,13 +6949,13 @@ pub fn xcb_get_motion_events_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_translate_coordinates (c : *mut ffi::base::connection,
-                                     src_window :  window,
-                                     dst_window :  window,
+pub fn xcb_translate_coordinates (c : *mut ffi::base::xcb_connection_t,
+                                     src_window :  xcb_window_t,
+                                     dst_window :  xcb_window_t,
                                      src_x :  i16,
-                                     src_y :  i16) -> translate_coordinates_cookie;
+                                     src_y :  i16) -> xcb_translate_coordinates_cookie_t;
 
 /**
  *
@@ -6963,34 +6963,34 @@ pub fn xcb_translate_coordinates (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_translate_coordinates_unchecked (c : *mut ffi::base::connection,
-                                               src_window :  window,
-                                               dst_window :  window,
+pub fn xcb_translate_coordinates_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                               src_window :  xcb_window_t,
+                                               dst_window :  xcb_window_t,
                                                src_x :  i16,
-                                               src_y :  i16) -> translate_coordinates_cookie;
+                                               src_y :  i16) -> xcb_translate_coordinates_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_translate_coordinates_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_translate_coordinates_reply (c : *mut ffi::base::connection,
-                                           cookie : translate_coordinates_cookie,
-                                           e : *mut *mut ffi::base::generic_error) -> *mut translate_coordinates_reply;
+pub fn xcb_translate_coordinates_reply (c : *mut ffi::base::xcb_connection_t,
+                                           cookie : xcb_translate_coordinates_cookie_t,
+                                           e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_translate_coordinates_reply_t;
 
 /**
  * move mouse pointer
@@ -7017,20 +7017,20 @@ pub fn xcb_translate_coordinates_reply (c : *mut ffi::base::connection,
  * offsets (\a dst_x, \a dst_y) relative to \a dst_window. If \a dst_window is
  * `XCB_NONE` (TODO), the pointer will be moved by the offsets (\a dst_x, \a dst_y)
  * relative to the current position of the pointer.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_warp_pointer_checked (c : *mut ffi::base::connection,
-                                    src_window :  window,
-                                    dst_window :  window,
+pub fn xcb_warp_pointer_checked (c : *mut ffi::base::xcb_connection_t,
+                                    src_window :  xcb_window_t,
+                                    dst_window :  xcb_window_t,
                                     src_x :  i16,
                                     src_y :  i16,
                                     src_width :  u16,
                                     src_height :  u16,
                                     dst_x :  i16,
-                                    dst_y :  i16) -> ffi::base::void_cookie;
+                                    dst_y :  i16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * move mouse pointer
@@ -7057,23 +7057,23 @@ pub fn xcb_warp_pointer_checked (c : *mut ffi::base::connection,
  * offsets (\a dst_x, \a dst_y) relative to \a dst_window. If \a dst_window is
  * `XCB_NONE` (TODO), the pointer will be moved by the offsets (\a dst_x, \a dst_y)
  * relative to the current position of the pointer.
- * 
+ *
  */
-pub fn xcb_warp_pointer (c : *mut ffi::base::connection,
-                            src_window :  window,
-                            dst_window :  window,
+pub fn xcb_warp_pointer (c : *mut ffi::base::xcb_connection_t,
+                            src_window :  xcb_window_t,
+                            dst_window :  xcb_window_t,
                             src_x :  i16,
                             src_y :  i16,
                             src_width :  u16,
                             src_height :  u16,
                             dst_x :  i16,
-                            dst_y :  i16) -> ffi::base::void_cookie;
+                            dst_y :  i16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Sets input focus
  *
  * @param c The connection
- * @param revert_to A bitmask of #input_focus values.
+ * @param revert_to A bitmask of #xcb_input_focus_t values.
  * @param revert_to Specifies what happens when the \a focus window becomes unviewable (if \a focus
  * is neither `XCB_NONE` nor `XCB_POINTER_ROOT`).
  * @param focus The window to focus. All keyboard events will be reported to this window. The
@@ -7095,21 +7095,21 @@ pub fn xcb_warp_pointer (c : *mut ffi::base::connection,
  * avoid race conditions when running X over the network).
  * 
  * A FocusIn and FocusOut event is generated when focus is changed.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_set_input_focus_checked (c : *mut ffi::base::connection,
+pub fn xcb_set_input_focus_checked (c : *mut ffi::base::xcb_connection_t,
                                        revert_to :  u8,
-                                       focus :  window,
-                                       time :  timestamp) -> ffi::base::void_cookie;
+                                       focus :  xcb_window_t,
+                                       time :  xcb_timestamp_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Sets input focus
  *
  * @param c The connection
- * @param revert_to A bitmask of #input_focus values.
+ * @param revert_to A bitmask of #xcb_input_focus_t values.
  * @param revert_to Specifies what happens when the \a focus window becomes unviewable (if \a focus
  * is neither `XCB_NONE` nor `XCB_POINTER_ROOT`).
  * @param focus The window to focus. All keyboard events will be reported to this window. The
@@ -7131,12 +7131,12 @@ pub fn xcb_set_input_focus_checked (c : *mut ffi::base::connection,
  * avoid race conditions when running X over the network).
  * 
  * A FocusIn and FocusOut event is generated when focus is changed.
- * 
+ *
  */
-pub fn xcb_set_input_focus (c : *mut ffi::base::connection,
+pub fn xcb_set_input_focus (c : *mut ffi::base::xcb_connection_t,
                                revert_to :  u8,
-                               focus :  window,
-                               time :  timestamp) -> ffi::base::void_cookie;
+                               focus :  xcb_window_t,
+                               time :  xcb_timestamp_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -7144,9 +7144,9 @@ pub fn xcb_set_input_focus (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_get_input_focus (c : *mut ffi::base::connection) -> get_input_focus_cookie;
+pub fn xcb_get_input_focus (c : *mut ffi::base::xcb_connection_t) -> xcb_get_input_focus_cookie_t;
 
 /**
  *
@@ -7154,30 +7154,30 @@ pub fn xcb_get_input_focus (c : *mut ffi::base::connection) -> get_input_focus_c
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_input_focus_unchecked (c : *mut ffi::base::connection) -> get_input_focus_cookie;
+pub fn xcb_get_input_focus_unchecked (c : *mut ffi::base::xcb_connection_t) -> xcb_get_input_focus_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_get_input_focus_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_input_focus_reply (c : *mut ffi::base::connection,
-                                     cookie : get_input_focus_cookie,
-                                     e : *mut *mut ffi::base::generic_error) -> *mut get_input_focus_reply;
+pub fn xcb_get_input_focus_reply (c : *mut ffi::base::xcb_connection_t,
+                                     cookie : xcb_get_input_focus_cookie_t,
+                                     e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_get_input_focus_reply_t;
 
 /**
  *
@@ -7185,9 +7185,9 @@ pub fn xcb_get_input_focus_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_query_keymap (c : *mut ffi::base::connection) -> query_keymap_cookie;
+pub fn xcb_query_keymap (c : *mut ffi::base::xcb_connection_t) -> xcb_query_keymap_cookie_t;
 
 /**
  *
@@ -7195,30 +7195,30 @@ pub fn xcb_query_keymap (c : *mut ffi::base::connection) -> query_keymap_cookie;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_query_keymap_unchecked (c : *mut ffi::base::connection) -> query_keymap_cookie;
+pub fn xcb_query_keymap_unchecked (c : *mut ffi::base::xcb_connection_t) -> xcb_query_keymap_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_query_keymap_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_query_keymap_reply (c : *mut ffi::base::connection,
-                                  cookie : query_keymap_cookie,
-                                  e : *mut *mut ffi::base::generic_error) -> *mut query_keymap_reply;
+pub fn xcb_query_keymap_reply (c : *mut ffi::base::xcb_connection_t,
+                                  cookie : xcb_query_keymap_cookie_t,
+                                  e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_query_keymap_reply_t;
 
 pub fn xcb_open_font_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -7235,15 +7235,15 @@ pub fn xcb_open_font_sizeof (_buffer :  *mut c_void) -> c_int;
  * 
  * Note that X core fonts are deprecated (but still supported) in favor of
  * client-side rendering using Xft.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_open_font_checked (c : *mut ffi::base::connection,
-                                 fid :  font,
+pub fn xcb_open_font_checked (c : *mut ffi::base::xcb_connection_t,
+                                 fid :  xcb_font_t,
                                  name_len :  u16,
-                                 name : *mut c_char) -> ffi::base::void_cookie;
+                                 name : *mut c_char) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * opens a font
@@ -7258,12 +7258,12 @@ pub fn xcb_open_font_checked (c : *mut ffi::base::connection,
  * 
  * Note that X core fonts are deprecated (but still supported) in favor of
  * client-side rendering using Xft.
- * 
+ *
  */
-pub fn xcb_open_font (c : *mut ffi::base::connection,
-                         fid :  font,
+pub fn xcb_open_font (c : *mut ffi::base::xcb_connection_t,
+                         fid :  xcb_font_t,
                          name_len :  u16,
-                         name : *mut c_char) -> ffi::base::void_cookie;
+                         name : *mut c_char) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -7271,13 +7271,13 @@ pub fn xcb_open_font (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_close_font_checked (c : *mut ffi::base::connection,
-                                  font :  font) -> ffi::base::void_cookie;
+pub fn xcb_close_font_checked (c : *mut ffi::base::xcb_connection_t,
+                                  font :  xcb_font_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -7285,56 +7285,56 @@ pub fn xcb_close_font_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_close_font (c : *mut ffi::base::connection,
-                          font :  font) -> ffi::base::void_cookie;
+pub fn xcb_close_font (c : *mut ffi::base::xcb_connection_t,
+                          font :  xcb_font_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a fontprop_iterator
+ * @param i Pointer to a xcb_fontprop_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(fontprop)
+ * element. The member index is increased by sizeof(xcb_fontprop_t)
  *
  *
  */
-pub fn xcb_fontprop_next (i:*mut fontprop_iterator) -> c_void;
+pub fn xcb_fontprop_next (i:*mut xcb_fontprop_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An fontprop_iterator
+ * @param i An xcb_fontprop_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_fontprop_end (i:fontprop_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_fontprop_end (i:xcb_fontprop_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a charinfo_iterator
+ * @param i Pointer to a xcb_charinfo_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(charinfo)
+ * element. The member index is increased by sizeof(xcb_charinfo_t)
  *
  *
  */
-pub fn xcb_charinfo_next (i:*mut charinfo_iterator) -> c_void;
+pub fn xcb_charinfo_next (i:*mut xcb_charinfo_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An charinfo_iterator
+ * @param i An xcb_charinfo_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_charinfo_end (i:charinfo_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_charinfo_end (i:xcb_charinfo_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_query_font_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -7346,10 +7346,10 @@ pub fn xcb_query_font_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Queries information associated with the font.
- * 
+ *
  */
-pub fn xcb_query_font (c : *mut ffi::base::connection,
-                          font :  fontable) -> query_font_cookie;
+pub fn xcb_query_font (c : *mut ffi::base::xcb_connection_t,
+                          font :  xcb_fontable_t) -> xcb_query_font_cookie_t;
 
 /**
  * query font metrics
@@ -7359,45 +7359,45 @@ pub fn xcb_query_font (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Queries information associated with the font.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_query_font_unchecked (c : *mut ffi::base::connection,
-                                    font :  fontable) -> query_font_cookie;
+pub fn xcb_query_font_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                    font :  xcb_fontable_t) -> xcb_query_font_cookie_t;
 
-pub fn xcb_query_font_properties (R : *mut query_font_reply) -> *mut fontprop;
-
-
-pub fn xcb_query_font_properties_length (R : *mut query_font_reply) -> c_int;
-
-pub fn xcb_query_font_properties_iterator (R : *mut query_font_reply) -> fontprop_iterator;
-
-pub fn xcb_query_font_char_infos (R : *mut query_font_reply) -> *mut charinfo;
+pub fn xcb_query_font_properties (R : *mut xcb_query_font_reply_t) -> *mut xcb_fontprop_t;
 
 
-pub fn xcb_query_font_char_infos_length (R : *mut query_font_reply) -> c_int;
+pub fn xcb_query_font_properties_length (R : *mut xcb_query_font_reply_t) -> c_int;
 
-pub fn xcb_query_font_char_infos_iterator (R : *mut query_font_reply) -> charinfo_iterator;
+pub fn xcb_query_font_properties_iterator (R : *mut xcb_query_font_reply_t) -> xcb_fontprop_iterator_t;
+
+pub fn xcb_query_font_char_infos (R : *mut xcb_query_font_reply_t) -> *mut xcb_charinfo_t;
+
+
+pub fn xcb_query_font_char_infos_length (R : *mut xcb_query_font_reply_t) -> c_int;
+
+pub fn xcb_query_font_char_infos_iterator (R : *mut xcb_query_font_reply_t) -> xcb_charinfo_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_query_font_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_query_font_reply (c : *mut ffi::base::connection,
-                                cookie : query_font_cookie,
-                                e : *mut *mut ffi::base::generic_error) -> *mut query_font_reply;
+pub fn xcb_query_font_reply (c : *mut ffi::base::xcb_connection_t,
+                                cookie : xcb_query_font_cookie_t,
+                                e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_query_font_reply_t;
 
 pub fn xcb_query_text_extents_sizeof (_buffer :  *mut c_void,
                                string_len :   u32) -> c_int;
@@ -7432,12 +7432,12 @@ pub fn xcb_query_text_extents_sizeof (_buffer :  *mut c_void,
  * 
  * Characters with all zero metrics are ignored. If the font has no defined
  * default_char, the undefined characters in the string are also ignored.
- * 
+ *
  */
-pub fn xcb_query_text_extents (c : *mut ffi::base::connection,
-                                  font :  fontable,
+pub fn xcb_query_text_extents (c : *mut ffi::base::xcb_connection_t,
+                                  font :  xcb_fontable_t,
                                   string_len :  u32,
-                                  string : *mut char2b) -> query_text_extents_cookie;
+                                  string : *mut xcb_char2b_t) -> xcb_query_text_extents_cookie_t;
 
 /**
  * get text extents
@@ -7469,66 +7469,66 @@ pub fn xcb_query_text_extents (c : *mut ffi::base::connection,
  * 
  * Characters with all zero metrics are ignored. If the font has no defined
  * default_char, the undefined characters in the string are also ignored.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_query_text_extents_unchecked (c : *mut ffi::base::connection,
-                                            font :  fontable,
+pub fn xcb_query_text_extents_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                            font :  xcb_fontable_t,
                                             string_len :  u32,
-                                            string : *mut char2b) -> query_text_extents_cookie;
+                                            string : *mut xcb_char2b_t) -> xcb_query_text_extents_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_query_text_extents_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_query_text_extents_reply (c : *mut ffi::base::connection,
-                                        cookie : query_text_extents_cookie,
-                                        e : *mut *mut ffi::base::generic_error) -> *mut query_text_extents_reply;
+pub fn xcb_query_text_extents_reply (c : *mut ffi::base::xcb_connection_t,
+                                        cookie : xcb_query_text_extents_cookie_t,
+                                        e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_query_text_extents_reply_t;
 
 pub fn xcb_str_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub fn xcb_str_name (R : *mut str_) -> *mut c_char;
+pub fn xcb_str_name (R : *mut xcb_str_t) -> *mut c_char;
 
 
-pub fn xcb_str_name_length (R : *mut str_) -> c_int;
+pub fn xcb_str_name_length (R : *mut xcb_str_t) -> c_int;
 
 
-pub fn xcb_str_name_end (R : *mut str_) -> ffi::base::generic_iterator;
+pub fn xcb_str_name_end (R : *mut xcb_str_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a str_iterator
+ * @param i Pointer to a xcb_str_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(str_)
+ * element. The member index is increased by sizeof(xcb_str_t)
  *
  *
  */
-pub fn xcb_str_next (i:*mut str_iterator) -> c_void;
+pub fn xcb_str_next (i:*mut xcb_str_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An str_iterator
+ * @param i An xcb_str_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_str_end (i:str_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_str_end (i:xcb_str_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_list_fonts_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -7546,12 +7546,12 @@ pub fn xcb_list_fonts_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Gets a list of available font names which match the given \a pattern.
- * 
+ *
  */
-pub fn xcb_list_fonts (c : *mut ffi::base::connection,
+pub fn xcb_list_fonts (c : *mut ffi::base::xcb_connection_t,
                           max_names :  u16,
                           pattern_len :  u16,
-                          pattern : *mut c_char) -> list_fonts_cookie;
+                          pattern : *mut c_char) -> xcb_list_fonts_cookie_t;
 
 /**
  * get matching font names
@@ -7567,38 +7567,38 @@ pub fn xcb_list_fonts (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Gets a list of available font names which match the given \a pattern.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_list_fonts_unchecked (c : *mut ffi::base::connection,
+pub fn xcb_list_fonts_unchecked (c : *mut ffi::base::xcb_connection_t,
                                     max_names :  u16,
                                     pattern_len :  u16,
-                                    pattern : *mut c_char) -> list_fonts_cookie;
+                                    pattern : *mut c_char) -> xcb_list_fonts_cookie_t;
 
 
-pub fn xcb_list_fonts_names_length (R : *mut list_fonts_reply) -> c_int;
+pub fn xcb_list_fonts_names_length (R : *mut xcb_list_fonts_reply_t) -> c_int;
 
-pub fn xcb_list_fonts_names_iterator (R : *mut list_fonts_reply) -> str_iterator;
+pub fn xcb_list_fonts_names_iterator (R : *mut xcb_list_fonts_reply_t) -> xcb_str_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_list_fonts_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_list_fonts_reply (c : *mut ffi::base::connection,
-                                cookie : list_fonts_cookie,
-                                e : *mut *mut ffi::base::generic_error) -> *mut list_fonts_reply;
+pub fn xcb_list_fonts_reply (c : *mut ffi::base::xcb_connection_t,
+                                cookie : xcb_list_fonts_cookie_t,
+                                e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_list_fonts_reply_t;
 
 pub fn xcb_list_fonts_with_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -7616,12 +7616,12 @@ pub fn xcb_list_fonts_with_info_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Gets a list of available font names which match the given \a pattern.
- * 
+ *
  */
-pub fn xcb_list_fonts_with_info (c : *mut ffi::base::connection,
+pub fn xcb_list_fonts_with_info (c : *mut ffi::base::xcb_connection_t,
                                     max_names :  u16,
                                     pattern_len :  u16,
-                                    pattern : *mut c_char) -> list_fonts_with_info_cookie;
+                                    pattern : *mut c_char) -> xcb_list_fonts_with_info_cookie_t;
 
 /**
  * get matching font names and information
@@ -7637,48 +7637,48 @@ pub fn xcb_list_fonts_with_info (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Gets a list of available font names which match the given \a pattern.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_list_fonts_with_info_unchecked (c : *mut ffi::base::connection,
+pub fn xcb_list_fonts_with_info_unchecked (c : *mut ffi::base::xcb_connection_t,
                                               max_names :  u16,
                                               pattern_len :  u16,
-                                              pattern : *mut c_char) -> list_fonts_with_info_cookie;
+                                              pattern : *mut c_char) -> xcb_list_fonts_with_info_cookie_t;
 
-pub fn xcb_list_fonts_with_info_properties (R : *mut list_fonts_with_info_reply) -> *mut fontprop;
-
-
-pub fn xcb_list_fonts_with_info_properties_length (R : *mut list_fonts_with_info_reply) -> c_int;
-
-pub fn xcb_list_fonts_with_info_properties_iterator (R : *mut list_fonts_with_info_reply) -> fontprop_iterator;
-
-pub fn xcb_list_fonts_with_info_name (R : *mut list_fonts_with_info_reply) -> *mut c_char;
+pub fn xcb_list_fonts_with_info_properties (R : *mut xcb_list_fonts_with_info_reply_t) -> *mut xcb_fontprop_t;
 
 
-pub fn xcb_list_fonts_with_info_name_length (R : *mut list_fonts_with_info_reply) -> c_int;
+pub fn xcb_list_fonts_with_info_properties_length (R : *mut xcb_list_fonts_with_info_reply_t) -> c_int;
+
+pub fn xcb_list_fonts_with_info_properties_iterator (R : *mut xcb_list_fonts_with_info_reply_t) -> xcb_fontprop_iterator_t;
+
+pub fn xcb_list_fonts_with_info_name (R : *mut xcb_list_fonts_with_info_reply_t) -> *mut c_char;
 
 
-pub fn xcb_list_fonts_with_info_name_end (R : *mut list_fonts_with_info_reply) -> ffi::base::generic_iterator;
+pub fn xcb_list_fonts_with_info_name_length (R : *mut xcb_list_fonts_with_info_reply_t) -> c_int;
+
+
+pub fn xcb_list_fonts_with_info_name_end (R : *mut xcb_list_fonts_with_info_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_list_fonts_with_info_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_list_fonts_with_info_reply (c : *mut ffi::base::connection,
-                                          cookie : list_fonts_with_info_cookie,
-                                          e : *mut *mut ffi::base::generic_error) -> *mut list_fonts_with_info_reply;
+pub fn xcb_list_fonts_with_info_reply (c : *mut ffi::base::xcb_connection_t,
+                                          cookie : xcb_list_fonts_with_info_cookie_t,
+                                          e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_list_fonts_with_info_reply_t;
 
 pub fn xcb_set_font_path_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -7688,14 +7688,14 @@ pub fn xcb_set_font_path_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_set_font_path_checked (c : *mut ffi::base::connection,
+pub fn xcb_set_font_path_checked (c : *mut ffi::base::xcb_connection_t,
                                      font_qty :  u16,
-                                     font : *mut str_) -> ffi::base::void_cookie;
+                                     font : *mut xcb_str_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -7703,11 +7703,11 @@ pub fn xcb_set_font_path_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_set_font_path (c : *mut ffi::base::connection,
+pub fn xcb_set_font_path (c : *mut ffi::base::xcb_connection_t,
                              font_qty :  u16,
-                             font : *mut str_) -> ffi::base::void_cookie;
+                             font : *mut xcb_str_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_get_font_path_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -7717,9 +7717,9 @@ pub fn xcb_get_font_path_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_get_font_path (c : *mut ffi::base::connection) -> get_font_path_cookie;
+pub fn xcb_get_font_path (c : *mut ffi::base::xcb_connection_t) -> xcb_get_font_path_cookie_t;
 
 /**
  *
@@ -7727,35 +7727,35 @@ pub fn xcb_get_font_path (c : *mut ffi::base::connection) -> get_font_path_cooki
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_font_path_unchecked (c : *mut ffi::base::connection) -> get_font_path_cookie;
+pub fn xcb_get_font_path_unchecked (c : *mut ffi::base::xcb_connection_t) -> xcb_get_font_path_cookie_t;
 
 
-pub fn xcb_get_font_path_path_length (R : *mut get_font_path_reply) -> c_int;
+pub fn xcb_get_font_path_path_length (R : *mut xcb_get_font_path_reply_t) -> c_int;
 
-pub fn xcb_get_font_path_path_iterator (R : *mut get_font_path_reply) -> str_iterator;
+pub fn xcb_get_font_path_path_iterator (R : *mut xcb_get_font_path_reply_t) -> xcb_str_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_get_font_path_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_font_path_reply (c : *mut ffi::base::connection,
-                                   cookie : get_font_path_cookie,
-                                   e : *mut *mut ffi::base::generic_error) -> *mut get_font_path_reply;
+pub fn xcb_get_font_path_reply (c : *mut ffi::base::xcb_connection_t,
+                                   cookie : xcb_get_font_path_cookie_t,
+                                   e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_get_font_path_reply_t;
 
 /**
  * Creates a pixmap
@@ -7771,17 +7771,17 @@ pub fn xcb_get_font_path_reply (c : *mut ffi::base::connection,
  *
  * Creates a pixmap. The pixmap can only be used on the same screen as \a drawable
  * is on and only with drawables of the same \a depth.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_create_pixmap_checked (c : *mut ffi::base::connection,
+pub fn xcb_create_pixmap_checked (c : *mut ffi::base::xcb_connection_t,
                                      depth :  u8,
-                                     pid :  pixmap,
-                                     drawable :  drawable,
+                                     pid :  xcb_pixmap_t,
+                                     drawable :  xcb_drawable_t,
                                      width :  u16,
-                                     height :  u16) -> ffi::base::void_cookie;
+                                     height :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Creates a pixmap
@@ -7797,14 +7797,14 @@ pub fn xcb_create_pixmap_checked (c : *mut ffi::base::connection,
  *
  * Creates a pixmap. The pixmap can only be used on the same screen as \a drawable
  * is on and only with drawables of the same \a depth.
- * 
+ *
  */
-pub fn xcb_create_pixmap (c : *mut ffi::base::connection,
+pub fn xcb_create_pixmap (c : *mut ffi::base::xcb_connection_t,
                              depth :  u8,
-                             pid :  pixmap,
-                             drawable :  drawable,
+                             pid :  xcb_pixmap_t,
+                             drawable :  xcb_drawable_t,
                              width :  u16,
-                             height :  u16) -> ffi::base::void_cookie;
+                             height :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Destroys a pixmap
@@ -7815,13 +7815,13 @@ pub fn xcb_create_pixmap (c : *mut ffi::base::connection,
  *
  * Deletes the association between the pixmap ID and the pixmap. The pixmap
  * storage will be freed when there are no more references to it.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_free_pixmap_checked (c : *mut ffi::base::connection,
-                                   pixmap :  pixmap) -> ffi::base::void_cookie;
+pub fn xcb_free_pixmap_checked (c : *mut ffi::base::xcb_connection_t,
+                                   pixmap :  xcb_pixmap_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Destroys a pixmap
@@ -7832,10 +7832,10 @@ pub fn xcb_free_pixmap_checked (c : *mut ffi::base::connection,
  *
  * Deletes the association between the pixmap ID and the pixmap. The pixmap
  * storage will be freed when there are no more references to it.
- * 
+ *
  */
-pub fn xcb_free_pixmap (c : *mut ffi::base::connection,
-                           pixmap :  pixmap) -> ffi::base::void_cookie;
+pub fn xcb_free_pixmap (c : *mut ffi::base::xcb_connection_t,
+                           pixmap :  xcb_pixmap_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_create_gc_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -7850,16 +7850,16 @@ pub fn xcb_create_gc_sizeof (_buffer :  *mut c_void) -> c_int;
  *
  * Creates a graphics context. The graphics context can be used with any drawable
  * that has the same root and depth as the specified drawable.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_create_gc_checked (c : *mut ffi::base::connection,
-                                 cid :  gcontext,
-                                 drawable :  drawable,
+pub fn xcb_create_gc_checked (c : *mut ffi::base::xcb_connection_t,
+                                 cid :  xcb_gcontext_t,
+                                 drawable :  xcb_drawable_t,
                                  value_mask :  u32,
-                                 value_list : *mut u32) -> ffi::base::void_cookie;
+                                 value_list : *mut u32) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Creates a graphics context
@@ -7872,13 +7872,13 @@ pub fn xcb_create_gc_checked (c : *mut ffi::base::connection,
  *
  * Creates a graphics context. The graphics context can be used with any drawable
  * that has the same root and depth as the specified drawable.
- * 
+ *
  */
-pub fn xcb_create_gc (c : *mut ffi::base::connection,
-                         cid :  gcontext,
-                         drawable :  drawable,
+pub fn xcb_create_gc (c : *mut ffi::base::xcb_connection_t,
+                         cid :  xcb_gcontext_t,
+                         drawable :  xcb_drawable_t,
                          value_mask :  u32,
-                         value_list : *mut u32) -> ffi::base::void_cookie;
+                         value_list : *mut u32) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_change_gc_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -7894,15 +7894,15 @@ pub fn xcb_change_gc_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Changes the components specified by \a value_mask for the specified graphics context.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_change_gc_checked (c : *mut ffi::base::connection,
-                                 gc :  gcontext,
+pub fn xcb_change_gc_checked (c : *mut ffi::base::xcb_connection_t,
+                                 gc :  xcb_gcontext_t,
                                  value_mask :  u32,
-                                 value_list : *mut u32) -> ffi::base::void_cookie;
+                                 value_list : *mut u32) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * change graphics context components
@@ -7916,12 +7916,12 @@ pub fn xcb_change_gc_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Changes the components specified by \a value_mask for the specified graphics context.
- * 
+ *
  */
-pub fn xcb_change_gc (c : *mut ffi::base::connection,
-                         gc :  gcontext,
+pub fn xcb_change_gc (c : *mut ffi::base::xcb_connection_t,
+                         gc :  xcb_gcontext_t,
                          value_mask :  u32,
-                         value_list : *mut u32) -> ffi::base::void_cookie;
+                         value_list : *mut u32) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -7929,15 +7929,15 @@ pub fn xcb_change_gc (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_copy_gc_checked (c : *mut ffi::base::connection,
-                               src_gc :  gcontext,
-                               dst_gc :  gcontext,
-                               value_mask :  u32) -> ffi::base::void_cookie;
+pub fn xcb_copy_gc_checked (c : *mut ffi::base::xcb_connection_t,
+                               src_gc :  xcb_gcontext_t,
+                               dst_gc :  xcb_gcontext_t,
+                               value_mask :  u32) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -7945,12 +7945,12 @@ pub fn xcb_copy_gc_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_copy_gc (c : *mut ffi::base::connection,
-                       src_gc :  gcontext,
-                       dst_gc :  gcontext,
-                       value_mask :  u32) -> ffi::base::void_cookie;
+pub fn xcb_copy_gc (c : *mut ffi::base::xcb_connection_t,
+                       src_gc :  xcb_gcontext_t,
+                       dst_gc :  xcb_gcontext_t,
+                       value_mask :  u32) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_set_dashes_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -7960,16 +7960,16 @@ pub fn xcb_set_dashes_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_set_dashes_checked (c : *mut ffi::base::connection,
-                                  gc :  gcontext,
+pub fn xcb_set_dashes_checked (c : *mut ffi::base::xcb_connection_t,
+                                  gc :  xcb_gcontext_t,
                                   dash_offset :  u16,
                                   dashes_len :  u16,
-                                  dashes : *mut u8) -> ffi::base::void_cookie;
+                                  dashes : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -7977,13 +7977,13 @@ pub fn xcb_set_dashes_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_set_dashes (c : *mut ffi::base::connection,
-                          gc :  gcontext,
+pub fn xcb_set_dashes (c : *mut ffi::base::xcb_connection_t,
+                          gc :  xcb_gcontext_t,
                           dash_offset :  u16,
                           dashes_len :  u16,
-                          dashes : *mut u8) -> ffi::base::void_cookie;
+                          dashes : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_set_clip_rectangles_sizeof (_buffer :  *mut c_void,
                                 rectangles_len :  u32) -> c_int;
@@ -7994,18 +7994,18 @@ pub fn xcb_set_clip_rectangles_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_set_clip_rectangles_checked (c : *mut ffi::base::connection,
+pub fn xcb_set_clip_rectangles_checked (c : *mut ffi::base::xcb_connection_t,
                                            ordering :  u8,
-                                           gc :  gcontext,
+                                           gc :  xcb_gcontext_t,
                                            clip_x_origin :  i16,
                                            clip_y_origin :  i16,
                                            rectangles_len :  u32,
-                                           rectangles : *mut rectangle) -> ffi::base::void_cookie;
+                                           rectangles : *mut xcb_rectangle_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -8013,15 +8013,15 @@ pub fn xcb_set_clip_rectangles_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_set_clip_rectangles (c : *mut ffi::base::connection,
+pub fn xcb_set_clip_rectangles (c : *mut ffi::base::xcb_connection_t,
                                    ordering :  u8,
-                                   gc :  gcontext,
+                                   gc :  xcb_gcontext_t,
                                    clip_x_origin :  i16,
                                    clip_y_origin :  i16,
                                    rectangles_len :  u32,
-                                   rectangles : *mut rectangle) -> ffi::base::void_cookie;
+                                   rectangles : *mut xcb_rectangle_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Destroys a graphics context
@@ -8031,13 +8031,13 @@ pub fn xcb_set_clip_rectangles (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Destroys the specified \a gc and all associated storage.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_free_gc_checked (c : *mut ffi::base::connection,
-                               gc :  gcontext) -> ffi::base::void_cookie;
+pub fn xcb_free_gc_checked (c : *mut ffi::base::xcb_connection_t,
+                               gc :  xcb_gcontext_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Destroys a graphics context
@@ -8047,10 +8047,10 @@ pub fn xcb_free_gc_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Destroys the specified \a gc and all associated storage.
- * 
+ *
  */
-pub fn xcb_free_gc (c : *mut ffi::base::connection,
-                       gc :  gcontext) -> ffi::base::void_cookie;
+pub fn xcb_free_gc (c : *mut ffi::base::xcb_connection_t,
+                       gc :  xcb_gcontext_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -8058,18 +8058,18 @@ pub fn xcb_free_gc (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_clear_area_checked (c : *mut ffi::base::connection,
+pub fn xcb_clear_area_checked (c : *mut ffi::base::xcb_connection_t,
                                   exposures :  u8,
-                                  window :  window,
+                                  window :  xcb_window_t,
                                   x :  i16,
                                   y :  i16,
                                   width :  u16,
-                                  height :  u16) -> ffi::base::void_cookie;
+                                  height :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -8077,15 +8077,15 @@ pub fn xcb_clear_area_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_clear_area (c : *mut ffi::base::connection,
+pub fn xcb_clear_area (c : *mut ffi::base::xcb_connection_t,
                           exposures :  u8,
-                          window :  window,
+                          window :  xcb_window_t,
                           x :  i16,
                           y :  i16,
                           width :  u16,
-                          height :  u16) -> ffi::base::void_cookie;
+                          height :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * copy areas
@@ -8103,21 +8103,21 @@ pub fn xcb_clear_area (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Copies the specified rectangle from \a src_drawable to \a dst_drawable.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_copy_area_checked (c : *mut ffi::base::connection,
-                                 src_drawable :  drawable,
-                                 dst_drawable :  drawable,
-                                 gc :  gcontext,
+pub fn xcb_copy_area_checked (c : *mut ffi::base::xcb_connection_t,
+                                 src_drawable :  xcb_drawable_t,
+                                 dst_drawable :  xcb_drawable_t,
+                                 gc :  xcb_gcontext_t,
                                  src_x :  i16,
                                  src_y :  i16,
                                  dst_x :  i16,
                                  dst_y :  i16,
                                  width :  u16,
-                                 height :  u16) -> ffi::base::void_cookie;
+                                 height :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * copy areas
@@ -8135,18 +8135,18 @@ pub fn xcb_copy_area_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Copies the specified rectangle from \a src_drawable to \a dst_drawable.
- * 
+ *
  */
-pub fn xcb_copy_area (c : *mut ffi::base::connection,
-                         src_drawable :  drawable,
-                         dst_drawable :  drawable,
-                         gc :  gcontext,
+pub fn xcb_copy_area (c : *mut ffi::base::xcb_connection_t,
+                         src_drawable :  xcb_drawable_t,
+                         dst_drawable :  xcb_drawable_t,
+                         gc :  xcb_gcontext_t,
                          src_x :  i16,
                          src_y :  i16,
                          dst_x :  i16,
                          dst_y :  i16,
                          width :  u16,
-                         height :  u16) -> ffi::base::void_cookie;
+                         height :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -8154,22 +8154,22 @@ pub fn xcb_copy_area (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_copy_plane_checked (c : *mut ffi::base::connection,
-                                  src_drawable :  drawable,
-                                  dst_drawable :  drawable,
-                                  gc :  gcontext,
+pub fn xcb_copy_plane_checked (c : *mut ffi::base::xcb_connection_t,
+                                  src_drawable :  xcb_drawable_t,
+                                  dst_drawable :  xcb_drawable_t,
+                                  gc :  xcb_gcontext_t,
                                   src_x :  i16,
                                   src_y :  i16,
                                   dst_x :  i16,
                                   dst_y :  i16,
                                   width :  u16,
                                   height :  u16,
-                                  bit_plane :  u32) -> ffi::base::void_cookie;
+                                  bit_plane :  u32) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -8177,19 +8177,19 @@ pub fn xcb_copy_plane_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_copy_plane (c : *mut ffi::base::connection,
-                          src_drawable :  drawable,
-                          dst_drawable :  drawable,
-                          gc :  gcontext,
+pub fn xcb_copy_plane (c : *mut ffi::base::xcb_connection_t,
+                          src_drawable :  xcb_drawable_t,
+                          dst_drawable :  xcb_drawable_t,
+                          gc :  xcb_gcontext_t,
                           src_x :  i16,
                           src_y :  i16,
                           dst_x :  i16,
                           dst_y :  i16,
                           width :  u16,
                           height :  u16,
-                          bit_plane :  u32) -> ffi::base::void_cookie;
+                          bit_plane :  u32) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_poly_point_sizeof (_buffer :  *mut c_void,
                        points_len :   u32) -> c_int;
@@ -8200,17 +8200,17 @@ pub fn xcb_poly_point_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_poly_point_checked (c : *mut ffi::base::connection,
+pub fn xcb_poly_point_checked (c : *mut ffi::base::xcb_connection_t,
                                   coordinate_mode :  u8,
-                                  drawable :  drawable,
-                                  gc :  gcontext,
+                                  drawable :  xcb_drawable_t,
+                                  gc :  xcb_gcontext_t,
                                   points_len :  u32,
-                                  points : *mut point) -> ffi::base::void_cookie;
+                                  points : *mut xcb_point_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -8218,14 +8218,14 @@ pub fn xcb_poly_point_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_poly_point (c : *mut ffi::base::connection,
+pub fn xcb_poly_point (c : *mut ffi::base::xcb_connection_t,
                           coordinate_mode :  u8,
-                          drawable :  drawable,
-                          gc :  gcontext,
+                          drawable :  xcb_drawable_t,
+                          gc :  xcb_gcontext_t,
                           points_len :  u32,
-                          points : *mut point) -> ffi::base::void_cookie;
+                          points : *mut xcb_point_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_poly_line_sizeof (_buffer :  *mut c_void,
                       points_len :   u32) -> c_int;
@@ -8234,7 +8234,7 @@ pub fn xcb_poly_line_sizeof (_buffer :  *mut c_void,
  * draw lines
  *
  * @param c The connection
- * @param coordinate_mode A bitmask of #coord_mode values.
+ * @param coordinate_mode A bitmask of #xcb_coord_mode_t values.
  * @param coordinate_mode \n
  * @param drawable The drawable to draw the line(s) on.
  * @param gc The graphics context to use.
@@ -8250,23 +8250,23 @@ pub fn xcb_poly_line_sizeof (_buffer :  *mut c_void,
  * intersect, the intersecting pixels are drawn multiple times. If wide lines
  * intersect, the intersecting pixels are drawn only once, as though the entire
  * request were a single, filled shape.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_poly_line_checked (c : *mut ffi::base::connection,
+pub fn xcb_poly_line_checked (c : *mut ffi::base::xcb_connection_t,
                                  coordinate_mode :  u8,
-                                 drawable :  drawable,
-                                 gc :  gcontext,
+                                 drawable :  xcb_drawable_t,
+                                 gc :  xcb_gcontext_t,
                                  points_len :  u32,
-                                 points : *mut point) -> ffi::base::void_cookie;
+                                 points : *mut xcb_point_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * draw lines
  *
  * @param c The connection
- * @param coordinate_mode A bitmask of #coord_mode values.
+ * @param coordinate_mode A bitmask of #xcb_coord_mode_t values.
  * @param coordinate_mode \n
  * @param drawable The drawable to draw the line(s) on.
  * @param gc The graphics context to use.
@@ -8282,37 +8282,37 @@ pub fn xcb_poly_line_checked (c : *mut ffi::base::connection,
  * intersect, the intersecting pixels are drawn multiple times. If wide lines
  * intersect, the intersecting pixels are drawn only once, as though the entire
  * request were a single, filled shape.
- * 
+ *
  */
-pub fn xcb_poly_line (c : *mut ffi::base::connection,
+pub fn xcb_poly_line (c : *mut ffi::base::xcb_connection_t,
                          coordinate_mode :  u8,
-                         drawable :  drawable,
-                         gc :  gcontext,
+                         drawable :  xcb_drawable_t,
+                         gc :  xcb_gcontext_t,
                          points_len :  u32,
-                         points : *mut point) -> ffi::base::void_cookie;
+                         points : *mut xcb_point_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a segment_iterator
+ * @param i Pointer to a xcb_segment_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(segment)
+ * element. The member index is increased by sizeof(xcb_segment_t)
  *
  *
  */
-pub fn xcb_segment_next (i:*mut segment_iterator) -> c_void;
+pub fn xcb_segment_next (i:*mut xcb_segment_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An segment_iterator
+ * @param i An xcb_segment_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_segment_end (i:segment_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_segment_end (i:xcb_segment_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_poly_segment_sizeof (_buffer :  *mut c_void,
                          segments_len :  u32) -> c_int;
@@ -8338,16 +8338,16 @@ pub fn xcb_poly_segment_sizeof (_buffer :  *mut c_void,
  * TODO: include the xcb_segment_t data structure
  * 
  * TODO: an example
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_poly_segment_checked (c : *mut ffi::base::connection,
-                                    drawable :  drawable,
-                                    gc :  gcontext,
+pub fn xcb_poly_segment_checked (c : *mut ffi::base::xcb_connection_t,
+                                    drawable :  xcb_drawable_t,
+                                    gc :  xcb_gcontext_t,
                                     segments_len :  u32,
-                                    segments : *mut segment) -> ffi::base::void_cookie;
+                                    segments : *mut xcb_segment_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * draw lines
@@ -8370,13 +8370,13 @@ pub fn xcb_poly_segment_checked (c : *mut ffi::base::connection,
  * TODO: include the xcb_segment_t data structure
  * 
  * TODO: an example
- * 
+ *
  */
-pub fn xcb_poly_segment (c : *mut ffi::base::connection,
-                            drawable :  drawable,
-                            gc :  gcontext,
+pub fn xcb_poly_segment (c : *mut ffi::base::xcb_connection_t,
+                            drawable :  xcb_drawable_t,
+                            gc :  xcb_gcontext_t,
                             segments_len :  u32,
-                            segments : *mut segment) -> ffi::base::void_cookie;
+                            segments : *mut xcb_segment_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_poly_rectangle_sizeof (_buffer :  *mut c_void,
                            rectangles_len :  u32) -> c_int;
@@ -8387,16 +8387,16 @@ pub fn xcb_poly_rectangle_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_poly_rectangle_checked (c : *mut ffi::base::connection,
-                                      drawable :  drawable,
-                                      gc :  gcontext,
+pub fn xcb_poly_rectangle_checked (c : *mut ffi::base::xcb_connection_t,
+                                      drawable :  xcb_drawable_t,
+                                      gc :  xcb_gcontext_t,
                                       rectangles_len :  u32,
-                                      rectangles : *mut rectangle) -> ffi::base::void_cookie;
+                                      rectangles : *mut xcb_rectangle_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -8404,13 +8404,13 @@ pub fn xcb_poly_rectangle_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_poly_rectangle (c : *mut ffi::base::connection,
-                              drawable :  drawable,
-                              gc :  gcontext,
+pub fn xcb_poly_rectangle (c : *mut ffi::base::xcb_connection_t,
+                              drawable :  xcb_drawable_t,
+                              gc :  xcb_gcontext_t,
                               rectangles_len :  u32,
-                              rectangles : *mut rectangle) -> ffi::base::void_cookie;
+                              rectangles : *mut xcb_rectangle_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_poly_arc_sizeof (_buffer :  *mut c_void,
                      arcs_len :     u32) -> c_int;
@@ -8421,16 +8421,16 @@ pub fn xcb_poly_arc_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_poly_arc_checked (c : *mut ffi::base::connection,
-                                drawable :  drawable,
-                                gc :  gcontext,
+pub fn xcb_poly_arc_checked (c : *mut ffi::base::xcb_connection_t,
+                                drawable :  xcb_drawable_t,
+                                gc :  xcb_gcontext_t,
                                 arcs_len :  u32,
-                                arcs : *mut arc) -> ffi::base::void_cookie;
+                                arcs : *mut xcb_arc_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -8438,13 +8438,13 @@ pub fn xcb_poly_arc_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_poly_arc (c : *mut ffi::base::connection,
-                        drawable :  drawable,
-                        gc :  gcontext,
+pub fn xcb_poly_arc (c : *mut ffi::base::xcb_connection_t,
+                        drawable :  xcb_drawable_t,
+                        gc :  xcb_gcontext_t,
                         arcs_len :  u32,
-                        arcs : *mut arc) -> ffi::base::void_cookie;
+                        arcs : *mut xcb_arc_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_fill_poly_sizeof (_buffer :  *mut c_void,
                       points_len :   u32) -> c_int;
@@ -8455,18 +8455,18 @@ pub fn xcb_fill_poly_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_fill_poly_checked (c : *mut ffi::base::connection,
-                                 drawable :  drawable,
-                                 gc :  gcontext,
+pub fn xcb_fill_poly_checked (c : *mut ffi::base::xcb_connection_t,
+                                 drawable :  xcb_drawable_t,
+                                 gc :  xcb_gcontext_t,
                                  shape :  u8,
                                  coordinate_mode :  u8,
                                  points_len :  u32,
-                                 points : *mut point) -> ffi::base::void_cookie;
+                                 points : *mut xcb_point_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -8474,15 +8474,15 @@ pub fn xcb_fill_poly_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_fill_poly (c : *mut ffi::base::connection,
-                         drawable :  drawable,
-                         gc :  gcontext,
+pub fn xcb_fill_poly (c : *mut ffi::base::xcb_connection_t,
+                         drawable :  xcb_drawable_t,
+                         gc :  xcb_gcontext_t,
                          shape :  u8,
                          coordinate_mode :  u8,
                          points_len :  u32,
-                         points : *mut point) -> ffi::base::void_cookie;
+                         points : *mut xcb_point_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_poly_fill_rectangle_sizeof (_buffer :  *mut c_void,
                                 rectangles_len :  u32) -> c_int;
@@ -8507,16 +8507,16 @@ pub fn xcb_poly_fill_rectangle_sizeof (_buffer :  *mut c_void,
  * Fills the specified rectangle(s) in the order listed in the array. For any
  * given rectangle, each pixel is not drawn more than once. If rectangles
  * intersect, the intersecting pixels are drawn multiple times.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_poly_fill_rectangle_checked (c : *mut ffi::base::connection,
-                                           drawable :  drawable,
-                                           gc :  gcontext,
+pub fn xcb_poly_fill_rectangle_checked (c : *mut ffi::base::xcb_connection_t,
+                                           drawable :  xcb_drawable_t,
+                                           gc :  xcb_gcontext_t,
                                            rectangles_len :  u32,
-                                           rectangles : *mut rectangle) -> ffi::base::void_cookie;
+                                           rectangles : *mut xcb_rectangle_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Fills rectangles
@@ -8538,13 +8538,13 @@ pub fn xcb_poly_fill_rectangle_checked (c : *mut ffi::base::connection,
  * Fills the specified rectangle(s) in the order listed in the array. For any
  * given rectangle, each pixel is not drawn more than once. If rectangles
  * intersect, the intersecting pixels are drawn multiple times.
- * 
+ *
  */
-pub fn xcb_poly_fill_rectangle (c : *mut ffi::base::connection,
-                                   drawable :  drawable,
-                                   gc :  gcontext,
+pub fn xcb_poly_fill_rectangle (c : *mut ffi::base::xcb_connection_t,
+                                   drawable :  xcb_drawable_t,
+                                   gc :  xcb_gcontext_t,
                                    rectangles_len :  u32,
-                                   rectangles : *mut rectangle) -> ffi::base::void_cookie;
+                                   rectangles : *mut xcb_rectangle_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_poly_fill_arc_sizeof (_buffer :  *mut c_void,
                           arcs_len :     u32) -> c_int;
@@ -8555,16 +8555,16 @@ pub fn xcb_poly_fill_arc_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_poly_fill_arc_checked (c : *mut ffi::base::connection,
-                                     drawable :  drawable,
-                                     gc :  gcontext,
+pub fn xcb_poly_fill_arc_checked (c : *mut ffi::base::xcb_connection_t,
+                                     drawable :  xcb_drawable_t,
+                                     gc :  xcb_gcontext_t,
                                      arcs_len :  u32,
-                                     arcs : *mut arc) -> ffi::base::void_cookie;
+                                     arcs : *mut xcb_arc_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -8572,13 +8572,13 @@ pub fn xcb_poly_fill_arc_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_poly_fill_arc (c : *mut ffi::base::connection,
-                             drawable :  drawable,
-                             gc :  gcontext,
+pub fn xcb_poly_fill_arc (c : *mut ffi::base::xcb_connection_t,
+                             drawable :  xcb_drawable_t,
+                             gc :  xcb_gcontext_t,
                              arcs_len :  u32,
-                             arcs : *mut arc) -> ffi::base::void_cookie;
+                             arcs : *mut xcb_arc_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_put_image_sizeof (_buffer :  *mut c_void,
                       data_len :     u32) -> c_int;
@@ -8589,15 +8589,15 @@ pub fn xcb_put_image_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_put_image_checked (c : *mut ffi::base::connection,
+pub fn xcb_put_image_checked (c : *mut ffi::base::xcb_connection_t,
                                  format :  u8,
-                                 drawable :  drawable,
-                                 gc :  gcontext,
+                                 drawable :  xcb_drawable_t,
+                                 gc :  xcb_gcontext_t,
                                  width :  u16,
                                  height :  u16,
                                  dst_x :  i16,
@@ -8605,7 +8605,7 @@ pub fn xcb_put_image_checked (c : *mut ffi::base::connection,
                                  left_pad :  u8,
                                  depth :  u8,
                                  data_len :  u32,
-                                 data : *mut u8) -> ffi::base::void_cookie;
+                                 data : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -8613,12 +8613,12 @@ pub fn xcb_put_image_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_put_image (c : *mut ffi::base::connection,
+pub fn xcb_put_image (c : *mut ffi::base::xcb_connection_t,
                          format :  u8,
-                         drawable :  drawable,
-                         gc :  gcontext,
+                         drawable :  xcb_drawable_t,
+                         gc :  xcb_gcontext_t,
                          width :  u16,
                          height :  u16,
                          dst_x :  i16,
@@ -8626,7 +8626,7 @@ pub fn xcb_put_image (c : *mut ffi::base::connection,
                          left_pad :  u8,
                          depth :  u8,
                          data_len :  u32,
-                         data : *mut u8) -> ffi::base::void_cookie;
+                         data : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_get_image_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -8636,16 +8636,16 @@ pub fn xcb_get_image_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_get_image (c : *mut ffi::base::connection,
+pub fn xcb_get_image (c : *mut ffi::base::xcb_connection_t,
                          format :  u8,
-                         drawable :  drawable,
+                         drawable :  xcb_drawable_t,
                          x :  i16,
                          y :  i16,
                          width :  u16,
                          height :  u16,
-                         plane_mask :  u32) -> get_image_cookie;
+                         plane_mask :  u32) -> xcb_get_image_cookie_t;
 
 /**
  *
@@ -8653,45 +8653,45 @@ pub fn xcb_get_image (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_image_unchecked (c : *mut ffi::base::connection,
+pub fn xcb_get_image_unchecked (c : *mut ffi::base::xcb_connection_t,
                                    format :  u8,
-                                   drawable :  drawable,
+                                   drawable :  xcb_drawable_t,
                                    x :  i16,
                                    y :  i16,
                                    width :  u16,
                                    height :  u16,
-                                   plane_mask :  u32) -> get_image_cookie;
+                                   plane_mask :  u32) -> xcb_get_image_cookie_t;
 
-pub fn xcb_get_image_data (R : *mut get_image_reply) -> *mut u8;
-
-
-pub fn xcb_get_image_data_length (R : *mut get_image_reply) -> c_int;
+pub fn xcb_get_image_data (R : *mut xcb_get_image_reply_t) -> *mut u8;
 
 
-pub fn xcb_get_image_data_end (R : *mut get_image_reply) -> ffi::base::generic_iterator;
+pub fn xcb_get_image_data_length (R : *mut xcb_get_image_reply_t) -> c_int;
+
+
+pub fn xcb_get_image_data_end (R : *mut xcb_get_image_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_get_image_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_image_reply (c : *mut ffi::base::connection,
-                               cookie : get_image_cookie,
-                               e : *mut *mut ffi::base::generic_error) -> *mut get_image_reply;
+pub fn xcb_get_image_reply (c : *mut ffi::base::xcb_connection_t,
+                               cookie : xcb_get_image_cookie_t,
+                               e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_get_image_reply_t;
 
 pub fn xcb_poly_text_8_sizeof (_buffer :  *mut c_void,
                         items_len :    u32) -> c_int;
@@ -8702,18 +8702,18 @@ pub fn xcb_poly_text_8_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_poly_text_8_checked (c : *mut ffi::base::connection,
-                                   drawable :  drawable,
-                                   gc :  gcontext,
+pub fn xcb_poly_text_8_checked (c : *mut ffi::base::xcb_connection_t,
+                                   drawable :  xcb_drawable_t,
+                                   gc :  xcb_gcontext_t,
                                    x :  i16,
                                    y :  i16,
                                    items_len :  u32,
-                                   items : *mut u8) -> ffi::base::void_cookie;
+                                   items : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -8721,15 +8721,15 @@ pub fn xcb_poly_text_8_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_poly_text_8 (c : *mut ffi::base::connection,
-                           drawable :  drawable,
-                           gc :  gcontext,
+pub fn xcb_poly_text_8 (c : *mut ffi::base::xcb_connection_t,
+                           drawable :  xcb_drawable_t,
+                           gc :  xcb_gcontext_t,
                            x :  i16,
                            y :  i16,
                            items_len :  u32,
-                           items : *mut u8) -> ffi::base::void_cookie;
+                           items : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_poly_text_16_sizeof (_buffer :  *mut c_void,
                          items_len :    u32) -> c_int;
@@ -8740,18 +8740,18 @@ pub fn xcb_poly_text_16_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_poly_text_16_checked (c : *mut ffi::base::connection,
-                                    drawable :  drawable,
-                                    gc :  gcontext,
+pub fn xcb_poly_text_16_checked (c : *mut ffi::base::xcb_connection_t,
+                                    drawable :  xcb_drawable_t,
+                                    gc :  xcb_gcontext_t,
                                     x :  i16,
                                     y :  i16,
                                     items_len :  u32,
-                                    items : *mut u8) -> ffi::base::void_cookie;
+                                    items : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -8759,15 +8759,15 @@ pub fn xcb_poly_text_16_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_poly_text_16 (c : *mut ffi::base::connection,
-                            drawable :  drawable,
-                            gc :  gcontext,
+pub fn xcb_poly_text_16 (c : *mut ffi::base::xcb_connection_t,
+                            drawable :  xcb_drawable_t,
+                            gc :  xcb_gcontext_t,
                             x :  i16,
                             y :  i16,
                             items_len :  u32,
-                            items : *mut u8) -> ffi::base::void_cookie;
+                            items : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_image_text_8_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -8796,18 +8796,18 @@ pub fn xcb_image_text_8_sizeof (_buffer :  *mut c_void) -> c_int;
  * 
  * Note that using X core fonts is deprecated (but still supported) in favor of
  * client-side rendering using Xft.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_image_text_8_checked (c : *mut ffi::base::connection,
+pub fn xcb_image_text_8_checked (c : *mut ffi::base::xcb_connection_t,
                                     string_len :  u8,
-                                    drawable :  drawable,
-                                    gc :  gcontext,
+                                    drawable :  xcb_drawable_t,
+                                    gc :  xcb_gcontext_t,
                                     x :  i16,
                                     y :  i16,
-                                    string : *mut c_char) -> ffi::base::void_cookie;
+                                    string : *mut c_char) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Draws text
@@ -8834,15 +8834,15 @@ pub fn xcb_image_text_8_checked (c : *mut ffi::base::connection,
  * 
  * Note that using X core fonts is deprecated (but still supported) in favor of
  * client-side rendering using Xft.
- * 
+ *
  */
-pub fn xcb_image_text_8 (c : *mut ffi::base::connection,
+pub fn xcb_image_text_8 (c : *mut ffi::base::xcb_connection_t,
                             string_len :  u8,
-                            drawable :  drawable,
-                            gc :  gcontext,
+                            drawable :  xcb_drawable_t,
+                            gc :  xcb_gcontext_t,
                             x :  i16,
                             y :  i16,
-                            string : *mut c_char) -> ffi::base::void_cookie;
+                            string : *mut c_char) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_image_text_16_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -8872,18 +8872,18 @@ pub fn xcb_image_text_16_sizeof (_buffer :  *mut c_void) -> c_int;
  * 
  * Note that using X core fonts is deprecated (but still supported) in favor of
  * client-side rendering using Xft.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_image_text_16_checked (c : *mut ffi::base::connection,
+pub fn xcb_image_text_16_checked (c : *mut ffi::base::xcb_connection_t,
                                      string_len :  u8,
-                                     drawable :  drawable,
-                                     gc :  gcontext,
+                                     drawable :  xcb_drawable_t,
+                                     gc :  xcb_gcontext_t,
                                      x :  i16,
                                      y :  i16,
-                                     string : *mut char2b) -> ffi::base::void_cookie;
+                                     string : *mut xcb_char2b_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Draws text
@@ -8911,15 +8911,15 @@ pub fn xcb_image_text_16_checked (c : *mut ffi::base::connection,
  * 
  * Note that using X core fonts is deprecated (but still supported) in favor of
  * client-side rendering using Xft.
- * 
+ *
  */
-pub fn xcb_image_text_16 (c : *mut ffi::base::connection,
+pub fn xcb_image_text_16 (c : *mut ffi::base::xcb_connection_t,
                              string_len :  u8,
-                             drawable :  drawable,
-                             gc :  gcontext,
+                             drawable :  xcb_drawable_t,
+                             gc :  xcb_gcontext_t,
                              x :  i16,
                              y :  i16,
-                             string : *mut char2b) -> ffi::base::void_cookie;
+                             string : *mut xcb_char2b_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -8927,16 +8927,16 @@ pub fn xcb_image_text_16 (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_create_colormap_checked (c : *mut ffi::base::connection,
+pub fn xcb_create_colormap_checked (c : *mut ffi::base::xcb_connection_t,
                                        alloc :  u8,
-                                       mid :  colormap,
-                                       window :  window,
-                                       visual :  visualid) -> ffi::base::void_cookie;
+                                       mid :  xcb_colormap_t,
+                                       window :  xcb_window_t,
+                                       visual :  xcb_visualid_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -8944,13 +8944,13 @@ pub fn xcb_create_colormap_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_create_colormap (c : *mut ffi::base::connection,
+pub fn xcb_create_colormap (c : *mut ffi::base::xcb_connection_t,
                                alloc :  u8,
-                               mid :  colormap,
-                               window :  window,
-                               visual :  visualid) -> ffi::base::void_cookie;
+                               mid :  xcb_colormap_t,
+                               window :  xcb_window_t,
+                               visual :  xcb_visualid_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -8958,13 +8958,13 @@ pub fn xcb_create_colormap (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_free_colormap_checked (c : *mut ffi::base::connection,
-                                     cmap :  colormap) -> ffi::base::void_cookie;
+pub fn xcb_free_colormap_checked (c : *mut ffi::base::xcb_connection_t,
+                                     cmap :  xcb_colormap_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -8972,10 +8972,10 @@ pub fn xcb_free_colormap_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_free_colormap (c : *mut ffi::base::connection,
-                             cmap :  colormap) -> ffi::base::void_cookie;
+pub fn xcb_free_colormap (c : *mut ffi::base::xcb_connection_t,
+                             cmap :  xcb_colormap_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -8983,14 +8983,14 @@ pub fn xcb_free_colormap (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_copy_colormap_and_free_checked (c : *mut ffi::base::connection,
-                                              mid :  colormap,
-                                              src_cmap :  colormap) -> ffi::base::void_cookie;
+pub fn xcb_copy_colormap_and_free_checked (c : *mut ffi::base::xcb_connection_t,
+                                              mid :  xcb_colormap_t,
+                                              src_cmap :  xcb_colormap_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -8998,11 +8998,11 @@ pub fn xcb_copy_colormap_and_free_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_copy_colormap_and_free (c : *mut ffi::base::connection,
-                                      mid :  colormap,
-                                      src_cmap :  colormap) -> ffi::base::void_cookie;
+pub fn xcb_copy_colormap_and_free (c : *mut ffi::base::xcb_connection_t,
+                                      mid :  xcb_colormap_t,
+                                      src_cmap :  xcb_colormap_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -9010,13 +9010,13 @@ pub fn xcb_copy_colormap_and_free (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_install_colormap_checked (c : *mut ffi::base::connection,
-                                        cmap :  colormap) -> ffi::base::void_cookie;
+pub fn xcb_install_colormap_checked (c : *mut ffi::base::xcb_connection_t,
+                                        cmap :  xcb_colormap_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -9024,10 +9024,10 @@ pub fn xcb_install_colormap_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_install_colormap (c : *mut ffi::base::connection,
-                                cmap :  colormap) -> ffi::base::void_cookie;
+pub fn xcb_install_colormap (c : *mut ffi::base::xcb_connection_t,
+                                cmap :  xcb_colormap_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -9035,13 +9035,13 @@ pub fn xcb_install_colormap (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_uninstall_colormap_checked (c : *mut ffi::base::connection,
-                                          cmap :  colormap) -> ffi::base::void_cookie;
+pub fn xcb_uninstall_colormap_checked (c : *mut ffi::base::xcb_connection_t,
+                                          cmap :  xcb_colormap_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -9049,10 +9049,10 @@ pub fn xcb_uninstall_colormap_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_uninstall_colormap (c : *mut ffi::base::connection,
-                                  cmap :  colormap) -> ffi::base::void_cookie;
+pub fn xcb_uninstall_colormap (c : *mut ffi::base::xcb_connection_t,
+                                  cmap :  xcb_colormap_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_list_installed_colormaps_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -9062,10 +9062,10 @@ pub fn xcb_list_installed_colormaps_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_list_installed_colormaps (c : *mut ffi::base::connection,
-                                        window :  window) -> list_installed_colormaps_cookie;
+pub fn xcb_list_installed_colormaps (c : *mut ffi::base::xcb_connection_t,
+                                        window :  xcb_window_t) -> xcb_list_installed_colormaps_cookie_t;
 
 /**
  *
@@ -9073,39 +9073,39 @@ pub fn xcb_list_installed_colormaps (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_list_installed_colormaps_unchecked (c : *mut ffi::base::connection,
-                                                  window :  window) -> list_installed_colormaps_cookie;
+pub fn xcb_list_installed_colormaps_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                                  window :  xcb_window_t) -> xcb_list_installed_colormaps_cookie_t;
 
-pub fn xcb_list_installed_colormaps_cmaps (R : *mut list_installed_colormaps_reply) -> *mut colormap;
-
-
-pub fn xcb_list_installed_colormaps_cmaps_length (R : *mut list_installed_colormaps_reply) -> c_int;
+pub fn xcb_list_installed_colormaps_cmaps (R : *mut xcb_list_installed_colormaps_reply_t) -> *mut xcb_colormap_t;
 
 
-pub fn xcb_list_installed_colormaps_cmaps_end (R : *mut list_installed_colormaps_reply) -> ffi::base::generic_iterator;
+pub fn xcb_list_installed_colormaps_cmaps_length (R : *mut xcb_list_installed_colormaps_reply_t) -> c_int;
+
+
+pub fn xcb_list_installed_colormaps_cmaps_end (R : *mut xcb_list_installed_colormaps_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_list_installed_colormaps_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_list_installed_colormaps_reply (c : *mut ffi::base::connection,
-                                              cookie : list_installed_colormaps_cookie,
-                                              e : *mut *mut ffi::base::generic_error) -> *mut list_installed_colormaps_reply;
+pub fn xcb_list_installed_colormaps_reply (c : *mut ffi::base::xcb_connection_t,
+                                              cookie : xcb_list_installed_colormaps_cookie_t,
+                                              e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_list_installed_colormaps_reply_t;
 
 /**
  * Allocate a color
@@ -9122,13 +9122,13 @@ pub fn xcb_list_installed_colormaps_reply (c : *mut ffi::base::connection,
  * and directly calculate the color pixel value to avoid the round trip. But, for
  * example, on 16-bit color setups (VNC), you can easily get the closest supported
  * RGB value to the RGB value you are specifying.
- * 
+ *
  */
-pub fn xcb_alloc_color (c : *mut ffi::base::connection,
-                           cmap :  colormap,
+pub fn xcb_alloc_color (c : *mut ffi::base::xcb_connection_t,
+                           cmap :  xcb_colormap_t,
                            red :  u16,
                            green :  u16,
-                           blue :  u16) -> alloc_color_cookie;
+                           blue :  u16) -> xcb_alloc_color_cookie_t;
 
 /**
  * Allocate a color
@@ -9145,34 +9145,34 @@ pub fn xcb_alloc_color (c : *mut ffi::base::connection,
  * and directly calculate the color pixel value to avoid the round trip. But, for
  * example, on 16-bit color setups (VNC), you can easily get the closest supported
  * RGB value to the RGB value you are specifying.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_alloc_color_unchecked (c : *mut ffi::base::connection,
-                                     cmap :  colormap,
+pub fn xcb_alloc_color_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                     cmap :  xcb_colormap_t,
                                      red :  u16,
                                      green :  u16,
-                                     blue :  u16) -> alloc_color_cookie;
+                                     blue :  u16) -> xcb_alloc_color_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_alloc_color_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_alloc_color_reply (c : *mut ffi::base::connection,
-                                 cookie : alloc_color_cookie,
-                                 e : *mut *mut ffi::base::generic_error) -> *mut alloc_color_reply;
+pub fn xcb_alloc_color_reply (c : *mut ffi::base::xcb_connection_t,
+                                 cookie : xcb_alloc_color_cookie_t,
+                                 e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_alloc_color_reply_t;
 
 pub fn xcb_alloc_named_color_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -9182,12 +9182,12 @@ pub fn xcb_alloc_named_color_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_alloc_named_color (c : *mut ffi::base::connection,
-                                 cmap :  colormap,
+pub fn xcb_alloc_named_color (c : *mut ffi::base::xcb_connection_t,
+                                 cmap :  xcb_colormap_t,
                                  name_len :  u16,
-                                 name : *mut c_char) -> alloc_named_color_cookie;
+                                 name : *mut c_char) -> xcb_alloc_named_color_cookie_t;
 
 /**
  *
@@ -9195,33 +9195,33 @@ pub fn xcb_alloc_named_color (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_alloc_named_color_unchecked (c : *mut ffi::base::connection,
-                                           cmap :  colormap,
+pub fn xcb_alloc_named_color_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                           cmap :  xcb_colormap_t,
                                            name_len :  u16,
-                                           name : *mut c_char) -> alloc_named_color_cookie;
+                                           name : *mut c_char) -> xcb_alloc_named_color_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_alloc_named_color_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_alloc_named_color_reply (c : *mut ffi::base::connection,
-                                       cookie : alloc_named_color_cookie,
-                                       e : *mut *mut ffi::base::generic_error) -> *mut alloc_named_color_reply;
+pub fn xcb_alloc_named_color_reply (c : *mut ffi::base::xcb_connection_t,
+                                       cookie : xcb_alloc_named_color_cookie_t,
+                                       e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_alloc_named_color_reply_t;
 
 pub fn xcb_alloc_color_cells_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -9231,13 +9231,13 @@ pub fn xcb_alloc_color_cells_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_alloc_color_cells (c : *mut ffi::base::connection,
+pub fn xcb_alloc_color_cells (c : *mut ffi::base::xcb_connection_t,
                                  contiguous :  u8,
-                                 cmap :  colormap,
+                                 cmap :  xcb_colormap_t,
                                  colors :  u16,
-                                 planes :  u16) -> alloc_color_cells_cookie;
+                                 planes :  u16) -> xcb_alloc_color_cells_cookie_t;
 
 /**
  *
@@ -9245,50 +9245,50 @@ pub fn xcb_alloc_color_cells (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_alloc_color_cells_unchecked (c : *mut ffi::base::connection,
+pub fn xcb_alloc_color_cells_unchecked (c : *mut ffi::base::xcb_connection_t,
                                            contiguous :  u8,
-                                           cmap :  colormap,
+                                           cmap :  xcb_colormap_t,
                                            colors :  u16,
-                                           planes :  u16) -> alloc_color_cells_cookie;
+                                           planes :  u16) -> xcb_alloc_color_cells_cookie_t;
 
-pub fn xcb_alloc_color_cells_pixels (R : *mut alloc_color_cells_reply) -> *mut u32;
-
-
-pub fn xcb_alloc_color_cells_pixels_length (R : *mut alloc_color_cells_reply) -> c_int;
+pub fn xcb_alloc_color_cells_pixels (R : *mut xcb_alloc_color_cells_reply_t) -> *mut u32;
 
 
-pub fn xcb_alloc_color_cells_pixels_end (R : *mut alloc_color_cells_reply) -> ffi::base::generic_iterator;
-
-pub fn xcb_alloc_color_cells_masks (R : *mut alloc_color_cells_reply) -> *mut u32;
+pub fn xcb_alloc_color_cells_pixels_length (R : *mut xcb_alloc_color_cells_reply_t) -> c_int;
 
 
-pub fn xcb_alloc_color_cells_masks_length (R : *mut alloc_color_cells_reply) -> c_int;
+pub fn xcb_alloc_color_cells_pixels_end (R : *mut xcb_alloc_color_cells_reply_t) -> ffi::base::xcb_generic_iterator_t;
+
+pub fn xcb_alloc_color_cells_masks (R : *mut xcb_alloc_color_cells_reply_t) -> *mut u32;
 
 
-pub fn xcb_alloc_color_cells_masks_end (R : *mut alloc_color_cells_reply) -> ffi::base::generic_iterator;
+pub fn xcb_alloc_color_cells_masks_length (R : *mut xcb_alloc_color_cells_reply_t) -> c_int;
+
+
+pub fn xcb_alloc_color_cells_masks_end (R : *mut xcb_alloc_color_cells_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_alloc_color_cells_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_alloc_color_cells_reply (c : *mut ffi::base::connection,
-                                       cookie : alloc_color_cells_cookie,
-                                       e : *mut *mut ffi::base::generic_error) -> *mut alloc_color_cells_reply;
+pub fn xcb_alloc_color_cells_reply (c : *mut ffi::base::xcb_connection_t,
+                                       cookie : xcb_alloc_color_cells_cookie_t,
+                                       e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_alloc_color_cells_reply_t;
 
 pub fn xcb_alloc_color_planes_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -9298,15 +9298,15 @@ pub fn xcb_alloc_color_planes_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_alloc_color_planes (c : *mut ffi::base::connection,
+pub fn xcb_alloc_color_planes (c : *mut ffi::base::xcb_connection_t,
                                   contiguous :  u8,
-                                  cmap :  colormap,
+                                  cmap :  xcb_colormap_t,
                                   colors :  u16,
                                   reds :  u16,
                                   greens :  u16,
-                                  blues :  u16) -> alloc_color_planes_cookie;
+                                  blues :  u16) -> xcb_alloc_color_planes_cookie_t;
 
 /**
  *
@@ -9314,44 +9314,44 @@ pub fn xcb_alloc_color_planes (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_alloc_color_planes_unchecked (c : *mut ffi::base::connection,
+pub fn xcb_alloc_color_planes_unchecked (c : *mut ffi::base::xcb_connection_t,
                                             contiguous :  u8,
-                                            cmap :  colormap,
+                                            cmap :  xcb_colormap_t,
                                             colors :  u16,
                                             reds :  u16,
                                             greens :  u16,
-                                            blues :  u16) -> alloc_color_planes_cookie;
+                                            blues :  u16) -> xcb_alloc_color_planes_cookie_t;
 
-pub fn xcb_alloc_color_planes_pixels (R : *mut alloc_color_planes_reply) -> *mut u32;
-
-
-pub fn xcb_alloc_color_planes_pixels_length (R : *mut alloc_color_planes_reply) -> c_int;
+pub fn xcb_alloc_color_planes_pixels (R : *mut xcb_alloc_color_planes_reply_t) -> *mut u32;
 
 
-pub fn xcb_alloc_color_planes_pixels_end (R : *mut alloc_color_planes_reply) -> ffi::base::generic_iterator;
+pub fn xcb_alloc_color_planes_pixels_length (R : *mut xcb_alloc_color_planes_reply_t) -> c_int;
+
+
+pub fn xcb_alloc_color_planes_pixels_end (R : *mut xcb_alloc_color_planes_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_alloc_color_planes_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_alloc_color_planes_reply (c : *mut ffi::base::connection,
-                                        cookie : alloc_color_planes_cookie,
-                                        e : *mut *mut ffi::base::generic_error) -> *mut alloc_color_planes_reply;
+pub fn xcb_alloc_color_planes_reply (c : *mut ffi::base::xcb_connection_t,
+                                        cookie : xcb_alloc_color_planes_cookie_t,
+                                        e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_alloc_color_planes_reply_t;
 
 pub fn xcb_free_colors_sizeof (_buffer :  *mut c_void,
                         pixels_len :   u32) -> c_int;
@@ -9362,16 +9362,16 @@ pub fn xcb_free_colors_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_free_colors_checked (c : *mut ffi::base::connection,
-                                   cmap :  colormap,
+pub fn xcb_free_colors_checked (c : *mut ffi::base::xcb_connection_t,
+                                   cmap :  xcb_colormap_t,
                                    plane_mask :  u32,
                                    pixels_len :  u32,
-                                   pixels : *mut u32) -> ffi::base::void_cookie;
+                                   pixels : *mut u32) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -9379,36 +9379,36 @@ pub fn xcb_free_colors_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_free_colors (c : *mut ffi::base::connection,
-                           cmap :  colormap,
+pub fn xcb_free_colors (c : *mut ffi::base::xcb_connection_t,
+                           cmap :  xcb_colormap_t,
                            plane_mask :  u32,
                            pixels_len :  u32,
-                           pixels : *mut u32) -> ffi::base::void_cookie;
+                           pixels : *mut u32) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a coloritem_iterator
+ * @param i Pointer to a xcb_coloritem_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(coloritem)
+ * element. The member index is increased by sizeof(xcb_coloritem_t)
  *
  *
  */
-pub fn xcb_coloritem_next (i:*mut coloritem_iterator) -> c_void;
+pub fn xcb_coloritem_next (i:*mut xcb_coloritem_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An coloritem_iterator
+ * @param i An xcb_coloritem_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_coloritem_end (i:coloritem_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_coloritem_end (i:xcb_coloritem_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_store_colors_sizeof (_buffer :  *mut c_void,
                          items_len :    u32) -> c_int;
@@ -9419,15 +9419,15 @@ pub fn xcb_store_colors_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_store_colors_checked (c : *mut ffi::base::connection,
-                                    cmap :  colormap,
+pub fn xcb_store_colors_checked (c : *mut ffi::base::xcb_connection_t,
+                                    cmap :  xcb_colormap_t,
                                     items_len :  u32,
-                                    items : *mut coloritem) -> ffi::base::void_cookie;
+                                    items : *mut xcb_coloritem_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -9435,12 +9435,12 @@ pub fn xcb_store_colors_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_store_colors (c : *mut ffi::base::connection,
-                            cmap :  colormap,
+pub fn xcb_store_colors (c : *mut ffi::base::xcb_connection_t,
+                            cmap :  xcb_colormap_t,
                             items_len :  u32,
-                            items : *mut coloritem) -> ffi::base::void_cookie;
+                            items : *mut xcb_coloritem_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_store_named_color_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -9450,17 +9450,17 @@ pub fn xcb_store_named_color_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_store_named_color_checked (c : *mut ffi::base::connection,
+pub fn xcb_store_named_color_checked (c : *mut ffi::base::xcb_connection_t,
                                          flags :  u8,
-                                         cmap :  colormap,
+                                         cmap :  xcb_colormap_t,
                                          pixel :  u32,
                                          name_len :  u16,
-                                         name : *mut c_char) -> ffi::base::void_cookie;
+                                         name : *mut c_char) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -9468,37 +9468,37 @@ pub fn xcb_store_named_color_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_store_named_color (c : *mut ffi::base::connection,
+pub fn xcb_store_named_color (c : *mut ffi::base::xcb_connection_t,
                                  flags :  u8,
-                                 cmap :  colormap,
+                                 cmap :  xcb_colormap_t,
                                  pixel :  u32,
                                  name_len :  u16,
-                                 name : *mut c_char) -> ffi::base::void_cookie;
+                                 name : *mut c_char) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a rgb_iterator
+ * @param i Pointer to a xcb_rgb_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(rgb)
+ * element. The member index is increased by sizeof(xcb_rgb_t)
  *
  *
  */
-pub fn xcb_rgb_next (i:*mut rgb_iterator) -> c_void;
+pub fn xcb_rgb_next (i:*mut xcb_rgb_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An rgb_iterator
+ * @param i An xcb_rgb_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_rgb_end (i:rgb_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_rgb_end (i:xcb_rgb_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_query_colors_sizeof (_buffer :  *mut c_void,
                          pixels_len :   u32) -> c_int;
@@ -9509,12 +9509,12 @@ pub fn xcb_query_colors_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_query_colors (c : *mut ffi::base::connection,
-                            cmap :  colormap,
+pub fn xcb_query_colors (c : *mut ffi::base::xcb_connection_t,
+                            cmap :  xcb_colormap_t,
                             pixels_len :  u32,
-                            pixels : *mut u32) -> query_colors_cookie;
+                            pixels : *mut u32) -> xcb_query_colors_cookie_t;
 
 /**
  *
@@ -9522,40 +9522,40 @@ pub fn xcb_query_colors (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_query_colors_unchecked (c : *mut ffi::base::connection,
-                                      cmap :  colormap,
+pub fn xcb_query_colors_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                      cmap :  xcb_colormap_t,
                                       pixels_len :  u32,
-                                      pixels : *mut u32) -> query_colors_cookie;
+                                      pixels : *mut u32) -> xcb_query_colors_cookie_t;
 
-pub fn xcb_query_colors_colors (R : *mut query_colors_reply) -> *mut rgb;
+pub fn xcb_query_colors_colors (R : *mut xcb_query_colors_reply_t) -> *mut xcb_rgb_t;
 
 
-pub fn xcb_query_colors_colors_length (R : *mut query_colors_reply) -> c_int;
+pub fn xcb_query_colors_colors_length (R : *mut xcb_query_colors_reply_t) -> c_int;
 
-pub fn xcb_query_colors_colors_iterator (R : *mut query_colors_reply) -> rgb_iterator;
+pub fn xcb_query_colors_colors_iterator (R : *mut xcb_query_colors_reply_t) -> xcb_rgb_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_query_colors_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_query_colors_reply (c : *mut ffi::base::connection,
-                                  cookie : query_colors_cookie,
-                                  e : *mut *mut ffi::base::generic_error) -> *mut query_colors_reply;
+pub fn xcb_query_colors_reply (c : *mut ffi::base::xcb_connection_t,
+                                  cookie : xcb_query_colors_cookie_t,
+                                  e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_query_colors_reply_t;
 
 pub fn xcb_lookup_color_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -9565,12 +9565,12 @@ pub fn xcb_lookup_color_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_lookup_color (c : *mut ffi::base::connection,
-                            cmap :  colormap,
+pub fn xcb_lookup_color (c : *mut ffi::base::xcb_connection_t,
+                            cmap :  xcb_colormap_t,
                             name_len :  u16,
-                            name : *mut c_char) -> lookup_color_cookie;
+                            name : *mut c_char) -> xcb_lookup_color_cookie_t;
 
 /**
  *
@@ -9578,33 +9578,33 @@ pub fn xcb_lookup_color (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_lookup_color_unchecked (c : *mut ffi::base::connection,
-                                      cmap :  colormap,
+pub fn xcb_lookup_color_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                      cmap :  xcb_colormap_t,
                                       name_len :  u16,
-                                      name : *mut c_char) -> lookup_color_cookie;
+                                      name : *mut c_char) -> xcb_lookup_color_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_lookup_color_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_lookup_color_reply (c : *mut ffi::base::connection,
-                                  cookie : lookup_color_cookie,
-                                  e : *mut *mut ffi::base::generic_error) -> *mut lookup_color_reply;
+pub fn xcb_lookup_color_reply (c : *mut ffi::base::xcb_connection_t,
+                                  cookie : xcb_lookup_color_cookie_t,
+                                  e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_lookup_color_reply_t;
 
 /**
  *
@@ -9612,15 +9612,15 @@ pub fn xcb_lookup_color_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_create_cursor_checked (c : *mut ffi::base::connection,
-                                     cid :  cursor,
-                                     source :  pixmap,
-                                     mask :  pixmap,
+pub fn xcb_create_cursor_checked (c : *mut ffi::base::xcb_connection_t,
+                                     cid :  xcb_cursor_t,
+                                     source :  xcb_pixmap_t,
+                                     mask :  xcb_pixmap_t,
                                      fore_red :  u16,
                                      fore_green :  u16,
                                      fore_blue :  u16,
@@ -9628,7 +9628,7 @@ pub fn xcb_create_cursor_checked (c : *mut ffi::base::connection,
                                      back_green :  u16,
                                      back_blue :  u16,
                                      x :  u16,
-                                     y :  u16) -> ffi::base::void_cookie;
+                                     y :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -9636,12 +9636,12 @@ pub fn xcb_create_cursor_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_create_cursor (c : *mut ffi::base::connection,
-                             cid :  cursor,
-                             source :  pixmap,
-                             mask :  pixmap,
+pub fn xcb_create_cursor (c : *mut ffi::base::xcb_connection_t,
+                             cid :  xcb_cursor_t,
+                             source :  xcb_pixmap_t,
+                             mask :  xcb_pixmap_t,
                              fore_red :  u16,
                              fore_green :  u16,
                              fore_blue :  u16,
@@ -9649,7 +9649,7 @@ pub fn xcb_create_cursor (c : *mut ffi::base::connection,
                              back_green :  u16,
                              back_blue :  u16,
                              x :  u16,
-                             y :  u16) -> ffi::base::void_cookie;
+                             y :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * create cursor
@@ -9679,15 +9679,15 @@ pub fn xcb_create_cursor (c : *mut ffi::base::connection,
  * specified by \a fore_red, \a fore_green and \a fore_blue). All pixels set to 0
  * will use the background color (as specified by \a back_red, \a back_green and
  * \a back_blue).
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_create_glyph_cursor_checked (c : *mut ffi::base::connection,
-                                           cid :  cursor,
-                                           source_font :  font,
-                                           mask_font :  font,
+pub fn xcb_create_glyph_cursor_checked (c : *mut ffi::base::xcb_connection_t,
+                                           cid :  xcb_cursor_t,
+                                           source_font :  xcb_font_t,
+                                           mask_font :  xcb_font_t,
                                            source_char :  u16,
                                            mask_char :  u16,
                                            fore_red :  u16,
@@ -9695,7 +9695,7 @@ pub fn xcb_create_glyph_cursor_checked (c : *mut ffi::base::connection,
                                            fore_blue :  u16,
                                            back_red :  u16,
                                            back_green :  u16,
-                                           back_blue :  u16) -> ffi::base::void_cookie;
+                                           back_blue :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * create cursor
@@ -9725,12 +9725,12 @@ pub fn xcb_create_glyph_cursor_checked (c : *mut ffi::base::connection,
  * specified by \a fore_red, \a fore_green and \a fore_blue). All pixels set to 0
  * will use the background color (as specified by \a back_red, \a back_green and
  * \a back_blue).
- * 
+ *
  */
-pub fn xcb_create_glyph_cursor (c : *mut ffi::base::connection,
-                                   cid :  cursor,
-                                   source_font :  font,
-                                   mask_font :  font,
+pub fn xcb_create_glyph_cursor (c : *mut ffi::base::xcb_connection_t,
+                                   cid :  xcb_cursor_t,
+                                   source_font :  xcb_font_t,
+                                   mask_font :  xcb_font_t,
                                    source_char :  u16,
                                    mask_char :  u16,
                                    fore_red :  u16,
@@ -9738,7 +9738,7 @@ pub fn xcb_create_glyph_cursor (c : *mut ffi::base::connection,
                                    fore_blue :  u16,
                                    back_red :  u16,
                                    back_green :  u16,
-                                   back_blue :  u16) -> ffi::base::void_cookie;
+                                   back_blue :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Deletes a cursor
@@ -9749,13 +9749,13 @@ pub fn xcb_create_glyph_cursor (c : *mut ffi::base::connection,
  *
  * Deletes the association between the cursor resource ID and the specified
  * cursor. The cursor is freed when no other resource references it.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_free_cursor_checked (c : *mut ffi::base::connection,
-                                   cursor :  cursor) -> ffi::base::void_cookie;
+pub fn xcb_free_cursor_checked (c : *mut ffi::base::xcb_connection_t,
+                                   cursor :  xcb_cursor_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Deletes a cursor
@@ -9766,10 +9766,10 @@ pub fn xcb_free_cursor_checked (c : *mut ffi::base::connection,
  *
  * Deletes the association between the cursor resource ID and the specified
  * cursor. The cursor is freed when no other resource references it.
- * 
+ *
  */
-pub fn xcb_free_cursor (c : *mut ffi::base::connection,
-                           cursor :  cursor) -> ffi::base::void_cookie;
+pub fn xcb_free_cursor (c : *mut ffi::base::xcb_connection_t,
+                           cursor :  xcb_cursor_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -9777,19 +9777,19 @@ pub fn xcb_free_cursor (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_recolor_cursor_checked (c : *mut ffi::base::connection,
-                                      cursor :  cursor,
+pub fn xcb_recolor_cursor_checked (c : *mut ffi::base::xcb_connection_t,
+                                      cursor :  xcb_cursor_t,
                                       fore_red :  u16,
                                       fore_green :  u16,
                                       fore_blue :  u16,
                                       back_red :  u16,
                                       back_green :  u16,
-                                      back_blue :  u16) -> ffi::base::void_cookie;
+                                      back_blue :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -9797,16 +9797,16 @@ pub fn xcb_recolor_cursor_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_recolor_cursor (c : *mut ffi::base::connection,
-                              cursor :  cursor,
+pub fn xcb_recolor_cursor (c : *mut ffi::base::xcb_connection_t,
+                              cursor :  xcb_cursor_t,
                               fore_red :  u16,
                               fore_green :  u16,
                               fore_blue :  u16,
                               back_red :  u16,
                               back_green :  u16,
-                              back_blue :  u16) -> ffi::base::void_cookie;
+                              back_blue :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -9814,13 +9814,13 @@ pub fn xcb_recolor_cursor (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_query_best_size (c : *mut ffi::base::connection,
+pub fn xcb_query_best_size (c : *mut ffi::base::xcb_connection_t,
                                class :  u8,
-                               drawable :  drawable,
+                               drawable :  xcb_drawable_t,
                                width :  u16,
-                               height :  u16) -> query_best_size_cookie;
+                               height :  u16) -> xcb_query_best_size_cookie_t;
 
 /**
  *
@@ -9828,34 +9828,34 @@ pub fn xcb_query_best_size (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_query_best_size_unchecked (c : *mut ffi::base::connection,
+pub fn xcb_query_best_size_unchecked (c : *mut ffi::base::xcb_connection_t,
                                          class :  u8,
-                                         drawable :  drawable,
+                                         drawable :  xcb_drawable_t,
                                          width :  u16,
-                                         height :  u16) -> query_best_size_cookie;
+                                         height :  u16) -> xcb_query_best_size_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_query_best_size_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_query_best_size_reply (c : *mut ffi::base::connection,
-                                     cookie : query_best_size_cookie,
-                                     e : *mut *mut ffi::base::generic_error) -> *mut query_best_size_reply;
+pub fn xcb_query_best_size_reply (c : *mut ffi::base::xcb_connection_t,
+                                     cookie : xcb_query_best_size_cookie_t,
+                                     e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_query_best_size_reply_t;
 
 pub fn xcb_query_extension_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -9877,11 +9877,11 @@ pub fn xcb_query_extension_sizeof (_buffer :  *mut c_void) -> c_int;
  * 
  * There should rarely be a need to use this request directly, XCB provides the
  * `xcb_get_extension_data` function instead.
- * 
+ *
  */
-pub fn xcb_query_extension (c : *mut ffi::base::connection,
+pub fn xcb_query_extension (c : *mut ffi::base::xcb_connection_t,
                                name_len :  u16,
-                               name : *mut c_char) -> query_extension_cookie;
+                               name : *mut c_char) -> xcb_query_extension_cookie_t;
 
 /**
  * check if extension is present
@@ -9901,32 +9901,32 @@ pub fn xcb_query_extension (c : *mut ffi::base::connection,
  * 
  * There should rarely be a need to use this request directly, XCB provides the
  * `xcb_get_extension_data` function instead.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_query_extension_unchecked (c : *mut ffi::base::connection,
+pub fn xcb_query_extension_unchecked (c : *mut ffi::base::xcb_connection_t,
                                          name_len :  u16,
-                                         name : *mut c_char) -> query_extension_cookie;
+                                         name : *mut c_char) -> xcb_query_extension_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_query_extension_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_query_extension_reply (c : *mut ffi::base::connection,
-                                     cookie : query_extension_cookie,
-                                     e : *mut *mut ffi::base::generic_error) -> *mut query_extension_reply;
+pub fn xcb_query_extension_reply (c : *mut ffi::base::xcb_connection_t,
+                                     cookie : xcb_query_extension_cookie_t,
+                                     e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_query_extension_reply_t;
 
 pub fn xcb_list_extensions_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -9936,9 +9936,9 @@ pub fn xcb_list_extensions_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_list_extensions (c : *mut ffi::base::connection) -> list_extensions_cookie;
+pub fn xcb_list_extensions (c : *mut ffi::base::xcb_connection_t) -> xcb_list_extensions_cookie_t;
 
 /**
  *
@@ -9946,35 +9946,35 @@ pub fn xcb_list_extensions (c : *mut ffi::base::connection) -> list_extensions_c
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_list_extensions_unchecked (c : *mut ffi::base::connection) -> list_extensions_cookie;
+pub fn xcb_list_extensions_unchecked (c : *mut ffi::base::xcb_connection_t) -> xcb_list_extensions_cookie_t;
 
 
-pub fn xcb_list_extensions_names_length (R : *mut list_extensions_reply) -> c_int;
+pub fn xcb_list_extensions_names_length (R : *mut xcb_list_extensions_reply_t) -> c_int;
 
-pub fn xcb_list_extensions_names_iterator (R : *mut list_extensions_reply) -> str_iterator;
+pub fn xcb_list_extensions_names_iterator (R : *mut xcb_list_extensions_reply_t) -> xcb_str_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_list_extensions_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_list_extensions_reply (c : *mut ffi::base::connection,
-                                     cookie : list_extensions_cookie,
-                                     e : *mut *mut ffi::base::generic_error) -> *mut list_extensions_reply;
+pub fn xcb_list_extensions_reply (c : *mut ffi::base::xcb_connection_t,
+                                     cookie : xcb_list_extensions_cookie_t,
+                                     e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_list_extensions_reply_t;
 
 pub fn xcb_change_keyboard_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -9984,16 +9984,16 @@ pub fn xcb_change_keyboard_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_change_keyboard_mapping_checked (c : *mut ffi::base::connection,
+pub fn xcb_change_keyboard_mapping_checked (c : *mut ffi::base::xcb_connection_t,
                                                keycode_count :  u8,
-                                               first_keycode :  keycode,
+                                               first_keycode :  xcb_keycode_t,
                                                keysyms_per_keycode :  u8,
-                                               keysyms : *mut keysym) -> ffi::base::void_cookie;
+                                               keysyms : *mut xcb_keysym_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -10001,13 +10001,13 @@ pub fn xcb_change_keyboard_mapping_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_change_keyboard_mapping (c : *mut ffi::base::connection,
+pub fn xcb_change_keyboard_mapping (c : *mut ffi::base::xcb_connection_t,
                                        keycode_count :  u8,
-                                       first_keycode :  keycode,
+                                       first_keycode :  xcb_keycode_t,
                                        keysyms_per_keycode :  u8,
-                                       keysyms : *mut keysym) -> ffi::base::void_cookie;
+                                       keysyms : *mut xcb_keysym_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_get_keyboard_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -10017,11 +10017,11 @@ pub fn xcb_get_keyboard_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_get_keyboard_mapping (c : *mut ffi::base::connection,
-                                    first_keycode :  keycode,
-                                    count :  u8) -> get_keyboard_mapping_cookie;
+pub fn xcb_get_keyboard_mapping (c : *mut ffi::base::xcb_connection_t,
+                                    first_keycode :  xcb_keycode_t,
+                                    count :  u8) -> xcb_get_keyboard_mapping_cookie_t;
 
 /**
  *
@@ -10029,40 +10029,40 @@ pub fn xcb_get_keyboard_mapping (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_keyboard_mapping_unchecked (c : *mut ffi::base::connection,
-                                              first_keycode :  keycode,
-                                              count :  u8) -> get_keyboard_mapping_cookie;
+pub fn xcb_get_keyboard_mapping_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                              first_keycode :  xcb_keycode_t,
+                                              count :  u8) -> xcb_get_keyboard_mapping_cookie_t;
 
-pub fn xcb_get_keyboard_mapping_keysyms (R : *mut get_keyboard_mapping_reply) -> *mut keysym;
-
-
-pub fn xcb_get_keyboard_mapping_keysyms_length (R : *mut get_keyboard_mapping_reply) -> c_int;
+pub fn xcb_get_keyboard_mapping_keysyms (R : *mut xcb_get_keyboard_mapping_reply_t) -> *mut xcb_keysym_t;
 
 
-pub fn xcb_get_keyboard_mapping_keysyms_end (R : *mut get_keyboard_mapping_reply) -> ffi::base::generic_iterator;
+pub fn xcb_get_keyboard_mapping_keysyms_length (R : *mut xcb_get_keyboard_mapping_reply_t) -> c_int;
+
+
+pub fn xcb_get_keyboard_mapping_keysyms_end (R : *mut xcb_get_keyboard_mapping_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_get_keyboard_mapping_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_keyboard_mapping_reply (c : *mut ffi::base::connection,
-                                          cookie : get_keyboard_mapping_cookie,
-                                          e : *mut *mut ffi::base::generic_error) -> *mut get_keyboard_mapping_reply;
+pub fn xcb_get_keyboard_mapping_reply (c : *mut ffi::base::xcb_connection_t,
+                                          cookie : xcb_get_keyboard_mapping_cookie_t,
+                                          e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_get_keyboard_mapping_reply_t;
 
 pub fn xcb_change_keyboard_control_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -10072,14 +10072,14 @@ pub fn xcb_change_keyboard_control_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_change_keyboard_control_checked (c : *mut ffi::base::connection,
+pub fn xcb_change_keyboard_control_checked (c : *mut ffi::base::xcb_connection_t,
                                                value_mask :  u32,
-                                               value_list : *mut u32) -> ffi::base::void_cookie;
+                                               value_list : *mut u32) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -10087,11 +10087,11 @@ pub fn xcb_change_keyboard_control_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_change_keyboard_control (c : *mut ffi::base::connection,
+pub fn xcb_change_keyboard_control (c : *mut ffi::base::xcb_connection_t,
                                        value_mask :  u32,
-                                       value_list : *mut u32) -> ffi::base::void_cookie;
+                                       value_list : *mut u32) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -10099,9 +10099,9 @@ pub fn xcb_change_keyboard_control (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_get_keyboard_control (c : *mut ffi::base::connection) -> get_keyboard_control_cookie;
+pub fn xcb_get_keyboard_control (c : *mut ffi::base::xcb_connection_t) -> xcb_get_keyboard_control_cookie_t;
 
 /**
  *
@@ -10109,30 +10109,30 @@ pub fn xcb_get_keyboard_control (c : *mut ffi::base::connection) -> get_keyboard
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_keyboard_control_unchecked (c : *mut ffi::base::connection) -> get_keyboard_control_cookie;
+pub fn xcb_get_keyboard_control_unchecked (c : *mut ffi::base::xcb_connection_t) -> xcb_get_keyboard_control_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_get_keyboard_control_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_keyboard_control_reply (c : *mut ffi::base::connection,
-                                          cookie : get_keyboard_control_cookie,
-                                          e : *mut *mut ffi::base::generic_error) -> *mut get_keyboard_control_reply;
+pub fn xcb_get_keyboard_control_reply (c : *mut ffi::base::xcb_connection_t,
+                                          cookie : xcb_get_keyboard_control_cookie_t,
+                                          e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_get_keyboard_control_reply_t;
 
 /**
  *
@@ -10140,13 +10140,13 @@ pub fn xcb_get_keyboard_control_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_bell_checked (c : *mut ffi::base::connection,
-                            percent :  i8) -> ffi::base::void_cookie;
+pub fn xcb_bell_checked (c : *mut ffi::base::xcb_connection_t,
+                            percent :  i8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -10154,10 +10154,10 @@ pub fn xcb_bell_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_bell (c : *mut ffi::base::connection,
-                    percent :  i8) -> ffi::base::void_cookie;
+pub fn xcb_bell (c : *mut ffi::base::xcb_connection_t,
+                    percent :  i8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -10165,17 +10165,17 @@ pub fn xcb_bell (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_change_pointer_control_checked (c : *mut ffi::base::connection,
+pub fn xcb_change_pointer_control_checked (c : *mut ffi::base::xcb_connection_t,
                                               acceleration_numerator :  i16,
                                               acceleration_denominator :  i16,
                                               threshold :  i16,
                                               do_acceleration :  u8,
-                                              do_threshold :  u8) -> ffi::base::void_cookie;
+                                              do_threshold :  u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -10183,14 +10183,14 @@ pub fn xcb_change_pointer_control_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_change_pointer_control (c : *mut ffi::base::connection,
+pub fn xcb_change_pointer_control (c : *mut ffi::base::xcb_connection_t,
                                       acceleration_numerator :  i16,
                                       acceleration_denominator :  i16,
                                       threshold :  i16,
                                       do_acceleration :  u8,
-                                      do_threshold :  u8) -> ffi::base::void_cookie;
+                                      do_threshold :  u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -10198,9 +10198,9 @@ pub fn xcb_change_pointer_control (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_get_pointer_control (c : *mut ffi::base::connection) -> get_pointer_control_cookie;
+pub fn xcb_get_pointer_control (c : *mut ffi::base::xcb_connection_t) -> xcb_get_pointer_control_cookie_t;
 
 /**
  *
@@ -10208,30 +10208,30 @@ pub fn xcb_get_pointer_control (c : *mut ffi::base::connection) -> get_pointer_c
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_pointer_control_unchecked (c : *mut ffi::base::connection) -> get_pointer_control_cookie;
+pub fn xcb_get_pointer_control_unchecked (c : *mut ffi::base::xcb_connection_t) -> xcb_get_pointer_control_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_get_pointer_control_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_pointer_control_reply (c : *mut ffi::base::connection,
-                                         cookie : get_pointer_control_cookie,
-                                         e : *mut *mut ffi::base::generic_error) -> *mut get_pointer_control_reply;
+pub fn xcb_get_pointer_control_reply (c : *mut ffi::base::xcb_connection_t,
+                                         cookie : xcb_get_pointer_control_cookie_t,
+                                         e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_get_pointer_control_reply_t;
 
 /**
  *
@@ -10239,16 +10239,16 @@ pub fn xcb_get_pointer_control_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_set_screen_saver_checked (c : *mut ffi::base::connection,
+pub fn xcb_set_screen_saver_checked (c : *mut ffi::base::xcb_connection_t,
                                         timeout :  i16,
                                         interval :  i16,
                                         prefer_blanking :  u8,
-                                        allow_exposures :  u8) -> ffi::base::void_cookie;
+                                        allow_exposures :  u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -10256,13 +10256,13 @@ pub fn xcb_set_screen_saver_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_set_screen_saver (c : *mut ffi::base::connection,
+pub fn xcb_set_screen_saver (c : *mut ffi::base::xcb_connection_t,
                                 timeout :  i16,
                                 interval :  i16,
                                 prefer_blanking :  u8,
-                                allow_exposures :  u8) -> ffi::base::void_cookie;
+                                allow_exposures :  u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -10270,9 +10270,9 @@ pub fn xcb_set_screen_saver (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_get_screen_saver (c : *mut ffi::base::connection) -> get_screen_saver_cookie;
+pub fn xcb_get_screen_saver (c : *mut ffi::base::xcb_connection_t) -> xcb_get_screen_saver_cookie_t;
 
 /**
  *
@@ -10280,30 +10280,30 @@ pub fn xcb_get_screen_saver (c : *mut ffi::base::connection) -> get_screen_saver
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_screen_saver_unchecked (c : *mut ffi::base::connection) -> get_screen_saver_cookie;
+pub fn xcb_get_screen_saver_unchecked (c : *mut ffi::base::xcb_connection_t) -> xcb_get_screen_saver_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_get_screen_saver_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_screen_saver_reply (c : *mut ffi::base::connection,
-                                      cookie : get_screen_saver_cookie,
-                                      e : *mut *mut ffi::base::generic_error) -> *mut get_screen_saver_reply;
+pub fn xcb_get_screen_saver_reply (c : *mut ffi::base::xcb_connection_t,
+                                      cookie : xcb_get_screen_saver_cookie_t,
+                                      e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_get_screen_saver_reply_t;
 
 pub fn xcb_change_hosts_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -10313,16 +10313,16 @@ pub fn xcb_change_hosts_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_change_hosts_checked (c : *mut ffi::base::connection,
+pub fn xcb_change_hosts_checked (c : *mut ffi::base::xcb_connection_t,
                                     mode :  u8,
                                     family :  u8,
                                     address_len :  u16,
-                                    address : *mut u8) -> ffi::base::void_cookie;
+                                    address : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -10330,46 +10330,46 @@ pub fn xcb_change_hosts_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_change_hosts (c : *mut ffi::base::connection,
+pub fn xcb_change_hosts (c : *mut ffi::base::xcb_connection_t,
                             mode :  u8,
                             family :  u8,
                             address_len :  u16,
-                            address : *mut u8) -> ffi::base::void_cookie;
+                            address : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_host_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub fn xcb_host_address (R : *mut host) -> *mut u8;
+pub fn xcb_host_address (R : *mut xcb_host_t) -> *mut u8;
 
 
-pub fn xcb_host_address_length (R : *mut host) -> c_int;
+pub fn xcb_host_address_length (R : *mut xcb_host_t) -> c_int;
 
 
-pub fn xcb_host_address_end (R : *mut host) -> ffi::base::generic_iterator;
+pub fn xcb_host_address_end (R : *mut xcb_host_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a host_iterator
+ * @param i Pointer to a xcb_host_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(host)
+ * element. The member index is increased by sizeof(xcb_host_t)
  *
  *
  */
-pub fn xcb_host_next (i:*mut host_iterator) -> c_void;
+pub fn xcb_host_next (i:*mut xcb_host_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An host_iterator
+ * @param i An xcb_host_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_host_end (i:host_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_host_end (i:xcb_host_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_list_hosts_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -10379,9 +10379,9 @@ pub fn xcb_list_hosts_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_list_hosts (c : *mut ffi::base::connection) -> list_hosts_cookie;
+pub fn xcb_list_hosts (c : *mut ffi::base::xcb_connection_t) -> xcb_list_hosts_cookie_t;
 
 /**
  *
@@ -10389,35 +10389,35 @@ pub fn xcb_list_hosts (c : *mut ffi::base::connection) -> list_hosts_cookie;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_list_hosts_unchecked (c : *mut ffi::base::connection) -> list_hosts_cookie;
+pub fn xcb_list_hosts_unchecked (c : *mut ffi::base::xcb_connection_t) -> xcb_list_hosts_cookie_t;
 
 
-pub fn xcb_list_hosts_hosts_length (R : *mut list_hosts_reply) -> c_int;
+pub fn xcb_list_hosts_hosts_length (R : *mut xcb_list_hosts_reply_t) -> c_int;
 
-pub fn xcb_list_hosts_hosts_iterator (R : *mut list_hosts_reply) -> host_iterator;
+pub fn xcb_list_hosts_hosts_iterator (R : *mut xcb_list_hosts_reply_t) -> xcb_host_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_list_hosts_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_list_hosts_reply (c : *mut ffi::base::connection,
-                                cookie : list_hosts_cookie,
-                                e : *mut *mut ffi::base::generic_error) -> *mut list_hosts_reply;
+pub fn xcb_list_hosts_reply (c : *mut ffi::base::xcb_connection_t,
+                                cookie : xcb_list_hosts_cookie_t,
+                                e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_list_hosts_reply_t;
 
 /**
  *
@@ -10425,13 +10425,13 @@ pub fn xcb_list_hosts_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_set_access_control_checked (c : *mut ffi::base::connection,
-                                          mode :  u8) -> ffi::base::void_cookie;
+pub fn xcb_set_access_control_checked (c : *mut ffi::base::xcb_connection_t,
+                                          mode :  u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -10439,10 +10439,10 @@ pub fn xcb_set_access_control_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_set_access_control (c : *mut ffi::base::connection,
-                                  mode :  u8) -> ffi::base::void_cookie;
+pub fn xcb_set_access_control (c : *mut ffi::base::xcb_connection_t,
+                                  mode :  u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -10450,13 +10450,13 @@ pub fn xcb_set_access_control (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_set_close_down_mode_checked (c : *mut ffi::base::connection,
-                                           mode :  u8) -> ffi::base::void_cookie;
+pub fn xcb_set_close_down_mode_checked (c : *mut ffi::base::xcb_connection_t,
+                                           mode :  u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -10464,10 +10464,10 @@ pub fn xcb_set_close_down_mode_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_set_close_down_mode (c : *mut ffi::base::connection,
-                                   mode :  u8) -> ffi::base::void_cookie;
+pub fn xcb_set_close_down_mode (c : *mut ffi::base::xcb_connection_t,
+                                   mode :  u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * kills a client
@@ -10481,13 +10481,13 @@ pub fn xcb_set_close_down_mode (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Forces a close down of the client that created the specified \a resource.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_kill_client_checked (c : *mut ffi::base::connection,
-                                   resource :  u32) -> ffi::base::void_cookie;
+pub fn xcb_kill_client_checked (c : *mut ffi::base::xcb_connection_t,
+                                   resource :  u32) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * kills a client
@@ -10501,10 +10501,10 @@ pub fn xcb_kill_client_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Forces a close down of the client that created the specified \a resource.
- * 
+ *
  */
-pub fn xcb_kill_client (c : *mut ffi::base::connection,
-                           resource :  u32) -> ffi::base::void_cookie;
+pub fn xcb_kill_client (c : *mut ffi::base::xcb_connection_t,
+                           resource :  u32) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_rotate_properties_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -10514,16 +10514,16 @@ pub fn xcb_rotate_properties_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_rotate_properties_checked (c : *mut ffi::base::connection,
-                                         window :  window,
+pub fn xcb_rotate_properties_checked (c : *mut ffi::base::xcb_connection_t,
+                                         window :  xcb_window_t,
                                          atoms_len :  u16,
                                          delta :  i16,
-                                         atoms : *mut atom) -> ffi::base::void_cookie;
+                                         atoms : *mut xcb_atom_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -10531,13 +10531,13 @@ pub fn xcb_rotate_properties_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_rotate_properties (c : *mut ffi::base::connection,
-                                 window :  window,
+pub fn xcb_rotate_properties (c : *mut ffi::base::xcb_connection_t,
+                                 window :  xcb_window_t,
                                  atoms_len :  u16,
                                  delta :  i16,
-                                 atoms : *mut atom) -> ffi::base::void_cookie;
+                                 atoms : *mut xcb_atom_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -10545,13 +10545,13 @@ pub fn xcb_rotate_properties (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_force_screen_saver_checked (c : *mut ffi::base::connection,
-                                          mode :  u8) -> ffi::base::void_cookie;
+pub fn xcb_force_screen_saver_checked (c : *mut ffi::base::xcb_connection_t,
+                                          mode :  u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -10559,10 +10559,10 @@ pub fn xcb_force_screen_saver_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_force_screen_saver (c : *mut ffi::base::connection,
-                                  mode :  u8) -> ffi::base::void_cookie;
+pub fn xcb_force_screen_saver (c : *mut ffi::base::xcb_connection_t,
+                                  mode :  u8) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_set_pointer_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -10572,11 +10572,11 @@ pub fn xcb_set_pointer_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_set_pointer_mapping (c : *mut ffi::base::connection,
+pub fn xcb_set_pointer_mapping (c : *mut ffi::base::xcb_connection_t,
                                    map_len :  u8,
-                                   map : *mut u8) -> set_pointer_mapping_cookie;
+                                   map : *mut u8) -> xcb_set_pointer_mapping_cookie_t;
 
 /**
  *
@@ -10584,32 +10584,32 @@ pub fn xcb_set_pointer_mapping (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_set_pointer_mapping_unchecked (c : *mut ffi::base::connection,
+pub fn xcb_set_pointer_mapping_unchecked (c : *mut ffi::base::xcb_connection_t,
                                              map_len :  u8,
-                                             map : *mut u8) -> set_pointer_mapping_cookie;
+                                             map : *mut u8) -> xcb_set_pointer_mapping_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_set_pointer_mapping_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_set_pointer_mapping_reply (c : *mut ffi::base::connection,
-                                         cookie : set_pointer_mapping_cookie,
-                                         e : *mut *mut ffi::base::generic_error) -> *mut set_pointer_mapping_reply;
+pub fn xcb_set_pointer_mapping_reply (c : *mut ffi::base::xcb_connection_t,
+                                         cookie : xcb_set_pointer_mapping_cookie_t,
+                                         e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_set_pointer_mapping_reply_t;
 
 pub fn xcb_get_pointer_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -10619,9 +10619,9 @@ pub fn xcb_get_pointer_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_get_pointer_mapping (c : *mut ffi::base::connection) -> get_pointer_mapping_cookie;
+pub fn xcb_get_pointer_mapping (c : *mut ffi::base::xcb_connection_t) -> xcb_get_pointer_mapping_cookie_t;
 
 /**
  *
@@ -10629,38 +10629,38 @@ pub fn xcb_get_pointer_mapping (c : *mut ffi::base::connection) -> get_pointer_m
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_pointer_mapping_unchecked (c : *mut ffi::base::connection) -> get_pointer_mapping_cookie;
+pub fn xcb_get_pointer_mapping_unchecked (c : *mut ffi::base::xcb_connection_t) -> xcb_get_pointer_mapping_cookie_t;
 
-pub fn xcb_get_pointer_mapping_map (R : *mut get_pointer_mapping_reply) -> *mut u8;
-
-
-pub fn xcb_get_pointer_mapping_map_length (R : *mut get_pointer_mapping_reply) -> c_int;
+pub fn xcb_get_pointer_mapping_map (R : *mut xcb_get_pointer_mapping_reply_t) -> *mut u8;
 
 
-pub fn xcb_get_pointer_mapping_map_end (R : *mut get_pointer_mapping_reply) -> ffi::base::generic_iterator;
+pub fn xcb_get_pointer_mapping_map_length (R : *mut xcb_get_pointer_mapping_reply_t) -> c_int;
+
+
+pub fn xcb_get_pointer_mapping_map_end (R : *mut xcb_get_pointer_mapping_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_get_pointer_mapping_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_pointer_mapping_reply (c : *mut ffi::base::connection,
-                                         cookie : get_pointer_mapping_cookie,
-                                         e : *mut *mut ffi::base::generic_error) -> *mut get_pointer_mapping_reply;
+pub fn xcb_get_pointer_mapping_reply (c : *mut ffi::base::xcb_connection_t,
+                                         cookie : xcb_get_pointer_mapping_cookie_t,
+                                         e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_get_pointer_mapping_reply_t;
 
 pub fn xcb_set_modifier_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -10670,11 +10670,11 @@ pub fn xcb_set_modifier_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_set_modifier_mapping (c : *mut ffi::base::connection,
+pub fn xcb_set_modifier_mapping (c : *mut ffi::base::xcb_connection_t,
                                     keycodes_per_modifier :  u8,
-                                    keycodes : *mut keycode) -> set_modifier_mapping_cookie;
+                                    keycodes : *mut xcb_keycode_t) -> xcb_set_modifier_mapping_cookie_t;
 
 /**
  *
@@ -10682,32 +10682,32 @@ pub fn xcb_set_modifier_mapping (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_set_modifier_mapping_unchecked (c : *mut ffi::base::connection,
+pub fn xcb_set_modifier_mapping_unchecked (c : *mut ffi::base::xcb_connection_t,
                                               keycodes_per_modifier :  u8,
-                                              keycodes : *mut keycode) -> set_modifier_mapping_cookie;
+                                              keycodes : *mut xcb_keycode_t) -> xcb_set_modifier_mapping_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_set_modifier_mapping_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_set_modifier_mapping_reply (c : *mut ffi::base::connection,
-                                          cookie : set_modifier_mapping_cookie,
-                                          e : *mut *mut ffi::base::generic_error) -> *mut set_modifier_mapping_reply;
+pub fn xcb_set_modifier_mapping_reply (c : *mut ffi::base::xcb_connection_t,
+                                          cookie : xcb_set_modifier_mapping_cookie_t,
+                                          e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_set_modifier_mapping_reply_t;
 
 pub fn xcb_get_modifier_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -10717,9 +10717,9 @@ pub fn xcb_get_modifier_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_get_modifier_mapping (c : *mut ffi::base::connection) -> get_modifier_mapping_cookie;
+pub fn xcb_get_modifier_mapping (c : *mut ffi::base::xcb_connection_t) -> xcb_get_modifier_mapping_cookie_t;
 
 /**
  *
@@ -10727,38 +10727,38 @@ pub fn xcb_get_modifier_mapping (c : *mut ffi::base::connection) -> get_modifier
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_get_modifier_mapping_unchecked (c : *mut ffi::base::connection) -> get_modifier_mapping_cookie;
+pub fn xcb_get_modifier_mapping_unchecked (c : *mut ffi::base::xcb_connection_t) -> xcb_get_modifier_mapping_cookie_t;
 
-pub fn xcb_get_modifier_mapping_keycodes (R : *mut get_modifier_mapping_reply) -> *mut keycode;
-
-
-pub fn xcb_get_modifier_mapping_keycodes_length (R : *mut get_modifier_mapping_reply) -> c_int;
+pub fn xcb_get_modifier_mapping_keycodes (R : *mut xcb_get_modifier_mapping_reply_t) -> *mut xcb_keycode_t;
 
 
-pub fn xcb_get_modifier_mapping_keycodes_end (R : *mut get_modifier_mapping_reply) -> ffi::base::generic_iterator;
+pub fn xcb_get_modifier_mapping_keycodes_length (R : *mut xcb_get_modifier_mapping_reply_t) -> c_int;
+
+
+pub fn xcb_get_modifier_mapping_keycodes_end (R : *mut xcb_get_modifier_mapping_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_get_modifier_mapping_unchecked(). is used.
  * Otherwise, it stores the error if any.
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_get_modifier_mapping_reply (c : *mut ffi::base::connection,
-                                          cookie : get_modifier_mapping_cookie,
-                                          e : *mut *mut ffi::base::generic_error) -> *mut get_modifier_mapping_reply;
+pub fn xcb_get_modifier_mapping_reply (c : *mut ffi::base::xcb_connection_t,
+                                          cookie : xcb_get_modifier_mapping_cookie_t,
+                                          e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_get_modifier_mapping_reply_t;
 
 /**
  *
@@ -10766,12 +10766,12 @@ pub fn xcb_get_modifier_mapping_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_no_operation_checked (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
+pub fn xcb_no_operation_checked (c : *mut ffi::base::xcb_connection_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -10779,8 +10779,8 @@ pub fn xcb_no_operation_checked (c : *mut ffi::base::connection) -> ffi::base::v
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
-pub fn xcb_no_operation (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
+pub fn xcb_no_operation (c : *mut ffi::base::xcb_connection_t) -> ffi::base::xcb_void_cookie_t;
 }
 

@@ -17,19 +17,19 @@ use ffi::xc_misc::*;
 use std::option::Option;
 use std::iter::Iterator;
 
-pub struct  GetVersionCookie<'s> { pub base : base::Cookie<'s, get_version_cookie> }
+pub struct  GetVersionCookie<'s> { pub base : base::Cookie<'s, xcb_xc_misc_get_version_cookie_t> }
 
 /** Opcode for xcb_xc_misc_get_version. */
 pub static XCB_XC_MISC_GET_VERSION : u8 = 0;
-pub struct GetVersionReply { base:  base::Reply<get_version_reply> }
-fn mk_reply_get_version_reply(reply:*mut get_version_reply) -> GetVersionReply { GetVersionReply { base : base::mk_reply(reply) } }
-pub struct  GetXidRangeCookie<'s> { pub base : base::Cookie<'s, get_xid_range_cookie> }
+pub struct GetVersionReply { base:  base::Reply<xcb_xc_misc_get_version_reply_t> }
+fn mk_reply_xcb_xc_misc_get_version_reply_t(reply:*mut xcb_xc_misc_get_version_reply_t) -> GetVersionReply { GetVersionReply { base : base::mk_reply(reply) } }
+pub struct  GetXidRangeCookie<'s> { pub base : base::Cookie<'s, xcb_xc_misc_get_xid_range_cookie_t> }
 
 /** Opcode for xcb_xc_misc_get_xid_range. */
 pub static XCB_XC_MISC_GET_XID_RANGE : u8 = 1;
-pub struct GetXidRangeReply { base:  base::Reply<get_xid_range_reply> }
-fn mk_reply_get_xid_range_reply(reply:*mut get_xid_range_reply) -> GetXidRangeReply { GetXidRangeReply { base : base::mk_reply(reply) } }
-pub struct  GetXidListCookie<'s> { pub base : base::Cookie<'s, get_xid_list_cookie> }
+pub struct GetXidRangeReply { base:  base::Reply<xcb_xc_misc_get_xid_range_reply_t> }
+fn mk_reply_xcb_xc_misc_get_xid_range_reply_t(reply:*mut xcb_xc_misc_get_xid_range_reply_t) -> GetXidRangeReply { GetXidRangeReply { base : base::mk_reply(reply) } }
+pub struct  GetXidListCookie<'s> { pub base : base::Cookie<'s, xcb_xc_misc_get_xid_list_cookie_t> }
 
 /** Opcode for xcb_xc_misc_get_xid_list. */
 pub static XCB_XC_MISC_GET_XID_LIST : u8 = 2;
@@ -64,7 +64,7 @@ impl GetVersionReply {
   }
 
 }
-impl_reply_cookie!(GetVersionCookie<'s>, mk_reply_get_version_reply, GetVersionReply, xcb_xc_misc_get_version_reply);
+impl_reply_cookie!(GetVersionCookie<'s>, mk_reply_xcb_xc_misc_get_version_reply_t, GetVersionReply, xcb_xc_misc_get_version_reply);
 
 pub fn GetXidRange<'r> (c : &'r Connection) -> GetXidRangeCookie<'r> {
   unsafe {
@@ -89,10 +89,10 @@ impl GetXidRangeReply {
   }
 
 }
-impl_reply_cookie!(GetXidRangeCookie<'s>, mk_reply_get_xid_range_reply, GetXidRangeReply, xcb_xc_misc_get_xid_range_reply);
+impl_reply_cookie!(GetXidRangeCookie<'s>, mk_reply_xcb_xc_misc_get_xid_range_reply_t, GetXidRangeReply, xcb_xc_misc_get_xid_range_reply);
 
-pub struct GetXidListReply { base:  base::Reply<get_xid_list_reply> }
-fn mk_reply_get_xid_list_reply(reply:*mut get_xid_list_reply) -> GetXidListReply { GetXidListReply { base : base::mk_reply(reply) } }
+pub struct GetXidListReply { base:  base::Reply<xcb_xc_misc_get_xid_list_reply_t> }
+fn mk_reply_xcb_xc_misc_get_xid_list_reply_t(reply:*mut xcb_xc_misc_get_xid_list_reply_t) -> GetXidListReply { GetXidListReply { base : base::mk_reply(reply) } }
 pub fn GetXidList<'r> (c : &'r Connection,
                    count : u32) -> GetXidListCookie<'r> {
   unsafe {
@@ -116,6 +116,6 @@ impl GetXidListReply {
   }
 
 }
-impl_reply_cookie!(GetXidListCookie<'s>, mk_reply_get_xid_list_reply, GetXidListReply, xcb_xc_misc_get_xid_list_reply);
+impl_reply_cookie!(GetXidListCookie<'s>, mk_reply_xcb_xc_misc_get_xid_list_reply_t, GetXidListReply, xcb_xc_misc_get_xid_list_reply);
 
 

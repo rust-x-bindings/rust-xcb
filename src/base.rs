@@ -49,7 +49,7 @@ use std::ops::{BitAnd, BitOr};
 use xproto;
 
 pub struct Connection {
-    c : *mut connection
+    c : *mut xcb_connection_t
 }
 
 impl<'s> Connection {
@@ -130,7 +130,7 @@ impl<'s> Connection {
     }
 
     #[inline]
-    pub unsafe fn get_raw_conn(&self) -> *mut connection {
+    pub unsafe fn get_raw_conn(&self) -> *mut xcb_connection_t {
         self.c
     }
 
@@ -141,7 +141,7 @@ impl<'s> Connection {
                   event : Event<T>) {
         unsafe {
         ffi::xproto::xcb_send_event(self.c,
-            propogate as u8, destination as ffi::xproto::window,
+            propogate as u8, destination as ffi::xproto::xcb_window_t,
             event_mask, event.event as *mut c_char);
         }
     }
@@ -195,7 +195,7 @@ impl<'s> Connection {
         }
     }
 
-    pub unsafe fn from_raw_conn(conn:*mut connection) -> Connection {
+    pub unsafe fn from_raw_conn(conn:*mut xcb_connection_t) -> Connection {
         if conn.is_null() {
             panic!("Cannot construct from null pointer");
         }
@@ -244,7 +244,7 @@ impl<T> Drop for Error<T> {
     }
 }
 
-pub type AuthInfo = auth_info;
+pub type AuthInfo = xcb_auth_info_t;
 //TODO: Implement wrapper functions for constructing auth_info
 
 pub struct Struct<T> {
@@ -270,7 +270,7 @@ pub trait ReplyCookie<R> {
 impl<'s, T: Copy> Cookie<'s, T> {
     pub fn request_check(&self) -> Option<GenericError> {
         unsafe {
-            let c : *mut void_cookie = mem::transmute(&self.cookie);
+            let c : *mut xcb_void_cookie_t = mem::transmute(&self.cookie);
             let err = ffi::base::xcb_request_check(self.conn.c, *c);
             //let err = ffi::base::xcb_request_check(
             //    self.conn.c,
@@ -302,10 +302,10 @@ impl<T> Drop for Reply<T> {
     }
 }
 
-pub struct GenericReply { pub base : Reply<generic_reply>}
-pub struct GenericEvent { pub base : Event<generic_event>}
-pub struct GenericError { pub base : Error<generic_error>}
-pub struct VoidCookie<'s> { pub base : Cookie<'s, void_cookie> }
+pub struct GenericReply { pub base : Reply<xcb_generic_reply_t>}
+pub struct GenericEvent { pub base : Event<xcb_generic_event_t>}
+pub struct GenericError { pub base : Error<xcb_generic_error_t>}
+pub struct VoidCookie<'s> { pub base : Cookie<'s, xcb_void_cookie_t> }
 
 /**
  * Casts the generic event to the right event. Assumes that the given
@@ -327,7 +327,7 @@ pub trait EventUtil {
 impl<T> EventUtil for Event<T> {
     fn response_type(&self) -> u8 {
         unsafe {
-            let gev : *mut generic_event = mem::transmute(self.event);
+            let gev : *mut xcb_generic_event_t = mem::transmute(self.event);
             (*gev).response_type
         }
     }

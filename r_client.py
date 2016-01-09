@@ -29,7 +29,7 @@ _ns = None
 
 _imports = []
 
-_types_not_copy_eligible = ['setup']
+_types_not_copy_eligible = ['xcb_setup_t']
 
 outdir = './'
 
@@ -181,6 +181,7 @@ def _rn(list):
         parts = [_r_item(i) for i in list[1:]]
     return ''.join(parts)
 
+
 def _t(list):
     '''
     Does C-name conversion on a tuple of strings representing a type.
@@ -190,22 +191,33 @@ def _t(list):
     module = ''
     if len(list) == 1:
         parts = list
+
     elif _ns.is_ext:
         list = list[1:]
         ext = _ext(list[0])
         if ext in _imports:
-            module = 'ffi::'+(_ext(list[0]) + '::')
-            parts =  [_n_item(i) for i in list[1:]]
+            module = 'ffi::'+_ext(list[0]) + '::'
+            parts = ['xcb', _ext(list[0])]
+            parts += [_n_item(i) for i in list[1:]]
+            parts += ['t']
         elif ext == _ext(_ns.ext_name):
-            parts = [_n_item(i) for i in list[1:]]
+            parts = ['xcb', _ext(ext)]
+            parts += [_n_item(i) for i in list[1:]]
+            parts += ['t']
         else:
             module = 'ffi::xproto::'
-            parts = [_n_item(i) for i in list]
+            parts = ['xcb']
+            parts += [_n_item(i) for i in list]
+            parts += ['t']
 
     elif len(list) == 2:
-        parts = [_n_item(list[1])]
+        parts = ['xcb', _n_item(list[1]), 't']
+
     else:
-        parts = [_n_item(i) for i in list[1:]]
+        parts = ['xcb']
+        parts += [_n_item(i) for i in list[1:]]
+        parts += ['t']
+
     t = '_'.join(parts).lower()
 
     t = _cpp(t)
@@ -831,7 +843,7 @@ def _c_iterator(self, name):
     Declares the iterator structure and next/end functions for a given type.
     '''
 
-    if self.c_type == 'setup':
+    if self.c_type == 'xcb_setup_t':
         # setup special case: setup is contained in connection struct
         # no function return iterator to it, it can therefore not be
         # iterated
@@ -876,7 +888,7 @@ def _c_iterator(self, name):
     _h(' * The member rem is set to 0. The member data points to the')
     _h(' * last element.')
     _h(' */')
-    _h('pub fn %s (i:%s) -> ffi::base::generic_iterator;', self.c_end_name, self.c_iterator_type)
+    _h('pub fn %s (i:%s) -> ffi::base::xcb_generic_iterator_t;', self.c_end_name, self.c_iterator_type)
 
     _r('')
     _r('impl Iterator for %s {', self.r_iterator_type)
@@ -1021,9 +1033,9 @@ def _c_accessors_list(self, field):
         if switch_obj is not None:
             _h('pub fn %s (R : %s,', field.c_end_name, R_obj.c_type)
             spacing = ' '*(len(field.c_end_name)+2)
-            _h('%sS : *mut %s ) -> ffi::base::generic_iterator;', spacing, S_obj.c_type)
+            _h('%sS : *mut %s ) -> ffi::base::xcb_generic_iterator_t;', spacing, S_obj.c_type)
         else:
-            _h('pub fn %s (R : *mut %s) -> ffi::base::generic_iterator;', field.c_end_name, c_type)
+            _h('pub fn %s (R : *mut %s) -> ffi::base::xcb_generic_iterator_t;', field.c_end_name, c_type)
 
     else:
         _h('')
@@ -1225,7 +1237,7 @@ def c_struct(self, name):
 
     _c_complex(self)
 
-    if self.c_type == 'setup':
+    if self.c_type == 'xcb_setup_t':
         _setup_wrap_struct(self)
     else:
         _wrap_struct(self)
@@ -1403,7 +1415,7 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
     _h(' */')
     count = len(param_fields)
     comma = ',' if count else (') -> %s;' % (cookie_type,))
-    _h('pub fn %s (c : *mut ffi::base::connection%s', func_name, comma)
+    _h('pub fn %s (c : *mut ffi::base::xcb_connection_t%s', func_name, comma)
 
     func_spacing = ' ' * (len(func_name) + 12)
     for field in param_fields:
@@ -1547,9 +1559,9 @@ def _c_reply(self, name):
     _h('')
     _h('/**')
     _h(' * Return the reply')
-    _h(' * @param c      The connection')
+    _h(' * @param c      The xcb_connection_t')
     _h(' * @param cookie The cookie')
-    _h(' * @param e      The generic_error supplied')
+    _h(' * @param e      The xcb_generic_error_t supplied')
     _h(' *')
     _h(' * Returns the reply of the request asked by')
     _h(' *')
@@ -1559,9 +1571,9 @@ def _c_reply(self, name):
     _h(' *')
     _h(' * The returned value must be freed by the caller using free().')
     _h(' */')
-    _h('pub fn %s (c : *mut ffi::base::connection,', self.c_reply_name)
+    _h('pub fn %s (c : *mut ffi::base::xcb_connection_t,', self.c_reply_name)
     _h('          %s  cookie : %s,', spacing, self.c_cookie_type)
-    _h('          %s  e : *mut *mut ffi::base::generic_error) -> *mut %s;', spacing, self.c_reply_type)
+    _h('          %s  e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut %s;', spacing, self.c_reply_type)
 
     _r('impl_reply_cookie!(%s<\'s>, mk_reply_%s, %s, %s);\n', self.r_cookie_type, self.c_reply_type, self.r_reply_type, self.c_reply_name)
 
@@ -1633,13 +1645,13 @@ def c_request(self, name):
         _c_reply(self, name)
     else:
         # Request prototypes
-        _c_request_helper(self, name, 'base::VoidCookie', 'ffi::base::void_cookie', True, False)
-        _c_request_helper(self, name, 'base::VoidCookie', 'ffi::base::void_cookie', True, True)
+        _c_request_helper(self, name, 'base::VoidCookie', 'ffi::base::xcb_void_cookie_t', True, False)
+        _c_request_helper(self, name, 'base::VoidCookie', 'ffi::base::xcb_void_cookie_t', True, True)
         if self.need_aux:
-            _c_request_helper(self, name, 'base::VoidCookie', 'ffi::base::void_cookie', True, False, True)
-            _c_request_helper(self, name, 'base::VoidCookie', 'ffi::base::void_cookie', True, True, True)
+            _c_request_helper(self, name, 'base::VoidCookie', 'ffi::base::xcb_void_cookie_t', True, False, True)
+            _c_request_helper(self, name, 'base::VoidCookie', 'ffi::base::xcb_void_cookie_t', True, True, True)
 
-    cookie_type = self.c_cookie_type if self.reply else 'void_cookie'
+    cookie_type = self.c_cookie_type if self.reply else 'xcb_void_cookie_t'
 
 def c_event(self, name):
     '''

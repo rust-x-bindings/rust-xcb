@@ -17,48 +17,48 @@ use ffi::xf86vidmode::*;
 use std::option::Option;
 use std::iter::Iterator;
 
-pub type Syncrange = syncrange;
+pub type Syncrange = xcb_xf86vidmode_syncrange_t;
 
-pub type SyncrangeIterator = syncrange_iterator;
+pub type SyncrangeIterator = xcb_xf86vidmode_syncrange_iterator_t;
 
-pub type DotclockIterator = dotclock_iterator;
+pub type DotclockIterator = xcb_xf86vidmode_dotclock_iterator_t;
 
 
-pub type mode_flag = c_uint;//{
-    pub static XCB_XF86VIDMODE_MODE_FLAG_POSITIVE_H_SYNC : mode_flag = 1;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_NEGATIVE_H_SYNC : mode_flag = 2;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_POSITIVE_V_SYNC : mode_flag = 4;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_NEGATIVE_V_SYNC : mode_flag = 8;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_INTERLACE : mode_flag = 16;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_COMPOSITE_SYNC : mode_flag = 32;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_POSITIVE_C_SYNC : mode_flag = 64;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_NEGATIVE_C_SYNC : mode_flag = 128;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_H_SKEW : mode_flag = 256;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_BROADCAST : mode_flag = 512;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_PIXMUX : mode_flag = 1024;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_DOUBLE_CLOCK : mode_flag = 2048;
-    pub static XCB_XF86VIDMODE_MODE_FLAG_HALF_CLOCK : mode_flag = 4096;
+pub type xcb_xf86vidmode_mode_flag_t = c_uint;//{
+    pub static XCB_XF86VIDMODE_MODE_FLAG_POSITIVE_H_SYNC : xcb_xf86vidmode_mode_flag_t = 1;
+    pub static XCB_XF86VIDMODE_MODE_FLAG_NEGATIVE_H_SYNC : xcb_xf86vidmode_mode_flag_t = 2;
+    pub static XCB_XF86VIDMODE_MODE_FLAG_POSITIVE_V_SYNC : xcb_xf86vidmode_mode_flag_t = 4;
+    pub static XCB_XF86VIDMODE_MODE_FLAG_NEGATIVE_V_SYNC : xcb_xf86vidmode_mode_flag_t = 8;
+    pub static XCB_XF86VIDMODE_MODE_FLAG_INTERLACE : xcb_xf86vidmode_mode_flag_t = 16;
+    pub static XCB_XF86VIDMODE_MODE_FLAG_COMPOSITE_SYNC : xcb_xf86vidmode_mode_flag_t = 32;
+    pub static XCB_XF86VIDMODE_MODE_FLAG_POSITIVE_C_SYNC : xcb_xf86vidmode_mode_flag_t = 64;
+    pub static XCB_XF86VIDMODE_MODE_FLAG_NEGATIVE_C_SYNC : xcb_xf86vidmode_mode_flag_t = 128;
+    pub static XCB_XF86VIDMODE_MODE_FLAG_H_SKEW : xcb_xf86vidmode_mode_flag_t = 256;
+    pub static XCB_XF86VIDMODE_MODE_FLAG_BROADCAST : xcb_xf86vidmode_mode_flag_t = 512;
+    pub static XCB_XF86VIDMODE_MODE_FLAG_PIXMUX : xcb_xf86vidmode_mode_flag_t = 1024;
+    pub static XCB_XF86VIDMODE_MODE_FLAG_DOUBLE_CLOCK : xcb_xf86vidmode_mode_flag_t = 2048;
+    pub static XCB_XF86VIDMODE_MODE_FLAG_HALF_CLOCK : xcb_xf86vidmode_mode_flag_t = 4096;
 //}
 
-pub type clock_flag = c_uint;//{
-    pub static XCB_XF86VIDMODE_CLOCK_FLAG_PROGRAMABLE : clock_flag = 1;
+pub type xcb_xf86vidmode_clock_flag_t = c_uint;//{
+    pub static XCB_XF86VIDMODE_CLOCK_FLAG_PROGRAMABLE : xcb_xf86vidmode_clock_flag_t = 1;
 //}
 
-pub type permission = c_uint;//{
-    pub static XCB_XF86VIDMODE_PERMISSION_READ : permission = 1;
-    pub static XCB_XF86VIDMODE_PERMISSION_WRITE : permission = 2;
+pub type xcb_xf86vidmode_permission_t = c_uint;//{
+    pub static XCB_XF86VIDMODE_PERMISSION_READ : xcb_xf86vidmode_permission_t = 1;
+    pub static XCB_XF86VIDMODE_PERMISSION_WRITE : xcb_xf86vidmode_permission_t = 2;
 //}
-pub struct ModeInfo {pub base : base::Struct<mode_info> }
+pub struct ModeInfo {pub base : base::Struct<xcb_xf86vidmode_mode_info_t> }
 
-pub type ModeInfoIterator = mode_info_iterator;
+pub type ModeInfoIterator = xcb_xf86vidmode_mode_info_iterator_t;
 
-pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, query_version_cookie> }
+pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_xf86vidmode_query_version_cookie_t> }
 
 /** Opcode for xcb_xf86vidmode_query_version. */
 pub static XCB_XF86VIDMODE_QUERY_VERSION : u8 = 0;
-pub struct QueryVersionReply { base:  base::Reply<query_version_reply> }
-fn mk_reply_query_version_reply(reply:*mut query_version_reply) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
-pub struct  GetModeLineCookie<'s> { pub base : base::Cookie<'s, get_mode_line_cookie> }
+pub struct QueryVersionReply { base:  base::Reply<xcb_xf86vidmode_query_version_reply_t> }
+fn mk_reply_xcb_xf86vidmode_query_version_reply_t(reply:*mut xcb_xf86vidmode_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
+pub struct  GetModeLineCookie<'s> { pub base : base::Cookie<'s, xcb_xf86vidmode_get_mode_line_cookie_t> }
 
 /** Opcode for xcb_xf86vidmode_get_mode_line. */
 pub static XCB_XF86VIDMODE_GET_MODE_LINE : u8 = 1;
@@ -66,13 +66,13 @@ pub static XCB_XF86VIDMODE_GET_MODE_LINE : u8 = 1;
 pub static XCB_XF86VIDMODE_MOD_MODE_LINE : u8 = 2;
 /** Opcode for xcb_xf86vidmode_switch_mode. */
 pub static XCB_XF86VIDMODE_SWITCH_MODE : u8 = 3;
-pub struct  GetMonitorCookie<'s> { pub base : base::Cookie<'s, get_monitor_cookie> }
+pub struct  GetMonitorCookie<'s> { pub base : base::Cookie<'s, xcb_xf86vidmode_get_monitor_cookie_t> }
 
 /** Opcode for xcb_xf86vidmode_get_monitor. */
 pub static XCB_XF86VIDMODE_GET_MONITOR : u8 = 4;
 /** Opcode for xcb_xf86vidmode_lock_mode_switch. */
 pub static XCB_XF86VIDMODE_LOCK_MODE_SWITCH : u8 = 5;
-pub struct  GetAllModeLinesCookie<'s> { pub base : base::Cookie<'s, get_all_mode_lines_cookie> }
+pub struct  GetAllModeLinesCookie<'s> { pub base : base::Cookie<'s, xcb_xf86vidmode_get_all_mode_lines_cookie_t> }
 
 /** Opcode for xcb_xf86vidmode_get_all_mode_lines. */
 pub static XCB_XF86VIDMODE_GET_ALL_MODE_LINES : u8 = 6;
@@ -80,23 +80,23 @@ pub static XCB_XF86VIDMODE_GET_ALL_MODE_LINES : u8 = 6;
 pub static XCB_XF86VIDMODE_ADD_MODE_LINE : u8 = 7;
 /** Opcode for xcb_xf86vidmode_delete_mode_line. */
 pub static XCB_XF86VIDMODE_DELETE_MODE_LINE : u8 = 8;
-pub struct  ValidateModeLineCookie<'s> { pub base : base::Cookie<'s, validate_mode_line_cookie> }
+pub struct  ValidateModeLineCookie<'s> { pub base : base::Cookie<'s, xcb_xf86vidmode_validate_mode_line_cookie_t> }
 
 /** Opcode for xcb_xf86vidmode_validate_mode_line. */
 pub static XCB_XF86VIDMODE_VALIDATE_MODE_LINE : u8 = 9;
-pub struct ValidateModeLineReply { base:  base::Reply<validate_mode_line_reply> }
-fn mk_reply_validate_mode_line_reply(reply:*mut validate_mode_line_reply) -> ValidateModeLineReply { ValidateModeLineReply { base : base::mk_reply(reply) } }
+pub struct ValidateModeLineReply { base:  base::Reply<xcb_xf86vidmode_validate_mode_line_reply_t> }
+fn mk_reply_xcb_xf86vidmode_validate_mode_line_reply_t(reply:*mut xcb_xf86vidmode_validate_mode_line_reply_t) -> ValidateModeLineReply { ValidateModeLineReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_xf86vidmode_switch_to_mode. */
 pub static XCB_XF86VIDMODE_SWITCH_TO_MODE : u8 = 10;
-pub struct  GetViewPortCookie<'s> { pub base : base::Cookie<'s, get_view_port_cookie> }
+pub struct  GetViewPortCookie<'s> { pub base : base::Cookie<'s, xcb_xf86vidmode_get_view_port_cookie_t> }
 
 /** Opcode for xcb_xf86vidmode_get_view_port. */
 pub static XCB_XF86VIDMODE_GET_VIEW_PORT : u8 = 11;
-pub struct GetViewPortReply { base:  base::Reply<get_view_port_reply> }
-fn mk_reply_get_view_port_reply(reply:*mut get_view_port_reply) -> GetViewPortReply { GetViewPortReply { base : base::mk_reply(reply) } }
+pub struct GetViewPortReply { base:  base::Reply<xcb_xf86vidmode_get_view_port_reply_t> }
+fn mk_reply_xcb_xf86vidmode_get_view_port_reply_t(reply:*mut xcb_xf86vidmode_get_view_port_reply_t) -> GetViewPortReply { GetViewPortReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_xf86vidmode_set_view_port. */
 pub static XCB_XF86VIDMODE_SET_VIEW_PORT : u8 = 12;
-pub struct  GetDotClocksCookie<'s> { pub base : base::Cookie<'s, get_dot_clocks_cookie> }
+pub struct  GetDotClocksCookie<'s> { pub base : base::Cookie<'s, xcb_xf86vidmode_get_dot_clocks_cookie_t> }
 
 /** Opcode for xcb_xf86vidmode_get_dot_clocks. */
 pub static XCB_XF86VIDMODE_GET_DOT_CLOCKS : u8 = 13;
@@ -104,51 +104,51 @@ pub static XCB_XF86VIDMODE_GET_DOT_CLOCKS : u8 = 13;
 pub static XCB_XF86VIDMODE_SET_CLIENT_VERSION : u8 = 14;
 /** Opcode for xcb_xf86vidmode_set_gamma. */
 pub static XCB_XF86VIDMODE_SET_GAMMA : u8 = 15;
-pub struct  GetGammaCookie<'s> { pub base : base::Cookie<'s, get_gamma_cookie> }
+pub struct  GetGammaCookie<'s> { pub base : base::Cookie<'s, xcb_xf86vidmode_get_gamma_cookie_t> }
 
 /** Opcode for xcb_xf86vidmode_get_gamma. */
 pub static XCB_XF86VIDMODE_GET_GAMMA : u8 = 16;
-pub struct GetGammaReply { base:  base::Reply<get_gamma_reply> }
-fn mk_reply_get_gamma_reply(reply:*mut get_gamma_reply) -> GetGammaReply { GetGammaReply { base : base::mk_reply(reply) } }
-pub struct  GetGammaRampCookie<'s> { pub base : base::Cookie<'s, get_gamma_ramp_cookie> }
+pub struct GetGammaReply { base:  base::Reply<xcb_xf86vidmode_get_gamma_reply_t> }
+fn mk_reply_xcb_xf86vidmode_get_gamma_reply_t(reply:*mut xcb_xf86vidmode_get_gamma_reply_t) -> GetGammaReply { GetGammaReply { base : base::mk_reply(reply) } }
+pub struct  GetGammaRampCookie<'s> { pub base : base::Cookie<'s, xcb_xf86vidmode_get_gamma_ramp_cookie_t> }
 
 /** Opcode for xcb_xf86vidmode_get_gamma_ramp. */
 pub static XCB_XF86VIDMODE_GET_GAMMA_RAMP : u8 = 17;
 /** Opcode for xcb_xf86vidmode_set_gamma_ramp. */
 pub static XCB_XF86VIDMODE_SET_GAMMA_RAMP : u8 = 18;
-pub struct  GetGammaRampSizeCookie<'s> { pub base : base::Cookie<'s, get_gamma_ramp_size_cookie> }
+pub struct  GetGammaRampSizeCookie<'s> { pub base : base::Cookie<'s, xcb_xf86vidmode_get_gamma_ramp_size_cookie_t> }
 
 /** Opcode for xcb_xf86vidmode_get_gamma_ramp_size. */
 pub static XCB_XF86VIDMODE_GET_GAMMA_RAMP_SIZE : u8 = 19;
-pub struct GetGammaRampSizeReply { base:  base::Reply<get_gamma_ramp_size_reply> }
-fn mk_reply_get_gamma_ramp_size_reply(reply:*mut get_gamma_ramp_size_reply) -> GetGammaRampSizeReply { GetGammaRampSizeReply { base : base::mk_reply(reply) } }
-pub struct  GetPermissionsCookie<'s> { pub base : base::Cookie<'s, get_permissions_cookie> }
+pub struct GetGammaRampSizeReply { base:  base::Reply<xcb_xf86vidmode_get_gamma_ramp_size_reply_t> }
+fn mk_reply_xcb_xf86vidmode_get_gamma_ramp_size_reply_t(reply:*mut xcb_xf86vidmode_get_gamma_ramp_size_reply_t) -> GetGammaRampSizeReply { GetGammaRampSizeReply { base : base::mk_reply(reply) } }
+pub struct  GetPermissionsCookie<'s> { pub base : base::Cookie<'s, xcb_xf86vidmode_get_permissions_cookie_t> }
 
 /** Opcode for xcb_xf86vidmode_get_permissions. */
 pub static XCB_XF86VIDMODE_GET_PERMISSIONS : u8 = 20;
-pub struct GetPermissionsReply { base:  base::Reply<get_permissions_reply> }
-fn mk_reply_get_permissions_reply(reply:*mut get_permissions_reply) -> GetPermissionsReply { GetPermissionsReply { base : base::mk_reply(reply) } }
+pub struct GetPermissionsReply { base:  base::Reply<xcb_xf86vidmode_get_permissions_reply_t> }
+fn mk_reply_xcb_xf86vidmode_get_permissions_reply_t(reply:*mut xcb_xf86vidmode_get_permissions_reply_t) -> GetPermissionsReply { GetPermissionsReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_xf86vidmode_bad_clock. */
 pub static XCB_XF86VIDMODE_BAD_CLOCK : u8 = 0;
-pub struct BadClockError { pub base : base::Error<bad_clock_error> }
+pub struct BadClockError { pub base : base::Error<xcb_xf86vidmode_bad_clock_error_t> }
 /** Opcode for xcb_xf86vidmode_bad_h_timings. */
 pub static XCB_XF86VIDMODE_BAD_H_TIMINGS : u8 = 1;
-pub struct BadHTimingsError { pub base : base::Error<bad_h_timings_error> }
+pub struct BadHTimingsError { pub base : base::Error<xcb_xf86vidmode_bad_h_timings_error_t> }
 /** Opcode for xcb_xf86vidmode_bad_v_timings. */
 pub static XCB_XF86VIDMODE_BAD_V_TIMINGS : u8 = 2;
-pub struct BadVTimingsError { pub base : base::Error<bad_v_timings_error> }
+pub struct BadVTimingsError { pub base : base::Error<xcb_xf86vidmode_bad_v_timings_error_t> }
 /** Opcode for xcb_xf86vidmode_mode_unsuitable. */
 pub static XCB_XF86VIDMODE_MODE_UNSUITABLE : u8 = 3;
-pub struct ModeUnsuitableError { pub base : base::Error<mode_unsuitable_error> }
+pub struct ModeUnsuitableError { pub base : base::Error<xcb_xf86vidmode_mode_unsuitable_error_t> }
 /** Opcode for xcb_xf86vidmode_extension_disabled. */
 pub static XCB_XF86VIDMODE_EXTENSION_DISABLED : u8 = 4;
-pub struct ExtensionDisabledError { pub base : base::Error<extension_disabled_error> }
+pub struct ExtensionDisabledError { pub base : base::Error<xcb_xf86vidmode_extension_disabled_error_t> }
 /** Opcode for xcb_xf86vidmode_client_not_local. */
 pub static XCB_XF86VIDMODE_CLIENT_NOT_LOCAL : u8 = 5;
-pub struct ClientNotLocalError { pub base : base::Error<client_not_local_error> }
+pub struct ClientNotLocalError { pub base : base::Error<xcb_xf86vidmode_client_not_local_error_t> }
 /** Opcode for xcb_xf86vidmode_zoom_locked. */
 pub static XCB_XF86VIDMODE_ZOOM_LOCKED : u8 = 6;
-pub struct ZoomLockedError { pub base : base::Error<zoom_locked_error> }
+pub struct ZoomLockedError { pub base : base::Error<xcb_xf86vidmode_zoom_locked_error_t> }
 
 
 impl Iterator for SyncrangeIterator {
@@ -156,7 +156,7 @@ impl Iterator for SyncrangeIterator {
     fn next(&mut self) -> Option<Syncrange> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut syncrange_iterator = mem::transmute(self);
+            let iter: *mut xcb_xf86vidmode_syncrange_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_xf86vidmode_syncrange_next(iter);
             Some(mem::transmute(*data))
@@ -164,7 +164,7 @@ impl Iterator for SyncrangeIterator {
     }
 }
 
-pub type Dotclock = dotclock;
+pub type Dotclock = xcb_xf86vidmode_dotclock_t;
 
 
 impl Iterator for DotclockIterator {
@@ -172,7 +172,7 @@ impl Iterator for DotclockIterator {
     fn next(&mut self) -> Option<Dotclock> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut dotclock_iterator = mem::transmute(self);
+            let iter: *mut xcb_xf86vidmode_dotclock_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_xf86vidmode_dotclock_next(iter);
             Some(mem::transmute(*data))
@@ -237,7 +237,7 @@ impl Iterator for ModeInfoIterator {
     fn next(&mut self) -> Option<ModeInfo> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut mode_info_iterator = mem::transmute(self);
+            let iter: *mut xcb_xf86vidmode_mode_info_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_xf86vidmode_mode_info_next(iter);
             Some(mem::transmute(*data))
@@ -268,10 +268,10 @@ impl QueryVersionReply {
   }
 
 }
-impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_query_version_reply, QueryVersionReply, xcb_xf86vidmode_query_version_reply);
+impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_xcb_xf86vidmode_query_version_reply_t, QueryVersionReply, xcb_xf86vidmode_query_version_reply);
 
-pub struct GetModeLineReply { base:  base::Reply<get_mode_line_reply> }
-fn mk_reply_get_mode_line_reply(reply:*mut get_mode_line_reply) -> GetModeLineReply { GetModeLineReply { base : base::mk_reply(reply) } }
+pub struct GetModeLineReply { base:  base::Reply<xcb_xf86vidmode_get_mode_line_reply_t> }
+fn mk_reply_xcb_xf86vidmode_get_mode_line_reply_t(reply:*mut xcb_xf86vidmode_get_mode_line_reply_t) -> GetModeLineReply { GetModeLineReply { base : base::mk_reply(reply) } }
 pub fn GetModeLine<'r> (c : &'r Connection,
                     screen : u16) -> GetModeLineCookie<'r> {
   unsafe {
@@ -339,7 +339,7 @@ impl GetModeLineReply {
   }
 
 }
-impl_reply_cookie!(GetModeLineCookie<'s>, mk_reply_get_mode_line_reply, GetModeLineReply, xcb_xf86vidmode_get_mode_line_reply);
+impl_reply_cookie!(GetModeLineCookie<'s>, mk_reply_xcb_xf86vidmode_get_mode_line_reply_t, GetModeLineReply, xcb_xf86vidmode_get_mode_line_reply);
 
 pub fn ModModeLineChecked<'r> (c : &'r Connection,
                            screen : u32,
@@ -427,8 +427,8 @@ pub fn SwitchMode<'r> (c : &'r Connection,
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub struct GetMonitorReply { base:  base::Reply<get_monitor_reply> }
-fn mk_reply_get_monitor_reply(reply:*mut get_monitor_reply) -> GetMonitorReply { GetMonitorReply { base : base::mk_reply(reply) } }
+pub struct GetMonitorReply { base:  base::Reply<xcb_xf86vidmode_get_monitor_reply_t> }
+fn mk_reply_xcb_xf86vidmode_get_monitor_reply_t(reply:*mut xcb_xf86vidmode_get_monitor_reply_t) -> GetMonitorReply { GetMonitorReply { base : base::mk_reply(reply) } }
 pub fn GetMonitor<'r> (c : &'r Connection,
                    screen : u16) -> GetMonitorCookie<'r> {
   unsafe {
@@ -468,7 +468,7 @@ impl GetMonitorReply {
   }
 
 }
-impl_reply_cookie!(GetMonitorCookie<'s>, mk_reply_get_monitor_reply, GetMonitorReply, xcb_xf86vidmode_get_monitor_reply);
+impl_reply_cookie!(GetMonitorCookie<'s>, mk_reply_xcb_xf86vidmode_get_monitor_reply_t, GetMonitorReply, xcb_xf86vidmode_get_monitor_reply);
 
 pub fn LockModeSwitchChecked<'r> (c : &'r Connection,
                               screen : u16,
@@ -490,8 +490,8 @@ pub fn LockModeSwitch<'r> (c : &'r Connection,
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub struct GetAllModeLinesReply { base:  base::Reply<get_all_mode_lines_reply> }
-fn mk_reply_get_all_mode_lines_reply(reply:*mut get_all_mode_lines_reply) -> GetAllModeLinesReply { GetAllModeLinesReply { base : base::mk_reply(reply) } }
+pub struct GetAllModeLinesReply { base:  base::Reply<xcb_xf86vidmode_get_all_mode_lines_reply_t> }
+fn mk_reply_xcb_xf86vidmode_get_all_mode_lines_reply_t(reply:*mut xcb_xf86vidmode_get_all_mode_lines_reply_t) -> GetAllModeLinesReply { GetAllModeLinesReply { base : base::mk_reply(reply) } }
 pub fn GetAllModeLines<'r> (c : &'r Connection,
                         screen : u16) -> GetAllModeLinesCookie<'r> {
   unsafe {
@@ -515,7 +515,7 @@ impl GetAllModeLinesReply {
   }
 
 }
-impl_reply_cookie!(GetAllModeLinesCookie<'s>, mk_reply_get_all_mode_lines_reply, GetAllModeLinesReply, xcb_xf86vidmode_get_all_mode_lines_reply);
+impl_reply_cookie!(GetAllModeLinesCookie<'s>, mk_reply_xcb_xf86vidmode_get_all_mode_lines_reply_t, GetAllModeLinesReply, xcb_xf86vidmode_get_all_mode_lines_reply);
 
 pub fn AddModeLineChecked<'r> (c : &'r Connection,
                            screen : u32,
@@ -547,7 +547,7 @@ pub fn AddModeLineChecked<'r> (c : &'r Connection,
     let private_ptr = private.as_ptr();
     let cookie = xcb_xf86vidmode_add_mode_line_checked(c.get_raw_conn(),
         screen as u32, //1
-        dotclock as dotclock, //2
+        dotclock as xcb_xf86vidmode_dotclock_t, //2
         hdisplay as u16, //3
         hsyncstart as u16, //4
         hsyncend as u16, //5
@@ -559,7 +559,7 @@ pub fn AddModeLineChecked<'r> (c : &'r Connection,
         vtotal as u16, //11
         flags as u32, //12
         private_len as u32, //13
-        after_dotclock as dotclock, //14
+        after_dotclock as xcb_xf86vidmode_dotclock_t, //14
         after_hdisplay as u16, //15
         after_hsyncstart as u16, //16
         after_hsyncend as u16, //17
@@ -604,7 +604,7 @@ pub fn AddModeLine<'r> (c : &'r Connection,
     let private_ptr = private.as_ptr();
     let cookie = xcb_xf86vidmode_add_mode_line(c.get_raw_conn(),
         screen as u32, //1
-        dotclock as dotclock, //2
+        dotclock as xcb_xf86vidmode_dotclock_t, //2
         hdisplay as u16, //3
         hsyncstart as u16, //4
         hsyncend as u16, //5
@@ -616,7 +616,7 @@ pub fn AddModeLine<'r> (c : &'r Connection,
         vtotal as u16, //11
         flags as u32, //12
         private_len as u32, //13
-        after_dotclock as dotclock, //14
+        after_dotclock as xcb_xf86vidmode_dotclock_t, //14
         after_hdisplay as u16, //15
         after_hsyncstart as u16, //16
         after_hsyncend as u16, //17
@@ -650,7 +650,7 @@ pub fn DeleteModeLineChecked<'r> (c : &'r Connection,
     let private_ptr = private.as_ptr();
     let cookie = xcb_xf86vidmode_delete_mode_line_checked(c.get_raw_conn(),
         screen as u32, //1
-        dotclock as dotclock, //2
+        dotclock as xcb_xf86vidmode_dotclock_t, //2
         hdisplay as u16, //3
         hsyncstart as u16, //4
         hsyncend as u16, //5
@@ -685,7 +685,7 @@ pub fn DeleteModeLine<'r> (c : &'r Connection,
     let private_ptr = private.as_ptr();
     let cookie = xcb_xf86vidmode_delete_mode_line(c.get_raw_conn(),
         screen as u32, //1
-        dotclock as dotclock, //2
+        dotclock as xcb_xf86vidmode_dotclock_t, //2
         hdisplay as u16, //3
         hsyncstart as u16, //4
         hsyncend as u16, //5
@@ -720,7 +720,7 @@ pub fn ValidateModeLine<'r> (c : &'r Connection,
     let private_ptr = private.as_ptr();
     let cookie = xcb_xf86vidmode_validate_mode_line(c.get_raw_conn(),
         screen as u32, //1
-        dotclock as dotclock, //2
+        dotclock as xcb_xf86vidmode_dotclock_t, //2
         hdisplay as u16, //3
         hsyncstart as u16, //4
         hsyncend as u16, //5
@@ -755,7 +755,7 @@ pub fn ValidateModeLineUnchecked<'r> (c : &'r Connection,
     let private_ptr = private.as_ptr();
     let cookie = xcb_xf86vidmode_validate_mode_line_unchecked(c.get_raw_conn(),
         screen as u32, //1
-        dotclock as dotclock, //2
+        dotclock as xcb_xf86vidmode_dotclock_t, //2
         hdisplay as u16, //3
         hsyncstart as u16, //4
         hsyncend as u16, //5
@@ -778,7 +778,7 @@ impl ValidateModeLineReply {
   }
 
 }
-impl_reply_cookie!(ValidateModeLineCookie<'s>, mk_reply_validate_mode_line_reply, ValidateModeLineReply, xcb_xf86vidmode_validate_mode_line_reply);
+impl_reply_cookie!(ValidateModeLineCookie<'s>, mk_reply_xcb_xf86vidmode_validate_mode_line_reply_t, ValidateModeLineReply, xcb_xf86vidmode_validate_mode_line_reply);
 
 pub fn SwitchToModeChecked<'r> (c : &'r Connection,
                             screen : u32,
@@ -799,7 +799,7 @@ pub fn SwitchToModeChecked<'r> (c : &'r Connection,
     let private_ptr = private.as_ptr();
     let cookie = xcb_xf86vidmode_switch_to_mode_checked(c.get_raw_conn(),
         screen as u32, //1
-        dotclock as dotclock, //2
+        dotclock as xcb_xf86vidmode_dotclock_t, //2
         hdisplay as u16, //3
         hsyncstart as u16, //4
         hsyncend as u16, //5
@@ -834,7 +834,7 @@ pub fn SwitchToMode<'r> (c : &'r Connection,
     let private_ptr = private.as_ptr();
     let cookie = xcb_xf86vidmode_switch_to_mode(c.get_raw_conn(),
         screen as u32, //1
-        dotclock as dotclock, //2
+        dotclock as xcb_xf86vidmode_dotclock_t, //2
         hdisplay as u16, //3
         hsyncstart as u16, //4
         hsyncend as u16, //5
@@ -877,7 +877,7 @@ impl GetViewPortReply {
   }
 
 }
-impl_reply_cookie!(GetViewPortCookie<'s>, mk_reply_get_view_port_reply, GetViewPortReply, xcb_xf86vidmode_get_view_port_reply);
+impl_reply_cookie!(GetViewPortCookie<'s>, mk_reply_xcb_xf86vidmode_get_view_port_reply_t, GetViewPortReply, xcb_xf86vidmode_get_view_port_reply);
 
 pub fn SetViewPortChecked<'r> (c : &'r Connection,
                            screen : u16,
@@ -903,8 +903,8 @@ pub fn SetViewPort<'r> (c : &'r Connection,
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub struct GetDotClocksReply { base:  base::Reply<get_dot_clocks_reply> }
-fn mk_reply_get_dot_clocks_reply(reply:*mut get_dot_clocks_reply) -> GetDotClocksReply { GetDotClocksReply { base : base::mk_reply(reply) } }
+pub struct GetDotClocksReply { base:  base::Reply<xcb_xf86vidmode_get_dot_clocks_reply_t> }
+fn mk_reply_xcb_xf86vidmode_get_dot_clocks_reply_t(reply:*mut xcb_xf86vidmode_get_dot_clocks_reply_t) -> GetDotClocksReply { GetDotClocksReply { base : base::mk_reply(reply) } }
 pub fn GetDotClocks<'r> (c : &'r Connection,
                      screen : u16) -> GetDotClocksCookie<'r> {
   unsafe {
@@ -936,7 +936,7 @@ impl GetDotClocksReply {
   }
 
 }
-impl_reply_cookie!(GetDotClocksCookie<'s>, mk_reply_get_dot_clocks_reply, GetDotClocksReply, xcb_xf86vidmode_get_dot_clocks_reply);
+impl_reply_cookie!(GetDotClocksCookie<'s>, mk_reply_xcb_xf86vidmode_get_dot_clocks_reply_t, GetDotClocksReply, xcb_xf86vidmode_get_dot_clocks_reply);
 
 pub fn SetClientVersionChecked<'r> (c : &'r Connection,
                                 major : u16,
@@ -1017,10 +1017,10 @@ impl GetGammaReply {
   }
 
 }
-impl_reply_cookie!(GetGammaCookie<'s>, mk_reply_get_gamma_reply, GetGammaReply, xcb_xf86vidmode_get_gamma_reply);
+impl_reply_cookie!(GetGammaCookie<'s>, mk_reply_xcb_xf86vidmode_get_gamma_reply_t, GetGammaReply, xcb_xf86vidmode_get_gamma_reply);
 
-pub struct GetGammaRampReply { base:  base::Reply<get_gamma_ramp_reply> }
-fn mk_reply_get_gamma_ramp_reply(reply:*mut get_gamma_ramp_reply) -> GetGammaRampReply { GetGammaRampReply { base : base::mk_reply(reply) } }
+pub struct GetGammaRampReply { base:  base::Reply<xcb_xf86vidmode_get_gamma_ramp_reply_t> }
+fn mk_reply_xcb_xf86vidmode_get_gamma_ramp_reply_t(reply:*mut xcb_xf86vidmode_get_gamma_ramp_reply_t) -> GetGammaRampReply { GetGammaRampReply { base : base::mk_reply(reply) } }
 pub fn GetGammaRamp<'r> (c : &'r Connection,
                      screen : u16,
                      size : u16) -> GetGammaRampCookie<'r> {
@@ -1056,7 +1056,7 @@ impl GetGammaRampReply {
   }
 
 }
-impl_reply_cookie!(GetGammaRampCookie<'s>, mk_reply_get_gamma_ramp_reply, GetGammaRampReply, xcb_xf86vidmode_get_gamma_ramp_reply);
+impl_reply_cookie!(GetGammaRampCookie<'s>, mk_reply_xcb_xf86vidmode_get_gamma_ramp_reply_t, GetGammaRampReply, xcb_xf86vidmode_get_gamma_ramp_reply);
 
 pub fn SetGammaRampChecked<'r> (c : &'r Connection,
                             screen : u16,
@@ -1119,7 +1119,7 @@ impl GetGammaRampSizeReply {
   }
 
 }
-impl_reply_cookie!(GetGammaRampSizeCookie<'s>, mk_reply_get_gamma_ramp_size_reply, GetGammaRampSizeReply, xcb_xf86vidmode_get_gamma_ramp_size_reply);
+impl_reply_cookie!(GetGammaRampSizeCookie<'s>, mk_reply_xcb_xf86vidmode_get_gamma_ramp_size_reply_t, GetGammaRampSizeReply, xcb_xf86vidmode_get_gamma_ramp_size_reply);
 
 pub fn GetPermissions<'r> (c : &'r Connection,
                        screen : u16) -> GetPermissionsCookie<'r> {
@@ -1144,5 +1144,5 @@ impl GetPermissionsReply {
   }
 
 }
-impl_reply_cookie!(GetPermissionsCookie<'s>, mk_reply_get_permissions_reply, GetPermissionsReply, xcb_xf86vidmode_get_permissions_reply);
+impl_reply_cookie!(GetPermissionsCookie<'s>, mk_reply_xcb_xf86vidmode_get_permissions_reply_t, GetPermissionsReply, xcb_xf86vidmode_get_permissions_reply);
 

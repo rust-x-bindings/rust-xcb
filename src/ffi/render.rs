@@ -14,61 +14,61 @@ use ffi::xproto;
 pub static RENDER_MAJOR_VERSION : c_uint = 0;
 pub static RENDER_MINOR_VERSION : c_uint = 11;
 
-pub type glyph = u32;
+pub type xcb_render_glyph_t = u32;
 /**
- * @brief glyph_iterator
+ * @brief xcb_render_glyph_iterator_t
  **/
 #[repr(C)]
-pub struct glyph_iterator {
-    pub data : *mut glyph,
+pub struct xcb_render_glyph_iterator_t {
+    pub data : *mut xcb_render_glyph_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
-pub type glyphset = u32;
+pub type xcb_render_glyphset_t = u32;
 /**
- * @brief glyphset_iterator
+ * @brief xcb_render_glyphset_iterator_t
  **/
 #[repr(C)]
-pub struct glyphset_iterator {
-    pub data : *mut glyphset,
+pub struct xcb_render_glyphset_iterator_t {
+    pub data : *mut xcb_render_glyphset_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
-pub type picture = u32;
+pub type xcb_render_picture_t = u32;
 /**
- * @brief picture_iterator
+ * @brief xcb_render_picture_iterator_t
  **/
 #[repr(C)]
-pub struct picture_iterator {
-    pub data : *mut picture,
+pub struct xcb_render_picture_iterator_t {
+    pub data : *mut xcb_render_picture_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
-pub type pictformat = u32;
+pub type xcb_render_pictformat_t = u32;
 /**
- * @brief pictformat_iterator
+ * @brief xcb_render_pictformat_iterator_t
  **/
 #[repr(C)]
-pub struct pictformat_iterator {
-    pub data : *mut pictformat,
+pub struct xcb_render_pictformat_iterator_t {
+    pub data : *mut xcb_render_pictformat_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
-pub type fixed = i32;
+pub type xcb_render_fixed_t = i32;
 /**
- * @brief fixed_iterator
+ * @brief xcb_render_fixed_iterator_t
  **/
 #[repr(C)]
-pub struct fixed_iterator {
-    pub data : *mut fixed,
+pub struct xcb_render_fixed_iterator_t {
+    pub data : *mut xcb_render_fixed_t,
     pub rem  : c_int,
     pub index: c_int
 }
@@ -76,71 +76,71 @@ pub struct fixed_iterator {
 
 
 #[repr(C)]
-pub struct pict_format_error {
+pub struct xcb_render_pict_format_error_t {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
-impl Copy for pict_format_error {}
-impl Clone for pict_format_error {
-    fn clone(&self) -> pict_format_error { *self }
+impl Copy for xcb_render_pict_format_error_t {}
+impl Clone for xcb_render_pict_format_error_t {
+    fn clone(&self) -> xcb_render_pict_format_error_t { *self }
 }
 
 
 #[repr(C)]
-pub struct picture_error {
+pub struct xcb_render_picture_error_t {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
-impl Copy for picture_error {}
-impl Clone for picture_error {
-    fn clone(&self) -> picture_error { *self }
+impl Copy for xcb_render_picture_error_t {}
+impl Clone for xcb_render_picture_error_t {
+    fn clone(&self) -> xcb_render_picture_error_t { *self }
 }
 
 
 #[repr(C)]
-pub struct pict_op_error {
+pub struct xcb_render_pict_op_error_t {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
-impl Copy for pict_op_error {}
-impl Clone for pict_op_error {
-    fn clone(&self) -> pict_op_error { *self }
+impl Copy for xcb_render_pict_op_error_t {}
+impl Clone for xcb_render_pict_op_error_t {
+    fn clone(&self) -> xcb_render_pict_op_error_t { *self }
 }
 
 
 #[repr(C)]
-pub struct glyph_set_error {
+pub struct xcb_render_glyph_set_error_t {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
-impl Copy for glyph_set_error {}
-impl Clone for glyph_set_error {
-    fn clone(&self) -> glyph_set_error { *self }
+impl Copy for xcb_render_glyph_set_error_t {}
+impl Clone for xcb_render_glyph_set_error_t {
+    fn clone(&self) -> xcb_render_glyph_set_error_t { *self }
 }
 
 
 #[repr(C)]
-pub struct glyph_error {
+pub struct xcb_render_glyph_error_t {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
-impl Copy for glyph_error {}
-impl Clone for glyph_error {
-    fn clone(&self) -> glyph_error { *self }
+impl Copy for xcb_render_glyph_error_t {}
+impl Clone for xcb_render_glyph_error_t {
+    fn clone(&self) -> xcb_render_glyph_error_t { *self }
 }
 
 #[repr(C)]
-pub struct directformat {
+pub struct xcb_render_directformat_t {
      pub red_shift :     u16,
      pub red_mask :      u16,
      pub green_shift :   u16,
@@ -151,113 +151,113 @@ pub struct directformat {
      pub alpha_mask :    u16
 }
 
-impl Copy for directformat {}
-impl Clone for directformat {
-    fn clone(&self) -> directformat { *self }
+impl Copy for xcb_render_directformat_t {}
+impl Clone for xcb_render_directformat_t {
+    fn clone(&self) -> xcb_render_directformat_t { *self }
 }
 /**
- * @brief directformat_iterator
+ * @brief xcb_render_directformat_iterator_t
  **/
 #[repr(C)]
-pub struct directformat_iterator {
-    pub data : *mut directformat,
+pub struct xcb_render_directformat_iterator_t {
+    pub data : *mut xcb_render_directformat_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct pictforminfo {
-     pub id :         pictformat,
+pub struct xcb_render_pictforminfo_t {
+     pub id :         xcb_render_pictformat_t,
      pub type_ :      u8,
      pub depth :      u8,
      pub pad0 :       [u8; 2],
-     pub direct :     directformat,
-     pub colormap :   ffi::xproto::colormap
+     pub direct :     xcb_render_directformat_t,
+     pub colormap :   ffi::xproto::xcb_colormap_t
 }
 
-impl Copy for pictforminfo {}
-impl Clone for pictforminfo {
-    fn clone(&self) -> pictforminfo { *self }
+impl Copy for xcb_render_pictforminfo_t {}
+impl Clone for xcb_render_pictforminfo_t {
+    fn clone(&self) -> xcb_render_pictforminfo_t { *self }
 }
 /**
- * @brief pictforminfo_iterator
+ * @brief xcb_render_pictforminfo_iterator_t
  **/
 #[repr(C)]
-pub struct pictforminfo_iterator {
-    pub data : *mut pictforminfo,
+pub struct xcb_render_pictforminfo_iterator_t {
+    pub data : *mut xcb_render_pictforminfo_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct pictvisual {
-     pub visual :   ffi::xproto::visualid,
-     pub format :   pictformat
+pub struct xcb_render_pictvisual_t {
+     pub visual :   ffi::xproto::xcb_visualid_t,
+     pub format :   xcb_render_pictformat_t
 }
 
-impl Copy for pictvisual {}
-impl Clone for pictvisual {
-    fn clone(&self) -> pictvisual { *self }
+impl Copy for xcb_render_pictvisual_t {}
+impl Clone for xcb_render_pictvisual_t {
+    fn clone(&self) -> xcb_render_pictvisual_t { *self }
 }
 /**
- * @brief pictvisual_iterator
+ * @brief xcb_render_pictvisual_iterator_t
  **/
 #[repr(C)]
-pub struct pictvisual_iterator {
-    pub data : *mut pictvisual,
+pub struct xcb_render_pictvisual_iterator_t {
+    pub data : *mut xcb_render_pictvisual_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct pictdepth {
+pub struct xcb_render_pictdepth_t {
      pub depth :         u8,
      pub pad0 :          u8,
      pub num_visuals :   u16,
      pub pad1 :          [u8; 4]
 }
 
-impl Copy for pictdepth {}
-impl Clone for pictdepth {
-    fn clone(&self) -> pictdepth { *self }
+impl Copy for xcb_render_pictdepth_t {}
+impl Clone for xcb_render_pictdepth_t {
+    fn clone(&self) -> xcb_render_pictdepth_t { *self }
 }
 /**
- * @brief pictdepth_iterator
+ * @brief xcb_render_pictdepth_iterator_t
  **/
 #[repr(C)]
-pub struct pictdepth_iterator {
-    pub data : *mut pictdepth,
+pub struct xcb_render_pictdepth_iterator_t {
+    pub data : *mut xcb_render_pictdepth_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct pictscreen {
+pub struct xcb_render_pictscreen_t {
      pub num_depths :   u32,
-     pub fallback :     pictformat
+     pub fallback :     xcb_render_pictformat_t
 }
 
-impl Copy for pictscreen {}
-impl Clone for pictscreen {
-    fn clone(&self) -> pictscreen { *self }
+impl Copy for xcb_render_pictscreen_t {}
+impl Clone for xcb_render_pictscreen_t {
+    fn clone(&self) -> xcb_render_pictscreen_t { *self }
 }
 /**
- * @brief pictscreen_iterator
+ * @brief xcb_render_pictscreen_iterator_t
  **/
 #[repr(C)]
-pub struct pictscreen_iterator {
-    pub data : *mut pictscreen,
+pub struct xcb_render_pictscreen_iterator_t {
+    pub data : *mut xcb_render_pictscreen_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct indexvalue {
+pub struct xcb_render_indexvalue_t {
      pub pixel :   u32,
      pub red :     u16,
      pub green :   u16,
@@ -265,133 +265,133 @@ pub struct indexvalue {
      pub alpha :   u16
 }
 
-impl Copy for indexvalue {}
-impl Clone for indexvalue {
-    fn clone(&self) -> indexvalue { *self }
+impl Copy for xcb_render_indexvalue_t {}
+impl Clone for xcb_render_indexvalue_t {
+    fn clone(&self) -> xcb_render_indexvalue_t { *self }
 }
 /**
- * @brief indexvalue_iterator
+ * @brief xcb_render_indexvalue_iterator_t
  **/
 #[repr(C)]
-pub struct indexvalue_iterator {
-    pub data : *mut indexvalue,
+pub struct xcb_render_indexvalue_iterator_t {
+    pub data : *mut xcb_render_indexvalue_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct color {
+pub struct xcb_render_color_t {
      pub red :     u16,
      pub green :   u16,
      pub blue :    u16,
      pub alpha :   u16
 }
 
-impl Copy for color {}
-impl Clone for color {
-    fn clone(&self) -> color { *self }
+impl Copy for xcb_render_color_t {}
+impl Clone for xcb_render_color_t {
+    fn clone(&self) -> xcb_render_color_t { *self }
 }
 /**
- * @brief color_iterator
+ * @brief xcb_render_color_iterator_t
  **/
 #[repr(C)]
-pub struct color_iterator {
-    pub data : *mut color,
+pub struct xcb_render_color_iterator_t {
+    pub data : *mut xcb_render_color_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct pointfix {
-     pub x :   fixed,
-     pub y :   fixed
+pub struct xcb_render_pointfix_t {
+     pub x :   xcb_render_fixed_t,
+     pub y :   xcb_render_fixed_t
 }
 
-impl Copy for pointfix {}
-impl Clone for pointfix {
-    fn clone(&self) -> pointfix { *self }
+impl Copy for xcb_render_pointfix_t {}
+impl Clone for xcb_render_pointfix_t {
+    fn clone(&self) -> xcb_render_pointfix_t { *self }
 }
 /**
- * @brief pointfix_iterator
+ * @brief xcb_render_pointfix_iterator_t
  **/
 #[repr(C)]
-pub struct pointfix_iterator {
-    pub data : *mut pointfix,
+pub struct xcb_render_pointfix_iterator_t {
+    pub data : *mut xcb_render_pointfix_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct linefix {
-     pub p1 :   pointfix,
-     pub p2 :   pointfix
+pub struct xcb_render_linefix_t {
+     pub p1 :   xcb_render_pointfix_t,
+     pub p2 :   xcb_render_pointfix_t
 }
 
-impl Copy for linefix {}
-impl Clone for linefix {
-    fn clone(&self) -> linefix { *self }
+impl Copy for xcb_render_linefix_t {}
+impl Clone for xcb_render_linefix_t {
+    fn clone(&self) -> xcb_render_linefix_t { *self }
 }
 /**
- * @brief linefix_iterator
+ * @brief xcb_render_linefix_iterator_t
  **/
 #[repr(C)]
-pub struct linefix_iterator {
-    pub data : *mut linefix,
+pub struct xcb_render_linefix_iterator_t {
+    pub data : *mut xcb_render_linefix_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct triangle {
-     pub p1 :   pointfix,
-     pub p2 :   pointfix,
-     pub p3 :   pointfix
+pub struct xcb_render_triangle_t {
+     pub p1 :   xcb_render_pointfix_t,
+     pub p2 :   xcb_render_pointfix_t,
+     pub p3 :   xcb_render_pointfix_t
 }
 
-impl Copy for triangle {}
-impl Clone for triangle {
-    fn clone(&self) -> triangle { *self }
+impl Copy for xcb_render_triangle_t {}
+impl Clone for xcb_render_triangle_t {
+    fn clone(&self) -> xcb_render_triangle_t { *self }
 }
 /**
- * @brief triangle_iterator
+ * @brief xcb_render_triangle_iterator_t
  **/
 #[repr(C)]
-pub struct triangle_iterator {
-    pub data : *mut triangle,
+pub struct xcb_render_triangle_iterator_t {
+    pub data : *mut xcb_render_triangle_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct trapezoid {
-     pub top :      fixed,
-     pub bottom :   fixed,
-     pub left :     linefix,
-     pub right :    linefix
+pub struct xcb_render_trapezoid_t {
+     pub top :      xcb_render_fixed_t,
+     pub bottom :   xcb_render_fixed_t,
+     pub left :     xcb_render_linefix_t,
+     pub right :    xcb_render_linefix_t
 }
 
-impl Copy for trapezoid {}
-impl Clone for trapezoid {
-    fn clone(&self) -> trapezoid { *self }
+impl Copy for xcb_render_trapezoid_t {}
+impl Clone for xcb_render_trapezoid_t {
+    fn clone(&self) -> xcb_render_trapezoid_t { *self }
 }
 /**
- * @brief trapezoid_iterator
+ * @brief xcb_render_trapezoid_iterator_t
  **/
 #[repr(C)]
-pub struct trapezoid_iterator {
-    pub data : *mut trapezoid,
+pub struct xcb_render_trapezoid_iterator_t {
+    pub data : *mut xcb_render_trapezoid_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct glyphinfo {
+pub struct xcb_render_glyphinfo_t {
      pub width :    u16,
      pub height :   u16,
      pub x :        i16,
@@ -400,16 +400,16 @@ pub struct glyphinfo {
      pub y_off :    i16
 }
 
-impl Copy for glyphinfo {}
-impl Clone for glyphinfo {
-    fn clone(&self) -> glyphinfo { *self }
+impl Copy for xcb_render_glyphinfo_t {}
+impl Clone for xcb_render_glyphinfo_t {
+    fn clone(&self) -> xcb_render_glyphinfo_t { *self }
 }
 /**
- * @brief glyphinfo_iterator
+ * @brief xcb_render_glyphinfo_iterator_t
  **/
 #[repr(C)]
-pub struct glyphinfo_iterator {
-    pub data : *mut glyphinfo,
+pub struct xcb_render_glyphinfo_iterator_t {
+    pub data : *mut xcb_render_glyphinfo_t,
     pub rem  : c_int,
     pub index: c_int
 }
@@ -417,13 +417,13 @@ pub struct glyphinfo_iterator {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct query_version_cookie {
+pub struct xcb_render_query_version_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct query_version_request {
+pub struct xcb_render_query_version_request_t {
      pub major_opcode :           u8,
      pub minor_opcode :           u8,
      pub length :                 u16,
@@ -431,13 +431,13 @@ pub struct query_version_request {
      pub client_minor_version :   u32
 }
 
-impl Copy for query_version_request {}
-impl Clone for query_version_request {
-    fn clone(&self) -> query_version_request { *self }
+impl Copy for xcb_render_query_version_request_t {}
+impl Clone for xcb_render_query_version_request_t {
+    fn clone(&self) -> xcb_render_query_version_request_t { *self }
 }
 
 #[repr(C)]
-pub struct query_version_reply {
+pub struct xcb_render_query_version_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -447,32 +447,32 @@ pub struct query_version_reply {
      pub pad1 :            [u8; 16]
 }
 
-impl Copy for query_version_reply {}
-impl Clone for query_version_reply {
-    fn clone(&self) -> query_version_reply { *self }
+impl Copy for xcb_render_query_version_reply_t {}
+impl Clone for xcb_render_query_version_reply_t {
+    fn clone(&self) -> xcb_render_query_version_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct query_pict_formats_cookie {
+pub struct xcb_render_query_pict_formats_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct query_pict_formats_request {
+pub struct xcb_render_query_pict_formats_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
-impl Copy for query_pict_formats_request {}
-impl Clone for query_pict_formats_request {
-    fn clone(&self) -> query_pict_formats_request { *self }
+impl Copy for xcb_render_query_pict_formats_request_t {}
+impl Clone for xcb_render_query_pict_formats_request_t {
+    fn clone(&self) -> xcb_render_query_pict_formats_request_t { *self }
 }
 
 #[repr(C)]
-pub struct query_pict_formats_reply {
+pub struct xcb_render_query_pict_formats_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -485,33 +485,33 @@ pub struct query_pict_formats_reply {
      pub pad1 :            [u8; 4]
 }
 
-impl Copy for query_pict_formats_reply {}
-impl Clone for query_pict_formats_reply {
-    fn clone(&self) -> query_pict_formats_reply { *self }
+impl Copy for xcb_render_query_pict_formats_reply_t {}
+impl Clone for xcb_render_query_pict_formats_reply_t {
+    fn clone(&self) -> xcb_render_query_pict_formats_reply_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct query_pict_index_values_cookie {
+pub struct xcb_render_query_pict_index_values_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct query_pict_index_values_request {
+pub struct xcb_render_query_pict_index_values_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub format :         pictformat
+     pub format :         xcb_render_pictformat_t
 }
 
-impl Copy for query_pict_index_values_request {}
-impl Clone for query_pict_index_values_request {
-    fn clone(&self) -> query_pict_index_values_request { *self }
+impl Copy for xcb_render_query_pict_index_values_request_t {}
+impl Clone for xcb_render_query_pict_index_values_request_t {
+    fn clone(&self) -> xcb_render_query_pict_index_values_request_t { *self }
 }
 
 #[repr(C)]
-pub struct query_pict_index_values_reply {
+pub struct xcb_render_query_pict_index_values_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -520,84 +520,84 @@ pub struct query_pict_index_values_reply {
      pub pad1 :            [u8; 20]
 }
 
-impl Copy for query_pict_index_values_reply {}
-impl Clone for query_pict_index_values_reply {
-    fn clone(&self) -> query_pict_index_values_reply { *self }
+impl Copy for xcb_render_query_pict_index_values_reply_t {}
+impl Clone for xcb_render_query_pict_index_values_reply_t {
+    fn clone(&self) -> xcb_render_query_pict_index_values_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct create_picture_request {
+pub struct xcb_render_create_picture_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub pid :            picture,
-     pub drawable :       ffi::xproto::drawable,
-     pub format :         pictformat,
+     pub pid :            xcb_render_picture_t,
+     pub drawable :       ffi::xproto::xcb_drawable_t,
+     pub format :         xcb_render_pictformat_t,
      pub value_mask :     u32
 }
 
-impl Copy for create_picture_request {}
-impl Clone for create_picture_request {
-    fn clone(&self) -> create_picture_request { *self }
+impl Copy for xcb_render_create_picture_request_t {}
+impl Clone for xcb_render_create_picture_request_t {
+    fn clone(&self) -> xcb_render_create_picture_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct change_picture_request {
+pub struct xcb_render_change_picture_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub picture :        picture,
+     pub picture :        xcb_render_picture_t,
      pub value_mask :     u32
 }
 
-impl Copy for change_picture_request {}
-impl Clone for change_picture_request {
-    fn clone(&self) -> change_picture_request { *self }
+impl Copy for xcb_render_change_picture_request_t {}
+impl Clone for xcb_render_change_picture_request_t {
+    fn clone(&self) -> xcb_render_change_picture_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct set_picture_clip_rectangles_request {
+pub struct xcb_render_set_picture_clip_rectangles_request_t {
      pub major_opcode :    u8,
      pub minor_opcode :    u8,
      pub length :          u16,
-     pub picture :         picture,
+     pub picture :         xcb_render_picture_t,
      pub clip_x_origin :   i16,
      pub clip_y_origin :   i16
 }
 
-impl Copy for set_picture_clip_rectangles_request {}
-impl Clone for set_picture_clip_rectangles_request {
-    fn clone(&self) -> set_picture_clip_rectangles_request { *self }
+impl Copy for xcb_render_set_picture_clip_rectangles_request_t {}
+impl Clone for xcb_render_set_picture_clip_rectangles_request_t {
+    fn clone(&self) -> xcb_render_set_picture_clip_rectangles_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct free_picture_request {
+pub struct xcb_render_free_picture_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub picture :        picture
+     pub picture :        xcb_render_picture_t
 }
 
-impl Copy for free_picture_request {}
-impl Clone for free_picture_request {
-    fn clone(&self) -> free_picture_request { *self }
+impl Copy for xcb_render_free_picture_request_t {}
+impl Clone for xcb_render_free_picture_request_t {
+    fn clone(&self) -> xcb_render_free_picture_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct composite_request {
+pub struct xcb_render_composite_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub op :             u8,
      pub pad0 :           [u8; 3],
-     pub src :            picture,
-     pub mask :           picture,
-     pub dst :            picture,
+     pub src :            xcb_render_picture_t,
+     pub mask :           xcb_render_picture_t,
+     pub dst :            xcb_render_picture_t,
      pub src_x :          i16,
      pub src_y :          i16,
      pub mask_x :         i16,
@@ -608,284 +608,284 @@ pub struct composite_request {
      pub height :         u16
 }
 
-impl Copy for composite_request {}
-impl Clone for composite_request {
-    fn clone(&self) -> composite_request { *self }
+impl Copy for xcb_render_composite_request_t {}
+impl Clone for xcb_render_composite_request_t {
+    fn clone(&self) -> xcb_render_composite_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct trapezoids_request {
+pub struct xcb_render_trapezoids_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub op :             u8,
      pub pad0 :           [u8; 3],
-     pub src :            picture,
-     pub dst :            picture,
-     pub mask_format :    pictformat,
+     pub src :            xcb_render_picture_t,
+     pub dst :            xcb_render_picture_t,
+     pub mask_format :    xcb_render_pictformat_t,
      pub src_x :          i16,
      pub src_y :          i16
 }
 
-impl Copy for trapezoids_request {}
-impl Clone for trapezoids_request {
-    fn clone(&self) -> trapezoids_request { *self }
+impl Copy for xcb_render_trapezoids_request_t {}
+impl Clone for xcb_render_trapezoids_request_t {
+    fn clone(&self) -> xcb_render_trapezoids_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct triangles_request {
+pub struct xcb_render_triangles_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub op :             u8,
      pub pad0 :           [u8; 3],
-     pub src :            picture,
-     pub dst :            picture,
-     pub mask_format :    pictformat,
+     pub src :            xcb_render_picture_t,
+     pub dst :            xcb_render_picture_t,
+     pub mask_format :    xcb_render_pictformat_t,
      pub src_x :          i16,
      pub src_y :          i16
 }
 
-impl Copy for triangles_request {}
-impl Clone for triangles_request {
-    fn clone(&self) -> triangles_request { *self }
+impl Copy for xcb_render_triangles_request_t {}
+impl Clone for xcb_render_triangles_request_t {
+    fn clone(&self) -> xcb_render_triangles_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct tri_strip_request {
+pub struct xcb_render_tri_strip_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub op :             u8,
      pub pad0 :           [u8; 3],
-     pub src :            picture,
-     pub dst :            picture,
-     pub mask_format :    pictformat,
+     pub src :            xcb_render_picture_t,
+     pub dst :            xcb_render_picture_t,
+     pub mask_format :    xcb_render_pictformat_t,
      pub src_x :          i16,
      pub src_y :          i16
 }
 
-impl Copy for tri_strip_request {}
-impl Clone for tri_strip_request {
-    fn clone(&self) -> tri_strip_request { *self }
+impl Copy for xcb_render_tri_strip_request_t {}
+impl Clone for xcb_render_tri_strip_request_t {
+    fn clone(&self) -> xcb_render_tri_strip_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct tri_fan_request {
+pub struct xcb_render_tri_fan_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub op :             u8,
      pub pad0 :           [u8; 3],
-     pub src :            picture,
-     pub dst :            picture,
-     pub mask_format :    pictformat,
+     pub src :            xcb_render_picture_t,
+     pub dst :            xcb_render_picture_t,
+     pub mask_format :    xcb_render_pictformat_t,
      pub src_x :          i16,
      pub src_y :          i16
 }
 
-impl Copy for tri_fan_request {}
-impl Clone for tri_fan_request {
-    fn clone(&self) -> tri_fan_request { *self }
+impl Copy for xcb_render_tri_fan_request_t {}
+impl Clone for xcb_render_tri_fan_request_t {
+    fn clone(&self) -> xcb_render_tri_fan_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct create_glyph_set_request {
+pub struct xcb_render_create_glyph_set_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub gsid :           glyphset,
-     pub format :         pictformat
+     pub gsid :           xcb_render_glyphset_t,
+     pub format :         xcb_render_pictformat_t
 }
 
-impl Copy for create_glyph_set_request {}
-impl Clone for create_glyph_set_request {
-    fn clone(&self) -> create_glyph_set_request { *self }
+impl Copy for xcb_render_create_glyph_set_request_t {}
+impl Clone for xcb_render_create_glyph_set_request_t {
+    fn clone(&self) -> xcb_render_create_glyph_set_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct reference_glyph_set_request {
+pub struct xcb_render_reference_glyph_set_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub gsid :           glyphset,
-     pub existing :       glyphset
+     pub gsid :           xcb_render_glyphset_t,
+     pub existing :       xcb_render_glyphset_t
 }
 
-impl Copy for reference_glyph_set_request {}
-impl Clone for reference_glyph_set_request {
-    fn clone(&self) -> reference_glyph_set_request { *self }
+impl Copy for xcb_render_reference_glyph_set_request_t {}
+impl Clone for xcb_render_reference_glyph_set_request_t {
+    fn clone(&self) -> xcb_render_reference_glyph_set_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct free_glyph_set_request {
+pub struct xcb_render_free_glyph_set_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub glyphset :       glyphset
+     pub glyphset :       xcb_render_glyphset_t
 }
 
-impl Copy for free_glyph_set_request {}
-impl Clone for free_glyph_set_request {
-    fn clone(&self) -> free_glyph_set_request { *self }
+impl Copy for xcb_render_free_glyph_set_request_t {}
+impl Clone for xcb_render_free_glyph_set_request_t {
+    fn clone(&self) -> xcb_render_free_glyph_set_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct add_glyphs_request {
+pub struct xcb_render_add_glyphs_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub glyphset :       glyphset,
+     pub glyphset :       xcb_render_glyphset_t,
      pub glyphs_len :     u32
 }
 
-impl Copy for add_glyphs_request {}
-impl Clone for add_glyphs_request {
-    fn clone(&self) -> add_glyphs_request { *self }
+impl Copy for xcb_render_add_glyphs_request_t {}
+impl Clone for xcb_render_add_glyphs_request_t {
+    fn clone(&self) -> xcb_render_add_glyphs_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct free_glyphs_request {
+pub struct xcb_render_free_glyphs_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub glyphset :       glyphset
+     pub glyphset :       xcb_render_glyphset_t
 }
 
-impl Copy for free_glyphs_request {}
-impl Clone for free_glyphs_request {
-    fn clone(&self) -> free_glyphs_request { *self }
+impl Copy for xcb_render_free_glyphs_request_t {}
+impl Clone for xcb_render_free_glyphs_request_t {
+    fn clone(&self) -> xcb_render_free_glyphs_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct composite_glyphs_8_request {
+pub struct xcb_render_composite_glyphs_8_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub op :             u8,
      pub pad0 :           [u8; 3],
-     pub src :            picture,
-     pub dst :            picture,
-     pub mask_format :    pictformat,
-     pub glyphset :       glyphset,
+     pub src :            xcb_render_picture_t,
+     pub dst :            xcb_render_picture_t,
+     pub mask_format :    xcb_render_pictformat_t,
+     pub glyphset :       xcb_render_glyphset_t,
      pub src_x :          i16,
      pub src_y :          i16
 }
 
-impl Copy for composite_glyphs_8_request {}
-impl Clone for composite_glyphs_8_request {
-    fn clone(&self) -> composite_glyphs_8_request { *self }
+impl Copy for xcb_render_composite_glyphs_8_request_t {}
+impl Clone for xcb_render_composite_glyphs_8_request_t {
+    fn clone(&self) -> xcb_render_composite_glyphs_8_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct composite_glyphs_16_request {
+pub struct xcb_render_composite_glyphs_16_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub op :             u8,
      pub pad0 :           [u8; 3],
-     pub src :            picture,
-     pub dst :            picture,
-     pub mask_format :    pictformat,
-     pub glyphset :       glyphset,
+     pub src :            xcb_render_picture_t,
+     pub dst :            xcb_render_picture_t,
+     pub mask_format :    xcb_render_pictformat_t,
+     pub glyphset :       xcb_render_glyphset_t,
      pub src_x :          i16,
      pub src_y :          i16
 }
 
-impl Copy for composite_glyphs_16_request {}
-impl Clone for composite_glyphs_16_request {
-    fn clone(&self) -> composite_glyphs_16_request { *self }
+impl Copy for xcb_render_composite_glyphs_16_request_t {}
+impl Clone for xcb_render_composite_glyphs_16_request_t {
+    fn clone(&self) -> xcb_render_composite_glyphs_16_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct composite_glyphs_32_request {
+pub struct xcb_render_composite_glyphs_32_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub op :             u8,
      pub pad0 :           [u8; 3],
-     pub src :            picture,
-     pub dst :            picture,
-     pub mask_format :    pictformat,
-     pub glyphset :       glyphset,
+     pub src :            xcb_render_picture_t,
+     pub dst :            xcb_render_picture_t,
+     pub mask_format :    xcb_render_pictformat_t,
+     pub glyphset :       xcb_render_glyphset_t,
      pub src_x :          i16,
      pub src_y :          i16
 }
 
-impl Copy for composite_glyphs_32_request {}
-impl Clone for composite_glyphs_32_request {
-    fn clone(&self) -> composite_glyphs_32_request { *self }
+impl Copy for xcb_render_composite_glyphs_32_request_t {}
+impl Clone for xcb_render_composite_glyphs_32_request_t {
+    fn clone(&self) -> xcb_render_composite_glyphs_32_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct fill_rectangles_request {
+pub struct xcb_render_fill_rectangles_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub op :             u8,
      pub pad0 :           [u8; 3],
-     pub dst :            picture,
-     pub color :          color
+     pub dst :            xcb_render_picture_t,
+     pub color :          xcb_render_color_t
 }
 
-impl Copy for fill_rectangles_request {}
-impl Clone for fill_rectangles_request {
-    fn clone(&self) -> fill_rectangles_request { *self }
+impl Copy for xcb_render_fill_rectangles_request_t {}
+impl Clone for xcb_render_fill_rectangles_request_t {
+    fn clone(&self) -> xcb_render_fill_rectangles_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct create_cursor_request {
+pub struct xcb_render_create_cursor_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub cid :            ffi::xproto::cursor,
-     pub source :         picture,
+     pub cid :            ffi::xproto::xcb_cursor_t,
+     pub source :         xcb_render_picture_t,
      pub x :              u16,
      pub y :              u16
 }
 
-impl Copy for create_cursor_request {}
-impl Clone for create_cursor_request {
-    fn clone(&self) -> create_cursor_request { *self }
+impl Copy for xcb_render_create_cursor_request_t {}
+impl Clone for xcb_render_create_cursor_request_t {
+    fn clone(&self) -> xcb_render_create_cursor_request_t { *self }
 }
 
 #[repr(C)]
-pub struct transform {
-     pub matrix11 :   fixed,
-     pub matrix12 :   fixed,
-     pub matrix13 :   fixed,
-     pub matrix21 :   fixed,
-     pub matrix22 :   fixed,
-     pub matrix23 :   fixed,
-     pub matrix31 :   fixed,
-     pub matrix32 :   fixed,
-     pub matrix33 :   fixed
+pub struct xcb_render_transform_t {
+     pub matrix11 :   xcb_render_fixed_t,
+     pub matrix12 :   xcb_render_fixed_t,
+     pub matrix13 :   xcb_render_fixed_t,
+     pub matrix21 :   xcb_render_fixed_t,
+     pub matrix22 :   xcb_render_fixed_t,
+     pub matrix23 :   xcb_render_fixed_t,
+     pub matrix31 :   xcb_render_fixed_t,
+     pub matrix32 :   xcb_render_fixed_t,
+     pub matrix33 :   xcb_render_fixed_t
 }
 
-impl Copy for transform {}
-impl Clone for transform {
-    fn clone(&self) -> transform { *self }
+impl Copy for xcb_render_transform_t {}
+impl Clone for xcb_render_transform_t {
+    fn clone(&self) -> xcb_render_transform_t { *self }
 }
 /**
- * @brief transform_iterator
+ * @brief xcb_render_transform_iterator_t
  **/
 #[repr(C)]
-pub struct transform_iterator {
-    pub data : *mut transform,
+pub struct xcb_render_transform_iterator_t {
+    pub data : *mut xcb_render_transform_t,
     pub rem  : c_int,
     pub index: c_int
 }
@@ -893,41 +893,41 @@ pub struct transform_iterator {
 
 
 #[repr(C)]
-pub struct set_picture_transform_request {
+pub struct xcb_render_set_picture_transform_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub picture :        picture,
-     pub transform :      transform
+     pub picture :        xcb_render_picture_t,
+     pub transform :      xcb_render_transform_t
 }
 
-impl Copy for set_picture_transform_request {}
-impl Clone for set_picture_transform_request {
-    fn clone(&self) -> set_picture_transform_request { *self }
+impl Copy for xcb_render_set_picture_transform_request_t {}
+impl Clone for xcb_render_set_picture_transform_request_t {
+    fn clone(&self) -> xcb_render_set_picture_transform_request_t { *self }
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct query_filters_cookie {
+pub struct xcb_render_query_filters_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct query_filters_request {
+pub struct xcb_render_query_filters_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub drawable :       ffi::xproto::drawable
+     pub drawable :       ffi::xproto::xcb_drawable_t
 }
 
-impl Copy for query_filters_request {}
-impl Clone for query_filters_request {
-    fn clone(&self) -> query_filters_request { *self }
+impl Copy for xcb_render_query_filters_request_t {}
+impl Clone for xcb_render_query_filters_request_t {
+    fn clone(&self) -> xcb_render_query_filters_request_t { *self }
 }
 
 #[repr(C)]
-pub struct query_filters_reply {
+pub struct xcb_render_query_filters_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -937,43 +937,43 @@ pub struct query_filters_reply {
      pub pad1 :            [u8; 16]
 }
 
-impl Copy for query_filters_reply {}
-impl Clone for query_filters_reply {
-    fn clone(&self) -> query_filters_reply { *self }
+impl Copy for xcb_render_query_filters_reply_t {}
+impl Clone for xcb_render_query_filters_reply_t {
+    fn clone(&self) -> xcb_render_query_filters_reply_t { *self }
 }
 
 
 #[repr(C)]
-pub struct set_picture_filter_request {
+pub struct xcb_render_set_picture_filter_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub picture :        picture,
+     pub picture :        xcb_render_picture_t,
      pub filter_len :     u16,
      pub pad0 :           [u8; 2]
 }
 
-impl Copy for set_picture_filter_request {}
-impl Clone for set_picture_filter_request {
-    fn clone(&self) -> set_picture_filter_request { *self }
+impl Copy for xcb_render_set_picture_filter_request_t {}
+impl Clone for xcb_render_set_picture_filter_request_t {
+    fn clone(&self) -> xcb_render_set_picture_filter_request_t { *self }
 }
 
 #[repr(C)]
-pub struct animcursorelt {
-     pub cursor :   ffi::xproto::cursor,
+pub struct xcb_render_animcursorelt_t {
+     pub cursor :   ffi::xproto::xcb_cursor_t,
      pub delay :    u32
 }
 
-impl Copy for animcursorelt {}
-impl Clone for animcursorelt {
-    fn clone(&self) -> animcursorelt { *self }
+impl Copy for xcb_render_animcursorelt_t {}
+impl Clone for xcb_render_animcursorelt_t {
+    fn clone(&self) -> xcb_render_animcursorelt_t { *self }
 }
 /**
- * @brief animcursorelt_iterator
+ * @brief xcb_render_animcursorelt_iterator_t
  **/
 #[repr(C)]
-pub struct animcursorelt_iterator {
-    pub data : *mut animcursorelt,
+pub struct xcb_render_animcursorelt_iterator_t {
+    pub data : *mut xcb_render_animcursorelt_t,
     pub rem  : c_int,
     pub index: c_int
 }
@@ -981,56 +981,56 @@ pub struct animcursorelt_iterator {
 
 
 #[repr(C)]
-pub struct create_anim_cursor_request {
+pub struct xcb_render_create_anim_cursor_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub cid :            ffi::xproto::cursor
+     pub cid :            ffi::xproto::xcb_cursor_t
 }
 
-impl Copy for create_anim_cursor_request {}
-impl Clone for create_anim_cursor_request {
-    fn clone(&self) -> create_anim_cursor_request { *self }
+impl Copy for xcb_render_create_anim_cursor_request_t {}
+impl Clone for xcb_render_create_anim_cursor_request_t {
+    fn clone(&self) -> xcb_render_create_anim_cursor_request_t { *self }
 }
 
 #[repr(C)]
-pub struct spanfix {
-     pub l :   fixed,
-     pub r :   fixed,
-     pub y :   fixed
+pub struct xcb_render_spanfix_t {
+     pub l :   xcb_render_fixed_t,
+     pub r :   xcb_render_fixed_t,
+     pub y :   xcb_render_fixed_t
 }
 
-impl Copy for spanfix {}
-impl Clone for spanfix {
-    fn clone(&self) -> spanfix { *self }
+impl Copy for xcb_render_spanfix_t {}
+impl Clone for xcb_render_spanfix_t {
+    fn clone(&self) -> xcb_render_spanfix_t { *self }
 }
 /**
- * @brief spanfix_iterator
+ * @brief xcb_render_spanfix_iterator_t
  **/
 #[repr(C)]
-pub struct spanfix_iterator {
-    pub data : *mut spanfix,
+pub struct xcb_render_spanfix_iterator_t {
+    pub data : *mut xcb_render_spanfix_t,
     pub rem  : c_int,
     pub index: c_int
 }
 
 
 #[repr(C)]
-pub struct trap {
-     pub top :   spanfix,
-     pub bot :   spanfix
+pub struct xcb_render_trap_t {
+     pub top :   xcb_render_spanfix_t,
+     pub bot :   xcb_render_spanfix_t
 }
 
-impl Copy for trap {}
-impl Clone for trap {
-    fn clone(&self) -> trap { *self }
+impl Copy for xcb_render_trap_t {}
+impl Clone for xcb_render_trap_t {
+    fn clone(&self) -> xcb_render_trap_t { *self }
 }
 /**
- * @brief trap_iterator
+ * @brief xcb_render_trap_iterator_t
  **/
 #[repr(C)]
-pub struct trap_iterator {
-    pub data : *mut trap,
+pub struct xcb_render_trap_iterator_t {
+    pub data : *mut xcb_render_trap_t,
     pub rem  : c_int,
     pub index: c_int
 }
@@ -1038,496 +1038,496 @@ pub struct trap_iterator {
 
 
 #[repr(C)]
-pub struct add_traps_request {
+pub struct xcb_render_add_traps_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub picture :        picture,
+     pub picture :        xcb_render_picture_t,
      pub x_off :          i16,
      pub y_off :          i16
 }
 
-impl Copy for add_traps_request {}
-impl Clone for add_traps_request {
-    fn clone(&self) -> add_traps_request { *self }
+impl Copy for xcb_render_add_traps_request_t {}
+impl Clone for xcb_render_add_traps_request_t {
+    fn clone(&self) -> xcb_render_add_traps_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct create_solid_fill_request {
+pub struct xcb_render_create_solid_fill_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub picture :        picture,
-     pub color :          color
+     pub picture :        xcb_render_picture_t,
+     pub color :          xcb_render_color_t
 }
 
-impl Copy for create_solid_fill_request {}
-impl Clone for create_solid_fill_request {
-    fn clone(&self) -> create_solid_fill_request { *self }
+impl Copy for xcb_render_create_solid_fill_request_t {}
+impl Clone for xcb_render_create_solid_fill_request_t {
+    fn clone(&self) -> xcb_render_create_solid_fill_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct create_linear_gradient_request {
+pub struct xcb_render_create_linear_gradient_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub picture :        picture,
-     pub p1 :             pointfix,
-     pub p2 :             pointfix,
+     pub picture :        xcb_render_picture_t,
+     pub p1 :             xcb_render_pointfix_t,
+     pub p2 :             xcb_render_pointfix_t,
      pub num_stops :      u32
 }
 
-impl Copy for create_linear_gradient_request {}
-impl Clone for create_linear_gradient_request {
-    fn clone(&self) -> create_linear_gradient_request { *self }
+impl Copy for xcb_render_create_linear_gradient_request_t {}
+impl Clone for xcb_render_create_linear_gradient_request_t {
+    fn clone(&self) -> xcb_render_create_linear_gradient_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct create_radial_gradient_request {
+pub struct xcb_render_create_radial_gradient_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub picture :        picture,
-     pub inner :          pointfix,
-     pub outer :          pointfix,
-     pub inner_radius :   fixed,
-     pub outer_radius :   fixed,
+     pub picture :        xcb_render_picture_t,
+     pub inner :          xcb_render_pointfix_t,
+     pub outer :          xcb_render_pointfix_t,
+     pub inner_radius :   xcb_render_fixed_t,
+     pub outer_radius :   xcb_render_fixed_t,
      pub num_stops :      u32
 }
 
-impl Copy for create_radial_gradient_request {}
-impl Clone for create_radial_gradient_request {
-    fn clone(&self) -> create_radial_gradient_request { *self }
+impl Copy for xcb_render_create_radial_gradient_request_t {}
+impl Clone for xcb_render_create_radial_gradient_request_t {
+    fn clone(&self) -> xcb_render_create_radial_gradient_request_t { *self }
 }
 
 
 #[repr(C)]
-pub struct create_conical_gradient_request {
+pub struct xcb_render_create_conical_gradient_request_t {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
-     pub picture :        picture,
-     pub center :         pointfix,
-     pub angle :          fixed,
+     pub picture :        xcb_render_picture_t,
+     pub center :         xcb_render_pointfix_t,
+     pub angle :          xcb_render_fixed_t,
      pub num_stops :      u32
 }
 
-impl Copy for create_conical_gradient_request {}
-impl Clone for create_conical_gradient_request {
-    fn clone(&self) -> create_conical_gradient_request { *self }
+impl Copy for xcb_render_create_conical_gradient_request_t {}
+impl Clone for xcb_render_create_conical_gradient_request_t {
+    fn clone(&self) -> xcb_render_create_conical_gradient_request_t { *self }
 }
 #[link(name="xcb-render")]
 extern "C" {
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a glyph_iterator
+ * @param i Pointer to a xcb_render_glyph_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(glyph)
+ * element. The member index is increased by sizeof(xcb_render_glyph_t)
  *
  *
  */
-pub fn xcb_render_glyph_next (i:*mut glyph_iterator) -> c_void;
+pub fn xcb_render_glyph_next (i:*mut xcb_render_glyph_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An glyph_iterator
+ * @param i An xcb_render_glyph_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_render_glyph_end (i:glyph_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_render_glyph_end (i:xcb_render_glyph_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a glyphset_iterator
+ * @param i Pointer to a xcb_render_glyphset_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(glyphset)
+ * element. The member index is increased by sizeof(xcb_render_glyphset_t)
  *
  *
  */
-pub fn xcb_render_glyphset_next (i:*mut glyphset_iterator) -> c_void;
+pub fn xcb_render_glyphset_next (i:*mut xcb_render_glyphset_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An glyphset_iterator
+ * @param i An xcb_render_glyphset_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_render_glyphset_end (i:glyphset_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_render_glyphset_end (i:xcb_render_glyphset_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a picture_iterator
+ * @param i Pointer to a xcb_render_picture_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(picture)
+ * element. The member index is increased by sizeof(xcb_render_picture_t)
  *
  *
  */
-pub fn xcb_render_picture_next (i:*mut picture_iterator) -> c_void;
+pub fn xcb_render_picture_next (i:*mut xcb_render_picture_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An picture_iterator
+ * @param i An xcb_render_picture_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_render_picture_end (i:picture_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_render_picture_end (i:xcb_render_picture_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a pictformat_iterator
+ * @param i Pointer to a xcb_render_pictformat_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(pictformat)
+ * element. The member index is increased by sizeof(xcb_render_pictformat_t)
  *
  *
  */
-pub fn xcb_render_pictformat_next (i:*mut pictformat_iterator) -> c_void;
+pub fn xcb_render_pictformat_next (i:*mut xcb_render_pictformat_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An pictformat_iterator
+ * @param i An xcb_render_pictformat_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_render_pictformat_end (i:pictformat_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_render_pictformat_end (i:xcb_render_pictformat_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a fixed_iterator
+ * @param i Pointer to a xcb_render_fixed_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(fixed)
+ * element. The member index is increased by sizeof(xcb_render_fixed_t)
  *
  *
  */
-pub fn xcb_render_fixed_next (i:*mut fixed_iterator) -> c_void;
+pub fn xcb_render_fixed_next (i:*mut xcb_render_fixed_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An fixed_iterator
+ * @param i An xcb_render_fixed_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_render_fixed_end (i:fixed_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_render_fixed_end (i:xcb_render_fixed_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a directformat_iterator
+ * @param i Pointer to a xcb_render_directformat_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(directformat)
+ * element. The member index is increased by sizeof(xcb_render_directformat_t)
  *
  *
  */
-pub fn xcb_render_directformat_next (i:*mut directformat_iterator) -> c_void;
+pub fn xcb_render_directformat_next (i:*mut xcb_render_directformat_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An directformat_iterator
+ * @param i An xcb_render_directformat_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_render_directformat_end (i:directformat_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_render_directformat_end (i:xcb_render_directformat_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a pictforminfo_iterator
+ * @param i Pointer to a xcb_render_pictforminfo_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(pictforminfo)
+ * element. The member index is increased by sizeof(xcb_render_pictforminfo_t)
  *
  *
  */
-pub fn xcb_render_pictforminfo_next (i:*mut pictforminfo_iterator) -> c_void;
+pub fn xcb_render_pictforminfo_next (i:*mut xcb_render_pictforminfo_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An pictforminfo_iterator
+ * @param i An xcb_render_pictforminfo_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_render_pictforminfo_end (i:pictforminfo_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_render_pictforminfo_end (i:xcb_render_pictforminfo_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a pictvisual_iterator
+ * @param i Pointer to a xcb_render_pictvisual_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(pictvisual)
+ * element. The member index is increased by sizeof(xcb_render_pictvisual_t)
  *
  *
  */
-pub fn xcb_render_pictvisual_next (i:*mut pictvisual_iterator) -> c_void;
+pub fn xcb_render_pictvisual_next (i:*mut xcb_render_pictvisual_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An pictvisual_iterator
+ * @param i An xcb_render_pictvisual_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_render_pictvisual_end (i:pictvisual_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_render_pictvisual_end (i:xcb_render_pictvisual_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_render_pictdepth_sizeof (_buffer :  *mut c_void) -> c_int;
 
-pub fn xcb_render_pictdepth_visuals (R : *mut pictdepth) -> *mut pictvisual;
+pub fn xcb_render_pictdepth_visuals (R : *mut xcb_render_pictdepth_t) -> *mut xcb_render_pictvisual_t;
 
 
-pub fn xcb_render_pictdepth_visuals_length (R : *mut pictdepth) -> c_int;
+pub fn xcb_render_pictdepth_visuals_length (R : *mut xcb_render_pictdepth_t) -> c_int;
 
-pub fn xcb_render_pictdepth_visuals_iterator (R : *mut pictdepth) -> pictvisual_iterator;
+pub fn xcb_render_pictdepth_visuals_iterator (R : *mut xcb_render_pictdepth_t) -> xcb_render_pictvisual_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a pictdepth_iterator
+ * @param i Pointer to a xcb_render_pictdepth_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(pictdepth)
+ * element. The member index is increased by sizeof(xcb_render_pictdepth_t)
  *
  *
  */
-pub fn xcb_render_pictdepth_next (i:*mut pictdepth_iterator) -> c_void;
+pub fn xcb_render_pictdepth_next (i:*mut xcb_render_pictdepth_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An pictdepth_iterator
+ * @param i An xcb_render_pictdepth_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_render_pictdepth_end (i:pictdepth_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_render_pictdepth_end (i:xcb_render_pictdepth_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_render_pictscreen_sizeof (_buffer :  *mut c_void) -> c_int;
 
 
-pub fn xcb_render_pictscreen_depths_length (R : *mut pictscreen) -> c_int;
+pub fn xcb_render_pictscreen_depths_length (R : *mut xcb_render_pictscreen_t) -> c_int;
 
-pub fn xcb_render_pictscreen_depths_iterator (R : *mut pictscreen) -> pictdepth_iterator;
+pub fn xcb_render_pictscreen_depths_iterator (R : *mut xcb_render_pictscreen_t) -> xcb_render_pictdepth_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a pictscreen_iterator
+ * @param i Pointer to a xcb_render_pictscreen_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(pictscreen)
+ * element. The member index is increased by sizeof(xcb_render_pictscreen_t)
  *
  *
  */
-pub fn xcb_render_pictscreen_next (i:*mut pictscreen_iterator) -> c_void;
+pub fn xcb_render_pictscreen_next (i:*mut xcb_render_pictscreen_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An pictscreen_iterator
+ * @param i An xcb_render_pictscreen_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_render_pictscreen_end (i:pictscreen_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_render_pictscreen_end (i:xcb_render_pictscreen_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a indexvalue_iterator
+ * @param i Pointer to a xcb_render_indexvalue_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(indexvalue)
+ * element. The member index is increased by sizeof(xcb_render_indexvalue_t)
  *
  *
  */
-pub fn xcb_render_indexvalue_next (i:*mut indexvalue_iterator) -> c_void;
+pub fn xcb_render_indexvalue_next (i:*mut xcb_render_indexvalue_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An indexvalue_iterator
+ * @param i An xcb_render_indexvalue_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_render_indexvalue_end (i:indexvalue_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_render_indexvalue_end (i:xcb_render_indexvalue_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a color_iterator
+ * @param i Pointer to a xcb_render_color_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(color)
+ * element. The member index is increased by sizeof(xcb_render_color_t)
  *
  *
  */
-pub fn xcb_render_color_next (i:*mut color_iterator) -> c_void;
+pub fn xcb_render_color_next (i:*mut xcb_render_color_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An color_iterator
+ * @param i An xcb_render_color_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_render_color_end (i:color_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_render_color_end (i:xcb_render_color_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a pointfix_iterator
+ * @param i Pointer to a xcb_render_pointfix_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(pointfix)
+ * element. The member index is increased by sizeof(xcb_render_pointfix_t)
  *
  *
  */
-pub fn xcb_render_pointfix_next (i:*mut pointfix_iterator) -> c_void;
+pub fn xcb_render_pointfix_next (i:*mut xcb_render_pointfix_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An pointfix_iterator
+ * @param i An xcb_render_pointfix_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_render_pointfix_end (i:pointfix_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_render_pointfix_end (i:xcb_render_pointfix_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a linefix_iterator
+ * @param i Pointer to a xcb_render_linefix_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(linefix)
+ * element. The member index is increased by sizeof(xcb_render_linefix_t)
  *
  *
  */
-pub fn xcb_render_linefix_next (i:*mut linefix_iterator) -> c_void;
+pub fn xcb_render_linefix_next (i:*mut xcb_render_linefix_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An linefix_iterator
+ * @param i An xcb_render_linefix_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_render_linefix_end (i:linefix_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_render_linefix_end (i:xcb_render_linefix_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a triangle_iterator
+ * @param i Pointer to a xcb_render_triangle_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(triangle)
+ * element. The member index is increased by sizeof(xcb_render_triangle_t)
  *
  *
  */
-pub fn xcb_render_triangle_next (i:*mut triangle_iterator) -> c_void;
+pub fn xcb_render_triangle_next (i:*mut xcb_render_triangle_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An triangle_iterator
+ * @param i An xcb_render_triangle_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_render_triangle_end (i:triangle_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_render_triangle_end (i:xcb_render_triangle_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a trapezoid_iterator
+ * @param i Pointer to a xcb_render_trapezoid_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(trapezoid)
+ * element. The member index is increased by sizeof(xcb_render_trapezoid_t)
  *
  *
  */
-pub fn xcb_render_trapezoid_next (i:*mut trapezoid_iterator) -> c_void;
+pub fn xcb_render_trapezoid_next (i:*mut xcb_render_trapezoid_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An trapezoid_iterator
+ * @param i An xcb_render_trapezoid_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_render_trapezoid_end (i:trapezoid_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_render_trapezoid_end (i:xcb_render_trapezoid_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a glyphinfo_iterator
+ * @param i Pointer to a xcb_render_glyphinfo_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(glyphinfo)
+ * element. The member index is increased by sizeof(xcb_render_glyphinfo_t)
  *
  *
  */
-pub fn xcb_render_glyphinfo_next (i:*mut glyphinfo_iterator) -> c_void;
+pub fn xcb_render_glyphinfo_next (i:*mut xcb_render_glyphinfo_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An glyphinfo_iterator
+ * @param i An xcb_render_glyphinfo_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_render_glyphinfo_end (i:glyphinfo_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_render_glyphinfo_end (i:xcb_render_glyphinfo_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  *
@@ -1537,9 +1537,9 @@ pub fn xcb_render_glyphinfo_end (i:glyphinfo_iterator) -> ffi::base::generic_ite
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_query_version (c : *mut ffi::base::connection,
+pub fn xcb_render_query_version (c : *mut ffi::base::xcb_connection_t,
                                     client_major_version :  u32,
-                                    client_minor_version :  u32) -> query_version_cookie;
+                                    client_minor_version :  u32) -> xcb_render_query_version_cookie_t;
 
 /**
  *
@@ -1552,15 +1552,15 @@ pub fn xcb_render_query_version (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_render_query_version_unchecked (c : *mut ffi::base::connection,
+pub fn xcb_render_query_version_unchecked (c : *mut ffi::base::xcb_connection_t,
                                               client_major_version :  u32,
-                                              client_minor_version :  u32) -> query_version_cookie;
+                                              client_minor_version :  u32) -> xcb_render_query_version_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1570,9 +1570,9 @@ pub fn xcb_render_query_version_unchecked (c : *mut ffi::base::connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_render_query_version_reply (c : *mut ffi::base::connection,
-                                          cookie : query_version_cookie,
-                                          e : *mut *mut ffi::base::generic_error) -> *mut query_version_reply;
+pub fn xcb_render_query_version_reply (c : *mut ffi::base::xcb_connection_t,
+                                          cookie : xcb_render_query_version_cookie_t,
+                                          e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_render_query_version_reply_t;
 
 pub fn xcb_render_query_pict_formats_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1584,7 +1584,7 @@ pub fn xcb_render_query_pict_formats_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_query_pict_formats (c : *mut ffi::base::connection) -> query_pict_formats_cookie;
+pub fn xcb_render_query_pict_formats (c : *mut ffi::base::xcb_connection_t) -> xcb_render_query_pict_formats_cookie_t;
 
 /**
  *
@@ -1597,33 +1597,33 @@ pub fn xcb_render_query_pict_formats (c : *mut ffi::base::connection) -> query_p
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_render_query_pict_formats_unchecked (c : *mut ffi::base::connection) -> query_pict_formats_cookie;
+pub fn xcb_render_query_pict_formats_unchecked (c : *mut ffi::base::xcb_connection_t) -> xcb_render_query_pict_formats_cookie_t;
 
-pub fn xcb_render_query_pict_formats_formats (R : *mut query_pict_formats_reply) -> *mut pictforminfo;
-
-
-pub fn xcb_render_query_pict_formats_formats_length (R : *mut query_pict_formats_reply) -> c_int;
-
-pub fn xcb_render_query_pict_formats_formats_iterator (R : *mut query_pict_formats_reply) -> pictforminfo_iterator;
+pub fn xcb_render_query_pict_formats_formats (R : *mut xcb_render_query_pict_formats_reply_t) -> *mut xcb_render_pictforminfo_t;
 
 
-pub fn xcb_render_query_pict_formats_screens_length (R : *mut query_pict_formats_reply) -> c_int;
+pub fn xcb_render_query_pict_formats_formats_length (R : *mut xcb_render_query_pict_formats_reply_t) -> c_int;
 
-pub fn xcb_render_query_pict_formats_screens_iterator (R : *mut query_pict_formats_reply) -> pictscreen_iterator;
-
-pub fn xcb_render_query_pict_formats_subpixels (R : *mut query_pict_formats_reply) -> *mut u32;
+pub fn xcb_render_query_pict_formats_formats_iterator (R : *mut xcb_render_query_pict_formats_reply_t) -> xcb_render_pictforminfo_iterator_t;
 
 
-pub fn xcb_render_query_pict_formats_subpixels_length (R : *mut query_pict_formats_reply) -> c_int;
+pub fn xcb_render_query_pict_formats_screens_length (R : *mut xcb_render_query_pict_formats_reply_t) -> c_int;
+
+pub fn xcb_render_query_pict_formats_screens_iterator (R : *mut xcb_render_query_pict_formats_reply_t) -> xcb_render_pictscreen_iterator_t;
+
+pub fn xcb_render_query_pict_formats_subpixels (R : *mut xcb_render_query_pict_formats_reply_t) -> *mut u32;
 
 
-pub fn xcb_render_query_pict_formats_subpixels_end (R : *mut query_pict_formats_reply) -> ffi::base::generic_iterator;
+pub fn xcb_render_query_pict_formats_subpixels_length (R : *mut xcb_render_query_pict_formats_reply_t) -> c_int;
+
+
+pub fn xcb_render_query_pict_formats_subpixels_end (R : *mut xcb_render_query_pict_formats_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1633,9 +1633,9 @@ pub fn xcb_render_query_pict_formats_subpixels_end (R : *mut query_pict_formats_
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_render_query_pict_formats_reply (c : *mut ffi::base::connection,
-                                               cookie : query_pict_formats_cookie,
-                                               e : *mut *mut ffi::base::generic_error) -> *mut query_pict_formats_reply;
+pub fn xcb_render_query_pict_formats_reply (c : *mut ffi::base::xcb_connection_t,
+                                               cookie : xcb_render_query_pict_formats_cookie_t,
+                                               e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_render_query_pict_formats_reply_t;
 
 pub fn xcb_render_query_pict_index_values_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1647,8 +1647,8 @@ pub fn xcb_render_query_pict_index_values_sizeof (_buffer :  *mut c_void) -> c_i
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_query_pict_index_values (c : *mut ffi::base::connection,
-                                              format :  pictformat) -> query_pict_index_values_cookie;
+pub fn xcb_render_query_pict_index_values (c : *mut ffi::base::xcb_connection_t,
+                                              format :  xcb_render_pictformat_t) -> xcb_render_query_pict_index_values_cookie_t;
 
 /**
  *
@@ -1661,21 +1661,21 @@ pub fn xcb_render_query_pict_index_values (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_render_query_pict_index_values_unchecked (c : *mut ffi::base::connection,
-                                                        format :  pictformat) -> query_pict_index_values_cookie;
+pub fn xcb_render_query_pict_index_values_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                                        format :  xcb_render_pictformat_t) -> xcb_render_query_pict_index_values_cookie_t;
 
-pub fn xcb_render_query_pict_index_values_values (R : *mut query_pict_index_values_reply) -> *mut indexvalue;
+pub fn xcb_render_query_pict_index_values_values (R : *mut xcb_render_query_pict_index_values_reply_t) -> *mut xcb_render_indexvalue_t;
 
 
-pub fn xcb_render_query_pict_index_values_values_length (R : *mut query_pict_index_values_reply) -> c_int;
+pub fn xcb_render_query_pict_index_values_values_length (R : *mut xcb_render_query_pict_index_values_reply_t) -> c_int;
 
-pub fn xcb_render_query_pict_index_values_values_iterator (R : *mut query_pict_index_values_reply) -> indexvalue_iterator;
+pub fn xcb_render_query_pict_index_values_values_iterator (R : *mut xcb_render_query_pict_index_values_reply_t) -> xcb_render_indexvalue_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -1685,9 +1685,9 @@ pub fn xcb_render_query_pict_index_values_values_iterator (R : *mut query_pict_i
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_render_query_pict_index_values_reply (c : *mut ffi::base::connection,
-                                                    cookie : query_pict_index_values_cookie,
-                                                    e : *mut *mut ffi::base::generic_error) -> *mut query_pict_index_values_reply;
+pub fn xcb_render_query_pict_index_values_reply (c : *mut ffi::base::xcb_connection_t,
+                                                    cookie : xcb_render_query_pict_index_values_cookie_t,
+                                                    e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_render_query_pict_index_values_reply_t;
 
 pub fn xcb_render_create_picture_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1702,12 +1702,12 @@ pub fn xcb_render_create_picture_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_render_create_picture_checked (c : *mut ffi::base::connection,
-                                             pid :  picture,
-                                             drawable :  ffi::xproto::drawable,
-                                             format :  pictformat,
+pub fn xcb_render_create_picture_checked (c : *mut ffi::base::xcb_connection_t,
+                                             pid :  xcb_render_picture_t,
+                                             drawable :  ffi::xproto::xcb_drawable_t,
+                                             format :  xcb_render_pictformat_t,
                                              value_mask :  u32,
-                                             value_list : *mut u32) -> ffi::base::void_cookie;
+                                             value_list : *mut u32) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1717,12 +1717,12 @@ pub fn xcb_render_create_picture_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_create_picture (c : *mut ffi::base::connection,
-                                     pid :  picture,
-                                     drawable :  ffi::xproto::drawable,
-                                     format :  pictformat,
+pub fn xcb_render_create_picture (c : *mut ffi::base::xcb_connection_t,
+                                     pid :  xcb_render_picture_t,
+                                     drawable :  ffi::xproto::xcb_drawable_t,
+                                     format :  xcb_render_pictformat_t,
                                      value_mask :  u32,
-                                     value_list : *mut u32) -> ffi::base::void_cookie;
+                                     value_list : *mut u32) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_render_change_picture_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -1737,10 +1737,10 @@ pub fn xcb_render_change_picture_sizeof (_buffer :  *mut c_void) -> c_int;
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_render_change_picture_checked (c : *mut ffi::base::connection,
-                                             picture :  picture,
+pub fn xcb_render_change_picture_checked (c : *mut ffi::base::xcb_connection_t,
+                                             picture :  xcb_render_picture_t,
                                              value_mask :  u32,
-                                             value_list : *mut u32) -> ffi::base::void_cookie;
+                                             value_list : *mut u32) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1750,10 +1750,10 @@ pub fn xcb_render_change_picture_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_change_picture (c : *mut ffi::base::connection,
-                                     picture :  picture,
+pub fn xcb_render_change_picture (c : *mut ffi::base::xcb_connection_t,
+                                     picture :  xcb_render_picture_t,
                                      value_mask :  u32,
-                                     value_list : *mut u32) -> ffi::base::void_cookie;
+                                     value_list : *mut u32) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_render_set_picture_clip_rectangles_sizeof (_buffer :  *mut c_void,
                                                rectangles_len :  u32) -> c_int;
@@ -1769,12 +1769,12 @@ pub fn xcb_render_set_picture_clip_rectangles_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_render_set_picture_clip_rectangles_checked (c : *mut ffi::base::connection,
-                                                          picture :  picture,
+pub fn xcb_render_set_picture_clip_rectangles_checked (c : *mut ffi::base::xcb_connection_t,
+                                                          picture :  xcb_render_picture_t,
                                                           clip_x_origin :  i16,
                                                           clip_y_origin :  i16,
                                                           rectangles_len :  u32,
-                                                          rectangles : *mut ffi::xproto::rectangle) -> ffi::base::void_cookie;
+                                                          rectangles : *mut ffi::xproto::xcb_rectangle_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1784,12 +1784,12 @@ pub fn xcb_render_set_picture_clip_rectangles_checked (c : *mut ffi::base::conne
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_set_picture_clip_rectangles (c : *mut ffi::base::connection,
-                                                  picture :  picture,
+pub fn xcb_render_set_picture_clip_rectangles (c : *mut ffi::base::xcb_connection_t,
+                                                  picture :  xcb_render_picture_t,
                                                   clip_x_origin :  i16,
                                                   clip_y_origin :  i16,
                                                   rectangles_len :  u32,
-                                                  rectangles : *mut ffi::xproto::rectangle) -> ffi::base::void_cookie;
+                                                  rectangles : *mut ffi::xproto::xcb_rectangle_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1802,8 +1802,8 @@ pub fn xcb_render_set_picture_clip_rectangles (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_render_free_picture_checked (c : *mut ffi::base::connection,
-                                           picture :  picture) -> ffi::base::void_cookie;
+pub fn xcb_render_free_picture_checked (c : *mut ffi::base::xcb_connection_t,
+                                           picture :  xcb_render_picture_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1813,8 +1813,8 @@ pub fn xcb_render_free_picture_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_free_picture (c : *mut ffi::base::connection,
-                                   picture :  picture) -> ffi::base::void_cookie;
+pub fn xcb_render_free_picture (c : *mut ffi::base::xcb_connection_t,
+                                   picture :  xcb_render_picture_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1827,11 +1827,11 @@ pub fn xcb_render_free_picture (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_render_composite_checked (c : *mut ffi::base::connection,
+pub fn xcb_render_composite_checked (c : *mut ffi::base::xcb_connection_t,
                                         op :  u8,
-                                        src :  picture,
-                                        mask :  picture,
-                                        dst :  picture,
+                                        src :  xcb_render_picture_t,
+                                        mask :  xcb_render_picture_t,
+                                        dst :  xcb_render_picture_t,
                                         src_x :  i16,
                                         src_y :  i16,
                                         mask_x :  i16,
@@ -1839,7 +1839,7 @@ pub fn xcb_render_composite_checked (c : *mut ffi::base::connection,
                                         dst_x :  i16,
                                         dst_y :  i16,
                                         width :  u16,
-                                        height :  u16) -> ffi::base::void_cookie;
+                                        height :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1849,11 +1849,11 @@ pub fn xcb_render_composite_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_composite (c : *mut ffi::base::connection,
+pub fn xcb_render_composite (c : *mut ffi::base::xcb_connection_t,
                                 op :  u8,
-                                src :  picture,
-                                mask :  picture,
-                                dst :  picture,
+                                src :  xcb_render_picture_t,
+                                mask :  xcb_render_picture_t,
+                                dst :  xcb_render_picture_t,
                                 src_x :  i16,
                                 src_y :  i16,
                                 mask_x :  i16,
@@ -1861,7 +1861,7 @@ pub fn xcb_render_composite (c : *mut ffi::base::connection,
                                 dst_x :  i16,
                                 dst_y :  i16,
                                 width :  u16,
-                                height :  u16) -> ffi::base::void_cookie;
+                                height :  u16) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_render_trapezoids_sizeof (_buffer :  *mut c_void,
                               traps_len :    u32) -> c_int;
@@ -1877,15 +1877,15 @@ pub fn xcb_render_trapezoids_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_render_trapezoids_checked (c : *mut ffi::base::connection,
+pub fn xcb_render_trapezoids_checked (c : *mut ffi::base::xcb_connection_t,
                                          op :  u8,
-                                         src :  picture,
-                                         dst :  picture,
-                                         mask_format :  pictformat,
+                                         src :  xcb_render_picture_t,
+                                         dst :  xcb_render_picture_t,
+                                         mask_format :  xcb_render_pictformat_t,
                                          src_x :  i16,
                                          src_y :  i16,
                                          traps_len :  u32,
-                                         traps : *mut trapezoid) -> ffi::base::void_cookie;
+                                         traps : *mut xcb_render_trapezoid_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1895,15 +1895,15 @@ pub fn xcb_render_trapezoids_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_trapezoids (c : *mut ffi::base::connection,
+pub fn xcb_render_trapezoids (c : *mut ffi::base::xcb_connection_t,
                                  op :  u8,
-                                 src :  picture,
-                                 dst :  picture,
-                                 mask_format :  pictformat,
+                                 src :  xcb_render_picture_t,
+                                 dst :  xcb_render_picture_t,
+                                 mask_format :  xcb_render_pictformat_t,
                                  src_x :  i16,
                                  src_y :  i16,
                                  traps_len :  u32,
-                                 traps : *mut trapezoid) -> ffi::base::void_cookie;
+                                 traps : *mut xcb_render_trapezoid_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_render_triangles_sizeof (_buffer :  *mut c_void,
                              triangles_len :  u32) -> c_int;
@@ -1919,15 +1919,15 @@ pub fn xcb_render_triangles_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_render_triangles_checked (c : *mut ffi::base::connection,
+pub fn xcb_render_triangles_checked (c : *mut ffi::base::xcb_connection_t,
                                         op :  u8,
-                                        src :  picture,
-                                        dst :  picture,
-                                        mask_format :  pictformat,
+                                        src :  xcb_render_picture_t,
+                                        dst :  xcb_render_picture_t,
+                                        mask_format :  xcb_render_pictformat_t,
                                         src_x :  i16,
                                         src_y :  i16,
                                         triangles_len :  u32,
-                                        triangles : *mut triangle) -> ffi::base::void_cookie;
+                                        triangles : *mut xcb_render_triangle_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1937,15 +1937,15 @@ pub fn xcb_render_triangles_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_triangles (c : *mut ffi::base::connection,
+pub fn xcb_render_triangles (c : *mut ffi::base::xcb_connection_t,
                                 op :  u8,
-                                src :  picture,
-                                dst :  picture,
-                                mask_format :  pictformat,
+                                src :  xcb_render_picture_t,
+                                dst :  xcb_render_picture_t,
+                                mask_format :  xcb_render_pictformat_t,
                                 src_x :  i16,
                                 src_y :  i16,
                                 triangles_len :  u32,
-                                triangles : *mut triangle) -> ffi::base::void_cookie;
+                                triangles : *mut xcb_render_triangle_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_render_tri_strip_sizeof (_buffer :  *mut c_void,
                              points_len :   u32) -> c_int;
@@ -1961,15 +1961,15 @@ pub fn xcb_render_tri_strip_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_render_tri_strip_checked (c : *mut ffi::base::connection,
+pub fn xcb_render_tri_strip_checked (c : *mut ffi::base::xcb_connection_t,
                                         op :  u8,
-                                        src :  picture,
-                                        dst :  picture,
-                                        mask_format :  pictformat,
+                                        src :  xcb_render_picture_t,
+                                        dst :  xcb_render_picture_t,
+                                        mask_format :  xcb_render_pictformat_t,
                                         src_x :  i16,
                                         src_y :  i16,
                                         points_len :  u32,
-                                        points : *mut pointfix) -> ffi::base::void_cookie;
+                                        points : *mut xcb_render_pointfix_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -1979,15 +1979,15 @@ pub fn xcb_render_tri_strip_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_tri_strip (c : *mut ffi::base::connection,
+pub fn xcb_render_tri_strip (c : *mut ffi::base::xcb_connection_t,
                                 op :  u8,
-                                src :  picture,
-                                dst :  picture,
-                                mask_format :  pictformat,
+                                src :  xcb_render_picture_t,
+                                dst :  xcb_render_picture_t,
+                                mask_format :  xcb_render_pictformat_t,
                                 src_x :  i16,
                                 src_y :  i16,
                                 points_len :  u32,
-                                points : *mut pointfix) -> ffi::base::void_cookie;
+                                points : *mut xcb_render_pointfix_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_render_tri_fan_sizeof (_buffer :  *mut c_void,
                            points_len :   u32) -> c_int;
@@ -2003,15 +2003,15 @@ pub fn xcb_render_tri_fan_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_render_tri_fan_checked (c : *mut ffi::base::connection,
+pub fn xcb_render_tri_fan_checked (c : *mut ffi::base::xcb_connection_t,
                                       op :  u8,
-                                      src :  picture,
-                                      dst :  picture,
-                                      mask_format :  pictformat,
+                                      src :  xcb_render_picture_t,
+                                      dst :  xcb_render_picture_t,
+                                      mask_format :  xcb_render_pictformat_t,
                                       src_x :  i16,
                                       src_y :  i16,
                                       points_len :  u32,
-                                      points : *mut pointfix) -> ffi::base::void_cookie;
+                                      points : *mut xcb_render_pointfix_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2021,15 +2021,15 @@ pub fn xcb_render_tri_fan_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_tri_fan (c : *mut ffi::base::connection,
+pub fn xcb_render_tri_fan (c : *mut ffi::base::xcb_connection_t,
                               op :  u8,
-                              src :  picture,
-                              dst :  picture,
-                              mask_format :  pictformat,
+                              src :  xcb_render_picture_t,
+                              dst :  xcb_render_picture_t,
+                              mask_format :  xcb_render_pictformat_t,
                               src_x :  i16,
                               src_y :  i16,
                               points_len :  u32,
-                              points : *mut pointfix) -> ffi::base::void_cookie;
+                              points : *mut xcb_render_pointfix_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2042,9 +2042,9 @@ pub fn xcb_render_tri_fan (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_render_create_glyph_set_checked (c : *mut ffi::base::connection,
-                                               gsid :  glyphset,
-                                               format :  pictformat) -> ffi::base::void_cookie;
+pub fn xcb_render_create_glyph_set_checked (c : *mut ffi::base::xcb_connection_t,
+                                               gsid :  xcb_render_glyphset_t,
+                                               format :  xcb_render_pictformat_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2054,36 +2054,9 @@ pub fn xcb_render_create_glyph_set_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_create_glyph_set (c : *mut ffi::base::connection,
-                                       gsid :  glyphset,
-                                       format :  pictformat) -> ffi::base::void_cookie;
-
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
-pub fn xcb_render_reference_glyph_set_checked (c : *mut ffi::base::connection,
-                                                  gsid :  glyphset,
-                                                  existing :  glyphset) -> ffi::base::void_cookie;
-
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
-pub fn xcb_render_reference_glyph_set (c : *mut ffi::base::connection,
-                                          gsid :  glyphset,
-                                          existing :  glyphset) -> ffi::base::void_cookie;
+pub fn xcb_render_create_glyph_set (c : *mut ffi::base::xcb_connection_t,
+                                       gsid :  xcb_render_glyphset_t,
+                                       format :  xcb_render_pictformat_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2096,8 +2069,9 @@ pub fn xcb_render_reference_glyph_set (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_render_free_glyph_set_checked (c : *mut ffi::base::connection,
-                                             glyphset :  glyphset) -> ffi::base::void_cookie;
+pub fn xcb_render_reference_glyph_set_checked (c : *mut ffi::base::xcb_connection_t,
+                                                  gsid :  xcb_render_glyphset_t,
+                                                  existing :  xcb_render_glyphset_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2107,8 +2081,34 @@ pub fn xcb_render_free_glyph_set_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_free_glyph_set (c : *mut ffi::base::connection,
-                                     glyphset :  glyphset) -> ffi::base::void_cookie;
+pub fn xcb_render_reference_glyph_set (c : *mut ffi::base::xcb_connection_t,
+                                          gsid :  xcb_render_glyphset_t,
+                                          existing :  xcb_render_glyphset_t) -> ffi::base::xcb_void_cookie_t;
+
+/**
+ *
+ * @param c The connection
+ * @return A cookie
+ *
+ * Delivers a request to the X server.
+ *
+ * This form can be used only if the request will not cause
+ * a reply to be generated. Any returned error will be
+ * saved for handling by xcb_request_check().
+ */
+pub fn xcb_render_free_glyph_set_checked (c : *mut ffi::base::xcb_connection_t,
+                                             glyphset :  xcb_render_glyphset_t) -> ffi::base::xcb_void_cookie_t;
+
+/**
+ *
+ * @param c The connection
+ * @return A cookie
+ *
+ * Delivers a request to the X server.
+ *
+ */
+pub fn xcb_render_free_glyph_set (c : *mut ffi::base::xcb_connection_t,
+                                     glyphset :  xcb_render_glyphset_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_render_add_glyphs_sizeof (_buffer :  *mut c_void,
                               data_len :     u32) -> c_int;
@@ -2124,13 +2124,13 @@ pub fn xcb_render_add_glyphs_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_render_add_glyphs_checked (c : *mut ffi::base::connection,
-                                         glyphset :  glyphset,
+pub fn xcb_render_add_glyphs_checked (c : *mut ffi::base::xcb_connection_t,
+                                         glyphset :  xcb_render_glyphset_t,
                                          glyphs_len :  u32,
                                          glyphids : *mut u32,
-                                         glyphs : *mut glyphinfo,
+                                         glyphs : *mut xcb_render_glyphinfo_t,
                                          data_len :  u32,
-                                         data : *mut u8) -> ffi::base::void_cookie;
+                                         data : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2140,13 +2140,13 @@ pub fn xcb_render_add_glyphs_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_add_glyphs (c : *mut ffi::base::connection,
-                                 glyphset :  glyphset,
+pub fn xcb_render_add_glyphs (c : *mut ffi::base::xcb_connection_t,
+                                 glyphset :  xcb_render_glyphset_t,
                                  glyphs_len :  u32,
                                  glyphids : *mut u32,
-                                 glyphs : *mut glyphinfo,
+                                 glyphs : *mut xcb_render_glyphinfo_t,
                                  data_len :  u32,
-                                 data : *mut u8) -> ffi::base::void_cookie;
+                                 data : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_render_free_glyphs_sizeof (_buffer :  *mut c_void,
                                glyphs_len :   u32) -> c_int;
@@ -2162,10 +2162,10 @@ pub fn xcb_render_free_glyphs_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_render_free_glyphs_checked (c : *mut ffi::base::connection,
-                                          glyphset :  glyphset,
+pub fn xcb_render_free_glyphs_checked (c : *mut ffi::base::xcb_connection_t,
+                                          glyphset :  xcb_render_glyphset_t,
                                           glyphs_len :  u32,
-                                          glyphs : *mut glyph) -> ffi::base::void_cookie;
+                                          glyphs : *mut xcb_render_glyph_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2175,10 +2175,10 @@ pub fn xcb_render_free_glyphs_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_free_glyphs (c : *mut ffi::base::connection,
-                                  glyphset :  glyphset,
+pub fn xcb_render_free_glyphs (c : *mut ffi::base::xcb_connection_t,
+                                  glyphset :  xcb_render_glyphset_t,
                                   glyphs_len :  u32,
-                                  glyphs : *mut glyph) -> ffi::base::void_cookie;
+                                  glyphs : *mut xcb_render_glyph_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_render_composite_glyphs_8_sizeof (_buffer :  *mut c_void,
                                       glyphcmds_len :  u32) -> c_int;
@@ -2194,16 +2194,16 @@ pub fn xcb_render_composite_glyphs_8_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_render_composite_glyphs_8_checked (c : *mut ffi::base::connection,
+pub fn xcb_render_composite_glyphs_8_checked (c : *mut ffi::base::xcb_connection_t,
                                                  op :  u8,
-                                                 src :  picture,
-                                                 dst :  picture,
-                                                 mask_format :  pictformat,
-                                                 glyphset :  glyphset,
+                                                 src :  xcb_render_picture_t,
+                                                 dst :  xcb_render_picture_t,
+                                                 mask_format :  xcb_render_pictformat_t,
+                                                 glyphset :  xcb_render_glyphset_t,
                                                  src_x :  i16,
                                                  src_y :  i16,
                                                  glyphcmds_len :  u32,
-                                                 glyphcmds : *mut u8) -> ffi::base::void_cookie;
+                                                 glyphcmds : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2213,16 +2213,16 @@ pub fn xcb_render_composite_glyphs_8_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_composite_glyphs_8 (c : *mut ffi::base::connection,
+pub fn xcb_render_composite_glyphs_8 (c : *mut ffi::base::xcb_connection_t,
                                          op :  u8,
-                                         src :  picture,
-                                         dst :  picture,
-                                         mask_format :  pictformat,
-                                         glyphset :  glyphset,
+                                         src :  xcb_render_picture_t,
+                                         dst :  xcb_render_picture_t,
+                                         mask_format :  xcb_render_pictformat_t,
+                                         glyphset :  xcb_render_glyphset_t,
                                          src_x :  i16,
                                          src_y :  i16,
                                          glyphcmds_len :  u32,
-                                         glyphcmds : *mut u8) -> ffi::base::void_cookie;
+                                         glyphcmds : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_render_composite_glyphs_16_sizeof (_buffer :  *mut c_void,
                                        glyphcmds_len :  u32) -> c_int;
@@ -2238,16 +2238,16 @@ pub fn xcb_render_composite_glyphs_16_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_render_composite_glyphs_16_checked (c : *mut ffi::base::connection,
+pub fn xcb_render_composite_glyphs_16_checked (c : *mut ffi::base::xcb_connection_t,
                                                   op :  u8,
-                                                  src :  picture,
-                                                  dst :  picture,
-                                                  mask_format :  pictformat,
-                                                  glyphset :  glyphset,
+                                                  src :  xcb_render_picture_t,
+                                                  dst :  xcb_render_picture_t,
+                                                  mask_format :  xcb_render_pictformat_t,
+                                                  glyphset :  xcb_render_glyphset_t,
                                                   src_x :  i16,
                                                   src_y :  i16,
                                                   glyphcmds_len :  u32,
-                                                  glyphcmds : *mut u8) -> ffi::base::void_cookie;
+                                                  glyphcmds : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2257,16 +2257,16 @@ pub fn xcb_render_composite_glyphs_16_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_composite_glyphs_16 (c : *mut ffi::base::connection,
+pub fn xcb_render_composite_glyphs_16 (c : *mut ffi::base::xcb_connection_t,
                                           op :  u8,
-                                          src :  picture,
-                                          dst :  picture,
-                                          mask_format :  pictformat,
-                                          glyphset :  glyphset,
+                                          src :  xcb_render_picture_t,
+                                          dst :  xcb_render_picture_t,
+                                          mask_format :  xcb_render_pictformat_t,
+                                          glyphset :  xcb_render_glyphset_t,
                                           src_x :  i16,
                                           src_y :  i16,
                                           glyphcmds_len :  u32,
-                                          glyphcmds : *mut u8) -> ffi::base::void_cookie;
+                                          glyphcmds : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_render_composite_glyphs_32_sizeof (_buffer :  *mut c_void,
                                        glyphcmds_len :  u32) -> c_int;
@@ -2282,16 +2282,16 @@ pub fn xcb_render_composite_glyphs_32_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_render_composite_glyphs_32_checked (c : *mut ffi::base::connection,
+pub fn xcb_render_composite_glyphs_32_checked (c : *mut ffi::base::xcb_connection_t,
                                                   op :  u8,
-                                                  src :  picture,
-                                                  dst :  picture,
-                                                  mask_format :  pictformat,
-                                                  glyphset :  glyphset,
+                                                  src :  xcb_render_picture_t,
+                                                  dst :  xcb_render_picture_t,
+                                                  mask_format :  xcb_render_pictformat_t,
+                                                  glyphset :  xcb_render_glyphset_t,
                                                   src_x :  i16,
                                                   src_y :  i16,
                                                   glyphcmds_len :  u32,
-                                                  glyphcmds : *mut u8) -> ffi::base::void_cookie;
+                                                  glyphcmds : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2301,16 +2301,16 @@ pub fn xcb_render_composite_glyphs_32_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_composite_glyphs_32 (c : *mut ffi::base::connection,
+pub fn xcb_render_composite_glyphs_32 (c : *mut ffi::base::xcb_connection_t,
                                           op :  u8,
-                                          src :  picture,
-                                          dst :  picture,
-                                          mask_format :  pictformat,
-                                          glyphset :  glyphset,
+                                          src :  xcb_render_picture_t,
+                                          dst :  xcb_render_picture_t,
+                                          mask_format :  xcb_render_pictformat_t,
+                                          glyphset :  xcb_render_glyphset_t,
                                           src_x :  i16,
                                           src_y :  i16,
                                           glyphcmds_len :  u32,
-                                          glyphcmds : *mut u8) -> ffi::base::void_cookie;
+                                          glyphcmds : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_render_fill_rectangles_sizeof (_buffer :  *mut c_void,
                                    rects_len :    u32) -> c_int;
@@ -2326,12 +2326,12 @@ pub fn xcb_render_fill_rectangles_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_render_fill_rectangles_checked (c : *mut ffi::base::connection,
+pub fn xcb_render_fill_rectangles_checked (c : *mut ffi::base::xcb_connection_t,
                                               op :  u8,
-                                              dst :  picture,
-                                              color :  color,
+                                              dst :  xcb_render_picture_t,
+                                              color :  xcb_render_color_t,
                                               rects_len :  u32,
-                                              rects : *mut ffi::xproto::rectangle) -> ffi::base::void_cookie;
+                                              rects : *mut ffi::xproto::xcb_rectangle_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2341,12 +2341,12 @@ pub fn xcb_render_fill_rectangles_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_fill_rectangles (c : *mut ffi::base::connection,
+pub fn xcb_render_fill_rectangles (c : *mut ffi::base::xcb_connection_t,
                                       op :  u8,
-                                      dst :  picture,
-                                      color :  color,
+                                      dst :  xcb_render_picture_t,
+                                      color :  xcb_render_color_t,
                                       rects_len :  u32,
-                                      rects : *mut ffi::xproto::rectangle) -> ffi::base::void_cookie;
+                                      rects : *mut ffi::xproto::xcb_rectangle_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2359,11 +2359,11 @@ pub fn xcb_render_fill_rectangles (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_render_create_cursor_checked (c : *mut ffi::base::connection,
-                                            cid :  ffi::xproto::cursor,
-                                            source :  picture,
+pub fn xcb_render_create_cursor_checked (c : *mut ffi::base::xcb_connection_t,
+                                            cid :  ffi::xproto::xcb_cursor_t,
+                                            source :  xcb_render_picture_t,
                                             x :  u16,
-                                            y :  u16) -> ffi::base::void_cookie;
+                                            y :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2373,34 +2373,34 @@ pub fn xcb_render_create_cursor_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_create_cursor (c : *mut ffi::base::connection,
-                                    cid :  ffi::xproto::cursor,
-                                    source :  picture,
+pub fn xcb_render_create_cursor (c : *mut ffi::base::xcb_connection_t,
+                                    cid :  ffi::xproto::xcb_cursor_t,
+                                    source :  xcb_render_picture_t,
                                     x :  u16,
-                                    y :  u16) -> ffi::base::void_cookie;
+                                    y :  u16) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a transform_iterator
+ * @param i Pointer to a xcb_render_transform_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(transform)
+ * element. The member index is increased by sizeof(xcb_render_transform_t)
  *
  *
  */
-pub fn xcb_render_transform_next (i:*mut transform_iterator) -> c_void;
+pub fn xcb_render_transform_next (i:*mut xcb_render_transform_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An transform_iterator
+ * @param i An xcb_render_transform_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_render_transform_end (i:transform_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_render_transform_end (i:xcb_render_transform_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  *
@@ -2413,9 +2413,9 @@ pub fn xcb_render_transform_end (i:transform_iterator) -> ffi::base::generic_ite
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_render_set_picture_transform_checked (c : *mut ffi::base::connection,
-                                                    picture :  picture,
-                                                    transform :  transform) -> ffi::base::void_cookie;
+pub fn xcb_render_set_picture_transform_checked (c : *mut ffi::base::xcb_connection_t,
+                                                    picture :  xcb_render_picture_t,
+                                                    transform :  xcb_render_transform_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2425,9 +2425,9 @@ pub fn xcb_render_set_picture_transform_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_set_picture_transform (c : *mut ffi::base::connection,
-                                            picture :  picture,
-                                            transform :  transform) -> ffi::base::void_cookie;
+pub fn xcb_render_set_picture_transform (c : *mut ffi::base::xcb_connection_t,
+                                            picture :  xcb_render_picture_t,
+                                            transform :  xcb_render_transform_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_render_query_filters_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -2439,8 +2439,8 @@ pub fn xcb_render_query_filters_sizeof (_buffer :  *mut c_void) -> c_int;
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_query_filters (c : *mut ffi::base::connection,
-                                    drawable :  ffi::xproto::drawable) -> query_filters_cookie;
+pub fn xcb_render_query_filters (c : *mut ffi::base::xcb_connection_t,
+                                    drawable :  ffi::xproto::xcb_drawable_t) -> xcb_render_query_filters_cookie_t;
 
 /**
  *
@@ -2453,27 +2453,27 @@ pub fn xcb_render_query_filters (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_render_query_filters_unchecked (c : *mut ffi::base::connection,
-                                              drawable :  ffi::xproto::drawable) -> query_filters_cookie;
+pub fn xcb_render_query_filters_unchecked (c : *mut ffi::base::xcb_connection_t,
+                                              drawable :  ffi::xproto::xcb_drawable_t) -> xcb_render_query_filters_cookie_t;
 
-pub fn xcb_render_query_filters_aliases (R : *mut query_filters_reply) -> *mut u16;
-
-
-pub fn xcb_render_query_filters_aliases_length (R : *mut query_filters_reply) -> c_int;
+pub fn xcb_render_query_filters_aliases (R : *mut xcb_render_query_filters_reply_t) -> *mut u16;
 
 
-pub fn xcb_render_query_filters_aliases_end (R : *mut query_filters_reply) -> ffi::base::generic_iterator;
+pub fn xcb_render_query_filters_aliases_length (R : *mut xcb_render_query_filters_reply_t) -> c_int;
 
 
-pub fn xcb_render_query_filters_filters_length (R : *mut query_filters_reply) -> c_int;
+pub fn xcb_render_query_filters_aliases_end (R : *mut xcb_render_query_filters_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
-pub fn xcb_render_query_filters_filters_iterator (R : *mut query_filters_reply) -> ffi::xproto::str_iterator;
+
+pub fn xcb_render_query_filters_filters_length (R : *mut xcb_render_query_filters_reply_t) -> c_int;
+
+pub fn xcb_render_query_filters_filters_iterator (R : *mut xcb_render_query_filters_reply_t) -> ffi::xproto::xcb_str_iterator_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -2483,9 +2483,9 @@ pub fn xcb_render_query_filters_filters_iterator (R : *mut query_filters_reply) 
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_render_query_filters_reply (c : *mut ffi::base::connection,
-                                          cookie : query_filters_cookie,
-                                          e : *mut *mut ffi::base::generic_error) -> *mut query_filters_reply;
+pub fn xcb_render_query_filters_reply (c : *mut ffi::base::xcb_connection_t,
+                                          cookie : xcb_render_query_filters_cookie_t,
+                                          e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_render_query_filters_reply_t;
 
 pub fn xcb_render_set_picture_filter_sizeof (_buffer :  *mut c_void,
                                       values_len :   u32) -> c_int;
@@ -2501,12 +2501,12 @@ pub fn xcb_render_set_picture_filter_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_render_set_picture_filter_checked (c : *mut ffi::base::connection,
-                                                 picture :  picture,
+pub fn xcb_render_set_picture_filter_checked (c : *mut ffi::base::xcb_connection_t,
+                                                 picture :  xcb_render_picture_t,
                                                  filter_len :  u16,
                                                  filter : *mut c_char,
                                                  values_len :  u32,
-                                                 values : *mut fixed) -> ffi::base::void_cookie;
+                                                 values : *mut xcb_render_fixed_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2516,35 +2516,35 @@ pub fn xcb_render_set_picture_filter_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_set_picture_filter (c : *mut ffi::base::connection,
-                                         picture :  picture,
+pub fn xcb_render_set_picture_filter (c : *mut ffi::base::xcb_connection_t,
+                                         picture :  xcb_render_picture_t,
                                          filter_len :  u16,
                                          filter : *mut c_char,
                                          values_len :  u32,
-                                         values : *mut fixed) -> ffi::base::void_cookie;
+                                         values : *mut xcb_render_fixed_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a animcursorelt_iterator
+ * @param i Pointer to a xcb_render_animcursorelt_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(animcursorelt)
+ * element. The member index is increased by sizeof(xcb_render_animcursorelt_t)
  *
  *
  */
-pub fn xcb_render_animcursorelt_next (i:*mut animcursorelt_iterator) -> c_void;
+pub fn xcb_render_animcursorelt_next (i:*mut xcb_render_animcursorelt_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An animcursorelt_iterator
+ * @param i An xcb_render_animcursorelt_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_render_animcursorelt_end (i:animcursorelt_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_render_animcursorelt_end (i:xcb_render_animcursorelt_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_render_create_anim_cursor_sizeof (_buffer :  *mut c_void,
                                       cursors_len :  u32) -> c_int;
@@ -2560,10 +2560,10 @@ pub fn xcb_render_create_anim_cursor_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_render_create_anim_cursor_checked (c : *mut ffi::base::connection,
-                                                 cid :  ffi::xproto::cursor,
+pub fn xcb_render_create_anim_cursor_checked (c : *mut ffi::base::xcb_connection_t,
+                                                 cid :  ffi::xproto::xcb_cursor_t,
                                                  cursors_len :  u32,
-                                                 cursors : *mut animcursorelt) -> ffi::base::void_cookie;
+                                                 cursors : *mut xcb_render_animcursorelt_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2573,56 +2573,56 @@ pub fn xcb_render_create_anim_cursor_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_create_anim_cursor (c : *mut ffi::base::connection,
-                                         cid :  ffi::xproto::cursor,
+pub fn xcb_render_create_anim_cursor (c : *mut ffi::base::xcb_connection_t,
+                                         cid :  ffi::xproto::xcb_cursor_t,
                                          cursors_len :  u32,
-                                         cursors : *mut animcursorelt) -> ffi::base::void_cookie;
+                                         cursors : *mut xcb_render_animcursorelt_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a spanfix_iterator
+ * @param i Pointer to a xcb_render_spanfix_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(spanfix)
+ * element. The member index is increased by sizeof(xcb_render_spanfix_t)
  *
  *
  */
-pub fn xcb_render_spanfix_next (i:*mut spanfix_iterator) -> c_void;
+pub fn xcb_render_spanfix_next (i:*mut xcb_render_spanfix_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An spanfix_iterator
+ * @param i An xcb_render_spanfix_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_render_spanfix_end (i:spanfix_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_render_spanfix_end (i:xcb_render_spanfix_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 /**
  * Get the next element of the iterator
- * @param i Pointer to a trap_iterator
+ * @param i Pointer to a xcb_render_trap_iterator_t
  *
  * Get the next element in the iterator. The member rem is
  * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(trap)
+ * element. The member index is increased by sizeof(xcb_render_trap_t)
  *
  *
  */
-pub fn xcb_render_trap_next (i:*mut trap_iterator) -> c_void;
+pub fn xcb_render_trap_next (i:*mut xcb_render_trap_iterator_t) -> c_void;
 
 /**
  * Return the iterator pointing to the last element
- * @param i An trap_iterator
+ * @param i An xcb_render_trap_iterator_t
  * @return  The iterator pointing to the last element
  *
  * Set the current element in the iterator to the last element.
  * The member rem is set to 0. The member data points to the
  * last element.
  */
-pub fn xcb_render_trap_end (i:trap_iterator) -> ffi::base::generic_iterator;
+pub fn xcb_render_trap_end (i:xcb_render_trap_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_render_add_traps_sizeof (_buffer :  *mut c_void,
                              traps_len :    u32) -> c_int;
@@ -2638,12 +2638,12 @@ pub fn xcb_render_add_traps_sizeof (_buffer :  *mut c_void,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_render_add_traps_checked (c : *mut ffi::base::connection,
-                                        picture :  picture,
+pub fn xcb_render_add_traps_checked (c : *mut ffi::base::xcb_connection_t,
+                                        picture :  xcb_render_picture_t,
                                         x_off :  i16,
                                         y_off :  i16,
                                         traps_len :  u32,
-                                        traps : *mut trap) -> ffi::base::void_cookie;
+                                        traps : *mut xcb_render_trap_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2653,12 +2653,12 @@ pub fn xcb_render_add_traps_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_add_traps (c : *mut ffi::base::connection,
-                                picture :  picture,
+pub fn xcb_render_add_traps (c : *mut ffi::base::xcb_connection_t,
+                                picture :  xcb_render_picture_t,
                                 x_off :  i16,
                                 y_off :  i16,
                                 traps_len :  u32,
-                                traps : *mut trap) -> ffi::base::void_cookie;
+                                traps : *mut xcb_render_trap_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2671,9 +2671,9 @@ pub fn xcb_render_add_traps (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_render_create_solid_fill_checked (c : *mut ffi::base::connection,
-                                                picture :  picture,
-                                                color :  color) -> ffi::base::void_cookie;
+pub fn xcb_render_create_solid_fill_checked (c : *mut ffi::base::xcb_connection_t,
+                                                picture :  xcb_render_picture_t,
+                                                color :  xcb_render_color_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2683,9 +2683,9 @@ pub fn xcb_render_create_solid_fill_checked (c : *mut ffi::base::connection,
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_create_solid_fill (c : *mut ffi::base::connection,
-                                        picture :  picture,
-                                        color :  color) -> ffi::base::void_cookie;
+pub fn xcb_render_create_solid_fill (c : *mut ffi::base::xcb_connection_t,
+                                        picture :  xcb_render_picture_t,
+                                        color :  xcb_render_color_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_render_create_linear_gradient_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -2700,13 +2700,13 @@ pub fn xcb_render_create_linear_gradient_sizeof (_buffer :  *mut c_void) -> c_in
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_render_create_linear_gradient_checked (c : *mut ffi::base::connection,
-                                                     picture :  picture,
-                                                     p1 :  pointfix,
-                                                     p2 :  pointfix,
+pub fn xcb_render_create_linear_gradient_checked (c : *mut ffi::base::xcb_connection_t,
+                                                     picture :  xcb_render_picture_t,
+                                                     p1 :  xcb_render_pointfix_t,
+                                                     p2 :  xcb_render_pointfix_t,
                                                      num_stops :  u32,
-                                                     stops : *mut fixed,
-                                                     colors : *mut color) -> ffi::base::void_cookie;
+                                                     stops : *mut xcb_render_fixed_t,
+                                                     colors : *mut xcb_render_color_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2716,13 +2716,13 @@ pub fn xcb_render_create_linear_gradient_checked (c : *mut ffi::base::connection
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_create_linear_gradient (c : *mut ffi::base::connection,
-                                             picture :  picture,
-                                             p1 :  pointfix,
-                                             p2 :  pointfix,
+pub fn xcb_render_create_linear_gradient (c : *mut ffi::base::xcb_connection_t,
+                                             picture :  xcb_render_picture_t,
+                                             p1 :  xcb_render_pointfix_t,
+                                             p2 :  xcb_render_pointfix_t,
                                              num_stops :  u32,
-                                             stops : *mut fixed,
-                                             colors : *mut color) -> ffi::base::void_cookie;
+                                             stops : *mut xcb_render_fixed_t,
+                                             colors : *mut xcb_render_color_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_render_create_radial_gradient_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -2737,15 +2737,15 @@ pub fn xcb_render_create_radial_gradient_sizeof (_buffer :  *mut c_void) -> c_in
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_render_create_radial_gradient_checked (c : *mut ffi::base::connection,
-                                                     picture :  picture,
-                                                     inner :  pointfix,
-                                                     outer :  pointfix,
-                                                     inner_radius :  fixed,
-                                                     outer_radius :  fixed,
+pub fn xcb_render_create_radial_gradient_checked (c : *mut ffi::base::xcb_connection_t,
+                                                     picture :  xcb_render_picture_t,
+                                                     inner :  xcb_render_pointfix_t,
+                                                     outer :  xcb_render_pointfix_t,
+                                                     inner_radius :  xcb_render_fixed_t,
+                                                     outer_radius :  xcb_render_fixed_t,
                                                      num_stops :  u32,
-                                                     stops : *mut fixed,
-                                                     colors : *mut color) -> ffi::base::void_cookie;
+                                                     stops : *mut xcb_render_fixed_t,
+                                                     colors : *mut xcb_render_color_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2755,15 +2755,15 @@ pub fn xcb_render_create_radial_gradient_checked (c : *mut ffi::base::connection
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_create_radial_gradient (c : *mut ffi::base::connection,
-                                             picture :  picture,
-                                             inner :  pointfix,
-                                             outer :  pointfix,
-                                             inner_radius :  fixed,
-                                             outer_radius :  fixed,
+pub fn xcb_render_create_radial_gradient (c : *mut ffi::base::xcb_connection_t,
+                                             picture :  xcb_render_picture_t,
+                                             inner :  xcb_render_pointfix_t,
+                                             outer :  xcb_render_pointfix_t,
+                                             inner_radius :  xcb_render_fixed_t,
+                                             outer_radius :  xcb_render_fixed_t,
                                              num_stops :  u32,
-                                             stops : *mut fixed,
-                                             colors : *mut color) -> ffi::base::void_cookie;
+                                             stops : *mut xcb_render_fixed_t,
+                                             colors : *mut xcb_render_color_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_render_create_conical_gradient_sizeof (_buffer :  *mut c_void) -> c_int;
 
@@ -2778,13 +2778,13 @@ pub fn xcb_render_create_conical_gradient_sizeof (_buffer :  *mut c_void) -> c_i
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
  */
-pub fn xcb_render_create_conical_gradient_checked (c : *mut ffi::base::connection,
-                                                      picture :  picture,
-                                                      center :  pointfix,
-                                                      angle :  fixed,
+pub fn xcb_render_create_conical_gradient_checked (c : *mut ffi::base::xcb_connection_t,
+                                                      picture :  xcb_render_picture_t,
+                                                      center :  xcb_render_pointfix_t,
+                                                      angle :  xcb_render_fixed_t,
                                                       num_stops :  u32,
-                                                      stops : *mut fixed,
-                                                      colors : *mut color) -> ffi::base::void_cookie;
+                                                      stops : *mut xcb_render_fixed_t,
+                                                      colors : *mut xcb_render_color_t) -> ffi::base::xcb_void_cookie_t;
 
 /**
  *
@@ -2794,12 +2794,12 @@ pub fn xcb_render_create_conical_gradient_checked (c : *mut ffi::base::connectio
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_render_create_conical_gradient (c : *mut ffi::base::connection,
-                                              picture :  picture,
-                                              center :  pointfix,
-                                              angle :  fixed,
+pub fn xcb_render_create_conical_gradient (c : *mut ffi::base::xcb_connection_t,
+                                              picture :  xcb_render_picture_t,
+                                              center :  xcb_render_pointfix_t,
+                                              angle :  xcb_render_fixed_t,
                                               num_stops :  u32,
-                                              stops : *mut fixed,
-                                              colors : *mut color) -> ffi::base::void_cookie;
+                                              stops : *mut xcb_render_fixed_t,
+                                              colors : *mut xcb_render_color_t) -> ffi::base::xcb_void_cookie_t;
 }
 

@@ -7,7 +7,7 @@ macro_rules! impl_reply_cookie {
             fn get_reply(&self) -> Result<$reply,base::GenericError> {
                 use ffi;
                 unsafe {
-                    let mut err : *mut ffi::base::generic_error = std::ptr::null_mut();
+                    let mut err : *mut ffi::base::xcb_generic_error_t = std::ptr::null_mut();
                     let reply = if self.base.checked {
                         $func(self.base.conn.get_raw_conn(), self.base.cookie, &mut err)
                     } else {

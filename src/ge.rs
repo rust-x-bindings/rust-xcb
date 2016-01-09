@@ -17,12 +17,12 @@ use ffi::ge::*;
 use std::option::Option;
 use std::iter::Iterator;
 
-pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, query_version_cookie> }
+pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_genericevent_query_version_cookie_t> }
 
 /** Opcode for xcb_genericevent_query_version. */
 pub static XCB_GENERICEVENT_QUERY_VERSION : u8 = 0;
-pub struct QueryVersionReply { base:  base::Reply<query_version_reply> }
-fn mk_reply_query_version_reply(reply:*mut query_version_reply) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
+pub struct QueryVersionReply { base:  base::Reply<xcb_genericevent_query_version_reply_t> }
+fn mk_reply_xcb_genericevent_query_version_reply_t(reply:*mut xcb_genericevent_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
 pub fn QueryVersion<'r> (c : &'r Connection,
                      client_major_version : u16,
                      client_minor_version : u16) -> QueryVersionCookie<'r> {
@@ -54,6 +54,6 @@ impl QueryVersionReply {
   }
 
 }
-impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_query_version_reply, QueryVersionReply, xcb_genericevent_query_version_reply);
+impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_xcb_genericevent_query_version_reply_t, QueryVersionReply, xcb_genericevent_query_version_reply);
 
 

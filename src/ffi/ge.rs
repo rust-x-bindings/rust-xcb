@@ -15,13 +15,13 @@ pub static GENERICEVENT_MINOR_VERSION : c_uint = 0;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct query_version_cookie {
+pub struct xcb_genericevent_query_version_cookie_t {
     sequence : c_uint
 }
 
 
 #[repr(C)]
-pub struct query_version_request {
+pub struct xcb_genericevent_query_version_request_t {
      pub major_opcode :           u8,
      pub minor_opcode :           u8,
      pub length :                 u16,
@@ -29,13 +29,13 @@ pub struct query_version_request {
      pub client_minor_version :   u16
 }
 
-impl Copy for query_version_request {}
-impl Clone for query_version_request {
-    fn clone(&self) -> query_version_request { *self }
+impl Copy for xcb_genericevent_query_version_request_t {}
+impl Clone for xcb_genericevent_query_version_request_t {
+    fn clone(&self) -> xcb_genericevent_query_version_request_t { *self }
 }
 
 #[repr(C)]
-pub struct query_version_reply {
+pub struct xcb_genericevent_query_version_reply_t {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
@@ -45,9 +45,9 @@ pub struct query_version_reply {
      pub pad1 :            [u8; 20]
 }
 
-impl Copy for query_version_reply {}
-impl Clone for query_version_reply {
-    fn clone(&self) -> query_version_reply { *self }
+impl Copy for xcb_genericevent_query_version_reply_t {}
+impl Clone for xcb_genericevent_query_version_reply_t {
+    fn clone(&self) -> xcb_genericevent_query_version_reply_t { *self }
 }
 extern "C" {
 
@@ -59,9 +59,9 @@ extern "C" {
  * Delivers a request to the X server.
  *
  */
-pub fn xcb_genericevent_query_version (c : *mut ffi::base::connection,
+pub fn xcb_genericevent_query_version (c : *mut ffi::base::xcb_connection_t,
                                           client_major_version :  u16,
-                                          client_minor_version :  u16) -> query_version_cookie;
+                                          client_minor_version :  u16) -> xcb_genericevent_query_version_cookie_t;
 
 /**
  *
@@ -74,15 +74,15 @@ pub fn xcb_genericevent_query_version (c : *mut ffi::base::connection,
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
  */
-pub fn xcb_genericevent_query_version_unchecked (c : *mut ffi::base::connection,
+pub fn xcb_genericevent_query_version_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                     client_major_version :  u16,
-                                                    client_minor_version :  u16) -> query_version_cookie;
+                                                    client_minor_version :  u16) -> xcb_genericevent_query_version_cookie_t;
 
 /**
  * Return the reply
- * @param c      The connection
+ * @param c      The xcb_connection_t
  * @param cookie The cookie
- * @param e      The generic_error supplied
+ * @param e      The xcb_generic_error_t supplied
  *
  * Returns the reply of the request asked by
  *
@@ -92,8 +92,8 @@ pub fn xcb_genericevent_query_version_unchecked (c : *mut ffi::base::connection,
  *
  * The returned value must be freed by the caller using free().
  */
-pub fn xcb_genericevent_query_version_reply (c : *mut ffi::base::connection,
-                                                cookie : query_version_cookie,
-                                                e : *mut *mut ffi::base::generic_error) -> *mut query_version_reply;
+pub fn xcb_genericevent_query_version_reply (c : *mut ffi::base::xcb_connection_t,
+                                                cookie : xcb_genericevent_query_version_cookie_t,
+                                                e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_genericevent_query_version_reply_t;
 }
 

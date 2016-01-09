@@ -18,85 +18,85 @@ use std::option::Option;
 use std::iter::Iterator;
 
 use xproto;
-pub type Pixmap = pixmap;
+pub type Pixmap = xcb_glx_pixmap_t;
 
-pub type PixmapIterator = pixmap_iterator;
+pub type PixmapIterator = xcb_glx_pixmap_iterator_t;
 
-pub type ContextIterator = context_iterator;
+pub type ContextIterator = xcb_glx_context_iterator_t;
 
-pub type PbufferIterator = pbuffer_iterator;
+pub type PbufferIterator = xcb_glx_pbuffer_iterator_t;
 
-pub type WindowIterator = window_iterator;
+pub type WindowIterator = xcb_glx_window_iterator_t;
 
-pub type FbconfigIterator = fbconfig_iterator;
+pub type FbconfigIterator = xcb_glx_fbconfig_iterator_t;
 
-pub type DrawableIterator = drawable_iterator;
+pub type DrawableIterator = xcb_glx_drawable_iterator_t;
 
-pub type Float32Iterator = float32_iterator;
+pub type Float32Iterator = xcb_glx_float32_iterator_t;
 
-pub type Float64Iterator = float64_iterator;
+pub type Float64Iterator = xcb_glx_float64_iterator_t;
 
-pub type Bool32Iterator = bool32_iterator;
+pub type Bool32Iterator = xcb_glx_bool32_iterator_t;
 
-pub type ContextTagIterator = context_tag_iterator;
+pub type ContextTagIterator = xcb_glx_context_tag_iterator_t;
 
 /** Opcode for xcb_glx_generic. */
 pub static XCB_GLX_GENERIC : u8 = -1;
-pub struct GenericError { pub base : base::Error<generic_error> }
+pub struct GenericError { pub base : base::Error<xcb_glx_generic_error_t> }
 /** Opcode for xcb_glx_bad_context. */
 pub static XCB_GLX_BAD_CONTEXT : u8 = 0;
-pub struct BadContextError { pub base : base::Error<bad_context_error> }
+pub struct BadContextError { pub base : base::Error<xcb_glx_bad_context_error_t> }
 /** Opcode for xcb_glx_bad_context_state. */
 pub static XCB_GLX_BAD_CONTEXT_STATE : u8 = 1;
-pub struct BadContextStateError { pub base : base::Error<bad_context_state_error> }
+pub struct BadContextStateError { pub base : base::Error<xcb_glx_bad_context_state_error_t> }
 /** Opcode for xcb_glx_bad_drawable. */
 pub static XCB_GLX_BAD_DRAWABLE : u8 = 2;
-pub struct BadDrawableError { pub base : base::Error<bad_drawable_error> }
+pub struct BadDrawableError { pub base : base::Error<xcb_glx_bad_drawable_error_t> }
 /** Opcode for xcb_glx_bad_pixmap. */
 pub static XCB_GLX_BAD_PIXMAP : u8 = 3;
-pub struct BadPixmapError { pub base : base::Error<bad_pixmap_error> }
+pub struct BadPixmapError { pub base : base::Error<xcb_glx_bad_pixmap_error_t> }
 /** Opcode for xcb_glx_bad_context_tag. */
 pub static XCB_GLX_BAD_CONTEXT_TAG : u8 = 4;
-pub struct BadContextTagError { pub base : base::Error<bad_context_tag_error> }
+pub struct BadContextTagError { pub base : base::Error<xcb_glx_bad_context_tag_error_t> }
 /** Opcode for xcb_glx_bad_current_window. */
 pub static XCB_GLX_BAD_CURRENT_WINDOW : u8 = 5;
-pub struct BadCurrentWindowError { pub base : base::Error<bad_current_window_error> }
+pub struct BadCurrentWindowError { pub base : base::Error<xcb_glx_bad_current_window_error_t> }
 /** Opcode for xcb_glx_bad_render_request. */
 pub static XCB_GLX_BAD_RENDER_REQUEST : u8 = 6;
-pub struct BadRenderRequestError { pub base : base::Error<bad_render_request_error> }
+pub struct BadRenderRequestError { pub base : base::Error<xcb_glx_bad_render_request_error_t> }
 /** Opcode for xcb_glx_bad_large_request. */
 pub static XCB_GLX_BAD_LARGE_REQUEST : u8 = 7;
-pub struct BadLargeRequestError { pub base : base::Error<bad_large_request_error> }
+pub struct BadLargeRequestError { pub base : base::Error<xcb_glx_bad_large_request_error_t> }
 /** Opcode for xcb_glx_unsupported_private_request. */
 pub static XCB_GLX_UNSUPPORTED_PRIVATE_REQUEST : u8 = 8;
-pub struct UnsupportedPrivateRequestError { pub base : base::Error<unsupported_private_request_error> }
+pub struct UnsupportedPrivateRequestError { pub base : base::Error<xcb_glx_unsupported_private_request_error_t> }
 /** Opcode for xcb_glx_bad_fb_config. */
 pub static XCB_GLX_BAD_FB_CONFIG : u8 = 9;
-pub struct BadFbConfigError { pub base : base::Error<bad_fb_config_error> }
+pub struct BadFbConfigError { pub base : base::Error<xcb_glx_bad_fb_config_error_t> }
 /** Opcode for xcb_glx_bad_pbuffer. */
 pub static XCB_GLX_BAD_PBUFFER : u8 = 10;
-pub struct BadPbufferError { pub base : base::Error<bad_pbuffer_error> }
+pub struct BadPbufferError { pub base : base::Error<xcb_glx_bad_pbuffer_error_t> }
 /** Opcode for xcb_glx_bad_current_drawable. */
 pub static XCB_GLX_BAD_CURRENT_DRAWABLE : u8 = 11;
-pub struct BadCurrentDrawableError { pub base : base::Error<bad_current_drawable_error> }
+pub struct BadCurrentDrawableError { pub base : base::Error<xcb_glx_bad_current_drawable_error_t> }
 /** Opcode for xcb_glx_bad_window. */
 pub static XCB_GLX_BAD_WINDOW : u8 = 12;
-pub struct BadWindowError { pub base : base::Error<bad_window_error> }
+pub struct BadWindowError { pub base : base::Error<xcb_glx_bad_window_error_t> }
 /** Opcode for xcb_glx_glx_bad_profile_arb. */
 pub static XCB_GLX_GLX_BAD_PROFILE_ARB : u8 = 13;
-pub struct GlxBadProfileArbError { pub base : base::Error<glx_bad_profile_arb_error> }
+pub struct GlxBadProfileArbError { pub base : base::Error<xcb_glx_glx_bad_profile_arb_error_t> }
 /** Opcode for xcb_glx_pbuffer_clobber. */
 pub static XCB_GLX_PBUFFER_CLOBBER : u8 = 0;
-pub struct PbufferClobberEvent {pub base : base::Event<pbuffer_clobber_event>}
+pub struct PbufferClobberEvent {pub base : base::Event<xcb_glx_pbuffer_clobber_event_t>}
 
-pub type pbcet = c_uint;//{
-    pub static XCB_GLX_PBCET_DAMAGED : pbcet = 32791;
-    pub static XCB_GLX_PBCET_SAVED : pbcet = 32792;
+pub type xcb_glx_pbcet_t = c_uint;//{
+    pub static XCB_GLX_PBCET_DAMAGED : xcb_glx_pbcet_t = 32791;
+    pub static XCB_GLX_PBCET_SAVED : xcb_glx_pbcet_t = 32792;
 //}
 
-pub type pbcdt = c_uint;//{
-    pub static XCB_GLX_PBCDT_WINDOW : pbcdt = 32793;
-    pub static XCB_GLX_PBCDT_PBUFFER : pbcdt = 32794;
+pub type xcb_glx_pbcdt_t = c_uint;//{
+    pub static XCB_GLX_PBCDT_WINDOW : xcb_glx_pbcdt_t = 32793;
+    pub static XCB_GLX_PBCDT_PBUFFER : xcb_glx_pbcdt_t = 32794;
 //}
 /** Opcode for xcb_glx_render. */
 pub static XCB_GLX_RENDER : u8 = 1;
@@ -106,24 +106,24 @@ pub static XCB_GLX_RENDER_LARGE : u8 = 2;
 pub static XCB_GLX_CREATE_CONTEXT : u8 = 3;
 /** Opcode for xcb_glx_destroy_context. */
 pub static XCB_GLX_DESTROY_CONTEXT : u8 = 4;
-pub struct  MakeCurrentCookie<'s> { pub base : base::Cookie<'s, make_current_cookie> }
+pub struct  MakeCurrentCookie<'s> { pub base : base::Cookie<'s, xcb_glx_make_current_cookie_t> }
 
 /** Opcode for xcb_glx_make_current. */
 pub static XCB_GLX_MAKE_CURRENT : u8 = 5;
-pub struct MakeCurrentReply { base:  base::Reply<make_current_reply> }
-fn mk_reply_make_current_reply(reply:*mut make_current_reply) -> MakeCurrentReply { MakeCurrentReply { base : base::mk_reply(reply) } }
-pub struct  IsDirectCookie<'s> { pub base : base::Cookie<'s, is_direct_cookie> }
+pub struct MakeCurrentReply { base:  base::Reply<xcb_glx_make_current_reply_t> }
+fn mk_reply_xcb_glx_make_current_reply_t(reply:*mut xcb_glx_make_current_reply_t) -> MakeCurrentReply { MakeCurrentReply { base : base::mk_reply(reply) } }
+pub struct  IsDirectCookie<'s> { pub base : base::Cookie<'s, xcb_glx_is_direct_cookie_t> }
 
 /** Opcode for xcb_glx_is_direct. */
 pub static XCB_GLX_IS_DIRECT : u8 = 6;
-pub struct IsDirectReply { base:  base::Reply<is_direct_reply> }
-fn mk_reply_is_direct_reply(reply:*mut is_direct_reply) -> IsDirectReply { IsDirectReply { base : base::mk_reply(reply) } }
-pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, query_version_cookie> }
+pub struct IsDirectReply { base:  base::Reply<xcb_glx_is_direct_reply_t> }
+fn mk_reply_xcb_glx_is_direct_reply_t(reply:*mut xcb_glx_is_direct_reply_t) -> IsDirectReply { IsDirectReply { base : base::mk_reply(reply) } }
+pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_glx_query_version_cookie_t> }
 
 /** Opcode for xcb_glx_query_version. */
 pub static XCB_GLX_QUERY_VERSION : u8 = 7;
-pub struct QueryVersionReply { base:  base::Reply<query_version_reply> }
-fn mk_reply_query_version_reply(reply:*mut query_version_reply) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
+pub struct QueryVersionReply { base:  base::Reply<xcb_glx_query_version_reply_t> }
+fn mk_reply_xcb_glx_query_version_reply_t(reply:*mut xcb_glx_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_glx_wait_gl. */
 pub static XCB_GLX_WAIT_GL : u8 = 8;
 /** Opcode for xcb_glx_wait_x. */
@@ -131,28 +131,28 @@ pub static XCB_GLX_WAIT_X : u8 = 9;
 /** Opcode for xcb_glx_copy_context. */
 pub static XCB_GLX_COPY_CONTEXT : u8 = 10;
 
-pub type gc = c_uint;//{
-    pub static XCB_GLX_GC_GL_CURRENT_BIT : gc = 1;
-    pub static XCB_GLX_GC_GL_POINT_BIT : gc = 2;
-    pub static XCB_GLX_GC_GL_LINE_BIT : gc = 4;
-    pub static XCB_GLX_GC_GL_POLYGON_BIT : gc = 8;
-    pub static XCB_GLX_GC_GL_POLYGON_STIPPLE_BIT : gc = 16;
-    pub static XCB_GLX_GC_GL_PIXEL_MODE_BIT : gc = 32;
-    pub static XCB_GLX_GC_GL_LIGHTING_BIT : gc = 64;
-    pub static XCB_GLX_GC_GL_FOG_BIT : gc = 128;
-    pub static XCB_GLX_GC_GL_DEPTH_BUFFER_BIT : gc = 256;
-    pub static XCB_GLX_GC_GL_ACCUM_BUFFER_BIT : gc = 512;
-    pub static XCB_GLX_GC_GL_STENCIL_BUFFER_BIT : gc = 1024;
-    pub static XCB_GLX_GC_GL_VIEWPORT_BIT : gc = 2048;
-    pub static XCB_GLX_GC_GL_TRANSFORM_BIT : gc = 4096;
-    pub static XCB_GLX_GC_GL_ENABLE_BIT : gc = 8192;
-    pub static XCB_GLX_GC_GL_COLOR_BUFFER_BIT : gc = 16384;
-    pub static XCB_GLX_GC_GL_HINT_BIT : gc = 32768;
-    pub static XCB_GLX_GC_GL_EVAL_BIT : gc = 65536;
-    pub static XCB_GLX_GC_GL_LIST_BIT : gc = 131072;
-    pub static XCB_GLX_GC_GL_TEXTURE_BIT : gc = 262144;
-    pub static XCB_GLX_GC_GL_SCISSOR_BIT : gc = 524288;
-    pub static XCB_GLX_GC_GL_ALL_ATTRIB_BITS : gc = 16777215;
+pub type xcb_glx_gc_t = c_uint;//{
+    pub static XCB_GLX_GC_GL_CURRENT_BIT : xcb_glx_gc_t = 1;
+    pub static XCB_GLX_GC_GL_POINT_BIT : xcb_glx_gc_t = 2;
+    pub static XCB_GLX_GC_GL_LINE_BIT : xcb_glx_gc_t = 4;
+    pub static XCB_GLX_GC_GL_POLYGON_BIT : xcb_glx_gc_t = 8;
+    pub static XCB_GLX_GC_GL_POLYGON_STIPPLE_BIT : xcb_glx_gc_t = 16;
+    pub static XCB_GLX_GC_GL_PIXEL_MODE_BIT : xcb_glx_gc_t = 32;
+    pub static XCB_GLX_GC_GL_LIGHTING_BIT : xcb_glx_gc_t = 64;
+    pub static XCB_GLX_GC_GL_FOG_BIT : xcb_glx_gc_t = 128;
+    pub static XCB_GLX_GC_GL_DEPTH_BUFFER_BIT : xcb_glx_gc_t = 256;
+    pub static XCB_GLX_GC_GL_ACCUM_BUFFER_BIT : xcb_glx_gc_t = 512;
+    pub static XCB_GLX_GC_GL_STENCIL_BUFFER_BIT : xcb_glx_gc_t = 1024;
+    pub static XCB_GLX_GC_GL_VIEWPORT_BIT : xcb_glx_gc_t = 2048;
+    pub static XCB_GLX_GC_GL_TRANSFORM_BIT : xcb_glx_gc_t = 4096;
+    pub static XCB_GLX_GC_GL_ENABLE_BIT : xcb_glx_gc_t = 8192;
+    pub static XCB_GLX_GC_GL_COLOR_BUFFER_BIT : xcb_glx_gc_t = 16384;
+    pub static XCB_GLX_GC_GL_HINT_BIT : xcb_glx_gc_t = 32768;
+    pub static XCB_GLX_GC_GL_EVAL_BIT : xcb_glx_gc_t = 65536;
+    pub static XCB_GLX_GC_GL_LIST_BIT : xcb_glx_gc_t = 131072;
+    pub static XCB_GLX_GC_GL_TEXTURE_BIT : xcb_glx_gc_t = 262144;
+    pub static XCB_GLX_GC_GL_SCISSOR_BIT : xcb_glx_gc_t = 524288;
+    pub static XCB_GLX_GC_GL_ALL_ATTRIB_BITS : xcb_glx_gc_t = 16777215;
 //}
 /** Opcode for xcb_glx_swap_buffers. */
 pub static XCB_GLX_SWAP_BUFFERS : u8 = 11;
@@ -160,7 +160,7 @@ pub static XCB_GLX_SWAP_BUFFERS : u8 = 11;
 pub static XCB_GLX_USE_X_FONT : u8 = 12;
 /** Opcode for xcb_glx_create_glx_pixmap. */
 pub static XCB_GLX_CREATE_GLX_PIXMAP : u8 = 13;
-pub struct  GetVisualConfigsCookie<'s> { pub base : base::Cookie<'s, get_visual_configs_cookie> }
+pub struct  GetVisualConfigsCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_visual_configs_cookie_t> }
 
 /** Opcode for xcb_glx_get_visual_configs. */
 pub static XCB_GLX_GET_VISUAL_CONFIGS : u8 = 14;
@@ -168,25 +168,25 @@ pub static XCB_GLX_GET_VISUAL_CONFIGS : u8 = 14;
 pub static XCB_GLX_DESTROY_GLX_PIXMAP : u8 = 15;
 /** Opcode for xcb_glx_vendor_private. */
 pub static XCB_GLX_VENDOR_PRIVATE : u8 = 16;
-pub struct  VendorPrivateWithReplyCookie<'s> { pub base : base::Cookie<'s, vendor_private_with_reply_cookie> }
+pub struct  VendorPrivateWithReplyCookie<'s> { pub base : base::Cookie<'s, xcb_glx_vendor_private_with_reply_cookie_t> }
 
 /** Opcode for xcb_glx_vendor_private_with_reply. */
 pub static XCB_GLX_VENDOR_PRIVATE_WITH_REPLY : u8 = 17;
-pub struct VendorPrivateWithReplyReply { base:  base::Reply<vendor_private_with_reply_reply> }
-fn mk_reply_vendor_private_with_reply_reply(reply:*mut vendor_private_with_reply_reply) -> VendorPrivateWithReplyReply { VendorPrivateWithReplyReply { base : base::mk_reply(reply) } }
-pub struct  QueryExtensionsStringCookie<'s> { pub base : base::Cookie<'s, query_extensions_string_cookie> }
+pub struct VendorPrivateWithReplyReply { base:  base::Reply<xcb_glx_vendor_private_with_reply_reply_t> }
+fn mk_reply_xcb_glx_vendor_private_with_reply_reply_t(reply:*mut xcb_glx_vendor_private_with_reply_reply_t) -> VendorPrivateWithReplyReply { VendorPrivateWithReplyReply { base : base::mk_reply(reply) } }
+pub struct  QueryExtensionsStringCookie<'s> { pub base : base::Cookie<'s, xcb_glx_query_extensions_string_cookie_t> }
 
 /** Opcode for xcb_glx_query_extensions_string. */
 pub static XCB_GLX_QUERY_EXTENSIONS_STRING : u8 = 18;
-pub struct QueryExtensionsStringReply { base:  base::Reply<query_extensions_string_reply> }
-fn mk_reply_query_extensions_string_reply(reply:*mut query_extensions_string_reply) -> QueryExtensionsStringReply { QueryExtensionsStringReply { base : base::mk_reply(reply) } }
-pub struct  QueryServerStringCookie<'s> { pub base : base::Cookie<'s, query_server_string_cookie> }
+pub struct QueryExtensionsStringReply { base:  base::Reply<xcb_glx_query_extensions_string_reply_t> }
+fn mk_reply_xcb_glx_query_extensions_string_reply_t(reply:*mut xcb_glx_query_extensions_string_reply_t) -> QueryExtensionsStringReply { QueryExtensionsStringReply { base : base::mk_reply(reply) } }
+pub struct  QueryServerStringCookie<'s> { pub base : base::Cookie<'s, xcb_glx_query_server_string_cookie_t> }
 
 /** Opcode for xcb_glx_query_server_string. */
 pub static XCB_GLX_QUERY_SERVER_STRING : u8 = 19;
 /** Opcode for xcb_glx_client_info. */
 pub static XCB_GLX_CLIENT_INFO : u8 = 20;
-pub struct  GetFbConfigsCookie<'s> { pub base : base::Cookie<'s, get_fb_configs_cookie> }
+pub struct  GetFbConfigsCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_fb_configs_cookie_t> }
 
 /** Opcode for xcb_glx_get_fb_configs. */
 pub static XCB_GLX_GET_FB_CONFIGS : u8 = 21;
@@ -196,21 +196,21 @@ pub static XCB_GLX_CREATE_PIXMAP : u8 = 22;
 pub static XCB_GLX_DESTROY_PIXMAP : u8 = 23;
 /** Opcode for xcb_glx_create_new_context. */
 pub static XCB_GLX_CREATE_NEW_CONTEXT : u8 = 24;
-pub struct  QueryContextCookie<'s> { pub base : base::Cookie<'s, query_context_cookie> }
+pub struct  QueryContextCookie<'s> { pub base : base::Cookie<'s, xcb_glx_query_context_cookie_t> }
 
 /** Opcode for xcb_glx_query_context. */
 pub static XCB_GLX_QUERY_CONTEXT : u8 = 25;
-pub struct  MakeContextCurrentCookie<'s> { pub base : base::Cookie<'s, make_context_current_cookie> }
+pub struct  MakeContextCurrentCookie<'s> { pub base : base::Cookie<'s, xcb_glx_make_context_current_cookie_t> }
 
 /** Opcode for xcb_glx_make_context_current. */
 pub static XCB_GLX_MAKE_CONTEXT_CURRENT : u8 = 26;
-pub struct MakeContextCurrentReply { base:  base::Reply<make_context_current_reply> }
-fn mk_reply_make_context_current_reply(reply:*mut make_context_current_reply) -> MakeContextCurrentReply { MakeContextCurrentReply { base : base::mk_reply(reply) } }
+pub struct MakeContextCurrentReply { base:  base::Reply<xcb_glx_make_context_current_reply_t> }
+fn mk_reply_xcb_glx_make_context_current_reply_t(reply:*mut xcb_glx_make_context_current_reply_t) -> MakeContextCurrentReply { MakeContextCurrentReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_glx_create_pbuffer. */
 pub static XCB_GLX_CREATE_PBUFFER : u8 = 27;
 /** Opcode for xcb_glx_destroy_pbuffer. */
 pub static XCB_GLX_DESTROY_PBUFFER : u8 = 28;
-pub struct  GetDrawableAttributesCookie<'s> { pub base : base::Cookie<'s, get_drawable_attributes_cookie> }
+pub struct  GetDrawableAttributesCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_drawable_attributes_cookie_t> }
 
 /** Opcode for xcb_glx_get_drawable_attributes. */
 pub static XCB_GLX_GET_DRAWABLE_ATTRIBUTES : u8 = 29;
@@ -232,257 +232,257 @@ pub static XCB_GLX_NEW_LIST : u8 = 101;
 pub static XCB_GLX_END_LIST : u8 = 102;
 /** Opcode for xcb_glx_delete_lists. */
 pub static XCB_GLX_DELETE_LISTS : u8 = 103;
-pub struct  GenListsCookie<'s> { pub base : base::Cookie<'s, gen_lists_cookie> }
+pub struct  GenListsCookie<'s> { pub base : base::Cookie<'s, xcb_glx_gen_lists_cookie_t> }
 
 /** Opcode for xcb_glx_gen_lists. */
 pub static XCB_GLX_GEN_LISTS : u8 = 104;
-pub struct GenListsReply { base:  base::Reply<gen_lists_reply> }
-fn mk_reply_gen_lists_reply(reply:*mut gen_lists_reply) -> GenListsReply { GenListsReply { base : base::mk_reply(reply) } }
+pub struct GenListsReply { base:  base::Reply<xcb_glx_gen_lists_reply_t> }
+fn mk_reply_xcb_glx_gen_lists_reply_t(reply:*mut xcb_glx_gen_lists_reply_t) -> GenListsReply { GenListsReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_glx_feedback_buffer. */
 pub static XCB_GLX_FEEDBACK_BUFFER : u8 = 105;
 /** Opcode for xcb_glx_select_buffer. */
 pub static XCB_GLX_SELECT_BUFFER : u8 = 106;
-pub struct  RenderModeCookie<'s> { pub base : base::Cookie<'s, render_mode_cookie> }
+pub struct  RenderModeCookie<'s> { pub base : base::Cookie<'s, xcb_glx_render_mode_cookie_t> }
 
 /** Opcode for xcb_glx_render_mode. */
 pub static XCB_GLX_RENDER_MODE : u8 = 107;
 
-pub type rm = c_uint;//{
-    pub static XCB_GLX_RM_GL_RENDER : rm = 7168;
-    pub static XCB_GLX_RM_GL_FEEDBACK : rm = 7169;
-    pub static XCB_GLX_RM_GL_SELECT : rm = 7170;
+pub type xcb_glx_rm_t = c_uint;//{
+    pub static XCB_GLX_RM_GL_RENDER : xcb_glx_rm_t = 7168;
+    pub static XCB_GLX_RM_GL_FEEDBACK : xcb_glx_rm_t = 7169;
+    pub static XCB_GLX_RM_GL_SELECT : xcb_glx_rm_t = 7170;
 //}
-pub struct  FinishCookie<'s> { pub base : base::Cookie<'s, finish_cookie> }
+pub struct  FinishCookie<'s> { pub base : base::Cookie<'s, xcb_glx_finish_cookie_t> }
 
 /** Opcode for xcb_glx_finish. */
 pub static XCB_GLX_FINISH : u8 = 108;
-pub struct FinishReply { base:  base::Reply<finish_reply> }
-fn mk_reply_finish_reply(reply:*mut finish_reply) -> FinishReply { FinishReply { base : base::mk_reply(reply) } }
+pub struct FinishReply { base:  base::Reply<xcb_glx_finish_reply_t> }
+fn mk_reply_xcb_glx_finish_reply_t(reply:*mut xcb_glx_finish_reply_t) -> FinishReply { FinishReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_glx_pixel_storef. */
 pub static XCB_GLX_PIXEL_STOREF : u8 = 109;
 /** Opcode for xcb_glx_pixel_storei. */
 pub static XCB_GLX_PIXEL_STOREI : u8 = 110;
-pub struct  ReadPixelsCookie<'s> { pub base : base::Cookie<'s, read_pixels_cookie> }
+pub struct  ReadPixelsCookie<'s> { pub base : base::Cookie<'s, xcb_glx_read_pixels_cookie_t> }
 
 /** Opcode for xcb_glx_read_pixels. */
 pub static XCB_GLX_READ_PIXELS : u8 = 111;
-pub struct  GetBooleanvCookie<'s> { pub base : base::Cookie<'s, get_booleanv_cookie> }
+pub struct  GetBooleanvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_booleanv_cookie_t> }
 
 /** Opcode for xcb_glx_get_booleanv. */
 pub static XCB_GLX_GET_BOOLEANV : u8 = 112;
-pub struct  GetClipPlaneCookie<'s> { pub base : base::Cookie<'s, get_clip_plane_cookie> }
+pub struct  GetClipPlaneCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_clip_plane_cookie_t> }
 
 /** Opcode for xcb_glx_get_clip_plane. */
 pub static XCB_GLX_GET_CLIP_PLANE : u8 = 113;
-pub struct  GetDoublevCookie<'s> { pub base : base::Cookie<'s, get_doublev_cookie> }
+pub struct  GetDoublevCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_doublev_cookie_t> }
 
 /** Opcode for xcb_glx_get_doublev. */
 pub static XCB_GLX_GET_DOUBLEV : u8 = 114;
-pub struct  GetErrorCookie<'s> { pub base : base::Cookie<'s, get_error_cookie> }
+pub struct  GetErrorCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_error_cookie_t> }
 
 /** Opcode for xcb_glx_get_error. */
 pub static XCB_GLX_GET_ERROR : u8 = 115;
-pub struct GetErrorReply { base:  base::Reply<get_error_reply> }
-fn mk_reply_get_error_reply(reply:*mut get_error_reply) -> GetErrorReply { GetErrorReply { base : base::mk_reply(reply) } }
-pub struct  GetFloatvCookie<'s> { pub base : base::Cookie<'s, get_floatv_cookie> }
+pub struct GetErrorReply { base:  base::Reply<xcb_glx_get_error_reply_t> }
+fn mk_reply_xcb_glx_get_error_reply_t(reply:*mut xcb_glx_get_error_reply_t) -> GetErrorReply { GetErrorReply { base : base::mk_reply(reply) } }
+pub struct  GetFloatvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_floatv_cookie_t> }
 
 /** Opcode for xcb_glx_get_floatv. */
 pub static XCB_GLX_GET_FLOATV : u8 = 116;
-pub struct  GetIntegervCookie<'s> { pub base : base::Cookie<'s, get_integerv_cookie> }
+pub struct  GetIntegervCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_integerv_cookie_t> }
 
 /** Opcode for xcb_glx_get_integerv. */
 pub static XCB_GLX_GET_INTEGERV : u8 = 117;
-pub struct  GetLightfvCookie<'s> { pub base : base::Cookie<'s, get_lightfv_cookie> }
+pub struct  GetLightfvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_lightfv_cookie_t> }
 
 /** Opcode for xcb_glx_get_lightfv. */
 pub static XCB_GLX_GET_LIGHTFV : u8 = 118;
-pub struct  GetLightivCookie<'s> { pub base : base::Cookie<'s, get_lightiv_cookie> }
+pub struct  GetLightivCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_lightiv_cookie_t> }
 
 /** Opcode for xcb_glx_get_lightiv. */
 pub static XCB_GLX_GET_LIGHTIV : u8 = 119;
-pub struct  GetMapdvCookie<'s> { pub base : base::Cookie<'s, get_mapdv_cookie> }
+pub struct  GetMapdvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_mapdv_cookie_t> }
 
 /** Opcode for xcb_glx_get_mapdv. */
 pub static XCB_GLX_GET_MAPDV : u8 = 120;
-pub struct  GetMapfvCookie<'s> { pub base : base::Cookie<'s, get_mapfv_cookie> }
+pub struct  GetMapfvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_mapfv_cookie_t> }
 
 /** Opcode for xcb_glx_get_mapfv. */
 pub static XCB_GLX_GET_MAPFV : u8 = 121;
-pub struct  GetMapivCookie<'s> { pub base : base::Cookie<'s, get_mapiv_cookie> }
+pub struct  GetMapivCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_mapiv_cookie_t> }
 
 /** Opcode for xcb_glx_get_mapiv. */
 pub static XCB_GLX_GET_MAPIV : u8 = 122;
-pub struct  GetMaterialfvCookie<'s> { pub base : base::Cookie<'s, get_materialfv_cookie> }
+pub struct  GetMaterialfvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_materialfv_cookie_t> }
 
 /** Opcode for xcb_glx_get_materialfv. */
 pub static XCB_GLX_GET_MATERIALFV : u8 = 123;
-pub struct  GetMaterialivCookie<'s> { pub base : base::Cookie<'s, get_materialiv_cookie> }
+pub struct  GetMaterialivCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_materialiv_cookie_t> }
 
 /** Opcode for xcb_glx_get_materialiv. */
 pub static XCB_GLX_GET_MATERIALIV : u8 = 124;
-pub struct  GetPixelMapfvCookie<'s> { pub base : base::Cookie<'s, get_pixel_mapfv_cookie> }
+pub struct  GetPixelMapfvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_pixel_mapfv_cookie_t> }
 
 /** Opcode for xcb_glx_get_pixel_mapfv. */
 pub static XCB_GLX_GET_PIXEL_MAPFV : u8 = 125;
-pub struct  GetPixelMapuivCookie<'s> { pub base : base::Cookie<'s, get_pixel_mapuiv_cookie> }
+pub struct  GetPixelMapuivCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_pixel_mapuiv_cookie_t> }
 
 /** Opcode for xcb_glx_get_pixel_mapuiv. */
 pub static XCB_GLX_GET_PIXEL_MAPUIV : u8 = 126;
-pub struct  GetPixelMapusvCookie<'s> { pub base : base::Cookie<'s, get_pixel_mapusv_cookie> }
+pub struct  GetPixelMapusvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_pixel_mapusv_cookie_t> }
 
 /** Opcode for xcb_glx_get_pixel_mapusv. */
 pub static XCB_GLX_GET_PIXEL_MAPUSV : u8 = 127;
-pub struct  GetPolygonStippleCookie<'s> { pub base : base::Cookie<'s, get_polygon_stipple_cookie> }
+pub struct  GetPolygonStippleCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_polygon_stipple_cookie_t> }
 
 /** Opcode for xcb_glx_get_polygon_stipple. */
 pub static XCB_GLX_GET_POLYGON_STIPPLE : u8 = 128;
-pub struct  GetStringCookie<'s> { pub base : base::Cookie<'s, get_string_cookie> }
+pub struct  GetStringCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_string_cookie_t> }
 
 /** Opcode for xcb_glx_get_string. */
 pub static XCB_GLX_GET_STRING : u8 = 129;
-pub struct  GetTexEnvfvCookie<'s> { pub base : base::Cookie<'s, get_tex_envfv_cookie> }
+pub struct  GetTexEnvfvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_tex_envfv_cookie_t> }
 
 /** Opcode for xcb_glx_get_tex_envfv. */
 pub static XCB_GLX_GET_TEX_ENVFV : u8 = 130;
-pub struct  GetTexEnvivCookie<'s> { pub base : base::Cookie<'s, get_tex_enviv_cookie> }
+pub struct  GetTexEnvivCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_tex_enviv_cookie_t> }
 
 /** Opcode for xcb_glx_get_tex_enviv. */
 pub static XCB_GLX_GET_TEX_ENVIV : u8 = 131;
-pub struct  GetTexGendvCookie<'s> { pub base : base::Cookie<'s, get_tex_gendv_cookie> }
+pub struct  GetTexGendvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_tex_gendv_cookie_t> }
 
 /** Opcode for xcb_glx_get_tex_gendv. */
 pub static XCB_GLX_GET_TEX_GENDV : u8 = 132;
-pub struct  GetTexGenfvCookie<'s> { pub base : base::Cookie<'s, get_tex_genfv_cookie> }
+pub struct  GetTexGenfvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_tex_genfv_cookie_t> }
 
 /** Opcode for xcb_glx_get_tex_genfv. */
 pub static XCB_GLX_GET_TEX_GENFV : u8 = 133;
-pub struct  GetTexGenivCookie<'s> { pub base : base::Cookie<'s, get_tex_geniv_cookie> }
+pub struct  GetTexGenivCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_tex_geniv_cookie_t> }
 
 /** Opcode for xcb_glx_get_tex_geniv. */
 pub static XCB_GLX_GET_TEX_GENIV : u8 = 134;
-pub struct  GetTexImageCookie<'s> { pub base : base::Cookie<'s, get_tex_image_cookie> }
+pub struct  GetTexImageCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_tex_image_cookie_t> }
 
 /** Opcode for xcb_glx_get_tex_image. */
 pub static XCB_GLX_GET_TEX_IMAGE : u8 = 135;
-pub struct  GetTexParameterfvCookie<'s> { pub base : base::Cookie<'s, get_tex_parameterfv_cookie> }
+pub struct  GetTexParameterfvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_tex_parameterfv_cookie_t> }
 
 /** Opcode for xcb_glx_get_tex_parameterfv. */
 pub static XCB_GLX_GET_TEX_PARAMETERFV : u8 = 136;
-pub struct  GetTexParameterivCookie<'s> { pub base : base::Cookie<'s, get_tex_parameteriv_cookie> }
+pub struct  GetTexParameterivCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_tex_parameteriv_cookie_t> }
 
 /** Opcode for xcb_glx_get_tex_parameteriv. */
 pub static XCB_GLX_GET_TEX_PARAMETERIV : u8 = 137;
-pub struct  GetTexLevelParameterfvCookie<'s> { pub base : base::Cookie<'s, get_tex_level_parameterfv_cookie> }
+pub struct  GetTexLevelParameterfvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_tex_level_parameterfv_cookie_t> }
 
 /** Opcode for xcb_glx_get_tex_level_parameterfv. */
 pub static XCB_GLX_GET_TEX_LEVEL_PARAMETERFV : u8 = 138;
-pub struct  GetTexLevelParameterivCookie<'s> { pub base : base::Cookie<'s, get_tex_level_parameteriv_cookie> }
+pub struct  GetTexLevelParameterivCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_tex_level_parameteriv_cookie_t> }
 
 /** Opcode for xcb_glx_get_tex_level_parameteriv. */
 pub static XCB_GLX_GET_TEX_LEVEL_PARAMETERIV : u8 = 139;
-pub struct  IsListCookie<'s> { pub base : base::Cookie<'s, is_list_cookie> }
+pub struct  IsListCookie<'s> { pub base : base::Cookie<'s, xcb_glx_is_list_cookie_t> }
 
 /** Opcode for xcb_glx_is_list. */
 pub static XCB_GLX_IS_LIST : u8 = 141;
-pub struct IsListReply { base:  base::Reply<is_list_reply> }
-fn mk_reply_is_list_reply(reply:*mut is_list_reply) -> IsListReply { IsListReply { base : base::mk_reply(reply) } }
+pub struct IsListReply { base:  base::Reply<xcb_glx_is_list_reply_t> }
+fn mk_reply_xcb_glx_is_list_reply_t(reply:*mut xcb_glx_is_list_reply_t) -> IsListReply { IsListReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_glx_flush. */
 pub static XCB_GLX_FLUSH : u8 = 142;
-pub struct  AreTexturesResidentCookie<'s> { pub base : base::Cookie<'s, are_textures_resident_cookie> }
+pub struct  AreTexturesResidentCookie<'s> { pub base : base::Cookie<'s, xcb_glx_are_textures_resident_cookie_t> }
 
 /** Opcode for xcb_glx_are_textures_resident. */
 pub static XCB_GLX_ARE_TEXTURES_RESIDENT : u8 = 143;
-pub struct AreTexturesResidentReply { base:  base::Reply<are_textures_resident_reply> }
-fn mk_reply_are_textures_resident_reply(reply:*mut are_textures_resident_reply) -> AreTexturesResidentReply { AreTexturesResidentReply { base : base::mk_reply(reply) } }
+pub struct AreTexturesResidentReply { base:  base::Reply<xcb_glx_are_textures_resident_reply_t> }
+fn mk_reply_xcb_glx_are_textures_resident_reply_t(reply:*mut xcb_glx_are_textures_resident_reply_t) -> AreTexturesResidentReply { AreTexturesResidentReply { base : base::mk_reply(reply) } }
 /** Opcode for xcb_glx_delete_textures. */
 pub static XCB_GLX_DELETE_TEXTURES : u8 = 144;
-pub struct  GenTexturesCookie<'s> { pub base : base::Cookie<'s, gen_textures_cookie> }
+pub struct  GenTexturesCookie<'s> { pub base : base::Cookie<'s, xcb_glx_gen_textures_cookie_t> }
 
 /** Opcode for xcb_glx_gen_textures. */
 pub static XCB_GLX_GEN_TEXTURES : u8 = 145;
-pub struct  IsTextureCookie<'s> { pub base : base::Cookie<'s, is_texture_cookie> }
+pub struct  IsTextureCookie<'s> { pub base : base::Cookie<'s, xcb_glx_is_texture_cookie_t> }
 
 /** Opcode for xcb_glx_is_texture. */
 pub static XCB_GLX_IS_TEXTURE : u8 = 146;
-pub struct IsTextureReply { base:  base::Reply<is_texture_reply> }
-fn mk_reply_is_texture_reply(reply:*mut is_texture_reply) -> IsTextureReply { IsTextureReply { base : base::mk_reply(reply) } }
-pub struct  GetColorTableCookie<'s> { pub base : base::Cookie<'s, get_color_table_cookie> }
+pub struct IsTextureReply { base:  base::Reply<xcb_glx_is_texture_reply_t> }
+fn mk_reply_xcb_glx_is_texture_reply_t(reply:*mut xcb_glx_is_texture_reply_t) -> IsTextureReply { IsTextureReply { base : base::mk_reply(reply) } }
+pub struct  GetColorTableCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_color_table_cookie_t> }
 
 /** Opcode for xcb_glx_get_color_table. */
 pub static XCB_GLX_GET_COLOR_TABLE : u8 = 147;
-pub struct  GetColorTableParameterfvCookie<'s> { pub base : base::Cookie<'s, get_color_table_parameterfv_cookie> }
+pub struct  GetColorTableParameterfvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_color_table_parameterfv_cookie_t> }
 
 /** Opcode for xcb_glx_get_color_table_parameterfv. */
 pub static XCB_GLX_GET_COLOR_TABLE_PARAMETERFV : u8 = 148;
-pub struct  GetColorTableParameterivCookie<'s> { pub base : base::Cookie<'s, get_color_table_parameteriv_cookie> }
+pub struct  GetColorTableParameterivCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_color_table_parameteriv_cookie_t> }
 
 /** Opcode for xcb_glx_get_color_table_parameteriv. */
 pub static XCB_GLX_GET_COLOR_TABLE_PARAMETERIV : u8 = 149;
-pub struct  GetConvolutionFilterCookie<'s> { pub base : base::Cookie<'s, get_convolution_filter_cookie> }
+pub struct  GetConvolutionFilterCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_convolution_filter_cookie_t> }
 
 /** Opcode for xcb_glx_get_convolution_filter. */
 pub static XCB_GLX_GET_CONVOLUTION_FILTER : u8 = 150;
-pub struct  GetConvolutionParameterfvCookie<'s> { pub base : base::Cookie<'s, get_convolution_parameterfv_cookie> }
+pub struct  GetConvolutionParameterfvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_convolution_parameterfv_cookie_t> }
 
 /** Opcode for xcb_glx_get_convolution_parameterfv. */
 pub static XCB_GLX_GET_CONVOLUTION_PARAMETERFV : u8 = 151;
-pub struct  GetConvolutionParameterivCookie<'s> { pub base : base::Cookie<'s, get_convolution_parameteriv_cookie> }
+pub struct  GetConvolutionParameterivCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_convolution_parameteriv_cookie_t> }
 
 /** Opcode for xcb_glx_get_convolution_parameteriv. */
 pub static XCB_GLX_GET_CONVOLUTION_PARAMETERIV : u8 = 152;
-pub struct  GetSeparableFilterCookie<'s> { pub base : base::Cookie<'s, get_separable_filter_cookie> }
+pub struct  GetSeparableFilterCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_separable_filter_cookie_t> }
 
 /** Opcode for xcb_glx_get_separable_filter. */
 pub static XCB_GLX_GET_SEPARABLE_FILTER : u8 = 153;
-pub struct  GetHistogramCookie<'s> { pub base : base::Cookie<'s, get_histogram_cookie> }
+pub struct  GetHistogramCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_histogram_cookie_t> }
 
 /** Opcode for xcb_glx_get_histogram. */
 pub static XCB_GLX_GET_HISTOGRAM : u8 = 154;
-pub struct  GetHistogramParameterfvCookie<'s> { pub base : base::Cookie<'s, get_histogram_parameterfv_cookie> }
+pub struct  GetHistogramParameterfvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_histogram_parameterfv_cookie_t> }
 
 /** Opcode for xcb_glx_get_histogram_parameterfv. */
 pub static XCB_GLX_GET_HISTOGRAM_PARAMETERFV : u8 = 155;
-pub struct  GetHistogramParameterivCookie<'s> { pub base : base::Cookie<'s, get_histogram_parameteriv_cookie> }
+pub struct  GetHistogramParameterivCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_histogram_parameteriv_cookie_t> }
 
 /** Opcode for xcb_glx_get_histogram_parameteriv. */
 pub static XCB_GLX_GET_HISTOGRAM_PARAMETERIV : u8 = 156;
-pub struct  GetMinmaxCookie<'s> { pub base : base::Cookie<'s, get_minmax_cookie> }
+pub struct  GetMinmaxCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_minmax_cookie_t> }
 
 /** Opcode for xcb_glx_get_minmax. */
 pub static XCB_GLX_GET_MINMAX : u8 = 157;
-pub struct  GetMinmaxParameterfvCookie<'s> { pub base : base::Cookie<'s, get_minmax_parameterfv_cookie> }
+pub struct  GetMinmaxParameterfvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_minmax_parameterfv_cookie_t> }
 
 /** Opcode for xcb_glx_get_minmax_parameterfv. */
 pub static XCB_GLX_GET_MINMAX_PARAMETERFV : u8 = 158;
-pub struct  GetMinmaxParameterivCookie<'s> { pub base : base::Cookie<'s, get_minmax_parameteriv_cookie> }
+pub struct  GetMinmaxParameterivCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_minmax_parameteriv_cookie_t> }
 
 /** Opcode for xcb_glx_get_minmax_parameteriv. */
 pub static XCB_GLX_GET_MINMAX_PARAMETERIV : u8 = 159;
-pub struct  GetCompressedTexImageArbCookie<'s> { pub base : base::Cookie<'s, get_compressed_tex_image_arb_cookie> }
+pub struct  GetCompressedTexImageArbCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_compressed_tex_image_arb_cookie_t> }
 
 /** Opcode for xcb_glx_get_compressed_tex_image_arb. */
 pub static XCB_GLX_GET_COMPRESSED_TEX_IMAGE_ARB : u8 = 160;
 /** Opcode for xcb_glx_delete_queries_arb. */
 pub static XCB_GLX_DELETE_QUERIES_ARB : u8 = 161;
-pub struct  GenQueriesArbCookie<'s> { pub base : base::Cookie<'s, gen_queries_arb_cookie> }
+pub struct  GenQueriesArbCookie<'s> { pub base : base::Cookie<'s, xcb_glx_gen_queries_arb_cookie_t> }
 
 /** Opcode for xcb_glx_gen_queries_arb. */
 pub static XCB_GLX_GEN_QUERIES_ARB : u8 = 162;
-pub struct  IsQueryArbCookie<'s> { pub base : base::Cookie<'s, is_query_arb_cookie> }
+pub struct  IsQueryArbCookie<'s> { pub base : base::Cookie<'s, xcb_glx_is_query_arb_cookie_t> }
 
 /** Opcode for xcb_glx_is_query_arb. */
 pub static XCB_GLX_IS_QUERY_ARB : u8 = 163;
-pub struct IsQueryArbReply { base:  base::Reply<is_query_arb_reply> }
-fn mk_reply_is_query_arb_reply(reply:*mut is_query_arb_reply) -> IsQueryArbReply { IsQueryArbReply { base : base::mk_reply(reply) } }
-pub struct  GetQueryivArbCookie<'s> { pub base : base::Cookie<'s, get_queryiv_arb_cookie> }
+pub struct IsQueryArbReply { base:  base::Reply<xcb_glx_is_query_arb_reply_t> }
+fn mk_reply_xcb_glx_is_query_arb_reply_t(reply:*mut xcb_glx_is_query_arb_reply_t) -> IsQueryArbReply { IsQueryArbReply { base : base::mk_reply(reply) } }
+pub struct  GetQueryivArbCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_queryiv_arb_cookie_t> }
 
 /** Opcode for xcb_glx_get_queryiv_arb. */
 pub static XCB_GLX_GET_QUERYIV_ARB : u8 = 164;
-pub struct  GetQueryObjectivArbCookie<'s> { pub base : base::Cookie<'s, get_query_objectiv_arb_cookie> }
+pub struct  GetQueryObjectivArbCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_query_objectiv_arb_cookie_t> }
 
 /** Opcode for xcb_glx_get_query_objectiv_arb. */
 pub static XCB_GLX_GET_QUERY_OBJECTIV_ARB : u8 = 165;
-pub struct  GetQueryObjectuivArbCookie<'s> { pub base : base::Cookie<'s, get_query_objectuiv_arb_cookie> }
+pub struct  GetQueryObjectuivArbCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_query_objectuiv_arb_cookie_t> }
 
 /** Opcode for xcb_glx_get_query_objectuiv_arb. */
 pub static XCB_GLX_GET_QUERY_OBJECTUIV_ARB : u8 = 166;
@@ -492,7 +492,7 @@ impl Iterator for PixmapIterator {
     fn next(&mut self) -> Option<Pixmap> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut pixmap_iterator = mem::transmute(self);
+            let iter: *mut xcb_glx_pixmap_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_glx_pixmap_next(iter);
             Some(mem::transmute(*data))
@@ -500,7 +500,7 @@ impl Iterator for PixmapIterator {
     }
 }
 
-pub type Context = context;
+pub type Context = xcb_glx_context_t;
 
 
 impl Iterator for ContextIterator {
@@ -508,7 +508,7 @@ impl Iterator for ContextIterator {
     fn next(&mut self) -> Option<Context> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut context_iterator = mem::transmute(self);
+            let iter: *mut xcb_glx_context_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_glx_context_next(iter);
             Some(mem::transmute(*data))
@@ -516,7 +516,7 @@ impl Iterator for ContextIterator {
     }
 }
 
-pub type Pbuffer = pbuffer;
+pub type Pbuffer = xcb_glx_pbuffer_t;
 
 
 impl Iterator for PbufferIterator {
@@ -524,7 +524,7 @@ impl Iterator for PbufferIterator {
     fn next(&mut self) -> Option<Pbuffer> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut pbuffer_iterator = mem::transmute(self);
+            let iter: *mut xcb_glx_pbuffer_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_glx_pbuffer_next(iter);
             Some(mem::transmute(*data))
@@ -532,7 +532,7 @@ impl Iterator for PbufferIterator {
     }
 }
 
-pub type Window = window;
+pub type Window = xcb_glx_window_t;
 
 
 impl Iterator for WindowIterator {
@@ -540,7 +540,7 @@ impl Iterator for WindowIterator {
     fn next(&mut self) -> Option<Window> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut window_iterator = mem::transmute(self);
+            let iter: *mut xcb_glx_window_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_glx_window_next(iter);
             Some(mem::transmute(*data))
@@ -548,7 +548,7 @@ impl Iterator for WindowIterator {
     }
 }
 
-pub type Fbconfig = fbconfig;
+pub type Fbconfig = xcb_glx_fbconfig_t;
 
 
 impl Iterator for FbconfigIterator {
@@ -556,7 +556,7 @@ impl Iterator for FbconfigIterator {
     fn next(&mut self) -> Option<Fbconfig> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut fbconfig_iterator = mem::transmute(self);
+            let iter: *mut xcb_glx_fbconfig_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_glx_fbconfig_next(iter);
             Some(mem::transmute(*data))
@@ -564,7 +564,7 @@ impl Iterator for FbconfigIterator {
     }
 }
 
-pub type Drawable = drawable;
+pub type Drawable = xcb_glx_drawable_t;
 
 
 impl Iterator for DrawableIterator {
@@ -572,7 +572,7 @@ impl Iterator for DrawableIterator {
     fn next(&mut self) -> Option<Drawable> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut drawable_iterator = mem::transmute(self);
+            let iter: *mut xcb_glx_drawable_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_glx_drawable_next(iter);
             Some(mem::transmute(*data))
@@ -580,7 +580,7 @@ impl Iterator for DrawableIterator {
     }
 }
 
-pub type Float32 = float32;
+pub type Float32 = xcb_glx_float32_t;
 
 
 impl Iterator for Float32Iterator {
@@ -588,7 +588,7 @@ impl Iterator for Float32Iterator {
     fn next(&mut self) -> Option<Float32> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut float32_iterator = mem::transmute(self);
+            let iter: *mut xcb_glx_float32_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_glx_float32_next(iter);
             Some(mem::transmute(*data))
@@ -596,7 +596,7 @@ impl Iterator for Float32Iterator {
     }
 }
 
-pub type Float64 = float64;
+pub type Float64 = xcb_glx_float64_t;
 
 
 impl Iterator for Float64Iterator {
@@ -604,7 +604,7 @@ impl Iterator for Float64Iterator {
     fn next(&mut self) -> Option<Float64> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut float64_iterator = mem::transmute(self);
+            let iter: *mut xcb_glx_float64_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_glx_float64_next(iter);
             Some(mem::transmute(*data))
@@ -612,7 +612,7 @@ impl Iterator for Float64Iterator {
     }
 }
 
-pub type Bool32 = bool32;
+pub type Bool32 = xcb_glx_bool32_t;
 
 
 impl Iterator for Bool32Iterator {
@@ -620,7 +620,7 @@ impl Iterator for Bool32Iterator {
     fn next(&mut self) -> Option<Bool32> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut bool32_iterator = mem::transmute(self);
+            let iter: *mut xcb_glx_bool32_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_glx_bool32_next(iter);
             Some(mem::transmute(*data))
@@ -628,7 +628,7 @@ impl Iterator for Bool32Iterator {
     }
 }
 
-pub type ContextTag = context_tag;
+pub type ContextTag = xcb_glx_context_tag_t;
 
 
 impl Iterator for ContextTagIterator {
@@ -636,7 +636,7 @@ impl Iterator for ContextTagIterator {
     fn next(&mut self) -> Option<ContextTag> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter: *mut context_tag_iterator = mem::transmute(self);
+            let iter: *mut xcb_glx_context_tag_iterator_t = mem::transmute(self);
             let data = (*iter).data;
             xcb_glx_context_tag_next(iter);
             Some(mem::transmute(*data))
@@ -697,7 +697,7 @@ impl PbufferClobberEvent {
          height : u16,
          count : u16) -> PbufferClobberEvent {
     unsafe {
-      let raw = malloc(32 as size_t) as *mut pbuffer_clobber_event;
+      let raw = malloc(32 as size_t) as *mut xcb_glx_pbuffer_clobber_event_t;
       (*raw).event_type = event_type;
       (*raw).draw_type = draw_type;
       (*raw).drawable = drawable;
@@ -708,7 +708,7 @@ impl PbufferClobberEvent {
       (*raw).width = width;
       (*raw).height = height;
       (*raw).count = count;
-      PbufferClobberEvent { base : Event { event : raw as *mut pbuffer_clobber_event }}
+      PbufferClobberEvent { base : Event { event : raw as *mut xcb_glx_pbuffer_clobber_event_t }}
     }
   }
 }
@@ -719,7 +719,7 @@ pub fn RenderChecked<'r> (c : &'r Connection,
     let data_len = data.len();
     let data_ptr = data.as_ptr();
     let cookie = xcb_glx_render_checked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         data_len as u32, //2
         data_ptr as *mut u8); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
@@ -732,7 +732,7 @@ pub fn Render<'r> (c : &'r Connection,
     let data_len = data.len();
     let data_ptr = data.as_ptr();
     let cookie = xcb_glx_render(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         data_len as u32, //2
         data_ptr as *mut u8); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -747,7 +747,7 @@ pub fn RenderLargeChecked<'r> (c : &'r Connection,
     let data_len = data.len();
     let data_ptr = data.as_ptr();
     let cookie = xcb_glx_render_large_checked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         request_num as u16, //2
         request_total as u16, //3
         data_len as u32, //4
@@ -764,7 +764,7 @@ pub fn RenderLarge<'r> (c : &'r Connection,
     let data_len = data.len();
     let data_ptr = data.as_ptr();
     let cookie = xcb_glx_render_large(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         request_num as u16, //2
         request_total as u16, //3
         data_len as u32, //4
@@ -780,10 +780,10 @@ pub fn CreateContextChecked<'r> (c : &'r Connection,
                              is_direct : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_create_context_checked(c.get_raw_conn(),
-        context as context, //1
-        visual as ffi::xproto::visualid, //2
+        context as xcb_glx_context_t, //1
+        visual as ffi::xproto::xcb_visualid_t, //2
         screen as u32, //3
-        share_list as context, //4
+        share_list as xcb_glx_context_t, //4
         is_direct as u8); //5
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
@@ -796,10 +796,10 @@ pub fn CreateContext<'r> (c : &'r Connection,
                       is_direct : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_create_context(c.get_raw_conn(),
-        context as context, //1
-        visual as ffi::xproto::visualid, //2
+        context as xcb_glx_context_t, //1
+        visual as ffi::xproto::xcb_visualid_t, //2
         screen as u32, //3
-        share_list as context, //4
+        share_list as xcb_glx_context_t, //4
         is_direct as u8); //5
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -808,7 +808,7 @@ pub fn DestroyContextChecked<'r> (c : &'r Connection,
                               context : Context) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_destroy_context_checked(c.get_raw_conn(),
-        context as context); //1
+        context as xcb_glx_context_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -816,7 +816,7 @@ pub fn DestroyContext<'r> (c : &'r Connection,
                        context : Context) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_destroy_context(c.get_raw_conn(),
-        context as context); //1
+        context as xcb_glx_context_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -826,9 +826,9 @@ pub fn MakeCurrent<'r> (c : &'r Connection,
                     old_context_tag : ContextTag) -> MakeCurrentCookie<'r> {
   unsafe {
     let cookie = xcb_glx_make_current(c.get_raw_conn(),
-        drawable as drawable, //1
-        context as context, //2
-        old_context_tag as context_tag); //3
+        drawable as xcb_glx_drawable_t, //1
+        context as xcb_glx_context_t, //2
+        old_context_tag as xcb_glx_context_tag_t); //3
     MakeCurrentCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -838,9 +838,9 @@ pub fn MakeCurrentUnchecked<'r> (c : &'r Connection,
                              old_context_tag : ContextTag) -> MakeCurrentCookie<'r> {
   unsafe {
     let cookie = xcb_glx_make_current_unchecked(c.get_raw_conn(),
-        drawable as drawable, //1
-        context as context, //2
-        old_context_tag as context_tag); //3
+        drawable as xcb_glx_drawable_t, //1
+        context as xcb_glx_context_t, //2
+        old_context_tag as xcb_glx_context_tag_t); //3
     MakeCurrentCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -851,13 +851,13 @@ impl MakeCurrentReply {
   }
 
 }
-impl_reply_cookie!(MakeCurrentCookie<'s>, mk_reply_make_current_reply, MakeCurrentReply, xcb_glx_make_current_reply);
+impl_reply_cookie!(MakeCurrentCookie<'s>, mk_reply_xcb_glx_make_current_reply_t, MakeCurrentReply, xcb_glx_make_current_reply);
 
 pub fn IsDirect<'r> (c : &'r Connection,
                  context : Context) -> IsDirectCookie<'r> {
   unsafe {
     let cookie = xcb_glx_is_direct(c.get_raw_conn(),
-        context as context); //1
+        context as xcb_glx_context_t); //1
     IsDirectCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -865,7 +865,7 @@ pub fn IsDirectUnchecked<'r> (c : &'r Connection,
                           context : Context) -> IsDirectCookie<'r> {
   unsafe {
     let cookie = xcb_glx_is_direct_unchecked(c.get_raw_conn(),
-        context as context); //1
+        context as xcb_glx_context_t); //1
     IsDirectCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -876,7 +876,7 @@ impl IsDirectReply {
   }
 
 }
-impl_reply_cookie!(IsDirectCookie<'s>, mk_reply_is_direct_reply, IsDirectReply, xcb_glx_is_direct_reply);
+impl_reply_cookie!(IsDirectCookie<'s>, mk_reply_xcb_glx_is_direct_reply_t, IsDirectReply, xcb_glx_is_direct_reply);
 
 pub fn QueryVersion<'r> (c : &'r Connection,
                      major_version : u32,
@@ -909,13 +909,13 @@ impl QueryVersionReply {
   }
 
 }
-impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_query_version_reply, QueryVersionReply, xcb_glx_query_version_reply);
+impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_xcb_glx_query_version_reply_t, QueryVersionReply, xcb_glx_query_version_reply);
 
 pub fn WaitGlChecked<'r> (c : &'r Connection,
                       context_tag : ContextTag) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_wait_gl_checked(c.get_raw_conn(),
-        context_tag as context_tag); //1
+        context_tag as xcb_glx_context_tag_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -923,7 +923,7 @@ pub fn WaitGl<'r> (c : &'r Connection,
                context_tag : ContextTag) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_wait_gl(c.get_raw_conn(),
-        context_tag as context_tag); //1
+        context_tag as xcb_glx_context_tag_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -931,7 +931,7 @@ pub fn WaitXChecked<'r> (c : &'r Connection,
                      context_tag : ContextTag) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_wait_x_checked(c.get_raw_conn(),
-        context_tag as context_tag); //1
+        context_tag as xcb_glx_context_tag_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -939,7 +939,7 @@ pub fn WaitX<'r> (c : &'r Connection,
               context_tag : ContextTag) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_wait_x(c.get_raw_conn(),
-        context_tag as context_tag); //1
+        context_tag as xcb_glx_context_tag_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -950,10 +950,10 @@ pub fn CopyContextChecked<'r> (c : &'r Connection,
                            src_context_tag : ContextTag) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_copy_context_checked(c.get_raw_conn(),
-        src as context, //1
-        dest as context, //2
+        src as xcb_glx_context_t, //1
+        dest as xcb_glx_context_t, //2
         mask as u32, //3
-        src_context_tag as context_tag); //4
+        src_context_tag as xcb_glx_context_tag_t); //4
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -964,10 +964,10 @@ pub fn CopyContext<'r> (c : &'r Connection,
                     src_context_tag : ContextTag) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_copy_context(c.get_raw_conn(),
-        src as context, //1
-        dest as context, //2
+        src as xcb_glx_context_t, //1
+        dest as xcb_glx_context_t, //2
         mask as u32, //3
-        src_context_tag as context_tag); //4
+        src_context_tag as xcb_glx_context_tag_t); //4
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -976,8 +976,8 @@ pub fn SwapBuffersChecked<'r> (c : &'r Connection,
                            drawable : Drawable) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_swap_buffers_checked(c.get_raw_conn(),
-        context_tag as context_tag, //1
-        drawable as drawable); //2
+        context_tag as xcb_glx_context_tag_t, //1
+        drawable as xcb_glx_drawable_t); //2
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -986,8 +986,8 @@ pub fn SwapBuffers<'r> (c : &'r Connection,
                     drawable : Drawable) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_swap_buffers(c.get_raw_conn(),
-        context_tag as context_tag, //1
-        drawable as drawable); //2
+        context_tag as xcb_glx_context_tag_t, //1
+        drawable as xcb_glx_drawable_t); //2
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -999,8 +999,8 @@ pub fn UseXFontChecked<'r> (c : &'r Connection,
                         list_base : u32) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_use_x_font_checked(c.get_raw_conn(),
-        context_tag as context_tag, //1
-        font as ffi::xproto::font, //2
+        context_tag as xcb_glx_context_tag_t, //1
+        font as ffi::xproto::xcb_font_t, //2
         first as u32, //3
         count as u32, //4
         list_base as u32); //5
@@ -1015,8 +1015,8 @@ pub fn UseXFont<'r> (c : &'r Connection,
                  list_base : u32) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_use_x_font(c.get_raw_conn(),
-        context_tag as context_tag, //1
-        font as ffi::xproto::font, //2
+        context_tag as xcb_glx_context_tag_t, //1
+        font as ffi::xproto::xcb_font_t, //2
         first as u32, //3
         count as u32, //4
         list_base as u32); //5
@@ -1031,9 +1031,9 @@ pub fn CreateGlxPixmapChecked<'r> (c : &'r Connection,
   unsafe {
     let cookie = xcb_glx_create_glx_pixmap_checked(c.get_raw_conn(),
         screen as u32, //1
-        visual as ffi::xproto::visualid, //2
-        pixmap as ffi::xproto::pixmap, //3
-        glx_pixmap as pixmap); //4
+        visual as ffi::xproto::xcb_visualid_t, //2
+        pixmap as ffi::xproto::xcb_pixmap_t, //3
+        glx_pixmap as xcb_glx_pixmap_t); //4
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -1045,14 +1045,14 @@ pub fn CreateGlxPixmap<'r> (c : &'r Connection,
   unsafe {
     let cookie = xcb_glx_create_glx_pixmap(c.get_raw_conn(),
         screen as u32, //1
-        visual as ffi::xproto::visualid, //2
-        pixmap as ffi::xproto::pixmap, //3
-        glx_pixmap as pixmap); //4
+        visual as ffi::xproto::xcb_visualid_t, //2
+        pixmap as ffi::xproto::xcb_pixmap_t, //3
+        glx_pixmap as xcb_glx_pixmap_t); //4
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub struct GetVisualConfigsReply { base:  base::Reply<get_visual_configs_reply> }
-fn mk_reply_get_visual_configs_reply(reply:*mut get_visual_configs_reply) -> GetVisualConfigsReply { GetVisualConfigsReply { base : base::mk_reply(reply) } }
+pub struct GetVisualConfigsReply { base:  base::Reply<xcb_glx_get_visual_configs_reply_t> }
+fn mk_reply_xcb_glx_get_visual_configs_reply_t(reply:*mut xcb_glx_get_visual_configs_reply_t) -> GetVisualConfigsReply { GetVisualConfigsReply { base : base::mk_reply(reply) } }
 pub fn GetVisualConfigs<'r> (c : &'r Connection,
                          screen : u32) -> GetVisualConfigsCookie<'r> {
   unsafe {
@@ -1084,13 +1084,13 @@ impl GetVisualConfigsReply {
   }
 
 }
-impl_reply_cookie!(GetVisualConfigsCookie<'s>, mk_reply_get_visual_configs_reply, GetVisualConfigsReply, xcb_glx_get_visual_configs_reply);
+impl_reply_cookie!(GetVisualConfigsCookie<'s>, mk_reply_xcb_glx_get_visual_configs_reply_t, GetVisualConfigsReply, xcb_glx_get_visual_configs_reply);
 
 pub fn DestroyGlxPixmapChecked<'r> (c : &'r Connection,
                                 glx_pixmap : Pixmap) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_destroy_glx_pixmap_checked(c.get_raw_conn(),
-        glx_pixmap as pixmap); //1
+        glx_pixmap as xcb_glx_pixmap_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -1098,7 +1098,7 @@ pub fn DestroyGlxPixmap<'r> (c : &'r Connection,
                          glx_pixmap : Pixmap) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_destroy_glx_pixmap(c.get_raw_conn(),
-        glx_pixmap as pixmap); //1
+        glx_pixmap as xcb_glx_pixmap_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1111,7 +1111,7 @@ pub fn VendorPrivateChecked<'r> (c : &'r Connection,
     let data_ptr = data.as_ptr();
     let cookie = xcb_glx_vendor_private_checked(c.get_raw_conn(),
         vendor_code as u32, //1
-        context_tag as context_tag, //2
+        context_tag as xcb_glx_context_tag_t, //2
         data_len as u32, //3
         data_ptr as *mut u8); //4
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
@@ -1126,7 +1126,7 @@ pub fn VendorPrivate<'r> (c : &'r Connection,
     let data_ptr = data.as_ptr();
     let cookie = xcb_glx_vendor_private(c.get_raw_conn(),
         vendor_code as u32, //1
-        context_tag as context_tag, //2
+        context_tag as xcb_glx_context_tag_t, //2
         data_len as u32, //3
         data_ptr as *mut u8); //4
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -1141,7 +1141,7 @@ pub fn VendorPrivateWithReply<'r> (c : &'r Connection,
     let data_ptr = data.as_ptr();
     let cookie = xcb_glx_vendor_private_with_reply(c.get_raw_conn(),
         vendor_code as u32, //1
-        context_tag as context_tag, //2
+        context_tag as xcb_glx_context_tag_t, //2
         data_len as u32, //3
         data_ptr as *mut u8); //4
     VendorPrivateWithReplyCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -1156,7 +1156,7 @@ pub fn VendorPrivateWithReplyUnchecked<'r> (c : &'r Connection,
     let data_ptr = data.as_ptr();
     let cookie = xcb_glx_vendor_private_with_reply_unchecked(c.get_raw_conn(),
         vendor_code as u32, //1
-        context_tag as context_tag, //2
+        context_tag as xcb_glx_context_tag_t, //2
         data_len as u32, //3
         data_ptr as *mut u8); //4
     VendorPrivateWithReplyCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -1177,7 +1177,7 @@ impl VendorPrivateWithReplyReply {
   }
 
 }
-impl_reply_cookie!(VendorPrivateWithReplyCookie<'s>, mk_reply_vendor_private_with_reply_reply, VendorPrivateWithReplyReply, xcb_glx_vendor_private_with_reply_reply);
+impl_reply_cookie!(VendorPrivateWithReplyCookie<'s>, mk_reply_xcb_glx_vendor_private_with_reply_reply_t, VendorPrivateWithReplyReply, xcb_glx_vendor_private_with_reply_reply);
 
 pub fn QueryExtensionsString<'r> (c : &'r Connection,
                               screen : u32) -> QueryExtensionsStringCookie<'r> {
@@ -1202,10 +1202,10 @@ impl QueryExtensionsStringReply {
   }
 
 }
-impl_reply_cookie!(QueryExtensionsStringCookie<'s>, mk_reply_query_extensions_string_reply, QueryExtensionsStringReply, xcb_glx_query_extensions_string_reply);
+impl_reply_cookie!(QueryExtensionsStringCookie<'s>, mk_reply_xcb_glx_query_extensions_string_reply_t, QueryExtensionsStringReply, xcb_glx_query_extensions_string_reply);
 
-pub struct QueryServerStringReply { base:  base::Reply<query_server_string_reply> }
-fn mk_reply_query_server_string_reply(reply:*mut query_server_string_reply) -> QueryServerStringReply { QueryServerStringReply { base : base::mk_reply(reply) } }
+pub struct QueryServerStringReply { base:  base::Reply<xcb_glx_query_server_string_reply_t> }
+fn mk_reply_xcb_glx_query_server_string_reply_t(reply:*mut xcb_glx_query_server_string_reply_t) -> QueryServerStringReply { QueryServerStringReply { base : base::mk_reply(reply) } }
 pub fn QueryServerString<'r> (c : &'r Connection,
                           screen : u32,
                           name : u32) -> QueryServerStringCookie<'r> {
@@ -1233,7 +1233,7 @@ impl QueryServerStringReply {
   }
 
 }
-impl_reply_cookie!(QueryServerStringCookie<'s>, mk_reply_query_server_string_reply, QueryServerStringReply, xcb_glx_query_server_string_reply);
+impl_reply_cookie!(QueryServerStringCookie<'s>, mk_reply_xcb_glx_query_server_string_reply_t, QueryServerStringReply, xcb_glx_query_server_string_reply);
 
 pub fn ClientInfoChecked<'r> (c : &'r Connection,
                           major_version : u32,
@@ -1267,8 +1267,8 @@ pub fn ClientInfo<'r> (c : &'r Connection,
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub struct GetFbConfigsReply { base:  base::Reply<get_fb_configs_reply> }
-fn mk_reply_get_fb_configs_reply(reply:*mut get_fb_configs_reply) -> GetFbConfigsReply { GetFbConfigsReply { base : base::mk_reply(reply) } }
+pub struct GetFbConfigsReply { base:  base::Reply<xcb_glx_get_fb_configs_reply_t> }
+fn mk_reply_xcb_glx_get_fb_configs_reply_t(reply:*mut xcb_glx_get_fb_configs_reply_t) -> GetFbConfigsReply { GetFbConfigsReply { base : base::mk_reply(reply) } }
 pub fn GetFbConfigs<'r> (c : &'r Connection,
                      screen : u32) -> GetFbConfigsCookie<'r> {
   unsafe {
@@ -1300,7 +1300,7 @@ impl GetFbConfigsReply {
   }
 
 }
-impl_reply_cookie!(GetFbConfigsCookie<'s>, mk_reply_get_fb_configs_reply, GetFbConfigsReply, xcb_glx_get_fb_configs_reply);
+impl_reply_cookie!(GetFbConfigsCookie<'s>, mk_reply_xcb_glx_get_fb_configs_reply_t, GetFbConfigsReply, xcb_glx_get_fb_configs_reply);
 
 pub fn CreatePixmapChecked<'r> (c : &'r Connection,
                             screen : u32,
@@ -1313,9 +1313,9 @@ pub fn CreatePixmapChecked<'r> (c : &'r Connection,
     let attribs_ptr = attribs.as_ptr();
     let cookie = xcb_glx_create_pixmap_checked(c.get_raw_conn(),
         screen as u32, //1
-        fbconfig as fbconfig, //2
-        pixmap as ffi::xproto::pixmap, //3
-        glx_pixmap as pixmap, //4
+        fbconfig as xcb_glx_fbconfig_t, //2
+        pixmap as ffi::xproto::xcb_pixmap_t, //3
+        glx_pixmap as xcb_glx_pixmap_t, //4
         attribs_len as u32, //5
         attribs_ptr as *mut u32); //6
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
@@ -1332,9 +1332,9 @@ pub fn CreatePixmap<'r> (c : &'r Connection,
     let attribs_ptr = attribs.as_ptr();
     let cookie = xcb_glx_create_pixmap(c.get_raw_conn(),
         screen as u32, //1
-        fbconfig as fbconfig, //2
-        pixmap as ffi::xproto::pixmap, //3
-        glx_pixmap as pixmap, //4
+        fbconfig as xcb_glx_fbconfig_t, //2
+        pixmap as ffi::xproto::xcb_pixmap_t, //3
+        glx_pixmap as xcb_glx_pixmap_t, //4
         attribs_len as u32, //5
         attribs_ptr as *mut u32); //6
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -1344,7 +1344,7 @@ pub fn DestroyPixmapChecked<'r> (c : &'r Connection,
                              glx_pixmap : Pixmap) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_destroy_pixmap_checked(c.get_raw_conn(),
-        glx_pixmap as pixmap); //1
+        glx_pixmap as xcb_glx_pixmap_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -1352,7 +1352,7 @@ pub fn DestroyPixmap<'r> (c : &'r Connection,
                       glx_pixmap : Pixmap) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_destroy_pixmap(c.get_raw_conn(),
-        glx_pixmap as pixmap); //1
+        glx_pixmap as xcb_glx_pixmap_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1365,11 +1365,11 @@ pub fn CreateNewContextChecked<'r> (c : &'r Connection,
                                 is_direct : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_create_new_context_checked(c.get_raw_conn(),
-        context as context, //1
-        fbconfig as fbconfig, //2
+        context as xcb_glx_context_t, //1
+        fbconfig as xcb_glx_fbconfig_t, //2
         screen as u32, //3
         render_type as u32, //4
-        share_list as context, //5
+        share_list as xcb_glx_context_t, //5
         is_direct as u8); //6
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
@@ -1383,22 +1383,22 @@ pub fn CreateNewContext<'r> (c : &'r Connection,
                          is_direct : u8) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_create_new_context(c.get_raw_conn(),
-        context as context, //1
-        fbconfig as fbconfig, //2
+        context as xcb_glx_context_t, //1
+        fbconfig as xcb_glx_fbconfig_t, //2
         screen as u32, //3
         render_type as u32, //4
-        share_list as context, //5
+        share_list as xcb_glx_context_t, //5
         is_direct as u8); //6
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub struct QueryContextReply { base:  base::Reply<query_context_reply> }
-fn mk_reply_query_context_reply(reply:*mut query_context_reply) -> QueryContextReply { QueryContextReply { base : base::mk_reply(reply) } }
+pub struct QueryContextReply { base:  base::Reply<xcb_glx_query_context_reply_t> }
+fn mk_reply_xcb_glx_query_context_reply_t(reply:*mut xcb_glx_query_context_reply_t) -> QueryContextReply { QueryContextReply { base : base::mk_reply(reply) } }
 pub fn QueryContext<'r> (c : &'r Connection,
                      context : Context) -> QueryContextCookie<'r> {
   unsafe {
     let cookie = xcb_glx_query_context(c.get_raw_conn(),
-        context as context); //1
+        context as xcb_glx_context_t); //1
     QueryContextCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1406,7 +1406,7 @@ pub fn QueryContextUnchecked<'r> (c : &'r Connection,
                               context : Context) -> QueryContextCookie<'r> {
   unsafe {
     let cookie = xcb_glx_query_context_unchecked(c.get_raw_conn(),
-        context as context); //1
+        context as xcb_glx_context_t); //1
     QueryContextCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1417,7 +1417,7 @@ impl QueryContextReply {
   }
 
 }
-impl_reply_cookie!(QueryContextCookie<'s>, mk_reply_query_context_reply, QueryContextReply, xcb_glx_query_context_reply);
+impl_reply_cookie!(QueryContextCookie<'s>, mk_reply_xcb_glx_query_context_reply_t, QueryContextReply, xcb_glx_query_context_reply);
 
 pub fn MakeContextCurrent<'r> (c : &'r Connection,
                            old_context_tag : ContextTag,
@@ -1426,10 +1426,10 @@ pub fn MakeContextCurrent<'r> (c : &'r Connection,
                            context : Context) -> MakeContextCurrentCookie<'r> {
   unsafe {
     let cookie = xcb_glx_make_context_current(c.get_raw_conn(),
-        old_context_tag as context_tag, //1
-        drawable as drawable, //2
-        read_drawable as drawable, //3
-        context as context); //4
+        old_context_tag as xcb_glx_context_tag_t, //1
+        drawable as xcb_glx_drawable_t, //2
+        read_drawable as xcb_glx_drawable_t, //3
+        context as xcb_glx_context_t); //4
     MakeContextCurrentCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1440,10 +1440,10 @@ pub fn MakeContextCurrentUnchecked<'r> (c : &'r Connection,
                                     context : Context) -> MakeContextCurrentCookie<'r> {
   unsafe {
     let cookie = xcb_glx_make_context_current_unchecked(c.get_raw_conn(),
-        old_context_tag as context_tag, //1
-        drawable as drawable, //2
-        read_drawable as drawable, //3
-        context as context); //4
+        old_context_tag as xcb_glx_context_tag_t, //1
+        drawable as xcb_glx_drawable_t, //2
+        read_drawable as xcb_glx_drawable_t, //3
+        context as xcb_glx_context_t); //4
     MakeContextCurrentCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1454,7 +1454,7 @@ impl MakeContextCurrentReply {
   }
 
 }
-impl_reply_cookie!(MakeContextCurrentCookie<'s>, mk_reply_make_context_current_reply, MakeContextCurrentReply, xcb_glx_make_context_current_reply);
+impl_reply_cookie!(MakeContextCurrentCookie<'s>, mk_reply_xcb_glx_make_context_current_reply_t, MakeContextCurrentReply, xcb_glx_make_context_current_reply);
 
 pub fn CreatePbufferChecked<'r> (c : &'r Connection,
                              screen : u32,
@@ -1466,8 +1466,8 @@ pub fn CreatePbufferChecked<'r> (c : &'r Connection,
     let attribs_ptr = attribs.as_ptr();
     let cookie = xcb_glx_create_pbuffer_checked(c.get_raw_conn(),
         screen as u32, //1
-        fbconfig as fbconfig, //2
-        pbuffer as pbuffer, //3
+        fbconfig as xcb_glx_fbconfig_t, //2
+        pbuffer as xcb_glx_pbuffer_t, //3
         attribs_len as u32, //4
         attribs_ptr as *mut u32); //5
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
@@ -1483,8 +1483,8 @@ pub fn CreatePbuffer<'r> (c : &'r Connection,
     let attribs_ptr = attribs.as_ptr();
     let cookie = xcb_glx_create_pbuffer(c.get_raw_conn(),
         screen as u32, //1
-        fbconfig as fbconfig, //2
-        pbuffer as pbuffer, //3
+        fbconfig as xcb_glx_fbconfig_t, //2
+        pbuffer as xcb_glx_pbuffer_t, //3
         attribs_len as u32, //4
         attribs_ptr as *mut u32); //5
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -1494,7 +1494,7 @@ pub fn DestroyPbufferChecked<'r> (c : &'r Connection,
                               pbuffer : Pbuffer) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_destroy_pbuffer_checked(c.get_raw_conn(),
-        pbuffer as pbuffer); //1
+        pbuffer as xcb_glx_pbuffer_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -1502,17 +1502,17 @@ pub fn DestroyPbuffer<'r> (c : &'r Connection,
                        pbuffer : Pbuffer) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_destroy_pbuffer(c.get_raw_conn(),
-        pbuffer as pbuffer); //1
+        pbuffer as xcb_glx_pbuffer_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub struct GetDrawableAttributesReply { base:  base::Reply<get_drawable_attributes_reply> }
-fn mk_reply_get_drawable_attributes_reply(reply:*mut get_drawable_attributes_reply) -> GetDrawableAttributesReply { GetDrawableAttributesReply { base : base::mk_reply(reply) } }
+pub struct GetDrawableAttributesReply { base:  base::Reply<xcb_glx_get_drawable_attributes_reply_t> }
+fn mk_reply_xcb_glx_get_drawable_attributes_reply_t(reply:*mut xcb_glx_get_drawable_attributes_reply_t) -> GetDrawableAttributesReply { GetDrawableAttributesReply { base : base::mk_reply(reply) } }
 pub fn GetDrawableAttributes<'r> (c : &'r Connection,
                               drawable : Drawable) -> GetDrawableAttributesCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_drawable_attributes(c.get_raw_conn(),
-        drawable as drawable); //1
+        drawable as xcb_glx_drawable_t); //1
     GetDrawableAttributesCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1520,7 +1520,7 @@ pub fn GetDrawableAttributesUnchecked<'r> (c : &'r Connection,
                                        drawable : Drawable) -> GetDrawableAttributesCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_drawable_attributes_unchecked(c.get_raw_conn(),
-        drawable as drawable); //1
+        drawable as xcb_glx_drawable_t); //1
     GetDrawableAttributesCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1531,7 +1531,7 @@ impl GetDrawableAttributesReply {
   }
 
 }
-impl_reply_cookie!(GetDrawableAttributesCookie<'s>, mk_reply_get_drawable_attributes_reply, GetDrawableAttributesReply, xcb_glx_get_drawable_attributes_reply);
+impl_reply_cookie!(GetDrawableAttributesCookie<'s>, mk_reply_xcb_glx_get_drawable_attributes_reply_t, GetDrawableAttributesReply, xcb_glx_get_drawable_attributes_reply);
 
 pub fn ChangeDrawableAttributesChecked<'r> (c : &'r Connection,
                                         drawable : Drawable,
@@ -1540,7 +1540,7 @@ pub fn ChangeDrawableAttributesChecked<'r> (c : &'r Connection,
     let attribs_len = attribs.len();
     let attribs_ptr = attribs.as_ptr();
     let cookie = xcb_glx_change_drawable_attributes_checked(c.get_raw_conn(),
-        drawable as drawable, //1
+        drawable as xcb_glx_drawable_t, //1
         attribs_len as u32, //2
         attribs_ptr as *mut u32); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
@@ -1553,7 +1553,7 @@ pub fn ChangeDrawableAttributes<'r> (c : &'r Connection,
     let attribs_len = attribs.len();
     let attribs_ptr = attribs.as_ptr();
     let cookie = xcb_glx_change_drawable_attributes(c.get_raw_conn(),
-        drawable as drawable, //1
+        drawable as xcb_glx_drawable_t, //1
         attribs_len as u32, //2
         attribs_ptr as *mut u32); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -1570,9 +1570,9 @@ pub fn CreateWindowChecked<'r> (c : &'r Connection,
     let attribs_ptr = attribs.as_ptr();
     let cookie = xcb_glx_create_window_checked(c.get_raw_conn(),
         screen as u32, //1
-        fbconfig as fbconfig, //2
-        window as ffi::xproto::window, //3
-        glx_window as window, //4
+        fbconfig as xcb_glx_fbconfig_t, //2
+        window as ffi::xproto::xcb_window_t, //3
+        glx_window as xcb_glx_window_t, //4
         attribs_len as u32, //5
         attribs_ptr as *mut u32); //6
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
@@ -1589,9 +1589,9 @@ pub fn CreateWindow<'r> (c : &'r Connection,
     let attribs_ptr = attribs.as_ptr();
     let cookie = xcb_glx_create_window(c.get_raw_conn(),
         screen as u32, //1
-        fbconfig as fbconfig, //2
-        window as ffi::xproto::window, //3
-        glx_window as window, //4
+        fbconfig as xcb_glx_fbconfig_t, //2
+        window as ffi::xproto::xcb_window_t, //3
+        glx_window as xcb_glx_window_t, //4
         attribs_len as u32, //5
         attribs_ptr as *mut u32); //6
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -1601,7 +1601,7 @@ pub fn DeleteWindowChecked<'r> (c : &'r Connection,
                             glxwindow : Window) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_delete_window_checked(c.get_raw_conn(),
-        glxwindow as window); //1
+        glxwindow as xcb_glx_window_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -1609,7 +1609,7 @@ pub fn DeleteWindow<'r> (c : &'r Connection,
                      glxwindow : Window) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_delete_window(c.get_raw_conn(),
-        glxwindow as window); //1
+        glxwindow as xcb_glx_window_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1678,10 +1678,10 @@ pub fn CreateContextAttribsArbChecked<'r> (c : &'r Connection,
     let attribs_len = attribs.len();
     let attribs_ptr = attribs.as_ptr();
     let cookie = xcb_glx_create_context_attribs_arb_checked(c.get_raw_conn(),
-        context as context, //1
-        fbconfig as fbconfig, //2
+        context as xcb_glx_context_t, //1
+        fbconfig as xcb_glx_fbconfig_t, //2
         screen as u32, //3
-        share_list as context, //4
+        share_list as xcb_glx_context_t, //4
         is_direct as u8, //5
         attribs_len as u32, //6
         attribs_ptr as *mut u32); //7
@@ -1699,10 +1699,10 @@ pub fn CreateContextAttribsArb<'r> (c : &'r Connection,
     let attribs_len = attribs.len();
     let attribs_ptr = attribs.as_ptr();
     let cookie = xcb_glx_create_context_attribs_arb(c.get_raw_conn(),
-        context as context, //1
-        fbconfig as fbconfig, //2
+        context as xcb_glx_context_t, //1
+        fbconfig as xcb_glx_fbconfig_t, //2
         screen as u32, //3
-        share_list as context, //4
+        share_list as xcb_glx_context_t, //4
         is_direct as u8, //5
         attribs_len as u32, //6
         attribs_ptr as *mut u32); //7
@@ -1769,7 +1769,7 @@ pub fn NewListChecked<'r> (c : &'r Connection,
                        mode : u32) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_new_list_checked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         list as u32, //2
         mode as u32); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
@@ -1781,7 +1781,7 @@ pub fn NewList<'r> (c : &'r Connection,
                 mode : u32) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_new_list(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         list as u32, //2
         mode as u32); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -1791,7 +1791,7 @@ pub fn EndListChecked<'r> (c : &'r Connection,
                        context_tag : ContextTag) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_end_list_checked(c.get_raw_conn(),
-        context_tag as context_tag); //1
+        context_tag as xcb_glx_context_tag_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -1799,7 +1799,7 @@ pub fn EndList<'r> (c : &'r Connection,
                 context_tag : ContextTag) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_end_list(c.get_raw_conn(),
-        context_tag as context_tag); //1
+        context_tag as xcb_glx_context_tag_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1809,7 +1809,7 @@ pub fn DeleteListsChecked<'r> (c : &'r Connection,
                            range : i32) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_delete_lists_checked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         list as u32, //2
         range as i32); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
@@ -1821,7 +1821,7 @@ pub fn DeleteLists<'r> (c : &'r Connection,
                     range : i32) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_delete_lists(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         list as u32, //2
         range as i32); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -1832,7 +1832,7 @@ pub fn GenLists<'r> (c : &'r Connection,
                  range : i32) -> GenListsCookie<'r> {
   unsafe {
     let cookie = xcb_glx_gen_lists(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         range as i32); //2
     GenListsCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -1842,7 +1842,7 @@ pub fn GenListsUnchecked<'r> (c : &'r Connection,
                           range : i32) -> GenListsCookie<'r> {
   unsafe {
     let cookie = xcb_glx_gen_lists_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         range as i32); //2
     GenListsCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -1854,7 +1854,7 @@ impl GenListsReply {
   }
 
 }
-impl_reply_cookie!(GenListsCookie<'s>, mk_reply_gen_lists_reply, GenListsReply, xcb_glx_gen_lists_reply);
+impl_reply_cookie!(GenListsCookie<'s>, mk_reply_xcb_glx_gen_lists_reply_t, GenListsReply, xcb_glx_gen_lists_reply);
 
 pub fn FeedbackBufferChecked<'r> (c : &'r Connection,
                               context_tag : ContextTag,
@@ -1862,7 +1862,7 @@ pub fn FeedbackBufferChecked<'r> (c : &'r Connection,
                               type_ : i32) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_feedback_buffer_checked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         size as i32, //2
         type_ as i32); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
@@ -1874,7 +1874,7 @@ pub fn FeedbackBuffer<'r> (c : &'r Connection,
                        type_ : i32) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_feedback_buffer(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         size as i32, //2
         type_ as i32); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -1885,7 +1885,7 @@ pub fn SelectBufferChecked<'r> (c : &'r Connection,
                             size : i32) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_select_buffer_checked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         size as i32); //2
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
@@ -1895,19 +1895,19 @@ pub fn SelectBuffer<'r> (c : &'r Connection,
                      size : i32) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_select_buffer(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         size as i32); //2
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub struct RenderModeReply { base:  base::Reply<render_mode_reply> }
-fn mk_reply_render_mode_reply(reply:*mut render_mode_reply) -> RenderModeReply { RenderModeReply { base : base::mk_reply(reply) } }
+pub struct RenderModeReply { base:  base::Reply<xcb_glx_render_mode_reply_t> }
+fn mk_reply_xcb_glx_render_mode_reply_t(reply:*mut xcb_glx_render_mode_reply_t) -> RenderModeReply { RenderModeReply { base : base::mk_reply(reply) } }
 pub fn RenderMode<'r> (c : &'r Connection,
                    context_tag : ContextTag,
                    mode : u32) -> RenderModeCookie<'r> {
   unsafe {
     let cookie = xcb_glx_render_mode(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         mode as u32); //2
     RenderModeCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -1917,7 +1917,7 @@ pub fn RenderModeUnchecked<'r> (c : &'r Connection,
                             mode : u32) -> RenderModeCookie<'r> {
   unsafe {
     let cookie = xcb_glx_render_mode_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         mode as u32); //2
     RenderModeCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -1937,13 +1937,13 @@ impl RenderModeReply {
   }
 
 }
-impl_reply_cookie!(RenderModeCookie<'s>, mk_reply_render_mode_reply, RenderModeReply, xcb_glx_render_mode_reply);
+impl_reply_cookie!(RenderModeCookie<'s>, mk_reply_xcb_glx_render_mode_reply_t, RenderModeReply, xcb_glx_render_mode_reply);
 
 pub fn Finish<'r> (c : &'r Connection,
                context_tag : ContextTag) -> FinishCookie<'r> {
   unsafe {
     let cookie = xcb_glx_finish(c.get_raw_conn(),
-        context_tag as context_tag); //1
+        context_tag as xcb_glx_context_tag_t); //1
     FinishCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1951,14 +1951,14 @@ pub fn FinishUnchecked<'r> (c : &'r Connection,
                         context_tag : ContextTag) -> FinishCookie<'r> {
   unsafe {
     let cookie = xcb_glx_finish_unchecked(c.get_raw_conn(),
-        context_tag as context_tag); //1
+        context_tag as xcb_glx_context_tag_t); //1
     FinishCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
 
 impl FinishReply {
 }
-impl_reply_cookie!(FinishCookie<'s>, mk_reply_finish_reply, FinishReply, xcb_glx_finish_reply);
+impl_reply_cookie!(FinishCookie<'s>, mk_reply_xcb_glx_finish_reply_t, FinishReply, xcb_glx_finish_reply);
 
 pub fn PixelStorefChecked<'r> (c : &'r Connection,
                            context_tag : ContextTag,
@@ -1966,9 +1966,9 @@ pub fn PixelStorefChecked<'r> (c : &'r Connection,
                            datum : Float32) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_pixel_storef_checked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         pname as u32, //2
-        datum as float32); //3
+        datum as xcb_glx_float32_t); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -1978,9 +1978,9 @@ pub fn PixelStoref<'r> (c : &'r Connection,
                     datum : Float32) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_pixel_storef(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         pname as u32, //2
-        datum as float32); //3
+        datum as xcb_glx_float32_t); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -1990,7 +1990,7 @@ pub fn PixelStoreiChecked<'r> (c : &'r Connection,
                            datum : i32) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_pixel_storei_checked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         pname as u32, //2
         datum as i32); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
@@ -2002,14 +2002,14 @@ pub fn PixelStorei<'r> (c : &'r Connection,
                     datum : i32) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_pixel_storei(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         pname as u32, //2
         datum as i32); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub struct ReadPixelsReply { base:  base::Reply<read_pixels_reply> }
-fn mk_reply_read_pixels_reply(reply:*mut read_pixels_reply) -> ReadPixelsReply { ReadPixelsReply { base : base::mk_reply(reply) } }
+pub struct ReadPixelsReply { base:  base::Reply<xcb_glx_read_pixels_reply_t> }
+fn mk_reply_xcb_glx_read_pixels_reply_t(reply:*mut xcb_glx_read_pixels_reply_t) -> ReadPixelsReply { ReadPixelsReply { base : base::mk_reply(reply) } }
 pub fn ReadPixels<'r> (c : &'r Connection,
                    context_tag : ContextTag,
                    x : i32,
@@ -2022,7 +2022,7 @@ pub fn ReadPixels<'r> (c : &'r Connection,
                    lsb_first : u8) -> ReadPixelsCookie<'r> {
   unsafe {
     let cookie = xcb_glx_read_pixels(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         x as i32, //2
         y as i32, //3
         width as i32, //4
@@ -2046,7 +2046,7 @@ pub fn ReadPixelsUnchecked<'r> (c : &'r Connection,
                             lsb_first : u8) -> ReadPixelsCookie<'r> {
   unsafe {
     let cookie = xcb_glx_read_pixels_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         x as i32, //2
         y as i32, //3
         width as i32, //4
@@ -2065,16 +2065,16 @@ impl ReadPixelsReply {
   }
 
 }
-impl_reply_cookie!(ReadPixelsCookie<'s>, mk_reply_read_pixels_reply, ReadPixelsReply, xcb_glx_read_pixels_reply);
+impl_reply_cookie!(ReadPixelsCookie<'s>, mk_reply_xcb_glx_read_pixels_reply_t, ReadPixelsReply, xcb_glx_read_pixels_reply);
 
-pub struct GetBooleanvReply { base:  base::Reply<get_booleanv_reply> }
-fn mk_reply_get_booleanv_reply(reply:*mut get_booleanv_reply) -> GetBooleanvReply { GetBooleanvReply { base : base::mk_reply(reply) } }
+pub struct GetBooleanvReply { base:  base::Reply<xcb_glx_get_booleanv_reply_t> }
+fn mk_reply_xcb_glx_get_booleanv_reply_t(reply:*mut xcb_glx_get_booleanv_reply_t) -> GetBooleanvReply { GetBooleanvReply { base : base::mk_reply(reply) } }
 pub fn GetBooleanv<'r> (c : &'r Connection,
                     context_tag : ContextTag,
                     pname : i32) -> GetBooleanvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_booleanv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         pname as i32); //2
     GetBooleanvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -2084,7 +2084,7 @@ pub fn GetBooleanvUnchecked<'r> (c : &'r Connection,
                              pname : i32) -> GetBooleanvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_booleanv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         pname as i32); //2
     GetBooleanvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -2100,16 +2100,16 @@ impl GetBooleanvReply {
   }
 
 }
-impl_reply_cookie!(GetBooleanvCookie<'s>, mk_reply_get_booleanv_reply, GetBooleanvReply, xcb_glx_get_booleanv_reply);
+impl_reply_cookie!(GetBooleanvCookie<'s>, mk_reply_xcb_glx_get_booleanv_reply_t, GetBooleanvReply, xcb_glx_get_booleanv_reply);
 
-pub struct GetClipPlaneReply { base:  base::Reply<get_clip_plane_reply> }
-fn mk_reply_get_clip_plane_reply(reply:*mut get_clip_plane_reply) -> GetClipPlaneReply { GetClipPlaneReply { base : base::mk_reply(reply) } }
+pub struct GetClipPlaneReply { base:  base::Reply<xcb_glx_get_clip_plane_reply_t> }
+fn mk_reply_xcb_glx_get_clip_plane_reply_t(reply:*mut xcb_glx_get_clip_plane_reply_t) -> GetClipPlaneReply { GetClipPlaneReply { base : base::mk_reply(reply) } }
 pub fn GetClipPlane<'r> (c : &'r Connection,
                      context_tag : ContextTag,
                      plane : i32) -> GetClipPlaneCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_clip_plane(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         plane as i32); //2
     GetClipPlaneCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -2119,7 +2119,7 @@ pub fn GetClipPlaneUnchecked<'r> (c : &'r Connection,
                               plane : i32) -> GetClipPlaneCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_clip_plane_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         plane as i32); //2
     GetClipPlaneCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -2131,16 +2131,16 @@ impl GetClipPlaneReply {
   }
 
 }
-impl_reply_cookie!(GetClipPlaneCookie<'s>, mk_reply_get_clip_plane_reply, GetClipPlaneReply, xcb_glx_get_clip_plane_reply);
+impl_reply_cookie!(GetClipPlaneCookie<'s>, mk_reply_xcb_glx_get_clip_plane_reply_t, GetClipPlaneReply, xcb_glx_get_clip_plane_reply);
 
-pub struct GetDoublevReply { base:  base::Reply<get_doublev_reply> }
-fn mk_reply_get_doublev_reply(reply:*mut get_doublev_reply) -> GetDoublevReply { GetDoublevReply { base : base::mk_reply(reply) } }
+pub struct GetDoublevReply { base:  base::Reply<xcb_glx_get_doublev_reply_t> }
+fn mk_reply_xcb_glx_get_doublev_reply_t(reply:*mut xcb_glx_get_doublev_reply_t) -> GetDoublevReply { GetDoublevReply { base : base::mk_reply(reply) } }
 pub fn GetDoublev<'r> (c : &'r Connection,
                    context_tag : ContextTag,
                    pname : u32) -> GetDoublevCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_doublev(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         pname as u32); //2
     GetDoublevCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -2150,7 +2150,7 @@ pub fn GetDoublevUnchecked<'r> (c : &'r Connection,
                             pname : u32) -> GetDoublevCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_doublev_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         pname as u32); //2
     GetDoublevCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -2166,13 +2166,13 @@ impl GetDoublevReply {
   }
 
 }
-impl_reply_cookie!(GetDoublevCookie<'s>, mk_reply_get_doublev_reply, GetDoublevReply, xcb_glx_get_doublev_reply);
+impl_reply_cookie!(GetDoublevCookie<'s>, mk_reply_xcb_glx_get_doublev_reply_t, GetDoublevReply, xcb_glx_get_doublev_reply);
 
 pub fn GetError<'r> (c : &'r Connection,
                  context_tag : ContextTag) -> GetErrorCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_error(c.get_raw_conn(),
-        context_tag as context_tag); //1
+        context_tag as xcb_glx_context_tag_t); //1
     GetErrorCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -2180,7 +2180,7 @@ pub fn GetErrorUnchecked<'r> (c : &'r Connection,
                           context_tag : ContextTag) -> GetErrorCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_error_unchecked(c.get_raw_conn(),
-        context_tag as context_tag); //1
+        context_tag as xcb_glx_context_tag_t); //1
     GetErrorCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -2191,16 +2191,16 @@ impl GetErrorReply {
   }
 
 }
-impl_reply_cookie!(GetErrorCookie<'s>, mk_reply_get_error_reply, GetErrorReply, xcb_glx_get_error_reply);
+impl_reply_cookie!(GetErrorCookie<'s>, mk_reply_xcb_glx_get_error_reply_t, GetErrorReply, xcb_glx_get_error_reply);
 
-pub struct GetFloatvReply { base:  base::Reply<get_floatv_reply> }
-fn mk_reply_get_floatv_reply(reply:*mut get_floatv_reply) -> GetFloatvReply { GetFloatvReply { base : base::mk_reply(reply) } }
+pub struct GetFloatvReply { base:  base::Reply<xcb_glx_get_floatv_reply_t> }
+fn mk_reply_xcb_glx_get_floatv_reply_t(reply:*mut xcb_glx_get_floatv_reply_t) -> GetFloatvReply { GetFloatvReply { base : base::mk_reply(reply) } }
 pub fn GetFloatv<'r> (c : &'r Connection,
                   context_tag : ContextTag,
                   pname : u32) -> GetFloatvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_floatv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         pname as u32); //2
     GetFloatvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -2210,7 +2210,7 @@ pub fn GetFloatvUnchecked<'r> (c : &'r Connection,
                            pname : u32) -> GetFloatvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_floatv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         pname as u32); //2
     GetFloatvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -2226,16 +2226,16 @@ impl GetFloatvReply {
   }
 
 }
-impl_reply_cookie!(GetFloatvCookie<'s>, mk_reply_get_floatv_reply, GetFloatvReply, xcb_glx_get_floatv_reply);
+impl_reply_cookie!(GetFloatvCookie<'s>, mk_reply_xcb_glx_get_floatv_reply_t, GetFloatvReply, xcb_glx_get_floatv_reply);
 
-pub struct GetIntegervReply { base:  base::Reply<get_integerv_reply> }
-fn mk_reply_get_integerv_reply(reply:*mut get_integerv_reply) -> GetIntegervReply { GetIntegervReply { base : base::mk_reply(reply) } }
+pub struct GetIntegervReply { base:  base::Reply<xcb_glx_get_integerv_reply_t> }
+fn mk_reply_xcb_glx_get_integerv_reply_t(reply:*mut xcb_glx_get_integerv_reply_t) -> GetIntegervReply { GetIntegervReply { base : base::mk_reply(reply) } }
 pub fn GetIntegerv<'r> (c : &'r Connection,
                     context_tag : ContextTag,
                     pname : u32) -> GetIntegervCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_integerv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         pname as u32); //2
     GetIntegervCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -2245,7 +2245,7 @@ pub fn GetIntegervUnchecked<'r> (c : &'r Connection,
                              pname : u32) -> GetIntegervCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_integerv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         pname as u32); //2
     GetIntegervCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -2261,17 +2261,17 @@ impl GetIntegervReply {
   }
 
 }
-impl_reply_cookie!(GetIntegervCookie<'s>, mk_reply_get_integerv_reply, GetIntegervReply, xcb_glx_get_integerv_reply);
+impl_reply_cookie!(GetIntegervCookie<'s>, mk_reply_xcb_glx_get_integerv_reply_t, GetIntegervReply, xcb_glx_get_integerv_reply);
 
-pub struct GetLightfvReply { base:  base::Reply<get_lightfv_reply> }
-fn mk_reply_get_lightfv_reply(reply:*mut get_lightfv_reply) -> GetLightfvReply { GetLightfvReply { base : base::mk_reply(reply) } }
+pub struct GetLightfvReply { base:  base::Reply<xcb_glx_get_lightfv_reply_t> }
+fn mk_reply_xcb_glx_get_lightfv_reply_t(reply:*mut xcb_glx_get_lightfv_reply_t) -> GetLightfvReply { GetLightfvReply { base : base::mk_reply(reply) } }
 pub fn GetLightfv<'r> (c : &'r Connection,
                    context_tag : ContextTag,
                    light : u32,
                    pname : u32) -> GetLightfvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_lightfv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         light as u32, //2
         pname as u32); //3
     GetLightfvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -2283,7 +2283,7 @@ pub fn GetLightfvUnchecked<'r> (c : &'r Connection,
                             pname : u32) -> GetLightfvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_lightfv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         light as u32, //2
         pname as u32); //3
     GetLightfvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -2300,17 +2300,17 @@ impl GetLightfvReply {
   }
 
 }
-impl_reply_cookie!(GetLightfvCookie<'s>, mk_reply_get_lightfv_reply, GetLightfvReply, xcb_glx_get_lightfv_reply);
+impl_reply_cookie!(GetLightfvCookie<'s>, mk_reply_xcb_glx_get_lightfv_reply_t, GetLightfvReply, xcb_glx_get_lightfv_reply);
 
-pub struct GetLightivReply { base:  base::Reply<get_lightiv_reply> }
-fn mk_reply_get_lightiv_reply(reply:*mut get_lightiv_reply) -> GetLightivReply { GetLightivReply { base : base::mk_reply(reply) } }
+pub struct GetLightivReply { base:  base::Reply<xcb_glx_get_lightiv_reply_t> }
+fn mk_reply_xcb_glx_get_lightiv_reply_t(reply:*mut xcb_glx_get_lightiv_reply_t) -> GetLightivReply { GetLightivReply { base : base::mk_reply(reply) } }
 pub fn GetLightiv<'r> (c : &'r Connection,
                    context_tag : ContextTag,
                    light : u32,
                    pname : u32) -> GetLightivCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_lightiv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         light as u32, //2
         pname as u32); //3
     GetLightivCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -2322,7 +2322,7 @@ pub fn GetLightivUnchecked<'r> (c : &'r Connection,
                             pname : u32) -> GetLightivCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_lightiv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         light as u32, //2
         pname as u32); //3
     GetLightivCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -2339,17 +2339,17 @@ impl GetLightivReply {
   }
 
 }
-impl_reply_cookie!(GetLightivCookie<'s>, mk_reply_get_lightiv_reply, GetLightivReply, xcb_glx_get_lightiv_reply);
+impl_reply_cookie!(GetLightivCookie<'s>, mk_reply_xcb_glx_get_lightiv_reply_t, GetLightivReply, xcb_glx_get_lightiv_reply);
 
-pub struct GetMapdvReply { base:  base::Reply<get_mapdv_reply> }
-fn mk_reply_get_mapdv_reply(reply:*mut get_mapdv_reply) -> GetMapdvReply { GetMapdvReply { base : base::mk_reply(reply) } }
+pub struct GetMapdvReply { base:  base::Reply<xcb_glx_get_mapdv_reply_t> }
+fn mk_reply_xcb_glx_get_mapdv_reply_t(reply:*mut xcb_glx_get_mapdv_reply_t) -> GetMapdvReply { GetMapdvReply { base : base::mk_reply(reply) } }
 pub fn GetMapdv<'r> (c : &'r Connection,
                  context_tag : ContextTag,
                  target : u32,
                  query : u32) -> GetMapdvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_mapdv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         query as u32); //3
     GetMapdvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -2361,7 +2361,7 @@ pub fn GetMapdvUnchecked<'r> (c : &'r Connection,
                           query : u32) -> GetMapdvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_mapdv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         query as u32); //3
     GetMapdvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -2378,17 +2378,17 @@ impl GetMapdvReply {
   }
 
 }
-impl_reply_cookie!(GetMapdvCookie<'s>, mk_reply_get_mapdv_reply, GetMapdvReply, xcb_glx_get_mapdv_reply);
+impl_reply_cookie!(GetMapdvCookie<'s>, mk_reply_xcb_glx_get_mapdv_reply_t, GetMapdvReply, xcb_glx_get_mapdv_reply);
 
-pub struct GetMapfvReply { base:  base::Reply<get_mapfv_reply> }
-fn mk_reply_get_mapfv_reply(reply:*mut get_mapfv_reply) -> GetMapfvReply { GetMapfvReply { base : base::mk_reply(reply) } }
+pub struct GetMapfvReply { base:  base::Reply<xcb_glx_get_mapfv_reply_t> }
+fn mk_reply_xcb_glx_get_mapfv_reply_t(reply:*mut xcb_glx_get_mapfv_reply_t) -> GetMapfvReply { GetMapfvReply { base : base::mk_reply(reply) } }
 pub fn GetMapfv<'r> (c : &'r Connection,
                  context_tag : ContextTag,
                  target : u32,
                  query : u32) -> GetMapfvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_mapfv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         query as u32); //3
     GetMapfvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -2400,7 +2400,7 @@ pub fn GetMapfvUnchecked<'r> (c : &'r Connection,
                           query : u32) -> GetMapfvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_mapfv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         query as u32); //3
     GetMapfvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -2417,17 +2417,17 @@ impl GetMapfvReply {
   }
 
 }
-impl_reply_cookie!(GetMapfvCookie<'s>, mk_reply_get_mapfv_reply, GetMapfvReply, xcb_glx_get_mapfv_reply);
+impl_reply_cookie!(GetMapfvCookie<'s>, mk_reply_xcb_glx_get_mapfv_reply_t, GetMapfvReply, xcb_glx_get_mapfv_reply);
 
-pub struct GetMapivReply { base:  base::Reply<get_mapiv_reply> }
-fn mk_reply_get_mapiv_reply(reply:*mut get_mapiv_reply) -> GetMapivReply { GetMapivReply { base : base::mk_reply(reply) } }
+pub struct GetMapivReply { base:  base::Reply<xcb_glx_get_mapiv_reply_t> }
+fn mk_reply_xcb_glx_get_mapiv_reply_t(reply:*mut xcb_glx_get_mapiv_reply_t) -> GetMapivReply { GetMapivReply { base : base::mk_reply(reply) } }
 pub fn GetMapiv<'r> (c : &'r Connection,
                  context_tag : ContextTag,
                  target : u32,
                  query : u32) -> GetMapivCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_mapiv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         query as u32); //3
     GetMapivCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -2439,7 +2439,7 @@ pub fn GetMapivUnchecked<'r> (c : &'r Connection,
                           query : u32) -> GetMapivCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_mapiv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         query as u32); //3
     GetMapivCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -2456,17 +2456,17 @@ impl GetMapivReply {
   }
 
 }
-impl_reply_cookie!(GetMapivCookie<'s>, mk_reply_get_mapiv_reply, GetMapivReply, xcb_glx_get_mapiv_reply);
+impl_reply_cookie!(GetMapivCookie<'s>, mk_reply_xcb_glx_get_mapiv_reply_t, GetMapivReply, xcb_glx_get_mapiv_reply);
 
-pub struct GetMaterialfvReply { base:  base::Reply<get_materialfv_reply> }
-fn mk_reply_get_materialfv_reply(reply:*mut get_materialfv_reply) -> GetMaterialfvReply { GetMaterialfvReply { base : base::mk_reply(reply) } }
+pub struct GetMaterialfvReply { base:  base::Reply<xcb_glx_get_materialfv_reply_t> }
+fn mk_reply_xcb_glx_get_materialfv_reply_t(reply:*mut xcb_glx_get_materialfv_reply_t) -> GetMaterialfvReply { GetMaterialfvReply { base : base::mk_reply(reply) } }
 pub fn GetMaterialfv<'r> (c : &'r Connection,
                       context_tag : ContextTag,
                       face : u32,
                       pname : u32) -> GetMaterialfvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_materialfv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         face as u32, //2
         pname as u32); //3
     GetMaterialfvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -2478,7 +2478,7 @@ pub fn GetMaterialfvUnchecked<'r> (c : &'r Connection,
                                pname : u32) -> GetMaterialfvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_materialfv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         face as u32, //2
         pname as u32); //3
     GetMaterialfvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -2495,17 +2495,17 @@ impl GetMaterialfvReply {
   }
 
 }
-impl_reply_cookie!(GetMaterialfvCookie<'s>, mk_reply_get_materialfv_reply, GetMaterialfvReply, xcb_glx_get_materialfv_reply);
+impl_reply_cookie!(GetMaterialfvCookie<'s>, mk_reply_xcb_glx_get_materialfv_reply_t, GetMaterialfvReply, xcb_glx_get_materialfv_reply);
 
-pub struct GetMaterialivReply { base:  base::Reply<get_materialiv_reply> }
-fn mk_reply_get_materialiv_reply(reply:*mut get_materialiv_reply) -> GetMaterialivReply { GetMaterialivReply { base : base::mk_reply(reply) } }
+pub struct GetMaterialivReply { base:  base::Reply<xcb_glx_get_materialiv_reply_t> }
+fn mk_reply_xcb_glx_get_materialiv_reply_t(reply:*mut xcb_glx_get_materialiv_reply_t) -> GetMaterialivReply { GetMaterialivReply { base : base::mk_reply(reply) } }
 pub fn GetMaterialiv<'r> (c : &'r Connection,
                       context_tag : ContextTag,
                       face : u32,
                       pname : u32) -> GetMaterialivCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_materialiv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         face as u32, //2
         pname as u32); //3
     GetMaterialivCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -2517,7 +2517,7 @@ pub fn GetMaterialivUnchecked<'r> (c : &'r Connection,
                                pname : u32) -> GetMaterialivCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_materialiv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         face as u32, //2
         pname as u32); //3
     GetMaterialivCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -2534,16 +2534,16 @@ impl GetMaterialivReply {
   }
 
 }
-impl_reply_cookie!(GetMaterialivCookie<'s>, mk_reply_get_materialiv_reply, GetMaterialivReply, xcb_glx_get_materialiv_reply);
+impl_reply_cookie!(GetMaterialivCookie<'s>, mk_reply_xcb_glx_get_materialiv_reply_t, GetMaterialivReply, xcb_glx_get_materialiv_reply);
 
-pub struct GetPixelMapfvReply { base:  base::Reply<get_pixel_mapfv_reply> }
-fn mk_reply_get_pixel_mapfv_reply(reply:*mut get_pixel_mapfv_reply) -> GetPixelMapfvReply { GetPixelMapfvReply { base : base::mk_reply(reply) } }
+pub struct GetPixelMapfvReply { base:  base::Reply<xcb_glx_get_pixel_mapfv_reply_t> }
+fn mk_reply_xcb_glx_get_pixel_mapfv_reply_t(reply:*mut xcb_glx_get_pixel_mapfv_reply_t) -> GetPixelMapfvReply { GetPixelMapfvReply { base : base::mk_reply(reply) } }
 pub fn GetPixelMapfv<'r> (c : &'r Connection,
                       context_tag : ContextTag,
                       map : u32) -> GetPixelMapfvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_pixel_mapfv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         map as u32); //2
     GetPixelMapfvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -2553,7 +2553,7 @@ pub fn GetPixelMapfvUnchecked<'r> (c : &'r Connection,
                                map : u32) -> GetPixelMapfvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_pixel_mapfv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         map as u32); //2
     GetPixelMapfvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -2569,16 +2569,16 @@ impl GetPixelMapfvReply {
   }
 
 }
-impl_reply_cookie!(GetPixelMapfvCookie<'s>, mk_reply_get_pixel_mapfv_reply, GetPixelMapfvReply, xcb_glx_get_pixel_mapfv_reply);
+impl_reply_cookie!(GetPixelMapfvCookie<'s>, mk_reply_xcb_glx_get_pixel_mapfv_reply_t, GetPixelMapfvReply, xcb_glx_get_pixel_mapfv_reply);
 
-pub struct GetPixelMapuivReply { base:  base::Reply<get_pixel_mapuiv_reply> }
-fn mk_reply_get_pixel_mapuiv_reply(reply:*mut get_pixel_mapuiv_reply) -> GetPixelMapuivReply { GetPixelMapuivReply { base : base::mk_reply(reply) } }
+pub struct GetPixelMapuivReply { base:  base::Reply<xcb_glx_get_pixel_mapuiv_reply_t> }
+fn mk_reply_xcb_glx_get_pixel_mapuiv_reply_t(reply:*mut xcb_glx_get_pixel_mapuiv_reply_t) -> GetPixelMapuivReply { GetPixelMapuivReply { base : base::mk_reply(reply) } }
 pub fn GetPixelMapuiv<'r> (c : &'r Connection,
                        context_tag : ContextTag,
                        map : u32) -> GetPixelMapuivCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_pixel_mapuiv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         map as u32); //2
     GetPixelMapuivCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -2588,7 +2588,7 @@ pub fn GetPixelMapuivUnchecked<'r> (c : &'r Connection,
                                 map : u32) -> GetPixelMapuivCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_pixel_mapuiv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         map as u32); //2
     GetPixelMapuivCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -2604,16 +2604,16 @@ impl GetPixelMapuivReply {
   }
 
 }
-impl_reply_cookie!(GetPixelMapuivCookie<'s>, mk_reply_get_pixel_mapuiv_reply, GetPixelMapuivReply, xcb_glx_get_pixel_mapuiv_reply);
+impl_reply_cookie!(GetPixelMapuivCookie<'s>, mk_reply_xcb_glx_get_pixel_mapuiv_reply_t, GetPixelMapuivReply, xcb_glx_get_pixel_mapuiv_reply);
 
-pub struct GetPixelMapusvReply { base:  base::Reply<get_pixel_mapusv_reply> }
-fn mk_reply_get_pixel_mapusv_reply(reply:*mut get_pixel_mapusv_reply) -> GetPixelMapusvReply { GetPixelMapusvReply { base : base::mk_reply(reply) } }
+pub struct GetPixelMapusvReply { base:  base::Reply<xcb_glx_get_pixel_mapusv_reply_t> }
+fn mk_reply_xcb_glx_get_pixel_mapusv_reply_t(reply:*mut xcb_glx_get_pixel_mapusv_reply_t) -> GetPixelMapusvReply { GetPixelMapusvReply { base : base::mk_reply(reply) } }
 pub fn GetPixelMapusv<'r> (c : &'r Connection,
                        context_tag : ContextTag,
                        map : u32) -> GetPixelMapusvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_pixel_mapusv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         map as u32); //2
     GetPixelMapusvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -2623,7 +2623,7 @@ pub fn GetPixelMapusvUnchecked<'r> (c : &'r Connection,
                                 map : u32) -> GetPixelMapusvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_pixel_mapusv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         map as u32); //2
     GetPixelMapusvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -2639,16 +2639,16 @@ impl GetPixelMapusvReply {
   }
 
 }
-impl_reply_cookie!(GetPixelMapusvCookie<'s>, mk_reply_get_pixel_mapusv_reply, GetPixelMapusvReply, xcb_glx_get_pixel_mapusv_reply);
+impl_reply_cookie!(GetPixelMapusvCookie<'s>, mk_reply_xcb_glx_get_pixel_mapusv_reply_t, GetPixelMapusvReply, xcb_glx_get_pixel_mapusv_reply);
 
-pub struct GetPolygonStippleReply { base:  base::Reply<get_polygon_stipple_reply> }
-fn mk_reply_get_polygon_stipple_reply(reply:*mut get_polygon_stipple_reply) -> GetPolygonStippleReply { GetPolygonStippleReply { base : base::mk_reply(reply) } }
+pub struct GetPolygonStippleReply { base:  base::Reply<xcb_glx_get_polygon_stipple_reply_t> }
+fn mk_reply_xcb_glx_get_polygon_stipple_reply_t(reply:*mut xcb_glx_get_polygon_stipple_reply_t) -> GetPolygonStippleReply { GetPolygonStippleReply { base : base::mk_reply(reply) } }
 pub fn GetPolygonStipple<'r> (c : &'r Connection,
                           context_tag : ContextTag,
                           lsb_first : u8) -> GetPolygonStippleCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_polygon_stipple(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         lsb_first as u8); //2
     GetPolygonStippleCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -2658,7 +2658,7 @@ pub fn GetPolygonStippleUnchecked<'r> (c : &'r Connection,
                                    lsb_first : u8) -> GetPolygonStippleCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_polygon_stipple_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         lsb_first as u8); //2
     GetPolygonStippleCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -2670,16 +2670,16 @@ impl GetPolygonStippleReply {
   }
 
 }
-impl_reply_cookie!(GetPolygonStippleCookie<'s>, mk_reply_get_polygon_stipple_reply, GetPolygonStippleReply, xcb_glx_get_polygon_stipple_reply);
+impl_reply_cookie!(GetPolygonStippleCookie<'s>, mk_reply_xcb_glx_get_polygon_stipple_reply_t, GetPolygonStippleReply, xcb_glx_get_polygon_stipple_reply);
 
-pub struct GetStringReply { base:  base::Reply<get_string_reply> }
-fn mk_reply_get_string_reply(reply:*mut get_string_reply) -> GetStringReply { GetStringReply { base : base::mk_reply(reply) } }
+pub struct GetStringReply { base:  base::Reply<xcb_glx_get_string_reply_t> }
+fn mk_reply_xcb_glx_get_string_reply_t(reply:*mut xcb_glx_get_string_reply_t) -> GetStringReply { GetStringReply { base : base::mk_reply(reply) } }
 pub fn GetString<'r> (c : &'r Connection,
                   context_tag : ContextTag,
                   name : u32) -> GetStringCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_string(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         name as u32); //2
     GetStringCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -2689,7 +2689,7 @@ pub fn GetStringUnchecked<'r> (c : &'r Connection,
                            name : u32) -> GetStringCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_string_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         name as u32); //2
     GetStringCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -2701,17 +2701,17 @@ impl GetStringReply {
   }
 
 }
-impl_reply_cookie!(GetStringCookie<'s>, mk_reply_get_string_reply, GetStringReply, xcb_glx_get_string_reply);
+impl_reply_cookie!(GetStringCookie<'s>, mk_reply_xcb_glx_get_string_reply_t, GetStringReply, xcb_glx_get_string_reply);
 
-pub struct GetTexEnvfvReply { base:  base::Reply<get_tex_envfv_reply> }
-fn mk_reply_get_tex_envfv_reply(reply:*mut get_tex_envfv_reply) -> GetTexEnvfvReply { GetTexEnvfvReply { base : base::mk_reply(reply) } }
+pub struct GetTexEnvfvReply { base:  base::Reply<xcb_glx_get_tex_envfv_reply_t> }
+fn mk_reply_xcb_glx_get_tex_envfv_reply_t(reply:*mut xcb_glx_get_tex_envfv_reply_t) -> GetTexEnvfvReply { GetTexEnvfvReply { base : base::mk_reply(reply) } }
 pub fn GetTexEnvfv<'r> (c : &'r Connection,
                     context_tag : ContextTag,
                     target : u32,
                     pname : u32) -> GetTexEnvfvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_tex_envfv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         pname as u32); //3
     GetTexEnvfvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -2723,7 +2723,7 @@ pub fn GetTexEnvfvUnchecked<'r> (c : &'r Connection,
                              pname : u32) -> GetTexEnvfvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_tex_envfv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         pname as u32); //3
     GetTexEnvfvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -2740,17 +2740,17 @@ impl GetTexEnvfvReply {
   }
 
 }
-impl_reply_cookie!(GetTexEnvfvCookie<'s>, mk_reply_get_tex_envfv_reply, GetTexEnvfvReply, xcb_glx_get_tex_envfv_reply);
+impl_reply_cookie!(GetTexEnvfvCookie<'s>, mk_reply_xcb_glx_get_tex_envfv_reply_t, GetTexEnvfvReply, xcb_glx_get_tex_envfv_reply);
 
-pub struct GetTexEnvivReply { base:  base::Reply<get_tex_enviv_reply> }
-fn mk_reply_get_tex_enviv_reply(reply:*mut get_tex_enviv_reply) -> GetTexEnvivReply { GetTexEnvivReply { base : base::mk_reply(reply) } }
+pub struct GetTexEnvivReply { base:  base::Reply<xcb_glx_get_tex_enviv_reply_t> }
+fn mk_reply_xcb_glx_get_tex_enviv_reply_t(reply:*mut xcb_glx_get_tex_enviv_reply_t) -> GetTexEnvivReply { GetTexEnvivReply { base : base::mk_reply(reply) } }
 pub fn GetTexEnviv<'r> (c : &'r Connection,
                     context_tag : ContextTag,
                     target : u32,
                     pname : u32) -> GetTexEnvivCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_tex_enviv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         pname as u32); //3
     GetTexEnvivCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -2762,7 +2762,7 @@ pub fn GetTexEnvivUnchecked<'r> (c : &'r Connection,
                              pname : u32) -> GetTexEnvivCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_tex_enviv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         pname as u32); //3
     GetTexEnvivCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -2779,17 +2779,17 @@ impl GetTexEnvivReply {
   }
 
 }
-impl_reply_cookie!(GetTexEnvivCookie<'s>, mk_reply_get_tex_enviv_reply, GetTexEnvivReply, xcb_glx_get_tex_enviv_reply);
+impl_reply_cookie!(GetTexEnvivCookie<'s>, mk_reply_xcb_glx_get_tex_enviv_reply_t, GetTexEnvivReply, xcb_glx_get_tex_enviv_reply);
 
-pub struct GetTexGendvReply { base:  base::Reply<get_tex_gendv_reply> }
-fn mk_reply_get_tex_gendv_reply(reply:*mut get_tex_gendv_reply) -> GetTexGendvReply { GetTexGendvReply { base : base::mk_reply(reply) } }
+pub struct GetTexGendvReply { base:  base::Reply<xcb_glx_get_tex_gendv_reply_t> }
+fn mk_reply_xcb_glx_get_tex_gendv_reply_t(reply:*mut xcb_glx_get_tex_gendv_reply_t) -> GetTexGendvReply { GetTexGendvReply { base : base::mk_reply(reply) } }
 pub fn GetTexGendv<'r> (c : &'r Connection,
                     context_tag : ContextTag,
                     coord : u32,
                     pname : u32) -> GetTexGendvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_tex_gendv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         coord as u32, //2
         pname as u32); //3
     GetTexGendvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -2801,7 +2801,7 @@ pub fn GetTexGendvUnchecked<'r> (c : &'r Connection,
                              pname : u32) -> GetTexGendvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_tex_gendv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         coord as u32, //2
         pname as u32); //3
     GetTexGendvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -2818,17 +2818,17 @@ impl GetTexGendvReply {
   }
 
 }
-impl_reply_cookie!(GetTexGendvCookie<'s>, mk_reply_get_tex_gendv_reply, GetTexGendvReply, xcb_glx_get_tex_gendv_reply);
+impl_reply_cookie!(GetTexGendvCookie<'s>, mk_reply_xcb_glx_get_tex_gendv_reply_t, GetTexGendvReply, xcb_glx_get_tex_gendv_reply);
 
-pub struct GetTexGenfvReply { base:  base::Reply<get_tex_genfv_reply> }
-fn mk_reply_get_tex_genfv_reply(reply:*mut get_tex_genfv_reply) -> GetTexGenfvReply { GetTexGenfvReply { base : base::mk_reply(reply) } }
+pub struct GetTexGenfvReply { base:  base::Reply<xcb_glx_get_tex_genfv_reply_t> }
+fn mk_reply_xcb_glx_get_tex_genfv_reply_t(reply:*mut xcb_glx_get_tex_genfv_reply_t) -> GetTexGenfvReply { GetTexGenfvReply { base : base::mk_reply(reply) } }
 pub fn GetTexGenfv<'r> (c : &'r Connection,
                     context_tag : ContextTag,
                     coord : u32,
                     pname : u32) -> GetTexGenfvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_tex_genfv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         coord as u32, //2
         pname as u32); //3
     GetTexGenfvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -2840,7 +2840,7 @@ pub fn GetTexGenfvUnchecked<'r> (c : &'r Connection,
                              pname : u32) -> GetTexGenfvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_tex_genfv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         coord as u32, //2
         pname as u32); //3
     GetTexGenfvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -2857,17 +2857,17 @@ impl GetTexGenfvReply {
   }
 
 }
-impl_reply_cookie!(GetTexGenfvCookie<'s>, mk_reply_get_tex_genfv_reply, GetTexGenfvReply, xcb_glx_get_tex_genfv_reply);
+impl_reply_cookie!(GetTexGenfvCookie<'s>, mk_reply_xcb_glx_get_tex_genfv_reply_t, GetTexGenfvReply, xcb_glx_get_tex_genfv_reply);
 
-pub struct GetTexGenivReply { base:  base::Reply<get_tex_geniv_reply> }
-fn mk_reply_get_tex_geniv_reply(reply:*mut get_tex_geniv_reply) -> GetTexGenivReply { GetTexGenivReply { base : base::mk_reply(reply) } }
+pub struct GetTexGenivReply { base:  base::Reply<xcb_glx_get_tex_geniv_reply_t> }
+fn mk_reply_xcb_glx_get_tex_geniv_reply_t(reply:*mut xcb_glx_get_tex_geniv_reply_t) -> GetTexGenivReply { GetTexGenivReply { base : base::mk_reply(reply) } }
 pub fn GetTexGeniv<'r> (c : &'r Connection,
                     context_tag : ContextTag,
                     coord : u32,
                     pname : u32) -> GetTexGenivCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_tex_geniv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         coord as u32, //2
         pname as u32); //3
     GetTexGenivCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -2879,7 +2879,7 @@ pub fn GetTexGenivUnchecked<'r> (c : &'r Connection,
                              pname : u32) -> GetTexGenivCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_tex_geniv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         coord as u32, //2
         pname as u32); //3
     GetTexGenivCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -2896,10 +2896,10 @@ impl GetTexGenivReply {
   }
 
 }
-impl_reply_cookie!(GetTexGenivCookie<'s>, mk_reply_get_tex_geniv_reply, GetTexGenivReply, xcb_glx_get_tex_geniv_reply);
+impl_reply_cookie!(GetTexGenivCookie<'s>, mk_reply_xcb_glx_get_tex_geniv_reply_t, GetTexGenivReply, xcb_glx_get_tex_geniv_reply);
 
-pub struct GetTexImageReply { base:  base::Reply<get_tex_image_reply> }
-fn mk_reply_get_tex_image_reply(reply:*mut get_tex_image_reply) -> GetTexImageReply { GetTexImageReply { base : base::mk_reply(reply) } }
+pub struct GetTexImageReply { base:  base::Reply<xcb_glx_get_tex_image_reply_t> }
+fn mk_reply_xcb_glx_get_tex_image_reply_t(reply:*mut xcb_glx_get_tex_image_reply_t) -> GetTexImageReply { GetTexImageReply { base : base::mk_reply(reply) } }
 pub fn GetTexImage<'r> (c : &'r Connection,
                     context_tag : ContextTag,
                     target : u32,
@@ -2909,7 +2909,7 @@ pub fn GetTexImage<'r> (c : &'r Connection,
                     swap_bytes : u8) -> GetTexImageCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_tex_image(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         level as i32, //3
         format as u32, //4
@@ -2927,7 +2927,7 @@ pub fn GetTexImageUnchecked<'r> (c : &'r Connection,
                              swap_bytes : u8) -> GetTexImageCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_tex_image_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         level as i32, //3
         format as u32, //4
@@ -2955,17 +2955,17 @@ impl GetTexImageReply {
   }
 
 }
-impl_reply_cookie!(GetTexImageCookie<'s>, mk_reply_get_tex_image_reply, GetTexImageReply, xcb_glx_get_tex_image_reply);
+impl_reply_cookie!(GetTexImageCookie<'s>, mk_reply_xcb_glx_get_tex_image_reply_t, GetTexImageReply, xcb_glx_get_tex_image_reply);
 
-pub struct GetTexParameterfvReply { base:  base::Reply<get_tex_parameterfv_reply> }
-fn mk_reply_get_tex_parameterfv_reply(reply:*mut get_tex_parameterfv_reply) -> GetTexParameterfvReply { GetTexParameterfvReply { base : base::mk_reply(reply) } }
+pub struct GetTexParameterfvReply { base:  base::Reply<xcb_glx_get_tex_parameterfv_reply_t> }
+fn mk_reply_xcb_glx_get_tex_parameterfv_reply_t(reply:*mut xcb_glx_get_tex_parameterfv_reply_t) -> GetTexParameterfvReply { GetTexParameterfvReply { base : base::mk_reply(reply) } }
 pub fn GetTexParameterfv<'r> (c : &'r Connection,
                           context_tag : ContextTag,
                           target : u32,
                           pname : u32) -> GetTexParameterfvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_tex_parameterfv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         pname as u32); //3
     GetTexParameterfvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -2977,7 +2977,7 @@ pub fn GetTexParameterfvUnchecked<'r> (c : &'r Connection,
                                    pname : u32) -> GetTexParameterfvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_tex_parameterfv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         pname as u32); //3
     GetTexParameterfvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -2994,17 +2994,17 @@ impl GetTexParameterfvReply {
   }
 
 }
-impl_reply_cookie!(GetTexParameterfvCookie<'s>, mk_reply_get_tex_parameterfv_reply, GetTexParameterfvReply, xcb_glx_get_tex_parameterfv_reply);
+impl_reply_cookie!(GetTexParameterfvCookie<'s>, mk_reply_xcb_glx_get_tex_parameterfv_reply_t, GetTexParameterfvReply, xcb_glx_get_tex_parameterfv_reply);
 
-pub struct GetTexParameterivReply { base:  base::Reply<get_tex_parameteriv_reply> }
-fn mk_reply_get_tex_parameteriv_reply(reply:*mut get_tex_parameteriv_reply) -> GetTexParameterivReply { GetTexParameterivReply { base : base::mk_reply(reply) } }
+pub struct GetTexParameterivReply { base:  base::Reply<xcb_glx_get_tex_parameteriv_reply_t> }
+fn mk_reply_xcb_glx_get_tex_parameteriv_reply_t(reply:*mut xcb_glx_get_tex_parameteriv_reply_t) -> GetTexParameterivReply { GetTexParameterivReply { base : base::mk_reply(reply) } }
 pub fn GetTexParameteriv<'r> (c : &'r Connection,
                           context_tag : ContextTag,
                           target : u32,
                           pname : u32) -> GetTexParameterivCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_tex_parameteriv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         pname as u32); //3
     GetTexParameterivCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -3016,7 +3016,7 @@ pub fn GetTexParameterivUnchecked<'r> (c : &'r Connection,
                                    pname : u32) -> GetTexParameterivCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_tex_parameteriv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         pname as u32); //3
     GetTexParameterivCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -3033,10 +3033,10 @@ impl GetTexParameterivReply {
   }
 
 }
-impl_reply_cookie!(GetTexParameterivCookie<'s>, mk_reply_get_tex_parameteriv_reply, GetTexParameterivReply, xcb_glx_get_tex_parameteriv_reply);
+impl_reply_cookie!(GetTexParameterivCookie<'s>, mk_reply_xcb_glx_get_tex_parameteriv_reply_t, GetTexParameterivReply, xcb_glx_get_tex_parameteriv_reply);
 
-pub struct GetTexLevelParameterfvReply { base:  base::Reply<get_tex_level_parameterfv_reply> }
-fn mk_reply_get_tex_level_parameterfv_reply(reply:*mut get_tex_level_parameterfv_reply) -> GetTexLevelParameterfvReply { GetTexLevelParameterfvReply { base : base::mk_reply(reply) } }
+pub struct GetTexLevelParameterfvReply { base:  base::Reply<xcb_glx_get_tex_level_parameterfv_reply_t> }
+fn mk_reply_xcb_glx_get_tex_level_parameterfv_reply_t(reply:*mut xcb_glx_get_tex_level_parameterfv_reply_t) -> GetTexLevelParameterfvReply { GetTexLevelParameterfvReply { base : base::mk_reply(reply) } }
 pub fn GetTexLevelParameterfv<'r> (c : &'r Connection,
                                context_tag : ContextTag,
                                target : u32,
@@ -3044,7 +3044,7 @@ pub fn GetTexLevelParameterfv<'r> (c : &'r Connection,
                                pname : u32) -> GetTexLevelParameterfvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_tex_level_parameterfv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         level as i32, //3
         pname as u32); //4
@@ -3058,7 +3058,7 @@ pub fn GetTexLevelParameterfvUnchecked<'r> (c : &'r Connection,
                                         pname : u32) -> GetTexLevelParameterfvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_tex_level_parameterfv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         level as i32, //3
         pname as u32); //4
@@ -3076,10 +3076,10 @@ impl GetTexLevelParameterfvReply {
   }
 
 }
-impl_reply_cookie!(GetTexLevelParameterfvCookie<'s>, mk_reply_get_tex_level_parameterfv_reply, GetTexLevelParameterfvReply, xcb_glx_get_tex_level_parameterfv_reply);
+impl_reply_cookie!(GetTexLevelParameterfvCookie<'s>, mk_reply_xcb_glx_get_tex_level_parameterfv_reply_t, GetTexLevelParameterfvReply, xcb_glx_get_tex_level_parameterfv_reply);
 
-pub struct GetTexLevelParameterivReply { base:  base::Reply<get_tex_level_parameteriv_reply> }
-fn mk_reply_get_tex_level_parameteriv_reply(reply:*mut get_tex_level_parameteriv_reply) -> GetTexLevelParameterivReply { GetTexLevelParameterivReply { base : base::mk_reply(reply) } }
+pub struct GetTexLevelParameterivReply { base:  base::Reply<xcb_glx_get_tex_level_parameteriv_reply_t> }
+fn mk_reply_xcb_glx_get_tex_level_parameteriv_reply_t(reply:*mut xcb_glx_get_tex_level_parameteriv_reply_t) -> GetTexLevelParameterivReply { GetTexLevelParameterivReply { base : base::mk_reply(reply) } }
 pub fn GetTexLevelParameteriv<'r> (c : &'r Connection,
                                context_tag : ContextTag,
                                target : u32,
@@ -3087,7 +3087,7 @@ pub fn GetTexLevelParameteriv<'r> (c : &'r Connection,
                                pname : u32) -> GetTexLevelParameterivCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_tex_level_parameteriv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         level as i32, //3
         pname as u32); //4
@@ -3101,7 +3101,7 @@ pub fn GetTexLevelParameterivUnchecked<'r> (c : &'r Connection,
                                         pname : u32) -> GetTexLevelParameterivCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_tex_level_parameteriv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         level as i32, //3
         pname as u32); //4
@@ -3119,14 +3119,14 @@ impl GetTexLevelParameterivReply {
   }
 
 }
-impl_reply_cookie!(GetTexLevelParameterivCookie<'s>, mk_reply_get_tex_level_parameteriv_reply, GetTexLevelParameterivReply, xcb_glx_get_tex_level_parameteriv_reply);
+impl_reply_cookie!(GetTexLevelParameterivCookie<'s>, mk_reply_xcb_glx_get_tex_level_parameteriv_reply_t, GetTexLevelParameterivReply, xcb_glx_get_tex_level_parameteriv_reply);
 
 pub fn IsList<'r> (c : &'r Connection,
                context_tag : ContextTag,
                list : u32) -> IsListCookie<'r> {
   unsafe {
     let cookie = xcb_glx_is_list(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         list as u32); //2
     IsListCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -3136,7 +3136,7 @@ pub fn IsListUnchecked<'r> (c : &'r Connection,
                         list : u32) -> IsListCookie<'r> {
   unsafe {
     let cookie = xcb_glx_is_list_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         list as u32); //2
     IsListCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -3148,13 +3148,13 @@ impl IsListReply {
   }
 
 }
-impl_reply_cookie!(IsListCookie<'s>, mk_reply_is_list_reply, IsListReply, xcb_glx_is_list_reply);
+impl_reply_cookie!(IsListCookie<'s>, mk_reply_xcb_glx_is_list_reply_t, IsListReply, xcb_glx_is_list_reply);
 
 pub fn FlushChecked<'r> (c : &'r Connection,
                      context_tag : ContextTag) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_flush_checked(c.get_raw_conn(),
-        context_tag as context_tag); //1
+        context_tag as xcb_glx_context_tag_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
   }
 }
@@ -3162,7 +3162,7 @@ pub fn Flush<'r> (c : &'r Connection,
               context_tag : ContextTag) -> base::VoidCookie<'r> {
   unsafe {
     let cookie = xcb_glx_flush(c.get_raw_conn(),
-        context_tag as context_tag); //1
+        context_tag as xcb_glx_context_tag_t); //1
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
@@ -3173,7 +3173,7 @@ pub fn AreTexturesResident<'r> (c : &'r Connection,
     let textures_len = textures.len();
     let textures_ptr = textures.as_ptr();
     let cookie = xcb_glx_are_textures_resident(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         textures_len as i32, //2
         textures_ptr as *mut u32); //3
     AreTexturesResidentCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -3186,7 +3186,7 @@ pub fn AreTexturesResidentUnchecked<'r> (c : &'r Connection,
     let textures_len = textures.len();
     let textures_ptr = textures.as_ptr();
     let cookie = xcb_glx_are_textures_resident_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         textures_len as i32, //2
         textures_ptr as *mut u32); //3
     AreTexturesResidentCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -3203,7 +3203,7 @@ impl AreTexturesResidentReply {
   }
 
 }
-impl_reply_cookie!(AreTexturesResidentCookie<'s>, mk_reply_are_textures_resident_reply, AreTexturesResidentReply, xcb_glx_are_textures_resident_reply);
+impl_reply_cookie!(AreTexturesResidentCookie<'s>, mk_reply_xcb_glx_are_textures_resident_reply_t, AreTexturesResidentReply, xcb_glx_are_textures_resident_reply);
 
 pub fn DeleteTexturesChecked<'r> (c : &'r Connection,
                               context_tag : ContextTag,
@@ -3212,7 +3212,7 @@ pub fn DeleteTexturesChecked<'r> (c : &'r Connection,
     let textures_len = textures.len();
     let textures_ptr = textures.as_ptr();
     let cookie = xcb_glx_delete_textures_checked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         textures_len as i32, //2
         textures_ptr as *mut u32); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
@@ -3225,20 +3225,20 @@ pub fn DeleteTextures<'r> (c : &'r Connection,
     let textures_len = textures.len();
     let textures_ptr = textures.as_ptr();
     let cookie = xcb_glx_delete_textures(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         textures_len as i32, //2
         textures_ptr as *mut u32); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub struct GenTexturesReply { base:  base::Reply<gen_textures_reply> }
-fn mk_reply_gen_textures_reply(reply:*mut gen_textures_reply) -> GenTexturesReply { GenTexturesReply { base : base::mk_reply(reply) } }
+pub struct GenTexturesReply { base:  base::Reply<xcb_glx_gen_textures_reply_t> }
+fn mk_reply_xcb_glx_gen_textures_reply_t(reply:*mut xcb_glx_gen_textures_reply_t) -> GenTexturesReply { GenTexturesReply { base : base::mk_reply(reply) } }
 pub fn GenTextures<'r> (c : &'r Connection,
                     context_tag : ContextTag,
                     n : i32) -> GenTexturesCookie<'r> {
   unsafe {
     let cookie = xcb_glx_gen_textures(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         n as i32); //2
     GenTexturesCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -3248,7 +3248,7 @@ pub fn GenTexturesUnchecked<'r> (c : &'r Connection,
                              n : i32) -> GenTexturesCookie<'r> {
   unsafe {
     let cookie = xcb_glx_gen_textures_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         n as i32); //2
     GenTexturesCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -3260,14 +3260,14 @@ impl GenTexturesReply {
   }
 
 }
-impl_reply_cookie!(GenTexturesCookie<'s>, mk_reply_gen_textures_reply, GenTexturesReply, xcb_glx_gen_textures_reply);
+impl_reply_cookie!(GenTexturesCookie<'s>, mk_reply_xcb_glx_gen_textures_reply_t, GenTexturesReply, xcb_glx_gen_textures_reply);
 
 pub fn IsTexture<'r> (c : &'r Connection,
                   context_tag : ContextTag,
                   texture : u32) -> IsTextureCookie<'r> {
   unsafe {
     let cookie = xcb_glx_is_texture(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         texture as u32); //2
     IsTextureCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -3277,7 +3277,7 @@ pub fn IsTextureUnchecked<'r> (c : &'r Connection,
                            texture : u32) -> IsTextureCookie<'r> {
   unsafe {
     let cookie = xcb_glx_is_texture_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         texture as u32); //2
     IsTextureCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -3289,10 +3289,10 @@ impl IsTextureReply {
   }
 
 }
-impl_reply_cookie!(IsTextureCookie<'s>, mk_reply_is_texture_reply, IsTextureReply, xcb_glx_is_texture_reply);
+impl_reply_cookie!(IsTextureCookie<'s>, mk_reply_xcb_glx_is_texture_reply_t, IsTextureReply, xcb_glx_is_texture_reply);
 
-pub struct GetColorTableReply { base:  base::Reply<get_color_table_reply> }
-fn mk_reply_get_color_table_reply(reply:*mut get_color_table_reply) -> GetColorTableReply { GetColorTableReply { base : base::mk_reply(reply) } }
+pub struct GetColorTableReply { base:  base::Reply<xcb_glx_get_color_table_reply_t> }
+fn mk_reply_xcb_glx_get_color_table_reply_t(reply:*mut xcb_glx_get_color_table_reply_t) -> GetColorTableReply { GetColorTableReply { base : base::mk_reply(reply) } }
 pub fn GetColorTable<'r> (c : &'r Connection,
                       context_tag : ContextTag,
                       target : u32,
@@ -3301,7 +3301,7 @@ pub fn GetColorTable<'r> (c : &'r Connection,
                       swap_bytes : u8) -> GetColorTableCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_color_table(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         format as u32, //3
         type_ as u32, //4
@@ -3317,7 +3317,7 @@ pub fn GetColorTableUnchecked<'r> (c : &'r Connection,
                                swap_bytes : u8) -> GetColorTableCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_color_table_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         format as u32, //3
         type_ as u32, //4
@@ -3336,17 +3336,17 @@ impl GetColorTableReply {
   }
 
 }
-impl_reply_cookie!(GetColorTableCookie<'s>, mk_reply_get_color_table_reply, GetColorTableReply, xcb_glx_get_color_table_reply);
+impl_reply_cookie!(GetColorTableCookie<'s>, mk_reply_xcb_glx_get_color_table_reply_t, GetColorTableReply, xcb_glx_get_color_table_reply);
 
-pub struct GetColorTableParameterfvReply { base:  base::Reply<get_color_table_parameterfv_reply> }
-fn mk_reply_get_color_table_parameterfv_reply(reply:*mut get_color_table_parameterfv_reply) -> GetColorTableParameterfvReply { GetColorTableParameterfvReply { base : base::mk_reply(reply) } }
+pub struct GetColorTableParameterfvReply { base:  base::Reply<xcb_glx_get_color_table_parameterfv_reply_t> }
+fn mk_reply_xcb_glx_get_color_table_parameterfv_reply_t(reply:*mut xcb_glx_get_color_table_parameterfv_reply_t) -> GetColorTableParameterfvReply { GetColorTableParameterfvReply { base : base::mk_reply(reply) } }
 pub fn GetColorTableParameterfv<'r> (c : &'r Connection,
                                  context_tag : ContextTag,
                                  target : u32,
                                  pname : u32) -> GetColorTableParameterfvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_color_table_parameterfv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         pname as u32); //3
     GetColorTableParameterfvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -3358,7 +3358,7 @@ pub fn GetColorTableParameterfvUnchecked<'r> (c : &'r Connection,
                                           pname : u32) -> GetColorTableParameterfvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_color_table_parameterfv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         pname as u32); //3
     GetColorTableParameterfvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -3375,17 +3375,17 @@ impl GetColorTableParameterfvReply {
   }
 
 }
-impl_reply_cookie!(GetColorTableParameterfvCookie<'s>, mk_reply_get_color_table_parameterfv_reply, GetColorTableParameterfvReply, xcb_glx_get_color_table_parameterfv_reply);
+impl_reply_cookie!(GetColorTableParameterfvCookie<'s>, mk_reply_xcb_glx_get_color_table_parameterfv_reply_t, GetColorTableParameterfvReply, xcb_glx_get_color_table_parameterfv_reply);
 
-pub struct GetColorTableParameterivReply { base:  base::Reply<get_color_table_parameteriv_reply> }
-fn mk_reply_get_color_table_parameteriv_reply(reply:*mut get_color_table_parameteriv_reply) -> GetColorTableParameterivReply { GetColorTableParameterivReply { base : base::mk_reply(reply) } }
+pub struct GetColorTableParameterivReply { base:  base::Reply<xcb_glx_get_color_table_parameteriv_reply_t> }
+fn mk_reply_xcb_glx_get_color_table_parameteriv_reply_t(reply:*mut xcb_glx_get_color_table_parameteriv_reply_t) -> GetColorTableParameterivReply { GetColorTableParameterivReply { base : base::mk_reply(reply) } }
 pub fn GetColorTableParameteriv<'r> (c : &'r Connection,
                                  context_tag : ContextTag,
                                  target : u32,
                                  pname : u32) -> GetColorTableParameterivCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_color_table_parameteriv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         pname as u32); //3
     GetColorTableParameterivCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -3397,7 +3397,7 @@ pub fn GetColorTableParameterivUnchecked<'r> (c : &'r Connection,
                                           pname : u32) -> GetColorTableParameterivCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_color_table_parameteriv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         pname as u32); //3
     GetColorTableParameterivCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -3414,10 +3414,10 @@ impl GetColorTableParameterivReply {
   }
 
 }
-impl_reply_cookie!(GetColorTableParameterivCookie<'s>, mk_reply_get_color_table_parameteriv_reply, GetColorTableParameterivReply, xcb_glx_get_color_table_parameteriv_reply);
+impl_reply_cookie!(GetColorTableParameterivCookie<'s>, mk_reply_xcb_glx_get_color_table_parameteriv_reply_t, GetColorTableParameterivReply, xcb_glx_get_color_table_parameteriv_reply);
 
-pub struct GetConvolutionFilterReply { base:  base::Reply<get_convolution_filter_reply> }
-fn mk_reply_get_convolution_filter_reply(reply:*mut get_convolution_filter_reply) -> GetConvolutionFilterReply { GetConvolutionFilterReply { base : base::mk_reply(reply) } }
+pub struct GetConvolutionFilterReply { base:  base::Reply<xcb_glx_get_convolution_filter_reply_t> }
+fn mk_reply_xcb_glx_get_convolution_filter_reply_t(reply:*mut xcb_glx_get_convolution_filter_reply_t) -> GetConvolutionFilterReply { GetConvolutionFilterReply { base : base::mk_reply(reply) } }
 pub fn GetConvolutionFilter<'r> (c : &'r Connection,
                              context_tag : ContextTag,
                              target : u32,
@@ -3426,7 +3426,7 @@ pub fn GetConvolutionFilter<'r> (c : &'r Connection,
                              swap_bytes : u8) -> GetConvolutionFilterCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_convolution_filter(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         format as u32, //3
         type_ as u32, //4
@@ -3442,7 +3442,7 @@ pub fn GetConvolutionFilterUnchecked<'r> (c : &'r Connection,
                                       swap_bytes : u8) -> GetConvolutionFilterCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_convolution_filter_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         format as u32, //3
         type_ as u32, //4
@@ -3465,17 +3465,17 @@ impl GetConvolutionFilterReply {
   }
 
 }
-impl_reply_cookie!(GetConvolutionFilterCookie<'s>, mk_reply_get_convolution_filter_reply, GetConvolutionFilterReply, xcb_glx_get_convolution_filter_reply);
+impl_reply_cookie!(GetConvolutionFilterCookie<'s>, mk_reply_xcb_glx_get_convolution_filter_reply_t, GetConvolutionFilterReply, xcb_glx_get_convolution_filter_reply);
 
-pub struct GetConvolutionParameterfvReply { base:  base::Reply<get_convolution_parameterfv_reply> }
-fn mk_reply_get_convolution_parameterfv_reply(reply:*mut get_convolution_parameterfv_reply) -> GetConvolutionParameterfvReply { GetConvolutionParameterfvReply { base : base::mk_reply(reply) } }
+pub struct GetConvolutionParameterfvReply { base:  base::Reply<xcb_glx_get_convolution_parameterfv_reply_t> }
+fn mk_reply_xcb_glx_get_convolution_parameterfv_reply_t(reply:*mut xcb_glx_get_convolution_parameterfv_reply_t) -> GetConvolutionParameterfvReply { GetConvolutionParameterfvReply { base : base::mk_reply(reply) } }
 pub fn GetConvolutionParameterfv<'r> (c : &'r Connection,
                                   context_tag : ContextTag,
                                   target : u32,
                                   pname : u32) -> GetConvolutionParameterfvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_convolution_parameterfv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         pname as u32); //3
     GetConvolutionParameterfvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -3487,7 +3487,7 @@ pub fn GetConvolutionParameterfvUnchecked<'r> (c : &'r Connection,
                                            pname : u32) -> GetConvolutionParameterfvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_convolution_parameterfv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         pname as u32); //3
     GetConvolutionParameterfvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -3504,17 +3504,17 @@ impl GetConvolutionParameterfvReply {
   }
 
 }
-impl_reply_cookie!(GetConvolutionParameterfvCookie<'s>, mk_reply_get_convolution_parameterfv_reply, GetConvolutionParameterfvReply, xcb_glx_get_convolution_parameterfv_reply);
+impl_reply_cookie!(GetConvolutionParameterfvCookie<'s>, mk_reply_xcb_glx_get_convolution_parameterfv_reply_t, GetConvolutionParameterfvReply, xcb_glx_get_convolution_parameterfv_reply);
 
-pub struct GetConvolutionParameterivReply { base:  base::Reply<get_convolution_parameteriv_reply> }
-fn mk_reply_get_convolution_parameteriv_reply(reply:*mut get_convolution_parameteriv_reply) -> GetConvolutionParameterivReply { GetConvolutionParameterivReply { base : base::mk_reply(reply) } }
+pub struct GetConvolutionParameterivReply { base:  base::Reply<xcb_glx_get_convolution_parameteriv_reply_t> }
+fn mk_reply_xcb_glx_get_convolution_parameteriv_reply_t(reply:*mut xcb_glx_get_convolution_parameteriv_reply_t) -> GetConvolutionParameterivReply { GetConvolutionParameterivReply { base : base::mk_reply(reply) } }
 pub fn GetConvolutionParameteriv<'r> (c : &'r Connection,
                                   context_tag : ContextTag,
                                   target : u32,
                                   pname : u32) -> GetConvolutionParameterivCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_convolution_parameteriv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         pname as u32); //3
     GetConvolutionParameterivCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -3526,7 +3526,7 @@ pub fn GetConvolutionParameterivUnchecked<'r> (c : &'r Connection,
                                            pname : u32) -> GetConvolutionParameterivCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_convolution_parameteriv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         pname as u32); //3
     GetConvolutionParameterivCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -3543,10 +3543,10 @@ impl GetConvolutionParameterivReply {
   }
 
 }
-impl_reply_cookie!(GetConvolutionParameterivCookie<'s>, mk_reply_get_convolution_parameteriv_reply, GetConvolutionParameterivReply, xcb_glx_get_convolution_parameteriv_reply);
+impl_reply_cookie!(GetConvolutionParameterivCookie<'s>, mk_reply_xcb_glx_get_convolution_parameteriv_reply_t, GetConvolutionParameterivReply, xcb_glx_get_convolution_parameteriv_reply);
 
-pub struct GetSeparableFilterReply { base:  base::Reply<get_separable_filter_reply> }
-fn mk_reply_get_separable_filter_reply(reply:*mut get_separable_filter_reply) -> GetSeparableFilterReply { GetSeparableFilterReply { base : base::mk_reply(reply) } }
+pub struct GetSeparableFilterReply { base:  base::Reply<xcb_glx_get_separable_filter_reply_t> }
+fn mk_reply_xcb_glx_get_separable_filter_reply_t(reply:*mut xcb_glx_get_separable_filter_reply_t) -> GetSeparableFilterReply { GetSeparableFilterReply { base : base::mk_reply(reply) } }
 pub fn GetSeparableFilter<'r> (c : &'r Connection,
                            context_tag : ContextTag,
                            target : u32,
@@ -3555,7 +3555,7 @@ pub fn GetSeparableFilter<'r> (c : &'r Connection,
                            swap_bytes : u8) -> GetSeparableFilterCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_separable_filter(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         format as u32, //3
         type_ as u32, //4
@@ -3571,7 +3571,7 @@ pub fn GetSeparableFilterUnchecked<'r> (c : &'r Connection,
                                     swap_bytes : u8) -> GetSeparableFilterCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_separable_filter_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         format as u32, //3
         type_ as u32, //4
@@ -3594,10 +3594,10 @@ impl GetSeparableFilterReply {
   }
 
 }
-impl_reply_cookie!(GetSeparableFilterCookie<'s>, mk_reply_get_separable_filter_reply, GetSeparableFilterReply, xcb_glx_get_separable_filter_reply);
+impl_reply_cookie!(GetSeparableFilterCookie<'s>, mk_reply_xcb_glx_get_separable_filter_reply_t, GetSeparableFilterReply, xcb_glx_get_separable_filter_reply);
 
-pub struct GetHistogramReply { base:  base::Reply<get_histogram_reply> }
-fn mk_reply_get_histogram_reply(reply:*mut get_histogram_reply) -> GetHistogramReply { GetHistogramReply { base : base::mk_reply(reply) } }
+pub struct GetHistogramReply { base:  base::Reply<xcb_glx_get_histogram_reply_t> }
+fn mk_reply_xcb_glx_get_histogram_reply_t(reply:*mut xcb_glx_get_histogram_reply_t) -> GetHistogramReply { GetHistogramReply { base : base::mk_reply(reply) } }
 pub fn GetHistogram<'r> (c : &'r Connection,
                      context_tag : ContextTag,
                      target : u32,
@@ -3607,7 +3607,7 @@ pub fn GetHistogram<'r> (c : &'r Connection,
                      reset : u8) -> GetHistogramCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_histogram(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         format as u32, //3
         type_ as u32, //4
@@ -3625,7 +3625,7 @@ pub fn GetHistogramUnchecked<'r> (c : &'r Connection,
                               reset : u8) -> GetHistogramCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_histogram_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         format as u32, //3
         type_ as u32, //4
@@ -3645,17 +3645,17 @@ impl GetHistogramReply {
   }
 
 }
-impl_reply_cookie!(GetHistogramCookie<'s>, mk_reply_get_histogram_reply, GetHistogramReply, xcb_glx_get_histogram_reply);
+impl_reply_cookie!(GetHistogramCookie<'s>, mk_reply_xcb_glx_get_histogram_reply_t, GetHistogramReply, xcb_glx_get_histogram_reply);
 
-pub struct GetHistogramParameterfvReply { base:  base::Reply<get_histogram_parameterfv_reply> }
-fn mk_reply_get_histogram_parameterfv_reply(reply:*mut get_histogram_parameterfv_reply) -> GetHistogramParameterfvReply { GetHistogramParameterfvReply { base : base::mk_reply(reply) } }
+pub struct GetHistogramParameterfvReply { base:  base::Reply<xcb_glx_get_histogram_parameterfv_reply_t> }
+fn mk_reply_xcb_glx_get_histogram_parameterfv_reply_t(reply:*mut xcb_glx_get_histogram_parameterfv_reply_t) -> GetHistogramParameterfvReply { GetHistogramParameterfvReply { base : base::mk_reply(reply) } }
 pub fn GetHistogramParameterfv<'r> (c : &'r Connection,
                                 context_tag : ContextTag,
                                 target : u32,
                                 pname : u32) -> GetHistogramParameterfvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_histogram_parameterfv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         pname as u32); //3
     GetHistogramParameterfvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -3667,7 +3667,7 @@ pub fn GetHistogramParameterfvUnchecked<'r> (c : &'r Connection,
                                          pname : u32) -> GetHistogramParameterfvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_histogram_parameterfv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         pname as u32); //3
     GetHistogramParameterfvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -3684,17 +3684,17 @@ impl GetHistogramParameterfvReply {
   }
 
 }
-impl_reply_cookie!(GetHistogramParameterfvCookie<'s>, mk_reply_get_histogram_parameterfv_reply, GetHistogramParameterfvReply, xcb_glx_get_histogram_parameterfv_reply);
+impl_reply_cookie!(GetHistogramParameterfvCookie<'s>, mk_reply_xcb_glx_get_histogram_parameterfv_reply_t, GetHistogramParameterfvReply, xcb_glx_get_histogram_parameterfv_reply);
 
-pub struct GetHistogramParameterivReply { base:  base::Reply<get_histogram_parameteriv_reply> }
-fn mk_reply_get_histogram_parameteriv_reply(reply:*mut get_histogram_parameteriv_reply) -> GetHistogramParameterivReply { GetHistogramParameterivReply { base : base::mk_reply(reply) } }
+pub struct GetHistogramParameterivReply { base:  base::Reply<xcb_glx_get_histogram_parameteriv_reply_t> }
+fn mk_reply_xcb_glx_get_histogram_parameteriv_reply_t(reply:*mut xcb_glx_get_histogram_parameteriv_reply_t) -> GetHistogramParameterivReply { GetHistogramParameterivReply { base : base::mk_reply(reply) } }
 pub fn GetHistogramParameteriv<'r> (c : &'r Connection,
                                 context_tag : ContextTag,
                                 target : u32,
                                 pname : u32) -> GetHistogramParameterivCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_histogram_parameteriv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         pname as u32); //3
     GetHistogramParameterivCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -3706,7 +3706,7 @@ pub fn GetHistogramParameterivUnchecked<'r> (c : &'r Connection,
                                          pname : u32) -> GetHistogramParameterivCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_histogram_parameteriv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         pname as u32); //3
     GetHistogramParameterivCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -3723,10 +3723,10 @@ impl GetHistogramParameterivReply {
   }
 
 }
-impl_reply_cookie!(GetHistogramParameterivCookie<'s>, mk_reply_get_histogram_parameteriv_reply, GetHistogramParameterivReply, xcb_glx_get_histogram_parameteriv_reply);
+impl_reply_cookie!(GetHistogramParameterivCookie<'s>, mk_reply_xcb_glx_get_histogram_parameteriv_reply_t, GetHistogramParameterivReply, xcb_glx_get_histogram_parameteriv_reply);
 
-pub struct GetMinmaxReply { base:  base::Reply<get_minmax_reply> }
-fn mk_reply_get_minmax_reply(reply:*mut get_minmax_reply) -> GetMinmaxReply { GetMinmaxReply { base : base::mk_reply(reply) } }
+pub struct GetMinmaxReply { base:  base::Reply<xcb_glx_get_minmax_reply_t> }
+fn mk_reply_xcb_glx_get_minmax_reply_t(reply:*mut xcb_glx_get_minmax_reply_t) -> GetMinmaxReply { GetMinmaxReply { base : base::mk_reply(reply) } }
 pub fn GetMinmax<'r> (c : &'r Connection,
                   context_tag : ContextTag,
                   target : u32,
@@ -3736,7 +3736,7 @@ pub fn GetMinmax<'r> (c : &'r Connection,
                   reset : u8) -> GetMinmaxCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_minmax(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         format as u32, //3
         type_ as u32, //4
@@ -3754,7 +3754,7 @@ pub fn GetMinmaxUnchecked<'r> (c : &'r Connection,
                            reset : u8) -> GetMinmaxCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_minmax_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         format as u32, //3
         type_ as u32, //4
@@ -3770,17 +3770,17 @@ impl GetMinmaxReply {
   }
 
 }
-impl_reply_cookie!(GetMinmaxCookie<'s>, mk_reply_get_minmax_reply, GetMinmaxReply, xcb_glx_get_minmax_reply);
+impl_reply_cookie!(GetMinmaxCookie<'s>, mk_reply_xcb_glx_get_minmax_reply_t, GetMinmaxReply, xcb_glx_get_minmax_reply);
 
-pub struct GetMinmaxParameterfvReply { base:  base::Reply<get_minmax_parameterfv_reply> }
-fn mk_reply_get_minmax_parameterfv_reply(reply:*mut get_minmax_parameterfv_reply) -> GetMinmaxParameterfvReply { GetMinmaxParameterfvReply { base : base::mk_reply(reply) } }
+pub struct GetMinmaxParameterfvReply { base:  base::Reply<xcb_glx_get_minmax_parameterfv_reply_t> }
+fn mk_reply_xcb_glx_get_minmax_parameterfv_reply_t(reply:*mut xcb_glx_get_minmax_parameterfv_reply_t) -> GetMinmaxParameterfvReply { GetMinmaxParameterfvReply { base : base::mk_reply(reply) } }
 pub fn GetMinmaxParameterfv<'r> (c : &'r Connection,
                              context_tag : ContextTag,
                              target : u32,
                              pname : u32) -> GetMinmaxParameterfvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_minmax_parameterfv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         pname as u32); //3
     GetMinmaxParameterfvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -3792,7 +3792,7 @@ pub fn GetMinmaxParameterfvUnchecked<'r> (c : &'r Connection,
                                       pname : u32) -> GetMinmaxParameterfvCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_minmax_parameterfv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         pname as u32); //3
     GetMinmaxParameterfvCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -3809,17 +3809,17 @@ impl GetMinmaxParameterfvReply {
   }
 
 }
-impl_reply_cookie!(GetMinmaxParameterfvCookie<'s>, mk_reply_get_minmax_parameterfv_reply, GetMinmaxParameterfvReply, xcb_glx_get_minmax_parameterfv_reply);
+impl_reply_cookie!(GetMinmaxParameterfvCookie<'s>, mk_reply_xcb_glx_get_minmax_parameterfv_reply_t, GetMinmaxParameterfvReply, xcb_glx_get_minmax_parameterfv_reply);
 
-pub struct GetMinmaxParameterivReply { base:  base::Reply<get_minmax_parameteriv_reply> }
-fn mk_reply_get_minmax_parameteriv_reply(reply:*mut get_minmax_parameteriv_reply) -> GetMinmaxParameterivReply { GetMinmaxParameterivReply { base : base::mk_reply(reply) } }
+pub struct GetMinmaxParameterivReply { base:  base::Reply<xcb_glx_get_minmax_parameteriv_reply_t> }
+fn mk_reply_xcb_glx_get_minmax_parameteriv_reply_t(reply:*mut xcb_glx_get_minmax_parameteriv_reply_t) -> GetMinmaxParameterivReply { GetMinmaxParameterivReply { base : base::mk_reply(reply) } }
 pub fn GetMinmaxParameteriv<'r> (c : &'r Connection,
                              context_tag : ContextTag,
                              target : u32,
                              pname : u32) -> GetMinmaxParameterivCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_minmax_parameteriv(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         pname as u32); //3
     GetMinmaxParameterivCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -3831,7 +3831,7 @@ pub fn GetMinmaxParameterivUnchecked<'r> (c : &'r Connection,
                                       pname : u32) -> GetMinmaxParameterivCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_minmax_parameteriv_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         pname as u32); //3
     GetMinmaxParameterivCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -3848,17 +3848,17 @@ impl GetMinmaxParameterivReply {
   }
 
 }
-impl_reply_cookie!(GetMinmaxParameterivCookie<'s>, mk_reply_get_minmax_parameteriv_reply, GetMinmaxParameterivReply, xcb_glx_get_minmax_parameteriv_reply);
+impl_reply_cookie!(GetMinmaxParameterivCookie<'s>, mk_reply_xcb_glx_get_minmax_parameteriv_reply_t, GetMinmaxParameterivReply, xcb_glx_get_minmax_parameteriv_reply);
 
-pub struct GetCompressedTexImageArbReply { base:  base::Reply<get_compressed_tex_image_arb_reply> }
-fn mk_reply_get_compressed_tex_image_arb_reply(reply:*mut get_compressed_tex_image_arb_reply) -> GetCompressedTexImageArbReply { GetCompressedTexImageArbReply { base : base::mk_reply(reply) } }
+pub struct GetCompressedTexImageArbReply { base:  base::Reply<xcb_glx_get_compressed_tex_image_arb_reply_t> }
+fn mk_reply_xcb_glx_get_compressed_tex_image_arb_reply_t(reply:*mut xcb_glx_get_compressed_tex_image_arb_reply_t) -> GetCompressedTexImageArbReply { GetCompressedTexImageArbReply { base : base::mk_reply(reply) } }
 pub fn GetCompressedTexImageArb<'r> (c : &'r Connection,
                                  context_tag : ContextTag,
                                  target : u32,
                                  level : i32) -> GetCompressedTexImageArbCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_compressed_tex_image_arb(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         level as i32); //3
     GetCompressedTexImageArbCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -3870,7 +3870,7 @@ pub fn GetCompressedTexImageArbUnchecked<'r> (c : &'r Connection,
                                           level : i32) -> GetCompressedTexImageArbCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_compressed_tex_image_arb_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         level as i32); //3
     GetCompressedTexImageArbCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -3887,7 +3887,7 @@ impl GetCompressedTexImageArbReply {
   }
 
 }
-impl_reply_cookie!(GetCompressedTexImageArbCookie<'s>, mk_reply_get_compressed_tex_image_arb_reply, GetCompressedTexImageArbReply, xcb_glx_get_compressed_tex_image_arb_reply);
+impl_reply_cookie!(GetCompressedTexImageArbCookie<'s>, mk_reply_xcb_glx_get_compressed_tex_image_arb_reply_t, GetCompressedTexImageArbReply, xcb_glx_get_compressed_tex_image_arb_reply);
 
 pub fn DeleteQueriesArbChecked<'r> (c : &'r Connection,
                                 context_tag : ContextTag,
@@ -3896,7 +3896,7 @@ pub fn DeleteQueriesArbChecked<'r> (c : &'r Connection,
     let ids_len = ids.len();
     let ids_ptr = ids.as_ptr();
     let cookie = xcb_glx_delete_queries_arb_checked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         ids_len as i32, //2
         ids_ptr as *mut u32); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:true}}
@@ -3909,20 +3909,20 @@ pub fn DeleteQueriesArb<'r> (c : &'r Connection,
     let ids_len = ids.len();
     let ids_ptr = ids.as_ptr();
     let cookie = xcb_glx_delete_queries_arb(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         ids_len as i32, //2
         ids_ptr as *mut u32); //3
     base::VoidCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
 }
-pub struct GenQueriesArbReply { base:  base::Reply<gen_queries_arb_reply> }
-fn mk_reply_gen_queries_arb_reply(reply:*mut gen_queries_arb_reply) -> GenQueriesArbReply { GenQueriesArbReply { base : base::mk_reply(reply) } }
+pub struct GenQueriesArbReply { base:  base::Reply<xcb_glx_gen_queries_arb_reply_t> }
+fn mk_reply_xcb_glx_gen_queries_arb_reply_t(reply:*mut xcb_glx_gen_queries_arb_reply_t) -> GenQueriesArbReply { GenQueriesArbReply { base : base::mk_reply(reply) } }
 pub fn GenQueriesArb<'r> (c : &'r Connection,
                       context_tag : ContextTag,
                       n : i32) -> GenQueriesArbCookie<'r> {
   unsafe {
     let cookie = xcb_glx_gen_queries_arb(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         n as i32); //2
     GenQueriesArbCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -3932,7 +3932,7 @@ pub fn GenQueriesArbUnchecked<'r> (c : &'r Connection,
                                n : i32) -> GenQueriesArbCookie<'r> {
   unsafe {
     let cookie = xcb_glx_gen_queries_arb_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         n as i32); //2
     GenQueriesArbCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -3944,14 +3944,14 @@ impl GenQueriesArbReply {
   }
 
 }
-impl_reply_cookie!(GenQueriesArbCookie<'s>, mk_reply_gen_queries_arb_reply, GenQueriesArbReply, xcb_glx_gen_queries_arb_reply);
+impl_reply_cookie!(GenQueriesArbCookie<'s>, mk_reply_xcb_glx_gen_queries_arb_reply_t, GenQueriesArbReply, xcb_glx_gen_queries_arb_reply);
 
 pub fn IsQueryArb<'r> (c : &'r Connection,
                    context_tag : ContextTag,
                    id : u32) -> IsQueryArbCookie<'r> {
   unsafe {
     let cookie = xcb_glx_is_query_arb(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         id as u32); //2
     IsQueryArbCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -3961,7 +3961,7 @@ pub fn IsQueryArbUnchecked<'r> (c : &'r Connection,
                             id : u32) -> IsQueryArbCookie<'r> {
   unsafe {
     let cookie = xcb_glx_is_query_arb_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         id as u32); //2
     IsQueryArbCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
   }
@@ -3973,17 +3973,17 @@ impl IsQueryArbReply {
   }
 
 }
-impl_reply_cookie!(IsQueryArbCookie<'s>, mk_reply_is_query_arb_reply, IsQueryArbReply, xcb_glx_is_query_arb_reply);
+impl_reply_cookie!(IsQueryArbCookie<'s>, mk_reply_xcb_glx_is_query_arb_reply_t, IsQueryArbReply, xcb_glx_is_query_arb_reply);
 
-pub struct GetQueryivArbReply { base:  base::Reply<get_queryiv_arb_reply> }
-fn mk_reply_get_queryiv_arb_reply(reply:*mut get_queryiv_arb_reply) -> GetQueryivArbReply { GetQueryivArbReply { base : base::mk_reply(reply) } }
+pub struct GetQueryivArbReply { base:  base::Reply<xcb_glx_get_queryiv_arb_reply_t> }
+fn mk_reply_xcb_glx_get_queryiv_arb_reply_t(reply:*mut xcb_glx_get_queryiv_arb_reply_t) -> GetQueryivArbReply { GetQueryivArbReply { base : base::mk_reply(reply) } }
 pub fn GetQueryivArb<'r> (c : &'r Connection,
                       context_tag : ContextTag,
                       target : u32,
                       pname : u32) -> GetQueryivArbCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_queryiv_arb(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         pname as u32); //3
     GetQueryivArbCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -3995,7 +3995,7 @@ pub fn GetQueryivArbUnchecked<'r> (c : &'r Connection,
                                pname : u32) -> GetQueryivArbCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_queryiv_arb_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         target as u32, //2
         pname as u32); //3
     GetQueryivArbCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -4012,17 +4012,17 @@ impl GetQueryivArbReply {
   }
 
 }
-impl_reply_cookie!(GetQueryivArbCookie<'s>, mk_reply_get_queryiv_arb_reply, GetQueryivArbReply, xcb_glx_get_queryiv_arb_reply);
+impl_reply_cookie!(GetQueryivArbCookie<'s>, mk_reply_xcb_glx_get_queryiv_arb_reply_t, GetQueryivArbReply, xcb_glx_get_queryiv_arb_reply);
 
-pub struct GetQueryObjectivArbReply { base:  base::Reply<get_query_objectiv_arb_reply> }
-fn mk_reply_get_query_objectiv_arb_reply(reply:*mut get_query_objectiv_arb_reply) -> GetQueryObjectivArbReply { GetQueryObjectivArbReply { base : base::mk_reply(reply) } }
+pub struct GetQueryObjectivArbReply { base:  base::Reply<xcb_glx_get_query_objectiv_arb_reply_t> }
+fn mk_reply_xcb_glx_get_query_objectiv_arb_reply_t(reply:*mut xcb_glx_get_query_objectiv_arb_reply_t) -> GetQueryObjectivArbReply { GetQueryObjectivArbReply { base : base::mk_reply(reply) } }
 pub fn GetQueryObjectivArb<'r> (c : &'r Connection,
                             context_tag : ContextTag,
                             id : u32,
                             pname : u32) -> GetQueryObjectivArbCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_query_objectiv_arb(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         id as u32, //2
         pname as u32); //3
     GetQueryObjectivArbCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -4034,7 +4034,7 @@ pub fn GetQueryObjectivArbUnchecked<'r> (c : &'r Connection,
                                      pname : u32) -> GetQueryObjectivArbCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_query_objectiv_arb_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         id as u32, //2
         pname as u32); //3
     GetQueryObjectivArbCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -4051,17 +4051,17 @@ impl GetQueryObjectivArbReply {
   }
 
 }
-impl_reply_cookie!(GetQueryObjectivArbCookie<'s>, mk_reply_get_query_objectiv_arb_reply, GetQueryObjectivArbReply, xcb_glx_get_query_objectiv_arb_reply);
+impl_reply_cookie!(GetQueryObjectivArbCookie<'s>, mk_reply_xcb_glx_get_query_objectiv_arb_reply_t, GetQueryObjectivArbReply, xcb_glx_get_query_objectiv_arb_reply);
 
-pub struct GetQueryObjectuivArbReply { base:  base::Reply<get_query_objectuiv_arb_reply> }
-fn mk_reply_get_query_objectuiv_arb_reply(reply:*mut get_query_objectuiv_arb_reply) -> GetQueryObjectuivArbReply { GetQueryObjectuivArbReply { base : base::mk_reply(reply) } }
+pub struct GetQueryObjectuivArbReply { base:  base::Reply<xcb_glx_get_query_objectuiv_arb_reply_t> }
+fn mk_reply_xcb_glx_get_query_objectuiv_arb_reply_t(reply:*mut xcb_glx_get_query_objectuiv_arb_reply_t) -> GetQueryObjectuivArbReply { GetQueryObjectuivArbReply { base : base::mk_reply(reply) } }
 pub fn GetQueryObjectuivArb<'r> (c : &'r Connection,
                              context_tag : ContextTag,
                              id : u32,
                              pname : u32) -> GetQueryObjectuivArbCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_query_objectuiv_arb(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         id as u32, //2
         pname as u32); //3
     GetQueryObjectuivArbCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -4073,7 +4073,7 @@ pub fn GetQueryObjectuivArbUnchecked<'r> (c : &'r Connection,
                                       pname : u32) -> GetQueryObjectuivArbCookie<'r> {
   unsafe {
     let cookie = xcb_glx_get_query_objectuiv_arb_unchecked(c.get_raw_conn(),
-        context_tag as context_tag, //1
+        context_tag as xcb_glx_context_tag_t, //1
         id as u32, //2
         pname as u32); //3
     GetQueryObjectuivArbCookie { base : Cookie {cookie:cookie,conn:c,checked:false}}
@@ -4090,6 +4090,6 @@ impl GetQueryObjectuivArbReply {
   }
 
 }
-impl_reply_cookie!(GetQueryObjectuivArbCookie<'s>, mk_reply_get_query_objectuiv_arb_reply, GetQueryObjectuivArbReply, xcb_glx_get_query_objectuiv_arb_reply);
+impl_reply_cookie!(GetQueryObjectuivArbCookie<'s>, mk_reply_xcb_glx_get_query_objectuiv_arb_reply_t, GetQueryObjectuivArbReply, xcb_glx_get_query_objectuiv_arb_reply);
 
 
