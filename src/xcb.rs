@@ -32,14 +32,9 @@ DEALINGS IN THE SOFTWARE.
        uuid="ef466d26-0620-4f5f-a1d2-1bb9c628e101",
        url= "https://github.com/Aatch/rust-xcb")]
 
-#![license = "MIT"]
 #![crate_type="lib"]
-#![feature(globs)]
-#![feature(macro_rules)]
-#![feature(unsafe_destructor)]
 
 #![allow(dead_code)]
-#![allow(ctypes)]
 #![allow(non_snake_case)]
 #![allow(non_camel_case_types)]
 #![allow(unused_imports)]
@@ -84,7 +79,8 @@ pub mod ffi {
 }
 
 pub mod base;
-pub mod macro;
+#[macro_use]
+pub mod macros;
 
 pub mod xproto;
 

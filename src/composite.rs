@@ -83,7 +83,7 @@ impl QueryVersionReply {
   }
 
 }
-impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_query_version_reply, QueryVersionReply, xcb_composite_query_version_reply)
+impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_query_version_reply, QueryVersionReply, xcb_composite_query_version_reply);
 
 pub fn RedirectWindowChecked<'r> (c : &'r Connection,
                               window : xproto::Window,
@@ -228,7 +228,7 @@ impl GetOverlayWindowReply {
   }
 
 }
-impl_reply_cookie!(GetOverlayWindowCookie<'s>, mk_reply_get_overlay_window_reply, GetOverlayWindowReply, xcb_composite_get_overlay_window_reply)
+impl_reply_cookie!(GetOverlayWindowCookie<'s>, mk_reply_get_overlay_window_reply, GetOverlayWindowReply, xcb_composite_get_overlay_window_reply);
 
 pub fn ReleaseOverlayWindowChecked<'r> (c : &'r Connection,
                                     window : xproto::Window) -> base::VoidCookie<'r> {

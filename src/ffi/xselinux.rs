@@ -14,11 +14,14 @@ use ffi::xproto;
 pub static SELINUX_MAJOR_VERSION : c_uint = 1;
 pub static SELINUX_MINOR_VERSION : c_uint = 0;
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_version_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -27,7 +30,12 @@ pub struct query_version_request {
      pub client_minor :   u8
 }
 
+impl Copy for query_version_request {}
+impl Clone for query_version_request {
+    fn clone(&self) -> query_version_request { *self }
+}
 
+#[repr(C)]
 pub struct query_version_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -37,8 +45,13 @@ pub struct query_version_reply {
      pub server_minor :    u16
 }
 
+impl Copy for query_version_reply {}
+impl Clone for query_version_reply {
+    fn clone(&self) -> query_version_reply { *self }
+}
 
 
+#[repr(C)]
 pub struct set_device_create_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -46,30 +59,47 @@ pub struct set_device_create_context_request {
      pub context_len :    u32
 }
 
+impl Copy for set_device_create_context_request {}
+impl Clone for set_device_create_context_request {
+    fn clone(&self) -> set_device_create_context_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_device_create_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_device_create_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for get_device_create_context_request {}
+impl Clone for get_device_create_context_request {
+    fn clone(&self) -> get_device_create_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_device_create_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_len :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
+}
+
+impl Copy for get_device_create_context_reply {}
+impl Clone for get_device_create_context_reply {
+    fn clone(&self) -> get_device_create_context_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct set_device_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -78,12 +108,19 @@ pub struct set_device_context_request {
      pub context_len :    u32
 }
 
+impl Copy for set_device_context_request {}
+impl Clone for set_device_context_request {
+    fn clone(&self) -> set_device_context_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_device_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_device_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -91,18 +128,28 @@ pub struct get_device_context_request {
      pub device :         u32
 }
 
+impl Copy for get_device_context_request {}
+impl Clone for get_device_context_request {
+    fn clone(&self) -> get_device_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_device_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_len :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
+}
+
+impl Copy for get_device_context_reply {}
+impl Clone for get_device_context_reply {
+    fn clone(&self) -> get_device_context_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct set_window_create_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -110,34 +157,53 @@ pub struct set_window_create_context_request {
      pub context_len :    u32
 }
 
+impl Copy for set_window_create_context_request {}
+impl Clone for set_window_create_context_request {
+    fn clone(&self) -> set_window_create_context_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_window_create_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_window_create_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for get_window_create_context_request {}
+impl Clone for get_window_create_context_request {
+    fn clone(&self) -> get_window_create_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_window_create_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_len :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for get_window_create_context_reply {}
+impl Clone for get_window_create_context_reply {
+    fn clone(&self) -> get_window_create_context_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_window_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_window_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -145,26 +211,41 @@ pub struct get_window_context_request {
      pub window :         ffi::xproto::window
 }
 
+impl Copy for get_window_context_request {}
+impl Clone for get_window_context_request {
+    fn clone(&self) -> get_window_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_window_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_len :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for get_window_context_reply {}
+impl Clone for get_window_context_reply {
+    fn clone(&self) -> get_window_context_reply { *self }
+}
 
+#[repr(C)]
 pub struct list_item {
      pub name :                 ffi::xproto::atom,
      pub object_context_len :   u32,
      pub data_context_len :     u32
 }
 
+impl Copy for list_item {}
+impl Clone for list_item {
+    fn clone(&self) -> list_item { *self }
+}
 /**
  * @brief list_item_iterator
  **/
+#[repr(C)]
 pub struct list_item_iterator {
     pub data : *mut list_item,
     pub rem  : c_int,
@@ -173,6 +254,7 @@ pub struct list_item_iterator {
 
 
 
+#[repr(C)]
 pub struct set_property_create_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -180,30 +262,47 @@ pub struct set_property_create_context_request {
      pub context_len :    u32
 }
 
+impl Copy for set_property_create_context_request {}
+impl Clone for set_property_create_context_request {
+    fn clone(&self) -> set_property_create_context_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_property_create_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_property_create_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for get_property_create_context_request {}
+impl Clone for get_property_create_context_request {
+    fn clone(&self) -> get_property_create_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_property_create_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_len :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
+}
+
+impl Copy for get_property_create_context_reply {}
+impl Clone for get_property_create_context_reply {
+    fn clone(&self) -> get_property_create_context_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct set_property_use_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -211,34 +310,53 @@ pub struct set_property_use_context_request {
      pub context_len :    u32
 }
 
+impl Copy for set_property_use_context_request {}
+impl Clone for set_property_use_context_request {
+    fn clone(&self) -> set_property_use_context_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_property_use_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_property_use_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for get_property_use_context_request {}
+impl Clone for get_property_use_context_request {
+    fn clone(&self) -> get_property_use_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_property_use_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_len :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for get_property_use_context_reply {}
+impl Clone for get_property_use_context_reply {
+    fn clone(&self) -> get_property_use_context_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_property_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_property_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -247,22 +365,34 @@ pub struct get_property_context_request {
      pub property :       ffi::xproto::atom
 }
 
+impl Copy for get_property_context_request {}
+impl Clone for get_property_context_request {
+    fn clone(&self) -> get_property_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_property_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_len :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for get_property_context_reply {}
+impl Clone for get_property_context_reply {
+    fn clone(&self) -> get_property_context_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_property_data_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_property_data_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -271,22 +401,34 @@ pub struct get_property_data_context_request {
      pub property :       ffi::xproto::atom
 }
 
+impl Copy for get_property_data_context_request {}
+impl Clone for get_property_data_context_request {
+    fn clone(&self) -> get_property_data_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_property_data_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_len :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for get_property_data_context_reply {}
+impl Clone for get_property_data_context_reply {
+    fn clone(&self) -> get_property_data_context_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct list_properties_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct list_properties_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -294,18 +436,28 @@ pub struct list_properties_request {
      pub window :         ffi::xproto::window
 }
 
+impl Copy for list_properties_request {}
+impl Clone for list_properties_request {
+    fn clone(&self) -> list_properties_request { *self }
+}
 
+#[repr(C)]
 pub struct list_properties_reply {
      pub response_type :    u8,
      pub pad0 :             u8,
      pub sequence :         u16,
      pub length :           u32,
      pub properties_len :   u32,
-     pub pad1 :             [u8,..20]
+     pub pad1 :             [u8; 20]
+}
+
+impl Copy for list_properties_reply {}
+impl Clone for list_properties_reply {
+    fn clone(&self) -> list_properties_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct set_selection_create_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -313,30 +465,47 @@ pub struct set_selection_create_context_request {
      pub context_len :    u32
 }
 
+impl Copy for set_selection_create_context_request {}
+impl Clone for set_selection_create_context_request {
+    fn clone(&self) -> set_selection_create_context_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_selection_create_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_selection_create_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for get_selection_create_context_request {}
+impl Clone for get_selection_create_context_request {
+    fn clone(&self) -> get_selection_create_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_selection_create_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_len :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
+}
+
+impl Copy for get_selection_create_context_reply {}
+impl Clone for get_selection_create_context_reply {
+    fn clone(&self) -> get_selection_create_context_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct set_selection_use_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -344,34 +513,53 @@ pub struct set_selection_use_context_request {
      pub context_len :    u32
 }
 
+impl Copy for set_selection_use_context_request {}
+impl Clone for set_selection_use_context_request {
+    fn clone(&self) -> set_selection_use_context_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_selection_use_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_selection_use_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for get_selection_use_context_request {}
+impl Clone for get_selection_use_context_request {
+    fn clone(&self) -> get_selection_use_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_selection_use_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_len :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for get_selection_use_context_reply {}
+impl Clone for get_selection_use_context_reply {
+    fn clone(&self) -> get_selection_use_context_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_selection_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_selection_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -379,22 +567,34 @@ pub struct get_selection_context_request {
      pub selection :      ffi::xproto::atom
 }
 
+impl Copy for get_selection_context_request {}
+impl Clone for get_selection_context_request {
+    fn clone(&self) -> get_selection_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_selection_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_len :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for get_selection_context_reply {}
+impl Clone for get_selection_context_reply {
+    fn clone(&self) -> get_selection_context_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_selection_data_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_selection_data_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -402,44 +602,68 @@ pub struct get_selection_data_context_request {
      pub selection :      ffi::xproto::atom
 }
 
+impl Copy for get_selection_data_context_request {}
+impl Clone for get_selection_data_context_request {
+    fn clone(&self) -> get_selection_data_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_selection_data_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_len :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for get_selection_data_context_reply {}
+impl Clone for get_selection_data_context_reply {
+    fn clone(&self) -> get_selection_data_context_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct list_selections_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct list_selections_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for list_selections_request {}
+impl Clone for list_selections_request {
+    fn clone(&self) -> list_selections_request { *self }
+}
 
+#[repr(C)]
 pub struct list_selections_reply {
      pub response_type :    u8,
      pub pad0 :             u8,
      pub sequence :         u16,
      pub length :           u32,
      pub selections_len :   u32,
-     pub pad1 :             [u8,..20]
+     pub pad1 :             [u8; 20]
 }
 
+impl Copy for list_selections_reply {}
+impl Clone for list_selections_reply {
+    fn clone(&self) -> list_selections_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_client_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_client_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -447,16 +671,25 @@ pub struct get_client_context_request {
      pub resource :       u32
 }
 
+impl Copy for get_client_context_request {}
+impl Clone for get_client_context_request {
+    fn clone(&self) -> get_client_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_client_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_len :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for get_client_context_reply {}
+impl Clone for get_client_context_reply {
+    fn clone(&self) -> get_client_context_reply { *self }
+}
 #[link(name="xcb-xselinux")]
 extern "C" {
 
@@ -466,7 +699,7 @@ extern "C" {
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_query_version (c : *mut ffi::base::connection,
                                      client_major :  u8,
@@ -478,7 +711,7 @@ pub fn xcb_selinux_query_version (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -494,7 +727,7 @@ pub fn xcb_selinux_query_version_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_query_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -513,7 +746,7 @@ pub fn xcb_selinux_set_device_create_context_sizeof (_buffer :  *mut c_void) -> 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -528,7 +761,7 @@ pub fn xcb_selinux_set_device_create_context_checked (c : *mut ffi::base::connec
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_set_device_create_context (c : *mut ffi::base::connection,
                                                  context_len :  u32,
@@ -542,7 +775,7 @@ pub fn xcb_selinux_get_device_create_context_sizeof (_buffer :  *mut c_void) -> 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_get_device_create_context (c : *mut ffi::base::connection) -> get_device_create_context_cookie;
 
@@ -552,7 +785,7 @@ pub fn xcb_selinux_get_device_create_context (c : *mut ffi::base::connection) ->
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -574,7 +807,7 @@ pub fn xcb_selinux_get_device_create_context_context_end (R : *mut get_device_cr
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_get_device_create_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -593,7 +826,7 @@ pub fn xcb_selinux_set_device_context_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -609,7 +842,7 @@ pub fn xcb_selinux_set_device_context_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_set_device_context (c : *mut ffi::base::connection,
                                           device :  u32,
@@ -624,7 +857,7 @@ pub fn xcb_selinux_get_device_context_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_get_device_context (c : *mut ffi::base::connection,
                                           device :  u32) -> get_device_context_cookie;
@@ -635,7 +868,7 @@ pub fn xcb_selinux_get_device_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -658,7 +891,7 @@ pub fn xcb_selinux_get_device_context_context_end (R : *mut get_device_context_r
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_get_device_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -677,7 +910,7 @@ pub fn xcb_selinux_set_window_create_context_sizeof (_buffer :  *mut c_void) -> 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -692,7 +925,7 @@ pub fn xcb_selinux_set_window_create_context_checked (c : *mut ffi::base::connec
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_set_window_create_context (c : *mut ffi::base::connection,
                                                  context_len :  u32,
@@ -706,7 +939,7 @@ pub fn xcb_selinux_get_window_create_context_sizeof (_buffer :  *mut c_void) -> 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_get_window_create_context (c : *mut ffi::base::connection) -> get_window_create_context_cookie;
 
@@ -716,7 +949,7 @@ pub fn xcb_selinux_get_window_create_context (c : *mut ffi::base::connection) ->
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -738,7 +971,7 @@ pub fn xcb_selinux_get_window_create_context_context_end (R : *mut get_window_cr
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_get_window_create_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -757,7 +990,7 @@ pub fn xcb_selinux_get_window_context_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_get_window_context (c : *mut ffi::base::connection,
                                           window :  ffi::xproto::window) -> get_window_context_cookie;
@@ -768,7 +1001,7 @@ pub fn xcb_selinux_get_window_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -791,7 +1024,7 @@ pub fn xcb_selinux_get_window_context_context_end (R : *mut get_window_context_r
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_get_window_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -851,7 +1084,7 @@ pub fn xcb_selinux_set_property_create_context_sizeof (_buffer :  *mut c_void) -
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -866,7 +1099,7 @@ pub fn xcb_selinux_set_property_create_context_checked (c : *mut ffi::base::conn
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_set_property_create_context (c : *mut ffi::base::connection,
                                                    context_len :  u32,
@@ -880,7 +1113,7 @@ pub fn xcb_selinux_get_property_create_context_sizeof (_buffer :  *mut c_void) -
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_get_property_create_context (c : *mut ffi::base::connection) -> get_property_create_context_cookie;
 
@@ -890,7 +1123,7 @@ pub fn xcb_selinux_get_property_create_context (c : *mut ffi::base::connection) 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -912,7 +1145,7 @@ pub fn xcb_selinux_get_property_create_context_context_end (R : *mut get_propert
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_get_property_create_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -931,7 +1164,7 @@ pub fn xcb_selinux_set_property_use_context_sizeof (_buffer :  *mut c_void) -> c
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -946,7 +1179,7 @@ pub fn xcb_selinux_set_property_use_context_checked (c : *mut ffi::base::connect
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_set_property_use_context (c : *mut ffi::base::connection,
                                                 context_len :  u32,
@@ -960,7 +1193,7 @@ pub fn xcb_selinux_get_property_use_context_sizeof (_buffer :  *mut c_void) -> c
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_get_property_use_context (c : *mut ffi::base::connection) -> get_property_use_context_cookie;
 
@@ -970,7 +1203,7 @@ pub fn xcb_selinux_get_property_use_context (c : *mut ffi::base::connection) -> 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -992,7 +1225,7 @@ pub fn xcb_selinux_get_property_use_context_context_end (R : *mut get_property_u
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_get_property_use_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1011,7 +1244,7 @@ pub fn xcb_selinux_get_property_context_sizeof (_buffer :  *mut c_void) -> c_int
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_get_property_context (c : *mut ffi::base::connection,
                                             window :  ffi::xproto::window,
@@ -1023,7 +1256,7 @@ pub fn xcb_selinux_get_property_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1047,7 +1280,7 @@ pub fn xcb_selinux_get_property_context_context_end (R : *mut get_property_conte
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_get_property_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1066,7 +1299,7 @@ pub fn xcb_selinux_get_property_data_context_sizeof (_buffer :  *mut c_void) -> 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_get_property_data_context (c : *mut ffi::base::connection,
                                                  window :  ffi::xproto::window,
@@ -1078,7 +1311,7 @@ pub fn xcb_selinux_get_property_data_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1102,7 +1335,7 @@ pub fn xcb_selinux_get_property_data_context_context_end (R : *mut get_property_
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_get_property_data_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1121,7 +1354,7 @@ pub fn xcb_selinux_list_properties_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_list_properties (c : *mut ffi::base::connection,
                                        window :  ffi::xproto::window) -> list_properties_cookie;
@@ -1132,7 +1365,7 @@ pub fn xcb_selinux_list_properties (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1152,7 +1385,7 @@ pub fn xcb_selinux_list_properties_properties_iterator (R : *mut list_properties
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_list_properties_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1171,7 +1404,7 @@ pub fn xcb_selinux_set_selection_create_context_sizeof (_buffer :  *mut c_void) 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1186,7 +1419,7 @@ pub fn xcb_selinux_set_selection_create_context_checked (c : *mut ffi::base::con
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_set_selection_create_context (c : *mut ffi::base::connection,
                                                     context_len :  u32,
@@ -1200,7 +1433,7 @@ pub fn xcb_selinux_get_selection_create_context_sizeof (_buffer :  *mut c_void) 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_get_selection_create_context (c : *mut ffi::base::connection) -> get_selection_create_context_cookie;
 
@@ -1210,7 +1443,7 @@ pub fn xcb_selinux_get_selection_create_context (c : *mut ffi::base::connection)
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1232,7 +1465,7 @@ pub fn xcb_selinux_get_selection_create_context_context_end (R : *mut get_select
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_get_selection_create_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1251,7 +1484,7 @@ pub fn xcb_selinux_set_selection_use_context_sizeof (_buffer :  *mut c_void) -> 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1266,7 +1499,7 @@ pub fn xcb_selinux_set_selection_use_context_checked (c : *mut ffi::base::connec
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_set_selection_use_context (c : *mut ffi::base::connection,
                                                  context_len :  u32,
@@ -1280,7 +1513,7 @@ pub fn xcb_selinux_get_selection_use_context_sizeof (_buffer :  *mut c_void) -> 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_get_selection_use_context (c : *mut ffi::base::connection) -> get_selection_use_context_cookie;
 
@@ -1290,7 +1523,7 @@ pub fn xcb_selinux_get_selection_use_context (c : *mut ffi::base::connection) ->
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1312,7 +1545,7 @@ pub fn xcb_selinux_get_selection_use_context_context_end (R : *mut get_selection
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_get_selection_use_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1331,7 +1564,7 @@ pub fn xcb_selinux_get_selection_context_sizeof (_buffer :  *mut c_void) -> c_in
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_get_selection_context (c : *mut ffi::base::connection,
                                              selection :  ffi::xproto::atom) -> get_selection_context_cookie;
@@ -1342,7 +1575,7 @@ pub fn xcb_selinux_get_selection_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1365,7 +1598,7 @@ pub fn xcb_selinux_get_selection_context_context_end (R : *mut get_selection_con
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_get_selection_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1384,7 +1617,7 @@ pub fn xcb_selinux_get_selection_data_context_sizeof (_buffer :  *mut c_void) ->
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_get_selection_data_context (c : *mut ffi::base::connection,
                                                   selection :  ffi::xproto::atom) -> get_selection_data_context_cookie;
@@ -1395,7 +1628,7 @@ pub fn xcb_selinux_get_selection_data_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1418,7 +1651,7 @@ pub fn xcb_selinux_get_selection_data_context_context_end (R : *mut get_selectio
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_get_selection_data_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1437,7 +1670,7 @@ pub fn xcb_selinux_list_selections_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_list_selections (c : *mut ffi::base::connection) -> list_selections_cookie;
 
@@ -1447,7 +1680,7 @@ pub fn xcb_selinux_list_selections (c : *mut ffi::base::connection) -> list_sele
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1466,7 +1699,7 @@ pub fn xcb_selinux_list_selections_selections_iterator (R : *mut list_selections
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_list_selections_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1485,7 +1718,7 @@ pub fn xcb_selinux_get_client_context_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_selinux_get_client_context (c : *mut ffi::base::connection,
                                           resource :  u32) -> get_client_context_cookie;
@@ -1496,7 +1729,7 @@ pub fn xcb_selinux_get_client_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1519,7 +1752,7 @@ pub fn xcb_selinux_get_client_context_context_end (R : *mut get_client_context_r
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_selinux_get_client_context_unchecked(). is used.
  * Otherwise, it stores the error if any.

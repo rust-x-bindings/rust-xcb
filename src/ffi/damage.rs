@@ -21,6 +21,7 @@ pub type damage = u32;
 /**
  * @brief damage_iterator
  **/
+#[repr(C)]
 pub struct damage_iterator {
     pub data : *mut damage,
     pub rem  : c_int,
@@ -29,18 +30,26 @@ pub struct damage_iterator {
 
 
 
+#[repr(C)]
 pub struct bad_damage_error {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
+impl Copy for bad_damage_error {}
+impl Clone for bad_damage_error {
+    fn clone(&self) -> bad_damage_error { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_version_request {
      pub major_opcode :           u8,
      pub minor_opcode :           u8,
@@ -49,7 +58,12 @@ pub struct query_version_request {
      pub client_minor_version :   u32
 }
 
+impl Copy for query_version_request {}
+impl Clone for query_version_request {
+    fn clone(&self) -> query_version_request { *self }
+}
 
+#[repr(C)]
 pub struct query_version_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -57,11 +71,16 @@ pub struct query_version_reply {
      pub length :          u32,
      pub major_version :   u32,
      pub minor_version :   u32,
-     pub pad1 :            [u8,..16]
+     pub pad1 :            [u8; 16]
+}
+
+impl Copy for query_version_reply {}
+impl Clone for query_version_reply {
+    fn clone(&self) -> query_version_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct create_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -69,11 +88,16 @@ pub struct create_request {
      pub damage :         damage,
      pub drawable :       ffi::xproto::drawable,
      pub level :          u8,
-     pub pad0 :           [u8,..3]
+     pub pad0 :           [u8; 3]
+}
+
+impl Copy for create_request {}
+impl Clone for create_request {
+    fn clone(&self) -> create_request { *self }
 }
 
 
-
+#[repr(C)]
 pub struct destroy_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -81,8 +105,13 @@ pub struct destroy_request {
      pub damage :         damage
 }
 
+impl Copy for destroy_request {}
+impl Clone for destroy_request {
+    fn clone(&self) -> destroy_request { *self }
+}
 
 
+#[repr(C)]
 pub struct subtract_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -92,8 +121,13 @@ pub struct subtract_request {
      pub parts :          ffi::xfixes::region
 }
 
+impl Copy for subtract_request {}
+impl Clone for subtract_request {
+    fn clone(&self) -> subtract_request { *self }
+}
 
 
+#[repr(C)]
 pub struct add_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -102,8 +136,13 @@ pub struct add_request {
      pub region :         ffi::xfixes::region
 }
 
+impl Copy for add_request {}
+impl Clone for add_request {
+    fn clone(&self) -> add_request { *self }
+}
 
 
+#[repr(C)]
 pub struct notify_event {
      pub response_type :   u8,
      pub level :           u8,
@@ -115,6 +154,10 @@ pub struct notify_event {
      pub geometry :        ffi::xproto::rectangle
 }
 
+impl Copy for notify_event {}
+impl Clone for notify_event {
+    fn clone(&self) -> notify_event { *self }
+}
 #[link(name="xcb-damage")]
 extern "C" {
 
@@ -147,7 +190,7 @@ pub fn xcb_damage_damage_end (i:damage_iterator) -> ffi::base::generic_iterator;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_damage_query_version (c : *mut ffi::base::connection,
                                     client_major_version :  u32,
@@ -159,7 +202,7 @@ pub fn xcb_damage_query_version (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -175,7 +218,7 @@ pub fn xcb_damage_query_version_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_damage_query_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -192,7 +235,7 @@ pub fn xcb_damage_query_version_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -208,7 +251,7 @@ pub fn xcb_damage_create_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_damage_create (c : *mut ffi::base::connection,
                              damage :  damage,
@@ -221,7 +264,7 @@ pub fn xcb_damage_create (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -235,7 +278,7 @@ pub fn xcb_damage_destroy_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_damage_destroy (c : *mut ffi::base::connection,
                               damage :  damage) -> ffi::base::void_cookie;
@@ -246,7 +289,7 @@ pub fn xcb_damage_destroy (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -262,7 +305,7 @@ pub fn xcb_damage_subtract_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_damage_subtract (c : *mut ffi::base::connection,
                                damage :  damage,
@@ -275,7 +318,7 @@ pub fn xcb_damage_subtract (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -290,7 +333,7 @@ pub fn xcb_damage_add_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_damage_add (c : *mut ffi::base::connection,
                           drawable :  ffi::xproto::drawable,

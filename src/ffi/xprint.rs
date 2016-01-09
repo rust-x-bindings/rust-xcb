@@ -18,6 +18,7 @@ pub type string8 = c_char;
 /**
  * @brief string8_iterator
  **/
+#[repr(C)]
 pub struct string8_iterator {
     pub data : *mut string8,
     pub rem  : c_int,
@@ -25,14 +26,20 @@ pub struct string8_iterator {
 }
 
 
+#[repr(C)]
 pub struct printer {
      pub nameLen :   u32,
      pub descLen :   u32
 }
 
+impl Copy for printer {}
+impl Clone for printer {
+    fn clone(&self) -> printer { *self }
+}
 /**
  * @brief printer_iterator
  **/
+#[repr(C)]
 pub struct printer_iterator {
     pub data : *mut printer,
     pub rem  : c_int,
@@ -44,6 +51,7 @@ pub type pcontext = u32;
 /**
  * @brief pcontext_iterator
  **/
+#[repr(C)]
 pub struct pcontext_iterator {
     pub data : *mut pcontext,
     pub rem  : c_int,
@@ -51,18 +59,26 @@ pub struct pcontext_iterator {
 }
 
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct print_query_version_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct print_query_version_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for print_query_version_request {}
+impl Clone for print_query_version_request {
+    fn clone(&self) -> print_query_version_request { *self }
+}
 
+#[repr(C)]
 pub struct print_query_version_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -72,12 +88,19 @@ pub struct print_query_version_reply {
      pub minor_version :   u16
 }
 
+impl Copy for print_query_version_reply {}
+impl Clone for print_query_version_reply {
+    fn clone(&self) -> print_query_version_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct print_get_printer_list_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct print_get_printer_list_request {
      pub major_opcode :     u8,
      pub minor_opcode :     u8,
@@ -86,26 +109,41 @@ pub struct print_get_printer_list_request {
      pub localeLen :        u32
 }
 
+impl Copy for print_get_printer_list_request {}
+impl Clone for print_get_printer_list_request {
+    fn clone(&self) -> print_get_printer_list_request { *self }
+}
 
+#[repr(C)]
 pub struct print_get_printer_list_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub listCount :       u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
+}
+
+impl Copy for print_get_printer_list_reply {}
+impl Clone for print_get_printer_list_reply {
+    fn clone(&self) -> print_get_printer_list_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct print_rehash_printer_list_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for print_rehash_printer_list_request {}
+impl Clone for print_rehash_printer_list_request {
+    fn clone(&self) -> print_rehash_printer_list_request { *self }
+}
 
 
+#[repr(C)]
 pub struct create_context_request {
      pub major_opcode :     u8,
      pub minor_opcode :     u8,
@@ -115,8 +153,13 @@ pub struct create_context_request {
      pub localeLen :        u32
 }
 
+impl Copy for create_context_request {}
+impl Clone for create_context_request {
+    fn clone(&self) -> create_context_request { *self }
+}
 
 
+#[repr(C)]
 pub struct print_set_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -124,19 +167,31 @@ pub struct print_set_context_request {
      pub context :        u32
 }
 
+impl Copy for print_set_context_request {}
+impl Clone for print_set_context_request {
+    fn clone(&self) -> print_set_context_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct print_get_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct print_get_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for print_get_context_request {}
+impl Clone for print_get_context_request {
+    fn clone(&self) -> print_get_context_request { *self }
+}
 
+#[repr(C)]
 pub struct print_get_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -145,8 +200,13 @@ pub struct print_get_context_reply {
      pub context :         u32
 }
 
+impl Copy for print_get_context_reply {}
+impl Clone for print_get_context_reply {
+    fn clone(&self) -> print_get_context_reply { *self }
+}
 
 
+#[repr(C)]
 pub struct print_destroy_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -154,19 +214,31 @@ pub struct print_destroy_context_request {
      pub context :        u32
 }
 
+impl Copy for print_destroy_context_request {}
+impl Clone for print_destroy_context_request {
+    fn clone(&self) -> print_destroy_context_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct print_get_screen_of_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct print_get_screen_of_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for print_get_screen_of_context_request {}
+impl Clone for print_get_screen_of_context_request {
+    fn clone(&self) -> print_get_screen_of_context_request { *self }
+}
 
+#[repr(C)]
 pub struct print_get_screen_of_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -175,8 +247,13 @@ pub struct print_get_screen_of_context_reply {
      pub root :            ffi::xproto::window
 }
 
+impl Copy for print_get_screen_of_context_reply {}
+impl Clone for print_get_screen_of_context_reply {
+    fn clone(&self) -> print_get_screen_of_context_reply { *self }
+}
 
 
+#[repr(C)]
 pub struct print_start_job_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -184,8 +261,13 @@ pub struct print_start_job_request {
      pub output_mode :    u8
 }
 
+impl Copy for print_start_job_request {}
+impl Clone for print_start_job_request {
+    fn clone(&self) -> print_start_job_request { *self }
+}
 
 
+#[repr(C)]
 pub struct print_end_job_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -193,8 +275,13 @@ pub struct print_end_job_request {
      pub cancel :         u8
 }
 
+impl Copy for print_end_job_request {}
+impl Clone for print_end_job_request {
+    fn clone(&self) -> print_end_job_request { *self }
+}
 
 
+#[repr(C)]
 pub struct print_start_doc_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -202,8 +289,13 @@ pub struct print_start_doc_request {
      pub driver_mode :    u8
 }
 
+impl Copy for print_start_doc_request {}
+impl Clone for print_start_doc_request {
+    fn clone(&self) -> print_start_doc_request { *self }
+}
 
 
+#[repr(C)]
 pub struct print_end_doc_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -211,8 +303,13 @@ pub struct print_end_doc_request {
      pub cancel :         u8
 }
 
+impl Copy for print_end_doc_request {}
+impl Clone for print_end_doc_request {
+    fn clone(&self) -> print_end_doc_request { *self }
+}
 
 
+#[repr(C)]
 pub struct print_put_document_data_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -223,12 +320,19 @@ pub struct print_put_document_data_request {
      pub len_options :    u16
 }
 
+impl Copy for print_put_document_data_request {}
+impl Clone for print_put_document_data_request {
+    fn clone(&self) -> print_put_document_data_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct print_get_document_data_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct print_get_document_data_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -237,7 +341,12 @@ pub struct print_get_document_data_request {
      pub max_bytes :      u32
 }
 
+impl Copy for print_get_document_data_request {}
+impl Clone for print_get_document_data_request {
+    fn clone(&self) -> print_get_document_data_request { *self }
+}
 
+#[repr(C)]
 pub struct print_get_document_data_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -246,11 +355,16 @@ pub struct print_get_document_data_reply {
      pub status_code :     u32,
      pub finished_flag :   u32,
      pub dataLen :         u32,
-     pub pad1 :            [u8,..12]
+     pub pad1 :            [u8; 12]
+}
+
+impl Copy for print_get_document_data_reply {}
+impl Clone for print_get_document_data_reply {
+    fn clone(&self) -> print_get_document_data_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct print_start_page_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -258,18 +372,28 @@ pub struct print_start_page_request {
      pub window :         ffi::xproto::window
 }
 
+impl Copy for print_start_page_request {}
+impl Clone for print_start_page_request {
+    fn clone(&self) -> print_start_page_request { *self }
+}
 
 
+#[repr(C)]
 pub struct print_end_page_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub cancel :         u8,
-     pub pad0 :           [u8,..3]
+     pub pad0 :           [u8; 3]
+}
+
+impl Copy for print_end_page_request {}
+impl Clone for print_end_page_request {
+    fn clone(&self) -> print_end_page_request { *self }
 }
 
 
-
+#[repr(C)]
 pub struct print_select_input_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -278,12 +402,19 @@ pub struct print_select_input_request {
      pub event_mask :     u32
 }
 
+impl Copy for print_select_input_request {}
+impl Clone for print_select_input_request {
+    fn clone(&self) -> print_select_input_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct print_input_selected_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct print_input_selected_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -291,7 +422,12 @@ pub struct print_input_selected_request {
      pub context :        pcontext
 }
 
+impl Copy for print_input_selected_request {}
+impl Clone for print_input_selected_request {
+    fn clone(&self) -> print_input_selected_request { *self }
+}
 
+#[repr(C)]
 pub struct print_input_selected_reply {
      pub response_type :     u8,
      pub pad0 :              u8,
@@ -301,38 +437,57 @@ pub struct print_input_selected_reply {
      pub all_events_mask :   u32
 }
 
+impl Copy for print_input_selected_reply {}
+impl Clone for print_input_selected_reply {
+    fn clone(&self) -> print_input_selected_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct print_get_attributes_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct print_get_attributes_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub context :        pcontext,
      pub pool :           u8,
-     pub pad0 :           [u8,..3]
+     pub pad0 :           [u8; 3]
 }
 
+impl Copy for print_get_attributes_request {}
+impl Clone for print_get_attributes_request {
+    fn clone(&self) -> print_get_attributes_request { *self }
+}
 
+#[repr(C)]
 pub struct print_get_attributes_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub stringLen :       u32,
-     pub pad1 :            [u8,..20],
+     pub pad1 :            [u8; 20],
      pub attributes :      string8
 }
 
+impl Copy for print_get_attributes_reply {}
+impl Clone for print_get_attributes_reply {
+    fn clone(&self) -> print_get_attributes_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct print_get_one_attributes_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct print_get_one_attributes_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -340,21 +495,31 @@ pub struct print_get_one_attributes_request {
      pub context :        pcontext,
      pub nameLen :        u32,
      pub pool :           u8,
-     pub pad0 :           [u8,..3]
+     pub pad0 :           [u8; 3]
 }
 
+impl Copy for print_get_one_attributes_request {}
+impl Clone for print_get_one_attributes_request {
+    fn clone(&self) -> print_get_one_attributes_request { *self }
+}
 
+#[repr(C)]
 pub struct print_get_one_attributes_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub valueLen :        u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
+}
+
+impl Copy for print_get_one_attributes_reply {}
+impl Clone for print_get_one_attributes_reply {
+    fn clone(&self) -> print_get_one_attributes_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct print_set_attributes_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -363,15 +528,22 @@ pub struct print_set_attributes_request {
      pub stringLen :      u32,
      pub pool :           u8,
      pub rule :           u8,
-     pub pad0 :           [u8,..2]
+     pub pad0 :           [u8; 2]
 }
 
+impl Copy for print_set_attributes_request {}
+impl Clone for print_set_attributes_request {
+    fn clone(&self) -> print_set_attributes_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct print_get_page_dimensions_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct print_get_page_dimensions_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -379,7 +551,12 @@ pub struct print_get_page_dimensions_request {
      pub context :        pcontext
 }
 
+impl Copy for print_get_page_dimensions_request {}
+impl Clone for print_get_page_dimensions_request {
+    fn clone(&self) -> print_get_page_dimensions_request { *self }
+}
 
+#[repr(C)]
 pub struct print_get_page_dimensions_reply {
      pub response_type :         u8,
      pub pad0 :                  u8,
@@ -393,34 +570,53 @@ pub struct print_get_page_dimensions_reply {
      pub reproducible_height :   u16
 }
 
+impl Copy for print_get_page_dimensions_reply {}
+impl Clone for print_get_page_dimensions_reply {
+    fn clone(&self) -> print_get_page_dimensions_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct print_query_screens_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct print_query_screens_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for print_query_screens_request {}
+impl Clone for print_query_screens_request {
+    fn clone(&self) -> print_query_screens_request { *self }
+}
 
+#[repr(C)]
 pub struct print_query_screens_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub listCount :       u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for print_query_screens_reply {}
+impl Clone for print_query_screens_reply {
+    fn clone(&self) -> print_query_screens_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct print_set_image_resolution_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct print_set_image_resolution_request {
      pub major_opcode :       u8,
      pub minor_opcode :       u8,
@@ -429,7 +625,12 @@ pub struct print_set_image_resolution_request {
      pub image_resolution :   u16
 }
 
+impl Copy for print_set_image_resolution_request {}
+impl Clone for print_set_image_resolution_request {
+    fn clone(&self) -> print_set_image_resolution_request { *self }
+}
 
+#[repr(C)]
 pub struct print_set_image_resolution_reply {
      pub response_type :          u8,
      pub status :                 u8,
@@ -438,12 +639,19 @@ pub struct print_set_image_resolution_reply {
      pub previous_resolutions :   u16
 }
 
+impl Copy for print_set_image_resolution_reply {}
+impl Clone for print_set_image_resolution_reply {
+    fn clone(&self) -> print_set_image_resolution_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct print_get_image_resolution_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct print_get_image_resolution_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -451,7 +659,12 @@ pub struct print_get_image_resolution_request {
      pub context :        pcontext
 }
 
+impl Copy for print_get_image_resolution_request {}
+impl Clone for print_get_image_resolution_request {
+    fn clone(&self) -> print_get_image_resolution_request { *self }
+}
 
+#[repr(C)]
 pub struct print_get_image_resolution_reply {
      pub response_type :      u8,
      pub pad0 :               u8,
@@ -460,8 +673,13 @@ pub struct print_get_image_resolution_reply {
      pub image_resolution :   u16
 }
 
+impl Copy for print_get_image_resolution_reply {}
+impl Clone for print_get_image_resolution_reply {
+    fn clone(&self) -> print_get_image_resolution_reply { *self }
+}
 
 
+#[repr(C)]
 pub struct notify_event {
      pub response_type :   u8,
      pub detail :          u8,
@@ -470,8 +688,13 @@ pub struct notify_event {
      pub cancel :          u8
 }
 
+impl Copy for notify_event {}
+impl Clone for notify_event {
+    fn clone(&self) -> notify_event { *self }
+}
 
 
+#[repr(C)]
 pub struct attribut_notify_event {
      pub response_type :   u8,
      pub detail :          u8,
@@ -479,22 +702,36 @@ pub struct attribut_notify_event {
      pub context :         pcontext
 }
 
+impl Copy for attribut_notify_event {}
+impl Clone for attribut_notify_event {
+    fn clone(&self) -> attribut_notify_event { *self }
+}
 
 
+#[repr(C)]
 pub struct bad_context_error {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
+impl Copy for bad_context_error {}
+impl Clone for bad_context_error {
+    fn clone(&self) -> bad_context_error { *self }
+}
 
 
+#[repr(C)]
 pub struct bad_sequence_error {
      pub response_type :   u8,
      pub error_code :      u8,
      pub sequence :        u16
 }
 
+impl Copy for bad_sequence_error {}
+impl Clone for bad_sequence_error {
+    fn clone(&self) -> bad_sequence_error { *self }
+}
 #[link(name="xcb-xprint")]
 extern "C" {
 
@@ -599,7 +836,7 @@ pub fn xcb_x_print_pcontext_end (i:pcontext_iterator) -> ffi::base::generic_iter
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_query_version (c : *mut ffi::base::connection) -> print_query_version_cookie;
 
@@ -609,7 +846,7 @@ pub fn xcb_x_print_print_query_version (c : *mut ffi::base::connection) -> print
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -623,7 +860,7 @@ pub fn xcb_x_print_print_query_version_unchecked (c : *mut ffi::base::connection
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_x_print_print_query_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -642,7 +879,7 @@ pub fn xcb_x_print_print_get_printer_list_sizeof (_buffer :  *mut c_void) -> c_i
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_get_printer_list (c : *mut ffi::base::connection,
                                               printerNameLen :  u32,
@@ -656,7 +893,7 @@ pub fn xcb_x_print_print_get_printer_list (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -679,7 +916,7 @@ pub fn xcb_x_print_print_get_printer_list_printers_iterator (R : *mut print_get_
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_x_print_print_get_printer_list_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -696,7 +933,7 @@ pub fn xcb_x_print_print_get_printer_list_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -709,7 +946,7 @@ pub fn xcb_x_print_print_rehash_printer_list_checked (c : *mut ffi::base::connec
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_rehash_printer_list (c : *mut ffi::base::connection) -> ffi::base::void_cookie;
 
@@ -721,7 +958,7 @@ pub fn xcb_x_print_create_context_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -739,7 +976,7 @@ pub fn xcb_x_print_create_context_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_create_context (c : *mut ffi::base::connection,
                                       context_id :  u32,
@@ -754,7 +991,7 @@ pub fn xcb_x_print_create_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -768,7 +1005,7 @@ pub fn xcb_x_print_print_set_context_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_set_context (c : *mut ffi::base::connection,
                                          context :  u32) -> ffi::base::void_cookie;
@@ -779,7 +1016,7 @@ pub fn xcb_x_print_print_set_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_get_context (c : *mut ffi::base::connection) -> print_get_context_cookie;
 
@@ -789,7 +1026,7 @@ pub fn xcb_x_print_print_get_context (c : *mut ffi::base::connection) -> print_g
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -803,7 +1040,7 @@ pub fn xcb_x_print_print_get_context_unchecked (c : *mut ffi::base::connection) 
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_x_print_print_get_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -820,7 +1057,7 @@ pub fn xcb_x_print_print_get_context_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -834,7 +1071,7 @@ pub fn xcb_x_print_print_destroy_context_checked (c : *mut ffi::base::connection
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_destroy_context (c : *mut ffi::base::connection,
                                              context :  u32) -> ffi::base::void_cookie;
@@ -845,7 +1082,7 @@ pub fn xcb_x_print_print_destroy_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_get_screen_of_context (c : *mut ffi::base::connection) -> print_get_screen_of_context_cookie;
 
@@ -855,7 +1092,7 @@ pub fn xcb_x_print_print_get_screen_of_context (c : *mut ffi::base::connection) 
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -869,7 +1106,7 @@ pub fn xcb_x_print_print_get_screen_of_context_unchecked (c : *mut ffi::base::co
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_x_print_print_get_screen_of_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -886,7 +1123,7 @@ pub fn xcb_x_print_print_get_screen_of_context_reply (c : *mut ffi::base::connec
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -900,7 +1137,7 @@ pub fn xcb_x_print_print_start_job_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_start_job (c : *mut ffi::base::connection,
                                        output_mode :  u8) -> ffi::base::void_cookie;
@@ -911,7 +1148,7 @@ pub fn xcb_x_print_print_start_job (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -925,7 +1162,7 @@ pub fn xcb_x_print_print_end_job_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_end_job (c : *mut ffi::base::connection,
                                      cancel :  u8) -> ffi::base::void_cookie;
@@ -936,7 +1173,7 @@ pub fn xcb_x_print_print_end_job (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -950,7 +1187,7 @@ pub fn xcb_x_print_print_start_doc_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_start_doc (c : *mut ffi::base::connection,
                                        driver_mode :  u8) -> ffi::base::void_cookie;
@@ -961,7 +1198,7 @@ pub fn xcb_x_print_print_start_doc (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -975,7 +1212,7 @@ pub fn xcb_x_print_print_end_doc_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_end_doc (c : *mut ffi::base::connection,
                                      cancel :  u8) -> ffi::base::void_cookie;
@@ -990,7 +1227,7 @@ pub fn xcb_x_print_print_put_document_data_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1012,7 +1249,7 @@ pub fn xcb_x_print_print_put_document_data_checked (c : *mut ffi::base::connecti
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_put_document_data (c : *mut ffi::base::connection,
                                                drawable :  ffi::xproto::drawable,
@@ -1033,7 +1270,7 @@ pub fn xcb_x_print_print_get_document_data_sizeof (_buffer :  *mut c_void) -> c_
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_get_document_data (c : *mut ffi::base::connection,
                                                context :  pcontext,
@@ -1045,7 +1282,7 @@ pub fn xcb_x_print_print_get_document_data (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1069,7 +1306,7 @@ pub fn xcb_x_print_print_get_document_data_data_end (R : *mut print_get_document
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_x_print_print_get_document_data_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1086,7 +1323,7 @@ pub fn xcb_x_print_print_get_document_data_reply (c : *mut ffi::base::connection
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1100,7 +1337,7 @@ pub fn xcb_x_print_print_start_page_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_start_page (c : *mut ffi::base::connection,
                                         window :  ffi::xproto::window) -> ffi::base::void_cookie;
@@ -1111,7 +1348,7 @@ pub fn xcb_x_print_print_start_page (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1125,7 +1362,7 @@ pub fn xcb_x_print_print_end_page_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_end_page (c : *mut ffi::base::connection,
                                       cancel :  u8) -> ffi::base::void_cookie;
@@ -1138,7 +1375,7 @@ pub fn xcb_x_print_print_select_input_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1154,7 +1391,7 @@ pub fn xcb_x_print_print_select_input_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_select_input (c : *mut ffi::base::connection,
                                           context :  pcontext,
@@ -1177,7 +1414,7 @@ pub fn xcb_x_print_print_input_selected_sizeof (_buffer :  *mut c_void) -> c_int
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_input_selected (c : *mut ffi::base::connection,
                                             context :  pcontext) -> print_input_selected_cookie;
@@ -1188,7 +1425,7 @@ pub fn xcb_x_print_print_input_selected (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1219,7 +1456,7 @@ pub fn xcb_x_print_print_input_selected_all_events_list_end (R : *mut print_inpu
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_x_print_print_input_selected_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1236,7 +1473,7 @@ pub fn xcb_x_print_print_input_selected_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_get_attributes (c : *mut ffi::base::connection,
                                             context :  pcontext,
@@ -1248,7 +1485,7 @@ pub fn xcb_x_print_print_get_attributes (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1264,7 +1501,7 @@ pub fn xcb_x_print_print_get_attributes_unchecked (c : *mut ffi::base::connectio
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_x_print_print_get_attributes_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1283,7 +1520,7 @@ pub fn xcb_x_print_print_get_one_attributes_sizeof (_buffer :  *mut c_void) -> c
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_get_one_attributes (c : *mut ffi::base::connection,
                                                 context :  pcontext,
@@ -1297,7 +1534,7 @@ pub fn xcb_x_print_print_get_one_attributes (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1323,7 +1560,7 @@ pub fn xcb_x_print_print_get_one_attributes_value_end (R : *mut print_get_one_at
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_x_print_print_get_one_attributes_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1343,7 +1580,7 @@ pub fn xcb_x_print_print_set_attributes_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -1362,7 +1599,7 @@ pub fn xcb_x_print_print_set_attributes_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_set_attributes (c : *mut ffi::base::connection,
                                             context :  pcontext,
@@ -1378,7 +1615,7 @@ pub fn xcb_x_print_print_set_attributes (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_get_page_dimensions (c : *mut ffi::base::connection,
                                                  context :  pcontext) -> print_get_page_dimensions_cookie;
@@ -1389,7 +1626,7 @@ pub fn xcb_x_print_print_get_page_dimensions (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1404,7 +1641,7 @@ pub fn xcb_x_print_print_get_page_dimensions_unchecked (c : *mut ffi::base::conn
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_x_print_print_get_page_dimensions_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1423,7 +1660,7 @@ pub fn xcb_x_print_print_query_screens_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_query_screens (c : *mut ffi::base::connection) -> print_query_screens_cookie;
 
@@ -1433,7 +1670,7 @@ pub fn xcb_x_print_print_query_screens (c : *mut ffi::base::connection) -> print
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1455,7 +1692,7 @@ pub fn xcb_x_print_print_query_screens_roots_end (R : *mut print_query_screens_r
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_x_print_print_query_screens_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1472,7 +1709,7 @@ pub fn xcb_x_print_print_query_screens_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_set_image_resolution (c : *mut ffi::base::connection,
                                                   context :  pcontext,
@@ -1484,7 +1721,7 @@ pub fn xcb_x_print_print_set_image_resolution (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1500,7 +1737,7 @@ pub fn xcb_x_print_print_set_image_resolution_unchecked (c : *mut ffi::base::con
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_x_print_print_set_image_resolution_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -1517,7 +1754,7 @@ pub fn xcb_x_print_print_set_image_resolution_reply (c : *mut ffi::base::connect
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_x_print_print_get_image_resolution (c : *mut ffi::base::connection,
                                                   context :  pcontext) -> print_get_image_resolution_cookie;
@@ -1528,7 +1765,7 @@ pub fn xcb_x_print_print_get_image_resolution (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -1543,7 +1780,7 @@ pub fn xcb_x_print_print_get_image_resolution_unchecked (c : *mut ffi::base::con
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_x_print_print_get_image_resolution_unchecked(). is used.
  * Otherwise, it stores the error if any.

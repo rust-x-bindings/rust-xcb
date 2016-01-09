@@ -1,4 +1,3 @@
-#![feature(globs)]
 extern crate xcb;
 
 use std::iter::{Iterator};
@@ -9,26 +8,12 @@ fn main() {
 
     let mut setup = conn.get_setup();
 
-    let mut iter = setup.roots();
-
-    let mut screen;
-    loop {
-        let n : Option<&xcb::xproto::Screen> = iter.next();
-        match n {
-            Some(s) => {
-                if 1 == screen_num {
-                    screen = *s;
-                    break;
-                }
-            }
-            None => { fail!("Whut") }
-        }
-    }
+    let mut screen = setup.roots().nth(screen_num as usize).unwrap();
 
     println!("");
     println!("Informations of screen {}:", screen.root());
     println!("  width..........: {}", screen.width_in_pixels());
     println!("  height.........: {}", screen.height_in_pixels());
-    println!("  white pixel....: {}", screen.white_pixel());
-    println!("  black pixel....: {}", screen.black_pixel());
+    println!("  white pixel....: {:x}", screen.white_pixel());
+    println!("  black pixel....: {:x}", screen.black_pixel());
 }

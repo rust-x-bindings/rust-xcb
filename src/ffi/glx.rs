@@ -18,6 +18,7 @@ pub type pixmap = u32;
 /**
  * @brief pixmap_iterator
  **/
+#[repr(C)]
 pub struct pixmap_iterator {
     pub data : *mut pixmap,
     pub rem  : c_int,
@@ -29,6 +30,7 @@ pub type context = u32;
 /**
  * @brief context_iterator
  **/
+#[repr(C)]
 pub struct context_iterator {
     pub data : *mut context,
     pub rem  : c_int,
@@ -40,6 +42,7 @@ pub type pbuffer = u32;
 /**
  * @brief pbuffer_iterator
  **/
+#[repr(C)]
 pub struct pbuffer_iterator {
     pub data : *mut pbuffer,
     pub rem  : c_int,
@@ -51,6 +54,7 @@ pub type window = u32;
 /**
  * @brief window_iterator
  **/
+#[repr(C)]
 pub struct window_iterator {
     pub data : *mut window,
     pub rem  : c_int,
@@ -62,6 +66,7 @@ pub type fbconfig = u32;
 /**
  * @brief fbconfig_iterator
  **/
+#[repr(C)]
 pub struct fbconfig_iterator {
     pub data : *mut fbconfig,
     pub rem  : c_int,
@@ -73,6 +78,7 @@ pub type drawable = u32;
 /**
  * @brief drawable_iterator
  **/
+#[repr(C)]
 pub struct drawable_iterator {
     pub data : *mut drawable,
     pub rem  : c_int,
@@ -84,6 +90,7 @@ pub type float32 = f32;
 /**
  * @brief float32_iterator
  **/
+#[repr(C)]
 pub struct float32_iterator {
     pub data : *mut float32,
     pub rem  : c_int,
@@ -95,6 +102,7 @@ pub type float64 = f64;
 /**
  * @brief float64_iterator
  **/
+#[repr(C)]
 pub struct float64_iterator {
     pub data : *mut float64,
     pub rem  : c_int,
@@ -106,6 +114,7 @@ pub type bool32 = u32;
 /**
  * @brief bool32_iterator
  **/
+#[repr(C)]
 pub struct bool32_iterator {
     pub data : *mut bool32,
     pub rem  : c_int,
@@ -117,6 +126,7 @@ pub type context_tag = u32;
 /**
  * @brief context_tag_iterator
  **/
+#[repr(C)]
 pub struct context_tag_iterator {
     pub data : *mut context_tag,
     pub rem  : c_int,
@@ -125,6 +135,7 @@ pub struct context_tag_iterator {
 
 
 
+#[repr(C)]
 pub struct generic_error {
      pub response_type :   u8,
      pub error_code :      u8,
@@ -132,9 +143,13 @@ pub struct generic_error {
      pub bad_value :       u32,
      pub minor_opcode :    u16,
      pub major_opcode :    u8,
-     pub pad0 :            [u8,..21]
+     pub pad0 :            [u8; 21]
 }
 
+impl Copy for generic_error {}
+impl Clone for generic_error {
+    fn clone(&self) -> generic_error { *self }
+}
 
 
 pub type bad_context_error  = generic_error;
@@ -179,6 +194,7 @@ pub type bad_window_error  = generic_error;
 pub type glx_bad_profile_arb_error  = generic_error;
 
 
+#[repr(C)]
 pub struct pbuffer_clobber_event {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -193,11 +209,16 @@ pub struct pbuffer_clobber_event {
      pub width :           u16,
      pub height :          u16,
      pub count :           u16,
-     pub pad1 :            [u8,..4]
+     pub pad1 :            [u8; 4]
+}
+
+impl Copy for pbuffer_clobber_event {}
+impl Clone for pbuffer_clobber_event {
+    fn clone(&self) -> pbuffer_clobber_event { *self }
 }
 
 
-
+#[repr(C)]
 pub struct render_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -205,8 +226,13 @@ pub struct render_request {
      pub context_tag :    context_tag
 }
 
+impl Copy for render_request {}
+impl Clone for render_request {
+    fn clone(&self) -> render_request { *self }
+}
 
 
+#[repr(C)]
 pub struct render_large_request {
      pub major_opcode :    u8,
      pub minor_opcode :    u8,
@@ -217,8 +243,13 @@ pub struct render_large_request {
      pub data_len :        u32
 }
 
+impl Copy for render_large_request {}
+impl Clone for render_large_request {
+    fn clone(&self) -> render_large_request { *self }
+}
 
 
+#[repr(C)]
 pub struct create_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -228,11 +259,16 @@ pub struct create_context_request {
      pub screen :         u32,
      pub share_list :     context,
      pub is_direct :      u8,
-     pub pad0 :           [u8,..3]
+     pub pad0 :           [u8; 3]
+}
+
+impl Copy for create_context_request {}
+impl Clone for create_context_request {
+    fn clone(&self) -> create_context_request { *self }
 }
 
 
-
+#[repr(C)]
 pub struct destroy_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -240,12 +276,19 @@ pub struct destroy_context_request {
      pub context :        context
 }
 
+impl Copy for destroy_context_request {}
+impl Clone for destroy_context_request {
+    fn clone(&self) -> destroy_context_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct make_current_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct make_current_request {
      pub major_opcode :      u8,
      pub minor_opcode :      u8,
@@ -255,22 +298,34 @@ pub struct make_current_request {
      pub old_context_tag :   context_tag
 }
 
+impl Copy for make_current_request {}
+impl Clone for make_current_request {
+    fn clone(&self) -> make_current_request { *self }
+}
 
+#[repr(C)]
 pub struct make_current_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_tag :     context_tag,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for make_current_reply {}
+impl Clone for make_current_reply {
+    fn clone(&self) -> make_current_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct is_direct_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct is_direct_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -278,22 +333,34 @@ pub struct is_direct_request {
      pub context :        context
 }
 
+impl Copy for is_direct_request {}
+impl Clone for is_direct_request {
+    fn clone(&self) -> is_direct_request { *self }
+}
 
+#[repr(C)]
 pub struct is_direct_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub is_direct :       u8,
-     pub pad1 :            [u8,..23]
+     pub pad1 :            [u8; 23]
 }
 
+impl Copy for is_direct_reply {}
+impl Clone for is_direct_reply {
+    fn clone(&self) -> is_direct_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_version_request {
      pub major_opcode :    u8,
      pub minor_opcode :    u8,
@@ -302,7 +369,12 @@ pub struct query_version_request {
      pub minor_version :   u32
 }
 
+impl Copy for query_version_request {}
+impl Clone for query_version_request {
+    fn clone(&self) -> query_version_request { *self }
+}
 
+#[repr(C)]
 pub struct query_version_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -310,11 +382,16 @@ pub struct query_version_reply {
      pub length :          u32,
      pub major_version :   u32,
      pub minor_version :   u32,
-     pub pad1 :            [u8,..16]
+     pub pad1 :            [u8; 16]
+}
+
+impl Copy for query_version_reply {}
+impl Clone for query_version_reply {
+    fn clone(&self) -> query_version_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct wait_gl_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -322,8 +399,13 @@ pub struct wait_gl_request {
      pub context_tag :    context_tag
 }
 
+impl Copy for wait_gl_request {}
+impl Clone for wait_gl_request {
+    fn clone(&self) -> wait_gl_request { *self }
+}
 
 
+#[repr(C)]
 pub struct wait_x_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -331,8 +413,13 @@ pub struct wait_x_request {
      pub context_tag :    context_tag
 }
 
+impl Copy for wait_x_request {}
+impl Clone for wait_x_request {
+    fn clone(&self) -> wait_x_request { *self }
+}
 
 
+#[repr(C)]
 pub struct copy_context_request {
      pub major_opcode :      u8,
      pub minor_opcode :      u8,
@@ -343,8 +430,13 @@ pub struct copy_context_request {
      pub src_context_tag :   context_tag
 }
 
+impl Copy for copy_context_request {}
+impl Clone for copy_context_request {
+    fn clone(&self) -> copy_context_request { *self }
+}
 
 
+#[repr(C)]
 pub struct swap_buffers_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -353,8 +445,13 @@ pub struct swap_buffers_request {
      pub drawable :       drawable
 }
 
+impl Copy for swap_buffers_request {}
+impl Clone for swap_buffers_request {
+    fn clone(&self) -> swap_buffers_request { *self }
+}
 
 
+#[repr(C)]
 pub struct use_x_font_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -366,8 +463,13 @@ pub struct use_x_font_request {
      pub list_base :      u32
 }
 
+impl Copy for use_x_font_request {}
+impl Clone for use_x_font_request {
+    fn clone(&self) -> use_x_font_request { *self }
+}
 
 
+#[repr(C)]
 pub struct create_glx_pixmap_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -378,12 +480,19 @@ pub struct create_glx_pixmap_request {
      pub glx_pixmap :     pixmap
 }
 
+impl Copy for create_glx_pixmap_request {}
+impl Clone for create_glx_pixmap_request {
+    fn clone(&self) -> create_glx_pixmap_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_visual_configs_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_visual_configs_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -391,7 +500,12 @@ pub struct get_visual_configs_request {
      pub screen :         u32
 }
 
+impl Copy for get_visual_configs_request {}
+impl Clone for get_visual_configs_request {
+    fn clone(&self) -> get_visual_configs_request { *self }
+}
 
+#[repr(C)]
 pub struct get_visual_configs_reply {
      pub response_type :    u8,
      pub pad0 :             u8,
@@ -399,11 +513,16 @@ pub struct get_visual_configs_reply {
      pub length :           u32,
      pub num_visuals :      u32,
      pub num_properties :   u32,
-     pub pad1 :             [u8,..16]
+     pub pad1 :             [u8; 16]
+}
+
+impl Copy for get_visual_configs_reply {}
+impl Clone for get_visual_configs_reply {
+    fn clone(&self) -> get_visual_configs_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct destroy_glx_pixmap_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -411,8 +530,13 @@ pub struct destroy_glx_pixmap_request {
      pub glx_pixmap :     pixmap
 }
 
+impl Copy for destroy_glx_pixmap_request {}
+impl Clone for destroy_glx_pixmap_request {
+    fn clone(&self) -> destroy_glx_pixmap_request { *self }
+}
 
 
+#[repr(C)]
 pub struct vendor_private_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -421,12 +545,19 @@ pub struct vendor_private_request {
      pub context_tag :    context_tag
 }
 
+impl Copy for vendor_private_request {}
+impl Clone for vendor_private_request {
+    fn clone(&self) -> vendor_private_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct vendor_private_with_reply_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct vendor_private_with_reply_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -435,22 +566,34 @@ pub struct vendor_private_with_reply_request {
      pub context_tag :    context_tag
 }
 
+impl Copy for vendor_private_with_reply_request {}
+impl Clone for vendor_private_with_reply_request {
+    fn clone(&self) -> vendor_private_with_reply_request { *self }
+}
 
+#[repr(C)]
 pub struct vendor_private_with_reply_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub retval :          u32,
-     pub data1 :           [u8,..24]
+     pub data1 :           [u8; 24]
 }
 
+impl Copy for vendor_private_with_reply_reply {}
+impl Clone for vendor_private_with_reply_reply {
+    fn clone(&self) -> vendor_private_with_reply_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_extensions_string_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_extensions_string_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -458,23 +601,35 @@ pub struct query_extensions_string_request {
      pub screen :         u32
 }
 
+impl Copy for query_extensions_string_request {}
+impl Clone for query_extensions_string_request {
+    fn clone(&self) -> query_extensions_string_request { *self }
+}
 
+#[repr(C)]
 pub struct query_extensions_string_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
-     pub pad2 :            [u8,..16]
+     pub pad2 :            [u8; 16]
 }
 
+impl Copy for query_extensions_string_reply {}
+impl Clone for query_extensions_string_reply {
+    fn clone(&self) -> query_extensions_string_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_server_string_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_server_string_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -483,19 +638,29 @@ pub struct query_server_string_request {
      pub name :           u32
 }
 
+impl Copy for query_server_string_request {}
+impl Clone for query_server_string_request {
+    fn clone(&self) -> query_server_string_request { *self }
+}
 
+#[repr(C)]
 pub struct query_server_string_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub str_len :         u32,
-     pub pad2 :            [u8,..16]
+     pub pad2 :            [u8; 16]
+}
+
+impl Copy for query_server_string_reply {}
+impl Clone for query_server_string_reply {
+    fn clone(&self) -> query_server_string_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct client_info_request {
      pub major_opcode :    u8,
      pub minor_opcode :    u8,
@@ -505,12 +670,19 @@ pub struct client_info_request {
      pub str_len :         u32
 }
 
+impl Copy for client_info_request {}
+impl Clone for client_info_request {
+    fn clone(&self) -> client_info_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_fb_configs_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_fb_configs_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -518,7 +690,12 @@ pub struct get_fb_configs_request {
      pub screen :         u32
 }
 
+impl Copy for get_fb_configs_request {}
+impl Clone for get_fb_configs_request {
+    fn clone(&self) -> get_fb_configs_request { *self }
+}
 
+#[repr(C)]
 pub struct get_fb_configs_reply {
      pub response_type :    u8,
      pub pad0 :             u8,
@@ -526,11 +703,16 @@ pub struct get_fb_configs_reply {
      pub length :           u32,
      pub num_FB_configs :   u32,
      pub num_properties :   u32,
-     pub pad1 :             [u8,..16]
+     pub pad1 :             [u8; 16]
+}
+
+impl Copy for get_fb_configs_reply {}
+impl Clone for get_fb_configs_reply {
+    fn clone(&self) -> get_fb_configs_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct create_pixmap_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -542,8 +724,13 @@ pub struct create_pixmap_request {
      pub num_attribs :    u32
 }
 
+impl Copy for create_pixmap_request {}
+impl Clone for create_pixmap_request {
+    fn clone(&self) -> create_pixmap_request { *self }
+}
 
 
+#[repr(C)]
 pub struct destroy_pixmap_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -551,8 +738,13 @@ pub struct destroy_pixmap_request {
      pub glx_pixmap :     pixmap
 }
 
+impl Copy for destroy_pixmap_request {}
+impl Clone for destroy_pixmap_request {
+    fn clone(&self) -> destroy_pixmap_request { *self }
+}
 
 
+#[repr(C)]
 pub struct create_new_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -563,15 +755,22 @@ pub struct create_new_context_request {
      pub render_type :    u32,
      pub share_list :     context,
      pub is_direct :      u8,
-     pub pad0 :           [u8,..3]
+     pub pad0 :           [u8; 3]
 }
 
+impl Copy for create_new_context_request {}
+impl Clone for create_new_context_request {
+    fn clone(&self) -> create_new_context_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -579,22 +778,34 @@ pub struct query_context_request {
      pub context :        context
 }
 
+impl Copy for query_context_request {}
+impl Clone for query_context_request {
+    fn clone(&self) -> query_context_request { *self }
+}
 
+#[repr(C)]
 pub struct query_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub num_attribs :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for query_context_reply {}
+impl Clone for query_context_reply {
+    fn clone(&self) -> query_context_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct make_context_current_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct make_context_current_request {
      pub major_opcode :      u8,
      pub minor_opcode :      u8,
@@ -605,18 +816,28 @@ pub struct make_context_current_request {
      pub context :           context
 }
 
+impl Copy for make_context_current_request {}
+impl Clone for make_context_current_request {
+    fn clone(&self) -> make_context_current_request { *self }
+}
 
+#[repr(C)]
 pub struct make_context_current_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub context_tag :     context_tag,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
+}
+
+impl Copy for make_context_current_reply {}
+impl Clone for make_context_current_reply {
+    fn clone(&self) -> make_context_current_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct create_pbuffer_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -627,8 +848,13 @@ pub struct create_pbuffer_request {
      pub num_attribs :    u32
 }
 
+impl Copy for create_pbuffer_request {}
+impl Clone for create_pbuffer_request {
+    fn clone(&self) -> create_pbuffer_request { *self }
+}
 
 
+#[repr(C)]
 pub struct destroy_pbuffer_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -636,12 +862,19 @@ pub struct destroy_pbuffer_request {
      pub pbuffer :        pbuffer
 }
 
+impl Copy for destroy_pbuffer_request {}
+impl Clone for destroy_pbuffer_request {
+    fn clone(&self) -> destroy_pbuffer_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_drawable_attributes_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_drawable_attributes_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -649,18 +882,28 @@ pub struct get_drawable_attributes_request {
      pub drawable :       drawable
 }
 
+impl Copy for get_drawable_attributes_request {}
+impl Clone for get_drawable_attributes_request {
+    fn clone(&self) -> get_drawable_attributes_request { *self }
+}
 
+#[repr(C)]
 pub struct get_drawable_attributes_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub num_attribs :     u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
+}
+
+impl Copy for get_drawable_attributes_reply {}
+impl Clone for get_drawable_attributes_reply {
+    fn clone(&self) -> get_drawable_attributes_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct change_drawable_attributes_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -669,8 +912,13 @@ pub struct change_drawable_attributes_request {
      pub num_attribs :    u32
 }
 
+impl Copy for change_drawable_attributes_request {}
+impl Clone for change_drawable_attributes_request {
+    fn clone(&self) -> change_drawable_attributes_request { *self }
+}
 
 
+#[repr(C)]
 pub struct create_window_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -682,8 +930,13 @@ pub struct create_window_request {
      pub num_attribs :    u32
 }
 
+impl Copy for create_window_request {}
+impl Clone for create_window_request {
+    fn clone(&self) -> create_window_request { *self }
+}
 
 
+#[repr(C)]
 pub struct delete_window_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -691,8 +944,13 @@ pub struct delete_window_request {
      pub glxwindow :      window
 }
 
+impl Copy for delete_window_request {}
+impl Clone for delete_window_request {
+    fn clone(&self) -> delete_window_request { *self }
+}
 
 
+#[repr(C)]
 pub struct set_client_info_arb_request {
      pub major_opcode :    u8,
      pub minor_opcode :    u8,
@@ -704,8 +962,13 @@ pub struct set_client_info_arb_request {
      pub glx_str_len :     u32
 }
 
+impl Copy for set_client_info_arb_request {}
+impl Clone for set_client_info_arb_request {
+    fn clone(&self) -> set_client_info_arb_request { *self }
+}
 
 
+#[repr(C)]
 pub struct create_context_attribs_arb_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -715,12 +978,17 @@ pub struct create_context_attribs_arb_request {
      pub screen :         u32,
      pub share_list :     context,
      pub is_direct :      u8,
-     pub pad0 :           [u8,..3],
+     pub pad0 :           [u8; 3],
      pub num_attribs :    u32
 }
 
+impl Copy for create_context_attribs_arb_request {}
+impl Clone for create_context_attribs_arb_request {
+    fn clone(&self) -> create_context_attribs_arb_request { *self }
+}
 
 
+#[repr(C)]
 pub struct set_client_info_2arb_request {
      pub major_opcode :    u8,
      pub minor_opcode :    u8,
@@ -732,8 +1000,13 @@ pub struct set_client_info_2arb_request {
      pub glx_str_len :     u32
 }
 
+impl Copy for set_client_info_2arb_request {}
+impl Clone for set_client_info_2arb_request {
+    fn clone(&self) -> set_client_info_2arb_request { *self }
+}
 
 
+#[repr(C)]
 pub struct new_list_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -743,8 +1016,13 @@ pub struct new_list_request {
      pub mode :           u32
 }
 
+impl Copy for new_list_request {}
+impl Clone for new_list_request {
+    fn clone(&self) -> new_list_request { *self }
+}
 
 
+#[repr(C)]
 pub struct end_list_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -752,8 +1030,13 @@ pub struct end_list_request {
      pub context_tag :    context_tag
 }
 
+impl Copy for end_list_request {}
+impl Clone for end_list_request {
+    fn clone(&self) -> end_list_request { *self }
+}
 
 
+#[repr(C)]
 pub struct delete_lists_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -763,12 +1046,19 @@ pub struct delete_lists_request {
      pub range :          i32
 }
 
+impl Copy for delete_lists_request {}
+impl Clone for delete_lists_request {
+    fn clone(&self) -> delete_lists_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct gen_lists_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct gen_lists_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -777,7 +1067,12 @@ pub struct gen_lists_request {
      pub range :          i32
 }
 
+impl Copy for gen_lists_request {}
+impl Clone for gen_lists_request {
+    fn clone(&self) -> gen_lists_request { *self }
+}
 
+#[repr(C)]
 pub struct gen_lists_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -786,8 +1081,13 @@ pub struct gen_lists_reply {
      pub ret_val :         u32
 }
 
+impl Copy for gen_lists_reply {}
+impl Clone for gen_lists_reply {
+    fn clone(&self) -> gen_lists_reply { *self }
+}
 
 
+#[repr(C)]
 pub struct feedback_buffer_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -797,8 +1097,13 @@ pub struct feedback_buffer_request {
      pub type_ :          i32
 }
 
+impl Copy for feedback_buffer_request {}
+impl Clone for feedback_buffer_request {
+    fn clone(&self) -> feedback_buffer_request { *self }
+}
 
 
+#[repr(C)]
 pub struct select_buffer_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -807,12 +1112,19 @@ pub struct select_buffer_request {
      pub size :           i32
 }
 
+impl Copy for select_buffer_request {}
+impl Clone for select_buffer_request {
+    fn clone(&self) -> select_buffer_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct render_mode_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct render_mode_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -821,7 +1133,12 @@ pub struct render_mode_request {
      pub mode :           u32
 }
 
+impl Copy for render_mode_request {}
+impl Clone for render_mode_request {
+    fn clone(&self) -> render_mode_request { *self }
+}
 
+#[repr(C)]
 pub struct render_mode_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -830,15 +1147,22 @@ pub struct render_mode_reply {
      pub ret_val :         u32,
      pub n :               u32,
      pub new_mode :        u32,
-     pub pad1 :            [u8,..12]
+     pub pad1 :            [u8; 12]
 }
 
+impl Copy for render_mode_reply {}
+impl Clone for render_mode_reply {
+    fn clone(&self) -> render_mode_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct finish_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct finish_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -846,7 +1170,12 @@ pub struct finish_request {
      pub context_tag :    context_tag
 }
 
+impl Copy for finish_request {}
+impl Clone for finish_request {
+    fn clone(&self) -> finish_request { *self }
+}
 
+#[repr(C)]
 pub struct finish_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -854,8 +1183,13 @@ pub struct finish_reply {
      pub length :          u32
 }
 
+impl Copy for finish_reply {}
+impl Clone for finish_reply {
+    fn clone(&self) -> finish_reply { *self }
+}
 
 
+#[repr(C)]
 pub struct pixel_storef_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -865,8 +1199,13 @@ pub struct pixel_storef_request {
      pub datum :          float32
 }
 
+impl Copy for pixel_storef_request {}
+impl Clone for pixel_storef_request {
+    fn clone(&self) -> pixel_storef_request { *self }
+}
 
 
+#[repr(C)]
 pub struct pixel_storei_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -876,12 +1215,19 @@ pub struct pixel_storei_request {
      pub datum :          i32
 }
 
+impl Copy for pixel_storei_request {}
+impl Clone for pixel_storei_request {
+    fn clone(&self) -> pixel_storei_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct read_pixels_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct read_pixels_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -897,21 +1243,33 @@ pub struct read_pixels_request {
      pub lsb_first :      u8
 }
 
+impl Copy for read_pixels_request {}
+impl Clone for read_pixels_request {
+    fn clone(&self) -> read_pixels_request { *self }
+}
 
+#[repr(C)]
 pub struct read_pixels_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..24]
+     pub pad1 :            [u8; 24]
 }
 
+impl Copy for read_pixels_reply {}
+impl Clone for read_pixels_reply {
+    fn clone(&self) -> read_pixels_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_booleanv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_booleanv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -920,24 +1278,36 @@ pub struct get_booleanv_request {
      pub pname :          i32
 }
 
+impl Copy for get_booleanv_request {}
+impl Clone for get_booleanv_request {
+    fn clone(&self) -> get_booleanv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_booleanv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           u8,
-     pub pad2 :            [u8,..15]
+     pub pad2 :            [u8; 15]
 }
 
+impl Copy for get_booleanv_reply {}
+impl Clone for get_booleanv_reply {
+    fn clone(&self) -> get_booleanv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_clip_plane_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_clip_plane_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -946,21 +1316,33 @@ pub struct get_clip_plane_request {
      pub plane :          i32
 }
 
+impl Copy for get_clip_plane_request {}
+impl Clone for get_clip_plane_request {
+    fn clone(&self) -> get_clip_plane_request { *self }
+}
 
+#[repr(C)]
 pub struct get_clip_plane_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..24]
+     pub pad1 :            [u8; 24]
 }
 
+impl Copy for get_clip_plane_reply {}
+impl Clone for get_clip_plane_reply {
+    fn clone(&self) -> get_clip_plane_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_doublev_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_doublev_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -969,24 +1351,36 @@ pub struct get_doublev_request {
      pub pname :          u32
 }
 
+impl Copy for get_doublev_request {}
+impl Clone for get_doublev_request {
+    fn clone(&self) -> get_doublev_request { *self }
+}
 
+#[repr(C)]
 pub struct get_doublev_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           float64,
-     pub pad2 :            [u8,..8]
+     pub pad2 :            [u8; 8]
 }
 
+impl Copy for get_doublev_reply {}
+impl Clone for get_doublev_reply {
+    fn clone(&self) -> get_doublev_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_error_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_error_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -994,7 +1388,12 @@ pub struct get_error_request {
      pub context_tag :    context_tag
 }
 
+impl Copy for get_error_request {}
+impl Clone for get_error_request {
+    fn clone(&self) -> get_error_request { *self }
+}
 
+#[repr(C)]
 pub struct get_error_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -1003,12 +1402,19 @@ pub struct get_error_reply {
      pub error :           i32
 }
 
+impl Copy for get_error_reply {}
+impl Clone for get_error_reply {
+    fn clone(&self) -> get_error_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_floatv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_floatv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1017,24 +1423,36 @@ pub struct get_floatv_request {
      pub pname :          u32
 }
 
+impl Copy for get_floatv_request {}
+impl Clone for get_floatv_request {
+    fn clone(&self) -> get_floatv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_floatv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           float32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_floatv_reply {}
+impl Clone for get_floatv_reply {
+    fn clone(&self) -> get_floatv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_integerv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_integerv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1043,24 +1461,36 @@ pub struct get_integerv_request {
      pub pname :          u32
 }
 
+impl Copy for get_integerv_request {}
+impl Clone for get_integerv_request {
+    fn clone(&self) -> get_integerv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_integerv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           i32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_integerv_reply {}
+impl Clone for get_integerv_reply {
+    fn clone(&self) -> get_integerv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_lightfv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_lightfv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1070,24 +1500,36 @@ pub struct get_lightfv_request {
      pub pname :          u32
 }
 
+impl Copy for get_lightfv_request {}
+impl Clone for get_lightfv_request {
+    fn clone(&self) -> get_lightfv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_lightfv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           float32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_lightfv_reply {}
+impl Clone for get_lightfv_reply {
+    fn clone(&self) -> get_lightfv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_lightiv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_lightiv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1097,24 +1539,36 @@ pub struct get_lightiv_request {
      pub pname :          u32
 }
 
+impl Copy for get_lightiv_request {}
+impl Clone for get_lightiv_request {
+    fn clone(&self) -> get_lightiv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_lightiv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           i32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_lightiv_reply {}
+impl Clone for get_lightiv_reply {
+    fn clone(&self) -> get_lightiv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_mapdv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_mapdv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1124,24 +1578,36 @@ pub struct get_mapdv_request {
      pub query :          u32
 }
 
+impl Copy for get_mapdv_request {}
+impl Clone for get_mapdv_request {
+    fn clone(&self) -> get_mapdv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_mapdv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           float64,
-     pub pad2 :            [u8,..8]
+     pub pad2 :            [u8; 8]
 }
 
+impl Copy for get_mapdv_reply {}
+impl Clone for get_mapdv_reply {
+    fn clone(&self) -> get_mapdv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_mapfv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_mapfv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1151,24 +1617,36 @@ pub struct get_mapfv_request {
      pub query :          u32
 }
 
+impl Copy for get_mapfv_request {}
+impl Clone for get_mapfv_request {
+    fn clone(&self) -> get_mapfv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_mapfv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           float32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_mapfv_reply {}
+impl Clone for get_mapfv_reply {
+    fn clone(&self) -> get_mapfv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_mapiv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_mapiv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1178,24 +1656,36 @@ pub struct get_mapiv_request {
      pub query :          u32
 }
 
+impl Copy for get_mapiv_request {}
+impl Clone for get_mapiv_request {
+    fn clone(&self) -> get_mapiv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_mapiv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           i32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_mapiv_reply {}
+impl Clone for get_mapiv_reply {
+    fn clone(&self) -> get_mapiv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_materialfv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_materialfv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1205,24 +1695,36 @@ pub struct get_materialfv_request {
      pub pname :          u32
 }
 
+impl Copy for get_materialfv_request {}
+impl Clone for get_materialfv_request {
+    fn clone(&self) -> get_materialfv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_materialfv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           float32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_materialfv_reply {}
+impl Clone for get_materialfv_reply {
+    fn clone(&self) -> get_materialfv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_materialiv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_materialiv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1232,24 +1734,36 @@ pub struct get_materialiv_request {
      pub pname :          u32
 }
 
+impl Copy for get_materialiv_request {}
+impl Clone for get_materialiv_request {
+    fn clone(&self) -> get_materialiv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_materialiv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           i32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_materialiv_reply {}
+impl Clone for get_materialiv_reply {
+    fn clone(&self) -> get_materialiv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_pixel_mapfv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_pixel_mapfv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1258,24 +1772,36 @@ pub struct get_pixel_mapfv_request {
      pub map :            u32
 }
 
+impl Copy for get_pixel_mapfv_request {}
+impl Clone for get_pixel_mapfv_request {
+    fn clone(&self) -> get_pixel_mapfv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_pixel_mapfv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           float32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_pixel_mapfv_reply {}
+impl Clone for get_pixel_mapfv_reply {
+    fn clone(&self) -> get_pixel_mapfv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_pixel_mapuiv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_pixel_mapuiv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1284,24 +1810,36 @@ pub struct get_pixel_mapuiv_request {
      pub map :            u32
 }
 
+impl Copy for get_pixel_mapuiv_request {}
+impl Clone for get_pixel_mapuiv_request {
+    fn clone(&self) -> get_pixel_mapuiv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_pixel_mapuiv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           u32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_pixel_mapuiv_reply {}
+impl Clone for get_pixel_mapuiv_reply {
+    fn clone(&self) -> get_pixel_mapuiv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_pixel_mapusv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_pixel_mapusv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1310,24 +1848,36 @@ pub struct get_pixel_mapusv_request {
      pub map :            u32
 }
 
+impl Copy for get_pixel_mapusv_request {}
+impl Clone for get_pixel_mapusv_request {
+    fn clone(&self) -> get_pixel_mapusv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_pixel_mapusv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           u16,
-     pub pad2 :            [u8,..16]
+     pub pad2 :            [u8; 16]
 }
 
+impl Copy for get_pixel_mapusv_reply {}
+impl Clone for get_pixel_mapusv_reply {
+    fn clone(&self) -> get_pixel_mapusv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_polygon_stipple_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_polygon_stipple_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1336,21 +1886,33 @@ pub struct get_polygon_stipple_request {
      pub lsb_first :      u8
 }
 
+impl Copy for get_polygon_stipple_request {}
+impl Clone for get_polygon_stipple_request {
+    fn clone(&self) -> get_polygon_stipple_request { *self }
+}
 
+#[repr(C)]
 pub struct get_polygon_stipple_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..24]
+     pub pad1 :            [u8; 24]
 }
 
+impl Copy for get_polygon_stipple_reply {}
+impl Clone for get_polygon_stipple_reply {
+    fn clone(&self) -> get_polygon_stipple_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_string_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_string_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1359,23 +1921,35 @@ pub struct get_string_request {
      pub name :           u32
 }
 
+impl Copy for get_string_request {}
+impl Clone for get_string_request {
+    fn clone(&self) -> get_string_request { *self }
+}
 
+#[repr(C)]
 pub struct get_string_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
-     pub pad2 :            [u8,..16]
+     pub pad2 :            [u8; 16]
 }
 
+impl Copy for get_string_reply {}
+impl Clone for get_string_reply {
+    fn clone(&self) -> get_string_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_tex_envfv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_tex_envfv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1385,24 +1959,36 @@ pub struct get_tex_envfv_request {
      pub pname :          u32
 }
 
+impl Copy for get_tex_envfv_request {}
+impl Clone for get_tex_envfv_request {
+    fn clone(&self) -> get_tex_envfv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_tex_envfv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           float32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_tex_envfv_reply {}
+impl Clone for get_tex_envfv_reply {
+    fn clone(&self) -> get_tex_envfv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_tex_enviv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_tex_enviv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1412,24 +1998,36 @@ pub struct get_tex_enviv_request {
      pub pname :          u32
 }
 
+impl Copy for get_tex_enviv_request {}
+impl Clone for get_tex_enviv_request {
+    fn clone(&self) -> get_tex_enviv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_tex_enviv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           i32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_tex_enviv_reply {}
+impl Clone for get_tex_enviv_reply {
+    fn clone(&self) -> get_tex_enviv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_tex_gendv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_tex_gendv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1439,24 +2037,36 @@ pub struct get_tex_gendv_request {
      pub pname :          u32
 }
 
+impl Copy for get_tex_gendv_request {}
+impl Clone for get_tex_gendv_request {
+    fn clone(&self) -> get_tex_gendv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_tex_gendv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           float64,
-     pub pad2 :            [u8,..8]
+     pub pad2 :            [u8; 8]
 }
 
+impl Copy for get_tex_gendv_reply {}
+impl Clone for get_tex_gendv_reply {
+    fn clone(&self) -> get_tex_gendv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_tex_genfv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_tex_genfv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1466,24 +2076,36 @@ pub struct get_tex_genfv_request {
      pub pname :          u32
 }
 
+impl Copy for get_tex_genfv_request {}
+impl Clone for get_tex_genfv_request {
+    fn clone(&self) -> get_tex_genfv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_tex_genfv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           float32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_tex_genfv_reply {}
+impl Clone for get_tex_genfv_reply {
+    fn clone(&self) -> get_tex_genfv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_tex_geniv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_tex_geniv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1493,24 +2115,36 @@ pub struct get_tex_geniv_request {
      pub pname :          u32
 }
 
+impl Copy for get_tex_geniv_request {}
+impl Clone for get_tex_geniv_request {
+    fn clone(&self) -> get_tex_geniv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_tex_geniv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           i32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_tex_geniv_reply {}
+impl Clone for get_tex_geniv_reply {
+    fn clone(&self) -> get_tex_geniv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_tex_image_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_tex_image_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1523,25 +2157,37 @@ pub struct get_tex_image_request {
      pub swap_bytes :     u8
 }
 
+impl Copy for get_tex_image_request {}
+impl Clone for get_tex_image_request {
+    fn clone(&self) -> get_tex_image_request { *self }
+}
 
+#[repr(C)]
 pub struct get_tex_image_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..8],
+     pub pad1 :            [u8; 8],
      pub width :           i32,
      pub height :          i32,
      pub depth :           i32,
-     pub pad2 :            [u8,..4]
+     pub pad2 :            [u8; 4]
 }
 
+impl Copy for get_tex_image_reply {}
+impl Clone for get_tex_image_reply {
+    fn clone(&self) -> get_tex_image_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_tex_parameterfv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_tex_parameterfv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1551,24 +2197,36 @@ pub struct get_tex_parameterfv_request {
      pub pname :          u32
 }
 
+impl Copy for get_tex_parameterfv_request {}
+impl Clone for get_tex_parameterfv_request {
+    fn clone(&self) -> get_tex_parameterfv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_tex_parameterfv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           float32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_tex_parameterfv_reply {}
+impl Clone for get_tex_parameterfv_reply {
+    fn clone(&self) -> get_tex_parameterfv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_tex_parameteriv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_tex_parameteriv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1578,24 +2236,36 @@ pub struct get_tex_parameteriv_request {
      pub pname :          u32
 }
 
+impl Copy for get_tex_parameteriv_request {}
+impl Clone for get_tex_parameteriv_request {
+    fn clone(&self) -> get_tex_parameteriv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_tex_parameteriv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           i32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_tex_parameteriv_reply {}
+impl Clone for get_tex_parameteriv_reply {
+    fn clone(&self) -> get_tex_parameteriv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_tex_level_parameterfv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_tex_level_parameterfv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1606,24 +2276,36 @@ pub struct get_tex_level_parameterfv_request {
      pub pname :          u32
 }
 
+impl Copy for get_tex_level_parameterfv_request {}
+impl Clone for get_tex_level_parameterfv_request {
+    fn clone(&self) -> get_tex_level_parameterfv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_tex_level_parameterfv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           float32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_tex_level_parameterfv_reply {}
+impl Clone for get_tex_level_parameterfv_reply {
+    fn clone(&self) -> get_tex_level_parameterfv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_tex_level_parameteriv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_tex_level_parameteriv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1634,24 +2316,36 @@ pub struct get_tex_level_parameteriv_request {
      pub pname :          u32
 }
 
+impl Copy for get_tex_level_parameteriv_request {}
+impl Clone for get_tex_level_parameteriv_request {
+    fn clone(&self) -> get_tex_level_parameteriv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_tex_level_parameteriv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           i32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_tex_level_parameteriv_reply {}
+impl Clone for get_tex_level_parameteriv_reply {
+    fn clone(&self) -> get_tex_level_parameteriv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct is_list_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct is_list_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1660,7 +2354,12 @@ pub struct is_list_request {
      pub list :           u32
 }
 
+impl Copy for is_list_request {}
+impl Clone for is_list_request {
+    fn clone(&self) -> is_list_request { *self }
+}
 
+#[repr(C)]
 pub struct is_list_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -1669,8 +2368,13 @@ pub struct is_list_reply {
      pub ret_val :         bool32
 }
 
+impl Copy for is_list_reply {}
+impl Clone for is_list_reply {
+    fn clone(&self) -> is_list_reply { *self }
+}
 
 
+#[repr(C)]
 pub struct flush_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1678,12 +2382,19 @@ pub struct flush_request {
      pub context_tag :    context_tag
 }
 
+impl Copy for flush_request {}
+impl Clone for flush_request {
+    fn clone(&self) -> flush_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct are_textures_resident_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct are_textures_resident_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1692,18 +2403,28 @@ pub struct are_textures_resident_request {
      pub n :              i32
 }
 
+impl Copy for are_textures_resident_request {}
+impl Clone for are_textures_resident_request {
+    fn clone(&self) -> are_textures_resident_request { *self }
+}
 
+#[repr(C)]
 pub struct are_textures_resident_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub ret_val :         bool32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
+}
+
+impl Copy for are_textures_resident_reply {}
+impl Clone for are_textures_resident_reply {
+    fn clone(&self) -> are_textures_resident_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct delete_textures_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1712,12 +2433,19 @@ pub struct delete_textures_request {
      pub n :              i32
 }
 
+impl Copy for delete_textures_request {}
+impl Clone for delete_textures_request {
+    fn clone(&self) -> delete_textures_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct gen_textures_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct gen_textures_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1726,21 +2454,33 @@ pub struct gen_textures_request {
      pub n :              i32
 }
 
+impl Copy for gen_textures_request {}
+impl Clone for gen_textures_request {
+    fn clone(&self) -> gen_textures_request { *self }
+}
 
+#[repr(C)]
 pub struct gen_textures_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..24]
+     pub pad1 :            [u8; 24]
 }
 
+impl Copy for gen_textures_reply {}
+impl Clone for gen_textures_reply {
+    fn clone(&self) -> gen_textures_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct is_texture_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct is_texture_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1749,7 +2489,12 @@ pub struct is_texture_request {
      pub texture :        u32
 }
 
+impl Copy for is_texture_request {}
+impl Clone for is_texture_request {
+    fn clone(&self) -> is_texture_request { *self }
+}
 
+#[repr(C)]
 pub struct is_texture_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -1758,12 +2503,19 @@ pub struct is_texture_reply {
      pub ret_val :         bool32
 }
 
+impl Copy for is_texture_reply {}
+impl Clone for is_texture_reply {
+    fn clone(&self) -> is_texture_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_color_table_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_color_table_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1775,23 +2527,35 @@ pub struct get_color_table_request {
      pub swap_bytes :     u8
 }
 
+impl Copy for get_color_table_request {}
+impl Clone for get_color_table_request {
+    fn clone(&self) -> get_color_table_request { *self }
+}
 
+#[repr(C)]
 pub struct get_color_table_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..8],
+     pub pad1 :            [u8; 8],
      pub width :           i32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_color_table_reply {}
+impl Clone for get_color_table_reply {
+    fn clone(&self) -> get_color_table_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_color_table_parameterfv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_color_table_parameterfv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1801,24 +2565,36 @@ pub struct get_color_table_parameterfv_request {
      pub pname :          u32
 }
 
+impl Copy for get_color_table_parameterfv_request {}
+impl Clone for get_color_table_parameterfv_request {
+    fn clone(&self) -> get_color_table_parameterfv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_color_table_parameterfv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           float32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_color_table_parameterfv_reply {}
+impl Clone for get_color_table_parameterfv_reply {
+    fn clone(&self) -> get_color_table_parameterfv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_color_table_parameteriv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_color_table_parameteriv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1828,24 +2604,36 @@ pub struct get_color_table_parameteriv_request {
      pub pname :          u32
 }
 
+impl Copy for get_color_table_parameteriv_request {}
+impl Clone for get_color_table_parameteriv_request {
+    fn clone(&self) -> get_color_table_parameteriv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_color_table_parameteriv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           i32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_color_table_parameteriv_reply {}
+impl Clone for get_color_table_parameteriv_reply {
+    fn clone(&self) -> get_color_table_parameteriv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_convolution_filter_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_convolution_filter_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1857,24 +2645,36 @@ pub struct get_convolution_filter_request {
      pub swap_bytes :     u8
 }
 
+impl Copy for get_convolution_filter_request {}
+impl Clone for get_convolution_filter_request {
+    fn clone(&self) -> get_convolution_filter_request { *self }
+}
 
+#[repr(C)]
 pub struct get_convolution_filter_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..8],
+     pub pad1 :            [u8; 8],
      pub width :           i32,
      pub height :          i32,
-     pub pad2 :            [u8,..8]
+     pub pad2 :            [u8; 8]
 }
 
+impl Copy for get_convolution_filter_reply {}
+impl Clone for get_convolution_filter_reply {
+    fn clone(&self) -> get_convolution_filter_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_convolution_parameterfv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_convolution_parameterfv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1884,24 +2684,36 @@ pub struct get_convolution_parameterfv_request {
      pub pname :          u32
 }
 
+impl Copy for get_convolution_parameterfv_request {}
+impl Clone for get_convolution_parameterfv_request {
+    fn clone(&self) -> get_convolution_parameterfv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_convolution_parameterfv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           float32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_convolution_parameterfv_reply {}
+impl Clone for get_convolution_parameterfv_reply {
+    fn clone(&self) -> get_convolution_parameterfv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_convolution_parameteriv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_convolution_parameteriv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1911,24 +2723,36 @@ pub struct get_convolution_parameteriv_request {
      pub pname :          u32
 }
 
+impl Copy for get_convolution_parameteriv_request {}
+impl Clone for get_convolution_parameteriv_request {
+    fn clone(&self) -> get_convolution_parameteriv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_convolution_parameteriv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           i32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_convolution_parameteriv_reply {}
+impl Clone for get_convolution_parameteriv_reply {
+    fn clone(&self) -> get_convolution_parameteriv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_separable_filter_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_separable_filter_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1940,24 +2764,36 @@ pub struct get_separable_filter_request {
      pub swap_bytes :     u8
 }
 
+impl Copy for get_separable_filter_request {}
+impl Clone for get_separable_filter_request {
+    fn clone(&self) -> get_separable_filter_request { *self }
+}
 
+#[repr(C)]
 pub struct get_separable_filter_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..8],
+     pub pad1 :            [u8; 8],
      pub row_w :           i32,
      pub col_h :           i32,
-     pub pad2 :            [u8,..8]
+     pub pad2 :            [u8; 8]
 }
 
+impl Copy for get_separable_filter_reply {}
+impl Clone for get_separable_filter_reply {
+    fn clone(&self) -> get_separable_filter_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_histogram_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_histogram_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1970,23 +2806,35 @@ pub struct get_histogram_request {
      pub reset :          u8
 }
 
+impl Copy for get_histogram_request {}
+impl Clone for get_histogram_request {
+    fn clone(&self) -> get_histogram_request { *self }
+}
 
+#[repr(C)]
 pub struct get_histogram_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..8],
+     pub pad1 :            [u8; 8],
      pub width :           i32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_histogram_reply {}
+impl Clone for get_histogram_reply {
+    fn clone(&self) -> get_histogram_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_histogram_parameterfv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_histogram_parameterfv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -1996,24 +2844,36 @@ pub struct get_histogram_parameterfv_request {
      pub pname :          u32
 }
 
+impl Copy for get_histogram_parameterfv_request {}
+impl Clone for get_histogram_parameterfv_request {
+    fn clone(&self) -> get_histogram_parameterfv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_histogram_parameterfv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           float32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_histogram_parameterfv_reply {}
+impl Clone for get_histogram_parameterfv_reply {
+    fn clone(&self) -> get_histogram_parameterfv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_histogram_parameteriv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_histogram_parameteriv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -2023,24 +2883,36 @@ pub struct get_histogram_parameteriv_request {
      pub pname :          u32
 }
 
+impl Copy for get_histogram_parameteriv_request {}
+impl Clone for get_histogram_parameteriv_request {
+    fn clone(&self) -> get_histogram_parameteriv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_histogram_parameteriv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           i32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_histogram_parameteriv_reply {}
+impl Clone for get_histogram_parameteriv_reply {
+    fn clone(&self) -> get_histogram_parameteriv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_minmax_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_minmax_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -2053,21 +2925,33 @@ pub struct get_minmax_request {
      pub reset :          u8
 }
 
+impl Copy for get_minmax_request {}
+impl Clone for get_minmax_request {
+    fn clone(&self) -> get_minmax_request { *self }
+}
 
+#[repr(C)]
 pub struct get_minmax_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..24]
+     pub pad1 :            [u8; 24]
 }
 
+impl Copy for get_minmax_reply {}
+impl Clone for get_minmax_reply {
+    fn clone(&self) -> get_minmax_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_minmax_parameterfv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_minmax_parameterfv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -2077,24 +2961,36 @@ pub struct get_minmax_parameterfv_request {
      pub pname :          u32
 }
 
+impl Copy for get_minmax_parameterfv_request {}
+impl Clone for get_minmax_parameterfv_request {
+    fn clone(&self) -> get_minmax_parameterfv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_minmax_parameterfv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           float32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_minmax_parameterfv_reply {}
+impl Clone for get_minmax_parameterfv_reply {
+    fn clone(&self) -> get_minmax_parameterfv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_minmax_parameteriv_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_minmax_parameteriv_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -2104,24 +3000,36 @@ pub struct get_minmax_parameteriv_request {
      pub pname :          u32
 }
 
+impl Copy for get_minmax_parameteriv_request {}
+impl Clone for get_minmax_parameteriv_request {
+    fn clone(&self) -> get_minmax_parameteriv_request { *self }
+}
 
+#[repr(C)]
 pub struct get_minmax_parameteriv_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           i32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_minmax_parameteriv_reply {}
+impl Clone for get_minmax_parameteriv_reply {
+    fn clone(&self) -> get_minmax_parameteriv_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_compressed_tex_image_arb_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_compressed_tex_image_arb_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -2131,19 +3039,29 @@ pub struct get_compressed_tex_image_arb_request {
      pub level :          i32
 }
 
+impl Copy for get_compressed_tex_image_arb_request {}
+impl Clone for get_compressed_tex_image_arb_request {
+    fn clone(&self) -> get_compressed_tex_image_arb_request { *self }
+}
 
+#[repr(C)]
 pub struct get_compressed_tex_image_arb_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..8],
+     pub pad1 :            [u8; 8],
      pub size :            i32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
+}
+
+impl Copy for get_compressed_tex_image_arb_reply {}
+impl Clone for get_compressed_tex_image_arb_reply {
+    fn clone(&self) -> get_compressed_tex_image_arb_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct delete_queries_arb_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -2152,12 +3070,19 @@ pub struct delete_queries_arb_request {
      pub n :              i32
 }
 
+impl Copy for delete_queries_arb_request {}
+impl Clone for delete_queries_arb_request {
+    fn clone(&self) -> delete_queries_arb_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct gen_queries_arb_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct gen_queries_arb_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -2166,21 +3091,33 @@ pub struct gen_queries_arb_request {
      pub n :              i32
 }
 
+impl Copy for gen_queries_arb_request {}
+impl Clone for gen_queries_arb_request {
+    fn clone(&self) -> gen_queries_arb_request { *self }
+}
 
+#[repr(C)]
 pub struct gen_queries_arb_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..24]
+     pub pad1 :            [u8; 24]
 }
 
+impl Copy for gen_queries_arb_reply {}
+impl Clone for gen_queries_arb_reply {
+    fn clone(&self) -> gen_queries_arb_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct is_query_arb_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct is_query_arb_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -2189,7 +3126,12 @@ pub struct is_query_arb_request {
      pub id :             u32
 }
 
+impl Copy for is_query_arb_request {}
+impl Clone for is_query_arb_request {
+    fn clone(&self) -> is_query_arb_request { *self }
+}
 
+#[repr(C)]
 pub struct is_query_arb_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -2198,12 +3140,19 @@ pub struct is_query_arb_reply {
      pub ret_val :         bool32
 }
 
+impl Copy for is_query_arb_reply {}
+impl Clone for is_query_arb_reply {
+    fn clone(&self) -> is_query_arb_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_queryiv_arb_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_queryiv_arb_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -2213,24 +3162,36 @@ pub struct get_queryiv_arb_request {
      pub pname :          u32
 }
 
+impl Copy for get_queryiv_arb_request {}
+impl Clone for get_queryiv_arb_request {
+    fn clone(&self) -> get_queryiv_arb_request { *self }
+}
 
+#[repr(C)]
 pub struct get_queryiv_arb_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           i32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_queryiv_arb_reply {}
+impl Clone for get_queryiv_arb_reply {
+    fn clone(&self) -> get_queryiv_arb_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_query_objectiv_arb_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_query_objectiv_arb_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -2240,24 +3201,36 @@ pub struct get_query_objectiv_arb_request {
      pub pname :          u32
 }
 
+impl Copy for get_query_objectiv_arb_request {}
+impl Clone for get_query_objectiv_arb_request {
+    fn clone(&self) -> get_query_objectiv_arb_request { *self }
+}
 
+#[repr(C)]
 pub struct get_query_objectiv_arb_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           i32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_query_objectiv_arb_reply {}
+impl Clone for get_query_objectiv_arb_reply {
+    fn clone(&self) -> get_query_objectiv_arb_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_query_objectuiv_arb_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_query_objectuiv_arb_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -2267,18 +3240,27 @@ pub struct get_query_objectuiv_arb_request {
      pub pname :          u32
 }
 
+impl Copy for get_query_objectuiv_arb_request {}
+impl Clone for get_query_objectuiv_arb_request {
+    fn clone(&self) -> get_query_objectuiv_arb_request { *self }
+}
 
+#[repr(C)]
 pub struct get_query_objectuiv_arb_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub n :               u32,
      pub datum :           u32,
-     pub pad2 :            [u8,..12]
+     pub pad2 :            [u8; 12]
 }
 
+impl Copy for get_query_objectuiv_arb_reply {}
+impl Clone for get_query_objectuiv_arb_reply {
+    fn clone(&self) -> get_query_objectuiv_arb_reply { *self }
+}
 #[link(name="xcb-glx")]
 extern "C" {
 
@@ -2521,7 +3503,7 @@ pub fn xcb_glx_render_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2537,7 +3519,7 @@ pub fn xcb_glx_render_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_render (c : *mut ffi::base::connection,
                           context_tag :  context_tag,
@@ -2552,7 +3534,7 @@ pub fn xcb_glx_render_large_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2570,7 +3552,7 @@ pub fn xcb_glx_render_large_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_render_large (c : *mut ffi::base::connection,
                                 context_tag :  context_tag,
@@ -2585,7 +3567,7 @@ pub fn xcb_glx_render_large (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2603,7 +3585,7 @@ pub fn xcb_glx_create_context_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_create_context (c : *mut ffi::base::connection,
                                   context :  context,
@@ -2618,7 +3600,7 @@ pub fn xcb_glx_create_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2632,7 +3614,7 @@ pub fn xcb_glx_destroy_context_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_destroy_context (c : *mut ffi::base::connection,
                                    context :  context) -> ffi::base::void_cookie;
@@ -2643,7 +3625,7 @@ pub fn xcb_glx_destroy_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_make_current (c : *mut ffi::base::connection,
                                 drawable :  drawable,
@@ -2656,7 +3638,7 @@ pub fn xcb_glx_make_current (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -2673,7 +3655,7 @@ pub fn xcb_glx_make_current_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_make_current_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -2690,7 +3672,7 @@ pub fn xcb_glx_make_current_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_is_direct (c : *mut ffi::base::connection,
                              context :  context) -> is_direct_cookie;
@@ -2701,7 +3683,7 @@ pub fn xcb_glx_is_direct (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -2716,7 +3698,7 @@ pub fn xcb_glx_is_direct_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_is_direct_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -2733,7 +3715,7 @@ pub fn xcb_glx_is_direct_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_query_version (c : *mut ffi::base::connection,
                                  major_version :  u32,
@@ -2745,7 +3727,7 @@ pub fn xcb_glx_query_version (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -2761,7 +3743,7 @@ pub fn xcb_glx_query_version_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_query_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -2778,7 +3760,7 @@ pub fn xcb_glx_query_version_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2792,7 +3774,7 @@ pub fn xcb_glx_wait_gl_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_wait_gl (c : *mut ffi::base::connection,
                            context_tag :  context_tag) -> ffi::base::void_cookie;
@@ -2803,7 +3785,7 @@ pub fn xcb_glx_wait_gl (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2817,7 +3799,7 @@ pub fn xcb_glx_wait_x_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_wait_x (c : *mut ffi::base::connection,
                           context_tag :  context_tag) -> ffi::base::void_cookie;
@@ -2828,7 +3810,7 @@ pub fn xcb_glx_wait_x (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2845,7 +3827,7 @@ pub fn xcb_glx_copy_context_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_copy_context (c : *mut ffi::base::connection,
                                 src :  context,
@@ -2859,7 +3841,7 @@ pub fn xcb_glx_copy_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2874,7 +3856,7 @@ pub fn xcb_glx_swap_buffers_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_swap_buffers (c : *mut ffi::base::connection,
                                 context_tag :  context_tag,
@@ -2886,7 +3868,7 @@ pub fn xcb_glx_swap_buffers (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2904,7 +3886,7 @@ pub fn xcb_glx_use_x_font_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_use_x_font (c : *mut ffi::base::connection,
                               context_tag :  context_tag,
@@ -2919,7 +3901,7 @@ pub fn xcb_glx_use_x_font (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -2936,7 +3918,7 @@ pub fn xcb_glx_create_glx_pixmap_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_create_glx_pixmap (c : *mut ffi::base::connection,
                                      screen :  u32,
@@ -2952,7 +3934,7 @@ pub fn xcb_glx_get_visual_configs_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_visual_configs (c : *mut ffi::base::connection,
                                       screen :  u32) -> get_visual_configs_cookie;
@@ -2963,7 +3945,7 @@ pub fn xcb_glx_get_visual_configs (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -2986,7 +3968,7 @@ pub fn xcb_glx_get_visual_configs_property_list_end (R : *mut get_visual_configs
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_visual_configs_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -3003,7 +3985,7 @@ pub fn xcb_glx_get_visual_configs_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3017,7 +3999,7 @@ pub fn xcb_glx_destroy_glx_pixmap_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_destroy_glx_pixmap (c : *mut ffi::base::connection,
                                       glx_pixmap :  pixmap) -> ffi::base::void_cookie;
@@ -3031,7 +4013,7 @@ pub fn xcb_glx_vendor_private_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3048,7 +4030,7 @@ pub fn xcb_glx_vendor_private_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_vendor_private (c : *mut ffi::base::connection,
                                   vendor_code :  u32,
@@ -3065,7 +4047,7 @@ pub fn xcb_glx_vendor_private_with_reply_sizeof (_buffer :  *mut c_void,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_vendor_private_with_reply (c : *mut ffi::base::connection,
                                              vendor_code :  u32,
@@ -3079,7 +4061,7 @@ pub fn xcb_glx_vendor_private_with_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -3105,7 +4087,7 @@ pub fn xcb_glx_vendor_private_with_reply_data_2_end (R : *mut vendor_private_wit
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_vendor_private_with_reply_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -3122,7 +4104,7 @@ pub fn xcb_glx_vendor_private_with_reply_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_query_extensions_string (c : *mut ffi::base::connection,
                                            screen :  u32) -> query_extensions_string_cookie;
@@ -3133,7 +4115,7 @@ pub fn xcb_glx_query_extensions_string (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -3148,7 +4130,7 @@ pub fn xcb_glx_query_extensions_string_unchecked (c : *mut ffi::base::connection
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_query_extensions_string_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -3167,7 +4149,7 @@ pub fn xcb_glx_query_server_string_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_query_server_string (c : *mut ffi::base::connection,
                                        screen :  u32,
@@ -3179,7 +4161,7 @@ pub fn xcb_glx_query_server_string (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -3203,7 +4185,7 @@ pub fn xcb_glx_query_server_string_string_end (R : *mut query_server_string_repl
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_query_server_string_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -3222,7 +4204,7 @@ pub fn xcb_glx_client_info_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3239,7 +4221,7 @@ pub fn xcb_glx_client_info_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_client_info (c : *mut ffi::base::connection,
                                major_version :  u32,
@@ -3255,7 +4237,7 @@ pub fn xcb_glx_get_fb_configs_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_fb_configs (c : *mut ffi::base::connection,
                                   screen :  u32) -> get_fb_configs_cookie;
@@ -3266,7 +4248,7 @@ pub fn xcb_glx_get_fb_configs (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -3289,7 +4271,7 @@ pub fn xcb_glx_get_fb_configs_property_list_end (R : *mut get_fb_configs_reply) 
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_fb_configs_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -3308,7 +4290,7 @@ pub fn xcb_glx_create_pixmap_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3327,7 +4309,7 @@ pub fn xcb_glx_create_pixmap_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_create_pixmap (c : *mut ffi::base::connection,
                                  screen :  u32,
@@ -3343,7 +4325,7 @@ pub fn xcb_glx_create_pixmap (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3357,7 +4339,7 @@ pub fn xcb_glx_destroy_pixmap_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_destroy_pixmap (c : *mut ffi::base::connection,
                                   glx_pixmap :  pixmap) -> ffi::base::void_cookie;
@@ -3368,7 +4350,7 @@ pub fn xcb_glx_destroy_pixmap (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3387,7 +4369,7 @@ pub fn xcb_glx_create_new_context_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_create_new_context (c : *mut ffi::base::connection,
                                       context :  context,
@@ -3405,7 +4387,7 @@ pub fn xcb_glx_query_context_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_query_context (c : *mut ffi::base::connection,
                                  context :  context) -> query_context_cookie;
@@ -3416,7 +4398,7 @@ pub fn xcb_glx_query_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -3439,7 +4421,7 @@ pub fn xcb_glx_query_context_attribs_end (R : *mut query_context_reply) -> ffi::
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_query_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -3456,7 +4438,7 @@ pub fn xcb_glx_query_context_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_make_context_current (c : *mut ffi::base::connection,
                                         old_context_tag :  context_tag,
@@ -3470,7 +4452,7 @@ pub fn xcb_glx_make_context_current (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -3488,7 +4470,7 @@ pub fn xcb_glx_make_context_current_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_make_context_current_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -3507,7 +4489,7 @@ pub fn xcb_glx_create_pbuffer_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3525,7 +4507,7 @@ pub fn xcb_glx_create_pbuffer_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_create_pbuffer (c : *mut ffi::base::connection,
                                   screen :  u32,
@@ -3540,7 +4522,7 @@ pub fn xcb_glx_create_pbuffer (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3554,7 +4536,7 @@ pub fn xcb_glx_destroy_pbuffer_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_destroy_pbuffer (c : *mut ffi::base::connection,
                                    pbuffer :  pbuffer) -> ffi::base::void_cookie;
@@ -3567,7 +4549,7 @@ pub fn xcb_glx_get_drawable_attributes_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_drawable_attributes (c : *mut ffi::base::connection,
                                            drawable :  drawable) -> get_drawable_attributes_cookie;
@@ -3578,7 +4560,7 @@ pub fn xcb_glx_get_drawable_attributes (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -3601,7 +4583,7 @@ pub fn xcb_glx_get_drawable_attributes_attribs_end (R : *mut get_drawable_attrib
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_drawable_attributes_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -3620,7 +4602,7 @@ pub fn xcb_glx_change_drawable_attributes_sizeof (_buffer :  *mut c_void) -> c_i
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3636,7 +4618,7 @@ pub fn xcb_glx_change_drawable_attributes_checked (c : *mut ffi::base::connectio
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_change_drawable_attributes (c : *mut ffi::base::connection,
                                               drawable :  drawable,
@@ -3651,7 +4633,7 @@ pub fn xcb_glx_create_window_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3670,7 +4652,7 @@ pub fn xcb_glx_create_window_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_create_window (c : *mut ffi::base::connection,
                                  screen :  u32,
@@ -3686,7 +4668,7 @@ pub fn xcb_glx_create_window (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3700,7 +4682,7 @@ pub fn xcb_glx_delete_window_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_delete_window (c : *mut ffi::base::connection,
                                  glxwindow :  window) -> ffi::base::void_cookie;
@@ -3713,7 +4695,7 @@ pub fn xcb_glx_set_client_info_arb_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3734,7 +4716,7 @@ pub fn xcb_glx_set_client_info_arb_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_set_client_info_arb (c : *mut ffi::base::connection,
                                        major_version :  u32,
@@ -3754,7 +4736,7 @@ pub fn xcb_glx_create_context_attribs_arb_sizeof (_buffer :  *mut c_void) -> c_i
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3774,7 +4756,7 @@ pub fn xcb_glx_create_context_attribs_arb_checked (c : *mut ffi::base::connectio
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_create_context_attribs_arb (c : *mut ffi::base::connection,
                                               context :  context,
@@ -3793,7 +4775,7 @@ pub fn xcb_glx_set_client_info_2arb_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3814,7 +4796,7 @@ pub fn xcb_glx_set_client_info_2arb_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_set_client_info_2arb (c : *mut ffi::base::connection,
                                         major_version :  u32,
@@ -3832,7 +4814,7 @@ pub fn xcb_glx_set_client_info_2arb (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3848,7 +4830,7 @@ pub fn xcb_glx_new_list_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_new_list (c : *mut ffi::base::connection,
                             context_tag :  context_tag,
@@ -3861,7 +4843,7 @@ pub fn xcb_glx_new_list (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3875,7 +4857,7 @@ pub fn xcb_glx_end_list_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_end_list (c : *mut ffi::base::connection,
                             context_tag :  context_tag) -> ffi::base::void_cookie;
@@ -3886,7 +4868,7 @@ pub fn xcb_glx_end_list (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3902,7 +4884,7 @@ pub fn xcb_glx_delete_lists_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_delete_lists (c : *mut ffi::base::connection,
                                 context_tag :  context_tag,
@@ -3915,7 +4897,7 @@ pub fn xcb_glx_delete_lists (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_gen_lists (c : *mut ffi::base::connection,
                              context_tag :  context_tag,
@@ -3927,7 +4909,7 @@ pub fn xcb_glx_gen_lists (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -3943,7 +4925,7 @@ pub fn xcb_glx_gen_lists_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_gen_lists_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -3960,7 +4942,7 @@ pub fn xcb_glx_gen_lists_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -3976,7 +4958,7 @@ pub fn xcb_glx_feedback_buffer_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_feedback_buffer (c : *mut ffi::base::connection,
                                    context_tag :  context_tag,
@@ -3989,7 +4971,7 @@ pub fn xcb_glx_feedback_buffer (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -4004,7 +4986,7 @@ pub fn xcb_glx_select_buffer_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_select_buffer (c : *mut ffi::base::connection,
                                  context_tag :  context_tag,
@@ -4018,7 +5000,7 @@ pub fn xcb_glx_render_mode_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_render_mode (c : *mut ffi::base::connection,
                                context_tag :  context_tag,
@@ -4030,7 +5012,7 @@ pub fn xcb_glx_render_mode (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4054,7 +5036,7 @@ pub fn xcb_glx_render_mode_data_end (R : *mut render_mode_reply) -> ffi::base::g
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_render_mode_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -4071,7 +5053,7 @@ pub fn xcb_glx_render_mode_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_finish (c : *mut ffi::base::connection,
                           context_tag :  context_tag) -> finish_cookie;
@@ -4082,7 +5064,7 @@ pub fn xcb_glx_finish (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4097,7 +5079,7 @@ pub fn xcb_glx_finish_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_finish_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -4114,7 +5096,7 @@ pub fn xcb_glx_finish_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -4130,7 +5112,7 @@ pub fn xcb_glx_pixel_storef_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_pixel_storef (c : *mut ffi::base::connection,
                                 context_tag :  context_tag,
@@ -4143,7 +5125,7 @@ pub fn xcb_glx_pixel_storef (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -4159,7 +5141,7 @@ pub fn xcb_glx_pixel_storei_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_pixel_storei (c : *mut ffi::base::connection,
                                 context_tag :  context_tag,
@@ -4174,7 +5156,7 @@ pub fn xcb_glx_read_pixels_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_read_pixels (c : *mut ffi::base::connection,
                                context_tag :  context_tag,
@@ -4193,7 +5175,7 @@ pub fn xcb_glx_read_pixels (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4224,7 +5206,7 @@ pub fn xcb_glx_read_pixels_data_end (R : *mut read_pixels_reply) -> ffi::base::g
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_read_pixels_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -4243,7 +5225,7 @@ pub fn xcb_glx_get_booleanv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_booleanv (c : *mut ffi::base::connection,
                                 context_tag :  context_tag,
@@ -4255,7 +5237,7 @@ pub fn xcb_glx_get_booleanv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4279,7 +5261,7 @@ pub fn xcb_glx_get_booleanv_data_end (R : *mut get_booleanv_reply) -> ffi::base:
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_booleanv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -4298,7 +5280,7 @@ pub fn xcb_glx_get_clip_plane_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_clip_plane (c : *mut ffi::base::connection,
                                   context_tag :  context_tag,
@@ -4310,7 +5292,7 @@ pub fn xcb_glx_get_clip_plane (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4334,7 +5316,7 @@ pub fn xcb_glx_get_clip_plane_data_end (R : *mut get_clip_plane_reply) -> ffi::b
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_clip_plane_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -4353,7 +5335,7 @@ pub fn xcb_glx_get_doublev_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_doublev (c : *mut ffi::base::connection,
                                context_tag :  context_tag,
@@ -4365,7 +5347,7 @@ pub fn xcb_glx_get_doublev (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4389,7 +5371,7 @@ pub fn xcb_glx_get_doublev_data_end (R : *mut get_doublev_reply) -> ffi::base::g
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_doublev_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -4406,7 +5388,7 @@ pub fn xcb_glx_get_doublev_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_error (c : *mut ffi::base::connection,
                              context_tag :  context_tag) -> get_error_cookie;
@@ -4417,7 +5399,7 @@ pub fn xcb_glx_get_error (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4432,7 +5414,7 @@ pub fn xcb_glx_get_error_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_error_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -4451,7 +5433,7 @@ pub fn xcb_glx_get_floatv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_floatv (c : *mut ffi::base::connection,
                               context_tag :  context_tag,
@@ -4463,7 +5445,7 @@ pub fn xcb_glx_get_floatv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4487,7 +5469,7 @@ pub fn xcb_glx_get_floatv_data_end (R : *mut get_floatv_reply) -> ffi::base::gen
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_floatv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -4506,7 +5488,7 @@ pub fn xcb_glx_get_integerv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_integerv (c : *mut ffi::base::connection,
                                 context_tag :  context_tag,
@@ -4518,7 +5500,7 @@ pub fn xcb_glx_get_integerv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4542,7 +5524,7 @@ pub fn xcb_glx_get_integerv_data_end (R : *mut get_integerv_reply) -> ffi::base:
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_integerv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -4561,7 +5543,7 @@ pub fn xcb_glx_get_lightfv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_lightfv (c : *mut ffi::base::connection,
                                context_tag :  context_tag,
@@ -4574,7 +5556,7 @@ pub fn xcb_glx_get_lightfv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4599,7 +5581,7 @@ pub fn xcb_glx_get_lightfv_data_end (R : *mut get_lightfv_reply) -> ffi::base::g
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_lightfv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -4618,7 +5600,7 @@ pub fn xcb_glx_get_lightiv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_lightiv (c : *mut ffi::base::connection,
                                context_tag :  context_tag,
@@ -4631,7 +5613,7 @@ pub fn xcb_glx_get_lightiv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4656,7 +5638,7 @@ pub fn xcb_glx_get_lightiv_data_end (R : *mut get_lightiv_reply) -> ffi::base::g
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_lightiv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -4675,7 +5657,7 @@ pub fn xcb_glx_get_mapdv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_mapdv (c : *mut ffi::base::connection,
                              context_tag :  context_tag,
@@ -4688,7 +5670,7 @@ pub fn xcb_glx_get_mapdv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4713,7 +5695,7 @@ pub fn xcb_glx_get_mapdv_data_end (R : *mut get_mapdv_reply) -> ffi::base::gener
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_mapdv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -4732,7 +5714,7 @@ pub fn xcb_glx_get_mapfv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_mapfv (c : *mut ffi::base::connection,
                              context_tag :  context_tag,
@@ -4745,7 +5727,7 @@ pub fn xcb_glx_get_mapfv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4770,7 +5752,7 @@ pub fn xcb_glx_get_mapfv_data_end (R : *mut get_mapfv_reply) -> ffi::base::gener
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_mapfv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -4789,7 +5771,7 @@ pub fn xcb_glx_get_mapiv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_mapiv (c : *mut ffi::base::connection,
                              context_tag :  context_tag,
@@ -4802,7 +5784,7 @@ pub fn xcb_glx_get_mapiv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4827,7 +5809,7 @@ pub fn xcb_glx_get_mapiv_data_end (R : *mut get_mapiv_reply) -> ffi::base::gener
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_mapiv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -4846,7 +5828,7 @@ pub fn xcb_glx_get_materialfv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_materialfv (c : *mut ffi::base::connection,
                                   context_tag :  context_tag,
@@ -4859,7 +5841,7 @@ pub fn xcb_glx_get_materialfv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4884,7 +5866,7 @@ pub fn xcb_glx_get_materialfv_data_end (R : *mut get_materialfv_reply) -> ffi::b
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_materialfv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -4903,7 +5885,7 @@ pub fn xcb_glx_get_materialiv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_materialiv (c : *mut ffi::base::connection,
                                   context_tag :  context_tag,
@@ -4916,7 +5898,7 @@ pub fn xcb_glx_get_materialiv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4941,7 +5923,7 @@ pub fn xcb_glx_get_materialiv_data_end (R : *mut get_materialiv_reply) -> ffi::b
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_materialiv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -4960,7 +5942,7 @@ pub fn xcb_glx_get_pixel_mapfv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_pixel_mapfv (c : *mut ffi::base::connection,
                                    context_tag :  context_tag,
@@ -4972,7 +5954,7 @@ pub fn xcb_glx_get_pixel_mapfv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -4996,7 +5978,7 @@ pub fn xcb_glx_get_pixel_mapfv_data_end (R : *mut get_pixel_mapfv_reply) -> ffi:
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_pixel_mapfv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5015,7 +5997,7 @@ pub fn xcb_glx_get_pixel_mapuiv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_pixel_mapuiv (c : *mut ffi::base::connection,
                                     context_tag :  context_tag,
@@ -5027,7 +6009,7 @@ pub fn xcb_glx_get_pixel_mapuiv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5051,7 +6033,7 @@ pub fn xcb_glx_get_pixel_mapuiv_data_end (R : *mut get_pixel_mapuiv_reply) -> ff
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_pixel_mapuiv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5070,7 +6052,7 @@ pub fn xcb_glx_get_pixel_mapusv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_pixel_mapusv (c : *mut ffi::base::connection,
                                     context_tag :  context_tag,
@@ -5082,7 +6064,7 @@ pub fn xcb_glx_get_pixel_mapusv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5106,7 +6088,7 @@ pub fn xcb_glx_get_pixel_mapusv_data_end (R : *mut get_pixel_mapusv_reply) -> ff
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_pixel_mapusv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5125,7 +6107,7 @@ pub fn xcb_glx_get_polygon_stipple_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_polygon_stipple (c : *mut ffi::base::connection,
                                        context_tag :  context_tag,
@@ -5137,7 +6119,7 @@ pub fn xcb_glx_get_polygon_stipple (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5161,7 +6143,7 @@ pub fn xcb_glx_get_polygon_stipple_data_end (R : *mut get_polygon_stipple_reply)
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_polygon_stipple_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5180,7 +6162,7 @@ pub fn xcb_glx_get_string_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_string (c : *mut ffi::base::connection,
                               context_tag :  context_tag,
@@ -5192,7 +6174,7 @@ pub fn xcb_glx_get_string (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5216,7 +6198,7 @@ pub fn xcb_glx_get_string_string_end (R : *mut get_string_reply) -> ffi::base::g
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_string_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5235,7 +6217,7 @@ pub fn xcb_glx_get_tex_envfv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_tex_envfv (c : *mut ffi::base::connection,
                                  context_tag :  context_tag,
@@ -5248,7 +6230,7 @@ pub fn xcb_glx_get_tex_envfv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5273,7 +6255,7 @@ pub fn xcb_glx_get_tex_envfv_data_end (R : *mut get_tex_envfv_reply) -> ffi::bas
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_tex_envfv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5292,7 +6274,7 @@ pub fn xcb_glx_get_tex_enviv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_tex_enviv (c : *mut ffi::base::connection,
                                  context_tag :  context_tag,
@@ -5305,7 +6287,7 @@ pub fn xcb_glx_get_tex_enviv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5330,7 +6312,7 @@ pub fn xcb_glx_get_tex_enviv_data_end (R : *mut get_tex_enviv_reply) -> ffi::bas
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_tex_enviv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5349,7 +6331,7 @@ pub fn xcb_glx_get_tex_gendv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_tex_gendv (c : *mut ffi::base::connection,
                                  context_tag :  context_tag,
@@ -5362,7 +6344,7 @@ pub fn xcb_glx_get_tex_gendv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5387,7 +6369,7 @@ pub fn xcb_glx_get_tex_gendv_data_end (R : *mut get_tex_gendv_reply) -> ffi::bas
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_tex_gendv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5406,7 +6388,7 @@ pub fn xcb_glx_get_tex_genfv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_tex_genfv (c : *mut ffi::base::connection,
                                  context_tag :  context_tag,
@@ -5419,7 +6401,7 @@ pub fn xcb_glx_get_tex_genfv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5444,7 +6426,7 @@ pub fn xcb_glx_get_tex_genfv_data_end (R : *mut get_tex_genfv_reply) -> ffi::bas
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_tex_genfv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5463,7 +6445,7 @@ pub fn xcb_glx_get_tex_geniv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_tex_geniv (c : *mut ffi::base::connection,
                                  context_tag :  context_tag,
@@ -5476,7 +6458,7 @@ pub fn xcb_glx_get_tex_geniv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5501,7 +6483,7 @@ pub fn xcb_glx_get_tex_geniv_data_end (R : *mut get_tex_geniv_reply) -> ffi::bas
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_tex_geniv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5520,7 +6502,7 @@ pub fn xcb_glx_get_tex_image_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_tex_image (c : *mut ffi::base::connection,
                                  context_tag :  context_tag,
@@ -5536,7 +6518,7 @@ pub fn xcb_glx_get_tex_image (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5564,7 +6546,7 @@ pub fn xcb_glx_get_tex_image_data_end (R : *mut get_tex_image_reply) -> ffi::bas
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_tex_image_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5583,7 +6565,7 @@ pub fn xcb_glx_get_tex_parameterfv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_tex_parameterfv (c : *mut ffi::base::connection,
                                        context_tag :  context_tag,
@@ -5596,7 +6578,7 @@ pub fn xcb_glx_get_tex_parameterfv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5621,7 +6603,7 @@ pub fn xcb_glx_get_tex_parameterfv_data_end (R : *mut get_tex_parameterfv_reply)
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_tex_parameterfv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5640,7 +6622,7 @@ pub fn xcb_glx_get_tex_parameteriv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_tex_parameteriv (c : *mut ffi::base::connection,
                                        context_tag :  context_tag,
@@ -5653,7 +6635,7 @@ pub fn xcb_glx_get_tex_parameteriv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5678,7 +6660,7 @@ pub fn xcb_glx_get_tex_parameteriv_data_end (R : *mut get_tex_parameteriv_reply)
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_tex_parameteriv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5697,7 +6679,7 @@ pub fn xcb_glx_get_tex_level_parameterfv_sizeof (_buffer :  *mut c_void) -> c_in
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_tex_level_parameterfv (c : *mut ffi::base::connection,
                                              context_tag :  context_tag,
@@ -5711,7 +6693,7 @@ pub fn xcb_glx_get_tex_level_parameterfv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5737,7 +6719,7 @@ pub fn xcb_glx_get_tex_level_parameterfv_data_end (R : *mut get_tex_level_parame
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_tex_level_parameterfv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5756,7 +6738,7 @@ pub fn xcb_glx_get_tex_level_parameteriv_sizeof (_buffer :  *mut c_void) -> c_in
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_tex_level_parameteriv (c : *mut ffi::base::connection,
                                              context_tag :  context_tag,
@@ -5770,7 +6752,7 @@ pub fn xcb_glx_get_tex_level_parameteriv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5796,7 +6778,7 @@ pub fn xcb_glx_get_tex_level_parameteriv_data_end (R : *mut get_tex_level_parame
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_tex_level_parameteriv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5813,7 +6795,7 @@ pub fn xcb_glx_get_tex_level_parameteriv_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_is_list (c : *mut ffi::base::connection,
                            context_tag :  context_tag,
@@ -5825,7 +6807,7 @@ pub fn xcb_glx_is_list (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5841,7 +6823,7 @@ pub fn xcb_glx_is_list_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_is_list_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5858,7 +6840,7 @@ pub fn xcb_glx_is_list_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -5872,7 +6854,7 @@ pub fn xcb_glx_flush_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_flush (c : *mut ffi::base::connection,
                          context_tag :  context_tag) -> ffi::base::void_cookie;
@@ -5885,7 +6867,7 @@ pub fn xcb_glx_are_textures_resident_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_are_textures_resident (c : *mut ffi::base::connection,
                                          context_tag :  context_tag,
@@ -5898,7 +6880,7 @@ pub fn xcb_glx_are_textures_resident (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -5923,7 +6905,7 @@ pub fn xcb_glx_are_textures_resident_data_end (R : *mut are_textures_resident_re
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_are_textures_resident_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -5942,7 +6924,7 @@ pub fn xcb_glx_delete_textures_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -5958,7 +6940,7 @@ pub fn xcb_glx_delete_textures_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_delete_textures (c : *mut ffi::base::connection,
                                    context_tag :  context_tag,
@@ -5973,7 +6955,7 @@ pub fn xcb_glx_gen_textures_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_gen_textures (c : *mut ffi::base::connection,
                                 context_tag :  context_tag,
@@ -5985,7 +6967,7 @@ pub fn xcb_glx_gen_textures (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6009,7 +6991,7 @@ pub fn xcb_glx_gen_textures_data_end (R : *mut gen_textures_reply) -> ffi::base:
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_gen_textures_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6026,7 +7008,7 @@ pub fn xcb_glx_gen_textures_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_is_texture (c : *mut ffi::base::connection,
                               context_tag :  context_tag,
@@ -6038,7 +7020,7 @@ pub fn xcb_glx_is_texture (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6054,7 +7036,7 @@ pub fn xcb_glx_is_texture_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_is_texture_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6073,7 +7055,7 @@ pub fn xcb_glx_get_color_table_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_color_table (c : *mut ffi::base::connection,
                                    context_tag :  context_tag,
@@ -6088,7 +7070,7 @@ pub fn xcb_glx_get_color_table (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6115,7 +7097,7 @@ pub fn xcb_glx_get_color_table_data_end (R : *mut get_color_table_reply) -> ffi:
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_color_table_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6134,7 +7116,7 @@ pub fn xcb_glx_get_color_table_parameterfv_sizeof (_buffer :  *mut c_void) -> c_
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_color_table_parameterfv (c : *mut ffi::base::connection,
                                                context_tag :  context_tag,
@@ -6147,7 +7129,7 @@ pub fn xcb_glx_get_color_table_parameterfv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6172,7 +7154,7 @@ pub fn xcb_glx_get_color_table_parameterfv_data_end (R : *mut get_color_table_pa
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_color_table_parameterfv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6191,7 +7173,7 @@ pub fn xcb_glx_get_color_table_parameteriv_sizeof (_buffer :  *mut c_void) -> c_
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_color_table_parameteriv (c : *mut ffi::base::connection,
                                                context_tag :  context_tag,
@@ -6204,7 +7186,7 @@ pub fn xcb_glx_get_color_table_parameteriv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6229,7 +7211,7 @@ pub fn xcb_glx_get_color_table_parameteriv_data_end (R : *mut get_color_table_pa
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_color_table_parameteriv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6248,7 +7230,7 @@ pub fn xcb_glx_get_convolution_filter_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_convolution_filter (c : *mut ffi::base::connection,
                                           context_tag :  context_tag,
@@ -6263,7 +7245,7 @@ pub fn xcb_glx_get_convolution_filter (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6290,7 +7272,7 @@ pub fn xcb_glx_get_convolution_filter_data_end (R : *mut get_convolution_filter_
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_convolution_filter_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6309,7 +7291,7 @@ pub fn xcb_glx_get_convolution_parameterfv_sizeof (_buffer :  *mut c_void) -> c_
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_convolution_parameterfv (c : *mut ffi::base::connection,
                                                context_tag :  context_tag,
@@ -6322,7 +7304,7 @@ pub fn xcb_glx_get_convolution_parameterfv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6347,7 +7329,7 @@ pub fn xcb_glx_get_convolution_parameterfv_data_end (R : *mut get_convolution_pa
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_convolution_parameterfv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6366,7 +7348,7 @@ pub fn xcb_glx_get_convolution_parameteriv_sizeof (_buffer :  *mut c_void) -> c_
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_convolution_parameteriv (c : *mut ffi::base::connection,
                                                context_tag :  context_tag,
@@ -6379,7 +7361,7 @@ pub fn xcb_glx_get_convolution_parameteriv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6404,7 +7386,7 @@ pub fn xcb_glx_get_convolution_parameteriv_data_end (R : *mut get_convolution_pa
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_convolution_parameteriv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6423,7 +7405,7 @@ pub fn xcb_glx_get_separable_filter_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_separable_filter (c : *mut ffi::base::connection,
                                         context_tag :  context_tag,
@@ -6438,7 +7420,7 @@ pub fn xcb_glx_get_separable_filter (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6465,7 +7447,7 @@ pub fn xcb_glx_get_separable_filter_rows_and_cols_end (R : *mut get_separable_fi
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_separable_filter_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6484,7 +7466,7 @@ pub fn xcb_glx_get_histogram_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_histogram (c : *mut ffi::base::connection,
                                  context_tag :  context_tag,
@@ -6500,7 +7482,7 @@ pub fn xcb_glx_get_histogram (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6528,7 +7510,7 @@ pub fn xcb_glx_get_histogram_data_end (R : *mut get_histogram_reply) -> ffi::bas
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_histogram_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6547,7 +7529,7 @@ pub fn xcb_glx_get_histogram_parameterfv_sizeof (_buffer :  *mut c_void) -> c_in
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_histogram_parameterfv (c : *mut ffi::base::connection,
                                              context_tag :  context_tag,
@@ -6560,7 +7542,7 @@ pub fn xcb_glx_get_histogram_parameterfv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6585,7 +7567,7 @@ pub fn xcb_glx_get_histogram_parameterfv_data_end (R : *mut get_histogram_parame
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_histogram_parameterfv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6604,7 +7586,7 @@ pub fn xcb_glx_get_histogram_parameteriv_sizeof (_buffer :  *mut c_void) -> c_in
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_histogram_parameteriv (c : *mut ffi::base::connection,
                                              context_tag :  context_tag,
@@ -6617,7 +7599,7 @@ pub fn xcb_glx_get_histogram_parameteriv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6642,7 +7624,7 @@ pub fn xcb_glx_get_histogram_parameteriv_data_end (R : *mut get_histogram_parame
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_histogram_parameteriv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6661,7 +7643,7 @@ pub fn xcb_glx_get_minmax_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_minmax (c : *mut ffi::base::connection,
                               context_tag :  context_tag,
@@ -6677,7 +7659,7 @@ pub fn xcb_glx_get_minmax (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6705,7 +7687,7 @@ pub fn xcb_glx_get_minmax_data_end (R : *mut get_minmax_reply) -> ffi::base::gen
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_minmax_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6724,7 +7706,7 @@ pub fn xcb_glx_get_minmax_parameterfv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_minmax_parameterfv (c : *mut ffi::base::connection,
                                           context_tag :  context_tag,
@@ -6737,7 +7719,7 @@ pub fn xcb_glx_get_minmax_parameterfv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6762,7 +7744,7 @@ pub fn xcb_glx_get_minmax_parameterfv_data_end (R : *mut get_minmax_parameterfv_
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_minmax_parameterfv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6781,7 +7763,7 @@ pub fn xcb_glx_get_minmax_parameteriv_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_minmax_parameteriv (c : *mut ffi::base::connection,
                                           context_tag :  context_tag,
@@ -6794,7 +7776,7 @@ pub fn xcb_glx_get_minmax_parameteriv (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6819,7 +7801,7 @@ pub fn xcb_glx_get_minmax_parameteriv_data_end (R : *mut get_minmax_parameteriv_
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_minmax_parameteriv_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6838,7 +7820,7 @@ pub fn xcb_glx_get_compressed_tex_image_arb_sizeof (_buffer :  *mut c_void) -> c
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_compressed_tex_image_arb (c : *mut ffi::base::connection,
                                                 context_tag :  context_tag,
@@ -6851,7 +7833,7 @@ pub fn xcb_glx_get_compressed_tex_image_arb (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6876,7 +7858,7 @@ pub fn xcb_glx_get_compressed_tex_image_arb_data_end (R : *mut get_compressed_te
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_compressed_tex_image_arb_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6895,7 +7877,7 @@ pub fn xcb_glx_delete_queries_arb_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -6911,7 +7893,7 @@ pub fn xcb_glx_delete_queries_arb_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_delete_queries_arb (c : *mut ffi::base::connection,
                                       context_tag :  context_tag,
@@ -6926,7 +7908,7 @@ pub fn xcb_glx_gen_queries_arb_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_gen_queries_arb (c : *mut ffi::base::connection,
                                    context_tag :  context_tag,
@@ -6938,7 +7920,7 @@ pub fn xcb_glx_gen_queries_arb (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -6962,7 +7944,7 @@ pub fn xcb_glx_gen_queries_arb_data_end (R : *mut gen_queries_arb_reply) -> ffi:
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_gen_queries_arb_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -6979,7 +7961,7 @@ pub fn xcb_glx_gen_queries_arb_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_is_query_arb (c : *mut ffi::base::connection,
                                 context_tag :  context_tag,
@@ -6991,7 +7973,7 @@ pub fn xcb_glx_is_query_arb (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -7007,7 +7989,7 @@ pub fn xcb_glx_is_query_arb_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_is_query_arb_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -7026,7 +8008,7 @@ pub fn xcb_glx_get_queryiv_arb_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_queryiv_arb (c : *mut ffi::base::connection,
                                    context_tag :  context_tag,
@@ -7039,7 +8021,7 @@ pub fn xcb_glx_get_queryiv_arb (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -7064,7 +8046,7 @@ pub fn xcb_glx_get_queryiv_arb_data_end (R : *mut get_queryiv_arb_reply) -> ffi:
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_queryiv_arb_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -7083,7 +8065,7 @@ pub fn xcb_glx_get_query_objectiv_arb_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_query_objectiv_arb (c : *mut ffi::base::connection,
                                           context_tag :  context_tag,
@@ -7096,7 +8078,7 @@ pub fn xcb_glx_get_query_objectiv_arb (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -7121,7 +8103,7 @@ pub fn xcb_glx_get_query_objectiv_arb_data_end (R : *mut get_query_objectiv_arb_
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_query_objectiv_arb_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -7140,7 +8122,7 @@ pub fn xcb_glx_get_query_objectuiv_arb_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_glx_get_query_objectuiv_arb (c : *mut ffi::base::connection,
                                            context_tag :  context_tag,
@@ -7153,7 +8135,7 @@ pub fn xcb_glx_get_query_objectuiv_arb (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -7178,7 +8160,7 @@ pub fn xcb_glx_get_query_objectuiv_arb_data_end (R : *mut get_query_objectuiv_ar
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_glx_get_query_objectuiv_arb_unchecked(). is used.
  * Otherwise, it stores the error if any.

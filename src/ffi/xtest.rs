@@ -14,11 +14,14 @@ use ffi::xproto;
 pub static TEST_MAJOR_VERSION : c_uint = 2;
 pub static TEST_MINOR_VERSION : c_uint = 1;
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_version_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_version_request {
      pub major_opcode :    u8,
      pub minor_opcode :    u8,
@@ -28,7 +31,12 @@ pub struct get_version_request {
      pub minor_version :   u16
 }
 
+impl Copy for get_version_request {}
+impl Clone for get_version_request {
+    fn clone(&self) -> get_version_request { *self }
+}
 
+#[repr(C)]
 pub struct get_version_reply {
      pub response_type :   u8,
      pub major_version :   u8,
@@ -37,12 +45,19 @@ pub struct get_version_reply {
      pub minor_version :   u16
 }
 
+impl Copy for get_version_reply {}
+impl Clone for get_version_reply {
+    fn clone(&self) -> get_version_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct compare_cursor_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct compare_cursor_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -51,7 +66,12 @@ pub struct compare_cursor_request {
      pub cursor :         ffi::xproto::cursor
 }
 
+impl Copy for compare_cursor_request {}
+impl Clone for compare_cursor_request {
+    fn clone(&self) -> compare_cursor_request { *self }
+}
 
+#[repr(C)]
 pub struct compare_cursor_reply {
      pub response_type :   u8,
      pub same :            u8,
@@ -59,34 +79,48 @@ pub struct compare_cursor_reply {
      pub length :          u32
 }
 
+impl Copy for compare_cursor_reply {}
+impl Clone for compare_cursor_reply {
+    fn clone(&self) -> compare_cursor_reply { *self }
+}
 
 
+#[repr(C)]
 pub struct fake_input_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub type_ :          u8,
      pub detail :         u8,
-     pub pad0 :           [u8,..2],
+     pub pad0 :           [u8; 2],
      pub time :           u32,
      pub root :           ffi::xproto::window,
-     pub pad1 :           [u8,..8],
+     pub pad1 :           [u8; 8],
      pub rootX :          i16,
      pub rootY :          i16,
-     pub pad2 :           [u8,..7],
+     pub pad2 :           [u8; 7],
      pub deviceid :       u8
 }
 
+impl Copy for fake_input_request {}
+impl Clone for fake_input_request {
+    fn clone(&self) -> fake_input_request { *self }
+}
 
 
+#[repr(C)]
 pub struct grab_control_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub impervious :     u8,
-     pub pad0 :           [u8,..3]
+     pub pad0 :           [u8; 3]
 }
 
+impl Copy for grab_control_request {}
+impl Clone for grab_control_request {
+    fn clone(&self) -> grab_control_request { *self }
+}
 #[link(name="xcb-xtest")]
 extern "C" {
 
@@ -96,7 +130,7 @@ extern "C" {
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_test_get_version (c : *mut ffi::base::connection,
                                 major_version :  u8,
@@ -108,7 +142,7 @@ pub fn xcb_test_get_version (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -124,7 +158,7 @@ pub fn xcb_test_get_version_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_test_get_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -141,7 +175,7 @@ pub fn xcb_test_get_version_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_test_compare_cursor (c : *mut ffi::base::connection,
                                    window :  ffi::xproto::window,
@@ -153,7 +187,7 @@ pub fn xcb_test_compare_cursor (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -169,7 +203,7 @@ pub fn xcb_test_compare_cursor_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_test_compare_cursor_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -186,7 +220,7 @@ pub fn xcb_test_compare_cursor_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -206,7 +240,7 @@ pub fn xcb_test_fake_input_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_test_fake_input (c : *mut ffi::base::connection,
                                type_ :  u8,
@@ -223,7 +257,7 @@ pub fn xcb_test_fake_input (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -237,7 +271,7 @@ pub fn xcb_test_grab_control_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_test_grab_control (c : *mut ffi::base::connection,
                                  impervious :  u8) -> ffi::base::void_cookie;

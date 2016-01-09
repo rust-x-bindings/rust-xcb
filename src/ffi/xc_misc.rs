@@ -13,11 +13,14 @@ use ffi;
 pub static XCMISC_MAJOR_VERSION : c_uint = 1;
 pub static XCMISC_MINOR_VERSION : c_uint = 1;
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_version_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_version_request {
      pub major_opcode :           u8,
      pub minor_opcode :           u8,
@@ -26,7 +29,12 @@ pub struct get_version_request {
      pub client_minor_version :   u16
 }
 
+impl Copy for get_version_request {}
+impl Clone for get_version_request {
+    fn clone(&self) -> get_version_request { *self }
+}
 
+#[repr(C)]
 pub struct get_version_reply {
      pub response_type :          u8,
      pub pad0 :                   u8,
@@ -36,19 +44,31 @@ pub struct get_version_reply {
      pub server_minor_version :   u16
 }
 
+impl Copy for get_version_reply {}
+impl Clone for get_version_reply {
+    fn clone(&self) -> get_version_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_xid_range_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_xid_range_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for get_xid_range_request {}
+impl Clone for get_xid_range_request {
+    fn clone(&self) -> get_xid_range_request { *self }
+}
 
+#[repr(C)]
 pub struct get_xid_range_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -58,12 +78,19 @@ pub struct get_xid_range_reply {
      pub count :           u32
 }
 
+impl Copy for get_xid_range_reply {}
+impl Clone for get_xid_range_reply {
+    fn clone(&self) -> get_xid_range_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_xid_list_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_xid_list_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -71,16 +98,25 @@ pub struct get_xid_list_request {
      pub count :          u32
 }
 
+impl Copy for get_xid_list_request {}
+impl Clone for get_xid_list_request {
+    fn clone(&self) -> get_xid_list_request { *self }
+}
 
+#[repr(C)]
 pub struct get_xid_list_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub ids_len :         u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for get_xid_list_reply {}
+impl Clone for get_xid_list_reply {
+    fn clone(&self) -> get_xid_list_reply { *self }
+}
 extern "C" {
 
 /**
@@ -89,7 +125,7 @@ extern "C" {
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xc_misc_get_version (c : *mut ffi::base::connection,
                                    client_major_version :  u16,
@@ -101,7 +137,7 @@ pub fn xcb_xc_misc_get_version (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -117,7 +153,7 @@ pub fn xcb_xc_misc_get_version_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xc_misc_get_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -134,7 +170,7 @@ pub fn xcb_xc_misc_get_version_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xc_misc_get_xid_range (c : *mut ffi::base::connection) -> get_xid_range_cookie;
 
@@ -144,7 +180,7 @@ pub fn xcb_xc_misc_get_xid_range (c : *mut ffi::base::connection) -> get_xid_ran
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -158,7 +194,7 @@ pub fn xcb_xc_misc_get_xid_range_unchecked (c : *mut ffi::base::connection) -> g
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xc_misc_get_xid_range_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -177,7 +213,7 @@ pub fn xcb_xc_misc_get_xid_list_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xc_misc_get_xid_list (c : *mut ffi::base::connection,
                                     count :  u32) -> get_xid_list_cookie;
@@ -188,7 +224,7 @@ pub fn xcb_xc_misc_get_xid_list (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -211,7 +247,7 @@ pub fn xcb_xc_misc_get_xid_list_ids_end (R : *mut get_xid_list_reply) -> ffi::ba
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xc_misc_get_xid_list_unchecked(). is used.
  * Otherwise, it stores the error if any.

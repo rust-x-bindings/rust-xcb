@@ -20,6 +20,7 @@ pub type context = u32;
 /**
  * @brief context_iterator
  **/
+#[repr(C)]
 pub struct context_iterator {
     pub data : *mut context,
     pub rem  : c_int,
@@ -31,6 +32,7 @@ pub type surface = u32;
 /**
  * @brief surface_iterator
  **/
+#[repr(C)]
 pub struct surface_iterator {
     pub data : *mut surface,
     pub rem  : c_int,
@@ -42,6 +44,7 @@ pub type subpicture = u32;
 /**
  * @brief subpicture_iterator
  **/
+#[repr(C)]
 pub struct subpicture_iterator {
     pub data : *mut subpicture,
     pub rem  : c_int,
@@ -49,6 +52,7 @@ pub struct subpicture_iterator {
 }
 
 
+#[repr(C)]
 pub struct surface_info {
      pub id :                      surface,
      pub chroma_format :           u16,
@@ -61,9 +65,14 @@ pub struct surface_info {
      pub flags :                   u32
 }
 
+impl Copy for surface_info {}
+impl Clone for surface_info {
+    fn clone(&self) -> surface_info { *self }
+}
 /**
  * @brief surface_info_iterator
  **/
+#[repr(C)]
 pub struct surface_info_iterator {
     pub data : *mut surface_info,
     pub rem  : c_int,
@@ -71,18 +80,26 @@ pub struct surface_info_iterator {
 }
 
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_version_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for query_version_request {}
+impl Clone for query_version_request {
+    fn clone(&self) -> query_version_request { *self }
+}
 
+#[repr(C)]
 pub struct query_version_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -92,12 +109,19 @@ pub struct query_version_reply {
      pub minor :           u32
 }
 
+impl Copy for query_version_reply {}
+impl Clone for query_version_reply {
+    fn clone(&self) -> query_version_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct list_surface_types_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct list_surface_types_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -105,22 +129,34 @@ pub struct list_surface_types_request {
      pub port_id :        ffi::xv::port
 }
 
+impl Copy for list_surface_types_request {}
+impl Clone for list_surface_types_request {
+    fn clone(&self) -> list_surface_types_request { *self }
+}
 
+#[repr(C)]
 pub struct list_surface_types_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub num :             u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for list_surface_types_reply {}
+impl Clone for list_surface_types_reply {
+    fn clone(&self) -> list_surface_types_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct create_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct create_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -133,7 +169,12 @@ pub struct create_context_request {
      pub flags :          u32
 }
 
+impl Copy for create_context_request {}
+impl Clone for create_context_request {
+    fn clone(&self) -> create_context_request { *self }
+}
 
+#[repr(C)]
 pub struct create_context_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -142,11 +183,16 @@ pub struct create_context_reply {
      pub width_actual :    u16,
      pub height_actual :   u16,
      pub flags_return :    u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
+}
+
+impl Copy for create_context_reply {}
+impl Clone for create_context_reply {
+    fn clone(&self) -> create_context_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct destroy_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -154,12 +200,19 @@ pub struct destroy_context_request {
      pub context_id :     context
 }
 
+impl Copy for destroy_context_request {}
+impl Clone for destroy_context_request {
+    fn clone(&self) -> destroy_context_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct create_surface_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct create_surface_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -168,17 +221,27 @@ pub struct create_surface_request {
      pub context_id :     context
 }
 
+impl Copy for create_surface_request {}
+impl Clone for create_surface_request {
+    fn clone(&self) -> create_surface_request { *self }
+}
 
+#[repr(C)]
 pub struct create_surface_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..24]
+     pub pad1 :            [u8; 24]
+}
+
+impl Copy for create_surface_reply {}
+impl Clone for create_surface_reply {
+    fn clone(&self) -> create_surface_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct destroy_surface_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -186,12 +249,19 @@ pub struct destroy_surface_request {
      pub surface_id :     surface
 }
 
+impl Copy for destroy_surface_request {}
+impl Clone for destroy_surface_request {
+    fn clone(&self) -> destroy_surface_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct create_subpicture_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct create_subpicture_request {
      pub major_opcode :    u8,
      pub minor_opcode :    u8,
@@ -203,7 +273,12 @@ pub struct create_subpicture_request {
      pub height :          u16
 }
 
+impl Copy for create_subpicture_request {}
+impl Clone for create_subpicture_request {
+    fn clone(&self) -> create_subpicture_request { *self }
+}
 
+#[repr(C)]
 pub struct create_subpicture_reply {
      pub response_type :         u8,
      pub pad0 :                  u8,
@@ -213,12 +288,17 @@ pub struct create_subpicture_reply {
      pub height_actual :         u16,
      pub num_palette_entries :   u16,
      pub entry_bytes :           u16,
-     pub component_order :       [u8,..4],
-     pub pad1 :                  [u8,..12]
+     pub component_order :       [u8; 4],
+     pub pad1 :                  [u8; 12]
+}
+
+impl Copy for create_subpicture_reply {}
+impl Clone for create_subpicture_reply {
+    fn clone(&self) -> create_subpicture_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct destroy_subpicture_request {
      pub major_opcode :    u8,
      pub minor_opcode :    u8,
@@ -226,12 +306,19 @@ pub struct destroy_subpicture_request {
      pub subpicture_id :   subpicture
 }
 
+impl Copy for destroy_subpicture_request {}
+impl Clone for destroy_subpicture_request {
+    fn clone(&self) -> destroy_subpicture_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct list_subpicture_types_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct list_subpicture_types_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -240,16 +327,25 @@ pub struct list_subpicture_types_request {
      pub surface_id :     surface
 }
 
+impl Copy for list_subpicture_types_request {}
+impl Clone for list_subpicture_types_request {
+    fn clone(&self) -> list_subpicture_types_request { *self }
+}
 
+#[repr(C)]
 pub struct list_subpicture_types_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub num :             u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for list_subpicture_types_reply {}
+impl Clone for list_subpicture_types_reply {
+    fn clone(&self) -> list_subpicture_types_reply { *self }
+}
 #[link(name="xcb-xvmc")]
 extern "C" {
 
@@ -351,7 +447,7 @@ pub fn xcb_xvmc_surface_info_end (i:surface_info_iterator) -> ffi::base::generic
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xvmc_query_version (c : *mut ffi::base::connection) -> query_version_cookie;
 
@@ -361,7 +457,7 @@ pub fn xcb_xvmc_query_version (c : *mut ffi::base::connection) -> query_version_
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -375,7 +471,7 @@ pub fn xcb_xvmc_query_version_unchecked (c : *mut ffi::base::connection) -> quer
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xvmc_query_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -394,7 +490,7 @@ pub fn xcb_xvmc_list_surface_types_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xvmc_list_surface_types (c : *mut ffi::base::connection,
                                        port_id :  ffi::xv::port) -> list_surface_types_cookie;
@@ -405,7 +501,7 @@ pub fn xcb_xvmc_list_surface_types (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -427,7 +523,7 @@ pub fn xcb_xvmc_list_surface_types_surfaces_iterator (R : *mut list_surface_type
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xvmc_list_surface_types_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -446,7 +542,7 @@ pub fn xcb_xvmc_create_context_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xvmc_create_context (c : *mut ffi::base::connection,
                                    context_id :  context,
@@ -462,7 +558,7 @@ pub fn xcb_xvmc_create_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -490,7 +586,7 @@ pub fn xcb_xvmc_create_context_priv_data_end (R : *mut create_context_reply) -> 
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xvmc_create_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -507,7 +603,7 @@ pub fn xcb_xvmc_create_context_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -521,7 +617,7 @@ pub fn xcb_xvmc_destroy_context_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xvmc_destroy_context (c : *mut ffi::base::connection,
                                     context_id :  context) -> ffi::base::void_cookie;
@@ -534,7 +630,7 @@ pub fn xcb_xvmc_create_surface_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xvmc_create_surface (c : *mut ffi::base::connection,
                                    surface_id :  surface,
@@ -546,7 +642,7 @@ pub fn xcb_xvmc_create_surface (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -570,7 +666,7 @@ pub fn xcb_xvmc_create_surface_priv_data_end (R : *mut create_surface_reply) -> 
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xvmc_create_surface_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -587,7 +683,7 @@ pub fn xcb_xvmc_create_surface_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -601,7 +697,7 @@ pub fn xcb_xvmc_destroy_surface_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xvmc_destroy_surface (c : *mut ffi::base::connection,
                                     surface_id :  surface) -> ffi::base::void_cookie;
@@ -614,7 +710,7 @@ pub fn xcb_xvmc_create_subpicture_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xvmc_create_subpicture (c : *mut ffi::base::connection,
                                       subpicture_id :  subpicture,
@@ -629,7 +725,7 @@ pub fn xcb_xvmc_create_subpicture (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -656,7 +752,7 @@ pub fn xcb_xvmc_create_subpicture_priv_data_end (R : *mut create_subpicture_repl
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xvmc_create_subpicture_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -673,7 +769,7 @@ pub fn xcb_xvmc_create_subpicture_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -687,7 +783,7 @@ pub fn xcb_xvmc_destroy_subpicture_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xvmc_destroy_subpicture (c : *mut ffi::base::connection,
                                        subpicture_id :  subpicture) -> ffi::base::void_cookie;
@@ -700,7 +796,7 @@ pub fn xcb_xvmc_list_subpicture_types_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xvmc_list_subpicture_types (c : *mut ffi::base::connection,
                                           port_id :  ffi::xv::port,
@@ -712,7 +808,7 @@ pub fn xcb_xvmc_list_subpicture_types (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -735,7 +831,7 @@ pub fn xcb_xvmc_list_subpicture_types_types_iterator (R : *mut list_subpicture_t
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xvmc_list_subpicture_types_unchecked(). is used.
  * Otherwise, it stores the error if any.

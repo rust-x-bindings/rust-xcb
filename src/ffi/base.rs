@@ -25,16 +25,19 @@ use libc::{c_int, c_uint, c_void};
 
 use ffi::xproto;
 
-pub struct connection;
+pub enum connection {}
 
-pub struct extension;
+pub enum extension {}
 
+#[repr(C)]
 pub struct generic_iterator {
     data : *mut u8,
-    rem : int,
-    index : int
+    rem : c_int,
+    index : c_int
 }
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct generic_reply {
     response_type : u8,
     pad0 : u8,
@@ -42,14 +45,21 @@ pub struct generic_reply {
     length : u32
 }
 
+#[derive(Copy)]
+#[repr(C)]
 pub struct generic_event {
     pub response_type : u8,
     pad0 : u8,
     sequence : u16,
-    pad : [u32,..7],
+    pad : [u32; 7],
     full_sequence : u32
 }
+impl Clone for generic_event {
+    fn clone(&self) -> generic_event { *self }
+}
 
+#[derive(Copy)]
+#[repr(C)]
 pub struct ge_event {
     response_type : u8,
     pad0 : u8,
@@ -57,10 +67,15 @@ pub struct ge_event {
     length : u32,
     event_type : u16,
     pad1 : u16,
-    pad : [u32,..5],
+    pad : [u32; 5],
     full_sequence : u32
 }
+impl Clone for ge_event {
+    fn clone(&self) -> ge_event { *self }
+}
 
+#[derive(Copy)]
+#[repr(C)]
 pub struct generic_error {
     response_type : u8,
     error_code : u8,
@@ -69,18 +84,24 @@ pub struct generic_error {
     minor_code : u16,
     major_code : u8,
     pad0 : u8,
-    pad : [u32,..5],
+    pad : [u32; 5],
     full_sequence : u32
 }
-
-pub struct void_cookie {
-    sequence : int
+impl Clone for generic_error {
+    fn clone(&self) -> generic_error { *self }
 }
 
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct void_cookie {
+    sequence : c_int
+}
+
+#[repr(C)]
 pub struct auth_info {
-    namelen : int,
+    namelen : c_int,
     name : *mut u8,
-    datalen : int,
+    datalen : c_int,
     data : *mut u8
 }
 
@@ -113,10 +134,11 @@ extern {
     pub fn xcb_generate_id(c:*mut connection) -> u32;
 }
 
+#[allow(non_upper_case_globals)]
 pub mod Xlib {
     use super::{connection};
     use libc::{c_void, c_uint};
-    pub struct Display;
+    pub enum Display {}
 
     pub type XEventQueueOwner = c_uint;
     pub static XlibOwnsEventQueue : XEventQueueOwner = 0;

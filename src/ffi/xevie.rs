@@ -13,11 +13,14 @@ use ffi;
 pub static XEVIE_MAJOR_VERSION : c_uint = 1;
 pub static XEVIE_MINOR_VERSION : c_uint = 0;
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_version_request {
      pub major_opcode :           u8,
      pub minor_opcode :           u8,
@@ -26,7 +29,12 @@ pub struct query_version_request {
      pub client_minor_version :   u16
 }
 
+impl Copy for query_version_request {}
+impl Clone for query_version_request {
+    fn clone(&self) -> query_version_request { *self }
+}
 
+#[repr(C)]
 pub struct query_version_reply {
      pub response_type :          u8,
      pub pad0 :                   u8,
@@ -34,15 +42,22 @@ pub struct query_version_reply {
      pub length :                 u32,
      pub server_major_version :   u16,
      pub server_minor_version :   u16,
-     pub pad1 :                   [u8,..20]
+     pub pad1 :                   [u8; 20]
 }
 
+impl Copy for query_version_reply {}
+impl Clone for query_version_reply {
+    fn clone(&self) -> query_version_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct start_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct start_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -50,21 +65,33 @@ pub struct start_request {
      pub screen :         u32
 }
 
+impl Copy for start_request {}
+impl Clone for start_request {
+    fn clone(&self) -> start_request { *self }
+}
 
+#[repr(C)]
 pub struct start_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..24]
+     pub pad1 :            [u8; 24]
 }
 
+impl Copy for start_reply {}
+impl Clone for start_reply {
+    fn clone(&self) -> start_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct end_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct end_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -72,23 +99,38 @@ pub struct end_request {
      pub cmap :           u32
 }
 
+impl Copy for end_request {}
+impl Clone for end_request {
+    fn clone(&self) -> end_request { *self }
+}
 
+#[repr(C)]
 pub struct end_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..24]
+     pub pad1 :            [u8; 24]
 }
 
+impl Copy for end_reply {}
+impl Clone for end_reply {
+    fn clone(&self) -> end_reply { *self }
+}
 
+#[repr(C)]
 pub struct event {
-     pub pad0 :   [u8,..32]
+     pub pad0 :   [u8; 32]
 }
 
+impl Copy for event {}
+impl Clone for event {
+    fn clone(&self) -> event { *self }
+}
 /**
  * @brief event_iterator
  **/
+#[repr(C)]
 pub struct event_iterator {
     pub data : *mut event,
     pub rem  : c_int,
@@ -96,35 +138,50 @@ pub struct event_iterator {
 }
 
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct send_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct send_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub event :          event,
      pub data_type :      u32,
-     pub pad0 :           [u8,..64]
+     pub pad0 :           [u8; 64]
 }
 
+impl Copy for send_request {}
+impl Clone for send_request {
+    fn clone(&self) -> send_request { *self }
+}
 
+#[repr(C)]
 pub struct send_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..24]
+     pub pad1 :            [u8; 24]
 }
 
+impl Copy for send_reply {}
+impl Clone for send_reply {
+    fn clone(&self) -> send_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct select_input_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct select_input_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -132,15 +189,24 @@ pub struct select_input_request {
      pub event_mask :     u32
 }
 
+impl Copy for select_input_request {}
+impl Clone for select_input_request {
+    fn clone(&self) -> select_input_request { *self }
+}
 
+#[repr(C)]
 pub struct select_input_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad1 :            [u8,..24]
+     pub pad1 :            [u8; 24]
 }
 
+impl Copy for select_input_reply {}
+impl Clone for select_input_reply {
+    fn clone(&self) -> select_input_reply { *self }
+}
 #[link(name="xcb-xevie")]
 extern "C" {
 
@@ -150,7 +216,7 @@ extern "C" {
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xevie_query_version (c : *mut ffi::base::connection,
                                    client_major_version :  u16,
@@ -162,7 +228,7 @@ pub fn xcb_xevie_query_version (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -178,7 +244,7 @@ pub fn xcb_xevie_query_version_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xevie_query_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -195,7 +261,7 @@ pub fn xcb_xevie_query_version_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xevie_start (c : *mut ffi::base::connection,
                            screen :  u32) -> start_cookie;
@@ -206,7 +272,7 @@ pub fn xcb_xevie_start (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -221,7 +287,7 @@ pub fn xcb_xevie_start_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xevie_start_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -238,7 +304,7 @@ pub fn xcb_xevie_start_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xevie_end (c : *mut ffi::base::connection,
                          cmap :  u32) -> end_cookie;
@@ -249,7 +315,7 @@ pub fn xcb_xevie_end (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -264,7 +330,7 @@ pub fn xcb_xevie_end_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xevie_end_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -304,7 +370,7 @@ pub fn xcb_xevie_event_end (i:event_iterator) -> ffi::base::generic_iterator;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xevie_send (c : *mut ffi::base::connection,
                           event :  event,
@@ -316,7 +382,7 @@ pub fn xcb_xevie_send (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -332,7 +398,7 @@ pub fn xcb_xevie_send_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xevie_send_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -349,7 +415,7 @@ pub fn xcb_xevie_send_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_xevie_select_input (c : *mut ffi::base::connection,
                                   event_mask :  u32) -> select_input_cookie;
@@ -360,7 +426,7 @@ pub fn xcb_xevie_select_input (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -375,7 +441,7 @@ pub fn xcb_xevie_select_input_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_xevie_select_input_unchecked(). is used.
  * Otherwise, it stores the error if any.

@@ -17,6 +17,7 @@ pub type context = u32;
 /**
  * @brief context_iterator
  **/
+#[repr(C)]
 pub struct context_iterator {
     pub data : *mut context,
     pub rem  : c_int,
@@ -24,14 +25,20 @@ pub struct context_iterator {
 }
 
 
+#[repr(C)]
 pub struct range_8 {
      pub first :   u8,
      pub last :    u8
 }
 
+impl Copy for range_8 {}
+impl Clone for range_8 {
+    fn clone(&self) -> range_8 { *self }
+}
 /**
  * @brief range_8_iterator
  **/
+#[repr(C)]
 pub struct range_8_iterator {
     pub data : *mut range_8,
     pub rem  : c_int,
@@ -39,14 +46,20 @@ pub struct range_8_iterator {
 }
 
 
+#[repr(C)]
 pub struct range_16 {
      pub first :   u16,
      pub last :    u16
 }
 
+impl Copy for range_16 {}
+impl Clone for range_16 {
+    fn clone(&self) -> range_16 { *self }
+}
 /**
  * @brief range_16_iterator
  **/
+#[repr(C)]
 pub struct range_16_iterator {
     pub data : *mut range_16,
     pub rem  : c_int,
@@ -54,14 +67,20 @@ pub struct range_16_iterator {
 }
 
 
+#[repr(C)]
 pub struct ext_range {
      pub major :   range_8,
      pub minor :   range_16
 }
 
+impl Copy for ext_range {}
+impl Clone for ext_range {
+    fn clone(&self) -> ext_range { *self }
+}
 /**
  * @brief ext_range_iterator
  **/
+#[repr(C)]
 pub struct ext_range_iterator {
     pub data : *mut ext_range,
     pub rem  : c_int,
@@ -69,6 +88,7 @@ pub struct ext_range_iterator {
 }
 
 
+#[repr(C)]
 pub struct range {
      pub core_requests :      range_8,
      pub core_replies :       range_8,
@@ -81,9 +101,14 @@ pub struct range {
      pub client_died :        u8
 }
 
+impl Copy for range {}
+impl Clone for range {
+    fn clone(&self) -> range { *self }
+}
 /**
  * @brief range_iterator
  **/
+#[repr(C)]
 pub struct range_iterator {
     pub data : *mut range,
     pub rem  : c_int,
@@ -95,6 +120,7 @@ pub type element_header = u8;
 /**
  * @brief element_header_iterator
  **/
+#[repr(C)]
 pub struct element_header_iterator {
     pub data : *mut element_header,
     pub rem  : c_int,
@@ -106,6 +132,7 @@ pub type client_spec = u32;
 /**
  * @brief client_spec_iterator
  **/
+#[repr(C)]
 pub struct client_spec_iterator {
     pub data : *mut client_spec,
     pub rem  : c_int,
@@ -113,14 +140,20 @@ pub struct client_spec_iterator {
 }
 
 
+#[repr(C)]
 pub struct client_info {
      pub client_resource :   client_spec,
      pub num_ranges :        u32
 }
 
+impl Copy for client_info {}
+impl Clone for client_info {
+    fn clone(&self) -> client_info { *self }
+}
 /**
  * @brief client_info_iterator
  **/
+#[repr(C)]
 pub struct client_info_iterator {
     pub data : *mut client_info,
     pub rem  : c_int,
@@ -129,6 +162,7 @@ pub struct client_info_iterator {
 
 
 
+#[repr(C)]
 pub struct bad_context_error {
      pub response_type :    u8,
      pub error_code :       u8,
@@ -136,12 +170,19 @@ pub struct bad_context_error {
      pub invalid_record :   u32
 }
 
+impl Copy for bad_context_error {}
+impl Clone for bad_context_error {
+    fn clone(&self) -> bad_context_error { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_version_request {
      pub major_opcode :    u8,
      pub minor_opcode :    u8,
@@ -150,7 +191,12 @@ pub struct query_version_request {
      pub minor_version :   u16
 }
 
+impl Copy for query_version_request {}
+impl Clone for query_version_request {
+    fn clone(&self) -> query_version_request { *self }
+}
 
+#[repr(C)]
 pub struct query_version_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -160,34 +206,49 @@ pub struct query_version_reply {
      pub minor_version :   u16
 }
 
+impl Copy for query_version_reply {}
+impl Clone for query_version_reply {
+    fn clone(&self) -> query_version_reply { *self }
+}
 
 
+#[repr(C)]
 pub struct create_context_request {
      pub major_opcode :       u8,
      pub minor_opcode :       u8,
      pub length :             u16,
      pub context :            context,
      pub element_header :     element_header,
-     pub pad0 :               [u8,..3],
+     pub pad0 :               [u8; 3],
      pub num_client_specs :   u32,
      pub num_ranges :         u32
 }
 
+impl Copy for create_context_request {}
+impl Clone for create_context_request {
+    fn clone(&self) -> create_context_request { *self }
+}
 
 
+#[repr(C)]
 pub struct register_clients_request {
      pub major_opcode :       u8,
      pub minor_opcode :       u8,
      pub length :             u16,
      pub context :            context,
      pub element_header :     element_header,
-     pub pad0 :               [u8,..3],
+     pub pad0 :               [u8; 3],
      pub num_client_specs :   u32,
      pub num_ranges :         u32
 }
 
+impl Copy for register_clients_request {}
+impl Clone for register_clients_request {
+    fn clone(&self) -> register_clients_request { *self }
+}
 
 
+#[repr(C)]
 pub struct unregister_clients_request {
      pub major_opcode :       u8,
      pub minor_opcode :       u8,
@@ -196,12 +257,19 @@ pub struct unregister_clients_request {
      pub num_client_specs :   u32
 }
 
+impl Copy for unregister_clients_request {}
+impl Clone for unregister_clients_request {
+    fn clone(&self) -> unregister_clients_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -209,24 +277,36 @@ pub struct get_context_request {
      pub context :        context
 }
 
+impl Copy for get_context_request {}
+impl Clone for get_context_request {
+    fn clone(&self) -> get_context_request { *self }
+}
 
+#[repr(C)]
 pub struct get_context_reply {
      pub response_type :             u8,
      pub enabled :                   u8,
      pub sequence :                  u16,
      pub length :                    u32,
      pub element_header :            element_header,
-     pub pad0 :                      [u8,..3],
+     pub pad0 :                      [u8; 3],
      pub num_intercepted_clients :   u32,
-     pub pad1 :                      [u8,..16]
+     pub pad1 :                      [u8; 16]
 }
 
+impl Copy for get_context_reply {}
+impl Clone for get_context_reply {
+    fn clone(&self) -> get_context_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct enable_context_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct enable_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -234,7 +314,12 @@ pub struct enable_context_request {
      pub context :        context
 }
 
+impl Copy for enable_context_request {}
+impl Clone for enable_context_request {
+    fn clone(&self) -> enable_context_request { *self }
+}
 
+#[repr(C)]
 pub struct enable_context_reply {
      pub response_type :      u8,
      pub category :           u8,
@@ -242,15 +327,20 @@ pub struct enable_context_reply {
      pub length :             u32,
      pub element_header :     element_header,
      pub client_swapped :     u8,
-     pub pad0 :               [u8,..2],
+     pub pad0 :               [u8; 2],
      pub xid_base :           u32,
      pub server_time :        u32,
      pub rec_sequence_num :   u32,
-     pub pad1 :               [u8,..8]
+     pub pad1 :               [u8; 8]
+}
+
+impl Copy for enable_context_reply {}
+impl Clone for enable_context_reply {
+    fn clone(&self) -> enable_context_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct disable_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -258,8 +348,13 @@ pub struct disable_context_request {
      pub context :        context
 }
 
+impl Copy for disable_context_request {}
+impl Clone for disable_context_request {
+    fn clone(&self) -> disable_context_request { *self }
+}
 
 
+#[repr(C)]
 pub struct free_context_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -267,6 +362,10 @@ pub struct free_context_request {
      pub context :        context
 }
 
+impl Copy for free_context_request {}
+impl Clone for free_context_request {
+    fn clone(&self) -> free_context_request { *self }
+}
 #[link(name="xcb-record")]
 extern "C" {
 
@@ -469,7 +568,7 @@ pub fn xcb_record_client_info_end (i:client_info_iterator) -> ffi::base::generic
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_record_query_version (c : *mut ffi::base::connection,
                                     major_version :  u16,
@@ -481,7 +580,7 @@ pub fn xcb_record_query_version (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -497,7 +596,7 @@ pub fn xcb_record_query_version_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_record_query_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -516,7 +615,7 @@ pub fn xcb_record_create_context_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -535,7 +634,7 @@ pub fn xcb_record_create_context_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_record_create_context (c : *mut ffi::base::connection,
                                      context :  context,
@@ -553,7 +652,7 @@ pub fn xcb_record_register_clients_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -572,7 +671,7 @@ pub fn xcb_record_register_clients_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_record_register_clients (c : *mut ffi::base::connection,
                                        context :  context,
@@ -590,7 +689,7 @@ pub fn xcb_record_unregister_clients_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -606,7 +705,7 @@ pub fn xcb_record_unregister_clients_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_record_unregister_clients (c : *mut ffi::base::connection,
                                          context :  context,
@@ -621,7 +720,7 @@ pub fn xcb_record_get_context_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_record_get_context (c : *mut ffi::base::connection,
                                   context :  context) -> get_context_cookie;
@@ -632,7 +731,7 @@ pub fn xcb_record_get_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -652,7 +751,7 @@ pub fn xcb_record_get_context_intercepted_clients_iterator (R : *mut get_context
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_record_get_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -671,7 +770,7 @@ pub fn xcb_record_enable_context_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_record_enable_context (c : *mut ffi::base::connection,
                                      context :  context) -> enable_context_cookie;
@@ -682,7 +781,7 @@ pub fn xcb_record_enable_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -705,7 +804,7 @@ pub fn xcb_record_enable_context_data_end (R : *mut enable_context_reply) -> ffi
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_record_enable_context_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -722,7 +821,7 @@ pub fn xcb_record_enable_context_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -736,7 +835,7 @@ pub fn xcb_record_disable_context_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_record_disable_context (c : *mut ffi::base::connection,
                                       context :  context) -> ffi::base::void_cookie;
@@ -747,7 +846,7 @@ pub fn xcb_record_disable_context (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -761,7 +860,7 @@ pub fn xcb_record_free_context_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_record_free_context (c : *mut ffi::base::connection,
                                    context :  context) -> ffi::base::void_cookie;

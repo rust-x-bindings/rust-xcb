@@ -18,6 +18,7 @@ pub type seg = u32;
 /**
  * @brief seg_iterator
  **/
+#[repr(C)]
 pub struct seg_iterator {
     pub data : *mut seg,
     pub rem  : c_int,
@@ -26,6 +27,7 @@ pub struct seg_iterator {
 
 
 
+#[repr(C)]
 pub struct completion_event {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -38,22 +40,34 @@ pub struct completion_event {
      pub offset :          u32
 }
 
+impl Copy for completion_event {}
+impl Clone for completion_event {
+    fn clone(&self) -> completion_event { *self }
+}
 
 
 pub type bad_seg_error  = ffi::xproto::value_error;
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_version_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16
 }
 
+impl Copy for query_version_request {}
+impl Clone for query_version_request {
+    fn clone(&self) -> query_version_request { *self }
+}
 
+#[repr(C)]
 pub struct query_version_reply {
      pub response_type :    u8,
      pub shared_pixmaps :   u8,
@@ -64,11 +78,16 @@ pub struct query_version_reply {
      pub uid :              u16,
      pub gid :              u16,
      pub pixmap_format :    u8,
-     pub pad0 :             [u8,..15]
+     pub pad0 :             [u8; 15]
+}
+
+impl Copy for query_version_reply {}
+impl Clone for query_version_reply {
+    fn clone(&self) -> query_version_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct attach_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -76,11 +95,16 @@ pub struct attach_request {
      pub shmseg :         seg,
      pub shmid :          u32,
      pub read_only :      u8,
-     pub pad0 :           [u8,..3]
+     pub pad0 :           [u8; 3]
+}
+
+impl Copy for attach_request {}
+impl Clone for attach_request {
+    fn clone(&self) -> attach_request { *self }
 }
 
 
-
+#[repr(C)]
 pub struct detach_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -88,8 +112,13 @@ pub struct detach_request {
      pub shmseg :         seg
 }
 
+impl Copy for detach_request {}
+impl Clone for detach_request {
+    fn clone(&self) -> detach_request { *self }
+}
 
 
+#[repr(C)]
 pub struct put_image_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -112,12 +141,19 @@ pub struct put_image_request {
      pub offset :         u32
 }
 
+impl Copy for put_image_request {}
+impl Clone for put_image_request {
+    fn clone(&self) -> put_image_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_image_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_image_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -129,12 +165,17 @@ pub struct get_image_request {
      pub height :         u16,
      pub plane_mask :     u32,
      pub format :         u8,
-     pub pad0 :           [u8,..3],
+     pub pad0 :           [u8; 3],
      pub shmseg :         seg,
      pub offset :         u32
 }
 
+impl Copy for get_image_request {}
+impl Clone for get_image_request {
+    fn clone(&self) -> get_image_request { *self }
+}
 
+#[repr(C)]
 pub struct get_image_reply {
      pub response_type :   u8,
      pub depth :           u8,
@@ -144,8 +185,13 @@ pub struct get_image_reply {
      pub size :            u32
 }
 
+impl Copy for get_image_reply {}
+impl Clone for get_image_reply {
+    fn clone(&self) -> get_image_reply { *self }
+}
 
 
+#[repr(C)]
 pub struct create_pixmap_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -155,11 +201,15 @@ pub struct create_pixmap_request {
      pub width :          u16,
      pub height :         u16,
      pub depth :          u8,
-     pub pad0 :           [u8,..3],
+     pub pad0 :           [u8; 3],
      pub shmseg :         seg,
      pub offset :         u32
 }
 
+impl Copy for create_pixmap_request {}
+impl Clone for create_pixmap_request {
+    fn clone(&self) -> create_pixmap_request { *self }
+}
 #[link(name="xcb-shm")]
 extern "C" {
 
@@ -192,7 +242,7 @@ pub fn xcb_shm_seg_end (i:seg_iterator) -> ffi::base::generic_iterator;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_shm_query_version (c : *mut ffi::base::connection) -> query_version_cookie;
 
@@ -202,7 +252,7 @@ pub fn xcb_shm_query_version (c : *mut ffi::base::connection) -> query_version_c
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -216,7 +266,7 @@ pub fn xcb_shm_query_version_unchecked (c : *mut ffi::base::connection) -> query
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_shm_query_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -233,7 +283,7 @@ pub fn xcb_shm_query_version_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -249,7 +299,7 @@ pub fn xcb_shm_attach_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_shm_attach (c : *mut ffi::base::connection,
                           shmseg :  seg,
@@ -262,7 +312,7 @@ pub fn xcb_shm_attach (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -276,7 +326,7 @@ pub fn xcb_shm_detach_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_shm_detach (c : *mut ffi::base::connection,
                           shmseg :  seg) -> ffi::base::void_cookie;
@@ -287,7 +337,7 @@ pub fn xcb_shm_detach (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -315,7 +365,7 @@ pub fn xcb_shm_put_image_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_shm_put_image (c : *mut ffi::base::connection,
                              drawable :  ffi::xproto::drawable,
@@ -340,7 +390,7 @@ pub fn xcb_shm_put_image (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_shm_get_image (c : *mut ffi::base::connection,
                              drawable :  ffi::xproto::drawable,
@@ -359,7 +409,7 @@ pub fn xcb_shm_get_image (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -382,7 +432,7 @@ pub fn xcb_shm_get_image_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_shm_get_image_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -399,7 +449,7 @@ pub fn xcb_shm_get_image_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -419,7 +469,7 @@ pub fn xcb_shm_create_pixmap_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_shm_create_pixmap (c : *mut ffi::base::connection,
                                  pid :  ffi::xproto::pixmap,

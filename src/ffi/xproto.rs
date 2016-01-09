@@ -10,14 +10,20 @@ use std;
 use libc::*;
 use ffi;
 
+#[repr(C)]
 pub struct char2b {
      pub byte1 :   u8,
      pub byte2 :   u8
 }
 
+impl Copy for char2b {}
+impl Clone for char2b {
+    fn clone(&self) -> char2b { *self }
+}
 /**
  * @brief char2b_iterator
  **/
+#[repr(C)]
 pub struct char2b_iterator {
     pub data : *mut char2b,
     pub rem  : c_int,
@@ -29,6 +35,7 @@ pub type window = u32;
 /**
  * @brief window_iterator
  **/
+#[repr(C)]
 pub struct window_iterator {
     pub data : *mut window,
     pub rem  : c_int,
@@ -40,6 +47,7 @@ pub type pixmap = u32;
 /**
  * @brief pixmap_iterator
  **/
+#[repr(C)]
 pub struct pixmap_iterator {
     pub data : *mut pixmap,
     pub rem  : c_int,
@@ -51,6 +59,7 @@ pub type cursor = u32;
 /**
  * @brief cursor_iterator
  **/
+#[repr(C)]
 pub struct cursor_iterator {
     pub data : *mut cursor,
     pub rem  : c_int,
@@ -62,6 +71,7 @@ pub type font = u32;
 /**
  * @brief font_iterator
  **/
+#[repr(C)]
 pub struct font_iterator {
     pub data : *mut font,
     pub rem  : c_int,
@@ -73,6 +83,7 @@ pub type gcontext = u32;
 /**
  * @brief gcontext_iterator
  **/
+#[repr(C)]
 pub struct gcontext_iterator {
     pub data : *mut gcontext,
     pub rem  : c_int,
@@ -84,6 +95,7 @@ pub type colormap = u32;
 /**
  * @brief colormap_iterator
  **/
+#[repr(C)]
 pub struct colormap_iterator {
     pub data : *mut colormap,
     pub rem  : c_int,
@@ -95,6 +107,7 @@ pub type atom = u32;
 /**
  * @brief atom_iterator
  **/
+#[repr(C)]
 pub struct atom_iterator {
     pub data : *mut atom,
     pub rem  : c_int,
@@ -106,6 +119,7 @@ pub type drawable = u32;
 /**
  * @brief drawable_iterator
  **/
+#[repr(C)]
 pub struct drawable_iterator {
     pub data : *mut drawable,
     pub rem  : c_int,
@@ -117,6 +131,7 @@ pub type fontable = u32;
 /**
  * @brief fontable_iterator
  **/
+#[repr(C)]
 pub struct fontable_iterator {
     pub data : *mut fontable,
     pub rem  : c_int,
@@ -128,6 +143,7 @@ pub type visualid = u32;
 /**
  * @brief visualid_iterator
  **/
+#[repr(C)]
 pub struct visualid_iterator {
     pub data : *mut visualid,
     pub rem  : c_int,
@@ -139,6 +155,7 @@ pub type timestamp = u32;
 /**
  * @brief timestamp_iterator
  **/
+#[repr(C)]
 pub struct timestamp_iterator {
     pub data : *mut timestamp,
     pub rem  : c_int,
@@ -150,6 +167,7 @@ pub type keysym = u32;
 /**
  * @brief keysym_iterator
  **/
+#[repr(C)]
 pub struct keysym_iterator {
     pub data : *mut keysym,
     pub rem  : c_int,
@@ -161,6 +179,7 @@ pub type keycode = u8;
 /**
  * @brief keycode_iterator
  **/
+#[repr(C)]
 pub struct keycode_iterator {
     pub data : *mut keycode,
     pub rem  : c_int,
@@ -172,6 +191,7 @@ pub type button = u8;
 /**
  * @brief button_iterator
  **/
+#[repr(C)]
 pub struct button_iterator {
     pub data : *mut button,
     pub rem  : c_int,
@@ -179,14 +199,20 @@ pub struct button_iterator {
 }
 
 
+#[repr(C)]
 pub struct point {
      pub x :   i16,
      pub y :   i16
 }
 
+impl Copy for point {}
+impl Clone for point {
+    fn clone(&self) -> point { *self }
+}
 /**
  * @brief point_iterator
  **/
+#[repr(C)]
 pub struct point_iterator {
     pub data : *mut point,
     pub rem  : c_int,
@@ -194,6 +220,7 @@ pub struct point_iterator {
 }
 
 
+#[repr(C)]
 pub struct rectangle {
      pub x :        i16,
      pub y :        i16,
@@ -201,9 +228,14 @@ pub struct rectangle {
      pub height :   u16
 }
 
+impl Copy for rectangle {}
+impl Clone for rectangle {
+    fn clone(&self) -> rectangle { *self }
+}
 /**
  * @brief rectangle_iterator
  **/
+#[repr(C)]
 pub struct rectangle_iterator {
     pub data : *mut rectangle,
     pub rem  : c_int,
@@ -211,6 +243,7 @@ pub struct rectangle_iterator {
 }
 
 
+#[repr(C)]
 pub struct arc {
      pub x :        i16,
      pub y :        i16,
@@ -220,9 +253,14 @@ pub struct arc {
      pub angle2 :   i16
 }
 
+impl Copy for arc {}
+impl Clone for arc {
+    fn clone(&self) -> arc { *self }
+}
 /**
  * @brief arc_iterator
  **/
+#[repr(C)]
 pub struct arc_iterator {
     pub data : *mut arc,
     pub rem  : c_int,
@@ -230,16 +268,22 @@ pub struct arc_iterator {
 }
 
 
+#[repr(C)]
 pub struct format {
      pub depth :            u8,
      pub bits_per_pixel :   u8,
      pub scanline_pad :     u8,
-     pub pad0 :             [u8,..5]
+     pub pad0 :             [u8; 5]
 }
 
+impl Copy for format {}
+impl Clone for format {
+    fn clone(&self) -> format { *self }
+}
 /**
  * @brief format_iterator
  **/
+#[repr(C)]
 pub struct format_iterator {
     pub data : *mut format,
     pub rem  : c_int,
@@ -247,6 +291,7 @@ pub struct format_iterator {
 }
 
 
+#[repr(C)]
 pub struct visualtype {
      pub visual_id :            visualid,
      pub class :                u8,
@@ -255,12 +300,17 @@ pub struct visualtype {
      pub red_mask :             u32,
      pub green_mask :           u32,
      pub blue_mask :            u32,
-     pub pad0 :                 [u8,..4]
+     pub pad0 :                 [u8; 4]
 }
 
+impl Copy for visualtype {}
+impl Clone for visualtype {
+    fn clone(&self) -> visualtype { *self }
+}
 /**
  * @brief visualtype_iterator
  **/
+#[repr(C)]
 pub struct visualtype_iterator {
     pub data : *mut visualtype,
     pub rem  : c_int,
@@ -268,16 +318,22 @@ pub struct visualtype_iterator {
 }
 
 
+#[repr(C)]
 pub struct depth {
      pub depth :         u8,
      pub pad0 :          u8,
      pub visuals_len :   u16,
-     pub pad1 :          [u8,..4]
+     pub pad1 :          [u8; 4]
 }
 
+impl Copy for depth {}
+impl Clone for depth {
+    fn clone(&self) -> depth { *self }
+}
 /**
  * @brief depth_iterator
  **/
+#[repr(C)]
 pub struct depth_iterator {
     pub data : *mut depth,
     pub rem  : c_int,
@@ -285,6 +341,7 @@ pub struct depth_iterator {
 }
 
 
+#[repr(C)]
 pub struct screen {
      pub root :                    window,
      pub default_colormap :        colormap,
@@ -304,9 +361,14 @@ pub struct screen {
      pub allowed_depths_len :      u8
 }
 
+impl Copy for screen {}
+impl Clone for screen {
+    fn clone(&self) -> screen { *self }
+}
 /**
  * @brief screen_iterator
  **/
+#[repr(C)]
 pub struct screen_iterator {
     pub data : *mut screen,
     pub rem  : c_int,
@@ -314,6 +376,7 @@ pub struct screen_iterator {
 }
 
 
+#[repr(C)]
 pub struct setup_request {
      pub byte_order :                        u8,
      pub pad0 :                              u8,
@@ -321,12 +384,17 @@ pub struct setup_request {
      pub protocol_minor_version :            u16,
      pub authorization_protocol_name_len :   u16,
      pub authorization_protocol_data_len :   u16,
-     pub pad1 :                              [u8,..2]
+     pub pad1 :                              [u8; 2]
 }
 
+impl Copy for setup_request {}
+impl Clone for setup_request {
+    fn clone(&self) -> setup_request { *self }
+}
 /**
  * @brief setup_request_iterator
  **/
+#[repr(C)]
 pub struct setup_request_iterator {
     pub data : *mut setup_request,
     pub rem  : c_int,
@@ -334,6 +402,7 @@ pub struct setup_request_iterator {
 }
 
 
+#[repr(C)]
 pub struct setup_failed {
      pub status :                   u8,
      pub reason_len :               u8,
@@ -342,9 +411,14 @@ pub struct setup_failed {
      pub length :                   u16
 }
 
+impl Copy for setup_failed {}
+impl Clone for setup_failed {
+    fn clone(&self) -> setup_failed { *self }
+}
 /**
  * @brief setup_failed_iterator
  **/
+#[repr(C)]
 pub struct setup_failed_iterator {
     pub data : *mut setup_failed,
     pub rem  : c_int,
@@ -352,15 +426,21 @@ pub struct setup_failed_iterator {
 }
 
 
+#[repr(C)]
 pub struct setup_authenticate {
      pub status :   u8,
-     pub pad0 :     [u8,..5],
+     pub pad0 :     [u8; 5],
      pub length :   u16
 }
 
+impl Copy for setup_authenticate {}
+impl Clone for setup_authenticate {
+    fn clone(&self) -> setup_authenticate { *self }
+}
 /**
  * @brief setup_authenticate_iterator
  **/
+#[repr(C)]
 pub struct setup_authenticate_iterator {
     pub data : *mut setup_authenticate,
     pub rem  : c_int,
@@ -368,6 +448,7 @@ pub struct setup_authenticate_iterator {
 }
 
 
+#[repr(C)]
 pub struct setup {
      pub status :                        u8,
      pub pad0 :                          u8,
@@ -388,20 +469,16 @@ pub struct setup {
      pub bitmap_format_scanline_pad :    u8,
      pub min_keycode :                   keycode,
      pub max_keycode :                   keycode,
-     pub pad1 :                          [u8,..4]
+     pub pad1 :                          [u8; 4]
 }
 
-/**
- * @brief setup_iterator
- **/
-pub struct setup_iterator {
-    pub data : *mut setup,
-    pub rem  : c_int,
-    pub index: c_int
+impl Copy for setup {}
+impl Clone for setup {
+    fn clone(&self) -> setup { *self }
 }
 
 
-
+#[repr(C)]
 pub struct key_press_event {
      pub response_type :   u8,
      pub detail :          keycode,
@@ -419,11 +496,16 @@ pub struct key_press_event {
      pub pad0 :            u8
 }
 
+impl Copy for key_press_event {}
+impl Clone for key_press_event {
+    fn clone(&self) -> key_press_event { *self }
+}
 
 
 pub type key_release_event = key_press_event;
 
 
+#[repr(C)]
 pub struct button_press_event {
      pub response_type :   u8,
      pub detail :          button,
@@ -441,11 +523,16 @@ pub struct button_press_event {
      pub pad0 :            u8
 }
 
+impl Copy for button_press_event {}
+impl Clone for button_press_event {
+    fn clone(&self) -> button_press_event { *self }
+}
 
 
 pub type button_release_event = button_press_event;
 
 
+#[repr(C)]
 pub struct motion_notify_event {
      pub response_type :   u8,
      pub detail :          u8,
@@ -463,8 +550,13 @@ pub struct motion_notify_event {
      pub pad0 :            u8
 }
 
+impl Copy for motion_notify_event {}
+impl Clone for motion_notify_event {
+    fn clone(&self) -> motion_notify_event { *self }
+}
 
 
+#[repr(C)]
 pub struct enter_notify_event {
      pub response_type :       u8,
      pub detail :              u8,
@@ -482,32 +574,47 @@ pub struct enter_notify_event {
      pub same_screen_focus :   u8
 }
 
+impl Copy for enter_notify_event {}
+impl Clone for enter_notify_event {
+    fn clone(&self) -> enter_notify_event { *self }
+}
 
 
 pub type leave_notify_event = enter_notify_event;
 
 
+#[repr(C)]
 pub struct focus_in_event {
      pub response_type :   u8,
      pub detail :          u8,
      pub sequence :        u16,
      pub event :           window,
      pub mode :            u8,
-     pub pad0 :            [u8,..3]
+     pub pad0 :            [u8; 3]
 }
 
+impl Copy for focus_in_event {}
+impl Clone for focus_in_event {
+    fn clone(&self) -> focus_in_event { *self }
+}
 
 
 pub type focus_out_event = focus_in_event;
 
 
+#[repr(C)]
 pub struct keymap_notify_event {
      pub response_type :   u8,
-     pub keys :            [u8,..31]
+     pub keys :            [u8; 31]
+}
+
+impl Copy for keymap_notify_event {}
+impl Clone for keymap_notify_event {
+    fn clone(&self) -> keymap_notify_event { *self }
 }
 
 
-
+#[repr(C)]
 pub struct expose_event {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -518,11 +625,16 @@ pub struct expose_event {
      pub width :           u16,
      pub height :          u16,
      pub count :           u16,
-     pub pad1 :            [u8,..2]
+     pub pad1 :            [u8; 2]
+}
+
+impl Copy for expose_event {}
+impl Clone for expose_event {
+    fn clone(&self) -> expose_event { *self }
 }
 
 
-
+#[repr(C)]
 pub struct graphics_exposure_event {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -535,11 +647,16 @@ pub struct graphics_exposure_event {
      pub minor_opcode :    u16,
      pub count :           u16,
      pub major_opcode :    u8,
-     pub pad1 :            [u8,..3]
+     pub pad1 :            [u8; 3]
+}
+
+impl Copy for graphics_exposure_event {}
+impl Clone for graphics_exposure_event {
+    fn clone(&self) -> graphics_exposure_event { *self }
 }
 
 
-
+#[repr(C)]
 pub struct no_exposure_event {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -550,19 +667,29 @@ pub struct no_exposure_event {
      pub pad1 :            u8
 }
 
+impl Copy for no_exposure_event {}
+impl Clone for no_exposure_event {
+    fn clone(&self) -> no_exposure_event { *self }
+}
 
 
+#[repr(C)]
 pub struct visibility_notify_event {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub window :          window,
      pub state :           u8,
-     pub pad1 :            [u8,..3]
+     pub pad1 :            [u8; 3]
+}
+
+impl Copy for visibility_notify_event {}
+impl Clone for visibility_notify_event {
+    fn clone(&self) -> visibility_notify_event { *self }
 }
 
 
-
+#[repr(C)]
 pub struct create_notify_event {
      pub response_type :       u8,
      pub pad0 :                u8,
@@ -578,8 +705,13 @@ pub struct create_notify_event {
      pub pad1 :                u8
 }
 
+impl Copy for create_notify_event {}
+impl Clone for create_notify_event {
+    fn clone(&self) -> create_notify_event { *self }
+}
 
 
+#[repr(C)]
 pub struct destroy_notify_event {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -588,8 +720,13 @@ pub struct destroy_notify_event {
      pub window :          window
 }
 
+impl Copy for destroy_notify_event {}
+impl Clone for destroy_notify_event {
+    fn clone(&self) -> destroy_notify_event { *self }
+}
 
 
+#[repr(C)]
 pub struct unmap_notify_event {
      pub response_type :    u8,
      pub pad0 :             u8,
@@ -597,11 +734,16 @@ pub struct unmap_notify_event {
      pub event :            window,
      pub window :           window,
      pub from_configure :   u8,
-     pub pad1 :             [u8,..3]
+     pub pad1 :             [u8; 3]
+}
+
+impl Copy for unmap_notify_event {}
+impl Clone for unmap_notify_event {
+    fn clone(&self) -> unmap_notify_event { *self }
 }
 
 
-
+#[repr(C)]
 pub struct map_notify_event {
      pub response_type :       u8,
      pub pad0 :                u8,
@@ -609,11 +751,16 @@ pub struct map_notify_event {
      pub event :               window,
      pub window :              window,
      pub override_redirect :   u8,
-     pub pad1 :                [u8,..3]
+     pub pad1 :                [u8; 3]
+}
+
+impl Copy for map_notify_event {}
+impl Clone for map_notify_event {
+    fn clone(&self) -> map_notify_event { *self }
 }
 
 
-
+#[repr(C)]
 pub struct map_request_event {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -622,8 +769,13 @@ pub struct map_request_event {
      pub window :          window
 }
 
+impl Copy for map_request_event {}
+impl Clone for map_request_event {
+    fn clone(&self) -> map_request_event { *self }
+}
 
 
+#[repr(C)]
 pub struct reparent_notify_event {
      pub response_type :       u8,
      pub pad0 :                u8,
@@ -634,11 +786,16 @@ pub struct reparent_notify_event {
      pub x :                   i16,
      pub y :                   i16,
      pub override_redirect :   u8,
-     pub pad1 :                [u8,..3]
+     pub pad1 :                [u8; 3]
+}
+
+impl Copy for reparent_notify_event {}
+impl Clone for reparent_notify_event {
+    fn clone(&self) -> reparent_notify_event { *self }
 }
 
 
-
+#[repr(C)]
 pub struct configure_notify_event {
      pub response_type :       u8,
      pub pad0 :                u8,
@@ -655,8 +812,13 @@ pub struct configure_notify_event {
      pub pad1 :                u8
 }
 
+impl Copy for configure_notify_event {}
+impl Clone for configure_notify_event {
+    fn clone(&self) -> configure_notify_event { *self }
+}
 
 
+#[repr(C)]
 pub struct configure_request_event {
      pub response_type :   u8,
      pub stack_mode :      u8,
@@ -672,8 +834,13 @@ pub struct configure_request_event {
      pub value_mask :      u16
 }
 
+impl Copy for configure_request_event {}
+impl Clone for configure_request_event {
+    fn clone(&self) -> configure_request_event { *self }
+}
 
 
+#[repr(C)]
 pub struct gravity_notify_event {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -684,8 +851,13 @@ pub struct gravity_notify_event {
      pub y :               i16
 }
 
+impl Copy for gravity_notify_event {}
+impl Clone for gravity_notify_event {
+    fn clone(&self) -> gravity_notify_event { *self }
+}
 
 
+#[repr(C)]
 pub struct resize_request_event {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -695,24 +867,34 @@ pub struct resize_request_event {
      pub height :          u16
 }
 
+impl Copy for resize_request_event {}
+impl Clone for resize_request_event {
+    fn clone(&self) -> resize_request_event { *self }
+}
 
 
+#[repr(C)]
 pub struct circulate_notify_event {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub event :           window,
      pub window :          window,
-     pub pad1 :            [u8,..4],
+     pub pad1 :            [u8; 4],
      pub place :           u8,
-     pub pad2 :            [u8,..3]
+     pub pad2 :            [u8; 3]
 }
 
+impl Copy for circulate_notify_event {}
+impl Clone for circulate_notify_event {
+    fn clone(&self) -> circulate_notify_event { *self }
+}
 
 
 pub type circulate_request_event = circulate_notify_event;
 
 
+#[repr(C)]
 pub struct property_notify_event {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -721,11 +903,16 @@ pub struct property_notify_event {
      pub atom :            atom,
      pub time :            timestamp,
      pub state :           u8,
-     pub pad1 :            [u8,..3]
+     pub pad1 :            [u8; 3]
+}
+
+impl Copy for property_notify_event {}
+impl Clone for property_notify_event {
+    fn clone(&self) -> property_notify_event { *self }
 }
 
 
-
+#[repr(C)]
 pub struct selection_clear_event {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -735,8 +922,13 @@ pub struct selection_clear_event {
      pub selection :       atom
 }
 
+impl Copy for selection_clear_event {}
+impl Clone for selection_clear_event {
+    fn clone(&self) -> selection_clear_event { *self }
+}
 
 
+#[repr(C)]
 pub struct selection_request_event {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -749,8 +941,13 @@ pub struct selection_request_event {
      pub property :        atom
 }
 
+impl Copy for selection_request_event {}
+impl Clone for selection_request_event {
+    fn clone(&self) -> selection_request_event { *self }
+}
 
 
+#[repr(C)]
 pub struct selection_notify_event {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -762,8 +959,13 @@ pub struct selection_notify_event {
      pub property :        atom
 }
 
+impl Copy for selection_notify_event {}
+impl Clone for selection_notify_event {
+    fn clone(&self) -> selection_notify_event { *self }
+}
 
 
+#[repr(C)]
 pub struct colormap_notify_event {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -772,16 +974,26 @@ pub struct colormap_notify_event {
      pub colormap :        colormap,
      pub new_ :            u8,
      pub state :           u8,
-     pub pad1 :            [u8,..2]
+     pub pad1 :            [u8; 2]
 }
 
+impl Copy for colormap_notify_event {}
+impl Clone for colormap_notify_event {
+    fn clone(&self) -> colormap_notify_event { *self }
+}
 
+#[repr(C)]
 pub struct client_message_data {
-    data : [u8,..20]
+    data : [u8; 20]
+}
+impl Copy for client_message_data {}
+impl Clone for client_message_data {
+    fn clone(&self) -> client_message_data { *self }
 }
 /**
  * @brief client_message_data_iterator
  **/
+#[repr(C)]
 pub struct client_message_data_iterator {
     pub data : *mut client_message_data,
     pub rem  : c_int,
@@ -790,6 +1002,7 @@ pub struct client_message_data_iterator {
 
 
 
+#[repr(C)]
 pub struct client_message_event {
      pub response_type :   u8,
      pub format :          u8,
@@ -799,8 +1012,13 @@ pub struct client_message_event {
      pub data :            client_message_data
 }
 
+impl Copy for client_message_event {}
+impl Clone for client_message_event {
+    fn clone(&self) -> client_message_event { *self }
+}
 
 
+#[repr(C)]
 pub struct mapping_notify_event {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -811,8 +1029,13 @@ pub struct mapping_notify_event {
      pub pad1 :            u8
 }
 
+impl Copy for mapping_notify_event {}
+impl Clone for mapping_notify_event {
+    fn clone(&self) -> mapping_notify_event { *self }
+}
 
 
+#[repr(C)]
 pub struct request_error {
      pub response_type :   u8,
      pub error_code :      u8,
@@ -823,8 +1046,13 @@ pub struct request_error {
      pub pad0 :            u8
 }
 
+impl Copy for request_error {}
+impl Clone for request_error {
+    fn clone(&self) -> request_error { *self }
+}
 
 
+#[repr(C)]
 pub struct value_error {
      pub response_type :   u8,
      pub error_code :      u8,
@@ -835,6 +1063,10 @@ pub struct value_error {
      pub pad0 :            u8
 }
 
+impl Copy for value_error {}
+impl Clone for value_error {
+    fn clone(&self) -> value_error { *self }
+}
 
 
 pub type window_error  = value_error;
@@ -882,6 +1114,7 @@ pub type length_error  = request_error;
 pub type implementation_error  = request_error;
 
 
+#[repr(C)]
 pub struct create_window_request {
      pub major_opcode :   u8,
      pub depth :          u8,
@@ -898,8 +1131,13 @@ pub struct create_window_request {
      pub value_mask :     u32
 }
 
+impl Copy for create_window_request {}
+impl Clone for create_window_request {
+    fn clone(&self) -> create_window_request { *self }
+}
 
 
+#[repr(C)]
 pub struct change_window_attributes_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -908,12 +1146,19 @@ pub struct change_window_attributes_request {
      pub value_mask :     u32
 }
 
+impl Copy for change_window_attributes_request {}
+impl Clone for change_window_attributes_request {
+    fn clone(&self) -> change_window_attributes_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_window_attributes_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_window_attributes_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -921,7 +1166,12 @@ pub struct get_window_attributes_request {
      pub window :         window
 }
 
+impl Copy for get_window_attributes_request {}
+impl Clone for get_window_attributes_request {
+    fn clone(&self) -> get_window_attributes_request { *self }
+}
 
+#[repr(C)]
 pub struct get_window_attributes_reply {
      pub response_type :           u8,
      pub backing_store :           u8,
@@ -941,11 +1191,16 @@ pub struct get_window_attributes_reply {
      pub all_event_masks :         u32,
      pub your_event_mask :         u32,
      pub do_not_propagate_mask :   u16,
-     pub pad0 :                    [u8,..2]
+     pub pad0 :                    [u8; 2]
+}
+
+impl Copy for get_window_attributes_reply {}
+impl Clone for get_window_attributes_reply {
+    fn clone(&self) -> get_window_attributes_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct destroy_window_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -953,8 +1208,13 @@ pub struct destroy_window_request {
      pub window :         window
 }
 
+impl Copy for destroy_window_request {}
+impl Clone for destroy_window_request {
+    fn clone(&self) -> destroy_window_request { *self }
+}
 
 
+#[repr(C)]
 pub struct destroy_subwindows_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -962,8 +1222,13 @@ pub struct destroy_subwindows_request {
      pub window :         window
 }
 
+impl Copy for destroy_subwindows_request {}
+impl Clone for destroy_subwindows_request {
+    fn clone(&self) -> destroy_subwindows_request { *self }
+}
 
 
+#[repr(C)]
 pub struct change_save_set_request {
      pub major_opcode :   u8,
      pub mode :           u8,
@@ -971,8 +1236,13 @@ pub struct change_save_set_request {
      pub window :         window
 }
 
+impl Copy for change_save_set_request {}
+impl Clone for change_save_set_request {
+    fn clone(&self) -> change_save_set_request { *self }
+}
 
 
+#[repr(C)]
 pub struct reparent_window_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -983,8 +1253,13 @@ pub struct reparent_window_request {
      pub y :              i16
 }
 
+impl Copy for reparent_window_request {}
+impl Clone for reparent_window_request {
+    fn clone(&self) -> reparent_window_request { *self }
+}
 
 
+#[repr(C)]
 pub struct map_window_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -992,8 +1267,13 @@ pub struct map_window_request {
      pub window :         window
 }
 
+impl Copy for map_window_request {}
+impl Clone for map_window_request {
+    fn clone(&self) -> map_window_request { *self }
+}
 
 
+#[repr(C)]
 pub struct map_subwindows_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1001,8 +1281,13 @@ pub struct map_subwindows_request {
      pub window :         window
 }
 
+impl Copy for map_subwindows_request {}
+impl Clone for map_subwindows_request {
+    fn clone(&self) -> map_subwindows_request { *self }
+}
 
 
+#[repr(C)]
 pub struct unmap_window_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1010,8 +1295,13 @@ pub struct unmap_window_request {
      pub window :         window
 }
 
+impl Copy for unmap_window_request {}
+impl Clone for unmap_window_request {
+    fn clone(&self) -> unmap_window_request { *self }
+}
 
 
+#[repr(C)]
 pub struct unmap_subwindows_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1019,19 +1309,29 @@ pub struct unmap_subwindows_request {
      pub window :         window
 }
 
+impl Copy for unmap_subwindows_request {}
+impl Clone for unmap_subwindows_request {
+    fn clone(&self) -> unmap_subwindows_request { *self }
+}
 
 
+#[repr(C)]
 pub struct configure_window_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
      pub window :         window,
      pub value_mask :     u16,
-     pub pad1 :           [u8,..2]
+     pub pad1 :           [u8; 2]
+}
+
+impl Copy for configure_window_request {}
+impl Clone for configure_window_request {
+    fn clone(&self) -> configure_window_request { *self }
 }
 
 
-
+#[repr(C)]
 pub struct circulate_window_request {
      pub major_opcode :   u8,
      pub direction :      u8,
@@ -1039,12 +1339,19 @@ pub struct circulate_window_request {
      pub window :         window
 }
 
+impl Copy for circulate_window_request {}
+impl Clone for circulate_window_request {
+    fn clone(&self) -> circulate_window_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_geometry_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_geometry_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1052,7 +1359,12 @@ pub struct get_geometry_request {
      pub drawable :       drawable
 }
 
+impl Copy for get_geometry_request {}
+impl Clone for get_geometry_request {
+    fn clone(&self) -> get_geometry_request { *self }
+}
 
+#[repr(C)]
 pub struct get_geometry_reply {
      pub response_type :   u8,
      pub depth :           u8,
@@ -1064,15 +1376,22 @@ pub struct get_geometry_reply {
      pub width :           u16,
      pub height :          u16,
      pub border_width :    u16,
-     pub pad0 :            [u8,..2]
+     pub pad0 :            [u8; 2]
 }
 
+impl Copy for get_geometry_reply {}
+impl Clone for get_geometry_reply {
+    fn clone(&self) -> get_geometry_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_tree_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_tree_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1080,7 +1399,12 @@ pub struct query_tree_request {
      pub window :         window
 }
 
+impl Copy for query_tree_request {}
+impl Clone for query_tree_request {
+    fn clone(&self) -> query_tree_request { *self }
+}
 
+#[repr(C)]
 pub struct query_tree_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -1089,24 +1413,36 @@ pub struct query_tree_reply {
      pub root :            window,
      pub parent :          window,
      pub children_len :    u16,
-     pub pad1 :            [u8,..14]
+     pub pad1 :            [u8; 14]
 }
 
+impl Copy for query_tree_reply {}
+impl Clone for query_tree_reply {
+    fn clone(&self) -> query_tree_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct intern_atom_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct intern_atom_request {
      pub major_opcode :     u8,
      pub only_if_exists :   u8,
      pub length :           u16,
      pub name_len :         u16,
-     pub pad0 :             [u8,..2]
+     pub pad0 :             [u8; 2]
 }
 
+impl Copy for intern_atom_request {}
+impl Clone for intern_atom_request {
+    fn clone(&self) -> intern_atom_request { *self }
+}
 
+#[repr(C)]
 pub struct intern_atom_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -1115,12 +1451,19 @@ pub struct intern_atom_reply {
      pub atom :            atom
 }
 
+impl Copy for intern_atom_reply {}
+impl Clone for intern_atom_reply {
+    fn clone(&self) -> intern_atom_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_atom_name_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_atom_name_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1128,18 +1471,28 @@ pub struct get_atom_name_request {
      pub atom :           atom
 }
 
+impl Copy for get_atom_name_request {}
+impl Clone for get_atom_name_request {
+    fn clone(&self) -> get_atom_name_request { *self }
+}
 
+#[repr(C)]
 pub struct get_atom_name_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub name_len :        u16,
-     pub pad1 :            [u8,..22]
+     pub pad1 :            [u8; 22]
+}
+
+impl Copy for get_atom_name_reply {}
+impl Clone for get_atom_name_reply {
+    fn clone(&self) -> get_atom_name_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct change_property_request {
      pub major_opcode :   u8,
      pub mode :           u8,
@@ -1148,12 +1501,17 @@ pub struct change_property_request {
      pub property :       atom,
      pub type_ :          atom,
      pub format :         u8,
-     pub pad0 :           [u8,..3],
+     pub pad0 :           [u8; 3],
      pub data_len :       u32
 }
 
+impl Copy for change_property_request {}
+impl Clone for change_property_request {
+    fn clone(&self) -> change_property_request { *self }
+}
 
 
+#[repr(C)]
 pub struct delete_property_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1162,12 +1520,19 @@ pub struct delete_property_request {
      pub property :       atom
 }
 
+impl Copy for delete_property_request {}
+impl Clone for delete_property_request {
+    fn clone(&self) -> delete_property_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_property_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_property_request {
      pub major_opcode :   u8,
      pub delete :         u8,
@@ -1179,7 +1544,12 @@ pub struct get_property_request {
      pub long_length :    u32
 }
 
+impl Copy for get_property_request {}
+impl Clone for get_property_request {
+    fn clone(&self) -> get_property_request { *self }
+}
 
+#[repr(C)]
 pub struct get_property_reply {
      pub response_type :   u8,
      pub format :          u8,
@@ -1188,15 +1558,22 @@ pub struct get_property_reply {
      pub type_ :           atom,
      pub bytes_after :     u32,
      pub value_len :       u32,
-     pub pad0 :            [u8,..12]
+     pub pad0 :            [u8; 12]
 }
 
+impl Copy for get_property_reply {}
+impl Clone for get_property_reply {
+    fn clone(&self) -> get_property_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct list_properties_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct list_properties_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1204,18 +1581,28 @@ pub struct list_properties_request {
      pub window :         window
 }
 
+impl Copy for list_properties_request {}
+impl Clone for list_properties_request {
+    fn clone(&self) -> list_properties_request { *self }
+}
 
+#[repr(C)]
 pub struct list_properties_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub atoms_len :       u16,
-     pub pad1 :            [u8,..22]
+     pub pad1 :            [u8; 22]
+}
+
+impl Copy for list_properties_reply {}
+impl Clone for list_properties_reply {
+    fn clone(&self) -> list_properties_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct set_selection_owner_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1225,12 +1612,19 @@ pub struct set_selection_owner_request {
      pub time :           timestamp
 }
 
+impl Copy for set_selection_owner_request {}
+impl Clone for set_selection_owner_request {
+    fn clone(&self) -> set_selection_owner_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_selection_owner_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_selection_owner_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1238,7 +1632,12 @@ pub struct get_selection_owner_request {
      pub selection :      atom
 }
 
+impl Copy for get_selection_owner_request {}
+impl Clone for get_selection_owner_request {
+    fn clone(&self) -> get_selection_owner_request { *self }
+}
 
+#[repr(C)]
 pub struct get_selection_owner_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -1247,8 +1646,13 @@ pub struct get_selection_owner_reply {
      pub owner :           window
 }
 
+impl Copy for get_selection_owner_reply {}
+impl Clone for get_selection_owner_reply {
+    fn clone(&self) -> get_selection_owner_reply { *self }
+}
 
 
+#[repr(C)]
 pub struct convert_selection_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1260,23 +1664,35 @@ pub struct convert_selection_request {
      pub time :           timestamp
 }
 
+impl Copy for convert_selection_request {}
+impl Clone for convert_selection_request {
+    fn clone(&self) -> convert_selection_request { *self }
+}
 
 
+#[repr(C)]
 pub struct send_event_request {
      pub major_opcode :   u8,
      pub propagate :      u8,
      pub length :         u16,
      pub destination :    window,
      pub event_mask :     u32,
-     pub event :          [c_char,..32]
+     pub event :          [c_char; 32]
 }
 
+impl Copy for send_event_request {}
+impl Clone for send_event_request {
+    fn clone(&self) -> send_event_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct grab_pointer_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct grab_pointer_request {
      pub major_opcode :    u8,
      pub owner_events :    u8,
@@ -1290,7 +1706,12 @@ pub struct grab_pointer_request {
      pub time :            timestamp
 }
 
+impl Copy for grab_pointer_request {}
+impl Clone for grab_pointer_request {
+    fn clone(&self) -> grab_pointer_request { *self }
+}
 
+#[repr(C)]
 pub struct grab_pointer_reply {
      pub response_type :   u8,
      pub status :          u8,
@@ -1298,8 +1719,13 @@ pub struct grab_pointer_reply {
      pub length :          u32
 }
 
+impl Copy for grab_pointer_reply {}
+impl Clone for grab_pointer_reply {
+    fn clone(&self) -> grab_pointer_reply { *self }
+}
 
 
+#[repr(C)]
 pub struct ungrab_pointer_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1307,8 +1733,13 @@ pub struct ungrab_pointer_request {
      pub time :           timestamp
 }
 
+impl Copy for ungrab_pointer_request {}
+impl Clone for ungrab_pointer_request {
+    fn clone(&self) -> ungrab_pointer_request { *self }
+}
 
 
+#[repr(C)]
 pub struct grab_button_request {
      pub major_opcode :    u8,
      pub owner_events :    u8,
@@ -1324,19 +1755,29 @@ pub struct grab_button_request {
      pub modifiers :       u16
 }
 
+impl Copy for grab_button_request {}
+impl Clone for grab_button_request {
+    fn clone(&self) -> grab_button_request { *self }
+}
 
 
+#[repr(C)]
 pub struct ungrab_button_request {
      pub major_opcode :   u8,
      pub button :         u8,
      pub length :         u16,
      pub grab_window :    window,
      pub modifiers :      u16,
-     pub pad0 :           [u8,..2]
+     pub pad0 :           [u8; 2]
+}
+
+impl Copy for ungrab_button_request {}
+impl Clone for ungrab_button_request {
+    fn clone(&self) -> ungrab_button_request { *self }
 }
 
 
-
+#[repr(C)]
 pub struct change_active_pointer_grab_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1344,15 +1785,22 @@ pub struct change_active_pointer_grab_request {
      pub cursor :         cursor,
      pub time :           timestamp,
      pub event_mask :     u16,
-     pub pad1 :           [u8,..2]
+     pub pad1 :           [u8; 2]
 }
 
+impl Copy for change_active_pointer_grab_request {}
+impl Clone for change_active_pointer_grab_request {
+    fn clone(&self) -> change_active_pointer_grab_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct grab_keyboard_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct grab_keyboard_request {
      pub major_opcode :    u8,
      pub owner_events :    u8,
@@ -1361,10 +1809,15 @@ pub struct grab_keyboard_request {
      pub time :            timestamp,
      pub pointer_mode :    u8,
      pub keyboard_mode :   u8,
-     pub pad0 :            [u8,..2]
+     pub pad0 :            [u8; 2]
 }
 
+impl Copy for grab_keyboard_request {}
+impl Clone for grab_keyboard_request {
+    fn clone(&self) -> grab_keyboard_request { *self }
+}
 
+#[repr(C)]
 pub struct grab_keyboard_reply {
      pub response_type :   u8,
      pub status :          u8,
@@ -1372,8 +1825,13 @@ pub struct grab_keyboard_reply {
      pub length :          u32
 }
 
+impl Copy for grab_keyboard_reply {}
+impl Clone for grab_keyboard_reply {
+    fn clone(&self) -> grab_keyboard_reply { *self }
+}
 
 
+#[repr(C)]
 pub struct ungrab_keyboard_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1381,8 +1839,13 @@ pub struct ungrab_keyboard_request {
      pub time :           timestamp
 }
 
+impl Copy for ungrab_keyboard_request {}
+impl Clone for ungrab_keyboard_request {
+    fn clone(&self) -> ungrab_keyboard_request { *self }
+}
 
 
+#[repr(C)]
 pub struct grab_key_request {
      pub major_opcode :    u8,
      pub owner_events :    u8,
@@ -1392,22 +1855,32 @@ pub struct grab_key_request {
      pub key :             keycode,
      pub pointer_mode :    u8,
      pub keyboard_mode :   u8,
-     pub pad0 :            [u8,..3]
+     pub pad0 :            [u8; 3]
+}
+
+impl Copy for grab_key_request {}
+impl Clone for grab_key_request {
+    fn clone(&self) -> grab_key_request { *self }
 }
 
 
-
+#[repr(C)]
 pub struct ungrab_key_request {
      pub major_opcode :   u8,
      pub key :            keycode,
      pub length :         u16,
      pub grab_window :    window,
      pub modifiers :      u16,
-     pub pad0 :           [u8,..2]
+     pub pad0 :           [u8; 2]
+}
+
+impl Copy for ungrab_key_request {}
+impl Clone for ungrab_key_request {
+    fn clone(&self) -> ungrab_key_request { *self }
 }
 
 
-
+#[repr(C)]
 pub struct allow_events_request {
      pub major_opcode :   u8,
      pub mode :           u8,
@@ -1415,28 +1888,45 @@ pub struct allow_events_request {
      pub time :           timestamp
 }
 
+impl Copy for allow_events_request {}
+impl Clone for allow_events_request {
+    fn clone(&self) -> allow_events_request { *self }
+}
 
 
+#[repr(C)]
 pub struct grab_server_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16
 }
 
+impl Copy for grab_server_request {}
+impl Clone for grab_server_request {
+    fn clone(&self) -> grab_server_request { *self }
+}
 
 
+#[repr(C)]
 pub struct ungrab_server_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16
 }
 
+impl Copy for ungrab_server_request {}
+impl Clone for ungrab_server_request {
+    fn clone(&self) -> ungrab_server_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_pointer_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_pointer_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1444,7 +1934,12 @@ pub struct query_pointer_request {
      pub window :         window
 }
 
+impl Copy for query_pointer_request {}
+impl Clone for query_pointer_request {
+    fn clone(&self) -> query_pointer_request { *self }
+}
 
+#[repr(C)]
 pub struct query_pointer_reply {
      pub response_type :   u8,
      pub same_screen :     u8,
@@ -1457,19 +1952,29 @@ pub struct query_pointer_reply {
      pub win_x :           i16,
      pub win_y :           i16,
      pub mask :            u16,
-     pub pad0 :            [u8,..2]
+     pub pad0 :            [u8; 2]
 }
 
+impl Copy for query_pointer_reply {}
+impl Clone for query_pointer_reply {
+    fn clone(&self) -> query_pointer_reply { *self }
+}
 
+#[repr(C)]
 pub struct timecoord {
      pub time :   timestamp,
      pub x :      i16,
      pub y :      i16
 }
 
+impl Copy for timecoord {}
+impl Clone for timecoord {
+    fn clone(&self) -> timecoord { *self }
+}
 /**
  * @brief timecoord_iterator
  **/
+#[repr(C)]
 pub struct timecoord_iterator {
     pub data : *mut timecoord,
     pub rem  : c_int,
@@ -1477,11 +1982,14 @@ pub struct timecoord_iterator {
 }
 
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_motion_events_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_motion_events_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1491,22 +1999,34 @@ pub struct get_motion_events_request {
      pub stop :           timestamp
 }
 
+impl Copy for get_motion_events_request {}
+impl Clone for get_motion_events_request {
+    fn clone(&self) -> get_motion_events_request { *self }
+}
 
+#[repr(C)]
 pub struct get_motion_events_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub events_len :      u32,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for get_motion_events_reply {}
+impl Clone for get_motion_events_reply {
+    fn clone(&self) -> get_motion_events_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct translate_coordinates_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct translate_coordinates_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1517,7 +2037,12 @@ pub struct translate_coordinates_request {
      pub src_y :          i16
 }
 
+impl Copy for translate_coordinates_request {}
+impl Clone for translate_coordinates_request {
+    fn clone(&self) -> translate_coordinates_request { *self }
+}
 
+#[repr(C)]
 pub struct translate_coordinates_reply {
      pub response_type :   u8,
      pub same_screen :     u8,
@@ -1528,8 +2053,13 @@ pub struct translate_coordinates_reply {
      pub dst_y :           i16
 }
 
+impl Copy for translate_coordinates_reply {}
+impl Clone for translate_coordinates_reply {
+    fn clone(&self) -> translate_coordinates_reply { *self }
+}
 
 
+#[repr(C)]
 pub struct warp_pointer_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1544,8 +2074,13 @@ pub struct warp_pointer_request {
      pub dst_y :          i16
 }
 
+impl Copy for warp_pointer_request {}
+impl Clone for warp_pointer_request {
+    fn clone(&self) -> warp_pointer_request { *self }
+}
 
 
+#[repr(C)]
 pub struct set_input_focus_request {
      pub major_opcode :   u8,
      pub revert_to :      u8,
@@ -1554,19 +2089,31 @@ pub struct set_input_focus_request {
      pub time :           timestamp
 }
 
+impl Copy for set_input_focus_request {}
+impl Clone for set_input_focus_request {
+    fn clone(&self) -> set_input_focus_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_input_focus_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_input_focus_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16
 }
 
+impl Copy for get_input_focus_request {}
+impl Clone for get_input_focus_request {
+    fn clone(&self) -> get_input_focus_request { *self }
+}
 
+#[repr(C)]
 pub struct get_input_focus_reply {
      pub response_type :   u8,
      pub revert_to :       u8,
@@ -1575,40 +2122,62 @@ pub struct get_input_focus_reply {
      pub focus :           window
 }
 
+impl Copy for get_input_focus_reply {}
+impl Clone for get_input_focus_reply {
+    fn clone(&self) -> get_input_focus_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_keymap_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_keymap_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16
 }
 
+impl Copy for query_keymap_request {}
+impl Clone for query_keymap_request {
+    fn clone(&self) -> query_keymap_request { *self }
+}
 
+#[repr(C)]
 pub struct query_keymap_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub keys :            [u8,..32]
+     pub keys :            [u8; 32]
+}
+
+impl Copy for query_keymap_reply {}
+impl Clone for query_keymap_reply {
+    fn clone(&self) -> query_keymap_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct open_font_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
      pub fid :            font,
      pub name_len :       u16,
-     pub pad1 :           [u8,..2]
+     pub pad1 :           [u8; 2]
+}
+
+impl Copy for open_font_request {}
+impl Clone for open_font_request {
+    fn clone(&self) -> open_font_request { *self }
 }
 
 
-
+#[repr(C)]
 pub struct close_font_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1616,15 +2185,25 @@ pub struct close_font_request {
      pub font :           font
 }
 
+impl Copy for close_font_request {}
+impl Clone for close_font_request {
+    fn clone(&self) -> close_font_request { *self }
+}
 
+#[repr(C)]
 pub struct fontprop {
      pub name :    atom,
      pub value :   u32
 }
 
+impl Copy for fontprop {}
+impl Clone for fontprop {
+    fn clone(&self) -> fontprop { *self }
+}
 /**
  * @brief fontprop_iterator
  **/
+#[repr(C)]
 pub struct fontprop_iterator {
     pub data : *mut fontprop,
     pub rem  : c_int,
@@ -1632,6 +2211,7 @@ pub struct fontprop_iterator {
 }
 
 
+#[repr(C)]
 pub struct charinfo {
      pub left_side_bearing :    i16,
      pub right_side_bearing :   i16,
@@ -1641,9 +2221,14 @@ pub struct charinfo {
      pub attributes :           u16
 }
 
+impl Copy for charinfo {}
+impl Clone for charinfo {
+    fn clone(&self) -> charinfo { *self }
+}
 /**
  * @brief charinfo_iterator
  **/
+#[repr(C)]
 pub struct charinfo_iterator {
     pub data : *mut charinfo,
     pub rem  : c_int,
@@ -1651,11 +2236,14 @@ pub struct charinfo_iterator {
 }
 
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_font_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_font_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1663,16 +2251,21 @@ pub struct query_font_request {
      pub font :           fontable
 }
 
+impl Copy for query_font_request {}
+impl Clone for query_font_request {
+    fn clone(&self) -> query_font_request { *self }
+}
 
+#[repr(C)]
 pub struct query_font_reply {
      pub response_type :       u8,
      pub pad0 :                u8,
      pub sequence :            u16,
      pub length :              u32,
      pub min_bounds :          charinfo,
-     pub pad1 :                [u8,..4],
+     pub pad1 :                [u8; 4],
      pub max_bounds :          charinfo,
-     pub pad2 :                [u8,..4],
+     pub pad2 :                [u8; 4],
      pub min_char_or_byte2 :   u16,
      pub max_char_or_byte2 :   u16,
      pub default_char :        u16,
@@ -1686,12 +2279,19 @@ pub struct query_font_reply {
      pub char_infos_len :      u32
 }
 
+impl Copy for query_font_reply {}
+impl Clone for query_font_reply {
+    fn clone(&self) -> query_font_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_text_extents_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_text_extents_request {
      pub major_opcode :   u8,
      pub odd_length :     u8,
@@ -1699,7 +2299,12 @@ pub struct query_text_extents_request {
      pub font :           fontable
 }
 
+impl Copy for query_text_extents_request {}
+impl Clone for query_text_extents_request {
+    fn clone(&self) -> query_text_extents_request { *self }
+}
 
+#[repr(C)]
 pub struct query_text_extents_reply {
      pub response_type :     u8,
      pub draw_direction :    u8,
@@ -1714,14 +2319,24 @@ pub struct query_text_extents_reply {
      pub overall_right :     i32
 }
 
+impl Copy for query_text_extents_reply {}
+impl Clone for query_text_extents_reply {
+    fn clone(&self) -> query_text_extents_reply { *self }
+}
 
+#[repr(C)]
 pub struct str_ {
      pub name_len :   u8
 }
 
+impl Copy for str_ {}
+impl Clone for str_ {
+    fn clone(&self) -> str_ { *self }
+}
 /**
  * @brief str_iterator
  **/
+#[repr(C)]
 pub struct str_iterator {
     pub data : *mut str_,
     pub rem  : c_int,
@@ -1729,11 +2344,14 @@ pub struct str_iterator {
 }
 
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct list_fonts_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct list_fonts_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1742,22 +2360,34 @@ pub struct list_fonts_request {
      pub pattern_len :    u16
 }
 
+impl Copy for list_fonts_request {}
+impl Clone for list_fonts_request {
+    fn clone(&self) -> list_fonts_request { *self }
+}
 
+#[repr(C)]
 pub struct list_fonts_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub names_len :       u16,
-     pub pad1 :            [u8,..22]
+     pub pad1 :            [u8; 22]
 }
 
+impl Copy for list_fonts_reply {}
+impl Clone for list_fonts_reply {
+    fn clone(&self) -> list_fonts_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct list_fonts_with_info_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct list_fonts_with_info_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1766,16 +2396,21 @@ pub struct list_fonts_with_info_request {
      pub pattern_len :    u16
 }
 
+impl Copy for list_fonts_with_info_request {}
+impl Clone for list_fonts_with_info_request {
+    fn clone(&self) -> list_fonts_with_info_request { *self }
+}
 
+#[repr(C)]
 pub struct list_fonts_with_info_reply {
      pub response_type :       u8,
      pub name_len :            u8,
      pub sequence :            u16,
      pub length :              u32,
      pub min_bounds :          charinfo,
-     pub pad0 :                [u8,..4],
+     pub pad0 :                [u8; 4],
      pub max_bounds :          charinfo,
-     pub pad1 :                [u8,..4],
+     pub pad1 :                [u8; 4],
      pub min_char_or_byte2 :   u16,
      pub max_char_or_byte2 :   u16,
      pub default_char :        u16,
@@ -1789,40 +2424,62 @@ pub struct list_fonts_with_info_reply {
      pub replies_hint :        u32
 }
 
+impl Copy for list_fonts_with_info_reply {}
+impl Clone for list_fonts_with_info_reply {
+    fn clone(&self) -> list_fonts_with_info_reply { *self }
+}
 
 
+#[repr(C)]
 pub struct set_font_path_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
      pub font_qty :       u16,
-     pub pad1 :           [u8,..2]
+     pub pad1 :           [u8; 2]
 }
 
+impl Copy for set_font_path_request {}
+impl Clone for set_font_path_request {
+    fn clone(&self) -> set_font_path_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_font_path_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_font_path_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16
 }
 
+impl Copy for get_font_path_request {}
+impl Clone for get_font_path_request {
+    fn clone(&self) -> get_font_path_request { *self }
+}
 
+#[repr(C)]
 pub struct get_font_path_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub path_len :        u16,
-     pub pad1 :            [u8,..22]
+     pub pad1 :            [u8; 22]
+}
+
+impl Copy for get_font_path_reply {}
+impl Clone for get_font_path_reply {
+    fn clone(&self) -> get_font_path_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct create_pixmap_request {
      pub major_opcode :   u8,
      pub depth :          u8,
@@ -1833,8 +2490,13 @@ pub struct create_pixmap_request {
      pub height :         u16
 }
 
+impl Copy for create_pixmap_request {}
+impl Clone for create_pixmap_request {
+    fn clone(&self) -> create_pixmap_request { *self }
+}
 
 
+#[repr(C)]
 pub struct free_pixmap_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1842,8 +2504,13 @@ pub struct free_pixmap_request {
      pub pixmap :         pixmap
 }
 
+impl Copy for free_pixmap_request {}
+impl Clone for free_pixmap_request {
+    fn clone(&self) -> free_pixmap_request { *self }
+}
 
 
+#[repr(C)]
 pub struct create_gc_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1853,8 +2520,13 @@ pub struct create_gc_request {
      pub value_mask :     u32
 }
 
+impl Copy for create_gc_request {}
+impl Clone for create_gc_request {
+    fn clone(&self) -> create_gc_request { *self }
+}
 
 
+#[repr(C)]
 pub struct change_gc_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1863,8 +2535,13 @@ pub struct change_gc_request {
      pub value_mask :     u32
 }
 
+impl Copy for change_gc_request {}
+impl Clone for change_gc_request {
+    fn clone(&self) -> change_gc_request { *self }
+}
 
 
+#[repr(C)]
 pub struct copy_gc_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1874,8 +2551,13 @@ pub struct copy_gc_request {
      pub value_mask :     u32
 }
 
+impl Copy for copy_gc_request {}
+impl Clone for copy_gc_request {
+    fn clone(&self) -> copy_gc_request { *self }
+}
 
 
+#[repr(C)]
 pub struct set_dashes_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1885,8 +2567,13 @@ pub struct set_dashes_request {
      pub dashes_len :     u16
 }
 
+impl Copy for set_dashes_request {}
+impl Clone for set_dashes_request {
+    fn clone(&self) -> set_dashes_request { *self }
+}
 
 
+#[repr(C)]
 pub struct set_clip_rectangles_request {
      pub major_opcode :    u8,
      pub ordering :        u8,
@@ -1896,8 +2583,13 @@ pub struct set_clip_rectangles_request {
      pub clip_y_origin :   i16
 }
 
+impl Copy for set_clip_rectangles_request {}
+impl Clone for set_clip_rectangles_request {
+    fn clone(&self) -> set_clip_rectangles_request { *self }
+}
 
 
+#[repr(C)]
 pub struct free_gc_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1905,8 +2597,13 @@ pub struct free_gc_request {
      pub gc :             gcontext
 }
 
+impl Copy for free_gc_request {}
+impl Clone for free_gc_request {
+    fn clone(&self) -> free_gc_request { *self }
+}
 
 
+#[repr(C)]
 pub struct clear_area_request {
      pub major_opcode :   u8,
      pub exposures :      u8,
@@ -1918,8 +2615,13 @@ pub struct clear_area_request {
      pub height :         u16
 }
 
+impl Copy for clear_area_request {}
+impl Clone for clear_area_request {
+    fn clone(&self) -> clear_area_request { *self }
+}
 
 
+#[repr(C)]
 pub struct copy_area_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1935,8 +2637,13 @@ pub struct copy_area_request {
      pub height :         u16
 }
 
+impl Copy for copy_area_request {}
+impl Clone for copy_area_request {
+    fn clone(&self) -> copy_area_request { *self }
+}
 
 
+#[repr(C)]
 pub struct copy_plane_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -1953,8 +2660,13 @@ pub struct copy_plane_request {
      pub bit_plane :      u32
 }
 
+impl Copy for copy_plane_request {}
+impl Clone for copy_plane_request {
+    fn clone(&self) -> copy_plane_request { *self }
+}
 
 
+#[repr(C)]
 pub struct poly_point_request {
      pub major_opcode :      u8,
      pub coordinate_mode :   u8,
@@ -1963,8 +2675,13 @@ pub struct poly_point_request {
      pub gc :                gcontext
 }
 
+impl Copy for poly_point_request {}
+impl Clone for poly_point_request {
+    fn clone(&self) -> poly_point_request { *self }
+}
 
 
+#[repr(C)]
 pub struct poly_line_request {
      pub major_opcode :      u8,
      pub coordinate_mode :   u8,
@@ -1973,7 +2690,12 @@ pub struct poly_line_request {
      pub gc :                gcontext
 }
 
+impl Copy for poly_line_request {}
+impl Clone for poly_line_request {
+    fn clone(&self) -> poly_line_request { *self }
+}
 
+#[repr(C)]
 pub struct segment {
      pub x1 :   i16,
      pub y1 :   i16,
@@ -1981,9 +2703,14 @@ pub struct segment {
      pub y2 :   i16
 }
 
+impl Copy for segment {}
+impl Clone for segment {
+    fn clone(&self) -> segment { *self }
+}
 /**
  * @brief segment_iterator
  **/
+#[repr(C)]
 pub struct segment_iterator {
     pub data : *mut segment,
     pub rem  : c_int,
@@ -1992,6 +2719,7 @@ pub struct segment_iterator {
 
 
 
+#[repr(C)]
 pub struct poly_segment_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -2000,8 +2728,13 @@ pub struct poly_segment_request {
      pub gc :             gcontext
 }
 
+impl Copy for poly_segment_request {}
+impl Clone for poly_segment_request {
+    fn clone(&self) -> poly_segment_request { *self }
+}
 
 
+#[repr(C)]
 pub struct poly_rectangle_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -2010,8 +2743,13 @@ pub struct poly_rectangle_request {
      pub gc :             gcontext
 }
 
+impl Copy for poly_rectangle_request {}
+impl Clone for poly_rectangle_request {
+    fn clone(&self) -> poly_rectangle_request { *self }
+}
 
 
+#[repr(C)]
 pub struct poly_arc_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -2020,8 +2758,13 @@ pub struct poly_arc_request {
      pub gc :             gcontext
 }
 
+impl Copy for poly_arc_request {}
+impl Clone for poly_arc_request {
+    fn clone(&self) -> poly_arc_request { *self }
+}
 
 
+#[repr(C)]
 pub struct fill_poly_request {
      pub major_opcode :      u8,
      pub pad0 :              u8,
@@ -2030,11 +2773,16 @@ pub struct fill_poly_request {
      pub gc :                gcontext,
      pub shape :             u8,
      pub coordinate_mode :   u8,
-     pub pad1 :              [u8,..2]
+     pub pad1 :              [u8; 2]
+}
+
+impl Copy for fill_poly_request {}
+impl Clone for fill_poly_request {
+    fn clone(&self) -> fill_poly_request { *self }
 }
 
 
-
+#[repr(C)]
 pub struct poly_fill_rectangle_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -2043,8 +2791,13 @@ pub struct poly_fill_rectangle_request {
      pub gc :             gcontext
 }
 
+impl Copy for poly_fill_rectangle_request {}
+impl Clone for poly_fill_rectangle_request {
+    fn clone(&self) -> poly_fill_rectangle_request { *self }
+}
 
 
+#[repr(C)]
 pub struct poly_fill_arc_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -2053,8 +2806,13 @@ pub struct poly_fill_arc_request {
      pub gc :             gcontext
 }
 
+impl Copy for poly_fill_arc_request {}
+impl Clone for poly_fill_arc_request {
+    fn clone(&self) -> poly_fill_arc_request { *self }
+}
 
 
+#[repr(C)]
 pub struct put_image_request {
      pub major_opcode :   u8,
      pub format :         u8,
@@ -2067,15 +2825,22 @@ pub struct put_image_request {
      pub dst_y :          i16,
      pub left_pad :       u8,
      pub depth :          u8,
-     pub pad0 :           [u8,..2]
+     pub pad0 :           [u8; 2]
 }
 
+impl Copy for put_image_request {}
+impl Clone for put_image_request {
+    fn clone(&self) -> put_image_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_image_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_image_request {
      pub major_opcode :   u8,
      pub format :         u8,
@@ -2088,18 +2853,28 @@ pub struct get_image_request {
      pub plane_mask :     u32
 }
 
+impl Copy for get_image_request {}
+impl Clone for get_image_request {
+    fn clone(&self) -> get_image_request { *self }
+}
 
+#[repr(C)]
 pub struct get_image_reply {
      pub response_type :   u8,
      pub depth :           u8,
      pub sequence :        u16,
      pub length :          u32,
      pub visual :          visualid,
-     pub pad0 :            [u8,..20]
+     pub pad0 :            [u8; 20]
+}
+
+impl Copy for get_image_reply {}
+impl Clone for get_image_reply {
+    fn clone(&self) -> get_image_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct poly_text_8_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -2110,8 +2885,13 @@ pub struct poly_text_8_request {
      pub y :              i16
 }
 
+impl Copy for poly_text_8_request {}
+impl Clone for poly_text_8_request {
+    fn clone(&self) -> poly_text_8_request { *self }
+}
 
 
+#[repr(C)]
 pub struct poly_text_16_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -2122,8 +2902,13 @@ pub struct poly_text_16_request {
      pub y :              i16
 }
 
+impl Copy for poly_text_16_request {}
+impl Clone for poly_text_16_request {
+    fn clone(&self) -> poly_text_16_request { *self }
+}
 
 
+#[repr(C)]
 pub struct image_text_8_request {
      pub major_opcode :   u8,
      pub string_len :     u8,
@@ -2134,8 +2919,13 @@ pub struct image_text_8_request {
      pub y :              i16
 }
 
+impl Copy for image_text_8_request {}
+impl Clone for image_text_8_request {
+    fn clone(&self) -> image_text_8_request { *self }
+}
 
 
+#[repr(C)]
 pub struct image_text_16_request {
      pub major_opcode :   u8,
      pub string_len :     u8,
@@ -2146,8 +2936,13 @@ pub struct image_text_16_request {
      pub y :              i16
 }
 
+impl Copy for image_text_16_request {}
+impl Clone for image_text_16_request {
+    fn clone(&self) -> image_text_16_request { *self }
+}
 
 
+#[repr(C)]
 pub struct create_colormap_request {
      pub major_opcode :   u8,
      pub alloc :          u8,
@@ -2157,8 +2952,13 @@ pub struct create_colormap_request {
      pub visual :         visualid
 }
 
+impl Copy for create_colormap_request {}
+impl Clone for create_colormap_request {
+    fn clone(&self) -> create_colormap_request { *self }
+}
 
 
+#[repr(C)]
 pub struct free_colormap_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -2166,8 +2966,13 @@ pub struct free_colormap_request {
      pub cmap :           colormap
 }
 
+impl Copy for free_colormap_request {}
+impl Clone for free_colormap_request {
+    fn clone(&self) -> free_colormap_request { *self }
+}
 
 
+#[repr(C)]
 pub struct copy_colormap_and_free_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -2176,8 +2981,13 @@ pub struct copy_colormap_and_free_request {
      pub src_cmap :       colormap
 }
 
+impl Copy for copy_colormap_and_free_request {}
+impl Clone for copy_colormap_and_free_request {
+    fn clone(&self) -> copy_colormap_and_free_request { *self }
+}
 
 
+#[repr(C)]
 pub struct install_colormap_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -2185,8 +2995,13 @@ pub struct install_colormap_request {
      pub cmap :           colormap
 }
 
+impl Copy for install_colormap_request {}
+impl Clone for install_colormap_request {
+    fn clone(&self) -> install_colormap_request { *self }
+}
 
 
+#[repr(C)]
 pub struct uninstall_colormap_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -2194,12 +3009,19 @@ pub struct uninstall_colormap_request {
      pub cmap :           colormap
 }
 
+impl Copy for uninstall_colormap_request {}
+impl Clone for uninstall_colormap_request {
+    fn clone(&self) -> uninstall_colormap_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct list_installed_colormaps_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct list_installed_colormaps_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -2207,22 +3029,34 @@ pub struct list_installed_colormaps_request {
      pub window :         window
 }
 
+impl Copy for list_installed_colormaps_request {}
+impl Clone for list_installed_colormaps_request {
+    fn clone(&self) -> list_installed_colormaps_request { *self }
+}
 
+#[repr(C)]
 pub struct list_installed_colormaps_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub cmaps_len :       u16,
-     pub pad1 :            [u8,..22]
+     pub pad1 :            [u8; 22]
 }
 
+impl Copy for list_installed_colormaps_reply {}
+impl Clone for list_installed_colormaps_reply {
+    fn clone(&self) -> list_installed_colormaps_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct alloc_color_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct alloc_color_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -2231,10 +3065,15 @@ pub struct alloc_color_request {
      pub red :            u16,
      pub green :          u16,
      pub blue :           u16,
-     pub pad1 :           [u8,..2]
+     pub pad1 :           [u8; 2]
 }
 
+impl Copy for alloc_color_request {}
+impl Clone for alloc_color_request {
+    fn clone(&self) -> alloc_color_request { *self }
+}
 
+#[repr(C)]
 pub struct alloc_color_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -2243,26 +3082,38 @@ pub struct alloc_color_reply {
      pub red :             u16,
      pub green :           u16,
      pub blue :            u16,
-     pub pad1 :            [u8,..2],
+     pub pad1 :            [u8; 2],
      pub pixel :           u32
 }
 
+impl Copy for alloc_color_reply {}
+impl Clone for alloc_color_reply {
+    fn clone(&self) -> alloc_color_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct alloc_named_color_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct alloc_named_color_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
      pub cmap :           colormap,
      pub name_len :       u16,
-     pub pad1 :           [u8,..2]
+     pub pad1 :           [u8; 2]
 }
 
+impl Copy for alloc_named_color_request {}
+impl Clone for alloc_named_color_request {
+    fn clone(&self) -> alloc_named_color_request { *self }
+}
 
+#[repr(C)]
 pub struct alloc_named_color_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -2277,12 +3128,19 @@ pub struct alloc_named_color_reply {
      pub visual_blue :     u16
 }
 
+impl Copy for alloc_named_color_reply {}
+impl Clone for alloc_named_color_reply {
+    fn clone(&self) -> alloc_named_color_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct alloc_color_cells_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct alloc_color_cells_request {
      pub major_opcode :   u8,
      pub contiguous :     u8,
@@ -2292,7 +3150,12 @@ pub struct alloc_color_cells_request {
      pub planes :         u16
 }
 
+impl Copy for alloc_color_cells_request {}
+impl Clone for alloc_color_cells_request {
+    fn clone(&self) -> alloc_color_cells_request { *self }
+}
 
+#[repr(C)]
 pub struct alloc_color_cells_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -2300,15 +3163,22 @@ pub struct alloc_color_cells_reply {
      pub length :          u32,
      pub pixels_len :      u16,
      pub masks_len :       u16,
-     pub pad1 :            [u8,..20]
+     pub pad1 :            [u8; 20]
 }
 
+impl Copy for alloc_color_cells_reply {}
+impl Clone for alloc_color_cells_reply {
+    fn clone(&self) -> alloc_color_cells_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct alloc_color_planes_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct alloc_color_planes_request {
      pub major_opcode :   u8,
      pub contiguous :     u8,
@@ -2320,22 +3190,32 @@ pub struct alloc_color_planes_request {
      pub blues :          u16
 }
 
+impl Copy for alloc_color_planes_request {}
+impl Clone for alloc_color_planes_request {
+    fn clone(&self) -> alloc_color_planes_request { *self }
+}
 
+#[repr(C)]
 pub struct alloc_color_planes_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub pixels_len :      u16,
-     pub pad1 :            [u8,..2],
+     pub pad1 :            [u8; 2],
      pub red_mask :        u32,
      pub green_mask :      u32,
      pub blue_mask :       u32,
-     pub pad2 :            [u8,..8]
+     pub pad2 :            [u8; 8]
+}
+
+impl Copy for alloc_color_planes_reply {}
+impl Clone for alloc_color_planes_reply {
+    fn clone(&self) -> alloc_color_planes_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct free_colors_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -2344,7 +3224,12 @@ pub struct free_colors_request {
      pub plane_mask :     u32
 }
 
+impl Copy for free_colors_request {}
+impl Clone for free_colors_request {
+    fn clone(&self) -> free_colors_request { *self }
+}
 
+#[repr(C)]
 pub struct coloritem {
      pub pixel :   u32,
      pub red :     u16,
@@ -2354,9 +3239,14 @@ pub struct coloritem {
      pub pad0 :    u8
 }
 
+impl Copy for coloritem {}
+impl Clone for coloritem {
+    fn clone(&self) -> coloritem { *self }
+}
 /**
  * @brief coloritem_iterator
  **/
+#[repr(C)]
 pub struct coloritem_iterator {
     pub data : *mut coloritem,
     pub rem  : c_int,
@@ -2365,6 +3255,7 @@ pub struct coloritem_iterator {
 
 
 
+#[repr(C)]
 pub struct store_colors_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -2372,8 +3263,13 @@ pub struct store_colors_request {
      pub cmap :           colormap
 }
 
+impl Copy for store_colors_request {}
+impl Clone for store_colors_request {
+    fn clone(&self) -> store_colors_request { *self }
+}
 
 
+#[repr(C)]
 pub struct store_named_color_request {
      pub major_opcode :   u8,
      pub flags :          u8,
@@ -2381,20 +3277,30 @@ pub struct store_named_color_request {
      pub cmap :           colormap,
      pub pixel :          u32,
      pub name_len :       u16,
-     pub pad0 :           [u8,..2]
+     pub pad0 :           [u8; 2]
 }
 
+impl Copy for store_named_color_request {}
+impl Clone for store_named_color_request {
+    fn clone(&self) -> store_named_color_request { *self }
+}
 
+#[repr(C)]
 pub struct rgb {
      pub red :     u16,
      pub green :   u16,
      pub blue :    u16,
-     pub pad0 :    [u8,..2]
+     pub pad0 :    [u8; 2]
 }
 
+impl Copy for rgb {}
+impl Clone for rgb {
+    fn clone(&self) -> rgb { *self }
+}
 /**
  * @brief rgb_iterator
  **/
+#[repr(C)]
 pub struct rgb_iterator {
     pub data : *mut rgb,
     pub rem  : c_int,
@@ -2402,11 +3308,14 @@ pub struct rgb_iterator {
 }
 
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_colors_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_colors_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -2414,32 +3323,49 @@ pub struct query_colors_request {
      pub cmap :           colormap
 }
 
+impl Copy for query_colors_request {}
+impl Clone for query_colors_request {
+    fn clone(&self) -> query_colors_request { *self }
+}
 
+#[repr(C)]
 pub struct query_colors_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub colors_len :      u16,
-     pub pad1 :            [u8,..22]
+     pub pad1 :            [u8; 22]
 }
 
+impl Copy for query_colors_reply {}
+impl Clone for query_colors_reply {
+    fn clone(&self) -> query_colors_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct lookup_color_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct lookup_color_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
      pub cmap :           colormap,
      pub name_len :       u16,
-     pub pad1 :           [u8,..2]
+     pub pad1 :           [u8; 2]
 }
 
+impl Copy for lookup_color_request {}
+impl Clone for lookup_color_request {
+    fn clone(&self) -> lookup_color_request { *self }
+}
 
+#[repr(C)]
 pub struct lookup_color_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -2453,8 +3379,13 @@ pub struct lookup_color_reply {
      pub visual_blue :     u16
 }
 
+impl Copy for lookup_color_reply {}
+impl Clone for lookup_color_reply {
+    fn clone(&self) -> lookup_color_reply { *self }
+}
 
 
+#[repr(C)]
 pub struct create_cursor_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -2472,8 +3403,13 @@ pub struct create_cursor_request {
      pub y :              u16
 }
 
+impl Copy for create_cursor_request {}
+impl Clone for create_cursor_request {
+    fn clone(&self) -> create_cursor_request { *self }
+}
 
 
+#[repr(C)]
 pub struct create_glyph_cursor_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -2491,8 +3427,13 @@ pub struct create_glyph_cursor_request {
      pub back_blue :      u16
 }
 
+impl Copy for create_glyph_cursor_request {}
+impl Clone for create_glyph_cursor_request {
+    fn clone(&self) -> create_glyph_cursor_request { *self }
+}
 
 
+#[repr(C)]
 pub struct free_cursor_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -2500,8 +3441,13 @@ pub struct free_cursor_request {
      pub cursor :         cursor
 }
 
+impl Copy for free_cursor_request {}
+impl Clone for free_cursor_request {
+    fn clone(&self) -> free_cursor_request { *self }
+}
 
 
+#[repr(C)]
 pub struct recolor_cursor_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -2515,12 +3461,19 @@ pub struct recolor_cursor_request {
      pub back_blue :      u16
 }
 
+impl Copy for recolor_cursor_request {}
+impl Clone for recolor_cursor_request {
+    fn clone(&self) -> recolor_cursor_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_best_size_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_best_size_request {
      pub major_opcode :   u8,
      pub class :          u8,
@@ -2530,7 +3483,12 @@ pub struct query_best_size_request {
      pub height :         u16
 }
 
+impl Copy for query_best_size_request {}
+impl Clone for query_best_size_request {
+    fn clone(&self) -> query_best_size_request { *self }
+}
 
+#[repr(C)]
 pub struct query_best_size_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -2540,21 +3498,33 @@ pub struct query_best_size_reply {
      pub height :          u16
 }
 
+impl Copy for query_best_size_reply {}
+impl Clone for query_best_size_reply {
+    fn clone(&self) -> query_best_size_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_extension_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_extension_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16,
      pub name_len :       u16,
-     pub pad1 :           [u8,..2]
+     pub pad1 :           [u8; 2]
 }
 
+impl Copy for query_extension_request {}
+impl Clone for query_extension_request {
+    fn clone(&self) -> query_extension_request { *self }
+}
 
+#[repr(C)]
 pub struct query_extension_reply {
      pub response_type :   u8,
      pub pad0 :            u8,
@@ -2566,44 +3536,68 @@ pub struct query_extension_reply {
      pub first_error :     u8
 }
 
+impl Copy for query_extension_reply {}
+impl Clone for query_extension_reply {
+    fn clone(&self) -> query_extension_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct list_extensions_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct list_extensions_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16
 }
 
+impl Copy for list_extensions_request {}
+impl Clone for list_extensions_request {
+    fn clone(&self) -> list_extensions_request { *self }
+}
 
+#[repr(C)]
 pub struct list_extensions_reply {
      pub response_type :   u8,
      pub names_len :       u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad0 :            [u8,..24]
+     pub pad0 :            [u8; 24]
+}
+
+impl Copy for list_extensions_reply {}
+impl Clone for list_extensions_reply {
+    fn clone(&self) -> list_extensions_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct change_keyboard_mapping_request {
      pub major_opcode :          u8,
      pub keycode_count :         u8,
      pub length :                u16,
      pub first_keycode :         keycode,
      pub keysyms_per_keycode :   u8,
-     pub pad0 :                  [u8,..2]
+     pub pad0 :                  [u8; 2]
 }
 
+impl Copy for change_keyboard_mapping_request {}
+impl Clone for change_keyboard_mapping_request {
+    fn clone(&self) -> change_keyboard_mapping_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_keyboard_mapping_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_keyboard_mapping_request {
      pub major_opcode :    u8,
      pub pad0 :            u8,
@@ -2612,17 +3606,27 @@ pub struct get_keyboard_mapping_request {
      pub count :           u8
 }
 
+impl Copy for get_keyboard_mapping_request {}
+impl Clone for get_keyboard_mapping_request {
+    fn clone(&self) -> get_keyboard_mapping_request { *self }
+}
 
+#[repr(C)]
 pub struct get_keyboard_mapping_reply {
      pub response_type :         u8,
      pub keysyms_per_keycode :   u8,
      pub sequence :              u16,
      pub length :                u32,
-     pub pad0 :                  [u8,..24]
+     pub pad0 :                  [u8; 24]
+}
+
+impl Copy for get_keyboard_mapping_reply {}
+impl Clone for get_keyboard_mapping_reply {
+    fn clone(&self) -> get_keyboard_mapping_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct change_keyboard_control_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -2630,19 +3634,31 @@ pub struct change_keyboard_control_request {
      pub value_mask :     u32
 }
 
+impl Copy for change_keyboard_control_request {}
+impl Clone for change_keyboard_control_request {
+    fn clone(&self) -> change_keyboard_control_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_keyboard_control_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_keyboard_control_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16
 }
 
+impl Copy for get_keyboard_control_request {}
+impl Clone for get_keyboard_control_request {
+    fn clone(&self) -> get_keyboard_control_request { *self }
+}
 
+#[repr(C)]
 pub struct get_keyboard_control_reply {
      pub response_type :        u8,
      pub global_auto_repeat :   u8,
@@ -2653,20 +3669,30 @@ pub struct get_keyboard_control_reply {
      pub bell_percent :         u8,
      pub bell_pitch :           u16,
      pub bell_duration :        u16,
-     pub pad0 :                 [u8,..2],
-     pub auto_repeats :         [u8,..32]
+     pub pad0 :                 [u8; 2],
+     pub auto_repeats :         [u8; 32]
+}
+
+impl Copy for get_keyboard_control_reply {}
+impl Clone for get_keyboard_control_reply {
+    fn clone(&self) -> get_keyboard_control_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct bell_request {
      pub major_opcode :   u8,
      pub percent :        i8,
      pub length :         u16
 }
 
+impl Copy for bell_request {}
+impl Clone for bell_request {
+    fn clone(&self) -> bell_request { *self }
+}
 
 
+#[repr(C)]
 pub struct change_pointer_control_request {
      pub major_opcode :               u8,
      pub pad0 :                       u8,
@@ -2678,19 +3704,31 @@ pub struct change_pointer_control_request {
      pub do_threshold :               u8
 }
 
+impl Copy for change_pointer_control_request {}
+impl Clone for change_pointer_control_request {
+    fn clone(&self) -> change_pointer_control_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_pointer_control_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_pointer_control_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16
 }
 
+impl Copy for get_pointer_control_request {}
+impl Clone for get_pointer_control_request {
+    fn clone(&self) -> get_pointer_control_request { *self }
+}
 
+#[repr(C)]
 pub struct get_pointer_control_reply {
      pub response_type :              u8,
      pub pad0 :                       u8,
@@ -2699,11 +3737,16 @@ pub struct get_pointer_control_reply {
      pub acceleration_numerator :     u16,
      pub acceleration_denominator :   u16,
      pub threshold :                  u16,
-     pub pad1 :                       [u8,..18]
+     pub pad1 :                       [u8; 18]
+}
+
+impl Copy for get_pointer_control_reply {}
+impl Clone for get_pointer_control_reply {
+    fn clone(&self) -> get_pointer_control_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct set_screen_saver_request {
      pub major_opcode :      u8,
      pub pad0 :              u8,
@@ -2714,19 +3757,31 @@ pub struct set_screen_saver_request {
      pub allow_exposures :   u8
 }
 
+impl Copy for set_screen_saver_request {}
+impl Clone for set_screen_saver_request {
+    fn clone(&self) -> set_screen_saver_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_screen_saver_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_screen_saver_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16
 }
 
+impl Copy for get_screen_saver_request {}
+impl Clone for get_screen_saver_request {
+    fn clone(&self) -> get_screen_saver_request { *self }
+}
 
+#[repr(C)]
 pub struct get_screen_saver_reply {
      pub response_type :     u8,
      pub pad0 :              u8,
@@ -2736,11 +3791,16 @@ pub struct get_screen_saver_reply {
      pub interval :          u16,
      pub prefer_blanking :   u8,
      pub allow_exposures :   u8,
-     pub pad1 :              [u8,..18]
+     pub pad1 :              [u8; 18]
+}
+
+impl Copy for get_screen_saver_reply {}
+impl Clone for get_screen_saver_reply {
+    fn clone(&self) -> get_screen_saver_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct change_hosts_request {
      pub major_opcode :   u8,
      pub mode :           u8,
@@ -2750,16 +3810,26 @@ pub struct change_hosts_request {
      pub address_len :    u16
 }
 
+impl Copy for change_hosts_request {}
+impl Clone for change_hosts_request {
+    fn clone(&self) -> change_hosts_request { *self }
+}
 
+#[repr(C)]
 pub struct host {
      pub family :        u8,
      pub pad0 :          u8,
      pub address_len :   u16
 }
 
+impl Copy for host {}
+impl Clone for host {
+    fn clone(&self) -> host { *self }
+}
 /**
  * @brief host_iterator
  **/
+#[repr(C)]
 pub struct host_iterator {
     pub data : *mut host,
     pub rem  : c_int,
@@ -2767,45 +3837,68 @@ pub struct host_iterator {
 }
 
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct list_hosts_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct list_hosts_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16
 }
 
+impl Copy for list_hosts_request {}
+impl Clone for list_hosts_request {
+    fn clone(&self) -> list_hosts_request { *self }
+}
 
+#[repr(C)]
 pub struct list_hosts_reply {
      pub response_type :   u8,
      pub mode :            u8,
      pub sequence :        u16,
      pub length :          u32,
      pub hosts_len :       u16,
-     pub pad0 :            [u8,..22]
+     pub pad0 :            [u8; 22]
+}
+
+impl Copy for list_hosts_reply {}
+impl Clone for list_hosts_reply {
+    fn clone(&self) -> list_hosts_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct set_access_control_request {
      pub major_opcode :   u8,
      pub mode :           u8,
      pub length :         u16
 }
 
+impl Copy for set_access_control_request {}
+impl Clone for set_access_control_request {
+    fn clone(&self) -> set_access_control_request { *self }
+}
 
 
+#[repr(C)]
 pub struct set_close_down_mode_request {
      pub major_opcode :   u8,
      pub mode :           u8,
      pub length :         u16
 }
 
+impl Copy for set_close_down_mode_request {}
+impl Clone for set_close_down_mode_request {
+    fn clone(&self) -> set_close_down_mode_request { *self }
+}
 
 
+#[repr(C)]
 pub struct kill_client_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -2813,8 +3906,13 @@ pub struct kill_client_request {
      pub resource :       u32
 }
 
+impl Copy for kill_client_request {}
+impl Clone for kill_client_request {
+    fn clone(&self) -> kill_client_request { *self }
+}
 
 
+#[repr(C)]
 pub struct rotate_properties_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
@@ -2824,27 +3922,44 @@ pub struct rotate_properties_request {
      pub delta :          i16
 }
 
+impl Copy for rotate_properties_request {}
+impl Clone for rotate_properties_request {
+    fn clone(&self) -> rotate_properties_request { *self }
+}
 
 
+#[repr(C)]
 pub struct force_screen_saver_request {
      pub major_opcode :   u8,
      pub mode :           u8,
      pub length :         u16
 }
 
+impl Copy for force_screen_saver_request {}
+impl Clone for force_screen_saver_request {
+    fn clone(&self) -> force_screen_saver_request { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct set_pointer_mapping_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct set_pointer_mapping_request {
      pub major_opcode :   u8,
      pub map_len :        u8,
      pub length :         u16
 }
 
+impl Copy for set_pointer_mapping_request {}
+impl Clone for set_pointer_mapping_request {
+    fn clone(&self) -> set_pointer_mapping_request { *self }
+}
 
+#[repr(C)]
 pub struct set_pointer_mapping_reply {
      pub response_type :   u8,
      pub status :          u8,
@@ -2852,40 +3967,64 @@ pub struct set_pointer_mapping_reply {
      pub length :          u32
 }
 
+impl Copy for set_pointer_mapping_reply {}
+impl Clone for set_pointer_mapping_reply {
+    fn clone(&self) -> set_pointer_mapping_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_pointer_mapping_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_pointer_mapping_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16
 }
 
+impl Copy for get_pointer_mapping_request {}
+impl Clone for get_pointer_mapping_request {
+    fn clone(&self) -> get_pointer_mapping_request { *self }
+}
 
+#[repr(C)]
 pub struct get_pointer_mapping_reply {
      pub response_type :   u8,
      pub map_len :         u8,
      pub sequence :        u16,
      pub length :          u32,
-     pub pad0 :            [u8,..24]
+     pub pad0 :            [u8; 24]
 }
 
+impl Copy for get_pointer_mapping_reply {}
+impl Clone for get_pointer_mapping_reply {
+    fn clone(&self) -> get_pointer_mapping_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct set_modifier_mapping_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct set_modifier_mapping_request {
      pub major_opcode :            u8,
      pub keycodes_per_modifier :   u8,
      pub length :                  u16
 }
 
+impl Copy for set_modifier_mapping_request {}
+impl Clone for set_modifier_mapping_request {
+    fn clone(&self) -> set_modifier_mapping_request { *self }
+}
 
+#[repr(C)]
 pub struct set_modifier_mapping_reply {
      pub response_type :   u8,
      pub status :          u8,
@@ -2893,35 +4032,56 @@ pub struct set_modifier_mapping_reply {
      pub length :          u32
 }
 
+impl Copy for set_modifier_mapping_reply {}
+impl Clone for set_modifier_mapping_reply {
+    fn clone(&self) -> set_modifier_mapping_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct get_modifier_mapping_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct get_modifier_mapping_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16
 }
 
+impl Copy for get_modifier_mapping_request {}
+impl Clone for get_modifier_mapping_request {
+    fn clone(&self) -> get_modifier_mapping_request { *self }
+}
 
+#[repr(C)]
 pub struct get_modifier_mapping_reply {
      pub response_type :           u8,
      pub keycodes_per_modifier :   u8,
      pub sequence :                u16,
      pub length :                  u32,
-     pub pad0 :                    [u8,..24]
+     pub pad0 :                    [u8; 24]
+}
+
+impl Copy for get_modifier_mapping_reply {}
+impl Clone for get_modifier_mapping_reply {
+    fn clone(&self) -> get_modifier_mapping_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct no_operation_request {
      pub major_opcode :   u8,
      pub pad0 :           u8,
      pub length :         u16
 }
 
+impl Copy for no_operation_request {}
+impl Clone for no_operation_request {
+    fn clone(&self) -> no_operation_request { *self }
+}
 extern "C" {
 
 /**
@@ -3574,29 +4734,6 @@ pub fn xcb_setup_pixmap_formats_iterator (R : *mut setup) -> format_iterator;
 pub fn xcb_setup_roots_length (R : *mut setup) -> c_int;
 
 pub fn xcb_setup_roots_iterator (R : *mut setup) -> screen_iterator;
-
-/**
- * Get the next element of the iterator
- * @param i Pointer to a setup_iterator
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(setup)
- *
- *
- */
-pub fn xcb_setup_next (i:*mut setup_iterator) -> c_void;
-
-/**
- * Return the iterator pointing to the last element
- * @param i An setup_iterator
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
-pub fn xcb_setup_end (i:setup_iterator) -> ffi::base::generic_iterator;
 
 /**
  * Get the next element of the iterator

@@ -175,7 +175,7 @@ impl QueryVersionReply {
   }
 
 }
-impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_query_version_reply, QueryVersionReply, xcb_xfixes_query_version_reply)
+impl_reply_cookie!(QueryVersionCookie<'s>, mk_reply_query_version_reply, QueryVersionReply, xcb_xfixes_query_version_reply);
 
 pub fn ChangeSaveSetChecked<'r> (c : &'r Connection,
                              mode : u8,
@@ -238,7 +238,7 @@ impl SelectionNotifyEvent {
          timestamp : xproto::Timestamp,
          selection_timestamp : xproto::Timestamp) -> SelectionNotifyEvent {
     unsafe {
-      let raw = malloc(32u as size_t) as *mut selection_notify_event;
+      let raw = malloc(32 as size_t) as *mut selection_notify_event;
       (*raw).subtype = subtype;
       (*raw).window = window;
       (*raw).owner = owner;
@@ -301,7 +301,7 @@ impl CursorNotifyEvent {
          timestamp : xproto::Timestamp,
          name : xproto::Atom) -> CursorNotifyEvent {
     unsafe {
-      let raw = malloc(32u as size_t) as *mut cursor_notify_event;
+      let raw = malloc(32 as size_t) as *mut cursor_notify_event;
       (*raw).subtype = subtype;
       (*raw).window = window;
       (*raw).cursor_serial = cursor_serial;
@@ -376,19 +376,20 @@ impl GetCursorImageReply {
   }
 
 }
-impl_reply_cookie!(GetCursorImageCookie<'s>, mk_reply_get_cursor_image_reply, GetCursorImageReply, xcb_xfixes_get_cursor_image_reply)
+impl_reply_cookie!(GetCursorImageCookie<'s>, mk_reply_get_cursor_image_reply, GetCursorImageReply, xcb_xfixes_get_cursor_image_reply);
 
 pub type Region = region;
 
 
-impl<'s, Region> Iterator<&'s Region> for RegionIterator {
-    fn next(&mut self) -> Option<&'s Region> {
+impl Iterator for RegionIterator {
+    type Item = Region;
+    fn next(&mut self) -> Option<Region> {
         if self.rem == 0 { return None; }
         unsafe {
-            let iter : *mut region_iterator = mem::transmute(self);
+            let iter: *mut region_iterator = mem::transmute(self);
             let data = (*iter).data;
             xcb_xfixes_region_next(iter);
-            Some(mem::transmute(data))
+            Some(mem::transmute(*data))
         }
     }
 }
@@ -733,7 +734,7 @@ impl FetchRegionReply {
   }
 
 }
-impl_reply_cookie!(FetchRegionCookie<'s>, mk_reply_fetch_region_reply, FetchRegionReply, xcb_xfixes_fetch_region_reply)
+impl_reply_cookie!(FetchRegionCookie<'s>, mk_reply_fetch_region_reply, FetchRegionReply, xcb_xfixes_fetch_region_reply);
 
 pub fn SetGcClipRegionChecked<'r> (c : &'r Connection,
                                gc : xproto::Gcontext,
@@ -880,7 +881,7 @@ impl GetCursorNameReply {
   }
 
 }
-impl_reply_cookie!(GetCursorNameCookie<'s>, mk_reply_get_cursor_name_reply, GetCursorNameReply, xcb_xfixes_get_cursor_name_reply)
+impl_reply_cookie!(GetCursorNameCookie<'s>, mk_reply_get_cursor_name_reply, GetCursorNameReply, xcb_xfixes_get_cursor_name_reply);
 
 pub struct GetCursorImageAndNameReply { base:  base::Reply<get_cursor_image_and_name_reply> }
 fn mk_reply_get_cursor_image_and_name_reply(reply:*mut get_cursor_image_and_name_reply) -> GetCursorImageAndNameReply { GetCursorImageAndNameReply { base : base::mk_reply(reply) } }
@@ -935,7 +936,7 @@ impl GetCursorImageAndNameReply {
   }
 
 }
-impl_reply_cookie!(GetCursorImageAndNameCookie<'s>, mk_reply_get_cursor_image_and_name_reply, GetCursorImageAndNameReply, xcb_xfixes_get_cursor_image_and_name_reply)
+impl_reply_cookie!(GetCursorImageAndNameCookie<'s>, mk_reply_get_cursor_image_and_name_reply, GetCursorImageAndNameReply, xcb_xfixes_get_cursor_image_and_name_reply);
 
 pub fn ChangeCursorChecked<'r> (c : &'r Connection,
                             source : xproto::Cursor,

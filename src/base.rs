@@ -39,7 +39,12 @@ use libc::{c_int,c_char,free};
 use std::option::Option;
 
 use std::{num,ptr,vec,str,mem};
-use std::num::*;
+use std::marker::PhantomData;
+// std::num::Zero is unstable in rustc 1.5 => remove impl copy
+// hereunder as soon as Zero gets stabilized (or replaced by something else)
+//use std::num::Zero;
+use std::cmp::Ordering;
+use std::ops::{BitAnd, BitOr};
 
 use xproto;
 
@@ -101,12 +106,12 @@ impl<'s> Connection {
     #[inline]
     pub fn get_setup(&self) -> xproto::Setup {
         unsafe {
+
             let setup = ffi::base::xcb_get_setup(self.c);
             if setup.is_null() {
-                fail!("NULL setup on connection")
-            } else {
-               xproto::Setup { base : Struct { strct : *(setup as *mut ffi::xproto::setup) } }
+                panic!("NULL setup on connection")
             }
+            mem::transmute(setup)
         }
     }
 
@@ -142,21 +147,21 @@ impl<'s> Connection {
     }
 
     #[inline]
-    pub fn connect() -> (Connection, int) {
-        let mut screen : c_int = 0;
+    pub fn connect() -> (Connection, i32) {
+        let mut screen_num : c_int = 0;
         unsafe {
-            let conn = ffi::base::xcb_connect(ptr::mut_null(), &mut screen);
+            let conn = ffi::base::xcb_connect(ptr::null_mut() as *mut u8, &mut screen_num);
             if conn.is_null() {
-                fail!("Couldn't connect")
+                panic!("Couldn't connect")
             } else {
                 ffi::base::xcb_prefetch_maximum_request_length(conn);
-                (Connection {c:conn}, screen as int)
+                (Connection {c:conn}, screen_num as i32)
             }
         }
     }
 
     #[inline]
-    pub fn connect_to_display(display:&str) -> Option<(Connection, int)> {
+    pub fn connect_to_display(display:&str) -> Option<(Connection, i32)> {
         let mut screen : c_int = 0;
         unsafe {
             let conn = {
@@ -167,13 +172,13 @@ impl<'s> Connection {
                 None
             } else {
                 ffi::base::xcb_prefetch_maximum_request_length(conn);
-                Some((Connection {c:conn}, screen as int))
+                Some((Connection {c:conn}, screen as i32))
             }
         }
     }
 
     #[inline]
-    pub fn connect_with_auth(display:&str, auth_info: &AuthInfo) -> Option<(Connection, int)> {
+    pub fn connect_with_auth(display:&str, auth_info: &AuthInfo) -> Option<(Connection, i32)> {
         let mut screen : c_int = 0;
         unsafe {
             let conn = {
@@ -185,14 +190,14 @@ impl<'s> Connection {
                 None
             } else {
                 ffi::base::xcb_prefetch_maximum_request_length(conn);
-                Some((Connection {c:conn}, screen as int))
+                Some((Connection {c:conn}, screen as i32))
             }
         }
     }
 
     pub unsafe fn from_raw_conn(conn:*mut connection) -> Connection {
         if conn.is_null() {
-            fail!("Cannot construct from null pointer");
+            panic!("Cannot construct from null pointer");
         }
 
         Connection {c:conn}
@@ -212,7 +217,7 @@ pub struct Event<T> {
    pub event:*mut T
 }
 
-#[unsafe_destructor]
+
 impl<T> Drop for Event<T> {
     fn drop(&mut self) {
         use libc::c_void;
@@ -230,7 +235,6 @@ pub fn mk_error<T>(err:*mut T) -> Error<T> {
     Error {error:err}
 }
 
-#[unsafe_destructor]
 impl<T> Drop for Error<T> {
     fn drop(&mut self) {
         use libc::c_void;
@@ -247,7 +251,13 @@ pub struct Struct<T> {
     pub strct: T
 }
 
-pub struct Cookie<'s, T> {
+pub struct StructPtr<'a, T: 'a> {
+    pub ptr: *mut T,
+    phantom: PhantomData<&'a T>
+}
+
+
+pub struct Cookie<'s, T: Copy> {
     pub cookie: T,
     pub conn: &'s Connection,
     pub checked: bool
@@ -257,13 +267,15 @@ pub trait ReplyCookie<R> {
     fn get_reply(&self) -> Result<R, GenericError>;
 }
 
-impl<'s, T> Cookie<'s, T> {
+impl<'s, T: Copy> Cookie<'s, T> {
     pub fn request_check(&self) -> Option<GenericError> {
         unsafe {
-            // Crazy pointer dance to get the right bit
-            // of the struct
             let c : *mut void_cookie = mem::transmute(&self.cookie);
             let err = ffi::base::xcb_request_check(self.conn.c, *c);
+            //let err = ffi::base::xcb_request_check(
+            //    self.conn.c,
+            //    void_cookie { sequence: self.cookie.sequence }
+            //);
             if err.is_null() {
                 None
             } else {
@@ -281,7 +293,6 @@ pub fn mk_reply<T>(reply:*mut T) -> Reply<T> {
     Reply {reply:reply}
 }
 
-#[unsafe_destructor]
 impl<T> Drop for Reply<T> {
     fn drop(&mut self) {
         use libc::c_void;
@@ -301,7 +312,7 @@ pub struct VoidCookie<'s> { pub base : Cookie<'s, void_cookie> }
  * event is really the correct type.
  */
 #[inline(always)]
-pub fn cast_event<'r, T>(event : &'r GenericEvent) -> &'r mut T {
+pub fn cast_event<'r, T>(event : &'r mut GenericEvent) -> &'r mut T {
     // This isn't very safe... but other options incur yet more overhead
     // that I really don't want to.
     unsafe { mem::transmute(event) }
@@ -322,26 +333,52 @@ impl<T> EventUtil for Event<T> {
     }
 }
 
-pub fn pack_bitfield<T:Ord+Zero+NumCast+Copy,L:Copy>(bf : &mut Vec<(T,L)>) -> (T, Vec<L>) {    ;
+pub trait Zero {
+    fn zero() -> Self;
+}
+
+impl Zero for u8    { fn zero() -> u8    {0} }
+impl Zero for u16   { fn zero() -> u16   {0} }
+impl Zero for u32   { fn zero() -> u32   {0} }
+impl Zero for u64   { fn zero() -> u64   {0} }
+impl Zero for usize { fn zero() -> usize {0} }
+impl Zero for i8    { fn zero() -> i8    {0} }
+impl Zero for i16   { fn zero() -> i16   {0} }
+impl Zero for i32   { fn zero() -> i32   {0} }
+impl Zero for i64   { fn zero() -> i64   {0} }
+impl Zero for isize { fn zero() -> isize {0} }
+impl Zero for f32   { fn zero() -> f32   {0f32} }
+impl Zero for f64   { fn zero() -> f64   {0f64} }
+
+pub fn pack_bitfield<T, L>(bf : &mut Vec<(T,L)>) -> (T, Vec<L>)
+    where T: Ord + Zero + Copy + BitAnd<Output=T> + BitOr<Output=T>,
+          L: Copy {
 	bf.sort_by(|a,b| {
         let &(a, _) = a;
         let &(b, _) = b;
-        if a < b { Less } else if a > b { Greater } else { Equal }       
-        });
-    
-    let mut mask = 0u;
-    let mut list : Vec<L> = Vec::new();
+        if a < b {
+            Ordering::Less
+        }
+        else if a > b {
+            Ordering::Greater
+        }
+        else {
+            Ordering::Equal
+        }
+    });
+
+    let mut mask = T::zero();
+    let mut list: Vec<L> = Vec::new();
 
     for el in bf.iter() {
         let &(f, v) = el;
-        let fld= num::cast(f).unwrap();
-        if (mask & fld) > 0 {
+        if mask & f > T::zero() {
             continue;
         } else {
-            mask |= fld;
+            mask = mask|f;
             list.push(v);
         }
     }
 
-    (num::cast(mask).unwrap(), list)
+    (mask, list)
 }

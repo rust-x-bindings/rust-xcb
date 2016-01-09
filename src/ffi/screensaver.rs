@@ -14,21 +14,29 @@ use ffi::xproto;
 pub static SCREENSAVER_MAJOR_VERSION : c_uint = 1;
 pub static SCREENSAVER_MINOR_VERSION : c_uint = 1;
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_version_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_version_request {
      pub major_opcode :           u8,
      pub minor_opcode :           u8,
      pub length :                 u16,
      pub client_major_version :   u8,
      pub client_minor_version :   u8,
-     pub pad0 :                   [u8,..2]
+     pub pad0 :                   [u8; 2]
 }
 
+impl Copy for query_version_request {}
+impl Clone for query_version_request {
+    fn clone(&self) -> query_version_request { *self }
+}
 
+#[repr(C)]
 pub struct query_version_reply {
      pub response_type :          u8,
      pub pad0 :                   u8,
@@ -36,15 +44,22 @@ pub struct query_version_reply {
      pub length :                 u32,
      pub server_major_version :   u16,
      pub server_minor_version :   u16,
-     pub pad1 :                   [u8,..20]
+     pub pad1 :                   [u8; 20]
 }
 
+impl Copy for query_version_reply {}
+impl Clone for query_version_reply {
+    fn clone(&self) -> query_version_reply { *self }
+}
 
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct query_info_cookie {
     sequence : c_uint
 }
 
 
+#[repr(C)]
 pub struct query_info_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -52,7 +67,12 @@ pub struct query_info_request {
      pub drawable :       ffi::xproto::drawable
 }
 
+impl Copy for query_info_request {}
+impl Clone for query_info_request {
+    fn clone(&self) -> query_info_request { *self }
+}
 
+#[repr(C)]
 pub struct query_info_reply {
      pub response_type :         u8,
      pub state :                 u8,
@@ -63,11 +83,16 @@ pub struct query_info_reply {
      pub ms_since_user_input :   u32,
      pub event_mask :            u32,
      pub kind :                  u8,
-     pub pad0 :                  [u8,..7]
+     pub pad0 :                  [u8; 7]
+}
+
+impl Copy for query_info_reply {}
+impl Clone for query_info_reply {
+    fn clone(&self) -> query_info_reply { *self }
 }
 
 
-
+#[repr(C)]
 pub struct select_input_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -76,8 +101,13 @@ pub struct select_input_request {
      pub event_mask :     u32
 }
 
+impl Copy for select_input_request {}
+impl Clone for select_input_request {
+    fn clone(&self) -> select_input_request { *self }
+}
 
 
+#[repr(C)]
 pub struct set_attributes_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -94,8 +124,13 @@ pub struct set_attributes_request {
      pub value_mask :     u32
 }
 
+impl Copy for set_attributes_request {}
+impl Clone for set_attributes_request {
+    fn clone(&self) -> set_attributes_request { *self }
+}
 
 
+#[repr(C)]
 pub struct unset_attributes_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
@@ -103,18 +138,28 @@ pub struct unset_attributes_request {
      pub drawable :       ffi::xproto::drawable
 }
 
+impl Copy for unset_attributes_request {}
+impl Clone for unset_attributes_request {
+    fn clone(&self) -> unset_attributes_request { *self }
+}
 
 
+#[repr(C)]
 pub struct suspend_request {
      pub major_opcode :   u8,
      pub minor_opcode :   u8,
      pub length :         u16,
      pub suspend :        u8,
-     pub pad0 :           [u8,..3]
+     pub pad0 :           [u8; 3]
+}
+
+impl Copy for suspend_request {}
+impl Clone for suspend_request {
+    fn clone(&self) -> suspend_request { *self }
 }
 
 
-
+#[repr(C)]
 pub struct notify_event {
      pub response_type :     u8,
      pub code :              u8,
@@ -127,9 +172,13 @@ pub struct notify_event {
      pub window :            ffi::xproto::window,
      pub kind :              u8,
      pub forced :            u8,
-     pub pad1 :              [u8,..14]
+     pub pad1 :              [u8; 14]
 }
 
+impl Copy for notify_event {}
+impl Clone for notify_event {
+    fn clone(&self) -> notify_event { *self }
+}
 #[link(name="xcb-screensaver")]
 extern "C" {
 
@@ -139,7 +188,7 @@ extern "C" {
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_screensaver_query_version (c : *mut ffi::base::connection,
                                          client_major_version :  u8,
@@ -151,7 +200,7 @@ pub fn xcb_screensaver_query_version (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -167,7 +216,7 @@ pub fn xcb_screensaver_query_version_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_screensaver_query_version_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -184,7 +233,7 @@ pub fn xcb_screensaver_query_version_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_screensaver_query_info (c : *mut ffi::base::connection,
                                       drawable :  ffi::xproto::drawable) -> query_info_cookie;
@@ -195,7 +244,7 @@ pub fn xcb_screensaver_query_info (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will cause
  * a reply to be generated. Any returned error will be
  * placed in the event queue.
@@ -210,7 +259,7 @@ pub fn xcb_screensaver_query_info_unchecked (c : *mut ffi::base::connection,
  * @param e      The generic_error supplied
  *
  * Returns the reply of the request asked by
- * 
+ *
  * The parameter @p e supplied to this function must be NULL if
  * xcb_screensaver_query_info_unchecked(). is used.
  * Otherwise, it stores the error if any.
@@ -227,7 +276,7 @@ pub fn xcb_screensaver_query_info_reply (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -242,7 +291,7 @@ pub fn xcb_screensaver_select_input_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_screensaver_select_input (c : *mut ffi::base::connection,
                                         drawable :  ffi::xproto::drawable,
@@ -256,7 +305,7 @@ pub fn xcb_screensaver_set_attributes_sizeof (_buffer :  *mut c_void) -> c_int;
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -280,7 +329,7 @@ pub fn xcb_screensaver_set_attributes_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_screensaver_set_attributes (c : *mut ffi::base::connection,
                                           drawable :  ffi::xproto::drawable,
@@ -301,7 +350,7 @@ pub fn xcb_screensaver_set_attributes (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -315,7 +364,7 @@ pub fn xcb_screensaver_unset_attributes_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_screensaver_unset_attributes (c : *mut ffi::base::connection,
                                             drawable :  ffi::xproto::drawable) -> ffi::base::void_cookie;
@@ -326,7 +375,7 @@ pub fn xcb_screensaver_unset_attributes (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  * This form can be used only if the request will not cause
  * a reply to be generated. Any returned error will be
  * saved for handling by xcb_request_check().
@@ -340,7 +389,7 @@ pub fn xcb_screensaver_suspend_checked (c : *mut ffi::base::connection,
  * @return A cookie
  *
  * Delivers a request to the X server.
- * 
+ *
  */
 pub fn xcb_screensaver_suspend (c : *mut ffi::base::connection,
                                    suspend :  u8) -> ffi::base::void_cookie;
