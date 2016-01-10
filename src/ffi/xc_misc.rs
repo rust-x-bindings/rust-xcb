@@ -22,11 +22,11 @@ pub struct xcb_xc_misc_get_version_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xc_misc_get_version_request_t {
-     pub major_opcode :           u8,
-     pub minor_opcode :           u8,
-     pub length :                 u16,
-     pub client_major_version :   u16,
-     pub client_minor_version :   u16
+    pub major_opcode :           u8,
+    pub minor_opcode :           u8,
+    pub length :                 u16,
+    pub client_major_version :   u16,
+    pub client_minor_version :   u16
 }
 
 impl Copy for xcb_xc_misc_get_version_request_t {}
@@ -36,12 +36,12 @@ impl Clone for xcb_xc_misc_get_version_request_t {
 
 #[repr(C)]
 pub struct xcb_xc_misc_get_version_reply_t {
-     pub response_type :          u8,
-     pub pad0 :                   u8,
-     pub sequence :               u16,
-     pub length :                 u32,
-     pub server_major_version :   u16,
-     pub server_minor_version :   u16
+    pub response_type :          u8,
+    pub pad0 :                   u8,
+    pub sequence :               u16,
+    pub length :                 u32,
+    pub server_major_version :   u16,
+    pub server_minor_version :   u16
 }
 
 impl Copy for xcb_xc_misc_get_version_reply_t {}
@@ -58,9 +58,9 @@ pub struct xcb_xc_misc_get_xid_range_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xc_misc_get_xid_range_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_xc_misc_get_xid_range_request_t {}
@@ -70,12 +70,12 @@ impl Clone for xcb_xc_misc_get_xid_range_request_t {
 
 #[repr(C)]
 pub struct xcb_xc_misc_get_xid_range_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub start_id :        u32,
-     pub count :           u32
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub start_id :        u32,
+    pub count :           u32
 }
 
 impl Copy for xcb_xc_misc_get_xid_range_reply_t {}
@@ -92,10 +92,10 @@ pub struct xcb_xc_misc_get_xid_list_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xc_misc_get_xid_list_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub count :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub count :          u32
 }
 
 impl Copy for xcb_xc_misc_get_xid_list_request_t {}
@@ -105,12 +105,12 @@ impl Clone for xcb_xc_misc_get_xid_list_request_t {
 
 #[repr(C)]
 pub struct xcb_xc_misc_get_xid_list_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub ids_len :         u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub ids_len :         u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_xc_misc_get_xid_list_reply_t {}

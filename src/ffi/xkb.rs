@@ -68,14 +68,14 @@ pub struct xcb_xkb_id_spec_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_indicator_map_t {
-     pub flags :         u8,
-     pub whichGroups :   u8,
-     pub groups :        u8,
-     pub whichMods :     u8,
-     pub mods :          u8,
-     pub realMods :      u8,
-     pub vmods :         u16,
-     pub ctrls :         u32
+    pub flags :         u8,
+    pub whichGroups :   u8,
+    pub groups :        u8,
+    pub whichMods :     u8,
+    pub mods :          u8,
+    pub realMods :      u8,
+    pub vmods :         u16,
+    pub ctrls :         u32
 }
 
 impl Copy for xcb_xkb_indicator_map_t {}
@@ -92,9 +92,9 @@ pub struct xcb_xkb_indicator_map_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_mod_def_t {
-     pub mask :       u8,
-     pub realMods :   u8,
-     pub vmods :      u16
+    pub mask :       u8,
+    pub realMods :   u8,
+    pub vmods :      u16
 }
 
 impl Copy for xcb_xkb_mod_def_t {}
@@ -111,7 +111,7 @@ pub struct xcb_xkb_mod_def_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_key_name_t {
-     pub name :   [u8; 4]
+    pub name :   [u8; 4]
 }
 
 impl Copy for xcb_xkb_key_name_t {}
@@ -128,8 +128,8 @@ pub struct xcb_xkb_key_name_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_key_alias_t {
-     pub real :    [u8; 4],
-     pub alias :   [u8; 4]
+    pub real :    [u8; 4],
+    pub alias :   [u8; 4]
 }
 
 impl Copy for xcb_xkb_key_alias_t {}
@@ -146,7 +146,7 @@ pub struct xcb_xkb_key_alias_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_counted_string_8_t {
-     pub length :   u8
+    pub length :   u8
 }
 
 impl Copy for xcb_xkb_counted_string_8_t {}
@@ -163,8 +163,8 @@ pub struct xcb_xkb_counted_string_8_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_counted_string_16_t {
-     pub length :   u16,
-     pub pad0 :     u8
+    pub length :   u16,
+    pub pad0 :     u8
 }
 
 impl Copy for xcb_xkb_counted_string_16_t {}
@@ -181,12 +181,12 @@ pub struct xcb_xkb_counted_string_16_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_kt_map_entry_t {
-     pub active :       u8,
-     pub level :        u8,
-     pub mods_mask :    u8,
-     pub mods_mods :    u8,
-     pub mods_vmods :   u16,
-     pub pad0 :         [u8; 2]
+    pub active :       u8,
+    pub level :        u8,
+    pub mods_mask :    u8,
+    pub mods_mods :    u8,
+    pub mods_vmods :   u16,
+    pub pad0 :         [u8; 2]
 }
 
 impl Copy for xcb_xkb_kt_map_entry_t {}
@@ -203,13 +203,13 @@ pub struct xcb_xkb_kt_map_entry_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_key_type_t {
-     pub mods_mask :     u8,
-     pub mods_mods :     u8,
-     pub mods_vmods :    u16,
-     pub numLevels :     u8,
-     pub nMapEntries :   u8,
-     pub hasPreserve :   u8,
-     pub pad0 :          u8
+    pub mods_mask :     u8,
+    pub mods_mods :     u8,
+    pub mods_vmods :    u16,
+    pub numLevels :     u8,
+    pub nMapEntries :   u8,
+    pub hasPreserve :   u8,
+    pub pad0 :          u8
 }
 
 impl Copy for xcb_xkb_key_type_t {}
@@ -226,10 +226,10 @@ pub struct xcb_xkb_key_type_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_key_sym_map_t {
-     pub kt_index :    [u8; 4],
-     pub groupInfo :   u8,
-     pub width :       u8,
-     pub nSyms :       u16
+    pub kt_index :    [u8; 4],
+    pub groupInfo :   u8,
+    pub width :       u8,
+    pub nSyms :       u16
 }
 
 impl Copy for xcb_xkb_key_sym_map_t {}
@@ -246,8 +246,8 @@ pub struct xcb_xkb_key_sym_map_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_common_behavior_t {
-     pub type_ :   u8,
-     pub data :    u8
+    pub type_ :   u8,
+    pub data :    u8
 }
 
 impl Copy for xcb_xkb_common_behavior_t {}
@@ -264,8 +264,8 @@ pub struct xcb_xkb_common_behavior_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_default_behavior_t {
-     pub type_ :   u8,
-     pub pad0 :    u8
+    pub type_ :   u8,
+    pub pad0 :    u8
 }
 
 impl Copy for xcb_xkb_default_behavior_t {}
@@ -282,8 +282,8 @@ pub struct xcb_xkb_default_behavior_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_lock_behavior_t {
-     pub type_ :   u8,
-     pub pad0 :    u8
+    pub type_ :   u8,
+    pub pad0 :    u8
 }
 
 impl Copy for xcb_xkb_lock_behavior_t {}
@@ -300,8 +300,8 @@ pub struct xcb_xkb_lock_behavior_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_radio_group_behavior_t {
-     pub type_ :   u8,
-     pub group :   u8
+    pub type_ :   u8,
+    pub group :   u8
 }
 
 impl Copy for xcb_xkb_radio_group_behavior_t {}
@@ -318,8 +318,8 @@ pub struct xcb_xkb_radio_group_behavior_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_overlay_1_behavior_t {
-     pub type_ :   u8,
-     pub key :     ffi::xproto::xcb_keycode_t
+    pub type_ :   u8,
+    pub key :     ffi::xproto::xcb_keycode_t
 }
 
 impl Copy for xcb_xkb_overlay_1_behavior_t {}
@@ -336,8 +336,8 @@ pub struct xcb_xkb_overlay_1_behavior_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_overlay_2_behavior_t {
-     pub type_ :   u8,
-     pub key :     u8
+    pub type_ :   u8,
+    pub key :     u8
 }
 
 impl Copy for xcb_xkb_overlay_2_behavior_t {}
@@ -354,8 +354,8 @@ pub struct xcb_xkb_overlay_2_behavior_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_permament_lock_behavior_t {
-     pub type_ :   u8,
-     pub pad0 :    u8
+    pub type_ :   u8,
+    pub pad0 :    u8
 }
 
 impl Copy for xcb_xkb_permament_lock_behavior_t {}
@@ -372,8 +372,8 @@ pub struct xcb_xkb_permament_lock_behavior_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_permament_radio_group_behavior_t {
-     pub type_ :   u8,
-     pub group :   u8
+    pub type_ :   u8,
+    pub group :   u8
 }
 
 impl Copy for xcb_xkb_permament_radio_group_behavior_t {}
@@ -390,8 +390,8 @@ pub struct xcb_xkb_permament_radio_group_behavior_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_permament_overlay_1_behavior_t {
-     pub type_ :   u8,
-     pub key :     ffi::xproto::xcb_keycode_t
+    pub type_ :   u8,
+    pub key :     ffi::xproto::xcb_keycode_t
 }
 
 impl Copy for xcb_xkb_permament_overlay_1_behavior_t {}
@@ -408,8 +408,8 @@ pub struct xcb_xkb_permament_overlay_1_behavior_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_permament_overlay_2_behavior_t {
-     pub type_ :   u8,
-     pub key :     u8
+    pub type_ :   u8,
+    pub key :     u8
 }
 
 impl Copy for xcb_xkb_permament_overlay_2_behavior_t {}
@@ -442,9 +442,9 @@ pub struct xcb_xkb_behavior_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_set_behavior_t {
-     pub keycode :    ffi::xproto::xcb_keycode_t,
-     pub behavior :   xcb_xkb_behavior_t,
-     pub pad0 :       u8
+    pub keycode :    ffi::xproto::xcb_keycode_t,
+    pub behavior :   xcb_xkb_behavior_t,
+    pub pad0 :       u8
 }
 
 impl Copy for xcb_xkb_set_behavior_t {}
@@ -461,8 +461,8 @@ pub struct xcb_xkb_set_behavior_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_set_explicit_t {
-     pub keycode :    ffi::xproto::xcb_keycode_t,
-     pub explicit :   u8
+    pub keycode :    ffi::xproto::xcb_keycode_t,
+    pub explicit :   u8
 }
 
 impl Copy for xcb_xkb_set_explicit_t {}
@@ -479,8 +479,8 @@ pub struct xcb_xkb_set_explicit_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_key_mod_map_t {
-     pub keycode :   ffi::xproto::xcb_keycode_t,
-     pub mods :      u8
+    pub keycode :   ffi::xproto::xcb_keycode_t,
+    pub mods :      u8
 }
 
 impl Copy for xcb_xkb_key_mod_map_t {}
@@ -497,9 +497,9 @@ pub struct xcb_xkb_key_mod_map_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_key_v_mod_map_t {
-     pub keycode :   ffi::xproto::xcb_keycode_t,
-     pub pad0 :      u8,
-     pub vmods :     u16
+    pub keycode :   ffi::xproto::xcb_keycode_t,
+    pub pad0 :      u8,
+    pub vmods :     u16
 }
 
 impl Copy for xcb_xkb_key_v_mod_map_t {}
@@ -516,9 +516,9 @@ pub struct xcb_xkb_key_v_mod_map_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_kt_set_map_entry_t {
-     pub level :         u8,
-     pub realMods :      u8,
-     pub virtualMods :   u16
+    pub level :         u8,
+    pub realMods :      u8,
+    pub virtualMods :   u16
 }
 
 impl Copy for xcb_xkb_kt_set_map_entry_t {}
@@ -535,13 +535,13 @@ pub struct xcb_xkb_kt_set_map_entry_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_set_key_type_t {
-     pub mask :          u8,
-     pub realMods :      u8,
-     pub virtualMods :   u16,
-     pub numLevels :     u8,
-     pub nMapEntries :   u8,
-     pub preserve :      u8,
-     pub pad0 :          u8
+    pub mask :          u8,
+    pub realMods :      u8,
+    pub virtualMods :   u16,
+    pub numLevels :     u8,
+    pub nMapEntries :   u8,
+    pub preserve :      u8,
+    pub pad0 :          u8
 }
 
 impl Copy for xcb_xkb_set_key_type_t {}
@@ -567,8 +567,8 @@ pub struct xcb_xkb_string8_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_property_t {
-     pub nameLength :    u16,
-     pub valueLength :   u16
+    pub nameLength :    u16,
+    pub valueLength :   u16
 }
 
 impl Copy for xcb_xkb_property_t {}
@@ -585,9 +585,9 @@ pub struct xcb_xkb_property_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_outline_t {
-     pub nPoints :        u8,
-     pub cornerRadius :   u8,
-     pub pad0 :           [u8; 2]
+    pub nPoints :        u8,
+    pub cornerRadius :   u8,
+    pub pad0 :           [u8; 2]
 }
 
 impl Copy for xcb_xkb_outline_t {}
@@ -604,11 +604,11 @@ pub struct xcb_xkb_outline_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_shape_t {
-     pub name :         ffi::xproto::xcb_atom_t,
-     pub nOutlines :    u8,
-     pub primaryNdx :   u8,
-     pub approxNdx :    u8,
-     pub pad0 :         u8
+    pub name :         ffi::xproto::xcb_atom_t,
+    pub nOutlines :    u8,
+    pub primaryNdx :   u8,
+    pub approxNdx :    u8,
+    pub pad0 :         u8
 }
 
 impl Copy for xcb_xkb_shape_t {}
@@ -625,10 +625,10 @@ pub struct xcb_xkb_shape_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_key_t {
-     pub name :       [xcb_xkb_string8_t; 4],
-     pub gap :        i16,
-     pub shapeNdx :   u8,
-     pub colorNdx :   u8
+    pub name :       [xcb_xkb_string8_t; 4],
+    pub gap :        i16,
+    pub shapeNdx :   u8,
+    pub colorNdx :   u8
 }
 
 impl Copy for xcb_xkb_key_t {}
@@ -645,8 +645,8 @@ pub struct xcb_xkb_key_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_overlay_key_t {
-     pub over :    [xcb_xkb_string8_t; 4],
-     pub under :   [xcb_xkb_string8_t; 4]
+    pub over :    [xcb_xkb_string8_t; 4],
+    pub under :   [xcb_xkb_string8_t; 4]
 }
 
 impl Copy for xcb_xkb_overlay_key_t {}
@@ -663,9 +663,9 @@ pub struct xcb_xkb_overlay_key_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_overlay_row_t {
-     pub rowUnder :   u8,
-     pub nKeys :      u8,
-     pub pad0 :       [u8; 2]
+    pub rowUnder :   u8,
+    pub nKeys :      u8,
+    pub pad0 :       [u8; 2]
 }
 
 impl Copy for xcb_xkb_overlay_row_t {}
@@ -682,9 +682,9 @@ pub struct xcb_xkb_overlay_row_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_overlay_t {
-     pub name :    ffi::xproto::xcb_atom_t,
-     pub nRows :   u8,
-     pub pad0 :    [u8; 3]
+    pub name :    ffi::xproto::xcb_atom_t,
+    pub nRows :   u8,
+    pub pad0 :    [u8; 3]
 }
 
 impl Copy for xcb_xkb_overlay_t {}
@@ -701,11 +701,11 @@ pub struct xcb_xkb_overlay_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_row_t {
-     pub top :        i16,
-     pub left :       i16,
-     pub nKeys :      u8,
-     pub vertical :   u8,
-     pub pad0 :       [u8; 2]
+    pub top :        i16,
+    pub left :       i16,
+    pub nKeys :      u8,
+    pub vertical :   u8,
+    pub pad0 :       [u8; 2]
 }
 
 impl Copy for xcb_xkb_row_t {}
@@ -722,12 +722,12 @@ pub struct xcb_xkb_row_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_common_doodad_t {
-     pub name :       ffi::xproto::xcb_atom_t,
-     pub type_ :      u8,
-     pub priority :   u8,
-     pub top :        i16,
-     pub left :       i16,
-     pub angle :      i16
+    pub name :       ffi::xproto::xcb_atom_t,
+    pub type_ :      u8,
+    pub priority :   u8,
+    pub top :        i16,
+    pub left :       i16,
+    pub angle :      i16
 }
 
 impl Copy for xcb_xkb_common_doodad_t {}
@@ -744,15 +744,15 @@ pub struct xcb_xkb_common_doodad_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_shape_doodad_t {
-     pub name :       ffi::xproto::xcb_atom_t,
-     pub type_ :      u8,
-     pub priority :   u8,
-     pub top :        i16,
-     pub left :       i16,
-     pub angle :      i16,
-     pub colorNdx :   u8,
-     pub shapeNdx :   u8,
-     pub pad0 :       [u8; 6]
+    pub name :       ffi::xproto::xcb_atom_t,
+    pub type_ :      u8,
+    pub priority :   u8,
+    pub top :        i16,
+    pub left :       i16,
+    pub angle :      i16,
+    pub colorNdx :   u8,
+    pub shapeNdx :   u8,
+    pub pad0 :       [u8; 6]
 }
 
 impl Copy for xcb_xkb_shape_doodad_t {}
@@ -769,16 +769,16 @@ pub struct xcb_xkb_shape_doodad_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_text_doodad_t {
-     pub name :       ffi::xproto::xcb_atom_t,
-     pub type_ :      u8,
-     pub priority :   u8,
-     pub top :        i16,
-     pub left :       i16,
-     pub angle :      i16,
-     pub width :      u16,
-     pub height :     u16,
-     pub colorNdx :   u8,
-     pub pad0 :       [u8; 3]
+    pub name :       ffi::xproto::xcb_atom_t,
+    pub type_ :      u8,
+    pub priority :   u8,
+    pub top :        i16,
+    pub left :       i16,
+    pub angle :      i16,
+    pub width :      u16,
+    pub height :     u16,
+    pub colorNdx :   u8,
+    pub pad0 :       [u8; 3]
 }
 
 impl Copy for xcb_xkb_text_doodad_t {}
@@ -795,16 +795,16 @@ pub struct xcb_xkb_text_doodad_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_indicator_doodad_t {
-     pub name :          ffi::xproto::xcb_atom_t,
-     pub type_ :         u8,
-     pub priority :      u8,
-     pub top :           i16,
-     pub left :          i16,
-     pub angle :         i16,
-     pub shapeNdx :      u8,
-     pub onColorNdx :    u8,
-     pub offColorNdx :   u8,
-     pub pad0 :          [u8; 5]
+    pub name :          ffi::xproto::xcb_atom_t,
+    pub type_ :         u8,
+    pub priority :      u8,
+    pub top :           i16,
+    pub left :          i16,
+    pub angle :         i16,
+    pub shapeNdx :      u8,
+    pub onColorNdx :    u8,
+    pub offColorNdx :   u8,
+    pub pad0 :          [u8; 5]
 }
 
 impl Copy for xcb_xkb_indicator_doodad_t {}
@@ -821,15 +821,15 @@ pub struct xcb_xkb_indicator_doodad_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_logo_doodad_t {
-     pub name :       ffi::xproto::xcb_atom_t,
-     pub type_ :      u8,
-     pub priority :   u8,
-     pub top :        i16,
-     pub left :       i16,
-     pub angle :      i16,
-     pub colorNdx :   u8,
-     pub shapeNdx :   u8,
-     pub pad0 :       [u8; 6]
+    pub name :       ffi::xproto::xcb_atom_t,
+    pub type_ :      u8,
+    pub priority :   u8,
+    pub top :        i16,
+    pub left :       i16,
+    pub angle :      i16,
+    pub colorNdx :   u8,
+    pub shapeNdx :   u8,
+    pub pad0 :       [u8; 6]
 }
 
 impl Copy for xcb_xkb_logo_doodad_t {}
@@ -862,17 +862,17 @@ pub struct xcb_xkb_doodad_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_section_t {
-     pub name :        ffi::xproto::xcb_atom_t,
-     pub top :         i16,
-     pub left :        i16,
-     pub width :       u16,
-     pub height :      u16,
-     pub angle :       i16,
-     pub priority :    u8,
-     pub nRows :       u8,
-     pub nDoodads :    u8,
-     pub nOverlays :   u8,
-     pub pad0 :        [u8; 2]
+    pub name :        ffi::xproto::xcb_atom_t,
+    pub top :         i16,
+    pub left :        i16,
+    pub width :       u16,
+    pub height :      u16,
+    pub angle :       i16,
+    pub priority :    u8,
+    pub nRows :       u8,
+    pub nDoodads :    u8,
+    pub nOverlays :   u8,
+    pub pad0 :        [u8; 2]
 }
 
 impl Copy for xcb_xkb_section_t {}
@@ -889,8 +889,8 @@ pub struct xcb_xkb_section_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_listing_t {
-     pub flags :    u16,
-     pub length :   u16
+    pub flags :    u16,
+    pub length :   u16
 }
 
 impl Copy for xcb_xkb_listing_t {}
@@ -907,12 +907,12 @@ pub struct xcb_xkb_listing_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_device_led_info_t {
-     pub ledClass :         xcb_xkb_led_class_spec_t,
-     pub ledID :            xcb_xkb_id_spec_t,
-     pub namesPresent :     u32,
-     pub mapsPresent :      u32,
-     pub physIndicators :   u32,
-     pub state :            u32
+    pub ledClass :         xcb_xkb_led_class_spec_t,
+    pub ledID :            xcb_xkb_id_spec_t,
+    pub namesPresent :     u32,
+    pub mapsPresent :      u32,
+    pub physIndicators :   u32,
+    pub state :            u32
 }
 
 impl Copy for xcb_xkb_device_led_info_t {}
@@ -930,13 +930,13 @@ pub struct xcb_xkb_device_led_info_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_keyboard_error_t {
-     pub response_type :   u8,
-     pub error_code :      u8,
-     pub sequence :        u16,
-     pub value :           u32,
-     pub minorOpcode :     u16,
-     pub majorOpcode :     u8,
-     pub pad0 :            [u8; 21]
+    pub response_type :   u8,
+    pub error_code :      u8,
+    pub sequence :        u16,
+    pub value :           u32,
+    pub minorOpcode :     u16,
+    pub majorOpcode :     u8,
+    pub pad0 :            [u8; 21]
 }
 
 impl Copy for xcb_xkb_keyboard_error_t {}
@@ -946,8 +946,8 @@ impl Clone for xcb_xkb_keyboard_error_t {
 
 #[repr(C)]
 pub struct xcb_xkb_sa_no_action_t {
-     pub type_ :   u8,
-     pub pad0 :    [u8; 7]
+    pub type_ :   u8,
+    pub pad0 :    [u8; 7]
 }
 
 impl Copy for xcb_xkb_sa_no_action_t {}
@@ -964,13 +964,13 @@ pub struct xcb_xkb_sa_no_action_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_sa_set_mods_t {
-     pub type_ :       u8,
-     pub flags :       u8,
-     pub mask :        u8,
-     pub realMods :    u8,
-     pub vmodsHigh :   u8,
-     pub vmodsLow :    u8,
-     pub pad0 :        [u8; 2]
+    pub type_ :       u8,
+    pub flags :       u8,
+    pub mask :        u8,
+    pub realMods :    u8,
+    pub vmodsHigh :   u8,
+    pub vmodsLow :    u8,
+    pub pad0 :        [u8; 2]
 }
 
 impl Copy for xcb_xkb_sa_set_mods_t {}
@@ -987,13 +987,13 @@ pub struct xcb_xkb_sa_set_mods_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_sa_latch_mods_t {
-     pub type_ :       u8,
-     pub flags :       u8,
-     pub mask :        u8,
-     pub realMods :    u8,
-     pub vmodsHigh :   u8,
-     pub vmodsLow :    u8,
-     pub pad0 :        [u8; 2]
+    pub type_ :       u8,
+    pub flags :       u8,
+    pub mask :        u8,
+    pub realMods :    u8,
+    pub vmodsHigh :   u8,
+    pub vmodsLow :    u8,
+    pub pad0 :        [u8; 2]
 }
 
 impl Copy for xcb_xkb_sa_latch_mods_t {}
@@ -1010,13 +1010,13 @@ pub struct xcb_xkb_sa_latch_mods_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_sa_lock_mods_t {
-     pub type_ :       u8,
-     pub flags :       u8,
-     pub mask :        u8,
-     pub realMods :    u8,
-     pub vmodsHigh :   u8,
-     pub vmodsLow :    u8,
-     pub pad0 :        [u8; 2]
+    pub type_ :       u8,
+    pub flags :       u8,
+    pub mask :        u8,
+    pub realMods :    u8,
+    pub vmodsHigh :   u8,
+    pub vmodsLow :    u8,
+    pub pad0 :        [u8; 2]
 }
 
 impl Copy for xcb_xkb_sa_lock_mods_t {}
@@ -1033,10 +1033,10 @@ pub struct xcb_xkb_sa_lock_mods_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_sa_set_group_t {
-     pub type_ :   u8,
-     pub flags :   u8,
-     pub group :   i8,
-     pub pad0 :    [u8; 5]
+    pub type_ :   u8,
+    pub flags :   u8,
+    pub group :   i8,
+    pub pad0 :    [u8; 5]
 }
 
 impl Copy for xcb_xkb_sa_set_group_t {}
@@ -1053,10 +1053,10 @@ pub struct xcb_xkb_sa_set_group_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_sa_latch_group_t {
-     pub type_ :   u8,
-     pub flags :   u8,
-     pub group :   i8,
-     pub pad0 :    [u8; 5]
+    pub type_ :   u8,
+    pub flags :   u8,
+    pub group :   i8,
+    pub pad0 :    [u8; 5]
 }
 
 impl Copy for xcb_xkb_sa_latch_group_t {}
@@ -1073,10 +1073,10 @@ pub struct xcb_xkb_sa_latch_group_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_sa_lock_group_t {
-     pub type_ :   u8,
-     pub flags :   u8,
-     pub group :   i8,
-     pub pad0 :    [u8; 5]
+    pub type_ :   u8,
+    pub flags :   u8,
+    pub group :   i8,
+    pub pad0 :    [u8; 5]
 }
 
 impl Copy for xcb_xkb_sa_lock_group_t {}
@@ -1093,13 +1093,13 @@ pub struct xcb_xkb_sa_lock_group_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_sa_move_ptr_t {
-     pub type_ :   u8,
-     pub flags :   u8,
-     pub xHigh :   i8,
-     pub xLow :    u8,
-     pub yHigh :   i8,
-     pub yLow :    u8,
-     pub pad0 :    [u8; 2]
+    pub type_ :   u8,
+    pub flags :   u8,
+    pub xHigh :   i8,
+    pub xLow :    u8,
+    pub yHigh :   i8,
+    pub yLow :    u8,
+    pub pad0 :    [u8; 2]
 }
 
 impl Copy for xcb_xkb_sa_move_ptr_t {}
@@ -1116,11 +1116,11 @@ pub struct xcb_xkb_sa_move_ptr_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_sa_ptr_btn_t {
-     pub type_ :    u8,
-     pub flags :    u8,
-     pub count :    u8,
-     pub button :   u8,
-     pub pad0 :     [u8; 4]
+    pub type_ :    u8,
+    pub flags :    u8,
+    pub count :    u8,
+    pub button :   u8,
+    pub pad0 :     [u8; 4]
 }
 
 impl Copy for xcb_xkb_sa_ptr_btn_t {}
@@ -1137,11 +1137,11 @@ pub struct xcb_xkb_sa_ptr_btn_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_sa_lock_ptr_btn_t {
-     pub type_ :    u8,
-     pub flags :    u8,
-     pub pad0 :     u8,
-     pub button :   u8,
-     pub pad1 :     [u8; 4]
+    pub type_ :    u8,
+    pub flags :    u8,
+    pub pad0 :     u8,
+    pub button :   u8,
+    pub pad1 :     [u8; 4]
 }
 
 impl Copy for xcb_xkb_sa_lock_ptr_btn_t {}
@@ -1158,11 +1158,11 @@ pub struct xcb_xkb_sa_lock_ptr_btn_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_sa_set_ptr_dflt_t {
-     pub type_ :    u8,
-     pub flags :    u8,
-     pub affect :   u8,
-     pub value :    i8,
-     pub pad0 :     [u8; 4]
+    pub type_ :    u8,
+    pub flags :    u8,
+    pub affect :   u8,
+    pub value :    i8,
+    pub pad0 :     [u8; 4]
 }
 
 impl Copy for xcb_xkb_sa_set_ptr_dflt_t {}
@@ -1179,14 +1179,14 @@ pub struct xcb_xkb_sa_set_ptr_dflt_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_sa_iso_lock_t {
-     pub type_ :       u8,
-     pub flags :       u8,
-     pub mask :        u8,
-     pub realMods :    u8,
-     pub group :       i8,
-     pub affect :      u8,
-     pub vmodsHigh :   u8,
-     pub vmodsLow :    u8
+    pub type_ :       u8,
+    pub flags :       u8,
+    pub mask :        u8,
+    pub realMods :    u8,
+    pub group :       i8,
+    pub affect :      u8,
+    pub vmodsHigh :   u8,
+    pub vmodsLow :    u8
 }
 
 impl Copy for xcb_xkb_sa_iso_lock_t {}
@@ -1203,8 +1203,8 @@ pub struct xcb_xkb_sa_iso_lock_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_sa_terminate_t {
-     pub type_ :   u8,
-     pub pad0 :    [u8; 7]
+    pub type_ :   u8,
+    pub pad0 :    [u8; 7]
 }
 
 impl Copy for xcb_xkb_sa_terminate_t {}
@@ -1221,10 +1221,10 @@ pub struct xcb_xkb_sa_terminate_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_sa_switch_screen_t {
-     pub type_ :       u8,
-     pub flags :       u8,
-     pub newScreen :   i8,
-     pub pad0 :        [u8; 5]
+    pub type_ :       u8,
+    pub flags :       u8,
+    pub newScreen :   i8,
+    pub pad0 :        [u8; 5]
 }
 
 impl Copy for xcb_xkb_sa_switch_screen_t {}
@@ -1241,11 +1241,11 @@ pub struct xcb_xkb_sa_switch_screen_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_sa_set_controls_t {
-     pub type_ :           u8,
-     pub pad0 :            [u8; 3],
-     pub boolCtrlsHigh :   u8,
-     pub boolCtrlsLow :    u8,
-     pub pad1 :            [u8; 2]
+    pub type_ :           u8,
+    pub pad0 :            [u8; 3],
+    pub boolCtrlsHigh :   u8,
+    pub boolCtrlsLow :    u8,
+    pub pad1 :            [u8; 2]
 }
 
 impl Copy for xcb_xkb_sa_set_controls_t {}
@@ -1262,11 +1262,11 @@ pub struct xcb_xkb_sa_set_controls_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_sa_lock_controls_t {
-     pub type_ :           u8,
-     pub pad0 :            [u8; 3],
-     pub boolCtrlsHigh :   u8,
-     pub boolCtrlsLow :    u8,
-     pub pad1 :            [u8; 2]
+    pub type_ :           u8,
+    pub pad0 :            [u8; 3],
+    pub boolCtrlsHigh :   u8,
+    pub boolCtrlsLow :    u8,
+    pub pad1 :            [u8; 2]
 }
 
 impl Copy for xcb_xkb_sa_lock_controls_t {}
@@ -1283,9 +1283,9 @@ pub struct xcb_xkb_sa_lock_controls_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_sa_action_message_t {
-     pub type_ :     u8,
-     pub flags :     u8,
-     pub message :   [u8; 6]
+    pub type_ :     u8,
+    pub flags :     u8,
+    pub message :   [u8; 6]
 }
 
 impl Copy for xcb_xkb_sa_action_message_t {}
@@ -1302,14 +1302,14 @@ pub struct xcb_xkb_sa_action_message_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_sa_redirect_key_t {
-     pub type_ :           u8,
-     pub newkey :          ffi::xproto::xcb_keycode_t,
-     pub mask :            u8,
-     pub realModifiers :   u8,
-     pub vmodsMaskHigh :   u8,
-     pub vmodsMaskLow :    u8,
-     pub vmodsHigh :       u8,
-     pub vmodsLow :        u8
+    pub type_ :           u8,
+    pub newkey :          ffi::xproto::xcb_keycode_t,
+    pub mask :            u8,
+    pub realModifiers :   u8,
+    pub vmodsMaskHigh :   u8,
+    pub vmodsMaskLow :    u8,
+    pub vmodsHigh :       u8,
+    pub vmodsLow :        u8
 }
 
 impl Copy for xcb_xkb_sa_redirect_key_t {}
@@ -1326,12 +1326,12 @@ pub struct xcb_xkb_sa_redirect_key_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_sa_device_btn_t {
-     pub type_ :    u8,
-     pub flags :    u8,
-     pub count :    u8,
-     pub button :   u8,
-     pub device :   u8,
-     pub pad0 :     [u8; 3]
+    pub type_ :    u8,
+    pub flags :    u8,
+    pub count :    u8,
+    pub button :   u8,
+    pub device :   u8,
+    pub pad0 :     [u8; 3]
 }
 
 impl Copy for xcb_xkb_sa_device_btn_t {}
@@ -1348,11 +1348,11 @@ pub struct xcb_xkb_sa_device_btn_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_sa_lock_device_btn_t {
-     pub type_ :    u8,
-     pub flags :    u8,
-     pub pad0 :     u8,
-     pub button :   u8,
-     pub device :   u8
+    pub type_ :    u8,
+    pub flags :    u8,
+    pub pad0 :     u8,
+    pub button :   u8,
+    pub device :   u8
 }
 
 impl Copy for xcb_xkb_sa_lock_device_btn_t {}
@@ -1369,14 +1369,14 @@ pub struct xcb_xkb_sa_lock_device_btn_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xkb_sa_device_valuator_t {
-     pub type_ :       u8,
-     pub device :      u8,
-     pub val1what :    u8,
-     pub val1index :   u8,
-     pub val1value :   u8,
-     pub val2what :    u8,
-     pub val2index :   u8,
-     pub val2value :   u8
+    pub type_ :       u8,
+    pub device :      u8,
+    pub val1what :    u8,
+    pub val1index :   u8,
+    pub val1value :   u8,
+    pub val2what :    u8,
+    pub val2index :   u8,
+    pub val2value :   u8
 }
 
 impl Copy for xcb_xkb_sa_device_valuator_t {}
@@ -1416,11 +1416,11 @@ pub struct xcb_xkb_use_extension_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xkb_use_extension_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub wantedMajor :    u16,
-     pub wantedMinor :    u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub wantedMajor :    u16,
+    pub wantedMinor :    u16
 }
 
 impl Copy for xcb_xkb_use_extension_request_t {}
@@ -1430,13 +1430,13 @@ impl Clone for xcb_xkb_use_extension_request_t {
 
 #[repr(C)]
 pub struct xcb_xkb_use_extension_reply_t {
-     pub response_type :   u8,
-     pub supported :       u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub serverMajor :     u16,
-     pub serverMinor :     u16,
-     pub pad0 :            [u8; 20]
+    pub response_type :   u8,
+    pub supported :       u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub serverMajor :     u16,
+    pub serverMinor :     u16,
+    pub pad0 :            [u8; 20]
 }
 
 impl Copy for xcb_xkb_use_extension_reply_t {}
@@ -1446,28 +1446,28 @@ impl Clone for xcb_xkb_use_extension_reply_t {
 
 #[repr(C)]
 pub struct xcb_xkb_select_events_details_t {
-     pub affectNewKeyboard :       u16,
-     pub newKeyboardDetails :      u16,
-     pub affectState :             u16,
-     pub stateDetails :            u16,
-     pub affectCtrls :             u32,
-     pub ctrlDetails :             u32,
-     pub affectIndicatorState :    u32,
-     pub indicatorStateDetails :   u32,
-     pub affectIndicatorMap :      u32,
-     pub indicatorMapDetails :     u32,
-     pub affectNames :             u16,
-     pub namesDetails :            u16,
-     pub affectCompat :            u8,
-     pub compatDetails :           u8,
-     pub affectBell :              u8,
-     pub bellDetails :             u8,
-     pub affectMsgDetails :        u8,
-     pub msgDetails :              u8,
-     pub affectAccessX :           u16,
-     pub accessXDetails :          u16,
-     pub affectExtDev :            u16
-     pub extdevDetails :           u16
+    pub affectNewKeyboard :       u16,
+    pub newKeyboardDetails :      u16,
+    pub affectState :             u16,
+    pub stateDetails :            u16,
+    pub affectCtrls :             u32,
+    pub ctrlDetails :             u32,
+    pub affectIndicatorState :    u32,
+    pub indicatorStateDetails :   u32,
+    pub affectIndicatorMap :      u32,
+    pub indicatorMapDetails :     u32,
+    pub affectNames :             u16,
+    pub namesDetails :            u16,
+    pub affectCompat :            u8,
+    pub compatDetails :           u8,
+    pub affectBell :              u8,
+    pub bellDetails :             u8,
+    pub affectMsgDetails :        u8,
+    pub msgDetails :              u8,
+    pub affectAccessX :           u16,
+    pub accessXDetails :          u16,
+    pub affectExtDev :            u16,
+    pub extdevDetails :           u16
 }
 
 impl Copy for xcb_xkb_select_events_details_t {}
@@ -1478,15 +1478,15 @@ impl Clone for xcb_xkb_select_events_details_t {
 
 #[repr(C)]
 pub struct xcb_xkb_select_events_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub deviceSpec :     xcb_xkb_device_spec_t,
-     pub affectWhich :    u16,
-     pub clear :          u16,
-     pub selectAll :      u16,
-     pub affectMap :      u16,
-     pub map :            u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub deviceSpec :     xcb_xkb_device_spec_t,
+    pub affectWhich :    u16,
+    pub clear :          u16,
+    pub selectAll :      u16,
+    pub affectMap :      u16,
+    pub map :            u16
 }
 
 impl Copy for xcb_xkb_select_events_request_t {}
@@ -1497,21 +1497,21 @@ impl Clone for xcb_xkb_select_events_request_t {
 
 #[repr(C)]
 pub struct xcb_xkb_bell_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub deviceSpec :     xcb_xkb_device_spec_t,
-     pub bellClass :      xcb_xkb_bell_class_spec_t,
-     pub bellID :         xcb_xkb_id_spec_t,
-     pub percent :        i8,
-     pub forceSound :     u8,
-     pub eventOnly :      u8,
-     pub pad0 :           u8,
-     pub pitch :          i16,
-     pub duration :       i16,
-     pub pad1 :           [u8; 2],
-     pub name :           ffi::xproto::xcb_atom_t,
-     pub window :         ffi::xproto::xcb_window_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub deviceSpec :     xcb_xkb_device_spec_t,
+    pub bellClass :      xcb_xkb_bell_class_spec_t,
+    pub bellID :         xcb_xkb_id_spec_t,
+    pub percent :        i8,
+    pub forceSound :     u8,
+    pub eventOnly :      u8,
+    pub pad0 :           u8,
+    pub pitch :          i16,
+    pub duration :       i16,
+    pub pad1 :           [u8; 2],
+    pub name :           ffi::xproto::xcb_atom_t,
+    pub window :         ffi::xproto::xcb_window_t
 }
 
 impl Copy for xcb_xkb_bell_request_t {}
@@ -1528,11 +1528,11 @@ pub struct xcb_xkb_get_state_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xkb_get_state_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub deviceSpec :     xcb_xkb_device_spec_t,
-     pub pad0 :           [u8; 2]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub deviceSpec :     xcb_xkb_device_spec_t,
+    pub pad0 :           [u8; 2]
 }
 
 impl Copy for xcb_xkb_get_state_request_t {}
@@ -1542,26 +1542,26 @@ impl Clone for xcb_xkb_get_state_request_t {
 
 #[repr(C)]
 pub struct xcb_xkb_get_state_reply_t {
-     pub response_type :      u8,
-     pub deviceID :           u8,
-     pub sequence :           u16,
-     pub length :             u32,
-     pub mods :               u8,
-     pub baseMods :           u8,
-     pub latchedMods :        u8,
-     pub lockedMods :         u8,
-     pub group :              u8,
-     pub lockedGroup :        u8,
-     pub baseGroup :          i16,
-     pub latchedGroup :       i16,
-     pub compatState :        u8,
-     pub grabMods :           u8,
-     pub compatGrabMods :     u8,
-     pub lookupMods :         u8,
-     pub compatLookupMods :   u8,
-     pub pad0 :               u8,
-     pub ptrBtnState :        u16,
-     pub pad1 :               [u8; 6]
+    pub response_type :      u8,
+    pub deviceID :           u8,
+    pub sequence :           u16,
+    pub length :             u32,
+    pub mods :               u8,
+    pub baseMods :           u8,
+    pub latchedMods :        u8,
+    pub lockedMods :         u8,
+    pub group :              u8,
+    pub lockedGroup :        u8,
+    pub baseGroup :          i16,
+    pub latchedGroup :       i16,
+    pub compatState :        u8,
+    pub grabMods :           u8,
+    pub compatGrabMods :     u8,
+    pub lookupMods :         u8,
+    pub compatLookupMods :   u8,
+    pub pad0 :               u8,
+    pub ptrBtnState :        u16,
+    pub pad1 :               [u8; 6]
 }
 
 impl Copy for xcb_xkb_get_state_reply_t {}
@@ -1572,18 +1572,18 @@ impl Clone for xcb_xkb_get_state_reply_t {
 
 #[repr(C)]
 pub struct xcb_xkb_latch_lock_state_request_t {
-     pub major_opcode :       u8,
-     pub minor_opcode :       u8,
-     pub length :             u16,
-     pub deviceSpec :         xcb_xkb_device_spec_t,
-     pub affectModLocks :     u8,
-     pub modLocks :           u8,
-     pub lockGroup :          u8,
-     pub groupLock :          u8,
-     pub affectModLatches :   u8,
-     pub pad0 :               u8,
-     pub latchGroup :         u8,
-     pub groupLatch :         u16
+    pub major_opcode :       u8,
+    pub minor_opcode :       u8,
+    pub length :             u16,
+    pub deviceSpec :         xcb_xkb_device_spec_t,
+    pub affectModLocks :     u8,
+    pub modLocks :           u8,
+    pub lockGroup :          u8,
+    pub groupLock :          u8,
+    pub affectModLatches :   u8,
+    pub pad0 :               u8,
+    pub latchGroup :         u8,
+    pub groupLatch :         u16
 }
 
 impl Copy for xcb_xkb_latch_lock_state_request_t {}
@@ -1600,11 +1600,11 @@ pub struct xcb_xkb_get_controls_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xkb_get_controls_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub deviceSpec :     xcb_xkb_device_spec_t,
-     pub pad0 :           [u8; 2]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub deviceSpec :     xcb_xkb_device_spec_t,
+    pub pad0 :           [u8; 2]
 }
 
 impl Copy for xcb_xkb_get_controls_request_t {}
@@ -1614,38 +1614,38 @@ impl Clone for xcb_xkb_get_controls_request_t {
 
 #[repr(C)]
 pub struct xcb_xkb_get_controls_reply_t {
-     pub response_type :                 u8,
-     pub deviceID :                      u8,
-     pub sequence :                      u16,
-     pub length :                        u32,
-     pub mouseKeysDfltBtn :              u8,
-     pub numGroups :                     u8,
-     pub groupsWrap :                    u8,
-     pub internalModsMask :              u8,
-     pub ignoreLockModsMask :            u8,
-     pub internalModsRealMods :          u8,
-     pub ignoreLockModsRealMods :        u8,
-     pub pad0 :                          u8,
-     pub internalModsVmods :             u16,
-     pub ignoreLockModsVmods :           u16,
-     pub repeatDelay :                   u16,
-     pub repeatInterval :                u16,
-     pub slowKeysDelay :                 u16,
-     pub debounceDelay :                 u16,
-     pub mouseKeysDelay :                u16,
-     pub mouseKeysInterval :             u16,
-     pub mouseKeysTimeToMax :            u16,
-     pub mouseKeysMaxSpeed :             u16,
-     pub mouseKeysCurve :                i16,
-     pub accessXOption :                 xcb_xkb_ax_option_t,
-     pub accessXTimeout :                u16,
-     pub accessXTimeoutOptionsMask :     xcb_xkb_ax_option_t,
-     pub accessXTimeoutOptionsValues :   xcb_xkb_ax_option_t,
-     pub pad1 :                          [u8; 2],
-     pub accessXTimeoutMask :            u32,
-     pub accessXTimeoutValues :          u32,
-     pub enabledControls :               u32,
-     pub perKeyRepeat :                  [u8; 32]
+    pub response_type :                 u8,
+    pub deviceID :                      u8,
+    pub sequence :                      u16,
+    pub length :                        u32,
+    pub mouseKeysDfltBtn :              u8,
+    pub numGroups :                     u8,
+    pub groupsWrap :                    u8,
+    pub internalModsMask :              u8,
+    pub ignoreLockModsMask :            u8,
+    pub internalModsRealMods :          u8,
+    pub ignoreLockModsRealMods :        u8,
+    pub pad0 :                          u8,
+    pub internalModsVmods :             u16,
+    pub ignoreLockModsVmods :           u16,
+    pub repeatDelay :                   u16,
+    pub repeatInterval :                u16,
+    pub slowKeysDelay :                 u16,
+    pub debounceDelay :                 u16,
+    pub mouseKeysDelay :                u16,
+    pub mouseKeysInterval :             u16,
+    pub mouseKeysTimeToMax :            u16,
+    pub mouseKeysMaxSpeed :             u16,
+    pub mouseKeysCurve :                i16,
+    pub accessXOption :                 xcb_xkb_ax_option_t,
+    pub accessXTimeout :                u16,
+    pub accessXTimeoutOptionsMask :     xcb_xkb_ax_option_t,
+    pub accessXTimeoutOptionsValues :   xcb_xkb_ax_option_t,
+    pub pad1 :                          [u8; 2],
+    pub accessXTimeoutMask :            u32,
+    pub accessXTimeoutValues :          u32,
+    pub enabledControls :               u32,
+    pub perKeyRepeat :                  [u8; 32]
 }
 
 impl Copy for xcb_xkb_get_controls_reply_t {}
@@ -1656,40 +1656,40 @@ impl Clone for xcb_xkb_get_controls_reply_t {
 
 #[repr(C)]
 pub struct xcb_xkb_set_controls_request_t {
-     pub major_opcode :                  u8,
-     pub minor_opcode :                  u8,
-     pub length :                        u16,
-     pub deviceSpec :                    xcb_xkb_device_spec_t,
-     pub affectInternalRealMods :        u8,
-     pub internalRealMods :              u8,
-     pub affectIgnoreLockRealMods :      u8,
-     pub ignoreLockRealMods :            u8,
-     pub affectInternalVirtualMods :     u16,
-     pub internalVirtualMods :           u16,
-     pub affectIgnoreLockVirtualMods :   u16,
-     pub ignoreLockVirtualMods :         u16,
-     pub mouseKeysDfltBtn :              u8,
-     pub groupsWrap :                    u8,
-     pub accessXOptions :                xcb_xkb_ax_option_t,
-     pub pad0 :                          [u8; 2],
-     pub affectEnabledControls :         u32,
-     pub enabledControls :               u32,
-     pub changeControls :                u32,
-     pub repeatDelay :                   u16,
-     pub repeatInterval :                u16,
-     pub slowKeysDelay :                 u16,
-     pub debounceDelay :                 u16,
-     pub mouseKeysDelay :                u16,
-     pub mouseKeysInterval :             u16,
-     pub mouseKeysTimeToMax :            u16,
-     pub mouseKeysMaxSpeed :             u16,
-     pub mouseKeysCurve :                i16,
-     pub accessXTimeout :                u16,
-     pub accessXTimeoutMask :            u32,
-     pub accessXTimeoutValues :          u32,
-     pub accessXTimeoutOptionsMask :     xcb_xkb_ax_option_t,
-     pub accessXTimeoutOptionsValues :   xcb_xkb_ax_option_t,
-     pub perKeyRepeat :                  [u8; 32]
+    pub major_opcode :                  u8,
+    pub minor_opcode :                  u8,
+    pub length :                        u16,
+    pub deviceSpec :                    xcb_xkb_device_spec_t,
+    pub affectInternalRealMods :        u8,
+    pub internalRealMods :              u8,
+    pub affectIgnoreLockRealMods :      u8,
+    pub ignoreLockRealMods :            u8,
+    pub affectInternalVirtualMods :     u16,
+    pub internalVirtualMods :           u16,
+    pub affectIgnoreLockVirtualMods :   u16,
+    pub ignoreLockVirtualMods :         u16,
+    pub mouseKeysDfltBtn :              u8,
+    pub groupsWrap :                    u8,
+    pub accessXOptions :                xcb_xkb_ax_option_t,
+    pub pad0 :                          [u8; 2],
+    pub affectEnabledControls :         u32,
+    pub enabledControls :               u32,
+    pub changeControls :                u32,
+    pub repeatDelay :                   u16,
+    pub repeatInterval :                u16,
+    pub slowKeysDelay :                 u16,
+    pub debounceDelay :                 u16,
+    pub mouseKeysDelay :                u16,
+    pub mouseKeysInterval :             u16,
+    pub mouseKeysTimeToMax :            u16,
+    pub mouseKeysMaxSpeed :             u16,
+    pub mouseKeysCurve :                i16,
+    pub accessXTimeout :                u16,
+    pub accessXTimeoutMask :            u32,
+    pub accessXTimeoutValues :          u32,
+    pub accessXTimeoutOptionsMask :     xcb_xkb_ax_option_t,
+    pub accessXTimeoutOptionsValues :   xcb_xkb_ax_option_t,
+    pub perKeyRepeat :                  [u8; 32]
 }
 
 impl Copy for xcb_xkb_set_controls_request_t {}
@@ -1706,28 +1706,28 @@ pub struct xcb_xkb_get_map_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xkb_get_map_request_t {
-     pub major_opcode :       u8,
-     pub minor_opcode :       u8,
-     pub length :             u16,
-     pub deviceSpec :         xcb_xkb_device_spec_t,
-     pub full :               u16,
-     pub partial :            u16,
-     pub firstType :          u8,
-     pub nTypes :             u8,
-     pub firstKeySym :        ffi::xproto::xcb_keycode_t,
-     pub nKeySyms :           u8,
-     pub firstKeyAction :     ffi::xproto::xcb_keycode_t,
-     pub nKeyActions :        u8,
-     pub firstKeyBehavior :   ffi::xproto::xcb_keycode_t,
-     pub nKeyBehaviors :      u8,
-     pub virtualMods :        u16,
-     pub firstKeyExplicit :   ffi::xproto::xcb_keycode_t,
-     pub nKeyExplicit :       u8,
-     pub firstModMapKey :     ffi::xproto::xcb_keycode_t,
-     pub nModMapKeys :        u8,
-     pub firstVModMapKey :    ffi::xproto::xcb_keycode_t,
-     pub nVModMapKeys :       u8,
-     pub pad0 :               [u8; 2]
+    pub major_opcode :       u8,
+    pub minor_opcode :       u8,
+    pub length :             u16,
+    pub deviceSpec :         xcb_xkb_device_spec_t,
+    pub full :               u16,
+    pub partial :            u16,
+    pub firstType :          u8,
+    pub nTypes :             u8,
+    pub firstKeySym :        ffi::xproto::xcb_keycode_t,
+    pub nKeySyms :           u8,
+    pub firstKeyAction :     ffi::xproto::xcb_keycode_t,
+    pub nKeyActions :        u8,
+    pub firstKeyBehavior :   ffi::xproto::xcb_keycode_t,
+    pub nKeyBehaviors :      u8,
+    pub virtualMods :        u16,
+    pub firstKeyExplicit :   ffi::xproto::xcb_keycode_t,
+    pub nKeyExplicit :       u8,
+    pub firstModMapKey :     ffi::xproto::xcb_keycode_t,
+    pub nModMapKeys :        u8,
+    pub firstVModMapKey :    ffi::xproto::xcb_keycode_t,
+    pub nVModMapKeys :       u8,
+    pub pad0 :               [u8; 2]
 }
 
 impl Copy for xcb_xkb_get_map_request_t {}
@@ -1755,37 +1755,37 @@ impl Clone for xcb_xkb_get_map_map_t {
 
 #[repr(C)]
 pub struct xcb_xkb_get_map_reply_t {
-     pub response_type :       u8,
-     pub deviceID :            u8,
-     pub sequence :            u16,
-     pub length :              u32,
-     pub pad0 :                [u8; 2],
-     pub minKeyCode :          ffi::xproto::xcb_keycode_t,
-     pub maxKeyCode :          ffi::xproto::xcb_keycode_t,
-     pub present :             u16,
-     pub firstType :           u8,
-     pub nTypes :              u8,
-     pub totalTypes :          u8,
-     pub firstKeySym :         ffi::xproto::xcb_keycode_t,
-     pub totalSyms :           u16,
-     pub nKeySyms :            u8,
-     pub firstKeyAction :      ffi::xproto::xcb_keycode_t,
-     pub totalActions :        u16,
-     pub nKeyActions :         u8,
-     pub firstKeyBehavior :    ffi::xproto::xcb_keycode_t,
-     pub nKeyBehaviors :       u8,
-     pub totalKeyBehaviors :   u8,
-     pub firstKeyExplicit :    ffi::xproto::xcb_keycode_t,
-     pub nKeyExplicit :        u8,
-     pub totalKeyExplicit :    u8,
-     pub firstModMapKey :      ffi::xproto::xcb_keycode_t,
-     pub nModMapKeys :         u8,
-     pub totalModMapKeys :     u8,
-     pub firstVModMapKey :     ffi::xproto::xcb_keycode_t,
-     pub nVModMapKeys :        u8,
-     pub totalVModMapKeys :    u8,
-     pub pad1 :                u8,
-     pub virtualMods :         u16
+    pub response_type :       u8,
+    pub deviceID :            u8,
+    pub sequence :            u16,
+    pub length :              u32,
+    pub pad0 :                [u8; 2],
+    pub minKeyCode :          ffi::xproto::xcb_keycode_t,
+    pub maxKeyCode :          ffi::xproto::xcb_keycode_t,
+    pub present :             u16,
+    pub firstType :           u8,
+    pub nTypes :              u8,
+    pub totalTypes :          u8,
+    pub firstKeySym :         ffi::xproto::xcb_keycode_t,
+    pub totalSyms :           u16,
+    pub nKeySyms :            u8,
+    pub firstKeyAction :      ffi::xproto::xcb_keycode_t,
+    pub totalActions :        u16,
+    pub nKeyActions :         u8,
+    pub firstKeyBehavior :    ffi::xproto::xcb_keycode_t,
+    pub nKeyBehaviors :       u8,
+    pub totalKeyBehaviors :   u8,
+    pub firstKeyExplicit :    ffi::xproto::xcb_keycode_t,
+    pub nKeyExplicit :        u8,
+    pub totalKeyExplicit :    u8,
+    pub firstModMapKey :      ffi::xproto::xcb_keycode_t,
+    pub nModMapKeys :         u8,
+    pub totalModMapKeys :     u8,
+    pub firstVModMapKey :     ffi::xproto::xcb_keycode_t,
+    pub nVModMapKeys :        u8,
+    pub totalVModMapKeys :    u8,
+    pub pad1 :                u8,
+    pub virtualMods :         u16
 }
 
 impl Copy for xcb_xkb_get_map_reply_t {}
@@ -1814,35 +1814,35 @@ impl Clone for xcb_xkb_set_map_values_t {
 
 #[repr(C)]
 pub struct xcb_xkb_set_map_request_t {
-     pub major_opcode :        u8,
-     pub minor_opcode :        u8,
-     pub length :              u16,
-     pub deviceSpec :          xcb_xkb_device_spec_t,
-     pub present :             u16,
-     pub flags :               u16,
-     pub minKeyCode :          ffi::xproto::xcb_keycode_t,
-     pub maxKeyCode :          ffi::xproto::xcb_keycode_t,
-     pub firstType :           u8,
-     pub nTypes :              u8,
-     pub firstKeySym :         ffi::xproto::xcb_keycode_t,
-     pub nKeySyms :            u8,
-     pub totalSyms :           u16,
-     pub firstKeyAction :      ffi::xproto::xcb_keycode_t,
-     pub nKeyActions :         u8,
-     pub totalActions :        u16,
-     pub firstKeyBehavior :    ffi::xproto::xcb_keycode_t,
-     pub nKeyBehaviors :       u8,
-     pub totalKeyBehaviors :   u8,
-     pub firstKeyExplicit :    ffi::xproto::xcb_keycode_t,
-     pub nKeyExplicit :        u8,
-     pub totalKeyExplicit :    u8,
-     pub firstModMapKey :      ffi::xproto::xcb_keycode_t,
-     pub nModMapKeys :         u8,
-     pub totalModMapKeys :     u8,
-     pub firstVModMapKey :     ffi::xproto::xcb_keycode_t,
-     pub nVModMapKeys :        u8,
-     pub totalVModMapKeys :    u8,
-     pub virtualMods :         u16
+    pub major_opcode :        u8,
+    pub minor_opcode :        u8,
+    pub length :              u16,
+    pub deviceSpec :          xcb_xkb_device_spec_t,
+    pub present :             u16,
+    pub flags :               u16,
+    pub minKeyCode :          ffi::xproto::xcb_keycode_t,
+    pub maxKeyCode :          ffi::xproto::xcb_keycode_t,
+    pub firstType :           u8,
+    pub nTypes :              u8,
+    pub firstKeySym :         ffi::xproto::xcb_keycode_t,
+    pub nKeySyms :            u8,
+    pub totalSyms :           u16,
+    pub firstKeyAction :      ffi::xproto::xcb_keycode_t,
+    pub nKeyActions :         u8,
+    pub totalActions :        u16,
+    pub firstKeyBehavior :    ffi::xproto::xcb_keycode_t,
+    pub nKeyBehaviors :       u8,
+    pub totalKeyBehaviors :   u8,
+    pub firstKeyExplicit :    ffi::xproto::xcb_keycode_t,
+    pub nKeyExplicit :        u8,
+    pub totalKeyExplicit :    u8,
+    pub firstModMapKey :      ffi::xproto::xcb_keycode_t,
+    pub nModMapKeys :         u8,
+    pub totalModMapKeys :     u8,
+    pub firstVModMapKey :     ffi::xproto::xcb_keycode_t,
+    pub nVModMapKeys :        u8,
+    pub totalVModMapKeys :    u8,
+    pub virtualMods :         u16
 }
 
 impl Copy for xcb_xkb_set_map_request_t {}
@@ -1859,14 +1859,14 @@ pub struct xcb_xkb_get_compat_map_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xkb_get_compat_map_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub deviceSpec :     xcb_xkb_device_spec_t,
-     pub groups :         u8,
-     pub getAllSI :       u8,
-     pub firstSI :        u16,
-     pub nSI :            u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub deviceSpec :     xcb_xkb_device_spec_t,
+    pub groups :         u8,
+    pub getAllSI :       u8,
+    pub firstSI :        u16,
+    pub nSI :            u16
 }
 
 impl Copy for xcb_xkb_get_compat_map_request_t {}
@@ -1876,16 +1876,16 @@ impl Clone for xcb_xkb_get_compat_map_request_t {
 
 #[repr(C)]
 pub struct xcb_xkb_get_compat_map_reply_t {
-     pub response_type :   u8,
-     pub deviceID :        u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub groupsRtrn :      u8,
-     pub pad0 :            u8,
-     pub firstSIRtrn :     u16,
-     pub nSIRtrn :         u16,
-     pub nTotalSI :        u16,
-     pub pad1 :            [u8; 16]
+    pub response_type :   u8,
+    pub deviceID :        u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub groupsRtrn :      u8,
+    pub pad0 :            u8,
+    pub firstSIRtrn :     u16,
+    pub nSIRtrn :         u16,
+    pub nTotalSI :        u16,
+    pub pad1 :            [u8; 16]
 }
 
 impl Copy for xcb_xkb_get_compat_map_reply_t {}
@@ -1896,17 +1896,17 @@ impl Clone for xcb_xkb_get_compat_map_reply_t {
 
 #[repr(C)]
 pub struct xcb_xkb_set_compat_map_request_t {
-     pub major_opcode :       u8,
-     pub minor_opcode :       u8,
-     pub length :             u16,
-     pub deviceSpec :         xcb_xkb_device_spec_t,
-     pub pad0 :               u8,
-     pub recomputeActions :   u8,
-     pub truncateSI :         u8,
-     pub groups :             u8,
-     pub firstSI :            u16,
-     pub nSI :                u16,
-     pub pad1 :               [u8; 2]
+    pub major_opcode :       u8,
+    pub minor_opcode :       u8,
+    pub length :             u16,
+    pub deviceSpec :         xcb_xkb_device_spec_t,
+    pub pad0 :               u8,
+    pub recomputeActions :   u8,
+    pub truncateSI :         u8,
+    pub groups :             u8,
+    pub firstSI :            u16,
+    pub nSI :                u16,
+    pub pad1 :               [u8; 2]
 }
 
 impl Copy for xcb_xkb_set_compat_map_request_t {}
@@ -1923,11 +1923,11 @@ pub struct xcb_xkb_get_indicator_state_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xkb_get_indicator_state_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub deviceSpec :     xcb_xkb_device_spec_t,
-     pub pad0 :           [u8; 2]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub deviceSpec :     xcb_xkb_device_spec_t,
+    pub pad0 :           [u8; 2]
 }
 
 impl Copy for xcb_xkb_get_indicator_state_request_t {}
@@ -1937,12 +1937,12 @@ impl Clone for xcb_xkb_get_indicator_state_request_t {
 
 #[repr(C)]
 pub struct xcb_xkb_get_indicator_state_reply_t {
-     pub response_type :   u8,
-     pub deviceID :        u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub state :           u32,
-     pub pad0 :            [u8; 20]
+    pub response_type :   u8,
+    pub deviceID :        u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub state :           u32,
+    pub pad0 :            [u8; 20]
 }
 
 impl Copy for xcb_xkb_get_indicator_state_reply_t {}
@@ -1959,12 +1959,12 @@ pub struct xcb_xkb_get_indicator_map_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xkb_get_indicator_map_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub deviceSpec :     xcb_xkb_device_spec_t,
-     pub pad0 :           [u8; 2],
-     pub which :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub deviceSpec :     xcb_xkb_device_spec_t,
+    pub pad0 :           [u8; 2],
+    pub which :          u32
 }
 
 impl Copy for xcb_xkb_get_indicator_map_request_t {}
@@ -1974,14 +1974,14 @@ impl Clone for xcb_xkb_get_indicator_map_request_t {
 
 #[repr(C)]
 pub struct xcb_xkb_get_indicator_map_reply_t {
-     pub response_type :    u8,
-     pub deviceID :         u8,
-     pub sequence :         u16,
-     pub length :           u32,
-     pub which :            u32,
-     pub realIndicators :   u32,
-     pub nIndicators :      u8,
-     pub pad0 :             [u8; 15]
+    pub response_type :    u8,
+    pub deviceID :         u8,
+    pub sequence :         u16,
+    pub length :           u32,
+    pub which :            u32,
+    pub realIndicators :   u32,
+    pub nIndicators :      u8,
+    pub pad0 :             [u8; 15]
 }
 
 impl Copy for xcb_xkb_get_indicator_map_reply_t {}
@@ -1992,12 +1992,12 @@ impl Clone for xcb_xkb_get_indicator_map_reply_t {
 
 #[repr(C)]
 pub struct xcb_xkb_set_indicator_map_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub deviceSpec :     xcb_xkb_device_spec_t,
-     pub pad0 :           [u8; 2],
-     pub which :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub deviceSpec :     xcb_xkb_device_spec_t,
+    pub pad0 :           [u8; 2],
+    pub which :          u32
 }
 
 impl Copy for xcb_xkb_set_indicator_map_request_t {}
@@ -2014,14 +2014,14 @@ pub struct xcb_xkb_get_named_indicator_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xkb_get_named_indicator_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub deviceSpec :     xcb_xkb_device_spec_t,
-     pub ledClass :       xcb_xkb_led_class_spec_t,
-     pub ledID :          xcb_xkb_id_spec_t,
-     pub pad0 :           [u8; 2],
-     pub indicator :      ffi::xproto::xcb_atom_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub deviceSpec :     xcb_xkb_device_spec_t,
+    pub ledClass :       xcb_xkb_led_class_spec_t,
+    pub ledID :          xcb_xkb_id_spec_t,
+    pub pad0 :           [u8; 2],
+    pub indicator :      ffi::xproto::xcb_atom_t
 }
 
 impl Copy for xcb_xkb_get_named_indicator_request_t {}
@@ -2031,24 +2031,24 @@ impl Clone for xcb_xkb_get_named_indicator_request_t {
 
 #[repr(C)]
 pub struct xcb_xkb_get_named_indicator_reply_t {
-     pub response_type :     u8,
-     pub deviceID :          u8,
-     pub sequence :          u16,
-     pub length :            u32,
-     pub indicator :         ffi::xproto::xcb_atom_t,
-     pub found :             u8,
-     pub on :                u8,
-     pub realIndicator :     u8,
-     pub ndx :               u8,
-     pub map_flags :         u8,
-     pub map_whichGroups :   u8,
-     pub map_groups :        u8,
-     pub map_whichMods :     u8,
-     pub map_mods :          u8,
-     pub map_realMods :      u8,
-     pub map_vmod :          u16,
-     pub map_ctrls :         u32,
-     pub pad0 :              [u8; 3]
+    pub response_type :     u8,
+    pub deviceID :          u8,
+    pub sequence :          u16,
+    pub length :            u32,
+    pub indicator :         ffi::xproto::xcb_atom_t,
+    pub found :             u8,
+    pub on :                u8,
+    pub realIndicator :     u8,
+    pub ndx :               u8,
+    pub map_flags :         u8,
+    pub map_whichGroups :   u8,
+    pub map_groups :        u8,
+    pub map_whichMods :     u8,
+    pub map_mods :          u8,
+    pub map_realMods :      u8,
+    pub map_vmod :          u16,
+    pub map_ctrls :         u32,
+    pub pad0 :              [u8; 3]
 }
 
 impl Copy for xcb_xkb_get_named_indicator_reply_t {}
@@ -2059,26 +2059,26 @@ impl Clone for xcb_xkb_get_named_indicator_reply_t {
 
 #[repr(C)]
 pub struct xcb_xkb_set_named_indicator_request_t {
-     pub major_opcode :      u8,
-     pub minor_opcode :      u8,
-     pub length :            u16,
-     pub deviceSpec :        xcb_xkb_device_spec_t,
-     pub ledClass :          xcb_xkb_led_class_spec_t,
-     pub ledID :             xcb_xkb_id_spec_t,
-     pub pad0 :              [u8; 2],
-     pub indicator :         ffi::xproto::xcb_atom_t,
-     pub setState :          u8,
-     pub on :                u8,
-     pub setMap :            u8,
-     pub createMap :         u8,
-     pub pad1 :              u8,
-     pub map_flags :         u8,
-     pub map_whichGroups :   u8,
-     pub map_groups :        u8,
-     pub map_whichMods :     u8,
-     pub map_realMods :      u8,
-     pub map_vmods :         u16,
-     pub map_ctrls :         u32
+    pub major_opcode :      u8,
+    pub minor_opcode :      u8,
+    pub length :            u16,
+    pub deviceSpec :        xcb_xkb_device_spec_t,
+    pub ledClass :          xcb_xkb_led_class_spec_t,
+    pub ledID :             xcb_xkb_id_spec_t,
+    pub pad0 :              [u8; 2],
+    pub indicator :         ffi::xproto::xcb_atom_t,
+    pub setState :          u8,
+    pub on :                u8,
+    pub setMap :            u8,
+    pub createMap :         u8,
+    pub pad1 :              u8,
+    pub map_flags :         u8,
+    pub map_whichGroups :   u8,
+    pub map_groups :        u8,
+    pub map_whichMods :     u8,
+    pub map_realMods :      u8,
+    pub map_vmods :         u16,
+    pub map_ctrls :         u32
 }
 
 impl Copy for xcb_xkb_set_named_indicator_request_t {}
@@ -2095,12 +2095,12 @@ pub struct xcb_xkb_get_names_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xkb_get_names_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub deviceSpec :     xcb_xkb_device_spec_t,
-     pub pad0 :           [u8; 2],
-     pub which :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub deviceSpec :     xcb_xkb_device_spec_t,
+    pub pad0 :           [u8; 2],
+    pub which :          u32
 }
 
 impl Copy for xcb_xkb_get_names_request_t {}
@@ -2110,12 +2110,12 @@ impl Clone for xcb_xkb_get_names_request_t {
 
 #[repr(C)]
 pub struct xcb_xkb_get_names_value_list_t {
-     pub keycodesName :      ffi::xproto::xcb_atom_t,
-     pub geometryName :      ffi::xproto::xcb_atom_t,
-     pub symbolsName :       ffi::xproto::xcb_atom_t,
-     pub physSymbolsName :   ffi::xproto::xcb_atom_t,
-     pub typesName :         ffi::xproto::xcb_atom_t,
-     pub compatName :        ffi::xproto::xcb_atom_t,
+    pub keycodesName :      ffi::xproto::xcb_atom_t,
+    pub geometryName :      ffi::xproto::xcb_atom_t,
+    pub symbolsName :       ffi::xproto::xcb_atom_t,
+    pub physSymbolsName :   ffi::xproto::xcb_atom_t,
+    pub typesName :         ffi::xproto::xcb_atom_t,
+    pub compatName :        ffi::xproto::xcb_atom_t,
     pub typeNames :   *mut ffi::xproto::xcb_atom_t,
     pub nLevelsPerType :               *mut u8,
     pub ktLevelNames :   *mut ffi::xproto::xcb_atom_t,
@@ -2134,23 +2134,23 @@ impl Clone for xcb_xkb_get_names_value_list_t {
 
 #[repr(C)]
 pub struct xcb_xkb_get_names_reply_t {
-     pub response_type :   u8,
-     pub deviceID :        u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub which :           u32,
-     pub minKeyCode :      ffi::xproto::xcb_keycode_t,
-     pub maxKeyCode :      ffi::xproto::xcb_keycode_t,
-     pub nTypes :          u8,
-     pub groupNames :      u8,
-     pub virtualMods :     u16,
-     pub firstKey :        ffi::xproto::xcb_keycode_t,
-     pub nKeys :           u8,
-     pub indicators :      u32,
-     pub nRadioGroups :    u8,
-     pub nKeyAliases :     u8,
-     pub nKTLevels :       u16,
-     pub pad0 :            [u8; 4]
+    pub response_type :   u8,
+    pub deviceID :        u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub which :           u32,
+    pub minKeyCode :      ffi::xproto::xcb_keycode_t,
+    pub maxKeyCode :      ffi::xproto::xcb_keycode_t,
+    pub nTypes :          u8,
+    pub groupNames :      u8,
+    pub virtualMods :     u16,
+    pub firstKey :        ffi::xproto::xcb_keycode_t,
+    pub nKeys :           u8,
+    pub indicators :      u32,
+    pub nRadioGroups :    u8,
+    pub nKeyAliases :     u8,
+    pub nKTLevels :       u16,
+    pub pad0 :            [u8; 4]
 }
 
 impl Copy for xcb_xkb_get_names_reply_t {}
@@ -2160,12 +2160,12 @@ impl Clone for xcb_xkb_get_names_reply_t {
 
 #[repr(C)]
 pub struct xcb_xkb_set_names_values_t {
-     pub keycodesName :      ffi::xproto::xcb_atom_t,
-     pub geometryName :      ffi::xproto::xcb_atom_t,
-     pub symbolsName :       ffi::xproto::xcb_atom_t,
-     pub physSymbolsName :   ffi::xproto::xcb_atom_t,
-     pub typesName :         ffi::xproto::xcb_atom_t,
-     pub compatName :        ffi::xproto::xcb_atom_t,
+    pub keycodesName :      ffi::xproto::xcb_atom_t,
+    pub geometryName :      ffi::xproto::xcb_atom_t,
+    pub symbolsName :       ffi::xproto::xcb_atom_t,
+    pub physSymbolsName :   ffi::xproto::xcb_atom_t,
+    pub typesName :         ffi::xproto::xcb_atom_t,
+    pub compatName :        ffi::xproto::xcb_atom_t,
     pub typeNames :   *mut ffi::xproto::xcb_atom_t,
     pub nLevelsPerType :               *mut u8,
     pub ktLevelNames :   *mut ffi::xproto::xcb_atom_t,
@@ -2185,24 +2185,24 @@ impl Clone for xcb_xkb_set_names_values_t {
 
 #[repr(C)]
 pub struct xcb_xkb_set_names_request_t {
-     pub major_opcode :        u8,
-     pub minor_opcode :        u8,
-     pub length :              u16,
-     pub deviceSpec :          xcb_xkb_device_spec_t,
-     pub virtualMods :         u16,
-     pub which :               u32,
-     pub firstType :           u8,
-     pub nTypes :              u8,
-     pub firstKTLevelt :       u8,
-     pub nKTLevels :           u8,
-     pub indicators :          u32,
-     pub groupNames :          u8,
-     pub nRadioGroups :        u8,
-     pub firstKey :            ffi::xproto::xcb_keycode_t,
-     pub nKeys :               u8,
-     pub nKeyAliases :         u8,
-     pub pad0 :                u8,
-     pub totalKTLevelNames :   u16
+    pub major_opcode :        u8,
+    pub minor_opcode :        u8,
+    pub length :              u16,
+    pub deviceSpec :          xcb_xkb_device_spec_t,
+    pub virtualMods :         u16,
+    pub which :               u32,
+    pub firstType :           u8,
+    pub nTypes :              u8,
+    pub firstKTLevelt :       u8,
+    pub nKTLevels :           u8,
+    pub indicators :          u32,
+    pub groupNames :          u8,
+    pub nRadioGroups :        u8,
+    pub firstKey :            ffi::xproto::xcb_keycode_t,
+    pub nKeys :               u8,
+    pub nKeyAliases :         u8,
+    pub pad0 :                u8,
+    pub totalKTLevelNames :   u16
 }
 
 impl Copy for xcb_xkb_set_names_request_t {}
@@ -2219,12 +2219,12 @@ pub struct xcb_xkb_get_geometry_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xkb_get_geometry_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub deviceSpec :     xcb_xkb_device_spec_t,
-     pub pad0 :           [u8; 2],
-     pub name :           ffi::xproto::xcb_atom_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub deviceSpec :     xcb_xkb_device_spec_t,
+    pub pad0 :           [u8; 2],
+    pub name :           ffi::xproto::xcb_atom_t
 }
 
 impl Copy for xcb_xkb_get_geometry_request_t {}
@@ -2234,23 +2234,23 @@ impl Clone for xcb_xkb_get_geometry_request_t {
 
 #[repr(C)]
 pub struct xcb_xkb_get_geometry_reply_t {
-     pub response_type :   u8,
-     pub deviceID :        u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub name :            ffi::xproto::xcb_atom_t,
-     pub found :           u8,
-     pub pad0 :            u8,
-     pub widthMM :         u16,
-     pub heightMM :        u16,
-     pub nProperties :     u16,
-     pub nColors :         u16,
-     pub nShapes :         u16,
-     pub nSections :       u16,
-     pub nDoodads :        u16,
-     pub nKeyAliases :     u16,
-     pub baseColorNdx :    u8,
-     pub labelColorNdx :   u8
+    pub response_type :   u8,
+    pub deviceID :        u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub name :            ffi::xproto::xcb_atom_t,
+    pub found :           u8,
+    pub pad0 :            u8,
+    pub widthMM :         u16,
+    pub heightMM :        u16,
+    pub nProperties :     u16,
+    pub nColors :         u16,
+    pub nShapes :         u16,
+    pub nSections :       u16,
+    pub nDoodads :        u16,
+    pub nKeyAliases :     u16,
+    pub baseColorNdx :    u8,
+    pub labelColorNdx :   u8
 }
 
 impl Copy for xcb_xkb_get_geometry_reply_t {}
@@ -2261,22 +2261,22 @@ impl Clone for xcb_xkb_get_geometry_reply_t {
 
 #[repr(C)]
 pub struct xcb_xkb_set_geometry_request_t {
-     pub major_opcode :    u8,
-     pub minor_opcode :    u8,
-     pub length :          u16,
-     pub deviceSpec :      xcb_xkb_device_spec_t,
-     pub nShapes :         u8,
-     pub nSections :       u8,
-     pub name :            ffi::xproto::xcb_atom_t,
-     pub widthMM :         u16,
-     pub heightMM :        u16,
-     pub nProperties :     u16,
-     pub nColors :         u16,
-     pub nDoodads :        u16,
-     pub nKeyAliases :     u16,
-     pub baseColorNdx :    u8,
-     pub labelColorNdx :   u8,
-     pub pad0 :            [u8; 2]
+    pub major_opcode :    u8,
+    pub minor_opcode :    u8,
+    pub length :          u16,
+    pub deviceSpec :      xcb_xkb_device_spec_t,
+    pub nShapes :         u8,
+    pub nSections :       u8,
+    pub name :            ffi::xproto::xcb_atom_t,
+    pub widthMM :         u16,
+    pub heightMM :        u16,
+    pub nProperties :     u16,
+    pub nColors :         u16,
+    pub nDoodads :        u16,
+    pub nKeyAliases :     u16,
+    pub baseColorNdx :    u8,
+    pub labelColorNdx :   u8,
+    pub pad0 :            [u8; 2]
 }
 
 impl Copy for xcb_xkb_set_geometry_request_t {}
@@ -2293,16 +2293,16 @@ pub struct xcb_xkb_per_client_flags_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xkb_per_client_flags_request_t {
-     pub major_opcode :      u8,
-     pub minor_opcode :      u8,
-     pub length :            u16,
-     pub deviceSpec :        xcb_xkb_device_spec_t,
-     pub pad0 :              [u8; 2],
-     pub change :            u32,
-     pub value :             u32,
-     pub ctrlsToChange :     u32,
-     pub autoCtrls :         u32,
-     pub autoCtrlsValues :   u32
+    pub major_opcode :      u8,
+    pub minor_opcode :      u8,
+    pub length :            u16,
+    pub deviceSpec :        xcb_xkb_device_spec_t,
+    pub pad0 :              [u8; 2],
+    pub change :            u32,
+    pub value :             u32,
+    pub ctrlsToChange :     u32,
+    pub autoCtrls :         u32,
+    pub autoCtrlsValues :   u32
 }
 
 impl Copy for xcb_xkb_per_client_flags_request_t {}
@@ -2312,15 +2312,15 @@ impl Clone for xcb_xkb_per_client_flags_request_t {
 
 #[repr(C)]
 pub struct xcb_xkb_per_client_flags_reply_t {
-     pub response_type :     u8,
-     pub deviceID :          u8,
-     pub sequence :          u16,
-     pub length :            u32,
-     pub supported :         u32,
-     pub value :             u32,
-     pub autoCtrls :         u32,
-     pub autoCtrlsValues :   u32,
-     pub pad0 :              [u8; 8]
+    pub response_type :     u8,
+    pub deviceID :          u8,
+    pub sequence :          u16,
+    pub length :            u32,
+    pub supported :         u32,
+    pub value :             u32,
+    pub autoCtrls :         u32,
+    pub autoCtrlsValues :   u32,
+    pub pad0 :              [u8; 8]
 }
 
 impl Copy for xcb_xkb_per_client_flags_reply_t {}
@@ -2337,17 +2337,17 @@ pub struct xcb_xkb_list_components_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xkb_list_components_request_t {
-     pub major_opcode :       u8,
-     pub minor_opcode :       u8,
-     pub length :             u16,
-     pub deviceSpec :         xcb_xkb_device_spec_t,
-     pub maxNames :           u16,
-     pub keymapsSpecLen :     u8,
-     pub keycodesSpecLen :    u8,
-     pub typesSpecLen :       u8,
-     pub compatMapSpecLen :   u8,
-     pub symbolsSpecLen :     u8,
-     pub geometrySpecLen :    u8
+    pub major_opcode :       u8,
+    pub minor_opcode :       u8,
+    pub length :             u16,
+    pub deviceSpec :         xcb_xkb_device_spec_t,
+    pub maxNames :           u16,
+    pub keymapsSpecLen :     u8,
+    pub keycodesSpecLen :    u8,
+    pub typesSpecLen :       u8,
+    pub compatMapSpecLen :   u8,
+    pub symbolsSpecLen :     u8,
+    pub geometrySpecLen :    u8
 }
 
 impl Copy for xcb_xkb_list_components_request_t {}
@@ -2357,18 +2357,18 @@ impl Clone for xcb_xkb_list_components_request_t {
 
 #[repr(C)]
 pub struct xcb_xkb_list_components_reply_t {
-     pub response_type :   u8,
-     pub deviceID :        u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub nKeymaps :        u16,
-     pub nKeycodes :       u16,
-     pub nTypes :          u16,
-     pub nCompatMaps :     u16,
-     pub nSymbols :        u16,
-     pub nGeometries :     u16,
-     pub extra :           u16,
-     pub pad0 :            [u8; 10]
+    pub response_type :   u8,
+    pub deviceID :        u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub nKeymaps :        u16,
+    pub nKeycodes :       u16,
+    pub nTypes :          u16,
+    pub nCompatMaps :     u16,
+    pub nSymbols :        u16,
+    pub nGeometries :     u16,
+    pub extra :           u16,
+    pub pad0 :            [u8; 10]
 }
 
 impl Copy for xcb_xkb_list_components_reply_t {}
@@ -2385,20 +2385,20 @@ pub struct xcb_xkb_get_kbd_by_name_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xkb_get_kbd_by_name_request_t {
-     pub major_opcode :       u8,
-     pub minor_opcode :       u8,
-     pub length :             u16,
-     pub deviceSpec :         xcb_xkb_device_spec_t,
-     pub need :               u16,
-     pub want :               u16,
-     pub load :               u8,
-     pub pad0 :               u8,
-     pub keymapsSpecLen :     u8,
-     pub keycodesSpecLen :    u8,
-     pub typesSpecLen :       u8,
-     pub compatMapSpecLen :   u8,
-     pub symbolsSpecLen :     u8,
-     pub geometrySpecLen :    u8
+    pub major_opcode :       u8,
+    pub minor_opcode :       u8,
+    pub length :             u16,
+    pub deviceSpec :         xcb_xkb_device_spec_t,
+    pub need :               u16,
+    pub want :               u16,
+    pub load :               u8,
+    pub pad0 :               u8,
+    pub keymapsSpecLen :     u8,
+    pub keycodesSpecLen :    u8,
+    pub typesSpecLen :       u8,
+    pub compatMapSpecLen :   u8,
+    pub symbolsSpecLen :     u8,
+    pub geometrySpecLen :    u8
 }
 
 impl Copy for xcb_xkb_get_kbd_by_name_request_t {}
@@ -2462,12 +2462,12 @@ impl Clone for xcb_xkb_get_kbd_by_name_replies_server_symbols_map_t {
 
 #[repr(C)]
 pub struct xcb_xkb_get_kbd_by_name_replies_key_names_value_list_t {
-     pub keycodesName :      ffi::xproto::xcb_atom_t,
-     pub geometryName :      ffi::xproto::xcb_atom_t,
-     pub symbolsName :       ffi::xproto::xcb_atom_t,
-     pub physSymbolsName :   ffi::xproto::xcb_atom_t,
-     pub typesName :         ffi::xproto::xcb_atom_t,
-     pub compatName :        ffi::xproto::xcb_atom_t,
+    pub keycodesName :      ffi::xproto::xcb_atom_t,
+    pub geometryName :      ffi::xproto::xcb_atom_t,
+    pub symbolsName :       ffi::xproto::xcb_atom_t,
+    pub physSymbolsName :   ffi::xproto::xcb_atom_t,
+    pub typesName :         ffi::xproto::xcb_atom_t,
+    pub compatName :        ffi::xproto::xcb_atom_t,
     pub typeNames :   *mut ffi::xproto::xcb_atom_t,
     pub nLevelsPerType :               *mut u8,
     pub ktLevelNames :   *mut ffi::xproto::xcb_atom_t,
@@ -2486,12 +2486,12 @@ impl Clone for xcb_xkb_get_kbd_by_name_replies_key_names_value_list_t {
 
 #[repr(C)]
 pub struct xcb_xkb_get_kbd_by_name_replies_other_names_value_list_t {
-     pub keycodesName :      ffi::xproto::xcb_atom_t,
-     pub geometryName :      ffi::xproto::xcb_atom_t,
-     pub symbolsName :       ffi::xproto::xcb_atom_t,
-     pub physSymbolsName :   ffi::xproto::xcb_atom_t,
-     pub typesName :         ffi::xproto::xcb_atom_t,
-     pub compatName :        ffi::xproto::xcb_atom_t,
+    pub keycodesName :      ffi::xproto::xcb_atom_t,
+    pub geometryName :      ffi::xproto::xcb_atom_t,
+    pub symbolsName :       ffi::xproto::xcb_atom_t,
+    pub physSymbolsName :   ffi::xproto::xcb_atom_t,
+    pub typesName :         ffi::xproto::xcb_atom_t,
+    pub compatName :        ffi::xproto::xcb_atom_t,
     pub typeNames :   *mut ffi::xproto::xcb_atom_t,
     pub nLevelsPerType :               *mut u8,
     pub ktLevelNames :   *mut ffi::xproto::xcb_atom_t,
@@ -2510,178 +2510,14 @@ impl Clone for xcb_xkb_get_kbd_by_name_replies_other_names_value_list_t {
 
 #[repr(C)]
 pub struct xcb_xkb_get_kbd_by_name_replies_t {
-    types : struct _types {
-         pub getmap_type :         u8,
-         pub typeDeviceID :        u8,
-         pub getmap_sequence :     u16,
-         pub getmap_length :       u32,
-         pub pad0 :                [u8; 2],
-         pub typeMinKeyCode :      ffi::xproto::xcb_keycode_t,
-         pub typeMaxKeyCode :      ffi::xproto::xcb_keycode_t,
-         pub present :             u16,
-         pub firstType :           u8,
-         pub nTypes :              u8,
-         pub totalTypes :          u8,
-         pub firstKeySym :         ffi::xproto::xcb_keycode_t,
-         pub totalSyms :           u16,
-         pub nKeySyms :            u8,
-         pub firstKeyAction :      ffi::xproto::xcb_keycode_t,
-         pub totalActions :        u16,
-         pub nKeyActions :         u8,
-         pub firstKeyBehavior :    ffi::xproto::xcb_keycode_t,
-         pub nKeyBehaviors :       u8,
-         pub totalKeyBehaviors :   u8,
-         pub firstKeyExplicit :    ffi::xproto::xcb_keycode_t,
-         pub nKeyExplicit :        u8,
-         pub totalKeyExplicit :    u8,
-         pub firstModMapKey :      ffi::xproto::xcb_keycode_t,
-         pub nModMapKeys :         u8,
-         pub totalModMapKeys :     u8,
-         pub firstVModMapKey :     ffi::xproto::xcb_keycode_t,
-         pub nVModMapKeys :        u8,
-         pub totalVModMapKeys :    u8,
-         pub pad1 :                u8,
-         pub virtualMods :         u16,
-         pub map :                 xcb_xkb_get_kbd_by_name_replies_types_map_t,
-    }
-    compat_map : struct _compat_map {
-         pub compatDeviceID :      u8,
-         pub groupsRtrn :          u8,
-         pub pad0 :                u8,
-         pub firstSIRtrn :         u16,
-         pub nSIRtrn :             u16,
-         pub nTotalSI :            u16,
-         pub pad1 :                [u8; 16],
-        pub si_rtrn :                 *mut u8,
-        pub group_rtrn :   *mut xcb_xkb_mod_def_t,
-    }
-    client_symbols : struct _client_symbols {
-         pub clientDeviceID :      u8,
-         pub pad0 :                [u8; 2],
-         pub clientMinKeyCode :    ffi::xproto::xcb_keycode_t,
-         pub clientMaxKeyCode :    ffi::xproto::xcb_keycode_t,
-         pub present :             u16,
-         pub firstType :           u8,
-         pub nTypes :              u8,
-         pub totalTypes :          u8,
-         pub firstKeySym :         ffi::xproto::xcb_keycode_t,
-         pub totalSyms :           u16,
-         pub nKeySyms :            u8,
-         pub firstKeyAction :      ffi::xproto::xcb_keycode_t,
-         pub totalActions :        u16,
-         pub nKeyActions :         u8,
-         pub firstKeyBehavior :    ffi::xproto::xcb_keycode_t,
-         pub nKeyBehaviors :       u8,
-         pub totalKeyBehaviors :   u8,
-         pub firstKeyExplicit :    ffi::xproto::xcb_keycode_t,
-         pub nKeyExplicit :        u8,
-         pub totalKeyExplicit :    u8,
-         pub firstModMapKey :      ffi::xproto::xcb_keycode_t,
-         pub nModMapKeys :         u8,
-         pub totalModMapKeys :     u8,
-         pub firstVModMapKey :     ffi::xproto::xcb_keycode_t,
-         pub nVModMapKeys :        u8,
-         pub totalVModMapKeys :    u8,
-         pub pad1 :                u8,
-         pub virtualMods :         u16,
-         pub map :                 xcb_xkb_get_kbd_by_name_replies_client_symbols_map_t,
-    }
-    server_symbols : struct _server_symbols {
-         pub serverDeviceID :      u8,
-         pub pad0 :                [u8; 2],
-         pub serverMinKeyCode :    ffi::xproto::xcb_keycode_t,
-         pub serverMaxKeyCode :    ffi::xproto::xcb_keycode_t,
-         pub present :             u16,
-         pub firstType :           u8,
-         pub nTypes :              u8,
-         pub totalTypes :          u8,
-         pub firstKeySym :         ffi::xproto::xcb_keycode_t,
-         pub totalSyms :           u16,
-         pub nKeySyms :            u8,
-         pub firstKeyAction :      ffi::xproto::xcb_keycode_t,
-         pub totalActions :        u16,
-         pub nKeyActions :         u8,
-         pub firstKeyBehavior :    ffi::xproto::xcb_keycode_t,
-         pub nKeyBehaviors :       u8,
-         pub totalKeyBehaviors :   u8,
-         pub firstKeyExplicit :    ffi::xproto::xcb_keycode_t,
-         pub nKeyExplicit :        u8,
-         pub totalKeyExplicit :    u8,
-         pub firstModMapKey :      ffi::xproto::xcb_keycode_t,
-         pub nModMapKeys :         u8,
-         pub totalModMapKeys :     u8,
-         pub firstVModMapKey :     ffi::xproto::xcb_keycode_t,
-         pub nVModMapKeys :        u8,
-         pub totalVModMapKeys :    u8,
-         pub pad1 :                u8,
-         pub virtualMods :         u16,
-         pub map :                 xcb_xkb_get_kbd_by_name_replies_server_symbols_map_t,
-    }
-    indicator_maps : struct _indicator_maps {
-         pub indicatorDeviceID :   u8,
-         pub which :               u32,
-         pub realIndicators :      u32,
-         pub nIndicators :         u8,
-         pub pad0 :                [u8; 15],
-        pub maps :   *mut xcb_xkb_indicator_map_t,
-    }
-    key_names : struct _key_names {
-         pub keyDeviceID :         u8,
-         pub which :               u32,
-         pub keyMinKeyCode :       ffi::xproto::xcb_keycode_t,
-         pub keyMaxKeyCode :       ffi::xproto::xcb_keycode_t,
-         pub nTypes :              u8,
-         pub groupNames :          u8,
-         pub virtualMods :         u16,
-         pub firstKey :            ffi::xproto::xcb_keycode_t,
-         pub nKeys :               u8,
-         pub indicators :          u32,
-         pub nRadioGroups :        u8,
-         pub nKeyAliases :         u8,
-         pub nKTLevels :           u16,
-         pub pad0 :                [u8; 4],
-         pub valueList :           xcb_xkb_get_kbd_by_name_replies_key_names_value_list_t,
-    }
-    other_names : struct _other_names {
-         pub otherDeviceID :       u8,
-         pub which :               u32,
-         pub otherMinKeyCode :     ffi::xproto::xcb_keycode_t,
-         pub otherMaxKeyCode :     ffi::xproto::xcb_keycode_t,
-         pub nTypes :              u8,
-         pub groupNames :          u8,
-         pub virtualMods :         u16,
-         pub firstKey :            ffi::xproto::xcb_keycode_t,
-         pub nKeys :               u8,
-         pub indicators :          u32,
-         pub nRadioGroups :        u8,
-         pub nKeyAliases :         u8,
-         pub nKTLevels :           u16,
-         pub pad0 :                [u8; 4],
-         pub valueList :           xcb_xkb_get_kbd_by_name_replies_other_names_value_list_t,
-    }
-    geometry : struct _geometry {
-         pub geometryDeviceID :    u8,
-         pub name :                ffi::xproto::xcb_atom_t,
-         pub geometryFound :       u8,
-         pub pad0 :                u8,
-         pub widthMM :             u16,
-         pub heightMM :            u16,
-         pub nProperties :         u16,
-         pub nColors :             u16,
-         pub nShapes :             u16,
-         pub nSections :           u16,
-         pub nDoodads :            u16,
-         pub nKeyAliases :         u16,
-         pub baseColorNdx :        u8,
-         pub labelColorNdx :       u8,
-        pub labelFont :   *mut xcb_xkb_counted_string_16_t,
-        pub properties :   *mut xcb_xkb_property_t,
-        pub colors :   *mut xcb_xkb_counted_string_16_t,
-        pub shapes :    *mut xcb_xkb_shape_t,
-        pub sections :   *mut xcb_xkb_section_t,
-        pub doodads :   *mut xcb_xkb_doodad_t,
-        pub keyAliases :   *mut xcb_xkb_key_alias_t,
-    }
+    pub types:	xcb_xkb_get_kbd_by_name_replies__types_t,
+    pub compat_map:	xcb_xkb_get_kbd_by_name_replies__compat_map_t,
+    pub client_symbols:	xcb_xkb_get_kbd_by_name_replies__client_symbols_t,
+    pub server_symbols:	xcb_xkb_get_kbd_by_name_replies__server_symbols_t,
+    pub indicator_maps:	xcb_xkb_get_kbd_by_name_replies__indicator_maps_t,
+    pub key_names:	xcb_xkb_get_kbd_by_name_replies__key_names_t,
+    pub other_names:	xcb_xkb_get_kbd_by_name_replies__other_names_t,
+    pub geometry:	xcb_xkb_get_kbd_by_name_replies__geometry_t
 }
 
 impl Copy for xcb_xkb_get_kbd_by_name_replies_t {}
@@ -2690,18 +2526,231 @@ impl Clone for xcb_xkb_get_kbd_by_name_replies_t {
 }
 
 #[repr(C)]
+pub struct xcb_xkb_get_kbd_by_name_replies__types_t {
+    pub getmap_type :         u8,
+    pub typeDeviceID :        u8,
+    pub getmap_sequence :     u16,
+    pub getmap_length :       u32,
+    pub pad0 :                [u8; 2],
+    pub typeMinKeyCode :      ffi::xproto::xcb_keycode_t,
+    pub typeMaxKeyCode :      ffi::xproto::xcb_keycode_t,
+    pub present :             u16,
+    pub firstType :           u8,
+    pub nTypes :              u8,
+    pub totalTypes :          u8,
+    pub firstKeySym :         ffi::xproto::xcb_keycode_t,
+    pub totalSyms :           u16,
+    pub nKeySyms :            u8,
+    pub firstKeyAction :      ffi::xproto::xcb_keycode_t,
+    pub totalActions :        u16,
+    pub nKeyActions :         u8,
+    pub firstKeyBehavior :    ffi::xproto::xcb_keycode_t,
+    pub nKeyBehaviors :       u8,
+    pub totalKeyBehaviors :   u8,
+    pub firstKeyExplicit :    ffi::xproto::xcb_keycode_t,
+    pub nKeyExplicit :        u8,
+    pub totalKeyExplicit :    u8,
+    pub firstModMapKey :      ffi::xproto::xcb_keycode_t,
+    pub nModMapKeys :         u8,
+    pub totalModMapKeys :     u8,
+    pub firstVModMapKey :     ffi::xproto::xcb_keycode_t,
+    pub nVModMapKeys :        u8,
+    pub totalVModMapKeys :    u8,
+    pub pad1 :                u8,
+    pub virtualMods :         u16
+}
+
+impl Copy for xcb_xkb_get_kbd_by_name_replies__types_t {}
+impl Clone for xcb_xkb_get_kbd_by_name_replies__types_t {
+    fn clone(&self) -> xcb_xkb_get_kbd_by_name_replies__types_t { *self }
+}
+
+#[repr(C)]
+pub struct xcb_xkb_get_kbd_by_name_replies__compat_map_t {
+    pub compatDeviceID :   u8,
+    pub groupsRtrn :       u8,
+    pub pad0 :             u8,
+    pub firstSIRtrn :      u16,
+    pub nSIRtrn :          u16,
+    pub nTotalSI :         u16,
+    pub pad1 :             [u8; 16]
+}
+
+impl Copy for xcb_xkb_get_kbd_by_name_replies__compat_map_t {}
+impl Clone for xcb_xkb_get_kbd_by_name_replies__compat_map_t {
+    fn clone(&self) -> xcb_xkb_get_kbd_by_name_replies__compat_map_t { *self }
+}
+
+#[repr(C)]
+pub struct xcb_xkb_get_kbd_by_name_replies__client_symbols_t {
+    pub clientDeviceID :      u8,
+    pub pad0 :                [u8; 2],
+    pub clientMinKeyCode :    ffi::xproto::xcb_keycode_t,
+    pub clientMaxKeyCode :    ffi::xproto::xcb_keycode_t,
+    pub present :             u16,
+    pub firstType :           u8,
+    pub nTypes :              u8,
+    pub totalTypes :          u8,
+    pub firstKeySym :         ffi::xproto::xcb_keycode_t,
+    pub totalSyms :           u16,
+    pub nKeySyms :            u8,
+    pub firstKeyAction :      ffi::xproto::xcb_keycode_t,
+    pub totalActions :        u16,
+    pub nKeyActions :         u8,
+    pub firstKeyBehavior :    ffi::xproto::xcb_keycode_t,
+    pub nKeyBehaviors :       u8,
+    pub totalKeyBehaviors :   u8,
+    pub firstKeyExplicit :    ffi::xproto::xcb_keycode_t,
+    pub nKeyExplicit :        u8,
+    pub totalKeyExplicit :    u8,
+    pub firstModMapKey :      ffi::xproto::xcb_keycode_t,
+    pub nModMapKeys :         u8,
+    pub totalModMapKeys :     u8,
+    pub firstVModMapKey :     ffi::xproto::xcb_keycode_t,
+    pub nVModMapKeys :        u8,
+    pub totalVModMapKeys :    u8,
+    pub pad1 :                u8,
+    pub virtualMods :         u16
+}
+
+impl Copy for xcb_xkb_get_kbd_by_name_replies__client_symbols_t {}
+impl Clone for xcb_xkb_get_kbd_by_name_replies__client_symbols_t {
+    fn clone(&self) -> xcb_xkb_get_kbd_by_name_replies__client_symbols_t { *self }
+}
+
+#[repr(C)]
+pub struct xcb_xkb_get_kbd_by_name_replies__server_symbols_t {
+    pub serverDeviceID :      u8,
+    pub pad0 :                [u8; 2],
+    pub serverMinKeyCode :    ffi::xproto::xcb_keycode_t,
+    pub serverMaxKeyCode :    ffi::xproto::xcb_keycode_t,
+    pub present :             u16,
+    pub firstType :           u8,
+    pub nTypes :              u8,
+    pub totalTypes :          u8,
+    pub firstKeySym :         ffi::xproto::xcb_keycode_t,
+    pub totalSyms :           u16,
+    pub nKeySyms :            u8,
+    pub firstKeyAction :      ffi::xproto::xcb_keycode_t,
+    pub totalActions :        u16,
+    pub nKeyActions :         u8,
+    pub firstKeyBehavior :    ffi::xproto::xcb_keycode_t,
+    pub nKeyBehaviors :       u8,
+    pub totalKeyBehaviors :   u8,
+    pub firstKeyExplicit :    ffi::xproto::xcb_keycode_t,
+    pub nKeyExplicit :        u8,
+    pub totalKeyExplicit :    u8,
+    pub firstModMapKey :      ffi::xproto::xcb_keycode_t,
+    pub nModMapKeys :         u8,
+    pub totalModMapKeys :     u8,
+    pub firstVModMapKey :     ffi::xproto::xcb_keycode_t,
+    pub nVModMapKeys :        u8,
+    pub totalVModMapKeys :    u8,
+    pub pad1 :                u8,
+    pub virtualMods :         u16
+}
+
+impl Copy for xcb_xkb_get_kbd_by_name_replies__server_symbols_t {}
+impl Clone for xcb_xkb_get_kbd_by_name_replies__server_symbols_t {
+    fn clone(&self) -> xcb_xkb_get_kbd_by_name_replies__server_symbols_t { *self }
+}
+
+#[repr(C)]
+pub struct xcb_xkb_get_kbd_by_name_replies__indicator_maps_t {
+    pub indicatorDeviceID :   u8,
+    pub which :               u32,
+    pub realIndicators :      u32,
+    pub nIndicators :         u8,
+    pub pad0 :                [u8; 15]
+}
+
+impl Copy for xcb_xkb_get_kbd_by_name_replies__indicator_maps_t {}
+impl Clone for xcb_xkb_get_kbd_by_name_replies__indicator_maps_t {
+    fn clone(&self) -> xcb_xkb_get_kbd_by_name_replies__indicator_maps_t { *self }
+}
+
+#[repr(C)]
+pub struct xcb_xkb_get_kbd_by_name_replies__key_names_t {
+    pub keyDeviceID :     u8,
+    pub which :           u32,
+    pub keyMinKeyCode :   ffi::xproto::xcb_keycode_t,
+    pub keyMaxKeyCode :   ffi::xproto::xcb_keycode_t,
+    pub nTypes :          u8,
+    pub groupNames :      u8,
+    pub virtualMods :     u16,
+    pub firstKey :        ffi::xproto::xcb_keycode_t,
+    pub nKeys :           u8,
+    pub indicators :      u32,
+    pub nRadioGroups :    u8,
+    pub nKeyAliases :     u8,
+    pub nKTLevels :       u16,
+    pub pad0 :            [u8; 4]
+}
+
+impl Copy for xcb_xkb_get_kbd_by_name_replies__key_names_t {}
+impl Clone for xcb_xkb_get_kbd_by_name_replies__key_names_t {
+    fn clone(&self) -> xcb_xkb_get_kbd_by_name_replies__key_names_t { *self }
+}
+
+#[repr(C)]
+pub struct xcb_xkb_get_kbd_by_name_replies__other_names_t {
+    pub otherDeviceID :     u8,
+    pub which :             u32,
+    pub otherMinKeyCode :   ffi::xproto::xcb_keycode_t,
+    pub otherMaxKeyCode :   ffi::xproto::xcb_keycode_t,
+    pub nTypes :            u8,
+    pub groupNames :        u8,
+    pub virtualMods :       u16,
+    pub firstKey :          ffi::xproto::xcb_keycode_t,
+    pub nKeys :             u8,
+    pub indicators :        u32,
+    pub nRadioGroups :      u8,
+    pub nKeyAliases :       u8,
+    pub nKTLevels :         u16,
+    pub pad0 :              [u8; 4]
+}
+
+impl Copy for xcb_xkb_get_kbd_by_name_replies__other_names_t {}
+impl Clone for xcb_xkb_get_kbd_by_name_replies__other_names_t {
+    fn clone(&self) -> xcb_xkb_get_kbd_by_name_replies__other_names_t { *self }
+}
+
+#[repr(C)]
+pub struct xcb_xkb_get_kbd_by_name_replies__geometry_t {
+    pub geometryDeviceID :   u8,
+    pub name :               ffi::xproto::xcb_atom_t,
+    pub geometryFound :      u8,
+    pub pad0 :               u8,
+    pub widthMM :            u16,
+    pub heightMM :           u16,
+    pub nProperties :        u16,
+    pub nColors :            u16,
+    pub nShapes :            u16,
+    pub nSections :          u16,
+    pub nDoodads :           u16,
+    pub nKeyAliases :        u16,
+    pub baseColorNdx :       u8,
+    pub labelColorNdx :      u8
+}
+
+impl Copy for xcb_xkb_get_kbd_by_name_replies__geometry_t {}
+impl Clone for xcb_xkb_get_kbd_by_name_replies__geometry_t {
+    fn clone(&self) -> xcb_xkb_get_kbd_by_name_replies__geometry_t { *self }
+}
+
+#[repr(C)]
 pub struct xcb_xkb_get_kbd_by_name_reply_t {
-     pub response_type :   u8,
-     pub deviceID :        u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub minKeyCode :      ffi::xproto::xcb_keycode_t,
-     pub maxKeyCode :      ffi::xproto::xcb_keycode_t,
-     pub loaded :          u8,
-     pub newKeyboard :     u8,
-     pub found :           u16,
-     pub reported :        u16,
-     pub pad0 :            [u8; 16]
+    pub response_type :   u8,
+    pub deviceID :        u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub minKeyCode :      ffi::xproto::xcb_keycode_t,
+    pub maxKeyCode :      ffi::xproto::xcb_keycode_t,
+    pub loaded :          u8,
+    pub newKeyboard :     u8,
+    pub found :           u16,
+    pub reported :        u16,
+    pub pad0 :            [u8; 16]
 }
 
 impl Copy for xcb_xkb_get_kbd_by_name_reply_t {}
@@ -2718,17 +2767,17 @@ pub struct xcb_xkb_get_device_info_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xkb_get_device_info_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub deviceSpec :     xcb_xkb_device_spec_t,
-     pub wanted :         u16,
-     pub allButtons :     u8,
-     pub firstButton :    u8,
-     pub nButtons :       u8,
-     pub pad0 :           u8,
-     pub ledClass :       xcb_xkb_led_class_spec_t,
-     pub ledID :          xcb_xkb_id_spec_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub deviceSpec :     xcb_xkb_device_spec_t,
+    pub wanted :         u16,
+    pub allButtons :     u8,
+    pub firstButton :    u8,
+    pub nButtons :       u8,
+    pub pad0 :           u8,
+    pub ledClass :       xcb_xkb_led_class_spec_t,
+    pub ledID :          xcb_xkb_id_spec_t
 }
 
 impl Copy for xcb_xkb_get_device_info_request_t {}
@@ -2738,25 +2787,25 @@ impl Clone for xcb_xkb_get_device_info_request_t {
 
 #[repr(C)]
 pub struct xcb_xkb_get_device_info_reply_t {
-     pub response_type :    u8,
-     pub deviceID :         u8,
-     pub sequence :         u16,
-     pub length :           u32,
-     pub present :          u16,
-     pub supported :        u16,
-     pub unsupported :      u16,
-     pub nDeviceLedFBs :    u16,
-     pub firstBtnWanted :   u8,
-     pub nBtnsWanted :      u8,
-     pub firstBtnRtrn :     u8,
-     pub nBtnsRtrn :        u8,
-     pub totalBtns :        u8,
-     pub hasOwnState :      u8,
-     pub dfltKbdFB :        u16,
-     pub dfltLedFB :        u16,
-     pub pad0 :             [u8; 2],
-     pub devType :          ffi::xproto::xcb_atom_t,
-     pub nameLen :          u16
+    pub response_type :    u8,
+    pub deviceID :         u8,
+    pub sequence :         u16,
+    pub length :           u32,
+    pub present :          u16,
+    pub supported :        u16,
+    pub unsupported :      u16,
+    pub nDeviceLedFBs :    u16,
+    pub firstBtnWanted :   u8,
+    pub nBtnsWanted :      u8,
+    pub firstBtnRtrn :     u8,
+    pub nBtnsRtrn :        u8,
+    pub totalBtns :        u8,
+    pub hasOwnState :      u8,
+    pub dfltKbdFB :        u16,
+    pub dfltLedFB :        u16,
+    pub pad0 :             [u8; 2],
+    pub devType :          ffi::xproto::xcb_atom_t,
+    pub nameLen :          u16
 }
 
 impl Copy for xcb_xkb_get_device_info_reply_t {}
@@ -2767,14 +2816,14 @@ impl Clone for xcb_xkb_get_device_info_reply_t {
 
 #[repr(C)]
 pub struct xcb_xkb_set_device_info_request_t {
-     pub major_opcode :    u8,
-     pub minor_opcode :    u8,
-     pub length :          u16,
-     pub deviceSpec :      xcb_xkb_device_spec_t,
-     pub firstBtn :        u8,
-     pub nBtns :           u8,
-     pub change :          u16,
-     pub nDeviceLedFBs :   u16
+    pub major_opcode :    u8,
+    pub minor_opcode :    u8,
+    pub length :          u16,
+    pub deviceSpec :      xcb_xkb_device_spec_t,
+    pub firstBtn :        u8,
+    pub nBtns :           u8,
+    pub change :          u16,
+    pub nDeviceLedFBs :   u16
 }
 
 impl Copy for xcb_xkb_set_device_info_request_t {}
@@ -2791,15 +2840,15 @@ pub struct xcb_xkb_set_debugging_flags_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xkb_set_debugging_flags_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub msgLength :      u16,
-     pub pad0 :           [u8; 2],
-     pub affectFlags :    u32,
-     pub flags :          u32,
-     pub affectCtrls :    u32,
-     pub ctrls :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub msgLength :      u16,
+    pub pad0 :           [u8; 2],
+    pub affectFlags :    u32,
+    pub flags :          u32,
+    pub affectCtrls :    u32,
+    pub ctrls :          u32
 }
 
 impl Copy for xcb_xkb_set_debugging_flags_request_t {}
@@ -2809,15 +2858,15 @@ impl Clone for xcb_xkb_set_debugging_flags_request_t {
 
 #[repr(C)]
 pub struct xcb_xkb_set_debugging_flags_reply_t {
-     pub response_type :    u8,
-     pub pad0 :             u8,
-     pub sequence :         u16,
-     pub length :           u32,
-     pub currentFlags :     u32,
-     pub currentCtrls :     u32,
-     pub supportedFlags :   u32,
-     pub supportedCtrls :   u32,
-     pub pad1 :             [u8; 8]
+    pub response_type :    u8,
+    pub pad0 :             u8,
+    pub sequence :         u16,
+    pub length :           u32,
+    pub currentFlags :     u32,
+    pub currentCtrls :     u32,
+    pub supportedFlags :   u32,
+    pub supportedCtrls :   u32,
+    pub pad1 :             [u8; 8]
 }
 
 impl Copy for xcb_xkb_set_debugging_flags_reply_t {}
@@ -2828,20 +2877,20 @@ impl Clone for xcb_xkb_set_debugging_flags_reply_t {
 
 #[repr(C)]
 pub struct xcb_xkb_new_keyboard_notify_event_t {
-     pub response_type :   u8,
-     pub xkbType :         u8,
-     pub sequence :        u16,
-     pub time :            ffi::xproto::xcb_timestamp_t,
-     pub deviceID :        u8,
-     pub oldDeviceID :     u8,
-     pub minKeyCode :      ffi::xproto::xcb_keycode_t,
-     pub maxKeyCode :      ffi::xproto::xcb_keycode_t,
-     pub oldMinKeyCode :   ffi::xproto::xcb_keycode_t,
-     pub oldMaxKeyCode :   ffi::xproto::xcb_keycode_t,
-     pub requestMajor :    u8,
-     pub requestMinor :    u8,
-     pub changed :         u16,
-     pub pad0 :            [u8; 14]
+    pub response_type :   u8,
+    pub xkbType :         u8,
+    pub sequence :        u16,
+    pub time :            ffi::xproto::xcb_timestamp_t,
+    pub deviceID :        u8,
+    pub oldDeviceID :     u8,
+    pub minKeyCode :      ffi::xproto::xcb_keycode_t,
+    pub maxKeyCode :      ffi::xproto::xcb_keycode_t,
+    pub oldMinKeyCode :   ffi::xproto::xcb_keycode_t,
+    pub oldMaxKeyCode :   ffi::xproto::xcb_keycode_t,
+    pub requestMajor :    u8,
+    pub requestMinor :    u8,
+    pub changed :         u16,
+    pub pad0 :            [u8; 14]
 }
 
 impl Copy for xcb_xkb_new_keyboard_notify_event_t {}
@@ -2852,31 +2901,31 @@ impl Clone for xcb_xkb_new_keyboard_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_xkb_map_notify_event_t {
-     pub response_type :      u8,
-     pub xkbType :            u8,
-     pub sequence :           u16,
-     pub time :               ffi::xproto::xcb_timestamp_t,
-     pub deviceID :           u8,
-     pub ptrBtnActions :      u8,
-     pub changed :            u16,
-     pub minKeyCode :         ffi::xproto::xcb_keycode_t,
-     pub maxKeyCode :         ffi::xproto::xcb_keycode_t,
-     pub firstType :          u8,
-     pub nTypes :             u8,
-     pub firstKeySym :        ffi::xproto::xcb_keycode_t,
-     pub nKeySyms :           u8,
-     pub firstKeyAct :        ffi::xproto::xcb_keycode_t,
-     pub nKeyActs :           u8,
-     pub firstKeyBehavior :   ffi::xproto::xcb_keycode_t,
-     pub nKeyBehavior :       u8,
-     pub firstKeyExplicit :   ffi::xproto::xcb_keycode_t,
-     pub nKeyExplicit :       u8,
-     pub firstModMapKey :     ffi::xproto::xcb_keycode_t,
-     pub nModMapKeys :        u8,
-     pub firstVModMapKey :    ffi::xproto::xcb_keycode_t,
-     pub nVModMapKeys :       u8,
-     pub virtualMods :        u16,
-     pub pad0 :               [u8; 2]
+    pub response_type :      u8,
+    pub xkbType :            u8,
+    pub sequence :           u16,
+    pub time :               ffi::xproto::xcb_timestamp_t,
+    pub deviceID :           u8,
+    pub ptrBtnActions :      u8,
+    pub changed :            u16,
+    pub minKeyCode :         ffi::xproto::xcb_keycode_t,
+    pub maxKeyCode :         ffi::xproto::xcb_keycode_t,
+    pub firstType :          u8,
+    pub nTypes :             u8,
+    pub firstKeySym :        ffi::xproto::xcb_keycode_t,
+    pub nKeySyms :           u8,
+    pub firstKeyAct :        ffi::xproto::xcb_keycode_t,
+    pub nKeyActs :           u8,
+    pub firstKeyBehavior :   ffi::xproto::xcb_keycode_t,
+    pub nKeyBehavior :       u8,
+    pub firstKeyExplicit :   ffi::xproto::xcb_keycode_t,
+    pub nKeyExplicit :       u8,
+    pub firstModMapKey :     ffi::xproto::xcb_keycode_t,
+    pub nModMapKeys :        u8,
+    pub firstVModMapKey :    ffi::xproto::xcb_keycode_t,
+    pub nVModMapKeys :       u8,
+    pub virtualMods :        u16,
+    pub pad0 :               [u8; 2]
 }
 
 impl Copy for xcb_xkb_map_notify_event_t {}
@@ -2887,30 +2936,30 @@ impl Clone for xcb_xkb_map_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_xkb_state_notify_event_t {
-     pub response_type :       u8,
-     pub xkbType :             u8,
-     pub sequence :            u16,
-     pub time :                ffi::xproto::xcb_timestamp_t,
-     pub deviceID :            u8,
-     pub mods :                u8,
-     pub baseMods :            u8,
-     pub latchedMods :         u8,
-     pub lockedMods :          u8,
-     pub group :               u8,
-     pub baseGroup :           i16,
-     pub latchedGroup :        i16,
-     pub lockedGroup :         u8,
-     pub compatState :         u8,
-     pub grabMods :            u8,
-     pub compatGrabMods :      u8,
-     pub lookupMods :          u8,
-     pub compatLoockupMods :   u8,
-     pub ptrBtnState :         u16,
-     pub changed :             u16,
-     pub keycode :             ffi::xproto::xcb_keycode_t,
-     pub eventType :           u8,
-     pub requestMajor :        u8,
-     pub requestMinor :        u8
+    pub response_type :       u8,
+    pub xkbType :             u8,
+    pub sequence :            u16,
+    pub time :                ffi::xproto::xcb_timestamp_t,
+    pub deviceID :            u8,
+    pub mods :                u8,
+    pub baseMods :            u8,
+    pub latchedMods :         u8,
+    pub lockedMods :          u8,
+    pub group :               u8,
+    pub baseGroup :           i16,
+    pub latchedGroup :        i16,
+    pub lockedGroup :         u8,
+    pub compatState :         u8,
+    pub grabMods :            u8,
+    pub compatGrabMods :      u8,
+    pub lookupMods :          u8,
+    pub compatLoockupMods :   u8,
+    pub ptrBtnState :         u16,
+    pub changed :             u16,
+    pub keycode :             ffi::xproto::xcb_keycode_t,
+    pub eventType :           u8,
+    pub requestMajor :        u8,
+    pub requestMinor :        u8
 }
 
 impl Copy for xcb_xkb_state_notify_event_t {}
@@ -2921,21 +2970,21 @@ impl Clone for xcb_xkb_state_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_xkb_controls_notify_event_t {
-     pub response_type :           u8,
-     pub xkbType :                 u8,
-     pub sequence :                u16,
-     pub time :                    ffi::xproto::xcb_timestamp_t,
-     pub deviceID :                u8,
-     pub numGroups :               u8,
-     pub pad0 :                    [u8; 2],
-     pub changedControls :         u32,
-     pub enabledControls :         u32,
-     pub enabledControlChanges :   u32,
-     pub keycode :                 ffi::xproto::xcb_keycode_t,
-     pub eventType :               u8,
-     pub requestMajor :            u8,
-     pub requestMinor :            u8,
-     pub pad1 :                    [u8; 4]
+    pub response_type :           u8,
+    pub xkbType :                 u8,
+    pub sequence :                u16,
+    pub time :                    ffi::xproto::xcb_timestamp_t,
+    pub deviceID :                u8,
+    pub numGroups :               u8,
+    pub pad0 :                    [u8; 2],
+    pub changedControls :         u32,
+    pub enabledControls :         u32,
+    pub enabledControlChanges :   u32,
+    pub keycode :                 ffi::xproto::xcb_keycode_t,
+    pub eventType :               u8,
+    pub requestMajor :            u8,
+    pub requestMinor :            u8,
+    pub pad1 :                    [u8; 4]
 }
 
 impl Copy for xcb_xkb_controls_notify_event_t {}
@@ -2946,15 +2995,15 @@ impl Clone for xcb_xkb_controls_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_xkb_indicator_state_notify_event_t {
-     pub response_type :   u8,
-     pub xkbType :         u8,
-     pub sequence :        u16,
-     pub time :            ffi::xproto::xcb_timestamp_t,
-     pub deviceID :        u8,
-     pub pad0 :            [u8; 3],
-     pub state :           u32,
-     pub stateChanged :    u32,
-     pub pad1 :            [u8; 12]
+    pub response_type :   u8,
+    pub xkbType :         u8,
+    pub sequence :        u16,
+    pub time :            ffi::xproto::xcb_timestamp_t,
+    pub deviceID :        u8,
+    pub pad0 :            [u8; 3],
+    pub state :           u32,
+    pub stateChanged :    u32,
+    pub pad1 :            [u8; 12]
 }
 
 impl Copy for xcb_xkb_indicator_state_notify_event_t {}
@@ -2965,15 +3014,15 @@ impl Clone for xcb_xkb_indicator_state_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_xkb_indicator_map_notify_event_t {
-     pub response_type :   u8,
-     pub xkbType :         u8,
-     pub sequence :        u16,
-     pub time :            ffi::xproto::xcb_timestamp_t,
-     pub deviceID :        u8,
-     pub pad0 :            [u8; 3],
-     pub state :           u32,
-     pub mapChanged :      u32,
-     pub pad1 :            [u8; 12]
+    pub response_type :   u8,
+    pub xkbType :         u8,
+    pub sequence :        u16,
+    pub time :            ffi::xproto::xcb_timestamp_t,
+    pub deviceID :        u8,
+    pub pad0 :            [u8; 3],
+    pub state :           u32,
+    pub mapChanged :      u32,
+    pub pad1 :            [u8; 12]
 }
 
 impl Copy for xcb_xkb_indicator_map_notify_event_t {}
@@ -2984,26 +3033,26 @@ impl Clone for xcb_xkb_indicator_map_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_xkb_names_notify_event_t {
-     pub response_type :        u8,
-     pub xkbType :              u8,
-     pub sequence :             u16,
-     pub time :                 ffi::xproto::xcb_timestamp_t,
-     pub deviceID :             u8,
-     pub pad0 :                 u8,
-     pub changed :              u16,
-     pub firstType :            u8,
-     pub nTypes :               u8,
-     pub firstLevelName :       u8,
-     pub nLevelNames :          u8,
-     pub pad1 :                 u8,
-     pub nRadioGroups :         u8,
-     pub nKeyAliases :          u8,
-     pub changedGroupNames :    u8,
-     pub changedVirtualMods :   u16,
-     pub firstKey :             ffi::xproto::xcb_keycode_t,
-     pub nKeys :                u8,
-     pub changedIndicators :    u32,
-     pub pad2 :                 [u8; 4]
+    pub response_type :        u8,
+    pub xkbType :              u8,
+    pub sequence :             u16,
+    pub time :                 ffi::xproto::xcb_timestamp_t,
+    pub deviceID :             u8,
+    pub pad0 :                 u8,
+    pub changed :              u16,
+    pub firstType :            u8,
+    pub nTypes :               u8,
+    pub firstLevelName :       u8,
+    pub nLevelNames :          u8,
+    pub pad1 :                 u8,
+    pub nRadioGroups :         u8,
+    pub nKeyAliases :          u8,
+    pub changedGroupNames :    u8,
+    pub changedVirtualMods :   u16,
+    pub firstKey :             ffi::xproto::xcb_keycode_t,
+    pub nKeys :                u8,
+    pub changedIndicators :    u32,
+    pub pad2 :                 [u8; 4]
 }
 
 impl Copy for xcb_xkb_names_notify_event_t {}
@@ -3014,16 +3063,16 @@ impl Clone for xcb_xkb_names_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_xkb_compat_map_notify_event_t {
-     pub response_type :   u8,
-     pub xkbType :         u8,
-     pub sequence :        u16,
-     pub time :            ffi::xproto::xcb_timestamp_t,
-     pub deviceID :        u8,
-     pub changedGroups :   u8,
-     pub firstSI :         u16,
-     pub nSI :             u16,
-     pub nTotalSI :        u16,
-     pub pad0 :            [u8; 16]
+    pub response_type :   u8,
+    pub xkbType :         u8,
+    pub sequence :        u16,
+    pub time :            ffi::xproto::xcb_timestamp_t,
+    pub deviceID :        u8,
+    pub changedGroups :   u8,
+    pub firstSI :         u16,
+    pub nSI :             u16,
+    pub nTotalSI :        u16,
+    pub pad0 :            [u8; 16]
 }
 
 impl Copy for xcb_xkb_compat_map_notify_event_t {}
@@ -3034,20 +3083,20 @@ impl Clone for xcb_xkb_compat_map_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_xkb_bell_notify_event_t {
-     pub response_type :   u8,
-     pub xkbType :         u8,
-     pub sequence :        u16,
-     pub time :            ffi::xproto::xcb_timestamp_t,
-     pub deviceID :        u8,
-     pub bellClass :       u8,
-     pub bellID :          u8,
-     pub percent :         u8,
-     pub pitch :           u16,
-     pub duration :        u16,
-     pub name :            ffi::xproto::xcb_atom_t,
-     pub window :          ffi::xproto::xcb_window_t,
-     pub eventOnly :       u8,
-     pub pad0 :            [u8; 7]
+    pub response_type :   u8,
+    pub xkbType :         u8,
+    pub sequence :        u16,
+    pub time :            ffi::xproto::xcb_timestamp_t,
+    pub deviceID :        u8,
+    pub bellClass :       u8,
+    pub bellID :          u8,
+    pub percent :         u8,
+    pub pitch :           u16,
+    pub duration :        u16,
+    pub name :            ffi::xproto::xcb_atom_t,
+    pub window :          ffi::xproto::xcb_window_t,
+    pub eventOnly :       u8,
+    pub pad0 :            [u8; 7]
 }
 
 impl Copy for xcb_xkb_bell_notify_event_t {}
@@ -3058,18 +3107,18 @@ impl Clone for xcb_xkb_bell_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_xkb_action_message_event_t {
-     pub response_type :     u8,
-     pub xkbType :           u8,
-     pub sequence :          u16,
-     pub time :              ffi::xproto::xcb_timestamp_t,
-     pub deviceID :          u8,
-     pub keycode :           ffi::xproto::xcb_keycode_t,
-     pub press :             u8,
-     pub keyEventFollows :   u8,
-     pub mods :              u8,
-     pub group :             u8,
-     pub message :           [xcb_xkb_string8_t; 8],
-     pub pad0 :              [u8; 10]
+    pub response_type :     u8,
+    pub xkbType :           u8,
+    pub sequence :          u16,
+    pub time :              ffi::xproto::xcb_timestamp_t,
+    pub deviceID :          u8,
+    pub keycode :           ffi::xproto::xcb_keycode_t,
+    pub press :             u8,
+    pub keyEventFollows :   u8,
+    pub mods :              u8,
+    pub group :             u8,
+    pub message :           [xcb_xkb_string8_t; 8],
+    pub pad0 :              [u8; 10]
 }
 
 impl Copy for xcb_xkb_action_message_event_t {}
@@ -3080,16 +3129,16 @@ impl Clone for xcb_xkb_action_message_event_t {
 
 #[repr(C)]
 pub struct xcb_xkb_access_x_notify_event_t {
-     pub response_type :   u8,
-     pub xkbType :         u8,
-     pub sequence :        u16,
-     pub time :            ffi::xproto::xcb_timestamp_t,
-     pub deviceID :        u8,
-     pub keycode :         ffi::xproto::xcb_keycode_t,
-     pub detailt :         u16,
-     pub slowKeysDelay :   u16,
-     pub debounceDelay :   u16,
-     pub pad0 :            [u8; 16]
+    pub response_type :   u8,
+    pub xkbType :         u8,
+    pub sequence :        u16,
+    pub time :            ffi::xproto::xcb_timestamp_t,
+    pub deviceID :        u8,
+    pub keycode :         ffi::xproto::xcb_keycode_t,
+    pub detailt :         u16,
+    pub slowKeysDelay :   u16,
+    pub debounceDelay :   u16,
+    pub pad0 :            [u8; 16]
 }
 
 impl Copy for xcb_xkb_access_x_notify_event_t {}
@@ -3100,22 +3149,22 @@ impl Clone for xcb_xkb_access_x_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_xkb_extension_device_notify_event_t {
-     pub response_type :   u8,
-     pub xkbType :         u8,
-     pub sequence :        u16,
-     pub time :            ffi::xproto::xcb_timestamp_t,
-     pub deviceID :        u8,
-     pub pad0 :            u8,
-     pub reason :          u16,
-     pub ledClass :        u16,
-     pub ledID :           u8,
-     pub ledsDefined :     u32,
-     pub ledState :        u32,
-     pub firstButton :     u8,
-     pub nButtons :        u8,
-     pub supported :       u16,
-     pub unsupported :     u16,
-     pub pad1 :            [u8; 2]
+    pub response_type :   u8,
+    pub xkbType :         u8,
+    pub sequence :        u16,
+    pub time :            ffi::xproto::xcb_timestamp_t,
+    pub deviceID :        u8,
+    pub pad0 :            u8,
+    pub reason :          u16,
+    pub ledClass :        u16,
+    pub ledID :           u8,
+    pub ledsDefined :     u32,
+    pub ledState :        u32,
+    pub firstButton :     u8,
+    pub nButtons :        u8,
+    pub supported :       u16,
+    pub unsupported :     u16,
+    pub pad1 :            [u8; 2]
 }
 
 impl Copy for xcb_xkb_extension_device_notify_event_t {}

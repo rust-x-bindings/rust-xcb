@@ -22,11 +22,11 @@ pub struct xcb_xevie_query_version_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xevie_query_version_request_t {
-     pub major_opcode :           u8,
-     pub minor_opcode :           u8,
-     pub length :                 u16,
-     pub client_major_version :   u16,
-     pub client_minor_version :   u16
+    pub major_opcode :           u8,
+    pub minor_opcode :           u8,
+    pub length :                 u16,
+    pub client_major_version :   u16,
+    pub client_minor_version :   u16
 }
 
 impl Copy for xcb_xevie_query_version_request_t {}
@@ -36,13 +36,13 @@ impl Clone for xcb_xevie_query_version_request_t {
 
 #[repr(C)]
 pub struct xcb_xevie_query_version_reply_t {
-     pub response_type :          u8,
-     pub pad0 :                   u8,
-     pub sequence :               u16,
-     pub length :                 u32,
-     pub server_major_version :   u16,
-     pub server_minor_version :   u16,
-     pub pad1 :                   [u8; 20]
+    pub response_type :          u8,
+    pub pad0 :                   u8,
+    pub sequence :               u16,
+    pub length :                 u32,
+    pub server_major_version :   u16,
+    pub server_minor_version :   u16,
+    pub pad1 :                   [u8; 20]
 }
 
 impl Copy for xcb_xevie_query_version_reply_t {}
@@ -59,10 +59,10 @@ pub struct xcb_xevie_start_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xevie_start_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub screen :         u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub screen :         u32
 }
 
 impl Copy for xcb_xevie_start_request_t {}
@@ -72,11 +72,11 @@ impl Clone for xcb_xevie_start_request_t {
 
 #[repr(C)]
 pub struct xcb_xevie_start_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 24]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 24]
 }
 
 impl Copy for xcb_xevie_start_reply_t {}
@@ -93,10 +93,10 @@ pub struct xcb_xevie_end_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xevie_end_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub cmap :           u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub cmap :           u32
 }
 
 impl Copy for xcb_xevie_end_request_t {}
@@ -106,11 +106,11 @@ impl Clone for xcb_xevie_end_request_t {
 
 #[repr(C)]
 pub struct xcb_xevie_end_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 24]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 24]
 }
 
 impl Copy for xcb_xevie_end_reply_t {}
@@ -120,7 +120,7 @@ impl Clone for xcb_xevie_end_reply_t {
 
 #[repr(C)]
 pub struct xcb_xevie_event_t {
-     pub pad0 :   [u8; 32]
+    pub pad0 :   [u8; 32]
 }
 
 impl Copy for xcb_xevie_event_t {}
@@ -144,12 +144,12 @@ pub struct xcb_xevie_send_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xevie_send_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub event :          xcb_xevie_event_t,
-     pub data_type :      u32,
-     pub pad0 :           [u8; 64]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub event :          xcb_xevie_event_t,
+    pub data_type :      u32,
+    pub pad0 :           [u8; 64]
 }
 
 impl Copy for xcb_xevie_send_request_t {}
@@ -159,11 +159,11 @@ impl Clone for xcb_xevie_send_request_t {
 
 #[repr(C)]
 pub struct xcb_xevie_send_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 24]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 24]
 }
 
 impl Copy for xcb_xevie_send_reply_t {}
@@ -180,10 +180,10 @@ pub struct xcb_xevie_select_input_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xevie_select_input_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub event_mask :     u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub event_mask :     u32
 }
 
 impl Copy for xcb_xevie_select_input_request_t {}
@@ -193,11 +193,11 @@ impl Clone for xcb_xevie_select_input_request_t {
 
 #[repr(C)]
 pub struct xcb_xevie_select_input_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 24]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 24]
 }
 
 impl Copy for xcb_xevie_select_input_reply_t {}

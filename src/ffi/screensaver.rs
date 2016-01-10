@@ -23,12 +23,12 @@ pub struct xcb_screensaver_query_version_cookie_t {
 
 #[repr(C)]
 pub struct xcb_screensaver_query_version_request_t {
-     pub major_opcode :           u8,
-     pub minor_opcode :           u8,
-     pub length :                 u16,
-     pub client_major_version :   u8,
-     pub client_minor_version :   u8,
-     pub pad0 :                   [u8; 2]
+    pub major_opcode :           u8,
+    pub minor_opcode :           u8,
+    pub length :                 u16,
+    pub client_major_version :   u8,
+    pub client_minor_version :   u8,
+    pub pad0 :                   [u8; 2]
 }
 
 impl Copy for xcb_screensaver_query_version_request_t {}
@@ -38,13 +38,13 @@ impl Clone for xcb_screensaver_query_version_request_t {
 
 #[repr(C)]
 pub struct xcb_screensaver_query_version_reply_t {
-     pub response_type :          u8,
-     pub pad0 :                   u8,
-     pub sequence :               u16,
-     pub length :                 u32,
-     pub server_major_version :   u16,
-     pub server_minor_version :   u16,
-     pub pad1 :                   [u8; 20]
+    pub response_type :          u8,
+    pub pad0 :                   u8,
+    pub sequence :               u16,
+    pub length :                 u32,
+    pub server_major_version :   u16,
+    pub server_minor_version :   u16,
+    pub pad1 :                   [u8; 20]
 }
 
 impl Copy for xcb_screensaver_query_version_reply_t {}
@@ -61,10 +61,10 @@ pub struct xcb_screensaver_query_info_cookie_t {
 
 #[repr(C)]
 pub struct xcb_screensaver_query_info_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub drawable :       ffi::xproto::xcb_drawable_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub drawable :       ffi::xproto::xcb_drawable_t
 }
 
 impl Copy for xcb_screensaver_query_info_request_t {}
@@ -74,16 +74,16 @@ impl Clone for xcb_screensaver_query_info_request_t {
 
 #[repr(C)]
 pub struct xcb_screensaver_query_info_reply_t {
-     pub response_type :         u8,
-     pub state :                 u8,
-     pub sequence :              u16,
-     pub length :                u32,
-     pub saver_window :          ffi::xproto::xcb_window_t,
-     pub ms_until_server :       u32,
-     pub ms_since_user_input :   u32,
-     pub event_mask :            u32,
-     pub kind :                  u8,
-     pub pad0 :                  [u8; 7]
+    pub response_type :         u8,
+    pub state :                 u8,
+    pub sequence :              u16,
+    pub length :                u32,
+    pub saver_window :          ffi::xproto::xcb_window_t,
+    pub ms_until_server :       u32,
+    pub ms_since_user_input :   u32,
+    pub event_mask :            u32,
+    pub kind :                  u8,
+    pub pad0 :                  [u8; 7]
 }
 
 impl Copy for xcb_screensaver_query_info_reply_t {}
@@ -94,11 +94,11 @@ impl Clone for xcb_screensaver_query_info_reply_t {
 
 #[repr(C)]
 pub struct xcb_screensaver_select_input_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub drawable :       ffi::xproto::xcb_drawable_t,
-     pub event_mask :     u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub drawable :       ffi::xproto::xcb_drawable_t,
+    pub event_mask :     u32
 }
 
 impl Copy for xcb_screensaver_select_input_request_t {}
@@ -109,19 +109,19 @@ impl Clone for xcb_screensaver_select_input_request_t {
 
 #[repr(C)]
 pub struct xcb_screensaver_set_attributes_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub drawable :       ffi::xproto::xcb_drawable_t,
-     pub x :              i16,
-     pub y :              i16,
-     pub width :          u16,
-     pub height :         u16,
-     pub border_width :   u16,
-     pub class :          u8,
-     pub depth :          u8,
-     pub visual :         ffi::xproto::xcb_visualid_t,
-     pub value_mask :     u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub drawable :       ffi::xproto::xcb_drawable_t,
+    pub x :              i16,
+    pub y :              i16,
+    pub width :          u16,
+    pub height :         u16,
+    pub border_width :   u16,
+    pub class :          u8,
+    pub depth :          u8,
+    pub visual :         ffi::xproto::xcb_visualid_t,
+    pub value_mask :     u32
 }
 
 impl Copy for xcb_screensaver_set_attributes_request_t {}
@@ -132,10 +132,10 @@ impl Clone for xcb_screensaver_set_attributes_request_t {
 
 #[repr(C)]
 pub struct xcb_screensaver_unset_attributes_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub drawable :       ffi::xproto::xcb_drawable_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub drawable :       ffi::xproto::xcb_drawable_t
 }
 
 impl Copy for xcb_screensaver_unset_attributes_request_t {}
@@ -146,11 +146,11 @@ impl Clone for xcb_screensaver_unset_attributes_request_t {
 
 #[repr(C)]
 pub struct xcb_screensaver_suspend_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub suspend :        u8,
-     pub pad0 :           [u8; 3]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub suspend :        u8,
+    pub pad0 :           [u8; 3]
 }
 
 impl Copy for xcb_screensaver_suspend_request_t {}
@@ -161,18 +161,18 @@ impl Clone for xcb_screensaver_suspend_request_t {
 
 #[repr(C)]
 pub struct xcb_screensaver_notify_event_t {
-     pub response_type :     u8,
-     pub code :              u8,
-     pub sequence :          u16,
-     pub state :             u8,
-     pub pad0 :              u8,
-     pub sequence_number :   u16,
-     pub time :              ffi::xproto::xcb_timestamp_t,
-     pub root :              ffi::xproto::xcb_window_t,
-     pub window :            ffi::xproto::xcb_window_t,
-     pub kind :              u8,
-     pub forced :            u8,
-     pub pad1 :              [u8; 14]
+    pub response_type :     u8,
+    pub code :              u8,
+    pub sequence :          u16,
+    pub state :             u8,
+    pub pad0 :              u8,
+    pub sequence_number :   u16,
+    pub time :              ffi::xproto::xcb_timestamp_t,
+    pub root :              ffi::xproto::xcb_window_t,
+    pub window :            ffi::xproto::xcb_window_t,
+    pub kind :              u8,
+    pub forced :            u8,
+    pub pad1 :              [u8; 14]
 }
 
 impl Copy for xcb_screensaver_notify_event_t {}

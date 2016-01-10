@@ -25,8 +25,8 @@ pub struct xcb_x_print_string8_iterator_t {
 
 #[repr(C)]
 pub struct xcb_x_print_printer_t {
-     pub nameLen :   u32,
-     pub descLen :   u32
+    pub nameLen :   u32,
+    pub descLen :   u32
 }
 
 impl Copy for xcb_x_print_printer_t {}
@@ -59,9 +59,9 @@ pub struct xcb_x_print_print_query_version_cookie_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_query_version_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_x_print_print_query_version_request_t {}
@@ -71,12 +71,12 @@ impl Clone for xcb_x_print_print_query_version_request_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_query_version_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub major_version :   u16,
-     pub minor_version :   u16
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub major_version :   u16,
+    pub minor_version :   u16
 }
 
 impl Copy for xcb_x_print_print_query_version_reply_t {}
@@ -93,11 +93,11 @@ pub struct xcb_x_print_print_get_printer_list_cookie_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_get_printer_list_request_t {
-     pub major_opcode :     u8,
-     pub minor_opcode :     u8,
-     pub length :           u16,
-     pub printerNameLen :   u32,
-     pub localeLen :        u32
+    pub major_opcode :     u8,
+    pub minor_opcode :     u8,
+    pub length :           u16,
+    pub printerNameLen :   u32,
+    pub localeLen :        u32
 }
 
 impl Copy for xcb_x_print_print_get_printer_list_request_t {}
@@ -107,12 +107,12 @@ impl Clone for xcb_x_print_print_get_printer_list_request_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_get_printer_list_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub listCount :       u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub listCount :       u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_x_print_print_get_printer_list_reply_t {}
@@ -123,9 +123,9 @@ impl Clone for xcb_x_print_print_get_printer_list_reply_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_rehash_printer_list_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_x_print_print_rehash_printer_list_request_t {}
@@ -136,12 +136,12 @@ impl Clone for xcb_x_print_print_rehash_printer_list_request_t {
 
 #[repr(C)]
 pub struct xcb_x_print_create_context_request_t {
-     pub major_opcode :     u8,
-     pub minor_opcode :     u8,
-     pub length :           u16,
-     pub context_id :       u32,
-     pub printerNameLen :   u32,
-     pub localeLen :        u32
+    pub major_opcode :     u8,
+    pub minor_opcode :     u8,
+    pub length :           u16,
+    pub context_id :       u32,
+    pub printerNameLen :   u32,
+    pub localeLen :        u32
 }
 
 impl Copy for xcb_x_print_create_context_request_t {}
@@ -152,10 +152,10 @@ impl Clone for xcb_x_print_create_context_request_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_set_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context :        u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context :        u32
 }
 
 impl Copy for xcb_x_print_print_set_context_request_t {}
@@ -172,9 +172,9 @@ pub struct xcb_x_print_print_get_context_cookie_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_get_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_x_print_print_get_context_request_t {}
@@ -184,11 +184,11 @@ impl Clone for xcb_x_print_print_get_context_request_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_get_context_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub context :         u32
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub context :         u32
 }
 
 impl Copy for xcb_x_print_print_get_context_reply_t {}
@@ -199,10 +199,10 @@ impl Clone for xcb_x_print_print_get_context_reply_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_destroy_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context :        u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context :        u32
 }
 
 impl Copy for xcb_x_print_print_destroy_context_request_t {}
@@ -219,9 +219,9 @@ pub struct xcb_x_print_print_get_screen_of_context_cookie_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_get_screen_of_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_x_print_print_get_screen_of_context_request_t {}
@@ -231,11 +231,11 @@ impl Clone for xcb_x_print_print_get_screen_of_context_request_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_get_screen_of_context_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub root :            ffi::xproto::xcb_window_t
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub root :            ffi::xproto::xcb_window_t
 }
 
 impl Copy for xcb_x_print_print_get_screen_of_context_reply_t {}
@@ -246,10 +246,10 @@ impl Clone for xcb_x_print_print_get_screen_of_context_reply_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_start_job_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub output_mode :    u8
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub output_mode :    u8
 }
 
 impl Copy for xcb_x_print_print_start_job_request_t {}
@@ -260,10 +260,10 @@ impl Clone for xcb_x_print_print_start_job_request_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_end_job_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub cancel :         u8
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub cancel :         u8
 }
 
 impl Copy for xcb_x_print_print_end_job_request_t {}
@@ -274,10 +274,10 @@ impl Clone for xcb_x_print_print_end_job_request_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_start_doc_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub driver_mode :    u8
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub driver_mode :    u8
 }
 
 impl Copy for xcb_x_print_print_start_doc_request_t {}
@@ -288,10 +288,10 @@ impl Clone for xcb_x_print_print_start_doc_request_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_end_doc_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub cancel :         u8
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub cancel :         u8
 }
 
 impl Copy for xcb_x_print_print_end_doc_request_t {}
@@ -302,13 +302,13 @@ impl Clone for xcb_x_print_print_end_doc_request_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_put_document_data_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub drawable :       ffi::xproto::xcb_drawable_t,
-     pub len_data :       u32,
-     pub len_fmt :        u16,
-     pub len_options :    u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub drawable :       ffi::xproto::xcb_drawable_t,
+    pub len_data :       u32,
+    pub len_fmt :        u16,
+    pub len_options :    u16
 }
 
 impl Copy for xcb_x_print_print_put_document_data_request_t {}
@@ -325,11 +325,11 @@ pub struct xcb_x_print_print_get_document_data_cookie_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_get_document_data_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context :        xcb_x_print_pcontext_t,
-     pub max_bytes :      u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context :        xcb_x_print_pcontext_t,
+    pub max_bytes :      u32
 }
 
 impl Copy for xcb_x_print_print_get_document_data_request_t {}
@@ -339,14 +339,14 @@ impl Clone for xcb_x_print_print_get_document_data_request_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_get_document_data_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub status_code :     u32,
-     pub finished_flag :   u32,
-     pub dataLen :         u32,
-     pub pad1 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub status_code :     u32,
+    pub finished_flag :   u32,
+    pub dataLen :         u32,
+    pub pad1 :            [u8; 12]
 }
 
 impl Copy for xcb_x_print_print_get_document_data_reply_t {}
@@ -357,10 +357,10 @@ impl Clone for xcb_x_print_print_get_document_data_reply_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_start_page_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub window :         ffi::xproto::xcb_window_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub window :         ffi::xproto::xcb_window_t
 }
 
 impl Copy for xcb_x_print_print_start_page_request_t {}
@@ -371,11 +371,11 @@ impl Clone for xcb_x_print_print_start_page_request_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_end_page_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub cancel :         u8,
-     pub pad0 :           [u8; 3]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub cancel :         u8,
+    pub pad0 :           [u8; 3]
 }
 
 impl Copy for xcb_x_print_print_end_page_request_t {}
@@ -386,11 +386,11 @@ impl Clone for xcb_x_print_print_end_page_request_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_select_input_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context :        xcb_x_print_pcontext_t,
-     pub event_mask :     u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context :        xcb_x_print_pcontext_t,
+    pub event_mask :     u32
 }
 
 impl Copy for xcb_x_print_print_select_input_request_t {}
@@ -407,10 +407,10 @@ pub struct xcb_x_print_print_input_selected_cookie_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_input_selected_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context :        xcb_x_print_pcontext_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context :        xcb_x_print_pcontext_t
 }
 
 impl Copy for xcb_x_print_print_input_selected_request_t {}
@@ -420,12 +420,12 @@ impl Clone for xcb_x_print_print_input_selected_request_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_input_selected_reply_t {
-     pub response_type :     u8,
-     pub pad0 :              u8,
-     pub sequence :          u16,
-     pub length :            u32,
-     pub event_mask :        u32,
-     pub all_events_mask :   u32
+    pub response_type :     u8,
+    pub pad0 :              u8,
+    pub sequence :          u16,
+    pub length :            u32,
+    pub event_mask :        u32,
+    pub all_events_mask :   u32
 }
 
 impl Copy for xcb_x_print_print_input_selected_reply_t {}
@@ -442,12 +442,12 @@ pub struct xcb_x_print_print_get_attributes_cookie_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_get_attributes_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context :        xcb_x_print_pcontext_t,
-     pub pool :           u8,
-     pub pad0 :           [u8; 3]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context :        xcb_x_print_pcontext_t,
+    pub pool :           u8,
+    pub pad0 :           [u8; 3]
 }
 
 impl Copy for xcb_x_print_print_get_attributes_request_t {}
@@ -457,13 +457,13 @@ impl Clone for xcb_x_print_print_get_attributes_request_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_get_attributes_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub stringLen :       u32,
-     pub pad1 :            [u8; 20],
-     pub attributes :      xcb_x_print_string8_t
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub stringLen :       u32,
+    pub pad1 :            [u8; 20],
+    pub attributes :      xcb_x_print_string8_t
 }
 
 impl Copy for xcb_x_print_print_get_attributes_reply_t {}
@@ -480,13 +480,13 @@ pub struct xcb_x_print_print_get_one_attributes_cookie_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_get_one_attributes_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context :        xcb_x_print_pcontext_t,
-     pub nameLen :        u32,
-     pub pool :           u8,
-     pub pad0 :           [u8; 3]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context :        xcb_x_print_pcontext_t,
+    pub nameLen :        u32,
+    pub pool :           u8,
+    pub pad0 :           [u8; 3]
 }
 
 impl Copy for xcb_x_print_print_get_one_attributes_request_t {}
@@ -496,12 +496,12 @@ impl Clone for xcb_x_print_print_get_one_attributes_request_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_get_one_attributes_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub valueLen :        u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub valueLen :        u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_x_print_print_get_one_attributes_reply_t {}
@@ -512,14 +512,14 @@ impl Clone for xcb_x_print_print_get_one_attributes_reply_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_set_attributes_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context :        xcb_x_print_pcontext_t,
-     pub stringLen :      u32,
-     pub pool :           u8,
-     pub rule :           u8,
-     pub pad0 :           [u8; 2]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context :        xcb_x_print_pcontext_t,
+    pub stringLen :      u32,
+    pub pool :           u8,
+    pub rule :           u8,
+    pub pad0 :           [u8; 2]
 }
 
 impl Copy for xcb_x_print_print_set_attributes_request_t {}
@@ -536,10 +536,10 @@ pub struct xcb_x_print_print_get_page_dimensions_cookie_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_get_page_dimensions_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context :        xcb_x_print_pcontext_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context :        xcb_x_print_pcontext_t
 }
 
 impl Copy for xcb_x_print_print_get_page_dimensions_request_t {}
@@ -549,16 +549,16 @@ impl Clone for xcb_x_print_print_get_page_dimensions_request_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_get_page_dimensions_reply_t {
-     pub response_type :         u8,
-     pub pad0 :                  u8,
-     pub sequence :              u16,
-     pub length :                u32,
-     pub width :                 u16,
-     pub height :                u16,
-     pub offset_x :              u16,
-     pub offset_y :              u16,
-     pub reproducible_width :    u16,
-     pub reproducible_height :   u16
+    pub response_type :         u8,
+    pub pad0 :                  u8,
+    pub sequence :              u16,
+    pub length :                u32,
+    pub width :                 u16,
+    pub height :                u16,
+    pub offset_x :              u16,
+    pub offset_y :              u16,
+    pub reproducible_width :    u16,
+    pub reproducible_height :   u16
 }
 
 impl Copy for xcb_x_print_print_get_page_dimensions_reply_t {}
@@ -575,9 +575,9 @@ pub struct xcb_x_print_print_query_screens_cookie_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_query_screens_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_x_print_print_query_screens_request_t {}
@@ -587,12 +587,12 @@ impl Clone for xcb_x_print_print_query_screens_request_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_query_screens_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub listCount :       u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub listCount :       u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_x_print_print_query_screens_reply_t {}
@@ -609,11 +609,11 @@ pub struct xcb_x_print_print_set_image_resolution_cookie_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_set_image_resolution_request_t {
-     pub major_opcode :       u8,
-     pub minor_opcode :       u8,
-     pub length :             u16,
-     pub context :            xcb_x_print_pcontext_t,
-     pub image_resolution :   u16
+    pub major_opcode :       u8,
+    pub minor_opcode :       u8,
+    pub length :             u16,
+    pub context :            xcb_x_print_pcontext_t,
+    pub image_resolution :   u16
 }
 
 impl Copy for xcb_x_print_print_set_image_resolution_request_t {}
@@ -623,11 +623,11 @@ impl Clone for xcb_x_print_print_set_image_resolution_request_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_set_image_resolution_reply_t {
-     pub response_type :          u8,
-     pub status :                 u8,
-     pub sequence :               u16,
-     pub length :                 u32,
-     pub previous_resolutions :   u16
+    pub response_type :          u8,
+    pub status :                 u8,
+    pub sequence :               u16,
+    pub length :                 u32,
+    pub previous_resolutions :   u16
 }
 
 impl Copy for xcb_x_print_print_set_image_resolution_reply_t {}
@@ -644,10 +644,10 @@ pub struct xcb_x_print_print_get_image_resolution_cookie_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_get_image_resolution_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context :        xcb_x_print_pcontext_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context :        xcb_x_print_pcontext_t
 }
 
 impl Copy for xcb_x_print_print_get_image_resolution_request_t {}
@@ -657,11 +657,11 @@ impl Clone for xcb_x_print_print_get_image_resolution_request_t {
 
 #[repr(C)]
 pub struct xcb_x_print_print_get_image_resolution_reply_t {
-     pub response_type :      u8,
-     pub pad0 :               u8,
-     pub sequence :           u16,
-     pub length :             u32,
-     pub image_resolution :   u16
+    pub response_type :      u8,
+    pub pad0 :               u8,
+    pub sequence :           u16,
+    pub length :             u32,
+    pub image_resolution :   u16
 }
 
 impl Copy for xcb_x_print_print_get_image_resolution_reply_t {}
@@ -672,11 +672,11 @@ impl Clone for xcb_x_print_print_get_image_resolution_reply_t {
 
 #[repr(C)]
 pub struct xcb_x_print_notify_event_t {
-     pub response_type :   u8,
-     pub detail :          u8,
-     pub sequence :        u16,
-     pub context :         xcb_x_print_pcontext_t,
-     pub cancel :          u8
+    pub response_type :   u8,
+    pub detail :          u8,
+    pub sequence :        u16,
+    pub context :         xcb_x_print_pcontext_t,
+    pub cancel :          u8
 }
 
 impl Copy for xcb_x_print_notify_event_t {}
@@ -687,10 +687,10 @@ impl Clone for xcb_x_print_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_x_print_attribut_notify_event_t {
-     pub response_type :   u8,
-     pub detail :          u8,
-     pub sequence :        u16,
-     pub context :         xcb_x_print_pcontext_t
+    pub response_type :   u8,
+    pub detail :          u8,
+    pub sequence :        u16,
+    pub context :         xcb_x_print_pcontext_t
 }
 
 impl Copy for xcb_x_print_attribut_notify_event_t {}
@@ -701,9 +701,9 @@ impl Clone for xcb_x_print_attribut_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_x_print_bad_context_error_t {
-     pub response_type :   u8,
-     pub error_code :      u8,
-     pub sequence :        u16
+    pub response_type :   u8,
+    pub error_code :      u8,
+    pub sequence :        u16
 }
 
 impl Copy for xcb_x_print_bad_context_error_t {}
@@ -714,9 +714,9 @@ impl Clone for xcb_x_print_bad_context_error_t {
 
 #[repr(C)]
 pub struct xcb_x_print_bad_sequence_error_t {
-     pub response_type :   u8,
-     pub error_code :      u8,
-     pub sequence :        u16
+    pub response_type :   u8,
+    pub error_code :      u8,
+    pub sequence :        u16
 }
 
 impl Copy for xcb_x_print_bad_sequence_error_t {}

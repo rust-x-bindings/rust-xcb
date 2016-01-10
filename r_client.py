@@ -1176,7 +1176,7 @@ def _c_complex(self):
         # account for '*mut ' pointer_spec
         maxtypelen = max(maxtypelen, length)
 
-    def _c_complex_field(self, field, space='', comma=','):
+    def _c_complex_field(self, field, comma=','):
         if field.c_field_type in _types_not_copy_eligible:
             is_copy_eligible = False
         if (field.type.fixed_size() or
@@ -1188,35 +1188,38 @@ def _c_complex(self):
                 ftype = field.c_field_type
             else:
                 ftype = "[%s; %d]" % (field.c_field_type, field.c_subscript)
-            _h(' %s    pub %s : %s  %s%s', space, field.c_field_name, spacing, ftype, comma)
+            _h('    pub %s : %s  %s%s', field.c_field_name,
+                    spacing, ftype, comma)
         else:
             is_copy_eligible = False
             ftype = field.c_field_type
             spacing = ' ' * (maxtypelen - (len(field.c_field_type) + 1))
-            _h('%s    pub %s : %s  *mut %s%s', space, field.c_field_name, spacing, ftype, comma)
+            _h('    pub %s : %s  *mut %s%s', field.c_field_name, spacing, ftype, comma)
+
+
+    structsToAdd = []
+
 
     if not self.is_switch:
         count = len(struct_fields)
         for field in struct_fields:
             count = count - 1
-            _c_complex_field(self, field, '', ',' if count > 0 else '')
+            _c_complex_field(self, field, ',' if count > 0 else '')
     else:
-        count = len(self.bitcases)
-        for b in self.bitcases:
-            count = count - 1
-            space = ''
+        for bi, b in enumerate(self.bitcases):
             if b.type.has_name:
-                _h('    %s : struct _%s {', b.c_field_name, b.c_field_name)
-                space = '    '
-                oldcount = count
-                count = len(b.type.fields) - 1
-
-            comma = ',' if count > 0 else ''
-            for field in b.type.fields:
-                _c_complex_field(self, field, space, comma)
-            if b.type.has_name:
-                count = oldcount
-                _h('    }')
+                super_type = self.c_type
+                if super_type[-2:] == '_t':
+                    super_type = super_type[:-2]
+                b.type.c_type = '%s__%s_t' % (super_type, b.c_field_name)
+                structsToAdd.append(b.type)
+                comma = ',' if (bi<(len(self.bitcases)-1)) else ''
+                _h('    pub %s:\t%s%s', b.c_field_name, b.type.c_type, comma)
+            else:
+                for fi, field in enumerate(b.type.fields):
+                    comma = ',' if (bi<(len(self.bitcases)-1) or
+                            fi<(len(b.type.fields)-1)) else ''
+                    _c_complex_field(self, field, comma)
 
     _h('}\n')
 
@@ -1228,6 +1231,8 @@ def _c_complex(self):
     else:
         _types_not_copy_eligible.append(self.c_type)
 
+    for sta in structsToAdd:
+        _c_complex(sta)
 
 
 def c_struct(self, name):

@@ -24,8 +24,8 @@ pub struct xcb_record_context_iterator_t {
 
 #[repr(C)]
 pub struct xcb_record_range_8_t {
-     pub first :   u8,
-     pub last :    u8
+    pub first :   u8,
+    pub last :    u8
 }
 
 impl Copy for xcb_record_range_8_t {}
@@ -42,8 +42,8 @@ pub struct xcb_record_range_8_iterator_t {
 
 #[repr(C)]
 pub struct xcb_record_range_16_t {
-     pub first :   u16,
-     pub last :    u16
+    pub first :   u16,
+    pub last :    u16
 }
 
 impl Copy for xcb_record_range_16_t {}
@@ -60,8 +60,8 @@ pub struct xcb_record_range_16_iterator_t {
 
 #[repr(C)]
 pub struct xcb_record_ext_range_t {
-     pub major :   xcb_record_range_8_t,
-     pub minor :   xcb_record_range_16_t
+    pub major :   xcb_record_range_8_t,
+    pub minor :   xcb_record_range_16_t
 }
 
 impl Copy for xcb_record_ext_range_t {}
@@ -78,15 +78,15 @@ pub struct xcb_record_ext_range_iterator_t {
 
 #[repr(C)]
 pub struct xcb_record_range_t {
-     pub core_requests :      xcb_record_range_8_t,
-     pub core_replies :       xcb_record_range_8_t,
-     pub ext_requests :       xcb_record_ext_range_t,
-     pub ext_replies :        xcb_record_ext_range_t,
-     pub delivered_events :   xcb_record_range_8_t,
-     pub device_events :      xcb_record_range_8_t,
-     pub errors :             xcb_record_range_8_t,
-     pub client_started :     u8,
-     pub client_died :        u8
+    pub core_requests :      xcb_record_range_8_t,
+    pub core_replies :       xcb_record_range_8_t,
+    pub ext_requests :       xcb_record_ext_range_t,
+    pub ext_replies :        xcb_record_ext_range_t,
+    pub delivered_events :   xcb_record_range_8_t,
+    pub device_events :      xcb_record_range_8_t,
+    pub errors :             xcb_record_range_8_t,
+    pub client_started :     u8,
+    pub client_died :        u8
 }
 
 impl Copy for xcb_record_range_t {}
@@ -121,8 +121,8 @@ pub struct xcb_record_client_spec_iterator_t {
 
 #[repr(C)]
 pub struct xcb_record_client_info_t {
-     pub client_resource :   xcb_record_client_spec_t,
-     pub num_ranges :        u32
+    pub client_resource :   xcb_record_client_spec_t,
+    pub num_ranges :        u32
 }
 
 impl Copy for xcb_record_client_info_t {}
@@ -140,10 +140,10 @@ pub struct xcb_record_client_info_iterator_t {
 
 #[repr(C)]
 pub struct xcb_record_bad_context_error_t {
-     pub response_type :    u8,
-     pub error_code :       u8,
-     pub sequence :         u16,
-     pub invalid_record :   u32
+    pub response_type :    u8,
+    pub error_code :       u8,
+    pub sequence :         u16,
+    pub invalid_record :   u32
 }
 
 impl Copy for xcb_record_bad_context_error_t {}
@@ -160,11 +160,11 @@ pub struct xcb_record_query_version_cookie_t {
 
 #[repr(C)]
 pub struct xcb_record_query_version_request_t {
-     pub major_opcode :    u8,
-     pub minor_opcode :    u8,
-     pub length :          u16,
-     pub major_version :   u16,
-     pub minor_version :   u16
+    pub major_opcode :    u8,
+    pub minor_opcode :    u8,
+    pub length :          u16,
+    pub major_version :   u16,
+    pub minor_version :   u16
 }
 
 impl Copy for xcb_record_query_version_request_t {}
@@ -174,12 +174,12 @@ impl Clone for xcb_record_query_version_request_t {
 
 #[repr(C)]
 pub struct xcb_record_query_version_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub major_version :   u16,
-     pub minor_version :   u16
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub major_version :   u16,
+    pub minor_version :   u16
 }
 
 impl Copy for xcb_record_query_version_reply_t {}
@@ -190,14 +190,14 @@ impl Clone for xcb_record_query_version_reply_t {
 
 #[repr(C)]
 pub struct xcb_record_create_context_request_t {
-     pub major_opcode :       u8,
-     pub minor_opcode :       u8,
-     pub length :             u16,
-     pub context :            xcb_record_context_t,
-     pub element_header :     xcb_record_element_header_t,
-     pub pad0 :               [u8; 3],
-     pub num_client_specs :   u32,
-     pub num_ranges :         u32
+    pub major_opcode :       u8,
+    pub minor_opcode :       u8,
+    pub length :             u16,
+    pub context :            xcb_record_context_t,
+    pub element_header :     xcb_record_element_header_t,
+    pub pad0 :               [u8; 3],
+    pub num_client_specs :   u32,
+    pub num_ranges :         u32
 }
 
 impl Copy for xcb_record_create_context_request_t {}
@@ -208,14 +208,14 @@ impl Clone for xcb_record_create_context_request_t {
 
 #[repr(C)]
 pub struct xcb_record_register_clients_request_t {
-     pub major_opcode :       u8,
-     pub minor_opcode :       u8,
-     pub length :             u16,
-     pub context :            xcb_record_context_t,
-     pub element_header :     xcb_record_element_header_t,
-     pub pad0 :               [u8; 3],
-     pub num_client_specs :   u32,
-     pub num_ranges :         u32
+    pub major_opcode :       u8,
+    pub minor_opcode :       u8,
+    pub length :             u16,
+    pub context :            xcb_record_context_t,
+    pub element_header :     xcb_record_element_header_t,
+    pub pad0 :               [u8; 3],
+    pub num_client_specs :   u32,
+    pub num_ranges :         u32
 }
 
 impl Copy for xcb_record_register_clients_request_t {}
@@ -226,11 +226,11 @@ impl Clone for xcb_record_register_clients_request_t {
 
 #[repr(C)]
 pub struct xcb_record_unregister_clients_request_t {
-     pub major_opcode :       u8,
-     pub minor_opcode :       u8,
-     pub length :             u16,
-     pub context :            xcb_record_context_t,
-     pub num_client_specs :   u32
+    pub major_opcode :       u8,
+    pub minor_opcode :       u8,
+    pub length :             u16,
+    pub context :            xcb_record_context_t,
+    pub num_client_specs :   u32
 }
 
 impl Copy for xcb_record_unregister_clients_request_t {}
@@ -247,10 +247,10 @@ pub struct xcb_record_get_context_cookie_t {
 
 #[repr(C)]
 pub struct xcb_record_get_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context :        xcb_record_context_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context :        xcb_record_context_t
 }
 
 impl Copy for xcb_record_get_context_request_t {}
@@ -260,14 +260,14 @@ impl Clone for xcb_record_get_context_request_t {
 
 #[repr(C)]
 pub struct xcb_record_get_context_reply_t {
-     pub response_type :             u8,
-     pub enabled :                   u8,
-     pub sequence :                  u16,
-     pub length :                    u32,
-     pub element_header :            xcb_record_element_header_t,
-     pub pad0 :                      [u8; 3],
-     pub num_intercepted_clients :   u32,
-     pub pad1 :                      [u8; 16]
+    pub response_type :             u8,
+    pub enabled :                   u8,
+    pub sequence :                  u16,
+    pub length :                    u32,
+    pub element_header :            xcb_record_element_header_t,
+    pub pad0 :                      [u8; 3],
+    pub num_intercepted_clients :   u32,
+    pub pad1 :                      [u8; 16]
 }
 
 impl Copy for xcb_record_get_context_reply_t {}
@@ -284,10 +284,10 @@ pub struct xcb_record_enable_context_cookie_t {
 
 #[repr(C)]
 pub struct xcb_record_enable_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context :        xcb_record_context_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context :        xcb_record_context_t
 }
 
 impl Copy for xcb_record_enable_context_request_t {}
@@ -297,17 +297,17 @@ impl Clone for xcb_record_enable_context_request_t {
 
 #[repr(C)]
 pub struct xcb_record_enable_context_reply_t {
-     pub response_type :      u8,
-     pub category :           u8,
-     pub sequence :           u16,
-     pub length :             u32,
-     pub element_header :     xcb_record_element_header_t,
-     pub client_swapped :     u8,
-     pub pad0 :               [u8; 2],
-     pub xid_base :           u32,
-     pub server_time :        u32,
-     pub rec_sequence_num :   u32,
-     pub pad1 :               [u8; 8]
+    pub response_type :      u8,
+    pub category :           u8,
+    pub sequence :           u16,
+    pub length :             u32,
+    pub element_header :     xcb_record_element_header_t,
+    pub client_swapped :     u8,
+    pub pad0 :               [u8; 2],
+    pub xid_base :           u32,
+    pub server_time :        u32,
+    pub rec_sequence_num :   u32,
+    pub pad1 :               [u8; 8]
 }
 
 impl Copy for xcb_record_enable_context_reply_t {}
@@ -318,10 +318,10 @@ impl Clone for xcb_record_enable_context_reply_t {
 
 #[repr(C)]
 pub struct xcb_record_disable_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context :        xcb_record_context_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context :        xcb_record_context_t
 }
 
 impl Copy for xcb_record_disable_context_request_t {}
@@ -332,10 +332,10 @@ impl Clone for xcb_record_disable_context_request_t {
 
 #[repr(C)]
 pub struct xcb_record_free_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context :        xcb_record_context_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context :        xcb_record_context_t
 }
 
 impl Copy for xcb_record_free_context_request_t {}

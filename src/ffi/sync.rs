@@ -43,8 +43,8 @@ pub struct xcb_sync_fence_iterator_t {
 
 #[repr(C)]
 pub struct xcb_sync_int64_t {
-     pub hi :   i32,
-     pub lo :   u32
+    pub hi :   i32,
+    pub lo :   u32
 }
 
 impl Copy for xcb_sync_int64_t {}
@@ -61,9 +61,9 @@ pub struct xcb_sync_int64_iterator_t {
 
 #[repr(C)]
 pub struct xcb_sync_systemcounter_t {
-     pub counter :      xcb_sync_counter_t,
-     pub resolution :   xcb_sync_int64_t,
-     pub name_len :     u16
+    pub counter :      xcb_sync_counter_t,
+    pub resolution :   xcb_sync_int64_t,
+    pub name_len :     u16
 }
 
 impl Copy for xcb_sync_systemcounter_t {}
@@ -80,10 +80,10 @@ pub struct xcb_sync_systemcounter_iterator_t {
 
 #[repr(C)]
 pub struct xcb_sync_trigger_t {
-     pub counter :      xcb_sync_counter_t,
-     pub wait_type :    u32,
-     pub wait_value :   xcb_sync_int64_t,
-     pub test_type :    u32
+    pub counter :      xcb_sync_counter_t,
+    pub wait_type :    u32,
+    pub wait_value :   xcb_sync_int64_t,
+    pub test_type :    u32
 }
 
 impl Copy for xcb_sync_trigger_t {}
@@ -100,8 +100,8 @@ pub struct xcb_sync_trigger_iterator_t {
 
 #[repr(C)]
 pub struct xcb_sync_waitcondition_t {
-     pub trigger :           xcb_sync_trigger_t,
-     pub event_threshold :   xcb_sync_int64_t
+    pub trigger :           xcb_sync_trigger_t,
+    pub event_threshold :   xcb_sync_int64_t
 }
 
 impl Copy for xcb_sync_waitcondition_t {}
@@ -119,12 +119,12 @@ pub struct xcb_sync_waitcondition_iterator_t {
 
 #[repr(C)]
 pub struct xcb_sync_counter_error_t {
-     pub response_type :   u8,
-     pub error_code :      u8,
-     pub sequence :        u16,
-     pub bad_counter :     u32,
-     pub minor_opcode :    u16,
-     pub major_opcode :    u8
+    pub response_type :   u8,
+    pub error_code :      u8,
+    pub sequence :        u16,
+    pub bad_counter :     u32,
+    pub minor_opcode :    u16,
+    pub major_opcode :    u8
 }
 
 impl Copy for xcb_sync_counter_error_t {}
@@ -135,12 +135,12 @@ impl Clone for xcb_sync_counter_error_t {
 
 #[repr(C)]
 pub struct xcb_sync_alarm_error_t {
-     pub response_type :   u8,
-     pub error_code :      u8,
-     pub sequence :        u16,
-     pub bad_alarm :       u32,
-     pub minor_opcode :    u16,
-     pub major_opcode :    u8
+    pub response_type :   u8,
+    pub error_code :      u8,
+    pub sequence :        u16,
+    pub bad_alarm :       u32,
+    pub minor_opcode :    u16,
+    pub major_opcode :    u8
 }
 
 impl Copy for xcb_sync_alarm_error_t {}
@@ -157,11 +157,11 @@ pub struct xcb_sync_initialize_cookie_t {
 
 #[repr(C)]
 pub struct xcb_sync_initialize_request_t {
-     pub major_opcode :            u8,
-     pub minor_opcode :            u8,
-     pub length :                  u16,
-     pub desired_major_version :   u8,
-     pub desired_minor_version :   u8
+    pub major_opcode :            u8,
+    pub minor_opcode :            u8,
+    pub length :                  u16,
+    pub desired_major_version :   u8,
+    pub desired_minor_version :   u8
 }
 
 impl Copy for xcb_sync_initialize_request_t {}
@@ -171,13 +171,13 @@ impl Clone for xcb_sync_initialize_request_t {
 
 #[repr(C)]
 pub struct xcb_sync_initialize_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub major_version :   u8,
-     pub minor_version :   u8,
-     pub pad1 :            [u8; 22]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub major_version :   u8,
+    pub minor_version :   u8,
+    pub pad1 :            [u8; 22]
 }
 
 impl Copy for xcb_sync_initialize_reply_t {}
@@ -194,9 +194,9 @@ pub struct xcb_sync_list_system_counters_cookie_t {
 
 #[repr(C)]
 pub struct xcb_sync_list_system_counters_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_sync_list_system_counters_request_t {}
@@ -206,12 +206,12 @@ impl Clone for xcb_sync_list_system_counters_request_t {
 
 #[repr(C)]
 pub struct xcb_sync_list_system_counters_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub counters_len :    u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub counters_len :    u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_sync_list_system_counters_reply_t {}
@@ -222,11 +222,11 @@ impl Clone for xcb_sync_list_system_counters_reply_t {
 
 #[repr(C)]
 pub struct xcb_sync_create_counter_request_t {
-     pub major_opcode :    u8,
-     pub minor_opcode :    u8,
-     pub length :          u16,
-     pub id :              xcb_sync_counter_t,
-     pub initial_value :   xcb_sync_int64_t
+    pub major_opcode :    u8,
+    pub minor_opcode :    u8,
+    pub length :          u16,
+    pub id :              xcb_sync_counter_t,
+    pub initial_value :   xcb_sync_int64_t
 }
 
 impl Copy for xcb_sync_create_counter_request_t {}
@@ -237,10 +237,10 @@ impl Clone for xcb_sync_create_counter_request_t {
 
 #[repr(C)]
 pub struct xcb_sync_destroy_counter_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub counter :        xcb_sync_counter_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub counter :        xcb_sync_counter_t
 }
 
 impl Copy for xcb_sync_destroy_counter_request_t {}
@@ -257,10 +257,10 @@ pub struct xcb_sync_query_counter_cookie_t {
 
 #[repr(C)]
 pub struct xcb_sync_query_counter_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub counter :        xcb_sync_counter_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub counter :        xcb_sync_counter_t
 }
 
 impl Copy for xcb_sync_query_counter_request_t {}
@@ -270,11 +270,11 @@ impl Clone for xcb_sync_query_counter_request_t {
 
 #[repr(C)]
 pub struct xcb_sync_query_counter_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub counter_value :   xcb_sync_int64_t
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub counter_value :   xcb_sync_int64_t
 }
 
 impl Copy for xcb_sync_query_counter_reply_t {}
@@ -285,9 +285,9 @@ impl Clone for xcb_sync_query_counter_reply_t {
 
 #[repr(C)]
 pub struct xcb_sync_await_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_sync_await_request_t {}
@@ -298,11 +298,11 @@ impl Clone for xcb_sync_await_request_t {
 
 #[repr(C)]
 pub struct xcb_sync_change_counter_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub counter :        xcb_sync_counter_t,
-     pub amount :         xcb_sync_int64_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub counter :        xcb_sync_counter_t,
+    pub amount :         xcb_sync_int64_t
 }
 
 impl Copy for xcb_sync_change_counter_request_t {}
@@ -313,11 +313,11 @@ impl Clone for xcb_sync_change_counter_request_t {
 
 #[repr(C)]
 pub struct xcb_sync_set_counter_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub counter :        xcb_sync_counter_t,
-     pub value :          xcb_sync_int64_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub counter :        xcb_sync_counter_t,
+    pub value :          xcb_sync_int64_t
 }
 
 impl Copy for xcb_sync_set_counter_request_t {}
@@ -328,11 +328,11 @@ impl Clone for xcb_sync_set_counter_request_t {
 
 #[repr(C)]
 pub struct xcb_sync_create_alarm_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub id :             xcb_sync_alarm_t,
-     pub value_mask :     u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub id :             xcb_sync_alarm_t,
+    pub value_mask :     u32
 }
 
 impl Copy for xcb_sync_create_alarm_request_t {}
@@ -343,11 +343,11 @@ impl Clone for xcb_sync_create_alarm_request_t {
 
 #[repr(C)]
 pub struct xcb_sync_change_alarm_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub id :             xcb_sync_alarm_t,
-     pub value_mask :     u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub id :             xcb_sync_alarm_t,
+    pub value_mask :     u32
 }
 
 impl Copy for xcb_sync_change_alarm_request_t {}
@@ -358,10 +358,10 @@ impl Clone for xcb_sync_change_alarm_request_t {
 
 #[repr(C)]
 pub struct xcb_sync_destroy_alarm_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub alarm :          xcb_sync_alarm_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub alarm :          xcb_sync_alarm_t
 }
 
 impl Copy for xcb_sync_destroy_alarm_request_t {}
@@ -378,10 +378,10 @@ pub struct xcb_sync_query_alarm_cookie_t {
 
 #[repr(C)]
 pub struct xcb_sync_query_alarm_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub alarm :          xcb_sync_alarm_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub alarm :          xcb_sync_alarm_t
 }
 
 impl Copy for xcb_sync_query_alarm_request_t {}
@@ -391,15 +391,15 @@ impl Clone for xcb_sync_query_alarm_request_t {
 
 #[repr(C)]
 pub struct xcb_sync_query_alarm_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub trigger :         xcb_sync_trigger_t,
-     pub delta :           xcb_sync_int64_t,
-     pub events :          u8,
-     pub state :           u8,
-     pub pad1 :            [u8; 2]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub trigger :         xcb_sync_trigger_t,
+    pub delta :           xcb_sync_int64_t,
+    pub events :          u8,
+    pub state :           u8,
+    pub pad1 :            [u8; 2]
 }
 
 impl Copy for xcb_sync_query_alarm_reply_t {}
@@ -410,11 +410,11 @@ impl Clone for xcb_sync_query_alarm_reply_t {
 
 #[repr(C)]
 pub struct xcb_sync_set_priority_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub id :             u32,
-     pub priority :       i32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub id :             u32,
+    pub priority :       i32
 }
 
 impl Copy for xcb_sync_set_priority_request_t {}
@@ -431,10 +431,10 @@ pub struct xcb_sync_get_priority_cookie_t {
 
 #[repr(C)]
 pub struct xcb_sync_get_priority_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub id :             u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub id :             u32
 }
 
 impl Copy for xcb_sync_get_priority_request_t {}
@@ -444,11 +444,11 @@ impl Clone for xcb_sync_get_priority_request_t {
 
 #[repr(C)]
 pub struct xcb_sync_get_priority_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub priority :        i32
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub priority :        i32
 }
 
 impl Copy for xcb_sync_get_priority_reply_t {}
@@ -459,12 +459,12 @@ impl Clone for xcb_sync_get_priority_reply_t {
 
 #[repr(C)]
 pub struct xcb_sync_create_fence_request_t {
-     pub major_opcode :          u8,
-     pub minor_opcode :          u8,
-     pub length :                u16,
-     pub drawable :              ffi::xproto::xcb_drawable_t,
-     pub fence :                 xcb_sync_fence_t,
-     pub initially_triggered :   u8
+    pub major_opcode :          u8,
+    pub minor_opcode :          u8,
+    pub length :                u16,
+    pub drawable :              ffi::xproto::xcb_drawable_t,
+    pub fence :                 xcb_sync_fence_t,
+    pub initially_triggered :   u8
 }
 
 impl Copy for xcb_sync_create_fence_request_t {}
@@ -475,10 +475,10 @@ impl Clone for xcb_sync_create_fence_request_t {
 
 #[repr(C)]
 pub struct xcb_sync_trigger_fence_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub fence :          xcb_sync_fence_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub fence :          xcb_sync_fence_t
 }
 
 impl Copy for xcb_sync_trigger_fence_request_t {}
@@ -489,10 +489,10 @@ impl Clone for xcb_sync_trigger_fence_request_t {
 
 #[repr(C)]
 pub struct xcb_sync_reset_fence_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub fence :          xcb_sync_fence_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub fence :          xcb_sync_fence_t
 }
 
 impl Copy for xcb_sync_reset_fence_request_t {}
@@ -503,10 +503,10 @@ impl Clone for xcb_sync_reset_fence_request_t {
 
 #[repr(C)]
 pub struct xcb_sync_destroy_fence_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub fence :          xcb_sync_fence_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub fence :          xcb_sync_fence_t
 }
 
 impl Copy for xcb_sync_destroy_fence_request_t {}
@@ -523,10 +523,10 @@ pub struct xcb_sync_query_fence_cookie_t {
 
 #[repr(C)]
 pub struct xcb_sync_query_fence_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub fence :          xcb_sync_fence_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub fence :          xcb_sync_fence_t
 }
 
 impl Copy for xcb_sync_query_fence_request_t {}
@@ -536,12 +536,12 @@ impl Clone for xcb_sync_query_fence_request_t {
 
 #[repr(C)]
 pub struct xcb_sync_query_fence_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub triggered :       u8,
-     pub pad1 :            [u8; 23]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub triggered :       u8,
+    pub pad1 :            [u8; 23]
 }
 
 impl Copy for xcb_sync_query_fence_reply_t {}
@@ -552,9 +552,9 @@ impl Clone for xcb_sync_query_fence_reply_t {
 
 #[repr(C)]
 pub struct xcb_sync_await_fence_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_sync_await_fence_request_t {}
@@ -565,16 +565,16 @@ impl Clone for xcb_sync_await_fence_request_t {
 
 #[repr(C)]
 pub struct xcb_sync_counter_notify_event_t {
-     pub response_type :   u8,
-     pub kind :            u8,
-     pub sequence :        u16,
-     pub counter :         xcb_sync_counter_t,
-     pub wait_value :      xcb_sync_int64_t,
-     pub counter_value :   xcb_sync_int64_t,
-     pub timestamp :       ffi::xproto::xcb_timestamp_t,
-     pub count :           u16,
-     pub destroyed :       u8,
-     pub pad0 :            u8
+    pub response_type :   u8,
+    pub kind :            u8,
+    pub sequence :        u16,
+    pub counter :         xcb_sync_counter_t,
+    pub wait_value :      xcb_sync_int64_t,
+    pub counter_value :   xcb_sync_int64_t,
+    pub timestamp :       ffi::xproto::xcb_timestamp_t,
+    pub count :           u16,
+    pub destroyed :       u8,
+    pub pad0 :            u8
 }
 
 impl Copy for xcb_sync_counter_notify_event_t {}
@@ -585,15 +585,15 @@ impl Clone for xcb_sync_counter_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_sync_alarm_notify_event_t {
-     pub response_type :   u8,
-     pub kind :            u8,
-     pub sequence :        u16,
-     pub alarm :           xcb_sync_alarm_t,
-     pub counter_value :   xcb_sync_int64_t,
-     pub alarm_value :     xcb_sync_int64_t,
-     pub timestamp :       ffi::xproto::xcb_timestamp_t,
-     pub state :           u8,
-     pub pad0 :            [u8; 3]
+    pub response_type :   u8,
+    pub kind :            u8,
+    pub sequence :        u16,
+    pub alarm :           xcb_sync_alarm_t,
+    pub counter_value :   xcb_sync_int64_t,
+    pub alarm_value :     xcb_sync_int64_t,
+    pub timestamp :       ffi::xproto::xcb_timestamp_t,
+    pub state :           u8,
+    pub pad0 :            [u8; 3]
 }
 
 impl Copy for xcb_sync_alarm_notify_event_t {}

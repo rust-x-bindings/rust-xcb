@@ -22,11 +22,11 @@ pub struct xcb_dpms_get_version_cookie_t {
 
 #[repr(C)]
 pub struct xcb_dpms_get_version_request_t {
-     pub major_opcode :           u8,
-     pub minor_opcode :           u8,
-     pub length :                 u16,
-     pub client_major_version :   u16,
-     pub client_minor_version :   u16
+    pub major_opcode :           u8,
+    pub minor_opcode :           u8,
+    pub length :                 u16,
+    pub client_major_version :   u16,
+    pub client_minor_version :   u16
 }
 
 impl Copy for xcb_dpms_get_version_request_t {}
@@ -36,12 +36,12 @@ impl Clone for xcb_dpms_get_version_request_t {
 
 #[repr(C)]
 pub struct xcb_dpms_get_version_reply_t {
-     pub response_type :          u8,
-     pub pad0 :                   u8,
-     pub sequence :               u16,
-     pub length :                 u32,
-     pub server_major_version :   u16,
-     pub server_minor_version :   u16
+    pub response_type :          u8,
+    pub pad0 :                   u8,
+    pub sequence :               u16,
+    pub length :                 u32,
+    pub server_major_version :   u16,
+    pub server_minor_version :   u16
 }
 
 impl Copy for xcb_dpms_get_version_reply_t {}
@@ -58,9 +58,9 @@ pub struct xcb_dpms_capable_cookie_t {
 
 #[repr(C)]
 pub struct xcb_dpms_capable_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_dpms_capable_request_t {}
@@ -70,12 +70,12 @@ impl Clone for xcb_dpms_capable_request_t {
 
 #[repr(C)]
 pub struct xcb_dpms_capable_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub capable :         u8,
-     pub pad1 :            [u8; 23]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub capable :         u8,
+    pub pad1 :            [u8; 23]
 }
 
 impl Copy for xcb_dpms_capable_reply_t {}
@@ -92,9 +92,9 @@ pub struct xcb_dpms_get_timeouts_cookie_t {
 
 #[repr(C)]
 pub struct xcb_dpms_get_timeouts_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_dpms_get_timeouts_request_t {}
@@ -104,14 +104,14 @@ impl Clone for xcb_dpms_get_timeouts_request_t {
 
 #[repr(C)]
 pub struct xcb_dpms_get_timeouts_reply_t {
-     pub response_type :     u8,
-     pub pad0 :              u8,
-     pub sequence :          u16,
-     pub length :            u32,
-     pub standby_timeout :   u16,
-     pub suspend_timeout :   u16,
-     pub off_timeout :       u16,
-     pub pad1 :              [u8; 18]
+    pub response_type :     u8,
+    pub pad0 :              u8,
+    pub sequence :          u16,
+    pub length :            u32,
+    pub standby_timeout :   u16,
+    pub suspend_timeout :   u16,
+    pub off_timeout :       u16,
+    pub pad1 :              [u8; 18]
 }
 
 impl Copy for xcb_dpms_get_timeouts_reply_t {}
@@ -122,12 +122,12 @@ impl Clone for xcb_dpms_get_timeouts_reply_t {
 
 #[repr(C)]
 pub struct xcb_dpms_set_timeouts_request_t {
-     pub major_opcode :      u8,
-     pub minor_opcode :      u8,
-     pub length :            u16,
-     pub standby_timeout :   u16,
-     pub suspend_timeout :   u16,
-     pub off_timeout :       u16
+    pub major_opcode :      u8,
+    pub minor_opcode :      u8,
+    pub length :            u16,
+    pub standby_timeout :   u16,
+    pub suspend_timeout :   u16,
+    pub off_timeout :       u16
 }
 
 impl Copy for xcb_dpms_set_timeouts_request_t {}
@@ -138,9 +138,9 @@ impl Clone for xcb_dpms_set_timeouts_request_t {
 
 #[repr(C)]
 pub struct xcb_dpms_enable_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_dpms_enable_request_t {}
@@ -151,9 +151,9 @@ impl Clone for xcb_dpms_enable_request_t {
 
 #[repr(C)]
 pub struct xcb_dpms_disable_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_dpms_disable_request_t {}
@@ -164,10 +164,10 @@ impl Clone for xcb_dpms_disable_request_t {
 
 #[repr(C)]
 pub struct xcb_dpms_force_level_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub power_level :    u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub power_level :    u16
 }
 
 impl Copy for xcb_dpms_force_level_request_t {}
@@ -184,9 +184,9 @@ pub struct xcb_dpms_info_cookie_t {
 
 #[repr(C)]
 pub struct xcb_dpms_info_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_dpms_info_request_t {}
@@ -196,13 +196,13 @@ impl Clone for xcb_dpms_info_request_t {
 
 #[repr(C)]
 pub struct xcb_dpms_info_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub power_level :     u16,
-     pub state :           u8,
-     pub pad1 :            [u8; 21]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub power_level :     u16,
+    pub state :           u8,
+    pub pad1 :            [u8; 21]
 }
 
 impl Copy for xcb_dpms_info_reply_t {}

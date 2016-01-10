@@ -23,11 +23,11 @@ pub struct xcb_selinux_query_version_cookie_t {
 
 #[repr(C)]
 pub struct xcb_selinux_query_version_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub client_major :   u8,
-     pub client_minor :   u8
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub client_major :   u8,
+    pub client_minor :   u8
 }
 
 impl Copy for xcb_selinux_query_version_request_t {}
@@ -37,12 +37,12 @@ impl Clone for xcb_selinux_query_version_request_t {
 
 #[repr(C)]
 pub struct xcb_selinux_query_version_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub server_major :    u16,
-     pub server_minor :    u16
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub server_major :    u16,
+    pub server_minor :    u16
 }
 
 impl Copy for xcb_selinux_query_version_reply_t {}
@@ -53,10 +53,10 @@ impl Clone for xcb_selinux_query_version_reply_t {
 
 #[repr(C)]
 pub struct xcb_selinux_set_device_create_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_len :    u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_len :    u32
 }
 
 impl Copy for xcb_selinux_set_device_create_context_request_t {}
@@ -73,9 +73,9 @@ pub struct xcb_selinux_get_device_create_context_cookie_t {
 
 #[repr(C)]
 pub struct xcb_selinux_get_device_create_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_selinux_get_device_create_context_request_t {}
@@ -85,12 +85,12 @@ impl Clone for xcb_selinux_get_device_create_context_request_t {
 
 #[repr(C)]
 pub struct xcb_selinux_get_device_create_context_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub context_len :     u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub context_len :     u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_selinux_get_device_create_context_reply_t {}
@@ -101,11 +101,11 @@ impl Clone for xcb_selinux_get_device_create_context_reply_t {
 
 #[repr(C)]
 pub struct xcb_selinux_set_device_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub device :         u32,
-     pub context_len :    u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub device :         u32,
+    pub context_len :    u32
 }
 
 impl Copy for xcb_selinux_set_device_context_request_t {}
@@ -122,10 +122,10 @@ pub struct xcb_selinux_get_device_context_cookie_t {
 
 #[repr(C)]
 pub struct xcb_selinux_get_device_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub device :         u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub device :         u32
 }
 
 impl Copy for xcb_selinux_get_device_context_request_t {}
@@ -135,12 +135,12 @@ impl Clone for xcb_selinux_get_device_context_request_t {
 
 #[repr(C)]
 pub struct xcb_selinux_get_device_context_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub context_len :     u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub context_len :     u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_selinux_get_device_context_reply_t {}
@@ -151,10 +151,10 @@ impl Clone for xcb_selinux_get_device_context_reply_t {
 
 #[repr(C)]
 pub struct xcb_selinux_set_window_create_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_len :    u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_len :    u32
 }
 
 impl Copy for xcb_selinux_set_window_create_context_request_t {}
@@ -171,9 +171,9 @@ pub struct xcb_selinux_get_window_create_context_cookie_t {
 
 #[repr(C)]
 pub struct xcb_selinux_get_window_create_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_selinux_get_window_create_context_request_t {}
@@ -183,12 +183,12 @@ impl Clone for xcb_selinux_get_window_create_context_request_t {
 
 #[repr(C)]
 pub struct xcb_selinux_get_window_create_context_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub context_len :     u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub context_len :     u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_selinux_get_window_create_context_reply_t {}
@@ -205,10 +205,10 @@ pub struct xcb_selinux_get_window_context_cookie_t {
 
 #[repr(C)]
 pub struct xcb_selinux_get_window_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub window :         ffi::xproto::xcb_window_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub window :         ffi::xproto::xcb_window_t
 }
 
 impl Copy for xcb_selinux_get_window_context_request_t {}
@@ -218,12 +218,12 @@ impl Clone for xcb_selinux_get_window_context_request_t {
 
 #[repr(C)]
 pub struct xcb_selinux_get_window_context_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub context_len :     u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub context_len :     u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_selinux_get_window_context_reply_t {}
@@ -233,9 +233,9 @@ impl Clone for xcb_selinux_get_window_context_reply_t {
 
 #[repr(C)]
 pub struct xcb_selinux_list_item_t {
-     pub name :                 ffi::xproto::xcb_atom_t,
-     pub object_context_len :   u32,
-     pub data_context_len :     u32
+    pub name :                 ffi::xproto::xcb_atom_t,
+    pub object_context_len :   u32,
+    pub data_context_len :     u32
 }
 
 impl Copy for xcb_selinux_list_item_t {}
@@ -253,10 +253,10 @@ pub struct xcb_selinux_list_item_iterator_t {
 
 #[repr(C)]
 pub struct xcb_selinux_set_property_create_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_len :    u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_len :    u32
 }
 
 impl Copy for xcb_selinux_set_property_create_context_request_t {}
@@ -273,9 +273,9 @@ pub struct xcb_selinux_get_property_create_context_cookie_t {
 
 #[repr(C)]
 pub struct xcb_selinux_get_property_create_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_selinux_get_property_create_context_request_t {}
@@ -285,12 +285,12 @@ impl Clone for xcb_selinux_get_property_create_context_request_t {
 
 #[repr(C)]
 pub struct xcb_selinux_get_property_create_context_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub context_len :     u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub context_len :     u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_selinux_get_property_create_context_reply_t {}
@@ -301,10 +301,10 @@ impl Clone for xcb_selinux_get_property_create_context_reply_t {
 
 #[repr(C)]
 pub struct xcb_selinux_set_property_use_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_len :    u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_len :    u32
 }
 
 impl Copy for xcb_selinux_set_property_use_context_request_t {}
@@ -321,9 +321,9 @@ pub struct xcb_selinux_get_property_use_context_cookie_t {
 
 #[repr(C)]
 pub struct xcb_selinux_get_property_use_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_selinux_get_property_use_context_request_t {}
@@ -333,12 +333,12 @@ impl Clone for xcb_selinux_get_property_use_context_request_t {
 
 #[repr(C)]
 pub struct xcb_selinux_get_property_use_context_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub context_len :     u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub context_len :     u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_selinux_get_property_use_context_reply_t {}
@@ -355,11 +355,11 @@ pub struct xcb_selinux_get_property_context_cookie_t {
 
 #[repr(C)]
 pub struct xcb_selinux_get_property_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub window :         ffi::xproto::xcb_window_t,
-     pub property :       ffi::xproto::xcb_atom_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub window :         ffi::xproto::xcb_window_t,
+    pub property :       ffi::xproto::xcb_atom_t
 }
 
 impl Copy for xcb_selinux_get_property_context_request_t {}
@@ -369,12 +369,12 @@ impl Clone for xcb_selinux_get_property_context_request_t {
 
 #[repr(C)]
 pub struct xcb_selinux_get_property_context_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub context_len :     u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub context_len :     u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_selinux_get_property_context_reply_t {}
@@ -391,11 +391,11 @@ pub struct xcb_selinux_get_property_data_context_cookie_t {
 
 #[repr(C)]
 pub struct xcb_selinux_get_property_data_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub window :         ffi::xproto::xcb_window_t,
-     pub property :       ffi::xproto::xcb_atom_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub window :         ffi::xproto::xcb_window_t,
+    pub property :       ffi::xproto::xcb_atom_t
 }
 
 impl Copy for xcb_selinux_get_property_data_context_request_t {}
@@ -405,12 +405,12 @@ impl Clone for xcb_selinux_get_property_data_context_request_t {
 
 #[repr(C)]
 pub struct xcb_selinux_get_property_data_context_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub context_len :     u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub context_len :     u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_selinux_get_property_data_context_reply_t {}
@@ -427,10 +427,10 @@ pub struct xcb_selinux_list_properties_cookie_t {
 
 #[repr(C)]
 pub struct xcb_selinux_list_properties_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub window :         ffi::xproto::xcb_window_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub window :         ffi::xproto::xcb_window_t
 }
 
 impl Copy for xcb_selinux_list_properties_request_t {}
@@ -440,12 +440,12 @@ impl Clone for xcb_selinux_list_properties_request_t {
 
 #[repr(C)]
 pub struct xcb_selinux_list_properties_reply_t {
-     pub response_type :    u8,
-     pub pad0 :             u8,
-     pub sequence :         u16,
-     pub length :           u32,
-     pub properties_len :   u32,
-     pub pad1 :             [u8; 20]
+    pub response_type :    u8,
+    pub pad0 :             u8,
+    pub sequence :         u16,
+    pub length :           u32,
+    pub properties_len :   u32,
+    pub pad1 :             [u8; 20]
 }
 
 impl Copy for xcb_selinux_list_properties_reply_t {}
@@ -456,10 +456,10 @@ impl Clone for xcb_selinux_list_properties_reply_t {
 
 #[repr(C)]
 pub struct xcb_selinux_set_selection_create_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_len :    u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_len :    u32
 }
 
 impl Copy for xcb_selinux_set_selection_create_context_request_t {}
@@ -476,9 +476,9 @@ pub struct xcb_selinux_get_selection_create_context_cookie_t {
 
 #[repr(C)]
 pub struct xcb_selinux_get_selection_create_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_selinux_get_selection_create_context_request_t {}
@@ -488,12 +488,12 @@ impl Clone for xcb_selinux_get_selection_create_context_request_t {
 
 #[repr(C)]
 pub struct xcb_selinux_get_selection_create_context_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub context_len :     u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub context_len :     u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_selinux_get_selection_create_context_reply_t {}
@@ -504,10 +504,10 @@ impl Clone for xcb_selinux_get_selection_create_context_reply_t {
 
 #[repr(C)]
 pub struct xcb_selinux_set_selection_use_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_len :    u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_len :    u32
 }
 
 impl Copy for xcb_selinux_set_selection_use_context_request_t {}
@@ -524,9 +524,9 @@ pub struct xcb_selinux_get_selection_use_context_cookie_t {
 
 #[repr(C)]
 pub struct xcb_selinux_get_selection_use_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_selinux_get_selection_use_context_request_t {}
@@ -536,12 +536,12 @@ impl Clone for xcb_selinux_get_selection_use_context_request_t {
 
 #[repr(C)]
 pub struct xcb_selinux_get_selection_use_context_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub context_len :     u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub context_len :     u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_selinux_get_selection_use_context_reply_t {}
@@ -558,10 +558,10 @@ pub struct xcb_selinux_get_selection_context_cookie_t {
 
 #[repr(C)]
 pub struct xcb_selinux_get_selection_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub selection :      ffi::xproto::xcb_atom_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub selection :      ffi::xproto::xcb_atom_t
 }
 
 impl Copy for xcb_selinux_get_selection_context_request_t {}
@@ -571,12 +571,12 @@ impl Clone for xcb_selinux_get_selection_context_request_t {
 
 #[repr(C)]
 pub struct xcb_selinux_get_selection_context_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub context_len :     u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub context_len :     u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_selinux_get_selection_context_reply_t {}
@@ -593,10 +593,10 @@ pub struct xcb_selinux_get_selection_data_context_cookie_t {
 
 #[repr(C)]
 pub struct xcb_selinux_get_selection_data_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub selection :      ffi::xproto::xcb_atom_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub selection :      ffi::xproto::xcb_atom_t
 }
 
 impl Copy for xcb_selinux_get_selection_data_context_request_t {}
@@ -606,12 +606,12 @@ impl Clone for xcb_selinux_get_selection_data_context_request_t {
 
 #[repr(C)]
 pub struct xcb_selinux_get_selection_data_context_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub context_len :     u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub context_len :     u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_selinux_get_selection_data_context_reply_t {}
@@ -628,9 +628,9 @@ pub struct xcb_selinux_list_selections_cookie_t {
 
 #[repr(C)]
 pub struct xcb_selinux_list_selections_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_selinux_list_selections_request_t {}
@@ -640,12 +640,12 @@ impl Clone for xcb_selinux_list_selections_request_t {
 
 #[repr(C)]
 pub struct xcb_selinux_list_selections_reply_t {
-     pub response_type :    u8,
-     pub pad0 :             u8,
-     pub sequence :         u16,
-     pub length :           u32,
-     pub selections_len :   u32,
-     pub pad1 :             [u8; 20]
+    pub response_type :    u8,
+    pub pad0 :             u8,
+    pub sequence :         u16,
+    pub length :           u32,
+    pub selections_len :   u32,
+    pub pad1 :             [u8; 20]
 }
 
 impl Copy for xcb_selinux_list_selections_reply_t {}
@@ -662,10 +662,10 @@ pub struct xcb_selinux_get_client_context_cookie_t {
 
 #[repr(C)]
 pub struct xcb_selinux_get_client_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub resource :       u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub resource :       u32
 }
 
 impl Copy for xcb_selinux_get_client_context_request_t {}
@@ -675,12 +675,12 @@ impl Clone for xcb_selinux_get_client_context_request_t {
 
 #[repr(C)]
 pub struct xcb_selinux_get_client_context_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub context_len :     u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub context_len :     u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_selinux_get_client_context_reply_t {}

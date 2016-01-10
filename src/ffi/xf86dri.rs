@@ -15,10 +15,10 @@ pub const XF86DRI_MINOR_VERSION : c_uint = 1;
 
 #[repr(C)]
 pub struct xcb_xf86dri_drm_clip_rect_t {
-     pub x1 :   i16,
-     pub y1 :   i16,
-     pub x2 :   i16,
-     pub x3 :   i16
+    pub x1 :   i16,
+    pub y1 :   i16,
+    pub x2 :   i16,
+    pub x3 :   i16
 }
 
 impl Copy for xcb_xf86dri_drm_clip_rect_t {}
@@ -42,9 +42,9 @@ pub struct xcb_xf86dri_query_version_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xf86dri_query_version_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_xf86dri_query_version_request_t {}
@@ -54,13 +54,13 @@ impl Clone for xcb_xf86dri_query_version_request_t {
 
 #[repr(C)]
 pub struct xcb_xf86dri_query_version_reply_t {
-     pub response_type :       u8,
-     pub pad0 :                u8,
-     pub sequence :            u16,
-     pub length :              u32,
-     pub dri_major_version :   u16,
-     pub dri_minor_version :   u16,
-     pub dri_minor_patch :     u32
+    pub response_type :       u8,
+    pub pad0 :                u8,
+    pub sequence :            u16,
+    pub length :              u32,
+    pub dri_major_version :   u16,
+    pub dri_minor_version :   u16,
+    pub dri_minor_patch :     u32
 }
 
 impl Copy for xcb_xf86dri_query_version_reply_t {}
@@ -77,10 +77,10 @@ pub struct xcb_xf86dri_query_direct_rendering_capable_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xf86dri_query_direct_rendering_capable_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub screen :         u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub screen :         u32
 }
 
 impl Copy for xcb_xf86dri_query_direct_rendering_capable_request_t {}
@@ -90,11 +90,11 @@ impl Clone for xcb_xf86dri_query_direct_rendering_capable_request_t {
 
 #[repr(C)]
 pub struct xcb_xf86dri_query_direct_rendering_capable_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub is_capable :      u8
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub is_capable :      u8
 }
 
 impl Copy for xcb_xf86dri_query_direct_rendering_capable_reply_t {}
@@ -111,10 +111,10 @@ pub struct xcb_xf86dri_open_connection_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xf86dri_open_connection_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub screen :         u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub screen :         u32
 }
 
 impl Copy for xcb_xf86dri_open_connection_request_t {}
@@ -124,14 +124,14 @@ impl Clone for xcb_xf86dri_open_connection_request_t {
 
 #[repr(C)]
 pub struct xcb_xf86dri_open_connection_reply_t {
-     pub response_type :       u8,
-     pub pad0 :                u8,
-     pub sequence :            u16,
-     pub length :              u32,
-     pub sarea_handle_low :    u32,
-     pub sarea_handle_high :   u32,
-     pub bus_id_len :          u32,
-     pub pad1 :                [u8; 12]
+    pub response_type :       u8,
+    pub pad0 :                u8,
+    pub sequence :            u16,
+    pub length :              u32,
+    pub sarea_handle_low :    u32,
+    pub sarea_handle_high :   u32,
+    pub bus_id_len :          u32,
+    pub pad1 :                [u8; 12]
 }
 
 impl Copy for xcb_xf86dri_open_connection_reply_t {}
@@ -142,10 +142,10 @@ impl Clone for xcb_xf86dri_open_connection_reply_t {
 
 #[repr(C)]
 pub struct xcb_xf86dri_close_connection_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub screen :         u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub screen :         u32
 }
 
 impl Copy for xcb_xf86dri_close_connection_request_t {}
@@ -162,10 +162,10 @@ pub struct xcb_xf86dri_get_client_driver_name_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xf86dri_get_client_driver_name_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub screen :         u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub screen :         u32
 }
 
 impl Copy for xcb_xf86dri_get_client_driver_name_request_t {}
@@ -175,15 +175,15 @@ impl Clone for xcb_xf86dri_get_client_driver_name_request_t {
 
 #[repr(C)]
 pub struct xcb_xf86dri_get_client_driver_name_reply_t {
-     pub response_type :                 u8,
-     pub pad0 :                          u8,
-     pub sequence :                      u16,
-     pub length :                        u32,
-     pub client_driver_major_version :   u32,
-     pub client_driver_minor_version :   u32,
-     pub client_driver_patch_version :   u32,
-     pub client_driver_name_len :        u32,
-     pub pad1 :                          [u8; 8]
+    pub response_type :                 u8,
+    pub pad0 :                          u8,
+    pub sequence :                      u16,
+    pub length :                        u32,
+    pub client_driver_major_version :   u32,
+    pub client_driver_minor_version :   u32,
+    pub client_driver_patch_version :   u32,
+    pub client_driver_name_len :        u32,
+    pub pad1 :                          [u8; 8]
 }
 
 impl Copy for xcb_xf86dri_get_client_driver_name_reply_t {}
@@ -200,12 +200,12 @@ pub struct xcb_xf86dri_create_context_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xf86dri_create_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub screen :         u32,
-     pub visual :         u32,
-     pub context :        u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub screen :         u32,
+    pub visual :         u32,
+    pub context :        u32
 }
 
 impl Copy for xcb_xf86dri_create_context_request_t {}
@@ -215,11 +215,11 @@ impl Clone for xcb_xf86dri_create_context_request_t {
 
 #[repr(C)]
 pub struct xcb_xf86dri_create_context_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub hw_context :      u32
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub hw_context :      u32
 }
 
 impl Copy for xcb_xf86dri_create_context_reply_t {}
@@ -230,11 +230,11 @@ impl Clone for xcb_xf86dri_create_context_reply_t {
 
 #[repr(C)]
 pub struct xcb_xf86dri_destroy_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub screen :         u32,
-     pub context :        u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub screen :         u32,
+    pub context :        u32
 }
 
 impl Copy for xcb_xf86dri_destroy_context_request_t {}
@@ -251,11 +251,11 @@ pub struct xcb_xf86dri_create_drawable_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xf86dri_create_drawable_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub screen :         u32,
-     pub drawable :       u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub screen :         u32,
+    pub drawable :       u32
 }
 
 impl Copy for xcb_xf86dri_create_drawable_request_t {}
@@ -265,11 +265,11 @@ impl Clone for xcb_xf86dri_create_drawable_request_t {
 
 #[repr(C)]
 pub struct xcb_xf86dri_create_drawable_reply_t {
-     pub response_type :        u8,
-     pub pad0 :                 u8,
-     pub sequence :             u16,
-     pub length :               u32,
-     pub hw_drawable_handle :   u32
+    pub response_type :        u8,
+    pub pad0 :                 u8,
+    pub sequence :             u16,
+    pub length :               u32,
+    pub hw_drawable_handle :   u32
 }
 
 impl Copy for xcb_xf86dri_create_drawable_reply_t {}
@@ -280,11 +280,11 @@ impl Clone for xcb_xf86dri_create_drawable_reply_t {
 
 #[repr(C)]
 pub struct xcb_xf86dri_destroy_drawable_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub screen :         u32,
-     pub drawable :       u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub screen :         u32,
+    pub drawable :       u32
 }
 
 impl Copy for xcb_xf86dri_destroy_drawable_request_t {}
@@ -301,11 +301,11 @@ pub struct xcb_xf86dri_get_drawable_info_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xf86dri_get_drawable_info_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub screen :         u32,
-     pub drawable :       u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub screen :         u32,
+    pub drawable :       u32
 }
 
 impl Copy for xcb_xf86dri_get_drawable_info_request_t {}
@@ -315,20 +315,20 @@ impl Clone for xcb_xf86dri_get_drawable_info_request_t {
 
 #[repr(C)]
 pub struct xcb_xf86dri_get_drawable_info_reply_t {
-     pub response_type :          u8,
-     pub pad0 :                   u8,
-     pub sequence :               u16,
-     pub length :                 u32,
-     pub drawable_table_index :   u32,
-     pub drawable_table_stamp :   u32,
-     pub drawable_origin_X :      i16,
-     pub drawable_origin_Y :      i16,
-     pub drawable_size_W :        i16,
-     pub drawable_size_H :        i16,
-     pub num_clip_rects :         u32,
-     pub back_x :                 i16,
-     pub back_y :                 i16,
-     pub num_back_clip_rects :    u32
+    pub response_type :          u8,
+    pub pad0 :                   u8,
+    pub sequence :               u16,
+    pub length :                 u32,
+    pub drawable_table_index :   u32,
+    pub drawable_table_stamp :   u32,
+    pub drawable_origin_X :      i16,
+    pub drawable_origin_Y :      i16,
+    pub drawable_size_W :        i16,
+    pub drawable_size_H :        i16,
+    pub num_clip_rects :         u32,
+    pub back_x :                 i16,
+    pub back_y :                 i16,
+    pub num_back_clip_rects :    u32
 }
 
 impl Copy for xcb_xf86dri_get_drawable_info_reply_t {}
@@ -345,10 +345,10 @@ pub struct xcb_xf86dri_get_device_info_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xf86dri_get_device_info_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub screen :         u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub screen :         u32
 }
 
 impl Copy for xcb_xf86dri_get_device_info_request_t {}
@@ -358,16 +358,16 @@ impl Clone for xcb_xf86dri_get_device_info_request_t {
 
 #[repr(C)]
 pub struct xcb_xf86dri_get_device_info_reply_t {
-     pub response_type :               u8,
-     pub pad0 :                        u8,
-     pub sequence :                    u16,
-     pub length :                      u32,
-     pub framebuffer_handle_low :      u32,
-     pub framebuffer_handle_high :     u32,
-     pub framebuffer_origin_offset :   u32,
-     pub framebuffer_size :            u32,
-     pub framebuffer_stride :          u32,
-     pub device_private_size :         u32
+    pub response_type :               u8,
+    pub pad0 :                        u8,
+    pub sequence :                    u16,
+    pub length :                      u32,
+    pub framebuffer_handle_low :      u32,
+    pub framebuffer_handle_high :     u32,
+    pub framebuffer_origin_offset :   u32,
+    pub framebuffer_size :            u32,
+    pub framebuffer_stride :          u32,
+    pub device_private_size :         u32
 }
 
 impl Copy for xcb_xf86dri_get_device_info_reply_t {}
@@ -384,11 +384,11 @@ pub struct xcb_xf86dri_auth_connection_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xf86dri_auth_connection_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub screen :         u32,
-     pub magic :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub screen :         u32,
+    pub magic :          u32
 }
 
 impl Copy for xcb_xf86dri_auth_connection_request_t {}
@@ -398,11 +398,11 @@ impl Clone for xcb_xf86dri_auth_connection_request_t {
 
 #[repr(C)]
 pub struct xcb_xf86dri_auth_connection_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub authenticated :   u32
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub authenticated :   u32
 }
 
 impl Copy for xcb_xf86dri_auth_connection_reply_t {}

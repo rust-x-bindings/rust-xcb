@@ -41,11 +41,11 @@ pub struct xcb_input_get_extension_version_cookie_t {
 
 #[repr(C)]
 pub struct xcb_input_get_extension_version_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub name_len :       u16,
-     pub pad0 :           [u8; 2]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub name_len :       u16,
+    pub pad0 :           [u8; 2]
 }
 
 impl Copy for xcb_input_get_extension_version_request_t {}
@@ -55,14 +55,14 @@ impl Clone for xcb_input_get_extension_version_request_t {
 
 #[repr(C)]
 pub struct xcb_input_get_extension_version_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub server_major :    u16,
-     pub server_minor :    u16,
-     pub present :         u8,
-     pub pad1 :            [u8; 19]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub server_major :    u16,
+    pub server_minor :    u16,
+    pub present :         u8,
+    pub pad1 :            [u8; 19]
 }
 
 impl Copy for xcb_input_get_extension_version_reply_t {}
@@ -72,11 +72,11 @@ impl Clone for xcb_input_get_extension_version_reply_t {
 
 #[repr(C)]
 pub struct xcb_input_device_info_t {
-     pub device_type :      ffi::xproto::xcb_atom_t,
-     pub device_id :        u8,
-     pub num_class_info :   u8,
-     pub device_use :       u8,
-     pub pad0 :             u8
+    pub device_type :      ffi::xproto::xcb_atom_t,
+    pub device_id :        u8,
+    pub num_class_info :   u8,
+    pub device_use :       u8,
+    pub pad0 :             u8
 }
 
 impl Copy for xcb_input_device_info_t {}
@@ -100,9 +100,9 @@ pub struct xcb_input_list_input_devices_cookie_t {
 
 #[repr(C)]
 pub struct xcb_input_list_input_devices_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_input_list_input_devices_request_t {}
@@ -112,12 +112,12 @@ impl Clone for xcb_input_list_input_devices_request_t {
 
 #[repr(C)]
 pub struct xcb_input_list_input_devices_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub devices_len :     u8,
-     pub pad1 :            [u8; 23]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub devices_len :     u8,
+    pub pad1 :            [u8; 23]
 }
 
 impl Copy for xcb_input_list_input_devices_reply_t {}
@@ -127,8 +127,8 @@ impl Clone for xcb_input_list_input_devices_reply_t {
 
 #[repr(C)]
 pub struct xcb_input_input_info_t {
-     pub class_id :   u8,
-     pub len :        u8
+    pub class_id :   u8,
+    pub len :        u8
 }
 
 impl Copy for xcb_input_input_info_t {}
@@ -145,12 +145,12 @@ pub struct xcb_input_input_info_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_key_info_t {
-     pub class_id :      u8,
-     pub len :           u8,
-     pub min_keycode :   xcb_input_key_code_t,
-     pub max_keycode :   xcb_input_key_code_t,
-     pub num_keys :      u16,
-     pub pad0 :          [u8; 2]
+    pub class_id :      u8,
+    pub len :           u8,
+    pub min_keycode :   xcb_input_key_code_t,
+    pub max_keycode :   xcb_input_key_code_t,
+    pub num_keys :      u16,
+    pub pad0 :          [u8; 2]
 }
 
 impl Copy for xcb_input_key_info_t {}
@@ -167,9 +167,9 @@ pub struct xcb_input_key_info_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_button_info_t {
-     pub class_id :      u8,
-     pub len :           u8,
-     pub num_buttons :   u16
+    pub class_id :      u8,
+    pub len :           u8,
+    pub num_buttons :   u16
 }
 
 impl Copy for xcb_input_button_info_t {}
@@ -186,9 +186,9 @@ pub struct xcb_input_button_info_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_axis_info_t {
-     pub resolution :   u32,
-     pub minimum :      i32,
-     pub maximum :      i32
+    pub resolution :   u32,
+    pub minimum :      i32,
+    pub maximum :      i32
 }
 
 impl Copy for xcb_input_axis_info_t {}
@@ -205,11 +205,11 @@ pub struct xcb_input_axis_info_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_valuator_info_t {
-     pub class_id :      u8,
-     pub len :           u8,
-     pub axes_len :      u8,
-     pub mode :          u8,
-     pub motion_size :   u32
+    pub class_id :      u8,
+    pub len :           u8,
+    pub axes_len :      u8,
+    pub mode :          u8,
+    pub motion_size :   u32
 }
 
 impl Copy for xcb_input_valuator_info_t {}
@@ -226,8 +226,8 @@ pub struct xcb_input_valuator_info_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_input_class_info_t {
-     pub class_id :          u8,
-     pub event_type_base :   u8
+    pub class_id :          u8,
+    pub event_type_base :   u8
 }
 
 impl Copy for xcb_input_input_class_info_t {}
@@ -251,11 +251,11 @@ pub struct xcb_input_open_device_cookie_t {
 
 #[repr(C)]
 pub struct xcb_input_open_device_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub device_id :      u8,
-     pub pad0 :           [u8; 3]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub device_id :      u8,
+    pub pad0 :           [u8; 3]
 }
 
 impl Copy for xcb_input_open_device_request_t {}
@@ -265,12 +265,12 @@ impl Clone for xcb_input_open_device_request_t {
 
 #[repr(C)]
 pub struct xcb_input_open_device_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub num_classes :     u8,
-     pub pad1 :            [u8; 23]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub num_classes :     u8,
+    pub pad1 :            [u8; 23]
 }
 
 impl Copy for xcb_input_open_device_reply_t {}
@@ -281,11 +281,11 @@ impl Clone for xcb_input_open_device_reply_t {
 
 #[repr(C)]
 pub struct xcb_input_close_device_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub device_id :      u8,
-     pub pad0 :           [u8; 3]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub device_id :      u8,
+    pub pad0 :           [u8; 3]
 }
 
 impl Copy for xcb_input_close_device_request_t {}
@@ -302,12 +302,12 @@ pub struct xcb_input_set_device_mode_cookie_t {
 
 #[repr(C)]
 pub struct xcb_input_set_device_mode_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub device_id :      u8,
-     pub mode :           u8,
-     pub pad0 :           [u8; 2]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub device_id :      u8,
+    pub mode :           u8,
+    pub pad0 :           [u8; 2]
 }
 
 impl Copy for xcb_input_set_device_mode_request_t {}
@@ -317,12 +317,12 @@ impl Clone for xcb_input_set_device_mode_request_t {
 
 #[repr(C)]
 pub struct xcb_input_set_device_mode_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub status :          u8,
-     pub pad1 :            [u8; 23]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub status :          u8,
+    pub pad1 :            [u8; 23]
 }
 
 impl Copy for xcb_input_set_device_mode_reply_t {}
@@ -333,12 +333,12 @@ impl Clone for xcb_input_set_device_mode_reply_t {
 
 #[repr(C)]
 pub struct xcb_input_select_extension_event_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub window :         ffi::xproto::xcb_window_t,
-     pub num_classes :    u16,
-     pub pad0 :           [u8; 2]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub window :         ffi::xproto::xcb_window_t,
+    pub num_classes :    u16,
+    pub pad0 :           [u8; 2]
 }
 
 impl Copy for xcb_input_select_extension_event_request_t {}
@@ -355,10 +355,10 @@ pub struct xcb_input_get_selected_extension_events_cookie_t {
 
 #[repr(C)]
 pub struct xcb_input_get_selected_extension_events_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub window :         ffi::xproto::xcb_window_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub window :         ffi::xproto::xcb_window_t
 }
 
 impl Copy for xcb_input_get_selected_extension_events_request_t {}
@@ -368,13 +368,13 @@ impl Clone for xcb_input_get_selected_extension_events_request_t {
 
 #[repr(C)]
 pub struct xcb_input_get_selected_extension_events_reply_t {
-     pub response_type :      u8,
-     pub pad0 :               u8,
-     pub sequence :           u16,
-     pub length :             u32,
-     pub num_this_classes :   u16,
-     pub num_all_classes :    u16,
-     pub pad1 :               [u8; 20]
+    pub response_type :      u8,
+    pub pad0 :               u8,
+    pub sequence :           u16,
+    pub length :             u32,
+    pub num_this_classes :   u16,
+    pub num_all_classes :    u16,
+    pub pad1 :               [u8; 20]
 }
 
 impl Copy for xcb_input_get_selected_extension_events_reply_t {}
@@ -385,13 +385,13 @@ impl Clone for xcb_input_get_selected_extension_events_reply_t {
 
 #[repr(C)]
 pub struct xcb_input_change_device_dont_propagate_list_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub window :         ffi::xproto::xcb_window_t,
-     pub num_classes :    u16,
-     pub mode :           u8,
-     pub pad0 :           u8
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub window :         ffi::xproto::xcb_window_t,
+    pub num_classes :    u16,
+    pub mode :           u8,
+    pub pad0 :           u8
 }
 
 impl Copy for xcb_input_change_device_dont_propagate_list_request_t {}
@@ -408,10 +408,10 @@ pub struct xcb_input_get_device_dont_propagate_list_cookie_t {
 
 #[repr(C)]
 pub struct xcb_input_get_device_dont_propagate_list_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub window :         ffi::xproto::xcb_window_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub window :         ffi::xproto::xcb_window_t
 }
 
 impl Copy for xcb_input_get_device_dont_propagate_list_request_t {}
@@ -421,12 +421,12 @@ impl Clone for xcb_input_get_device_dont_propagate_list_request_t {
 
 #[repr(C)]
 pub struct xcb_input_get_device_dont_propagate_list_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub num_classes :     u16,
-     pub pad1 :            [u8; 22]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub num_classes :     u16,
+    pub pad1 :            [u8; 22]
 }
 
 impl Copy for xcb_input_get_device_dont_propagate_list_reply_t {}
@@ -443,12 +443,12 @@ pub struct xcb_input_get_device_motion_events_cookie_t {
 
 #[repr(C)]
 pub struct xcb_input_get_device_motion_events_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub start :          ffi::xproto::xcb_timestamp_t,
-     pub stop :           ffi::xproto::xcb_timestamp_t,
-     pub device_id :      u8
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub start :          ffi::xproto::xcb_timestamp_t,
+    pub stop :           ffi::xproto::xcb_timestamp_t,
+    pub device_id :      u8
 }
 
 impl Copy for xcb_input_get_device_motion_events_request_t {}
@@ -458,14 +458,14 @@ impl Clone for xcb_input_get_device_motion_events_request_t {
 
 #[repr(C)]
 pub struct xcb_input_get_device_motion_events_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub num_coords :      u32,
-     pub num_axes :        u8,
-     pub device_mode :     u8,
-     pub pad1 :            [u8; 18]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub num_coords :      u32,
+    pub num_axes :        u8,
+    pub device_mode :     u8,
+    pub pad1 :            [u8; 18]
 }
 
 impl Copy for xcb_input_get_device_motion_events_reply_t {}
@@ -475,7 +475,7 @@ impl Clone for xcb_input_get_device_motion_events_reply_t {
 
 #[repr(C)]
 pub struct xcb_input_device_time_coord_t {
-     pub time :   ffi::xproto::xcb_timestamp_t
+    pub time :   ffi::xproto::xcb_timestamp_t
 }
 
 impl Copy for xcb_input_device_time_coord_t {}
@@ -499,11 +499,11 @@ pub struct xcb_input_change_keyboard_device_cookie_t {
 
 #[repr(C)]
 pub struct xcb_input_change_keyboard_device_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub device_id :      u8,
-     pub pad0 :           [u8; 3]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub device_id :      u8,
+    pub pad0 :           [u8; 3]
 }
 
 impl Copy for xcb_input_change_keyboard_device_request_t {}
@@ -513,12 +513,12 @@ impl Clone for xcb_input_change_keyboard_device_request_t {
 
 #[repr(C)]
 pub struct xcb_input_change_keyboard_device_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub status :          u8,
-     pub pad1 :            [u8; 23]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub status :          u8,
+    pub pad1 :            [u8; 23]
 }
 
 impl Copy for xcb_input_change_keyboard_device_reply_t {}
@@ -535,13 +535,13 @@ pub struct xcb_input_change_pointer_device_cookie_t {
 
 #[repr(C)]
 pub struct xcb_input_change_pointer_device_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub x_axis :         u8,
-     pub y_axis :         u8,
-     pub device_id :      u8,
-     pub pad0 :           u8
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub x_axis :         u8,
+    pub y_axis :         u8,
+    pub device_id :      u8,
+    pub pad0 :           u8
 }
 
 impl Copy for xcb_input_change_pointer_device_request_t {}
@@ -551,12 +551,12 @@ impl Clone for xcb_input_change_pointer_device_request_t {
 
 #[repr(C)]
 pub struct xcb_input_change_pointer_device_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub status :          u8,
-     pub pad1 :            [u8; 23]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub status :          u8,
+    pub pad1 :            [u8; 23]
 }
 
 impl Copy for xcb_input_change_pointer_device_reply_t {}
@@ -573,17 +573,17 @@ pub struct xcb_input_grab_device_cookie_t {
 
 #[repr(C)]
 pub struct xcb_input_grab_device_request_t {
-     pub major_opcode :        u8,
-     pub minor_opcode :        u8,
-     pub length :              u16,
-     pub grab_window :         ffi::xproto::xcb_window_t,
-     pub time :                ffi::xproto::xcb_timestamp_t,
-     pub num_classes :         u16,
-     pub this_device_mode :    u8,
-     pub other_device_mode :   u8,
-     pub owner_events :        u8,
-     pub device_id :           u8,
-     pub pad0 :                [u8; 2]
+    pub major_opcode :        u8,
+    pub minor_opcode :        u8,
+    pub length :              u16,
+    pub grab_window :         ffi::xproto::xcb_window_t,
+    pub time :                ffi::xproto::xcb_timestamp_t,
+    pub num_classes :         u16,
+    pub this_device_mode :    u8,
+    pub other_device_mode :   u8,
+    pub owner_events :        u8,
+    pub device_id :           u8,
+    pub pad0 :                [u8; 2]
 }
 
 impl Copy for xcb_input_grab_device_request_t {}
@@ -593,12 +593,12 @@ impl Clone for xcb_input_grab_device_request_t {
 
 #[repr(C)]
 pub struct xcb_input_grab_device_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub status :          u8,
-     pub pad1 :            [u8; 23]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub status :          u8,
+    pub pad1 :            [u8; 23]
 }
 
 impl Copy for xcb_input_grab_device_reply_t {}
@@ -609,11 +609,11 @@ impl Clone for xcb_input_grab_device_reply_t {
 
 #[repr(C)]
 pub struct xcb_input_ungrab_device_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub time :           ffi::xproto::xcb_timestamp_t,
-     pub device_id :      u8
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub time :           ffi::xproto::xcb_timestamp_t,
+    pub device_id :      u8
 }
 
 impl Copy for xcb_input_ungrab_device_request_t {}
@@ -624,19 +624,19 @@ impl Clone for xcb_input_ungrab_device_request_t {
 
 #[repr(C)]
 pub struct xcb_input_grab_device_key_request_t {
-     pub major_opcode :        u8,
-     pub minor_opcode :        u8,
-     pub length :              u16,
-     pub grab_window :         ffi::xproto::xcb_window_t,
-     pub num_classes :         u16,
-     pub modifiers :           u16,
-     pub modifier_device :     u8,
-     pub grabbed_device :      u8,
-     pub key :                 u8,
-     pub this_device_mode :    u8,
-     pub other_device_mode :   u8,
-     pub owner_events :        u8,
-     pub pad0 :                [u8; 2]
+    pub major_opcode :        u8,
+    pub minor_opcode :        u8,
+    pub length :              u16,
+    pub grab_window :         ffi::xproto::xcb_window_t,
+    pub num_classes :         u16,
+    pub modifiers :           u16,
+    pub modifier_device :     u8,
+    pub grabbed_device :      u8,
+    pub key :                 u8,
+    pub this_device_mode :    u8,
+    pub other_device_mode :   u8,
+    pub owner_events :        u8,
+    pub pad0 :                [u8; 2]
 }
 
 impl Copy for xcb_input_grab_device_key_request_t {}
@@ -647,14 +647,14 @@ impl Clone for xcb_input_grab_device_key_request_t {
 
 #[repr(C)]
 pub struct xcb_input_ungrab_device_key_request_t {
-     pub major_opcode :      u8,
-     pub minor_opcode :      u8,
-     pub length :            u16,
-     pub grabWindow :        ffi::xproto::xcb_window_t,
-     pub modifiers :         u16,
-     pub modifier_device :   u8,
-     pub key :               u8,
-     pub grabbed_device :    u8
+    pub major_opcode :      u8,
+    pub minor_opcode :      u8,
+    pub length :            u16,
+    pub grabWindow :        ffi::xproto::xcb_window_t,
+    pub modifiers :         u16,
+    pub modifier_device :   u8,
+    pub key :               u8,
+    pub grabbed_device :    u8
 }
 
 impl Copy for xcb_input_ungrab_device_key_request_t {}
@@ -665,19 +665,19 @@ impl Clone for xcb_input_ungrab_device_key_request_t {
 
 #[repr(C)]
 pub struct xcb_input_grab_device_button_request_t {
-     pub major_opcode :        u8,
-     pub minor_opcode :        u8,
-     pub length :              u16,
-     pub grab_window :         ffi::xproto::xcb_window_t,
-     pub grabbed_device :      u8,
-     pub modifier_device :     u8,
-     pub num_classes :         u16,
-     pub modifiers :           u16,
-     pub this_device_mode :    u8,
-     pub other_device_mode :   u8,
-     pub button :              u8,
-     pub owner_events :        u8,
-     pub pad0 :                [u8; 2]
+    pub major_opcode :        u8,
+    pub minor_opcode :        u8,
+    pub length :              u16,
+    pub grab_window :         ffi::xproto::xcb_window_t,
+    pub grabbed_device :      u8,
+    pub modifier_device :     u8,
+    pub num_classes :         u16,
+    pub modifiers :           u16,
+    pub this_device_mode :    u8,
+    pub other_device_mode :   u8,
+    pub button :              u8,
+    pub owner_events :        u8,
+    pub pad0 :                [u8; 2]
 }
 
 impl Copy for xcb_input_grab_device_button_request_t {}
@@ -688,14 +688,14 @@ impl Clone for xcb_input_grab_device_button_request_t {
 
 #[repr(C)]
 pub struct xcb_input_ungrab_device_button_request_t {
-     pub major_opcode :      u8,
-     pub minor_opcode :      u8,
-     pub length :            u16,
-     pub grab_window :       ffi::xproto::xcb_window_t,
-     pub modifiers :         u16,
-     pub modifier_device :   u8,
-     pub button :            u8,
-     pub grabbed_device :    u8
+    pub major_opcode :      u8,
+    pub minor_opcode :      u8,
+    pub length :            u16,
+    pub grab_window :       ffi::xproto::xcb_window_t,
+    pub modifiers :         u16,
+    pub modifier_device :   u8,
+    pub button :            u8,
+    pub grabbed_device :    u8
 }
 
 impl Copy for xcb_input_ungrab_device_button_request_t {}
@@ -706,12 +706,12 @@ impl Clone for xcb_input_ungrab_device_button_request_t {
 
 #[repr(C)]
 pub struct xcb_input_allow_device_events_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub time :           ffi::xproto::xcb_timestamp_t,
-     pub mode :           u8,
-     pub device_id :      u8
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub time :           ffi::xproto::xcb_timestamp_t,
+    pub mode :           u8,
+    pub device_id :      u8
 }
 
 impl Copy for xcb_input_allow_device_events_request_t {}
@@ -728,11 +728,11 @@ pub struct xcb_input_get_device_focus_cookie_t {
 
 #[repr(C)]
 pub struct xcb_input_get_device_focus_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub device_id :      u8,
-     pub pad0 :           [u8; 3]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub device_id :      u8,
+    pub pad0 :           [u8; 3]
 }
 
 impl Copy for xcb_input_get_device_focus_request_t {}
@@ -742,14 +742,14 @@ impl Clone for xcb_input_get_device_focus_request_t {
 
 #[repr(C)]
 pub struct xcb_input_get_device_focus_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub focus :           ffi::xproto::xcb_window_t,
-     pub time :            ffi::xproto::xcb_timestamp_t,
-     pub revert_to :       u8,
-     pub pad1 :            [u8; 15]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub focus :           ffi::xproto::xcb_window_t,
+    pub time :            ffi::xproto::xcb_timestamp_t,
+    pub revert_to :       u8,
+    pub pad1 :            [u8; 15]
 }
 
 impl Copy for xcb_input_get_device_focus_reply_t {}
@@ -760,13 +760,13 @@ impl Clone for xcb_input_get_device_focus_reply_t {
 
 #[repr(C)]
 pub struct xcb_input_set_device_focus_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub focus :          ffi::xproto::xcb_window_t,
-     pub time :           ffi::xproto::xcb_timestamp_t,
-     pub revert_to :      u8,
-     pub device_id :      u8
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub focus :          ffi::xproto::xcb_window_t,
+    pub time :           ffi::xproto::xcb_timestamp_t,
+    pub revert_to :      u8,
+    pub device_id :      u8
 }
 
 impl Copy for xcb_input_set_device_focus_request_t {}
@@ -783,11 +783,11 @@ pub struct xcb_input_get_feedback_control_cookie_t {
 
 #[repr(C)]
 pub struct xcb_input_get_feedback_control_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub device_id :      u8,
-     pub pad0 :           [u8; 3]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub device_id :      u8,
+    pub pad0 :           [u8; 3]
 }
 
 impl Copy for xcb_input_get_feedback_control_request_t {}
@@ -797,12 +797,12 @@ impl Clone for xcb_input_get_feedback_control_request_t {
 
 #[repr(C)]
 pub struct xcb_input_get_feedback_control_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub num_feedback :    u16,
-     pub pad1 :            [u8; 22]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub num_feedback :    u16,
+    pub pad1 :            [u8; 22]
 }
 
 impl Copy for xcb_input_get_feedback_control_reply_t {}
@@ -812,9 +812,9 @@ impl Clone for xcb_input_get_feedback_control_reply_t {
 
 #[repr(C)]
 pub struct xcb_input_feedback_state_t {
-     pub class_id :   u8,
-     pub id :         u8,
-     pub len :        u16
+    pub class_id :   u8,
+    pub id :         u8,
+    pub len :        u16
 }
 
 impl Copy for xcb_input_feedback_state_t {}
@@ -831,18 +831,18 @@ pub struct xcb_input_feedback_state_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_kbd_feedback_state_t {
-     pub class_id :             u8,
-     pub id :                   u8,
-     pub len :                  u16,
-     pub pitch :                u16,
-     pub duration :             u16,
-     pub led_mask :             u32,
-     pub led_values :           u32,
-     pub global_auto_repeat :   u8,
-     pub click :                u8,
-     pub percent :              u8,
-     pub pad0 :                 u8,
-     pub auto_repeats :         [u8; 32]
+    pub class_id :             u8,
+    pub id :                   u8,
+    pub len :                  u16,
+    pub pitch :                u16,
+    pub duration :             u16,
+    pub led_mask :             u32,
+    pub led_values :           u32,
+    pub global_auto_repeat :   u8,
+    pub click :                u8,
+    pub percent :              u8,
+    pub pad0 :                 u8,
+    pub auto_repeats :         [u8; 32]
 }
 
 impl Copy for xcb_input_kbd_feedback_state_t {}
@@ -859,13 +859,13 @@ pub struct xcb_input_kbd_feedback_state_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_ptr_feedback_state_t {
-     pub class_id :      u8,
-     pub id :            u8,
-     pub len :           u16,
-     pub pad0 :          [u8; 2],
-     pub accel_num :     u16,
-     pub accel_denom :   u16,
-     pub threshold :     u16
+    pub class_id :      u8,
+    pub id :            u8,
+    pub len :           u16,
+    pub pad0 :          [u8; 2],
+    pub accel_num :     u16,
+    pub accel_denom :   u16,
+    pub threshold :     u16
 }
 
 impl Copy for xcb_input_ptr_feedback_state_t {}
@@ -882,12 +882,12 @@ pub struct xcb_input_ptr_feedback_state_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_integer_feedback_state_t {
-     pub class_id :     u8,
-     pub id :           u8,
-     pub len :          u16,
-     pub resolution :   u32,
-     pub min_value :    i32,
-     pub max_value :    i32
+    pub class_id :     u8,
+    pub id :           u8,
+    pub len :          u16,
+    pub resolution :   u32,
+    pub min_value :    i32,
+    pub max_value :    i32
 }
 
 impl Copy for xcb_input_integer_feedback_state_t {}
@@ -904,11 +904,11 @@ pub struct xcb_input_integer_feedback_state_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_string_feedback_state_t {
-     pub class_id :      u8,
-     pub id :            u8,
-     pub len :           u16,
-     pub max_symbols :   u16,
-     pub num_keysyms :   u16
+    pub class_id :      u8,
+    pub id :            u8,
+    pub len :           u16,
+    pub max_symbols :   u16,
+    pub num_keysyms :   u16
 }
 
 impl Copy for xcb_input_string_feedback_state_t {}
@@ -925,13 +925,13 @@ pub struct xcb_input_string_feedback_state_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_bell_feedback_state_t {
-     pub class_id :   u8,
-     pub id :         u8,
-     pub len :        u16,
-     pub percent :    u8,
-     pub pad0 :       [u8; 3],
-     pub pitch :      u16,
-     pub duration :   u16
+    pub class_id :   u8,
+    pub id :         u8,
+    pub len :        u16,
+    pub percent :    u8,
+    pub pad0 :       [u8; 3],
+    pub pitch :      u16,
+    pub duration :   u16
 }
 
 impl Copy for xcb_input_bell_feedback_state_t {}
@@ -948,11 +948,11 @@ pub struct xcb_input_bell_feedback_state_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_led_feedback_state_t {
-     pub class_id :     u8,
-     pub id :           u8,
-     pub len :          u16,
-     pub led_mask :     u32,
-     pub led_values :   u32
+    pub class_id :     u8,
+    pub id :           u8,
+    pub len :          u16,
+    pub led_mask :     u32,
+    pub led_values :   u32
 }
 
 impl Copy for xcb_input_led_feedback_state_t {}
@@ -969,9 +969,9 @@ pub struct xcb_input_led_feedback_state_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_feedback_ctl_t {
-     pub class_id :   u8,
-     pub id :         u8,
-     pub len :        u16
+    pub class_id :   u8,
+    pub id :         u8,
+    pub len :        u16
 }
 
 impl Copy for xcb_input_feedback_ctl_t {}
@@ -988,17 +988,17 @@ pub struct xcb_input_feedback_ctl_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_kbd_feedback_ctl_t {
-     pub class_id :            u8,
-     pub id :                  u8,
-     pub len :                 u16,
-     pub key :                 xcb_input_key_code_t,
-     pub auto_repeat_mode :    u8,
-     pub key_click_percent :   i8,
-     pub bell_percent :        i8,
-     pub bell_pitch :          i16,
-     pub bell_duration :       i16,
-     pub led_mask :            u32,
-     pub led_values :          u32
+    pub class_id :            u8,
+    pub id :                  u8,
+    pub len :                 u16,
+    pub key :                 xcb_input_key_code_t,
+    pub auto_repeat_mode :    u8,
+    pub key_click_percent :   i8,
+    pub bell_percent :        i8,
+    pub bell_pitch :          i16,
+    pub bell_duration :       i16,
+    pub led_mask :            u32,
+    pub led_values :          u32
 }
 
 impl Copy for xcb_input_kbd_feedback_ctl_t {}
@@ -1015,13 +1015,13 @@ pub struct xcb_input_kbd_feedback_ctl_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_ptr_feedback_ctl_t {
-     pub class_id :    u8,
-     pub id :          u8,
-     pub len :         u16,
-     pub pad0 :        [u8; 2],
-     pub num :         i16,
-     pub denom :       i16,
-     pub threshold :   i16
+    pub class_id :    u8,
+    pub id :          u8,
+    pub len :         u16,
+    pub pad0 :        [u8; 2],
+    pub num :         i16,
+    pub denom :       i16,
+    pub threshold :   i16
 }
 
 impl Copy for xcb_input_ptr_feedback_ctl_t {}
@@ -1038,10 +1038,10 @@ pub struct xcb_input_ptr_feedback_ctl_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_integer_feedback_ctl_t {
-     pub class_id :         u8,
-     pub id :               u8,
-     pub len :              u16,
-     pub int_to_display :   i32
+    pub class_id :         u8,
+    pub id :               u8,
+    pub len :              u16,
+    pub int_to_display :   i32
 }
 
 impl Copy for xcb_input_integer_feedback_ctl_t {}
@@ -1058,11 +1058,11 @@ pub struct xcb_input_integer_feedback_ctl_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_string_feedback_ctl_t {
-     pub class_id :      u8,
-     pub id :            u8,
-     pub len :           u16,
-     pub pad0 :          [u8; 2],
-     pub num_keysyms :   u16
+    pub class_id :      u8,
+    pub id :            u8,
+    pub len :           u16,
+    pub pad0 :          [u8; 2],
+    pub num_keysyms :   u16
 }
 
 impl Copy for xcb_input_string_feedback_ctl_t {}
@@ -1079,13 +1079,13 @@ pub struct xcb_input_string_feedback_ctl_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_bell_feedback_ctl_t {
-     pub class_id :   u8,
-     pub id :         u8,
-     pub len :        u16,
-     pub percent :    i8,
-     pub pad0 :       [u8; 3],
-     pub pitch :      i16,
-     pub duration :   i16
+    pub class_id :   u8,
+    pub id :         u8,
+    pub len :        u16,
+    pub percent :    i8,
+    pub pad0 :       [u8; 3],
+    pub pitch :      i16,
+    pub duration :   i16
 }
 
 impl Copy for xcb_input_bell_feedback_ctl_t {}
@@ -1102,11 +1102,11 @@ pub struct xcb_input_bell_feedback_ctl_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_led_feedback_ctl_t {
-     pub class_id :     u8,
-     pub id :           u8,
-     pub len :          u16,
-     pub led_mask :     u32,
-     pub led_values :   u32
+    pub class_id :     u8,
+    pub id :           u8,
+    pub len :          u16,
+    pub led_mask :     u32,
+    pub led_values :   u32
 }
 
 impl Copy for xcb_input_led_feedback_ctl_t {}
@@ -1130,12 +1130,12 @@ pub struct xcb_input_get_device_key_mapping_cookie_t {
 
 #[repr(C)]
 pub struct xcb_input_get_device_key_mapping_request_t {
-     pub major_opcode :    u8,
-     pub minor_opcode :    u8,
-     pub length :          u16,
-     pub device_id :       u8,
-     pub first_keycode :   xcb_input_key_code_t,
-     pub count :           u8
+    pub major_opcode :    u8,
+    pub minor_opcode :    u8,
+    pub length :          u16,
+    pub device_id :       u8,
+    pub first_keycode :   xcb_input_key_code_t,
+    pub count :           u8
 }
 
 impl Copy for xcb_input_get_device_key_mapping_request_t {}
@@ -1145,12 +1145,12 @@ impl Clone for xcb_input_get_device_key_mapping_request_t {
 
 #[repr(C)]
 pub struct xcb_input_get_device_key_mapping_reply_t {
-     pub response_type :         u8,
-     pub pad0 :                  u8,
-     pub sequence :              u16,
-     pub length :                u32,
-     pub keysyms_per_keycode :   u8,
-     pub pad1 :                  [u8; 23]
+    pub response_type :         u8,
+    pub pad0 :                  u8,
+    pub sequence :              u16,
+    pub length :                u32,
+    pub keysyms_per_keycode :   u8,
+    pub pad1 :                  [u8; 23]
 }
 
 impl Copy for xcb_input_get_device_key_mapping_reply_t {}
@@ -1161,13 +1161,13 @@ impl Clone for xcb_input_get_device_key_mapping_reply_t {
 
 #[repr(C)]
 pub struct xcb_input_change_device_key_mapping_request_t {
-     pub major_opcode :          u8,
-     pub minor_opcode :          u8,
-     pub length :                u16,
-     pub device_id :             u8,
-     pub first_keycode :         xcb_input_key_code_t,
-     pub keysyms_per_keycode :   u8,
-     pub keycode_count :         u8
+    pub major_opcode :          u8,
+    pub minor_opcode :          u8,
+    pub length :                u16,
+    pub device_id :             u8,
+    pub first_keycode :         xcb_input_key_code_t,
+    pub keysyms_per_keycode :   u8,
+    pub keycode_count :         u8
 }
 
 impl Copy for xcb_input_change_device_key_mapping_request_t {}
@@ -1184,11 +1184,11 @@ pub struct xcb_input_get_device_modifier_mapping_cookie_t {
 
 #[repr(C)]
 pub struct xcb_input_get_device_modifier_mapping_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub device_id :      u8,
-     pub pad0 :           [u8; 3]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub device_id :      u8,
+    pub pad0 :           [u8; 3]
 }
 
 impl Copy for xcb_input_get_device_modifier_mapping_request_t {}
@@ -1198,12 +1198,12 @@ impl Clone for xcb_input_get_device_modifier_mapping_request_t {
 
 #[repr(C)]
 pub struct xcb_input_get_device_modifier_mapping_reply_t {
-     pub response_type :           u8,
-     pub pad0 :                    u8,
-     pub sequence :                u16,
-     pub length :                  u32,
-     pub keycodes_per_modifier :   u8,
-     pub pad1 :                    [u8; 23]
+    pub response_type :           u8,
+    pub pad0 :                    u8,
+    pub sequence :                u16,
+    pub length :                  u32,
+    pub keycodes_per_modifier :   u8,
+    pub pad1 :                    [u8; 23]
 }
 
 impl Copy for xcb_input_get_device_modifier_mapping_reply_t {}
@@ -1220,12 +1220,12 @@ pub struct xcb_input_set_device_modifier_mapping_cookie_t {
 
 #[repr(C)]
 pub struct xcb_input_set_device_modifier_mapping_request_t {
-     pub major_opcode :            u8,
-     pub minor_opcode :            u8,
-     pub length :                  u16,
-     pub device_id :               u8,
-     pub keycodes_per_modifier :   u8,
-     pub pad0 :                    u8
+    pub major_opcode :            u8,
+    pub minor_opcode :            u8,
+    pub length :                  u16,
+    pub device_id :               u8,
+    pub keycodes_per_modifier :   u8,
+    pub pad0 :                    u8
 }
 
 impl Copy for xcb_input_set_device_modifier_mapping_request_t {}
@@ -1235,12 +1235,12 @@ impl Clone for xcb_input_set_device_modifier_mapping_request_t {
 
 #[repr(C)]
 pub struct xcb_input_set_device_modifier_mapping_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub status :          u8,
-     pub pad1 :            [u8; 23]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub status :          u8,
+    pub pad1 :            [u8; 23]
 }
 
 impl Copy for xcb_input_set_device_modifier_mapping_reply_t {}
@@ -1257,11 +1257,11 @@ pub struct xcb_input_get_device_button_mapping_cookie_t {
 
 #[repr(C)]
 pub struct xcb_input_get_device_button_mapping_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub device_id :      u8,
-     pub pad0 :           [u8; 3]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub device_id :      u8,
+    pub pad0 :           [u8; 3]
 }
 
 impl Copy for xcb_input_get_device_button_mapping_request_t {}
@@ -1271,12 +1271,12 @@ impl Clone for xcb_input_get_device_button_mapping_request_t {
 
 #[repr(C)]
 pub struct xcb_input_get_device_button_mapping_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub map_size :        u8,
-     pub pad1 :            [u8; 23]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub map_size :        u8,
+    pub pad1 :            [u8; 23]
 }
 
 impl Copy for xcb_input_get_device_button_mapping_reply_t {}
@@ -1293,12 +1293,12 @@ pub struct xcb_input_set_device_button_mapping_cookie_t {
 
 #[repr(C)]
 pub struct xcb_input_set_device_button_mapping_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub device_id :      u8,
-     pub map_size :       u8,
-     pub pad0 :           [u8; 2]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub device_id :      u8,
+    pub map_size :       u8,
+    pub pad0 :           [u8; 2]
 }
 
 impl Copy for xcb_input_set_device_button_mapping_request_t {}
@@ -1308,12 +1308,12 @@ impl Clone for xcb_input_set_device_button_mapping_request_t {
 
 #[repr(C)]
 pub struct xcb_input_set_device_button_mapping_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub status :          u8,
-     pub pad1 :            [u8; 23]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub status :          u8,
+    pub pad1 :            [u8; 23]
 }
 
 impl Copy for xcb_input_set_device_button_mapping_reply_t {}
@@ -1330,11 +1330,11 @@ pub struct xcb_input_query_device_state_cookie_t {
 
 #[repr(C)]
 pub struct xcb_input_query_device_state_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub device_id :      u8,
-     pub pad0 :           [u8; 3]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub device_id :      u8,
+    pub pad0 :           [u8; 3]
 }
 
 impl Copy for xcb_input_query_device_state_request_t {}
@@ -1344,12 +1344,12 @@ impl Clone for xcb_input_query_device_state_request_t {
 
 #[repr(C)]
 pub struct xcb_input_query_device_state_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub num_classes :     u8,
-     pub pad1 :            [u8; 23]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub num_classes :     u8,
+    pub pad1 :            [u8; 23]
 }
 
 impl Copy for xcb_input_query_device_state_reply_t {}
@@ -1359,9 +1359,9 @@ impl Clone for xcb_input_query_device_state_reply_t {
 
 #[repr(C)]
 pub struct xcb_input_input_state_t {
-     pub class_id :    u8,
-     pub len :         u8,
-     pub num_items :   u8
+    pub class_id :    u8,
+    pub len :         u8,
+    pub num_items :   u8
 }
 
 impl Copy for xcb_input_input_state_t {}
@@ -1378,11 +1378,11 @@ pub struct xcb_input_input_state_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_key_state_t {
-     pub class_id :   u8,
-     pub len :        u8,
-     pub num_keys :   u8,
-     pub pad0 :       u8,
-     pub keys :       [u8; 32]
+    pub class_id :   u8,
+    pub len :        u8,
+    pub num_keys :   u8,
+    pub pad0 :       u8,
+    pub keys :       [u8; 32]
 }
 
 impl Copy for xcb_input_key_state_t {}
@@ -1399,11 +1399,11 @@ pub struct xcb_input_key_state_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_button_state_t {
-     pub class_id :      u8,
-     pub len :           u8,
-     pub num_buttons :   u8,
-     pub pad0 :          u8,
-     pub buttons :       [u8; 32]
+    pub class_id :      u8,
+    pub len :           u8,
+    pub num_buttons :   u8,
+    pub pad0 :          u8,
+    pub buttons :       [u8; 32]
 }
 
 impl Copy for xcb_input_button_state_t {}
@@ -1420,10 +1420,10 @@ pub struct xcb_input_button_state_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_valuator_state_t {
-     pub class_id :        u8,
-     pub len :             u8,
-     pub num_valuators :   u8,
-     pub mode :            u8
+    pub class_id :        u8,
+    pub len :             u8,
+    pub num_valuators :   u8,
+    pub mode :            u8
 }
 
 impl Copy for xcb_input_valuator_state_t {}
@@ -1441,15 +1441,15 @@ pub struct xcb_input_valuator_state_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_send_extension_event_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub destination :    ffi::xproto::xcb_window_t,
-     pub device_id :      u8,
-     pub propagate :      u8,
-     pub num_classes :    u16,
-     pub num_events :     u8,
-     pub pad0 :           [u8; 3]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub destination :    ffi::xproto::xcb_window_t,
+    pub device_id :      u8,
+    pub propagate :      u8,
+    pub num_classes :    u16,
+    pub num_events :     u8,
+    pub pad0 :           [u8; 3]
 }
 
 impl Copy for xcb_input_send_extension_event_request_t {}
@@ -1460,13 +1460,13 @@ impl Clone for xcb_input_send_extension_event_request_t {
 
 #[repr(C)]
 pub struct xcb_input_device_bell_request_t {
-     pub major_opcode :     u8,
-     pub minor_opcode :     u8,
-     pub length :           u16,
-     pub device_id :        u8,
-     pub feedback_id :      u8,
-     pub feedback_class :   u8,
-     pub percent :          i8
+    pub major_opcode :     u8,
+    pub minor_opcode :     u8,
+    pub length :           u16,
+    pub device_id :        u8,
+    pub feedback_id :      u8,
+    pub feedback_class :   u8,
+    pub percent :          i8
 }
 
 impl Copy for xcb_input_device_bell_request_t {}
@@ -1483,13 +1483,13 @@ pub struct xcb_input_set_device_valuators_cookie_t {
 
 #[repr(C)]
 pub struct xcb_input_set_device_valuators_request_t {
-     pub major_opcode :     u8,
-     pub minor_opcode :     u8,
-     pub length :           u16,
-     pub device_id :        u8,
-     pub first_valuator :   u8,
-     pub num_valuators :    u8,
-     pub pad0 :             u8
+    pub major_opcode :     u8,
+    pub minor_opcode :     u8,
+    pub length :           u16,
+    pub device_id :        u8,
+    pub first_valuator :   u8,
+    pub num_valuators :    u8,
+    pub pad0 :             u8
 }
 
 impl Copy for xcb_input_set_device_valuators_request_t {}
@@ -1499,12 +1499,12 @@ impl Clone for xcb_input_set_device_valuators_request_t {
 
 #[repr(C)]
 pub struct xcb_input_set_device_valuators_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub status :          u8,
-     pub pad1 :            [u8; 23]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub status :          u8,
+    pub pad1 :            [u8; 23]
 }
 
 impl Copy for xcb_input_set_device_valuators_reply_t {}
@@ -1521,12 +1521,12 @@ pub struct xcb_input_get_device_control_cookie_t {
 
 #[repr(C)]
 pub struct xcb_input_get_device_control_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub control_id :     u16,
-     pub device_id :      u8,
-     pub pad0 :           u8
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub control_id :     u16,
+    pub device_id :      u8,
+    pub pad0 :           u8
 }
 
 impl Copy for xcb_input_get_device_control_request_t {}
@@ -1536,12 +1536,12 @@ impl Clone for xcb_input_get_device_control_request_t {
 
 #[repr(C)]
 pub struct xcb_input_get_device_control_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub status :          u8,
-     pub pad1 :            [u8; 23]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub status :          u8,
+    pub pad1 :            [u8; 23]
 }
 
 impl Copy for xcb_input_get_device_control_reply_t {}
@@ -1551,8 +1551,8 @@ impl Clone for xcb_input_get_device_control_reply_t {
 
 #[repr(C)]
 pub struct xcb_input_device_state_t {
-     pub control_id :   u16,
-     pub len :          u16
+    pub control_id :   u16,
+    pub len :          u16
 }
 
 impl Copy for xcb_input_device_state_t {}
@@ -1569,9 +1569,9 @@ pub struct xcb_input_device_state_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_device_resolution_state_t {
-     pub control_id :      u16,
-     pub len :             u16,
-     pub num_valuators :   u32
+    pub control_id :      u16,
+    pub len :             u16,
+    pub num_valuators :   u32
 }
 
 impl Copy for xcb_input_device_resolution_state_t {}
@@ -1588,16 +1588,16 @@ pub struct xcb_input_device_resolution_state_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_device_abs_calib_state_t {
-     pub control_id :         u16,
-     pub len :                u16,
-     pub min_x :              i32,
-     pub max_x :              i32,
-     pub min_y :              i32,
-     pub max_y :              i32,
-     pub flip_x :             u32,
-     pub flip_y :             u32,
-     pub rotation :           u32,
-     pub button_threshold :   u32
+    pub control_id :         u16,
+    pub len :                u16,
+    pub min_x :              i32,
+    pub max_x :              i32,
+    pub min_y :              i32,
+    pub max_y :              i32,
+    pub flip_x :             u32,
+    pub flip_y :             u32,
+    pub rotation :           u32,
+    pub button_threshold :   u32
 }
 
 impl Copy for xcb_input_device_abs_calib_state_t {}
@@ -1614,14 +1614,14 @@ pub struct xcb_input_device_abs_calib_state_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_device_abs_area_state_t {
-     pub control_id :   u16,
-     pub len :          u16,
-     pub offset_x :     u32,
-     pub offset_y :     u32,
-     pub width :        u32,
-     pub height :       u32,
-     pub screen :       u32,
-     pub following :    u32
+    pub control_id :   u16,
+    pub len :          u16,
+    pub offset_x :     u32,
+    pub offset_y :     u32,
+    pub width :        u32,
+    pub height :       u32,
+    pub screen :       u32,
+    pub following :    u32
 }
 
 impl Copy for xcb_input_device_abs_area_state_t {}
@@ -1638,11 +1638,11 @@ pub struct xcb_input_device_abs_area_state_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_device_core_state_t {
-     pub control_id :   u16,
-     pub len :          u16,
-     pub status :       u8,
-     pub iscore :       u8,
-     pub pad0 :         [u8; 2]
+    pub control_id :   u16,
+    pub len :          u16,
+    pub status :       u8,
+    pub iscore :       u8,
+    pub pad0 :         [u8; 2]
 }
 
 impl Copy for xcb_input_device_core_state_t {}
@@ -1659,10 +1659,10 @@ pub struct xcb_input_device_core_state_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_device_enable_state_t {
-     pub control_id :   u16,
-     pub len :          u16,
-     pub enable :       u8,
-     pub pad0 :         [u8; 3]
+    pub control_id :   u16,
+    pub len :          u16,
+    pub enable :       u8,
+    pub pad0 :         [u8; 3]
 }
 
 impl Copy for xcb_input_device_enable_state_t {}
@@ -1679,8 +1679,8 @@ pub struct xcb_input_device_enable_state_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_device_ctl_t {
-     pub control_id :   u16,
-     pub len :          u16
+    pub control_id :   u16,
+    pub len :          u16
 }
 
 impl Copy for xcb_input_device_ctl_t {}
@@ -1697,10 +1697,10 @@ pub struct xcb_input_device_ctl_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_device_resolution_ctl_t {
-     pub control_id :       u16,
-     pub len :              u16,
-     pub first_valuator :   u8,
-     pub num_valuators :    u8
+    pub control_id :       u16,
+    pub len :              u16,
+    pub first_valuator :   u8,
+    pub num_valuators :    u8
 }
 
 impl Copy for xcb_input_device_resolution_ctl_t {}
@@ -1717,16 +1717,16 @@ pub struct xcb_input_device_resolution_ctl_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_device_abs_calib_ctl_t {
-     pub control_id :         u16,
-     pub len :                u16,
-     pub min_x :              i32,
-     pub max_x :              i32,
-     pub min_y :              i32,
-     pub max_y :              i32,
-     pub flip_x :             u32,
-     pub flip_y :             u32,
-     pub rotation :           u32,
-     pub button_threshold :   u32
+    pub control_id :         u16,
+    pub len :                u16,
+    pub min_x :              i32,
+    pub max_x :              i32,
+    pub min_y :              i32,
+    pub max_y :              i32,
+    pub flip_x :             u32,
+    pub flip_y :             u32,
+    pub rotation :           u32,
+    pub button_threshold :   u32
 }
 
 impl Copy for xcb_input_device_abs_calib_ctl_t {}
@@ -1743,14 +1743,14 @@ pub struct xcb_input_device_abs_calib_ctl_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_device_abs_area_ctrl_t {
-     pub control_id :   u16,
-     pub len :          u16,
-     pub offset_x :     u32,
-     pub offset_y :     u32,
-     pub width :        i32,
-     pub height :       i32,
-     pub screen :       i32,
-     pub following :    u32
+    pub control_id :   u16,
+    pub len :          u16,
+    pub offset_x :     u32,
+    pub offset_y :     u32,
+    pub width :        i32,
+    pub height :       i32,
+    pub screen :       i32,
+    pub following :    u32
 }
 
 impl Copy for xcb_input_device_abs_area_ctrl_t {}
@@ -1767,10 +1767,10 @@ pub struct xcb_input_device_abs_area_ctrl_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_device_core_ctrl_t {
-     pub control_id :   u16,
-     pub len :          u16,
-     pub status :       u8,
-     pub pad0 :         [u8; 3]
+    pub control_id :   u16,
+    pub len :          u16,
+    pub status :       u8,
+    pub pad0 :         [u8; 3]
 }
 
 impl Copy for xcb_input_device_core_ctrl_t {}
@@ -1787,10 +1787,10 @@ pub struct xcb_input_device_core_ctrl_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_device_enable_ctrl_t {
-     pub control_id :   u16,
-     pub len :          u16,
-     pub enable :       u8,
-     pub pad0 :         [u8; 3]
+    pub control_id :   u16,
+    pub len :          u16,
+    pub enable :       u8,
+    pub pad0 :         [u8; 3]
 }
 
 impl Copy for xcb_input_device_enable_ctrl_t {}
@@ -1808,13 +1808,13 @@ pub struct xcb_input_device_enable_ctrl_iterator_t {
 
 #[repr(C)]
 pub struct xcb_input_device_valuator_event_t {
-     pub response_type :    u8,
-     pub device_id :        u8,
-     pub sequence :         u16,
-     pub device_state :     u16,
-     pub num_valuators :    u8,
-     pub first_valuator :   u8,
-     pub valuators :        [i32; 6]
+    pub response_type :    u8,
+    pub device_id :        u8,
+    pub sequence :         u16,
+    pub device_state :     u16,
+    pub num_valuators :    u8,
+    pub first_valuator :   u8,
+    pub valuators :        [i32; 6]
 }
 
 impl Copy for xcb_input_device_valuator_event_t {}
@@ -1825,20 +1825,20 @@ impl Clone for xcb_input_device_valuator_event_t {
 
 #[repr(C)]
 pub struct xcb_input_device_key_press_event_t {
-     pub response_type :   u8,
-     pub detail :          u8,
-     pub sequence :        u16,
-     pub time :            ffi::xproto::xcb_timestamp_t,
-     pub root :            ffi::xproto::xcb_window_t,
-     pub event :           ffi::xproto::xcb_window_t,
-     pub child :           ffi::xproto::xcb_window_t,
-     pub root_x :          i16,
-     pub root_y :          i16,
-     pub event_x :         i16,
-     pub event_y :         i16,
-     pub state :           u16,
-     pub same_screen :     u8,
-     pub device_id :       u8
+    pub response_type :   u8,
+    pub detail :          u8,
+    pub sequence :        u16,
+    pub time :            ffi::xproto::xcb_timestamp_t,
+    pub root :            ffi::xproto::xcb_window_t,
+    pub event :           ffi::xproto::xcb_window_t,
+    pub child :           ffi::xproto::xcb_window_t,
+    pub root_x :          i16,
+    pub root_y :          i16,
+    pub event_x :         i16,
+    pub event_y :         i16,
+    pub state :           u16,
+    pub same_screen :     u8,
+    pub device_id :       u8
 }
 
 impl Copy for xcb_input_device_key_press_event_t {}
@@ -1867,14 +1867,14 @@ pub type xcb_input_proximity_out_event_t = xcb_input_device_key_press_event_t;
 
 #[repr(C)]
 pub struct xcb_input_focus_in_event_t {
-     pub response_type :   u8,
-     pub detail :          u8,
-     pub sequence :        u16,
-     pub time :            ffi::xproto::xcb_timestamp_t,
-     pub window :          ffi::xproto::xcb_window_t,
-     pub mode :            u8,
-     pub device_id :       u8,
-     pub pad0 :            [u8; 18]
+    pub response_type :   u8,
+    pub detail :          u8,
+    pub sequence :        u16,
+    pub time :            ffi::xproto::xcb_timestamp_t,
+    pub window :          ffi::xproto::xcb_window_t,
+    pub mode :            u8,
+    pub device_id :       u8,
+    pub pad0 :            [u8; 18]
 }
 
 impl Copy for xcb_input_focus_in_event_t {}
@@ -1888,17 +1888,17 @@ pub type xcb_input_focus_out_event_t = xcb_input_focus_in_event_t;
 
 #[repr(C)]
 pub struct xcb_input_device_state_notify_event_t {
-     pub response_type :      u8,
-     pub device_id :          u8,
-     pub sequence :           u16,
-     pub time :               ffi::xproto::xcb_timestamp_t,
-     pub num_keys :           u8,
-     pub num_buttons :        u8,
-     pub num_valuators :      u8,
-     pub classes_reported :   u8,
-     pub buttons :            [u8; 4],
-     pub keys :               [u8; 4],
-     pub valuators :          [u32; 3]
+    pub response_type :      u8,
+    pub device_id :          u8,
+    pub sequence :           u16,
+    pub time :               ffi::xproto::xcb_timestamp_t,
+    pub num_keys :           u8,
+    pub num_buttons :        u8,
+    pub num_valuators :      u8,
+    pub classes_reported :   u8,
+    pub buttons :            [u8; 4],
+    pub keys :               [u8; 4],
+    pub valuators :          [u32; 3]
 }
 
 impl Copy for xcb_input_device_state_notify_event_t {}
@@ -1909,15 +1909,15 @@ impl Clone for xcb_input_device_state_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_input_device_mapping_notify_event_t {
-     pub response_type :   u8,
-     pub device_id :       u8,
-     pub sequence :        u16,
-     pub request :         u8,
-     pub first_keycode :   xcb_input_key_code_t,
-     pub count :           u8,
-     pub pad0 :            u8,
-     pub time :            ffi::xproto::xcb_timestamp_t,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub device_id :       u8,
+    pub sequence :        u16,
+    pub request :         u8,
+    pub first_keycode :   xcb_input_key_code_t,
+    pub count :           u8,
+    pub pad0 :            u8,
+    pub time :            ffi::xproto::xcb_timestamp_t,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_input_device_mapping_notify_event_t {}
@@ -1928,12 +1928,12 @@ impl Clone for xcb_input_device_mapping_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_input_change_device_notify_event_t {
-     pub response_type :   u8,
-     pub device_id :       u8,
-     pub sequence :        u16,
-     pub time :            ffi::xproto::xcb_timestamp_t,
-     pub request :         u8,
-     pub pad0 :            [u8; 23]
+    pub response_type :   u8,
+    pub device_id :       u8,
+    pub sequence :        u16,
+    pub time :            ffi::xproto::xcb_timestamp_t,
+    pub request :         u8,
+    pub pad0 :            [u8; 23]
 }
 
 impl Copy for xcb_input_change_device_notify_event_t {}
@@ -1944,10 +1944,10 @@ impl Clone for xcb_input_change_device_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_input_device_key_state_notify_event_t {
-     pub response_type :   u8,
-     pub device_id :       u8,
-     pub sequence :        u16,
-     pub keys :            [u8; 28]
+    pub response_type :   u8,
+    pub device_id :       u8,
+    pub sequence :        u16,
+    pub keys :            [u8; 28]
 }
 
 impl Copy for xcb_input_device_key_state_notify_event_t {}
@@ -1958,10 +1958,10 @@ impl Clone for xcb_input_device_key_state_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_input_device_button_state_notify_event_t {
-     pub response_type :   u8,
-     pub device_id :       u8,
-     pub sequence :        u16,
-     pub buttons :         [u8; 28]
+    pub response_type :   u8,
+    pub device_id :       u8,
+    pub sequence :        u16,
+    pub buttons :         [u8; 28]
 }
 
 impl Copy for xcb_input_device_button_state_notify_event_t {}
@@ -1972,14 +1972,14 @@ impl Clone for xcb_input_device_button_state_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_input_device_presence_notify_event_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub time :            ffi::xproto::xcb_timestamp_t,
-     pub devchange :       u8,
-     pub device_id :       u8,
-     pub control :         u16,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub time :            ffi::xproto::xcb_timestamp_t,
+    pub devchange :       u8,
+    pub device_id :       u8,
+    pub control :         u16,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_input_device_presence_notify_event_t {}
@@ -1990,9 +1990,9 @@ impl Clone for xcb_input_device_presence_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_input_device_error_t {
-     pub response_type :   u8,
-     pub error_code :      u8,
-     pub sequence :        u16
+    pub response_type :   u8,
+    pub error_code :      u8,
+    pub sequence :        u16
 }
 
 impl Copy for xcb_input_device_error_t {}
@@ -2003,9 +2003,9 @@ impl Clone for xcb_input_device_error_t {
 
 #[repr(C)]
 pub struct xcb_input_event_error_t {
-     pub response_type :   u8,
-     pub error_code :      u8,
-     pub sequence :        u16
+    pub response_type :   u8,
+    pub error_code :      u8,
+    pub sequence :        u16
 }
 
 impl Copy for xcb_input_event_error_t {}
@@ -2016,9 +2016,9 @@ impl Clone for xcb_input_event_error_t {
 
 #[repr(C)]
 pub struct xcb_input_mode_error_t {
-     pub response_type :   u8,
-     pub error_code :      u8,
-     pub sequence :        u16
+    pub response_type :   u8,
+    pub error_code :      u8,
+    pub sequence :        u16
 }
 
 impl Copy for xcb_input_mode_error_t {}
@@ -2029,9 +2029,9 @@ impl Clone for xcb_input_mode_error_t {
 
 #[repr(C)]
 pub struct xcb_input_device_busy_error_t {
-     pub response_type :   u8,
-     pub error_code :      u8,
-     pub sequence :        u16
+    pub response_type :   u8,
+    pub error_code :      u8,
+    pub sequence :        u16
 }
 
 impl Copy for xcb_input_device_busy_error_t {}
@@ -2042,9 +2042,9 @@ impl Clone for xcb_input_device_busy_error_t {
 
 #[repr(C)]
 pub struct xcb_input_class_error_t {
-     pub response_type :   u8,
-     pub error_code :      u8,
-     pub sequence :        u16
+    pub response_type :   u8,
+    pub error_code :      u8,
+    pub sequence :        u16
 }
 
 impl Copy for xcb_input_class_error_t {}

@@ -22,9 +22,9 @@ pub struct xcb_big_requests_enable_cookie_t {
 
 #[repr(C)]
 pub struct xcb_big_requests_enable_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_big_requests_enable_request_t {}
@@ -34,11 +34,11 @@ impl Clone for xcb_big_requests_enable_request_t {
 
 #[repr(C)]
 pub struct xcb_big_requests_enable_reply_t {
-     pub response_type :            u8,
-     pub pad0 :                     u8,
-     pub sequence :                 u16,
-     pub length :                   u32,
-     pub maximum_request_length :   u32
+    pub response_type :            u8,
+    pub pad0 :                     u8,
+    pub sequence :                 u16,
+    pub length :                   u32,
+    pub maximum_request_length :   u32
 }
 
 impl Copy for xcb_big_requests_enable_reply_t {}

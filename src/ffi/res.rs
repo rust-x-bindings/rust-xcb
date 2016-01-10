@@ -16,8 +16,8 @@ pub const RES_MINOR_VERSION : c_uint = 0;
 
 #[repr(C)]
 pub struct xcb_res_client_t {
-     pub resource_base :   u32,
-     pub resource_mask :   u32
+    pub resource_base :   u32,
+    pub resource_mask :   u32
 }
 
 impl Copy for xcb_res_client_t {}
@@ -34,8 +34,8 @@ pub struct xcb_res_client_iterator_t {
 
 #[repr(C)]
 pub struct xcb_res_type_t {
-     pub resource_type :   ffi::xproto::xcb_atom_t,
-     pub count :           u32
+    pub resource_type :   ffi::xproto::xcb_atom_t,
+    pub count :           u32
 }
 
 impl Copy for xcb_res_type_t {}
@@ -59,11 +59,11 @@ pub struct xcb_res_query_version_cookie_t {
 
 #[repr(C)]
 pub struct xcb_res_query_version_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub client_major :   u8,
-     pub client_minor :   u8
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub client_major :   u8,
+    pub client_minor :   u8
 }
 
 impl Copy for xcb_res_query_version_request_t {}
@@ -73,12 +73,12 @@ impl Clone for xcb_res_query_version_request_t {
 
 #[repr(C)]
 pub struct xcb_res_query_version_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub server_major :    u16,
-     pub server_minor :    u16
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub server_major :    u16,
+    pub server_minor :    u16
 }
 
 impl Copy for xcb_res_query_version_reply_t {}
@@ -95,9 +95,9 @@ pub struct xcb_res_query_clients_cookie_t {
 
 #[repr(C)]
 pub struct xcb_res_query_clients_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_res_query_clients_request_t {}
@@ -107,12 +107,12 @@ impl Clone for xcb_res_query_clients_request_t {
 
 #[repr(C)]
 pub struct xcb_res_query_clients_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub num_clients :     u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub num_clients :     u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_res_query_clients_reply_t {}
@@ -129,10 +129,10 @@ pub struct xcb_res_query_client_resources_cookie_t {
 
 #[repr(C)]
 pub struct xcb_res_query_client_resources_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub xid :            u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub xid :            u32
 }
 
 impl Copy for xcb_res_query_client_resources_request_t {}
@@ -142,12 +142,12 @@ impl Clone for xcb_res_query_client_resources_request_t {
 
 #[repr(C)]
 pub struct xcb_res_query_client_resources_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub num_types :       u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub num_types :       u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_res_query_client_resources_reply_t {}
@@ -164,10 +164,10 @@ pub struct xcb_res_query_client_pixmap_bytes_cookie_t {
 
 #[repr(C)]
 pub struct xcb_res_query_client_pixmap_bytes_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub xid :            u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub xid :            u32
 }
 
 impl Copy for xcb_res_query_client_pixmap_bytes_request_t {}
@@ -177,12 +177,12 @@ impl Clone for xcb_res_query_client_pixmap_bytes_request_t {
 
 #[repr(C)]
 pub struct xcb_res_query_client_pixmap_bytes_reply_t {
-     pub response_type :    u8,
-     pub pad0 :             u8,
-     pub sequence :         u16,
-     pub length :           u32,
-     pub bytes :            u32,
-     pub bytes_overflow :   u32
+    pub response_type :    u8,
+    pub pad0 :             u8,
+    pub sequence :         u16,
+    pub length :           u32,
+    pub bytes :            u32,
+    pub bytes_overflow :   u32
 }
 
 impl Copy for xcb_res_query_client_pixmap_bytes_reply_t {}

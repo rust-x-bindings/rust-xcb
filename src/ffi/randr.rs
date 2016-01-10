@@ -45,9 +45,9 @@ pub struct xcb_randr_output_iterator_t {
 
 #[repr(C)]
 pub struct xcb_randr_bad_output_error_t {
-     pub response_type :   u8,
-     pub error_code :      u8,
-     pub sequence :        u16
+    pub response_type :   u8,
+    pub error_code :      u8,
+    pub sequence :        u16
 }
 
 impl Copy for xcb_randr_bad_output_error_t {}
@@ -58,9 +58,9 @@ impl Clone for xcb_randr_bad_output_error_t {
 
 #[repr(C)]
 pub struct xcb_randr_bad_crtc_error_t {
-     pub response_type :   u8,
-     pub error_code :      u8,
-     pub sequence :        u16
+    pub response_type :   u8,
+    pub error_code :      u8,
+    pub sequence :        u16
 }
 
 impl Copy for xcb_randr_bad_crtc_error_t {}
@@ -71,9 +71,9 @@ impl Clone for xcb_randr_bad_crtc_error_t {
 
 #[repr(C)]
 pub struct xcb_randr_bad_mode_error_t {
-     pub response_type :   u8,
-     pub error_code :      u8,
-     pub sequence :        u16
+    pub response_type :   u8,
+    pub error_code :      u8,
+    pub sequence :        u16
 }
 
 impl Copy for xcb_randr_bad_mode_error_t {}
@@ -83,10 +83,10 @@ impl Clone for xcb_randr_bad_mode_error_t {
 
 #[repr(C)]
 pub struct xcb_randr_screen_size_t {
-     pub width :     u16,
-     pub height :    u16,
-     pub mwidth :    u16,
-     pub mheight :   u16
+    pub width :     u16,
+    pub height :    u16,
+    pub mwidth :    u16,
+    pub mheight :   u16
 }
 
 impl Copy for xcb_randr_screen_size_t {}
@@ -103,7 +103,7 @@ pub struct xcb_randr_screen_size_iterator_t {
 
 #[repr(C)]
 pub struct xcb_randr_refresh_rates_t {
-     pub nRates :   u16
+    pub nRates :   u16
 }
 
 impl Copy for xcb_randr_refresh_rates_t {}
@@ -127,11 +127,11 @@ pub struct xcb_randr_query_version_cookie_t {
 
 #[repr(C)]
 pub struct xcb_randr_query_version_request_t {
-     pub major_opcode :    u8,
-     pub minor_opcode :    u8,
-     pub length :          u16,
-     pub major_version :   u32,
-     pub minor_version :   u32
+    pub major_opcode :    u8,
+    pub minor_opcode :    u8,
+    pub length :          u16,
+    pub major_version :   u32,
+    pub minor_version :   u32
 }
 
 impl Copy for xcb_randr_query_version_request_t {}
@@ -141,13 +141,13 @@ impl Clone for xcb_randr_query_version_request_t {
 
 #[repr(C)]
 pub struct xcb_randr_query_version_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub major_version :   u32,
-     pub minor_version :   u32,
-     pub pad1 :            [u8; 16]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub major_version :   u32,
+    pub minor_version :   u32,
+    pub pad1 :            [u8; 16]
 }
 
 impl Copy for xcb_randr_query_version_reply_t {}
@@ -164,16 +164,16 @@ pub struct xcb_randr_set_screen_config_cookie_t {
 
 #[repr(C)]
 pub struct xcb_randr_set_screen_config_request_t {
-     pub major_opcode :       u8,
-     pub minor_opcode :       u8,
-     pub length :             u16,
-     pub window :             ffi::xproto::xcb_window_t,
-     pub timestamp :          ffi::xproto::xcb_timestamp_t,
-     pub config_timestamp :   ffi::xproto::xcb_timestamp_t,
-     pub sizeID :             u16,
-     pub rotation :           u16,
-     pub rate :               u16,
-     pub pad0 :               [u8; 2]
+    pub major_opcode :       u8,
+    pub minor_opcode :       u8,
+    pub length :             u16,
+    pub window :             ffi::xproto::xcb_window_t,
+    pub timestamp :          ffi::xproto::xcb_timestamp_t,
+    pub config_timestamp :   ffi::xproto::xcb_timestamp_t,
+    pub sizeID :             u16,
+    pub rotation :           u16,
+    pub rate :               u16,
+    pub pad0 :               [u8; 2]
 }
 
 impl Copy for xcb_randr_set_screen_config_request_t {}
@@ -183,15 +183,15 @@ impl Clone for xcb_randr_set_screen_config_request_t {
 
 #[repr(C)]
 pub struct xcb_randr_set_screen_config_reply_t {
-     pub response_type :      u8,
-     pub status :             u8,
-     pub sequence :           u16,
-     pub length :             u32,
-     pub new_timestamp :      ffi::xproto::xcb_timestamp_t,
-     pub config_timestamp :   ffi::xproto::xcb_timestamp_t,
-     pub root :               ffi::xproto::xcb_window_t,
-     pub subpixel_order :     u16,
-     pub pad0 :               [u8; 10]
+    pub response_type :      u8,
+    pub status :             u8,
+    pub sequence :           u16,
+    pub length :             u32,
+    pub new_timestamp :      ffi::xproto::xcb_timestamp_t,
+    pub config_timestamp :   ffi::xproto::xcb_timestamp_t,
+    pub root :               ffi::xproto::xcb_window_t,
+    pub subpixel_order :     u16,
+    pub pad0 :               [u8; 10]
 }
 
 impl Copy for xcb_randr_set_screen_config_reply_t {}
@@ -202,12 +202,12 @@ impl Clone for xcb_randr_set_screen_config_reply_t {
 
 #[repr(C)]
 pub struct xcb_randr_select_input_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub window :         ffi::xproto::xcb_window_t,
-     pub enable :         u16,
-     pub pad0 :           [u8; 2]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub window :         ffi::xproto::xcb_window_t,
+    pub enable :         u16,
+    pub pad0 :           [u8; 2]
 }
 
 impl Copy for xcb_randr_select_input_request_t {}
@@ -224,10 +224,10 @@ pub struct xcb_randr_get_screen_info_cookie_t {
 
 #[repr(C)]
 pub struct xcb_randr_get_screen_info_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub window :         ffi::xproto::xcb_window_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub window :         ffi::xproto::xcb_window_t
 }
 
 impl Copy for xcb_randr_get_screen_info_request_t {}
@@ -237,19 +237,19 @@ impl Clone for xcb_randr_get_screen_info_request_t {
 
 #[repr(C)]
 pub struct xcb_randr_get_screen_info_reply_t {
-     pub response_type :      u8,
-     pub rotations :          u8,
-     pub sequence :           u16,
-     pub length :             u32,
-     pub root :               ffi::xproto::xcb_window_t,
-     pub timestamp :          ffi::xproto::xcb_timestamp_t,
-     pub config_timestamp :   ffi::xproto::xcb_timestamp_t,
-     pub nSizes :             u16,
-     pub sizeID :             u16,
-     pub rotation :           u16,
-     pub rate :               u16,
-     pub nInfo :              u16,
-     pub pad0 :               [u8; 2]
+    pub response_type :      u8,
+    pub rotations :          u8,
+    pub sequence :           u16,
+    pub length :             u32,
+    pub root :               ffi::xproto::xcb_window_t,
+    pub timestamp :          ffi::xproto::xcb_timestamp_t,
+    pub config_timestamp :   ffi::xproto::xcb_timestamp_t,
+    pub nSizes :             u16,
+    pub sizeID :             u16,
+    pub rotation :           u16,
+    pub rate :               u16,
+    pub nInfo :              u16,
+    pub pad0 :               [u8; 2]
 }
 
 impl Copy for xcb_randr_get_screen_info_reply_t {}
@@ -266,10 +266,10 @@ pub struct xcb_randr_get_screen_size_range_cookie_t {
 
 #[repr(C)]
 pub struct xcb_randr_get_screen_size_range_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub window :         ffi::xproto::xcb_window_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub window :         ffi::xproto::xcb_window_t
 }
 
 impl Copy for xcb_randr_get_screen_size_range_request_t {}
@@ -279,15 +279,15 @@ impl Clone for xcb_randr_get_screen_size_range_request_t {
 
 #[repr(C)]
 pub struct xcb_randr_get_screen_size_range_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub min_width :       u16,
-     pub min_height :      u16,
-     pub max_width :       u16,
-     pub max_height :      u16,
-     pub pad1 :            [u8; 16]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub min_width :       u16,
+    pub min_height :      u16,
+    pub max_width :       u16,
+    pub max_height :      u16,
+    pub pad1 :            [u8; 16]
 }
 
 impl Copy for xcb_randr_get_screen_size_range_reply_t {}
@@ -298,14 +298,14 @@ impl Clone for xcb_randr_get_screen_size_range_reply_t {
 
 #[repr(C)]
 pub struct xcb_randr_set_screen_size_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub window :         ffi::xproto::xcb_window_t,
-     pub width :          u16,
-     pub height :         u16,
-     pub mm_width :       u32,
-     pub mm_height :      u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub window :         ffi::xproto::xcb_window_t,
+    pub width :          u16,
+    pub height :         u16,
+    pub mm_width :       u32,
+    pub mm_height :      u32
 }
 
 impl Copy for xcb_randr_set_screen_size_request_t {}
@@ -315,19 +315,19 @@ impl Clone for xcb_randr_set_screen_size_request_t {
 
 #[repr(C)]
 pub struct xcb_randr_mode_info_t {
-     pub id :            u32,
-     pub width :         u16,
-     pub height :        u16,
-     pub dot_clock :     u32,
-     pub hsync_start :   u16,
-     pub hsync_end :     u16,
-     pub htotal :        u16,
-     pub hskew :         u16,
-     pub vsync_start :   u16,
-     pub vsync_end :     u16,
-     pub vtotal :        u16,
-     pub name_len :      u16,
-     pub mode_flags :    u32
+    pub id :            u32,
+    pub width :         u16,
+    pub height :        u16,
+    pub dot_clock :     u32,
+    pub hsync_start :   u16,
+    pub hsync_end :     u16,
+    pub htotal :        u16,
+    pub hskew :         u16,
+    pub vsync_start :   u16,
+    pub vsync_end :     u16,
+    pub vtotal :        u16,
+    pub name_len :      u16,
+    pub mode_flags :    u32
 }
 
 impl Copy for xcb_randr_mode_info_t {}
@@ -351,10 +351,10 @@ pub struct xcb_randr_get_screen_resources_cookie_t {
 
 #[repr(C)]
 pub struct xcb_randr_get_screen_resources_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub window :         ffi::xproto::xcb_window_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub window :         ffi::xproto::xcb_window_t
 }
 
 impl Copy for xcb_randr_get_screen_resources_request_t {}
@@ -364,17 +364,17 @@ impl Clone for xcb_randr_get_screen_resources_request_t {
 
 #[repr(C)]
 pub struct xcb_randr_get_screen_resources_reply_t {
-     pub response_type :      u8,
-     pub pad0 :               u8,
-     pub sequence :           u16,
-     pub length :             u32,
-     pub timestamp :          ffi::xproto::xcb_timestamp_t,
-     pub config_timestamp :   ffi::xproto::xcb_timestamp_t,
-     pub num_crtcs :          u16,
-     pub num_outputs :        u16,
-     pub num_modes :          u16,
-     pub names_len :          u16,
-     pub pad1 :               [u8; 8]
+    pub response_type :      u8,
+    pub pad0 :               u8,
+    pub sequence :           u16,
+    pub length :             u32,
+    pub timestamp :          ffi::xproto::xcb_timestamp_t,
+    pub config_timestamp :   ffi::xproto::xcb_timestamp_t,
+    pub num_crtcs :          u16,
+    pub num_outputs :        u16,
+    pub num_modes :          u16,
+    pub names_len :          u16,
+    pub pad1 :               [u8; 8]
 }
 
 impl Copy for xcb_randr_get_screen_resources_reply_t {}
@@ -391,11 +391,11 @@ pub struct xcb_randr_get_output_info_cookie_t {
 
 #[repr(C)]
 pub struct xcb_randr_get_output_info_request_t {
-     pub major_opcode :       u8,
-     pub minor_opcode :       u8,
-     pub length :             u16,
-     pub output :             xcb_randr_output_t,
-     pub config_timestamp :   ffi::xproto::xcb_timestamp_t
+    pub major_opcode :       u8,
+    pub minor_opcode :       u8,
+    pub length :             u16,
+    pub output :             xcb_randr_output_t,
+    pub config_timestamp :   ffi::xproto::xcb_timestamp_t
 }
 
 impl Copy for xcb_randr_get_output_info_request_t {}
@@ -405,21 +405,21 @@ impl Clone for xcb_randr_get_output_info_request_t {
 
 #[repr(C)]
 pub struct xcb_randr_get_output_info_reply_t {
-     pub response_type :    u8,
-     pub status :           u8,
-     pub sequence :         u16,
-     pub length :           u32,
-     pub timestamp :        ffi::xproto::xcb_timestamp_t,
-     pub crtc :             xcb_randr_crtc_t,
-     pub mm_width :         u32,
-     pub mm_height :        u32,
-     pub connection :       u8,
-     pub subpixel_order :   u8,
-     pub num_crtcs :        u16,
-     pub num_modes :        u16,
-     pub num_preferred :    u16,
-     pub num_clones :       u16,
-     pub name_len :         u16
+    pub response_type :    u8,
+    pub status :           u8,
+    pub sequence :         u16,
+    pub length :           u32,
+    pub timestamp :        ffi::xproto::xcb_timestamp_t,
+    pub crtc :             xcb_randr_crtc_t,
+    pub mm_width :         u32,
+    pub mm_height :        u32,
+    pub connection :       u8,
+    pub subpixel_order :   u8,
+    pub num_crtcs :        u16,
+    pub num_modes :        u16,
+    pub num_preferred :    u16,
+    pub num_clones :       u16,
+    pub name_len :         u16
 }
 
 impl Copy for xcb_randr_get_output_info_reply_t {}
@@ -436,10 +436,10 @@ pub struct xcb_randr_list_output_properties_cookie_t {
 
 #[repr(C)]
 pub struct xcb_randr_list_output_properties_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub output :         xcb_randr_output_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub output :         xcb_randr_output_t
 }
 
 impl Copy for xcb_randr_list_output_properties_request_t {}
@@ -449,12 +449,12 @@ impl Clone for xcb_randr_list_output_properties_request_t {
 
 #[repr(C)]
 pub struct xcb_randr_list_output_properties_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub num_atoms :       u16,
-     pub pad1 :            [u8; 22]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub num_atoms :       u16,
+    pub pad1 :            [u8; 22]
 }
 
 impl Copy for xcb_randr_list_output_properties_reply_t {}
@@ -471,11 +471,11 @@ pub struct xcb_randr_query_output_property_cookie_t {
 
 #[repr(C)]
 pub struct xcb_randr_query_output_property_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub output :         xcb_randr_output_t,
-     pub property :       ffi::xproto::xcb_atom_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub output :         xcb_randr_output_t,
+    pub property :       ffi::xproto::xcb_atom_t
 }
 
 impl Copy for xcb_randr_query_output_property_request_t {}
@@ -485,14 +485,14 @@ impl Clone for xcb_randr_query_output_property_request_t {
 
 #[repr(C)]
 pub struct xcb_randr_query_output_property_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pending :         u8,
-     pub range :           u8,
-     pub immutable :       u8,
-     pub pad1 :            [u8; 21]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pending :         u8,
+    pub range :           u8,
+    pub immutable :       u8,
+    pub pad1 :            [u8; 21]
 }
 
 impl Copy for xcb_randr_query_output_property_reply_t {}
@@ -503,14 +503,14 @@ impl Clone for xcb_randr_query_output_property_reply_t {
 
 #[repr(C)]
 pub struct xcb_randr_configure_output_property_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub output :         xcb_randr_output_t,
-     pub property :       ffi::xproto::xcb_atom_t,
-     pub pending :        u8,
-     pub range :          u8,
-     pub pad0 :           [u8; 2]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub output :         xcb_randr_output_t,
+    pub property :       ffi::xproto::xcb_atom_t,
+    pub pending :        u8,
+    pub range :          u8,
+    pub pad0 :           [u8; 2]
 }
 
 impl Copy for xcb_randr_configure_output_property_request_t {}
@@ -521,16 +521,16 @@ impl Clone for xcb_randr_configure_output_property_request_t {
 
 #[repr(C)]
 pub struct xcb_randr_change_output_property_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub output :         xcb_randr_output_t,
-     pub property :       ffi::xproto::xcb_atom_t,
-     pub type_ :          ffi::xproto::xcb_atom_t,
-     pub format :         u8,
-     pub mode :           u8,
-     pub pad0 :           [u8; 2],
-     pub num_units :      u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub output :         xcb_randr_output_t,
+    pub property :       ffi::xproto::xcb_atom_t,
+    pub type_ :          ffi::xproto::xcb_atom_t,
+    pub format :         u8,
+    pub mode :           u8,
+    pub pad0 :           [u8; 2],
+    pub num_units :      u32
 }
 
 impl Copy for xcb_randr_change_output_property_request_t {}
@@ -541,11 +541,11 @@ impl Clone for xcb_randr_change_output_property_request_t {
 
 #[repr(C)]
 pub struct xcb_randr_delete_output_property_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub output :         xcb_randr_output_t,
-     pub property :       ffi::xproto::xcb_atom_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub output :         xcb_randr_output_t,
+    pub property :       ffi::xproto::xcb_atom_t
 }
 
 impl Copy for xcb_randr_delete_output_property_request_t {}
@@ -562,17 +562,17 @@ pub struct xcb_randr_get_output_property_cookie_t {
 
 #[repr(C)]
 pub struct xcb_randr_get_output_property_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub output :         xcb_randr_output_t,
-     pub property :       ffi::xproto::xcb_atom_t,
-     pub type_ :          ffi::xproto::xcb_atom_t,
-     pub long_offset :    u32,
-     pub long_length :    u32,
-     pub delete :         u8,
-     pub pending :        u8,
-     pub pad0 :           [u8; 2]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub output :         xcb_randr_output_t,
+    pub property :       ffi::xproto::xcb_atom_t,
+    pub type_ :          ffi::xproto::xcb_atom_t,
+    pub long_offset :    u32,
+    pub long_length :    u32,
+    pub delete :         u8,
+    pub pending :        u8,
+    pub pad0 :           [u8; 2]
 }
 
 impl Copy for xcb_randr_get_output_property_request_t {}
@@ -582,14 +582,14 @@ impl Clone for xcb_randr_get_output_property_request_t {
 
 #[repr(C)]
 pub struct xcb_randr_get_output_property_reply_t {
-     pub response_type :   u8,
-     pub format :          u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub type_ :           ffi::xproto::xcb_atom_t,
-     pub bytes_after :     u32,
-     pub num_items :       u32,
-     pub pad0 :            [u8; 12]
+    pub response_type :   u8,
+    pub format :          u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub type_ :           ffi::xproto::xcb_atom_t,
+    pub bytes_after :     u32,
+    pub num_items :       u32,
+    pub pad0 :            [u8; 12]
 }
 
 impl Copy for xcb_randr_get_output_property_reply_t {}
@@ -606,11 +606,11 @@ pub struct xcb_randr_create_mode_cookie_t {
 
 #[repr(C)]
 pub struct xcb_randr_create_mode_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub window :         ffi::xproto::xcb_window_t,
-     pub mode_info :      xcb_randr_mode_info_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub window :         ffi::xproto::xcb_window_t,
+    pub mode_info :      xcb_randr_mode_info_t
 }
 
 impl Copy for xcb_randr_create_mode_request_t {}
@@ -620,12 +620,12 @@ impl Clone for xcb_randr_create_mode_request_t {
 
 #[repr(C)]
 pub struct xcb_randr_create_mode_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub mode :            xcb_randr_mode_t,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub mode :            xcb_randr_mode_t,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_randr_create_mode_reply_t {}
@@ -636,10 +636,10 @@ impl Clone for xcb_randr_create_mode_reply_t {
 
 #[repr(C)]
 pub struct xcb_randr_destroy_mode_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub mode :           xcb_randr_mode_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub mode :           xcb_randr_mode_t
 }
 
 impl Copy for xcb_randr_destroy_mode_request_t {}
@@ -650,11 +650,11 @@ impl Clone for xcb_randr_destroy_mode_request_t {
 
 #[repr(C)]
 pub struct xcb_randr_add_output_mode_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub output :         xcb_randr_output_t,
-     pub mode :           xcb_randr_mode_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub output :         xcb_randr_output_t,
+    pub mode :           xcb_randr_mode_t
 }
 
 impl Copy for xcb_randr_add_output_mode_request_t {}
@@ -665,11 +665,11 @@ impl Clone for xcb_randr_add_output_mode_request_t {
 
 #[repr(C)]
 pub struct xcb_randr_delete_output_mode_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub output :         xcb_randr_output_t,
-     pub mode :           xcb_randr_mode_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub output :         xcb_randr_output_t,
+    pub mode :           xcb_randr_mode_t
 }
 
 impl Copy for xcb_randr_delete_output_mode_request_t {}
@@ -686,11 +686,11 @@ pub struct xcb_randr_get_crtc_info_cookie_t {
 
 #[repr(C)]
 pub struct xcb_randr_get_crtc_info_request_t {
-     pub major_opcode :       u8,
-     pub minor_opcode :       u8,
-     pub length :             u16,
-     pub crtc :               xcb_randr_crtc_t,
-     pub config_timestamp :   ffi::xproto::xcb_timestamp_t
+    pub major_opcode :       u8,
+    pub minor_opcode :       u8,
+    pub length :             u16,
+    pub crtc :               xcb_randr_crtc_t,
+    pub config_timestamp :   ffi::xproto::xcb_timestamp_t
 }
 
 impl Copy for xcb_randr_get_crtc_info_request_t {}
@@ -700,20 +700,20 @@ impl Clone for xcb_randr_get_crtc_info_request_t {
 
 #[repr(C)]
 pub struct xcb_randr_get_crtc_info_reply_t {
-     pub response_type :          u8,
-     pub status :                 u8,
-     pub sequence :               u16,
-     pub length :                 u32,
-     pub timestamp :              ffi::xproto::xcb_timestamp_t,
-     pub x :                      i16,
-     pub y :                      i16,
-     pub width :                  u16,
-     pub height :                 u16,
-     pub mode :                   xcb_randr_mode_t,
-     pub rotation :               u16,
-     pub rotations :              u16,
-     pub num_outputs :            u16,
-     pub num_possible_outputs :   u16
+    pub response_type :          u8,
+    pub status :                 u8,
+    pub sequence :               u16,
+    pub length :                 u32,
+    pub timestamp :              ffi::xproto::xcb_timestamp_t,
+    pub x :                      i16,
+    pub y :                      i16,
+    pub width :                  u16,
+    pub height :                 u16,
+    pub mode :                   xcb_randr_mode_t,
+    pub rotation :               u16,
+    pub rotations :              u16,
+    pub num_outputs :            u16,
+    pub num_possible_outputs :   u16
 }
 
 impl Copy for xcb_randr_get_crtc_info_reply_t {}
@@ -730,17 +730,17 @@ pub struct xcb_randr_set_crtc_config_cookie_t {
 
 #[repr(C)]
 pub struct xcb_randr_set_crtc_config_request_t {
-     pub major_opcode :       u8,
-     pub minor_opcode :       u8,
-     pub length :             u16,
-     pub crtc :               xcb_randr_crtc_t,
-     pub timestamp :          ffi::xproto::xcb_timestamp_t,
-     pub config_timestamp :   ffi::xproto::xcb_timestamp_t,
-     pub x :                  i16,
-     pub y :                  i16,
-     pub mode :               xcb_randr_mode_t,
-     pub rotation :           u16,
-     pub pad0 :               [u8; 2]
+    pub major_opcode :       u8,
+    pub minor_opcode :       u8,
+    pub length :             u16,
+    pub crtc :               xcb_randr_crtc_t,
+    pub timestamp :          ffi::xproto::xcb_timestamp_t,
+    pub config_timestamp :   ffi::xproto::xcb_timestamp_t,
+    pub x :                  i16,
+    pub y :                  i16,
+    pub mode :               xcb_randr_mode_t,
+    pub rotation :           u16,
+    pub pad0 :               [u8; 2]
 }
 
 impl Copy for xcb_randr_set_crtc_config_request_t {}
@@ -750,12 +750,12 @@ impl Clone for xcb_randr_set_crtc_config_request_t {
 
 #[repr(C)]
 pub struct xcb_randr_set_crtc_config_reply_t {
-     pub response_type :   u8,
-     pub status :          u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub timestamp :       ffi::xproto::xcb_timestamp_t,
-     pub pad0 :            [u8; 20]
+    pub response_type :   u8,
+    pub status :          u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub timestamp :       ffi::xproto::xcb_timestamp_t,
+    pub pad0 :            [u8; 20]
 }
 
 impl Copy for xcb_randr_set_crtc_config_reply_t {}
@@ -772,10 +772,10 @@ pub struct xcb_randr_get_crtc_gamma_size_cookie_t {
 
 #[repr(C)]
 pub struct xcb_randr_get_crtc_gamma_size_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub crtc :           xcb_randr_crtc_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub crtc :           xcb_randr_crtc_t
 }
 
 impl Copy for xcb_randr_get_crtc_gamma_size_request_t {}
@@ -785,12 +785,12 @@ impl Clone for xcb_randr_get_crtc_gamma_size_request_t {
 
 #[repr(C)]
 pub struct xcb_randr_get_crtc_gamma_size_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub size :            u16,
-     pub pad1 :            [u8; 22]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub size :            u16,
+    pub pad1 :            [u8; 22]
 }
 
 impl Copy for xcb_randr_get_crtc_gamma_size_reply_t {}
@@ -807,10 +807,10 @@ pub struct xcb_randr_get_crtc_gamma_cookie_t {
 
 #[repr(C)]
 pub struct xcb_randr_get_crtc_gamma_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub crtc :           xcb_randr_crtc_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub crtc :           xcb_randr_crtc_t
 }
 
 impl Copy for xcb_randr_get_crtc_gamma_request_t {}
@@ -820,12 +820,12 @@ impl Clone for xcb_randr_get_crtc_gamma_request_t {
 
 #[repr(C)]
 pub struct xcb_randr_get_crtc_gamma_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub size :            u16,
-     pub pad1 :            [u8; 22]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub size :            u16,
+    pub pad1 :            [u8; 22]
 }
 
 impl Copy for xcb_randr_get_crtc_gamma_reply_t {}
@@ -836,12 +836,12 @@ impl Clone for xcb_randr_get_crtc_gamma_reply_t {
 
 #[repr(C)]
 pub struct xcb_randr_set_crtc_gamma_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub crtc :           xcb_randr_crtc_t,
-     pub size :           u16,
-     pub pad0 :           [u8; 2]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub crtc :           xcb_randr_crtc_t,
+    pub size :           u16,
+    pub pad0 :           [u8; 2]
 }
 
 impl Copy for xcb_randr_set_crtc_gamma_request_t {}
@@ -858,10 +858,10 @@ pub struct xcb_randr_get_screen_resources_current_cookie_t {
 
 #[repr(C)]
 pub struct xcb_randr_get_screen_resources_current_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub window :         ffi::xproto::xcb_window_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub window :         ffi::xproto::xcb_window_t
 }
 
 impl Copy for xcb_randr_get_screen_resources_current_request_t {}
@@ -871,17 +871,17 @@ impl Clone for xcb_randr_get_screen_resources_current_request_t {
 
 #[repr(C)]
 pub struct xcb_randr_get_screen_resources_current_reply_t {
-     pub response_type :      u8,
-     pub pad0 :               u8,
-     pub sequence :           u16,
-     pub length :             u32,
-     pub timestamp :          ffi::xproto::xcb_timestamp_t,
-     pub config_timestamp :   ffi::xproto::xcb_timestamp_t,
-     pub num_crtcs :          u16,
-     pub num_outputs :        u16,
-     pub num_modes :          u16,
-     pub names_len :          u16,
-     pub pad1 :               [u8; 8]
+    pub response_type :      u8,
+    pub pad0 :               u8,
+    pub sequence :           u16,
+    pub length :             u32,
+    pub timestamp :          ffi::xproto::xcb_timestamp_t,
+    pub config_timestamp :   ffi::xproto::xcb_timestamp_t,
+    pub num_crtcs :          u16,
+    pub num_outputs :        u16,
+    pub num_modes :          u16,
+    pub names_len :          u16,
+    pub pad1 :               [u8; 8]
 }
 
 impl Copy for xcb_randr_get_screen_resources_current_reply_t {}
@@ -892,13 +892,13 @@ impl Clone for xcb_randr_get_screen_resources_current_reply_t {
 
 #[repr(C)]
 pub struct xcb_randr_set_crtc_transform_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub crtc :           xcb_randr_crtc_t,
-     pub transform :      ffi::render::xcb_render_transform_t,
-     pub filter_len :     u16,
-     pub pad0 :           [u8; 2]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub crtc :           xcb_randr_crtc_t,
+    pub transform :      ffi::render::xcb_render_transform_t,
+    pub filter_len :     u16,
+    pub pad0 :           [u8; 2]
 }
 
 impl Copy for xcb_randr_set_crtc_transform_request_t {}
@@ -915,10 +915,10 @@ pub struct xcb_randr_get_crtc_transform_cookie_t {
 
 #[repr(C)]
 pub struct xcb_randr_get_crtc_transform_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub crtc :           xcb_randr_crtc_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub crtc :           xcb_randr_crtc_t
 }
 
 impl Copy for xcb_randr_get_crtc_transform_request_t {}
@@ -928,19 +928,19 @@ impl Clone for xcb_randr_get_crtc_transform_request_t {
 
 #[repr(C)]
 pub struct xcb_randr_get_crtc_transform_reply_t {
-     pub response_type :       u8,
-     pub pad0 :                u8,
-     pub sequence :            u16,
-     pub length :              u32,
-     pub pending_transform :   ffi::render::xcb_render_transform_t,
-     pub has_transforms :      u8,
-     pub pad1 :                [u8; 3],
-     pub current_transform :   ffi::render::xcb_render_transform_t,
-     pub pad2 :                [u8; 4],
-     pub pending_len :         u16,
-     pub pending_nparams :     u16,
-     pub current_len :         u16,
-     pub current_nparams :     u16
+    pub response_type :       u8,
+    pub pad0 :                u8,
+    pub sequence :            u16,
+    pub length :              u32,
+    pub pending_transform :   ffi::render::xcb_render_transform_t,
+    pub has_transforms :      u8,
+    pub pad1 :                [u8; 3],
+    pub current_transform :   ffi::render::xcb_render_transform_t,
+    pub pad2 :                [u8; 4],
+    pub pending_len :         u16,
+    pub pending_nparams :     u16,
+    pub current_len :         u16,
+    pub current_nparams :     u16
 }
 
 impl Copy for xcb_randr_get_crtc_transform_reply_t {}
@@ -957,10 +957,10 @@ pub struct xcb_randr_get_panning_cookie_t {
 
 #[repr(C)]
 pub struct xcb_randr_get_panning_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub crtc :           xcb_randr_crtc_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub crtc :           xcb_randr_crtc_t
 }
 
 impl Copy for xcb_randr_get_panning_request_t {}
@@ -970,23 +970,23 @@ impl Clone for xcb_randr_get_panning_request_t {
 
 #[repr(C)]
 pub struct xcb_randr_get_panning_reply_t {
-     pub response_type :   u8,
-     pub status :          u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub timestamp :       ffi::xproto::xcb_timestamp_t,
-     pub left :            u16,
-     pub top :             u16,
-     pub width :           u16,
-     pub height :          u16,
-     pub track_left :      u16,
-     pub track_top :       u16,
-     pub track_width :     u16,
-     pub track_height :    u16,
-     pub border_left :     i16,
-     pub border_top :      i16,
-     pub border_right :    i16,
-     pub border_bottom :   i16
+    pub response_type :   u8,
+    pub status :          u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub timestamp :       ffi::xproto::xcb_timestamp_t,
+    pub left :            u16,
+    pub top :             u16,
+    pub width :           u16,
+    pub height :          u16,
+    pub track_left :      u16,
+    pub track_top :       u16,
+    pub track_width :     u16,
+    pub track_height :    u16,
+    pub border_left :     i16,
+    pub border_top :      i16,
+    pub border_right :    i16,
+    pub border_bottom :   i16
 }
 
 impl Copy for xcb_randr_get_panning_reply_t {}
@@ -1003,23 +1003,23 @@ pub struct xcb_randr_set_panning_cookie_t {
 
 #[repr(C)]
 pub struct xcb_randr_set_panning_request_t {
-     pub major_opcode :    u8,
-     pub minor_opcode :    u8,
-     pub length :          u16,
-     pub crtc :            xcb_randr_crtc_t,
-     pub timestamp :       ffi::xproto::xcb_timestamp_t,
-     pub left :            u16,
-     pub top :             u16,
-     pub width :           u16,
-     pub height :          u16,
-     pub track_left :      u16,
-     pub track_top :       u16,
-     pub track_width :     u16,
-     pub track_height :    u16,
-     pub border_left :     i16,
-     pub border_top :      i16,
-     pub border_right :    i16,
-     pub border_bottom :   i16
+    pub major_opcode :    u8,
+    pub minor_opcode :    u8,
+    pub length :          u16,
+    pub crtc :            xcb_randr_crtc_t,
+    pub timestamp :       ffi::xproto::xcb_timestamp_t,
+    pub left :            u16,
+    pub top :             u16,
+    pub width :           u16,
+    pub height :          u16,
+    pub track_left :      u16,
+    pub track_top :       u16,
+    pub track_width :     u16,
+    pub track_height :    u16,
+    pub border_left :     i16,
+    pub border_top :      i16,
+    pub border_right :    i16,
+    pub border_bottom :   i16
 }
 
 impl Copy for xcb_randr_set_panning_request_t {}
@@ -1029,11 +1029,11 @@ impl Clone for xcb_randr_set_panning_request_t {
 
 #[repr(C)]
 pub struct xcb_randr_set_panning_reply_t {
-     pub response_type :   u8,
-     pub status :          u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub timestamp :       ffi::xproto::xcb_timestamp_t
+    pub response_type :   u8,
+    pub status :          u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub timestamp :       ffi::xproto::xcb_timestamp_t
 }
 
 impl Copy for xcb_randr_set_panning_reply_t {}
@@ -1044,11 +1044,11 @@ impl Clone for xcb_randr_set_panning_reply_t {
 
 #[repr(C)]
 pub struct xcb_randr_set_output_primary_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub window :         ffi::xproto::xcb_window_t,
-     pub output :         xcb_randr_output_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub window :         ffi::xproto::xcb_window_t,
+    pub output :         xcb_randr_output_t
 }
 
 impl Copy for xcb_randr_set_output_primary_request_t {}
@@ -1065,10 +1065,10 @@ pub struct xcb_randr_get_output_primary_cookie_t {
 
 #[repr(C)]
 pub struct xcb_randr_get_output_primary_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub window :         ffi::xproto::xcb_window_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub window :         ffi::xproto::xcb_window_t
 }
 
 impl Copy for xcb_randr_get_output_primary_request_t {}
@@ -1078,11 +1078,11 @@ impl Clone for xcb_randr_get_output_primary_request_t {
 
 #[repr(C)]
 pub struct xcb_randr_get_output_primary_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub output :          xcb_randr_output_t
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub output :          xcb_randr_output_t
 }
 
 impl Copy for xcb_randr_get_output_primary_reply_t {}
@@ -1093,19 +1093,19 @@ impl Clone for xcb_randr_get_output_primary_reply_t {
 
 #[repr(C)]
 pub struct xcb_randr_screen_change_notify_event_t {
-     pub response_type :      u8,
-     pub rotation :           u8,
-     pub sequence :           u16,
-     pub timestamp :          ffi::xproto::xcb_timestamp_t,
-     pub config_timestamp :   ffi::xproto::xcb_timestamp_t,
-     pub root :               ffi::xproto::xcb_window_t,
-     pub request_window :     ffi::xproto::xcb_window_t,
-     pub sizeID :             u16,
-     pub subpixel_order :     u16,
-     pub width :              u16,
-     pub height :             u16,
-     pub mwidth :             u16,
-     pub mheight :            u16
+    pub response_type :      u8,
+    pub rotation :           u8,
+    pub sequence :           u16,
+    pub timestamp :          ffi::xproto::xcb_timestamp_t,
+    pub config_timestamp :   ffi::xproto::xcb_timestamp_t,
+    pub root :               ffi::xproto::xcb_window_t,
+    pub request_window :     ffi::xproto::xcb_window_t,
+    pub sizeID :             u16,
+    pub subpixel_order :     u16,
+    pub width :              u16,
+    pub height :             u16,
+    pub mwidth :             u16,
+    pub mheight :            u16
 }
 
 impl Copy for xcb_randr_screen_change_notify_event_t {}
@@ -1115,16 +1115,16 @@ impl Clone for xcb_randr_screen_change_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_randr_crtc_change_t {
-     pub timestamp :   ffi::xproto::xcb_timestamp_t,
-     pub window :      ffi::xproto::xcb_window_t,
-     pub crtc :        xcb_randr_crtc_t,
-     pub mode :        xcb_randr_mode_t,
-     pub rotation :    u16,
-     pub pad0 :        [u8; 2],
-     pub x :           i16,
-     pub y :           i16,
-     pub width :       u16,
-     pub height :      u16
+    pub timestamp :   ffi::xproto::xcb_timestamp_t,
+    pub window :      ffi::xproto::xcb_window_t,
+    pub crtc :        xcb_randr_crtc_t,
+    pub mode :        xcb_randr_mode_t,
+    pub rotation :    u16,
+    pub pad0 :        [u8; 2],
+    pub x :           i16,
+    pub y :           i16,
+    pub width :       u16,
+    pub height :      u16
 }
 
 impl Copy for xcb_randr_crtc_change_t {}
@@ -1141,15 +1141,15 @@ pub struct xcb_randr_crtc_change_iterator_t {
 
 #[repr(C)]
 pub struct xcb_randr_output_change_t {
-     pub timestamp :          ffi::xproto::xcb_timestamp_t,
-     pub config_timestamp :   ffi::xproto::xcb_timestamp_t,
-     pub window :             ffi::xproto::xcb_window_t,
-     pub output :             xcb_randr_output_t,
-     pub crtc :               xcb_randr_crtc_t,
-     pub mode :               xcb_randr_mode_t,
-     pub rotation :           u16,
-     pub connection :         u8,
-     pub subpixel_order :     u8
+    pub timestamp :          ffi::xproto::xcb_timestamp_t,
+    pub config_timestamp :   ffi::xproto::xcb_timestamp_t,
+    pub window :             ffi::xproto::xcb_window_t,
+    pub output :             xcb_randr_output_t,
+    pub crtc :               xcb_randr_crtc_t,
+    pub mode :               xcb_randr_mode_t,
+    pub rotation :           u16,
+    pub connection :         u8,
+    pub subpixel_order :     u8
 }
 
 impl Copy for xcb_randr_output_change_t {}
@@ -1166,12 +1166,12 @@ pub struct xcb_randr_output_change_iterator_t {
 
 #[repr(C)]
 pub struct xcb_randr_output_property_t {
-     pub window :      ffi::xproto::xcb_window_t,
-     pub output :      xcb_randr_output_t,
-     pub atom :        ffi::xproto::xcb_atom_t,
-     pub timestamp :   ffi::xproto::xcb_timestamp_t,
-     pub status :      u8,
-     pub pad0 :        [u8; 11]
+    pub window :      ffi::xproto::xcb_window_t,
+    pub output :      xcb_randr_output_t,
+    pub atom :        ffi::xproto::xcb_atom_t,
+    pub timestamp :   ffi::xproto::xcb_timestamp_t,
+    pub status :      u8,
+    pub pad0 :        [u8; 11]
 }
 
 impl Copy for xcb_randr_output_property_t {}
@@ -1205,10 +1205,10 @@ pub struct xcb_randr_notify_data_iterator_t {
 
 #[repr(C)]
 pub struct xcb_randr_notify_event_t {
-     pub response_type :   u8,
-     pub subCode :         u8,
-     pub sequence :        u16,
-     pub u :               xcb_randr_notify_data_t
+    pub response_type :   u8,
+    pub subCode :         u8,
+    pub sequence :        u16,
+    pub u :               xcb_randr_notify_data_t
 }
 
 impl Copy for xcb_randr_notify_event_t {}

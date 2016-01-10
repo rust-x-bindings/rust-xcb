@@ -12,8 +12,8 @@ use ffi;
 
 #[repr(C)]
 pub struct xcb_char2b_t {
-     pub byte1 :   u8,
-     pub byte2 :   u8
+    pub byte1 :   u8,
+    pub byte2 :   u8
 }
 
 impl Copy for xcb_char2b_t {}
@@ -156,8 +156,8 @@ pub struct xcb_button_iterator_t {
 
 #[repr(C)]
 pub struct xcb_point_t {
-     pub x :   i16,
-     pub y :   i16
+    pub x :   i16,
+    pub y :   i16
 }
 
 impl Copy for xcb_point_t {}
@@ -174,10 +174,10 @@ pub struct xcb_point_iterator_t {
 
 #[repr(C)]
 pub struct xcb_rectangle_t {
-     pub x :        i16,
-     pub y :        i16,
-     pub width :    u16,
-     pub height :   u16
+    pub x :        i16,
+    pub y :        i16,
+    pub width :    u16,
+    pub height :   u16
 }
 
 impl Copy for xcb_rectangle_t {}
@@ -194,12 +194,12 @@ pub struct xcb_rectangle_iterator_t {
 
 #[repr(C)]
 pub struct xcb_arc_t {
-     pub x :        i16,
-     pub y :        i16,
-     pub width :    u16,
-     pub height :   u16,
-     pub angle1 :   i16,
-     pub angle2 :   i16
+    pub x :        i16,
+    pub y :        i16,
+    pub width :    u16,
+    pub height :   u16,
+    pub angle1 :   i16,
+    pub angle2 :   i16
 }
 
 impl Copy for xcb_arc_t {}
@@ -216,10 +216,10 @@ pub struct xcb_arc_iterator_t {
 
 #[repr(C)]
 pub struct xcb_format_t {
-     pub depth :            u8,
-     pub bits_per_pixel :   u8,
-     pub scanline_pad :     u8,
-     pub pad0 :             [u8; 5]
+    pub depth :            u8,
+    pub bits_per_pixel :   u8,
+    pub scanline_pad :     u8,
+    pub pad0 :             [u8; 5]
 }
 
 impl Copy for xcb_format_t {}
@@ -236,14 +236,14 @@ pub struct xcb_format_iterator_t {
 
 #[repr(C)]
 pub struct xcb_visualtype_t {
-     pub visual_id :            xcb_visualid_t,
-     pub class :                u8,
-     pub bits_per_rgb_value :   u8,
-     pub colormap_entries :     u16,
-     pub red_mask :             u32,
-     pub green_mask :           u32,
-     pub blue_mask :            u32,
-     pub pad0 :                 [u8; 4]
+    pub visual_id :            xcb_visualid_t,
+    pub class :                u8,
+    pub bits_per_rgb_value :   u8,
+    pub colormap_entries :     u16,
+    pub red_mask :             u32,
+    pub green_mask :           u32,
+    pub blue_mask :            u32,
+    pub pad0 :                 [u8; 4]
 }
 
 impl Copy for xcb_visualtype_t {}
@@ -260,10 +260,10 @@ pub struct xcb_visualtype_iterator_t {
 
 #[repr(C)]
 pub struct xcb_depth_t {
-     pub depth :         u8,
-     pub pad0 :          u8,
-     pub visuals_len :   u16,
-     pub pad1 :          [u8; 4]
+    pub depth :         u8,
+    pub pad0 :          u8,
+    pub visuals_len :   u16,
+    pub pad1 :          [u8; 4]
 }
 
 impl Copy for xcb_depth_t {}
@@ -280,22 +280,22 @@ pub struct xcb_depth_iterator_t {
 
 #[repr(C)]
 pub struct xcb_screen_t {
-     pub root :                    xcb_window_t,
-     pub default_colormap :        xcb_colormap_t,
-     pub white_pixel :             u32,
-     pub black_pixel :             u32,
-     pub current_input_masks :     u32,
-     pub width_in_pixels :         u16,
-     pub height_in_pixels :        u16,
-     pub width_in_millimeters :    u16,
-     pub height_in_millimeters :   u16,
-     pub min_installed_maps :      u16,
-     pub max_installed_maps :      u16,
-     pub root_visual :             xcb_visualid_t,
-     pub backing_stores :          u8,
-     pub save_unders :             u8,
-     pub root_depth :              u8,
-     pub allowed_depths_len :      u8
+    pub root :                    xcb_window_t,
+    pub default_colormap :        xcb_colormap_t,
+    pub white_pixel :             u32,
+    pub black_pixel :             u32,
+    pub current_input_masks :     u32,
+    pub width_in_pixels :         u16,
+    pub height_in_pixels :        u16,
+    pub width_in_millimeters :    u16,
+    pub height_in_millimeters :   u16,
+    pub min_installed_maps :      u16,
+    pub max_installed_maps :      u16,
+    pub root_visual :             xcb_visualid_t,
+    pub backing_stores :          u8,
+    pub save_unders :             u8,
+    pub root_depth :              u8,
+    pub allowed_depths_len :      u8
 }
 
 impl Copy for xcb_screen_t {}
@@ -312,13 +312,13 @@ pub struct xcb_screen_iterator_t {
 
 #[repr(C)]
 pub struct xcb_setup_request_t {
-     pub byte_order :                        u8,
-     pub pad0 :                              u8,
-     pub protocol_major_version :            u16,
-     pub protocol_minor_version :            u16,
-     pub authorization_protocol_name_len :   u16,
-     pub authorization_protocol_data_len :   u16,
-     pub pad1 :                              [u8; 2]
+    pub byte_order :                        u8,
+    pub pad0 :                              u8,
+    pub protocol_major_version :            u16,
+    pub protocol_minor_version :            u16,
+    pub authorization_protocol_name_len :   u16,
+    pub authorization_protocol_data_len :   u16,
+    pub pad1 :                              [u8; 2]
 }
 
 impl Copy for xcb_setup_request_t {}
@@ -335,11 +335,11 @@ pub struct xcb_setup_request_iterator_t {
 
 #[repr(C)]
 pub struct xcb_setup_failed_t {
-     pub status :                   u8,
-     pub reason_len :               u8,
-     pub protocol_major_version :   u16,
-     pub protocol_minor_version :   u16,
-     pub length :                   u16
+    pub status :                   u8,
+    pub reason_len :               u8,
+    pub protocol_major_version :   u16,
+    pub protocol_minor_version :   u16,
+    pub length :                   u16
 }
 
 impl Copy for xcb_setup_failed_t {}
@@ -356,9 +356,9 @@ pub struct xcb_setup_failed_iterator_t {
 
 #[repr(C)]
 pub struct xcb_setup_authenticate_t {
-     pub status :   u8,
-     pub pad0 :     [u8; 5],
-     pub length :   u16
+    pub status :   u8,
+    pub pad0 :     [u8; 5],
+    pub length :   u16
 }
 
 impl Copy for xcb_setup_authenticate_t {}
@@ -375,26 +375,26 @@ pub struct xcb_setup_authenticate_iterator_t {
 
 #[repr(C)]
 pub struct xcb_setup_t {
-     pub status :                        u8,
-     pub pad0 :                          u8,
-     pub protocol_major_version :        u16,
-     pub protocol_minor_version :        u16,
-     pub length :                        u16,
-     pub release_number :                u32,
-     pub resource_id_base :              u32,
-     pub resource_id_mask :              u32,
-     pub motion_buffer_size :            u32,
-     pub vendor_len :                    u16,
-     pub maximum_request_length :        u16,
-     pub roots_len :                     u8,
-     pub pixmap_formats_len :            u8,
-     pub image_byte_order :              u8,
-     pub bitmap_format_bit_order :       u8,
-     pub bitmap_format_scanline_unit :   u8,
-     pub bitmap_format_scanline_pad :    u8,
-     pub min_keycode :                   xcb_keycode_t,
-     pub max_keycode :                   xcb_keycode_t,
-     pub pad1 :                          [u8; 4]
+    pub status :                        u8,
+    pub pad0 :                          u8,
+    pub protocol_major_version :        u16,
+    pub protocol_minor_version :        u16,
+    pub length :                        u16,
+    pub release_number :                u32,
+    pub resource_id_base :              u32,
+    pub resource_id_mask :              u32,
+    pub motion_buffer_size :            u32,
+    pub vendor_len :                    u16,
+    pub maximum_request_length :        u16,
+    pub roots_len :                     u8,
+    pub pixmap_formats_len :            u8,
+    pub image_byte_order :              u8,
+    pub bitmap_format_bit_order :       u8,
+    pub bitmap_format_scanline_unit :   u8,
+    pub bitmap_format_scanline_pad :    u8,
+    pub min_keycode :                   xcb_keycode_t,
+    pub max_keycode :                   xcb_keycode_t,
+    pub pad1 :                          [u8; 4]
 }
 
 impl Copy for xcb_setup_t {}
@@ -405,20 +405,20 @@ impl Clone for xcb_setup_t {
 
 #[repr(C)]
 pub struct xcb_key_press_event_t {
-     pub response_type :   u8,
-     pub detail :          xcb_keycode_t,
-     pub sequence :        u16,
-     pub time :            xcb_timestamp_t,
-     pub root :            xcb_window_t,
-     pub event :           xcb_window_t,
-     pub child :           xcb_window_t,
-     pub root_x :          i16,
-     pub root_y :          i16,
-     pub event_x :         i16,
-     pub event_y :         i16,
-     pub state :           u16,
-     pub same_screen :     u8,
-     pub pad0 :            u8
+    pub response_type :   u8,
+    pub detail :          xcb_keycode_t,
+    pub sequence :        u16,
+    pub time :            xcb_timestamp_t,
+    pub root :            xcb_window_t,
+    pub event :           xcb_window_t,
+    pub child :           xcb_window_t,
+    pub root_x :          i16,
+    pub root_y :          i16,
+    pub event_x :         i16,
+    pub event_y :         i16,
+    pub state :           u16,
+    pub same_screen :     u8,
+    pub pad0 :            u8
 }
 
 impl Copy for xcb_key_press_event_t {}
@@ -432,20 +432,20 @@ pub type xcb_key_release_event_t = xcb_key_press_event_t;
 
 #[repr(C)]
 pub struct xcb_button_press_event_t {
-     pub response_type :   u8,
-     pub detail :          xcb_button_t,
-     pub sequence :        u16,
-     pub time :            xcb_timestamp_t,
-     pub root :            xcb_window_t,
-     pub event :           xcb_window_t,
-     pub child :           xcb_window_t,
-     pub root_x :          i16,
-     pub root_y :          i16,
-     pub event_x :         i16,
-     pub event_y :         i16,
-     pub state :           u16,
-     pub same_screen :     u8,
-     pub pad0 :            u8
+    pub response_type :   u8,
+    pub detail :          xcb_button_t,
+    pub sequence :        u16,
+    pub time :            xcb_timestamp_t,
+    pub root :            xcb_window_t,
+    pub event :           xcb_window_t,
+    pub child :           xcb_window_t,
+    pub root_x :          i16,
+    pub root_y :          i16,
+    pub event_x :         i16,
+    pub event_y :         i16,
+    pub state :           u16,
+    pub same_screen :     u8,
+    pub pad0 :            u8
 }
 
 impl Copy for xcb_button_press_event_t {}
@@ -459,20 +459,20 @@ pub type xcb_button_release_event_t = xcb_button_press_event_t;
 
 #[repr(C)]
 pub struct xcb_motion_notify_event_t {
-     pub response_type :   u8,
-     pub detail :          u8,
-     pub sequence :        u16,
-     pub time :            xcb_timestamp_t,
-     pub root :            xcb_window_t,
-     pub event :           xcb_window_t,
-     pub child :           xcb_window_t,
-     pub root_x :          i16,
-     pub root_y :          i16,
-     pub event_x :         i16,
-     pub event_y :         i16,
-     pub state :           u16,
-     pub same_screen :     u8,
-     pub pad0 :            u8
+    pub response_type :   u8,
+    pub detail :          u8,
+    pub sequence :        u16,
+    pub time :            xcb_timestamp_t,
+    pub root :            xcb_window_t,
+    pub event :           xcb_window_t,
+    pub child :           xcb_window_t,
+    pub root_x :          i16,
+    pub root_y :          i16,
+    pub event_x :         i16,
+    pub event_y :         i16,
+    pub state :           u16,
+    pub same_screen :     u8,
+    pub pad0 :            u8
 }
 
 impl Copy for xcb_motion_notify_event_t {}
@@ -483,20 +483,20 @@ impl Clone for xcb_motion_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_enter_notify_event_t {
-     pub response_type :       u8,
-     pub detail :              u8,
-     pub sequence :            u16,
-     pub time :                xcb_timestamp_t,
-     pub root :                xcb_window_t,
-     pub event :               xcb_window_t,
-     pub child :               xcb_window_t,
-     pub root_x :              i16,
-     pub root_y :              i16,
-     pub event_x :             i16,
-     pub event_y :             i16,
-     pub state :               u16,
-     pub mode :                u8,
-     pub same_screen_focus :   u8
+    pub response_type :       u8,
+    pub detail :              u8,
+    pub sequence :            u16,
+    pub time :                xcb_timestamp_t,
+    pub root :                xcb_window_t,
+    pub event :               xcb_window_t,
+    pub child :               xcb_window_t,
+    pub root_x :              i16,
+    pub root_y :              i16,
+    pub event_x :             i16,
+    pub event_y :             i16,
+    pub state :               u16,
+    pub mode :                u8,
+    pub same_screen_focus :   u8
 }
 
 impl Copy for xcb_enter_notify_event_t {}
@@ -510,12 +510,12 @@ pub type xcb_leave_notify_event_t = xcb_enter_notify_event_t;
 
 #[repr(C)]
 pub struct xcb_focus_in_event_t {
-     pub response_type :   u8,
-     pub detail :          u8,
-     pub sequence :        u16,
-     pub event :           xcb_window_t,
-     pub mode :            u8,
-     pub pad0 :            [u8; 3]
+    pub response_type :   u8,
+    pub detail :          u8,
+    pub sequence :        u16,
+    pub event :           xcb_window_t,
+    pub mode :            u8,
+    pub pad0 :            [u8; 3]
 }
 
 impl Copy for xcb_focus_in_event_t {}
@@ -529,8 +529,8 @@ pub type xcb_focus_out_event_t = xcb_focus_in_event_t;
 
 #[repr(C)]
 pub struct xcb_keymap_notify_event_t {
-     pub response_type :   u8,
-     pub keys :            [u8; 31]
+    pub response_type :   u8,
+    pub keys :            [u8; 31]
 }
 
 impl Copy for xcb_keymap_notify_event_t {}
@@ -541,16 +541,16 @@ impl Clone for xcb_keymap_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_expose_event_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub window :          xcb_window_t,
-     pub x :               u16,
-     pub y :               u16,
-     pub width :           u16,
-     pub height :          u16,
-     pub count :           u16,
-     pub pad1 :            [u8; 2]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub window :          xcb_window_t,
+    pub x :               u16,
+    pub y :               u16,
+    pub width :           u16,
+    pub height :          u16,
+    pub count :           u16,
+    pub pad1 :            [u8; 2]
 }
 
 impl Copy for xcb_expose_event_t {}
@@ -561,18 +561,18 @@ impl Clone for xcb_expose_event_t {
 
 #[repr(C)]
 pub struct xcb_graphics_exposure_event_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub drawable :        xcb_drawable_t,
-     pub x :               u16,
-     pub y :               u16,
-     pub width :           u16,
-     pub height :          u16,
-     pub minor_opcode :    u16,
-     pub count :           u16,
-     pub major_opcode :    u8,
-     pub pad1 :            [u8; 3]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub drawable :        xcb_drawable_t,
+    pub x :               u16,
+    pub y :               u16,
+    pub width :           u16,
+    pub height :          u16,
+    pub minor_opcode :    u16,
+    pub count :           u16,
+    pub major_opcode :    u8,
+    pub pad1 :            [u8; 3]
 }
 
 impl Copy for xcb_graphics_exposure_event_t {}
@@ -583,13 +583,13 @@ impl Clone for xcb_graphics_exposure_event_t {
 
 #[repr(C)]
 pub struct xcb_no_exposure_event_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub drawable :        xcb_drawable_t,
-     pub minor_opcode :    u16,
-     pub major_opcode :    u8,
-     pub pad1 :            u8
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub drawable :        xcb_drawable_t,
+    pub minor_opcode :    u16,
+    pub major_opcode :    u8,
+    pub pad1 :            u8
 }
 
 impl Copy for xcb_no_exposure_event_t {}
@@ -600,12 +600,12 @@ impl Clone for xcb_no_exposure_event_t {
 
 #[repr(C)]
 pub struct xcb_visibility_notify_event_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub window :          xcb_window_t,
-     pub state :           u8,
-     pub pad1 :            [u8; 3]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub window :          xcb_window_t,
+    pub state :           u8,
+    pub pad1 :            [u8; 3]
 }
 
 impl Copy for xcb_visibility_notify_event_t {}
@@ -616,18 +616,18 @@ impl Clone for xcb_visibility_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_create_notify_event_t {
-     pub response_type :       u8,
-     pub pad0 :                u8,
-     pub sequence :            u16,
-     pub parent :              xcb_window_t,
-     pub window :              xcb_window_t,
-     pub x :                   i16,
-     pub y :                   i16,
-     pub width :               u16,
-     pub height :              u16,
-     pub border_width :        u16,
-     pub override_redirect :   u8,
-     pub pad1 :                u8
+    pub response_type :       u8,
+    pub pad0 :                u8,
+    pub sequence :            u16,
+    pub parent :              xcb_window_t,
+    pub window :              xcb_window_t,
+    pub x :                   i16,
+    pub y :                   i16,
+    pub width :               u16,
+    pub height :              u16,
+    pub border_width :        u16,
+    pub override_redirect :   u8,
+    pub pad1 :                u8
 }
 
 impl Copy for xcb_create_notify_event_t {}
@@ -638,11 +638,11 @@ impl Clone for xcb_create_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_destroy_notify_event_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub event :           xcb_window_t,
-     pub window :          xcb_window_t
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub event :           xcb_window_t,
+    pub window :          xcb_window_t
 }
 
 impl Copy for xcb_destroy_notify_event_t {}
@@ -653,13 +653,13 @@ impl Clone for xcb_destroy_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_unmap_notify_event_t {
-     pub response_type :    u8,
-     pub pad0 :             u8,
-     pub sequence :         u16,
-     pub event :            xcb_window_t,
-     pub window :           xcb_window_t,
-     pub from_configure :   u8,
-     pub pad1 :             [u8; 3]
+    pub response_type :    u8,
+    pub pad0 :             u8,
+    pub sequence :         u16,
+    pub event :            xcb_window_t,
+    pub window :           xcb_window_t,
+    pub from_configure :   u8,
+    pub pad1 :             [u8; 3]
 }
 
 impl Copy for xcb_unmap_notify_event_t {}
@@ -670,13 +670,13 @@ impl Clone for xcb_unmap_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_map_notify_event_t {
-     pub response_type :       u8,
-     pub pad0 :                u8,
-     pub sequence :            u16,
-     pub event :               xcb_window_t,
-     pub window :              xcb_window_t,
-     pub override_redirect :   u8,
-     pub pad1 :                [u8; 3]
+    pub response_type :       u8,
+    pub pad0 :                u8,
+    pub sequence :            u16,
+    pub event :               xcb_window_t,
+    pub window :              xcb_window_t,
+    pub override_redirect :   u8,
+    pub pad1 :                [u8; 3]
 }
 
 impl Copy for xcb_map_notify_event_t {}
@@ -687,11 +687,11 @@ impl Clone for xcb_map_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_map_request_event_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub parent :          xcb_window_t,
-     pub window :          xcb_window_t
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub parent :          xcb_window_t,
+    pub window :          xcb_window_t
 }
 
 impl Copy for xcb_map_request_event_t {}
@@ -702,16 +702,16 @@ impl Clone for xcb_map_request_event_t {
 
 #[repr(C)]
 pub struct xcb_reparent_notify_event_t {
-     pub response_type :       u8,
-     pub pad0 :                u8,
-     pub sequence :            u16,
-     pub event :               xcb_window_t,
-     pub window :              xcb_window_t,
-     pub parent :              xcb_window_t,
-     pub x :                   i16,
-     pub y :                   i16,
-     pub override_redirect :   u8,
-     pub pad1 :                [u8; 3]
+    pub response_type :       u8,
+    pub pad0 :                u8,
+    pub sequence :            u16,
+    pub event :               xcb_window_t,
+    pub window :              xcb_window_t,
+    pub parent :              xcb_window_t,
+    pub x :                   i16,
+    pub y :                   i16,
+    pub override_redirect :   u8,
+    pub pad1 :                [u8; 3]
 }
 
 impl Copy for xcb_reparent_notify_event_t {}
@@ -722,19 +722,19 @@ impl Clone for xcb_reparent_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_configure_notify_event_t {
-     pub response_type :       u8,
-     pub pad0 :                u8,
-     pub sequence :            u16,
-     pub event :               xcb_window_t,
-     pub window :              xcb_window_t,
-     pub above_sibling :       xcb_window_t,
-     pub x :                   i16,
-     pub y :                   i16,
-     pub width :               u16,
-     pub height :              u16,
-     pub border_width :        u16,
-     pub override_redirect :   u8,
-     pub pad1 :                u8
+    pub response_type :       u8,
+    pub pad0 :                u8,
+    pub sequence :            u16,
+    pub event :               xcb_window_t,
+    pub window :              xcb_window_t,
+    pub above_sibling :       xcb_window_t,
+    pub x :                   i16,
+    pub y :                   i16,
+    pub width :               u16,
+    pub height :              u16,
+    pub border_width :        u16,
+    pub override_redirect :   u8,
+    pub pad1 :                u8
 }
 
 impl Copy for xcb_configure_notify_event_t {}
@@ -745,18 +745,18 @@ impl Clone for xcb_configure_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_configure_request_event_t {
-     pub response_type :   u8,
-     pub stack_mode :      u8,
-     pub sequence :        u16,
-     pub parent :          xcb_window_t,
-     pub window :          xcb_window_t,
-     pub sibling :         xcb_window_t,
-     pub x :               i16,
-     pub y :               i16,
-     pub width :           u16,
-     pub height :          u16,
-     pub border_width :    u16,
-     pub value_mask :      u16
+    pub response_type :   u8,
+    pub stack_mode :      u8,
+    pub sequence :        u16,
+    pub parent :          xcb_window_t,
+    pub window :          xcb_window_t,
+    pub sibling :         xcb_window_t,
+    pub x :               i16,
+    pub y :               i16,
+    pub width :           u16,
+    pub height :          u16,
+    pub border_width :    u16,
+    pub value_mask :      u16
 }
 
 impl Copy for xcb_configure_request_event_t {}
@@ -767,13 +767,13 @@ impl Clone for xcb_configure_request_event_t {
 
 #[repr(C)]
 pub struct xcb_gravity_notify_event_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub event :           xcb_window_t,
-     pub window :          xcb_window_t,
-     pub x :               i16,
-     pub y :               i16
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub event :           xcb_window_t,
+    pub window :          xcb_window_t,
+    pub x :               i16,
+    pub y :               i16
 }
 
 impl Copy for xcb_gravity_notify_event_t {}
@@ -784,12 +784,12 @@ impl Clone for xcb_gravity_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_resize_request_event_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub window :          xcb_window_t,
-     pub width :           u16,
-     pub height :          u16
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub window :          xcb_window_t,
+    pub width :           u16,
+    pub height :          u16
 }
 
 impl Copy for xcb_resize_request_event_t {}
@@ -800,14 +800,14 @@ impl Clone for xcb_resize_request_event_t {
 
 #[repr(C)]
 pub struct xcb_circulate_notify_event_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub event :           xcb_window_t,
-     pub window :          xcb_window_t,
-     pub pad1 :            [u8; 4],
-     pub place :           u8,
-     pub pad2 :            [u8; 3]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub event :           xcb_window_t,
+    pub window :          xcb_window_t,
+    pub pad1 :            [u8; 4],
+    pub place :           u8,
+    pub pad2 :            [u8; 3]
 }
 
 impl Copy for xcb_circulate_notify_event_t {}
@@ -821,14 +821,14 @@ pub type xcb_circulate_request_event_t = xcb_circulate_notify_event_t;
 
 #[repr(C)]
 pub struct xcb_property_notify_event_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub window :          xcb_window_t,
-     pub atom :            xcb_atom_t,
-     pub time :            xcb_timestamp_t,
-     pub state :           u8,
-     pub pad1 :            [u8; 3]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub window :          xcb_window_t,
+    pub atom :            xcb_atom_t,
+    pub time :            xcb_timestamp_t,
+    pub state :           u8,
+    pub pad1 :            [u8; 3]
 }
 
 impl Copy for xcb_property_notify_event_t {}
@@ -839,12 +839,12 @@ impl Clone for xcb_property_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_selection_clear_event_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub time :            xcb_timestamp_t,
-     pub owner :           xcb_window_t,
-     pub selection :       xcb_atom_t
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub time :            xcb_timestamp_t,
+    pub owner :           xcb_window_t,
+    pub selection :       xcb_atom_t
 }
 
 impl Copy for xcb_selection_clear_event_t {}
@@ -855,15 +855,15 @@ impl Clone for xcb_selection_clear_event_t {
 
 #[repr(C)]
 pub struct xcb_selection_request_event_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub time :            xcb_timestamp_t,
-     pub owner :           xcb_window_t,
-     pub requestor :       xcb_window_t,
-     pub selection :       xcb_atom_t,
-     pub target :          xcb_atom_t,
-     pub property :        xcb_atom_t
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub time :            xcb_timestamp_t,
+    pub owner :           xcb_window_t,
+    pub requestor :       xcb_window_t,
+    pub selection :       xcb_atom_t,
+    pub target :          xcb_atom_t,
+    pub property :        xcb_atom_t
 }
 
 impl Copy for xcb_selection_request_event_t {}
@@ -874,14 +874,14 @@ impl Clone for xcb_selection_request_event_t {
 
 #[repr(C)]
 pub struct xcb_selection_notify_event_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub time :            xcb_timestamp_t,
-     pub requestor :       xcb_window_t,
-     pub selection :       xcb_atom_t,
-     pub target :          xcb_atom_t,
-     pub property :        xcb_atom_t
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub time :            xcb_timestamp_t,
+    pub requestor :       xcb_window_t,
+    pub selection :       xcb_atom_t,
+    pub target :          xcb_atom_t,
+    pub property :        xcb_atom_t
 }
 
 impl Copy for xcb_selection_notify_event_t {}
@@ -892,14 +892,14 @@ impl Clone for xcb_selection_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_colormap_notify_event_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub window :          xcb_window_t,
-     pub colormap :        xcb_colormap_t,
-     pub new_ :            u8,
-     pub state :           u8,
-     pub pad1 :            [u8; 2]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub window :          xcb_window_t,
+    pub colormap :        xcb_colormap_t,
+    pub new_ :            u8,
+    pub state :           u8,
+    pub pad1 :            [u8; 2]
 }
 
 impl Copy for xcb_colormap_notify_event_t {}
@@ -926,12 +926,12 @@ pub struct xcb_client_message_data_iterator_t {
 
 #[repr(C)]
 pub struct xcb_client_message_event_t {
-     pub response_type :   u8,
-     pub format :          u8,
-     pub sequence :        u16,
-     pub window :          xcb_window_t,
-     pub type_ :           xcb_atom_t,
-     pub data :            xcb_client_message_data_t
+    pub response_type :   u8,
+    pub format :          u8,
+    pub sequence :        u16,
+    pub window :          xcb_window_t,
+    pub type_ :           xcb_atom_t,
+    pub data :            xcb_client_message_data_t
 }
 
 impl Copy for xcb_client_message_event_t {}
@@ -942,13 +942,13 @@ impl Clone for xcb_client_message_event_t {
 
 #[repr(C)]
 pub struct xcb_mapping_notify_event_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub request :         u8,
-     pub first_keycode :   xcb_keycode_t,
-     pub count :           u8,
-     pub pad1 :            u8
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub request :         u8,
+    pub first_keycode :   xcb_keycode_t,
+    pub count :           u8,
+    pub pad1 :            u8
 }
 
 impl Copy for xcb_mapping_notify_event_t {}
@@ -959,13 +959,13 @@ impl Clone for xcb_mapping_notify_event_t {
 
 #[repr(C)]
 pub struct xcb_request_error_t {
-     pub response_type :   u8,
-     pub error_code :      u8,
-     pub sequence :        u16,
-     pub bad_value :       u32,
-     pub minor_opcode :    u16,
-     pub major_opcode :    u8,
-     pub pad0 :            u8
+    pub response_type :   u8,
+    pub error_code :      u8,
+    pub sequence :        u16,
+    pub bad_value :       u32,
+    pub minor_opcode :    u16,
+    pub major_opcode :    u8,
+    pub pad0 :            u8
 }
 
 impl Copy for xcb_request_error_t {}
@@ -976,13 +976,13 @@ impl Clone for xcb_request_error_t {
 
 #[repr(C)]
 pub struct xcb_value_error_t {
-     pub response_type :   u8,
-     pub error_code :      u8,
-     pub sequence :        u16,
-     pub bad_value :       u32,
-     pub minor_opcode :    u16,
-     pub major_opcode :    u8,
-     pub pad0 :            u8
+    pub response_type :   u8,
+    pub error_code :      u8,
+    pub sequence :        u16,
+    pub bad_value :       u32,
+    pub minor_opcode :    u16,
+    pub major_opcode :    u8,
+    pub pad0 :            u8
 }
 
 impl Copy for xcb_value_error_t {}
@@ -1038,19 +1038,19 @@ pub type xcb_implementation_error_t  = xcb_request_error_t;
 
 #[repr(C)]
 pub struct xcb_create_window_request_t {
-     pub major_opcode :   u8,
-     pub depth :          u8,
-     pub length :         u16,
-     pub wid :            xcb_window_t,
-     pub parent :         xcb_window_t,
-     pub x :              i16,
-     pub y :              i16,
-     pub width :          u16,
-     pub height :         u16,
-     pub border_width :   u16,
-     pub class :          u16,
-     pub visual :         xcb_visualid_t,
-     pub value_mask :     u32
+    pub major_opcode :   u8,
+    pub depth :          u8,
+    pub length :         u16,
+    pub wid :            xcb_window_t,
+    pub parent :         xcb_window_t,
+    pub x :              i16,
+    pub y :              i16,
+    pub width :          u16,
+    pub height :         u16,
+    pub border_width :   u16,
+    pub class :          u16,
+    pub visual :         xcb_visualid_t,
+    pub value_mask :     u32
 }
 
 impl Copy for xcb_create_window_request_t {}
@@ -1061,11 +1061,11 @@ impl Clone for xcb_create_window_request_t {
 
 #[repr(C)]
 pub struct xcb_change_window_attributes_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub window :         xcb_window_t,
-     pub value_mask :     u32
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub window :         xcb_window_t,
+    pub value_mask :     u32
 }
 
 impl Copy for xcb_change_window_attributes_request_t {}
@@ -1082,10 +1082,10 @@ pub struct xcb_get_window_attributes_cookie_t {
 
 #[repr(C)]
 pub struct xcb_get_window_attributes_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub window :         xcb_window_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub window :         xcb_window_t
 }
 
 impl Copy for xcb_get_window_attributes_request_t {}
@@ -1095,25 +1095,25 @@ impl Clone for xcb_get_window_attributes_request_t {
 
 #[repr(C)]
 pub struct xcb_get_window_attributes_reply_t {
-     pub response_type :           u8,
-     pub backing_store :           u8,
-     pub sequence :                u16,
-     pub length :                  u32,
-     pub visual :                  xcb_visualid_t,
-     pub class :                   u16,
-     pub bit_gravity :             u8,
-     pub win_gravity :             u8,
-     pub backing_planes :          u32,
-     pub backing_pixel :           u32,
-     pub save_under :              u8,
-     pub map_is_installed :        u8,
-     pub map_state :               u8,
-     pub override_redirect :       u8,
-     pub colormap :                xcb_colormap_t,
-     pub all_event_masks :         u32,
-     pub your_event_mask :         u32,
-     pub do_not_propagate_mask :   u16,
-     pub pad0 :                    [u8; 2]
+    pub response_type :           u8,
+    pub backing_store :           u8,
+    pub sequence :                u16,
+    pub length :                  u32,
+    pub visual :                  xcb_visualid_t,
+    pub class :                   u16,
+    pub bit_gravity :             u8,
+    pub win_gravity :             u8,
+    pub backing_planes :          u32,
+    pub backing_pixel :           u32,
+    pub save_under :              u8,
+    pub map_is_installed :        u8,
+    pub map_state :               u8,
+    pub override_redirect :       u8,
+    pub colormap :                xcb_colormap_t,
+    pub all_event_masks :         u32,
+    pub your_event_mask :         u32,
+    pub do_not_propagate_mask :   u16,
+    pub pad0 :                    [u8; 2]
 }
 
 impl Copy for xcb_get_window_attributes_reply_t {}
@@ -1124,10 +1124,10 @@ impl Clone for xcb_get_window_attributes_reply_t {
 
 #[repr(C)]
 pub struct xcb_destroy_window_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub window :         xcb_window_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub window :         xcb_window_t
 }
 
 impl Copy for xcb_destroy_window_request_t {}
@@ -1138,10 +1138,10 @@ impl Clone for xcb_destroy_window_request_t {
 
 #[repr(C)]
 pub struct xcb_destroy_subwindows_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub window :         xcb_window_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub window :         xcb_window_t
 }
 
 impl Copy for xcb_destroy_subwindows_request_t {}
@@ -1152,10 +1152,10 @@ impl Clone for xcb_destroy_subwindows_request_t {
 
 #[repr(C)]
 pub struct xcb_change_save_set_request_t {
-     pub major_opcode :   u8,
-     pub mode :           u8,
-     pub length :         u16,
-     pub window :         xcb_window_t
+    pub major_opcode :   u8,
+    pub mode :           u8,
+    pub length :         u16,
+    pub window :         xcb_window_t
 }
 
 impl Copy for xcb_change_save_set_request_t {}
@@ -1166,13 +1166,13 @@ impl Clone for xcb_change_save_set_request_t {
 
 #[repr(C)]
 pub struct xcb_reparent_window_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub window :         xcb_window_t,
-     pub parent :         xcb_window_t,
-     pub x :              i16,
-     pub y :              i16
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub window :         xcb_window_t,
+    pub parent :         xcb_window_t,
+    pub x :              i16,
+    pub y :              i16
 }
 
 impl Copy for xcb_reparent_window_request_t {}
@@ -1183,10 +1183,10 @@ impl Clone for xcb_reparent_window_request_t {
 
 #[repr(C)]
 pub struct xcb_map_window_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub window :         xcb_window_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub window :         xcb_window_t
 }
 
 impl Copy for xcb_map_window_request_t {}
@@ -1197,10 +1197,10 @@ impl Clone for xcb_map_window_request_t {
 
 #[repr(C)]
 pub struct xcb_map_subwindows_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub window :         xcb_window_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub window :         xcb_window_t
 }
 
 impl Copy for xcb_map_subwindows_request_t {}
@@ -1211,10 +1211,10 @@ impl Clone for xcb_map_subwindows_request_t {
 
 #[repr(C)]
 pub struct xcb_unmap_window_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub window :         xcb_window_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub window :         xcb_window_t
 }
 
 impl Copy for xcb_unmap_window_request_t {}
@@ -1225,10 +1225,10 @@ impl Clone for xcb_unmap_window_request_t {
 
 #[repr(C)]
 pub struct xcb_unmap_subwindows_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub window :         xcb_window_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub window :         xcb_window_t
 }
 
 impl Copy for xcb_unmap_subwindows_request_t {}
@@ -1239,12 +1239,12 @@ impl Clone for xcb_unmap_subwindows_request_t {
 
 #[repr(C)]
 pub struct xcb_configure_window_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub window :         xcb_window_t,
-     pub value_mask :     u16,
-     pub pad1 :           [u8; 2]
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub window :         xcb_window_t,
+    pub value_mask :     u16,
+    pub pad1 :           [u8; 2]
 }
 
 impl Copy for xcb_configure_window_request_t {}
@@ -1255,10 +1255,10 @@ impl Clone for xcb_configure_window_request_t {
 
 #[repr(C)]
 pub struct xcb_circulate_window_request_t {
-     pub major_opcode :   u8,
-     pub direction :      u8,
-     pub length :         u16,
-     pub window :         xcb_window_t
+    pub major_opcode :   u8,
+    pub direction :      u8,
+    pub length :         u16,
+    pub window :         xcb_window_t
 }
 
 impl Copy for xcb_circulate_window_request_t {}
@@ -1275,10 +1275,10 @@ pub struct xcb_get_geometry_cookie_t {
 
 #[repr(C)]
 pub struct xcb_get_geometry_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub drawable :       xcb_drawable_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub drawable :       xcb_drawable_t
 }
 
 impl Copy for xcb_get_geometry_request_t {}
@@ -1288,17 +1288,17 @@ impl Clone for xcb_get_geometry_request_t {
 
 #[repr(C)]
 pub struct xcb_get_geometry_reply_t {
-     pub response_type :   u8,
-     pub depth :           u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub root :            xcb_window_t,
-     pub x :               i16,
-     pub y :               i16,
-     pub width :           u16,
-     pub height :          u16,
-     pub border_width :    u16,
-     pub pad0 :            [u8; 2]
+    pub response_type :   u8,
+    pub depth :           u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub root :            xcb_window_t,
+    pub x :               i16,
+    pub y :               i16,
+    pub width :           u16,
+    pub height :          u16,
+    pub border_width :    u16,
+    pub pad0 :            [u8; 2]
 }
 
 impl Copy for xcb_get_geometry_reply_t {}
@@ -1315,10 +1315,10 @@ pub struct xcb_query_tree_cookie_t {
 
 #[repr(C)]
 pub struct xcb_query_tree_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub window :         xcb_window_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub window :         xcb_window_t
 }
 
 impl Copy for xcb_query_tree_request_t {}
@@ -1328,14 +1328,14 @@ impl Clone for xcb_query_tree_request_t {
 
 #[repr(C)]
 pub struct xcb_query_tree_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub root :            xcb_window_t,
-     pub parent :          xcb_window_t,
-     pub children_len :    u16,
-     pub pad1 :            [u8; 14]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub root :            xcb_window_t,
+    pub parent :          xcb_window_t,
+    pub children_len :    u16,
+    pub pad1 :            [u8; 14]
 }
 
 impl Copy for xcb_query_tree_reply_t {}
@@ -1352,11 +1352,11 @@ pub struct xcb_intern_atom_cookie_t {
 
 #[repr(C)]
 pub struct xcb_intern_atom_request_t {
-     pub major_opcode :     u8,
-     pub only_if_exists :   u8,
-     pub length :           u16,
-     pub name_len :         u16,
-     pub pad0 :             [u8; 2]
+    pub major_opcode :     u8,
+    pub only_if_exists :   u8,
+    pub length :           u16,
+    pub name_len :         u16,
+    pub pad0 :             [u8; 2]
 }
 
 impl Copy for xcb_intern_atom_request_t {}
@@ -1366,11 +1366,11 @@ impl Clone for xcb_intern_atom_request_t {
 
 #[repr(C)]
 pub struct xcb_intern_atom_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub atom :            xcb_atom_t
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub atom :            xcb_atom_t
 }
 
 impl Copy for xcb_intern_atom_reply_t {}
@@ -1387,10 +1387,10 @@ pub struct xcb_get_atom_name_cookie_t {
 
 #[repr(C)]
 pub struct xcb_get_atom_name_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub atom :           xcb_atom_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub atom :           xcb_atom_t
 }
 
 impl Copy for xcb_get_atom_name_request_t {}
@@ -1400,12 +1400,12 @@ impl Clone for xcb_get_atom_name_request_t {
 
 #[repr(C)]
 pub struct xcb_get_atom_name_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub name_len :        u16,
-     pub pad1 :            [u8; 22]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub name_len :        u16,
+    pub pad1 :            [u8; 22]
 }
 
 impl Copy for xcb_get_atom_name_reply_t {}
@@ -1416,15 +1416,15 @@ impl Clone for xcb_get_atom_name_reply_t {
 
 #[repr(C)]
 pub struct xcb_change_property_request_t {
-     pub major_opcode :   u8,
-     pub mode :           u8,
-     pub length :         u16,
-     pub window :         xcb_window_t,
-     pub property :       xcb_atom_t,
-     pub type_ :          xcb_atom_t,
-     pub format :         u8,
-     pub pad0 :           [u8; 3],
-     pub data_len :       u32
+    pub major_opcode :   u8,
+    pub mode :           u8,
+    pub length :         u16,
+    pub window :         xcb_window_t,
+    pub property :       xcb_atom_t,
+    pub type_ :          xcb_atom_t,
+    pub format :         u8,
+    pub pad0 :           [u8; 3],
+    pub data_len :       u32
 }
 
 impl Copy for xcb_change_property_request_t {}
@@ -1435,11 +1435,11 @@ impl Clone for xcb_change_property_request_t {
 
 #[repr(C)]
 pub struct xcb_delete_property_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub window :         xcb_window_t,
-     pub property :       xcb_atom_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub window :         xcb_window_t,
+    pub property :       xcb_atom_t
 }
 
 impl Copy for xcb_delete_property_request_t {}
@@ -1456,14 +1456,14 @@ pub struct xcb_get_property_cookie_t {
 
 #[repr(C)]
 pub struct xcb_get_property_request_t {
-     pub major_opcode :   u8,
-     pub delete :         u8,
-     pub length :         u16,
-     pub window :         xcb_window_t,
-     pub property :       xcb_atom_t,
-     pub type_ :          xcb_atom_t,
-     pub long_offset :    u32,
-     pub long_length :    u32
+    pub major_opcode :   u8,
+    pub delete :         u8,
+    pub length :         u16,
+    pub window :         xcb_window_t,
+    pub property :       xcb_atom_t,
+    pub type_ :          xcb_atom_t,
+    pub long_offset :    u32,
+    pub long_length :    u32
 }
 
 impl Copy for xcb_get_property_request_t {}
@@ -1473,14 +1473,14 @@ impl Clone for xcb_get_property_request_t {
 
 #[repr(C)]
 pub struct xcb_get_property_reply_t {
-     pub response_type :   u8,
-     pub format :          u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub type_ :           xcb_atom_t,
-     pub bytes_after :     u32,
-     pub value_len :       u32,
-     pub pad0 :            [u8; 12]
+    pub response_type :   u8,
+    pub format :          u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub type_ :           xcb_atom_t,
+    pub bytes_after :     u32,
+    pub value_len :       u32,
+    pub pad0 :            [u8; 12]
 }
 
 impl Copy for xcb_get_property_reply_t {}
@@ -1497,10 +1497,10 @@ pub struct xcb_list_properties_cookie_t {
 
 #[repr(C)]
 pub struct xcb_list_properties_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub window :         xcb_window_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub window :         xcb_window_t
 }
 
 impl Copy for xcb_list_properties_request_t {}
@@ -1510,12 +1510,12 @@ impl Clone for xcb_list_properties_request_t {
 
 #[repr(C)]
 pub struct xcb_list_properties_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub atoms_len :       u16,
-     pub pad1 :            [u8; 22]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub atoms_len :       u16,
+    pub pad1 :            [u8; 22]
 }
 
 impl Copy for xcb_list_properties_reply_t {}
@@ -1526,12 +1526,12 @@ impl Clone for xcb_list_properties_reply_t {
 
 #[repr(C)]
 pub struct xcb_set_selection_owner_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub owner :          xcb_window_t,
-     pub selection :      xcb_atom_t,
-     pub time :           xcb_timestamp_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub owner :          xcb_window_t,
+    pub selection :      xcb_atom_t,
+    pub time :           xcb_timestamp_t
 }
 
 impl Copy for xcb_set_selection_owner_request_t {}
@@ -1548,10 +1548,10 @@ pub struct xcb_get_selection_owner_cookie_t {
 
 #[repr(C)]
 pub struct xcb_get_selection_owner_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub selection :      xcb_atom_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub selection :      xcb_atom_t
 }
 
 impl Copy for xcb_get_selection_owner_request_t {}
@@ -1561,11 +1561,11 @@ impl Clone for xcb_get_selection_owner_request_t {
 
 #[repr(C)]
 pub struct xcb_get_selection_owner_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub owner :           xcb_window_t
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub owner :           xcb_window_t
 }
 
 impl Copy for xcb_get_selection_owner_reply_t {}
@@ -1576,14 +1576,14 @@ impl Clone for xcb_get_selection_owner_reply_t {
 
 #[repr(C)]
 pub struct xcb_convert_selection_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub requestor :      xcb_window_t,
-     pub selection :      xcb_atom_t,
-     pub target :         xcb_atom_t,
-     pub property :       xcb_atom_t,
-     pub time :           xcb_timestamp_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub requestor :      xcb_window_t,
+    pub selection :      xcb_atom_t,
+    pub target :         xcb_atom_t,
+    pub property :       xcb_atom_t,
+    pub time :           xcb_timestamp_t
 }
 
 impl Copy for xcb_convert_selection_request_t {}
@@ -1594,12 +1594,12 @@ impl Clone for xcb_convert_selection_request_t {
 
 #[repr(C)]
 pub struct xcb_send_event_request_t {
-     pub major_opcode :   u8,
-     pub propagate :      u8,
-     pub length :         u16,
-     pub destination :    xcb_window_t,
-     pub event_mask :     u32,
-     pub event :          [c_char; 32]
+    pub major_opcode :   u8,
+    pub propagate :      u8,
+    pub length :         u16,
+    pub destination :    xcb_window_t,
+    pub event_mask :     u32,
+    pub event :          [c_char; 32]
 }
 
 impl Copy for xcb_send_event_request_t {}
@@ -1616,16 +1616,16 @@ pub struct xcb_grab_pointer_cookie_t {
 
 #[repr(C)]
 pub struct xcb_grab_pointer_request_t {
-     pub major_opcode :    u8,
-     pub owner_events :    u8,
-     pub length :          u16,
-     pub grab_window :     xcb_window_t,
-     pub event_mask :      u16,
-     pub pointer_mode :    u8,
-     pub keyboard_mode :   u8,
-     pub confine_to :      xcb_window_t,
-     pub cursor :          xcb_cursor_t,
-     pub time :            xcb_timestamp_t
+    pub major_opcode :    u8,
+    pub owner_events :    u8,
+    pub length :          u16,
+    pub grab_window :     xcb_window_t,
+    pub event_mask :      u16,
+    pub pointer_mode :    u8,
+    pub keyboard_mode :   u8,
+    pub confine_to :      xcb_window_t,
+    pub cursor :          xcb_cursor_t,
+    pub time :            xcb_timestamp_t
 }
 
 impl Copy for xcb_grab_pointer_request_t {}
@@ -1635,10 +1635,10 @@ impl Clone for xcb_grab_pointer_request_t {
 
 #[repr(C)]
 pub struct xcb_grab_pointer_reply_t {
-     pub response_type :   u8,
-     pub status :          u8,
-     pub sequence :        u16,
-     pub length :          u32
+    pub response_type :   u8,
+    pub status :          u8,
+    pub sequence :        u16,
+    pub length :          u32
 }
 
 impl Copy for xcb_grab_pointer_reply_t {}
@@ -1649,10 +1649,10 @@ impl Clone for xcb_grab_pointer_reply_t {
 
 #[repr(C)]
 pub struct xcb_ungrab_pointer_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub time :           xcb_timestamp_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub time :           xcb_timestamp_t
 }
 
 impl Copy for xcb_ungrab_pointer_request_t {}
@@ -1663,18 +1663,18 @@ impl Clone for xcb_ungrab_pointer_request_t {
 
 #[repr(C)]
 pub struct xcb_grab_button_request_t {
-     pub major_opcode :    u8,
-     pub owner_events :    u8,
-     pub length :          u16,
-     pub grab_window :     xcb_window_t,
-     pub event_mask :      u16,
-     pub pointer_mode :    u8,
-     pub keyboard_mode :   u8,
-     pub confine_to :      xcb_window_t,
-     pub cursor :          xcb_cursor_t,
-     pub button :          u8,
-     pub pad0 :            u8,
-     pub modifiers :       u16
+    pub major_opcode :    u8,
+    pub owner_events :    u8,
+    pub length :          u16,
+    pub grab_window :     xcb_window_t,
+    pub event_mask :      u16,
+    pub pointer_mode :    u8,
+    pub keyboard_mode :   u8,
+    pub confine_to :      xcb_window_t,
+    pub cursor :          xcb_cursor_t,
+    pub button :          u8,
+    pub pad0 :            u8,
+    pub modifiers :       u16
 }
 
 impl Copy for xcb_grab_button_request_t {}
@@ -1685,12 +1685,12 @@ impl Clone for xcb_grab_button_request_t {
 
 #[repr(C)]
 pub struct xcb_ungrab_button_request_t {
-     pub major_opcode :   u8,
-     pub button :         u8,
-     pub length :         u16,
-     pub grab_window :    xcb_window_t,
-     pub modifiers :      u16,
-     pub pad0 :           [u8; 2]
+    pub major_opcode :   u8,
+    pub button :         u8,
+    pub length :         u16,
+    pub grab_window :    xcb_window_t,
+    pub modifiers :      u16,
+    pub pad0 :           [u8; 2]
 }
 
 impl Copy for xcb_ungrab_button_request_t {}
@@ -1701,13 +1701,13 @@ impl Clone for xcb_ungrab_button_request_t {
 
 #[repr(C)]
 pub struct xcb_change_active_pointer_grab_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub cursor :         xcb_cursor_t,
-     pub time :           xcb_timestamp_t,
-     pub event_mask :     u16,
-     pub pad1 :           [u8; 2]
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub cursor :         xcb_cursor_t,
+    pub time :           xcb_timestamp_t,
+    pub event_mask :     u16,
+    pub pad1 :           [u8; 2]
 }
 
 impl Copy for xcb_change_active_pointer_grab_request_t {}
@@ -1724,14 +1724,14 @@ pub struct xcb_grab_keyboard_cookie_t {
 
 #[repr(C)]
 pub struct xcb_grab_keyboard_request_t {
-     pub major_opcode :    u8,
-     pub owner_events :    u8,
-     pub length :          u16,
-     pub grab_window :     xcb_window_t,
-     pub time :            xcb_timestamp_t,
-     pub pointer_mode :    u8,
-     pub keyboard_mode :   u8,
-     pub pad0 :            [u8; 2]
+    pub major_opcode :    u8,
+    pub owner_events :    u8,
+    pub length :          u16,
+    pub grab_window :     xcb_window_t,
+    pub time :            xcb_timestamp_t,
+    pub pointer_mode :    u8,
+    pub keyboard_mode :   u8,
+    pub pad0 :            [u8; 2]
 }
 
 impl Copy for xcb_grab_keyboard_request_t {}
@@ -1741,10 +1741,10 @@ impl Clone for xcb_grab_keyboard_request_t {
 
 #[repr(C)]
 pub struct xcb_grab_keyboard_reply_t {
-     pub response_type :   u8,
-     pub status :          u8,
-     pub sequence :        u16,
-     pub length :          u32
+    pub response_type :   u8,
+    pub status :          u8,
+    pub sequence :        u16,
+    pub length :          u32
 }
 
 impl Copy for xcb_grab_keyboard_reply_t {}
@@ -1755,10 +1755,10 @@ impl Clone for xcb_grab_keyboard_reply_t {
 
 #[repr(C)]
 pub struct xcb_ungrab_keyboard_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub time :           xcb_timestamp_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub time :           xcb_timestamp_t
 }
 
 impl Copy for xcb_ungrab_keyboard_request_t {}
@@ -1769,15 +1769,15 @@ impl Clone for xcb_ungrab_keyboard_request_t {
 
 #[repr(C)]
 pub struct xcb_grab_key_request_t {
-     pub major_opcode :    u8,
-     pub owner_events :    u8,
-     pub length :          u16,
-     pub grab_window :     xcb_window_t,
-     pub modifiers :       u16,
-     pub key :             xcb_keycode_t,
-     pub pointer_mode :    u8,
-     pub keyboard_mode :   u8,
-     pub pad0 :            [u8; 3]
+    pub major_opcode :    u8,
+    pub owner_events :    u8,
+    pub length :          u16,
+    pub grab_window :     xcb_window_t,
+    pub modifiers :       u16,
+    pub key :             xcb_keycode_t,
+    pub pointer_mode :    u8,
+    pub keyboard_mode :   u8,
+    pub pad0 :            [u8; 3]
 }
 
 impl Copy for xcb_grab_key_request_t {}
@@ -1788,12 +1788,12 @@ impl Clone for xcb_grab_key_request_t {
 
 #[repr(C)]
 pub struct xcb_ungrab_key_request_t {
-     pub major_opcode :   u8,
-     pub key :            xcb_keycode_t,
-     pub length :         u16,
-     pub grab_window :    xcb_window_t,
-     pub modifiers :      u16,
-     pub pad0 :           [u8; 2]
+    pub major_opcode :   u8,
+    pub key :            xcb_keycode_t,
+    pub length :         u16,
+    pub grab_window :    xcb_window_t,
+    pub modifiers :      u16,
+    pub pad0 :           [u8; 2]
 }
 
 impl Copy for xcb_ungrab_key_request_t {}
@@ -1804,10 +1804,10 @@ impl Clone for xcb_ungrab_key_request_t {
 
 #[repr(C)]
 pub struct xcb_allow_events_request_t {
-     pub major_opcode :   u8,
-     pub mode :           u8,
-     pub length :         u16,
-     pub time :           xcb_timestamp_t
+    pub major_opcode :   u8,
+    pub mode :           u8,
+    pub length :         u16,
+    pub time :           xcb_timestamp_t
 }
 
 impl Copy for xcb_allow_events_request_t {}
@@ -1818,9 +1818,9 @@ impl Clone for xcb_allow_events_request_t {
 
 #[repr(C)]
 pub struct xcb_grab_server_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_grab_server_request_t {}
@@ -1831,9 +1831,9 @@ impl Clone for xcb_grab_server_request_t {
 
 #[repr(C)]
 pub struct xcb_ungrab_server_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_ungrab_server_request_t {}
@@ -1850,10 +1850,10 @@ pub struct xcb_query_pointer_cookie_t {
 
 #[repr(C)]
 pub struct xcb_query_pointer_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub window :         xcb_window_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub window :         xcb_window_t
 }
 
 impl Copy for xcb_query_pointer_request_t {}
@@ -1863,18 +1863,18 @@ impl Clone for xcb_query_pointer_request_t {
 
 #[repr(C)]
 pub struct xcb_query_pointer_reply_t {
-     pub response_type :   u8,
-     pub same_screen :     u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub root :            xcb_window_t,
-     pub child :           xcb_window_t,
-     pub root_x :          i16,
-     pub root_y :          i16,
-     pub win_x :           i16,
-     pub win_y :           i16,
-     pub mask :            u16,
-     pub pad0 :            [u8; 2]
+    pub response_type :   u8,
+    pub same_screen :     u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub root :            xcb_window_t,
+    pub child :           xcb_window_t,
+    pub root_x :          i16,
+    pub root_y :          i16,
+    pub win_x :           i16,
+    pub win_y :           i16,
+    pub mask :            u16,
+    pub pad0 :            [u8; 2]
 }
 
 impl Copy for xcb_query_pointer_reply_t {}
@@ -1884,9 +1884,9 @@ impl Clone for xcb_query_pointer_reply_t {
 
 #[repr(C)]
 pub struct xcb_timecoord_t {
-     pub time :   xcb_timestamp_t,
-     pub x :      i16,
-     pub y :      i16
+    pub time :   xcb_timestamp_t,
+    pub x :      i16,
+    pub y :      i16
 }
 
 impl Copy for xcb_timecoord_t {}
@@ -1910,12 +1910,12 @@ pub struct xcb_get_motion_events_cookie_t {
 
 #[repr(C)]
 pub struct xcb_get_motion_events_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub window :         xcb_window_t,
-     pub start :          xcb_timestamp_t,
-     pub stop :           xcb_timestamp_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub window :         xcb_window_t,
+    pub start :          xcb_timestamp_t,
+    pub stop :           xcb_timestamp_t
 }
 
 impl Copy for xcb_get_motion_events_request_t {}
@@ -1925,12 +1925,12 @@ impl Clone for xcb_get_motion_events_request_t {
 
 #[repr(C)]
 pub struct xcb_get_motion_events_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub events_len :      u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub events_len :      u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_get_motion_events_reply_t {}
@@ -1947,13 +1947,13 @@ pub struct xcb_translate_coordinates_cookie_t {
 
 #[repr(C)]
 pub struct xcb_translate_coordinates_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub src_window :     xcb_window_t,
-     pub dst_window :     xcb_window_t,
-     pub src_x :          i16,
-     pub src_y :          i16
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub src_window :     xcb_window_t,
+    pub dst_window :     xcb_window_t,
+    pub src_x :          i16,
+    pub src_y :          i16
 }
 
 impl Copy for xcb_translate_coordinates_request_t {}
@@ -1963,13 +1963,13 @@ impl Clone for xcb_translate_coordinates_request_t {
 
 #[repr(C)]
 pub struct xcb_translate_coordinates_reply_t {
-     pub response_type :   u8,
-     pub same_screen :     u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub child :           xcb_window_t,
-     pub dst_x :           i16,
-     pub dst_y :           i16
+    pub response_type :   u8,
+    pub same_screen :     u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub child :           xcb_window_t,
+    pub dst_x :           i16,
+    pub dst_y :           i16
 }
 
 impl Copy for xcb_translate_coordinates_reply_t {}
@@ -1980,17 +1980,17 @@ impl Clone for xcb_translate_coordinates_reply_t {
 
 #[repr(C)]
 pub struct xcb_warp_pointer_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub src_window :     xcb_window_t,
-     pub dst_window :     xcb_window_t,
-     pub src_x :          i16,
-     pub src_y :          i16,
-     pub src_width :      u16,
-     pub src_height :     u16,
-     pub dst_x :          i16,
-     pub dst_y :          i16
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub src_window :     xcb_window_t,
+    pub dst_window :     xcb_window_t,
+    pub src_x :          i16,
+    pub src_y :          i16,
+    pub src_width :      u16,
+    pub src_height :     u16,
+    pub dst_x :          i16,
+    pub dst_y :          i16
 }
 
 impl Copy for xcb_warp_pointer_request_t {}
@@ -2001,11 +2001,11 @@ impl Clone for xcb_warp_pointer_request_t {
 
 #[repr(C)]
 pub struct xcb_set_input_focus_request_t {
-     pub major_opcode :   u8,
-     pub revert_to :      u8,
-     pub length :         u16,
-     pub focus :          xcb_window_t,
-     pub time :           xcb_timestamp_t
+    pub major_opcode :   u8,
+    pub revert_to :      u8,
+    pub length :         u16,
+    pub focus :          xcb_window_t,
+    pub time :           xcb_timestamp_t
 }
 
 impl Copy for xcb_set_input_focus_request_t {}
@@ -2022,9 +2022,9 @@ pub struct xcb_get_input_focus_cookie_t {
 
 #[repr(C)]
 pub struct xcb_get_input_focus_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_get_input_focus_request_t {}
@@ -2034,11 +2034,11 @@ impl Clone for xcb_get_input_focus_request_t {
 
 #[repr(C)]
 pub struct xcb_get_input_focus_reply_t {
-     pub response_type :   u8,
-     pub revert_to :       u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub focus :           xcb_window_t
+    pub response_type :   u8,
+    pub revert_to :       u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub focus :           xcb_window_t
 }
 
 impl Copy for xcb_get_input_focus_reply_t {}
@@ -2055,9 +2055,9 @@ pub struct xcb_query_keymap_cookie_t {
 
 #[repr(C)]
 pub struct xcb_query_keymap_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_query_keymap_request_t {}
@@ -2067,11 +2067,11 @@ impl Clone for xcb_query_keymap_request_t {
 
 #[repr(C)]
 pub struct xcb_query_keymap_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub keys :            [u8; 32]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub keys :            [u8; 32]
 }
 
 impl Copy for xcb_query_keymap_reply_t {}
@@ -2082,12 +2082,12 @@ impl Clone for xcb_query_keymap_reply_t {
 
 #[repr(C)]
 pub struct xcb_open_font_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub fid :            xcb_font_t,
-     pub name_len :       u16,
-     pub pad1 :           [u8; 2]
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub fid :            xcb_font_t,
+    pub name_len :       u16,
+    pub pad1 :           [u8; 2]
 }
 
 impl Copy for xcb_open_font_request_t {}
@@ -2098,10 +2098,10 @@ impl Clone for xcb_open_font_request_t {
 
 #[repr(C)]
 pub struct xcb_close_font_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub font :           xcb_font_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub font :           xcb_font_t
 }
 
 impl Copy for xcb_close_font_request_t {}
@@ -2111,8 +2111,8 @@ impl Clone for xcb_close_font_request_t {
 
 #[repr(C)]
 pub struct xcb_fontprop_t {
-     pub name :    xcb_atom_t,
-     pub value :   u32
+    pub name :    xcb_atom_t,
+    pub value :   u32
 }
 
 impl Copy for xcb_fontprop_t {}
@@ -2129,12 +2129,12 @@ pub struct xcb_fontprop_iterator_t {
 
 #[repr(C)]
 pub struct xcb_charinfo_t {
-     pub left_side_bearing :    i16,
-     pub right_side_bearing :   i16,
-     pub character_width :      i16,
-     pub ascent :               i16,
-     pub descent :              i16,
-     pub attributes :           u16
+    pub left_side_bearing :    i16,
+    pub right_side_bearing :   i16,
+    pub character_width :      i16,
+    pub ascent :               i16,
+    pub descent :              i16,
+    pub attributes :           u16
 }
 
 impl Copy for xcb_charinfo_t {}
@@ -2158,10 +2158,10 @@ pub struct xcb_query_font_cookie_t {
 
 #[repr(C)]
 pub struct xcb_query_font_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub font :           xcb_fontable_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub font :           xcb_fontable_t
 }
 
 impl Copy for xcb_query_font_request_t {}
@@ -2171,25 +2171,25 @@ impl Clone for xcb_query_font_request_t {
 
 #[repr(C)]
 pub struct xcb_query_font_reply_t {
-     pub response_type :       u8,
-     pub pad0 :                u8,
-     pub sequence :            u16,
-     pub length :              u32,
-     pub min_bounds :          xcb_charinfo_t,
-     pub pad1 :                [u8; 4],
-     pub max_bounds :          xcb_charinfo_t,
-     pub pad2 :                [u8; 4],
-     pub min_char_or_byte2 :   u16,
-     pub max_char_or_byte2 :   u16,
-     pub default_char :        u16,
-     pub properties_len :      u16,
-     pub draw_direction :      u8,
-     pub min_byte1 :           u8,
-     pub max_byte1 :           u8,
-     pub all_chars_exist :     u8,
-     pub font_ascent :         i16,
-     pub font_descent :        i16,
-     pub char_infos_len :      u32
+    pub response_type :       u8,
+    pub pad0 :                u8,
+    pub sequence :            u16,
+    pub length :              u32,
+    pub min_bounds :          xcb_charinfo_t,
+    pub pad1 :                [u8; 4],
+    pub max_bounds :          xcb_charinfo_t,
+    pub pad2 :                [u8; 4],
+    pub min_char_or_byte2 :   u16,
+    pub max_char_or_byte2 :   u16,
+    pub default_char :        u16,
+    pub properties_len :      u16,
+    pub draw_direction :      u8,
+    pub min_byte1 :           u8,
+    pub max_byte1 :           u8,
+    pub all_chars_exist :     u8,
+    pub font_ascent :         i16,
+    pub font_descent :        i16,
+    pub char_infos_len :      u32
 }
 
 impl Copy for xcb_query_font_reply_t {}
@@ -2206,10 +2206,10 @@ pub struct xcb_query_text_extents_cookie_t {
 
 #[repr(C)]
 pub struct xcb_query_text_extents_request_t {
-     pub major_opcode :   u8,
-     pub odd_length :     u8,
-     pub length :         u16,
-     pub font :           xcb_fontable_t
+    pub major_opcode :   u8,
+    pub odd_length :     u8,
+    pub length :         u16,
+    pub font :           xcb_fontable_t
 }
 
 impl Copy for xcb_query_text_extents_request_t {}
@@ -2219,17 +2219,17 @@ impl Clone for xcb_query_text_extents_request_t {
 
 #[repr(C)]
 pub struct xcb_query_text_extents_reply_t {
-     pub response_type :     u8,
-     pub draw_direction :    u8,
-     pub sequence :          u16,
-     pub length :            u32,
-     pub font_ascent :       i16,
-     pub font_descent :      i16,
-     pub overall_ascent :    i16,
-     pub overall_descent :   i16,
-     pub overall_width :     i32,
-     pub overall_left :      i32,
-     pub overall_right :     i32
+    pub response_type :     u8,
+    pub draw_direction :    u8,
+    pub sequence :          u16,
+    pub length :            u32,
+    pub font_ascent :       i16,
+    pub font_descent :      i16,
+    pub overall_ascent :    i16,
+    pub overall_descent :   i16,
+    pub overall_width :     i32,
+    pub overall_left :      i32,
+    pub overall_right :     i32
 }
 
 impl Copy for xcb_query_text_extents_reply_t {}
@@ -2239,7 +2239,7 @@ impl Clone for xcb_query_text_extents_reply_t {
 
 #[repr(C)]
 pub struct xcb_str_t {
-     pub name_len :   u8
+    pub name_len :   u8
 }
 
 impl Copy for xcb_str_t {}
@@ -2263,11 +2263,11 @@ pub struct xcb_list_fonts_cookie_t {
 
 #[repr(C)]
 pub struct xcb_list_fonts_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub max_names :      u16,
-     pub pattern_len :    u16
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub max_names :      u16,
+    pub pattern_len :    u16
 }
 
 impl Copy for xcb_list_fonts_request_t {}
@@ -2277,12 +2277,12 @@ impl Clone for xcb_list_fonts_request_t {
 
 #[repr(C)]
 pub struct xcb_list_fonts_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub names_len :       u16,
-     pub pad1 :            [u8; 22]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub names_len :       u16,
+    pub pad1 :            [u8; 22]
 }
 
 impl Copy for xcb_list_fonts_reply_t {}
@@ -2299,11 +2299,11 @@ pub struct xcb_list_fonts_with_info_cookie_t {
 
 #[repr(C)]
 pub struct xcb_list_fonts_with_info_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub max_names :      u16,
-     pub pattern_len :    u16
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub max_names :      u16,
+    pub pattern_len :    u16
 }
 
 impl Copy for xcb_list_fonts_with_info_request_t {}
@@ -2313,25 +2313,25 @@ impl Clone for xcb_list_fonts_with_info_request_t {
 
 #[repr(C)]
 pub struct xcb_list_fonts_with_info_reply_t {
-     pub response_type :       u8,
-     pub name_len :            u8,
-     pub sequence :            u16,
-     pub length :              u32,
-     pub min_bounds :          xcb_charinfo_t,
-     pub pad0 :                [u8; 4],
-     pub max_bounds :          xcb_charinfo_t,
-     pub pad1 :                [u8; 4],
-     pub min_char_or_byte2 :   u16,
-     pub max_char_or_byte2 :   u16,
-     pub default_char :        u16,
-     pub properties_len :      u16,
-     pub draw_direction :      u8,
-     pub min_byte1 :           u8,
-     pub max_byte1 :           u8,
-     pub all_chars_exist :     u8,
-     pub font_ascent :         i16,
-     pub font_descent :        i16,
-     pub replies_hint :        u32
+    pub response_type :       u8,
+    pub name_len :            u8,
+    pub sequence :            u16,
+    pub length :              u32,
+    pub min_bounds :          xcb_charinfo_t,
+    pub pad0 :                [u8; 4],
+    pub max_bounds :          xcb_charinfo_t,
+    pub pad1 :                [u8; 4],
+    pub min_char_or_byte2 :   u16,
+    pub max_char_or_byte2 :   u16,
+    pub default_char :        u16,
+    pub properties_len :      u16,
+    pub draw_direction :      u8,
+    pub min_byte1 :           u8,
+    pub max_byte1 :           u8,
+    pub all_chars_exist :     u8,
+    pub font_ascent :         i16,
+    pub font_descent :        i16,
+    pub replies_hint :        u32
 }
 
 impl Copy for xcb_list_fonts_with_info_reply_t {}
@@ -2342,11 +2342,11 @@ impl Clone for xcb_list_fonts_with_info_reply_t {
 
 #[repr(C)]
 pub struct xcb_set_font_path_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub font_qty :       u16,
-     pub pad1 :           [u8; 2]
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub font_qty :       u16,
+    pub pad1 :           [u8; 2]
 }
 
 impl Copy for xcb_set_font_path_request_t {}
@@ -2363,9 +2363,9 @@ pub struct xcb_get_font_path_cookie_t {
 
 #[repr(C)]
 pub struct xcb_get_font_path_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_get_font_path_request_t {}
@@ -2375,12 +2375,12 @@ impl Clone for xcb_get_font_path_request_t {
 
 #[repr(C)]
 pub struct xcb_get_font_path_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub path_len :        u16,
-     pub pad1 :            [u8; 22]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub path_len :        u16,
+    pub pad1 :            [u8; 22]
 }
 
 impl Copy for xcb_get_font_path_reply_t {}
@@ -2391,13 +2391,13 @@ impl Clone for xcb_get_font_path_reply_t {
 
 #[repr(C)]
 pub struct xcb_create_pixmap_request_t {
-     pub major_opcode :   u8,
-     pub depth :          u8,
-     pub length :         u16,
-     pub pid :            xcb_pixmap_t,
-     pub drawable :       xcb_drawable_t,
-     pub width :          u16,
-     pub height :         u16
+    pub major_opcode :   u8,
+    pub depth :          u8,
+    pub length :         u16,
+    pub pid :            xcb_pixmap_t,
+    pub drawable :       xcb_drawable_t,
+    pub width :          u16,
+    pub height :         u16
 }
 
 impl Copy for xcb_create_pixmap_request_t {}
@@ -2408,10 +2408,10 @@ impl Clone for xcb_create_pixmap_request_t {
 
 #[repr(C)]
 pub struct xcb_free_pixmap_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub pixmap :         xcb_pixmap_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub pixmap :         xcb_pixmap_t
 }
 
 impl Copy for xcb_free_pixmap_request_t {}
@@ -2422,12 +2422,12 @@ impl Clone for xcb_free_pixmap_request_t {
 
 #[repr(C)]
 pub struct xcb_create_gc_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub cid :            xcb_gcontext_t,
-     pub drawable :       xcb_drawable_t,
-     pub value_mask :     u32
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub cid :            xcb_gcontext_t,
+    pub drawable :       xcb_drawable_t,
+    pub value_mask :     u32
 }
 
 impl Copy for xcb_create_gc_request_t {}
@@ -2438,11 +2438,11 @@ impl Clone for xcb_create_gc_request_t {
 
 #[repr(C)]
 pub struct xcb_change_gc_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub gc :             xcb_gcontext_t,
-     pub value_mask :     u32
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub gc :             xcb_gcontext_t,
+    pub value_mask :     u32
 }
 
 impl Copy for xcb_change_gc_request_t {}
@@ -2453,12 +2453,12 @@ impl Clone for xcb_change_gc_request_t {
 
 #[repr(C)]
 pub struct xcb_copy_gc_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub src_gc :         xcb_gcontext_t,
-     pub dst_gc :         xcb_gcontext_t,
-     pub value_mask :     u32
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub src_gc :         xcb_gcontext_t,
+    pub dst_gc :         xcb_gcontext_t,
+    pub value_mask :     u32
 }
 
 impl Copy for xcb_copy_gc_request_t {}
@@ -2469,12 +2469,12 @@ impl Clone for xcb_copy_gc_request_t {
 
 #[repr(C)]
 pub struct xcb_set_dashes_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub gc :             xcb_gcontext_t,
-     pub dash_offset :    u16,
-     pub dashes_len :     u16
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub gc :             xcb_gcontext_t,
+    pub dash_offset :    u16,
+    pub dashes_len :     u16
 }
 
 impl Copy for xcb_set_dashes_request_t {}
@@ -2485,12 +2485,12 @@ impl Clone for xcb_set_dashes_request_t {
 
 #[repr(C)]
 pub struct xcb_set_clip_rectangles_request_t {
-     pub major_opcode :    u8,
-     pub ordering :        u8,
-     pub length :          u16,
-     pub gc :              xcb_gcontext_t,
-     pub clip_x_origin :   i16,
-     pub clip_y_origin :   i16
+    pub major_opcode :    u8,
+    pub ordering :        u8,
+    pub length :          u16,
+    pub gc :              xcb_gcontext_t,
+    pub clip_x_origin :   i16,
+    pub clip_y_origin :   i16
 }
 
 impl Copy for xcb_set_clip_rectangles_request_t {}
@@ -2501,10 +2501,10 @@ impl Clone for xcb_set_clip_rectangles_request_t {
 
 #[repr(C)]
 pub struct xcb_free_gc_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub gc :             xcb_gcontext_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub gc :             xcb_gcontext_t
 }
 
 impl Copy for xcb_free_gc_request_t {}
@@ -2515,14 +2515,14 @@ impl Clone for xcb_free_gc_request_t {
 
 #[repr(C)]
 pub struct xcb_clear_area_request_t {
-     pub major_opcode :   u8,
-     pub exposures :      u8,
-     pub length :         u16,
-     pub window :         xcb_window_t,
-     pub x :              i16,
-     pub y :              i16,
-     pub width :          u16,
-     pub height :         u16
+    pub major_opcode :   u8,
+    pub exposures :      u8,
+    pub length :         u16,
+    pub window :         xcb_window_t,
+    pub x :              i16,
+    pub y :              i16,
+    pub width :          u16,
+    pub height :         u16
 }
 
 impl Copy for xcb_clear_area_request_t {}
@@ -2533,18 +2533,18 @@ impl Clone for xcb_clear_area_request_t {
 
 #[repr(C)]
 pub struct xcb_copy_area_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub src_drawable :   xcb_drawable_t,
-     pub dst_drawable :   xcb_drawable_t,
-     pub gc :             xcb_gcontext_t,
-     pub src_x :          i16,
-     pub src_y :          i16,
-     pub dst_x :          i16,
-     pub dst_y :          i16,
-     pub width :          u16,
-     pub height :         u16
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub src_drawable :   xcb_drawable_t,
+    pub dst_drawable :   xcb_drawable_t,
+    pub gc :             xcb_gcontext_t,
+    pub src_x :          i16,
+    pub src_y :          i16,
+    pub dst_x :          i16,
+    pub dst_y :          i16,
+    pub width :          u16,
+    pub height :         u16
 }
 
 impl Copy for xcb_copy_area_request_t {}
@@ -2555,19 +2555,19 @@ impl Clone for xcb_copy_area_request_t {
 
 #[repr(C)]
 pub struct xcb_copy_plane_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub src_drawable :   xcb_drawable_t,
-     pub dst_drawable :   xcb_drawable_t,
-     pub gc :             xcb_gcontext_t,
-     pub src_x :          i16,
-     pub src_y :          i16,
-     pub dst_x :          i16,
-     pub dst_y :          i16,
-     pub width :          u16,
-     pub height :         u16,
-     pub bit_plane :      u32
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub src_drawable :   xcb_drawable_t,
+    pub dst_drawable :   xcb_drawable_t,
+    pub gc :             xcb_gcontext_t,
+    pub src_x :          i16,
+    pub src_y :          i16,
+    pub dst_x :          i16,
+    pub dst_y :          i16,
+    pub width :          u16,
+    pub height :         u16,
+    pub bit_plane :      u32
 }
 
 impl Copy for xcb_copy_plane_request_t {}
@@ -2578,11 +2578,11 @@ impl Clone for xcb_copy_plane_request_t {
 
 #[repr(C)]
 pub struct xcb_poly_point_request_t {
-     pub major_opcode :      u8,
-     pub coordinate_mode :   u8,
-     pub length :            u16,
-     pub drawable :          xcb_drawable_t,
-     pub gc :                xcb_gcontext_t
+    pub major_opcode :      u8,
+    pub coordinate_mode :   u8,
+    pub length :            u16,
+    pub drawable :          xcb_drawable_t,
+    pub gc :                xcb_gcontext_t
 }
 
 impl Copy for xcb_poly_point_request_t {}
@@ -2593,11 +2593,11 @@ impl Clone for xcb_poly_point_request_t {
 
 #[repr(C)]
 pub struct xcb_poly_line_request_t {
-     pub major_opcode :      u8,
-     pub coordinate_mode :   u8,
-     pub length :            u16,
-     pub drawable :          xcb_drawable_t,
-     pub gc :                xcb_gcontext_t
+    pub major_opcode :      u8,
+    pub coordinate_mode :   u8,
+    pub length :            u16,
+    pub drawable :          xcb_drawable_t,
+    pub gc :                xcb_gcontext_t
 }
 
 impl Copy for xcb_poly_line_request_t {}
@@ -2607,10 +2607,10 @@ impl Clone for xcb_poly_line_request_t {
 
 #[repr(C)]
 pub struct xcb_segment_t {
-     pub x1 :   i16,
-     pub y1 :   i16,
-     pub x2 :   i16,
-     pub y2 :   i16
+    pub x1 :   i16,
+    pub y1 :   i16,
+    pub x2 :   i16,
+    pub y2 :   i16
 }
 
 impl Copy for xcb_segment_t {}
@@ -2628,11 +2628,11 @@ pub struct xcb_segment_iterator_t {
 
 #[repr(C)]
 pub struct xcb_poly_segment_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub drawable :       xcb_drawable_t,
-     pub gc :             xcb_gcontext_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub drawable :       xcb_drawable_t,
+    pub gc :             xcb_gcontext_t
 }
 
 impl Copy for xcb_poly_segment_request_t {}
@@ -2643,11 +2643,11 @@ impl Clone for xcb_poly_segment_request_t {
 
 #[repr(C)]
 pub struct xcb_poly_rectangle_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub drawable :       xcb_drawable_t,
-     pub gc :             xcb_gcontext_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub drawable :       xcb_drawable_t,
+    pub gc :             xcb_gcontext_t
 }
 
 impl Copy for xcb_poly_rectangle_request_t {}
@@ -2658,11 +2658,11 @@ impl Clone for xcb_poly_rectangle_request_t {
 
 #[repr(C)]
 pub struct xcb_poly_arc_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub drawable :       xcb_drawable_t,
-     pub gc :             xcb_gcontext_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub drawable :       xcb_drawable_t,
+    pub gc :             xcb_gcontext_t
 }
 
 impl Copy for xcb_poly_arc_request_t {}
@@ -2673,14 +2673,14 @@ impl Clone for xcb_poly_arc_request_t {
 
 #[repr(C)]
 pub struct xcb_fill_poly_request_t {
-     pub major_opcode :      u8,
-     pub pad0 :              u8,
-     pub length :            u16,
-     pub drawable :          xcb_drawable_t,
-     pub gc :                xcb_gcontext_t,
-     pub shape :             u8,
-     pub coordinate_mode :   u8,
-     pub pad1 :              [u8; 2]
+    pub major_opcode :      u8,
+    pub pad0 :              u8,
+    pub length :            u16,
+    pub drawable :          xcb_drawable_t,
+    pub gc :                xcb_gcontext_t,
+    pub shape :             u8,
+    pub coordinate_mode :   u8,
+    pub pad1 :              [u8; 2]
 }
 
 impl Copy for xcb_fill_poly_request_t {}
@@ -2691,11 +2691,11 @@ impl Clone for xcb_fill_poly_request_t {
 
 #[repr(C)]
 pub struct xcb_poly_fill_rectangle_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub drawable :       xcb_drawable_t,
-     pub gc :             xcb_gcontext_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub drawable :       xcb_drawable_t,
+    pub gc :             xcb_gcontext_t
 }
 
 impl Copy for xcb_poly_fill_rectangle_request_t {}
@@ -2706,11 +2706,11 @@ impl Clone for xcb_poly_fill_rectangle_request_t {
 
 #[repr(C)]
 pub struct xcb_poly_fill_arc_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub drawable :       xcb_drawable_t,
-     pub gc :             xcb_gcontext_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub drawable :       xcb_drawable_t,
+    pub gc :             xcb_gcontext_t
 }
 
 impl Copy for xcb_poly_fill_arc_request_t {}
@@ -2721,18 +2721,18 @@ impl Clone for xcb_poly_fill_arc_request_t {
 
 #[repr(C)]
 pub struct xcb_put_image_request_t {
-     pub major_opcode :   u8,
-     pub format :         u8,
-     pub length :         u16,
-     pub drawable :       xcb_drawable_t,
-     pub gc :             xcb_gcontext_t,
-     pub width :          u16,
-     pub height :         u16,
-     pub dst_x :          i16,
-     pub dst_y :          i16,
-     pub left_pad :       u8,
-     pub depth :          u8,
-     pub pad0 :           [u8; 2]
+    pub major_opcode :   u8,
+    pub format :         u8,
+    pub length :         u16,
+    pub drawable :       xcb_drawable_t,
+    pub gc :             xcb_gcontext_t,
+    pub width :          u16,
+    pub height :         u16,
+    pub dst_x :          i16,
+    pub dst_y :          i16,
+    pub left_pad :       u8,
+    pub depth :          u8,
+    pub pad0 :           [u8; 2]
 }
 
 impl Copy for xcb_put_image_request_t {}
@@ -2749,15 +2749,15 @@ pub struct xcb_get_image_cookie_t {
 
 #[repr(C)]
 pub struct xcb_get_image_request_t {
-     pub major_opcode :   u8,
-     pub format :         u8,
-     pub length :         u16,
-     pub drawable :       xcb_drawable_t,
-     pub x :              i16,
-     pub y :              i16,
-     pub width :          u16,
-     pub height :         u16,
-     pub plane_mask :     u32
+    pub major_opcode :   u8,
+    pub format :         u8,
+    pub length :         u16,
+    pub drawable :       xcb_drawable_t,
+    pub x :              i16,
+    pub y :              i16,
+    pub width :          u16,
+    pub height :         u16,
+    pub plane_mask :     u32
 }
 
 impl Copy for xcb_get_image_request_t {}
@@ -2767,12 +2767,12 @@ impl Clone for xcb_get_image_request_t {
 
 #[repr(C)]
 pub struct xcb_get_image_reply_t {
-     pub response_type :   u8,
-     pub depth :           u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub visual :          xcb_visualid_t,
-     pub pad0 :            [u8; 20]
+    pub response_type :   u8,
+    pub depth :           u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub visual :          xcb_visualid_t,
+    pub pad0 :            [u8; 20]
 }
 
 impl Copy for xcb_get_image_reply_t {}
@@ -2783,13 +2783,13 @@ impl Clone for xcb_get_image_reply_t {
 
 #[repr(C)]
 pub struct xcb_poly_text_8_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub drawable :       xcb_drawable_t,
-     pub gc :             xcb_gcontext_t,
-     pub x :              i16,
-     pub y :              i16
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub drawable :       xcb_drawable_t,
+    pub gc :             xcb_gcontext_t,
+    pub x :              i16,
+    pub y :              i16
 }
 
 impl Copy for xcb_poly_text_8_request_t {}
@@ -2800,13 +2800,13 @@ impl Clone for xcb_poly_text_8_request_t {
 
 #[repr(C)]
 pub struct xcb_poly_text_16_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub drawable :       xcb_drawable_t,
-     pub gc :             xcb_gcontext_t,
-     pub x :              i16,
-     pub y :              i16
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub drawable :       xcb_drawable_t,
+    pub gc :             xcb_gcontext_t,
+    pub x :              i16,
+    pub y :              i16
 }
 
 impl Copy for xcb_poly_text_16_request_t {}
@@ -2817,13 +2817,13 @@ impl Clone for xcb_poly_text_16_request_t {
 
 #[repr(C)]
 pub struct xcb_image_text_8_request_t {
-     pub major_opcode :   u8,
-     pub string_len :     u8,
-     pub length :         u16,
-     pub drawable :       xcb_drawable_t,
-     pub gc :             xcb_gcontext_t,
-     pub x :              i16,
-     pub y :              i16
+    pub major_opcode :   u8,
+    pub string_len :     u8,
+    pub length :         u16,
+    pub drawable :       xcb_drawable_t,
+    pub gc :             xcb_gcontext_t,
+    pub x :              i16,
+    pub y :              i16
 }
 
 impl Copy for xcb_image_text_8_request_t {}
@@ -2834,13 +2834,13 @@ impl Clone for xcb_image_text_8_request_t {
 
 #[repr(C)]
 pub struct xcb_image_text_16_request_t {
-     pub major_opcode :   u8,
-     pub string_len :     u8,
-     pub length :         u16,
-     pub drawable :       xcb_drawable_t,
-     pub gc :             xcb_gcontext_t,
-     pub x :              i16,
-     pub y :              i16
+    pub major_opcode :   u8,
+    pub string_len :     u8,
+    pub length :         u16,
+    pub drawable :       xcb_drawable_t,
+    pub gc :             xcb_gcontext_t,
+    pub x :              i16,
+    pub y :              i16
 }
 
 impl Copy for xcb_image_text_16_request_t {}
@@ -2851,12 +2851,12 @@ impl Clone for xcb_image_text_16_request_t {
 
 #[repr(C)]
 pub struct xcb_create_colormap_request_t {
-     pub major_opcode :   u8,
-     pub alloc :          u8,
-     pub length :         u16,
-     pub mid :            xcb_colormap_t,
-     pub window :         xcb_window_t,
-     pub visual :         xcb_visualid_t
+    pub major_opcode :   u8,
+    pub alloc :          u8,
+    pub length :         u16,
+    pub mid :            xcb_colormap_t,
+    pub window :         xcb_window_t,
+    pub visual :         xcb_visualid_t
 }
 
 impl Copy for xcb_create_colormap_request_t {}
@@ -2867,10 +2867,10 @@ impl Clone for xcb_create_colormap_request_t {
 
 #[repr(C)]
 pub struct xcb_free_colormap_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub cmap :           xcb_colormap_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub cmap :           xcb_colormap_t
 }
 
 impl Copy for xcb_free_colormap_request_t {}
@@ -2881,11 +2881,11 @@ impl Clone for xcb_free_colormap_request_t {
 
 #[repr(C)]
 pub struct xcb_copy_colormap_and_free_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub mid :            xcb_colormap_t,
-     pub src_cmap :       xcb_colormap_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub mid :            xcb_colormap_t,
+    pub src_cmap :       xcb_colormap_t
 }
 
 impl Copy for xcb_copy_colormap_and_free_request_t {}
@@ -2896,10 +2896,10 @@ impl Clone for xcb_copy_colormap_and_free_request_t {
 
 #[repr(C)]
 pub struct xcb_install_colormap_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub cmap :           xcb_colormap_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub cmap :           xcb_colormap_t
 }
 
 impl Copy for xcb_install_colormap_request_t {}
@@ -2910,10 +2910,10 @@ impl Clone for xcb_install_colormap_request_t {
 
 #[repr(C)]
 pub struct xcb_uninstall_colormap_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub cmap :           xcb_colormap_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub cmap :           xcb_colormap_t
 }
 
 impl Copy for xcb_uninstall_colormap_request_t {}
@@ -2930,10 +2930,10 @@ pub struct xcb_list_installed_colormaps_cookie_t {
 
 #[repr(C)]
 pub struct xcb_list_installed_colormaps_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub window :         xcb_window_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub window :         xcb_window_t
 }
 
 impl Copy for xcb_list_installed_colormaps_request_t {}
@@ -2943,12 +2943,12 @@ impl Clone for xcb_list_installed_colormaps_request_t {
 
 #[repr(C)]
 pub struct xcb_list_installed_colormaps_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub cmaps_len :       u16,
-     pub pad1 :            [u8; 22]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub cmaps_len :       u16,
+    pub pad1 :            [u8; 22]
 }
 
 impl Copy for xcb_list_installed_colormaps_reply_t {}
@@ -2965,14 +2965,14 @@ pub struct xcb_alloc_color_cookie_t {
 
 #[repr(C)]
 pub struct xcb_alloc_color_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub cmap :           xcb_colormap_t,
-     pub red :            u16,
-     pub green :          u16,
-     pub blue :           u16,
-     pub pad1 :           [u8; 2]
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub cmap :           xcb_colormap_t,
+    pub red :            u16,
+    pub green :          u16,
+    pub blue :           u16,
+    pub pad1 :           [u8; 2]
 }
 
 impl Copy for xcb_alloc_color_request_t {}
@@ -2982,15 +2982,15 @@ impl Clone for xcb_alloc_color_request_t {
 
 #[repr(C)]
 pub struct xcb_alloc_color_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub red :             u16,
-     pub green :           u16,
-     pub blue :            u16,
-     pub pad1 :            [u8; 2],
-     pub pixel :           u32
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub red :             u16,
+    pub green :           u16,
+    pub blue :            u16,
+    pub pad1 :            [u8; 2],
+    pub pixel :           u32
 }
 
 impl Copy for xcb_alloc_color_reply_t {}
@@ -3007,12 +3007,12 @@ pub struct xcb_alloc_named_color_cookie_t {
 
 #[repr(C)]
 pub struct xcb_alloc_named_color_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub cmap :           xcb_colormap_t,
-     pub name_len :       u16,
-     pub pad1 :           [u8; 2]
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub cmap :           xcb_colormap_t,
+    pub name_len :       u16,
+    pub pad1 :           [u8; 2]
 }
 
 impl Copy for xcb_alloc_named_color_request_t {}
@@ -3022,17 +3022,17 @@ impl Clone for xcb_alloc_named_color_request_t {
 
 #[repr(C)]
 pub struct xcb_alloc_named_color_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pixel :           u32,
-     pub exact_red :       u16,
-     pub exact_green :     u16,
-     pub exact_blue :      u16,
-     pub visual_red :      u16,
-     pub visual_green :    u16,
-     pub visual_blue :     u16
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pixel :           u32,
+    pub exact_red :       u16,
+    pub exact_green :     u16,
+    pub exact_blue :      u16,
+    pub visual_red :      u16,
+    pub visual_green :    u16,
+    pub visual_blue :     u16
 }
 
 impl Copy for xcb_alloc_named_color_reply_t {}
@@ -3049,12 +3049,12 @@ pub struct xcb_alloc_color_cells_cookie_t {
 
 #[repr(C)]
 pub struct xcb_alloc_color_cells_request_t {
-     pub major_opcode :   u8,
-     pub contiguous :     u8,
-     pub length :         u16,
-     pub cmap :           xcb_colormap_t,
-     pub colors :         u16,
-     pub planes :         u16
+    pub major_opcode :   u8,
+    pub contiguous :     u8,
+    pub length :         u16,
+    pub cmap :           xcb_colormap_t,
+    pub colors :         u16,
+    pub planes :         u16
 }
 
 impl Copy for xcb_alloc_color_cells_request_t {}
@@ -3064,13 +3064,13 @@ impl Clone for xcb_alloc_color_cells_request_t {
 
 #[repr(C)]
 pub struct xcb_alloc_color_cells_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pixels_len :      u16,
-     pub masks_len :       u16,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pixels_len :      u16,
+    pub masks_len :       u16,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_alloc_color_cells_reply_t {}
@@ -3087,14 +3087,14 @@ pub struct xcb_alloc_color_planes_cookie_t {
 
 #[repr(C)]
 pub struct xcb_alloc_color_planes_request_t {
-     pub major_opcode :   u8,
-     pub contiguous :     u8,
-     pub length :         u16,
-     pub cmap :           xcb_colormap_t,
-     pub colors :         u16,
-     pub reds :           u16,
-     pub greens :         u16,
-     pub blues :          u16
+    pub major_opcode :   u8,
+    pub contiguous :     u8,
+    pub length :         u16,
+    pub cmap :           xcb_colormap_t,
+    pub colors :         u16,
+    pub reds :           u16,
+    pub greens :         u16,
+    pub blues :          u16
 }
 
 impl Copy for xcb_alloc_color_planes_request_t {}
@@ -3104,16 +3104,16 @@ impl Clone for xcb_alloc_color_planes_request_t {
 
 #[repr(C)]
 pub struct xcb_alloc_color_planes_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pixels_len :      u16,
-     pub pad1 :            [u8; 2],
-     pub red_mask :        u32,
-     pub green_mask :      u32,
-     pub blue_mask :       u32,
-     pub pad2 :            [u8; 8]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pixels_len :      u16,
+    pub pad1 :            [u8; 2],
+    pub red_mask :        u32,
+    pub green_mask :      u32,
+    pub blue_mask :       u32,
+    pub pad2 :            [u8; 8]
 }
 
 impl Copy for xcb_alloc_color_planes_reply_t {}
@@ -3124,11 +3124,11 @@ impl Clone for xcb_alloc_color_planes_reply_t {
 
 #[repr(C)]
 pub struct xcb_free_colors_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub cmap :           xcb_colormap_t,
-     pub plane_mask :     u32
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub cmap :           xcb_colormap_t,
+    pub plane_mask :     u32
 }
 
 impl Copy for xcb_free_colors_request_t {}
@@ -3138,12 +3138,12 @@ impl Clone for xcb_free_colors_request_t {
 
 #[repr(C)]
 pub struct xcb_coloritem_t {
-     pub pixel :   u32,
-     pub red :     u16,
-     pub green :   u16,
-     pub blue :    u16,
-     pub flags :   u8,
-     pub pad0 :    u8
+    pub pixel :   u32,
+    pub red :     u16,
+    pub green :   u16,
+    pub blue :    u16,
+    pub flags :   u8,
+    pub pad0 :    u8
 }
 
 impl Copy for xcb_coloritem_t {}
@@ -3161,10 +3161,10 @@ pub struct xcb_coloritem_iterator_t {
 
 #[repr(C)]
 pub struct xcb_store_colors_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub cmap :           xcb_colormap_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub cmap :           xcb_colormap_t
 }
 
 impl Copy for xcb_store_colors_request_t {}
@@ -3175,13 +3175,13 @@ impl Clone for xcb_store_colors_request_t {
 
 #[repr(C)]
 pub struct xcb_store_named_color_request_t {
-     pub major_opcode :   u8,
-     pub flags :          u8,
-     pub length :         u16,
-     pub cmap :           xcb_colormap_t,
-     pub pixel :          u32,
-     pub name_len :       u16,
-     pub pad0 :           [u8; 2]
+    pub major_opcode :   u8,
+    pub flags :          u8,
+    pub length :         u16,
+    pub cmap :           xcb_colormap_t,
+    pub pixel :          u32,
+    pub name_len :       u16,
+    pub pad0 :           [u8; 2]
 }
 
 impl Copy for xcb_store_named_color_request_t {}
@@ -3191,10 +3191,10 @@ impl Clone for xcb_store_named_color_request_t {
 
 #[repr(C)]
 pub struct xcb_rgb_t {
-     pub red :     u16,
-     pub green :   u16,
-     pub blue :    u16,
-     pub pad0 :    [u8; 2]
+    pub red :     u16,
+    pub green :   u16,
+    pub blue :    u16,
+    pub pad0 :    [u8; 2]
 }
 
 impl Copy for xcb_rgb_t {}
@@ -3218,10 +3218,10 @@ pub struct xcb_query_colors_cookie_t {
 
 #[repr(C)]
 pub struct xcb_query_colors_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub cmap :           xcb_colormap_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub cmap :           xcb_colormap_t
 }
 
 impl Copy for xcb_query_colors_request_t {}
@@ -3231,12 +3231,12 @@ impl Clone for xcb_query_colors_request_t {
 
 #[repr(C)]
 pub struct xcb_query_colors_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub colors_len :      u16,
-     pub pad1 :            [u8; 22]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub colors_len :      u16,
+    pub pad1 :            [u8; 22]
 }
 
 impl Copy for xcb_query_colors_reply_t {}
@@ -3253,12 +3253,12 @@ pub struct xcb_lookup_color_cookie_t {
 
 #[repr(C)]
 pub struct xcb_lookup_color_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub cmap :           xcb_colormap_t,
-     pub name_len :       u16,
-     pub pad1 :           [u8; 2]
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub cmap :           xcb_colormap_t,
+    pub name_len :       u16,
+    pub pad1 :           [u8; 2]
 }
 
 impl Copy for xcb_lookup_color_request_t {}
@@ -3268,16 +3268,16 @@ impl Clone for xcb_lookup_color_request_t {
 
 #[repr(C)]
 pub struct xcb_lookup_color_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub exact_red :       u16,
-     pub exact_green :     u16,
-     pub exact_blue :      u16,
-     pub visual_red :      u16,
-     pub visual_green :    u16,
-     pub visual_blue :     u16
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub exact_red :       u16,
+    pub exact_green :     u16,
+    pub exact_blue :      u16,
+    pub visual_red :      u16,
+    pub visual_green :    u16,
+    pub visual_blue :     u16
 }
 
 impl Copy for xcb_lookup_color_reply_t {}
@@ -3288,20 +3288,20 @@ impl Clone for xcb_lookup_color_reply_t {
 
 #[repr(C)]
 pub struct xcb_create_cursor_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub cid :            xcb_cursor_t,
-     pub source :         xcb_pixmap_t,
-     pub mask :           xcb_pixmap_t,
-     pub fore_red :       u16,
-     pub fore_green :     u16,
-     pub fore_blue :      u16,
-     pub back_red :       u16,
-     pub back_green :     u16,
-     pub back_blue :      u16,
-     pub x :              u16,
-     pub y :              u16
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub cid :            xcb_cursor_t,
+    pub source :         xcb_pixmap_t,
+    pub mask :           xcb_pixmap_t,
+    pub fore_red :       u16,
+    pub fore_green :     u16,
+    pub fore_blue :      u16,
+    pub back_red :       u16,
+    pub back_green :     u16,
+    pub back_blue :      u16,
+    pub x :              u16,
+    pub y :              u16
 }
 
 impl Copy for xcb_create_cursor_request_t {}
@@ -3312,20 +3312,20 @@ impl Clone for xcb_create_cursor_request_t {
 
 #[repr(C)]
 pub struct xcb_create_glyph_cursor_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub cid :            xcb_cursor_t,
-     pub source_font :    xcb_font_t,
-     pub mask_font :      xcb_font_t,
-     pub source_char :    u16,
-     pub mask_char :      u16,
-     pub fore_red :       u16,
-     pub fore_green :     u16,
-     pub fore_blue :      u16,
-     pub back_red :       u16,
-     pub back_green :     u16,
-     pub back_blue :      u16
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub cid :            xcb_cursor_t,
+    pub source_font :    xcb_font_t,
+    pub mask_font :      xcb_font_t,
+    pub source_char :    u16,
+    pub mask_char :      u16,
+    pub fore_red :       u16,
+    pub fore_green :     u16,
+    pub fore_blue :      u16,
+    pub back_red :       u16,
+    pub back_green :     u16,
+    pub back_blue :      u16
 }
 
 impl Copy for xcb_create_glyph_cursor_request_t {}
@@ -3336,10 +3336,10 @@ impl Clone for xcb_create_glyph_cursor_request_t {
 
 #[repr(C)]
 pub struct xcb_free_cursor_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub cursor :         xcb_cursor_t
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub cursor :         xcb_cursor_t
 }
 
 impl Copy for xcb_free_cursor_request_t {}
@@ -3350,16 +3350,16 @@ impl Clone for xcb_free_cursor_request_t {
 
 #[repr(C)]
 pub struct xcb_recolor_cursor_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub cursor :         xcb_cursor_t,
-     pub fore_red :       u16,
-     pub fore_green :     u16,
-     pub fore_blue :      u16,
-     pub back_red :       u16,
-     pub back_green :     u16,
-     pub back_blue :      u16
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub cursor :         xcb_cursor_t,
+    pub fore_red :       u16,
+    pub fore_green :     u16,
+    pub fore_blue :      u16,
+    pub back_red :       u16,
+    pub back_green :     u16,
+    pub back_blue :      u16
 }
 
 impl Copy for xcb_recolor_cursor_request_t {}
@@ -3376,12 +3376,12 @@ pub struct xcb_query_best_size_cookie_t {
 
 #[repr(C)]
 pub struct xcb_query_best_size_request_t {
-     pub major_opcode :   u8,
-     pub class :          u8,
-     pub length :         u16,
-     pub drawable :       xcb_drawable_t,
-     pub width :          u16,
-     pub height :         u16
+    pub major_opcode :   u8,
+    pub class :          u8,
+    pub length :         u16,
+    pub drawable :       xcb_drawable_t,
+    pub width :          u16,
+    pub height :         u16
 }
 
 impl Copy for xcb_query_best_size_request_t {}
@@ -3391,12 +3391,12 @@ impl Clone for xcb_query_best_size_request_t {
 
 #[repr(C)]
 pub struct xcb_query_best_size_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub width :           u16,
-     pub height :          u16
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub width :           u16,
+    pub height :          u16
 }
 
 impl Copy for xcb_query_best_size_reply_t {}
@@ -3413,11 +3413,11 @@ pub struct xcb_query_extension_cookie_t {
 
 #[repr(C)]
 pub struct xcb_query_extension_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub name_len :       u16,
-     pub pad1 :           [u8; 2]
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub name_len :       u16,
+    pub pad1 :           [u8; 2]
 }
 
 impl Copy for xcb_query_extension_request_t {}
@@ -3427,14 +3427,14 @@ impl Clone for xcb_query_extension_request_t {
 
 #[repr(C)]
 pub struct xcb_query_extension_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub present :         u8,
-     pub major_opcode :    u8,
-     pub first_event :     u8,
-     pub first_error :     u8
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub present :         u8,
+    pub major_opcode :    u8,
+    pub first_event :     u8,
+    pub first_error :     u8
 }
 
 impl Copy for xcb_query_extension_reply_t {}
@@ -3451,9 +3451,9 @@ pub struct xcb_list_extensions_cookie_t {
 
 #[repr(C)]
 pub struct xcb_list_extensions_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_list_extensions_request_t {}
@@ -3463,11 +3463,11 @@ impl Clone for xcb_list_extensions_request_t {
 
 #[repr(C)]
 pub struct xcb_list_extensions_reply_t {
-     pub response_type :   u8,
-     pub names_len :       u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad0 :            [u8; 24]
+    pub response_type :   u8,
+    pub names_len :       u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad0 :            [u8; 24]
 }
 
 impl Copy for xcb_list_extensions_reply_t {}
@@ -3478,12 +3478,12 @@ impl Clone for xcb_list_extensions_reply_t {
 
 #[repr(C)]
 pub struct xcb_change_keyboard_mapping_request_t {
-     pub major_opcode :          u8,
-     pub keycode_count :         u8,
-     pub length :                u16,
-     pub first_keycode :         xcb_keycode_t,
-     pub keysyms_per_keycode :   u8,
-     pub pad0 :                  [u8; 2]
+    pub major_opcode :          u8,
+    pub keycode_count :         u8,
+    pub length :                u16,
+    pub first_keycode :         xcb_keycode_t,
+    pub keysyms_per_keycode :   u8,
+    pub pad0 :                  [u8; 2]
 }
 
 impl Copy for xcb_change_keyboard_mapping_request_t {}
@@ -3500,11 +3500,11 @@ pub struct xcb_get_keyboard_mapping_cookie_t {
 
 #[repr(C)]
 pub struct xcb_get_keyboard_mapping_request_t {
-     pub major_opcode :    u8,
-     pub pad0 :            u8,
-     pub length :          u16,
-     pub first_keycode :   xcb_keycode_t,
-     pub count :           u8
+    pub major_opcode :    u8,
+    pub pad0 :            u8,
+    pub length :          u16,
+    pub first_keycode :   xcb_keycode_t,
+    pub count :           u8
 }
 
 impl Copy for xcb_get_keyboard_mapping_request_t {}
@@ -3514,11 +3514,11 @@ impl Clone for xcb_get_keyboard_mapping_request_t {
 
 #[repr(C)]
 pub struct xcb_get_keyboard_mapping_reply_t {
-     pub response_type :         u8,
-     pub keysyms_per_keycode :   u8,
-     pub sequence :              u16,
-     pub length :                u32,
-     pub pad0 :                  [u8; 24]
+    pub response_type :         u8,
+    pub keysyms_per_keycode :   u8,
+    pub sequence :              u16,
+    pub length :                u32,
+    pub pad0 :                  [u8; 24]
 }
 
 impl Copy for xcb_get_keyboard_mapping_reply_t {}
@@ -3529,10 +3529,10 @@ impl Clone for xcb_get_keyboard_mapping_reply_t {
 
 #[repr(C)]
 pub struct xcb_change_keyboard_control_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub value_mask :     u32
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub value_mask :     u32
 }
 
 impl Copy for xcb_change_keyboard_control_request_t {}
@@ -3549,9 +3549,9 @@ pub struct xcb_get_keyboard_control_cookie_t {
 
 #[repr(C)]
 pub struct xcb_get_keyboard_control_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_get_keyboard_control_request_t {}
@@ -3561,17 +3561,17 @@ impl Clone for xcb_get_keyboard_control_request_t {
 
 #[repr(C)]
 pub struct xcb_get_keyboard_control_reply_t {
-     pub response_type :        u8,
-     pub global_auto_repeat :   u8,
-     pub sequence :             u16,
-     pub length :               u32,
-     pub led_mask :             u32,
-     pub key_click_percent :    u8,
-     pub bell_percent :         u8,
-     pub bell_pitch :           u16,
-     pub bell_duration :        u16,
-     pub pad0 :                 [u8; 2],
-     pub auto_repeats :         [u8; 32]
+    pub response_type :        u8,
+    pub global_auto_repeat :   u8,
+    pub sequence :             u16,
+    pub length :               u32,
+    pub led_mask :             u32,
+    pub key_click_percent :    u8,
+    pub bell_percent :         u8,
+    pub bell_pitch :           u16,
+    pub bell_duration :        u16,
+    pub pad0 :                 [u8; 2],
+    pub auto_repeats :         [u8; 32]
 }
 
 impl Copy for xcb_get_keyboard_control_reply_t {}
@@ -3582,9 +3582,9 @@ impl Clone for xcb_get_keyboard_control_reply_t {
 
 #[repr(C)]
 pub struct xcb_bell_request_t {
-     pub major_opcode :   u8,
-     pub percent :        i8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub percent :        i8,
+    pub length :         u16
 }
 
 impl Copy for xcb_bell_request_t {}
@@ -3595,14 +3595,14 @@ impl Clone for xcb_bell_request_t {
 
 #[repr(C)]
 pub struct xcb_change_pointer_control_request_t {
-     pub major_opcode :               u8,
-     pub pad0 :                       u8,
-     pub length :                     u16,
-     pub acceleration_numerator :     i16,
-     pub acceleration_denominator :   i16,
-     pub threshold :                  i16,
-     pub do_acceleration :            u8,
-     pub do_threshold :               u8
+    pub major_opcode :               u8,
+    pub pad0 :                       u8,
+    pub length :                     u16,
+    pub acceleration_numerator :     i16,
+    pub acceleration_denominator :   i16,
+    pub threshold :                  i16,
+    pub do_acceleration :            u8,
+    pub do_threshold :               u8
 }
 
 impl Copy for xcb_change_pointer_control_request_t {}
@@ -3619,9 +3619,9 @@ pub struct xcb_get_pointer_control_cookie_t {
 
 #[repr(C)]
 pub struct xcb_get_pointer_control_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_get_pointer_control_request_t {}
@@ -3631,14 +3631,14 @@ impl Clone for xcb_get_pointer_control_request_t {
 
 #[repr(C)]
 pub struct xcb_get_pointer_control_reply_t {
-     pub response_type :              u8,
-     pub pad0 :                       u8,
-     pub sequence :                   u16,
-     pub length :                     u32,
-     pub acceleration_numerator :     u16,
-     pub acceleration_denominator :   u16,
-     pub threshold :                  u16,
-     pub pad1 :                       [u8; 18]
+    pub response_type :              u8,
+    pub pad0 :                       u8,
+    pub sequence :                   u16,
+    pub length :                     u32,
+    pub acceleration_numerator :     u16,
+    pub acceleration_denominator :   u16,
+    pub threshold :                  u16,
+    pub pad1 :                       [u8; 18]
 }
 
 impl Copy for xcb_get_pointer_control_reply_t {}
@@ -3649,13 +3649,13 @@ impl Clone for xcb_get_pointer_control_reply_t {
 
 #[repr(C)]
 pub struct xcb_set_screen_saver_request_t {
-     pub major_opcode :      u8,
-     pub pad0 :              u8,
-     pub length :            u16,
-     pub timeout :           i16,
-     pub interval :          i16,
-     pub prefer_blanking :   u8,
-     pub allow_exposures :   u8
+    pub major_opcode :      u8,
+    pub pad0 :              u8,
+    pub length :            u16,
+    pub timeout :           i16,
+    pub interval :          i16,
+    pub prefer_blanking :   u8,
+    pub allow_exposures :   u8
 }
 
 impl Copy for xcb_set_screen_saver_request_t {}
@@ -3672,9 +3672,9 @@ pub struct xcb_get_screen_saver_cookie_t {
 
 #[repr(C)]
 pub struct xcb_get_screen_saver_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_get_screen_saver_request_t {}
@@ -3684,15 +3684,15 @@ impl Clone for xcb_get_screen_saver_request_t {
 
 #[repr(C)]
 pub struct xcb_get_screen_saver_reply_t {
-     pub response_type :     u8,
-     pub pad0 :              u8,
-     pub sequence :          u16,
-     pub length :            u32,
-     pub timeout :           u16,
-     pub interval :          u16,
-     pub prefer_blanking :   u8,
-     pub allow_exposures :   u8,
-     pub pad1 :              [u8; 18]
+    pub response_type :     u8,
+    pub pad0 :              u8,
+    pub sequence :          u16,
+    pub length :            u32,
+    pub timeout :           u16,
+    pub interval :          u16,
+    pub prefer_blanking :   u8,
+    pub allow_exposures :   u8,
+    pub pad1 :              [u8; 18]
 }
 
 impl Copy for xcb_get_screen_saver_reply_t {}
@@ -3703,12 +3703,12 @@ impl Clone for xcb_get_screen_saver_reply_t {
 
 #[repr(C)]
 pub struct xcb_change_hosts_request_t {
-     pub major_opcode :   u8,
-     pub mode :           u8,
-     pub length :         u16,
-     pub family :         u8,
-     pub pad0 :           u8,
-     pub address_len :    u16
+    pub major_opcode :   u8,
+    pub mode :           u8,
+    pub length :         u16,
+    pub family :         u8,
+    pub pad0 :           u8,
+    pub address_len :    u16
 }
 
 impl Copy for xcb_change_hosts_request_t {}
@@ -3718,9 +3718,9 @@ impl Clone for xcb_change_hosts_request_t {
 
 #[repr(C)]
 pub struct xcb_host_t {
-     pub family :        u8,
-     pub pad0 :          u8,
-     pub address_len :   u16
+    pub family :        u8,
+    pub pad0 :          u8,
+    pub address_len :   u16
 }
 
 impl Copy for xcb_host_t {}
@@ -3744,9 +3744,9 @@ pub struct xcb_list_hosts_cookie_t {
 
 #[repr(C)]
 pub struct xcb_list_hosts_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_list_hosts_request_t {}
@@ -3756,12 +3756,12 @@ impl Clone for xcb_list_hosts_request_t {
 
 #[repr(C)]
 pub struct xcb_list_hosts_reply_t {
-     pub response_type :   u8,
-     pub mode :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub hosts_len :       u16,
-     pub pad0 :            [u8; 22]
+    pub response_type :   u8,
+    pub mode :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub hosts_len :       u16,
+    pub pad0 :            [u8; 22]
 }
 
 impl Copy for xcb_list_hosts_reply_t {}
@@ -3772,9 +3772,9 @@ impl Clone for xcb_list_hosts_reply_t {
 
 #[repr(C)]
 pub struct xcb_set_access_control_request_t {
-     pub major_opcode :   u8,
-     pub mode :           u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub mode :           u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_set_access_control_request_t {}
@@ -3785,9 +3785,9 @@ impl Clone for xcb_set_access_control_request_t {
 
 #[repr(C)]
 pub struct xcb_set_close_down_mode_request_t {
-     pub major_opcode :   u8,
-     pub mode :           u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub mode :           u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_set_close_down_mode_request_t {}
@@ -3798,10 +3798,10 @@ impl Clone for xcb_set_close_down_mode_request_t {
 
 #[repr(C)]
 pub struct xcb_kill_client_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub resource :       u32
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub resource :       u32
 }
 
 impl Copy for xcb_kill_client_request_t {}
@@ -3812,12 +3812,12 @@ impl Clone for xcb_kill_client_request_t {
 
 #[repr(C)]
 pub struct xcb_rotate_properties_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16,
-     pub window :         xcb_window_t,
-     pub atoms_len :      u16,
-     pub delta :          i16
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16,
+    pub window :         xcb_window_t,
+    pub atoms_len :      u16,
+    pub delta :          i16
 }
 
 impl Copy for xcb_rotate_properties_request_t {}
@@ -3828,9 +3828,9 @@ impl Clone for xcb_rotate_properties_request_t {
 
 #[repr(C)]
 pub struct xcb_force_screen_saver_request_t {
-     pub major_opcode :   u8,
-     pub mode :           u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub mode :           u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_force_screen_saver_request_t {}
@@ -3847,9 +3847,9 @@ pub struct xcb_set_pointer_mapping_cookie_t {
 
 #[repr(C)]
 pub struct xcb_set_pointer_mapping_request_t {
-     pub major_opcode :   u8,
-     pub map_len :        u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub map_len :        u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_set_pointer_mapping_request_t {}
@@ -3859,10 +3859,10 @@ impl Clone for xcb_set_pointer_mapping_request_t {
 
 #[repr(C)]
 pub struct xcb_set_pointer_mapping_reply_t {
-     pub response_type :   u8,
-     pub status :          u8,
-     pub sequence :        u16,
-     pub length :          u32
+    pub response_type :   u8,
+    pub status :          u8,
+    pub sequence :        u16,
+    pub length :          u32
 }
 
 impl Copy for xcb_set_pointer_mapping_reply_t {}
@@ -3879,9 +3879,9 @@ pub struct xcb_get_pointer_mapping_cookie_t {
 
 #[repr(C)]
 pub struct xcb_get_pointer_mapping_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_get_pointer_mapping_request_t {}
@@ -3891,11 +3891,11 @@ impl Clone for xcb_get_pointer_mapping_request_t {
 
 #[repr(C)]
 pub struct xcb_get_pointer_mapping_reply_t {
-     pub response_type :   u8,
-     pub map_len :         u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad0 :            [u8; 24]
+    pub response_type :   u8,
+    pub map_len :         u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad0 :            [u8; 24]
 }
 
 impl Copy for xcb_get_pointer_mapping_reply_t {}
@@ -3912,9 +3912,9 @@ pub struct xcb_set_modifier_mapping_cookie_t {
 
 #[repr(C)]
 pub struct xcb_set_modifier_mapping_request_t {
-     pub major_opcode :            u8,
-     pub keycodes_per_modifier :   u8,
-     pub length :                  u16
+    pub major_opcode :            u8,
+    pub keycodes_per_modifier :   u8,
+    pub length :                  u16
 }
 
 impl Copy for xcb_set_modifier_mapping_request_t {}
@@ -3924,10 +3924,10 @@ impl Clone for xcb_set_modifier_mapping_request_t {
 
 #[repr(C)]
 pub struct xcb_set_modifier_mapping_reply_t {
-     pub response_type :   u8,
-     pub status :          u8,
-     pub sequence :        u16,
-     pub length :          u32
+    pub response_type :   u8,
+    pub status :          u8,
+    pub sequence :        u16,
+    pub length :          u32
 }
 
 impl Copy for xcb_set_modifier_mapping_reply_t {}
@@ -3944,9 +3944,9 @@ pub struct xcb_get_modifier_mapping_cookie_t {
 
 #[repr(C)]
 pub struct xcb_get_modifier_mapping_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_get_modifier_mapping_request_t {}
@@ -3956,11 +3956,11 @@ impl Clone for xcb_get_modifier_mapping_request_t {
 
 #[repr(C)]
 pub struct xcb_get_modifier_mapping_reply_t {
-     pub response_type :           u8,
-     pub keycodes_per_modifier :   u8,
-     pub sequence :                u16,
-     pub length :                  u32,
-     pub pad0 :                    [u8; 24]
+    pub response_type :           u8,
+    pub keycodes_per_modifier :   u8,
+    pub sequence :                u16,
+    pub length :                  u32,
+    pub pad0 :                    [u8; 24]
 }
 
 impl Copy for xcb_get_modifier_mapping_reply_t {}
@@ -3971,9 +3971,9 @@ impl Clone for xcb_get_modifier_mapping_reply_t {
 
 #[repr(C)]
 pub struct xcb_no_operation_request_t {
-     pub major_opcode :   u8,
-     pub pad0 :           u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub pad0 :           u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_no_operation_request_t {}

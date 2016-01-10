@@ -16,11 +16,11 @@ pub const DRI2_MINOR_VERSION : c_uint = 4;
 
 #[repr(C)]
 pub struct xcb_dri2_dri2_buffer_t {
-     pub attachment :   u32,
-     pub name :         u32,
-     pub pitch :        u32,
-     pub cpp :          u32,
-     pub flags :        u32
+    pub attachment :   u32,
+    pub name :         u32,
+    pub pitch :        u32,
+    pub cpp :          u32,
+    pub flags :        u32
 }
 
 impl Copy for xcb_dri2_dri2_buffer_t {}
@@ -37,8 +37,8 @@ pub struct xcb_dri2_dri2_buffer_iterator_t {
 
 #[repr(C)]
 pub struct xcb_dri2_attach_format_t {
-     pub attachment :   u32,
-     pub format :       u32
+    pub attachment :   u32,
+    pub format :       u32
 }
 
 impl Copy for xcb_dri2_attach_format_t {}
@@ -62,11 +62,11 @@ pub struct xcb_dri2_query_version_cookie_t {
 
 #[repr(C)]
 pub struct xcb_dri2_query_version_request_t {
-     pub major_opcode :    u8,
-     pub minor_opcode :    u8,
-     pub length :          u16,
-     pub major_version :   u32,
-     pub minor_version :   u32
+    pub major_opcode :    u8,
+    pub minor_opcode :    u8,
+    pub length :          u16,
+    pub major_version :   u32,
+    pub minor_version :   u32
 }
 
 impl Copy for xcb_dri2_query_version_request_t {}
@@ -76,12 +76,12 @@ impl Clone for xcb_dri2_query_version_request_t {
 
 #[repr(C)]
 pub struct xcb_dri2_query_version_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub major_version :   u32,
-     pub minor_version :   u32
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub major_version :   u32,
+    pub minor_version :   u32
 }
 
 impl Copy for xcb_dri2_query_version_reply_t {}
@@ -98,11 +98,11 @@ pub struct xcb_dri2_connect_cookie_t {
 
 #[repr(C)]
 pub struct xcb_dri2_connect_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub window :         ffi::xproto::xcb_window_t,
-     pub driver_type :    u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub window :         ffi::xproto::xcb_window_t,
+    pub driver_type :    u32
 }
 
 impl Copy for xcb_dri2_connect_request_t {}
@@ -112,13 +112,13 @@ impl Clone for xcb_dri2_connect_request_t {
 
 #[repr(C)]
 pub struct xcb_dri2_connect_reply_t {
-     pub response_type :        u8,
-     pub pad0 :                 u8,
-     pub sequence :             u16,
-     pub length :               u32,
-     pub driver_name_length :   u32,
-     pub device_name_length :   u32,
-     pub pad1 :                 [u8; 16]
+    pub response_type :        u8,
+    pub pad0 :                 u8,
+    pub sequence :             u16,
+    pub length :               u32,
+    pub driver_name_length :   u32,
+    pub device_name_length :   u32,
+    pub pad1 :                 [u8; 16]
 }
 
 impl Copy for xcb_dri2_connect_reply_t {}
@@ -135,11 +135,11 @@ pub struct xcb_dri2_authenticate_cookie_t {
 
 #[repr(C)]
 pub struct xcb_dri2_authenticate_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub window :         ffi::xproto::xcb_window_t,
-     pub magic :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub window :         ffi::xproto::xcb_window_t,
+    pub magic :          u32
 }
 
 impl Copy for xcb_dri2_authenticate_request_t {}
@@ -149,11 +149,11 @@ impl Clone for xcb_dri2_authenticate_request_t {
 
 #[repr(C)]
 pub struct xcb_dri2_authenticate_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub authenticated :   u32
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub authenticated :   u32
 }
 
 impl Copy for xcb_dri2_authenticate_reply_t {}
@@ -164,10 +164,10 @@ impl Clone for xcb_dri2_authenticate_reply_t {
 
 #[repr(C)]
 pub struct xcb_dri2_create_drawable_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub drawable :       ffi::xproto::xcb_drawable_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub drawable :       ffi::xproto::xcb_drawable_t
 }
 
 impl Copy for xcb_dri2_create_drawable_request_t {}
@@ -178,10 +178,10 @@ impl Clone for xcb_dri2_create_drawable_request_t {
 
 #[repr(C)]
 pub struct xcb_dri2_destroy_drawable_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub drawable :       ffi::xproto::xcb_drawable_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub drawable :       ffi::xproto::xcb_drawable_t
 }
 
 impl Copy for xcb_dri2_destroy_drawable_request_t {}
@@ -198,11 +198,11 @@ pub struct xcb_dri2_get_buffers_cookie_t {
 
 #[repr(C)]
 pub struct xcb_dri2_get_buffers_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub drawable :       ffi::xproto::xcb_drawable_t,
-     pub count :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub drawable :       ffi::xproto::xcb_drawable_t,
+    pub count :          u32
 }
 
 impl Copy for xcb_dri2_get_buffers_request_t {}
@@ -212,14 +212,14 @@ impl Clone for xcb_dri2_get_buffers_request_t {
 
 #[repr(C)]
 pub struct xcb_dri2_get_buffers_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub width :           u32,
-     pub height :          u32,
-     pub count :           u32,
-     pub pad1 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub width :           u32,
+    pub height :          u32,
+    pub count :           u32,
+    pub pad1 :            [u8; 12]
 }
 
 impl Copy for xcb_dri2_get_buffers_reply_t {}
@@ -236,13 +236,13 @@ pub struct xcb_dri2_copy_region_cookie_t {
 
 #[repr(C)]
 pub struct xcb_dri2_copy_region_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub drawable :       ffi::xproto::xcb_drawable_t,
-     pub region :         u32,
-     pub dest :           u32,
-     pub src :            u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub drawable :       ffi::xproto::xcb_drawable_t,
+    pub region :         u32,
+    pub dest :           u32,
+    pub src :            u32
 }
 
 impl Copy for xcb_dri2_copy_region_request_t {}
@@ -252,10 +252,10 @@ impl Clone for xcb_dri2_copy_region_request_t {
 
 #[repr(C)]
 pub struct xcb_dri2_copy_region_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32
 }
 
 impl Copy for xcb_dri2_copy_region_reply_t {}
@@ -272,11 +272,11 @@ pub struct xcb_dri2_get_buffers_with_format_cookie_t {
 
 #[repr(C)]
 pub struct xcb_dri2_get_buffers_with_format_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub drawable :       ffi::xproto::xcb_drawable_t,
-     pub count :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub drawable :       ffi::xproto::xcb_drawable_t,
+    pub count :          u32
 }
 
 impl Copy for xcb_dri2_get_buffers_with_format_request_t {}
@@ -286,14 +286,14 @@ impl Clone for xcb_dri2_get_buffers_with_format_request_t {
 
 #[repr(C)]
 pub struct xcb_dri2_get_buffers_with_format_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub width :           u32,
-     pub height :          u32,
-     pub count :           u32,
-     pub pad1 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub width :           u32,
+    pub height :          u32,
+    pub count :           u32,
+    pub pad1 :            [u8; 12]
 }
 
 impl Copy for xcb_dri2_get_buffers_with_format_reply_t {}
@@ -310,16 +310,16 @@ pub struct xcb_dri2_swap_buffers_cookie_t {
 
 #[repr(C)]
 pub struct xcb_dri2_swap_buffers_request_t {
-     pub major_opcode :    u8,
-     pub minor_opcode :    u8,
-     pub length :          u16,
-     pub drawable :        ffi::xproto::xcb_drawable_t,
-     pub target_msc_hi :   u32,
-     pub target_msc_lo :   u32,
-     pub divisor_hi :      u32,
-     pub divisor_lo :      u32,
-     pub remainder_hi :    u32,
-     pub remainder_lo :    u32
+    pub major_opcode :    u8,
+    pub minor_opcode :    u8,
+    pub length :          u16,
+    pub drawable :        ffi::xproto::xcb_drawable_t,
+    pub target_msc_hi :   u32,
+    pub target_msc_lo :   u32,
+    pub divisor_hi :      u32,
+    pub divisor_lo :      u32,
+    pub remainder_hi :    u32,
+    pub remainder_lo :    u32
 }
 
 impl Copy for xcb_dri2_swap_buffers_request_t {}
@@ -329,12 +329,12 @@ impl Clone for xcb_dri2_swap_buffers_request_t {
 
 #[repr(C)]
 pub struct xcb_dri2_swap_buffers_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub swap_hi :         u32,
-     pub swap_lo :         u32
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub swap_hi :         u32,
+    pub swap_lo :         u32
 }
 
 impl Copy for xcb_dri2_swap_buffers_reply_t {}
@@ -351,10 +351,10 @@ pub struct xcb_dri2_get_msc_cookie_t {
 
 #[repr(C)]
 pub struct xcb_dri2_get_msc_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub drawable :       ffi::xproto::xcb_drawable_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub drawable :       ffi::xproto::xcb_drawable_t
 }
 
 impl Copy for xcb_dri2_get_msc_request_t {}
@@ -364,16 +364,16 @@ impl Clone for xcb_dri2_get_msc_request_t {
 
 #[repr(C)]
 pub struct xcb_dri2_get_msc_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub ust_hi :          u32,
-     pub ust_lo :          u32,
-     pub msc_hi :          u32,
-     pub msc_lo :          u32,
-     pub sbc_hi :          u32,
-     pub sbc_lo :          u32
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub ust_hi :          u32,
+    pub ust_lo :          u32,
+    pub msc_hi :          u32,
+    pub msc_lo :          u32,
+    pub sbc_hi :          u32,
+    pub sbc_lo :          u32
 }
 
 impl Copy for xcb_dri2_get_msc_reply_t {}
@@ -390,16 +390,16 @@ pub struct xcb_dri2_wait_msc_cookie_t {
 
 #[repr(C)]
 pub struct xcb_dri2_wait_msc_request_t {
-     pub major_opcode :    u8,
-     pub minor_opcode :    u8,
-     pub length :          u16,
-     pub drawable :        ffi::xproto::xcb_drawable_t,
-     pub target_msc_hi :   u32,
-     pub target_msc_lo :   u32,
-     pub divisor_hi :      u32,
-     pub divisor_lo :      u32,
-     pub remainder_hi :    u32,
-     pub remainder_lo :    u32
+    pub major_opcode :    u8,
+    pub minor_opcode :    u8,
+    pub length :          u16,
+    pub drawable :        ffi::xproto::xcb_drawable_t,
+    pub target_msc_hi :   u32,
+    pub target_msc_lo :   u32,
+    pub divisor_hi :      u32,
+    pub divisor_lo :      u32,
+    pub remainder_hi :    u32,
+    pub remainder_lo :    u32
 }
 
 impl Copy for xcb_dri2_wait_msc_request_t {}
@@ -409,16 +409,16 @@ impl Clone for xcb_dri2_wait_msc_request_t {
 
 #[repr(C)]
 pub struct xcb_dri2_wait_msc_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub ust_hi :          u32,
-     pub ust_lo :          u32,
-     pub msc_hi :          u32,
-     pub msc_lo :          u32,
-     pub sbc_hi :          u32,
-     pub sbc_lo :          u32
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub ust_hi :          u32,
+    pub ust_lo :          u32,
+    pub msc_hi :          u32,
+    pub msc_lo :          u32,
+    pub sbc_hi :          u32,
+    pub sbc_lo :          u32
 }
 
 impl Copy for xcb_dri2_wait_msc_reply_t {}
@@ -435,12 +435,12 @@ pub struct xcb_dri2_wait_sbc_cookie_t {
 
 #[repr(C)]
 pub struct xcb_dri2_wait_sbc_request_t {
-     pub major_opcode :    u8,
-     pub minor_opcode :    u8,
-     pub length :          u16,
-     pub drawable :        ffi::xproto::xcb_drawable_t,
-     pub target_sbc_hi :   u32,
-     pub target_sbc_lo :   u32
+    pub major_opcode :    u8,
+    pub minor_opcode :    u8,
+    pub length :          u16,
+    pub drawable :        ffi::xproto::xcb_drawable_t,
+    pub target_sbc_hi :   u32,
+    pub target_sbc_lo :   u32
 }
 
 impl Copy for xcb_dri2_wait_sbc_request_t {}
@@ -450,16 +450,16 @@ impl Clone for xcb_dri2_wait_sbc_request_t {
 
 #[repr(C)]
 pub struct xcb_dri2_wait_sbc_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub ust_hi :          u32,
-     pub ust_lo :          u32,
-     pub msc_hi :          u32,
-     pub msc_lo :          u32,
-     pub sbc_hi :          u32,
-     pub sbc_lo :          u32
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub ust_hi :          u32,
+    pub ust_lo :          u32,
+    pub msc_hi :          u32,
+    pub msc_lo :          u32,
+    pub sbc_hi :          u32,
+    pub sbc_lo :          u32
 }
 
 impl Copy for xcb_dri2_wait_sbc_reply_t {}
@@ -470,11 +470,11 @@ impl Clone for xcb_dri2_wait_sbc_reply_t {
 
 #[repr(C)]
 pub struct xcb_dri2_swap_interval_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub drawable :       ffi::xproto::xcb_drawable_t,
-     pub interval :       u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub drawable :       ffi::xproto::xcb_drawable_t,
+    pub interval :       u32
 }
 
 impl Copy for xcb_dri2_swap_interval_request_t {}
@@ -491,11 +491,11 @@ pub struct xcb_dri2_get_param_cookie_t {
 
 #[repr(C)]
 pub struct xcb_dri2_get_param_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub drawable :       ffi::xproto::xcb_drawable_t,
-     pub param :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub drawable :       ffi::xproto::xcb_drawable_t,
+    pub param :          u32
 }
 
 impl Copy for xcb_dri2_get_param_request_t {}
@@ -505,12 +505,12 @@ impl Clone for xcb_dri2_get_param_request_t {
 
 #[repr(C)]
 pub struct xcb_dri2_get_param_reply_t {
-     pub response_type :         u8,
-     pub is_param_recognized :   u8,
-     pub sequence :              u16,
-     pub length :                u32,
-     pub value_hi :              u32,
-     pub value_lo :              u32
+    pub response_type :         u8,
+    pub is_param_recognized :   u8,
+    pub sequence :              u16,
+    pub length :                u32,
+    pub value_hi :              u32,
+    pub value_lo :              u32
 }
 
 impl Copy for xcb_dri2_get_param_reply_t {}
@@ -521,17 +521,17 @@ impl Clone for xcb_dri2_get_param_reply_t {
 
 #[repr(C)]
 pub struct xcb_dri2_buffer_swap_complete_event_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub event_type :      u16,
-     pub pad1 :            [u8; 2],
-     pub drawable :        ffi::xproto::xcb_drawable_t,
-     pub ust_hi :          u32,
-     pub ust_lo :          u32,
-     pub msc_hi :          u32,
-     pub msc_lo :          u32,
-     pub sbc :             u32
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub event_type :      u16,
+    pub pad1 :            [u8; 2],
+    pub drawable :        ffi::xproto::xcb_drawable_t,
+    pub ust_hi :          u32,
+    pub ust_lo :          u32,
+    pub msc_hi :          u32,
+    pub msc_lo :          u32,
+    pub sbc :             u32
 }
 
 impl Copy for xcb_dri2_buffer_swap_complete_event_t {}
@@ -542,10 +542,10 @@ impl Clone for xcb_dri2_buffer_swap_complete_event_t {
 
 #[repr(C)]
 pub struct xcb_dri2_invalidate_buffers_event_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub drawable :        ffi::xproto::xcb_drawable_t
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub drawable :        ffi::xproto::xcb_drawable_t
 }
 
 impl Copy for xcb_dri2_invalidate_buffers_event_t {}

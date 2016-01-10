@@ -45,15 +45,15 @@ pub struct xcb_xvmc_subpicture_iterator_t {
 
 #[repr(C)]
 pub struct xcb_xvmc_surface_info_t {
-     pub id :                      xcb_xvmc_surface_t,
-     pub chroma_format :           u16,
-     pub pad0 :                    u16,
-     pub max_width :               u16,
-     pub max_height :              u16,
-     pub subpicture_max_width :    u16,
-     pub subpicture_max_height :   u16,
-     pub mc_type :                 u32,
-     pub flags :                   u32
+    pub id :                      xcb_xvmc_surface_t,
+    pub chroma_format :           u16,
+    pub pad0 :                    u16,
+    pub max_width :               u16,
+    pub max_height :              u16,
+    pub subpicture_max_width :    u16,
+    pub subpicture_max_height :   u16,
+    pub mc_type :                 u32,
+    pub flags :                   u32
 }
 
 impl Copy for xcb_xvmc_surface_info_t {}
@@ -77,9 +77,9 @@ pub struct xcb_xvmc_query_version_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xvmc_query_version_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_xvmc_query_version_request_t {}
@@ -89,12 +89,12 @@ impl Clone for xcb_xvmc_query_version_request_t {
 
 #[repr(C)]
 pub struct xcb_xvmc_query_version_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub major :           u32,
-     pub minor :           u32
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub major :           u32,
+    pub minor :           u32
 }
 
 impl Copy for xcb_xvmc_query_version_reply_t {}
@@ -111,10 +111,10 @@ pub struct xcb_xvmc_list_surface_types_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xvmc_list_surface_types_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub port_id :        ffi::xv::xcb_xv_port_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub port_id :        ffi::xv::xcb_xv_port_t
 }
 
 impl Copy for xcb_xvmc_list_surface_types_request_t {}
@@ -124,12 +124,12 @@ impl Clone for xcb_xvmc_list_surface_types_request_t {
 
 #[repr(C)]
 pub struct xcb_xvmc_list_surface_types_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub num :             u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub num :             u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_xvmc_list_surface_types_reply_t {}
@@ -146,15 +146,15 @@ pub struct xcb_xvmc_create_context_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xvmc_create_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_id :     xcb_xvmc_context_t,
-     pub port_id :        ffi::xv::xcb_xv_port_t,
-     pub surface_id :     xcb_xvmc_surface_t,
-     pub width :          u16,
-     pub height :         u16,
-     pub flags :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_id :     xcb_xvmc_context_t,
+    pub port_id :        ffi::xv::xcb_xv_port_t,
+    pub surface_id :     xcb_xvmc_surface_t,
+    pub width :          u16,
+    pub height :         u16,
+    pub flags :          u32
 }
 
 impl Copy for xcb_xvmc_create_context_request_t {}
@@ -164,14 +164,14 @@ impl Clone for xcb_xvmc_create_context_request_t {
 
 #[repr(C)]
 pub struct xcb_xvmc_create_context_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub width_actual :    u16,
-     pub height_actual :   u16,
-     pub flags_return :    u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub width_actual :    u16,
+    pub height_actual :   u16,
+    pub flags_return :    u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_xvmc_create_context_reply_t {}
@@ -182,10 +182,10 @@ impl Clone for xcb_xvmc_create_context_reply_t {
 
 #[repr(C)]
 pub struct xcb_xvmc_destroy_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_id :     xcb_xvmc_context_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_id :     xcb_xvmc_context_t
 }
 
 impl Copy for xcb_xvmc_destroy_context_request_t {}
@@ -202,11 +202,11 @@ pub struct xcb_xvmc_create_surface_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xvmc_create_surface_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub surface_id :     xcb_xvmc_surface_t,
-     pub context_id :     xcb_xvmc_context_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub surface_id :     xcb_xvmc_surface_t,
+    pub context_id :     xcb_xvmc_context_t
 }
 
 impl Copy for xcb_xvmc_create_surface_request_t {}
@@ -216,11 +216,11 @@ impl Clone for xcb_xvmc_create_surface_request_t {
 
 #[repr(C)]
 pub struct xcb_xvmc_create_surface_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 24]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 24]
 }
 
 impl Copy for xcb_xvmc_create_surface_reply_t {}
@@ -231,10 +231,10 @@ impl Clone for xcb_xvmc_create_surface_reply_t {
 
 #[repr(C)]
 pub struct xcb_xvmc_destroy_surface_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub surface_id :     xcb_xvmc_surface_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub surface_id :     xcb_xvmc_surface_t
 }
 
 impl Copy for xcb_xvmc_destroy_surface_request_t {}
@@ -251,14 +251,14 @@ pub struct xcb_xvmc_create_subpicture_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xvmc_create_subpicture_request_t {
-     pub major_opcode :    u8,
-     pub minor_opcode :    u8,
-     pub length :          u16,
-     pub subpicture_id :   xcb_xvmc_subpicture_t,
-     pub context :         xcb_xvmc_context_t,
-     pub xvimage_id :      u32,
-     pub width :           u16,
-     pub height :          u16
+    pub major_opcode :    u8,
+    pub minor_opcode :    u8,
+    pub length :          u16,
+    pub subpicture_id :   xcb_xvmc_subpicture_t,
+    pub context :         xcb_xvmc_context_t,
+    pub xvimage_id :      u32,
+    pub width :           u16,
+    pub height :          u16
 }
 
 impl Copy for xcb_xvmc_create_subpicture_request_t {}
@@ -268,16 +268,16 @@ impl Clone for xcb_xvmc_create_subpicture_request_t {
 
 #[repr(C)]
 pub struct xcb_xvmc_create_subpicture_reply_t {
-     pub response_type :         u8,
-     pub pad0 :                  u8,
-     pub sequence :              u16,
-     pub length :                u32,
-     pub width_actual :          u16,
-     pub height_actual :         u16,
-     pub num_palette_entries :   u16,
-     pub entry_bytes :           u16,
-     pub component_order :       [u8; 4],
-     pub pad1 :                  [u8; 12]
+    pub response_type :         u8,
+    pub pad0 :                  u8,
+    pub sequence :              u16,
+    pub length :                u32,
+    pub width_actual :          u16,
+    pub height_actual :         u16,
+    pub num_palette_entries :   u16,
+    pub entry_bytes :           u16,
+    pub component_order :       [u8; 4],
+    pub pad1 :                  [u8; 12]
 }
 
 impl Copy for xcb_xvmc_create_subpicture_reply_t {}
@@ -288,10 +288,10 @@ impl Clone for xcb_xvmc_create_subpicture_reply_t {
 
 #[repr(C)]
 pub struct xcb_xvmc_destroy_subpicture_request_t {
-     pub major_opcode :    u8,
-     pub minor_opcode :    u8,
-     pub length :          u16,
-     pub subpicture_id :   xcb_xvmc_subpicture_t
+    pub major_opcode :    u8,
+    pub minor_opcode :    u8,
+    pub length :          u16,
+    pub subpicture_id :   xcb_xvmc_subpicture_t
 }
 
 impl Copy for xcb_xvmc_destroy_subpicture_request_t {}
@@ -308,11 +308,11 @@ pub struct xcb_xvmc_list_subpicture_types_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xvmc_list_subpicture_types_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub port_id :        ffi::xv::xcb_xv_port_t,
-     pub surface_id :     xcb_xvmc_surface_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub port_id :        ffi::xv::xcb_xv_port_t,
+    pub surface_id :     xcb_xvmc_surface_t
 }
 
 impl Copy for xcb_xvmc_list_subpicture_types_request_t {}
@@ -322,12 +322,12 @@ impl Clone for xcb_xvmc_list_subpicture_types_request_t {
 
 #[repr(C)]
 pub struct xcb_xvmc_list_subpicture_types_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub num :             u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub num :             u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_xvmc_list_subpicture_types_reply_t {}

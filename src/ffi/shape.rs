@@ -35,17 +35,17 @@ pub struct xcb_shape_kind_iterator_t {
 
 #[repr(C)]
 pub struct xcb_shape_notify_event_t {
-     pub response_type :     u8,
-     pub shape_kind :        xcb_shape_kind_t,
-     pub sequence :          u16,
-     pub affected_window :   ffi::xproto::xcb_window_t,
-     pub extents_x :         i16,
-     pub extents_y :         i16,
-     pub extents_width :     u16,
-     pub extents_height :    u16,
-     pub server_time :       ffi::xproto::xcb_timestamp_t,
-     pub shaped :            u8,
-     pub pad0 :              [u8; 11]
+    pub response_type :     u8,
+    pub shape_kind :        xcb_shape_kind_t,
+    pub sequence :          u16,
+    pub affected_window :   ffi::xproto::xcb_window_t,
+    pub extents_x :         i16,
+    pub extents_y :         i16,
+    pub extents_width :     u16,
+    pub extents_height :    u16,
+    pub server_time :       ffi::xproto::xcb_timestamp_t,
+    pub shaped :            u8,
+    pub pad0 :              [u8; 11]
 }
 
 impl Copy for xcb_shape_notify_event_t {}
@@ -62,9 +62,9 @@ pub struct xcb_shape_query_version_cookie_t {
 
 #[repr(C)]
 pub struct xcb_shape_query_version_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_shape_query_version_request_t {}
@@ -74,12 +74,12 @@ impl Clone for xcb_shape_query_version_request_t {
 
 #[repr(C)]
 pub struct xcb_shape_query_version_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub major_version :   u16,
-     pub minor_version :   u16
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub major_version :   u16,
+    pub minor_version :   u16
 }
 
 impl Copy for xcb_shape_query_version_reply_t {}
@@ -90,16 +90,16 @@ impl Clone for xcb_shape_query_version_reply_t {
 
 #[repr(C)]
 pub struct xcb_shape_rectangles_request_t {
-     pub major_opcode :         u8,
-     pub minor_opcode :         u8,
-     pub length :               u16,
-     pub operation :            xcb_shape_op_t,
-     pub destination_kind :     xcb_shape_kind_t,
-     pub ordering :             u8,
-     pub pad0 :                 u8,
-     pub destination_window :   ffi::xproto::xcb_window_t,
-     pub x_offset :             i16,
-     pub y_offset :             i16
+    pub major_opcode :         u8,
+    pub minor_opcode :         u8,
+    pub length :               u16,
+    pub operation :            xcb_shape_op_t,
+    pub destination_kind :     xcb_shape_kind_t,
+    pub ordering :             u8,
+    pub pad0 :                 u8,
+    pub destination_window :   ffi::xproto::xcb_window_t,
+    pub x_offset :             i16,
+    pub y_offset :             i16
 }
 
 impl Copy for xcb_shape_rectangles_request_t {}
@@ -110,16 +110,16 @@ impl Clone for xcb_shape_rectangles_request_t {
 
 #[repr(C)]
 pub struct xcb_shape_mask_request_t {
-     pub major_opcode :         u8,
-     pub minor_opcode :         u8,
-     pub length :               u16,
-     pub operation :            xcb_shape_op_t,
-     pub destination_kind :     xcb_shape_kind_t,
-     pub pad0 :                 [u8; 2],
-     pub destination_window :   ffi::xproto::xcb_window_t,
-     pub x_offset :             i16,
-     pub y_offset :             i16,
-     pub source_bitmap :        ffi::xproto::xcb_pixmap_t
+    pub major_opcode :         u8,
+    pub minor_opcode :         u8,
+    pub length :               u16,
+    pub operation :            xcb_shape_op_t,
+    pub destination_kind :     xcb_shape_kind_t,
+    pub pad0 :                 [u8; 2],
+    pub destination_window :   ffi::xproto::xcb_window_t,
+    pub x_offset :             i16,
+    pub y_offset :             i16,
+    pub source_bitmap :        ffi::xproto::xcb_pixmap_t
 }
 
 impl Copy for xcb_shape_mask_request_t {}
@@ -130,17 +130,17 @@ impl Clone for xcb_shape_mask_request_t {
 
 #[repr(C)]
 pub struct xcb_shape_combine_request_t {
-     pub major_opcode :         u8,
-     pub minor_opcode :         u8,
-     pub length :               u16,
-     pub operation :            xcb_shape_op_t,
-     pub destination_kind :     xcb_shape_kind_t,
-     pub source_kind :          xcb_shape_kind_t,
-     pub pad0 :                 u8,
-     pub destination_window :   ffi::xproto::xcb_window_t,
-     pub x_offset :             i16,
-     pub y_offset :             i16,
-     pub source_window :        ffi::xproto::xcb_window_t
+    pub major_opcode :         u8,
+    pub minor_opcode :         u8,
+    pub length :               u16,
+    pub operation :            xcb_shape_op_t,
+    pub destination_kind :     xcb_shape_kind_t,
+    pub source_kind :          xcb_shape_kind_t,
+    pub pad0 :                 u8,
+    pub destination_window :   ffi::xproto::xcb_window_t,
+    pub x_offset :             i16,
+    pub y_offset :             i16,
+    pub source_window :        ffi::xproto::xcb_window_t
 }
 
 impl Copy for xcb_shape_combine_request_t {}
@@ -151,14 +151,14 @@ impl Clone for xcb_shape_combine_request_t {
 
 #[repr(C)]
 pub struct xcb_shape_offset_request_t {
-     pub major_opcode :         u8,
-     pub minor_opcode :         u8,
-     pub length :               u16,
-     pub destination_kind :     xcb_shape_kind_t,
-     pub pad0 :                 [u8; 3],
-     pub destination_window :   ffi::xproto::xcb_window_t,
-     pub x_offset :             i16,
-     pub y_offset :             i16
+    pub major_opcode :         u8,
+    pub minor_opcode :         u8,
+    pub length :               u16,
+    pub destination_kind :     xcb_shape_kind_t,
+    pub pad0 :                 [u8; 3],
+    pub destination_window :   ffi::xproto::xcb_window_t,
+    pub x_offset :             i16,
+    pub y_offset :             i16
 }
 
 impl Copy for xcb_shape_offset_request_t {}
@@ -175,10 +175,10 @@ pub struct xcb_shape_query_extents_cookie_t {
 
 #[repr(C)]
 pub struct xcb_shape_query_extents_request_t {
-     pub major_opcode :         u8,
-     pub minor_opcode :         u8,
-     pub length :               u16,
-     pub destination_window :   ffi::xproto::xcb_window_t
+    pub major_opcode :         u8,
+    pub minor_opcode :         u8,
+    pub length :               u16,
+    pub destination_window :   ffi::xproto::xcb_window_t
 }
 
 impl Copy for xcb_shape_query_extents_request_t {}
@@ -188,21 +188,21 @@ impl Clone for xcb_shape_query_extents_request_t {
 
 #[repr(C)]
 pub struct xcb_shape_query_extents_reply_t {
-     pub response_type :                   u8,
-     pub pad0 :                            u8,
-     pub sequence :                        u16,
-     pub length :                          u32,
-     pub bounding_shaped :                 u8,
-     pub clip_shaped :                     u8,
-     pub pad1 :                            [u8; 2],
-     pub bounding_shape_extents_x :        i16,
-     pub bounding_shape_extents_y :        i16,
-     pub bounding_shape_extents_width :    u16,
-     pub bounding_shape_extents_height :   u16,
-     pub clip_shape_extents_x :            i16,
-     pub clip_shape_extents_y :            i16,
-     pub clip_shape_extents_width :        u16,
-     pub clip_shape_extents_height :       u16
+    pub response_type :                   u8,
+    pub pad0 :                            u8,
+    pub sequence :                        u16,
+    pub length :                          u32,
+    pub bounding_shaped :                 u8,
+    pub clip_shaped :                     u8,
+    pub pad1 :                            [u8; 2],
+    pub bounding_shape_extents_x :        i16,
+    pub bounding_shape_extents_y :        i16,
+    pub bounding_shape_extents_width :    u16,
+    pub bounding_shape_extents_height :   u16,
+    pub clip_shape_extents_x :            i16,
+    pub clip_shape_extents_y :            i16,
+    pub clip_shape_extents_width :        u16,
+    pub clip_shape_extents_height :       u16
 }
 
 impl Copy for xcb_shape_query_extents_reply_t {}
@@ -213,12 +213,12 @@ impl Clone for xcb_shape_query_extents_reply_t {
 
 #[repr(C)]
 pub struct xcb_shape_select_input_request_t {
-     pub major_opcode :         u8,
-     pub minor_opcode :         u8,
-     pub length :               u16,
-     pub destination_window :   ffi::xproto::xcb_window_t,
-     pub enable :               u8,
-     pub pad0 :                 [u8; 3]
+    pub major_opcode :         u8,
+    pub minor_opcode :         u8,
+    pub length :               u16,
+    pub destination_window :   ffi::xproto::xcb_window_t,
+    pub enable :               u8,
+    pub pad0 :                 [u8; 3]
 }
 
 impl Copy for xcb_shape_select_input_request_t {}
@@ -235,10 +235,10 @@ pub struct xcb_shape_input_selected_cookie_t {
 
 #[repr(C)]
 pub struct xcb_shape_input_selected_request_t {
-     pub major_opcode :         u8,
-     pub minor_opcode :         u8,
-     pub length :               u16,
-     pub destination_window :   ffi::xproto::xcb_window_t
+    pub major_opcode :         u8,
+    pub minor_opcode :         u8,
+    pub length :               u16,
+    pub destination_window :   ffi::xproto::xcb_window_t
 }
 
 impl Copy for xcb_shape_input_selected_request_t {}
@@ -248,10 +248,10 @@ impl Clone for xcb_shape_input_selected_request_t {
 
 #[repr(C)]
 pub struct xcb_shape_input_selected_reply_t {
-     pub response_type :   u8,
-     pub enabled :         u8,
-     pub sequence :        u16,
-     pub length :          u32
+    pub response_type :   u8,
+    pub enabled :         u8,
+    pub sequence :        u16,
+    pub length :          u32
 }
 
 impl Copy for xcb_shape_input_selected_reply_t {}
@@ -268,12 +268,12 @@ pub struct xcb_shape_get_rectangles_cookie_t {
 
 #[repr(C)]
 pub struct xcb_shape_get_rectangles_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub window :         ffi::xproto::xcb_window_t,
-     pub source_kind :    xcb_shape_kind_t,
-     pub pad0 :           [u8; 3]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub window :         ffi::xproto::xcb_window_t,
+    pub source_kind :    xcb_shape_kind_t,
+    pub pad0 :           [u8; 3]
 }
 
 impl Copy for xcb_shape_get_rectangles_request_t {}
@@ -283,12 +283,12 @@ impl Clone for xcb_shape_get_rectangles_request_t {
 
 #[repr(C)]
 pub struct xcb_shape_get_rectangles_reply_t {
-     pub response_type :    u8,
-     pub ordering :         u8,
-     pub sequence :         u16,
-     pub length :           u32,
-     pub rectangles_len :   u32,
-     pub pad0 :             [u8; 20]
+    pub response_type :    u8,
+    pub ordering :         u8,
+    pub sequence :         u16,
+    pub length :           u32,
+    pub rectangles_len :   u32,
+    pub pad0 :             [u8; 20]
 }
 
 impl Copy for xcb_shape_get_rectangles_reply_t {}

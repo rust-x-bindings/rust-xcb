@@ -107,13 +107,13 @@ pub struct xcb_glx_context_tag_iterator_t {
 
 #[repr(C)]
 pub struct xcb_glx_generic_error_t {
-     pub response_type :   u8,
-     pub error_code :      u8,
-     pub sequence :        u16,
-     pub bad_value :       u32,
-     pub minor_opcode :    u16,
-     pub major_opcode :    u8,
-     pub pad0 :            [u8; 21]
+    pub response_type :   u8,
+    pub error_code :      u8,
+    pub sequence :        u16,
+    pub bad_value :       u32,
+    pub minor_opcode :    u16,
+    pub major_opcode :    u8,
+    pub pad0 :            [u8; 21]
 }
 
 impl Copy for xcb_glx_generic_error_t {}
@@ -166,20 +166,20 @@ pub type xcb_glx_glx_bad_profile_arb_error_t  = xcb_glx_generic_error_t;
 
 #[repr(C)]
 pub struct xcb_glx_pbuffer_clobber_event_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub event_type :      u16,
-     pub draw_type :       u16,
-     pub drawable :        xcb_glx_drawable_t,
-     pub b_mask :          u32,
-     pub aux_buffer :      u16,
-     pub x :               u16,
-     pub y :               u16,
-     pub width :           u16,
-     pub height :          u16,
-     pub count :           u16,
-     pub pad1 :            [u8; 4]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub event_type :      u16,
+    pub draw_type :       u16,
+    pub drawable :        xcb_glx_drawable_t,
+    pub b_mask :          u32,
+    pub aux_buffer :      u16,
+    pub x :               u16,
+    pub y :               u16,
+    pub width :           u16,
+    pub height :          u16,
+    pub count :           u16,
+    pub pad1 :            [u8; 4]
 }
 
 impl Copy for xcb_glx_pbuffer_clobber_event_t {}
@@ -190,10 +190,10 @@ impl Clone for xcb_glx_pbuffer_clobber_event_t {
 
 #[repr(C)]
 pub struct xcb_glx_render_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t
 }
 
 impl Copy for xcb_glx_render_request_t {}
@@ -204,13 +204,13 @@ impl Clone for xcb_glx_render_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_render_large_request_t {
-     pub major_opcode :    u8,
-     pub minor_opcode :    u8,
-     pub length :          u16,
-     pub context_tag :     xcb_glx_context_tag_t,
-     pub request_num :     u16,
-     pub request_total :   u16,
-     pub data_len :        u32
+    pub major_opcode :    u8,
+    pub minor_opcode :    u8,
+    pub length :          u16,
+    pub context_tag :     xcb_glx_context_tag_t,
+    pub request_num :     u16,
+    pub request_total :   u16,
+    pub data_len :        u32
 }
 
 impl Copy for xcb_glx_render_large_request_t {}
@@ -221,15 +221,15 @@ impl Clone for xcb_glx_render_large_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_create_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context :        xcb_glx_context_t,
-     pub visual :         ffi::xproto::xcb_visualid_t,
-     pub screen :         u32,
-     pub share_list :     xcb_glx_context_t,
-     pub is_direct :      u8,
-     pub pad0 :           [u8; 3]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context :        xcb_glx_context_t,
+    pub visual :         ffi::xproto::xcb_visualid_t,
+    pub screen :         u32,
+    pub share_list :     xcb_glx_context_t,
+    pub is_direct :      u8,
+    pub pad0 :           [u8; 3]
 }
 
 impl Copy for xcb_glx_create_context_request_t {}
@@ -240,10 +240,10 @@ impl Clone for xcb_glx_create_context_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_destroy_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context :        xcb_glx_context_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context :        xcb_glx_context_t
 }
 
 impl Copy for xcb_glx_destroy_context_request_t {}
@@ -260,12 +260,12 @@ pub struct xcb_glx_make_current_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_make_current_request_t {
-     pub major_opcode :      u8,
-     pub minor_opcode :      u8,
-     pub length :            u16,
-     pub drawable :          xcb_glx_drawable_t,
-     pub context :           xcb_glx_context_t,
-     pub old_context_tag :   xcb_glx_context_tag_t
+    pub major_opcode :      u8,
+    pub minor_opcode :      u8,
+    pub length :            u16,
+    pub drawable :          xcb_glx_drawable_t,
+    pub context :           xcb_glx_context_t,
+    pub old_context_tag :   xcb_glx_context_tag_t
 }
 
 impl Copy for xcb_glx_make_current_request_t {}
@@ -275,12 +275,12 @@ impl Clone for xcb_glx_make_current_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_make_current_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub context_tag :     xcb_glx_context_tag_t,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub context_tag :     xcb_glx_context_tag_t,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_glx_make_current_reply_t {}
@@ -297,10 +297,10 @@ pub struct xcb_glx_is_direct_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_is_direct_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context :        xcb_glx_context_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context :        xcb_glx_context_t
 }
 
 impl Copy for xcb_glx_is_direct_request_t {}
@@ -310,12 +310,12 @@ impl Clone for xcb_glx_is_direct_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_is_direct_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub is_direct :       u8,
-     pub pad1 :            [u8; 23]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub is_direct :       u8,
+    pub pad1 :            [u8; 23]
 }
 
 impl Copy for xcb_glx_is_direct_reply_t {}
@@ -332,11 +332,11 @@ pub struct xcb_glx_query_version_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_query_version_request_t {
-     pub major_opcode :    u8,
-     pub minor_opcode :    u8,
-     pub length :          u16,
-     pub major_version :   u32,
-     pub minor_version :   u32
+    pub major_opcode :    u8,
+    pub minor_opcode :    u8,
+    pub length :          u16,
+    pub major_version :   u32,
+    pub minor_version :   u32
 }
 
 impl Copy for xcb_glx_query_version_request_t {}
@@ -346,13 +346,13 @@ impl Clone for xcb_glx_query_version_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_query_version_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub major_version :   u32,
-     pub minor_version :   u32,
-     pub pad1 :            [u8; 16]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub major_version :   u32,
+    pub minor_version :   u32,
+    pub pad1 :            [u8; 16]
 }
 
 impl Copy for xcb_glx_query_version_reply_t {}
@@ -363,10 +363,10 @@ impl Clone for xcb_glx_query_version_reply_t {
 
 #[repr(C)]
 pub struct xcb_glx_wait_gl_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t
 }
 
 impl Copy for xcb_glx_wait_gl_request_t {}
@@ -377,10 +377,10 @@ impl Clone for xcb_glx_wait_gl_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_wait_x_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t
 }
 
 impl Copy for xcb_glx_wait_x_request_t {}
@@ -391,13 +391,13 @@ impl Clone for xcb_glx_wait_x_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_copy_context_request_t {
-     pub major_opcode :      u8,
-     pub minor_opcode :      u8,
-     pub length :            u16,
-     pub src :               xcb_glx_context_t,
-     pub dest :              xcb_glx_context_t,
-     pub mask :              u32,
-     pub src_context_tag :   xcb_glx_context_tag_t
+    pub major_opcode :      u8,
+    pub minor_opcode :      u8,
+    pub length :            u16,
+    pub src :               xcb_glx_context_t,
+    pub dest :              xcb_glx_context_t,
+    pub mask :              u32,
+    pub src_context_tag :   xcb_glx_context_tag_t
 }
 
 impl Copy for xcb_glx_copy_context_request_t {}
@@ -408,11 +408,11 @@ impl Clone for xcb_glx_copy_context_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_swap_buffers_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub drawable :       xcb_glx_drawable_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub drawable :       xcb_glx_drawable_t
 }
 
 impl Copy for xcb_glx_swap_buffers_request_t {}
@@ -423,14 +423,14 @@ impl Clone for xcb_glx_swap_buffers_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_use_x_font_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub font :           ffi::xproto::xcb_font_t,
-     pub first :          u32,
-     pub count :          u32,
-     pub list_base :      u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub font :           ffi::xproto::xcb_font_t,
+    pub first :          u32,
+    pub count :          u32,
+    pub list_base :      u32
 }
 
 impl Copy for xcb_glx_use_x_font_request_t {}
@@ -441,13 +441,13 @@ impl Clone for xcb_glx_use_x_font_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_create_glx_pixmap_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub screen :         u32,
-     pub visual :         ffi::xproto::xcb_visualid_t,
-     pub pixmap :         ffi::xproto::xcb_pixmap_t,
-     pub glx_pixmap :     xcb_glx_pixmap_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub screen :         u32,
+    pub visual :         ffi::xproto::xcb_visualid_t,
+    pub pixmap :         ffi::xproto::xcb_pixmap_t,
+    pub glx_pixmap :     xcb_glx_pixmap_t
 }
 
 impl Copy for xcb_glx_create_glx_pixmap_request_t {}
@@ -464,10 +464,10 @@ pub struct xcb_glx_get_visual_configs_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_visual_configs_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub screen :         u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub screen :         u32
 }
 
 impl Copy for xcb_glx_get_visual_configs_request_t {}
@@ -477,13 +477,13 @@ impl Clone for xcb_glx_get_visual_configs_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_visual_configs_reply_t {
-     pub response_type :    u8,
-     pub pad0 :             u8,
-     pub sequence :         u16,
-     pub length :           u32,
-     pub num_visuals :      u32,
-     pub num_properties :   u32,
-     pub pad1 :             [u8; 16]
+    pub response_type :    u8,
+    pub pad0 :             u8,
+    pub sequence :         u16,
+    pub length :           u32,
+    pub num_visuals :      u32,
+    pub num_properties :   u32,
+    pub pad1 :             [u8; 16]
 }
 
 impl Copy for xcb_glx_get_visual_configs_reply_t {}
@@ -494,10 +494,10 @@ impl Clone for xcb_glx_get_visual_configs_reply_t {
 
 #[repr(C)]
 pub struct xcb_glx_destroy_glx_pixmap_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub glx_pixmap :     xcb_glx_pixmap_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub glx_pixmap :     xcb_glx_pixmap_t
 }
 
 impl Copy for xcb_glx_destroy_glx_pixmap_request_t {}
@@ -508,11 +508,11 @@ impl Clone for xcb_glx_destroy_glx_pixmap_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_vendor_private_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub vendor_code :    u32,
-     pub context_tag :    xcb_glx_context_tag_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub vendor_code :    u32,
+    pub context_tag :    xcb_glx_context_tag_t
 }
 
 impl Copy for xcb_glx_vendor_private_request_t {}
@@ -529,11 +529,11 @@ pub struct xcb_glx_vendor_private_with_reply_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_vendor_private_with_reply_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub vendor_code :    u32,
-     pub context_tag :    xcb_glx_context_tag_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub vendor_code :    u32,
+    pub context_tag :    xcb_glx_context_tag_t
 }
 
 impl Copy for xcb_glx_vendor_private_with_reply_request_t {}
@@ -543,12 +543,12 @@ impl Clone for xcb_glx_vendor_private_with_reply_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_vendor_private_with_reply_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub retval :          u32,
-     pub data1 :           [u8; 24]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub retval :          u32,
+    pub data1 :           [u8; 24]
 }
 
 impl Copy for xcb_glx_vendor_private_with_reply_reply_t {}
@@ -565,10 +565,10 @@ pub struct xcb_glx_query_extensions_string_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_query_extensions_string_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub screen :         u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub screen :         u32
 }
 
 impl Copy for xcb_glx_query_extensions_string_request_t {}
@@ -578,13 +578,13 @@ impl Clone for xcb_glx_query_extensions_string_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_query_extensions_string_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub pad2 :            [u8; 16]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub pad2 :            [u8; 16]
 }
 
 impl Copy for xcb_glx_query_extensions_string_reply_t {}
@@ -601,11 +601,11 @@ pub struct xcb_glx_query_server_string_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_query_server_string_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub screen :         u32,
-     pub name :           u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub screen :         u32,
+    pub name :           u32
 }
 
 impl Copy for xcb_glx_query_server_string_request_t {}
@@ -615,13 +615,13 @@ impl Clone for xcb_glx_query_server_string_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_query_server_string_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub str_len :         u32,
-     pub pad2 :            [u8; 16]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub str_len :         u32,
+    pub pad2 :            [u8; 16]
 }
 
 impl Copy for xcb_glx_query_server_string_reply_t {}
@@ -632,12 +632,12 @@ impl Clone for xcb_glx_query_server_string_reply_t {
 
 #[repr(C)]
 pub struct xcb_glx_client_info_request_t {
-     pub major_opcode :    u8,
-     pub minor_opcode :    u8,
-     pub length :          u16,
-     pub major_version :   u32,
-     pub minor_version :   u32,
-     pub str_len :         u32
+    pub major_opcode :    u8,
+    pub minor_opcode :    u8,
+    pub length :          u16,
+    pub major_version :   u32,
+    pub minor_version :   u32,
+    pub str_len :         u32
 }
 
 impl Copy for xcb_glx_client_info_request_t {}
@@ -654,10 +654,10 @@ pub struct xcb_glx_get_fb_configs_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_fb_configs_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub screen :         u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub screen :         u32
 }
 
 impl Copy for xcb_glx_get_fb_configs_request_t {}
@@ -667,13 +667,13 @@ impl Clone for xcb_glx_get_fb_configs_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_fb_configs_reply_t {
-     pub response_type :    u8,
-     pub pad0 :             u8,
-     pub sequence :         u16,
-     pub length :           u32,
-     pub num_FB_configs :   u32,
-     pub num_properties :   u32,
-     pub pad1 :             [u8; 16]
+    pub response_type :    u8,
+    pub pad0 :             u8,
+    pub sequence :         u16,
+    pub length :           u32,
+    pub num_FB_configs :   u32,
+    pub num_properties :   u32,
+    pub pad1 :             [u8; 16]
 }
 
 impl Copy for xcb_glx_get_fb_configs_reply_t {}
@@ -684,14 +684,14 @@ impl Clone for xcb_glx_get_fb_configs_reply_t {
 
 #[repr(C)]
 pub struct xcb_glx_create_pixmap_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub screen :         u32,
-     pub fbconfig :       xcb_glx_fbconfig_t,
-     pub pixmap :         ffi::xproto::xcb_pixmap_t,
-     pub glx_pixmap :     xcb_glx_pixmap_t,
-     pub num_attribs :    u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub screen :         u32,
+    pub fbconfig :       xcb_glx_fbconfig_t,
+    pub pixmap :         ffi::xproto::xcb_pixmap_t,
+    pub glx_pixmap :     xcb_glx_pixmap_t,
+    pub num_attribs :    u32
 }
 
 impl Copy for xcb_glx_create_pixmap_request_t {}
@@ -702,10 +702,10 @@ impl Clone for xcb_glx_create_pixmap_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_destroy_pixmap_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub glx_pixmap :     xcb_glx_pixmap_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub glx_pixmap :     xcb_glx_pixmap_t
 }
 
 impl Copy for xcb_glx_destroy_pixmap_request_t {}
@@ -716,16 +716,16 @@ impl Clone for xcb_glx_destroy_pixmap_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_create_new_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context :        xcb_glx_context_t,
-     pub fbconfig :       xcb_glx_fbconfig_t,
-     pub screen :         u32,
-     pub render_type :    u32,
-     pub share_list :     xcb_glx_context_t,
-     pub is_direct :      u8,
-     pub pad0 :           [u8; 3]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context :        xcb_glx_context_t,
+    pub fbconfig :       xcb_glx_fbconfig_t,
+    pub screen :         u32,
+    pub render_type :    u32,
+    pub share_list :     xcb_glx_context_t,
+    pub is_direct :      u8,
+    pub pad0 :           [u8; 3]
 }
 
 impl Copy for xcb_glx_create_new_context_request_t {}
@@ -742,10 +742,10 @@ pub struct xcb_glx_query_context_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_query_context_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context :        xcb_glx_context_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context :        xcb_glx_context_t
 }
 
 impl Copy for xcb_glx_query_context_request_t {}
@@ -755,12 +755,12 @@ impl Clone for xcb_glx_query_context_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_query_context_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub num_attribs :     u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub num_attribs :     u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_glx_query_context_reply_t {}
@@ -777,13 +777,13 @@ pub struct xcb_glx_make_context_current_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_make_context_current_request_t {
-     pub major_opcode :      u8,
-     pub minor_opcode :      u8,
-     pub length :            u16,
-     pub old_context_tag :   xcb_glx_context_tag_t,
-     pub drawable :          xcb_glx_drawable_t,
-     pub read_drawable :     xcb_glx_drawable_t,
-     pub context :           xcb_glx_context_t
+    pub major_opcode :      u8,
+    pub minor_opcode :      u8,
+    pub length :            u16,
+    pub old_context_tag :   xcb_glx_context_tag_t,
+    pub drawable :          xcb_glx_drawable_t,
+    pub read_drawable :     xcb_glx_drawable_t,
+    pub context :           xcb_glx_context_t
 }
 
 impl Copy for xcb_glx_make_context_current_request_t {}
@@ -793,12 +793,12 @@ impl Clone for xcb_glx_make_context_current_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_make_context_current_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub context_tag :     xcb_glx_context_tag_t,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub context_tag :     xcb_glx_context_tag_t,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_glx_make_context_current_reply_t {}
@@ -809,13 +809,13 @@ impl Clone for xcb_glx_make_context_current_reply_t {
 
 #[repr(C)]
 pub struct xcb_glx_create_pbuffer_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub screen :         u32,
-     pub fbconfig :       xcb_glx_fbconfig_t,
-     pub pbuffer :        xcb_glx_pbuffer_t,
-     pub num_attribs :    u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub screen :         u32,
+    pub fbconfig :       xcb_glx_fbconfig_t,
+    pub pbuffer :        xcb_glx_pbuffer_t,
+    pub num_attribs :    u32
 }
 
 impl Copy for xcb_glx_create_pbuffer_request_t {}
@@ -826,10 +826,10 @@ impl Clone for xcb_glx_create_pbuffer_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_destroy_pbuffer_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub pbuffer :        xcb_glx_pbuffer_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub pbuffer :        xcb_glx_pbuffer_t
 }
 
 impl Copy for xcb_glx_destroy_pbuffer_request_t {}
@@ -846,10 +846,10 @@ pub struct xcb_glx_get_drawable_attributes_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_drawable_attributes_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub drawable :       xcb_glx_drawable_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub drawable :       xcb_glx_drawable_t
 }
 
 impl Copy for xcb_glx_get_drawable_attributes_request_t {}
@@ -859,12 +859,12 @@ impl Clone for xcb_glx_get_drawable_attributes_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_drawable_attributes_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub num_attribs :     u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub num_attribs :     u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_glx_get_drawable_attributes_reply_t {}
@@ -875,11 +875,11 @@ impl Clone for xcb_glx_get_drawable_attributes_reply_t {
 
 #[repr(C)]
 pub struct xcb_glx_change_drawable_attributes_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub drawable :       xcb_glx_drawable_t,
-     pub num_attribs :    u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub drawable :       xcb_glx_drawable_t,
+    pub num_attribs :    u32
 }
 
 impl Copy for xcb_glx_change_drawable_attributes_request_t {}
@@ -890,14 +890,14 @@ impl Clone for xcb_glx_change_drawable_attributes_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_create_window_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub screen :         u32,
-     pub fbconfig :       xcb_glx_fbconfig_t,
-     pub window :         ffi::xproto::xcb_window_t,
-     pub glx_window :     xcb_glx_window_t,
-     pub num_attribs :    u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub screen :         u32,
+    pub fbconfig :       xcb_glx_fbconfig_t,
+    pub window :         ffi::xproto::xcb_window_t,
+    pub glx_window :     xcb_glx_window_t,
+    pub num_attribs :    u32
 }
 
 impl Copy for xcb_glx_create_window_request_t {}
@@ -908,10 +908,10 @@ impl Clone for xcb_glx_create_window_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_delete_window_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub glxwindow :      xcb_glx_window_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub glxwindow :      xcb_glx_window_t
 }
 
 impl Copy for xcb_glx_delete_window_request_t {}
@@ -922,14 +922,14 @@ impl Clone for xcb_glx_delete_window_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_set_client_info_arb_request_t {
-     pub major_opcode :    u8,
-     pub minor_opcode :    u8,
-     pub length :          u16,
-     pub major_version :   u32,
-     pub minor_version :   u32,
-     pub num_versions :    u32,
-     pub gl_str_len :      u32,
-     pub glx_str_len :     u32
+    pub major_opcode :    u8,
+    pub minor_opcode :    u8,
+    pub length :          u16,
+    pub major_version :   u32,
+    pub minor_version :   u32,
+    pub num_versions :    u32,
+    pub gl_str_len :      u32,
+    pub glx_str_len :     u32
 }
 
 impl Copy for xcb_glx_set_client_info_arb_request_t {}
@@ -940,16 +940,16 @@ impl Clone for xcb_glx_set_client_info_arb_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_create_context_attribs_arb_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context :        xcb_glx_context_t,
-     pub fbconfig :       xcb_glx_fbconfig_t,
-     pub screen :         u32,
-     pub share_list :     xcb_glx_context_t,
-     pub is_direct :      u8,
-     pub pad0 :           [u8; 3],
-     pub num_attribs :    u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context :        xcb_glx_context_t,
+    pub fbconfig :       xcb_glx_fbconfig_t,
+    pub screen :         u32,
+    pub share_list :     xcb_glx_context_t,
+    pub is_direct :      u8,
+    pub pad0 :           [u8; 3],
+    pub num_attribs :    u32
 }
 
 impl Copy for xcb_glx_create_context_attribs_arb_request_t {}
@@ -960,14 +960,14 @@ impl Clone for xcb_glx_create_context_attribs_arb_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_set_client_info_2arb_request_t {
-     pub major_opcode :    u8,
-     pub minor_opcode :    u8,
-     pub length :          u16,
-     pub major_version :   u32,
-     pub minor_version :   u32,
-     pub num_versions :    u32,
-     pub gl_str_len :      u32,
-     pub glx_str_len :     u32
+    pub major_opcode :    u8,
+    pub minor_opcode :    u8,
+    pub length :          u16,
+    pub major_version :   u32,
+    pub minor_version :   u32,
+    pub num_versions :    u32,
+    pub gl_str_len :      u32,
+    pub glx_str_len :     u32
 }
 
 impl Copy for xcb_glx_set_client_info_2arb_request_t {}
@@ -978,12 +978,12 @@ impl Clone for xcb_glx_set_client_info_2arb_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_new_list_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub list :           u32,
-     pub mode :           u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub list :           u32,
+    pub mode :           u32
 }
 
 impl Copy for xcb_glx_new_list_request_t {}
@@ -994,10 +994,10 @@ impl Clone for xcb_glx_new_list_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_end_list_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t
 }
 
 impl Copy for xcb_glx_end_list_request_t {}
@@ -1008,12 +1008,12 @@ impl Clone for xcb_glx_end_list_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_delete_lists_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub list :           u32,
-     pub range :          i32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub list :           u32,
+    pub range :          i32
 }
 
 impl Copy for xcb_glx_delete_lists_request_t {}
@@ -1030,11 +1030,11 @@ pub struct xcb_glx_gen_lists_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_gen_lists_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub range :          i32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub range :          i32
 }
 
 impl Copy for xcb_glx_gen_lists_request_t {}
@@ -1044,11 +1044,11 @@ impl Clone for xcb_glx_gen_lists_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_gen_lists_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub ret_val :         u32
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub ret_val :         u32
 }
 
 impl Copy for xcb_glx_gen_lists_reply_t {}
@@ -1059,12 +1059,12 @@ impl Clone for xcb_glx_gen_lists_reply_t {
 
 #[repr(C)]
 pub struct xcb_glx_feedback_buffer_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub size :           i32,
-     pub type_ :          i32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub size :           i32,
+    pub type_ :          i32
 }
 
 impl Copy for xcb_glx_feedback_buffer_request_t {}
@@ -1075,11 +1075,11 @@ impl Clone for xcb_glx_feedback_buffer_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_select_buffer_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub size :           i32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub size :           i32
 }
 
 impl Copy for xcb_glx_select_buffer_request_t {}
@@ -1096,11 +1096,11 @@ pub struct xcb_glx_render_mode_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_render_mode_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub mode :           u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub mode :           u32
 }
 
 impl Copy for xcb_glx_render_mode_request_t {}
@@ -1110,14 +1110,14 @@ impl Clone for xcb_glx_render_mode_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_render_mode_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub ret_val :         u32,
-     pub n :               u32,
-     pub new_mode :        u32,
-     pub pad1 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub ret_val :         u32,
+    pub n :               u32,
+    pub new_mode :        u32,
+    pub pad1 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_render_mode_reply_t {}
@@ -1134,10 +1134,10 @@ pub struct xcb_glx_finish_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_finish_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t
 }
 
 impl Copy for xcb_glx_finish_request_t {}
@@ -1147,10 +1147,10 @@ impl Clone for xcb_glx_finish_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_finish_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32
 }
 
 impl Copy for xcb_glx_finish_reply_t {}
@@ -1161,12 +1161,12 @@ impl Clone for xcb_glx_finish_reply_t {
 
 #[repr(C)]
 pub struct xcb_glx_pixel_storef_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub pname :          u32,
-     pub datum :          xcb_glx_float32_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub pname :          u32,
+    pub datum :          xcb_glx_float32_t
 }
 
 impl Copy for xcb_glx_pixel_storef_request_t {}
@@ -1177,12 +1177,12 @@ impl Clone for xcb_glx_pixel_storef_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_pixel_storei_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub pname :          u32,
-     pub datum :          i32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub pname :          u32,
+    pub datum :          i32
 }
 
 impl Copy for xcb_glx_pixel_storei_request_t {}
@@ -1199,18 +1199,18 @@ pub struct xcb_glx_read_pixels_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_read_pixels_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub x :              i32,
-     pub y :              i32,
-     pub width :          i32,
-     pub height :         i32,
-     pub format :         u32,
-     pub type_ :          u32,
-     pub swap_bytes :     u8,
-     pub lsb_first :      u8
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub x :              i32,
+    pub y :              i32,
+    pub width :          i32,
+    pub height :         i32,
+    pub format :         u32,
+    pub type_ :          u32,
+    pub swap_bytes :     u8,
+    pub lsb_first :      u8
 }
 
 impl Copy for xcb_glx_read_pixels_request_t {}
@@ -1220,11 +1220,11 @@ impl Clone for xcb_glx_read_pixels_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_read_pixels_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 24]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 24]
 }
 
 impl Copy for xcb_glx_read_pixels_reply_t {}
@@ -1241,11 +1241,11 @@ pub struct xcb_glx_get_booleanv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_booleanv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub pname :          i32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub pname :          i32
 }
 
 impl Copy for xcb_glx_get_booleanv_request_t {}
@@ -1255,14 +1255,14 @@ impl Clone for xcb_glx_get_booleanv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_booleanv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           u8,
-     pub pad2 :            [u8; 15]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           u8,
+    pub pad2 :            [u8; 15]
 }
 
 impl Copy for xcb_glx_get_booleanv_reply_t {}
@@ -1279,11 +1279,11 @@ pub struct xcb_glx_get_clip_plane_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_clip_plane_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub plane :          i32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub plane :          i32
 }
 
 impl Copy for xcb_glx_get_clip_plane_request_t {}
@@ -1293,11 +1293,11 @@ impl Clone for xcb_glx_get_clip_plane_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_clip_plane_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 24]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 24]
 }
 
 impl Copy for xcb_glx_get_clip_plane_reply_t {}
@@ -1314,11 +1314,11 @@ pub struct xcb_glx_get_doublev_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_doublev_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_doublev_request_t {}
@@ -1328,14 +1328,14 @@ impl Clone for xcb_glx_get_doublev_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_doublev_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           xcb_glx_float64_t,
-     pub pad2 :            [u8; 8]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           xcb_glx_float64_t,
+    pub pad2 :            [u8; 8]
 }
 
 impl Copy for xcb_glx_get_doublev_reply_t {}
@@ -1352,10 +1352,10 @@ pub struct xcb_glx_get_error_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_error_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t
 }
 
 impl Copy for xcb_glx_get_error_request_t {}
@@ -1365,11 +1365,11 @@ impl Clone for xcb_glx_get_error_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_error_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub error :           i32
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub error :           i32
 }
 
 impl Copy for xcb_glx_get_error_reply_t {}
@@ -1386,11 +1386,11 @@ pub struct xcb_glx_get_floatv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_floatv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_floatv_request_t {}
@@ -1400,14 +1400,14 @@ impl Clone for xcb_glx_get_floatv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_floatv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           xcb_glx_float32_t,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           xcb_glx_float32_t,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_floatv_reply_t {}
@@ -1424,11 +1424,11 @@ pub struct xcb_glx_get_integerv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_integerv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_integerv_request_t {}
@@ -1438,14 +1438,14 @@ impl Clone for xcb_glx_get_integerv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_integerv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           i32,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           i32,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_integerv_reply_t {}
@@ -1462,12 +1462,12 @@ pub struct xcb_glx_get_lightfv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_lightfv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub light :          u32,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub light :          u32,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_lightfv_request_t {}
@@ -1477,14 +1477,14 @@ impl Clone for xcb_glx_get_lightfv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_lightfv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           xcb_glx_float32_t,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           xcb_glx_float32_t,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_lightfv_reply_t {}
@@ -1501,12 +1501,12 @@ pub struct xcb_glx_get_lightiv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_lightiv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub light :          u32,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub light :          u32,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_lightiv_request_t {}
@@ -1516,14 +1516,14 @@ impl Clone for xcb_glx_get_lightiv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_lightiv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           i32,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           i32,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_lightiv_reply_t {}
@@ -1540,12 +1540,12 @@ pub struct xcb_glx_get_mapdv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_mapdv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub target :         u32,
-     pub query :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub target :         u32,
+    pub query :          u32
 }
 
 impl Copy for xcb_glx_get_mapdv_request_t {}
@@ -1555,14 +1555,14 @@ impl Clone for xcb_glx_get_mapdv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_mapdv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           xcb_glx_float64_t,
-     pub pad2 :            [u8; 8]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           xcb_glx_float64_t,
+    pub pad2 :            [u8; 8]
 }
 
 impl Copy for xcb_glx_get_mapdv_reply_t {}
@@ -1579,12 +1579,12 @@ pub struct xcb_glx_get_mapfv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_mapfv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub target :         u32,
-     pub query :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub target :         u32,
+    pub query :          u32
 }
 
 impl Copy for xcb_glx_get_mapfv_request_t {}
@@ -1594,14 +1594,14 @@ impl Clone for xcb_glx_get_mapfv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_mapfv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           xcb_glx_float32_t,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           xcb_glx_float32_t,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_mapfv_reply_t {}
@@ -1618,12 +1618,12 @@ pub struct xcb_glx_get_mapiv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_mapiv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub target :         u32,
-     pub query :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub target :         u32,
+    pub query :          u32
 }
 
 impl Copy for xcb_glx_get_mapiv_request_t {}
@@ -1633,14 +1633,14 @@ impl Clone for xcb_glx_get_mapiv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_mapiv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           i32,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           i32,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_mapiv_reply_t {}
@@ -1657,12 +1657,12 @@ pub struct xcb_glx_get_materialfv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_materialfv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub face :           u32,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub face :           u32,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_materialfv_request_t {}
@@ -1672,14 +1672,14 @@ impl Clone for xcb_glx_get_materialfv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_materialfv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           xcb_glx_float32_t,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           xcb_glx_float32_t,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_materialfv_reply_t {}
@@ -1696,12 +1696,12 @@ pub struct xcb_glx_get_materialiv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_materialiv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub face :           u32,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub face :           u32,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_materialiv_request_t {}
@@ -1711,14 +1711,14 @@ impl Clone for xcb_glx_get_materialiv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_materialiv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           i32,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           i32,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_materialiv_reply_t {}
@@ -1735,11 +1735,11 @@ pub struct xcb_glx_get_pixel_mapfv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_pixel_mapfv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub map :            u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub map :            u32
 }
 
 impl Copy for xcb_glx_get_pixel_mapfv_request_t {}
@@ -1749,14 +1749,14 @@ impl Clone for xcb_glx_get_pixel_mapfv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_pixel_mapfv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           xcb_glx_float32_t,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           xcb_glx_float32_t,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_pixel_mapfv_reply_t {}
@@ -1773,11 +1773,11 @@ pub struct xcb_glx_get_pixel_mapuiv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_pixel_mapuiv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub map :            u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub map :            u32
 }
 
 impl Copy for xcb_glx_get_pixel_mapuiv_request_t {}
@@ -1787,14 +1787,14 @@ impl Clone for xcb_glx_get_pixel_mapuiv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_pixel_mapuiv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           u32,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           u32,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_pixel_mapuiv_reply_t {}
@@ -1811,11 +1811,11 @@ pub struct xcb_glx_get_pixel_mapusv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_pixel_mapusv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub map :            u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub map :            u32
 }
 
 impl Copy for xcb_glx_get_pixel_mapusv_request_t {}
@@ -1825,14 +1825,14 @@ impl Clone for xcb_glx_get_pixel_mapusv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_pixel_mapusv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           u16,
-     pub pad2 :            [u8; 16]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           u16,
+    pub pad2 :            [u8; 16]
 }
 
 impl Copy for xcb_glx_get_pixel_mapusv_reply_t {}
@@ -1849,11 +1849,11 @@ pub struct xcb_glx_get_polygon_stipple_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_polygon_stipple_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub lsb_first :      u8
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub lsb_first :      u8
 }
 
 impl Copy for xcb_glx_get_polygon_stipple_request_t {}
@@ -1863,11 +1863,11 @@ impl Clone for xcb_glx_get_polygon_stipple_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_polygon_stipple_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 24]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 24]
 }
 
 impl Copy for xcb_glx_get_polygon_stipple_reply_t {}
@@ -1884,11 +1884,11 @@ pub struct xcb_glx_get_string_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_string_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub name :           u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub name :           u32
 }
 
 impl Copy for xcb_glx_get_string_request_t {}
@@ -1898,13 +1898,13 @@ impl Clone for xcb_glx_get_string_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_string_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub pad2 :            [u8; 16]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub pad2 :            [u8; 16]
 }
 
 impl Copy for xcb_glx_get_string_reply_t {}
@@ -1921,12 +1921,12 @@ pub struct xcb_glx_get_tex_envfv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_tex_envfv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub target :         u32,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub target :         u32,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_tex_envfv_request_t {}
@@ -1936,14 +1936,14 @@ impl Clone for xcb_glx_get_tex_envfv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_tex_envfv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           xcb_glx_float32_t,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           xcb_glx_float32_t,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_tex_envfv_reply_t {}
@@ -1960,12 +1960,12 @@ pub struct xcb_glx_get_tex_enviv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_tex_enviv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub target :         u32,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub target :         u32,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_tex_enviv_request_t {}
@@ -1975,14 +1975,14 @@ impl Clone for xcb_glx_get_tex_enviv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_tex_enviv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           i32,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           i32,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_tex_enviv_reply_t {}
@@ -1999,12 +1999,12 @@ pub struct xcb_glx_get_tex_gendv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_tex_gendv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub coord :          u32,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub coord :          u32,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_tex_gendv_request_t {}
@@ -2014,14 +2014,14 @@ impl Clone for xcb_glx_get_tex_gendv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_tex_gendv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           xcb_glx_float64_t,
-     pub pad2 :            [u8; 8]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           xcb_glx_float64_t,
+    pub pad2 :            [u8; 8]
 }
 
 impl Copy for xcb_glx_get_tex_gendv_reply_t {}
@@ -2038,12 +2038,12 @@ pub struct xcb_glx_get_tex_genfv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_tex_genfv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub coord :          u32,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub coord :          u32,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_tex_genfv_request_t {}
@@ -2053,14 +2053,14 @@ impl Clone for xcb_glx_get_tex_genfv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_tex_genfv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           xcb_glx_float32_t,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           xcb_glx_float32_t,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_tex_genfv_reply_t {}
@@ -2077,12 +2077,12 @@ pub struct xcb_glx_get_tex_geniv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_tex_geniv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub coord :          u32,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub coord :          u32,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_tex_geniv_request_t {}
@@ -2092,14 +2092,14 @@ impl Clone for xcb_glx_get_tex_geniv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_tex_geniv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           i32,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           i32,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_tex_geniv_reply_t {}
@@ -2116,15 +2116,15 @@ pub struct xcb_glx_get_tex_image_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_tex_image_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub target :         u32,
-     pub level :          i32,
-     pub format :         u32,
-     pub type_ :          u32,
-     pub swap_bytes :     u8
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub target :         u32,
+    pub level :          i32,
+    pub format :         u32,
+    pub type_ :          u32,
+    pub swap_bytes :     u8
 }
 
 impl Copy for xcb_glx_get_tex_image_request_t {}
@@ -2134,15 +2134,15 @@ impl Clone for xcb_glx_get_tex_image_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_tex_image_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 8],
-     pub width :           i32,
-     pub height :          i32,
-     pub depth :           i32,
-     pub pad2 :            [u8; 4]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 8],
+    pub width :           i32,
+    pub height :          i32,
+    pub depth :           i32,
+    pub pad2 :            [u8; 4]
 }
 
 impl Copy for xcb_glx_get_tex_image_reply_t {}
@@ -2159,12 +2159,12 @@ pub struct xcb_glx_get_tex_parameterfv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_tex_parameterfv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub target :         u32,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub target :         u32,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_tex_parameterfv_request_t {}
@@ -2174,14 +2174,14 @@ impl Clone for xcb_glx_get_tex_parameterfv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_tex_parameterfv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           xcb_glx_float32_t,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           xcb_glx_float32_t,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_tex_parameterfv_reply_t {}
@@ -2198,12 +2198,12 @@ pub struct xcb_glx_get_tex_parameteriv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_tex_parameteriv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub target :         u32,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub target :         u32,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_tex_parameteriv_request_t {}
@@ -2213,14 +2213,14 @@ impl Clone for xcb_glx_get_tex_parameteriv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_tex_parameteriv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           i32,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           i32,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_tex_parameteriv_reply_t {}
@@ -2237,13 +2237,13 @@ pub struct xcb_glx_get_tex_level_parameterfv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_tex_level_parameterfv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub target :         u32,
-     pub level :          i32,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub target :         u32,
+    pub level :          i32,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_tex_level_parameterfv_request_t {}
@@ -2253,14 +2253,14 @@ impl Clone for xcb_glx_get_tex_level_parameterfv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_tex_level_parameterfv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           xcb_glx_float32_t,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           xcb_glx_float32_t,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_tex_level_parameterfv_reply_t {}
@@ -2277,13 +2277,13 @@ pub struct xcb_glx_get_tex_level_parameteriv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_tex_level_parameteriv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub target :         u32,
-     pub level :          i32,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub target :         u32,
+    pub level :          i32,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_tex_level_parameteriv_request_t {}
@@ -2293,14 +2293,14 @@ impl Clone for xcb_glx_get_tex_level_parameteriv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_tex_level_parameteriv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           i32,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           i32,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_tex_level_parameteriv_reply_t {}
@@ -2317,11 +2317,11 @@ pub struct xcb_glx_is_list_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_is_list_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub list :           u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub list :           u32
 }
 
 impl Copy for xcb_glx_is_list_request_t {}
@@ -2331,11 +2331,11 @@ impl Clone for xcb_glx_is_list_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_is_list_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub ret_val :         xcb_glx_bool32_t
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub ret_val :         xcb_glx_bool32_t
 }
 
 impl Copy for xcb_glx_is_list_reply_t {}
@@ -2346,10 +2346,10 @@ impl Clone for xcb_glx_is_list_reply_t {
 
 #[repr(C)]
 pub struct xcb_glx_flush_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t
 }
 
 impl Copy for xcb_glx_flush_request_t {}
@@ -2366,11 +2366,11 @@ pub struct xcb_glx_are_textures_resident_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_are_textures_resident_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub n :              i32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub n :              i32
 }
 
 impl Copy for xcb_glx_are_textures_resident_request_t {}
@@ -2380,12 +2380,12 @@ impl Clone for xcb_glx_are_textures_resident_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_are_textures_resident_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub ret_val :         xcb_glx_bool32_t,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub ret_val :         xcb_glx_bool32_t,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_glx_are_textures_resident_reply_t {}
@@ -2396,11 +2396,11 @@ impl Clone for xcb_glx_are_textures_resident_reply_t {
 
 #[repr(C)]
 pub struct xcb_glx_delete_textures_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub n :              i32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub n :              i32
 }
 
 impl Copy for xcb_glx_delete_textures_request_t {}
@@ -2417,11 +2417,11 @@ pub struct xcb_glx_gen_textures_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_gen_textures_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub n :              i32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub n :              i32
 }
 
 impl Copy for xcb_glx_gen_textures_request_t {}
@@ -2431,11 +2431,11 @@ impl Clone for xcb_glx_gen_textures_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_gen_textures_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 24]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 24]
 }
 
 impl Copy for xcb_glx_gen_textures_reply_t {}
@@ -2452,11 +2452,11 @@ pub struct xcb_glx_is_texture_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_is_texture_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub texture :        u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub texture :        u32
 }
 
 impl Copy for xcb_glx_is_texture_request_t {}
@@ -2466,11 +2466,11 @@ impl Clone for xcb_glx_is_texture_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_is_texture_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub ret_val :         xcb_glx_bool32_t
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub ret_val :         xcb_glx_bool32_t
 }
 
 impl Copy for xcb_glx_is_texture_reply_t {}
@@ -2487,14 +2487,14 @@ pub struct xcb_glx_get_color_table_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_color_table_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub target :         u32,
-     pub format :         u32,
-     pub type_ :          u32,
-     pub swap_bytes :     u8
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub target :         u32,
+    pub format :         u32,
+    pub type_ :          u32,
+    pub swap_bytes :     u8
 }
 
 impl Copy for xcb_glx_get_color_table_request_t {}
@@ -2504,13 +2504,13 @@ impl Clone for xcb_glx_get_color_table_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_color_table_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 8],
-     pub width :           i32,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 8],
+    pub width :           i32,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_color_table_reply_t {}
@@ -2527,12 +2527,12 @@ pub struct xcb_glx_get_color_table_parameterfv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_color_table_parameterfv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub target :         u32,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub target :         u32,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_color_table_parameterfv_request_t {}
@@ -2542,14 +2542,14 @@ impl Clone for xcb_glx_get_color_table_parameterfv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_color_table_parameterfv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           xcb_glx_float32_t,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           xcb_glx_float32_t,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_color_table_parameterfv_reply_t {}
@@ -2566,12 +2566,12 @@ pub struct xcb_glx_get_color_table_parameteriv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_color_table_parameteriv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub target :         u32,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub target :         u32,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_color_table_parameteriv_request_t {}
@@ -2581,14 +2581,14 @@ impl Clone for xcb_glx_get_color_table_parameteriv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_color_table_parameteriv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           i32,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           i32,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_color_table_parameteriv_reply_t {}
@@ -2605,14 +2605,14 @@ pub struct xcb_glx_get_convolution_filter_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_convolution_filter_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub target :         u32,
-     pub format :         u32,
-     pub type_ :          u32,
-     pub swap_bytes :     u8
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub target :         u32,
+    pub format :         u32,
+    pub type_ :          u32,
+    pub swap_bytes :     u8
 }
 
 impl Copy for xcb_glx_get_convolution_filter_request_t {}
@@ -2622,14 +2622,14 @@ impl Clone for xcb_glx_get_convolution_filter_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_convolution_filter_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 8],
-     pub width :           i32,
-     pub height :          i32,
-     pub pad2 :            [u8; 8]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 8],
+    pub width :           i32,
+    pub height :          i32,
+    pub pad2 :            [u8; 8]
 }
 
 impl Copy for xcb_glx_get_convolution_filter_reply_t {}
@@ -2646,12 +2646,12 @@ pub struct xcb_glx_get_convolution_parameterfv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_convolution_parameterfv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub target :         u32,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub target :         u32,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_convolution_parameterfv_request_t {}
@@ -2661,14 +2661,14 @@ impl Clone for xcb_glx_get_convolution_parameterfv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_convolution_parameterfv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           xcb_glx_float32_t,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           xcb_glx_float32_t,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_convolution_parameterfv_reply_t {}
@@ -2685,12 +2685,12 @@ pub struct xcb_glx_get_convolution_parameteriv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_convolution_parameteriv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub target :         u32,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub target :         u32,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_convolution_parameteriv_request_t {}
@@ -2700,14 +2700,14 @@ impl Clone for xcb_glx_get_convolution_parameteriv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_convolution_parameteriv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           i32,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           i32,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_convolution_parameteriv_reply_t {}
@@ -2724,14 +2724,14 @@ pub struct xcb_glx_get_separable_filter_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_separable_filter_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub target :         u32,
-     pub format :         u32,
-     pub type_ :          u32,
-     pub swap_bytes :     u8
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub target :         u32,
+    pub format :         u32,
+    pub type_ :          u32,
+    pub swap_bytes :     u8
 }
 
 impl Copy for xcb_glx_get_separable_filter_request_t {}
@@ -2741,14 +2741,14 @@ impl Clone for xcb_glx_get_separable_filter_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_separable_filter_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 8],
-     pub row_w :           i32,
-     pub col_h :           i32,
-     pub pad2 :            [u8; 8]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 8],
+    pub row_w :           i32,
+    pub col_h :           i32,
+    pub pad2 :            [u8; 8]
 }
 
 impl Copy for xcb_glx_get_separable_filter_reply_t {}
@@ -2765,15 +2765,15 @@ pub struct xcb_glx_get_histogram_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_histogram_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub target :         u32,
-     pub format :         u32,
-     pub type_ :          u32,
-     pub swap_bytes :     u8,
-     pub reset :          u8
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub target :         u32,
+    pub format :         u32,
+    pub type_ :          u32,
+    pub swap_bytes :     u8,
+    pub reset :          u8
 }
 
 impl Copy for xcb_glx_get_histogram_request_t {}
@@ -2783,13 +2783,13 @@ impl Clone for xcb_glx_get_histogram_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_histogram_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 8],
-     pub width :           i32,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 8],
+    pub width :           i32,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_histogram_reply_t {}
@@ -2806,12 +2806,12 @@ pub struct xcb_glx_get_histogram_parameterfv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_histogram_parameterfv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub target :         u32,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub target :         u32,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_histogram_parameterfv_request_t {}
@@ -2821,14 +2821,14 @@ impl Clone for xcb_glx_get_histogram_parameterfv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_histogram_parameterfv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           xcb_glx_float32_t,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           xcb_glx_float32_t,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_histogram_parameterfv_reply_t {}
@@ -2845,12 +2845,12 @@ pub struct xcb_glx_get_histogram_parameteriv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_histogram_parameteriv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub target :         u32,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub target :         u32,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_histogram_parameteriv_request_t {}
@@ -2860,14 +2860,14 @@ impl Clone for xcb_glx_get_histogram_parameteriv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_histogram_parameteriv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           i32,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           i32,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_histogram_parameteriv_reply_t {}
@@ -2884,15 +2884,15 @@ pub struct xcb_glx_get_minmax_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_minmax_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub target :         u32,
-     pub format :         u32,
-     pub type_ :          u32,
-     pub swap_bytes :     u8,
-     pub reset :          u8
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub target :         u32,
+    pub format :         u32,
+    pub type_ :          u32,
+    pub swap_bytes :     u8,
+    pub reset :          u8
 }
 
 impl Copy for xcb_glx_get_minmax_request_t {}
@@ -2902,11 +2902,11 @@ impl Clone for xcb_glx_get_minmax_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_minmax_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 24]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 24]
 }
 
 impl Copy for xcb_glx_get_minmax_reply_t {}
@@ -2923,12 +2923,12 @@ pub struct xcb_glx_get_minmax_parameterfv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_minmax_parameterfv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub target :         u32,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub target :         u32,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_minmax_parameterfv_request_t {}
@@ -2938,14 +2938,14 @@ impl Clone for xcb_glx_get_minmax_parameterfv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_minmax_parameterfv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           xcb_glx_float32_t,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           xcb_glx_float32_t,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_minmax_parameterfv_reply_t {}
@@ -2962,12 +2962,12 @@ pub struct xcb_glx_get_minmax_parameteriv_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_minmax_parameteriv_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub target :         u32,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub target :         u32,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_minmax_parameteriv_request_t {}
@@ -2977,14 +2977,14 @@ impl Clone for xcb_glx_get_minmax_parameteriv_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_minmax_parameteriv_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           i32,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           i32,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_minmax_parameteriv_reply_t {}
@@ -3001,12 +3001,12 @@ pub struct xcb_glx_get_compressed_tex_image_arb_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_compressed_tex_image_arb_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub target :         u32,
-     pub level :          i32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub target :         u32,
+    pub level :          i32
 }
 
 impl Copy for xcb_glx_get_compressed_tex_image_arb_request_t {}
@@ -3016,13 +3016,13 @@ impl Clone for xcb_glx_get_compressed_tex_image_arb_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_compressed_tex_image_arb_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 8],
-     pub size :            i32,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 8],
+    pub size :            i32,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_compressed_tex_image_arb_reply_t {}
@@ -3033,11 +3033,11 @@ impl Clone for xcb_glx_get_compressed_tex_image_arb_reply_t {
 
 #[repr(C)]
 pub struct xcb_glx_delete_queries_arb_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub n :              i32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub n :              i32
 }
 
 impl Copy for xcb_glx_delete_queries_arb_request_t {}
@@ -3054,11 +3054,11 @@ pub struct xcb_glx_gen_queries_arb_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_gen_queries_arb_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub n :              i32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub n :              i32
 }
 
 impl Copy for xcb_glx_gen_queries_arb_request_t {}
@@ -3068,11 +3068,11 @@ impl Clone for xcb_glx_gen_queries_arb_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_gen_queries_arb_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 24]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 24]
 }
 
 impl Copy for xcb_glx_gen_queries_arb_reply_t {}
@@ -3089,11 +3089,11 @@ pub struct xcb_glx_is_query_arb_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_is_query_arb_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub id :             u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub id :             u32
 }
 
 impl Copy for xcb_glx_is_query_arb_request_t {}
@@ -3103,11 +3103,11 @@ impl Clone for xcb_glx_is_query_arb_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_is_query_arb_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub ret_val :         xcb_glx_bool32_t
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub ret_val :         xcb_glx_bool32_t
 }
 
 impl Copy for xcb_glx_is_query_arb_reply_t {}
@@ -3124,12 +3124,12 @@ pub struct xcb_glx_get_queryiv_arb_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_queryiv_arb_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub target :         u32,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub target :         u32,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_queryiv_arb_request_t {}
@@ -3139,14 +3139,14 @@ impl Clone for xcb_glx_get_queryiv_arb_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_queryiv_arb_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           i32,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           i32,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_queryiv_arb_reply_t {}
@@ -3163,12 +3163,12 @@ pub struct xcb_glx_get_query_objectiv_arb_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_query_objectiv_arb_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub id :             u32,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub id :             u32,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_query_objectiv_arb_request_t {}
@@ -3178,14 +3178,14 @@ impl Clone for xcb_glx_get_query_objectiv_arb_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_query_objectiv_arb_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           i32,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           i32,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_query_objectiv_arb_reply_t {}
@@ -3202,12 +3202,12 @@ pub struct xcb_glx_get_query_objectuiv_arb_cookie_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_query_objectuiv_arb_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub context_tag :    xcb_glx_context_tag_t,
-     pub id :             u32,
-     pub pname :          u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub context_tag :    xcb_glx_context_tag_t,
+    pub id :             u32,
+    pub pname :          u32
 }
 
 impl Copy for xcb_glx_get_query_objectuiv_arb_request_t {}
@@ -3217,14 +3217,14 @@ impl Clone for xcb_glx_get_query_objectuiv_arb_request_t {
 
 #[repr(C)]
 pub struct xcb_glx_get_query_objectuiv_arb_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub pad1 :            [u8; 4],
-     pub n :               u32,
-     pub datum :           u32,
-     pub pad2 :            [u8; 12]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub pad1 :            [u8; 4],
+    pub n :               u32,
+    pub datum :           u32,
+    pub pad2 :            [u8; 12]
 }
 
 impl Copy for xcb_glx_get_query_objectuiv_arb_reply_t {}

@@ -16,10 +16,10 @@ pub const XINERAMA_MINOR_VERSION : c_uint = 1;
 
 #[repr(C)]
 pub struct xcb_xinerama_screen_info_t {
-     pub x_org :    i16,
-     pub y_org :    i16,
-     pub width :    u16,
-     pub height :   u16
+    pub x_org :    i16,
+    pub y_org :    i16,
+    pub width :    u16,
+    pub height :   u16
 }
 
 impl Copy for xcb_xinerama_screen_info_t {}
@@ -43,11 +43,11 @@ pub struct xcb_xinerama_query_version_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xinerama_query_version_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub major :          u8,
-     pub minor :          u8
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub major :          u8,
+    pub minor :          u8
 }
 
 impl Copy for xcb_xinerama_query_version_request_t {}
@@ -57,12 +57,12 @@ impl Clone for xcb_xinerama_query_version_request_t {
 
 #[repr(C)]
 pub struct xcb_xinerama_query_version_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub major :           u16,
-     pub minor :           u16
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub major :           u16,
+    pub minor :           u16
 }
 
 impl Copy for xcb_xinerama_query_version_reply_t {}
@@ -79,10 +79,10 @@ pub struct xcb_xinerama_get_state_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xinerama_get_state_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub window :         ffi::xproto::xcb_window_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub window :         ffi::xproto::xcb_window_t
 }
 
 impl Copy for xcb_xinerama_get_state_request_t {}
@@ -92,11 +92,11 @@ impl Clone for xcb_xinerama_get_state_request_t {
 
 #[repr(C)]
 pub struct xcb_xinerama_get_state_reply_t {
-     pub response_type :   u8,
-     pub state :           u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub window :          ffi::xproto::xcb_window_t
+    pub response_type :   u8,
+    pub state :           u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub window :          ffi::xproto::xcb_window_t
 }
 
 impl Copy for xcb_xinerama_get_state_reply_t {}
@@ -113,10 +113,10 @@ pub struct xcb_xinerama_get_screen_count_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xinerama_get_screen_count_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub window :         ffi::xproto::xcb_window_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub window :         ffi::xproto::xcb_window_t
 }
 
 impl Copy for xcb_xinerama_get_screen_count_request_t {}
@@ -126,11 +126,11 @@ impl Clone for xcb_xinerama_get_screen_count_request_t {
 
 #[repr(C)]
 pub struct xcb_xinerama_get_screen_count_reply_t {
-     pub response_type :   u8,
-     pub screen_count :    u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub window :          ffi::xproto::xcb_window_t
+    pub response_type :   u8,
+    pub screen_count :    u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub window :          ffi::xproto::xcb_window_t
 }
 
 impl Copy for xcb_xinerama_get_screen_count_reply_t {}
@@ -147,11 +147,11 @@ pub struct xcb_xinerama_get_screen_size_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xinerama_get_screen_size_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub window :         ffi::xproto::xcb_window_t,
-     pub screen :         u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub window :         ffi::xproto::xcb_window_t,
+    pub screen :         u32
 }
 
 impl Copy for xcb_xinerama_get_screen_size_request_t {}
@@ -161,14 +161,14 @@ impl Clone for xcb_xinerama_get_screen_size_request_t {
 
 #[repr(C)]
 pub struct xcb_xinerama_get_screen_size_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub width :           u32,
-     pub height :          u32,
-     pub window :          ffi::xproto::xcb_window_t,
-     pub screen :          u32
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub width :           u32,
+    pub height :          u32,
+    pub window :          ffi::xproto::xcb_window_t,
+    pub screen :          u32
 }
 
 impl Copy for xcb_xinerama_get_screen_size_reply_t {}
@@ -185,9 +185,9 @@ pub struct xcb_xinerama_is_active_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xinerama_is_active_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_xinerama_is_active_request_t {}
@@ -197,11 +197,11 @@ impl Clone for xcb_xinerama_is_active_request_t {
 
 #[repr(C)]
 pub struct xcb_xinerama_is_active_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub state :           u32
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub state :           u32
 }
 
 impl Copy for xcb_xinerama_is_active_reply_t {}
@@ -218,9 +218,9 @@ pub struct xcb_xinerama_query_screens_cookie_t {
 
 #[repr(C)]
 pub struct xcb_xinerama_query_screens_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_xinerama_query_screens_request_t {}
@@ -230,12 +230,12 @@ impl Clone for xcb_xinerama_query_screens_request_t {
 
 #[repr(C)]
 pub struct xcb_xinerama_query_screens_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub number :          u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub number :          u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_xinerama_query_screens_reply_t {}

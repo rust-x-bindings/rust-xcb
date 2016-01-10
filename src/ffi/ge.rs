@@ -22,11 +22,11 @@ pub struct xcb_genericevent_query_version_cookie_t {
 
 #[repr(C)]
 pub struct xcb_genericevent_query_version_request_t {
-     pub major_opcode :           u8,
-     pub minor_opcode :           u8,
-     pub length :                 u16,
-     pub client_major_version :   u16,
-     pub client_minor_version :   u16
+    pub major_opcode :           u8,
+    pub minor_opcode :           u8,
+    pub length :                 u16,
+    pub client_major_version :   u16,
+    pub client_minor_version :   u16
 }
 
 impl Copy for xcb_genericevent_query_version_request_t {}
@@ -36,13 +36,13 @@ impl Clone for xcb_genericevent_query_version_request_t {
 
 #[repr(C)]
 pub struct xcb_genericevent_query_version_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub major_version :   u16,
-     pub minor_version :   u16,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub major_version :   u16,
+    pub minor_version :   u16,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_genericevent_query_version_reply_t {}

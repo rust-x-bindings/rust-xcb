@@ -62,9 +62,9 @@ pub struct xcb_render_fixed_iterator_t {
 
 #[repr(C)]
 pub struct xcb_render_pict_format_error_t {
-     pub response_type :   u8,
-     pub error_code :      u8,
-     pub sequence :        u16
+    pub response_type :   u8,
+    pub error_code :      u8,
+    pub sequence :        u16
 }
 
 impl Copy for xcb_render_pict_format_error_t {}
@@ -75,9 +75,9 @@ impl Clone for xcb_render_pict_format_error_t {
 
 #[repr(C)]
 pub struct xcb_render_picture_error_t {
-     pub response_type :   u8,
-     pub error_code :      u8,
-     pub sequence :        u16
+    pub response_type :   u8,
+    pub error_code :      u8,
+    pub sequence :        u16
 }
 
 impl Copy for xcb_render_picture_error_t {}
@@ -88,9 +88,9 @@ impl Clone for xcb_render_picture_error_t {
 
 #[repr(C)]
 pub struct xcb_render_pict_op_error_t {
-     pub response_type :   u8,
-     pub error_code :      u8,
-     pub sequence :        u16
+    pub response_type :   u8,
+    pub error_code :      u8,
+    pub sequence :        u16
 }
 
 impl Copy for xcb_render_pict_op_error_t {}
@@ -101,9 +101,9 @@ impl Clone for xcb_render_pict_op_error_t {
 
 #[repr(C)]
 pub struct xcb_render_glyph_set_error_t {
-     pub response_type :   u8,
-     pub error_code :      u8,
-     pub sequence :        u16
+    pub response_type :   u8,
+    pub error_code :      u8,
+    pub sequence :        u16
 }
 
 impl Copy for xcb_render_glyph_set_error_t {}
@@ -114,9 +114,9 @@ impl Clone for xcb_render_glyph_set_error_t {
 
 #[repr(C)]
 pub struct xcb_render_glyph_error_t {
-     pub response_type :   u8,
-     pub error_code :      u8,
-     pub sequence :        u16
+    pub response_type :   u8,
+    pub error_code :      u8,
+    pub sequence :        u16
 }
 
 impl Copy for xcb_render_glyph_error_t {}
@@ -126,14 +126,14 @@ impl Clone for xcb_render_glyph_error_t {
 
 #[repr(C)]
 pub struct xcb_render_directformat_t {
-     pub red_shift :     u16,
-     pub red_mask :      u16,
-     pub green_shift :   u16,
-     pub green_mask :    u16,
-     pub blue_shift :    u16,
-     pub blue_mask :     u16,
-     pub alpha_shift :   u16,
-     pub alpha_mask :    u16
+    pub red_shift :     u16,
+    pub red_mask :      u16,
+    pub green_shift :   u16,
+    pub green_mask :    u16,
+    pub blue_shift :    u16,
+    pub blue_mask :     u16,
+    pub alpha_shift :   u16,
+    pub alpha_mask :    u16
 }
 
 impl Copy for xcb_render_directformat_t {}
@@ -150,12 +150,12 @@ pub struct xcb_render_directformat_iterator_t {
 
 #[repr(C)]
 pub struct xcb_render_pictforminfo_t {
-     pub id :         xcb_render_pictformat_t,
-     pub type_ :      u8,
-     pub depth :      u8,
-     pub pad0 :       [u8; 2],
-     pub direct :     xcb_render_directformat_t,
-     pub colormap :   ffi::xproto::xcb_colormap_t
+    pub id :         xcb_render_pictformat_t,
+    pub type_ :      u8,
+    pub depth :      u8,
+    pub pad0 :       [u8; 2],
+    pub direct :     xcb_render_directformat_t,
+    pub colormap :   ffi::xproto::xcb_colormap_t
 }
 
 impl Copy for xcb_render_pictforminfo_t {}
@@ -172,8 +172,8 @@ pub struct xcb_render_pictforminfo_iterator_t {
 
 #[repr(C)]
 pub struct xcb_render_pictvisual_t {
-     pub visual :   ffi::xproto::xcb_visualid_t,
-     pub format :   xcb_render_pictformat_t
+    pub visual :   ffi::xproto::xcb_visualid_t,
+    pub format :   xcb_render_pictformat_t
 }
 
 impl Copy for xcb_render_pictvisual_t {}
@@ -190,10 +190,10 @@ pub struct xcb_render_pictvisual_iterator_t {
 
 #[repr(C)]
 pub struct xcb_render_pictdepth_t {
-     pub depth :         u8,
-     pub pad0 :          u8,
-     pub num_visuals :   u16,
-     pub pad1 :          [u8; 4]
+    pub depth :         u8,
+    pub pad0 :          u8,
+    pub num_visuals :   u16,
+    pub pad1 :          [u8; 4]
 }
 
 impl Copy for xcb_render_pictdepth_t {}
@@ -210,8 +210,8 @@ pub struct xcb_render_pictdepth_iterator_t {
 
 #[repr(C)]
 pub struct xcb_render_pictscreen_t {
-     pub num_depths :   u32,
-     pub fallback :     xcb_render_pictformat_t
+    pub num_depths :   u32,
+    pub fallback :     xcb_render_pictformat_t
 }
 
 impl Copy for xcb_render_pictscreen_t {}
@@ -228,11 +228,11 @@ pub struct xcb_render_pictscreen_iterator_t {
 
 #[repr(C)]
 pub struct xcb_render_indexvalue_t {
-     pub pixel :   u32,
-     pub red :     u16,
-     pub green :   u16,
-     pub blue :    u16,
-     pub alpha :   u16
+    pub pixel :   u32,
+    pub red :     u16,
+    pub green :   u16,
+    pub blue :    u16,
+    pub alpha :   u16
 }
 
 impl Copy for xcb_render_indexvalue_t {}
@@ -249,10 +249,10 @@ pub struct xcb_render_indexvalue_iterator_t {
 
 #[repr(C)]
 pub struct xcb_render_color_t {
-     pub red :     u16,
-     pub green :   u16,
-     pub blue :    u16,
-     pub alpha :   u16
+    pub red :     u16,
+    pub green :   u16,
+    pub blue :    u16,
+    pub alpha :   u16
 }
 
 impl Copy for xcb_render_color_t {}
@@ -269,8 +269,8 @@ pub struct xcb_render_color_iterator_t {
 
 #[repr(C)]
 pub struct xcb_render_pointfix_t {
-     pub x :   xcb_render_fixed_t,
-     pub y :   xcb_render_fixed_t
+    pub x :   xcb_render_fixed_t,
+    pub y :   xcb_render_fixed_t
 }
 
 impl Copy for xcb_render_pointfix_t {}
@@ -287,8 +287,8 @@ pub struct xcb_render_pointfix_iterator_t {
 
 #[repr(C)]
 pub struct xcb_render_linefix_t {
-     pub p1 :   xcb_render_pointfix_t,
-     pub p2 :   xcb_render_pointfix_t
+    pub p1 :   xcb_render_pointfix_t,
+    pub p2 :   xcb_render_pointfix_t
 }
 
 impl Copy for xcb_render_linefix_t {}
@@ -305,9 +305,9 @@ pub struct xcb_render_linefix_iterator_t {
 
 #[repr(C)]
 pub struct xcb_render_triangle_t {
-     pub p1 :   xcb_render_pointfix_t,
-     pub p2 :   xcb_render_pointfix_t,
-     pub p3 :   xcb_render_pointfix_t
+    pub p1 :   xcb_render_pointfix_t,
+    pub p2 :   xcb_render_pointfix_t,
+    pub p3 :   xcb_render_pointfix_t
 }
 
 impl Copy for xcb_render_triangle_t {}
@@ -324,10 +324,10 @@ pub struct xcb_render_triangle_iterator_t {
 
 #[repr(C)]
 pub struct xcb_render_trapezoid_t {
-     pub top :      xcb_render_fixed_t,
-     pub bottom :   xcb_render_fixed_t,
-     pub left :     xcb_render_linefix_t,
-     pub right :    xcb_render_linefix_t
+    pub top :      xcb_render_fixed_t,
+    pub bottom :   xcb_render_fixed_t,
+    pub left :     xcb_render_linefix_t,
+    pub right :    xcb_render_linefix_t
 }
 
 impl Copy for xcb_render_trapezoid_t {}
@@ -344,12 +344,12 @@ pub struct xcb_render_trapezoid_iterator_t {
 
 #[repr(C)]
 pub struct xcb_render_glyphinfo_t {
-     pub width :    u16,
-     pub height :   u16,
-     pub x :        i16,
-     pub y :        i16,
-     pub x_off :    i16,
-     pub y_off :    i16
+    pub width :    u16,
+    pub height :   u16,
+    pub x :        i16,
+    pub y :        i16,
+    pub x_off :    i16,
+    pub y_off :    i16
 }
 
 impl Copy for xcb_render_glyphinfo_t {}
@@ -373,11 +373,11 @@ pub struct xcb_render_query_version_cookie_t {
 
 #[repr(C)]
 pub struct xcb_render_query_version_request_t {
-     pub major_opcode :           u8,
-     pub minor_opcode :           u8,
-     pub length :                 u16,
-     pub client_major_version :   u32,
-     pub client_minor_version :   u32
+    pub major_opcode :           u8,
+    pub minor_opcode :           u8,
+    pub length :                 u16,
+    pub client_major_version :   u32,
+    pub client_minor_version :   u32
 }
 
 impl Copy for xcb_render_query_version_request_t {}
@@ -387,13 +387,13 @@ impl Clone for xcb_render_query_version_request_t {
 
 #[repr(C)]
 pub struct xcb_render_query_version_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub major_version :   u32,
-     pub minor_version :   u32,
-     pub pad1 :            [u8; 16]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub major_version :   u32,
+    pub minor_version :   u32,
+    pub pad1 :            [u8; 16]
 }
 
 impl Copy for xcb_render_query_version_reply_t {}
@@ -410,9 +410,9 @@ pub struct xcb_render_query_pict_formats_cookie_t {
 
 #[repr(C)]
 pub struct xcb_render_query_pict_formats_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_render_query_pict_formats_request_t {}
@@ -422,16 +422,16 @@ impl Clone for xcb_render_query_pict_formats_request_t {
 
 #[repr(C)]
 pub struct xcb_render_query_pict_formats_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub num_formats :     u32,
-     pub num_screens :     u32,
-     pub num_depths :      u32,
-     pub num_visuals :     u32,
-     pub num_subpixel :    u32,
-     pub pad1 :            [u8; 4]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub num_formats :     u32,
+    pub num_screens :     u32,
+    pub num_depths :      u32,
+    pub num_visuals :     u32,
+    pub num_subpixel :    u32,
+    pub pad1 :            [u8; 4]
 }
 
 impl Copy for xcb_render_query_pict_formats_reply_t {}
@@ -448,10 +448,10 @@ pub struct xcb_render_query_pict_index_values_cookie_t {
 
 #[repr(C)]
 pub struct xcb_render_query_pict_index_values_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub format :         xcb_render_pictformat_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub format :         xcb_render_pictformat_t
 }
 
 impl Copy for xcb_render_query_pict_index_values_request_t {}
@@ -461,12 +461,12 @@ impl Clone for xcb_render_query_pict_index_values_request_t {
 
 #[repr(C)]
 pub struct xcb_render_query_pict_index_values_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub num_values :      u32,
-     pub pad1 :            [u8; 20]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub num_values :      u32,
+    pub pad1 :            [u8; 20]
 }
 
 impl Copy for xcb_render_query_pict_index_values_reply_t {}
@@ -477,13 +477,13 @@ impl Clone for xcb_render_query_pict_index_values_reply_t {
 
 #[repr(C)]
 pub struct xcb_render_create_picture_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub pid :            xcb_render_picture_t,
-     pub drawable :       ffi::xproto::xcb_drawable_t,
-     pub format :         xcb_render_pictformat_t,
-     pub value_mask :     u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub pid :            xcb_render_picture_t,
+    pub drawable :       ffi::xproto::xcb_drawable_t,
+    pub format :         xcb_render_pictformat_t,
+    pub value_mask :     u32
 }
 
 impl Copy for xcb_render_create_picture_request_t {}
@@ -494,11 +494,11 @@ impl Clone for xcb_render_create_picture_request_t {
 
 #[repr(C)]
 pub struct xcb_render_change_picture_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub picture :        xcb_render_picture_t,
-     pub value_mask :     u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub picture :        xcb_render_picture_t,
+    pub value_mask :     u32
 }
 
 impl Copy for xcb_render_change_picture_request_t {}
@@ -509,12 +509,12 @@ impl Clone for xcb_render_change_picture_request_t {
 
 #[repr(C)]
 pub struct xcb_render_set_picture_clip_rectangles_request_t {
-     pub major_opcode :    u8,
-     pub minor_opcode :    u8,
-     pub length :          u16,
-     pub picture :         xcb_render_picture_t,
-     pub clip_x_origin :   i16,
-     pub clip_y_origin :   i16
+    pub major_opcode :    u8,
+    pub minor_opcode :    u8,
+    pub length :          u16,
+    pub picture :         xcb_render_picture_t,
+    pub clip_x_origin :   i16,
+    pub clip_y_origin :   i16
 }
 
 impl Copy for xcb_render_set_picture_clip_rectangles_request_t {}
@@ -525,10 +525,10 @@ impl Clone for xcb_render_set_picture_clip_rectangles_request_t {
 
 #[repr(C)]
 pub struct xcb_render_free_picture_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub picture :        xcb_render_picture_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub picture :        xcb_render_picture_t
 }
 
 impl Copy for xcb_render_free_picture_request_t {}
@@ -539,22 +539,22 @@ impl Clone for xcb_render_free_picture_request_t {
 
 #[repr(C)]
 pub struct xcb_render_composite_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub op :             u8,
-     pub pad0 :           [u8; 3],
-     pub src :            xcb_render_picture_t,
-     pub mask :           xcb_render_picture_t,
-     pub dst :            xcb_render_picture_t,
-     pub src_x :          i16,
-     pub src_y :          i16,
-     pub mask_x :         i16,
-     pub mask_y :         i16,
-     pub dst_x :          i16,
-     pub dst_y :          i16,
-     pub width :          u16,
-     pub height :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub op :             u8,
+    pub pad0 :           [u8; 3],
+    pub src :            xcb_render_picture_t,
+    pub mask :           xcb_render_picture_t,
+    pub dst :            xcb_render_picture_t,
+    pub src_x :          i16,
+    pub src_y :          i16,
+    pub mask_x :         i16,
+    pub mask_y :         i16,
+    pub dst_x :          i16,
+    pub dst_y :          i16,
+    pub width :          u16,
+    pub height :         u16
 }
 
 impl Copy for xcb_render_composite_request_t {}
@@ -565,16 +565,16 @@ impl Clone for xcb_render_composite_request_t {
 
 #[repr(C)]
 pub struct xcb_render_trapezoids_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub op :             u8,
-     pub pad0 :           [u8; 3],
-     pub src :            xcb_render_picture_t,
-     pub dst :            xcb_render_picture_t,
-     pub mask_format :    xcb_render_pictformat_t,
-     pub src_x :          i16,
-     pub src_y :          i16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub op :             u8,
+    pub pad0 :           [u8; 3],
+    pub src :            xcb_render_picture_t,
+    pub dst :            xcb_render_picture_t,
+    pub mask_format :    xcb_render_pictformat_t,
+    pub src_x :          i16,
+    pub src_y :          i16
 }
 
 impl Copy for xcb_render_trapezoids_request_t {}
@@ -585,16 +585,16 @@ impl Clone for xcb_render_trapezoids_request_t {
 
 #[repr(C)]
 pub struct xcb_render_triangles_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub op :             u8,
-     pub pad0 :           [u8; 3],
-     pub src :            xcb_render_picture_t,
-     pub dst :            xcb_render_picture_t,
-     pub mask_format :    xcb_render_pictformat_t,
-     pub src_x :          i16,
-     pub src_y :          i16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub op :             u8,
+    pub pad0 :           [u8; 3],
+    pub src :            xcb_render_picture_t,
+    pub dst :            xcb_render_picture_t,
+    pub mask_format :    xcb_render_pictformat_t,
+    pub src_x :          i16,
+    pub src_y :          i16
 }
 
 impl Copy for xcb_render_triangles_request_t {}
@@ -605,16 +605,16 @@ impl Clone for xcb_render_triangles_request_t {
 
 #[repr(C)]
 pub struct xcb_render_tri_strip_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub op :             u8,
-     pub pad0 :           [u8; 3],
-     pub src :            xcb_render_picture_t,
-     pub dst :            xcb_render_picture_t,
-     pub mask_format :    xcb_render_pictformat_t,
-     pub src_x :          i16,
-     pub src_y :          i16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub op :             u8,
+    pub pad0 :           [u8; 3],
+    pub src :            xcb_render_picture_t,
+    pub dst :            xcb_render_picture_t,
+    pub mask_format :    xcb_render_pictformat_t,
+    pub src_x :          i16,
+    pub src_y :          i16
 }
 
 impl Copy for xcb_render_tri_strip_request_t {}
@@ -625,16 +625,16 @@ impl Clone for xcb_render_tri_strip_request_t {
 
 #[repr(C)]
 pub struct xcb_render_tri_fan_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub op :             u8,
-     pub pad0 :           [u8; 3],
-     pub src :            xcb_render_picture_t,
-     pub dst :            xcb_render_picture_t,
-     pub mask_format :    xcb_render_pictformat_t,
-     pub src_x :          i16,
-     pub src_y :          i16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub op :             u8,
+    pub pad0 :           [u8; 3],
+    pub src :            xcb_render_picture_t,
+    pub dst :            xcb_render_picture_t,
+    pub mask_format :    xcb_render_pictformat_t,
+    pub src_x :          i16,
+    pub src_y :          i16
 }
 
 impl Copy for xcb_render_tri_fan_request_t {}
@@ -645,11 +645,11 @@ impl Clone for xcb_render_tri_fan_request_t {
 
 #[repr(C)]
 pub struct xcb_render_create_glyph_set_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub gsid :           xcb_render_glyphset_t,
-     pub format :         xcb_render_pictformat_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub gsid :           xcb_render_glyphset_t,
+    pub format :         xcb_render_pictformat_t
 }
 
 impl Copy for xcb_render_create_glyph_set_request_t {}
@@ -660,11 +660,11 @@ impl Clone for xcb_render_create_glyph_set_request_t {
 
 #[repr(C)]
 pub struct xcb_render_reference_glyph_set_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub gsid :           xcb_render_glyphset_t,
-     pub existing :       xcb_render_glyphset_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub gsid :           xcb_render_glyphset_t,
+    pub existing :       xcb_render_glyphset_t
 }
 
 impl Copy for xcb_render_reference_glyph_set_request_t {}
@@ -675,10 +675,10 @@ impl Clone for xcb_render_reference_glyph_set_request_t {
 
 #[repr(C)]
 pub struct xcb_render_free_glyph_set_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub glyphset :       xcb_render_glyphset_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub glyphset :       xcb_render_glyphset_t
 }
 
 impl Copy for xcb_render_free_glyph_set_request_t {}
@@ -689,11 +689,11 @@ impl Clone for xcb_render_free_glyph_set_request_t {
 
 #[repr(C)]
 pub struct xcb_render_add_glyphs_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub glyphset :       xcb_render_glyphset_t,
-     pub glyphs_len :     u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub glyphset :       xcb_render_glyphset_t,
+    pub glyphs_len :     u32
 }
 
 impl Copy for xcb_render_add_glyphs_request_t {}
@@ -704,10 +704,10 @@ impl Clone for xcb_render_add_glyphs_request_t {
 
 #[repr(C)]
 pub struct xcb_render_free_glyphs_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub glyphset :       xcb_render_glyphset_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub glyphset :       xcb_render_glyphset_t
 }
 
 impl Copy for xcb_render_free_glyphs_request_t {}
@@ -718,17 +718,17 @@ impl Clone for xcb_render_free_glyphs_request_t {
 
 #[repr(C)]
 pub struct xcb_render_composite_glyphs_8_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub op :             u8,
-     pub pad0 :           [u8; 3],
-     pub src :            xcb_render_picture_t,
-     pub dst :            xcb_render_picture_t,
-     pub mask_format :    xcb_render_pictformat_t,
-     pub glyphset :       xcb_render_glyphset_t,
-     pub src_x :          i16,
-     pub src_y :          i16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub op :             u8,
+    pub pad0 :           [u8; 3],
+    pub src :            xcb_render_picture_t,
+    pub dst :            xcb_render_picture_t,
+    pub mask_format :    xcb_render_pictformat_t,
+    pub glyphset :       xcb_render_glyphset_t,
+    pub src_x :          i16,
+    pub src_y :          i16
 }
 
 impl Copy for xcb_render_composite_glyphs_8_request_t {}
@@ -739,17 +739,17 @@ impl Clone for xcb_render_composite_glyphs_8_request_t {
 
 #[repr(C)]
 pub struct xcb_render_composite_glyphs_16_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub op :             u8,
-     pub pad0 :           [u8; 3],
-     pub src :            xcb_render_picture_t,
-     pub dst :            xcb_render_picture_t,
-     pub mask_format :    xcb_render_pictformat_t,
-     pub glyphset :       xcb_render_glyphset_t,
-     pub src_x :          i16,
-     pub src_y :          i16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub op :             u8,
+    pub pad0 :           [u8; 3],
+    pub src :            xcb_render_picture_t,
+    pub dst :            xcb_render_picture_t,
+    pub mask_format :    xcb_render_pictformat_t,
+    pub glyphset :       xcb_render_glyphset_t,
+    pub src_x :          i16,
+    pub src_y :          i16
 }
 
 impl Copy for xcb_render_composite_glyphs_16_request_t {}
@@ -760,17 +760,17 @@ impl Clone for xcb_render_composite_glyphs_16_request_t {
 
 #[repr(C)]
 pub struct xcb_render_composite_glyphs_32_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub op :             u8,
-     pub pad0 :           [u8; 3],
-     pub src :            xcb_render_picture_t,
-     pub dst :            xcb_render_picture_t,
-     pub mask_format :    xcb_render_pictformat_t,
-     pub glyphset :       xcb_render_glyphset_t,
-     pub src_x :          i16,
-     pub src_y :          i16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub op :             u8,
+    pub pad0 :           [u8; 3],
+    pub src :            xcb_render_picture_t,
+    pub dst :            xcb_render_picture_t,
+    pub mask_format :    xcb_render_pictformat_t,
+    pub glyphset :       xcb_render_glyphset_t,
+    pub src_x :          i16,
+    pub src_y :          i16
 }
 
 impl Copy for xcb_render_composite_glyphs_32_request_t {}
@@ -781,13 +781,13 @@ impl Clone for xcb_render_composite_glyphs_32_request_t {
 
 #[repr(C)]
 pub struct xcb_render_fill_rectangles_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub op :             u8,
-     pub pad0 :           [u8; 3],
-     pub dst :            xcb_render_picture_t,
-     pub color :          xcb_render_color_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub op :             u8,
+    pub pad0 :           [u8; 3],
+    pub dst :            xcb_render_picture_t,
+    pub color :          xcb_render_color_t
 }
 
 impl Copy for xcb_render_fill_rectangles_request_t {}
@@ -798,13 +798,13 @@ impl Clone for xcb_render_fill_rectangles_request_t {
 
 #[repr(C)]
 pub struct xcb_render_create_cursor_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub cid :            ffi::xproto::xcb_cursor_t,
-     pub source :         xcb_render_picture_t,
-     pub x :              u16,
-     pub y :              u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub cid :            ffi::xproto::xcb_cursor_t,
+    pub source :         xcb_render_picture_t,
+    pub x :              u16,
+    pub y :              u16
 }
 
 impl Copy for xcb_render_create_cursor_request_t {}
@@ -814,15 +814,15 @@ impl Clone for xcb_render_create_cursor_request_t {
 
 #[repr(C)]
 pub struct xcb_render_transform_t {
-     pub matrix11 :   xcb_render_fixed_t,
-     pub matrix12 :   xcb_render_fixed_t,
-     pub matrix13 :   xcb_render_fixed_t,
-     pub matrix21 :   xcb_render_fixed_t,
-     pub matrix22 :   xcb_render_fixed_t,
-     pub matrix23 :   xcb_render_fixed_t,
-     pub matrix31 :   xcb_render_fixed_t,
-     pub matrix32 :   xcb_render_fixed_t,
-     pub matrix33 :   xcb_render_fixed_t
+    pub matrix11 :   xcb_render_fixed_t,
+    pub matrix12 :   xcb_render_fixed_t,
+    pub matrix13 :   xcb_render_fixed_t,
+    pub matrix21 :   xcb_render_fixed_t,
+    pub matrix22 :   xcb_render_fixed_t,
+    pub matrix23 :   xcb_render_fixed_t,
+    pub matrix31 :   xcb_render_fixed_t,
+    pub matrix32 :   xcb_render_fixed_t,
+    pub matrix33 :   xcb_render_fixed_t
 }
 
 impl Copy for xcb_render_transform_t {}
@@ -840,11 +840,11 @@ pub struct xcb_render_transform_iterator_t {
 
 #[repr(C)]
 pub struct xcb_render_set_picture_transform_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub picture :        xcb_render_picture_t,
-     pub transform :      xcb_render_transform_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub picture :        xcb_render_picture_t,
+    pub transform :      xcb_render_transform_t
 }
 
 impl Copy for xcb_render_set_picture_transform_request_t {}
@@ -861,10 +861,10 @@ pub struct xcb_render_query_filters_cookie_t {
 
 #[repr(C)]
 pub struct xcb_render_query_filters_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub drawable :       ffi::xproto::xcb_drawable_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub drawable :       ffi::xproto::xcb_drawable_t
 }
 
 impl Copy for xcb_render_query_filters_request_t {}
@@ -874,13 +874,13 @@ impl Clone for xcb_render_query_filters_request_t {
 
 #[repr(C)]
 pub struct xcb_render_query_filters_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub num_aliases :     u32,
-     pub num_filters :     u32,
-     pub pad1 :            [u8; 16]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub num_aliases :     u32,
+    pub num_filters :     u32,
+    pub pad1 :            [u8; 16]
 }
 
 impl Copy for xcb_render_query_filters_reply_t {}
@@ -891,12 +891,12 @@ impl Clone for xcb_render_query_filters_reply_t {
 
 #[repr(C)]
 pub struct xcb_render_set_picture_filter_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub picture :        xcb_render_picture_t,
-     pub filter_len :     u16,
-     pub pad0 :           [u8; 2]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub picture :        xcb_render_picture_t,
+    pub filter_len :     u16,
+    pub pad0 :           [u8; 2]
 }
 
 impl Copy for xcb_render_set_picture_filter_request_t {}
@@ -906,8 +906,8 @@ impl Clone for xcb_render_set_picture_filter_request_t {
 
 #[repr(C)]
 pub struct xcb_render_animcursorelt_t {
-     pub cursor :   ffi::xproto::xcb_cursor_t,
-     pub delay :    u32
+    pub cursor :   ffi::xproto::xcb_cursor_t,
+    pub delay :    u32
 }
 
 impl Copy for xcb_render_animcursorelt_t {}
@@ -925,10 +925,10 @@ pub struct xcb_render_animcursorelt_iterator_t {
 
 #[repr(C)]
 pub struct xcb_render_create_anim_cursor_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub cid :            ffi::xproto::xcb_cursor_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub cid :            ffi::xproto::xcb_cursor_t
 }
 
 impl Copy for xcb_render_create_anim_cursor_request_t {}
@@ -938,9 +938,9 @@ impl Clone for xcb_render_create_anim_cursor_request_t {
 
 #[repr(C)]
 pub struct xcb_render_spanfix_t {
-     pub l :   xcb_render_fixed_t,
-     pub r :   xcb_render_fixed_t,
-     pub y :   xcb_render_fixed_t
+    pub l :   xcb_render_fixed_t,
+    pub r :   xcb_render_fixed_t,
+    pub y :   xcb_render_fixed_t
 }
 
 impl Copy for xcb_render_spanfix_t {}
@@ -957,8 +957,8 @@ pub struct xcb_render_spanfix_iterator_t {
 
 #[repr(C)]
 pub struct xcb_render_trap_t {
-     pub top :   xcb_render_spanfix_t,
-     pub bot :   xcb_render_spanfix_t
+    pub top :   xcb_render_spanfix_t,
+    pub bot :   xcb_render_spanfix_t
 }
 
 impl Copy for xcb_render_trap_t {}
@@ -976,12 +976,12 @@ pub struct xcb_render_trap_iterator_t {
 
 #[repr(C)]
 pub struct xcb_render_add_traps_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub picture :        xcb_render_picture_t,
-     pub x_off :          i16,
-     pub y_off :          i16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub picture :        xcb_render_picture_t,
+    pub x_off :          i16,
+    pub y_off :          i16
 }
 
 impl Copy for xcb_render_add_traps_request_t {}
@@ -992,11 +992,11 @@ impl Clone for xcb_render_add_traps_request_t {
 
 #[repr(C)]
 pub struct xcb_render_create_solid_fill_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub picture :        xcb_render_picture_t,
-     pub color :          xcb_render_color_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub picture :        xcb_render_picture_t,
+    pub color :          xcb_render_color_t
 }
 
 impl Copy for xcb_render_create_solid_fill_request_t {}
@@ -1007,13 +1007,13 @@ impl Clone for xcb_render_create_solid_fill_request_t {
 
 #[repr(C)]
 pub struct xcb_render_create_linear_gradient_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub picture :        xcb_render_picture_t,
-     pub p1 :             xcb_render_pointfix_t,
-     pub p2 :             xcb_render_pointfix_t,
-     pub num_stops :      u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub picture :        xcb_render_picture_t,
+    pub p1 :             xcb_render_pointfix_t,
+    pub p2 :             xcb_render_pointfix_t,
+    pub num_stops :      u32
 }
 
 impl Copy for xcb_render_create_linear_gradient_request_t {}
@@ -1024,15 +1024,15 @@ impl Clone for xcb_render_create_linear_gradient_request_t {
 
 #[repr(C)]
 pub struct xcb_render_create_radial_gradient_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub picture :        xcb_render_picture_t,
-     pub inner :          xcb_render_pointfix_t,
-     pub outer :          xcb_render_pointfix_t,
-     pub inner_radius :   xcb_render_fixed_t,
-     pub outer_radius :   xcb_render_fixed_t,
-     pub num_stops :      u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub picture :        xcb_render_picture_t,
+    pub inner :          xcb_render_pointfix_t,
+    pub outer :          xcb_render_pointfix_t,
+    pub inner_radius :   xcb_render_fixed_t,
+    pub outer_radius :   xcb_render_fixed_t,
+    pub num_stops :      u32
 }
 
 impl Copy for xcb_render_create_radial_gradient_request_t {}
@@ -1043,13 +1043,13 @@ impl Clone for xcb_render_create_radial_gradient_request_t {
 
 #[repr(C)]
 pub struct xcb_render_create_conical_gradient_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub picture :        xcb_render_picture_t,
-     pub center :         xcb_render_pointfix_t,
-     pub angle :          xcb_render_fixed_t,
-     pub num_stops :      u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub picture :        xcb_render_picture_t,
+    pub center :         xcb_render_pointfix_t,
+    pub angle :          xcb_render_fixed_t,
+    pub num_stops :      u32
 }
 
 impl Copy for xcb_render_create_conical_gradient_request_t {}

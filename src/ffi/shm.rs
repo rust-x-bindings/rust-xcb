@@ -26,15 +26,15 @@ pub struct xcb_shm_seg_iterator_t {
 
 #[repr(C)]
 pub struct xcb_shm_completion_event_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub drawable :        ffi::xproto::xcb_drawable_t,
-     pub minor_event :     u16,
-     pub major_event :     u8,
-     pub pad1 :            u8,
-     pub shmseg :          xcb_shm_seg_t,
-     pub offset :          u32
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub drawable :        ffi::xproto::xcb_drawable_t,
+    pub minor_event :     u16,
+    pub major_event :     u8,
+    pub pad1 :            u8,
+    pub shmseg :          xcb_shm_seg_t,
+    pub offset :          u32
 }
 
 impl Copy for xcb_shm_completion_event_t {}
@@ -54,9 +54,9 @@ pub struct xcb_shm_query_version_cookie_t {
 
 #[repr(C)]
 pub struct xcb_shm_query_version_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16
 }
 
 impl Copy for xcb_shm_query_version_request_t {}
@@ -66,16 +66,16 @@ impl Clone for xcb_shm_query_version_request_t {
 
 #[repr(C)]
 pub struct xcb_shm_query_version_reply_t {
-     pub response_type :    u8,
-     pub shared_pixmaps :   u8,
-     pub sequence :         u16,
-     pub length :           u32,
-     pub major_version :    u16,
-     pub minor_version :    u16,
-     pub uid :              u16,
-     pub gid :              u16,
-     pub pixmap_format :    u8,
-     pub pad0 :             [u8; 15]
+    pub response_type :    u8,
+    pub shared_pixmaps :   u8,
+    pub sequence :         u16,
+    pub length :           u32,
+    pub major_version :    u16,
+    pub minor_version :    u16,
+    pub uid :              u16,
+    pub gid :              u16,
+    pub pixmap_format :    u8,
+    pub pad0 :             [u8; 15]
 }
 
 impl Copy for xcb_shm_query_version_reply_t {}
@@ -86,13 +86,13 @@ impl Clone for xcb_shm_query_version_reply_t {
 
 #[repr(C)]
 pub struct xcb_shm_attach_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub shmseg :         xcb_shm_seg_t,
-     pub shmid :          u32,
-     pub read_only :      u8,
-     pub pad0 :           [u8; 3]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub shmseg :         xcb_shm_seg_t,
+    pub shmid :          u32,
+    pub read_only :      u8,
+    pub pad0 :           [u8; 3]
 }
 
 impl Copy for xcb_shm_attach_request_t {}
@@ -103,10 +103,10 @@ impl Clone for xcb_shm_attach_request_t {
 
 #[repr(C)]
 pub struct xcb_shm_detach_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub shmseg :         xcb_shm_seg_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub shmseg :         xcb_shm_seg_t
 }
 
 impl Copy for xcb_shm_detach_request_t {}
@@ -117,25 +117,25 @@ impl Clone for xcb_shm_detach_request_t {
 
 #[repr(C)]
 pub struct xcb_shm_put_image_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub drawable :       ffi::xproto::xcb_drawable_t,
-     pub gc :             ffi::xproto::xcb_gcontext_t,
-     pub total_width :    u16,
-     pub total_height :   u16,
-     pub src_x :          u16,
-     pub src_y :          u16,
-     pub src_width :      u16,
-     pub src_height :     u16,
-     pub dst_x :          i16,
-     pub dst_y :          i16,
-     pub depth :          u8,
-     pub format :         u8,
-     pub send_event :     u8,
-     pub pad0 :           u8,
-     pub shmseg :         xcb_shm_seg_t,
-     pub offset :         u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub drawable :       ffi::xproto::xcb_drawable_t,
+    pub gc :             ffi::xproto::xcb_gcontext_t,
+    pub total_width :    u16,
+    pub total_height :   u16,
+    pub src_x :          u16,
+    pub src_y :          u16,
+    pub src_width :      u16,
+    pub src_height :     u16,
+    pub dst_x :          i16,
+    pub dst_y :          i16,
+    pub depth :          u8,
+    pub format :         u8,
+    pub send_event :     u8,
+    pub pad0 :           u8,
+    pub shmseg :         xcb_shm_seg_t,
+    pub offset :         u32
 }
 
 impl Copy for xcb_shm_put_image_request_t {}
@@ -152,19 +152,19 @@ pub struct xcb_shm_get_image_cookie_t {
 
 #[repr(C)]
 pub struct xcb_shm_get_image_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub drawable :       ffi::xproto::xcb_drawable_t,
-     pub x :              i16,
-     pub y :              i16,
-     pub width :          u16,
-     pub height :         u16,
-     pub plane_mask :     u32,
-     pub format :         u8,
-     pub pad0 :           [u8; 3],
-     pub shmseg :         xcb_shm_seg_t,
-     pub offset :         u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub drawable :       ffi::xproto::xcb_drawable_t,
+    pub x :              i16,
+    pub y :              i16,
+    pub width :          u16,
+    pub height :         u16,
+    pub plane_mask :     u32,
+    pub format :         u8,
+    pub pad0 :           [u8; 3],
+    pub shmseg :         xcb_shm_seg_t,
+    pub offset :         u32
 }
 
 impl Copy for xcb_shm_get_image_request_t {}
@@ -174,12 +174,12 @@ impl Clone for xcb_shm_get_image_request_t {
 
 #[repr(C)]
 pub struct xcb_shm_get_image_reply_t {
-     pub response_type :   u8,
-     pub depth :           u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub visual :          ffi::xproto::xcb_visualid_t,
-     pub size :            u32
+    pub response_type :   u8,
+    pub depth :           u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub visual :          ffi::xproto::xcb_visualid_t,
+    pub size :            u32
 }
 
 impl Copy for xcb_shm_get_image_reply_t {}
@@ -190,17 +190,17 @@ impl Clone for xcb_shm_get_image_reply_t {
 
 #[repr(C)]
 pub struct xcb_shm_create_pixmap_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub pid :            ffi::xproto::xcb_pixmap_t,
-     pub drawable :       ffi::xproto::xcb_drawable_t,
-     pub width :          u16,
-     pub height :         u16,
-     pub depth :          u8,
-     pub pad0 :           [u8; 3],
-     pub shmseg :         xcb_shm_seg_t,
-     pub offset :         u32
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub pid :            ffi::xproto::xcb_pixmap_t,
+    pub drawable :       ffi::xproto::xcb_drawable_t,
+    pub width :          u16,
+    pub height :         u16,
+    pub depth :          u8,
+    pub pad0 :           [u8; 3],
+    pub shmseg :         xcb_shm_seg_t,
+    pub offset :         u32
 }
 
 impl Copy for xcb_shm_create_pixmap_request_t {}

@@ -29,9 +29,9 @@ pub struct xcb_damage_damage_iterator_t {
 
 #[repr(C)]
 pub struct xcb_damage_bad_damage_error_t {
-     pub response_type :   u8,
-     pub error_code :      u8,
-     pub sequence :        u16
+    pub response_type :   u8,
+    pub error_code :      u8,
+    pub sequence :        u16
 }
 
 impl Copy for xcb_damage_bad_damage_error_t {}
@@ -48,11 +48,11 @@ pub struct xcb_damage_query_version_cookie_t {
 
 #[repr(C)]
 pub struct xcb_damage_query_version_request_t {
-     pub major_opcode :           u8,
-     pub minor_opcode :           u8,
-     pub length :                 u16,
-     pub client_major_version :   u32,
-     pub client_minor_version :   u32
+    pub major_opcode :           u8,
+    pub minor_opcode :           u8,
+    pub length :                 u16,
+    pub client_major_version :   u32,
+    pub client_minor_version :   u32
 }
 
 impl Copy for xcb_damage_query_version_request_t {}
@@ -62,13 +62,13 @@ impl Clone for xcb_damage_query_version_request_t {
 
 #[repr(C)]
 pub struct xcb_damage_query_version_reply_t {
-     pub response_type :   u8,
-     pub pad0 :            u8,
-     pub sequence :        u16,
-     pub length :          u32,
-     pub major_version :   u32,
-     pub minor_version :   u32,
-     pub pad1 :            [u8; 16]
+    pub response_type :   u8,
+    pub pad0 :            u8,
+    pub sequence :        u16,
+    pub length :          u32,
+    pub major_version :   u32,
+    pub minor_version :   u32,
+    pub pad1 :            [u8; 16]
 }
 
 impl Copy for xcb_damage_query_version_reply_t {}
@@ -79,13 +79,13 @@ impl Clone for xcb_damage_query_version_reply_t {
 
 #[repr(C)]
 pub struct xcb_damage_create_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub damage :         xcb_damage_damage_t,
-     pub drawable :       ffi::xproto::xcb_drawable_t,
-     pub level :          u8,
-     pub pad0 :           [u8; 3]
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub damage :         xcb_damage_damage_t,
+    pub drawable :       ffi::xproto::xcb_drawable_t,
+    pub level :          u8,
+    pub pad0 :           [u8; 3]
 }
 
 impl Copy for xcb_damage_create_request_t {}
@@ -96,10 +96,10 @@ impl Clone for xcb_damage_create_request_t {
 
 #[repr(C)]
 pub struct xcb_damage_destroy_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub damage :         xcb_damage_damage_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub damage :         xcb_damage_damage_t
 }
 
 impl Copy for xcb_damage_destroy_request_t {}
@@ -110,12 +110,12 @@ impl Clone for xcb_damage_destroy_request_t {
 
 #[repr(C)]
 pub struct xcb_damage_subtract_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub damage :         xcb_damage_damage_t,
-     pub repair :         ffi::xfixes::xcb_xfixes_region_t,
-     pub parts :          ffi::xfixes::xcb_xfixes_region_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub damage :         xcb_damage_damage_t,
+    pub repair :         ffi::xfixes::xcb_xfixes_region_t,
+    pub parts :          ffi::xfixes::xcb_xfixes_region_t
 }
 
 impl Copy for xcb_damage_subtract_request_t {}
@@ -126,11 +126,11 @@ impl Clone for xcb_damage_subtract_request_t {
 
 #[repr(C)]
 pub struct xcb_damage_add_request_t {
-     pub major_opcode :   u8,
-     pub minor_opcode :   u8,
-     pub length :         u16,
-     pub drawable :       ffi::xproto::xcb_drawable_t,
-     pub region :         ffi::xfixes::xcb_xfixes_region_t
+    pub major_opcode :   u8,
+    pub minor_opcode :   u8,
+    pub length :         u16,
+    pub drawable :       ffi::xproto::xcb_drawable_t,
+    pub region :         ffi::xfixes::xcb_xfixes_region_t
 }
 
 impl Copy for xcb_damage_add_request_t {}
@@ -141,14 +141,14 @@ impl Clone for xcb_damage_add_request_t {
 
 #[repr(C)]
 pub struct xcb_damage_notify_event_t {
-     pub response_type :   u8,
-     pub level :           u8,
-     pub sequence :        u16,
-     pub drawable :        ffi::xproto::xcb_drawable_t,
-     pub damage :          xcb_damage_damage_t,
-     pub timestamp :       ffi::xproto::xcb_timestamp_t,
-     pub area :            ffi::xproto::xcb_rectangle_t,
-     pub geometry :        ffi::xproto::xcb_rectangle_t
+    pub response_type :   u8,
+    pub level :           u8,
+    pub sequence :        u16,
+    pub drawable :        ffi::xproto::xcb_drawable_t,
+    pub damage :          xcb_damage_damage_t,
+    pub timestamp :       ffi::xproto::xcb_timestamp_t,
+    pub area :            ffi::xproto::xcb_rectangle_t,
+    pub geometry :        ffi::xproto::xcb_rectangle_t
 }
 
 impl Copy for xcb_damage_notify_event_t {}
