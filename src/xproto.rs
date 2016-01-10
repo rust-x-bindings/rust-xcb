@@ -1,7 +1,7 @@
-/*
- * This file generated automatically from xproto.xml by r_client.py.
- * Edit at your peril.
- */
+//
+// This file generated automatically from xproto.xml by r_client.py.
+// Edit at your peril.
+//
 
 //Make the compiler quiet
 #![allow(unused_imports)]
@@ -152,10 +152,10 @@ pub type xcb_key_but_mask_t = c_uint;//{
 pub type xcb_window_enum_t = c_uint;//{
     pub const XCB_WINDOW_NONE : xcb_window_enum_t = 0;
 //}
-/** Opcode for xcb_key_press. */
+/// Opcode for xcb_key_press.
 pub const XCB_KEY_PRESS : u8 = 2;
 pub struct KeyPressEvent {pub base : base::Event<xcb_key_press_event_t>}
-/** Opcode for xcb_key_release. */
+/// Opcode for xcb_key_release.
 pub const XCB_KEY_RELEASE : u8 = 3;
 pub struct KeyReleaseEvent {pub base : base::Event<xcb_key_release_event_t>}
 
@@ -167,10 +167,10 @@ pub type xcb_button_mask_t = c_uint;//{
     pub const XCB_BUTTON_MASK_5 : xcb_button_mask_t = 4096;
     pub const XCB_BUTTON_MASK_ANY : xcb_button_mask_t = 32768;
 //}
-/** Opcode for xcb_button_press. */
+/// Opcode for xcb_button_press.
 pub const XCB_BUTTON_PRESS : u8 = 4;
 pub struct ButtonPressEvent {pub base : base::Event<xcb_button_press_event_t>}
-/** Opcode for xcb_button_release. */
+/// Opcode for xcb_button_release.
 pub const XCB_BUTTON_RELEASE : u8 = 5;
 pub struct ButtonReleaseEvent {pub base : base::Event<xcb_button_release_event_t>}
 
@@ -178,7 +178,7 @@ pub type xcb_motion_t = c_uint;//{
     pub const XCB_MOTION_NORMAL : xcb_motion_t = 0;
     pub const XCB_MOTION_HINT : xcb_motion_t = 1;
 //}
-/** Opcode for xcb_motion_notify. */
+/// Opcode for xcb_motion_notify.
 pub const XCB_MOTION_NOTIFY : u8 = 6;
 pub struct MotionNotifyEvent {pub base : base::Event<xcb_motion_notify_event_t>}
 
@@ -199,28 +199,28 @@ pub type xcb_notify_mode_t = c_uint;//{
     pub const XCB_NOTIFY_MODE_UNGRAB : xcb_notify_mode_t = 2;
     pub const XCB_NOTIFY_MODE_WHILE_GRABBED : xcb_notify_mode_t = 3;
 //}
-/** Opcode for xcb_enter_notify. */
+/// Opcode for xcb_enter_notify.
 pub const XCB_ENTER_NOTIFY : u8 = 7;
 pub struct EnterNotifyEvent {pub base : base::Event<xcb_enter_notify_event_t>}
-/** Opcode for xcb_leave_notify. */
+/// Opcode for xcb_leave_notify.
 pub const XCB_LEAVE_NOTIFY : u8 = 8;
 pub struct LeaveNotifyEvent {pub base : base::Event<xcb_leave_notify_event_t>}
-/** Opcode for xcb_focus_in. */
+/// Opcode for xcb_focus_in.
 pub const XCB_FOCUS_IN : u8 = 9;
 pub struct FocusInEvent {pub base : base::Event<xcb_focus_in_event_t>}
-/** Opcode for xcb_focus_out. */
+/// Opcode for xcb_focus_out.
 pub const XCB_FOCUS_OUT : u8 = 10;
 pub struct FocusOutEvent {pub base : base::Event<xcb_focus_out_event_t>}
-/** Opcode for xcb_keymap_notify. */
+/// Opcode for xcb_keymap_notify.
 pub const XCB_KEYMAP_NOTIFY : u8 = 11;
 pub struct KeymapNotifyEvent {pub base : base::Event<xcb_keymap_notify_event_t>}
-/** Opcode for xcb_expose. */
+/// Opcode for xcb_expose.
 pub const XCB_EXPOSE : u8 = 12;
 pub struct ExposeEvent {pub base : base::Event<xcb_expose_event_t>}
-/** Opcode for xcb_graphics_exposure. */
+/// Opcode for xcb_graphics_exposure.
 pub const XCB_GRAPHICS_EXPOSURE : u8 = 13;
 pub struct GraphicsExposureEvent {pub base : base::Event<xcb_graphics_exposure_event_t>}
-/** Opcode for xcb_no_exposure. */
+/// Opcode for xcb_no_exposure.
 pub const XCB_NO_EXPOSURE : u8 = 14;
 pub struct NoExposureEvent {pub base : base::Event<xcb_no_exposure_event_t>}
 
@@ -229,52 +229,50 @@ pub type xcb_visibility_t = c_uint;//{
     pub const XCB_VISIBILITY_PARTIALLY_OBSCURED : xcb_visibility_t = 1;
     pub const XCB_VISIBILITY_FULLY_OBSCURED : xcb_visibility_t = 2;
 //}
-/** Opcode for xcb_visibility_notify. */
+/// Opcode for xcb_visibility_notify.
 pub const XCB_VISIBILITY_NOTIFY : u8 = 15;
 pub struct VisibilityNotifyEvent {pub base : base::Event<xcb_visibility_notify_event_t>}
-/** Opcode for xcb_create_notify. */
+/// Opcode for xcb_create_notify.
 pub const XCB_CREATE_NOTIFY : u8 = 16;
 pub struct CreateNotifyEvent {pub base : base::Event<xcb_create_notify_event_t>}
-/** Opcode for xcb_destroy_notify. */
+/// Opcode for xcb_destroy_notify.
 pub const XCB_DESTROY_NOTIFY : u8 = 17;
 pub struct DestroyNotifyEvent {pub base : base::Event<xcb_destroy_notify_event_t>}
-/** Opcode for xcb_unmap_notify. */
+/// Opcode for xcb_unmap_notify.
 pub const XCB_UNMAP_NOTIFY : u8 = 18;
 pub struct UnmapNotifyEvent {pub base : base::Event<xcb_unmap_notify_event_t>}
-/** Opcode for xcb_map_notify. */
+/// Opcode for xcb_map_notify.
 pub const XCB_MAP_NOTIFY : u8 = 19;
 pub struct MapNotifyEvent {pub base : base::Event<xcb_map_notify_event_t>}
-/** Opcode for xcb_map_request. */
+/// Opcode for xcb_map_request.
 pub const XCB_MAP_REQUEST : u8 = 20;
 pub struct MapRequestEvent {pub base : base::Event<xcb_map_request_event_t>}
-/** Opcode for xcb_reparent_notify. */
+/// Opcode for xcb_reparent_notify.
 pub const XCB_REPARENT_NOTIFY : u8 = 21;
 pub struct ReparentNotifyEvent {pub base : base::Event<xcb_reparent_notify_event_t>}
-/** Opcode for xcb_configure_notify. */
+/// Opcode for xcb_configure_notify.
 pub const XCB_CONFIGURE_NOTIFY : u8 = 22;
 pub struct ConfigureNotifyEvent {pub base : base::Event<xcb_configure_notify_event_t>}
-/** Opcode for xcb_configure_request. */
+/// Opcode for xcb_configure_request.
 pub const XCB_CONFIGURE_REQUEST : u8 = 23;
 pub struct ConfigureRequestEvent {pub base : base::Event<xcb_configure_request_event_t>}
-/** Opcode for xcb_gravity_notify. */
+/// Opcode for xcb_gravity_notify.
 pub const XCB_GRAVITY_NOTIFY : u8 = 24;
 pub struct GravityNotifyEvent {pub base : base::Event<xcb_gravity_notify_event_t>}
-/** Opcode for xcb_resize_request. */
+/// Opcode for xcb_resize_request.
 pub const XCB_RESIZE_REQUEST : u8 = 25;
 pub struct ResizeRequestEvent {pub base : base::Event<xcb_resize_request_event_t>}
 
 pub type xcb_place_t = c_uint;//{
-    
-/** The window is now on top of all siblings. */
+    /// The window is now on top of all siblings.
     pub const XCB_PLACE_ON_TOP : xcb_place_t = 0;
-    
-/** The window is now below all siblings. */
+    /// The window is now below all siblings.
     pub const XCB_PLACE_ON_BOTTOM : xcb_place_t = 1;
 //}
-/** Opcode for xcb_circulate_notify. */
+/// Opcode for xcb_circulate_notify.
 pub const XCB_CIRCULATE_NOTIFY : u8 = 26;
 pub struct CirculateNotifyEvent {pub base : base::Event<xcb_circulate_notify_event_t>}
-/** Opcode for xcb_circulate_request. */
+/// Opcode for xcb_circulate_request.
 pub const XCB_CIRCULATE_REQUEST : u8 = 27;
 pub struct CirculateRequestEvent {pub base : base::Event<xcb_circulate_request_event_t>}
 
@@ -282,10 +280,10 @@ pub type xcb_property_t = c_uint;//{
     pub const XCB_PROPERTY_NEW_VALUE : xcb_property_t = 0;
     pub const XCB_PROPERTY_DELETE : xcb_property_t = 1;
 //}
-/** Opcode for xcb_property_notify. */
+/// Opcode for xcb_property_notify.
 pub const XCB_PROPERTY_NOTIFY : u8 = 28;
 pub struct PropertyNotifyEvent {pub base : base::Event<xcb_property_notify_event_t>}
-/** Opcode for xcb_selection_clear. */
+/// Opcode for xcb_selection_clear.
 pub const XCB_SELECTION_CLEAR : u8 = 29;
 pub struct SelectionClearEvent {pub base : base::Event<xcb_selection_clear_event_t>}
 
@@ -365,31 +363,29 @@ pub type xcb_atom_enum_t = c_uint;//{
     pub const XCB_ATOM_WM_CLASS : xcb_atom_enum_t = 67;
     pub const XCB_ATOM_WM_TRANSIENT_FOR : xcb_atom_enum_t = 68;
 //}
-/** Opcode for xcb_selection_request. */
+/// Opcode for xcb_selection_request.
 pub const XCB_SELECTION_REQUEST : u8 = 30;
 pub struct SelectionRequestEvent {pub base : base::Event<xcb_selection_request_event_t>}
-/** Opcode for xcb_selection_notify. */
+/// Opcode for xcb_selection_notify.
 pub const XCB_SELECTION_NOTIFY : u8 = 31;
 pub struct SelectionNotifyEvent {pub base : base::Event<xcb_selection_notify_event_t>}
 
 pub type xcb_colormap_state_t = c_uint;//{
-    
-/** The colormap was uninstalled. */
+    /// The colormap was uninstalled.
     pub const XCB_COLORMAP_STATE_UNINSTALLED : xcb_colormap_state_t = 0;
-    
-/** The colormap was installed. */
+    /// The colormap was installed.
     pub const XCB_COLORMAP_STATE_INSTALLED : xcb_colormap_state_t = 1;
 //}
 
 pub type xcb_colormap_enum_t = c_uint;//{
     pub const XCB_COLORMAP_NONE : xcb_colormap_enum_t = 0;
 //}
-/** Opcode for xcb_colormap_notify. */
+/// Opcode for xcb_colormap_notify.
 pub const XCB_COLORMAP_NOTIFY : u8 = 32;
 pub struct ColormapNotifyEvent {pub base : base::Event<xcb_colormap_notify_event_t>}
 pub type ClientMessageDataIterator = xcb_client_message_data_iterator_t;
 
-/** Opcode for xcb_client_message. */
+/// Opcode for xcb_client_message.
 pub const XCB_CLIENT_MESSAGE : u8 = 33;
 pub struct ClientMessageEvent {pub base : base::Event<xcb_client_message_event_t>}
 
@@ -398,58 +394,58 @@ pub type xcb_mapping_t = c_uint;//{
     pub const XCB_MAPPING_KEYBOARD : xcb_mapping_t = 1;
     pub const XCB_MAPPING_POINTER : xcb_mapping_t = 2;
 //}
-/** Opcode for xcb_mapping_notify. */
+/// Opcode for xcb_mapping_notify.
 pub const XCB_MAPPING_NOTIFY : u8 = 34;
 pub struct MappingNotifyEvent {pub base : base::Event<xcb_mapping_notify_event_t>}
-/** Opcode for xcb_request. */
+/// Opcode for xcb_request.
 pub const XCB_REQUEST : u8 = 1;
 pub struct RequestError { pub base : base::Error<xcb_request_error_t> }
-/** Opcode for xcb_value. */
+/// Opcode for xcb_value.
 pub const XCB_VALUE : u8 = 2;
 pub struct ValueError { pub base : base::Error<xcb_value_error_t> }
-/** Opcode for xcb_window. */
+/// Opcode for xcb_window.
 pub const XCB_WINDOW : u8 = 3;
 pub struct WindowError { pub base : base::Error<xcb_window_error_t> }
-/** Opcode for xcb_pixmap. */
+/// Opcode for xcb_pixmap.
 pub const XCB_PIXMAP : u8 = 4;
 pub struct PixmapError { pub base : base::Error<xcb_pixmap_error_t> }
-/** Opcode for xcb_atom. */
+/// Opcode for xcb_atom.
 pub const XCB_ATOM : u8 = 5;
 pub struct AtomError { pub base : base::Error<xcb_atom_error_t> }
-/** Opcode for xcb_cursor. */
+/// Opcode for xcb_cursor.
 pub const XCB_CURSOR : u8 = 6;
 pub struct CursorError { pub base : base::Error<xcb_cursor_error_t> }
-/** Opcode for xcb_font. */
+/// Opcode for xcb_font.
 pub const XCB_FONT : u8 = 7;
 pub struct FontError { pub base : base::Error<xcb_font_error_t> }
-/** Opcode for xcb_match. */
+/// Opcode for xcb_match.
 pub const XCB_MATCH : u8 = 8;
 pub struct MatchError { pub base : base::Error<xcb_match_error_t> }
-/** Opcode for xcb_drawable. */
+/// Opcode for xcb_drawable.
 pub const XCB_DRAWABLE : u8 = 9;
 pub struct DrawableError { pub base : base::Error<xcb_drawable_error_t> }
-/** Opcode for xcb_access. */
+/// Opcode for xcb_access.
 pub const XCB_ACCESS : u8 = 10;
 pub struct AccessError { pub base : base::Error<xcb_access_error_t> }
-/** Opcode for xcb_alloc. */
+/// Opcode for xcb_alloc.
 pub const XCB_ALLOC : u8 = 11;
 pub struct AllocError { pub base : base::Error<xcb_alloc_error_t> }
-/** Opcode for xcb_colormap. */
+/// Opcode for xcb_colormap.
 pub const XCB_COLORMAP : u8 = 12;
 pub struct ColormapError { pub base : base::Error<xcb_colormap_error_t> }
-/** Opcode for xcb_g_context. */
+/// Opcode for xcb_g_context.
 pub const XCB_G_CONTEXT : u8 = 13;
 pub struct GContextError { pub base : base::Error<xcb_g_context_error_t> }
-/** Opcode for xcb_id_choice. */
+/// Opcode for xcb_id_choice.
 pub const XCB_ID_CHOICE : u8 = 14;
 pub struct IdChoiceError { pub base : base::Error<xcb_id_choice_error_t> }
-/** Opcode for xcb_name. */
+/// Opcode for xcb_name.
 pub const XCB_NAME : u8 = 15;
 pub struct NameError { pub base : base::Error<xcb_name_error_t> }
-/** Opcode for xcb_length. */
+/// Opcode for xcb_length.
 pub const XCB_LENGTH : u8 = 16;
 pub struct LengthError { pub base : base::Error<xcb_length_error_t> }
-/** Opcode for xcb_implementation. */
+/// Opcode for xcb_implementation.
 pub const XCB_IMPLEMENTATION : u8 = 17;
 pub struct ImplementationError { pub base : base::Error<xcb_implementation_error_t> }
 
@@ -460,103 +456,88 @@ pub type xcb_window_class_t = c_uint;//{
 //}
 
 pub type xcb_cw_t = c_uint;//{
-    
-/** Overrides the default background-pixmap. The background pixmap and window must
-have the same root and same depth. Any size pixmap can be used, although some
-sizes may be faster than others.
-
-If `XCB_BACK_PIXMAP_NONE` is specified, the window has no defined background.
-The server may fill the contents with the previous screen contents or with
-contents of its own choosing.
-
-If `XCB_BACK_PIXMAP_PARENT_RELATIVE` is specified, the parent's background is
-used, but the window must have the same depth as the parent (or a Match error
-results).   The parent's background is tracked, and the current version is
-used each time the window background is required. */
+    /// Overrides the default background-pixmap. The background pixmap and window must
+    /// have the same root and same depth. Any size pixmap can be used, although some
+    /// sizes may be faster than others.
+    ///
+    /// If `XCB_BACK_PIXMAP_NONE` is specified, the window has no defined background.
+    /// The server may fill the contents with the previous screen contents or with
+    /// contents of its own choosing.
+    ///
+    /// If `XCB_BACK_PIXMAP_PARENT_RELATIVE` is specified, the parent's background is
+    /// used, but the window must have the same depth as the parent (or a Match error
+    /// results).   The parent's background is tracked, and the current version is
+    /// used each time the window background is required.
     pub const XCB_CW_BACK_PIXMAP : xcb_cw_t = 1;
-    
-/** Overrides `BackPixmap`. A pixmap of undefined size filled with the specified
-background pixel is used for the background. Range-checking is not performed,
-the background pixel is truncated to the appropriate number of bits. */
+    /// Overrides `BackPixmap`. A pixmap of undefined size filled with the specified
+    /// background pixel is used for the background. Range-checking is not performed,
+    /// the background pixel is truncated to the appropriate number of bits.
     pub const XCB_CW_BACK_PIXEL : xcb_cw_t = 2;
-    
-/** Overrides the default border-pixmap. The border pixmap and window must have the
-same root and the same depth. Any size pixmap can be used, although some sizes
-may be faster than others.
-
-The special value `XCB_COPY_FROM_PARENT` means the parent's border pixmap is
-copied (subsequent changes to the parent's border attribute do not affect the
-child), but the window must have the same depth as the parent. */
+    /// Overrides the default border-pixmap. The border pixmap and window must have the
+    /// same root and the same depth. Any size pixmap can be used, although some sizes
+    /// may be faster than others.
+    ///
+    /// The special value `XCB_COPY_FROM_PARENT` means the parent's border pixmap is
+    /// copied (subsequent changes to the parent's border attribute do not affect the
+    /// child), but the window must have the same depth as the parent.
     pub const XCB_CW_BORDER_PIXMAP : xcb_cw_t = 4;
-    
-/** Overrides `BorderPixmap`. A pixmap of undefined size filled with the specified
-border pixel is used for the border. Range checking is not performed on the
-border-pixel value, it is truncated to the appropriate number of bits. */
+    /// Overrides `BorderPixmap`. A pixmap of undefined size filled with the specified
+    /// border pixel is used for the border. Range checking is not performed on the
+    /// border-pixel value, it is truncated to the appropriate number of bits.
     pub const XCB_CW_BORDER_PIXEL : xcb_cw_t = 8;
-    
-/** Defines which region of the window should be retained if the window is resized. */
+    /// Defines which region of the window should be retained if the window is resized.
     pub const XCB_CW_BIT_GRAVITY : xcb_cw_t = 16;
-    
-/** Defines how the window should be repositioned if the parent is resized (see
-`ConfigureWindow`). */
+    /// Defines how the window should be repositioned if the parent is resized (see
+    /// `ConfigureWindow`).
     pub const XCB_CW_WIN_GRAVITY : xcb_cw_t = 32;
-    
-/** A backing-store of `WhenMapped` advises the server that maintaining contents of
-obscured regions when the window is mapped would be beneficial. A backing-store
-of `Always` advises the server that maintaining contents even when the window
-is unmapped would be beneficial. In this case, the server may generate an
-exposure event when the window is created. A value of `NotUseful` advises the
-server that maintaining contents is unnecessary, although a server may still
-choose to maintain contents while the window is mapped. Note that if the server
-maintains contents, then the server should maintain complete contents not just
-the region within the parent boundaries, even if the window is larger than its
-parent. While the server maintains contents, exposure events will not normally
-be generated, but the server may stop maintaining contents at any time. */
+    /// A backing-store of `WhenMapped` advises the server that maintaining contents of
+    /// obscured regions when the window is mapped would be beneficial. A backing-store
+    /// of `Always` advises the server that maintaining contents even when the window
+    /// is unmapped would be beneficial. In this case, the server may generate an
+    /// exposure event when the window is created. A value of `NotUseful` advises the
+    /// server that maintaining contents is unnecessary, although a server may still
+    /// choose to maintain contents while the window is mapped. Note that if the server
+    /// maintains contents, then the server should maintain complete contents not just
+    /// the region within the parent boundaries, even if the window is larger than its
+    /// parent. While the server maintains contents, exposure events will not normally
+    /// be generated, but the server may stop maintaining contents at any time.
     pub const XCB_CW_BACKING_STORE : xcb_cw_t = 64;
-    
-/** The backing-planes indicates (with bits set to 1) which bit planes of the
-window hold dynamic data that must be preserved in backing-stores and during
-save-unders. */
+    /// The backing-planes indicates (with bits set to 1) which bit planes of the
+    /// window hold dynamic data that must be preserved in backing-stores and during
+    /// save-unders.
     pub const XCB_CW_BACKING_PLANES : xcb_cw_t = 128;
-    
-/** The backing-pixel specifies what value to use in planes not covered by
-backing-planes. The server is free to save only the specified bit planes in the
-backing-store or save-under and regenerate the remaining planes with the
-specified pixel value. Any bits beyond the specified depth of the window in
-these values are simply ignored. */
+    /// The backing-pixel specifies what value to use in planes not covered by
+    /// backing-planes. The server is free to save only the specified bit planes in the
+    /// backing-store or save-under and regenerate the remaining planes with the
+    /// specified pixel value. Any bits beyond the specified depth of the window in
+    /// these values are simply ignored.
     pub const XCB_CW_BACKING_PIXEL : xcb_cw_t = 256;
-    
-/** The override-redirect specifies whether map and configure requests on this
-window should override a SubstructureRedirect on the parent, typically to
-inform a window manager not to tamper with the window. */
+    /// The override-redirect specifies whether map and configure requests on this
+    /// window should override a SubstructureRedirect on the parent, typically to
+    /// inform a window manager not to tamper with the window.
     pub const XCB_CW_OVERRIDE_REDIRECT : xcb_cw_t = 512;
-    
-/** If 1, the server is advised that when this window is mapped, saving the
-contents of windows it obscures would be beneficial. */
+    /// If 1, the server is advised that when this window is mapped, saving the
+    /// contents of windows it obscures would be beneficial.
     pub const XCB_CW_SAVE_UNDER : xcb_cw_t = 1024;
-    
-/** The event-mask defines which events the client is interested in for this window
-(or for some event types, inferiors of the window). */
+    /// The event-mask defines which events the client is interested in for this window
+    /// (or for some event types, inferiors of the window).
     pub const XCB_CW_EVENT_MASK : xcb_cw_t = 2048;
-    
-/** The do-not-propagate-mask defines which events should not be propagated to
-ancestor windows when no client has the event type selected in this window. */
+    /// The do-not-propagate-mask defines which events should not be propagated to
+    /// ancestor windows when no client has the event type selected in this window.
     pub const XCB_CW_DONT_PROPAGATE : xcb_cw_t = 4096;
-    
-/** The colormap specifies the colormap that best reflects the true colors of the window. Servers
-capable of supporting multiple hardware colormaps may use this information, and window man-
-agers may use it for InstallColormap requests. The colormap must have the same visual type
-and root as the window (or a Match error results). If CopyFromParent is specified, the parent's
-colormap is copied (subsequent changes to the parent's colormap attribute do not affect the child).
-However, the window must have the same visual type as the parent (or a Match error results),
-and the parent must not have a colormap of None (or a Match error results). For an explanation
-of None, see FreeColormap request. The colormap is copied by sharing the colormap object
-between the child and the parent, not by making a complete copy of the colormap contents. */
+    /// The colormap specifies the colormap that best reflects the true colors of the window. Servers
+    /// capable of supporting multiple hardware colormaps may use this information, and window man-
+    /// agers may use it for InstallColormap requests. The colormap must have the same visual type
+    /// and root as the window (or a Match error results). If CopyFromParent is specified, the parent's
+    /// colormap is copied (subsequent changes to the parent's colormap attribute do not affect the child).
+    /// However, the window must have the same visual type as the parent (or a Match error results),
+    /// and the parent must not have a colormap of None (or a Match error results). For an explanation
+    /// of None, see FreeColormap request. The colormap is copied by sharing the colormap object
+    /// between the child and the parent, not by making a complete copy of the colormap contents.
     pub const XCB_CW_COLORMAP : xcb_cw_t = 8192;
-    
-/** If a cursor is specified, it will be used whenever the pointer is in the window. If None is speci-
-fied, the parent's cursor will be used when the pointer is in the window, and any change in the
-parent's cursor will cause an immediate change in the displayed cursor. */
+    /// If a cursor is specified, it will be used whenever the pointer is in the window. If None is speci-
+    /// fied, the parent's cursor will be used when the pointer is in the window, and any change in the
+    /// parent's cursor will cause an immediate change in the displayed cursor.
     pub const XCB_CW_CURSOR : xcb_cw_t = 16384;
 //}
 
@@ -579,9 +560,9 @@ pub type xcb_gravity_t = c_uint;//{
     pub const XCB_GRAVITY_SOUTH_EAST : xcb_gravity_t = 9;
     pub const XCB_GRAVITY_STATIC : xcb_gravity_t = 10;
 //}
-/** Opcode for xcb_create_window. */
+/// Opcode for xcb_create_window.
 pub const XCB_CREATE_WINDOW : u8 = 1;
-/** Opcode for xcb_change_window_attributes. */
+/// Opcode for xcb_change_window_attributes.
 pub const XCB_CHANGE_WINDOW_ATTRIBUTES : u8 = 2;
 
 pub type xcb_map_state_t = c_uint;//{
@@ -591,30 +572,30 @@ pub type xcb_map_state_t = c_uint;//{
 //}
 pub struct  GetWindowAttributesCookie<'s> { pub base : base::Cookie<'s, xcb_get_window_attributes_cookie_t> }
 
-/** Opcode for xcb_get_window_attributes. */
+/// Opcode for xcb_get_window_attributes.
 pub const XCB_GET_WINDOW_ATTRIBUTES : u8 = 3;
 pub struct GetWindowAttributesReply { base:  base::Reply<xcb_get_window_attributes_reply_t> }
 fn mk_reply_xcb_get_window_attributes_reply_t(reply:*mut xcb_get_window_attributes_reply_t) -> GetWindowAttributesReply { GetWindowAttributesReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_destroy_window. */
+/// Opcode for xcb_destroy_window.
 pub const XCB_DESTROY_WINDOW : u8 = 4;
-/** Opcode for xcb_destroy_subwindows. */
+/// Opcode for xcb_destroy_subwindows.
 pub const XCB_DESTROY_SUBWINDOWS : u8 = 5;
 
 pub type xcb_set_mode_t = c_uint;//{
     pub const XCB_SET_MODE_INSERT : xcb_set_mode_t = 0;
     pub const XCB_SET_MODE_DELETE : xcb_set_mode_t = 1;
 //}
-/** Opcode for xcb_change_save_set. */
+/// Opcode for xcb_change_save_set.
 pub const XCB_CHANGE_SAVE_SET : u8 = 6;
-/** Opcode for xcb_reparent_window. */
+/// Opcode for xcb_reparent_window.
 pub const XCB_REPARENT_WINDOW : u8 = 7;
-/** Opcode for xcb_map_window. */
+/// Opcode for xcb_map_window.
 pub const XCB_MAP_WINDOW : u8 = 8;
-/** Opcode for xcb_map_subwindows. */
+/// Opcode for xcb_map_subwindows.
 pub const XCB_MAP_SUBWINDOWS : u8 = 9;
-/** Opcode for xcb_unmap_window. */
+/// Opcode for xcb_unmap_window.
 pub const XCB_UNMAP_WINDOW : u8 = 10;
-/** Opcode for xcb_unmap_subwindows. */
+/// Opcode for xcb_unmap_subwindows.
 pub const XCB_UNMAP_SUBWINDOWS : u8 = 11;
 
 pub type xcb_config_window_t = c_uint;//{
@@ -634,54 +615,51 @@ pub type xcb_stack_mode_t = c_uint;//{
     pub const XCB_STACK_MODE_BOTTOM_IF : xcb_stack_mode_t = 3;
     pub const XCB_STACK_MODE_OPPOSITE : xcb_stack_mode_t = 4;
 //}
-/** Opcode for xcb_configure_window. */
+/// Opcode for xcb_configure_window.
 pub const XCB_CONFIGURE_WINDOW : u8 = 12;
 
 pub type xcb_circulate_t = c_uint;//{
     pub const XCB_CIRCULATE_RAISE_LOWEST : xcb_circulate_t = 0;
     pub const XCB_CIRCULATE_LOWER_HIGHEST : xcb_circulate_t = 1;
 //}
-/** Opcode for xcb_circulate_window. */
+/// Opcode for xcb_circulate_window.
 pub const XCB_CIRCULATE_WINDOW : u8 = 13;
 pub struct  GetGeometryCookie<'s> { pub base : base::Cookie<'s, xcb_get_geometry_cookie_t> }
 
-/** Opcode for xcb_get_geometry. */
+/// Opcode for xcb_get_geometry.
 pub const XCB_GET_GEOMETRY : u8 = 14;
 pub struct GetGeometryReply { base:  base::Reply<xcb_get_geometry_reply_t> }
 fn mk_reply_xcb_get_geometry_reply_t(reply:*mut xcb_get_geometry_reply_t) -> GetGeometryReply { GetGeometryReply { base : base::mk_reply(reply) } }
 pub struct  QueryTreeCookie<'s> { pub base : base::Cookie<'s, xcb_query_tree_cookie_t> }
 
-/** Opcode for xcb_query_tree. */
+/// Opcode for xcb_query_tree.
 pub const XCB_QUERY_TREE : u8 = 15;
 pub struct  InternAtomCookie<'s> { pub base : base::Cookie<'s, xcb_intern_atom_cookie_t> }
 
-/** Opcode for xcb_intern_atom. */
+/// Opcode for xcb_intern_atom.
 pub const XCB_INTERN_ATOM : u8 = 16;
 pub struct InternAtomReply { base:  base::Reply<xcb_intern_atom_reply_t> }
 fn mk_reply_xcb_intern_atom_reply_t(reply:*mut xcb_intern_atom_reply_t) -> InternAtomReply { InternAtomReply { base : base::mk_reply(reply) } }
 pub struct  GetAtomNameCookie<'s> { pub base : base::Cookie<'s, xcb_get_atom_name_cookie_t> }
 
-/** Opcode for xcb_get_atom_name. */
+/// Opcode for xcb_get_atom_name.
 pub const XCB_GET_ATOM_NAME : u8 = 17;
 
 pub type xcb_prop_mode_t = c_uint;//{
-    
-/** Discard the previous property value and store the new data. */
+    /// Discard the previous property value and store the new data.
     pub const XCB_PROP_MODE_REPLACE : xcb_prop_mode_t = 0;
-    
-/** Insert the new data before the beginning of existing data. The `format` must
-match existing property value. If the property is undefined, it is treated as
-defined with the correct type and format with zero-length data. */
+    /// Insert the new data before the beginning of existing data. The `format` must
+    /// match existing property value. If the property is undefined, it is treated as
+    /// defined with the correct type and format with zero-length data.
     pub const XCB_PROP_MODE_PREPEND : xcb_prop_mode_t = 1;
-    
-/** Insert the new data after the beginning of existing data. The `format` must
-match existing property value. If the property is undefined, it is treated as
-defined with the correct type and format with zero-length data. */
+    /// Insert the new data after the beginning of existing data. The `format` must
+    /// match existing property value. If the property is undefined, it is treated as
+    /// defined with the correct type and format with zero-length data.
     pub const XCB_PROP_MODE_APPEND : xcb_prop_mode_t = 2;
 //}
-/** Opcode for xcb_change_property. */
+/// Opcode for xcb_change_property.
 pub const XCB_CHANGE_PROPERTY : u8 = 18;
-/** Opcode for xcb_delete_property. */
+/// Opcode for xcb_delete_property.
 pub const XCB_DELETE_PROPERTY : u8 = 19;
 
 pub type xcb_get_property_type_t = c_uint;//{
@@ -689,38 +667,36 @@ pub type xcb_get_property_type_t = c_uint;//{
 //}
 pub struct  GetPropertyCookie<'s> { pub base : base::Cookie<'s, xcb_get_property_cookie_t> }
 
-/** Opcode for xcb_get_property. */
+/// Opcode for xcb_get_property.
 pub const XCB_GET_PROPERTY : u8 = 20;
 pub struct  ListPropertiesCookie<'s> { pub base : base::Cookie<'s, xcb_list_properties_cookie_t> }
 
-/** Opcode for xcb_list_properties. */
+/// Opcode for xcb_list_properties.
 pub const XCB_LIST_PROPERTIES : u8 = 21;
-/** Opcode for xcb_set_selection_owner. */
+/// Opcode for xcb_set_selection_owner.
 pub const XCB_SET_SELECTION_OWNER : u8 = 22;
 pub struct  GetSelectionOwnerCookie<'s> { pub base : base::Cookie<'s, xcb_get_selection_owner_cookie_t> }
 
-/** Opcode for xcb_get_selection_owner. */
+/// Opcode for xcb_get_selection_owner.
 pub const XCB_GET_SELECTION_OWNER : u8 = 23;
 pub struct GetSelectionOwnerReply { base:  base::Reply<xcb_get_selection_owner_reply_t> }
 fn mk_reply_xcb_get_selection_owner_reply_t(reply:*mut xcb_get_selection_owner_reply_t) -> GetSelectionOwnerReply { GetSelectionOwnerReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_convert_selection. */
+/// Opcode for xcb_convert_selection.
 pub const XCB_CONVERT_SELECTION : u8 = 24;
 
 pub type xcb_send_event_dest_t = c_uint;//{
     pub const XCB_SEND_EVENT_DEST_POINTER_WINDOW : xcb_send_event_dest_t = 0;
     pub const XCB_SEND_EVENT_DEST_ITEM_FOCUS : xcb_send_event_dest_t = 1;
 //}
-/** Opcode for xcb_send_event. */
+/// Opcode for xcb_send_event.
 pub const XCB_SEND_EVENT : u8 = 25;
 
 pub type xcb_grab_mode_t = c_uint;//{
-    
-/** The state of the keyboard appears to freeze: No further keyboard events are
-generated by the server until the grabbing client issues a releasing
-`AllowEvents` request or until the keyboard grab is released. */
+    /// The state of the keyboard appears to freeze: No further keyboard events are
+    /// generated by the server until the grabbing client issues a releasing
+    /// `AllowEvents` request or until the keyboard grab is released.
     pub const XCB_GRAB_MODE_SYNC : xcb_grab_mode_t = 0;
-    
-/** Keyboard event processing continues normally. */
+    /// Keyboard event processing continues normally.
     pub const XCB_GRAB_MODE_ASYNC : xcb_grab_mode_t = 1;
 //}
 
@@ -737,140 +713,126 @@ pub type xcb_cursor_enum_t = c_uint;//{
 //}
 pub struct  GrabPointerCookie<'s> { pub base : base::Cookie<'s, xcb_grab_pointer_cookie_t> }
 
-/** Opcode for xcb_grab_pointer. */
+/// Opcode for xcb_grab_pointer.
 pub const XCB_GRAB_POINTER : u8 = 26;
 pub struct GrabPointerReply { base:  base::Reply<xcb_grab_pointer_reply_t> }
 fn mk_reply_xcb_grab_pointer_reply_t(reply:*mut xcb_grab_pointer_reply_t) -> GrabPointerReply { GrabPointerReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_ungrab_pointer. */
+/// Opcode for xcb_ungrab_pointer.
 pub const XCB_UNGRAB_POINTER : u8 = 27;
 
 pub type xcb_button_index_t = c_uint;//{
-    
-/** Any of the following (or none): */
+    /// Any of the following (or none):
     pub const XCB_BUTTON_INDEX_ANY : xcb_button_index_t = 0;
-    
-/** The left mouse button. */
+    /// The left mouse button.
     pub const XCB_BUTTON_INDEX_1 : xcb_button_index_t = 1;
-    
-/** The right mouse button. */
+    /// The right mouse button.
     pub const XCB_BUTTON_INDEX_2 : xcb_button_index_t = 2;
-    
-/** The middle mouse button. */
+    /// The middle mouse button.
     pub const XCB_BUTTON_INDEX_3 : xcb_button_index_t = 3;
-    
-/** Scroll wheel. TODO: direction? */
+    /// Scroll wheel. TODO: direction?
     pub const XCB_BUTTON_INDEX_4 : xcb_button_index_t = 4;
-    
-/** Scroll wheel. TODO: direction? */
+    /// Scroll wheel. TODO: direction?
     pub const XCB_BUTTON_INDEX_5 : xcb_button_index_t = 5;
 //}
-/** Opcode for xcb_grab_button. */
+/// Opcode for xcb_grab_button.
 pub const XCB_GRAB_BUTTON : u8 = 28;
-/** Opcode for xcb_ungrab_button. */
+/// Opcode for xcb_ungrab_button.
 pub const XCB_UNGRAB_BUTTON : u8 = 29;
-/** Opcode for xcb_change_active_pointer_grab. */
+/// Opcode for xcb_change_active_pointer_grab.
 pub const XCB_CHANGE_ACTIVE_POINTER_GRAB : u8 = 30;
 pub struct  GrabKeyboardCookie<'s> { pub base : base::Cookie<'s, xcb_grab_keyboard_cookie_t> }
 
-/** Opcode for xcb_grab_keyboard. */
+/// Opcode for xcb_grab_keyboard.
 pub const XCB_GRAB_KEYBOARD : u8 = 31;
 pub struct GrabKeyboardReply { base:  base::Reply<xcb_grab_keyboard_reply_t> }
 fn mk_reply_xcb_grab_keyboard_reply_t(reply:*mut xcb_grab_keyboard_reply_t) -> GrabKeyboardReply { GrabKeyboardReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_ungrab_keyboard. */
+/// Opcode for xcb_ungrab_keyboard.
 pub const XCB_UNGRAB_KEYBOARD : u8 = 32;
 
 pub type xcb_grab_t = c_uint;//{
     pub const XCB_GRAB_ANY : xcb_grab_t = 0;
 //}
-/** Opcode for xcb_grab_key. */
+/// Opcode for xcb_grab_key.
 pub const XCB_GRAB_KEY : u8 = 33;
-/** Opcode for xcb_ungrab_key. */
+/// Opcode for xcb_ungrab_key.
 pub const XCB_UNGRAB_KEY : u8 = 34;
 
 pub type xcb_allow_t = c_uint;//{
-    
-/** For AsyncPointer, if the pointer is frozen by the client, pointer event
-processing continues normally. If the pointer is frozen twice by the client on
-behalf of two separate grabs, AsyncPointer thaws for both. AsyncPointer has no
-effect if the pointer is not frozen by the client, but the pointer need not be
-grabbed by the client.
-
-TODO: rewrite this in more understandable terms. */
+    /// For AsyncPointer, if the pointer is frozen by the client, pointer event
+    /// processing continues normally. If the pointer is frozen twice by the client on
+    /// behalf of two separate grabs, AsyncPointer thaws for both. AsyncPointer has no
+    /// effect if the pointer is not frozen by the client, but the pointer need not be
+    /// grabbed by the client.
+    ///
+    /// TODO: rewrite this in more understandable terms.
     pub const XCB_ALLOW_ASYNC_POINTER : xcb_allow_t = 0;
-    
-/** For SyncPointer, if the pointer is frozen and actively grabbed by the client,
-pointer event processing continues normally until the next ButtonPress or
-ButtonRelease event is reported to the client, at which time the pointer again
-appears to freeze. However, if the reported event causes the pointer grab to be
-released, then the pointer does not freeze. SyncPointer has no effect if the
-pointer is not frozen by the client or if the pointer is not grabbed by the
-client. */
+    /// For SyncPointer, if the pointer is frozen and actively grabbed by the client,
+    /// pointer event processing continues normally until the next ButtonPress or
+    /// ButtonRelease event is reported to the client, at which time the pointer again
+    /// appears to freeze. However, if the reported event causes the pointer grab to be
+    /// released, then the pointer does not freeze. SyncPointer has no effect if the
+    /// pointer is not frozen by the client or if the pointer is not grabbed by the
+    /// client.
     pub const XCB_ALLOW_SYNC_POINTER : xcb_allow_t = 1;
-    
-/** For ReplayPointer, if the pointer is actively grabbed by the client and is
-frozen as the result of an event having been sent to the client (either from
-the activation of a GrabButton or from a previous AllowEvents with mode
-SyncPointer but not from a GrabPointer), then the pointer grab is released and
-that event is completely reprocessed, this time ignoring any passive grabs at
-or above (towards the root) the grab-window of the grab just released. The
-request has no effect if the pointer is not grabbed by the client or if the
-pointer is not frozen as the result of an event. */
+    /// For ReplayPointer, if the pointer is actively grabbed by the client and is
+    /// frozen as the result of an event having been sent to the client (either from
+    /// the activation of a GrabButton or from a previous AllowEvents with mode
+    /// SyncPointer but not from a GrabPointer), then the pointer grab is released and
+    /// that event is completely reprocessed, this time ignoring any passive grabs at
+    /// or above (towards the root) the grab-window of the grab just released. The
+    /// request has no effect if the pointer is not grabbed by the client or if the
+    /// pointer is not frozen as the result of an event.
     pub const XCB_ALLOW_REPLAY_POINTER : xcb_allow_t = 2;
-    
-/** For AsyncKeyboard, if the keyboard is frozen by the client, keyboard event
-processing continues normally. If the keyboard is frozen twice by the client on
-behalf of two separate grabs, AsyncKeyboard thaws for both. AsyncKeyboard has
-no effect if the keyboard is not frozen by the client, but the keyboard need
-not be grabbed by the client. */
+    /// For AsyncKeyboard, if the keyboard is frozen by the client, keyboard event
+    /// processing continues normally. If the keyboard is frozen twice by the client on
+    /// behalf of two separate grabs, AsyncKeyboard thaws for both. AsyncKeyboard has
+    /// no effect if the keyboard is not frozen by the client, but the keyboard need
+    /// not be grabbed by the client.
     pub const XCB_ALLOW_ASYNC_KEYBOARD : xcb_allow_t = 3;
-    
-/** For SyncKeyboard, if the keyboard is frozen and actively grabbed by the client,
-keyboard event processing continues normally until the next KeyPress or
-KeyRelease event is reported to the client, at which time the keyboard again
-appears to freeze. However, if the reported event causes the keyboard grab to
-be released, then the keyboard does not freeze. SyncKeyboard has no effect if
-the keyboard is not frozen by the client or if the keyboard is not grabbed by
-the client. */
+    /// For SyncKeyboard, if the keyboard is frozen and actively grabbed by the client,
+    /// keyboard event processing continues normally until the next KeyPress or
+    /// KeyRelease event is reported to the client, at which time the keyboard again
+    /// appears to freeze. However, if the reported event causes the keyboard grab to
+    /// be released, then the keyboard does not freeze. SyncKeyboard has no effect if
+    /// the keyboard is not frozen by the client or if the keyboard is not grabbed by
+    /// the client.
     pub const XCB_ALLOW_SYNC_KEYBOARD : xcb_allow_t = 4;
-    
-/** For ReplayKeyboard, if the keyboard is actively grabbed by the client and is
-frozen as the result of an event having been sent to the client (either from
-the activation of a GrabKey or from a previous AllowEvents with mode
-SyncKeyboard but not from a GrabKeyboard), then the keyboard grab is released
-and that event is completely reprocessed, this time ignoring any passive grabs
-at or above (towards the root) the grab-window of the grab just released. The
-request has no effect if the keyboard is not grabbed by the client or if the
-keyboard is not frozen as the result of an event. */
+    /// For ReplayKeyboard, if the keyboard is actively grabbed by the client and is
+    /// frozen as the result of an event having been sent to the client (either from
+    /// the activation of a GrabKey or from a previous AllowEvents with mode
+    /// SyncKeyboard but not from a GrabKeyboard), then the keyboard grab is released
+    /// and that event is completely reprocessed, this time ignoring any passive grabs
+    /// at or above (towards the root) the grab-window of the grab just released. The
+    /// request has no effect if the keyboard is not grabbed by the client or if the
+    /// keyboard is not frozen as the result of an event.
     pub const XCB_ALLOW_REPLAY_KEYBOARD : xcb_allow_t = 5;
-    
-/** For AsyncBoth, if the pointer and the keyboard are frozen by the client, event
-processing for both devices continues normally. If a device is frozen twice by
-the client on behalf of two separate grabs, AsyncBoth thaws for both. AsyncBoth
-has no effect unless both pointer and keyboard are frozen by the client. */
+    /// For AsyncBoth, if the pointer and the keyboard are frozen by the client, event
+    /// processing for both devices continues normally. If a device is frozen twice by
+    /// the client on behalf of two separate grabs, AsyncBoth thaws for both. AsyncBoth
+    /// has no effect unless both pointer and keyboard are frozen by the client.
     pub const XCB_ALLOW_ASYNC_BOTH : xcb_allow_t = 6;
-    
-/** For SyncBoth, if both pointer and keyboard are frozen by the client, event
-processing (for both devices) continues normally until the next ButtonPress,
-ButtonRelease, KeyPress, or KeyRelease event is reported to the client for a
-grabbed device (button event for the pointer, key event for the keyboard), at
-which time the devices again appear to freeze. However, if the reported event
-causes the grab to be released, then the devices do not freeze (but if the
-other device is still grabbed, then a subsequent event for it will still cause
-both devices to freeze). SyncBoth has no effect unless both pointer and
-keyboard are frozen by the client. If the pointer or keyboard is frozen twice
-by the client on behalf of two separate grabs, SyncBoth thaws for both (but a
-subsequent freeze for SyncBoth will only freeze each device once). */
+    /// For SyncBoth, if both pointer and keyboard are frozen by the client, event
+    /// processing (for both devices) continues normally until the next ButtonPress,
+    /// ButtonRelease, KeyPress, or KeyRelease event is reported to the client for a
+    /// grabbed device (button event for the pointer, key event for the keyboard), at
+    /// which time the devices again appear to freeze. However, if the reported event
+    /// causes the grab to be released, then the devices do not freeze (but if the
+    /// other device is still grabbed, then a subsequent event for it will still cause
+    /// both devices to freeze). SyncBoth has no effect unless both pointer and
+    /// keyboard are frozen by the client. If the pointer or keyboard is frozen twice
+    /// by the client on behalf of two separate grabs, SyncBoth thaws for both (but a
+    /// subsequent freeze for SyncBoth will only freeze each device once).
     pub const XCB_ALLOW_SYNC_BOTH : xcb_allow_t = 7;
 //}
-/** Opcode for xcb_allow_events. */
+/// Opcode for xcb_allow_events.
 pub const XCB_ALLOW_EVENTS : u8 = 35;
-/** Opcode for xcb_grab_server. */
+/// Opcode for xcb_grab_server.
 pub const XCB_GRAB_SERVER : u8 = 36;
-/** Opcode for xcb_ungrab_server. */
+/// Opcode for xcb_ungrab_server.
 pub const XCB_UNGRAB_SERVER : u8 = 37;
 pub struct  QueryPointerCookie<'s> { pub base : base::Cookie<'s, xcb_query_pointer_cookie_t> }
 
-/** Opcode for xcb_query_pointer. */
+/// Opcode for xcb_query_pointer.
 pub const XCB_QUERY_POINTER : u8 = 38;
 pub struct QueryPointerReply { base:  base::Reply<xcb_query_pointer_reply_t> }
 fn mk_reply_xcb_query_pointer_reply_t(reply:*mut xcb_query_pointer_reply_t) -> QueryPointerReply { QueryPointerReply { base : base::mk_reply(reply) } }
@@ -878,51 +840,47 @@ pub type TimecoordIterator = xcb_timecoord_iterator_t;
 
 pub struct  GetMotionEventsCookie<'s> { pub base : base::Cookie<'s, xcb_get_motion_events_cookie_t> }
 
-/** Opcode for xcb_get_motion_events. */
+/// Opcode for xcb_get_motion_events.
 pub const XCB_GET_MOTION_EVENTS : u8 = 39;
 pub struct  TranslateCoordinatesCookie<'s> { pub base : base::Cookie<'s, xcb_translate_coordinates_cookie_t> }
 
-/** Opcode for xcb_translate_coordinates. */
+/// Opcode for xcb_translate_coordinates.
 pub const XCB_TRANSLATE_COORDINATES : u8 = 40;
 pub struct TranslateCoordinatesReply { base:  base::Reply<xcb_translate_coordinates_reply_t> }
 fn mk_reply_xcb_translate_coordinates_reply_t(reply:*mut xcb_translate_coordinates_reply_t) -> TranslateCoordinatesReply { TranslateCoordinatesReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_warp_pointer. */
+/// Opcode for xcb_warp_pointer.
 pub const XCB_WARP_POINTER : u8 = 41;
 
 pub type xcb_input_focus_t = c_uint;//{
-    
-/** The focus reverts to `XCB_NONE`, so no window will have the input focus. */
+    /// The focus reverts to `XCB_NONE`, so no window will have the input focus.
     pub const XCB_INPUT_FOCUS_NONE : xcb_input_focus_t = 0;
-    
-/** The focus reverts to `XCB_POINTER_ROOT` respectively. When the focus reverts,
-FocusIn and FocusOut events are generated, but the last-focus-change time is
-not changed. */
+    /// The focus reverts to `XCB_POINTER_ROOT` respectively. When the focus reverts,
+    /// FocusIn and FocusOut events are generated, but the last-focus-change time is
+    /// not changed.
     pub const XCB_INPUT_FOCUS_POINTER_ROOT : xcb_input_focus_t = 1;
-    
-/** The focus reverts to the parent (or closest viewable ancestor) and the new
-revert_to value is `XCB_INPUT_FOCUS_NONE`. */
+    /// The focus reverts to the parent (or closest viewable ancestor) and the new
+    /// revert_to value is `XCB_INPUT_FOCUS_NONE`.
     pub const XCB_INPUT_FOCUS_PARENT : xcb_input_focus_t = 2;
-    
-/** NOT YET DOCUMENTED. Only relevant for the xinput extension. */
+    /// NOT YET DOCUMENTED. Only relevant for the xinput extension.
     pub const XCB_INPUT_FOCUS_FOLLOW_KEYBOARD : xcb_input_focus_t = 3;
 //}
-/** Opcode for xcb_set_input_focus. */
+/// Opcode for xcb_set_input_focus.
 pub const XCB_SET_INPUT_FOCUS : u8 = 42;
 pub struct  GetInputFocusCookie<'s> { pub base : base::Cookie<'s, xcb_get_input_focus_cookie_t> }
 
-/** Opcode for xcb_get_input_focus. */
+/// Opcode for xcb_get_input_focus.
 pub const XCB_GET_INPUT_FOCUS : u8 = 43;
 pub struct GetInputFocusReply { base:  base::Reply<xcb_get_input_focus_reply_t> }
 fn mk_reply_xcb_get_input_focus_reply_t(reply:*mut xcb_get_input_focus_reply_t) -> GetInputFocusReply { GetInputFocusReply { base : base::mk_reply(reply) } }
 pub struct  QueryKeymapCookie<'s> { pub base : base::Cookie<'s, xcb_query_keymap_cookie_t> }
 
-/** Opcode for xcb_query_keymap. */
+/// Opcode for xcb_query_keymap.
 pub const XCB_QUERY_KEYMAP : u8 = 44;
 pub struct QueryKeymapReply { base:  base::Reply<xcb_query_keymap_reply_t> }
 fn mk_reply_xcb_query_keymap_reply_t(reply:*mut xcb_query_keymap_reply_t) -> QueryKeymapReply { QueryKeymapReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_open_font. */
+/// Opcode for xcb_open_font.
 pub const XCB_OPEN_FONT : u8 = 45;
-/** Opcode for xcb_close_font. */
+/// Opcode for xcb_close_font.
 pub const XCB_CLOSE_FONT : u8 = 46;
 
 pub type xcb_font_draw_t = c_uint;//{
@@ -937,11 +895,11 @@ pub type CharinfoIterator = xcb_charinfo_iterator_t;
 
 pub struct  QueryFontCookie<'s> { pub base : base::Cookie<'s, xcb_query_font_cookie_t> }
 
-/** Opcode for xcb_query_font. */
+/// Opcode for xcb_query_font.
 pub const XCB_QUERY_FONT : u8 = 47;
 pub struct  QueryTextExtentsCookie<'s> { pub base : base::Cookie<'s, xcb_query_text_extents_cookie_t> }
 
-/** Opcode for xcb_query_text_extents. */
+/// Opcode for xcb_query_text_extents.
 pub const XCB_QUERY_TEXT_EXTENTS : u8 = 48;
 pub struct QueryTextExtentsReply { base:  base::Reply<xcb_query_text_extents_reply_t> }
 fn mk_reply_xcb_query_text_extents_reply_t(reply:*mut xcb_query_text_extents_reply_t) -> QueryTextExtentsReply { QueryTextExtentsReply { base : base::mk_reply(reply) } }
@@ -949,173 +907,150 @@ pub type StrIterator = xcb_str_iterator_t;
 
 pub struct  ListFontsCookie<'s> { pub base : base::Cookie<'s, xcb_list_fonts_cookie_t> }
 
-/** Opcode for xcb_list_fonts. */
+/// Opcode for xcb_list_fonts.
 pub const XCB_LIST_FONTS : u8 = 49;
 pub struct ListFontsReply { base:  base::Reply<xcb_list_fonts_reply_t> }
 fn mk_reply_xcb_list_fonts_reply_t(reply:*mut xcb_list_fonts_reply_t) -> ListFontsReply { ListFontsReply { base : base::mk_reply(reply) } }
 pub struct  ListFontsWithInfoCookie<'s> { pub base : base::Cookie<'s, xcb_list_fonts_with_info_cookie_t> }
 
-/** Opcode for xcb_list_fonts_with_info. */
+/// Opcode for xcb_list_fonts_with_info.
 pub const XCB_LIST_FONTS_WITH_INFO : u8 = 50;
 pub struct ListFontsWithInfoReply { base:  base::Reply<xcb_list_fonts_with_info_reply_t> }
 fn mk_reply_xcb_list_fonts_with_info_reply_t(reply:*mut xcb_list_fonts_with_info_reply_t) -> ListFontsWithInfoReply { ListFontsWithInfoReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_set_font_path. */
+/// Opcode for xcb_set_font_path.
 pub const XCB_SET_FONT_PATH : u8 = 51;
 pub struct  GetFontPathCookie<'s> { pub base : base::Cookie<'s, xcb_get_font_path_cookie_t> }
 
-/** Opcode for xcb_get_font_path. */
+/// Opcode for xcb_get_font_path.
 pub const XCB_GET_FONT_PATH : u8 = 52;
-/** Opcode for xcb_create_pixmap. */
+/// Opcode for xcb_create_pixmap.
 pub const XCB_CREATE_PIXMAP : u8 = 53;
-/** Opcode for xcb_free_pixmap. */
+/// Opcode for xcb_free_pixmap.
 pub const XCB_FREE_PIXMAP : u8 = 54;
 
 pub type xcb_gc_t = c_uint;//{
-    
-/** TODO: Refer to GX */
+    /// TODO: Refer to GX
     pub const XCB_GC_FUNCTION : xcb_gc_t = 1;
-    
-/** In graphics operations, given a source and destination pixel, the result is
-computed bitwise on corresponding bits of the pixels; that is, a Boolean
-operation is performed in each bit plane. The plane-mask restricts the
-operation to a subset of planes, so the result is:
-
-        ((src FUNC dst) AND plane-mask) OR (dst AND (NOT plane-mask)) */
+    /// In graphics operations, given a source and destination pixel, the result is
+    /// computed bitwise on corresponding bits of the pixels; that is, a Boolean
+    /// operation is performed in each bit plane. The plane-mask restricts the
+    /// operation to a subset of planes, so the result is:
+    ///
+    ///         ((src FUNC dst) AND plane-mask) OR (dst AND (NOT plane-mask))
     pub const XCB_GC_PLANE_MASK : xcb_gc_t = 2;
-    
-/** Foreground colorpixel. */
+    /// Foreground colorpixel.
     pub const XCB_GC_FOREGROUND : xcb_gc_t = 4;
-    
-/** Background colorpixel. */
+    /// Background colorpixel.
     pub const XCB_GC_BACKGROUND : xcb_gc_t = 8;
-    
-/** The line-width is measured in pixels and can be greater than or equal to one, a wide line, or the
-special value zero, a thin line. */
+    /// The line-width is measured in pixels and can be greater than or equal to one, a wide line, or the
+    /// special value zero, a thin line.
     pub const XCB_GC_LINE_WIDTH : xcb_gc_t = 16;
-    
-/** The line-style defines which sections of a line are drawn:
-Solid                The full path of the line is drawn.
-DoubleDash           The full path of the line is drawn, but the even dashes are filled differently
-                     than the odd dashes (see fill-style), with Butt cap-style used where even and
-                     odd dashes meet.
-OnOffDash            Only the even dashes are drawn, and cap-style applies to all internal ends of
-                     the individual dashes (except NotLast is treated as Butt). */
+    /// The line-style defines which sections of a line are drawn:
+    /// Solid                The full path of the line is drawn.
+    /// DoubleDash           The full path of the line is drawn, but the even dashes are filled differently
+    ///                      than the odd dashes (see fill-style), with Butt cap-style used where even and
+    ///                      odd dashes meet.
+    /// OnOffDash            Only the even dashes are drawn, and cap-style applies to all internal ends of
+    ///                      the individual dashes (except NotLast is treated as Butt).
     pub const XCB_GC_LINE_STYLE : xcb_gc_t = 32;
-    
-/** The cap-style defines how the endpoints of a path are drawn:
-NotLast    The result is equivalent to Butt, except that for a line-width of zero the final
-           endpoint is not drawn.
-Butt       The result is square at the endpoint (perpendicular to the slope of the line)
-           with no projection beyond.
-Round      The result is a circular arc with its diameter equal to the line-width, centered
-           on the endpoint; it is equivalent to Butt for line-width zero.
-Projecting The result is square at the end, but the path continues beyond the endpoint for
-           a distance equal to half the line-width; it is equivalent to Butt for line-width
-           zero. */
+    /// The cap-style defines how the endpoints of a path are drawn:
+    /// NotLast    The result is equivalent to Butt, except that for a line-width of zero the final
+    ///            endpoint is not drawn.
+    /// Butt       The result is square at the endpoint (perpendicular to the slope of the line)
+    ///            with no projection beyond.
+    /// Round      The result is a circular arc with its diameter equal to the line-width, centered
+    ///            on the endpoint; it is equivalent to Butt for line-width zero.
+    /// Projecting The result is square at the end, but the path continues beyond the endpoint for
+    ///            a distance equal to half the line-width; it is equivalent to Butt for line-width
+    ///            zero.
     pub const XCB_GC_CAP_STYLE : xcb_gc_t = 64;
-    
-/** The join-style defines how corners are drawn for wide lines:
-Miter               The outer edges of the two lines extend to meet at an angle. However, if the
-                    angle is less than 11 degrees, a Bevel join-style is used instead.
-Round               The result is a circular arc with a diameter equal to the line-width, centered
-                    on the joinpoint.
-Bevel               The result is Butt endpoint styles, and then the triangular notch is filled. */
+    /// The join-style defines how corners are drawn for wide lines:
+    /// Miter               The outer edges of the two lines extend to meet at an angle. However, if the
+    ///                     angle is less than 11 degrees, a Bevel join-style is used instead.
+    /// Round               The result is a circular arc with a diameter equal to the line-width, centered
+    ///                     on the joinpoint.
+    /// Bevel               The result is Butt endpoint styles, and then the triangular notch is filled.
     pub const XCB_GC_JOIN_STYLE : xcb_gc_t = 128;
-    
-/** The fill-style defines the contents of the source for line, text, and fill requests. For all text and fill
-requests (for example, PolyText8, PolyText16, PolyFillRectangle, FillPoly, and PolyFillArc)
-as well as for line requests with line-style Solid, (for example, PolyLine, PolySegment,
-PolyRectangle, PolyArc) and for the even dashes for line requests with line-style OnOffDash
-or DoubleDash:
-Solid                     Foreground
-Tiled                     Tile
-OpaqueStippled            A tile with the same width and height as stipple but with background
-                          everywhere stipple has a zero and with foreground everywhere stipple
-                          has a one
-Stippled                  Foreground masked by stipple
-For the odd dashes for line requests with line-style DoubleDash:
-Solid                     Background
-Tiled                     Same as for even dashes
-OpaqueStippled            Same as for even dashes
-Stippled                  Background masked by stipple */
+    /// The fill-style defines the contents of the source for line, text, and fill requests. For all text and fill
+    /// requests (for example, PolyText8, PolyText16, PolyFillRectangle, FillPoly, and PolyFillArc)
+    /// as well as for line requests with line-style Solid, (for example, PolyLine, PolySegment,
+    /// PolyRectangle, PolyArc) and for the even dashes for line requests with line-style OnOffDash
+    /// or DoubleDash:
+    /// Solid                     Foreground
+    /// Tiled                     Tile
+    /// OpaqueStippled            A tile with the same width and height as stipple but with background
+    ///                           everywhere stipple has a zero and with foreground everywhere stipple
+    ///                           has a one
+    /// Stippled                  Foreground masked by stipple
+    /// For the odd dashes for line requests with line-style DoubleDash:
+    /// Solid                     Background
+    /// Tiled                     Same as for even dashes
+    /// OpaqueStippled            Same as for even dashes
+    /// Stippled                  Background masked by stipple
     pub const XCB_GC_FILL_STYLE : xcb_gc_t = 256;
-    
-/**  */
+    ///
     pub const XCB_GC_FILL_RULE : xcb_gc_t = 512;
-    
-/** The tile/stipple represents an infinite two-dimensional plane with the tile/stipple replicated in all
-dimensions. When that plane is superimposed on the drawable for use in a graphics operation,
-the upper-left corner of some instance of the tile/stipple is at the coordinates within the drawable
-specified by the tile/stipple origin. The tile/stipple and clip origins are interpreted relative to the
-origin of whatever destination drawable is specified in a graphics request.
-The tile pixmap must have the same root and depth as the gcontext (or a Match error results).
-The stipple pixmap must have depth one and must have the same root as the gcontext (or a
-Match error results). For fill-style Stippled (but not fill-style
-OpaqueStippled), the stipple pattern is tiled in a single plane and acts as an
-additional clip mask to be ANDed with the clip-mask.
-Any size pixmap can be used for tiling or stippling, although some sizes may be faster to use than
-others. */
+    /// The tile/stipple represents an infinite two-dimensional plane with the tile/stipple replicated in all
+    /// dimensions. When that plane is superimposed on the drawable for use in a graphics operation,
+    /// the upper-left corner of some instance of the tile/stipple is at the coordinates within the drawable
+    /// specified by the tile/stipple origin. The tile/stipple and clip origins are interpreted relative to the
+    /// origin of whatever destination drawable is specified in a graphics request.
+    /// The tile pixmap must have the same root and depth as the gcontext (or a Match error results).
+    /// The stipple pixmap must have depth one and must have the same root as the gcontext (or a
+    /// Match error results). For fill-style Stippled (but not fill-style
+    /// OpaqueStippled), the stipple pattern is tiled in a single plane and acts as an
+    /// additional clip mask to be ANDed with the clip-mask.
+    /// Any size pixmap can be used for tiling or stippling, although some sizes may be faster to use than
+    /// others.
     pub const XCB_GC_TILE : xcb_gc_t = 1024;
-    
-/** The tile/stipple represents an infinite two-dimensional plane with the tile/stipple replicated in all
-dimensions. When that plane is superimposed on the drawable for use in a graphics operation,
-the upper-left corner of some instance of the tile/stipple is at the coordinates within the drawable
-specified by the tile/stipple origin. The tile/stipple and clip origins are interpreted relative to the
-origin of whatever destination drawable is specified in a graphics request.
-The tile pixmap must have the same root and depth as the gcontext (or a Match error results).
-The stipple pixmap must have depth one and must have the same root as the gcontext (or a
-Match error results). For fill-style Stippled (but not fill-style
-OpaqueStippled), the stipple pattern is tiled in a single plane and acts as an
-additional clip mask to be ANDed with the clip-mask.
-Any size pixmap can be used for tiling or stippling, although some sizes may be faster to use than
-others. */
+    /// The tile/stipple represents an infinite two-dimensional plane with the tile/stipple replicated in all
+    /// dimensions. When that plane is superimposed on the drawable for use in a graphics operation,
+    /// the upper-left corner of some instance of the tile/stipple is at the coordinates within the drawable
+    /// specified by the tile/stipple origin. The tile/stipple and clip origins are interpreted relative to the
+    /// origin of whatever destination drawable is specified in a graphics request.
+    /// The tile pixmap must have the same root and depth as the gcontext (or a Match error results).
+    /// The stipple pixmap must have depth one and must have the same root as the gcontext (or a
+    /// Match error results). For fill-style Stippled (but not fill-style
+    /// OpaqueStippled), the stipple pattern is tiled in a single plane and acts as an
+    /// additional clip mask to be ANDed with the clip-mask.
+    /// Any size pixmap can be used for tiling or stippling, although some sizes may be faster to use than
+    /// others.
     pub const XCB_GC_STIPPLE : xcb_gc_t = 2048;
-    
-/** TODO */
+    /// TODO
     pub const XCB_GC_TILE_STIPPLE_ORIGIN_X : xcb_gc_t = 4096;
-    
-/** TODO */
+    /// TODO
     pub const XCB_GC_TILE_STIPPLE_ORIGIN_Y : xcb_gc_t = 8192;
-    
-/** Which font to use for the `ImageText8` and `ImageText16` requests. */
+    /// Which font to use for the `ImageText8` and `ImageText16` requests.
     pub const XCB_GC_FONT : xcb_gc_t = 16384;
-    
-/** For ClipByChildren, both source and destination windows are additionally
-clipped by all viewable InputOutput children. For IncludeInferiors, neither
-source nor destination window is
-clipped by inferiors. This will result in including subwindow contents in the source and drawing
-through subwindow boundaries of the destination. The use of IncludeInferiors with a source or
-destination window of one depth with mapped inferiors of differing depth is not illegal, but the
-semantics is undefined by the core protocol. */
+    /// For ClipByChildren, both source and destination windows are additionally
+    /// clipped by all viewable InputOutput children. For IncludeInferiors, neither
+    /// source nor destination window is
+    /// clipped by inferiors. This will result in including subwindow contents in the source and drawing
+    /// through subwindow boundaries of the destination. The use of IncludeInferiors with a source or
+    /// destination window of one depth with mapped inferiors of differing depth is not illegal, but the
+    /// semantics is undefined by the core protocol.
     pub const XCB_GC_SUBWINDOW_MODE : xcb_gc_t = 32768;
-    
-/** Whether ExposureEvents should be generated (1) or not (0).
-
-The default is 1. */
+    /// Whether ExposureEvents should be generated (1) or not (0).
+    ///
+    /// The default is 1.
     pub const XCB_GC_GRAPHICS_EXPOSURES : xcb_gc_t = 65536;
-    
-/** TODO */
+    /// TODO
     pub const XCB_GC_CLIP_ORIGIN_X : xcb_gc_t = 131072;
-    
-/** TODO */
+    /// TODO
     pub const XCB_GC_CLIP_ORIGIN_Y : xcb_gc_t = 262144;
-    
-/** The clip-mask restricts writes to the destination drawable. Only pixels where the clip-mask has
-bits set to 1 are drawn. Pixels are not drawn outside the area covered by the clip-mask or where
-the clip-mask has bits set to 0. The clip-mask affects all graphics requests, but it does not clip
-sources. The clip-mask origin is interpreted relative to the origin of whatever destination drawable is specified in a graphics request. If a pixmap is specified as the clip-mask, it must have
-depth 1 and have the same root as the gcontext (or a Match error results). If clip-mask is None,
-then pixels are always drawn, regardless of the clip origin. The clip-mask can also be set with the
-SetClipRectangles request. */
+    /// The clip-mask restricts writes to the destination drawable. Only pixels where the clip-mask has
+    /// bits set to 1 are drawn. Pixels are not drawn outside the area covered by the clip-mask or where
+    /// the clip-mask has bits set to 0. The clip-mask affects all graphics requests, but it does not clip
+    /// sources. The clip-mask origin is interpreted relative to the origin of whatever destination drawable is specified in a graphics request. If a pixmap is specified as the clip-mask, it must have
+    /// depth 1 and have the same root as the gcontext (or a Match error results). If clip-mask is None,
+    /// then pixels are always drawn, regardless of the clip origin. The clip-mask can also be set with the
+    /// SetClipRectangles request.
     pub const XCB_GC_CLIP_MASK : xcb_gc_t = 524288;
-    
-/** TODO */
+    /// TODO
     pub const XCB_GC_DASH_OFFSET : xcb_gc_t = 1048576;
-    
-/** TODO */
+    /// TODO
     pub const XCB_GC_DASH_LIST : xcb_gc_t = 2097152;
-    
-/** TODO */
+    /// TODO
     pub const XCB_GC_ARC_MODE : xcb_gc_t = 4194304;
 //}
 
@@ -1178,13 +1113,13 @@ pub type xcb_arc_mode_t = c_uint;//{
     pub const XCB_ARC_MODE_CHORD : xcb_arc_mode_t = 0;
     pub const XCB_ARC_MODE_PIE_SLICE : xcb_arc_mode_t = 1;
 //}
-/** Opcode for xcb_create_gc. */
+/// Opcode for xcb_create_gc.
 pub const XCB_CREATE_GC : u8 = 55;
-/** Opcode for xcb_change_gc. */
+/// Opcode for xcb_change_gc.
 pub const XCB_CHANGE_GC : u8 = 56;
-/** Opcode for xcb_copy_gc. */
+/// Opcode for xcb_copy_gc.
 pub const XCB_COPY_GC : u8 = 57;
-/** Opcode for xcb_set_dashes. */
+/// Opcode for xcb_set_dashes.
 pub const XCB_SET_DASHES : u8 = 58;
 
 pub type xcb_clip_ordering_t = c_uint;//{
@@ -1193,36 +1128,34 @@ pub type xcb_clip_ordering_t = c_uint;//{
     pub const XCB_CLIP_ORDERING_YX_SORTED : xcb_clip_ordering_t = 2;
     pub const XCB_CLIP_ORDERING_YX_BANDED : xcb_clip_ordering_t = 3;
 //}
-/** Opcode for xcb_set_clip_rectangles. */
+/// Opcode for xcb_set_clip_rectangles.
 pub const XCB_SET_CLIP_RECTANGLES : u8 = 59;
-/** Opcode for xcb_free_gc. */
+/// Opcode for xcb_free_gc.
 pub const XCB_FREE_GC : u8 = 60;
-/** Opcode for xcb_clear_area. */
+/// Opcode for xcb_clear_area.
 pub const XCB_CLEAR_AREA : u8 = 61;
-/** Opcode for xcb_copy_area. */
+/// Opcode for xcb_copy_area.
 pub const XCB_COPY_AREA : u8 = 62;
-/** Opcode for xcb_copy_plane. */
+/// Opcode for xcb_copy_plane.
 pub const XCB_COPY_PLANE : u8 = 63;
 
 pub type xcb_coord_mode_t = c_uint;//{
-    
-/** Treats all coordinates as relative to the origin. */
+    /// Treats all coordinates as relative to the origin.
     pub const XCB_COORD_MODE_ORIGIN : xcb_coord_mode_t = 0;
-    
-/** Treats all coordinates after the first as relative to the previous coordinate. */
+    /// Treats all coordinates after the first as relative to the previous coordinate.
     pub const XCB_COORD_MODE_PREVIOUS : xcb_coord_mode_t = 1;
 //}
-/** Opcode for xcb_poly_point. */
+/// Opcode for xcb_poly_point.
 pub const XCB_POLY_POINT : u8 = 64;
-/** Opcode for xcb_poly_line. */
+/// Opcode for xcb_poly_line.
 pub const XCB_POLY_LINE : u8 = 65;
 pub type SegmentIterator = xcb_segment_iterator_t;
 
-/** Opcode for xcb_poly_segment. */
+/// Opcode for xcb_poly_segment.
 pub const XCB_POLY_SEGMENT : u8 = 66;
-/** Opcode for xcb_poly_rectangle. */
+/// Opcode for xcb_poly_rectangle.
 pub const XCB_POLY_RECTANGLE : u8 = 67;
-/** Opcode for xcb_poly_arc. */
+/// Opcode for xcb_poly_arc.
 pub const XCB_POLY_ARC : u8 = 68;
 
 pub type xcb_poly_shape_t = c_uint;//{
@@ -1230,11 +1163,11 @@ pub type xcb_poly_shape_t = c_uint;//{
     pub const XCB_POLY_SHAPE_NONCONVEX : xcb_poly_shape_t = 1;
     pub const XCB_POLY_SHAPE_CONVEX : xcb_poly_shape_t = 2;
 //}
-/** Opcode for xcb_fill_poly. */
+/// Opcode for xcb_fill_poly.
 pub const XCB_FILL_POLY : u8 = 69;
-/** Opcode for xcb_poly_fill_rectangle. */
+/// Opcode for xcb_poly_fill_rectangle.
 pub const XCB_POLY_FILL_RECTANGLE : u8 = 70;
-/** Opcode for xcb_poly_fill_arc. */
+/// Opcode for xcb_poly_fill_arc.
 pub const XCB_POLY_FILL_ARC : u8 = 71;
 
 pub type xcb_image_format_t = c_uint;//{
@@ -1242,60 +1175,60 @@ pub type xcb_image_format_t = c_uint;//{
     pub const XCB_IMAGE_FORMAT_XY_PIXMAP : xcb_image_format_t = 1;
     pub const XCB_IMAGE_FORMAT_Z_PIXMAP : xcb_image_format_t = 2;
 //}
-/** Opcode for xcb_put_image. */
+/// Opcode for xcb_put_image.
 pub const XCB_PUT_IMAGE : u8 = 72;
 pub struct  GetImageCookie<'s> { pub base : base::Cookie<'s, xcb_get_image_cookie_t> }
 
-/** Opcode for xcb_get_image. */
+/// Opcode for xcb_get_image.
 pub const XCB_GET_IMAGE : u8 = 73;
-/** Opcode for xcb_poly_text_8. */
+/// Opcode for xcb_poly_text_8.
 pub const XCB_POLY_TEXT_8 : u8 = 74;
-/** Opcode for xcb_poly_text_16. */
+/// Opcode for xcb_poly_text_16.
 pub const XCB_POLY_TEXT_16 : u8 = 75;
-/** Opcode for xcb_image_text_8. */
+/// Opcode for xcb_image_text_8.
 pub const XCB_IMAGE_TEXT_8 : u8 = 76;
-/** Opcode for xcb_image_text_16. */
+/// Opcode for xcb_image_text_16.
 pub const XCB_IMAGE_TEXT_16 : u8 = 77;
 
 pub type xcb_colormap_alloc_t = c_uint;//{
     pub const XCB_COLORMAP_ALLOC_NONE : xcb_colormap_alloc_t = 0;
     pub const XCB_COLORMAP_ALLOC_ALL : xcb_colormap_alloc_t = 1;
 //}
-/** Opcode for xcb_create_colormap. */
+/// Opcode for xcb_create_colormap.
 pub const XCB_CREATE_COLORMAP : u8 = 78;
-/** Opcode for xcb_free_colormap. */
+/// Opcode for xcb_free_colormap.
 pub const XCB_FREE_COLORMAP : u8 = 79;
-/** Opcode for xcb_copy_colormap_and_free. */
+/// Opcode for xcb_copy_colormap_and_free.
 pub const XCB_COPY_COLORMAP_AND_FREE : u8 = 80;
-/** Opcode for xcb_install_colormap. */
+/// Opcode for xcb_install_colormap.
 pub const XCB_INSTALL_COLORMAP : u8 = 81;
-/** Opcode for xcb_uninstall_colormap. */
+/// Opcode for xcb_uninstall_colormap.
 pub const XCB_UNINSTALL_COLORMAP : u8 = 82;
 pub struct  ListInstalledColormapsCookie<'s> { pub base : base::Cookie<'s, xcb_list_installed_colormaps_cookie_t> }
 
-/** Opcode for xcb_list_installed_colormaps. */
+/// Opcode for xcb_list_installed_colormaps.
 pub const XCB_LIST_INSTALLED_COLORMAPS : u8 = 83;
 pub struct  AllocColorCookie<'s> { pub base : base::Cookie<'s, xcb_alloc_color_cookie_t> }
 
-/** Opcode for xcb_alloc_color. */
+/// Opcode for xcb_alloc_color.
 pub const XCB_ALLOC_COLOR : u8 = 84;
 pub struct AllocColorReply { base:  base::Reply<xcb_alloc_color_reply_t> }
 fn mk_reply_xcb_alloc_color_reply_t(reply:*mut xcb_alloc_color_reply_t) -> AllocColorReply { AllocColorReply { base : base::mk_reply(reply) } }
 pub struct  AllocNamedColorCookie<'s> { pub base : base::Cookie<'s, xcb_alloc_named_color_cookie_t> }
 
-/** Opcode for xcb_alloc_named_color. */
+/// Opcode for xcb_alloc_named_color.
 pub const XCB_ALLOC_NAMED_COLOR : u8 = 85;
 pub struct AllocNamedColorReply { base:  base::Reply<xcb_alloc_named_color_reply_t> }
 fn mk_reply_xcb_alloc_named_color_reply_t(reply:*mut xcb_alloc_named_color_reply_t) -> AllocNamedColorReply { AllocNamedColorReply { base : base::mk_reply(reply) } }
 pub struct  AllocColorCellsCookie<'s> { pub base : base::Cookie<'s, xcb_alloc_color_cells_cookie_t> }
 
-/** Opcode for xcb_alloc_color_cells. */
+/// Opcode for xcb_alloc_color_cells.
 pub const XCB_ALLOC_COLOR_CELLS : u8 = 86;
 pub struct  AllocColorPlanesCookie<'s> { pub base : base::Cookie<'s, xcb_alloc_color_planes_cookie_t> }
 
-/** Opcode for xcb_alloc_color_planes. */
+/// Opcode for xcb_alloc_color_planes.
 pub const XCB_ALLOC_COLOR_PLANES : u8 = 87;
-/** Opcode for xcb_free_colors. */
+/// Opcode for xcb_free_colors.
 pub const XCB_FREE_COLORS : u8 = 88;
 
 pub type xcb_color_flag_t = c_uint;//{
@@ -1307,21 +1240,21 @@ pub struct Coloritem {pub base : base::Struct<xcb_coloritem_t> }
 
 pub type ColoritemIterator = xcb_coloritem_iterator_t;
 
-/** Opcode for xcb_store_colors. */
+/// Opcode for xcb_store_colors.
 pub const XCB_STORE_COLORS : u8 = 89;
-/** Opcode for xcb_store_named_color. */
+/// Opcode for xcb_store_named_color.
 pub const XCB_STORE_NAMED_COLOR : u8 = 90;
 pub type RgbIterator = xcb_rgb_iterator_t;
 
 pub struct  QueryColorsCookie<'s> { pub base : base::Cookie<'s, xcb_query_colors_cookie_t> }
 
-/** Opcode for xcb_query_colors. */
+/// Opcode for xcb_query_colors.
 pub const XCB_QUERY_COLORS : u8 = 91;
 pub struct QueryColorsReply { base:  base::Reply<xcb_query_colors_reply_t> }
 fn mk_reply_xcb_query_colors_reply_t(reply:*mut xcb_query_colors_reply_t) -> QueryColorsReply { QueryColorsReply { base : base::mk_reply(reply) } }
 pub struct  LookupColorCookie<'s> { pub base : base::Cookie<'s, xcb_lookup_color_cookie_t> }
 
-/** Opcode for xcb_lookup_color. */
+/// Opcode for xcb_lookup_color.
 pub const XCB_LOOKUP_COLOR : u8 = 92;
 pub struct LookupColorReply { base:  base::Reply<xcb_lookup_color_reply_t> }
 fn mk_reply_xcb_lookup_color_reply_t(reply:*mut xcb_lookup_color_reply_t) -> LookupColorReply { LookupColorReply { base : base::mk_reply(reply) } }
@@ -1329,17 +1262,17 @@ fn mk_reply_xcb_lookup_color_reply_t(reply:*mut xcb_lookup_color_reply_t) -> Loo
 pub type xcb_pixmap_enum_t = c_uint;//{
     pub const XCB_PIXMAP_NONE : xcb_pixmap_enum_t = 0;
 //}
-/** Opcode for xcb_create_cursor. */
+/// Opcode for xcb_create_cursor.
 pub const XCB_CREATE_CURSOR : u8 = 93;
 
 pub type xcb_font_enum_t = c_uint;//{
     pub const XCB_FONT_NONE : xcb_font_enum_t = 0;
 //}
-/** Opcode for xcb_create_glyph_cursor. */
+/// Opcode for xcb_create_glyph_cursor.
 pub const XCB_CREATE_GLYPH_CURSOR : u8 = 94;
-/** Opcode for xcb_free_cursor. */
+/// Opcode for xcb_free_cursor.
 pub const XCB_FREE_CURSOR : u8 = 95;
-/** Opcode for xcb_recolor_cursor. */
+/// Opcode for xcb_recolor_cursor.
 pub const XCB_RECOLOR_CURSOR : u8 = 96;
 
 pub type xcb_query_shape_of_t = c_uint;//{
@@ -1349,25 +1282,25 @@ pub type xcb_query_shape_of_t = c_uint;//{
 //}
 pub struct  QueryBestSizeCookie<'s> { pub base : base::Cookie<'s, xcb_query_best_size_cookie_t> }
 
-/** Opcode for xcb_query_best_size. */
+/// Opcode for xcb_query_best_size.
 pub const XCB_QUERY_BEST_SIZE : u8 = 97;
 pub struct QueryBestSizeReply { base:  base::Reply<xcb_query_best_size_reply_t> }
 fn mk_reply_xcb_query_best_size_reply_t(reply:*mut xcb_query_best_size_reply_t) -> QueryBestSizeReply { QueryBestSizeReply { base : base::mk_reply(reply) } }
 pub struct  QueryExtensionCookie<'s> { pub base : base::Cookie<'s, xcb_query_extension_cookie_t> }
 
-/** Opcode for xcb_query_extension. */
+/// Opcode for xcb_query_extension.
 pub const XCB_QUERY_EXTENSION : u8 = 98;
 pub struct QueryExtensionReply { base:  base::Reply<xcb_query_extension_reply_t> }
 fn mk_reply_xcb_query_extension_reply_t(reply:*mut xcb_query_extension_reply_t) -> QueryExtensionReply { QueryExtensionReply { base : base::mk_reply(reply) } }
 pub struct  ListExtensionsCookie<'s> { pub base : base::Cookie<'s, xcb_list_extensions_cookie_t> }
 
-/** Opcode for xcb_list_extensions. */
+/// Opcode for xcb_list_extensions.
 pub const XCB_LIST_EXTENSIONS : u8 = 99;
-/** Opcode for xcb_change_keyboard_mapping. */
+/// Opcode for xcb_change_keyboard_mapping.
 pub const XCB_CHANGE_KEYBOARD_MAPPING : u8 = 100;
 pub struct  GetKeyboardMappingCookie<'s> { pub base : base::Cookie<'s, xcb_get_keyboard_mapping_cookie_t> }
 
-/** Opcode for xcb_get_keyboard_mapping. */
+/// Opcode for xcb_get_keyboard_mapping.
 pub const XCB_GET_KEYBOARD_MAPPING : u8 = 101;
 
 pub type xcb_kb_t = c_uint;//{
@@ -1391,21 +1324,21 @@ pub type xcb_auto_repeat_mode_t = c_uint;//{
     pub const XCB_AUTO_REPEAT_MODE_ON : xcb_auto_repeat_mode_t = 1;
     pub const XCB_AUTO_REPEAT_MODE_DEFAULT : xcb_auto_repeat_mode_t = 2;
 //}
-/** Opcode for xcb_change_keyboard_control. */
+/// Opcode for xcb_change_keyboard_control.
 pub const XCB_CHANGE_KEYBOARD_CONTROL : u8 = 102;
 pub struct  GetKeyboardControlCookie<'s> { pub base : base::Cookie<'s, xcb_get_keyboard_control_cookie_t> }
 
-/** Opcode for xcb_get_keyboard_control. */
+/// Opcode for xcb_get_keyboard_control.
 pub const XCB_GET_KEYBOARD_CONTROL : u8 = 103;
 pub struct GetKeyboardControlReply { base:  base::Reply<xcb_get_keyboard_control_reply_t> }
 fn mk_reply_xcb_get_keyboard_control_reply_t(reply:*mut xcb_get_keyboard_control_reply_t) -> GetKeyboardControlReply { GetKeyboardControlReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_bell. */
+/// Opcode for xcb_bell.
 pub const XCB_BELL : u8 = 104;
-/** Opcode for xcb_change_pointer_control. */
+/// Opcode for xcb_change_pointer_control.
 pub const XCB_CHANGE_POINTER_CONTROL : u8 = 105;
 pub struct  GetPointerControlCookie<'s> { pub base : base::Cookie<'s, xcb_get_pointer_control_cookie_t> }
 
-/** Opcode for xcb_get_pointer_control. */
+/// Opcode for xcb_get_pointer_control.
 pub const XCB_GET_POINTER_CONTROL : u8 = 106;
 pub struct GetPointerControlReply { base:  base::Reply<xcb_get_pointer_control_reply_t> }
 fn mk_reply_xcb_get_pointer_control_reply_t(reply:*mut xcb_get_pointer_control_reply_t) -> GetPointerControlReply { GetPointerControlReply { base : base::mk_reply(reply) } }
@@ -1421,11 +1354,11 @@ pub type xcb_exposures_t = c_uint;//{
     pub const XCB_EXPOSURES_ALLOWED : xcb_exposures_t = 1;
     pub const XCB_EXPOSURES_DEFAULT : xcb_exposures_t = 2;
 //}
-/** Opcode for xcb_set_screen_saver. */
+/// Opcode for xcb_set_screen_saver.
 pub const XCB_SET_SCREEN_SAVER : u8 = 107;
 pub struct  GetScreenSaverCookie<'s> { pub base : base::Cookie<'s, xcb_get_screen_saver_cookie_t> }
 
-/** Opcode for xcb_get_screen_saver. */
+/// Opcode for xcb_get_screen_saver.
 pub const XCB_GET_SCREEN_SAVER : u8 = 108;
 pub struct GetScreenSaverReply { base:  base::Reply<xcb_get_screen_saver_reply_t> }
 fn mk_reply_xcb_get_screen_saver_reply_t(reply:*mut xcb_get_screen_saver_reply_t) -> GetScreenSaverReply { GetScreenSaverReply { base : base::mk_reply(reply) } }
@@ -1442,20 +1375,20 @@ pub type xcb_family_t = c_uint;//{
     pub const XCB_FAMILY_SERVER_INTERPRETED : xcb_family_t = 5;
     pub const XCB_FAMILY_INTERNET_6 : xcb_family_t = 6;
 //}
-/** Opcode for xcb_change_hosts. */
+/// Opcode for xcb_change_hosts.
 pub const XCB_CHANGE_HOSTS : u8 = 109;
 pub type HostIterator = xcb_host_iterator_t;
 
 pub struct  ListHostsCookie<'s> { pub base : base::Cookie<'s, xcb_list_hosts_cookie_t> }
 
-/** Opcode for xcb_list_hosts. */
+/// Opcode for xcb_list_hosts.
 pub const XCB_LIST_HOSTS : u8 = 110;
 
 pub type xcb_access_control_t = c_uint;//{
     pub const XCB_ACCESS_CONTROL_DISABLE : xcb_access_control_t = 0;
     pub const XCB_ACCESS_CONTROL_ENABLE : xcb_access_control_t = 1;
 //}
-/** Opcode for xcb_set_access_control. */
+/// Opcode for xcb_set_access_control.
 pub const XCB_SET_ACCESS_CONTROL : u8 = 111;
 
 pub type xcb_close_down_t = c_uint;//{
@@ -1463,22 +1396,22 @@ pub type xcb_close_down_t = c_uint;//{
     pub const XCB_CLOSE_DOWN_RETAIN_PERMANENT : xcb_close_down_t = 1;
     pub const XCB_CLOSE_DOWN_RETAIN_TEMPORARY : xcb_close_down_t = 2;
 //}
-/** Opcode for xcb_set_close_down_mode. */
+/// Opcode for xcb_set_close_down_mode.
 pub const XCB_SET_CLOSE_DOWN_MODE : u8 = 112;
 
 pub type xcb_kill_t = c_uint;//{
     pub const XCB_KILL_ALL_TEMPORARY : xcb_kill_t = 0;
 //}
-/** Opcode for xcb_kill_client. */
+/// Opcode for xcb_kill_client.
 pub const XCB_KILL_CLIENT : u8 = 113;
-/** Opcode for xcb_rotate_properties. */
+/// Opcode for xcb_rotate_properties.
 pub const XCB_ROTATE_PROPERTIES : u8 = 114;
 
 pub type xcb_screen_saver_t = c_uint;//{
     pub const XCB_SCREEN_SAVER_RESET : xcb_screen_saver_t = 0;
     pub const XCB_SCREEN_SAVER_ACTIVE : xcb_screen_saver_t = 1;
 //}
-/** Opcode for xcb_force_screen_saver. */
+/// Opcode for xcb_force_screen_saver.
 pub const XCB_FORCE_SCREEN_SAVER : u8 = 115;
 
 pub type xcb_mapping_status_t = c_uint;//{
@@ -1488,13 +1421,13 @@ pub type xcb_mapping_status_t = c_uint;//{
 //}
 pub struct  SetPointerMappingCookie<'s> { pub base : base::Cookie<'s, xcb_set_pointer_mapping_cookie_t> }
 
-/** Opcode for xcb_set_pointer_mapping. */
+/// Opcode for xcb_set_pointer_mapping.
 pub const XCB_SET_POINTER_MAPPING : u8 = 116;
 pub struct SetPointerMappingReply { base:  base::Reply<xcb_set_pointer_mapping_reply_t> }
 fn mk_reply_xcb_set_pointer_mapping_reply_t(reply:*mut xcb_set_pointer_mapping_reply_t) -> SetPointerMappingReply { SetPointerMappingReply { base : base::mk_reply(reply) } }
 pub struct  GetPointerMappingCookie<'s> { pub base : base::Cookie<'s, xcb_get_pointer_mapping_cookie_t> }
 
-/** Opcode for xcb_get_pointer_mapping. */
+/// Opcode for xcb_get_pointer_mapping.
 pub const XCB_GET_POINTER_MAPPING : u8 = 117;
 
 pub type xcb_map_index_t = c_uint;//{
@@ -1509,15 +1442,15 @@ pub type xcb_map_index_t = c_uint;//{
 //}
 pub struct  SetModifierMappingCookie<'s> { pub base : base::Cookie<'s, xcb_set_modifier_mapping_cookie_t> }
 
-/** Opcode for xcb_set_modifier_mapping. */
+/// Opcode for xcb_set_modifier_mapping.
 pub const XCB_SET_MODIFIER_MAPPING : u8 = 118;
 pub struct SetModifierMappingReply { base:  base::Reply<xcb_set_modifier_mapping_reply_t> }
 fn mk_reply_xcb_set_modifier_mapping_reply_t(reply:*mut xcb_set_modifier_mapping_reply_t) -> SetModifierMappingReply { SetModifierMappingReply { base : base::mk_reply(reply) } }
 pub struct  GetModifierMappingCookie<'s> { pub base : base::Cookie<'s, xcb_get_modifier_mapping_cookie_t> }
 
-/** Opcode for xcb_get_modifier_mapping. */
+/// Opcode for xcb_get_modifier_mapping.
 pub const XCB_GET_MODIFIER_MAPPING : u8 = 119;
-/** Opcode for xcb_no_operation. */
+/// Opcode for xcb_no_operation.
 pub const XCB_NO_OPERATION : u8 = 127;
 
 impl Char2b {

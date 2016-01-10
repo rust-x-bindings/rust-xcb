@@ -1,7 +1,7 @@
-/*
- * This file generated automatically from damage.xml by r_client.py.
- * Edit at your peril.
- */
+//
+// This file generated automatically from damage.xml by r_client.py.
+// Edit at your peril.
+//
 
 //Make the compiler quiet
 #![allow(unused_imports)]
@@ -32,24 +32,24 @@ pub type xcb_damage_report_level_t = c_uint;//{
     pub const XCB_DAMAGE_REPORT_LEVEL_BOUNDING_BOX : xcb_damage_report_level_t = 3;
     pub const XCB_DAMAGE_REPORT_LEVEL_NON_EMPTY : xcb_damage_report_level_t = 4;
 //}
-/** Opcode for xcb_damage_bad_damage. */
+/// Opcode for xcb_damage_bad_damage.
 pub const XCB_DAMAGE_BAD_DAMAGE : u8 = 0;
 pub struct BadDamageError { pub base : base::Error<xcb_damage_bad_damage_error_t> }
 pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_damage_query_version_cookie_t> }
 
-/** Opcode for xcb_damage_query_version. */
+/// Opcode for xcb_damage_query_version.
 pub const XCB_DAMAGE_QUERY_VERSION : u8 = 0;
 pub struct QueryVersionReply { base:  base::Reply<xcb_damage_query_version_reply_t> }
 fn mk_reply_xcb_damage_query_version_reply_t(reply:*mut xcb_damage_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_damage_create. */
+/// Opcode for xcb_damage_create.
 pub const XCB_DAMAGE_CREATE : u8 = 1;
-/** Opcode for xcb_damage_destroy. */
+/// Opcode for xcb_damage_destroy.
 pub const XCB_DAMAGE_DESTROY : u8 = 2;
-/** Opcode for xcb_damage_subtract. */
+/// Opcode for xcb_damage_subtract.
 pub const XCB_DAMAGE_SUBTRACT : u8 = 3;
-/** Opcode for xcb_damage_add. */
+/// Opcode for xcb_damage_add.
 pub const XCB_DAMAGE_ADD : u8 = 4;
-/** Opcode for xcb_damage_notify. */
+/// Opcode for xcb_damage_notify.
 pub const XCB_DAMAGE_NOTIFY : u8 = 0;
 pub struct NotifyEvent {pub base : base::Event<xcb_damage_notify_event_t>}
 

@@ -1,7 +1,7 @@
-/*
- * This file generated automatically from bigreq.xml by r_client.py.
- * Edit at your peril.
- */
+//
+// This file generated automatically from bigreq.xml by r_client.py.
+// Edit at your peril.
+//
 
 //Make the compiler quiet
 #![allow(unused_imports)]
@@ -19,7 +19,7 @@ use std::iter::Iterator;
 
 pub struct  EnableCookie<'s> { pub base : base::Cookie<'s, xcb_big_requests_enable_cookie_t> }
 
-/** Opcode for xcb_big_requests_enable. */
+/// Opcode for xcb_big_requests_enable.
 pub const XCB_BIG_REQUESTS_ENABLE : u8 = 0;
 pub struct EnableReply { base:  base::Reply<xcb_big_requests_enable_reply_t> }
 fn mk_reply_xcb_big_requests_enable_reply_t(reply:*mut xcb_big_requests_enable_reply_t) -> EnableReply { EnableReply { base : base::mk_reply(reply) } }

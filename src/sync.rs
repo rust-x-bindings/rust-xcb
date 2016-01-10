@@ -1,7 +1,7 @@
-/*
- * This file generated automatically from sync.xml by r_client.py.
- * Edit at your peril.
- */
+//
+// This file generated automatically from sync.xml by r_client.py.
+// Edit at your peril.
+//
 
 //Make the compiler quiet
 #![allow(unused_imports)]
@@ -65,78 +65,78 @@ pub type TriggerIterator = xcb_sync_trigger_iterator_t;
 
 pub type WaitconditionIterator = xcb_sync_waitcondition_iterator_t;
 
-/** Opcode for xcb_sync_counter. */
+/// Opcode for xcb_sync_counter.
 pub const XCB_SYNC_COUNTER : u8 = 0;
 pub struct CounterError { pub base : base::Error<xcb_sync_counter_error_t> }
-/** Opcode for xcb_sync_alarm. */
+/// Opcode for xcb_sync_alarm.
 pub const XCB_SYNC_ALARM : u8 = 1;
 pub struct AlarmError { pub base : base::Error<xcb_sync_alarm_error_t> }
 pub struct  InitializeCookie<'s> { pub base : base::Cookie<'s, xcb_sync_initialize_cookie_t> }
 
-/** Opcode for xcb_sync_initialize. */
+/// Opcode for xcb_sync_initialize.
 pub const XCB_SYNC_INITIALIZE : u8 = 0;
 pub struct InitializeReply { base:  base::Reply<xcb_sync_initialize_reply_t> }
 fn mk_reply_xcb_sync_initialize_reply_t(reply:*mut xcb_sync_initialize_reply_t) -> InitializeReply { InitializeReply { base : base::mk_reply(reply) } }
 pub struct  ListSystemCountersCookie<'s> { pub base : base::Cookie<'s, xcb_sync_list_system_counters_cookie_t> }
 
-/** Opcode for xcb_sync_list_system_counters. */
+/// Opcode for xcb_sync_list_system_counters.
 pub const XCB_SYNC_LIST_SYSTEM_COUNTERS : u8 = 1;
-/** Opcode for xcb_sync_create_counter. */
+/// Opcode for xcb_sync_create_counter.
 pub const XCB_SYNC_CREATE_COUNTER : u8 = 2;
-/** Opcode for xcb_sync_destroy_counter. */
+/// Opcode for xcb_sync_destroy_counter.
 pub const XCB_SYNC_DESTROY_COUNTER : u8 = 6;
 pub struct  QueryCounterCookie<'s> { pub base : base::Cookie<'s, xcb_sync_query_counter_cookie_t> }
 
-/** Opcode for xcb_sync_query_counter. */
+/// Opcode for xcb_sync_query_counter.
 pub const XCB_SYNC_QUERY_COUNTER : u8 = 5;
 pub struct QueryCounterReply { base:  base::Reply<xcb_sync_query_counter_reply_t> }
 fn mk_reply_xcb_sync_query_counter_reply_t(reply:*mut xcb_sync_query_counter_reply_t) -> QueryCounterReply { QueryCounterReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_sync_await. */
+/// Opcode for xcb_sync_await.
 pub const XCB_SYNC_AWAIT : u8 = 7;
-/** Opcode for xcb_sync_change_counter. */
+/// Opcode for xcb_sync_change_counter.
 pub const XCB_SYNC_CHANGE_COUNTER : u8 = 4;
-/** Opcode for xcb_sync_set_counter. */
+/// Opcode for xcb_sync_set_counter.
 pub const XCB_SYNC_SET_COUNTER : u8 = 3;
-/** Opcode for xcb_sync_create_alarm. */
+/// Opcode for xcb_sync_create_alarm.
 pub const XCB_SYNC_CREATE_ALARM : u8 = 8;
-/** Opcode for xcb_sync_change_alarm. */
+/// Opcode for xcb_sync_change_alarm.
 pub const XCB_SYNC_CHANGE_ALARM : u8 = 9;
-/** Opcode for xcb_sync_destroy_alarm. */
+/// Opcode for xcb_sync_destroy_alarm.
 pub const XCB_SYNC_DESTROY_ALARM : u8 = 11;
 pub struct  QueryAlarmCookie<'s> { pub base : base::Cookie<'s, xcb_sync_query_alarm_cookie_t> }
 
-/** Opcode for xcb_sync_query_alarm. */
+/// Opcode for xcb_sync_query_alarm.
 pub const XCB_SYNC_QUERY_ALARM : u8 = 10;
 pub struct QueryAlarmReply { base:  base::Reply<xcb_sync_query_alarm_reply_t> }
 fn mk_reply_xcb_sync_query_alarm_reply_t(reply:*mut xcb_sync_query_alarm_reply_t) -> QueryAlarmReply { QueryAlarmReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_sync_set_priority. */
+/// Opcode for xcb_sync_set_priority.
 pub const XCB_SYNC_SET_PRIORITY : u8 = 12;
 pub struct  GetPriorityCookie<'s> { pub base : base::Cookie<'s, xcb_sync_get_priority_cookie_t> }
 
-/** Opcode for xcb_sync_get_priority. */
+/// Opcode for xcb_sync_get_priority.
 pub const XCB_SYNC_GET_PRIORITY : u8 = 13;
 pub struct GetPriorityReply { base:  base::Reply<xcb_sync_get_priority_reply_t> }
 fn mk_reply_xcb_sync_get_priority_reply_t(reply:*mut xcb_sync_get_priority_reply_t) -> GetPriorityReply { GetPriorityReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_sync_create_fence. */
+/// Opcode for xcb_sync_create_fence.
 pub const XCB_SYNC_CREATE_FENCE : u8 = 14;
-/** Opcode for xcb_sync_trigger_fence. */
+/// Opcode for xcb_sync_trigger_fence.
 pub const XCB_SYNC_TRIGGER_FENCE : u8 = 15;
-/** Opcode for xcb_sync_reset_fence. */
+/// Opcode for xcb_sync_reset_fence.
 pub const XCB_SYNC_RESET_FENCE : u8 = 16;
-/** Opcode for xcb_sync_destroy_fence. */
+/// Opcode for xcb_sync_destroy_fence.
 pub const XCB_SYNC_DESTROY_FENCE : u8 = 17;
 pub struct  QueryFenceCookie<'s> { pub base : base::Cookie<'s, xcb_sync_query_fence_cookie_t> }
 
-/** Opcode for xcb_sync_query_fence. */
+/// Opcode for xcb_sync_query_fence.
 pub const XCB_SYNC_QUERY_FENCE : u8 = 18;
 pub struct QueryFenceReply { base:  base::Reply<xcb_sync_query_fence_reply_t> }
 fn mk_reply_xcb_sync_query_fence_reply_t(reply:*mut xcb_sync_query_fence_reply_t) -> QueryFenceReply { QueryFenceReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_sync_await_fence. */
+/// Opcode for xcb_sync_await_fence.
 pub const XCB_SYNC_AWAIT_FENCE : u8 = 19;
-/** Opcode for xcb_sync_counter_notify. */
+/// Opcode for xcb_sync_counter_notify.
 pub const XCB_SYNC_COUNTER_NOTIFY : u8 = 0;
 pub struct CounterNotifyEvent {pub base : base::Event<xcb_sync_counter_notify_event_t>}
-/** Opcode for xcb_sync_alarm_notify. */
+/// Opcode for xcb_sync_alarm_notify.
 pub const XCB_SYNC_ALARM_NOTIFY : u8 = 1;
 pub struct AlarmNotifyEvent {pub base : base::Event<xcb_sync_alarm_notify_event_t>}
 

@@ -1,7 +1,7 @@
-/*
- * This file generated automatically from randr.xml by r_client.py.
- * Edit at your peril.
- */
+//
+// This file generated automatically from randr.xml by r_client.py.
+// Edit at your peril.
+//
 
 //Make the compiler quiet
 #![allow(unused_imports)]
@@ -16,9 +16,6 @@ pub const RANDR_MAJOR_VERSION : c_uint = 1;
 pub const RANDR_MINOR_VERSION : c_uint = 3;
 
 pub type xcb_randr_mode_t = u32;
-/**
- * @brief xcb_randr_mode_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_randr_mode_iterator_t {
     pub data : *mut xcb_randr_mode_t,
@@ -28,9 +25,6 @@ pub struct xcb_randr_mode_iterator_t {
 
 
 pub type xcb_randr_crtc_t = u32;
-/**
- * @brief xcb_randr_crtc_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_randr_crtc_iterator_t {
     pub data : *mut xcb_randr_crtc_t,
@@ -40,9 +34,6 @@ pub struct xcb_randr_crtc_iterator_t {
 
 
 pub type xcb_randr_output_t = u32;
-/**
- * @brief xcb_randr_output_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_randr_output_iterator_t {
     pub data : *mut xcb_randr_output_t,
@@ -102,9 +93,6 @@ impl Copy for xcb_randr_screen_size_t {}
 impl Clone for xcb_randr_screen_size_t {
     fn clone(&self) -> xcb_randr_screen_size_t { *self }
 }
-/**
- * @brief xcb_randr_screen_size_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_randr_screen_size_iterator_t {
     pub data : *mut xcb_randr_screen_size_t,
@@ -122,9 +110,6 @@ impl Copy for xcb_randr_refresh_rates_t {}
 impl Clone for xcb_randr_refresh_rates_t {
     fn clone(&self) -> xcb_randr_refresh_rates_t { *self }
 }
-/**
- * @brief xcb_randr_refresh_rates_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_randr_refresh_rates_iterator_t {
     pub data : *mut xcb_randr_refresh_rates_t,
@@ -349,9 +334,6 @@ impl Copy for xcb_randr_mode_info_t {}
 impl Clone for xcb_randr_mode_info_t {
     fn clone(&self) -> xcb_randr_mode_info_t { *self }
 }
-/**
- * @brief xcb_randr_mode_info_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_randr_mode_info_iterator_t {
     pub data : *mut xcb_randr_mode_info_t,
@@ -1149,9 +1131,6 @@ impl Copy for xcb_randr_crtc_change_t {}
 impl Clone for xcb_randr_crtc_change_t {
     fn clone(&self) -> xcb_randr_crtc_change_t { *self }
 }
-/**
- * @brief xcb_randr_crtc_change_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_randr_crtc_change_iterator_t {
     pub data : *mut xcb_randr_crtc_change_t,
@@ -1177,9 +1156,6 @@ impl Copy for xcb_randr_output_change_t {}
 impl Clone for xcb_randr_output_change_t {
     fn clone(&self) -> xcb_randr_output_change_t { *self }
 }
-/**
- * @brief xcb_randr_output_change_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_randr_output_change_iterator_t {
     pub data : *mut xcb_randr_output_change_t,
@@ -1202,9 +1178,6 @@ impl Copy for xcb_randr_output_property_t {}
 impl Clone for xcb_randr_output_property_t {
     fn clone(&self) -> xcb_randr_output_property_t { *self }
 }
-/**
- * @brief xcb_randr_output_property_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_randr_output_property_iterator_t {
     pub data : *mut xcb_randr_output_property_t,
@@ -1221,9 +1194,6 @@ impl Copy for xcb_randr_notify_data_t {}
 impl Clone for xcb_randr_notify_data_t {
     fn clone(&self) -> xcb_randr_notify_data_t { *self }
 }
-/**
- * @brief xcb_randr_notify_data_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_randr_notify_data_iterator_t {
     pub data : *mut xcb_randr_notify_data_t,
@@ -1248,96 +1218,76 @@ impl Clone for xcb_randr_notify_event_t {
 #[link(name="xcb-randr")]
 extern "C" {
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_randr_mode_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_randr_mode_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_randr_mode_t)
+///
 pub fn xcb_randr_mode_next (i:*mut xcb_randr_mode_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_randr_mode_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_randr_mode_end (i:xcb_randr_mode_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_randr_crtc_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_randr_crtc_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_randr_crtc_t)
+///
 pub fn xcb_randr_crtc_next (i:*mut xcb_randr_crtc_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_randr_crtc_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_randr_crtc_end (i:xcb_randr_crtc_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_randr_output_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_randr_output_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_randr_output_t)
+///
 pub fn xcb_randr_output_next (i:*mut xcb_randr_output_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_randr_output_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_randr_output_end (i:xcb_randr_output_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_randr_screen_size_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_randr_screen_size_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_randr_screen_size_t)
+///
 pub fn xcb_randr_screen_size_next (i:*mut xcb_randr_screen_size_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_randr_screen_size_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_randr_screen_size_end (i:xcb_randr_screen_size_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_randr_refresh_rates_sizeof (_buffer :  *mut c_void) -> c_int;
@@ -1350,82 +1300,54 @@ pub fn xcb_randr_refresh_rates_rates_length (R : *mut xcb_randr_refresh_rates_t)
 
 pub fn xcb_randr_refresh_rates_rates_end (R : *mut xcb_randr_refresh_rates_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_randr_refresh_rates_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_randr_refresh_rates_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_randr_refresh_rates_t)
+///
 pub fn xcb_randr_refresh_rates_next (i:*mut xcb_randr_refresh_rates_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_randr_refresh_rates_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_randr_refresh_rates_end (i:xcb_randr_refresh_rates_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_query_version (c : *mut ffi::base::xcb_connection_t,
                                    major_version :  u32,
                                    minor_version :  u32) -> xcb_randr_query_version_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_randr_query_version_unchecked (c : *mut ffi::base::xcb_connection_t,
                                              major_version :  u32,
                                              minor_version :  u32) -> xcb_randr_query_version_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_randr_query_version_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_randr_query_version_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_randr_query_version_reply (c : *mut ffi::base::xcb_connection_t,
                                          cookie : xcb_randr_query_version_cookie_t,
                                          e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_query_version_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_set_screen_config (c : *mut ffi::base::xcb_connection_t,
                                        window :  ffi::xproto::xcb_window_t,
                                        timestamp :  ffi::xproto::xcb_timestamp_t,
@@ -1434,17 +1356,8 @@ pub fn xcb_randr_set_screen_config (c : *mut ffi::base::xcb_connection_t,
                                        rotation :  u16,
                                        rate :  u16) -> xcb_randr_set_screen_config_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_randr_set_screen_config_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                  window :  ffi::xproto::xcb_window_t,
                                                  timestamp :  ffi::xproto::xcb_timestamp_t,
@@ -1453,75 +1366,44 @@ pub fn xcb_randr_set_screen_config_unchecked (c : *mut ffi::base::xcb_connection
                                                  rotation :  u16,
                                                  rate :  u16) -> xcb_randr_set_screen_config_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_randr_set_screen_config_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_randr_set_screen_config_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_randr_set_screen_config_reply (c : *mut ffi::base::xcb_connection_t,
                                              cookie : xcb_randr_set_screen_config_cookie_t,
                                              e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_set_screen_config_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_randr_select_input_checked (c : *mut ffi::base::xcb_connection_t,
                                           window :  ffi::xproto::xcb_window_t,
                                           enable :  u16) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_select_input (c : *mut ffi::base::xcb_connection_t,
                                   window :  ffi::xproto::xcb_window_t,
                                   enable :  u16) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_randr_get_screen_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_get_screen_info (c : *mut ffi::base::xcb_connection_t,
                                      window :  ffi::xproto::xcb_window_t) -> xcb_randr_get_screen_info_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_randr_get_screen_info_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                window :  ffi::xproto::xcb_window_t) -> xcb_randr_get_screen_info_cookie_t;
 
@@ -1537,78 +1419,51 @@ pub fn xcb_randr_get_screen_info_rates_length (R : *mut xcb_randr_get_screen_inf
 
 pub fn xcb_randr_get_screen_info_rates_iterator (R : *mut xcb_randr_get_screen_info_reply_t) -> xcb_randr_refresh_rates_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_randr_get_screen_info_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_randr_get_screen_info_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_randr_get_screen_info_reply (c : *mut ffi::base::xcb_connection_t,
                                            cookie : xcb_randr_get_screen_info_cookie_t,
                                            e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_get_screen_info_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_get_screen_size_range (c : *mut ffi::base::xcb_connection_t,
                                            window :  ffi::xproto::xcb_window_t) -> xcb_randr_get_screen_size_range_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_randr_get_screen_size_range_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                      window :  ffi::xproto::xcb_window_t) -> xcb_randr_get_screen_size_range_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_randr_get_screen_size_range_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_randr_get_screen_size_range_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_randr_get_screen_size_range_reply (c : *mut ffi::base::xcb_connection_t,
                                                  cookie : xcb_randr_get_screen_size_range_cookie_t,
                                                  e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_get_screen_size_range_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_randr_set_screen_size_checked (c : *mut ffi::base::xcb_connection_t,
                                              window :  ffi::xproto::xcb_window_t,
                                              width :  u16,
@@ -1616,14 +1471,8 @@ pub fn xcb_randr_set_screen_size_checked (c : *mut ffi::base::xcb_connection_t,
                                              mm_width :  u32,
                                              mm_height :  u32) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_set_screen_size (c : *mut ffi::base::xcb_connection_t,
                                      window :  ffi::xproto::xcb_window_t,
                                      width :  u16,
@@ -1631,53 +1480,33 @@ pub fn xcb_randr_set_screen_size (c : *mut ffi::base::xcb_connection_t,
                                      mm_width :  u32,
                                      mm_height :  u32) -> ffi::base::xcb_void_cookie_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_randr_mode_info_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_randr_mode_info_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_randr_mode_info_t)
+///
 pub fn xcb_randr_mode_info_next (i:*mut xcb_randr_mode_info_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_randr_mode_info_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_randr_mode_info_end (i:xcb_randr_mode_info_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_randr_get_screen_resources_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_get_screen_resources (c : *mut ffi::base::xcb_connection_t,
                                           window :  ffi::xproto::xcb_window_t) -> xcb_randr_get_screen_resources_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_randr_get_screen_resources_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                     window :  ffi::xproto::xcb_window_t) -> xcb_randr_get_screen_resources_cookie_t;
 
@@ -1712,49 +1541,32 @@ pub fn xcb_randr_get_screen_resources_names_length (R : *mut xcb_randr_get_scree
 
 pub fn xcb_randr_get_screen_resources_names_end (R : *mut xcb_randr_get_screen_resources_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_randr_get_screen_resources_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_randr_get_screen_resources_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_randr_get_screen_resources_reply (c : *mut ffi::base::xcb_connection_t,
                                                 cookie : xcb_randr_get_screen_resources_cookie_t,
                                                 e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_get_screen_resources_reply_t;
 
 pub fn xcb_randr_get_output_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_get_output_info (c : *mut ffi::base::xcb_connection_t,
                                      output :  xcb_randr_output_t,
                                      config_timestamp :  ffi::xproto::xcb_timestamp_t) -> xcb_randr_get_output_info_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_randr_get_output_info_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                output :  xcb_randr_output_t,
                                                config_timestamp :  ffi::xproto::xcb_timestamp_t) -> xcb_randr_get_output_info_cookie_t;
@@ -1791,48 +1603,31 @@ pub fn xcb_randr_get_output_info_name_length (R : *mut xcb_randr_get_output_info
 
 pub fn xcb_randr_get_output_info_name_end (R : *mut xcb_randr_get_output_info_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_randr_get_output_info_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_randr_get_output_info_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_randr_get_output_info_reply (c : *mut ffi::base::xcb_connection_t,
                                            cookie : xcb_randr_get_output_info_cookie_t,
                                            e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_get_output_info_reply_t;
 
 pub fn xcb_randr_list_output_properties_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_list_output_properties (c : *mut ffi::base::xcb_connection_t,
                                             output :  xcb_randr_output_t) -> xcb_randr_list_output_properties_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_randr_list_output_properties_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                       output :  xcb_randr_output_t) -> xcb_randr_list_output_properties_cookie_t;
 
@@ -1844,49 +1639,32 @@ pub fn xcb_randr_list_output_properties_atoms_length (R : *mut xcb_randr_list_ou
 
 pub fn xcb_randr_list_output_properties_atoms_end (R : *mut xcb_randr_list_output_properties_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_randr_list_output_properties_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_randr_list_output_properties_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_randr_list_output_properties_reply (c : *mut ffi::base::xcb_connection_t,
                                                   cookie : xcb_randr_list_output_properties_cookie_t,
                                                   e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_list_output_properties_reply_t;
 
 pub fn xcb_randr_query_output_property_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_query_output_property (c : *mut ffi::base::xcb_connection_t,
                                            output :  xcb_randr_output_t,
                                            property :  ffi::xproto::xcb_atom_t) -> xcb_randr_query_output_property_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_randr_query_output_property_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                      output :  xcb_randr_output_t,
                                                      property :  ffi::xproto::xcb_atom_t) -> xcb_randr_query_output_property_cookie_t;
@@ -1899,20 +1677,18 @@ pub fn xcb_randr_query_output_property_valid_values_length (R : *mut xcb_randr_q
 
 pub fn xcb_randr_query_output_property_valid_values_end (R : *mut xcb_randr_query_output_property_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_randr_query_output_property_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_randr_query_output_property_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_randr_query_output_property_reply (c : *mut ffi::base::xcb_connection_t,
                                                  cookie : xcb_randr_query_output_property_cookie_t,
                                                  e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_query_output_property_reply_t;
@@ -1920,17 +1696,9 @@ pub fn xcb_randr_query_output_property_reply (c : *mut ffi::base::xcb_connection
 pub fn xcb_randr_configure_output_property_sizeof (_buffer :  *mut c_void,
                                             values_len :   u32) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_randr_configure_output_property_checked (c : *mut ffi::base::xcb_connection_t,
                                                        output :  xcb_randr_output_t,
                                                        property :  ffi::xproto::xcb_atom_t,
@@ -1939,14 +1707,8 @@ pub fn xcb_randr_configure_output_property_checked (c : *mut ffi::base::xcb_conn
                                                        values_len :  u32,
                                                        values : *mut i32) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_configure_output_property (c : *mut ffi::base::xcb_connection_t,
                                                output :  xcb_randr_output_t,
                                                property :  ffi::xproto::xcb_atom_t,
@@ -1957,17 +1719,9 @@ pub fn xcb_randr_configure_output_property (c : *mut ffi::base::xcb_connection_t
 
 pub fn xcb_randr_change_output_property_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_randr_change_output_property_checked (c : *mut ffi::base::xcb_connection_t,
                                                     output :  xcb_randr_output_t,
                                                     property :  ffi::xproto::xcb_atom_t,
@@ -1977,14 +1731,8 @@ pub fn xcb_randr_change_output_property_checked (c : *mut ffi::base::xcb_connect
                                                     num_units :  u32,
                                                     data : *mut c_void) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_change_output_property (c : *mut ffi::base::xcb_connection_t,
                                             output :  xcb_randr_output_t,
                                             property :  ffi::xproto::xcb_atom_t,
@@ -1994,43 +1742,23 @@ pub fn xcb_randr_change_output_property (c : *mut ffi::base::xcb_connection_t,
                                             num_units :  u32,
                                             data : *mut c_void) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_randr_delete_output_property_checked (c : *mut ffi::base::xcb_connection_t,
                                                     output :  xcb_randr_output_t,
                                                     property :  ffi::xproto::xcb_atom_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_delete_output_property (c : *mut ffi::base::xcb_connection_t,
                                             output :  xcb_randr_output_t,
                                             property :  ffi::xproto::xcb_atom_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_randr_get_output_property_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_get_output_property (c : *mut ffi::base::xcb_connection_t,
                                          output :  xcb_randr_output_t,
                                          property :  ffi::xproto::xcb_atom_t,
@@ -2040,17 +1768,8 @@ pub fn xcb_randr_get_output_property (c : *mut ffi::base::xcb_connection_t,
                                          delete :  u8,
                                          pending :  u8) -> xcb_randr_get_output_property_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_randr_get_output_property_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                    output :  xcb_randr_output_t,
                                                    property :  ffi::xproto::xcb_atom_t,
@@ -2068,20 +1787,18 @@ pub fn xcb_randr_get_output_property_data_length (R : *mut xcb_randr_get_output_
 
 pub fn xcb_randr_get_output_property_data_end (R : *mut xcb_randr_get_output_property_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_randr_get_output_property_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_randr_get_output_property_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_randr_get_output_property_reply (c : *mut ffi::base::xcb_connection_t,
                                                cookie : xcb_randr_get_output_property_cookie_t,
                                                e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_get_output_property_reply_t;
@@ -2089,159 +1806,85 @@ pub fn xcb_randr_get_output_property_reply (c : *mut ffi::base::xcb_connection_t
 pub fn xcb_randr_create_mode_sizeof (_buffer :  *mut c_void,
                               name_len :     u32) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_create_mode (c : *mut ffi::base::xcb_connection_t,
                                  window :  ffi::xproto::xcb_window_t,
                                  mode_info :  xcb_randr_mode_info_t,
                                  name_len :  u32,
                                  name : *mut c_char) -> xcb_randr_create_mode_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_randr_create_mode_unchecked (c : *mut ffi::base::xcb_connection_t,
                                            window :  ffi::xproto::xcb_window_t,
                                            mode_info :  xcb_randr_mode_info_t,
                                            name_len :  u32,
                                            name : *mut c_char) -> xcb_randr_create_mode_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_randr_create_mode_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_randr_create_mode_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_randr_create_mode_reply (c : *mut ffi::base::xcb_connection_t,
                                        cookie : xcb_randr_create_mode_cookie_t,
                                        e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_create_mode_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_randr_destroy_mode_checked (c : *mut ffi::base::xcb_connection_t,
                                           mode :  xcb_randr_mode_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_destroy_mode (c : *mut ffi::base::xcb_connection_t,
                                   mode :  xcb_randr_mode_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_randr_add_output_mode_checked (c : *mut ffi::base::xcb_connection_t,
                                              output :  xcb_randr_output_t,
                                              mode :  xcb_randr_mode_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_add_output_mode (c : *mut ffi::base::xcb_connection_t,
                                      output :  xcb_randr_output_t,
                                      mode :  xcb_randr_mode_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_randr_delete_output_mode_checked (c : *mut ffi::base::xcb_connection_t,
                                                 output :  xcb_randr_output_t,
                                                 mode :  xcb_randr_mode_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_delete_output_mode (c : *mut ffi::base::xcb_connection_t,
                                         output :  xcb_randr_output_t,
                                         mode :  xcb_randr_mode_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_randr_get_crtc_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_get_crtc_info (c : *mut ffi::base::xcb_connection_t,
                                    crtc :  xcb_randr_crtc_t,
                                    config_timestamp :  ffi::xproto::xcb_timestamp_t) -> xcb_randr_get_crtc_info_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_randr_get_crtc_info_unchecked (c : *mut ffi::base::xcb_connection_t,
                                              crtc :  xcb_randr_crtc_t,
                                              config_timestamp :  ffi::xproto::xcb_timestamp_t) -> xcb_randr_get_crtc_info_cookie_t;
@@ -2262,20 +1905,18 @@ pub fn xcb_randr_get_crtc_info_possible_length (R : *mut xcb_randr_get_crtc_info
 
 pub fn xcb_randr_get_crtc_info_possible_end (R : *mut xcb_randr_get_crtc_info_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_randr_get_crtc_info_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_randr_get_crtc_info_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_randr_get_crtc_info_reply (c : *mut ffi::base::xcb_connection_t,
                                          cookie : xcb_randr_get_crtc_info_cookie_t,
                                          e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_get_crtc_info_reply_t;
@@ -2283,14 +1924,8 @@ pub fn xcb_randr_get_crtc_info_reply (c : *mut ffi::base::xcb_connection_t,
 pub fn xcb_randr_set_crtc_config_sizeof (_buffer :  *mut c_void,
                                   outputs_len :  u32) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_set_crtc_config (c : *mut ffi::base::xcb_connection_t,
                                      crtc :  xcb_randr_crtc_t,
                                      timestamp :  ffi::xproto::xcb_timestamp_t,
@@ -2302,17 +1937,8 @@ pub fn xcb_randr_set_crtc_config (c : *mut ffi::base::xcb_connection_t,
                                      outputs_len :  u32,
                                      outputs : *mut xcb_randr_output_t) -> xcb_randr_set_crtc_config_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_randr_set_crtc_config_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                crtc :  xcb_randr_crtc_t,
                                                timestamp :  ffi::xproto::xcb_timestamp_t,
@@ -2324,91 +1950,57 @@ pub fn xcb_randr_set_crtc_config_unchecked (c : *mut ffi::base::xcb_connection_t
                                                outputs_len :  u32,
                                                outputs : *mut xcb_randr_output_t) -> xcb_randr_set_crtc_config_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_randr_set_crtc_config_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_randr_set_crtc_config_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_randr_set_crtc_config_reply (c : *mut ffi::base::xcb_connection_t,
                                            cookie : xcb_randr_set_crtc_config_cookie_t,
                                            e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_set_crtc_config_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_get_crtc_gamma_size (c : *mut ffi::base::xcb_connection_t,
                                          crtc :  xcb_randr_crtc_t) -> xcb_randr_get_crtc_gamma_size_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_randr_get_crtc_gamma_size_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                    crtc :  xcb_randr_crtc_t) -> xcb_randr_get_crtc_gamma_size_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_randr_get_crtc_gamma_size_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_randr_get_crtc_gamma_size_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_randr_get_crtc_gamma_size_reply (c : *mut ffi::base::xcb_connection_t,
                                                cookie : xcb_randr_get_crtc_gamma_size_cookie_t,
                                                e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_get_crtc_gamma_size_reply_t;
 
 pub fn xcb_randr_get_crtc_gamma_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_get_crtc_gamma (c : *mut ffi::base::xcb_connection_t,
                                     crtc :  xcb_randr_crtc_t) -> xcb_randr_get_crtc_gamma_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_randr_get_crtc_gamma_unchecked (c : *mut ffi::base::xcb_connection_t,
                                               crtc :  xcb_randr_crtc_t) -> xcb_randr_get_crtc_gamma_cookie_t;
 
@@ -2436,37 +2028,27 @@ pub fn xcb_randr_get_crtc_gamma_blue_length (R : *mut xcb_randr_get_crtc_gamma_r
 
 pub fn xcb_randr_get_crtc_gamma_blue_end (R : *mut xcb_randr_get_crtc_gamma_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_randr_get_crtc_gamma_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_randr_get_crtc_gamma_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_randr_get_crtc_gamma_reply (c : *mut ffi::base::xcb_connection_t,
                                           cookie : xcb_randr_get_crtc_gamma_cookie_t,
                                           e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_get_crtc_gamma_reply_t;
 
 pub fn xcb_randr_set_crtc_gamma_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_randr_set_crtc_gamma_checked (c : *mut ffi::base::xcb_connection_t,
                                             crtc :  xcb_randr_crtc_t,
                                             size :  u16,
@@ -2474,14 +2056,8 @@ pub fn xcb_randr_set_crtc_gamma_checked (c : *mut ffi::base::xcb_connection_t,
                                             green : *mut u16,
                                             blue : *mut u16) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_set_crtc_gamma (c : *mut ffi::base::xcb_connection_t,
                                     crtc :  xcb_randr_crtc_t,
                                     size :  u16,
@@ -2491,28 +2067,13 @@ pub fn xcb_randr_set_crtc_gamma (c : *mut ffi::base::xcb_connection_t,
 
 pub fn xcb_randr_get_screen_resources_current_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_get_screen_resources_current (c : *mut ffi::base::xcb_connection_t,
                                                   window :  ffi::xproto::xcb_window_t) -> xcb_randr_get_screen_resources_current_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_randr_get_screen_resources_current_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                             window :  ffi::xproto::xcb_window_t) -> xcb_randr_get_screen_resources_current_cookie_t;
 
@@ -2547,20 +2108,18 @@ pub fn xcb_randr_get_screen_resources_current_names_length (R : *mut xcb_randr_g
 
 pub fn xcb_randr_get_screen_resources_current_names_end (R : *mut xcb_randr_get_screen_resources_current_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_randr_get_screen_resources_current_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_randr_get_screen_resources_current_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_randr_get_screen_resources_current_reply (c : *mut ffi::base::xcb_connection_t,
                                                         cookie : xcb_randr_get_screen_resources_current_cookie_t,
                                                         e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_get_screen_resources_current_reply_t;
@@ -2568,17 +2127,9 @@ pub fn xcb_randr_get_screen_resources_current_reply (c : *mut ffi::base::xcb_con
 pub fn xcb_randr_set_crtc_transform_sizeof (_buffer :  *mut c_void,
                                      filter_params_len :  u32) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_randr_set_crtc_transform_checked (c : *mut ffi::base::xcb_connection_t,
                                                 crtc :  xcb_randr_crtc_t,
                                                 transform :  ffi::render::xcb_render_transform_t,
@@ -2587,14 +2138,8 @@ pub fn xcb_randr_set_crtc_transform_checked (c : *mut ffi::base::xcb_connection_
                                                 filter_params_len :  u32,
                                                 filter_params : *mut ffi::render::xcb_render_fixed_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_set_crtc_transform (c : *mut ffi::base::xcb_connection_t,
                                         crtc :  xcb_randr_crtc_t,
                                         transform :  ffi::render::xcb_render_transform_t,
@@ -2605,28 +2150,13 @@ pub fn xcb_randr_set_crtc_transform (c : *mut ffi::base::xcb_connection_t,
 
 pub fn xcb_randr_get_crtc_transform_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_get_crtc_transform (c : *mut ffi::base::xcb_connection_t,
                                         crtc :  xcb_randr_crtc_t) -> xcb_randr_get_crtc_transform_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_randr_get_crtc_transform_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                   crtc :  xcb_randr_crtc_t) -> xcb_randr_get_crtc_transform_cookie_t;
 
@@ -2662,75 +2192,50 @@ pub fn xcb_randr_get_crtc_transform_current_params_length (R : *mut xcb_randr_ge
 
 pub fn xcb_randr_get_crtc_transform_current_params_end (R : *mut xcb_randr_get_crtc_transform_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_randr_get_crtc_transform_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_randr_get_crtc_transform_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_randr_get_crtc_transform_reply (c : *mut ffi::base::xcb_connection_t,
                                               cookie : xcb_randr_get_crtc_transform_cookie_t,
                                               e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_get_crtc_transform_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_get_panning (c : *mut ffi::base::xcb_connection_t,
                                  crtc :  xcb_randr_crtc_t) -> xcb_randr_get_panning_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_randr_get_panning_unchecked (c : *mut ffi::base::xcb_connection_t,
                                            crtc :  xcb_randr_crtc_t) -> xcb_randr_get_panning_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_randr_get_panning_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_randr_get_panning_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_randr_get_panning_reply (c : *mut ffi::base::xcb_connection_t,
                                        cookie : xcb_randr_get_panning_cookie_t,
                                        e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_get_panning_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_set_panning (c : *mut ffi::base::xcb_connection_t,
                                  crtc :  xcb_randr_crtc_t,
                                  timestamp :  ffi::xproto::xcb_timestamp_t,
@@ -2747,17 +2252,8 @@ pub fn xcb_randr_set_panning (c : *mut ffi::base::xcb_connection_t,
                                  border_right :  i16,
                                  border_bottom :  i16) -> xcb_randr_set_panning_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_randr_set_panning_unchecked (c : *mut ffi::base::xcb_connection_t,
                                            crtc :  xcb_randr_crtc_t,
                                            timestamp :  ffi::xproto::xcb_timestamp_t,
@@ -2774,184 +2270,131 @@ pub fn xcb_randr_set_panning_unchecked (c : *mut ffi::base::xcb_connection_t,
                                            border_right :  i16,
                                            border_bottom :  i16) -> xcb_randr_set_panning_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_randr_set_panning_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_randr_set_panning_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_randr_set_panning_reply (c : *mut ffi::base::xcb_connection_t,
                                        cookie : xcb_randr_set_panning_cookie_t,
                                        e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_set_panning_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_randr_set_output_primary_checked (c : *mut ffi::base::xcb_connection_t,
                                                 window :  ffi::xproto::xcb_window_t,
                                                 output :  xcb_randr_output_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_set_output_primary (c : *mut ffi::base::xcb_connection_t,
                                         window :  ffi::xproto::xcb_window_t,
                                         output :  xcb_randr_output_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_randr_get_output_primary (c : *mut ffi::base::xcb_connection_t,
                                         window :  ffi::xproto::xcb_window_t) -> xcb_randr_get_output_primary_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_randr_get_output_primary_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                   window :  ffi::xproto::xcb_window_t) -> xcb_randr_get_output_primary_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_randr_get_output_primary_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_randr_get_output_primary_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_randr_get_output_primary_reply (c : *mut ffi::base::xcb_connection_t,
                                               cookie : xcb_randr_get_output_primary_cookie_t,
                                               e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_randr_get_output_primary_reply_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_randr_crtc_change_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_randr_crtc_change_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_randr_crtc_change_t)
+///
 pub fn xcb_randr_crtc_change_next (i:*mut xcb_randr_crtc_change_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_randr_crtc_change_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_randr_crtc_change_end (i:xcb_randr_crtc_change_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_randr_output_change_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_randr_output_change_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_randr_output_change_t)
+///
 pub fn xcb_randr_output_change_next (i:*mut xcb_randr_output_change_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_randr_output_change_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_randr_output_change_end (i:xcb_randr_output_change_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_randr_output_property_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_randr_output_property_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_randr_output_property_t)
+///
 pub fn xcb_randr_output_property_next (i:*mut xcb_randr_output_property_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_randr_output_property_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_randr_output_property_end (i:xcb_randr_output_property_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_randr_notify_data_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_randr_notify_data_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_randr_notify_data_t)
+///
 pub fn xcb_randr_notify_data_next (i:*mut xcb_randr_notify_data_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_randr_notify_data_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_randr_notify_data_end (i:xcb_randr_notify_data_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 }
 

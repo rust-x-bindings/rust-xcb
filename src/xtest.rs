@@ -1,7 +1,7 @@
-/*
- * This file generated automatically from xtest.xml by r_client.py.
- * Edit at your peril.
- */
+//
+// This file generated automatically from xtest.xml by r_client.py.
+// Edit at your peril.
+//
 
 //Make the compiler quiet
 #![allow(unused_imports)]
@@ -20,7 +20,7 @@ use std::iter::Iterator;
 use xproto;
 pub struct  GetVersionCookie<'s> { pub base : base::Cookie<'s, xcb_test_get_version_cookie_t> }
 
-/** Opcode for xcb_test_get_version. */
+/// Opcode for xcb_test_get_version.
 pub const XCB_TEST_GET_VERSION : u8 = 0;
 pub struct GetVersionReply { base:  base::Reply<xcb_test_get_version_reply_t> }
 fn mk_reply_xcb_test_get_version_reply_t(reply:*mut xcb_test_get_version_reply_t) -> GetVersionReply { GetVersionReply { base : base::mk_reply(reply) } }
@@ -31,13 +31,13 @@ pub type xcb_test_cursor_t = c_uint;//{
 //}
 pub struct  CompareCursorCookie<'s> { pub base : base::Cookie<'s, xcb_test_compare_cursor_cookie_t> }
 
-/** Opcode for xcb_test_compare_cursor. */
+/// Opcode for xcb_test_compare_cursor.
 pub const XCB_TEST_COMPARE_CURSOR : u8 = 1;
 pub struct CompareCursorReply { base:  base::Reply<xcb_test_compare_cursor_reply_t> }
 fn mk_reply_xcb_test_compare_cursor_reply_t(reply:*mut xcb_test_compare_cursor_reply_t) -> CompareCursorReply { CompareCursorReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_test_fake_input. */
+/// Opcode for xcb_test_fake_input.
 pub const XCB_TEST_FAKE_INPUT : u8 = 2;
-/** Opcode for xcb_test_grab_control. */
+/// Opcode for xcb_test_grab_control.
 pub const XCB_TEST_GRAB_CONTROL : u8 = 3;
 pub fn GetVersion<'r> (c : &'r Connection,
                    major_version : u8,

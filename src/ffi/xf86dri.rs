@@ -1,7 +1,7 @@
-/*
- * This file generated automatically from xf86dri.xml by r_client.py.
- * Edit at your peril.
- */
+//
+// This file generated automatically from xf86dri.xml by r_client.py.
+// Edit at your peril.
+//
 
 //Make the compiler quiet
 #![allow(unused_imports)]
@@ -25,9 +25,6 @@ impl Copy for xcb_xf86dri_drm_clip_rect_t {}
 impl Clone for xcb_xf86dri_drm_clip_rect_t {
     fn clone(&self) -> xcb_xf86dri_drm_clip_rect_t { *self }
 }
-/**
- * @brief xcb_xf86dri_drm_clip_rect_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xf86dri_drm_clip_rect_iterator_t {
     pub data : *mut xcb_xf86dri_drm_clip_rect_t,
@@ -415,137 +412,83 @@ impl Clone for xcb_xf86dri_auth_connection_reply_t {
 #[link(name="xcb-xf86dri")]
 extern "C" {
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xf86dri_drm_clip_rect_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xf86dri_drm_clip_rect_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xf86dri_drm_clip_rect_t)
+///
 pub fn xcb_xf86dri_drm_clip_rect_next (i:*mut xcb_xf86dri_drm_clip_rect_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xf86dri_drm_clip_rect_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xf86dri_drm_clip_rect_end (i:xcb_xf86dri_drm_clip_rect_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xf86dri_query_version (c : *mut ffi::base::xcb_connection_t) -> xcb_xf86dri_query_version_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xf86dri_query_version_unchecked (c : *mut ffi::base::xcb_connection_t) -> xcb_xf86dri_query_version_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xf86dri_query_version_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xf86dri_query_version_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xf86dri_query_version_reply (c : *mut ffi::base::xcb_connection_t,
                                            cookie : xcb_xf86dri_query_version_cookie_t,
                                            e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xf86dri_query_version_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xf86dri_query_direct_rendering_capable (c : *mut ffi::base::xcb_connection_t,
                                                       screen :  u32) -> xcb_xf86dri_query_direct_rendering_capable_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xf86dri_query_direct_rendering_capable_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                                 screen :  u32) -> xcb_xf86dri_query_direct_rendering_capable_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xf86dri_query_direct_rendering_capable_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xf86dri_query_direct_rendering_capable_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xf86dri_query_direct_rendering_capable_reply (c : *mut ffi::base::xcb_connection_t,
                                                             cookie : xcb_xf86dri_query_direct_rendering_capable_cookie_t,
                                                             e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xf86dri_query_direct_rendering_capable_reply_t;
 
 pub fn xcb_xf86dri_open_connection_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xf86dri_open_connection (c : *mut ffi::base::xcb_connection_t,
                                        screen :  u32) -> xcb_xf86dri_open_connection_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xf86dri_open_connection_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                  screen :  u32) -> xcb_xf86dri_open_connection_cookie_t;
 
@@ -557,73 +500,42 @@ pub fn xcb_xf86dri_open_connection_bus_id_length (R : *mut xcb_xf86dri_open_conn
 
 pub fn xcb_xf86dri_open_connection_bus_id_end (R : *mut xcb_xf86dri_open_connection_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xf86dri_open_connection_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xf86dri_open_connection_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xf86dri_open_connection_reply (c : *mut ffi::base::xcb_connection_t,
                                              cookie : xcb_xf86dri_open_connection_cookie_t,
                                              e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xf86dri_open_connection_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_xf86dri_close_connection_checked (c : *mut ffi::base::xcb_connection_t,
                                                 screen :  u32) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xf86dri_close_connection (c : *mut ffi::base::xcb_connection_t,
                                         screen :  u32) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_xf86dri_get_client_driver_name_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xf86dri_get_client_driver_name (c : *mut ffi::base::xcb_connection_t,
                                               screen :  u32) -> xcb_xf86dri_get_client_driver_name_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xf86dri_get_client_driver_name_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                         screen :  u32) -> xcb_xf86dri_get_client_driver_name_cookie_t;
 
@@ -635,195 +547,116 @@ pub fn xcb_xf86dri_get_client_driver_name_client_driver_name_length (R : *mut xc
 
 pub fn xcb_xf86dri_get_client_driver_name_client_driver_name_end (R : *mut xcb_xf86dri_get_client_driver_name_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xf86dri_get_client_driver_name_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xf86dri_get_client_driver_name_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xf86dri_get_client_driver_name_reply (c : *mut ffi::base::xcb_connection_t,
                                                     cookie : xcb_xf86dri_get_client_driver_name_cookie_t,
                                                     e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xf86dri_get_client_driver_name_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xf86dri_create_context (c : *mut ffi::base::xcb_connection_t,
                                       screen :  u32,
                                       visual :  u32,
                                       context :  u32) -> xcb_xf86dri_create_context_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xf86dri_create_context_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                 screen :  u32,
                                                 visual :  u32,
                                                 context :  u32) -> xcb_xf86dri_create_context_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xf86dri_create_context_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xf86dri_create_context_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xf86dri_create_context_reply (c : *mut ffi::base::xcb_connection_t,
                                             cookie : xcb_xf86dri_create_context_cookie_t,
                                             e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xf86dri_create_context_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_xf86dri_destroy_context_checked (c : *mut ffi::base::xcb_connection_t,
                                                screen :  u32,
                                                context :  u32) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xf86dri_destroy_context (c : *mut ffi::base::xcb_connection_t,
                                        screen :  u32,
                                        context :  u32) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xf86dri_create_drawable (c : *mut ffi::base::xcb_connection_t,
                                        screen :  u32,
                                        drawable :  u32) -> xcb_xf86dri_create_drawable_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xf86dri_create_drawable_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                  screen :  u32,
                                                  drawable :  u32) -> xcb_xf86dri_create_drawable_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xf86dri_create_drawable_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xf86dri_create_drawable_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xf86dri_create_drawable_reply (c : *mut ffi::base::xcb_connection_t,
                                              cookie : xcb_xf86dri_create_drawable_cookie_t,
                                              e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xf86dri_create_drawable_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_xf86dri_destroy_drawable_checked (c : *mut ffi::base::xcb_connection_t,
                                                 screen :  u32,
                                                 drawable :  u32) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xf86dri_destroy_drawable (c : *mut ffi::base::xcb_connection_t,
                                         screen :  u32,
                                         drawable :  u32) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_xf86dri_get_drawable_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xf86dri_get_drawable_info (c : *mut ffi::base::xcb_connection_t,
                                          screen :  u32,
                                          drawable :  u32) -> xcb_xf86dri_get_drawable_info_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xf86dri_get_drawable_info_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                    screen :  u32,
                                                    drawable :  u32) -> xcb_xf86dri_get_drawable_info_cookie_t;
@@ -842,48 +675,31 @@ pub fn xcb_xf86dri_get_drawable_info_back_clip_rects_length (R : *mut xcb_xf86dr
 
 pub fn xcb_xf86dri_get_drawable_info_back_clip_rects_iterator (R : *mut xcb_xf86dri_get_drawable_info_reply_t) -> xcb_xf86dri_drm_clip_rect_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xf86dri_get_drawable_info_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xf86dri_get_drawable_info_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xf86dri_get_drawable_info_reply (c : *mut ffi::base::xcb_connection_t,
                                                cookie : xcb_xf86dri_get_drawable_info_cookie_t,
                                                e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xf86dri_get_drawable_info_reply_t;
 
 pub fn xcb_xf86dri_get_device_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xf86dri_get_device_info (c : *mut ffi::base::xcb_connection_t,
                                        screen :  u32) -> xcb_xf86dri_get_device_info_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xf86dri_get_device_info_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                  screen :  u32) -> xcb_xf86dri_get_device_info_cookie_t;
 
@@ -895,65 +711,46 @@ pub fn xcb_xf86dri_get_device_info_device_private_length (R : *mut xcb_xf86dri_g
 
 pub fn xcb_xf86dri_get_device_info_device_private_end (R : *mut xcb_xf86dri_get_device_info_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xf86dri_get_device_info_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xf86dri_get_device_info_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xf86dri_get_device_info_reply (c : *mut ffi::base::xcb_connection_t,
                                              cookie : xcb_xf86dri_get_device_info_cookie_t,
                                              e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xf86dri_get_device_info_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xf86dri_auth_connection (c : *mut ffi::base::xcb_connection_t,
                                        screen :  u32,
                                        magic :  u32) -> xcb_xf86dri_auth_connection_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xf86dri_auth_connection_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                  screen :  u32,
                                                  magic :  u32) -> xcb_xf86dri_auth_connection_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xf86dri_auth_connection_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xf86dri_auth_connection_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xf86dri_auth_connection_reply (c : *mut ffi::base::xcb_connection_t,
                                              cookie : xcb_xf86dri_auth_connection_cookie_t,
                                              e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xf86dri_auth_connection_reply_t;

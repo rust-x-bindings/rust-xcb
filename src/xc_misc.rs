@@ -1,7 +1,7 @@
-/*
- * This file generated automatically from xc_misc.xml by r_client.py.
- * Edit at your peril.
- */
+//
+// This file generated automatically from xc_misc.xml by r_client.py.
+// Edit at your peril.
+//
 
 //Make the compiler quiet
 #![allow(unused_imports)]
@@ -19,19 +19,19 @@ use std::iter::Iterator;
 
 pub struct  GetVersionCookie<'s> { pub base : base::Cookie<'s, xcb_xc_misc_get_version_cookie_t> }
 
-/** Opcode for xcb_xc_misc_get_version. */
+/// Opcode for xcb_xc_misc_get_version.
 pub const XCB_XC_MISC_GET_VERSION : u8 = 0;
 pub struct GetVersionReply { base:  base::Reply<xcb_xc_misc_get_version_reply_t> }
 fn mk_reply_xcb_xc_misc_get_version_reply_t(reply:*mut xcb_xc_misc_get_version_reply_t) -> GetVersionReply { GetVersionReply { base : base::mk_reply(reply) } }
 pub struct  GetXidRangeCookie<'s> { pub base : base::Cookie<'s, xcb_xc_misc_get_xid_range_cookie_t> }
 
-/** Opcode for xcb_xc_misc_get_xid_range. */
+/// Opcode for xcb_xc_misc_get_xid_range.
 pub const XCB_XC_MISC_GET_XID_RANGE : u8 = 1;
 pub struct GetXidRangeReply { base:  base::Reply<xcb_xc_misc_get_xid_range_reply_t> }
 fn mk_reply_xcb_xc_misc_get_xid_range_reply_t(reply:*mut xcb_xc_misc_get_xid_range_reply_t) -> GetXidRangeReply { GetXidRangeReply { base : base::mk_reply(reply) } }
 pub struct  GetXidListCookie<'s> { pub base : base::Cookie<'s, xcb_xc_misc_get_xid_list_cookie_t> }
 
-/** Opcode for xcb_xc_misc_get_xid_list. */
+/// Opcode for xcb_xc_misc_get_xid_list.
 pub const XCB_XC_MISC_GET_XID_LIST : u8 = 2;
 pub fn GetVersion<'r> (c : &'r Connection,
                    client_major_version : u16,

@@ -1,7 +1,7 @@
-/*
- * This file generated automatically from record.xml by r_client.py.
- * Edit at your peril.
- */
+//
+// This file generated automatically from record.xml by r_client.py.
+// Edit at your peril.
+//
 
 //Make the compiler quiet
 #![allow(unused_imports)]
@@ -14,9 +14,6 @@ pub const RECORD_MAJOR_VERSION : c_uint = 1;
 pub const RECORD_MINOR_VERSION : c_uint = 13;
 
 pub type xcb_record_context_t = u32;
-/**
- * @brief xcb_record_context_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_record_context_iterator_t {
     pub data : *mut xcb_record_context_t,
@@ -35,9 +32,6 @@ impl Copy for xcb_record_range_8_t {}
 impl Clone for xcb_record_range_8_t {
     fn clone(&self) -> xcb_record_range_8_t { *self }
 }
-/**
- * @brief xcb_record_range_8_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_record_range_8_iterator_t {
     pub data : *mut xcb_record_range_8_t,
@@ -56,9 +50,6 @@ impl Copy for xcb_record_range_16_t {}
 impl Clone for xcb_record_range_16_t {
     fn clone(&self) -> xcb_record_range_16_t { *self }
 }
-/**
- * @brief xcb_record_range_16_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_record_range_16_iterator_t {
     pub data : *mut xcb_record_range_16_t,
@@ -77,9 +68,6 @@ impl Copy for xcb_record_ext_range_t {}
 impl Clone for xcb_record_ext_range_t {
     fn clone(&self) -> xcb_record_ext_range_t { *self }
 }
-/**
- * @brief xcb_record_ext_range_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_record_ext_range_iterator_t {
     pub data : *mut xcb_record_ext_range_t,
@@ -105,9 +93,6 @@ impl Copy for xcb_record_range_t {}
 impl Clone for xcb_record_range_t {
     fn clone(&self) -> xcb_record_range_t { *self }
 }
-/**
- * @brief xcb_record_range_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_record_range_iterator_t {
     pub data : *mut xcb_record_range_t,
@@ -117,9 +102,6 @@ pub struct xcb_record_range_iterator_t {
 
 
 pub type xcb_record_element_header_t = u8;
-/**
- * @brief xcb_record_element_header_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_record_element_header_iterator_t {
     pub data : *mut xcb_record_element_header_t,
@@ -129,9 +111,6 @@ pub struct xcb_record_element_header_iterator_t {
 
 
 pub type xcb_record_client_spec_t = u32;
-/**
- * @brief xcb_record_client_spec_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_record_client_spec_iterator_t {
     pub data : *mut xcb_record_client_spec_t,
@@ -150,9 +129,6 @@ impl Copy for xcb_record_client_info_t {}
 impl Clone for xcb_record_client_info_t {
     fn clone(&self) -> xcb_record_client_info_t { *self }
 }
-/**
- * @brief xcb_record_client_info_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_record_client_info_iterator_t {
     pub data : *mut xcb_record_client_info_t,
@@ -369,165 +345,130 @@ impl Clone for xcb_record_free_context_request_t {
 #[link(name="xcb-record")]
 extern "C" {
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_record_context_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_record_context_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_record_context_t)
+///
 pub fn xcb_record_context_next (i:*mut xcb_record_context_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_record_context_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_record_context_end (i:xcb_record_context_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_record_range_8_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_record_range_8_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_record_range_8_t)
+///
 pub fn xcb_record_range_8_next (i:*mut xcb_record_range_8_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_record_range_8_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_record_range_8_end (i:xcb_record_range_8_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_record_range_16_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_record_range_16_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_record_range_16_t)
+///
 pub fn xcb_record_range_16_next (i:*mut xcb_record_range_16_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_record_range_16_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_record_range_16_end (i:xcb_record_range_16_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_record_ext_range_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_record_ext_range_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_record_ext_range_t)
+///
 pub fn xcb_record_ext_range_next (i:*mut xcb_record_ext_range_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_record_ext_range_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_record_ext_range_end (i:xcb_record_ext_range_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_record_range_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_record_range_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_record_range_t)
+///
 pub fn xcb_record_range_next (i:*mut xcb_record_range_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_record_range_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_record_range_end (i:xcb_record_range_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_record_element_header_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_record_element_header_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_record_element_header_t)
+///
 pub fn xcb_record_element_header_next (i:*mut xcb_record_element_header_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_record_element_header_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_record_element_header_end (i:xcb_record_element_header_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_record_client_spec_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_record_client_spec_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_record_client_spec_t)
+///
 pub fn xcb_record_client_spec_next (i:*mut xcb_record_client_spec_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_record_client_spec_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_record_client_spec_end (i:xcb_record_client_spec_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_record_client_info_sizeof (_buffer :  *mut c_void) -> c_int;
@@ -539,87 +480,57 @@ pub fn xcb_record_client_info_ranges_length (R : *mut xcb_record_client_info_t) 
 
 pub fn xcb_record_client_info_ranges_iterator (R : *mut xcb_record_client_info_t) -> xcb_record_range_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_record_client_info_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_record_client_info_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_record_client_info_t)
+///
 pub fn xcb_record_client_info_next (i:*mut xcb_record_client_info_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_record_client_info_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_record_client_info_end (i:xcb_record_client_info_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_record_query_version (c : *mut ffi::base::xcb_connection_t,
                                     major_version :  u16,
                                     minor_version :  u16) -> xcb_record_query_version_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_record_query_version_unchecked (c : *mut ffi::base::xcb_connection_t,
                                               major_version :  u16,
                                               minor_version :  u16) -> xcb_record_query_version_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_record_query_version_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_record_query_version_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_record_query_version_reply (c : *mut ffi::base::xcb_connection_t,
                                           cookie : xcb_record_query_version_cookie_t,
                                           e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_record_query_version_reply_t;
 
 pub fn xcb_record_create_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_record_create_context_checked (c : *mut ffi::base::xcb_connection_t,
                                              context :  xcb_record_context_t,
                                              element_header :  xcb_record_element_header_t,
@@ -628,14 +539,8 @@ pub fn xcb_record_create_context_checked (c : *mut ffi::base::xcb_connection_t,
                                              client_specs : *mut xcb_record_client_spec_t,
                                              ranges : *mut xcb_record_range_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_record_create_context (c : *mut ffi::base::xcb_connection_t,
                                      context :  xcb_record_context_t,
                                      element_header :  xcb_record_element_header_t,
@@ -646,17 +551,9 @@ pub fn xcb_record_create_context (c : *mut ffi::base::xcb_connection_t,
 
 pub fn xcb_record_register_clients_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_record_register_clients_checked (c : *mut ffi::base::xcb_connection_t,
                                                context :  xcb_record_context_t,
                                                element_header :  xcb_record_element_header_t,
@@ -665,14 +562,8 @@ pub fn xcb_record_register_clients_checked (c : *mut ffi::base::xcb_connection_t
                                                client_specs : *mut xcb_record_client_spec_t,
                                                ranges : *mut xcb_record_range_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_record_register_clients (c : *mut ffi::base::xcb_connection_t,
                                        context :  xcb_record_context_t,
                                        element_header :  xcb_record_element_header_t,
@@ -683,30 +574,16 @@ pub fn xcb_record_register_clients (c : *mut ffi::base::xcb_connection_t,
 
 pub fn xcb_record_unregister_clients_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_record_unregister_clients_checked (c : *mut ffi::base::xcb_connection_t,
                                                  context :  xcb_record_context_t,
                                                  num_client_specs :  u32,
                                                  client_specs : *mut xcb_record_client_spec_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_record_unregister_clients (c : *mut ffi::base::xcb_connection_t,
                                          context :  xcb_record_context_t,
                                          num_client_specs :  u32,
@@ -714,28 +591,13 @@ pub fn xcb_record_unregister_clients (c : *mut ffi::base::xcb_connection_t,
 
 pub fn xcb_record_get_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_record_get_context (c : *mut ffi::base::xcb_connection_t,
                                   context :  xcb_record_context_t) -> xcb_record_get_context_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_record_get_context_unchecked (c : *mut ffi::base::xcb_connection_t,
                                             context :  xcb_record_context_t) -> xcb_record_get_context_cookie_t;
 
@@ -744,48 +606,31 @@ pub fn xcb_record_get_context_intercepted_clients_length (R : *mut xcb_record_ge
 
 pub fn xcb_record_get_context_intercepted_clients_iterator (R : *mut xcb_record_get_context_reply_t) -> xcb_record_client_info_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_record_get_context_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_record_get_context_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_record_get_context_reply (c : *mut ffi::base::xcb_connection_t,
                                         cookie : xcb_record_get_context_cookie_t,
                                         e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_record_get_context_reply_t;
 
 pub fn xcb_record_enable_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_record_enable_context (c : *mut ffi::base::xcb_connection_t,
                                      context :  xcb_record_context_t) -> xcb_record_enable_context_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_record_enable_context_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                context :  xcb_record_context_t) -> xcb_record_enable_context_cookie_t;
 
@@ -797,71 +642,41 @@ pub fn xcb_record_enable_context_data_length (R : *mut xcb_record_enable_context
 
 pub fn xcb_record_enable_context_data_end (R : *mut xcb_record_enable_context_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_record_enable_context_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_record_enable_context_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_record_enable_context_reply (c : *mut ffi::base::xcb_connection_t,
                                            cookie : xcb_record_enable_context_cookie_t,
                                            e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_record_enable_context_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_record_disable_context_checked (c : *mut ffi::base::xcb_connection_t,
                                               context :  xcb_record_context_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_record_disable_context (c : *mut ffi::base::xcb_connection_t,
                                       context :  xcb_record_context_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_record_free_context_checked (c : *mut ffi::base::xcb_connection_t,
                                            context :  xcb_record_context_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_record_free_context (c : *mut ffi::base::xcb_connection_t,
                                    context :  xcb_record_context_t) -> ffi::base::xcb_void_cookie_t;
 }

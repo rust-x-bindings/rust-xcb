@@ -1,7 +1,7 @@
-/*
- * This file generated automatically from glx.xml by r_client.py.
- * Edit at your peril.
- */
+//
+// This file generated automatically from glx.xml by r_client.py.
+// Edit at your peril.
+//
 
 //Make the compiler quiet
 #![allow(unused_imports)]
@@ -40,52 +40,52 @@ pub type Bool32Iterator = xcb_glx_bool32_iterator_t;
 
 pub type ContextTagIterator = xcb_glx_context_tag_iterator_t;
 
-/** Opcode for xcb_glx_generic. */
+/// Opcode for xcb_glx_generic.
 pub const XCB_GLX_GENERIC : u8 = -1;
 pub struct GenericError { pub base : base::Error<xcb_glx_generic_error_t> }
-/** Opcode for xcb_glx_bad_context. */
+/// Opcode for xcb_glx_bad_context.
 pub const XCB_GLX_BAD_CONTEXT : u8 = 0;
 pub struct BadContextError { pub base : base::Error<xcb_glx_bad_context_error_t> }
-/** Opcode for xcb_glx_bad_context_state. */
+/// Opcode for xcb_glx_bad_context_state.
 pub const XCB_GLX_BAD_CONTEXT_STATE : u8 = 1;
 pub struct BadContextStateError { pub base : base::Error<xcb_glx_bad_context_state_error_t> }
-/** Opcode for xcb_glx_bad_drawable. */
+/// Opcode for xcb_glx_bad_drawable.
 pub const XCB_GLX_BAD_DRAWABLE : u8 = 2;
 pub struct BadDrawableError { pub base : base::Error<xcb_glx_bad_drawable_error_t> }
-/** Opcode for xcb_glx_bad_pixmap. */
+/// Opcode for xcb_glx_bad_pixmap.
 pub const XCB_GLX_BAD_PIXMAP : u8 = 3;
 pub struct BadPixmapError { pub base : base::Error<xcb_glx_bad_pixmap_error_t> }
-/** Opcode for xcb_glx_bad_context_tag. */
+/// Opcode for xcb_glx_bad_context_tag.
 pub const XCB_GLX_BAD_CONTEXT_TAG : u8 = 4;
 pub struct BadContextTagError { pub base : base::Error<xcb_glx_bad_context_tag_error_t> }
-/** Opcode for xcb_glx_bad_current_window. */
+/// Opcode for xcb_glx_bad_current_window.
 pub const XCB_GLX_BAD_CURRENT_WINDOW : u8 = 5;
 pub struct BadCurrentWindowError { pub base : base::Error<xcb_glx_bad_current_window_error_t> }
-/** Opcode for xcb_glx_bad_render_request. */
+/// Opcode for xcb_glx_bad_render_request.
 pub const XCB_GLX_BAD_RENDER_REQUEST : u8 = 6;
 pub struct BadRenderRequestError { pub base : base::Error<xcb_glx_bad_render_request_error_t> }
-/** Opcode for xcb_glx_bad_large_request. */
+/// Opcode for xcb_glx_bad_large_request.
 pub const XCB_GLX_BAD_LARGE_REQUEST : u8 = 7;
 pub struct BadLargeRequestError { pub base : base::Error<xcb_glx_bad_large_request_error_t> }
-/** Opcode for xcb_glx_unsupported_private_request. */
+/// Opcode for xcb_glx_unsupported_private_request.
 pub const XCB_GLX_UNSUPPORTED_PRIVATE_REQUEST : u8 = 8;
 pub struct UnsupportedPrivateRequestError { pub base : base::Error<xcb_glx_unsupported_private_request_error_t> }
-/** Opcode for xcb_glx_bad_fb_config. */
+/// Opcode for xcb_glx_bad_fb_config.
 pub const XCB_GLX_BAD_FB_CONFIG : u8 = 9;
 pub struct BadFbConfigError { pub base : base::Error<xcb_glx_bad_fb_config_error_t> }
-/** Opcode for xcb_glx_bad_pbuffer. */
+/// Opcode for xcb_glx_bad_pbuffer.
 pub const XCB_GLX_BAD_PBUFFER : u8 = 10;
 pub struct BadPbufferError { pub base : base::Error<xcb_glx_bad_pbuffer_error_t> }
-/** Opcode for xcb_glx_bad_current_drawable. */
+/// Opcode for xcb_glx_bad_current_drawable.
 pub const XCB_GLX_BAD_CURRENT_DRAWABLE : u8 = 11;
 pub struct BadCurrentDrawableError { pub base : base::Error<xcb_glx_bad_current_drawable_error_t> }
-/** Opcode for xcb_glx_bad_window. */
+/// Opcode for xcb_glx_bad_window.
 pub const XCB_GLX_BAD_WINDOW : u8 = 12;
 pub struct BadWindowError { pub base : base::Error<xcb_glx_bad_window_error_t> }
-/** Opcode for xcb_glx_glx_bad_profile_arb. */
+/// Opcode for xcb_glx_glx_bad_profile_arb.
 pub const XCB_GLX_GLX_BAD_PROFILE_ARB : u8 = 13;
 pub struct GlxBadProfileArbError { pub base : base::Error<xcb_glx_glx_bad_profile_arb_error_t> }
-/** Opcode for xcb_glx_pbuffer_clobber. */
+/// Opcode for xcb_glx_pbuffer_clobber.
 pub const XCB_GLX_PBUFFER_CLOBBER : u8 = 0;
 pub struct PbufferClobberEvent {pub base : base::Event<xcb_glx_pbuffer_clobber_event_t>}
 
@@ -98,37 +98,37 @@ pub type xcb_glx_pbcdt_t = c_uint;//{
     pub const XCB_GLX_PBCDT_WINDOW : xcb_glx_pbcdt_t = 32793;
     pub const XCB_GLX_PBCDT_PBUFFER : xcb_glx_pbcdt_t = 32794;
 //}
-/** Opcode for xcb_glx_render. */
+/// Opcode for xcb_glx_render.
 pub const XCB_GLX_RENDER : u8 = 1;
-/** Opcode for xcb_glx_render_large. */
+/// Opcode for xcb_glx_render_large.
 pub const XCB_GLX_RENDER_LARGE : u8 = 2;
-/** Opcode for xcb_glx_create_context. */
+/// Opcode for xcb_glx_create_context.
 pub const XCB_GLX_CREATE_CONTEXT : u8 = 3;
-/** Opcode for xcb_glx_destroy_context. */
+/// Opcode for xcb_glx_destroy_context.
 pub const XCB_GLX_DESTROY_CONTEXT : u8 = 4;
 pub struct  MakeCurrentCookie<'s> { pub base : base::Cookie<'s, xcb_glx_make_current_cookie_t> }
 
-/** Opcode for xcb_glx_make_current. */
+/// Opcode for xcb_glx_make_current.
 pub const XCB_GLX_MAKE_CURRENT : u8 = 5;
 pub struct MakeCurrentReply { base:  base::Reply<xcb_glx_make_current_reply_t> }
 fn mk_reply_xcb_glx_make_current_reply_t(reply:*mut xcb_glx_make_current_reply_t) -> MakeCurrentReply { MakeCurrentReply { base : base::mk_reply(reply) } }
 pub struct  IsDirectCookie<'s> { pub base : base::Cookie<'s, xcb_glx_is_direct_cookie_t> }
 
-/** Opcode for xcb_glx_is_direct. */
+/// Opcode for xcb_glx_is_direct.
 pub const XCB_GLX_IS_DIRECT : u8 = 6;
 pub struct IsDirectReply { base:  base::Reply<xcb_glx_is_direct_reply_t> }
 fn mk_reply_xcb_glx_is_direct_reply_t(reply:*mut xcb_glx_is_direct_reply_t) -> IsDirectReply { IsDirectReply { base : base::mk_reply(reply) } }
 pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_glx_query_version_cookie_t> }
 
-/** Opcode for xcb_glx_query_version. */
+/// Opcode for xcb_glx_query_version.
 pub const XCB_GLX_QUERY_VERSION : u8 = 7;
 pub struct QueryVersionReply { base:  base::Reply<xcb_glx_query_version_reply_t> }
 fn mk_reply_xcb_glx_query_version_reply_t(reply:*mut xcb_glx_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_glx_wait_gl. */
+/// Opcode for xcb_glx_wait_gl.
 pub const XCB_GLX_WAIT_GL : u8 = 8;
-/** Opcode for xcb_glx_wait_x. */
+/// Opcode for xcb_glx_wait_x.
 pub const XCB_GLX_WAIT_X : u8 = 9;
-/** Opcode for xcb_glx_copy_context. */
+/// Opcode for xcb_glx_copy_context.
 pub const XCB_GLX_COPY_CONTEXT : u8 = 10;
 
 pub type xcb_glx_gc_t = c_uint;//{
@@ -154,97 +154,97 @@ pub type xcb_glx_gc_t = c_uint;//{
     pub const XCB_GLX_GC_GL_SCISSOR_BIT : xcb_glx_gc_t = 524288;
     pub const XCB_GLX_GC_GL_ALL_ATTRIB_BITS : xcb_glx_gc_t = 16777215;
 //}
-/** Opcode for xcb_glx_swap_buffers. */
+/// Opcode for xcb_glx_swap_buffers.
 pub const XCB_GLX_SWAP_BUFFERS : u8 = 11;
-/** Opcode for xcb_glx_use_x_font. */
+/// Opcode for xcb_glx_use_x_font.
 pub const XCB_GLX_USE_X_FONT : u8 = 12;
-/** Opcode for xcb_glx_create_glx_pixmap. */
+/// Opcode for xcb_glx_create_glx_pixmap.
 pub const XCB_GLX_CREATE_GLX_PIXMAP : u8 = 13;
 pub struct  GetVisualConfigsCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_visual_configs_cookie_t> }
 
-/** Opcode for xcb_glx_get_visual_configs. */
+/// Opcode for xcb_glx_get_visual_configs.
 pub const XCB_GLX_GET_VISUAL_CONFIGS : u8 = 14;
-/** Opcode for xcb_glx_destroy_glx_pixmap. */
+/// Opcode for xcb_glx_destroy_glx_pixmap.
 pub const XCB_GLX_DESTROY_GLX_PIXMAP : u8 = 15;
-/** Opcode for xcb_glx_vendor_private. */
+/// Opcode for xcb_glx_vendor_private.
 pub const XCB_GLX_VENDOR_PRIVATE : u8 = 16;
 pub struct  VendorPrivateWithReplyCookie<'s> { pub base : base::Cookie<'s, xcb_glx_vendor_private_with_reply_cookie_t> }
 
-/** Opcode for xcb_glx_vendor_private_with_reply. */
+/// Opcode for xcb_glx_vendor_private_with_reply.
 pub const XCB_GLX_VENDOR_PRIVATE_WITH_REPLY : u8 = 17;
 pub struct VendorPrivateWithReplyReply { base:  base::Reply<xcb_glx_vendor_private_with_reply_reply_t> }
 fn mk_reply_xcb_glx_vendor_private_with_reply_reply_t(reply:*mut xcb_glx_vendor_private_with_reply_reply_t) -> VendorPrivateWithReplyReply { VendorPrivateWithReplyReply { base : base::mk_reply(reply) } }
 pub struct  QueryExtensionsStringCookie<'s> { pub base : base::Cookie<'s, xcb_glx_query_extensions_string_cookie_t> }
 
-/** Opcode for xcb_glx_query_extensions_string. */
+/// Opcode for xcb_glx_query_extensions_string.
 pub const XCB_GLX_QUERY_EXTENSIONS_STRING : u8 = 18;
 pub struct QueryExtensionsStringReply { base:  base::Reply<xcb_glx_query_extensions_string_reply_t> }
 fn mk_reply_xcb_glx_query_extensions_string_reply_t(reply:*mut xcb_glx_query_extensions_string_reply_t) -> QueryExtensionsStringReply { QueryExtensionsStringReply { base : base::mk_reply(reply) } }
 pub struct  QueryServerStringCookie<'s> { pub base : base::Cookie<'s, xcb_glx_query_server_string_cookie_t> }
 
-/** Opcode for xcb_glx_query_server_string. */
+/// Opcode for xcb_glx_query_server_string.
 pub const XCB_GLX_QUERY_SERVER_STRING : u8 = 19;
-/** Opcode for xcb_glx_client_info. */
+/// Opcode for xcb_glx_client_info.
 pub const XCB_GLX_CLIENT_INFO : u8 = 20;
 pub struct  GetFbConfigsCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_fb_configs_cookie_t> }
 
-/** Opcode for xcb_glx_get_fb_configs. */
+/// Opcode for xcb_glx_get_fb_configs.
 pub const XCB_GLX_GET_FB_CONFIGS : u8 = 21;
-/** Opcode for xcb_glx_create_pixmap. */
+/// Opcode for xcb_glx_create_pixmap.
 pub const XCB_GLX_CREATE_PIXMAP : u8 = 22;
-/** Opcode for xcb_glx_destroy_pixmap. */
+/// Opcode for xcb_glx_destroy_pixmap.
 pub const XCB_GLX_DESTROY_PIXMAP : u8 = 23;
-/** Opcode for xcb_glx_create_new_context. */
+/// Opcode for xcb_glx_create_new_context.
 pub const XCB_GLX_CREATE_NEW_CONTEXT : u8 = 24;
 pub struct  QueryContextCookie<'s> { pub base : base::Cookie<'s, xcb_glx_query_context_cookie_t> }
 
-/** Opcode for xcb_glx_query_context. */
+/// Opcode for xcb_glx_query_context.
 pub const XCB_GLX_QUERY_CONTEXT : u8 = 25;
 pub struct  MakeContextCurrentCookie<'s> { pub base : base::Cookie<'s, xcb_glx_make_context_current_cookie_t> }
 
-/** Opcode for xcb_glx_make_context_current. */
+/// Opcode for xcb_glx_make_context_current.
 pub const XCB_GLX_MAKE_CONTEXT_CURRENT : u8 = 26;
 pub struct MakeContextCurrentReply { base:  base::Reply<xcb_glx_make_context_current_reply_t> }
 fn mk_reply_xcb_glx_make_context_current_reply_t(reply:*mut xcb_glx_make_context_current_reply_t) -> MakeContextCurrentReply { MakeContextCurrentReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_glx_create_pbuffer. */
+/// Opcode for xcb_glx_create_pbuffer.
 pub const XCB_GLX_CREATE_PBUFFER : u8 = 27;
-/** Opcode for xcb_glx_destroy_pbuffer. */
+/// Opcode for xcb_glx_destroy_pbuffer.
 pub const XCB_GLX_DESTROY_PBUFFER : u8 = 28;
 pub struct  GetDrawableAttributesCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_drawable_attributes_cookie_t> }
 
-/** Opcode for xcb_glx_get_drawable_attributes. */
+/// Opcode for xcb_glx_get_drawable_attributes.
 pub const XCB_GLX_GET_DRAWABLE_ATTRIBUTES : u8 = 29;
-/** Opcode for xcb_glx_change_drawable_attributes. */
+/// Opcode for xcb_glx_change_drawable_attributes.
 pub const XCB_GLX_CHANGE_DRAWABLE_ATTRIBUTES : u8 = 30;
-/** Opcode for xcb_glx_create_window. */
+/// Opcode for xcb_glx_create_window.
 pub const XCB_GLX_CREATE_WINDOW : u8 = 31;
-/** Opcode for xcb_glx_delete_window. */
+/// Opcode for xcb_glx_delete_window.
 pub const XCB_GLX_DELETE_WINDOW : u8 = 32;
-/** Opcode for xcb_glx_set_client_info_arb. */
+/// Opcode for xcb_glx_set_client_info_arb.
 pub const XCB_GLX_SET_CLIENT_INFO_ARB : u8 = 33;
-/** Opcode for xcb_glx_create_context_attribs_arb. */
+/// Opcode for xcb_glx_create_context_attribs_arb.
 pub const XCB_GLX_CREATE_CONTEXT_ATTRIBS_ARB : u8 = 34;
-/** Opcode for xcb_glx_set_client_info_2arb. */
+/// Opcode for xcb_glx_set_client_info_2arb.
 pub const XCB_GLX_SET_CLIENT_INFO_2ARB : u8 = 35;
-/** Opcode for xcb_glx_new_list. */
+/// Opcode for xcb_glx_new_list.
 pub const XCB_GLX_NEW_LIST : u8 = 101;
-/** Opcode for xcb_glx_end_list. */
+/// Opcode for xcb_glx_end_list.
 pub const XCB_GLX_END_LIST : u8 = 102;
-/** Opcode for xcb_glx_delete_lists. */
+/// Opcode for xcb_glx_delete_lists.
 pub const XCB_GLX_DELETE_LISTS : u8 = 103;
 pub struct  GenListsCookie<'s> { pub base : base::Cookie<'s, xcb_glx_gen_lists_cookie_t> }
 
-/** Opcode for xcb_glx_gen_lists. */
+/// Opcode for xcb_glx_gen_lists.
 pub const XCB_GLX_GEN_LISTS : u8 = 104;
 pub struct GenListsReply { base:  base::Reply<xcb_glx_gen_lists_reply_t> }
 fn mk_reply_xcb_glx_gen_lists_reply_t(reply:*mut xcb_glx_gen_lists_reply_t) -> GenListsReply { GenListsReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_glx_feedback_buffer. */
+/// Opcode for xcb_glx_feedback_buffer.
 pub const XCB_GLX_FEEDBACK_BUFFER : u8 = 105;
-/** Opcode for xcb_glx_select_buffer. */
+/// Opcode for xcb_glx_select_buffer.
 pub const XCB_GLX_SELECT_BUFFER : u8 = 106;
 pub struct  RenderModeCookie<'s> { pub base : base::Cookie<'s, xcb_glx_render_mode_cookie_t> }
 
-/** Opcode for xcb_glx_render_mode. */
+/// Opcode for xcb_glx_render_mode.
 pub const XCB_GLX_RENDER_MODE : u8 = 107;
 
 pub type xcb_glx_rm_t = c_uint;//{
@@ -254,237 +254,237 @@ pub type xcb_glx_rm_t = c_uint;//{
 //}
 pub struct  FinishCookie<'s> { pub base : base::Cookie<'s, xcb_glx_finish_cookie_t> }
 
-/** Opcode for xcb_glx_finish. */
+/// Opcode for xcb_glx_finish.
 pub const XCB_GLX_FINISH : u8 = 108;
 pub struct FinishReply { base:  base::Reply<xcb_glx_finish_reply_t> }
 fn mk_reply_xcb_glx_finish_reply_t(reply:*mut xcb_glx_finish_reply_t) -> FinishReply { FinishReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_glx_pixel_storef. */
+/// Opcode for xcb_glx_pixel_storef.
 pub const XCB_GLX_PIXEL_STOREF : u8 = 109;
-/** Opcode for xcb_glx_pixel_storei. */
+/// Opcode for xcb_glx_pixel_storei.
 pub const XCB_GLX_PIXEL_STOREI : u8 = 110;
 pub struct  ReadPixelsCookie<'s> { pub base : base::Cookie<'s, xcb_glx_read_pixels_cookie_t> }
 
-/** Opcode for xcb_glx_read_pixels. */
+/// Opcode for xcb_glx_read_pixels.
 pub const XCB_GLX_READ_PIXELS : u8 = 111;
 pub struct  GetBooleanvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_booleanv_cookie_t> }
 
-/** Opcode for xcb_glx_get_booleanv. */
+/// Opcode for xcb_glx_get_booleanv.
 pub const XCB_GLX_GET_BOOLEANV : u8 = 112;
 pub struct  GetClipPlaneCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_clip_plane_cookie_t> }
 
-/** Opcode for xcb_glx_get_clip_plane. */
+/// Opcode for xcb_glx_get_clip_plane.
 pub const XCB_GLX_GET_CLIP_PLANE : u8 = 113;
 pub struct  GetDoublevCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_doublev_cookie_t> }
 
-/** Opcode for xcb_glx_get_doublev. */
+/// Opcode for xcb_glx_get_doublev.
 pub const XCB_GLX_GET_DOUBLEV : u8 = 114;
 pub struct  GetErrorCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_error_cookie_t> }
 
-/** Opcode for xcb_glx_get_error. */
+/// Opcode for xcb_glx_get_error.
 pub const XCB_GLX_GET_ERROR : u8 = 115;
 pub struct GetErrorReply { base:  base::Reply<xcb_glx_get_error_reply_t> }
 fn mk_reply_xcb_glx_get_error_reply_t(reply:*mut xcb_glx_get_error_reply_t) -> GetErrorReply { GetErrorReply { base : base::mk_reply(reply) } }
 pub struct  GetFloatvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_floatv_cookie_t> }
 
-/** Opcode for xcb_glx_get_floatv. */
+/// Opcode for xcb_glx_get_floatv.
 pub const XCB_GLX_GET_FLOATV : u8 = 116;
 pub struct  GetIntegervCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_integerv_cookie_t> }
 
-/** Opcode for xcb_glx_get_integerv. */
+/// Opcode for xcb_glx_get_integerv.
 pub const XCB_GLX_GET_INTEGERV : u8 = 117;
 pub struct  GetLightfvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_lightfv_cookie_t> }
 
-/** Opcode for xcb_glx_get_lightfv. */
+/// Opcode for xcb_glx_get_lightfv.
 pub const XCB_GLX_GET_LIGHTFV : u8 = 118;
 pub struct  GetLightivCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_lightiv_cookie_t> }
 
-/** Opcode for xcb_glx_get_lightiv. */
+/// Opcode for xcb_glx_get_lightiv.
 pub const XCB_GLX_GET_LIGHTIV : u8 = 119;
 pub struct  GetMapdvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_mapdv_cookie_t> }
 
-/** Opcode for xcb_glx_get_mapdv. */
+/// Opcode for xcb_glx_get_mapdv.
 pub const XCB_GLX_GET_MAPDV : u8 = 120;
 pub struct  GetMapfvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_mapfv_cookie_t> }
 
-/** Opcode for xcb_glx_get_mapfv. */
+/// Opcode for xcb_glx_get_mapfv.
 pub const XCB_GLX_GET_MAPFV : u8 = 121;
 pub struct  GetMapivCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_mapiv_cookie_t> }
 
-/** Opcode for xcb_glx_get_mapiv. */
+/// Opcode for xcb_glx_get_mapiv.
 pub const XCB_GLX_GET_MAPIV : u8 = 122;
 pub struct  GetMaterialfvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_materialfv_cookie_t> }
 
-/** Opcode for xcb_glx_get_materialfv. */
+/// Opcode for xcb_glx_get_materialfv.
 pub const XCB_GLX_GET_MATERIALFV : u8 = 123;
 pub struct  GetMaterialivCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_materialiv_cookie_t> }
 
-/** Opcode for xcb_glx_get_materialiv. */
+/// Opcode for xcb_glx_get_materialiv.
 pub const XCB_GLX_GET_MATERIALIV : u8 = 124;
 pub struct  GetPixelMapfvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_pixel_mapfv_cookie_t> }
 
-/** Opcode for xcb_glx_get_pixel_mapfv. */
+/// Opcode for xcb_glx_get_pixel_mapfv.
 pub const XCB_GLX_GET_PIXEL_MAPFV : u8 = 125;
 pub struct  GetPixelMapuivCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_pixel_mapuiv_cookie_t> }
 
-/** Opcode for xcb_glx_get_pixel_mapuiv. */
+/// Opcode for xcb_glx_get_pixel_mapuiv.
 pub const XCB_GLX_GET_PIXEL_MAPUIV : u8 = 126;
 pub struct  GetPixelMapusvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_pixel_mapusv_cookie_t> }
 
-/** Opcode for xcb_glx_get_pixel_mapusv. */
+/// Opcode for xcb_glx_get_pixel_mapusv.
 pub const XCB_GLX_GET_PIXEL_MAPUSV : u8 = 127;
 pub struct  GetPolygonStippleCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_polygon_stipple_cookie_t> }
 
-/** Opcode for xcb_glx_get_polygon_stipple. */
+/// Opcode for xcb_glx_get_polygon_stipple.
 pub const XCB_GLX_GET_POLYGON_STIPPLE : u8 = 128;
 pub struct  GetStringCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_string_cookie_t> }
 
-/** Opcode for xcb_glx_get_string. */
+/// Opcode for xcb_glx_get_string.
 pub const XCB_GLX_GET_STRING : u8 = 129;
 pub struct  GetTexEnvfvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_tex_envfv_cookie_t> }
 
-/** Opcode for xcb_glx_get_tex_envfv. */
+/// Opcode for xcb_glx_get_tex_envfv.
 pub const XCB_GLX_GET_TEX_ENVFV : u8 = 130;
 pub struct  GetTexEnvivCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_tex_enviv_cookie_t> }
 
-/** Opcode for xcb_glx_get_tex_enviv. */
+/// Opcode for xcb_glx_get_tex_enviv.
 pub const XCB_GLX_GET_TEX_ENVIV : u8 = 131;
 pub struct  GetTexGendvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_tex_gendv_cookie_t> }
 
-/** Opcode for xcb_glx_get_tex_gendv. */
+/// Opcode for xcb_glx_get_tex_gendv.
 pub const XCB_GLX_GET_TEX_GENDV : u8 = 132;
 pub struct  GetTexGenfvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_tex_genfv_cookie_t> }
 
-/** Opcode for xcb_glx_get_tex_genfv. */
+/// Opcode for xcb_glx_get_tex_genfv.
 pub const XCB_GLX_GET_TEX_GENFV : u8 = 133;
 pub struct  GetTexGenivCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_tex_geniv_cookie_t> }
 
-/** Opcode for xcb_glx_get_tex_geniv. */
+/// Opcode for xcb_glx_get_tex_geniv.
 pub const XCB_GLX_GET_TEX_GENIV : u8 = 134;
 pub struct  GetTexImageCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_tex_image_cookie_t> }
 
-/** Opcode for xcb_glx_get_tex_image. */
+/// Opcode for xcb_glx_get_tex_image.
 pub const XCB_GLX_GET_TEX_IMAGE : u8 = 135;
 pub struct  GetTexParameterfvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_tex_parameterfv_cookie_t> }
 
-/** Opcode for xcb_glx_get_tex_parameterfv. */
+/// Opcode for xcb_glx_get_tex_parameterfv.
 pub const XCB_GLX_GET_TEX_PARAMETERFV : u8 = 136;
 pub struct  GetTexParameterivCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_tex_parameteriv_cookie_t> }
 
-/** Opcode for xcb_glx_get_tex_parameteriv. */
+/// Opcode for xcb_glx_get_tex_parameteriv.
 pub const XCB_GLX_GET_TEX_PARAMETERIV : u8 = 137;
 pub struct  GetTexLevelParameterfvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_tex_level_parameterfv_cookie_t> }
 
-/** Opcode for xcb_glx_get_tex_level_parameterfv. */
+/// Opcode for xcb_glx_get_tex_level_parameterfv.
 pub const XCB_GLX_GET_TEX_LEVEL_PARAMETERFV : u8 = 138;
 pub struct  GetTexLevelParameterivCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_tex_level_parameteriv_cookie_t> }
 
-/** Opcode for xcb_glx_get_tex_level_parameteriv. */
+/// Opcode for xcb_glx_get_tex_level_parameteriv.
 pub const XCB_GLX_GET_TEX_LEVEL_PARAMETERIV : u8 = 139;
 pub struct  IsListCookie<'s> { pub base : base::Cookie<'s, xcb_glx_is_list_cookie_t> }
 
-/** Opcode for xcb_glx_is_list. */
+/// Opcode for xcb_glx_is_list.
 pub const XCB_GLX_IS_LIST : u8 = 141;
 pub struct IsListReply { base:  base::Reply<xcb_glx_is_list_reply_t> }
 fn mk_reply_xcb_glx_is_list_reply_t(reply:*mut xcb_glx_is_list_reply_t) -> IsListReply { IsListReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_glx_flush. */
+/// Opcode for xcb_glx_flush.
 pub const XCB_GLX_FLUSH : u8 = 142;
 pub struct  AreTexturesResidentCookie<'s> { pub base : base::Cookie<'s, xcb_glx_are_textures_resident_cookie_t> }
 
-/** Opcode for xcb_glx_are_textures_resident. */
+/// Opcode for xcb_glx_are_textures_resident.
 pub const XCB_GLX_ARE_TEXTURES_RESIDENT : u8 = 143;
 pub struct AreTexturesResidentReply { base:  base::Reply<xcb_glx_are_textures_resident_reply_t> }
 fn mk_reply_xcb_glx_are_textures_resident_reply_t(reply:*mut xcb_glx_are_textures_resident_reply_t) -> AreTexturesResidentReply { AreTexturesResidentReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_glx_delete_textures. */
+/// Opcode for xcb_glx_delete_textures.
 pub const XCB_GLX_DELETE_TEXTURES : u8 = 144;
 pub struct  GenTexturesCookie<'s> { pub base : base::Cookie<'s, xcb_glx_gen_textures_cookie_t> }
 
-/** Opcode for xcb_glx_gen_textures. */
+/// Opcode for xcb_glx_gen_textures.
 pub const XCB_GLX_GEN_TEXTURES : u8 = 145;
 pub struct  IsTextureCookie<'s> { pub base : base::Cookie<'s, xcb_glx_is_texture_cookie_t> }
 
-/** Opcode for xcb_glx_is_texture. */
+/// Opcode for xcb_glx_is_texture.
 pub const XCB_GLX_IS_TEXTURE : u8 = 146;
 pub struct IsTextureReply { base:  base::Reply<xcb_glx_is_texture_reply_t> }
 fn mk_reply_xcb_glx_is_texture_reply_t(reply:*mut xcb_glx_is_texture_reply_t) -> IsTextureReply { IsTextureReply { base : base::mk_reply(reply) } }
 pub struct  GetColorTableCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_color_table_cookie_t> }
 
-/** Opcode for xcb_glx_get_color_table. */
+/// Opcode for xcb_glx_get_color_table.
 pub const XCB_GLX_GET_COLOR_TABLE : u8 = 147;
 pub struct  GetColorTableParameterfvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_color_table_parameterfv_cookie_t> }
 
-/** Opcode for xcb_glx_get_color_table_parameterfv. */
+/// Opcode for xcb_glx_get_color_table_parameterfv.
 pub const XCB_GLX_GET_COLOR_TABLE_PARAMETERFV : u8 = 148;
 pub struct  GetColorTableParameterivCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_color_table_parameteriv_cookie_t> }
 
-/** Opcode for xcb_glx_get_color_table_parameteriv. */
+/// Opcode for xcb_glx_get_color_table_parameteriv.
 pub const XCB_GLX_GET_COLOR_TABLE_PARAMETERIV : u8 = 149;
 pub struct  GetConvolutionFilterCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_convolution_filter_cookie_t> }
 
-/** Opcode for xcb_glx_get_convolution_filter. */
+/// Opcode for xcb_glx_get_convolution_filter.
 pub const XCB_GLX_GET_CONVOLUTION_FILTER : u8 = 150;
 pub struct  GetConvolutionParameterfvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_convolution_parameterfv_cookie_t> }
 
-/** Opcode for xcb_glx_get_convolution_parameterfv. */
+/// Opcode for xcb_glx_get_convolution_parameterfv.
 pub const XCB_GLX_GET_CONVOLUTION_PARAMETERFV : u8 = 151;
 pub struct  GetConvolutionParameterivCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_convolution_parameteriv_cookie_t> }
 
-/** Opcode for xcb_glx_get_convolution_parameteriv. */
+/// Opcode for xcb_glx_get_convolution_parameteriv.
 pub const XCB_GLX_GET_CONVOLUTION_PARAMETERIV : u8 = 152;
 pub struct  GetSeparableFilterCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_separable_filter_cookie_t> }
 
-/** Opcode for xcb_glx_get_separable_filter. */
+/// Opcode for xcb_glx_get_separable_filter.
 pub const XCB_GLX_GET_SEPARABLE_FILTER : u8 = 153;
 pub struct  GetHistogramCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_histogram_cookie_t> }
 
-/** Opcode for xcb_glx_get_histogram. */
+/// Opcode for xcb_glx_get_histogram.
 pub const XCB_GLX_GET_HISTOGRAM : u8 = 154;
 pub struct  GetHistogramParameterfvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_histogram_parameterfv_cookie_t> }
 
-/** Opcode for xcb_glx_get_histogram_parameterfv. */
+/// Opcode for xcb_glx_get_histogram_parameterfv.
 pub const XCB_GLX_GET_HISTOGRAM_PARAMETERFV : u8 = 155;
 pub struct  GetHistogramParameterivCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_histogram_parameteriv_cookie_t> }
 
-/** Opcode for xcb_glx_get_histogram_parameteriv. */
+/// Opcode for xcb_glx_get_histogram_parameteriv.
 pub const XCB_GLX_GET_HISTOGRAM_PARAMETERIV : u8 = 156;
 pub struct  GetMinmaxCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_minmax_cookie_t> }
 
-/** Opcode for xcb_glx_get_minmax. */
+/// Opcode for xcb_glx_get_minmax.
 pub const XCB_GLX_GET_MINMAX : u8 = 157;
 pub struct  GetMinmaxParameterfvCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_minmax_parameterfv_cookie_t> }
 
-/** Opcode for xcb_glx_get_minmax_parameterfv. */
+/// Opcode for xcb_glx_get_minmax_parameterfv.
 pub const XCB_GLX_GET_MINMAX_PARAMETERFV : u8 = 158;
 pub struct  GetMinmaxParameterivCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_minmax_parameteriv_cookie_t> }
 
-/** Opcode for xcb_glx_get_minmax_parameteriv. */
+/// Opcode for xcb_glx_get_minmax_parameteriv.
 pub const XCB_GLX_GET_MINMAX_PARAMETERIV : u8 = 159;
 pub struct  GetCompressedTexImageArbCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_compressed_tex_image_arb_cookie_t> }
 
-/** Opcode for xcb_glx_get_compressed_tex_image_arb. */
+/// Opcode for xcb_glx_get_compressed_tex_image_arb.
 pub const XCB_GLX_GET_COMPRESSED_TEX_IMAGE_ARB : u8 = 160;
-/** Opcode for xcb_glx_delete_queries_arb. */
+/// Opcode for xcb_glx_delete_queries_arb.
 pub const XCB_GLX_DELETE_QUERIES_ARB : u8 = 161;
 pub struct  GenQueriesArbCookie<'s> { pub base : base::Cookie<'s, xcb_glx_gen_queries_arb_cookie_t> }
 
-/** Opcode for xcb_glx_gen_queries_arb. */
+/// Opcode for xcb_glx_gen_queries_arb.
 pub const XCB_GLX_GEN_QUERIES_ARB : u8 = 162;
 pub struct  IsQueryArbCookie<'s> { pub base : base::Cookie<'s, xcb_glx_is_query_arb_cookie_t> }
 
-/** Opcode for xcb_glx_is_query_arb. */
+/// Opcode for xcb_glx_is_query_arb.
 pub const XCB_GLX_IS_QUERY_ARB : u8 = 163;
 pub struct IsQueryArbReply { base:  base::Reply<xcb_glx_is_query_arb_reply_t> }
 fn mk_reply_xcb_glx_is_query_arb_reply_t(reply:*mut xcb_glx_is_query_arb_reply_t) -> IsQueryArbReply { IsQueryArbReply { base : base::mk_reply(reply) } }
 pub struct  GetQueryivArbCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_queryiv_arb_cookie_t> }
 
-/** Opcode for xcb_glx_get_queryiv_arb. */
+/// Opcode for xcb_glx_get_queryiv_arb.
 pub const XCB_GLX_GET_QUERYIV_ARB : u8 = 164;
 pub struct  GetQueryObjectivArbCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_query_objectiv_arb_cookie_t> }
 
-/** Opcode for xcb_glx_get_query_objectiv_arb. */
+/// Opcode for xcb_glx_get_query_objectiv_arb.
 pub const XCB_GLX_GET_QUERY_OBJECTIV_ARB : u8 = 165;
 pub struct  GetQueryObjectuivArbCookie<'s> { pub base : base::Cookie<'s, xcb_glx_get_query_objectuiv_arb_cookie_t> }
 
-/** Opcode for xcb_glx_get_query_objectuiv_arb. */
+/// Opcode for xcb_glx_get_query_objectuiv_arb.
 pub const XCB_GLX_GET_QUERY_OBJECTUIV_ARB : u8 = 166;
 
 impl Iterator for PixmapIterator {

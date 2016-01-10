@@ -1,7 +1,7 @@
-/*
- * This file generated automatically from record.xml by r_client.py.
- * Edit at your peril.
- */
+//
+// This file generated automatically from record.xml by r_client.py.
+// Edit at your peril.
+//
 
 //Make the compiler quiet
 #![allow(unused_imports)]
@@ -49,32 +49,32 @@ pub type xcb_record_cs_t = c_uint;//{
 //}
 pub type ClientInfoIterator = xcb_record_client_info_iterator_t;
 
-/** Opcode for xcb_record_bad_context. */
+/// Opcode for xcb_record_bad_context.
 pub const XCB_RECORD_BAD_CONTEXT : u8 = 0;
 pub struct BadContextError { pub base : base::Error<xcb_record_bad_context_error_t> }
 pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_record_query_version_cookie_t> }
 
-/** Opcode for xcb_record_query_version. */
+/// Opcode for xcb_record_query_version.
 pub const XCB_RECORD_QUERY_VERSION : u8 = 0;
 pub struct QueryVersionReply { base:  base::Reply<xcb_record_query_version_reply_t> }
 fn mk_reply_xcb_record_query_version_reply_t(reply:*mut xcb_record_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_record_create_context. */
+/// Opcode for xcb_record_create_context.
 pub const XCB_RECORD_CREATE_CONTEXT : u8 = 1;
-/** Opcode for xcb_record_register_clients. */
+/// Opcode for xcb_record_register_clients.
 pub const XCB_RECORD_REGISTER_CLIENTS : u8 = 2;
-/** Opcode for xcb_record_unregister_clients. */
+/// Opcode for xcb_record_unregister_clients.
 pub const XCB_RECORD_UNREGISTER_CLIENTS : u8 = 3;
 pub struct  GetContextCookie<'s> { pub base : base::Cookie<'s, xcb_record_get_context_cookie_t> }
 
-/** Opcode for xcb_record_get_context. */
+/// Opcode for xcb_record_get_context.
 pub const XCB_RECORD_GET_CONTEXT : u8 = 4;
 pub struct  EnableContextCookie<'s> { pub base : base::Cookie<'s, xcb_record_enable_context_cookie_t> }
 
-/** Opcode for xcb_record_enable_context. */
+/// Opcode for xcb_record_enable_context.
 pub const XCB_RECORD_ENABLE_CONTEXT : u8 = 5;
-/** Opcode for xcb_record_disable_context. */
+/// Opcode for xcb_record_disable_context.
 pub const XCB_RECORD_DISABLE_CONTEXT : u8 = 6;
-/** Opcode for xcb_record_free_context. */
+/// Opcode for xcb_record_free_context.
 pub const XCB_RECORD_FREE_CONTEXT : u8 = 7;
 
 impl Iterator for ContextIterator {

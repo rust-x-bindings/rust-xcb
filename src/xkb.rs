@@ -1,7 +1,7 @@
-/*
- * This file generated automatically from xkb.xml by r_client.py.
- * Edit at your peril.
- */
+//
+// This file generated automatically from xkb.xml by r_client.py.
+// Edit at your peril.
+//
 
 //Make the compiler quiet
 #![allow(unused_imports)]
@@ -463,7 +463,7 @@ pub type xcb_xkb_error_t = c_uint;//{
     pub const XCB_XKB_ERROR_BAD_CLASS : xcb_xkb_error_t = 254;
     pub const XCB_XKB_ERROR_BAD_ID : xcb_xkb_error_t = 253;
 //}
-/** Opcode for xcb_xkb_keyboard. */
+/// Opcode for xcb_xkb_keyboard.
 pub const XCB_XKB_KEYBOARD : u8 = 0;
 pub struct KeyboardError { pub base : base::Error<xcb_xkb_keyboard_error_t> }
 
@@ -631,142 +631,142 @@ pub type ActionIterator = xcb_xkb_action_iterator_t;
 
 pub struct  UseExtensionCookie<'s> { pub base : base::Cookie<'s, xcb_xkb_use_extension_cookie_t> }
 
-/** Opcode for xcb_xkb_use_extension. */
+/// Opcode for xcb_xkb_use_extension.
 pub const XCB_XKB_USE_EXTENSION : u8 = 0;
 pub struct UseExtensionReply { base:  base::Reply<xcb_xkb_use_extension_reply_t> }
 fn mk_reply_xcb_xkb_use_extension_reply_t(reply:*mut xcb_xkb_use_extension_reply_t) -> UseExtensionReply { UseExtensionReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_xkb_select_events. */
+/// Opcode for xcb_xkb_select_events.
 pub const XCB_XKB_SELECT_EVENTS : u8 = 1;
-/** Opcode for xcb_xkb_bell. */
+/// Opcode for xcb_xkb_bell.
 pub const XCB_XKB_BELL : u8 = 3;
 pub struct  GetStateCookie<'s> { pub base : base::Cookie<'s, xcb_xkb_get_state_cookie_t> }
 
-/** Opcode for xcb_xkb_get_state. */
+/// Opcode for xcb_xkb_get_state.
 pub const XCB_XKB_GET_STATE : u8 = 4;
 pub struct GetStateReply { base:  base::Reply<xcb_xkb_get_state_reply_t> }
 fn mk_reply_xcb_xkb_get_state_reply_t(reply:*mut xcb_xkb_get_state_reply_t) -> GetStateReply { GetStateReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_xkb_latch_lock_state. */
+/// Opcode for xcb_xkb_latch_lock_state.
 pub const XCB_XKB_LATCH_LOCK_STATE : u8 = 5;
 pub struct  GetControlsCookie<'s> { pub base : base::Cookie<'s, xcb_xkb_get_controls_cookie_t> }
 
-/** Opcode for xcb_xkb_get_controls. */
+/// Opcode for xcb_xkb_get_controls.
 pub const XCB_XKB_GET_CONTROLS : u8 = 6;
 pub struct GetControlsReply { base:  base::Reply<xcb_xkb_get_controls_reply_t> }
 fn mk_reply_xcb_xkb_get_controls_reply_t(reply:*mut xcb_xkb_get_controls_reply_t) -> GetControlsReply { GetControlsReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_xkb_set_controls. */
+/// Opcode for xcb_xkb_set_controls.
 pub const XCB_XKB_SET_CONTROLS : u8 = 7;
 pub struct  GetMapCookie<'s> { pub base : base::Cookie<'s, xcb_xkb_get_map_cookie_t> }
 
-/** Opcode for xcb_xkb_get_map. */
+/// Opcode for xcb_xkb_get_map.
 pub const XCB_XKB_GET_MAP : u8 = 8;
 pub struct GetMapMap {pub base : base::Struct<xcb_xkb_get_map_map_t> }
 
-/** Opcode for xcb_xkb_set_map. */
+/// Opcode for xcb_xkb_set_map.
 pub const XCB_XKB_SET_MAP : u8 = 9;
 pub struct  GetCompatMapCookie<'s> { pub base : base::Cookie<'s, xcb_xkb_get_compat_map_cookie_t> }
 
-/** Opcode for xcb_xkb_get_compat_map. */
+/// Opcode for xcb_xkb_get_compat_map.
 pub const XCB_XKB_GET_COMPAT_MAP : u8 = 10;
-/** Opcode for xcb_xkb_set_compat_map. */
+/// Opcode for xcb_xkb_set_compat_map.
 pub const XCB_XKB_SET_COMPAT_MAP : u8 = 11;
 pub struct  GetIndicatorStateCookie<'s> { pub base : base::Cookie<'s, xcb_xkb_get_indicator_state_cookie_t> }
 
-/** Opcode for xcb_xkb_get_indicator_state. */
+/// Opcode for xcb_xkb_get_indicator_state.
 pub const XCB_XKB_GET_INDICATOR_STATE : u8 = 12;
 pub struct GetIndicatorStateReply { base:  base::Reply<xcb_xkb_get_indicator_state_reply_t> }
 fn mk_reply_xcb_xkb_get_indicator_state_reply_t(reply:*mut xcb_xkb_get_indicator_state_reply_t) -> GetIndicatorStateReply { GetIndicatorStateReply { base : base::mk_reply(reply) } }
 pub struct  GetIndicatorMapCookie<'s> { pub base : base::Cookie<'s, xcb_xkb_get_indicator_map_cookie_t> }
 
-/** Opcode for xcb_xkb_get_indicator_map. */
+/// Opcode for xcb_xkb_get_indicator_map.
 pub const XCB_XKB_GET_INDICATOR_MAP : u8 = 13;
-/** Opcode for xcb_xkb_set_indicator_map. */
+/// Opcode for xcb_xkb_set_indicator_map.
 pub const XCB_XKB_SET_INDICATOR_MAP : u8 = 14;
 pub struct  GetNamedIndicatorCookie<'s> { pub base : base::Cookie<'s, xcb_xkb_get_named_indicator_cookie_t> }
 
-/** Opcode for xcb_xkb_get_named_indicator. */
+/// Opcode for xcb_xkb_get_named_indicator.
 pub const XCB_XKB_GET_NAMED_INDICATOR : u8 = 15;
 pub struct GetNamedIndicatorReply { base:  base::Reply<xcb_xkb_get_named_indicator_reply_t> }
 fn mk_reply_xcb_xkb_get_named_indicator_reply_t(reply:*mut xcb_xkb_get_named_indicator_reply_t) -> GetNamedIndicatorReply { GetNamedIndicatorReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_xkb_set_named_indicator. */
+/// Opcode for xcb_xkb_set_named_indicator.
 pub const XCB_XKB_SET_NAMED_INDICATOR : u8 = 16;
 pub struct  GetNamesCookie<'s> { pub base : base::Cookie<'s, xcb_xkb_get_names_cookie_t> }
 
-/** Opcode for xcb_xkb_get_names. */
+/// Opcode for xcb_xkb_get_names.
 pub const XCB_XKB_GET_NAMES : u8 = 17;
 pub struct GetNamesValueList {pub base : base::Struct<xcb_xkb_get_names_value_list_t> }
 
-/** Opcode for xcb_xkb_set_names. */
+/// Opcode for xcb_xkb_set_names.
 pub const XCB_XKB_SET_NAMES : u8 = 18;
 pub struct  GetGeometryCookie<'s> { pub base : base::Cookie<'s, xcb_xkb_get_geometry_cookie_t> }
 
-/** Opcode for xcb_xkb_get_geometry. */
+/// Opcode for xcb_xkb_get_geometry.
 pub const XCB_XKB_GET_GEOMETRY : u8 = 19;
-/** Opcode for xcb_xkb_set_geometry. */
+/// Opcode for xcb_xkb_set_geometry.
 pub const XCB_XKB_SET_GEOMETRY : u8 = 20;
 pub struct  PerClientFlagsCookie<'s> { pub base : base::Cookie<'s, xcb_xkb_per_client_flags_cookie_t> }
 
-/** Opcode for xcb_xkb_per_client_flags. */
+/// Opcode for xcb_xkb_per_client_flags.
 pub const XCB_XKB_PER_CLIENT_FLAGS : u8 = 21;
 pub struct PerClientFlagsReply { base:  base::Reply<xcb_xkb_per_client_flags_reply_t> }
 fn mk_reply_xcb_xkb_per_client_flags_reply_t(reply:*mut xcb_xkb_per_client_flags_reply_t) -> PerClientFlagsReply { PerClientFlagsReply { base : base::mk_reply(reply) } }
 pub struct  ListComponentsCookie<'s> { pub base : base::Cookie<'s, xcb_xkb_list_components_cookie_t> }
 
-/** Opcode for xcb_xkb_list_components. */
+/// Opcode for xcb_xkb_list_components.
 pub const XCB_XKB_LIST_COMPONENTS : u8 = 22;
 pub struct ListComponentsReply { base:  base::Reply<xcb_xkb_list_components_reply_t> }
 fn mk_reply_xcb_xkb_list_components_reply_t(reply:*mut xcb_xkb_list_components_reply_t) -> ListComponentsReply { ListComponentsReply { base : base::mk_reply(reply) } }
 pub struct  GetKbdByNameCookie<'s> { pub base : base::Cookie<'s, xcb_xkb_get_kbd_by_name_cookie_t> }
 
-/** Opcode for xcb_xkb_get_kbd_by_name. */
+/// Opcode for xcb_xkb_get_kbd_by_name.
 pub const XCB_XKB_GET_KBD_BY_NAME : u8 = 23;
 pub struct GetKbdByNameRepliesTypesMap {pub base : base::Struct<xcb_xkb_get_kbd_by_name_replies_types_map_t> }
 
 pub struct  GetDeviceInfoCookie<'s> { pub base : base::Cookie<'s, xcb_xkb_get_device_info_cookie_t> }
 
-/** Opcode for xcb_xkb_get_device_info. */
+/// Opcode for xcb_xkb_get_device_info.
 pub const XCB_XKB_GET_DEVICE_INFO : u8 = 24;
-/** Opcode for xcb_xkb_set_device_info. */
+/// Opcode for xcb_xkb_set_device_info.
 pub const XCB_XKB_SET_DEVICE_INFO : u8 = 25;
 pub struct  SetDebuggingFlagsCookie<'s> { pub base : base::Cookie<'s, xcb_xkb_set_debugging_flags_cookie_t> }
 
-/** Opcode for xcb_xkb_set_debugging_flags. */
+/// Opcode for xcb_xkb_set_debugging_flags.
 pub const XCB_XKB_SET_DEBUGGING_FLAGS : u8 = 101;
 pub struct SetDebuggingFlagsReply { base:  base::Reply<xcb_xkb_set_debugging_flags_reply_t> }
 fn mk_reply_xcb_xkb_set_debugging_flags_reply_t(reply:*mut xcb_xkb_set_debugging_flags_reply_t) -> SetDebuggingFlagsReply { SetDebuggingFlagsReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_xkb_new_keyboard_notify. */
+/// Opcode for xcb_xkb_new_keyboard_notify.
 pub const XCB_XKB_NEW_KEYBOARD_NOTIFY : u8 = 0;
 pub struct NewKeyboardNotifyEvent {pub base : base::Event<xcb_xkb_new_keyboard_notify_event_t>}
-/** Opcode for xcb_xkb_map_notify. */
+/// Opcode for xcb_xkb_map_notify.
 pub const XCB_XKB_MAP_NOTIFY : u8 = 1;
 pub struct MapNotifyEvent {pub base : base::Event<xcb_xkb_map_notify_event_t>}
-/** Opcode for xcb_xkb_state_notify. */
+/// Opcode for xcb_xkb_state_notify.
 pub const XCB_XKB_STATE_NOTIFY : u8 = 2;
 pub struct StateNotifyEvent {pub base : base::Event<xcb_xkb_state_notify_event_t>}
-/** Opcode for xcb_xkb_controls_notify. */
+/// Opcode for xcb_xkb_controls_notify.
 pub const XCB_XKB_CONTROLS_NOTIFY : u8 = 3;
 pub struct ControlsNotifyEvent {pub base : base::Event<xcb_xkb_controls_notify_event_t>}
-/** Opcode for xcb_xkb_indicator_state_notify. */
+/// Opcode for xcb_xkb_indicator_state_notify.
 pub const XCB_XKB_INDICATOR_STATE_NOTIFY : u8 = 4;
 pub struct IndicatorStateNotifyEvent {pub base : base::Event<xcb_xkb_indicator_state_notify_event_t>}
-/** Opcode for xcb_xkb_indicator_map_notify. */
+/// Opcode for xcb_xkb_indicator_map_notify.
 pub const XCB_XKB_INDICATOR_MAP_NOTIFY : u8 = 5;
 pub struct IndicatorMapNotifyEvent {pub base : base::Event<xcb_xkb_indicator_map_notify_event_t>}
-/** Opcode for xcb_xkb_names_notify. */
+/// Opcode for xcb_xkb_names_notify.
 pub const XCB_XKB_NAMES_NOTIFY : u8 = 6;
 pub struct NamesNotifyEvent {pub base : base::Event<xcb_xkb_names_notify_event_t>}
-/** Opcode for xcb_xkb_compat_map_notify. */
+/// Opcode for xcb_xkb_compat_map_notify.
 pub const XCB_XKB_COMPAT_MAP_NOTIFY : u8 = 7;
 pub struct CompatMapNotifyEvent {pub base : base::Event<xcb_xkb_compat_map_notify_event_t>}
-/** Opcode for xcb_xkb_bell_notify. */
+/// Opcode for xcb_xkb_bell_notify.
 pub const XCB_XKB_BELL_NOTIFY : u8 = 8;
 pub struct BellNotifyEvent {pub base : base::Event<xcb_xkb_bell_notify_event_t>}
-/** Opcode for xcb_xkb_action_message. */
+/// Opcode for xcb_xkb_action_message.
 pub const XCB_XKB_ACTION_MESSAGE : u8 = 9;
 pub struct ActionMessageEvent {pub base : base::Event<xcb_xkb_action_message_event_t>}
-/** Opcode for xcb_xkb_access_x_notify. */
+/// Opcode for xcb_xkb_access_x_notify.
 pub const XCB_XKB_ACCESS_X_NOTIFY : u8 = 10;
 pub struct AccessXNotifyEvent {pub base : base::Event<xcb_xkb_access_x_notify_event_t>}
-/** Opcode for xcb_xkb_extension_device_notify. */
+/// Opcode for xcb_xkb_extension_device_notify.
 pub const XCB_XKB_EXTENSION_DEVICE_NOTIFY : u8 = 11;
 pub struct ExtensionDeviceNotifyEvent {pub base : base::Event<xcb_xkb_extension_device_notify_event_t>}
 

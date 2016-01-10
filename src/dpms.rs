@@ -1,7 +1,7 @@
-/*
- * This file generated automatically from dpms.xml by r_client.py.
- * Edit at your peril.
- */
+//
+// This file generated automatically from dpms.xml by r_client.py.
+// Edit at your peril.
+//
 
 //Make the compiler quiet
 #![allow(unused_imports)]
@@ -19,27 +19,27 @@ use std::iter::Iterator;
 
 pub struct  GetVersionCookie<'s> { pub base : base::Cookie<'s, xcb_dpms_get_version_cookie_t> }
 
-/** Opcode for xcb_dpms_get_version. */
+/// Opcode for xcb_dpms_get_version.
 pub const XCB_DPMS_GET_VERSION : u8 = 0;
 pub struct GetVersionReply { base:  base::Reply<xcb_dpms_get_version_reply_t> }
 fn mk_reply_xcb_dpms_get_version_reply_t(reply:*mut xcb_dpms_get_version_reply_t) -> GetVersionReply { GetVersionReply { base : base::mk_reply(reply) } }
 pub struct  CapableCookie<'s> { pub base : base::Cookie<'s, xcb_dpms_capable_cookie_t> }
 
-/** Opcode for xcb_dpms_capable. */
+/// Opcode for xcb_dpms_capable.
 pub const XCB_DPMS_CAPABLE : u8 = 1;
 pub struct CapableReply { base:  base::Reply<xcb_dpms_capable_reply_t> }
 fn mk_reply_xcb_dpms_capable_reply_t(reply:*mut xcb_dpms_capable_reply_t) -> CapableReply { CapableReply { base : base::mk_reply(reply) } }
 pub struct  GetTimeoutsCookie<'s> { pub base : base::Cookie<'s, xcb_dpms_get_timeouts_cookie_t> }
 
-/** Opcode for xcb_dpms_get_timeouts. */
+/// Opcode for xcb_dpms_get_timeouts.
 pub const XCB_DPMS_GET_TIMEOUTS : u8 = 2;
 pub struct GetTimeoutsReply { base:  base::Reply<xcb_dpms_get_timeouts_reply_t> }
 fn mk_reply_xcb_dpms_get_timeouts_reply_t(reply:*mut xcb_dpms_get_timeouts_reply_t) -> GetTimeoutsReply { GetTimeoutsReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_dpms_set_timeouts. */
+/// Opcode for xcb_dpms_set_timeouts.
 pub const XCB_DPMS_SET_TIMEOUTS : u8 = 3;
-/** Opcode for xcb_dpms_enable. */
+/// Opcode for xcb_dpms_enable.
 pub const XCB_DPMS_ENABLE : u8 = 4;
-/** Opcode for xcb_dpms_disable. */
+/// Opcode for xcb_dpms_disable.
 pub const XCB_DPMS_DISABLE : u8 = 5;
 
 pub type xcb_dpms_dpms_mode_t = c_uint;//{
@@ -48,11 +48,11 @@ pub type xcb_dpms_dpms_mode_t = c_uint;//{
     pub const XCB_DPMS_DPMS_MODE_SUSPEND : xcb_dpms_dpms_mode_t = 3;
     pub const XCB_DPMS_DPMS_MODE_OFF : xcb_dpms_dpms_mode_t = 4;
 //}
-/** Opcode for xcb_dpms_force_level. */
+/// Opcode for xcb_dpms_force_level.
 pub const XCB_DPMS_FORCE_LEVEL : u8 = 6;
 pub struct  InfoCookie<'s> { pub base : base::Cookie<'s, xcb_dpms_info_cookie_t> }
 
-/** Opcode for xcb_dpms_info. */
+/// Opcode for xcb_dpms_info.
 pub const XCB_DPMS_INFO : u8 = 7;
 pub struct InfoReply { base:  base::Reply<xcb_dpms_info_reply_t> }
 fn mk_reply_xcb_dpms_info_reply_t(reply:*mut xcb_dpms_info_reply_t) -> InfoReply { InfoReply { base : base::mk_reply(reply) } }

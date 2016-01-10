@@ -1,7 +1,7 @@
-/*
- * This file generated automatically from xinput.xml by r_client.py.
- * Edit at your peril.
- */
+//
+// This file generated automatically from xinput.xml by r_client.py.
+// Edit at your peril.
+//
 
 //Make the compiler quiet
 #![allow(unused_imports)]
@@ -15,9 +15,6 @@ pub const INPUT_MAJOR_VERSION : c_uint = 1;
 pub const INPUT_MINOR_VERSION : c_uint = 4;
 
 pub type xcb_input_key_code_t = u8;
-/**
- * @brief xcb_input_key_code_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_key_code_iterator_t {
     pub data : *mut xcb_input_key_code_t,
@@ -27,9 +24,6 @@ pub struct xcb_input_key_code_iterator_t {
 
 
 pub type xcb_input_event_class_t = u32;
-/**
- * @brief xcb_input_event_class_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_event_class_iterator_t {
     pub data : *mut xcb_input_event_class_t,
@@ -89,9 +83,6 @@ impl Copy for xcb_input_device_info_t {}
 impl Clone for xcb_input_device_info_t {
     fn clone(&self) -> xcb_input_device_info_t { *self }
 }
-/**
- * @brief xcb_input_device_info_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_device_info_iterator_t {
     pub data : *mut xcb_input_device_info_t,
@@ -144,9 +135,6 @@ impl Copy for xcb_input_input_info_t {}
 impl Clone for xcb_input_input_info_t {
     fn clone(&self) -> xcb_input_input_info_t { *self }
 }
-/**
- * @brief xcb_input_input_info_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_input_info_iterator_t {
     pub data : *mut xcb_input_input_info_t,
@@ -169,9 +157,6 @@ impl Copy for xcb_input_key_info_t {}
 impl Clone for xcb_input_key_info_t {
     fn clone(&self) -> xcb_input_key_info_t { *self }
 }
-/**
- * @brief xcb_input_key_info_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_key_info_iterator_t {
     pub data : *mut xcb_input_key_info_t,
@@ -191,9 +176,6 @@ impl Copy for xcb_input_button_info_t {}
 impl Clone for xcb_input_button_info_t {
     fn clone(&self) -> xcb_input_button_info_t { *self }
 }
-/**
- * @brief xcb_input_button_info_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_button_info_iterator_t {
     pub data : *mut xcb_input_button_info_t,
@@ -213,9 +195,6 @@ impl Copy for xcb_input_axis_info_t {}
 impl Clone for xcb_input_axis_info_t {
     fn clone(&self) -> xcb_input_axis_info_t { *self }
 }
-/**
- * @brief xcb_input_axis_info_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_axis_info_iterator_t {
     pub data : *mut xcb_input_axis_info_t,
@@ -237,9 +216,6 @@ impl Copy for xcb_input_valuator_info_t {}
 impl Clone for xcb_input_valuator_info_t {
     fn clone(&self) -> xcb_input_valuator_info_t { *self }
 }
-/**
- * @brief xcb_input_valuator_info_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_valuator_info_iterator_t {
     pub data : *mut xcb_input_valuator_info_t,
@@ -258,9 +234,6 @@ impl Copy for xcb_input_input_class_info_t {}
 impl Clone for xcb_input_input_class_info_t {
     fn clone(&self) -> xcb_input_input_class_info_t { *self }
 }
-/**
- * @brief xcb_input_input_class_info_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_input_class_info_iterator_t {
     pub data : *mut xcb_input_input_class_info_t,
@@ -509,9 +482,6 @@ impl Copy for xcb_input_device_time_coord_t {}
 impl Clone for xcb_input_device_time_coord_t {
     fn clone(&self) -> xcb_input_device_time_coord_t { *self }
 }
-/**
- * @brief xcb_input_device_time_coord_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_device_time_coord_iterator_t {
     pub data : *mut xcb_input_device_time_coord_t,
@@ -851,9 +821,6 @@ impl Copy for xcb_input_feedback_state_t {}
 impl Clone for xcb_input_feedback_state_t {
     fn clone(&self) -> xcb_input_feedback_state_t { *self }
 }
-/**
- * @brief xcb_input_feedback_state_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_feedback_state_iterator_t {
     pub data : *mut xcb_input_feedback_state_t,
@@ -882,9 +849,6 @@ impl Copy for xcb_input_kbd_feedback_state_t {}
 impl Clone for xcb_input_kbd_feedback_state_t {
     fn clone(&self) -> xcb_input_kbd_feedback_state_t { *self }
 }
-/**
- * @brief xcb_input_kbd_feedback_state_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_kbd_feedback_state_iterator_t {
     pub data : *mut xcb_input_kbd_feedback_state_t,
@@ -908,9 +872,6 @@ impl Copy for xcb_input_ptr_feedback_state_t {}
 impl Clone for xcb_input_ptr_feedback_state_t {
     fn clone(&self) -> xcb_input_ptr_feedback_state_t { *self }
 }
-/**
- * @brief xcb_input_ptr_feedback_state_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_ptr_feedback_state_iterator_t {
     pub data : *mut xcb_input_ptr_feedback_state_t,
@@ -933,9 +894,6 @@ impl Copy for xcb_input_integer_feedback_state_t {}
 impl Clone for xcb_input_integer_feedback_state_t {
     fn clone(&self) -> xcb_input_integer_feedback_state_t { *self }
 }
-/**
- * @brief xcb_input_integer_feedback_state_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_integer_feedback_state_iterator_t {
     pub data : *mut xcb_input_integer_feedback_state_t,
@@ -957,9 +915,6 @@ impl Copy for xcb_input_string_feedback_state_t {}
 impl Clone for xcb_input_string_feedback_state_t {
     fn clone(&self) -> xcb_input_string_feedback_state_t { *self }
 }
-/**
- * @brief xcb_input_string_feedback_state_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_string_feedback_state_iterator_t {
     pub data : *mut xcb_input_string_feedback_state_t,
@@ -983,9 +938,6 @@ impl Copy for xcb_input_bell_feedback_state_t {}
 impl Clone for xcb_input_bell_feedback_state_t {
     fn clone(&self) -> xcb_input_bell_feedback_state_t { *self }
 }
-/**
- * @brief xcb_input_bell_feedback_state_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_bell_feedback_state_iterator_t {
     pub data : *mut xcb_input_bell_feedback_state_t,
@@ -1007,9 +959,6 @@ impl Copy for xcb_input_led_feedback_state_t {}
 impl Clone for xcb_input_led_feedback_state_t {
     fn clone(&self) -> xcb_input_led_feedback_state_t { *self }
 }
-/**
- * @brief xcb_input_led_feedback_state_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_led_feedback_state_iterator_t {
     pub data : *mut xcb_input_led_feedback_state_t,
@@ -1029,9 +978,6 @@ impl Copy for xcb_input_feedback_ctl_t {}
 impl Clone for xcb_input_feedback_ctl_t {
     fn clone(&self) -> xcb_input_feedback_ctl_t { *self }
 }
-/**
- * @brief xcb_input_feedback_ctl_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_feedback_ctl_iterator_t {
     pub data : *mut xcb_input_feedback_ctl_t,
@@ -1059,9 +1005,6 @@ impl Copy for xcb_input_kbd_feedback_ctl_t {}
 impl Clone for xcb_input_kbd_feedback_ctl_t {
     fn clone(&self) -> xcb_input_kbd_feedback_ctl_t { *self }
 }
-/**
- * @brief xcb_input_kbd_feedback_ctl_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_kbd_feedback_ctl_iterator_t {
     pub data : *mut xcb_input_kbd_feedback_ctl_t,
@@ -1085,9 +1028,6 @@ impl Copy for xcb_input_ptr_feedback_ctl_t {}
 impl Clone for xcb_input_ptr_feedback_ctl_t {
     fn clone(&self) -> xcb_input_ptr_feedback_ctl_t { *self }
 }
-/**
- * @brief xcb_input_ptr_feedback_ctl_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_ptr_feedback_ctl_iterator_t {
     pub data : *mut xcb_input_ptr_feedback_ctl_t,
@@ -1108,9 +1048,6 @@ impl Copy for xcb_input_integer_feedback_ctl_t {}
 impl Clone for xcb_input_integer_feedback_ctl_t {
     fn clone(&self) -> xcb_input_integer_feedback_ctl_t { *self }
 }
-/**
- * @brief xcb_input_integer_feedback_ctl_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_integer_feedback_ctl_iterator_t {
     pub data : *mut xcb_input_integer_feedback_ctl_t,
@@ -1132,9 +1069,6 @@ impl Copy for xcb_input_string_feedback_ctl_t {}
 impl Clone for xcb_input_string_feedback_ctl_t {
     fn clone(&self) -> xcb_input_string_feedback_ctl_t { *self }
 }
-/**
- * @brief xcb_input_string_feedback_ctl_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_string_feedback_ctl_iterator_t {
     pub data : *mut xcb_input_string_feedback_ctl_t,
@@ -1158,9 +1092,6 @@ impl Copy for xcb_input_bell_feedback_ctl_t {}
 impl Clone for xcb_input_bell_feedback_ctl_t {
     fn clone(&self) -> xcb_input_bell_feedback_ctl_t { *self }
 }
-/**
- * @brief xcb_input_bell_feedback_ctl_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_bell_feedback_ctl_iterator_t {
     pub data : *mut xcb_input_bell_feedback_ctl_t,
@@ -1182,9 +1113,6 @@ impl Copy for xcb_input_led_feedback_ctl_t {}
 impl Clone for xcb_input_led_feedback_ctl_t {
     fn clone(&self) -> xcb_input_led_feedback_ctl_t { *self }
 }
-/**
- * @brief xcb_input_led_feedback_ctl_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_led_feedback_ctl_iterator_t {
     pub data : *mut xcb_input_led_feedback_ctl_t,
@@ -1440,9 +1368,6 @@ impl Copy for xcb_input_input_state_t {}
 impl Clone for xcb_input_input_state_t {
     fn clone(&self) -> xcb_input_input_state_t { *self }
 }
-/**
- * @brief xcb_input_input_state_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_input_state_iterator_t {
     pub data : *mut xcb_input_input_state_t,
@@ -1464,9 +1389,6 @@ impl Copy for xcb_input_key_state_t {}
 impl Clone for xcb_input_key_state_t {
     fn clone(&self) -> xcb_input_key_state_t { *self }
 }
-/**
- * @brief xcb_input_key_state_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_key_state_iterator_t {
     pub data : *mut xcb_input_key_state_t,
@@ -1488,9 +1410,6 @@ impl Copy for xcb_input_button_state_t {}
 impl Clone for xcb_input_button_state_t {
     fn clone(&self) -> xcb_input_button_state_t { *self }
 }
-/**
- * @brief xcb_input_button_state_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_button_state_iterator_t {
     pub data : *mut xcb_input_button_state_t,
@@ -1511,9 +1430,6 @@ impl Copy for xcb_input_valuator_state_t {}
 impl Clone for xcb_input_valuator_state_t {
     fn clone(&self) -> xcb_input_valuator_state_t { *self }
 }
-/**
- * @brief xcb_input_valuator_state_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_valuator_state_iterator_t {
     pub data : *mut xcb_input_valuator_state_t,
@@ -1643,9 +1559,6 @@ impl Copy for xcb_input_device_state_t {}
 impl Clone for xcb_input_device_state_t {
     fn clone(&self) -> xcb_input_device_state_t { *self }
 }
-/**
- * @brief xcb_input_device_state_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_device_state_iterator_t {
     pub data : *mut xcb_input_device_state_t,
@@ -1665,9 +1578,6 @@ impl Copy for xcb_input_device_resolution_state_t {}
 impl Clone for xcb_input_device_resolution_state_t {
     fn clone(&self) -> xcb_input_device_resolution_state_t { *self }
 }
-/**
- * @brief xcb_input_device_resolution_state_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_device_resolution_state_iterator_t {
     pub data : *mut xcb_input_device_resolution_state_t,
@@ -1694,9 +1604,6 @@ impl Copy for xcb_input_device_abs_calib_state_t {}
 impl Clone for xcb_input_device_abs_calib_state_t {
     fn clone(&self) -> xcb_input_device_abs_calib_state_t { *self }
 }
-/**
- * @brief xcb_input_device_abs_calib_state_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_device_abs_calib_state_iterator_t {
     pub data : *mut xcb_input_device_abs_calib_state_t,
@@ -1721,9 +1628,6 @@ impl Copy for xcb_input_device_abs_area_state_t {}
 impl Clone for xcb_input_device_abs_area_state_t {
     fn clone(&self) -> xcb_input_device_abs_area_state_t { *self }
 }
-/**
- * @brief xcb_input_device_abs_area_state_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_device_abs_area_state_iterator_t {
     pub data : *mut xcb_input_device_abs_area_state_t,
@@ -1745,9 +1649,6 @@ impl Copy for xcb_input_device_core_state_t {}
 impl Clone for xcb_input_device_core_state_t {
     fn clone(&self) -> xcb_input_device_core_state_t { *self }
 }
-/**
- * @brief xcb_input_device_core_state_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_device_core_state_iterator_t {
     pub data : *mut xcb_input_device_core_state_t,
@@ -1768,9 +1669,6 @@ impl Copy for xcb_input_device_enable_state_t {}
 impl Clone for xcb_input_device_enable_state_t {
     fn clone(&self) -> xcb_input_device_enable_state_t { *self }
 }
-/**
- * @brief xcb_input_device_enable_state_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_device_enable_state_iterator_t {
     pub data : *mut xcb_input_device_enable_state_t,
@@ -1789,9 +1687,6 @@ impl Copy for xcb_input_device_ctl_t {}
 impl Clone for xcb_input_device_ctl_t {
     fn clone(&self) -> xcb_input_device_ctl_t { *self }
 }
-/**
- * @brief xcb_input_device_ctl_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_device_ctl_iterator_t {
     pub data : *mut xcb_input_device_ctl_t,
@@ -1812,9 +1707,6 @@ impl Copy for xcb_input_device_resolution_ctl_t {}
 impl Clone for xcb_input_device_resolution_ctl_t {
     fn clone(&self) -> xcb_input_device_resolution_ctl_t { *self }
 }
-/**
- * @brief xcb_input_device_resolution_ctl_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_device_resolution_ctl_iterator_t {
     pub data : *mut xcb_input_device_resolution_ctl_t,
@@ -1841,9 +1733,6 @@ impl Copy for xcb_input_device_abs_calib_ctl_t {}
 impl Clone for xcb_input_device_abs_calib_ctl_t {
     fn clone(&self) -> xcb_input_device_abs_calib_ctl_t { *self }
 }
-/**
- * @brief xcb_input_device_abs_calib_ctl_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_device_abs_calib_ctl_iterator_t {
     pub data : *mut xcb_input_device_abs_calib_ctl_t,
@@ -1868,9 +1757,6 @@ impl Copy for xcb_input_device_abs_area_ctrl_t {}
 impl Clone for xcb_input_device_abs_area_ctrl_t {
     fn clone(&self) -> xcb_input_device_abs_area_ctrl_t { *self }
 }
-/**
- * @brief xcb_input_device_abs_area_ctrl_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_device_abs_area_ctrl_iterator_t {
     pub data : *mut xcb_input_device_abs_area_ctrl_t,
@@ -1891,9 +1777,6 @@ impl Copy for xcb_input_device_core_ctrl_t {}
 impl Clone for xcb_input_device_core_ctrl_t {
     fn clone(&self) -> xcb_input_device_core_ctrl_t { *self }
 }
-/**
- * @brief xcb_input_device_core_ctrl_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_device_core_ctrl_iterator_t {
     pub data : *mut xcb_input_device_core_ctrl_t,
@@ -1914,9 +1797,6 @@ impl Copy for xcb_input_device_enable_ctrl_t {}
 impl Clone for xcb_input_device_enable_ctrl_t {
     fn clone(&self) -> xcb_input_device_enable_ctrl_t { *self }
 }
-/**
- * @brief xcb_input_device_enable_ctrl_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_input_device_enable_ctrl_iterator_t {
     pub data : *mut xcb_input_device_enable_ctrl_t,
@@ -2174,145 +2054,98 @@ impl Clone for xcb_input_class_error_t {
 #[link(name="xcb-xinput")]
 extern "C" {
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_key_code_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_key_code_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_key_code_t)
+///
 pub fn xcb_input_key_code_next (i:*mut xcb_input_key_code_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_key_code_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_key_code_end (i:xcb_input_key_code_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_event_class_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_event_class_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_event_class_t)
+///
 pub fn xcb_input_event_class_next (i:*mut xcb_input_event_class_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_event_class_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_event_class_end (i:xcb_input_event_class_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_input_get_extension_version_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_get_extension_version (c : *mut ffi::base::xcb_connection_t,
                                            name_len :  u16,
                                            name : *mut c_char) -> xcb_input_get_extension_version_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_input_get_extension_version_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                      name_len :  u16,
                                                      name : *mut c_char) -> xcb_input_get_extension_version_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_input_get_extension_version_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_input_get_extension_version_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_input_get_extension_version_reply (c : *mut ffi::base::xcb_connection_t,
                                                  cookie : xcb_input_get_extension_version_cookie_t,
                                                  e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_input_get_extension_version_reply_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_device_info_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_device_info_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_device_info_t)
+///
 pub fn xcb_input_device_info_next (i:*mut xcb_input_device_info_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_device_info_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_device_info_end (i:xcb_input_device_info_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_input_list_input_devices_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_list_input_devices (c : *mut ffi::base::xcb_connection_t) -> xcb_input_list_input_devices_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_input_list_input_devices_unchecked (c : *mut ffi::base::xcb_connection_t) -> xcb_input_list_input_devices_cookie_t;
 
 pub fn xcb_input_list_input_devices_devices (R : *mut xcb_input_list_input_devices_reply_t) -> *mut xcb_input_device_info_t;
@@ -2322,114 +2155,92 @@ pub fn xcb_input_list_input_devices_devices_length (R : *mut xcb_input_list_inpu
 
 pub fn xcb_input_list_input_devices_devices_iterator (R : *mut xcb_input_list_input_devices_reply_t) -> xcb_input_device_info_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_input_list_input_devices_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_input_list_input_devices_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_input_list_input_devices_reply (c : *mut ffi::base::xcb_connection_t,
                                               cookie : xcb_input_list_input_devices_cookie_t,
                                               e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_input_list_input_devices_reply_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_input_info_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_input_info_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_input_info_t)
+///
 pub fn xcb_input_input_info_next (i:*mut xcb_input_input_info_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_input_info_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_input_info_end (i:xcb_input_input_info_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_key_info_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_key_info_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_key_info_t)
+///
 pub fn xcb_input_key_info_next (i:*mut xcb_input_key_info_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_key_info_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_key_info_end (i:xcb_input_key_info_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_button_info_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_button_info_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_button_info_t)
+///
 pub fn xcb_input_button_info_next (i:*mut xcb_input_button_info_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_button_info_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_button_info_end (i:xcb_input_button_info_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_axis_info_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_axis_info_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_axis_info_t)
+///
 pub fn xcb_input_axis_info_next (i:*mut xcb_input_axis_info_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_axis_info_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_axis_info_end (i:xcb_input_axis_info_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_input_valuator_info_sizeof (_buffer :  *mut c_void) -> c_int;
@@ -2441,76 +2252,51 @@ pub fn xcb_input_valuator_info_axes_length (R : *mut xcb_input_valuator_info_t) 
 
 pub fn xcb_input_valuator_info_axes_iterator (R : *mut xcb_input_valuator_info_t) -> xcb_input_axis_info_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_valuator_info_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_valuator_info_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_valuator_info_t)
+///
 pub fn xcb_input_valuator_info_next (i:*mut xcb_input_valuator_info_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_valuator_info_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_valuator_info_end (i:xcb_input_valuator_info_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_input_class_info_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_input_class_info_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_input_class_info_t)
+///
 pub fn xcb_input_input_class_info_next (i:*mut xcb_input_input_class_info_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_input_class_info_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_input_class_info_end (i:xcb_input_input_class_info_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_input_open_device_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_open_device (c : *mut ffi::base::xcb_connection_t,
                                  device_id :  u8) -> xcb_input_open_device_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_input_open_device_unchecked (c : *mut ffi::base::xcb_connection_t,
                                            device_id :  u8) -> xcb_input_open_device_cookie_t;
 
@@ -2521,120 +2307,73 @@ pub fn xcb_input_open_device_class_info_length (R : *mut xcb_input_open_device_r
 
 pub fn xcb_input_open_device_class_info_iterator (R : *mut xcb_input_open_device_reply_t) -> xcb_input_input_class_info_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_input_open_device_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_input_open_device_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_input_open_device_reply (c : *mut ffi::base::xcb_connection_t,
                                        cookie : xcb_input_open_device_cookie_t,
                                        e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_input_open_device_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_input_close_device_checked (c : *mut ffi::base::xcb_connection_t,
                                           device_id :  u8) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_close_device (c : *mut ffi::base::xcb_connection_t,
                                   device_id :  u8) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_set_device_mode (c : *mut ffi::base::xcb_connection_t,
                                      device_id :  u8,
                                      mode :  u8) -> xcb_input_set_device_mode_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_input_set_device_mode_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                device_id :  u8,
                                                mode :  u8) -> xcb_input_set_device_mode_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_input_set_device_mode_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_input_set_device_mode_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_input_set_device_mode_reply (c : *mut ffi::base::xcb_connection_t,
                                            cookie : xcb_input_set_device_mode_cookie_t,
                                            e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_input_set_device_mode_reply_t;
 
 pub fn xcb_input_select_extension_event_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_input_select_extension_event_checked (c : *mut ffi::base::xcb_connection_t,
                                                     window :  ffi::xproto::xcb_window_t,
                                                     num_classes :  u16,
                                                     classes : *mut xcb_input_event_class_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_select_extension_event (c : *mut ffi::base::xcb_connection_t,
                                             window :  ffi::xproto::xcb_window_t,
                                             num_classes :  u16,
@@ -2642,28 +2381,13 @@ pub fn xcb_input_select_extension_event (c : *mut ffi::base::xcb_connection_t,
 
 pub fn xcb_input_get_selected_extension_events_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_get_selected_extension_events (c : *mut ffi::base::xcb_connection_t,
                                                    window :  ffi::xproto::xcb_window_t) -> xcb_input_get_selected_extension_events_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_input_get_selected_extension_events_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                              window :  ffi::xproto::xcb_window_t) -> xcb_input_get_selected_extension_events_cookie_t;
 
@@ -2683,51 +2407,35 @@ pub fn xcb_input_get_selected_extension_events_all_classes_length (R : *mut xcb_
 
 pub fn xcb_input_get_selected_extension_events_all_classes_end (R : *mut xcb_input_get_selected_extension_events_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_input_get_selected_extension_events_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_input_get_selected_extension_events_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_input_get_selected_extension_events_reply (c : *mut ffi::base::xcb_connection_t,
                                                          cookie : xcb_input_get_selected_extension_events_cookie_t,
                                                          e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_input_get_selected_extension_events_reply_t;
 
 pub fn xcb_input_change_device_dont_propagate_list_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_input_change_device_dont_propagate_list_checked (c : *mut ffi::base::xcb_connection_t,
                                                                window :  ffi::xproto::xcb_window_t,
                                                                num_classes :  u16,
                                                                mode :  u8,
                                                                classes : *mut xcb_input_event_class_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_change_device_dont_propagate_list (c : *mut ffi::base::xcb_connection_t,
                                                        window :  ffi::xproto::xcb_window_t,
                                                        num_classes :  u16,
@@ -2736,28 +2444,13 @@ pub fn xcb_input_change_device_dont_propagate_list (c : *mut ffi::base::xcb_conn
 
 pub fn xcb_input_get_device_dont_propagate_list_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_get_device_dont_propagate_list (c : *mut ffi::base::xcb_connection_t,
                                                     window :  ffi::xproto::xcb_window_t) -> xcb_input_get_device_dont_propagate_list_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_input_get_device_dont_propagate_list_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                               window :  ffi::xproto::xcb_window_t) -> xcb_input_get_device_dont_propagate_list_cookie_t;
 
@@ -2769,194 +2462,130 @@ pub fn xcb_input_get_device_dont_propagate_list_classes_length (R : *mut xcb_inp
 
 pub fn xcb_input_get_device_dont_propagate_list_classes_end (R : *mut xcb_input_get_device_dont_propagate_list_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_input_get_device_dont_propagate_list_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_input_get_device_dont_propagate_list_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_input_get_device_dont_propagate_list_reply (c : *mut ffi::base::xcb_connection_t,
                                                           cookie : xcb_input_get_device_dont_propagate_list_cookie_t,
                                                           e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_input_get_device_dont_propagate_list_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_get_device_motion_events (c : *mut ffi::base::xcb_connection_t,
                                               start :  ffi::xproto::xcb_timestamp_t,
                                               stop :  ffi::xproto::xcb_timestamp_t,
                                               device_id :  u8) -> xcb_input_get_device_motion_events_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_input_get_device_motion_events_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                         start :  ffi::xproto::xcb_timestamp_t,
                                                         stop :  ffi::xproto::xcb_timestamp_t,
                                                         device_id :  u8) -> xcb_input_get_device_motion_events_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_input_get_device_motion_events_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_input_get_device_motion_events_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_input_get_device_motion_events_reply (c : *mut ffi::base::xcb_connection_t,
                                                     cookie : xcb_input_get_device_motion_events_cookie_t,
                                                     e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_input_get_device_motion_events_reply_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_device_time_coord_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_device_time_coord_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_device_time_coord_t)
+///
 pub fn xcb_input_device_time_coord_next (i:*mut xcb_input_device_time_coord_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_device_time_coord_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_device_time_coord_end (i:xcb_input_device_time_coord_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_change_keyboard_device (c : *mut ffi::base::xcb_connection_t,
                                             device_id :  u8) -> xcb_input_change_keyboard_device_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_input_change_keyboard_device_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                       device_id :  u8) -> xcb_input_change_keyboard_device_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_input_change_keyboard_device_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_input_change_keyboard_device_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_input_change_keyboard_device_reply (c : *mut ffi::base::xcb_connection_t,
                                                   cookie : xcb_input_change_keyboard_device_cookie_t,
                                                   e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_input_change_keyboard_device_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_change_pointer_device (c : *mut ffi::base::xcb_connection_t,
                                            x_axis :  u8,
                                            y_axis :  u8,
                                            device_id :  u8) -> xcb_input_change_pointer_device_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_input_change_pointer_device_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                      x_axis :  u8,
                                                      y_axis :  u8,
                                                      device_id :  u8) -> xcb_input_change_pointer_device_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_input_change_pointer_device_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_input_change_pointer_device_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_input_change_pointer_device_reply (c : *mut ffi::base::xcb_connection_t,
                                                  cookie : xcb_input_change_pointer_device_cookie_t,
                                                  e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_input_change_pointer_device_reply_t;
 
 pub fn xcb_input_grab_device_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_grab_device (c : *mut ffi::base::xcb_connection_t,
                                  grab_window :  ffi::xproto::xcb_window_t,
                                  time :  ffi::xproto::xcb_timestamp_t,
@@ -2967,17 +2596,8 @@ pub fn xcb_input_grab_device (c : *mut ffi::base::xcb_connection_t,
                                  device_id :  u8,
                                  classes : *mut xcb_input_event_class_t) -> xcb_input_grab_device_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_input_grab_device_unchecked (c : *mut ffi::base::xcb_connection_t,
                                            grab_window :  ffi::xproto::xcb_window_t,
                                            time :  ffi::xproto::xcb_timestamp_t,
@@ -2988,64 +2608,40 @@ pub fn xcb_input_grab_device_unchecked (c : *mut ffi::base::xcb_connection_t,
                                            device_id :  u8,
                                            classes : *mut xcb_input_event_class_t) -> xcb_input_grab_device_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_input_grab_device_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_input_grab_device_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_input_grab_device_reply (c : *mut ffi::base::xcb_connection_t,
                                        cookie : xcb_input_grab_device_cookie_t,
                                        e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_input_grab_device_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_input_ungrab_device_checked (c : *mut ffi::base::xcb_connection_t,
                                            time :  ffi::xproto::xcb_timestamp_t,
                                            device_id :  u8) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_ungrab_device (c : *mut ffi::base::xcb_connection_t,
                                    time :  ffi::xproto::xcb_timestamp_t,
                                    device_id :  u8) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_input_grab_device_key_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_input_grab_device_key_checked (c : *mut ffi::base::xcb_connection_t,
                                              grab_window :  ffi::xproto::xcb_window_t,
                                              num_classes :  u16,
@@ -3058,14 +2654,8 @@ pub fn xcb_input_grab_device_key_checked (c : *mut ffi::base::xcb_connection_t,
                                              owner_events :  u8,
                                              classes : *mut xcb_input_event_class_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_grab_device_key (c : *mut ffi::base::xcb_connection_t,
                                      grab_window :  ffi::xproto::xcb_window_t,
                                      num_classes :  u16,
@@ -3078,17 +2668,9 @@ pub fn xcb_input_grab_device_key (c : *mut ffi::base::xcb_connection_t,
                                      owner_events :  u8,
                                      classes : *mut xcb_input_event_class_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_input_ungrab_device_key_checked (c : *mut ffi::base::xcb_connection_t,
                                                grabWindow :  ffi::xproto::xcb_window_t,
                                                modifiers :  u16,
@@ -3096,14 +2678,8 @@ pub fn xcb_input_ungrab_device_key_checked (c : *mut ffi::base::xcb_connection_t
                                                key :  u8,
                                                grabbed_device :  u8) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_ungrab_device_key (c : *mut ffi::base::xcb_connection_t,
                                        grabWindow :  ffi::xproto::xcb_window_t,
                                        modifiers :  u16,
@@ -3113,17 +2689,9 @@ pub fn xcb_input_ungrab_device_key (c : *mut ffi::base::xcb_connection_t,
 
 pub fn xcb_input_grab_device_button_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_input_grab_device_button_checked (c : *mut ffi::base::xcb_connection_t,
                                                 grab_window :  ffi::xproto::xcb_window_t,
                                                 grabbed_device :  u8,
@@ -3136,14 +2704,8 @@ pub fn xcb_input_grab_device_button_checked (c : *mut ffi::base::xcb_connection_
                                                 owner_events :  u8,
                                                 classes : *mut xcb_input_event_class_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_grab_device_button (c : *mut ffi::base::xcb_connection_t,
                                         grab_window :  ffi::xproto::xcb_window_t,
                                         grabbed_device :  u8,
@@ -3156,17 +2718,9 @@ pub fn xcb_input_grab_device_button (c : *mut ffi::base::xcb_connection_t,
                                         owner_events :  u8,
                                         classes : *mut xcb_input_event_class_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_input_ungrab_device_button_checked (c : *mut ffi::base::xcb_connection_t,
                                                   grab_window :  ffi::xproto::xcb_window_t,
                                                   modifiers :  u16,
@@ -3174,14 +2728,8 @@ pub fn xcb_input_ungrab_device_button_checked (c : *mut ffi::base::xcb_connectio
                                                   button :  u8,
                                                   grabbed_device :  u8) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_ungrab_device_button (c : *mut ffi::base::xcb_connection_t,
                                           grab_window :  ffi::xproto::xcb_window_t,
                                           modifiers :  u16,
@@ -3189,242 +2737,160 @@ pub fn xcb_input_ungrab_device_button (c : *mut ffi::base::xcb_connection_t,
                                           button :  u8,
                                           grabbed_device :  u8) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_input_allow_device_events_checked (c : *mut ffi::base::xcb_connection_t,
                                                  time :  ffi::xproto::xcb_timestamp_t,
                                                  mode :  u8,
                                                  device_id :  u8) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_allow_device_events (c : *mut ffi::base::xcb_connection_t,
                                          time :  ffi::xproto::xcb_timestamp_t,
                                          mode :  u8,
                                          device_id :  u8) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_get_device_focus (c : *mut ffi::base::xcb_connection_t,
                                       device_id :  u8) -> xcb_input_get_device_focus_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_input_get_device_focus_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                 device_id :  u8) -> xcb_input_get_device_focus_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_input_get_device_focus_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_input_get_device_focus_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_input_get_device_focus_reply (c : *mut ffi::base::xcb_connection_t,
                                             cookie : xcb_input_get_device_focus_cookie_t,
                                             e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_input_get_device_focus_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_input_set_device_focus_checked (c : *mut ffi::base::xcb_connection_t,
                                               focus :  ffi::xproto::xcb_window_t,
                                               time :  ffi::xproto::xcb_timestamp_t,
                                               revert_to :  u8,
                                               device_id :  u8) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_set_device_focus (c : *mut ffi::base::xcb_connection_t,
                                       focus :  ffi::xproto::xcb_window_t,
                                       time :  ffi::xproto::xcb_timestamp_t,
                                       revert_to :  u8,
                                       device_id :  u8) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_get_feedback_control (c : *mut ffi::base::xcb_connection_t,
                                           device_id :  u8) -> xcb_input_get_feedback_control_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_input_get_feedback_control_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                     device_id :  u8) -> xcb_input_get_feedback_control_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_input_get_feedback_control_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_input_get_feedback_control_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_input_get_feedback_control_reply (c : *mut ffi::base::xcb_connection_t,
                                                 cookie : xcb_input_get_feedback_control_cookie_t,
                                                 e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_input_get_feedback_control_reply_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_feedback_state_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_feedback_state_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_feedback_state_t)
+///
 pub fn xcb_input_feedback_state_next (i:*mut xcb_input_feedback_state_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_feedback_state_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_feedback_state_end (i:xcb_input_feedback_state_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_kbd_feedback_state_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_kbd_feedback_state_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_kbd_feedback_state_t)
+///
 pub fn xcb_input_kbd_feedback_state_next (i:*mut xcb_input_kbd_feedback_state_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_kbd_feedback_state_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_kbd_feedback_state_end (i:xcb_input_kbd_feedback_state_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_ptr_feedback_state_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_ptr_feedback_state_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_ptr_feedback_state_t)
+///
 pub fn xcb_input_ptr_feedback_state_next (i:*mut xcb_input_ptr_feedback_state_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_ptr_feedback_state_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_ptr_feedback_state_end (i:xcb_input_ptr_feedback_state_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_integer_feedback_state_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_integer_feedback_state_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_integer_feedback_state_t)
+///
 pub fn xcb_input_integer_feedback_state_next (i:*mut xcb_input_integer_feedback_state_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_integer_feedback_state_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_integer_feedback_state_end (i:xcb_input_integer_feedback_state_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_input_string_feedback_state_sizeof (_buffer :  *mut c_void) -> c_int;
@@ -3437,165 +2903,130 @@ pub fn xcb_input_string_feedback_state_keysyms_length (R : *mut xcb_input_string
 
 pub fn xcb_input_string_feedback_state_keysyms_end (R : *mut xcb_input_string_feedback_state_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_string_feedback_state_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_string_feedback_state_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_string_feedback_state_t)
+///
 pub fn xcb_input_string_feedback_state_next (i:*mut xcb_input_string_feedback_state_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_string_feedback_state_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_string_feedback_state_end (i:xcb_input_string_feedback_state_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_bell_feedback_state_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_bell_feedback_state_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_bell_feedback_state_t)
+///
 pub fn xcb_input_bell_feedback_state_next (i:*mut xcb_input_bell_feedback_state_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_bell_feedback_state_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_bell_feedback_state_end (i:xcb_input_bell_feedback_state_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_led_feedback_state_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_led_feedback_state_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_led_feedback_state_t)
+///
 pub fn xcb_input_led_feedback_state_next (i:*mut xcb_input_led_feedback_state_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_led_feedback_state_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_led_feedback_state_end (i:xcb_input_led_feedback_state_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_feedback_ctl_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_feedback_ctl_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_feedback_ctl_t)
+///
 pub fn xcb_input_feedback_ctl_next (i:*mut xcb_input_feedback_ctl_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_feedback_ctl_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_feedback_ctl_end (i:xcb_input_feedback_ctl_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_kbd_feedback_ctl_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_kbd_feedback_ctl_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_kbd_feedback_ctl_t)
+///
 pub fn xcb_input_kbd_feedback_ctl_next (i:*mut xcb_input_kbd_feedback_ctl_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_kbd_feedback_ctl_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_kbd_feedback_ctl_end (i:xcb_input_kbd_feedback_ctl_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_ptr_feedback_ctl_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_ptr_feedback_ctl_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_ptr_feedback_ctl_t)
+///
 pub fn xcb_input_ptr_feedback_ctl_next (i:*mut xcb_input_ptr_feedback_ctl_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_ptr_feedback_ctl_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_ptr_feedback_ctl_end (i:xcb_input_ptr_feedback_ctl_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_integer_feedback_ctl_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_integer_feedback_ctl_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_integer_feedback_ctl_t)
+///
 pub fn xcb_input_integer_feedback_ctl_next (i:*mut xcb_input_integer_feedback_ctl_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_integer_feedback_ctl_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_integer_feedback_ctl_end (i:xcb_input_integer_feedback_ctl_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_input_string_feedback_ctl_sizeof (_buffer :  *mut c_void) -> c_int;
@@ -3608,101 +3039,71 @@ pub fn xcb_input_string_feedback_ctl_keysyms_length (R : *mut xcb_input_string_f
 
 pub fn xcb_input_string_feedback_ctl_keysyms_end (R : *mut xcb_input_string_feedback_ctl_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_string_feedback_ctl_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_string_feedback_ctl_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_string_feedback_ctl_t)
+///
 pub fn xcb_input_string_feedback_ctl_next (i:*mut xcb_input_string_feedback_ctl_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_string_feedback_ctl_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_string_feedback_ctl_end (i:xcb_input_string_feedback_ctl_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_bell_feedback_ctl_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_bell_feedback_ctl_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_bell_feedback_ctl_t)
+///
 pub fn xcb_input_bell_feedback_ctl_next (i:*mut xcb_input_bell_feedback_ctl_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_bell_feedback_ctl_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_bell_feedback_ctl_end (i:xcb_input_bell_feedback_ctl_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_led_feedback_ctl_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_led_feedback_ctl_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_led_feedback_ctl_t)
+///
 pub fn xcb_input_led_feedback_ctl_next (i:*mut xcb_input_led_feedback_ctl_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_led_feedback_ctl_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_led_feedback_ctl_end (i:xcb_input_led_feedback_ctl_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_input_get_device_key_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_get_device_key_mapping (c : *mut ffi::base::xcb_connection_t,
                                             device_id :  u8,
                                             first_keycode :  xcb_input_key_code_t,
                                             count :  u8) -> xcb_input_get_device_key_mapping_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_input_get_device_key_mapping_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                       device_id :  u8,
                                                       first_keycode :  xcb_input_key_code_t,
@@ -3716,37 +3117,27 @@ pub fn xcb_input_get_device_key_mapping_keysyms_length (R : *mut xcb_input_get_d
 
 pub fn xcb_input_get_device_key_mapping_keysyms_end (R : *mut xcb_input_get_device_key_mapping_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_input_get_device_key_mapping_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_input_get_device_key_mapping_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_input_get_device_key_mapping_reply (c : *mut ffi::base::xcb_connection_t,
                                                   cookie : xcb_input_get_device_key_mapping_cookie_t,
                                                   e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_input_get_device_key_mapping_reply_t;
 
 pub fn xcb_input_change_device_key_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_input_change_device_key_mapping_checked (c : *mut ffi::base::xcb_connection_t,
                                                        device_id :  u8,
                                                        first_keycode :  xcb_input_key_code_t,
@@ -3754,14 +3145,8 @@ pub fn xcb_input_change_device_key_mapping_checked (c : *mut ffi::base::xcb_conn
                                                        keycode_count :  u8,
                                                        keysyms : *mut ffi::xproto::xcb_keysym_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_change_device_key_mapping (c : *mut ffi::base::xcb_connection_t,
                                                device_id :  u8,
                                                first_keycode :  xcb_input_key_code_t,
@@ -3771,28 +3156,13 @@ pub fn xcb_input_change_device_key_mapping (c : *mut ffi::base::xcb_connection_t
 
 pub fn xcb_input_get_device_modifier_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_get_device_modifier_mapping (c : *mut ffi::base::xcb_connection_t,
                                                  device_id :  u8) -> xcb_input_get_device_modifier_mapping_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_input_get_device_modifier_mapping_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                            device_id :  u8) -> xcb_input_get_device_modifier_mapping_cookie_t;
 
@@ -3804,97 +3174,63 @@ pub fn xcb_input_get_device_modifier_mapping_keymaps_length (R : *mut xcb_input_
 
 pub fn xcb_input_get_device_modifier_mapping_keymaps_end (R : *mut xcb_input_get_device_modifier_mapping_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_input_get_device_modifier_mapping_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_input_get_device_modifier_mapping_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_input_get_device_modifier_mapping_reply (c : *mut ffi::base::xcb_connection_t,
                                                        cookie : xcb_input_get_device_modifier_mapping_cookie_t,
                                                        e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_input_get_device_modifier_mapping_reply_t;
 
 pub fn xcb_input_set_device_modifier_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_set_device_modifier_mapping (c : *mut ffi::base::xcb_connection_t,
                                                  device_id :  u8,
                                                  keycodes_per_modifier :  u8,
                                                  keymaps : *mut u8) -> xcb_input_set_device_modifier_mapping_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_input_set_device_modifier_mapping_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                            device_id :  u8,
                                                            keycodes_per_modifier :  u8,
                                                            keymaps : *mut u8) -> xcb_input_set_device_modifier_mapping_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_input_set_device_modifier_mapping_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_input_set_device_modifier_mapping_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_input_set_device_modifier_mapping_reply (c : *mut ffi::base::xcb_connection_t,
                                                        cookie : xcb_input_set_device_modifier_mapping_cookie_t,
                                                        e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_input_set_device_modifier_mapping_reply_t;
 
 pub fn xcb_input_get_device_button_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_get_device_button_mapping (c : *mut ffi::base::xcb_connection_t,
                                                device_id :  u8) -> xcb_input_get_device_button_mapping_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_input_get_device_button_mapping_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                          device_id :  u8) -> xcb_input_get_device_button_mapping_cookie_t;
 
@@ -3906,183 +3242,132 @@ pub fn xcb_input_get_device_button_mapping_map_length (R : *mut xcb_input_get_de
 
 pub fn xcb_input_get_device_button_mapping_map_end (R : *mut xcb_input_get_device_button_mapping_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_input_get_device_button_mapping_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_input_get_device_button_mapping_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_input_get_device_button_mapping_reply (c : *mut ffi::base::xcb_connection_t,
                                                      cookie : xcb_input_get_device_button_mapping_cookie_t,
                                                      e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_input_get_device_button_mapping_reply_t;
 
 pub fn xcb_input_set_device_button_mapping_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_set_device_button_mapping (c : *mut ffi::base::xcb_connection_t,
                                                device_id :  u8,
                                                map_size :  u8,
                                                map : *mut u8) -> xcb_input_set_device_button_mapping_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_input_set_device_button_mapping_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                          device_id :  u8,
                                                          map_size :  u8,
                                                          map : *mut u8) -> xcb_input_set_device_button_mapping_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_input_set_device_button_mapping_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_input_set_device_button_mapping_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_input_set_device_button_mapping_reply (c : *mut ffi::base::xcb_connection_t,
                                                      cookie : xcb_input_set_device_button_mapping_cookie_t,
                                                      e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_input_set_device_button_mapping_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_query_device_state (c : *mut ffi::base::xcb_connection_t,
                                         device_id :  u8) -> xcb_input_query_device_state_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_input_query_device_state_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                   device_id :  u8) -> xcb_input_query_device_state_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_input_query_device_state_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_input_query_device_state_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_input_query_device_state_reply (c : *mut ffi::base::xcb_connection_t,
                                               cookie : xcb_input_query_device_state_cookie_t,
                                               e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_input_query_device_state_reply_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_input_state_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_input_state_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_input_state_t)
+///
 pub fn xcb_input_input_state_next (i:*mut xcb_input_input_state_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_input_state_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_input_state_end (i:xcb_input_input_state_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_key_state_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_key_state_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_key_state_t)
+///
 pub fn xcb_input_key_state_next (i:*mut xcb_input_key_state_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_key_state_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_key_state_end (i:xcb_input_key_state_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_button_state_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_button_state_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_button_state_t)
+///
 pub fn xcb_input_button_state_next (i:*mut xcb_input_button_state_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_button_state_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_button_state_end (i:xcb_input_button_state_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_input_valuator_state_sizeof (_buffer :  *mut c_void) -> c_int;
@@ -4095,42 +3380,29 @@ pub fn xcb_input_valuator_state_valuators_length (R : *mut xcb_input_valuator_st
 
 pub fn xcb_input_valuator_state_valuators_end (R : *mut xcb_input_valuator_state_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_valuator_state_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_valuator_state_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_valuator_state_t)
+///
 pub fn xcb_input_valuator_state_next (i:*mut xcb_input_valuator_state_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_valuator_state_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_valuator_state_end (i:xcb_input_valuator_state_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_input_send_extension_event_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_input_send_extension_event_checked (c : *mut ffi::base::xcb_connection_t,
                                                   destination :  ffi::xproto::xcb_window_t,
                                                   device_id :  u8,
@@ -4140,14 +3412,8 @@ pub fn xcb_input_send_extension_event_checked (c : *mut ffi::base::xcb_connectio
                                                   events : *mut c_char,
                                                   classes : *mut xcb_input_event_class_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_send_extension_event (c : *mut ffi::base::xcb_connection_t,
                                           destination :  ffi::xproto::xcb_window_t,
                                           device_id :  u8,
@@ -4157,31 +3423,17 @@ pub fn xcb_input_send_extension_event (c : *mut ffi::base::xcb_connection_t,
                                           events : *mut c_char,
                                           classes : *mut xcb_input_event_class_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_input_device_bell_checked (c : *mut ffi::base::xcb_connection_t,
                                          device_id :  u8,
                                          feedback_id :  u8,
                                          feedback_class :  u8,
                                          percent :  i8) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_device_bell (c : *mut ffi::base::xcb_connection_t,
                                  device_id :  u8,
                                  feedback_id :  u8,
@@ -4190,121 +3442,82 @@ pub fn xcb_input_device_bell (c : *mut ffi::base::xcb_connection_t,
 
 pub fn xcb_input_set_device_valuators_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_set_device_valuators (c : *mut ffi::base::xcb_connection_t,
                                           device_id :  u8,
                                           first_valuator :  u8,
                                           num_valuators :  u8,
                                           valuators : *mut i32) -> xcb_input_set_device_valuators_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_input_set_device_valuators_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                     device_id :  u8,
                                                     first_valuator :  u8,
                                                     num_valuators :  u8,
                                                     valuators : *mut i32) -> xcb_input_set_device_valuators_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_input_set_device_valuators_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_input_set_device_valuators_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_input_set_device_valuators_reply (c : *mut ffi::base::xcb_connection_t,
                                                 cookie : xcb_input_set_device_valuators_cookie_t,
                                                 e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_input_set_device_valuators_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_input_get_device_control (c : *mut ffi::base::xcb_connection_t,
                                         control_id :  u16,
                                         device_id :  u8) -> xcb_input_get_device_control_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_input_get_device_control_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                   control_id :  u16,
                                                   device_id :  u8) -> xcb_input_get_device_control_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_input_get_device_control_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_input_get_device_control_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_input_get_device_control_reply (c : *mut ffi::base::xcb_connection_t,
                                               cookie : xcb_input_get_device_control_cookie_t,
                                               e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_input_get_device_control_reply_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_device_state_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_device_state_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_device_state_t)
+///
 pub fn xcb_input_device_state_next (i:*mut xcb_input_device_state_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_device_state_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_device_state_end (i:xcb_input_device_state_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_input_device_resolution_state_sizeof (_buffer :  *mut c_void) -> c_int;
@@ -4333,142 +3546,112 @@ pub fn xcb_input_device_resolution_state_resolution_max_length (R : *mut xcb_inp
 
 pub fn xcb_input_device_resolution_state_resolution_max_end (R : *mut xcb_input_device_resolution_state_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_device_resolution_state_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_device_resolution_state_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_device_resolution_state_t)
+///
 pub fn xcb_input_device_resolution_state_next (i:*mut xcb_input_device_resolution_state_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_device_resolution_state_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_device_resolution_state_end (i:xcb_input_device_resolution_state_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_device_abs_calib_state_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_device_abs_calib_state_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_device_abs_calib_state_t)
+///
 pub fn xcb_input_device_abs_calib_state_next (i:*mut xcb_input_device_abs_calib_state_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_device_abs_calib_state_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_device_abs_calib_state_end (i:xcb_input_device_abs_calib_state_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_device_abs_area_state_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_device_abs_area_state_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_device_abs_area_state_t)
+///
 pub fn xcb_input_device_abs_area_state_next (i:*mut xcb_input_device_abs_area_state_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_device_abs_area_state_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_device_abs_area_state_end (i:xcb_input_device_abs_area_state_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_device_core_state_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_device_core_state_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_device_core_state_t)
+///
 pub fn xcb_input_device_core_state_next (i:*mut xcb_input_device_core_state_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_device_core_state_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_device_core_state_end (i:xcb_input_device_core_state_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_device_enable_state_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_device_enable_state_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_device_enable_state_t)
+///
 pub fn xcb_input_device_enable_state_next (i:*mut xcb_input_device_enable_state_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_device_enable_state_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_device_enable_state_end (i:xcb_input_device_enable_state_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_device_ctl_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_device_ctl_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_device_ctl_t)
+///
 pub fn xcb_input_device_ctl_next (i:*mut xcb_input_device_ctl_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_device_ctl_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_device_ctl_end (i:xcb_input_device_ctl_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_input_device_resolution_ctl_sizeof (_buffer :  *mut c_void) -> c_int;
@@ -4481,119 +3664,94 @@ pub fn xcb_input_device_resolution_ctl_resolution_values_length (R : *mut xcb_in
 
 pub fn xcb_input_device_resolution_ctl_resolution_values_end (R : *mut xcb_input_device_resolution_ctl_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_device_resolution_ctl_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_device_resolution_ctl_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_device_resolution_ctl_t)
+///
 pub fn xcb_input_device_resolution_ctl_next (i:*mut xcb_input_device_resolution_ctl_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_device_resolution_ctl_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_device_resolution_ctl_end (i:xcb_input_device_resolution_ctl_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_device_abs_calib_ctl_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_device_abs_calib_ctl_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_device_abs_calib_ctl_t)
+///
 pub fn xcb_input_device_abs_calib_ctl_next (i:*mut xcb_input_device_abs_calib_ctl_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_device_abs_calib_ctl_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_device_abs_calib_ctl_end (i:xcb_input_device_abs_calib_ctl_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_device_abs_area_ctrl_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_device_abs_area_ctrl_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_device_abs_area_ctrl_t)
+///
 pub fn xcb_input_device_abs_area_ctrl_next (i:*mut xcb_input_device_abs_area_ctrl_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_device_abs_area_ctrl_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_device_abs_area_ctrl_end (i:xcb_input_device_abs_area_ctrl_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_device_core_ctrl_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_device_core_ctrl_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_device_core_ctrl_t)
+///
 pub fn xcb_input_device_core_ctrl_next (i:*mut xcb_input_device_core_ctrl_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_device_core_ctrl_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_device_core_ctrl_end (i:xcb_input_device_core_ctrl_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_input_device_enable_ctrl_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_input_device_enable_ctrl_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_input_device_enable_ctrl_t)
+///
 pub fn xcb_input_device_enable_ctrl_next (i:*mut xcb_input_device_enable_ctrl_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_input_device_enable_ctrl_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_input_device_enable_ctrl_end (i:xcb_input_device_enable_ctrl_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 }
 

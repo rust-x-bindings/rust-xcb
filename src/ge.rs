@@ -1,7 +1,7 @@
-/*
- * This file generated automatically from ge.xml by r_client.py.
- * Edit at your peril.
- */
+//
+// This file generated automatically from ge.xml by r_client.py.
+// Edit at your peril.
+//
 
 //Make the compiler quiet
 #![allow(unused_imports)]
@@ -19,7 +19,7 @@ use std::iter::Iterator;
 
 pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_genericevent_query_version_cookie_t> }
 
-/** Opcode for xcb_genericevent_query_version. */
+/// Opcode for xcb_genericevent_query_version.
 pub const XCB_GENERICEVENT_QUERY_VERSION : u8 = 0;
 pub struct QueryVersionReply { base:  base::Reply<xcb_genericevent_query_version_reply_t> }
 fn mk_reply_xcb_genericevent_query_version_reply_t(reply:*mut xcb_genericevent_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }

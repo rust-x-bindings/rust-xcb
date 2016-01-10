@@ -1,7 +1,7 @@
-/*
- * This file generated automatically from xkb.xml by r_client.py.
- * Edit at your peril.
- */
+//
+// This file generated automatically from xkb.xml by r_client.py.
+// Edit at your peril.
+//
 
 //Make the compiler quiet
 #![allow(unused_imports)]
@@ -22,9 +22,6 @@ impl Copy for xcb_xkb_ax_option_t {}
 impl Clone for xcb_xkb_ax_option_t {
     fn clone(&self) -> xcb_xkb_ax_option_t { *self }
 }
-/**
- * @brief xcb_xkb_ax_option_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_ax_option_iterator_t {
     pub data : *mut xcb_xkb_ax_option_t,
@@ -34,9 +31,6 @@ pub struct xcb_xkb_ax_option_iterator_t {
 
 
 pub type xcb_xkb_device_spec_t = u16;
-/**
- * @brief xcb_xkb_device_spec_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_device_spec_iterator_t {
     pub data : *mut xcb_xkb_device_spec_t,
@@ -46,9 +40,6 @@ pub struct xcb_xkb_device_spec_iterator_t {
 
 
 pub type xcb_xkb_led_class_spec_t = u16;
-/**
- * @brief xcb_xkb_led_class_spec_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_led_class_spec_iterator_t {
     pub data : *mut xcb_xkb_led_class_spec_t,
@@ -58,9 +49,6 @@ pub struct xcb_xkb_led_class_spec_iterator_t {
 
 
 pub type xcb_xkb_bell_class_spec_t = u16;
-/**
- * @brief xcb_xkb_bell_class_spec_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_bell_class_spec_iterator_t {
     pub data : *mut xcb_xkb_bell_class_spec_t,
@@ -70,9 +58,6 @@ pub struct xcb_xkb_bell_class_spec_iterator_t {
 
 
 pub type xcb_xkb_id_spec_t = u16;
-/**
- * @brief xcb_xkb_id_spec_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_id_spec_iterator_t {
     pub data : *mut xcb_xkb_id_spec_t,
@@ -97,9 +82,6 @@ impl Copy for xcb_xkb_indicator_map_t {}
 impl Clone for xcb_xkb_indicator_map_t {
     fn clone(&self) -> xcb_xkb_indicator_map_t { *self }
 }
-/**
- * @brief xcb_xkb_indicator_map_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_indicator_map_iterator_t {
     pub data : *mut xcb_xkb_indicator_map_t,
@@ -119,9 +101,6 @@ impl Copy for xcb_xkb_mod_def_t {}
 impl Clone for xcb_xkb_mod_def_t {
     fn clone(&self) -> xcb_xkb_mod_def_t { *self }
 }
-/**
- * @brief xcb_xkb_mod_def_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_mod_def_iterator_t {
     pub data : *mut xcb_xkb_mod_def_t,
@@ -139,9 +118,6 @@ impl Copy for xcb_xkb_key_name_t {}
 impl Clone for xcb_xkb_key_name_t {
     fn clone(&self) -> xcb_xkb_key_name_t { *self }
 }
-/**
- * @brief xcb_xkb_key_name_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_key_name_iterator_t {
     pub data : *mut xcb_xkb_key_name_t,
@@ -160,9 +136,6 @@ impl Copy for xcb_xkb_key_alias_t {}
 impl Clone for xcb_xkb_key_alias_t {
     fn clone(&self) -> xcb_xkb_key_alias_t { *self }
 }
-/**
- * @brief xcb_xkb_key_alias_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_key_alias_iterator_t {
     pub data : *mut xcb_xkb_key_alias_t,
@@ -180,9 +153,6 @@ impl Copy for xcb_xkb_counted_string_8_t {}
 impl Clone for xcb_xkb_counted_string_8_t {
     fn clone(&self) -> xcb_xkb_counted_string_8_t { *self }
 }
-/**
- * @brief xcb_xkb_counted_string_8_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_counted_string_8_iterator_t {
     pub data : *mut xcb_xkb_counted_string_8_t,
@@ -201,9 +171,6 @@ impl Copy for xcb_xkb_counted_string_16_t {}
 impl Clone for xcb_xkb_counted_string_16_t {
     fn clone(&self) -> xcb_xkb_counted_string_16_t { *self }
 }
-/**
- * @brief xcb_xkb_counted_string_16_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_counted_string_16_iterator_t {
     pub data : *mut xcb_xkb_counted_string_16_t,
@@ -226,9 +193,6 @@ impl Copy for xcb_xkb_kt_map_entry_t {}
 impl Clone for xcb_xkb_kt_map_entry_t {
     fn clone(&self) -> xcb_xkb_kt_map_entry_t { *self }
 }
-/**
- * @brief xcb_xkb_kt_map_entry_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_kt_map_entry_iterator_t {
     pub data : *mut xcb_xkb_kt_map_entry_t,
@@ -252,9 +216,6 @@ impl Copy for xcb_xkb_key_type_t {}
 impl Clone for xcb_xkb_key_type_t {
     fn clone(&self) -> xcb_xkb_key_type_t { *self }
 }
-/**
- * @brief xcb_xkb_key_type_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_key_type_iterator_t {
     pub data : *mut xcb_xkb_key_type_t,
@@ -275,9 +236,6 @@ impl Copy for xcb_xkb_key_sym_map_t {}
 impl Clone for xcb_xkb_key_sym_map_t {
     fn clone(&self) -> xcb_xkb_key_sym_map_t { *self }
 }
-/**
- * @brief xcb_xkb_key_sym_map_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_key_sym_map_iterator_t {
     pub data : *mut xcb_xkb_key_sym_map_t,
@@ -296,9 +254,6 @@ impl Copy for xcb_xkb_common_behavior_t {}
 impl Clone for xcb_xkb_common_behavior_t {
     fn clone(&self) -> xcb_xkb_common_behavior_t { *self }
 }
-/**
- * @brief xcb_xkb_common_behavior_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_common_behavior_iterator_t {
     pub data : *mut xcb_xkb_common_behavior_t,
@@ -317,9 +272,6 @@ impl Copy for xcb_xkb_default_behavior_t {}
 impl Clone for xcb_xkb_default_behavior_t {
     fn clone(&self) -> xcb_xkb_default_behavior_t { *self }
 }
-/**
- * @brief xcb_xkb_default_behavior_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_default_behavior_iterator_t {
     pub data : *mut xcb_xkb_default_behavior_t,
@@ -338,9 +290,6 @@ impl Copy for xcb_xkb_lock_behavior_t {}
 impl Clone for xcb_xkb_lock_behavior_t {
     fn clone(&self) -> xcb_xkb_lock_behavior_t { *self }
 }
-/**
- * @brief xcb_xkb_lock_behavior_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_lock_behavior_iterator_t {
     pub data : *mut xcb_xkb_lock_behavior_t,
@@ -359,9 +308,6 @@ impl Copy for xcb_xkb_radio_group_behavior_t {}
 impl Clone for xcb_xkb_radio_group_behavior_t {
     fn clone(&self) -> xcb_xkb_radio_group_behavior_t { *self }
 }
-/**
- * @brief xcb_xkb_radio_group_behavior_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_radio_group_behavior_iterator_t {
     pub data : *mut xcb_xkb_radio_group_behavior_t,
@@ -380,9 +326,6 @@ impl Copy for xcb_xkb_overlay_1_behavior_t {}
 impl Clone for xcb_xkb_overlay_1_behavior_t {
     fn clone(&self) -> xcb_xkb_overlay_1_behavior_t { *self }
 }
-/**
- * @brief xcb_xkb_overlay_1_behavior_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_overlay_1_behavior_iterator_t {
     pub data : *mut xcb_xkb_overlay_1_behavior_t,
@@ -401,9 +344,6 @@ impl Copy for xcb_xkb_overlay_2_behavior_t {}
 impl Clone for xcb_xkb_overlay_2_behavior_t {
     fn clone(&self) -> xcb_xkb_overlay_2_behavior_t { *self }
 }
-/**
- * @brief xcb_xkb_overlay_2_behavior_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_overlay_2_behavior_iterator_t {
     pub data : *mut xcb_xkb_overlay_2_behavior_t,
@@ -422,9 +362,6 @@ impl Copy for xcb_xkb_permament_lock_behavior_t {}
 impl Clone for xcb_xkb_permament_lock_behavior_t {
     fn clone(&self) -> xcb_xkb_permament_lock_behavior_t { *self }
 }
-/**
- * @brief xcb_xkb_permament_lock_behavior_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_permament_lock_behavior_iterator_t {
     pub data : *mut xcb_xkb_permament_lock_behavior_t,
@@ -443,9 +380,6 @@ impl Copy for xcb_xkb_permament_radio_group_behavior_t {}
 impl Clone for xcb_xkb_permament_radio_group_behavior_t {
     fn clone(&self) -> xcb_xkb_permament_radio_group_behavior_t { *self }
 }
-/**
- * @brief xcb_xkb_permament_radio_group_behavior_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_permament_radio_group_behavior_iterator_t {
     pub data : *mut xcb_xkb_permament_radio_group_behavior_t,
@@ -464,9 +398,6 @@ impl Copy for xcb_xkb_permament_overlay_1_behavior_t {}
 impl Clone for xcb_xkb_permament_overlay_1_behavior_t {
     fn clone(&self) -> xcb_xkb_permament_overlay_1_behavior_t { *self }
 }
-/**
- * @brief xcb_xkb_permament_overlay_1_behavior_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_permament_overlay_1_behavior_iterator_t {
     pub data : *mut xcb_xkb_permament_overlay_1_behavior_t,
@@ -485,9 +416,6 @@ impl Copy for xcb_xkb_permament_overlay_2_behavior_t {}
 impl Clone for xcb_xkb_permament_overlay_2_behavior_t {
     fn clone(&self) -> xcb_xkb_permament_overlay_2_behavior_t { *self }
 }
-/**
- * @brief xcb_xkb_permament_overlay_2_behavior_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_permament_overlay_2_behavior_iterator_t {
     pub data : *mut xcb_xkb_permament_overlay_2_behavior_t,
@@ -504,9 +432,6 @@ impl Copy for xcb_xkb_behavior_t {}
 impl Clone for xcb_xkb_behavior_t {
     fn clone(&self) -> xcb_xkb_behavior_t { *self }
 }
-/**
- * @brief xcb_xkb_behavior_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_behavior_iterator_t {
     pub data : *mut xcb_xkb_behavior_t,
@@ -526,9 +451,6 @@ impl Copy for xcb_xkb_set_behavior_t {}
 impl Clone for xcb_xkb_set_behavior_t {
     fn clone(&self) -> xcb_xkb_set_behavior_t { *self }
 }
-/**
- * @brief xcb_xkb_set_behavior_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_set_behavior_iterator_t {
     pub data : *mut xcb_xkb_set_behavior_t,
@@ -547,9 +469,6 @@ impl Copy for xcb_xkb_set_explicit_t {}
 impl Clone for xcb_xkb_set_explicit_t {
     fn clone(&self) -> xcb_xkb_set_explicit_t { *self }
 }
-/**
- * @brief xcb_xkb_set_explicit_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_set_explicit_iterator_t {
     pub data : *mut xcb_xkb_set_explicit_t,
@@ -568,9 +487,6 @@ impl Copy for xcb_xkb_key_mod_map_t {}
 impl Clone for xcb_xkb_key_mod_map_t {
     fn clone(&self) -> xcb_xkb_key_mod_map_t { *self }
 }
-/**
- * @brief xcb_xkb_key_mod_map_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_key_mod_map_iterator_t {
     pub data : *mut xcb_xkb_key_mod_map_t,
@@ -590,9 +506,6 @@ impl Copy for xcb_xkb_key_v_mod_map_t {}
 impl Clone for xcb_xkb_key_v_mod_map_t {
     fn clone(&self) -> xcb_xkb_key_v_mod_map_t { *self }
 }
-/**
- * @brief xcb_xkb_key_v_mod_map_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_key_v_mod_map_iterator_t {
     pub data : *mut xcb_xkb_key_v_mod_map_t,
@@ -612,9 +525,6 @@ impl Copy for xcb_xkb_kt_set_map_entry_t {}
 impl Clone for xcb_xkb_kt_set_map_entry_t {
     fn clone(&self) -> xcb_xkb_kt_set_map_entry_t { *self }
 }
-/**
- * @brief xcb_xkb_kt_set_map_entry_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_kt_set_map_entry_iterator_t {
     pub data : *mut xcb_xkb_kt_set_map_entry_t,
@@ -638,9 +548,6 @@ impl Copy for xcb_xkb_set_key_type_t {}
 impl Clone for xcb_xkb_set_key_type_t {
     fn clone(&self) -> xcb_xkb_set_key_type_t { *self }
 }
-/**
- * @brief xcb_xkb_set_key_type_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_set_key_type_iterator_t {
     pub data : *mut xcb_xkb_set_key_type_t,
@@ -650,9 +557,6 @@ pub struct xcb_xkb_set_key_type_iterator_t {
 
 
 pub type xcb_xkb_string8_t = c_char;
-/**
- * @brief xcb_xkb_string8_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_string8_iterator_t {
     pub data : *mut xcb_xkb_string8_t,
@@ -671,9 +575,6 @@ impl Copy for xcb_xkb_property_t {}
 impl Clone for xcb_xkb_property_t {
     fn clone(&self) -> xcb_xkb_property_t { *self }
 }
-/**
- * @brief xcb_xkb_property_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_property_iterator_t {
     pub data : *mut xcb_xkb_property_t,
@@ -693,9 +594,6 @@ impl Copy for xcb_xkb_outline_t {}
 impl Clone for xcb_xkb_outline_t {
     fn clone(&self) -> xcb_xkb_outline_t { *self }
 }
-/**
- * @brief xcb_xkb_outline_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_outline_iterator_t {
     pub data : *mut xcb_xkb_outline_t,
@@ -717,9 +615,6 @@ impl Copy for xcb_xkb_shape_t {}
 impl Clone for xcb_xkb_shape_t {
     fn clone(&self) -> xcb_xkb_shape_t { *self }
 }
-/**
- * @brief xcb_xkb_shape_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_shape_iterator_t {
     pub data : *mut xcb_xkb_shape_t,
@@ -740,9 +635,6 @@ impl Copy for xcb_xkb_key_t {}
 impl Clone for xcb_xkb_key_t {
     fn clone(&self) -> xcb_xkb_key_t { *self }
 }
-/**
- * @brief xcb_xkb_key_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_key_iterator_t {
     pub data : *mut xcb_xkb_key_t,
@@ -761,9 +653,6 @@ impl Copy for xcb_xkb_overlay_key_t {}
 impl Clone for xcb_xkb_overlay_key_t {
     fn clone(&self) -> xcb_xkb_overlay_key_t { *self }
 }
-/**
- * @brief xcb_xkb_overlay_key_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_overlay_key_iterator_t {
     pub data : *mut xcb_xkb_overlay_key_t,
@@ -783,9 +672,6 @@ impl Copy for xcb_xkb_overlay_row_t {}
 impl Clone for xcb_xkb_overlay_row_t {
     fn clone(&self) -> xcb_xkb_overlay_row_t { *self }
 }
-/**
- * @brief xcb_xkb_overlay_row_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_overlay_row_iterator_t {
     pub data : *mut xcb_xkb_overlay_row_t,
@@ -805,9 +691,6 @@ impl Copy for xcb_xkb_overlay_t {}
 impl Clone for xcb_xkb_overlay_t {
     fn clone(&self) -> xcb_xkb_overlay_t { *self }
 }
-/**
- * @brief xcb_xkb_overlay_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_overlay_iterator_t {
     pub data : *mut xcb_xkb_overlay_t,
@@ -829,9 +712,6 @@ impl Copy for xcb_xkb_row_t {}
 impl Clone for xcb_xkb_row_t {
     fn clone(&self) -> xcb_xkb_row_t { *self }
 }
-/**
- * @brief xcb_xkb_row_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_row_iterator_t {
     pub data : *mut xcb_xkb_row_t,
@@ -854,9 +734,6 @@ impl Copy for xcb_xkb_common_doodad_t {}
 impl Clone for xcb_xkb_common_doodad_t {
     fn clone(&self) -> xcb_xkb_common_doodad_t { *self }
 }
-/**
- * @brief xcb_xkb_common_doodad_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_common_doodad_iterator_t {
     pub data : *mut xcb_xkb_common_doodad_t,
@@ -882,9 +759,6 @@ impl Copy for xcb_xkb_shape_doodad_t {}
 impl Clone for xcb_xkb_shape_doodad_t {
     fn clone(&self) -> xcb_xkb_shape_doodad_t { *self }
 }
-/**
- * @brief xcb_xkb_shape_doodad_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_shape_doodad_iterator_t {
     pub data : *mut xcb_xkb_shape_doodad_t,
@@ -911,9 +785,6 @@ impl Copy for xcb_xkb_text_doodad_t {}
 impl Clone for xcb_xkb_text_doodad_t {
     fn clone(&self) -> xcb_xkb_text_doodad_t { *self }
 }
-/**
- * @brief xcb_xkb_text_doodad_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_text_doodad_iterator_t {
     pub data : *mut xcb_xkb_text_doodad_t,
@@ -940,9 +811,6 @@ impl Copy for xcb_xkb_indicator_doodad_t {}
 impl Clone for xcb_xkb_indicator_doodad_t {
     fn clone(&self) -> xcb_xkb_indicator_doodad_t { *self }
 }
-/**
- * @brief xcb_xkb_indicator_doodad_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_indicator_doodad_iterator_t {
     pub data : *mut xcb_xkb_indicator_doodad_t,
@@ -968,9 +836,6 @@ impl Copy for xcb_xkb_logo_doodad_t {}
 impl Clone for xcb_xkb_logo_doodad_t {
     fn clone(&self) -> xcb_xkb_logo_doodad_t { *self }
 }
-/**
- * @brief xcb_xkb_logo_doodad_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_logo_doodad_iterator_t {
     pub data : *mut xcb_xkb_logo_doodad_t,
@@ -987,9 +852,6 @@ impl Copy for xcb_xkb_doodad_t {}
 impl Clone for xcb_xkb_doodad_t {
     fn clone(&self) -> xcb_xkb_doodad_t { *self }
 }
-/**
- * @brief xcb_xkb_doodad_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_doodad_iterator_t {
     pub data : *mut xcb_xkb_doodad_t,
@@ -1017,9 +879,6 @@ impl Copy for xcb_xkb_section_t {}
 impl Clone for xcb_xkb_section_t {
     fn clone(&self) -> xcb_xkb_section_t { *self }
 }
-/**
- * @brief xcb_xkb_section_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_section_iterator_t {
     pub data : *mut xcb_xkb_section_t,
@@ -1038,9 +897,6 @@ impl Copy for xcb_xkb_listing_t {}
 impl Clone for xcb_xkb_listing_t {
     fn clone(&self) -> xcb_xkb_listing_t { *self }
 }
-/**
- * @brief xcb_xkb_listing_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_listing_iterator_t {
     pub data : *mut xcb_xkb_listing_t,
@@ -1063,9 +919,6 @@ impl Copy for xcb_xkb_device_led_info_t {}
 impl Clone for xcb_xkb_device_led_info_t {
     fn clone(&self) -> xcb_xkb_device_led_info_t { *self }
 }
-/**
- * @brief xcb_xkb_device_led_info_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_device_led_info_iterator_t {
     pub data : *mut xcb_xkb_device_led_info_t,
@@ -1101,9 +954,6 @@ impl Copy for xcb_xkb_sa_no_action_t {}
 impl Clone for xcb_xkb_sa_no_action_t {
     fn clone(&self) -> xcb_xkb_sa_no_action_t { *self }
 }
-/**
- * @brief xcb_xkb_sa_no_action_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_sa_no_action_iterator_t {
     pub data : *mut xcb_xkb_sa_no_action_t,
@@ -1127,9 +977,6 @@ impl Copy for xcb_xkb_sa_set_mods_t {}
 impl Clone for xcb_xkb_sa_set_mods_t {
     fn clone(&self) -> xcb_xkb_sa_set_mods_t { *self }
 }
-/**
- * @brief xcb_xkb_sa_set_mods_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_sa_set_mods_iterator_t {
     pub data : *mut xcb_xkb_sa_set_mods_t,
@@ -1153,9 +1000,6 @@ impl Copy for xcb_xkb_sa_latch_mods_t {}
 impl Clone for xcb_xkb_sa_latch_mods_t {
     fn clone(&self) -> xcb_xkb_sa_latch_mods_t { *self }
 }
-/**
- * @brief xcb_xkb_sa_latch_mods_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_sa_latch_mods_iterator_t {
     pub data : *mut xcb_xkb_sa_latch_mods_t,
@@ -1179,9 +1023,6 @@ impl Copy for xcb_xkb_sa_lock_mods_t {}
 impl Clone for xcb_xkb_sa_lock_mods_t {
     fn clone(&self) -> xcb_xkb_sa_lock_mods_t { *self }
 }
-/**
- * @brief xcb_xkb_sa_lock_mods_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_sa_lock_mods_iterator_t {
     pub data : *mut xcb_xkb_sa_lock_mods_t,
@@ -1202,9 +1043,6 @@ impl Copy for xcb_xkb_sa_set_group_t {}
 impl Clone for xcb_xkb_sa_set_group_t {
     fn clone(&self) -> xcb_xkb_sa_set_group_t { *self }
 }
-/**
- * @brief xcb_xkb_sa_set_group_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_sa_set_group_iterator_t {
     pub data : *mut xcb_xkb_sa_set_group_t,
@@ -1225,9 +1063,6 @@ impl Copy for xcb_xkb_sa_latch_group_t {}
 impl Clone for xcb_xkb_sa_latch_group_t {
     fn clone(&self) -> xcb_xkb_sa_latch_group_t { *self }
 }
-/**
- * @brief xcb_xkb_sa_latch_group_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_sa_latch_group_iterator_t {
     pub data : *mut xcb_xkb_sa_latch_group_t,
@@ -1248,9 +1083,6 @@ impl Copy for xcb_xkb_sa_lock_group_t {}
 impl Clone for xcb_xkb_sa_lock_group_t {
     fn clone(&self) -> xcb_xkb_sa_lock_group_t { *self }
 }
-/**
- * @brief xcb_xkb_sa_lock_group_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_sa_lock_group_iterator_t {
     pub data : *mut xcb_xkb_sa_lock_group_t,
@@ -1274,9 +1106,6 @@ impl Copy for xcb_xkb_sa_move_ptr_t {}
 impl Clone for xcb_xkb_sa_move_ptr_t {
     fn clone(&self) -> xcb_xkb_sa_move_ptr_t { *self }
 }
-/**
- * @brief xcb_xkb_sa_move_ptr_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_sa_move_ptr_iterator_t {
     pub data : *mut xcb_xkb_sa_move_ptr_t,
@@ -1298,9 +1127,6 @@ impl Copy for xcb_xkb_sa_ptr_btn_t {}
 impl Clone for xcb_xkb_sa_ptr_btn_t {
     fn clone(&self) -> xcb_xkb_sa_ptr_btn_t { *self }
 }
-/**
- * @brief xcb_xkb_sa_ptr_btn_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_sa_ptr_btn_iterator_t {
     pub data : *mut xcb_xkb_sa_ptr_btn_t,
@@ -1322,9 +1148,6 @@ impl Copy for xcb_xkb_sa_lock_ptr_btn_t {}
 impl Clone for xcb_xkb_sa_lock_ptr_btn_t {
     fn clone(&self) -> xcb_xkb_sa_lock_ptr_btn_t { *self }
 }
-/**
- * @brief xcb_xkb_sa_lock_ptr_btn_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_sa_lock_ptr_btn_iterator_t {
     pub data : *mut xcb_xkb_sa_lock_ptr_btn_t,
@@ -1346,9 +1169,6 @@ impl Copy for xcb_xkb_sa_set_ptr_dflt_t {}
 impl Clone for xcb_xkb_sa_set_ptr_dflt_t {
     fn clone(&self) -> xcb_xkb_sa_set_ptr_dflt_t { *self }
 }
-/**
- * @brief xcb_xkb_sa_set_ptr_dflt_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_sa_set_ptr_dflt_iterator_t {
     pub data : *mut xcb_xkb_sa_set_ptr_dflt_t,
@@ -1373,9 +1193,6 @@ impl Copy for xcb_xkb_sa_iso_lock_t {}
 impl Clone for xcb_xkb_sa_iso_lock_t {
     fn clone(&self) -> xcb_xkb_sa_iso_lock_t { *self }
 }
-/**
- * @brief xcb_xkb_sa_iso_lock_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_sa_iso_lock_iterator_t {
     pub data : *mut xcb_xkb_sa_iso_lock_t,
@@ -1394,9 +1211,6 @@ impl Copy for xcb_xkb_sa_terminate_t {}
 impl Clone for xcb_xkb_sa_terminate_t {
     fn clone(&self) -> xcb_xkb_sa_terminate_t { *self }
 }
-/**
- * @brief xcb_xkb_sa_terminate_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_sa_terminate_iterator_t {
     pub data : *mut xcb_xkb_sa_terminate_t,
@@ -1417,9 +1231,6 @@ impl Copy for xcb_xkb_sa_switch_screen_t {}
 impl Clone for xcb_xkb_sa_switch_screen_t {
     fn clone(&self) -> xcb_xkb_sa_switch_screen_t { *self }
 }
-/**
- * @brief xcb_xkb_sa_switch_screen_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_sa_switch_screen_iterator_t {
     pub data : *mut xcb_xkb_sa_switch_screen_t,
@@ -1441,9 +1252,6 @@ impl Copy for xcb_xkb_sa_set_controls_t {}
 impl Clone for xcb_xkb_sa_set_controls_t {
     fn clone(&self) -> xcb_xkb_sa_set_controls_t { *self }
 }
-/**
- * @brief xcb_xkb_sa_set_controls_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_sa_set_controls_iterator_t {
     pub data : *mut xcb_xkb_sa_set_controls_t,
@@ -1465,9 +1273,6 @@ impl Copy for xcb_xkb_sa_lock_controls_t {}
 impl Clone for xcb_xkb_sa_lock_controls_t {
     fn clone(&self) -> xcb_xkb_sa_lock_controls_t { *self }
 }
-/**
- * @brief xcb_xkb_sa_lock_controls_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_sa_lock_controls_iterator_t {
     pub data : *mut xcb_xkb_sa_lock_controls_t,
@@ -1487,9 +1292,6 @@ impl Copy for xcb_xkb_sa_action_message_t {}
 impl Clone for xcb_xkb_sa_action_message_t {
     fn clone(&self) -> xcb_xkb_sa_action_message_t { *self }
 }
-/**
- * @brief xcb_xkb_sa_action_message_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_sa_action_message_iterator_t {
     pub data : *mut xcb_xkb_sa_action_message_t,
@@ -1514,9 +1316,6 @@ impl Copy for xcb_xkb_sa_redirect_key_t {}
 impl Clone for xcb_xkb_sa_redirect_key_t {
     fn clone(&self) -> xcb_xkb_sa_redirect_key_t { *self }
 }
-/**
- * @brief xcb_xkb_sa_redirect_key_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_sa_redirect_key_iterator_t {
     pub data : *mut xcb_xkb_sa_redirect_key_t,
@@ -1539,9 +1338,6 @@ impl Copy for xcb_xkb_sa_device_btn_t {}
 impl Clone for xcb_xkb_sa_device_btn_t {
     fn clone(&self) -> xcb_xkb_sa_device_btn_t { *self }
 }
-/**
- * @brief xcb_xkb_sa_device_btn_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_sa_device_btn_iterator_t {
     pub data : *mut xcb_xkb_sa_device_btn_t,
@@ -1563,9 +1359,6 @@ impl Copy for xcb_xkb_sa_lock_device_btn_t {}
 impl Clone for xcb_xkb_sa_lock_device_btn_t {
     fn clone(&self) -> xcb_xkb_sa_lock_device_btn_t { *self }
 }
-/**
- * @brief xcb_xkb_sa_lock_device_btn_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_sa_lock_device_btn_iterator_t {
     pub data : *mut xcb_xkb_sa_lock_device_btn_t,
@@ -1590,9 +1383,6 @@ impl Copy for xcb_xkb_sa_device_valuator_t {}
 impl Clone for xcb_xkb_sa_device_valuator_t {
     fn clone(&self) -> xcb_xkb_sa_device_valuator_t { *self }
 }
-/**
- * @brief xcb_xkb_sa_device_valuator_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_sa_device_valuator_iterator_t {
     pub data : *mut xcb_xkb_sa_device_valuator_t,
@@ -1609,9 +1399,6 @@ impl Copy for xcb_xkb_action_t {}
 impl Clone for xcb_xkb_action_t {
     fn clone(&self) -> xcb_xkb_action_t { *self }
 }
-/**
- * @brief xcb_xkb_action_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xkb_action_iterator_t {
     pub data : *mut xcb_xkb_action_t,
@@ -3338,211 +3125,166 @@ impl Clone for xcb_xkb_extension_device_notify_event_t {
 #[link(name="xcb-xkb")]
 extern "C" {
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_ax_option_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_ax_option_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_ax_option_t)
+///
 pub fn xcb_xkb_ax_option_next (i:*mut xcb_xkb_ax_option_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_ax_option_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_ax_option_end (i:xcb_xkb_ax_option_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_device_spec_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_device_spec_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_device_spec_t)
+///
 pub fn xcb_xkb_device_spec_next (i:*mut xcb_xkb_device_spec_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_device_spec_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_device_spec_end (i:xcb_xkb_device_spec_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_led_class_spec_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_led_class_spec_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_led_class_spec_t)
+///
 pub fn xcb_xkb_led_class_spec_next (i:*mut xcb_xkb_led_class_spec_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_led_class_spec_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_led_class_spec_end (i:xcb_xkb_led_class_spec_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_bell_class_spec_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_bell_class_spec_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_bell_class_spec_t)
+///
 pub fn xcb_xkb_bell_class_spec_next (i:*mut xcb_xkb_bell_class_spec_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_bell_class_spec_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_bell_class_spec_end (i:xcb_xkb_bell_class_spec_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_id_spec_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_id_spec_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_id_spec_t)
+///
 pub fn xcb_xkb_id_spec_next (i:*mut xcb_xkb_id_spec_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_id_spec_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_id_spec_end (i:xcb_xkb_id_spec_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_indicator_map_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_indicator_map_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_indicator_map_t)
+///
 pub fn xcb_xkb_indicator_map_next (i:*mut xcb_xkb_indicator_map_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_indicator_map_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_indicator_map_end (i:xcb_xkb_indicator_map_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_mod_def_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_mod_def_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_mod_def_t)
+///
 pub fn xcb_xkb_mod_def_next (i:*mut xcb_xkb_mod_def_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_mod_def_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_mod_def_end (i:xcb_xkb_mod_def_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_key_name_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_key_name_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_key_name_t)
+///
 pub fn xcb_xkb_key_name_next (i:*mut xcb_xkb_key_name_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_key_name_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_key_name_end (i:xcb_xkb_key_name_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_key_alias_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_key_alias_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_key_alias_t)
+///
 pub fn xcb_xkb_key_alias_next (i:*mut xcb_xkb_key_alias_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_key_alias_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_key_alias_end (i:xcb_xkb_key_alias_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_xkb_counted_string_8_sizeof (_buffer :  *mut c_void) -> c_int;
@@ -3555,27 +3297,22 @@ pub fn xcb_xkb_counted_string_8_string_length (R : *mut xcb_xkb_counted_string_8
 
 pub fn xcb_xkb_counted_string_8_string_end (R : *mut xcb_xkb_counted_string_8_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_counted_string_8_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_counted_string_8_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_counted_string_8_t)
+///
 pub fn xcb_xkb_counted_string_8_next (i:*mut xcb_xkb_counted_string_8_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_counted_string_8_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_counted_string_8_end (i:xcb_xkb_counted_string_8_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_xkb_counted_string_16_sizeof (_buffer :  *mut c_void) -> c_int;
@@ -3589,58 +3326,45 @@ pub fn xcb_xkb_counted_string_16_string_length (R : *mut xcb_xkb_counted_string_
 pub fn xcb_xkb_counted_string_16_string_end (R : *mut xcb_xkb_counted_string_16_t) -> ffi::base::xcb_generic_iterator_t;
 
 
-/**
- *
- * xcb_xkb_counted_string_16_pad_0 : *mut u8
- *
- *
- */
+///
+/// xcb_xkb_counted_string_16_pad_0 : *mut u8
+///
 pub fn xcb_xkb_counted_string_16_pad_0 (R : *mut xcb_xkb_counted_string_16_t) -> *mut u8;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_counted_string_16_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_counted_string_16_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_counted_string_16_t)
+///
 pub fn xcb_xkb_counted_string_16_next (i:*mut xcb_xkb_counted_string_16_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_counted_string_16_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_counted_string_16_end (i:xcb_xkb_counted_string_16_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_kt_map_entry_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_kt_map_entry_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_kt_map_entry_t)
+///
 pub fn xcb_xkb_kt_map_entry_next (i:*mut xcb_xkb_kt_map_entry_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_kt_map_entry_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_kt_map_entry_end (i:xcb_xkb_kt_map_entry_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_xkb_key_type_sizeof (_buffer :  *mut c_void) -> c_int;
@@ -3659,27 +3383,22 @@ pub fn xcb_xkb_key_type_preserve_length (R : *mut xcb_xkb_key_type_t) -> c_int;
 
 pub fn xcb_xkb_key_type_preserve_iterator (R : *mut xcb_xkb_key_type_t) -> xcb_xkb_mod_def_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_key_type_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_key_type_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_key_type_t)
+///
 pub fn xcb_xkb_key_type_next (i:*mut xcb_xkb_key_type_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_key_type_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_key_type_end (i:xcb_xkb_key_type_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_xkb_key_sym_map_sizeof (_buffer :  *mut c_void) -> c_int;
@@ -3692,395 +3411,310 @@ pub fn xcb_xkb_key_sym_map_syms_length (R : *mut xcb_xkb_key_sym_map_t) -> c_int
 
 pub fn xcb_xkb_key_sym_map_syms_end (R : *mut xcb_xkb_key_sym_map_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_key_sym_map_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_key_sym_map_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_key_sym_map_t)
+///
 pub fn xcb_xkb_key_sym_map_next (i:*mut xcb_xkb_key_sym_map_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_key_sym_map_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_key_sym_map_end (i:xcb_xkb_key_sym_map_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_common_behavior_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_common_behavior_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_common_behavior_t)
+///
 pub fn xcb_xkb_common_behavior_next (i:*mut xcb_xkb_common_behavior_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_common_behavior_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_common_behavior_end (i:xcb_xkb_common_behavior_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_default_behavior_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_default_behavior_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_default_behavior_t)
+///
 pub fn xcb_xkb_default_behavior_next (i:*mut xcb_xkb_default_behavior_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_default_behavior_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_default_behavior_end (i:xcb_xkb_default_behavior_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_lock_behavior_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_lock_behavior_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_lock_behavior_t)
+///
 pub fn xcb_xkb_lock_behavior_next (i:*mut xcb_xkb_lock_behavior_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_lock_behavior_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_lock_behavior_end (i:xcb_xkb_lock_behavior_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_radio_group_behavior_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_radio_group_behavior_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_radio_group_behavior_t)
+///
 pub fn xcb_xkb_radio_group_behavior_next (i:*mut xcb_xkb_radio_group_behavior_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_radio_group_behavior_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_radio_group_behavior_end (i:xcb_xkb_radio_group_behavior_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_overlay_1_behavior_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_overlay_1_behavior_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_overlay_1_behavior_t)
+///
 pub fn xcb_xkb_overlay_1_behavior_next (i:*mut xcb_xkb_overlay_1_behavior_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_overlay_1_behavior_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_overlay_1_behavior_end (i:xcb_xkb_overlay_1_behavior_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_overlay_2_behavior_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_overlay_2_behavior_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_overlay_2_behavior_t)
+///
 pub fn xcb_xkb_overlay_2_behavior_next (i:*mut xcb_xkb_overlay_2_behavior_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_overlay_2_behavior_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_overlay_2_behavior_end (i:xcb_xkb_overlay_2_behavior_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_permament_lock_behavior_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_permament_lock_behavior_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_permament_lock_behavior_t)
+///
 pub fn xcb_xkb_permament_lock_behavior_next (i:*mut xcb_xkb_permament_lock_behavior_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_permament_lock_behavior_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_permament_lock_behavior_end (i:xcb_xkb_permament_lock_behavior_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_permament_radio_group_behavior_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_permament_radio_group_behavior_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_permament_radio_group_behavior_t)
+///
 pub fn xcb_xkb_permament_radio_group_behavior_next (i:*mut xcb_xkb_permament_radio_group_behavior_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_permament_radio_group_behavior_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_permament_radio_group_behavior_end (i:xcb_xkb_permament_radio_group_behavior_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_permament_overlay_1_behavior_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_permament_overlay_1_behavior_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_permament_overlay_1_behavior_t)
+///
 pub fn xcb_xkb_permament_overlay_1_behavior_next (i:*mut xcb_xkb_permament_overlay_1_behavior_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_permament_overlay_1_behavior_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_permament_overlay_1_behavior_end (i:xcb_xkb_permament_overlay_1_behavior_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_permament_overlay_2_behavior_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_permament_overlay_2_behavior_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_permament_overlay_2_behavior_t)
+///
 pub fn xcb_xkb_permament_overlay_2_behavior_next (i:*mut xcb_xkb_permament_overlay_2_behavior_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_permament_overlay_2_behavior_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_permament_overlay_2_behavior_end (i:xcb_xkb_permament_overlay_2_behavior_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_behavior_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_behavior_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_behavior_t)
+///
 pub fn xcb_xkb_behavior_next (i:*mut xcb_xkb_behavior_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_behavior_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_behavior_end (i:xcb_xkb_behavior_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_set_behavior_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_set_behavior_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_set_behavior_t)
+///
 pub fn xcb_xkb_set_behavior_next (i:*mut xcb_xkb_set_behavior_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_set_behavior_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_set_behavior_end (i:xcb_xkb_set_behavior_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_set_explicit_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_set_explicit_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_set_explicit_t)
+///
 pub fn xcb_xkb_set_explicit_next (i:*mut xcb_xkb_set_explicit_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_set_explicit_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_set_explicit_end (i:xcb_xkb_set_explicit_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_key_mod_map_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_key_mod_map_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_key_mod_map_t)
+///
 pub fn xcb_xkb_key_mod_map_next (i:*mut xcb_xkb_key_mod_map_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_key_mod_map_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_key_mod_map_end (i:xcb_xkb_key_mod_map_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_key_v_mod_map_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_key_v_mod_map_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_key_v_mod_map_t)
+///
 pub fn xcb_xkb_key_v_mod_map_next (i:*mut xcb_xkb_key_v_mod_map_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_key_v_mod_map_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_key_v_mod_map_end (i:xcb_xkb_key_v_mod_map_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_kt_set_map_entry_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_kt_set_map_entry_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_kt_set_map_entry_t)
+///
 pub fn xcb_xkb_kt_set_map_entry_next (i:*mut xcb_xkb_kt_set_map_entry_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_kt_set_map_entry_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_kt_set_map_entry_end (i:xcb_xkb_kt_set_map_entry_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_xkb_set_key_type_sizeof (_buffer :  *mut c_void) -> c_int;
@@ -4099,50 +3733,40 @@ pub fn xcb_xkb_set_key_type_preserve_entries_length (R : *mut xcb_xkb_set_key_ty
 
 pub fn xcb_xkb_set_key_type_preserve_entries_iterator (R : *mut xcb_xkb_set_key_type_t) -> xcb_xkb_kt_set_map_entry_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_set_key_type_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_set_key_type_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_set_key_type_t)
+///
 pub fn xcb_xkb_set_key_type_next (i:*mut xcb_xkb_set_key_type_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_set_key_type_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_set_key_type_end (i:xcb_xkb_set_key_type_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_string8_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_string8_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_string8_t)
+///
 pub fn xcb_xkb_string8_next (i:*mut xcb_xkb_string8_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_string8_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_string8_end (i:xcb_xkb_string8_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_xkb_property_serialize (_buffer :        *mut *mut c_void,
@@ -4171,27 +3795,22 @@ pub fn xcb_xkb_property_value_length (R : *mut xcb_xkb_property_t) -> c_int;
 
 pub fn xcb_xkb_property_value_end (R : *mut xcb_xkb_property_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_property_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_property_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_property_t)
+///
 pub fn xcb_xkb_property_next (i:*mut xcb_xkb_property_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_property_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_property_end (i:xcb_xkb_property_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_xkb_outline_sizeof (_buffer :  *mut c_void) -> c_int;
@@ -4203,27 +3822,22 @@ pub fn xcb_xkb_outline_points_length (R : *mut xcb_xkb_outline_t) -> c_int;
 
 pub fn xcb_xkb_outline_points_iterator (R : *mut xcb_xkb_outline_t) -> ffi::xproto::xcb_point_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_outline_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_outline_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_outline_t)
+///
 pub fn xcb_xkb_outline_next (i:*mut xcb_xkb_outline_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_outline_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_outline_end (i:xcb_xkb_outline_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_xkb_shape_sizeof (_buffer :  *mut c_void) -> c_int;
@@ -4233,73 +3847,58 @@ pub fn xcb_xkb_shape_outlines_length (R : *mut xcb_xkb_shape_t) -> c_int;
 
 pub fn xcb_xkb_shape_outlines_iterator (R : *mut xcb_xkb_shape_t) -> xcb_xkb_outline_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_shape_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_shape_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_shape_t)
+///
 pub fn xcb_xkb_shape_next (i:*mut xcb_xkb_shape_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_shape_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_shape_end (i:xcb_xkb_shape_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_key_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_key_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_key_t)
+///
 pub fn xcb_xkb_key_next (i:*mut xcb_xkb_key_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_key_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_key_end (i:xcb_xkb_key_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_overlay_key_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_overlay_key_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_overlay_key_t)
+///
 pub fn xcb_xkb_overlay_key_next (i:*mut xcb_xkb_overlay_key_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_overlay_key_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_overlay_key_end (i:xcb_xkb_overlay_key_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_xkb_overlay_row_sizeof (_buffer :  *mut c_void) -> c_int;
@@ -4311,27 +3910,22 @@ pub fn xcb_xkb_overlay_row_keys_length (R : *mut xcb_xkb_overlay_row_t) -> c_int
 
 pub fn xcb_xkb_overlay_row_keys_iterator (R : *mut xcb_xkb_overlay_row_t) -> xcb_xkb_overlay_key_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_overlay_row_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_overlay_row_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_overlay_row_t)
+///
 pub fn xcb_xkb_overlay_row_next (i:*mut xcb_xkb_overlay_row_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_overlay_row_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_overlay_row_end (i:xcb_xkb_overlay_row_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_xkb_overlay_sizeof (_buffer :  *mut c_void) -> c_int;
@@ -4341,27 +3935,22 @@ pub fn xcb_xkb_overlay_rows_length (R : *mut xcb_xkb_overlay_t) -> c_int;
 
 pub fn xcb_xkb_overlay_rows_iterator (R : *mut xcb_xkb_overlay_t) -> xcb_xkb_overlay_row_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_overlay_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_overlay_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_overlay_t)
+///
 pub fn xcb_xkb_overlay_next (i:*mut xcb_xkb_overlay_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_overlay_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_overlay_end (i:xcb_xkb_overlay_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_xkb_row_sizeof (_buffer :  *mut c_void) -> c_int;
@@ -4373,198 +3962,154 @@ pub fn xcb_xkb_row_keys_length (R : *mut xcb_xkb_row_t) -> c_int;
 
 pub fn xcb_xkb_row_keys_iterator (R : *mut xcb_xkb_row_t) -> xcb_xkb_key_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_row_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_row_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_row_t)
+///
 pub fn xcb_xkb_row_next (i:*mut xcb_xkb_row_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_row_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_row_end (i:xcb_xkb_row_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_common_doodad_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_common_doodad_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_common_doodad_t)
+///
 pub fn xcb_xkb_common_doodad_next (i:*mut xcb_xkb_common_doodad_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_common_doodad_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_common_doodad_end (i:xcb_xkb_common_doodad_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_shape_doodad_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_shape_doodad_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_shape_doodad_t)
+///
 pub fn xcb_xkb_shape_doodad_next (i:*mut xcb_xkb_shape_doodad_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_shape_doodad_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_shape_doodad_end (i:xcb_xkb_shape_doodad_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_xkb_text_doodad_sizeof (_buffer :  *mut c_void) -> c_int;
 
 
-/**
- *
- * xcb_xkb_text_doodad_text : *mut xcb_xkb_counted_string_16_t
- *
- *
- */
+///
+/// xcb_xkb_text_doodad_text : *mut xcb_xkb_counted_string_16_t
+///
 pub fn xcb_xkb_text_doodad_text (R : *mut xcb_xkb_text_doodad_t) -> *mut xcb_xkb_counted_string_16_t;
 
 
-/**
- *
- * xcb_xkb_text_doodad_font : *mut xcb_xkb_counted_string_16_t
- *
- *
- */
+///
+/// xcb_xkb_text_doodad_font : *mut xcb_xkb_counted_string_16_t
+///
 pub fn xcb_xkb_text_doodad_font (R : *mut xcb_xkb_text_doodad_t) -> *mut xcb_xkb_counted_string_16_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_text_doodad_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_text_doodad_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_text_doodad_t)
+///
 pub fn xcb_xkb_text_doodad_next (i:*mut xcb_xkb_text_doodad_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_text_doodad_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_text_doodad_end (i:xcb_xkb_text_doodad_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_indicator_doodad_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_indicator_doodad_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_indicator_doodad_t)
+///
 pub fn xcb_xkb_indicator_doodad_next (i:*mut xcb_xkb_indicator_doodad_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_indicator_doodad_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_indicator_doodad_end (i:xcb_xkb_indicator_doodad_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_xkb_logo_doodad_sizeof (_buffer :  *mut c_void) -> c_int;
 
 
-/**
- *
- * xcb_xkb_logo_doodad_logo_name : *mut xcb_xkb_counted_string_16_t
- *
- *
- */
+///
+/// xcb_xkb_logo_doodad_logo_name : *mut xcb_xkb_counted_string_16_t
+///
 pub fn xcb_xkb_logo_doodad_logo_name (R : *mut xcb_xkb_logo_doodad_t) -> *mut xcb_xkb_counted_string_16_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_logo_doodad_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_logo_doodad_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_logo_doodad_t)
+///
 pub fn xcb_xkb_logo_doodad_next (i:*mut xcb_xkb_logo_doodad_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_logo_doodad_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_logo_doodad_end (i:xcb_xkb_logo_doodad_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_xkb_doodad_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_doodad_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_doodad_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_doodad_t)
+///
 pub fn xcb_xkb_doodad_next (i:*mut xcb_xkb_doodad_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_doodad_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_doodad_end (i:xcb_xkb_doodad_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_xkb_section_sizeof (_buffer :  *mut c_void) -> c_int;
@@ -4584,27 +4129,22 @@ pub fn xcb_xkb_section_overlays_length (R : *mut xcb_xkb_section_t) -> c_int;
 
 pub fn xcb_xkb_section_overlays_iterator (R : *mut xcb_xkb_section_t) -> xcb_xkb_overlay_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_section_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_section_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_section_t)
+///
 pub fn xcb_xkb_section_next (i:*mut xcb_xkb_section_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_section_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_section_end (i:xcb_xkb_section_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_xkb_listing_sizeof (_buffer :  *mut c_void) -> c_int;
@@ -4617,27 +4157,22 @@ pub fn xcb_xkb_listing_string_length (R : *mut xcb_xkb_listing_t) -> c_int;
 
 pub fn xcb_xkb_listing_string_end (R : *mut xcb_xkb_listing_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_listing_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_listing_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_listing_t)
+///
 pub fn xcb_xkb_listing_next (i:*mut xcb_xkb_listing_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_listing_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_listing_end (i:xcb_xkb_listing_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
 pub fn xcb_xkb_device_led_info_sizeof (_buffer :  *mut c_void) -> c_int;
@@ -4657,576 +4192,444 @@ pub fn xcb_xkb_device_led_info_maps_length (R : *mut xcb_xkb_device_led_info_t) 
 
 pub fn xcb_xkb_device_led_info_maps_iterator (R : *mut xcb_xkb_device_led_info_t) -> xcb_xkb_indicator_map_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_device_led_info_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_device_led_info_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_device_led_info_t)
+///
 pub fn xcb_xkb_device_led_info_next (i:*mut xcb_xkb_device_led_info_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_device_led_info_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_device_led_info_end (i:xcb_xkb_device_led_info_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_sa_no_action_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_sa_no_action_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_sa_no_action_t)
+///
 pub fn xcb_xkb_sa_no_action_next (i:*mut xcb_xkb_sa_no_action_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_sa_no_action_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_sa_no_action_end (i:xcb_xkb_sa_no_action_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_sa_set_mods_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_sa_set_mods_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_sa_set_mods_t)
+///
 pub fn xcb_xkb_sa_set_mods_next (i:*mut xcb_xkb_sa_set_mods_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_sa_set_mods_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_sa_set_mods_end (i:xcb_xkb_sa_set_mods_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_sa_latch_mods_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_sa_latch_mods_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_sa_latch_mods_t)
+///
 pub fn xcb_xkb_sa_latch_mods_next (i:*mut xcb_xkb_sa_latch_mods_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_sa_latch_mods_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_sa_latch_mods_end (i:xcb_xkb_sa_latch_mods_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_sa_lock_mods_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_sa_lock_mods_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_sa_lock_mods_t)
+///
 pub fn xcb_xkb_sa_lock_mods_next (i:*mut xcb_xkb_sa_lock_mods_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_sa_lock_mods_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_sa_lock_mods_end (i:xcb_xkb_sa_lock_mods_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_sa_set_group_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_sa_set_group_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_sa_set_group_t)
+///
 pub fn xcb_xkb_sa_set_group_next (i:*mut xcb_xkb_sa_set_group_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_sa_set_group_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_sa_set_group_end (i:xcb_xkb_sa_set_group_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_sa_latch_group_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_sa_latch_group_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_sa_latch_group_t)
+///
 pub fn xcb_xkb_sa_latch_group_next (i:*mut xcb_xkb_sa_latch_group_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_sa_latch_group_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_sa_latch_group_end (i:xcb_xkb_sa_latch_group_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_sa_lock_group_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_sa_lock_group_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_sa_lock_group_t)
+///
 pub fn xcb_xkb_sa_lock_group_next (i:*mut xcb_xkb_sa_lock_group_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_sa_lock_group_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_sa_lock_group_end (i:xcb_xkb_sa_lock_group_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_sa_move_ptr_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_sa_move_ptr_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_sa_move_ptr_t)
+///
 pub fn xcb_xkb_sa_move_ptr_next (i:*mut xcb_xkb_sa_move_ptr_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_sa_move_ptr_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_sa_move_ptr_end (i:xcb_xkb_sa_move_ptr_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_sa_ptr_btn_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_sa_ptr_btn_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_sa_ptr_btn_t)
+///
 pub fn xcb_xkb_sa_ptr_btn_next (i:*mut xcb_xkb_sa_ptr_btn_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_sa_ptr_btn_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_sa_ptr_btn_end (i:xcb_xkb_sa_ptr_btn_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_sa_lock_ptr_btn_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_sa_lock_ptr_btn_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_sa_lock_ptr_btn_t)
+///
 pub fn xcb_xkb_sa_lock_ptr_btn_next (i:*mut xcb_xkb_sa_lock_ptr_btn_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_sa_lock_ptr_btn_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_sa_lock_ptr_btn_end (i:xcb_xkb_sa_lock_ptr_btn_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_sa_set_ptr_dflt_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_sa_set_ptr_dflt_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_sa_set_ptr_dflt_t)
+///
 pub fn xcb_xkb_sa_set_ptr_dflt_next (i:*mut xcb_xkb_sa_set_ptr_dflt_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_sa_set_ptr_dflt_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_sa_set_ptr_dflt_end (i:xcb_xkb_sa_set_ptr_dflt_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_sa_iso_lock_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_sa_iso_lock_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_sa_iso_lock_t)
+///
 pub fn xcb_xkb_sa_iso_lock_next (i:*mut xcb_xkb_sa_iso_lock_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_sa_iso_lock_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_sa_iso_lock_end (i:xcb_xkb_sa_iso_lock_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_sa_terminate_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_sa_terminate_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_sa_terminate_t)
+///
 pub fn xcb_xkb_sa_terminate_next (i:*mut xcb_xkb_sa_terminate_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_sa_terminate_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_sa_terminate_end (i:xcb_xkb_sa_terminate_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_sa_switch_screen_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_sa_switch_screen_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_sa_switch_screen_t)
+///
 pub fn xcb_xkb_sa_switch_screen_next (i:*mut xcb_xkb_sa_switch_screen_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_sa_switch_screen_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_sa_switch_screen_end (i:xcb_xkb_sa_switch_screen_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_sa_set_controls_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_sa_set_controls_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_sa_set_controls_t)
+///
 pub fn xcb_xkb_sa_set_controls_next (i:*mut xcb_xkb_sa_set_controls_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_sa_set_controls_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_sa_set_controls_end (i:xcb_xkb_sa_set_controls_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_sa_lock_controls_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_sa_lock_controls_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_sa_lock_controls_t)
+///
 pub fn xcb_xkb_sa_lock_controls_next (i:*mut xcb_xkb_sa_lock_controls_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_sa_lock_controls_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_sa_lock_controls_end (i:xcb_xkb_sa_lock_controls_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_sa_action_message_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_sa_action_message_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_sa_action_message_t)
+///
 pub fn xcb_xkb_sa_action_message_next (i:*mut xcb_xkb_sa_action_message_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_sa_action_message_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_sa_action_message_end (i:xcb_xkb_sa_action_message_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_sa_redirect_key_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_sa_redirect_key_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_sa_redirect_key_t)
+///
 pub fn xcb_xkb_sa_redirect_key_next (i:*mut xcb_xkb_sa_redirect_key_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_sa_redirect_key_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_sa_redirect_key_end (i:xcb_xkb_sa_redirect_key_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_sa_device_btn_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_sa_device_btn_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_sa_device_btn_t)
+///
 pub fn xcb_xkb_sa_device_btn_next (i:*mut xcb_xkb_sa_device_btn_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_sa_device_btn_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_sa_device_btn_end (i:xcb_xkb_sa_device_btn_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_sa_lock_device_btn_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_sa_lock_device_btn_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_sa_lock_device_btn_t)
+///
 pub fn xcb_xkb_sa_lock_device_btn_next (i:*mut xcb_xkb_sa_lock_device_btn_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_sa_lock_device_btn_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_sa_lock_device_btn_end (i:xcb_xkb_sa_lock_device_btn_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_sa_device_valuator_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_sa_device_valuator_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_sa_device_valuator_t)
+///
 pub fn xcb_xkb_sa_device_valuator_next (i:*mut xcb_xkb_sa_device_valuator_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_sa_device_valuator_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_sa_device_valuator_end (i:xcb_xkb_sa_device_valuator_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xkb_action_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xkb_action_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xkb_action_t)
+///
 pub fn xcb_xkb_action_next (i:*mut xcb_xkb_action_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xkb_action_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xkb_action_end (i:xcb_xkb_action_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_use_extension (c : *mut ffi::base::xcb_connection_t,
                                  wantedMajor :  u16,
                                  wantedMinor :  u16) -> xcb_xkb_use_extension_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xkb_use_extension_unchecked (c : *mut ffi::base::xcb_connection_t,
                                            wantedMajor :  u16,
                                            wantedMinor :  u16) -> xcb_xkb_use_extension_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xkb_use_extension_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xkb_use_extension_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xkb_use_extension_reply (c : *mut ffi::base::xcb_connection_t,
                                        cookie : xcb_xkb_use_extension_cookie_t,
                                        e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_use_extension_reply_t;
@@ -5248,17 +4651,9 @@ pub fn xcb_xkb_select_events_details_sizeof (_buffer :  *mut c_void,
                                       clear :        u16,
                                       selectAll :    u16) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_xkb_select_events_checked (c : *mut ffi::base::xcb_connection_t,
                                          deviceSpec :  xcb_xkb_device_spec_t,
                                          affectWhich :  u16,
@@ -5268,14 +4663,8 @@ pub fn xcb_xkb_select_events_checked (c : *mut ffi::base::xcb_connection_t,
                                          map :  u16,
                                          details : *mut ()) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_select_events (c : *mut ffi::base::xcb_connection_t,
                                  deviceSpec :  xcb_xkb_device_spec_t,
                                  affectWhich :  u16,
@@ -5285,17 +4674,9 @@ pub fn xcb_xkb_select_events (c : *mut ffi::base::xcb_connection_t,
                                  map :  u16,
                                  details : *mut ()) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_xkb_select_events_aux_checked (c : *mut ffi::base::xcb_connection_t,
                                              deviceSpec :  xcb_xkb_device_spec_t,
                                              affectWhich :  u16,
@@ -5305,14 +4686,8 @@ pub fn xcb_xkb_select_events_aux_checked (c : *mut ffi::base::xcb_connection_t,
                                              map :  u16,
                                              details : *mut xcb_xkb_select_events_details_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_select_events_aux (c : *mut ffi::base::xcb_connection_t,
                                      deviceSpec :  xcb_xkb_device_spec_t,
                                      affectWhich :  u16,
@@ -5322,17 +4697,9 @@ pub fn xcb_xkb_select_events_aux (c : *mut ffi::base::xcb_connection_t,
                                      map :  u16,
                                      details : *mut xcb_xkb_select_events_details_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_xkb_bell_checked (c : *mut ffi::base::xcb_connection_t,
                                 deviceSpec :  xcb_xkb_device_spec_t,
                                 bellClass :  xcb_xkb_bell_class_spec_t,
@@ -5345,14 +4712,8 @@ pub fn xcb_xkb_bell_checked (c : *mut ffi::base::xcb_connection_t,
                                 name :  ffi::xproto::xcb_atom_t,
                                 window :  ffi::xproto::xcb_window_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_bell (c : *mut ffi::base::xcb_connection_t,
                         deviceSpec :  xcb_xkb_device_spec_t,
                         bellClass :  xcb_xkb_bell_class_spec_t,
@@ -5365,60 +4726,35 @@ pub fn xcb_xkb_bell (c : *mut ffi::base::xcb_connection_t,
                         name :  ffi::xproto::xcb_atom_t,
                         window :  ffi::xproto::xcb_window_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_get_state (c : *mut ffi::base::xcb_connection_t,
                              deviceSpec :  xcb_xkb_device_spec_t) -> xcb_xkb_get_state_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xkb_get_state_unchecked (c : *mut ffi::base::xcb_connection_t,
                                        deviceSpec :  xcb_xkb_device_spec_t) -> xcb_xkb_get_state_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xkb_get_state_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xkb_get_state_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xkb_get_state_reply (c : *mut ffi::base::xcb_connection_t,
                                    cookie : xcb_xkb_get_state_cookie_t,
                                    e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_get_state_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_xkb_latch_lock_state_checked (c : *mut ffi::base::xcb_connection_t,
                                             deviceSpec :  xcb_xkb_device_spec_t,
                                             affectModLocks :  u8,
@@ -5429,14 +4765,8 @@ pub fn xcb_xkb_latch_lock_state_checked (c : *mut ffi::base::xcb_connection_t,
                                             latchGroup :  u8,
                                             groupLatch :  u16) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_latch_lock_state (c : *mut ffi::base::xcb_connection_t,
                                     deviceSpec :  xcb_xkb_device_spec_t,
                                     affectModLocks :  u8,
@@ -5447,60 +4777,35 @@ pub fn xcb_xkb_latch_lock_state (c : *mut ffi::base::xcb_connection_t,
                                     latchGroup :  u8,
                                     groupLatch :  u16) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_get_controls (c : *mut ffi::base::xcb_connection_t,
                                 deviceSpec :  xcb_xkb_device_spec_t) -> xcb_xkb_get_controls_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xkb_get_controls_unchecked (c : *mut ffi::base::xcb_connection_t,
                                           deviceSpec :  xcb_xkb_device_spec_t) -> xcb_xkb_get_controls_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xkb_get_controls_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xkb_get_controls_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xkb_get_controls_reply (c : *mut ffi::base::xcb_connection_t,
                                       cookie : xcb_xkb_get_controls_cookie_t,
                                       e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_get_controls_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_xkb_set_controls_checked (c : *mut ffi::base::xcb_connection_t,
                                         deviceSpec :  xcb_xkb_device_spec_t,
                                         affectInternalRealMods :  u8,
@@ -5533,14 +4838,8 @@ pub fn xcb_xkb_set_controls_checked (c : *mut ffi::base::xcb_connection_t,
                                         accessXTimeoutOptionsValues :  xcb_xkb_ax_option_t,
                                         perKeyRepeat : *mut u8) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_set_controls (c : *mut ffi::base::xcb_connection_t,
                                 deviceSpec :  xcb_xkb_device_spec_t,
                                 affectInternalRealMods :  u8,
@@ -5611,14 +4910,8 @@ pub fn xcb_xkb_get_map_map_sizeof (_buffer :  *mut c_void,
                             totalVModMapKeys :  u8,
                             present :      u16) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_get_map (c : *mut ffi::base::xcb_connection_t,
                            deviceSpec :  xcb_xkb_device_spec_t,
                            full :  u16,
@@ -5639,17 +4932,8 @@ pub fn xcb_xkb_get_map (c : *mut ffi::base::xcb_connection_t,
                            firstVModMapKey :  ffi::xproto::xcb_keycode_t,
                            nVModMapKeys :  u8) -> xcb_xkb_get_map_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xkb_get_map_unchecked (c : *mut ffi::base::xcb_connection_t,
                                      deviceSpec :  xcb_xkb_device_spec_t,
                                      full :  u16,
@@ -5671,28 +4955,23 @@ pub fn xcb_xkb_get_map_unchecked (c : *mut ffi::base::xcb_connection_t,
                                      nVModMapKeys :  u8) -> xcb_xkb_get_map_cookie_t;
 
 
-/**
- *
- * xcb_xkb_get_map_map : *mut xcb_xkb_get_map_map_t
- *
- *
- */
+///
+/// xcb_xkb_get_map_map : *mut xcb_xkb_get_map_map_t
+///
 pub fn xcb_xkb_get_map_map (R : *mut xcb_xkb_get_map_reply_t) -> *mut c_void;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xkb_get_map_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xkb_get_map_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xkb_get_map_reply (c : *mut ffi::base::xcb_connection_t,
                                  cookie : xcb_xkb_get_map_cookie_t,
                                  e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_get_map_reply_t;
@@ -5735,17 +5014,9 @@ pub fn xcb_xkb_set_map_values_sizeof (_buffer :  *mut c_void,
                                totalVModMapKeys :  u8,
                                present :      u16) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_xkb_set_map_checked (c : *mut ffi::base::xcb_connection_t,
                                    deviceSpec :  xcb_xkb_device_spec_t,
                                    present :  u16,
@@ -5775,14 +5046,8 @@ pub fn xcb_xkb_set_map_checked (c : *mut ffi::base::xcb_connection_t,
                                    virtualMods :  u16,
                                    values : *mut ()) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_set_map (c : *mut ffi::base::xcb_connection_t,
                            deviceSpec :  xcb_xkb_device_spec_t,
                            present :  u16,
@@ -5812,17 +5077,9 @@ pub fn xcb_xkb_set_map (c : *mut ffi::base::xcb_connection_t,
                            virtualMods :  u16,
                            values : *mut ()) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_xkb_set_map_aux_checked (c : *mut ffi::base::xcb_connection_t,
                                        deviceSpec :  xcb_xkb_device_spec_t,
                                        present :  u16,
@@ -5852,14 +5109,8 @@ pub fn xcb_xkb_set_map_aux_checked (c : *mut ffi::base::xcb_connection_t,
                                        virtualMods :  u16,
                                        values : *mut xcb_xkb_set_map_values_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_set_map_aux (c : *mut ffi::base::xcb_connection_t,
                                deviceSpec :  xcb_xkb_device_spec_t,
                                present :  u16,
@@ -5891,14 +5142,8 @@ pub fn xcb_xkb_set_map_aux (c : *mut ffi::base::xcb_connection_t,
 
 pub fn xcb_xkb_get_compat_map_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_get_compat_map (c : *mut ffi::base::xcb_connection_t,
                                   deviceSpec :  xcb_xkb_device_spec_t,
                                   groups :  u8,
@@ -5906,17 +5151,8 @@ pub fn xcb_xkb_get_compat_map (c : *mut ffi::base::xcb_connection_t,
                                   firstSI :  u16,
                                   nSI :  u16) -> xcb_xkb_get_compat_map_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xkb_get_compat_map_unchecked (c : *mut ffi::base::xcb_connection_t,
                                             deviceSpec :  xcb_xkb_device_spec_t,
                                             groups :  u8,
@@ -5939,37 +5175,27 @@ pub fn xcb_xkb_get_compat_map_group_rtrn_length (R : *mut xcb_xkb_get_compat_map
 
 pub fn xcb_xkb_get_compat_map_group_rtrn_iterator (R : *mut xcb_xkb_get_compat_map_reply_t) -> xcb_xkb_mod_def_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xkb_get_compat_map_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xkb_get_compat_map_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xkb_get_compat_map_reply (c : *mut ffi::base::xcb_connection_t,
                                         cookie : xcb_xkb_get_compat_map_cookie_t,
                                         e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_get_compat_map_reply_t;
 
 pub fn xcb_xkb_set_compat_map_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_xkb_set_compat_map_checked (c : *mut ffi::base::xcb_connection_t,
                                           deviceSpec :  xcb_xkb_device_spec_t,
                                           recomputeActions :  u8,
@@ -5980,14 +5206,8 @@ pub fn xcb_xkb_set_compat_map_checked (c : *mut ffi::base::xcb_connection_t,
                                           si : *mut u8,
                                           groupMaps : *mut xcb_xkb_mod_def_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_set_compat_map (c : *mut ffi::base::xcb_connection_t,
                                   deviceSpec :  xcb_xkb_device_spec_t,
                                   recomputeActions :  u8,
@@ -5998,74 +5218,42 @@ pub fn xcb_xkb_set_compat_map (c : *mut ffi::base::xcb_connection_t,
                                   si : *mut u8,
                                   groupMaps : *mut xcb_xkb_mod_def_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_get_indicator_state (c : *mut ffi::base::xcb_connection_t,
                                        deviceSpec :  xcb_xkb_device_spec_t) -> xcb_xkb_get_indicator_state_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xkb_get_indicator_state_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                  deviceSpec :  xcb_xkb_device_spec_t) -> xcb_xkb_get_indicator_state_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xkb_get_indicator_state_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xkb_get_indicator_state_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xkb_get_indicator_state_reply (c : *mut ffi::base::xcb_connection_t,
                                              cookie : xcb_xkb_get_indicator_state_cookie_t,
                                              e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_get_indicator_state_reply_t;
 
 pub fn xcb_xkb_get_indicator_map_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_get_indicator_map (c : *mut ffi::base::xcb_connection_t,
                                      deviceSpec :  xcb_xkb_device_spec_t,
                                      which :  u32) -> xcb_xkb_get_indicator_map_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xkb_get_indicator_map_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                deviceSpec :  xcb_xkb_device_spec_t,
                                                which :  u32) -> xcb_xkb_get_indicator_map_cookie_t;
@@ -6077,115 +5265,74 @@ pub fn xcb_xkb_get_indicator_map_maps_length (R : *mut xcb_xkb_get_indicator_map
 
 pub fn xcb_xkb_get_indicator_map_maps_iterator (R : *mut xcb_xkb_get_indicator_map_reply_t) -> xcb_xkb_indicator_map_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xkb_get_indicator_map_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xkb_get_indicator_map_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xkb_get_indicator_map_reply (c : *mut ffi::base::xcb_connection_t,
                                            cookie : xcb_xkb_get_indicator_map_cookie_t,
                                            e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_get_indicator_map_reply_t;
 
 pub fn xcb_xkb_set_indicator_map_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_xkb_set_indicator_map_checked (c : *mut ffi::base::xcb_connection_t,
                                              deviceSpec :  xcb_xkb_device_spec_t,
                                              which :  u32,
                                              maps : *mut xcb_xkb_indicator_map_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_set_indicator_map (c : *mut ffi::base::xcb_connection_t,
                                      deviceSpec :  xcb_xkb_device_spec_t,
                                      which :  u32,
                                      maps : *mut xcb_xkb_indicator_map_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_get_named_indicator (c : *mut ffi::base::xcb_connection_t,
                                        deviceSpec :  xcb_xkb_device_spec_t,
                                        ledClass :  xcb_xkb_led_class_spec_t,
                                        ledID :  xcb_xkb_id_spec_t,
                                        indicator :  ffi::xproto::xcb_atom_t) -> xcb_xkb_get_named_indicator_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xkb_get_named_indicator_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                  deviceSpec :  xcb_xkb_device_spec_t,
                                                  ledClass :  xcb_xkb_led_class_spec_t,
                                                  ledID :  xcb_xkb_id_spec_t,
                                                  indicator :  ffi::xproto::xcb_atom_t) -> xcb_xkb_get_named_indicator_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xkb_get_named_indicator_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xkb_get_named_indicator_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xkb_get_named_indicator_reply (c : *mut ffi::base::xcb_connection_t,
                                              cookie : xcb_xkb_get_named_indicator_cookie_t,
                                              e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_get_named_indicator_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_xkb_set_named_indicator_checked (c : *mut ffi::base::xcb_connection_t,
                                                deviceSpec :  xcb_xkb_device_spec_t,
                                                ledClass :  xcb_xkb_led_class_spec_t,
@@ -6203,14 +5350,8 @@ pub fn xcb_xkb_set_named_indicator_checked (c : *mut ffi::base::xcb_connection_t
                                                map_vmods :  u16,
                                                map_ctrls :  u32) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_set_named_indicator (c : *mut ffi::base::xcb_connection_t,
                                        deviceSpec :  xcb_xkb_device_spec_t,
                                        ledClass :  xcb_xkb_led_class_spec_t,
@@ -6260,56 +5401,36 @@ pub fn xcb_xkb_get_names_value_list_sizeof (_buffer :  *mut c_void,
                                      nRadioGroups :  u8,
                                      which :        u32) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_get_names (c : *mut ffi::base::xcb_connection_t,
                              deviceSpec :  xcb_xkb_device_spec_t,
                              which :  u32) -> xcb_xkb_get_names_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xkb_get_names_unchecked (c : *mut ffi::base::xcb_connection_t,
                                        deviceSpec :  xcb_xkb_device_spec_t,
                                        which :  u32) -> xcb_xkb_get_names_cookie_t;
 
 
-/**
- *
- * xcb_xkb_get_names_value_list : *mut xcb_xkb_get_names_value_list_t
- *
- *
- */
+///
+/// xcb_xkb_get_names_value_list : *mut xcb_xkb_get_names_value_list_t
+///
 pub fn xcb_xkb_get_names_value_list (R : *mut xcb_xkb_get_names_reply_t) -> *mut c_void;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xkb_get_names_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xkb_get_names_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xkb_get_names_reply (c : *mut ffi::base::xcb_connection_t,
                                    cookie : xcb_xkb_get_names_cookie_t,
                                    e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_get_names_reply_t;
@@ -6349,17 +5470,9 @@ pub fn xcb_xkb_set_names_values_sizeof (_buffer :  *mut c_void,
                                  nRadioGroups :  u8,
                                  which :        u32) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_xkb_set_names_checked (c : *mut ffi::base::xcb_connection_t,
                                      deviceSpec :  xcb_xkb_device_spec_t,
                                      virtualMods :  u16,
@@ -6377,14 +5490,8 @@ pub fn xcb_xkb_set_names_checked (c : *mut ffi::base::xcb_connection_t,
                                      totalKTLevelNames :  u16,
                                      values : *mut ()) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_set_names (c : *mut ffi::base::xcb_connection_t,
                              deviceSpec :  xcb_xkb_device_spec_t,
                              virtualMods :  u16,
@@ -6402,17 +5509,9 @@ pub fn xcb_xkb_set_names (c : *mut ffi::base::xcb_connection_t,
                              totalKTLevelNames :  u16,
                              values : *mut ()) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_xkb_set_names_aux_checked (c : *mut ffi::base::xcb_connection_t,
                                          deviceSpec :  xcb_xkb_device_spec_t,
                                          virtualMods :  u16,
@@ -6430,14 +5529,8 @@ pub fn xcb_xkb_set_names_aux_checked (c : *mut ffi::base::xcb_connection_t,
                                          totalKTLevelNames :  u16,
                                          values : *mut xcb_xkb_set_names_values_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_set_names_aux (c : *mut ffi::base::xcb_connection_t,
                                  deviceSpec :  xcb_xkb_device_spec_t,
                                  virtualMods :  u16,
@@ -6457,40 +5550,22 @@ pub fn xcb_xkb_set_names_aux (c : *mut ffi::base::xcb_connection_t,
 
 pub fn xcb_xkb_get_geometry_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_get_geometry (c : *mut ffi::base::xcb_connection_t,
                                 deviceSpec :  xcb_xkb_device_spec_t,
                                 name :  ffi::xproto::xcb_atom_t) -> xcb_xkb_get_geometry_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xkb_get_geometry_unchecked (c : *mut ffi::base::xcb_connection_t,
                                           deviceSpec :  xcb_xkb_device_spec_t,
                                           name :  ffi::xproto::xcb_atom_t) -> xcb_xkb_get_geometry_cookie_t;
 
 
-/**
- *
- * xcb_xkb_get_geometry_label_font : *mut xcb_xkb_counted_string_16_t
- *
- *
- */
+///
+/// xcb_xkb_get_geometry_label_font : *mut xcb_xkb_counted_string_16_t
+///
 pub fn xcb_xkb_get_geometry_label_font (R : *mut xcb_xkb_get_geometry_reply_t) -> *mut xcb_xkb_counted_string_16_t;
 
 
@@ -6525,37 +5600,27 @@ pub fn xcb_xkb_get_geometry_key_aliases_length (R : *mut xcb_xkb_get_geometry_re
 
 pub fn xcb_xkb_get_geometry_key_aliases_iterator (R : *mut xcb_xkb_get_geometry_reply_t) -> xcb_xkb_key_alias_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xkb_get_geometry_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xkb_get_geometry_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xkb_get_geometry_reply (c : *mut ffi::base::xcb_connection_t,
                                       cookie : xcb_xkb_get_geometry_cookie_t,
                                       e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_get_geometry_reply_t;
 
 pub fn xcb_xkb_set_geometry_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_xkb_set_geometry_checked (c : *mut ffi::base::xcb_connection_t,
                                         deviceSpec :  xcb_xkb_device_spec_t,
                                         nShapes :  u8,
@@ -6577,14 +5642,8 @@ pub fn xcb_xkb_set_geometry_checked (c : *mut ffi::base::xcb_connection_t,
                                         doodads : *mut xcb_xkb_doodad_t,
                                         keyAliases : *mut xcb_xkb_key_alias_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_set_geometry (c : *mut ffi::base::xcb_connection_t,
                                 deviceSpec :  xcb_xkb_device_spec_t,
                                 nShapes :  u8,
@@ -6606,14 +5665,8 @@ pub fn xcb_xkb_set_geometry (c : *mut ffi::base::xcb_connection_t,
                                 doodads : *mut xcb_xkb_doodad_t,
                                 keyAliases : *mut xcb_xkb_key_alias_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_per_client_flags (c : *mut ffi::base::xcb_connection_t,
                                     deviceSpec :  xcb_xkb_device_spec_t,
                                     change :  u32,
@@ -6622,17 +5675,8 @@ pub fn xcb_xkb_per_client_flags (c : *mut ffi::base::xcb_connection_t,
                                     autoCtrls :  u32,
                                     autoCtrlsValues :  u32) -> xcb_xkb_per_client_flags_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xkb_per_client_flags_unchecked (c : *mut ffi::base::xcb_connection_t,
                                               deviceSpec :  xcb_xkb_device_spec_t,
                                               change :  u32,
@@ -6641,20 +5685,18 @@ pub fn xcb_xkb_per_client_flags_unchecked (c : *mut ffi::base::xcb_connection_t,
                                               autoCtrls :  u32,
                                               autoCtrlsValues :  u32) -> xcb_xkb_per_client_flags_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xkb_per_client_flags_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xkb_per_client_flags_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xkb_per_client_flags_reply (c : *mut ffi::base::xcb_connection_t,
                                           cookie : xcb_xkb_per_client_flags_cookie_t,
                                           e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_per_client_flags_reply_t;
@@ -6673,14 +5715,8 @@ pub fn xcb_xkb_list_components_unserialize (_buffer :                           
 
 pub fn xcb_xkb_list_components_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_list_components (c : *mut ffi::base::xcb_connection_t,
                                    deviceSpec :  xcb_xkb_device_spec_t,
                                    maxNames :  u16,
@@ -6697,17 +5733,8 @@ pub fn xcb_xkb_list_components (c : *mut ffi::base::xcb_connection_t,
                                    geometrySpecLen :  u8,
                                    geometrySpec : *mut xcb_xkb_string8_t) -> xcb_xkb_list_components_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xkb_list_components_unchecked (c : *mut ffi::base::xcb_connection_t,
                                              deviceSpec :  xcb_xkb_device_spec_t,
                                              maxNames :  u16,
@@ -6754,20 +5781,18 @@ pub fn xcb_xkb_list_components_geometries_length (R : *mut xcb_xkb_list_componen
 
 pub fn xcb_xkb_list_components_geometries_iterator (R : *mut xcb_xkb_list_components_reply_t) -> xcb_xkb_listing_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xkb_list_components_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xkb_list_components_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xkb_list_components_reply (c : *mut ffi::base::xcb_connection_t,
                                          cookie : xcb_xkb_list_components_cookie_t,
                                          e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_list_components_reply_t;
@@ -6981,14 +6006,8 @@ pub fn xcb_xkb_get_kbd_by_name_replies_unpack (_buffer :                        
 pub fn xcb_xkb_get_kbd_by_name_replies_sizeof (_buffer :  *mut c_void,
                                         reported :     u16) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_get_kbd_by_name (c : *mut ffi::base::xcb_connection_t,
                                    deviceSpec :  xcb_xkb_device_spec_t,
                                    need :  u16,
@@ -7007,17 +6026,8 @@ pub fn xcb_xkb_get_kbd_by_name (c : *mut ffi::base::xcb_connection_t,
                                    geometrySpecLen :  u8,
                                    geometrySpec : *mut xcb_xkb_string8_t) -> xcb_xkb_get_kbd_by_name_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xkb_get_kbd_by_name_unchecked (c : *mut ffi::base::xcb_connection_t,
                                              deviceSpec :  xcb_xkb_device_spec_t,
                                              need :  u16,
@@ -7037,42 +6047,31 @@ pub fn xcb_xkb_get_kbd_by_name_unchecked (c : *mut ffi::base::xcb_connection_t,
                                              geometrySpec : *mut xcb_xkb_string8_t) -> xcb_xkb_get_kbd_by_name_cookie_t;
 
 
-/**
- *
- * xcb_xkb_get_kbd_by_name_replies : *mut xcb_xkb_get_kbd_by_name_replies_t
- *
- *
- */
+///
+/// xcb_xkb_get_kbd_by_name_replies : *mut xcb_xkb_get_kbd_by_name_replies_t
+///
 pub fn xcb_xkb_get_kbd_by_name_replies (R : *mut xcb_xkb_get_kbd_by_name_reply_t) -> *mut c_void;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xkb_get_kbd_by_name_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xkb_get_kbd_by_name_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xkb_get_kbd_by_name_reply (c : *mut ffi::base::xcb_connection_t,
                                          cookie : xcb_xkb_get_kbd_by_name_cookie_t,
                                          e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_get_kbd_by_name_reply_t;
 
 pub fn xcb_xkb_get_device_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_get_device_info (c : *mut ffi::base::xcb_connection_t,
                                    deviceSpec :  xcb_xkb_device_spec_t,
                                    wanted :  u16,
@@ -7082,17 +6081,8 @@ pub fn xcb_xkb_get_device_info (c : *mut ffi::base::xcb_connection_t,
                                    ledClass :  xcb_xkb_led_class_spec_t,
                                    ledID :  xcb_xkb_id_spec_t) -> xcb_xkb_get_device_info_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xkb_get_device_info_unchecked (c : *mut ffi::base::xcb_connection_t,
                                              deviceSpec :  xcb_xkb_device_spec_t,
                                              wanted :  u16,
@@ -7122,37 +6112,27 @@ pub fn xcb_xkb_get_device_info_leds_length (R : *mut xcb_xkb_get_device_info_rep
 
 pub fn xcb_xkb_get_device_info_leds_iterator (R : *mut xcb_xkb_get_device_info_reply_t) -> xcb_xkb_device_led_info_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xkb_get_device_info_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xkb_get_device_info_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xkb_get_device_info_reply (c : *mut ffi::base::xcb_connection_t,
                                          cookie : xcb_xkb_get_device_info_cookie_t,
                                          e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_get_device_info_reply_t;
 
 pub fn xcb_xkb_set_device_info_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_xkb_set_device_info_checked (c : *mut ffi::base::xcb_connection_t,
                                            deviceSpec :  xcb_xkb_device_spec_t,
                                            firstBtn :  u8,
@@ -7162,14 +6142,8 @@ pub fn xcb_xkb_set_device_info_checked (c : *mut ffi::base::xcb_connection_t,
                                            btnActions : *mut xcb_xkb_action_t,
                                            leds : *mut xcb_xkb_device_led_info_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_set_device_info (c : *mut ffi::base::xcb_connection_t,
                                    deviceSpec :  xcb_xkb_device_spec_t,
                                    firstBtn :  u8,
@@ -7181,14 +6155,8 @@ pub fn xcb_xkb_set_device_info (c : *mut ffi::base::xcb_connection_t,
 
 pub fn xcb_xkb_set_debugging_flags_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xkb_set_debugging_flags (c : *mut ffi::base::xcb_connection_t,
                                        msgLength :  u16,
                                        affectFlags :  u32,
@@ -7197,17 +6165,8 @@ pub fn xcb_xkb_set_debugging_flags (c : *mut ffi::base::xcb_connection_t,
                                        ctrls :  u32,
                                        message : *mut xcb_xkb_string8_t) -> xcb_xkb_set_debugging_flags_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xkb_set_debugging_flags_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                  msgLength :  u16,
                                                  affectFlags :  u32,
@@ -7216,20 +6175,18 @@ pub fn xcb_xkb_set_debugging_flags_unchecked (c : *mut ffi::base::xcb_connection
                                                  ctrls :  u32,
                                                  message : *mut xcb_xkb_string8_t) -> xcb_xkb_set_debugging_flags_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xkb_set_debugging_flags_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xkb_set_debugging_flags_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xkb_set_debugging_flags_reply (c : *mut ffi::base::xcb_connection_t,
                                              cookie : xcb_xkb_set_debugging_flags_cookie_t,
                                              e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xkb_set_debugging_flags_reply_t;

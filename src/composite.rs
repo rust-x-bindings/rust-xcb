@@ -1,7 +1,7 @@
-/*
- * This file generated automatically from composite.xml by r_client.py.
- * Edit at your peril.
- */
+//
+// This file generated automatically from composite.xml by r_client.py.
+// Edit at your peril.
+//
 
 //Make the compiler quiet
 #![allow(unused_imports)]
@@ -28,29 +28,29 @@ pub type xcb_composite_redirect_t = c_uint;//{
 //}
 pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_composite_query_version_cookie_t> }
 
-/** Opcode for xcb_composite_query_version. */
+/// Opcode for xcb_composite_query_version.
 pub const XCB_COMPOSITE_QUERY_VERSION : u8 = 0;
 pub struct QueryVersionReply { base:  base::Reply<xcb_composite_query_version_reply_t> }
 fn mk_reply_xcb_composite_query_version_reply_t(reply:*mut xcb_composite_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_composite_redirect_window. */
+/// Opcode for xcb_composite_redirect_window.
 pub const XCB_COMPOSITE_REDIRECT_WINDOW : u8 = 1;
-/** Opcode for xcb_composite_redirect_subwindows. */
+/// Opcode for xcb_composite_redirect_subwindows.
 pub const XCB_COMPOSITE_REDIRECT_SUBWINDOWS : u8 = 2;
-/** Opcode for xcb_composite_unredirect_window. */
+/// Opcode for xcb_composite_unredirect_window.
 pub const XCB_COMPOSITE_UNREDIRECT_WINDOW : u8 = 3;
-/** Opcode for xcb_composite_unredirect_subwindows. */
+/// Opcode for xcb_composite_unredirect_subwindows.
 pub const XCB_COMPOSITE_UNREDIRECT_SUBWINDOWS : u8 = 4;
-/** Opcode for xcb_composite_create_region_from_border_clip. */
+/// Opcode for xcb_composite_create_region_from_border_clip.
 pub const XCB_COMPOSITE_CREATE_REGION_FROM_BORDER_CLIP : u8 = 5;
-/** Opcode for xcb_composite_name_window_pixmap. */
+/// Opcode for xcb_composite_name_window_pixmap.
 pub const XCB_COMPOSITE_NAME_WINDOW_PIXMAP : u8 = 6;
 pub struct  GetOverlayWindowCookie<'s> { pub base : base::Cookie<'s, xcb_composite_get_overlay_window_cookie_t> }
 
-/** Opcode for xcb_composite_get_overlay_window. */
+/// Opcode for xcb_composite_get_overlay_window.
 pub const XCB_COMPOSITE_GET_OVERLAY_WINDOW : u8 = 7;
 pub struct GetOverlayWindowReply { base:  base::Reply<xcb_composite_get_overlay_window_reply_t> }
 fn mk_reply_xcb_composite_get_overlay_window_reply_t(reply:*mut xcb_composite_get_overlay_window_reply_t) -> GetOverlayWindowReply { GetOverlayWindowReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_composite_release_overlay_window. */
+/// Opcode for xcb_composite_release_overlay_window.
 pub const XCB_COMPOSITE_RELEASE_OVERLAY_WINDOW : u8 = 8;
 pub fn QueryVersion<'r> (c : &'r Connection,
                      client_major_version : u32,

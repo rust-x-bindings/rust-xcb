@@ -1,7 +1,7 @@
-/*
- * This file generated automatically from randr.xml by r_client.py.
- * Edit at your peril.
- */
+//
+// This file generated automatically from randr.xml by r_client.py.
+// Edit at your peril.
+//
 
 //Make the compiler quiet
 #![allow(unused_imports)]
@@ -27,13 +27,13 @@ pub type CrtcIterator = xcb_randr_crtc_iterator_t;
 
 pub type OutputIterator = xcb_randr_output_iterator_t;
 
-/** Opcode for xcb_randr_bad_output. */
+/// Opcode for xcb_randr_bad_output.
 pub const XCB_RANDR_BAD_OUTPUT : u8 = 0;
 pub struct BadOutputError { pub base : base::Error<xcb_randr_bad_output_error_t> }
-/** Opcode for xcb_randr_bad_crtc. */
+/// Opcode for xcb_randr_bad_crtc.
 pub const XCB_RANDR_BAD_CRTC : u8 = 1;
 pub struct BadCrtcError { pub base : base::Error<xcb_randr_bad_crtc_error_t> }
-/** Opcode for xcb_randr_bad_mode. */
+/// Opcode for xcb_randr_bad_mode.
 pub const XCB_RANDR_BAD_MODE : u8 = 2;
 pub struct BadModeError { pub base : base::Error<xcb_randr_bad_mode_error_t> }
 
@@ -53,7 +53,7 @@ pub type RefreshRatesIterator = xcb_randr_refresh_rates_iterator_t;
 
 pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_randr_query_version_cookie_t> }
 
-/** Opcode for xcb_randr_query_version. */
+/// Opcode for xcb_randr_query_version.
 pub const XCB_RANDR_QUERY_VERSION : u8 = 0;
 pub struct QueryVersionReply { base:  base::Reply<xcb_randr_query_version_reply_t> }
 fn mk_reply_xcb_randr_query_version_reply_t(reply:*mut xcb_randr_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
@@ -66,7 +66,7 @@ pub type xcb_randr_set_config_t = c_uint;//{
 //}
 pub struct  SetScreenConfigCookie<'s> { pub base : base::Cookie<'s, xcb_randr_set_screen_config_cookie_t> }
 
-/** Opcode for xcb_randr_set_screen_config. */
+/// Opcode for xcb_randr_set_screen_config.
 pub const XCB_RANDR_SET_SCREEN_CONFIG : u8 = 2;
 pub struct SetScreenConfigReply { base:  base::Reply<xcb_randr_set_screen_config_reply_t> }
 fn mk_reply_xcb_randr_set_screen_config_reply_t(reply:*mut xcb_randr_set_screen_config_reply_t) -> SetScreenConfigReply { SetScreenConfigReply { base : base::mk_reply(reply) } }
@@ -77,19 +77,19 @@ pub type xcb_randr_notify_mask_t = c_uint;//{
     pub const XCB_RANDR_NOTIFY_MASK_OUTPUT_CHANGE : xcb_randr_notify_mask_t = 4;
     pub const XCB_RANDR_NOTIFY_MASK_OUTPUT_PROPERTY : xcb_randr_notify_mask_t = 8;
 //}
-/** Opcode for xcb_randr_select_input. */
+/// Opcode for xcb_randr_select_input.
 pub const XCB_RANDR_SELECT_INPUT : u8 = 4;
 pub struct  GetScreenInfoCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_screen_info_cookie_t> }
 
-/** Opcode for xcb_randr_get_screen_info. */
+/// Opcode for xcb_randr_get_screen_info.
 pub const XCB_RANDR_GET_SCREEN_INFO : u8 = 5;
 pub struct  GetScreenSizeRangeCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_screen_size_range_cookie_t> }
 
-/** Opcode for xcb_randr_get_screen_size_range. */
+/// Opcode for xcb_randr_get_screen_size_range.
 pub const XCB_RANDR_GET_SCREEN_SIZE_RANGE : u8 = 6;
 pub struct GetScreenSizeRangeReply { base:  base::Reply<xcb_randr_get_screen_size_range_reply_t> }
 fn mk_reply_xcb_randr_get_screen_size_range_reply_t(reply:*mut xcb_randr_get_screen_size_range_reply_t) -> GetScreenSizeRangeReply { GetScreenSizeRangeReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_randr_set_screen_size. */
+/// Opcode for xcb_randr_set_screen_size.
 pub const XCB_RANDR_SET_SCREEN_SIZE : u8 = 7;
 
 pub type xcb_randr_mode_flag_t = c_uint;//{
@@ -114,7 +114,7 @@ pub type ModeInfoIterator = xcb_randr_mode_info_iterator_t;
 
 pub struct  GetScreenResourcesCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_screen_resources_cookie_t> }
 
-/** Opcode for xcb_randr_get_screen_resources. */
+/// Opcode for xcb_randr_get_screen_resources.
 pub const XCB_RANDR_GET_SCREEN_RESOURCES : u8 = 8;
 
 pub type xcb_randr_connection_t = c_uint;//{
@@ -124,91 +124,91 @@ pub type xcb_randr_connection_t = c_uint;//{
 //}
 pub struct  GetOutputInfoCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_output_info_cookie_t> }
 
-/** Opcode for xcb_randr_get_output_info. */
+/// Opcode for xcb_randr_get_output_info.
 pub const XCB_RANDR_GET_OUTPUT_INFO : u8 = 9;
 pub struct  ListOutputPropertiesCookie<'s> { pub base : base::Cookie<'s, xcb_randr_list_output_properties_cookie_t> }
 
-/** Opcode for xcb_randr_list_output_properties. */
+/// Opcode for xcb_randr_list_output_properties.
 pub const XCB_RANDR_LIST_OUTPUT_PROPERTIES : u8 = 10;
 pub struct  QueryOutputPropertyCookie<'s> { pub base : base::Cookie<'s, xcb_randr_query_output_property_cookie_t> }
 
-/** Opcode for xcb_randr_query_output_property. */
+/// Opcode for xcb_randr_query_output_property.
 pub const XCB_RANDR_QUERY_OUTPUT_PROPERTY : u8 = 11;
-/** Opcode for xcb_randr_configure_output_property. */
+/// Opcode for xcb_randr_configure_output_property.
 pub const XCB_RANDR_CONFIGURE_OUTPUT_PROPERTY : u8 = 12;
-/** Opcode for xcb_randr_change_output_property. */
+/// Opcode for xcb_randr_change_output_property.
 pub const XCB_RANDR_CHANGE_OUTPUT_PROPERTY : u8 = 13;
-/** Opcode for xcb_randr_delete_output_property. */
+/// Opcode for xcb_randr_delete_output_property.
 pub const XCB_RANDR_DELETE_OUTPUT_PROPERTY : u8 = 14;
 pub struct  GetOutputPropertyCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_output_property_cookie_t> }
 
-/** Opcode for xcb_randr_get_output_property. */
+/// Opcode for xcb_randr_get_output_property.
 pub const XCB_RANDR_GET_OUTPUT_PROPERTY : u8 = 15;
 pub struct  CreateModeCookie<'s> { pub base : base::Cookie<'s, xcb_randr_create_mode_cookie_t> }
 
-/** Opcode for xcb_randr_create_mode. */
+/// Opcode for xcb_randr_create_mode.
 pub const XCB_RANDR_CREATE_MODE : u8 = 16;
 pub struct CreateModeReply { base:  base::Reply<xcb_randr_create_mode_reply_t> }
 fn mk_reply_xcb_randr_create_mode_reply_t(reply:*mut xcb_randr_create_mode_reply_t) -> CreateModeReply { CreateModeReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_randr_destroy_mode. */
+/// Opcode for xcb_randr_destroy_mode.
 pub const XCB_RANDR_DESTROY_MODE : u8 = 17;
-/** Opcode for xcb_randr_add_output_mode. */
+/// Opcode for xcb_randr_add_output_mode.
 pub const XCB_RANDR_ADD_OUTPUT_MODE : u8 = 18;
-/** Opcode for xcb_randr_delete_output_mode. */
+/// Opcode for xcb_randr_delete_output_mode.
 pub const XCB_RANDR_DELETE_OUTPUT_MODE : u8 = 19;
 pub struct  GetCrtcInfoCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_crtc_info_cookie_t> }
 
-/** Opcode for xcb_randr_get_crtc_info. */
+/// Opcode for xcb_randr_get_crtc_info.
 pub const XCB_RANDR_GET_CRTC_INFO : u8 = 20;
 pub struct  SetCrtcConfigCookie<'s> { pub base : base::Cookie<'s, xcb_randr_set_crtc_config_cookie_t> }
 
-/** Opcode for xcb_randr_set_crtc_config. */
+/// Opcode for xcb_randr_set_crtc_config.
 pub const XCB_RANDR_SET_CRTC_CONFIG : u8 = 21;
 pub struct SetCrtcConfigReply { base:  base::Reply<xcb_randr_set_crtc_config_reply_t> }
 fn mk_reply_xcb_randr_set_crtc_config_reply_t(reply:*mut xcb_randr_set_crtc_config_reply_t) -> SetCrtcConfigReply { SetCrtcConfigReply { base : base::mk_reply(reply) } }
 pub struct  GetCrtcGammaSizeCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_crtc_gamma_size_cookie_t> }
 
-/** Opcode for xcb_randr_get_crtc_gamma_size. */
+/// Opcode for xcb_randr_get_crtc_gamma_size.
 pub const XCB_RANDR_GET_CRTC_GAMMA_SIZE : u8 = 22;
 pub struct GetCrtcGammaSizeReply { base:  base::Reply<xcb_randr_get_crtc_gamma_size_reply_t> }
 fn mk_reply_xcb_randr_get_crtc_gamma_size_reply_t(reply:*mut xcb_randr_get_crtc_gamma_size_reply_t) -> GetCrtcGammaSizeReply { GetCrtcGammaSizeReply { base : base::mk_reply(reply) } }
 pub struct  GetCrtcGammaCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_crtc_gamma_cookie_t> }
 
-/** Opcode for xcb_randr_get_crtc_gamma. */
+/// Opcode for xcb_randr_get_crtc_gamma.
 pub const XCB_RANDR_GET_CRTC_GAMMA : u8 = 23;
-/** Opcode for xcb_randr_set_crtc_gamma. */
+/// Opcode for xcb_randr_set_crtc_gamma.
 pub const XCB_RANDR_SET_CRTC_GAMMA : u8 = 24;
 pub struct  GetScreenResourcesCurrentCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_screen_resources_current_cookie_t> }
 
-/** Opcode for xcb_randr_get_screen_resources_current. */
+/// Opcode for xcb_randr_get_screen_resources_current.
 pub const XCB_RANDR_GET_SCREEN_RESOURCES_CURRENT : u8 = 25;
-/** Opcode for xcb_randr_set_crtc_transform. */
+/// Opcode for xcb_randr_set_crtc_transform.
 pub const XCB_RANDR_SET_CRTC_TRANSFORM : u8 = 26;
 pub struct  GetCrtcTransformCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_crtc_transform_cookie_t> }
 
-/** Opcode for xcb_randr_get_crtc_transform. */
+/// Opcode for xcb_randr_get_crtc_transform.
 pub const XCB_RANDR_GET_CRTC_TRANSFORM : u8 = 27;
 pub struct  GetPanningCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_panning_cookie_t> }
 
-/** Opcode for xcb_randr_get_panning. */
+/// Opcode for xcb_randr_get_panning.
 pub const XCB_RANDR_GET_PANNING : u8 = 28;
 pub struct GetPanningReply { base:  base::Reply<xcb_randr_get_panning_reply_t> }
 fn mk_reply_xcb_randr_get_panning_reply_t(reply:*mut xcb_randr_get_panning_reply_t) -> GetPanningReply { GetPanningReply { base : base::mk_reply(reply) } }
 pub struct  SetPanningCookie<'s> { pub base : base::Cookie<'s, xcb_randr_set_panning_cookie_t> }
 
-/** Opcode for xcb_randr_set_panning. */
+/// Opcode for xcb_randr_set_panning.
 pub const XCB_RANDR_SET_PANNING : u8 = 29;
 pub struct SetPanningReply { base:  base::Reply<xcb_randr_set_panning_reply_t> }
 fn mk_reply_xcb_randr_set_panning_reply_t(reply:*mut xcb_randr_set_panning_reply_t) -> SetPanningReply { SetPanningReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_randr_set_output_primary. */
+/// Opcode for xcb_randr_set_output_primary.
 pub const XCB_RANDR_SET_OUTPUT_PRIMARY : u8 = 30;
 pub struct  GetOutputPrimaryCookie<'s> { pub base : base::Cookie<'s, xcb_randr_get_output_primary_cookie_t> }
 
-/** Opcode for xcb_randr_get_output_primary. */
+/// Opcode for xcb_randr_get_output_primary.
 pub const XCB_RANDR_GET_OUTPUT_PRIMARY : u8 = 31;
 pub struct GetOutputPrimaryReply { base:  base::Reply<xcb_randr_get_output_primary_reply_t> }
 fn mk_reply_xcb_randr_get_output_primary_reply_t(reply:*mut xcb_randr_get_output_primary_reply_t) -> GetOutputPrimaryReply { GetOutputPrimaryReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_randr_screen_change_notify. */
+/// Opcode for xcb_randr_screen_change_notify.
 pub const XCB_RANDR_SCREEN_CHANGE_NOTIFY : u8 = 0;
 pub struct ScreenChangeNotifyEvent {pub base : base::Event<xcb_randr_screen_change_notify_event_t>}
 
@@ -227,7 +227,7 @@ pub type OutputPropertyIterator = xcb_randr_output_property_iterator_t;
 
 pub type NotifyDataIterator = xcb_randr_notify_data_iterator_t;
 
-/** Opcode for xcb_randr_notify. */
+/// Opcode for xcb_randr_notify.
 pub const XCB_RANDR_NOTIFY : u8 = 1;
 pub struct NotifyEvent {pub base : base::Event<xcb_randr_notify_event_t>}
 

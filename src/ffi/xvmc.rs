@@ -1,7 +1,7 @@
-/*
- * This file generated automatically from xvmc.xml by r_client.py.
- * Edit at your peril.
- */
+//
+// This file generated automatically from xvmc.xml by r_client.py.
+// Edit at your peril.
+//
 
 //Make the compiler quiet
 #![allow(unused_imports)]
@@ -17,9 +17,6 @@ pub const XVMC_MAJOR_VERSION : c_uint = 1;
 pub const XVMC_MINOR_VERSION : c_uint = 1;
 
 pub type xcb_xvmc_context_t = u32;
-/**
- * @brief xcb_xvmc_context_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xvmc_context_iterator_t {
     pub data : *mut xcb_xvmc_context_t,
@@ -29,9 +26,6 @@ pub struct xcb_xvmc_context_iterator_t {
 
 
 pub type xcb_xvmc_surface_t = u32;
-/**
- * @brief xcb_xvmc_surface_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xvmc_surface_iterator_t {
     pub data : *mut xcb_xvmc_surface_t,
@@ -41,9 +35,6 @@ pub struct xcb_xvmc_surface_iterator_t {
 
 
 pub type xcb_xvmc_subpicture_t = u32;
-/**
- * @brief xcb_xvmc_subpicture_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xvmc_subpicture_iterator_t {
     pub data : *mut xcb_xvmc_subpicture_t,
@@ -69,9 +60,6 @@ impl Copy for xcb_xvmc_surface_info_t {}
 impl Clone for xcb_xvmc_surface_info_t {
     fn clone(&self) -> xcb_xvmc_surface_info_t { *self }
 }
-/**
- * @brief xcb_xvmc_surface_info_iterator_t
- **/
 #[repr(C)]
 pub struct xcb_xvmc_surface_info_iterator_t {
     pub data : *mut xcb_xvmc_surface_info_t,
@@ -349,163 +337,111 @@ impl Clone for xcb_xvmc_list_subpicture_types_reply_t {
 #[link(name="xcb-xvmc")]
 extern "C" {
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xvmc_context_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xvmc_context_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xvmc_context_t)
+///
 pub fn xcb_xvmc_context_next (i:*mut xcb_xvmc_context_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xvmc_context_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xvmc_context_end (i:xcb_xvmc_context_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xvmc_surface_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xvmc_surface_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xvmc_surface_t)
+///
 pub fn xcb_xvmc_surface_next (i:*mut xcb_xvmc_surface_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xvmc_surface_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xvmc_surface_end (i:xcb_xvmc_surface_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xvmc_subpicture_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xvmc_subpicture_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xvmc_subpicture_t)
+///
 pub fn xcb_xvmc_subpicture_next (i:*mut xcb_xvmc_subpicture_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xvmc_subpicture_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xvmc_subpicture_end (i:xcb_xvmc_subpicture_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Get the next element of the iterator
- * @param i Pointer to a xcb_xvmc_surface_info_iterator_t
- *
- * Get the next element in the iterator. The member rem is
- * decreased by one. The member data points to the next
- * element. The member index is increased by sizeof(xcb_xvmc_surface_info_t)
- *
- *
- */
+///
+/// Get the next element of the iterator
+///
+/// Get the next element in the iterator. The member rem is
+/// decreased by one. The member data points to the next
+/// element. The member index is increased by sizeof(xcb_xvmc_surface_info_t)
+///
 pub fn xcb_xvmc_surface_info_next (i:*mut xcb_xvmc_surface_info_iterator_t) -> c_void;
 
-/**
- * Return the iterator pointing to the last element
- * @param i An xcb_xvmc_surface_info_iterator_t
- * @return  The iterator pointing to the last element
- *
- * Set the current element in the iterator to the last element.
- * The member rem is set to 0. The member data points to the
- * last element.
- */
+///
+/// Return the iterator pointing to the last element
+///
+/// Set the current element in the iterator to the last element.
+/// The member rem is set to 0. The member data points to the
+/// last element.
+///
 pub fn xcb_xvmc_surface_info_end (i:xcb_xvmc_surface_info_iterator_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xvmc_query_version (c : *mut ffi::base::xcb_connection_t) -> xcb_xvmc_query_version_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xvmc_query_version_unchecked (c : *mut ffi::base::xcb_connection_t) -> xcb_xvmc_query_version_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xvmc_query_version_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xvmc_query_version_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xvmc_query_version_reply (c : *mut ffi::base::xcb_connection_t,
                                         cookie : xcb_xvmc_query_version_cookie_t,
                                         e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xvmc_query_version_reply_t;
 
 pub fn xcb_xvmc_list_surface_types_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xvmc_list_surface_types (c : *mut ffi::base::xcb_connection_t,
                                        port_id :  ffi::xv::xcb_xv_port_t) -> xcb_xvmc_list_surface_types_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xvmc_list_surface_types_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                  port_id :  ffi::xv::xcb_xv_port_t) -> xcb_xvmc_list_surface_types_cookie_t;
 
@@ -516,34 +452,26 @@ pub fn xcb_xvmc_list_surface_types_surfaces_length (R : *mut xcb_xvmc_list_surfa
 
 pub fn xcb_xvmc_list_surface_types_surfaces_iterator (R : *mut xcb_xvmc_list_surface_types_reply_t) -> xcb_xvmc_surface_info_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xvmc_list_surface_types_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xvmc_list_surface_types_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xvmc_list_surface_types_reply (c : *mut ffi::base::xcb_connection_t,
                                              cookie : xcb_xvmc_list_surface_types_cookie_t,
                                              e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xvmc_list_surface_types_reply_t;
 
 pub fn xcb_xvmc_create_context_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xvmc_create_context (c : *mut ffi::base::xcb_connection_t,
                                    context_id :  xcb_xvmc_context_t,
                                    port_id :  ffi::xv::xcb_xv_port_t,
@@ -552,17 +480,8 @@ pub fn xcb_xvmc_create_context (c : *mut ffi::base::xcb_connection_t,
                                    height :  u16,
                                    flags :  u32) -> xcb_xvmc_create_context_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xvmc_create_context_unchecked (c : *mut ffi::base::xcb_connection_t,
                                              context_id :  xcb_xvmc_context_t,
                                              port_id :  ffi::xv::xcb_xv_port_t,
@@ -579,74 +498,43 @@ pub fn xcb_xvmc_create_context_priv_data_length (R : *mut xcb_xvmc_create_contex
 
 pub fn xcb_xvmc_create_context_priv_data_end (R : *mut xcb_xvmc_create_context_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xvmc_create_context_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xvmc_create_context_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xvmc_create_context_reply (c : *mut ffi::base::xcb_connection_t,
                                          cookie : xcb_xvmc_create_context_cookie_t,
                                          e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xvmc_create_context_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_xvmc_destroy_context_checked (c : *mut ffi::base::xcb_connection_t,
                                             context_id :  xcb_xvmc_context_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xvmc_destroy_context (c : *mut ffi::base::xcb_connection_t,
                                     context_id :  xcb_xvmc_context_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_xvmc_create_surface_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xvmc_create_surface (c : *mut ffi::base::xcb_connection_t,
                                    surface_id :  xcb_xvmc_surface_t,
                                    context_id :  xcb_xvmc_context_t) -> xcb_xvmc_create_surface_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xvmc_create_surface_unchecked (c : *mut ffi::base::xcb_connection_t,
                                              surface_id :  xcb_xvmc_surface_t,
                                              context_id :  xcb_xvmc_context_t) -> xcb_xvmc_create_surface_cookie_t;
@@ -659,59 +547,37 @@ pub fn xcb_xvmc_create_surface_priv_data_length (R : *mut xcb_xvmc_create_surfac
 
 pub fn xcb_xvmc_create_surface_priv_data_end (R : *mut xcb_xvmc_create_surface_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xvmc_create_surface_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xvmc_create_surface_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xvmc_create_surface_reply (c : *mut ffi::base::xcb_connection_t,
                                          cookie : xcb_xvmc_create_surface_cookie_t,
                                          e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xvmc_create_surface_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_xvmc_destroy_surface_checked (c : *mut ffi::base::xcb_connection_t,
                                             surface_id :  xcb_xvmc_surface_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xvmc_destroy_surface (c : *mut ffi::base::xcb_connection_t,
                                     surface_id :  xcb_xvmc_surface_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_xvmc_create_subpicture_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xvmc_create_subpicture (c : *mut ffi::base::xcb_connection_t,
                                       subpicture_id :  xcb_xvmc_subpicture_t,
                                       context :  xcb_xvmc_context_t,
@@ -719,17 +585,8 @@ pub fn xcb_xvmc_create_subpicture (c : *mut ffi::base::xcb_connection_t,
                                       width :  u16,
                                       height :  u16) -> xcb_xvmc_create_subpicture_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xvmc_create_subpicture_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                 subpicture_id :  xcb_xvmc_subpicture_t,
                                                 context :  xcb_xvmc_context_t,
@@ -745,74 +602,43 @@ pub fn xcb_xvmc_create_subpicture_priv_data_length (R : *mut xcb_xvmc_create_sub
 
 pub fn xcb_xvmc_create_subpicture_priv_data_end (R : *mut xcb_xvmc_create_subpicture_reply_t) -> ffi::base::xcb_generic_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xvmc_create_subpicture_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xvmc_create_subpicture_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xvmc_create_subpicture_reply (c : *mut ffi::base::xcb_connection_t,
                                             cookie : xcb_xvmc_create_subpicture_cookie_t,
                                             e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xvmc_create_subpicture_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_xvmc_destroy_subpicture_checked (c : *mut ffi::base::xcb_connection_t,
                                                subpicture_id :  xcb_xvmc_subpicture_t) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xvmc_destroy_subpicture (c : *mut ffi::base::xcb_connection_t,
                                        subpicture_id :  xcb_xvmc_subpicture_t) -> ffi::base::xcb_void_cookie_t;
 
 pub fn xcb_xvmc_list_subpicture_types_sizeof (_buffer :  *mut c_void) -> c_int;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_xvmc_list_subpicture_types (c : *mut ffi::base::xcb_connection_t,
                                           port_id :  ffi::xv::xcb_xv_port_t,
                                           surface_id :  xcb_xvmc_surface_t) -> xcb_xvmc_list_subpicture_types_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_xvmc_list_subpicture_types_unchecked (c : *mut ffi::base::xcb_connection_t,
                                                     port_id :  ffi::xv::xcb_xv_port_t,
                                                     surface_id :  xcb_xvmc_surface_t) -> xcb_xvmc_list_subpicture_types_cookie_t;
@@ -824,20 +650,18 @@ pub fn xcb_xvmc_list_subpicture_types_types_length (R : *mut xcb_xvmc_list_subpi
 
 pub fn xcb_xvmc_list_subpicture_types_types_iterator (R : *mut xcb_xvmc_list_subpicture_types_reply_t) -> ffi::xv::xcb_xv_image_format_info_iterator_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_xvmc_list_subpicture_types_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_xvmc_list_subpicture_types_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_xvmc_list_subpicture_types_reply (c : *mut ffi::base::xcb_connection_t,
                                                 cookie : xcb_xvmc_list_subpicture_types_cookie_t,
                                                 e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_xvmc_list_subpicture_types_reply_t;

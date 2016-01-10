@@ -254,6 +254,18 @@ def _rty(list):
     return module.lower() + t
 
 
+def _doc(docstr, indent=''):
+    res = ''
+    for line in docstr.split('\n'):
+        line = line.rstrip()
+        if len(line) == 0:
+            res = res + indent + '///\n'
+        else:
+            res = res + indent + '/// ' + line.rstrip() + '\n'
+    if (len(res) > 0):
+        res = res[:-1]
+    return res
+
 def c_open(self):
     '''
     Exported function that handles module open.
@@ -271,10 +283,10 @@ def c_open(self):
     _h_setlevel(0)
     _r_setlevel(0)
 
-    _hr('/*')
-    _hr(' * This file generated automatically from %s by r_client.py.', _ns.file)
-    _hr(' * Edit at your peril.')
-    _hr(' */')
+    _hr('//')
+    _hr('// This file generated automatically from %s by r_client.py.', _ns.file)
+    _hr('// Edit at your peril.')
+    _hr('//')
     _hr('')
 
     _hr('//Make the compiler quiet')
@@ -373,10 +385,9 @@ def c_enum(self, name):
     for (enam, eval) in self.values:
         count = count - 1
         val = int(eval) if eval != '' else val + 1
-        doc = ''
         if hasattr(self, "doc") and self.doc and enam in self.doc.fields:
-            doc = '\n/** %s */\n    ' % self.doc.fields[enam]
-        _r('    %spub const %s : %s = %s;', doc, _n(name + (enam,)).upper(), tname, val)
+            _r(_doc(self.doc.fields[enam], '    '))
+        _r('    pub const %s : %s = %s;', _n(name + (enam,)).upper(), tname, val)
 
     _r('//}')
 
@@ -856,9 +867,6 @@ def _c_iterator(self, name):
 
     _h_setlevel(0)
     _r_setlevel(0)
-    _h('/**')
-    _h(' * @brief %s', self.c_iterator_type)
-    _h(' **/')
     _h('#[repr(C)]')
     _h('pub struct %s {', self.c_iterator_type)
     _h('    pub data : *mut %s,', self.c_type)
@@ -871,28 +879,23 @@ def _c_iterator(self, name):
     _h_setlevel(1)
     _r_setlevel(1)
     _h('')
-    _h('/**')
-    _h(' * Get the next element of the iterator')
-    _h(' * @param i Pointer to a %s', self.c_iterator_type)
-    _h(' *')
-    _h(' * Get the next element in the iterator. The member rem is')
-    _h(' * decreased by one. The member data points to the next')
-    _h(' * element. The member index is increased by sizeof(%s)', self.c_type)
-    _h(' *')
-    _h(' *')
-    _h(' */');
+    _h('///')
+    _h('/// Get the next element of the iterator')
+    _h('///')
+    _h('/// Get the next element in the iterator. The member rem is')
+    _h('/// decreased by one. The member data points to the next')
+    _h('/// element. The member index is increased by sizeof(%s)', self.c_type)
+    _h('///')
     _h('pub fn %s (i:*mut %s) -> c_void;', self.c_next_name, self.c_iterator_type)
 
     _h('')
-    _h('/**')
-    _h(' * Return the iterator pointing to the last element')
-    _h(' * @param i An %s', self.c_iterator_type)
-    _h(' * @return  The iterator pointing to the last element')
-    _h(' *')
-    _h(' * Set the current element in the iterator to the last element.')
-    _h(' * The member rem is set to 0. The member data points to the')
-    _h(' * last element.')
-    _h(' */')
+    _h('///')
+    _h('/// Return the iterator pointing to the last element')
+    _h('///')
+    _h('/// Set the current element in the iterator to the last element.')
+    _h('/// The member rem is set to 0. The member data points to the')
+    _h('/// last element.')
+    _h('///')
     _h('pub fn %s (i:%s) -> ffi::base::xcb_generic_iterator_t;', self.c_end_name, self.c_iterator_type)
 
     _r('')
@@ -936,22 +939,16 @@ def _c_accessors_field(self, field):
 
     if field.type.is_simple:
         _h('')
-        _h('/**')
-        _h(' *')
-        _h(' * %s : %s', field.c_accessor_name, field.c_field_type)
-        _h(' *')
-        _h(' *')
-        _h(' **/')
+        _h('///')
+        _h('/// %s : %s', field.c_accessor_name, field.c_field_type)
+        _h('///')
         _h('pub fn %s (R : *mut %s) -> %s;', field.c_accessor_name, c_type, ftype)
     else:
         _h('')
         _h('')
-        _h('/**')
-        _h(' *')
-        _h(' * %s : *mut %s', field.c_accessor_name, field.c_field_type)
-        _h(' *')
-        _h(' *')
-        _h(' */')
+        _h('///')
+        _h('/// %s : *mut %s', field.c_accessor_name, field.c_field_type)
+        _h('///')
         if field.type.is_switch and switch_obj is None:
             return_type = '*mut c_void'
         else:
@@ -1048,7 +1045,7 @@ def _c_accessors_list(self, field):
         if switch_obj is not None:
             _h('pub fn %s (R : %s,', field.c_iterator_name, R_obj.c_type)
             spacing = ' '*(len(field.c_iterator_name)+2)
-            _h('%sS : *mut %s /**< */) -> %s;', spacing, S_obj.c_type, field.c_iterator_type)
+            _h('%sS : *mut %s) -> %s;', spacing, S_obj.c_type, field.c_iterator_type)
         else:
             _h('pub fn %s (R : *mut %s) -> %s;', field.c_iterator_name, c_type, field.c_iterator_type)
 
@@ -1360,14 +1357,14 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
     _h_setlevel(1)
     _r_setlevel(1)
     _h('')
-    _h('/**')
+    docstr = ''
     if hasattr(self, "doc") and self.doc:
         if self.doc.brief:
-            _h(' * ' + self.doc.brief)
-    _h(' *')
-    _h(' * @param c The connection')
+            docstr += self.doc.brief + '\n\n'
     param_names = [f.c_field_name for f in param_fields]
     if hasattr(self, "doc") and self.doc:
+        if len(param_fields):
+            docstr += '# Arguments\n'
         for field in param_fields:
             # XXX: hard-coded until we fix xproto.xml
             base_func_name = self.c_request_name if not aux else self.c_aux_name
@@ -1384,39 +1381,41 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
                 tname = _t(key)
                 if namecount[tname] > 1:
                     tname = _t(key + ('enum',))
-                _h(' * @param %s A bitmask of #%s values.' % (field.c_field_name, tname))
+
+                #docstr += ' * `%s` A bitmask of #%s values.\n' % (field.c_field_name, tname)
 
             if self.doc and field.field_name in self.doc.fields:
                 desc = self.doc.fields[field.field_name]
-                for name in param_names:
-                    desc = desc.replace('`%s`' % name, '\\a %s' % (name))
                 desc = desc.split("\n")
-                desc = [line if line != '' else '\\n' for line in desc]
-                _h(' * @param %s %s' % (field.c_field_name, "\n * ".join(desc)))
+                desc = "\n      ".join(desc)
+                docstr += ' * `%s` %s' % (field.c_field_name, desc)
+                docstr += '\n'
             # If there is no documentation yet, we simply don't generate an
             # @param tag. Doxygen will then warn about missing documentation.
+        docstr += '\n'
 
-    _h(' * @return A cookie')
-    _h(' *')
     if hasattr(self, "doc") and self.doc:
         if self.doc.description:
             desc = self.doc.description
-            for name in param_names:
-                desc = desc.replace('`%s`' % name, '\\a %s' % (name))
-            desc = desc.split("\n")
-            _h(' * ' + "\n * ".join(desc))
+            #for name in param_names:
+            #    desc = desc.replace('`%s`' % name, '\\a %s' % (name))
+            #desc = desc.split("\n")
+            #_h(' * ' + "\n * ".join(desc))
+            docstr += desc + '\n'
     else:
-        _h(' * Delivers a request to the X server.')
-    _h(' *')
+        docstr += 'Delivers a request to the X server.\n'
+
     if checked:
-        _h(' * This form can be used only if the request will not cause')
-        _h(' * a reply to be generated. Any returned error will be')
-        _h(' * saved for handling by xcb_request_check().')
+        docstr += 'This form can be used only if the request will not cause\n'
+        docstr += 'a reply to be generated. Any returned error will be'
+        docstr += 'saved for handling by xcb_request_check().'
     if unchecked:
-        _h(' * This form can be used only if the request will cause')
-        _h(' * a reply to be generated. Any returned error will be')
-        _h(' * placed in the event queue.')
-    _h(' */')
+        docstr += 'This form can be used only if the request will cause'
+        docstr += 'a reply to be generated. Any returned error will be'
+        docstr += 'placed in the event queue.'
+
+    if len(docstr):
+        _h(_doc(docstr))
     count = len(param_fields)
     comma = ',' if count else (') -> %s;' % (cookie_type,))
     _h('pub fn %s (c : *mut ffi::base::xcb_connection_t%s', func_name, comma)
@@ -1561,20 +1560,18 @@ def _c_reply(self, name):
     spacing = ' ' * (len(self.c_reply_name))
 
     _h('')
-    _h('/**')
-    _h(' * Return the reply')
-    _h(' * @param c      The xcb_connection_t')
-    _h(' * @param cookie The cookie')
-    _h(' * @param e      The xcb_generic_error_t supplied')
-    _h(' *')
-    _h(' * Returns the reply of the request asked by')
-    _h(' *')
-    _h(' * The parameter @p e supplied to this function must be NULL if')
-    _h(' * %s(). is used.', self.c_unchecked_name)
-    _h(' * Otherwise, it stores the error if any.')
-    _h(' *')
-    _h(' * The returned value must be freed by the caller using free().')
-    _h(' */')
+    _h('///')
+    _h('/// Return the reply')
+    _h('/// `c`      The xcb_connection_t')
+    _h('/// `cookie` The cookie')
+    _h('/// `e`      The xcb_generic_error_t supplied')
+    _h('///')
+    _h('/// The parameter @p e supplied to this function must be NULL if')
+    _h('/// %s(). is used.', self.c_unchecked_name)
+    _h('/// Otherwise, it stores the error if any.')
+    _h('///')
+    _h('/// The returned value must be freed by the caller using free().')
+    _h('///')
     _h('pub fn %s (c : *mut ffi::base::xcb_connection_t,', self.c_reply_name)
     _h('          %s  cookie : %s,', spacing, self.c_cookie_type)
     _h('          %s  e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut %s;', spacing, self.c_reply_type)
@@ -1588,7 +1585,7 @@ def _c_opcode(name, opcode):
     _h_setlevel(0)
     _r_setlevel(0)
     _h('')
-    _r('/** Opcode for %s. */', _n(name))
+    _r('/// Opcode for %s.', _n(name))
     _r('pub const %s : u8 = %s;', _n(name).upper(), opcode)
 
 def _c_cookie(self, name):

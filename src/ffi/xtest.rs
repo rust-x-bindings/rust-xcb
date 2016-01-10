@@ -1,7 +1,7 @@
-/*
- * This file generated automatically from xtest.xml by r_client.py.
- * Edit at your peril.
- */
+//
+// This file generated automatically from xtest.xml by r_client.py.
+// Edit at your peril.
+//
 
 //Make the compiler quiet
 #![allow(unused_imports)]
@@ -124,107 +124,65 @@ impl Clone for xcb_test_grab_control_request_t {
 #[link(name="xcb-xtest")]
 extern "C" {
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_test_get_version (c : *mut ffi::base::xcb_connection_t,
                                 major_version :  u8,
                                 minor_version :  u16) -> xcb_test_get_version_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_test_get_version_unchecked (c : *mut ffi::base::xcb_connection_t,
                                           major_version :  u8,
                                           minor_version :  u16) -> xcb_test_get_version_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_test_get_version_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_test_get_version_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_test_get_version_reply (c : *mut ffi::base::xcb_connection_t,
                                       cookie : xcb_test_get_version_cookie_t,
                                       e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_test_get_version_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_test_compare_cursor (c : *mut ffi::base::xcb_connection_t,
                                    window :  ffi::xproto::xcb_window_t,
                                    cursor :  ffi::xproto::xcb_cursor_t) -> xcb_test_compare_cursor_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will cause
- * a reply to be generated. Any returned error will be
- * placed in the event queue.
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will causea reply to be generated. Any returned error will beplaced in the event queue.
 pub fn xcb_test_compare_cursor_unchecked (c : *mut ffi::base::xcb_connection_t,
                                              window :  ffi::xproto::xcb_window_t,
                                              cursor :  ffi::xproto::xcb_cursor_t) -> xcb_test_compare_cursor_cookie_t;
 
-/**
- * Return the reply
- * @param c      The xcb_connection_t
- * @param cookie The cookie
- * @param e      The xcb_generic_error_t supplied
- *
- * Returns the reply of the request asked by
- *
- * The parameter @p e supplied to this function must be NULL if
- * xcb_test_compare_cursor_unchecked(). is used.
- * Otherwise, it stores the error if any.
- *
- * The returned value must be freed by the caller using free().
- */
+///
+/// Return the reply
+/// `c`      The xcb_connection_t
+/// `cookie` The cookie
+/// `e`      The xcb_generic_error_t supplied
+///
+/// The parameter @p e supplied to this function must be NULL if
+/// xcb_test_compare_cursor_unchecked(). is used.
+/// Otherwise, it stores the error if any.
+///
+/// The returned value must be freed by the caller using free().
+///
 pub fn xcb_test_compare_cursor_reply (c : *mut ffi::base::xcb_connection_t,
                                          cookie : xcb_test_compare_cursor_cookie_t,
                                          e : *mut *mut ffi::base::xcb_generic_error_t) -> *mut xcb_test_compare_cursor_reply_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_test_fake_input_checked (c : *mut ffi::base::xcb_connection_t,
                                        type_ :  u8,
                                        detail :  u8,
@@ -234,14 +192,8 @@ pub fn xcb_test_fake_input_checked (c : *mut ffi::base::xcb_connection_t,
                                        rootY :  i16,
                                        deviceid :  u8) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_test_fake_input (c : *mut ffi::base::xcb_connection_t,
                                type_ :  u8,
                                detail :  u8,
@@ -251,28 +203,14 @@ pub fn xcb_test_fake_input (c : *mut ffi::base::xcb_connection_t,
                                rootY :  i16,
                                deviceid :  u8) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- * This form can be used only if the request will not cause
- * a reply to be generated. Any returned error will be
- * saved for handling by xcb_request_check().
- */
+/// Delivers a request to the X server.
+/// This form can be used only if the request will not cause
+/// a reply to be generated. Any returned error will besaved for handling by xcb_request_check().
 pub fn xcb_test_grab_control_checked (c : *mut ffi::base::xcb_connection_t,
                                          impervious :  u8) -> ffi::base::xcb_void_cookie_t;
 
-/**
- *
- * @param c The connection
- * @return A cookie
- *
- * Delivers a request to the X server.
- *
- */
+/// Delivers a request to the X server.
+///
 pub fn xcb_test_grab_control (c : *mut ffi::base::xcb_connection_t,
                                  impervious :  u8) -> ffi::base::xcb_void_cookie_t;
 }

@@ -1,7 +1,7 @@
-/*
- * This file generated automatically from xprint.xml by r_client.py.
- * Edit at your peril.
- */
+//
+// This file generated automatically from xprint.xml by r_client.py.
+// Edit at your peril.
+//
 
 //Make the compiler quiet
 #![allow(unused_imports)]
@@ -58,106 +58,106 @@ pub type xcb_x_print_attr_t = c_uint;//{
 //}
 pub struct  PrintQueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_x_print_print_query_version_cookie_t> }
 
-/** Opcode for xcb_x_print_print_query_version. */
+/// Opcode for xcb_x_print_print_query_version.
 pub const XCB_X_PRINT_PRINT_QUERY_VERSION : u8 = 0;
 pub struct PrintQueryVersionReply { base:  base::Reply<xcb_x_print_print_query_version_reply_t> }
 fn mk_reply_xcb_x_print_print_query_version_reply_t(reply:*mut xcb_x_print_print_query_version_reply_t) -> PrintQueryVersionReply { PrintQueryVersionReply { base : base::mk_reply(reply) } }
 pub struct  PrintGetPrinterListCookie<'s> { pub base : base::Cookie<'s, xcb_x_print_print_get_printer_list_cookie_t> }
 
-/** Opcode for xcb_x_print_print_get_printer_list. */
+/// Opcode for xcb_x_print_print_get_printer_list.
 pub const XCB_X_PRINT_PRINT_GET_PRINTER_LIST : u8 = 1;
 pub struct PrintGetPrinterListReply { base:  base::Reply<xcb_x_print_print_get_printer_list_reply_t> }
 fn mk_reply_xcb_x_print_print_get_printer_list_reply_t(reply:*mut xcb_x_print_print_get_printer_list_reply_t) -> PrintGetPrinterListReply { PrintGetPrinterListReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_x_print_print_rehash_printer_list. */
+/// Opcode for xcb_x_print_print_rehash_printer_list.
 pub const XCB_X_PRINT_PRINT_REHASH_PRINTER_LIST : u8 = 20;
-/** Opcode for xcb_x_print_create_context. */
+/// Opcode for xcb_x_print_create_context.
 pub const XCB_X_PRINT_CREATE_CONTEXT : u8 = 2;
-/** Opcode for xcb_x_print_print_set_context. */
+/// Opcode for xcb_x_print_print_set_context.
 pub const XCB_X_PRINT_PRINT_SET_CONTEXT : u8 = 3;
 pub struct  PrintGetContextCookie<'s> { pub base : base::Cookie<'s, xcb_x_print_print_get_context_cookie_t> }
 
-/** Opcode for xcb_x_print_print_get_context. */
+/// Opcode for xcb_x_print_print_get_context.
 pub const XCB_X_PRINT_PRINT_GET_CONTEXT : u8 = 4;
 pub struct PrintGetContextReply { base:  base::Reply<xcb_x_print_print_get_context_reply_t> }
 fn mk_reply_xcb_x_print_print_get_context_reply_t(reply:*mut xcb_x_print_print_get_context_reply_t) -> PrintGetContextReply { PrintGetContextReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_x_print_print_destroy_context. */
+/// Opcode for xcb_x_print_print_destroy_context.
 pub const XCB_X_PRINT_PRINT_DESTROY_CONTEXT : u8 = 5;
 pub struct  PrintGetScreenOfContextCookie<'s> { pub base : base::Cookie<'s, xcb_x_print_print_get_screen_of_context_cookie_t> }
 
-/** Opcode for xcb_x_print_print_get_screen_of_context. */
+/// Opcode for xcb_x_print_print_get_screen_of_context.
 pub const XCB_X_PRINT_PRINT_GET_SCREEN_OF_CONTEXT : u8 = 6;
 pub struct PrintGetScreenOfContextReply { base:  base::Reply<xcb_x_print_print_get_screen_of_context_reply_t> }
 fn mk_reply_xcb_x_print_print_get_screen_of_context_reply_t(reply:*mut xcb_x_print_print_get_screen_of_context_reply_t) -> PrintGetScreenOfContextReply { PrintGetScreenOfContextReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_x_print_print_start_job. */
+/// Opcode for xcb_x_print_print_start_job.
 pub const XCB_X_PRINT_PRINT_START_JOB : u8 = 7;
-/** Opcode for xcb_x_print_print_end_job. */
+/// Opcode for xcb_x_print_print_end_job.
 pub const XCB_X_PRINT_PRINT_END_JOB : u8 = 8;
-/** Opcode for xcb_x_print_print_start_doc. */
+/// Opcode for xcb_x_print_print_start_doc.
 pub const XCB_X_PRINT_PRINT_START_DOC : u8 = 9;
-/** Opcode for xcb_x_print_print_end_doc. */
+/// Opcode for xcb_x_print_print_end_doc.
 pub const XCB_X_PRINT_PRINT_END_DOC : u8 = 10;
-/** Opcode for xcb_x_print_print_put_document_data. */
+/// Opcode for xcb_x_print_print_put_document_data.
 pub const XCB_X_PRINT_PRINT_PUT_DOCUMENT_DATA : u8 = 11;
 pub struct  PrintGetDocumentDataCookie<'s> { pub base : base::Cookie<'s, xcb_x_print_print_get_document_data_cookie_t> }
 
-/** Opcode for xcb_x_print_print_get_document_data. */
+/// Opcode for xcb_x_print_print_get_document_data.
 pub const XCB_X_PRINT_PRINT_GET_DOCUMENT_DATA : u8 = 12;
-/** Opcode for xcb_x_print_print_start_page. */
+/// Opcode for xcb_x_print_print_start_page.
 pub const XCB_X_PRINT_PRINT_START_PAGE : u8 = 13;
-/** Opcode for xcb_x_print_print_end_page. */
+/// Opcode for xcb_x_print_print_end_page.
 pub const XCB_X_PRINT_PRINT_END_PAGE : u8 = 14;
-/** Opcode for xcb_x_print_print_select_input. */
+/// Opcode for xcb_x_print_print_select_input.
 pub const XCB_X_PRINT_PRINT_SELECT_INPUT : u8 = 15;
 pub struct  PrintInputSelectedCookie<'s> { pub base : base::Cookie<'s, xcb_x_print_print_input_selected_cookie_t> }
 
-/** Opcode for xcb_x_print_print_input_selected. */
+/// Opcode for xcb_x_print_print_input_selected.
 pub const XCB_X_PRINT_PRINT_INPUT_SELECTED : u8 = 16;
 pub struct  PrintGetAttributesCookie<'s> { pub base : base::Cookie<'s, xcb_x_print_print_get_attributes_cookie_t> }
 
-/** Opcode for xcb_x_print_print_get_attributes. */
+/// Opcode for xcb_x_print_print_get_attributes.
 pub const XCB_X_PRINT_PRINT_GET_ATTRIBUTES : u8 = 17;
 pub struct PrintGetAttributesReply { base:  base::Reply<xcb_x_print_print_get_attributes_reply_t> }
 fn mk_reply_xcb_x_print_print_get_attributes_reply_t(reply:*mut xcb_x_print_print_get_attributes_reply_t) -> PrintGetAttributesReply { PrintGetAttributesReply { base : base::mk_reply(reply) } }
 pub struct  PrintGetOneAttributesCookie<'s> { pub base : base::Cookie<'s, xcb_x_print_print_get_one_attributes_cookie_t> }
 
-/** Opcode for xcb_x_print_print_get_one_attributes. */
+/// Opcode for xcb_x_print_print_get_one_attributes.
 pub const XCB_X_PRINT_PRINT_GET_ONE_ATTRIBUTES : u8 = 19;
 pub struct PrintGetOneAttributesReply { base:  base::Reply<xcb_x_print_print_get_one_attributes_reply_t> }
 fn mk_reply_xcb_x_print_print_get_one_attributes_reply_t(reply:*mut xcb_x_print_print_get_one_attributes_reply_t) -> PrintGetOneAttributesReply { PrintGetOneAttributesReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_x_print_print_set_attributes. */
+/// Opcode for xcb_x_print_print_set_attributes.
 pub const XCB_X_PRINT_PRINT_SET_ATTRIBUTES : u8 = 18;
 pub struct  PrintGetPageDimensionsCookie<'s> { pub base : base::Cookie<'s, xcb_x_print_print_get_page_dimensions_cookie_t> }
 
-/** Opcode for xcb_x_print_print_get_page_dimensions. */
+/// Opcode for xcb_x_print_print_get_page_dimensions.
 pub const XCB_X_PRINT_PRINT_GET_PAGE_DIMENSIONS : u8 = 21;
 pub struct PrintGetPageDimensionsReply { base:  base::Reply<xcb_x_print_print_get_page_dimensions_reply_t> }
 fn mk_reply_xcb_x_print_print_get_page_dimensions_reply_t(reply:*mut xcb_x_print_print_get_page_dimensions_reply_t) -> PrintGetPageDimensionsReply { PrintGetPageDimensionsReply { base : base::mk_reply(reply) } }
 pub struct  PrintQueryScreensCookie<'s> { pub base : base::Cookie<'s, xcb_x_print_print_query_screens_cookie_t> }
 
-/** Opcode for xcb_x_print_print_query_screens. */
+/// Opcode for xcb_x_print_print_query_screens.
 pub const XCB_X_PRINT_PRINT_QUERY_SCREENS : u8 = 22;
 pub struct  PrintSetImageResolutionCookie<'s> { pub base : base::Cookie<'s, xcb_x_print_print_set_image_resolution_cookie_t> }
 
-/** Opcode for xcb_x_print_print_set_image_resolution. */
+/// Opcode for xcb_x_print_print_set_image_resolution.
 pub const XCB_X_PRINT_PRINT_SET_IMAGE_RESOLUTION : u8 = 23;
 pub struct PrintSetImageResolutionReply { base:  base::Reply<xcb_x_print_print_set_image_resolution_reply_t> }
 fn mk_reply_xcb_x_print_print_set_image_resolution_reply_t(reply:*mut xcb_x_print_print_set_image_resolution_reply_t) -> PrintSetImageResolutionReply { PrintSetImageResolutionReply { base : base::mk_reply(reply) } }
 pub struct  PrintGetImageResolutionCookie<'s> { pub base : base::Cookie<'s, xcb_x_print_print_get_image_resolution_cookie_t> }
 
-/** Opcode for xcb_x_print_print_get_image_resolution. */
+/// Opcode for xcb_x_print_print_get_image_resolution.
 pub const XCB_X_PRINT_PRINT_GET_IMAGE_RESOLUTION : u8 = 24;
 pub struct PrintGetImageResolutionReply { base:  base::Reply<xcb_x_print_print_get_image_resolution_reply_t> }
 fn mk_reply_xcb_x_print_print_get_image_resolution_reply_t(reply:*mut xcb_x_print_print_get_image_resolution_reply_t) -> PrintGetImageResolutionReply { PrintGetImageResolutionReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_x_print_notify. */
+/// Opcode for xcb_x_print_notify.
 pub const XCB_X_PRINT_NOTIFY : u8 = 0;
 pub struct NotifyEvent {pub base : base::Event<xcb_x_print_notify_event_t>}
-/** Opcode for xcb_x_print_attribut_notify. */
+/// Opcode for xcb_x_print_attribut_notify.
 pub const XCB_X_PRINT_ATTRIBUT_NOTIFY : u8 = 1;
 pub struct AttributNotifyEvent {pub base : base::Event<xcb_x_print_attribut_notify_event_t>}
-/** Opcode for xcb_x_print_bad_context. */
+/// Opcode for xcb_x_print_bad_context.
 pub const XCB_X_PRINT_BAD_CONTEXT : u8 = 0;
 pub struct BadContextError { pub base : base::Error<xcb_x_print_bad_context_error_t> }
-/** Opcode for xcb_x_print_bad_sequence. */
+/// Opcode for xcb_x_print_bad_sequence.
 pub const XCB_X_PRINT_BAD_SEQUENCE : u8 = 1;
 pub struct BadSequenceError { pub base : base::Error<xcb_x_print_bad_sequence_error_t> }
 

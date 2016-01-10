@@ -1,7 +1,7 @@
-/*
- * This file generated automatically from xv.xml by r_client.py.
- * Edit at your peril.
- */
+//
+// This file generated automatically from xv.xml by r_client.py.
+// Edit at your peril.
+//
 
 //Make the compiler quiet
 #![allow(unused_imports)]
@@ -86,86 +86,86 @@ pub type AttributeInfoIterator = xcb_xv_attribute_info_iterator_t;
 
 pub type ImageFormatInfoIterator = xcb_xv_image_format_info_iterator_t;
 
-/** Opcode for xcb_xv_bad_port. */
+/// Opcode for xcb_xv_bad_port.
 pub const XCB_XV_BAD_PORT : u8 = 0;
 pub struct BadPortError { pub base : base::Error<xcb_xv_bad_port_error_t> }
-/** Opcode for xcb_xv_bad_encoding. */
+/// Opcode for xcb_xv_bad_encoding.
 pub const XCB_XV_BAD_ENCODING : u8 = 1;
 pub struct BadEncodingError { pub base : base::Error<xcb_xv_bad_encoding_error_t> }
-/** Opcode for xcb_xv_bad_control. */
+/// Opcode for xcb_xv_bad_control.
 pub const XCB_XV_BAD_CONTROL : u8 = 2;
 pub struct BadControlError { pub base : base::Error<xcb_xv_bad_control_error_t> }
-/** Opcode for xcb_xv_video_notify. */
+/// Opcode for xcb_xv_video_notify.
 pub const XCB_XV_VIDEO_NOTIFY : u8 = 0;
 pub struct VideoNotifyEvent {pub base : base::Event<xcb_xv_video_notify_event_t>}
-/** Opcode for xcb_xv_port_notify. */
+/// Opcode for xcb_xv_port_notify.
 pub const XCB_XV_PORT_NOTIFY : u8 = 1;
 pub struct PortNotifyEvent {pub base : base::Event<xcb_xv_port_notify_event_t>}
 pub struct  QueryExtensionCookie<'s> { pub base : base::Cookie<'s, xcb_xv_query_extension_cookie_t> }
 
-/** Opcode for xcb_xv_query_extension. */
+/// Opcode for xcb_xv_query_extension.
 pub const XCB_XV_QUERY_EXTENSION : u8 = 0;
 pub struct QueryExtensionReply { base:  base::Reply<xcb_xv_query_extension_reply_t> }
 fn mk_reply_xcb_xv_query_extension_reply_t(reply:*mut xcb_xv_query_extension_reply_t) -> QueryExtensionReply { QueryExtensionReply { base : base::mk_reply(reply) } }
 pub struct  QueryAdaptorsCookie<'s> { pub base : base::Cookie<'s, xcb_xv_query_adaptors_cookie_t> }
 
-/** Opcode for xcb_xv_query_adaptors. */
+/// Opcode for xcb_xv_query_adaptors.
 pub const XCB_XV_QUERY_ADAPTORS : u8 = 1;
 pub struct  QueryEncodingsCookie<'s> { pub base : base::Cookie<'s, xcb_xv_query_encodings_cookie_t> }
 
-/** Opcode for xcb_xv_query_encodings. */
+/// Opcode for xcb_xv_query_encodings.
 pub const XCB_XV_QUERY_ENCODINGS : u8 = 2;
 pub struct  GrabPortCookie<'s> { pub base : base::Cookie<'s, xcb_xv_grab_port_cookie_t> }
 
-/** Opcode for xcb_xv_grab_port. */
+/// Opcode for xcb_xv_grab_port.
 pub const XCB_XV_GRAB_PORT : u8 = 3;
 pub struct GrabPortReply { base:  base::Reply<xcb_xv_grab_port_reply_t> }
 fn mk_reply_xcb_xv_grab_port_reply_t(reply:*mut xcb_xv_grab_port_reply_t) -> GrabPortReply { GrabPortReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_xv_ungrab_port. */
+/// Opcode for xcb_xv_ungrab_port.
 pub const XCB_XV_UNGRAB_PORT : u8 = 4;
-/** Opcode for xcb_xv_put_video. */
+/// Opcode for xcb_xv_put_video.
 pub const XCB_XV_PUT_VIDEO : u8 = 5;
-/** Opcode for xcb_xv_put_still. */
+/// Opcode for xcb_xv_put_still.
 pub const XCB_XV_PUT_STILL : u8 = 6;
-/** Opcode for xcb_xv_get_video. */
+/// Opcode for xcb_xv_get_video.
 pub const XCB_XV_GET_VIDEO : u8 = 7;
-/** Opcode for xcb_xv_get_still. */
+/// Opcode for xcb_xv_get_still.
 pub const XCB_XV_GET_STILL : u8 = 8;
-/** Opcode for xcb_xv_stop_video. */
+/// Opcode for xcb_xv_stop_video.
 pub const XCB_XV_STOP_VIDEO : u8 = 9;
-/** Opcode for xcb_xv_select_video_notify. */
+/// Opcode for xcb_xv_select_video_notify.
 pub const XCB_XV_SELECT_VIDEO_NOTIFY : u8 = 10;
-/** Opcode for xcb_xv_select_port_notify. */
+/// Opcode for xcb_xv_select_port_notify.
 pub const XCB_XV_SELECT_PORT_NOTIFY : u8 = 11;
 pub struct  QueryBestSizeCookie<'s> { pub base : base::Cookie<'s, xcb_xv_query_best_size_cookie_t> }
 
-/** Opcode for xcb_xv_query_best_size. */
+/// Opcode for xcb_xv_query_best_size.
 pub const XCB_XV_QUERY_BEST_SIZE : u8 = 12;
 pub struct QueryBestSizeReply { base:  base::Reply<xcb_xv_query_best_size_reply_t> }
 fn mk_reply_xcb_xv_query_best_size_reply_t(reply:*mut xcb_xv_query_best_size_reply_t) -> QueryBestSizeReply { QueryBestSizeReply { base : base::mk_reply(reply) } }
-/** Opcode for xcb_xv_set_port_attribute. */
+/// Opcode for xcb_xv_set_port_attribute.
 pub const XCB_XV_SET_PORT_ATTRIBUTE : u8 = 13;
 pub struct  GetPortAttributeCookie<'s> { pub base : base::Cookie<'s, xcb_xv_get_port_attribute_cookie_t> }
 
-/** Opcode for xcb_xv_get_port_attribute. */
+/// Opcode for xcb_xv_get_port_attribute.
 pub const XCB_XV_GET_PORT_ATTRIBUTE : u8 = 14;
 pub struct GetPortAttributeReply { base:  base::Reply<xcb_xv_get_port_attribute_reply_t> }
 fn mk_reply_xcb_xv_get_port_attribute_reply_t(reply:*mut xcb_xv_get_port_attribute_reply_t) -> GetPortAttributeReply { GetPortAttributeReply { base : base::mk_reply(reply) } }
 pub struct  QueryPortAttributesCookie<'s> { pub base : base::Cookie<'s, xcb_xv_query_port_attributes_cookie_t> }
 
-/** Opcode for xcb_xv_query_port_attributes. */
+/// Opcode for xcb_xv_query_port_attributes.
 pub const XCB_XV_QUERY_PORT_ATTRIBUTES : u8 = 15;
 pub struct  ListImageFormatsCookie<'s> { pub base : base::Cookie<'s, xcb_xv_list_image_formats_cookie_t> }
 
-/** Opcode for xcb_xv_list_image_formats. */
+/// Opcode for xcb_xv_list_image_formats.
 pub const XCB_XV_LIST_IMAGE_FORMATS : u8 = 16;
 pub struct  QueryImageAttributesCookie<'s> { pub base : base::Cookie<'s, xcb_xv_query_image_attributes_cookie_t> }
 
-/** Opcode for xcb_xv_query_image_attributes. */
+/// Opcode for xcb_xv_query_image_attributes.
 pub const XCB_XV_QUERY_IMAGE_ATTRIBUTES : u8 = 17;
-/** Opcode for xcb_xv_put_image. */
+/// Opcode for xcb_xv_put_image.
 pub const XCB_XV_PUT_IMAGE : u8 = 18;
-/** Opcode for xcb_xv_shm_put_image. */
+/// Opcode for xcb_xv_shm_put_image.
 pub const XCB_XV_SHM_PUT_IMAGE : u8 = 19;
 
 impl Iterator for PortIterator {

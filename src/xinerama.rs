@@ -1,7 +1,7 @@
-/*
- * This file generated automatically from xinerama.xml by r_client.py.
- * Edit at your peril.
- */
+//
+// This file generated automatically from xinerama.xml by r_client.py.
+// Edit at your peril.
+//
 
 //Make the compiler quiet
 #![allow(unused_imports)]
@@ -24,37 +24,37 @@ pub type ScreenInfoIterator = xcb_xinerama_screen_info_iterator_t;
 
 pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_xinerama_query_version_cookie_t> }
 
-/** Opcode for xcb_xinerama_query_version. */
+/// Opcode for xcb_xinerama_query_version.
 pub const XCB_XINERAMA_QUERY_VERSION : u8 = 0;
 pub struct QueryVersionReply { base:  base::Reply<xcb_xinerama_query_version_reply_t> }
 fn mk_reply_xcb_xinerama_query_version_reply_t(reply:*mut xcb_xinerama_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
 pub struct  GetStateCookie<'s> { pub base : base::Cookie<'s, xcb_xinerama_get_state_cookie_t> }
 
-/** Opcode for xcb_xinerama_get_state. */
+/// Opcode for xcb_xinerama_get_state.
 pub const XCB_XINERAMA_GET_STATE : u8 = 1;
 pub struct GetStateReply { base:  base::Reply<xcb_xinerama_get_state_reply_t> }
 fn mk_reply_xcb_xinerama_get_state_reply_t(reply:*mut xcb_xinerama_get_state_reply_t) -> GetStateReply { GetStateReply { base : base::mk_reply(reply) } }
 pub struct  GetScreenCountCookie<'s> { pub base : base::Cookie<'s, xcb_xinerama_get_screen_count_cookie_t> }
 
-/** Opcode for xcb_xinerama_get_screen_count. */
+/// Opcode for xcb_xinerama_get_screen_count.
 pub const XCB_XINERAMA_GET_SCREEN_COUNT : u8 = 2;
 pub struct GetScreenCountReply { base:  base::Reply<xcb_xinerama_get_screen_count_reply_t> }
 fn mk_reply_xcb_xinerama_get_screen_count_reply_t(reply:*mut xcb_xinerama_get_screen_count_reply_t) -> GetScreenCountReply { GetScreenCountReply { base : base::mk_reply(reply) } }
 pub struct  GetScreenSizeCookie<'s> { pub base : base::Cookie<'s, xcb_xinerama_get_screen_size_cookie_t> }
 
-/** Opcode for xcb_xinerama_get_screen_size. */
+/// Opcode for xcb_xinerama_get_screen_size.
 pub const XCB_XINERAMA_GET_SCREEN_SIZE : u8 = 3;
 pub struct GetScreenSizeReply { base:  base::Reply<xcb_xinerama_get_screen_size_reply_t> }
 fn mk_reply_xcb_xinerama_get_screen_size_reply_t(reply:*mut xcb_xinerama_get_screen_size_reply_t) -> GetScreenSizeReply { GetScreenSizeReply { base : base::mk_reply(reply) } }
 pub struct  IsActiveCookie<'s> { pub base : base::Cookie<'s, xcb_xinerama_is_active_cookie_t> }
 
-/** Opcode for xcb_xinerama_is_active. */
+/// Opcode for xcb_xinerama_is_active.
 pub const XCB_XINERAMA_IS_ACTIVE : u8 = 4;
 pub struct IsActiveReply { base:  base::Reply<xcb_xinerama_is_active_reply_t> }
 fn mk_reply_xcb_xinerama_is_active_reply_t(reply:*mut xcb_xinerama_is_active_reply_t) -> IsActiveReply { IsActiveReply { base : base::mk_reply(reply) } }
 pub struct  QueryScreensCookie<'s> { pub base : base::Cookie<'s, xcb_xinerama_query_screens_cookie_t> }
 
-/** Opcode for xcb_xinerama_query_screens. */
+/// Opcode for xcb_xinerama_query_screens.
 pub const XCB_XINERAMA_QUERY_SCREENS : u8 = 5;
 
 impl ScreenInfo {

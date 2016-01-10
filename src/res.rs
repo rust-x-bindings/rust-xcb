@@ -1,7 +1,7 @@
-/*
- * This file generated automatically from res.xml by r_client.py.
- * Edit at your peril.
- */
+//
+// This file generated automatically from res.xml by r_client.py.
+// Edit at your peril.
+//
 
 //Make the compiler quiet
 #![allow(unused_imports)]
@@ -26,21 +26,21 @@ pub type TypeIterator = xcb_res_type_iterator_t;
 
 pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_res_query_version_cookie_t> }
 
-/** Opcode for xcb_res_query_version. */
+/// Opcode for xcb_res_query_version.
 pub const XCB_RES_QUERY_VERSION : u8 = 0;
 pub struct QueryVersionReply { base:  base::Reply<xcb_res_query_version_reply_t> }
 fn mk_reply_xcb_res_query_version_reply_t(reply:*mut xcb_res_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
 pub struct  QueryClientsCookie<'s> { pub base : base::Cookie<'s, xcb_res_query_clients_cookie_t> }
 
-/** Opcode for xcb_res_query_clients. */
+/// Opcode for xcb_res_query_clients.
 pub const XCB_RES_QUERY_CLIENTS : u8 = 1;
 pub struct  QueryClientResourcesCookie<'s> { pub base : base::Cookie<'s, xcb_res_query_client_resources_cookie_t> }
 
-/** Opcode for xcb_res_query_client_resources. */
+/// Opcode for xcb_res_query_client_resources.
 pub const XCB_RES_QUERY_CLIENT_RESOURCES : u8 = 2;
 pub struct  QueryClientPixmapBytesCookie<'s> { pub base : base::Cookie<'s, xcb_res_query_client_pixmap_bytes_cookie_t> }
 
-/** Opcode for xcb_res_query_client_pixmap_bytes. */
+/// Opcode for xcb_res_query_client_pixmap_bytes.
 pub const XCB_RES_QUERY_CLIENT_PIXMAP_BYTES : u8 = 3;
 pub struct QueryClientPixmapBytesReply { base:  base::Reply<xcb_res_query_client_pixmap_bytes_reply_t> }
 fn mk_reply_xcb_res_query_client_pixmap_bytes_reply_t(reply:*mut xcb_res_query_client_pixmap_bytes_reply_t) -> QueryClientPixmapBytesReply { QueryClientPixmapBytesReply { base : base::mk_reply(reply) } }

@@ -1,7 +1,7 @@
-/*
- * This file generated automatically from xvmc.xml by r_client.py.
- * Edit at your peril.
- */
+//
+// This file generated automatically from xvmc.xml by r_client.py.
+// Edit at your peril.
+//
 
 //Make the compiler quiet
 #![allow(unused_imports)]
@@ -32,35 +32,35 @@ pub type SurfaceInfoIterator = xcb_xvmc_surface_info_iterator_t;
 
 pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_xvmc_query_version_cookie_t> }
 
-/** Opcode for xcb_xvmc_query_version. */
+/// Opcode for xcb_xvmc_query_version.
 pub const XCB_XVMC_QUERY_VERSION : u8 = 0;
 pub struct QueryVersionReply { base:  base::Reply<xcb_xvmc_query_version_reply_t> }
 fn mk_reply_xcb_xvmc_query_version_reply_t(reply:*mut xcb_xvmc_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
 pub struct  ListSurfaceTypesCookie<'s> { pub base : base::Cookie<'s, xcb_xvmc_list_surface_types_cookie_t> }
 
-/** Opcode for xcb_xvmc_list_surface_types. */
+/// Opcode for xcb_xvmc_list_surface_types.
 pub const XCB_XVMC_LIST_SURFACE_TYPES : u8 = 1;
 pub struct  CreateContextCookie<'s> { pub base : base::Cookie<'s, xcb_xvmc_create_context_cookie_t> }
 
-/** Opcode for xcb_xvmc_create_context. */
+/// Opcode for xcb_xvmc_create_context.
 pub const XCB_XVMC_CREATE_CONTEXT : u8 = 2;
-/** Opcode for xcb_xvmc_destroy_context. */
+/// Opcode for xcb_xvmc_destroy_context.
 pub const XCB_XVMC_DESTROY_CONTEXT : u8 = 3;
 pub struct  CreateSurfaceCookie<'s> { pub base : base::Cookie<'s, xcb_xvmc_create_surface_cookie_t> }
 
-/** Opcode for xcb_xvmc_create_surface. */
+/// Opcode for xcb_xvmc_create_surface.
 pub const XCB_XVMC_CREATE_SURFACE : u8 = 4;
-/** Opcode for xcb_xvmc_destroy_surface. */
+/// Opcode for xcb_xvmc_destroy_surface.
 pub const XCB_XVMC_DESTROY_SURFACE : u8 = 5;
 pub struct  CreateSubpictureCookie<'s> { pub base : base::Cookie<'s, xcb_xvmc_create_subpicture_cookie_t> }
 
-/** Opcode for xcb_xvmc_create_subpicture. */
+/// Opcode for xcb_xvmc_create_subpicture.
 pub const XCB_XVMC_CREATE_SUBPICTURE : u8 = 6;
-/** Opcode for xcb_xvmc_destroy_subpicture. */
+/// Opcode for xcb_xvmc_destroy_subpicture.
 pub const XCB_XVMC_DESTROY_SUBPICTURE : u8 = 7;
 pub struct  ListSubpictureTypesCookie<'s> { pub base : base::Cookie<'s, xcb_xvmc_list_subpicture_types_cookie_t> }
 
-/** Opcode for xcb_xvmc_list_subpicture_types. */
+/// Opcode for xcb_xvmc_list_subpicture_types.
 pub const XCB_XVMC_LIST_SUBPICTURE_TYPES : u8 = 8;
 
 impl Iterator for ContextIterator {

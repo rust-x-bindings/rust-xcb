@@ -1,7 +1,7 @@
-/*
- * This file generated automatically from render.xml by r_client.py.
- * Edit at your peril.
- */
+//
+// This file generated automatically from render.xml by r_client.py.
+// Edit at your peril.
+//
 
 //Make the compiler quiet
 #![allow(unused_imports)]
@@ -137,19 +137,19 @@ pub type PictformatIterator = xcb_render_pictformat_iterator_t;
 
 pub type FixedIterator = xcb_render_fixed_iterator_t;
 
-/** Opcode for xcb_render_pict_format. */
+/// Opcode for xcb_render_pict_format.
 pub const XCB_RENDER_PICT_FORMAT : u8 = 0;
 pub struct PictFormatError { pub base : base::Error<xcb_render_pict_format_error_t> }
-/** Opcode for xcb_render_picture. */
+/// Opcode for xcb_render_picture.
 pub const XCB_RENDER_PICTURE : u8 = 1;
 pub struct PictureError { pub base : base::Error<xcb_render_picture_error_t> }
-/** Opcode for xcb_render_pict_op. */
+/// Opcode for xcb_render_pict_op.
 pub const XCB_RENDER_PICT_OP : u8 = 2;
 pub struct PictOpError { pub base : base::Error<xcb_render_pict_op_error_t> }
-/** Opcode for xcb_render_glyph_set. */
+/// Opcode for xcb_render_glyph_set.
 pub const XCB_RENDER_GLYPH_SET : u8 = 3;
 pub struct GlyphSetError { pub base : base::Error<xcb_render_glyph_set_error_t> }
-/** Opcode for xcb_render_glyph. */
+/// Opcode for xcb_render_glyph.
 pub const XCB_RENDER_GLYPH : u8 = 4;
 pub struct GlyphError { pub base : base::Error<xcb_render_glyph_error_t> }
 pub struct Directformat {pub base : base::Struct<xcb_render_directformat_t> }
@@ -180,83 +180,83 @@ pub type GlyphinfoIterator = xcb_render_glyphinfo_iterator_t;
 
 pub struct  QueryVersionCookie<'s> { pub base : base::Cookie<'s, xcb_render_query_version_cookie_t> }
 
-/** Opcode for xcb_render_query_version. */
+/// Opcode for xcb_render_query_version.
 pub const XCB_RENDER_QUERY_VERSION : u8 = 0;
 pub struct QueryVersionReply { base:  base::Reply<xcb_render_query_version_reply_t> }
 fn mk_reply_xcb_render_query_version_reply_t(reply:*mut xcb_render_query_version_reply_t) -> QueryVersionReply { QueryVersionReply { base : base::mk_reply(reply) } }
 pub struct  QueryPictFormatsCookie<'s> { pub base : base::Cookie<'s, xcb_render_query_pict_formats_cookie_t> }
 
-/** Opcode for xcb_render_query_pict_formats. */
+/// Opcode for xcb_render_query_pict_formats.
 pub const XCB_RENDER_QUERY_PICT_FORMATS : u8 = 1;
 pub struct  QueryPictIndexValuesCookie<'s> { pub base : base::Cookie<'s, xcb_render_query_pict_index_values_cookie_t> }
 
-/** Opcode for xcb_render_query_pict_index_values. */
+/// Opcode for xcb_render_query_pict_index_values.
 pub const XCB_RENDER_QUERY_PICT_INDEX_VALUES : u8 = 2;
-/** Opcode for xcb_render_create_picture. */
+/// Opcode for xcb_render_create_picture.
 pub const XCB_RENDER_CREATE_PICTURE : u8 = 4;
-/** Opcode for xcb_render_change_picture. */
+/// Opcode for xcb_render_change_picture.
 pub const XCB_RENDER_CHANGE_PICTURE : u8 = 5;
-/** Opcode for xcb_render_set_picture_clip_rectangles. */
+/// Opcode for xcb_render_set_picture_clip_rectangles.
 pub const XCB_RENDER_SET_PICTURE_CLIP_RECTANGLES : u8 = 6;
-/** Opcode for xcb_render_free_picture. */
+/// Opcode for xcb_render_free_picture.
 pub const XCB_RENDER_FREE_PICTURE : u8 = 7;
-/** Opcode for xcb_render_composite. */
+/// Opcode for xcb_render_composite.
 pub const XCB_RENDER_COMPOSITE : u8 = 8;
-/** Opcode for xcb_render_trapezoids. */
+/// Opcode for xcb_render_trapezoids.
 pub const XCB_RENDER_TRAPEZOIDS : u8 = 10;
-/** Opcode for xcb_render_triangles. */
+/// Opcode for xcb_render_triangles.
 pub const XCB_RENDER_TRIANGLES : u8 = 11;
-/** Opcode for xcb_render_tri_strip. */
+/// Opcode for xcb_render_tri_strip.
 pub const XCB_RENDER_TRI_STRIP : u8 = 12;
-/** Opcode for xcb_render_tri_fan. */
+/// Opcode for xcb_render_tri_fan.
 pub const XCB_RENDER_TRI_FAN : u8 = 13;
-/** Opcode for xcb_render_create_glyph_set. */
+/// Opcode for xcb_render_create_glyph_set.
 pub const XCB_RENDER_CREATE_GLYPH_SET : u8 = 17;
-/** Opcode for xcb_render_reference_glyph_set. */
+/// Opcode for xcb_render_reference_glyph_set.
 pub const XCB_RENDER_REFERENCE_GLYPH_SET : u8 = 18;
-/** Opcode for xcb_render_free_glyph_set. */
+/// Opcode for xcb_render_free_glyph_set.
 pub const XCB_RENDER_FREE_GLYPH_SET : u8 = 19;
-/** Opcode for xcb_render_add_glyphs. */
+/// Opcode for xcb_render_add_glyphs.
 pub const XCB_RENDER_ADD_GLYPHS : u8 = 20;
-/** Opcode for xcb_render_free_glyphs. */
+/// Opcode for xcb_render_free_glyphs.
 pub const XCB_RENDER_FREE_GLYPHS : u8 = 22;
-/** Opcode for xcb_render_composite_glyphs_8. */
+/// Opcode for xcb_render_composite_glyphs_8.
 pub const XCB_RENDER_COMPOSITE_GLYPHS_8 : u8 = 23;
-/** Opcode for xcb_render_composite_glyphs_16. */
+/// Opcode for xcb_render_composite_glyphs_16.
 pub const XCB_RENDER_COMPOSITE_GLYPHS_16 : u8 = 24;
-/** Opcode for xcb_render_composite_glyphs_32. */
+/// Opcode for xcb_render_composite_glyphs_32.
 pub const XCB_RENDER_COMPOSITE_GLYPHS_32 : u8 = 25;
-/** Opcode for xcb_render_fill_rectangles. */
+/// Opcode for xcb_render_fill_rectangles.
 pub const XCB_RENDER_FILL_RECTANGLES : u8 = 26;
-/** Opcode for xcb_render_create_cursor. */
+/// Opcode for xcb_render_create_cursor.
 pub const XCB_RENDER_CREATE_CURSOR : u8 = 27;
 pub type TransformIterator = xcb_render_transform_iterator_t;
 
-/** Opcode for xcb_render_set_picture_transform. */
+/// Opcode for xcb_render_set_picture_transform.
 pub const XCB_RENDER_SET_PICTURE_TRANSFORM : u8 = 28;
 pub struct  QueryFiltersCookie<'s> { pub base : base::Cookie<'s, xcb_render_query_filters_cookie_t> }
 
-/** Opcode for xcb_render_query_filters. */
+/// Opcode for xcb_render_query_filters.
 pub const XCB_RENDER_QUERY_FILTERS : u8 = 29;
-/** Opcode for xcb_render_set_picture_filter. */
+/// Opcode for xcb_render_set_picture_filter.
 pub const XCB_RENDER_SET_PICTURE_FILTER : u8 = 30;
 pub type AnimcursoreltIterator = xcb_render_animcursorelt_iterator_t;
 
-/** Opcode for xcb_render_create_anim_cursor. */
+/// Opcode for xcb_render_create_anim_cursor.
 pub const XCB_RENDER_CREATE_ANIM_CURSOR : u8 = 31;
 pub type SpanfixIterator = xcb_render_spanfix_iterator_t;
 
 pub type TrapIterator = xcb_render_trap_iterator_t;
 
-/** Opcode for xcb_render_add_traps. */
+/// Opcode for xcb_render_add_traps.
 pub const XCB_RENDER_ADD_TRAPS : u8 = 32;
-/** Opcode for xcb_render_create_solid_fill. */
+/// Opcode for xcb_render_create_solid_fill.
 pub const XCB_RENDER_CREATE_SOLID_FILL : u8 = 33;
-/** Opcode for xcb_render_create_linear_gradient. */
+/// Opcode for xcb_render_create_linear_gradient.
 pub const XCB_RENDER_CREATE_LINEAR_GRADIENT : u8 = 34;
-/** Opcode for xcb_render_create_radial_gradient. */
+/// Opcode for xcb_render_create_radial_gradient.
 pub const XCB_RENDER_CREATE_RADIAL_GRADIENT : u8 = 35;
-/** Opcode for xcb_render_create_conical_gradient. */
+/// Opcode for xcb_render_create_conical_gradient.
 pub const XCB_RENDER_CREATE_CONICAL_GRADIENT : u8 = 36;
 
 impl Iterator for GlyphIterator {
