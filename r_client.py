@@ -263,7 +263,7 @@ def c_open(self):
     _ns = self.namespace
     _ns.c_ext_global_name = _n(_ns.prefix + ('id',))
 
-    print("Generating %s" % _ns.ext_name)
+    print("Generating %s" % (_ns.ext_name if _ns.ext_name != '' else 'XProto'))
 
     # Build the type-name collision avoidance table used by c_enum
     build_collision_table()
