@@ -1,0 +1,87 @@
+
+extern crate libc;
+
+use std::io;
+use std::env;
+use std::cmp;
+use std::path::{Path, PathBuf};
+use std::fs;
+use std::os::unix::fs::MetadataExt;
+use std::process::Command;
+
+use libc::time_t;
+
+
+fn visit_xml<F>(xml_dir: &Path, cb: F) -> io::Result<()>
+        where F: Fn(&Path) -> io::Result<()> {
+    if try!(fs::metadata(xml_dir)).is_dir() {
+        for entry in try!(fs::read_dir(xml_dir)) {
+            let path = try!(entry).path();
+            if try!(fs::metadata(&path)).is_file() {
+                if let Some(ext) = path.extension() {
+                    if ext == "xml" { try!(cb(&path)); }
+                }
+            }
+        }
+    }
+    Ok(())
+}
+
+
+
+fn main() {
+    let root = env::var("CARGO_MANIFEST_DIR").unwrap();
+    let r_client = Path::new(&root).join("r_client.py");
+    let xml_dir = Path::new(&root).join("xml");
+    let src_dir = Path::new(&root).join("src");
+    let src_ffi_dir = Path::new(&src_dir).join("ffi");
+
+
+    let xml_to_rs = |rs_dir: &Path, xml_file: &Path| -> PathBuf {
+        let mut path = PathBuf::from(&rs_dir);
+        path.push(xml_file.file_stem().unwrap());
+        path.set_extension("rs");
+        path
+    };
+
+    let r_client_mtime = fs::metadata(&r_client).unwrap().mtime();
+
+    let optional_mtime = |path: &Path, default: time_t| -> time_t {
+        if let Ok(md) = fs::metadata(&path) {
+            md.mtime()
+        }
+        else {
+            default
+        }
+    };
+
+    visit_xml(&xml_dir, |xml_file: &Path| -> io::Result<()> {
+        let src_file = xml_to_rs(&src_dir, &xml_file);
+        let ffi_file = xml_to_rs(&src_ffi_dir, &xml_file);
+        let xml_file_mtime = try!(fs::metadata(&xml_file)).mtime();
+        let src_file_mtime = optional_mtime(&src_file, 0);
+        let ffi_file_mtime = optional_mtime(&ffi_file, 0);
+
+        let ref_mtime = cmp::max(r_client_mtime, xml_file_mtime);
+
+        if ref_mtime > src_file_mtime || ref_mtime > ffi_file_mtime {
+            let status = try!(Command::new("python2")
+                    .arg(&r_client)
+                    .arg(&xml_file)
+                    .status());
+            if !status.success() {
+                panic!("processing of {} returned non-zero ({})",
+                    xml_file.display(), status.code().unwrap());
+            }
+        }
+        Ok(())
+    }).unwrap();
+
+
+    let xcbgen_dir = Path::new(&root).join("xcbgen");
+
+    println!("cargo:rerun-if-changed={}", &r_client.display());
+    println!("cargo:rerun-if-changed={}", &xml_dir.display());
+    println!("cargo:rerun-if-changed={}", &xcbgen_dir.display());
+
+}

@@ -3,12 +3,16 @@
 name = "xcb"
 version = "0.3.0"
 authors = [ "Aatch" ]
+build = "build.rs"
 
 [lib]
 name = "xcb"
 path = "src/xcb.rs"
 
 [dependencies]
+libc = "0.2"
+
+[build-dependencies]
 libc = "0.2"
 
 
