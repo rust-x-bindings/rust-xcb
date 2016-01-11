@@ -74,7 +74,7 @@ impl Clone for xcb_ge_event_t {
     fn clone(&self) -> xcb_ge_event_t { *self }
 }
 
-#[derive(Copy)]
+#[derive(Copy, Debug)]
 #[repr(C)]
 pub struct xcb_generic_error_t {
     response_type : u8,

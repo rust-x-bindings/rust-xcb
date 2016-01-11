@@ -227,6 +227,8 @@ impl<T> Drop for Event<T> {
     }
 }
 
+#[allow(raw_pointer_derive)]
+#[derive(Debug)]
 pub struct Error<T> {
     error:*mut T
 }
@@ -304,7 +306,10 @@ impl<T> Drop for Reply<T> {
 
 pub struct GenericReply { pub base : Reply<xcb_generic_reply_t>}
 pub struct GenericEvent { pub base : Event<xcb_generic_event_t>}
+
+#[derive(Debug)]
 pub struct GenericError { pub base : Error<xcb_generic_error_t>}
+
 pub struct VoidCookie<'s> { pub base : Cookie<'s, xcb_void_cookie_t> }
 
 /**
