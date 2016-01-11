@@ -10,3 +10,41 @@ path = "src/xcb.rs"
 
 [dependencies]
 libc = "0.2"
+
+
+# cargo does not seam to support example.features yet.
+# That is addressed in cargo/#1570
+#[[example]]
+#name = "ffi_randr"
+#features = "randr render"
+
+
+[features]
+bigreq = []
+composite = []
+damage = []
+dpms = []
+dri2 = []
+ge = []
+glx = []
+randr = []
+record = []
+render = []
+res = []
+screensaver = []
+shape = []
+shm = []
+sync = []
+xc_misc = []
+xevie = []
+xf86dri = []
+xf86vidmode = []
+xfixes = []
+xinerama = []
+xinput = []
+xkb = []
+xprint = []
+xselinux = []
+xtest = []
+xvmc = []
+xv = []

@@ -41,79 +41,184 @@ DEALINGS IN THE SOFTWARE.
 
 extern crate libc;
 
-pub mod ffi {
-    pub mod xproto;
-    pub mod base;
-
-    pub mod bigreq;
-    pub mod composite;
-    pub mod damage;
-    pub mod dpms;
-    pub mod dri2;
-
-    //pub mod ge; not sure about this one...
-
-    pub mod glx;
-    pub mod randr;
-    pub mod record;
-    pub mod render;
-    pub mod screensaver;
-    pub mod shape;
-    pub mod shm;
-    pub mod sync;
-    pub mod xc_misc;
-    pub mod xevie;
-    pub mod xf86dri;
-    //pub mod xf86vidmode; Same with this one...
-    pub mod xfixes;
-    pub mod xinerama;
-    pub mod xinput;
-    //pub mod xkb;
-    pub mod xprint;
-
-    #[cfg(enable_xselinux)]
-    pub mod xselinux;
-    pub mod xtest;
-    pub mod xv;
-    pub mod xvmc;
-}
-
 pub mod base;
 #[macro_use]
 pub mod macros;
-
 pub mod xproto;
 
+
+pub mod ffi
+{
+    pub mod xproto;
+    pub mod base;
+
+
+#[cfg(feature = "bigreq")]
+    pub mod bigreq;
+
+#[cfg(feature = "composite")]
+    pub mod composite;
+
+#[cfg(feature = "damage")]
+    pub mod damage;
+
+#[cfg(feature = "dpms")]
+    pub mod dpms;
+
+#[cfg(feature = "dri2")]
+    pub mod dri2;
+
+#[cfg(feature = "ge")]
+    pub mod ge;
+
+#[cfg(feature = "glx")]
+    pub mod glx;
+
+#[cfg(feature = "randr")]
+    pub mod randr;
+
+#[cfg(feature = "record")]
+    pub mod record;
+
+#[cfg(feature = "render")]
+    pub mod render;
+
+#[cfg(feature = "res")]
+    pub mod res;
+
+#[cfg(feature = "screensaver")]
+    pub mod screensaver;
+
+#[cfg(feature = "shape")]
+    pub mod shape;
+
+#[cfg(feature = "shm")]
+    pub mod shm;
+
+#[cfg(feature = "sync")]
+    pub mod sync;
+
+#[cfg(feature = "xc_misc")]
+    pub mod xc_misc;
+
+#[cfg(feature = "xevie")]
+    pub mod xevie;
+
+#[cfg(feature = "xf86dri")]
+    pub mod xf86dri;
+
+#[cfg(feature = "xf86vidmode")]
+    pub mod xf86vidmode;
+
+#[cfg(feature = "xfixes")]
+    pub mod xfixes;
+
+#[cfg(feature = "xinerama")]
+    pub mod xinerama;
+
+#[cfg(feature = "xinput")]
+    pub mod xinput;
+
+#[cfg(feature = "xkb")]
+    pub mod xkb;
+
+#[cfg(feature = "xprint")]
+    pub mod xprint;
+
+#[cfg(feature = "xselinux")]
+    pub mod xselinux;
+
+#[cfg(feature = "xtest")]
+    pub mod xtest;
+
+#[cfg(feature = "xvmc")]
+    pub mod xvmc;
+
+#[cfg(feature = "xv")]
+    pub mod xv;
+}
+
+
+#[cfg(feature = "bigreq")]
+pub mod bigreq;
+
+#[cfg(feature = "composite")]
+pub mod composite;
+
+#[cfg(feature = "damage")]
+pub mod damage;
+
+#[cfg(feature = "dpms")]
+pub mod dpms;
+
+#[cfg(feature = "dri2")]
+pub mod dri2;
+
+#[cfg(feature = "ge")]
+pub mod ge;
+
+#[cfg(feature = "glx")]
+pub mod glx;
+
+#[cfg(feature = "randr")]
+pub mod randr;
+
+#[cfg(feature = "record")]
+pub mod record;
+
+#[cfg(feature = "render")]
+pub mod render;
+
+#[cfg(feature = "res")]
+pub mod res;
+
+#[cfg(feature = "screensaver")]
+pub mod screensaver;
+
+#[cfg(feature = "shape")]
+pub mod shape;
+
+#[cfg(feature = "shm")]
+pub mod shm;
+
+#[cfg(feature = "sync")]
+pub mod sync;
+
+#[cfg(feature = "xc_misc")]
+pub mod xc_misc;
+
+#[cfg(feature = "xevie")]
+pub mod xevie;
+
+#[cfg(feature = "xf86dri")]
+pub mod xf86dri;
+
+#[cfg(feature = "xf86vidmode")]
+pub mod xf86vidmode;
+
+#[cfg(feature = "xfixes")]
+pub mod xfixes;
+
+#[cfg(feature = "xinerama")]
 pub mod xinerama;
 
-pub mod bigreq;
-pub mod composite;
-pub mod xfixes;
-pub mod render;
-pub mod shape;
-/*
-pub mod damage;
-pub mod dpms;
-pub mod dri2;
-//pub mod ge; not sure about this one...
-
-pub mod glx;
-pub mod randr;
-pub mod record;
-pub mod screensaver;
-pub mod shm;
-pub mod sync;
-pub mod xc_misc;
-pub mod xevie;
-pub mod xf86dri;
-//pub mod xf86vidmode; Same with this one...
+#[cfg(feature = "xinput")]
 pub mod xinput;
-//pub mod xkb;
+
+#[cfg(feature = "xkb")]
+pub mod xkb;
+
+#[cfg(feature = "xprint")]
 pub mod xprint;
 
-#[cfg(enable_xselinux)]
+#[cfg(feature = "xselinux")]
 pub mod xselinux;
+
+#[cfg(feature = "xtest")]
 pub mod xtest;
-pub mod xv;
+
+#[cfg(feature = "xvmc")]
 pub mod xvmc;
-*/
+
+#[cfg(feature = "xv")]
+pub mod xv;
