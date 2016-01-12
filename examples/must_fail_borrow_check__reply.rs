@@ -16,9 +16,16 @@ fn main() {
 
     conn.flush();
 
-    let screen_res_cookie = GetScreenResources(&conn, window_dummy);
-    let mut screen_res_reply = screen_res_cookie.get_reply().unwrap();
-    let crtcs = screen_res_reply.crtcs();
+    // must not compile because crtcs is data owned by reply.
+    // one needs to make screen_res_reply live longer than crtcs, or
+    // get ownership by calling to_vec().
+    // randr_crtc_info.rs is the working version
+    let crtcs;
+    {
+        let screen_res_cookie = GetScreenResources(&conn, window_dummy);
+        let mut screen_res_reply = screen_res_cookie.get_reply().unwrap();
+        crtcs = screen_res_reply.crtcs();
+    }
 
     let mut crtc_cookies = Vec::with_capacity(crtcs.len());
     for crtc in crtcs {
