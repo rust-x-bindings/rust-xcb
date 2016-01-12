@@ -16,9 +16,12 @@ fn main() {
 
     conn.flush();
 
-    let screen_res_cookie = GetScreenResources(&conn, window_dummy);
-    let mut screen_res_reply = screen_res_cookie.get_reply().unwrap();
-    let crtcs = screen_res_reply.crtcs();
+    let crtcs;
+    {
+        let screen_res_cookie = GetScreenResources(&conn, window_dummy);
+        let mut screen_res_reply = screen_res_cookie.get_reply().unwrap();
+        crtcs = screen_res_reply.crtcs();
+    }
 
     let mut crtc_cookies = Vec::with_capacity(crtcs.len());
     for crtc in crtcs {
