@@ -1105,10 +1105,10 @@ def _r_accessor(self,field):
         if field.type.member.is_simple:
             fty = field.type.member.r_type
             if fty == 'c_char':
-                rty = 'String'
+                rty = '&str'
                 fty = 'str'
             else:
-                rty = 'Vec<'+fty+'>'
+                rty = '&['+fty+']'
 
             _r('  pub fn %s(&mut self) -> %s {', field.c_field_name, rty)
             _r('    unsafe { accessor!(%s, %s, %s, %s) }', fty, field.c_length_name, field.c_accessor_name,
