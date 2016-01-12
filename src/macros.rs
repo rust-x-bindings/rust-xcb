@@ -33,17 +33,11 @@ macro_rules! accessor {
         unsafe {
             let _len = $lenfn(&mut $fexpr);
             let _data = $datafn(&mut $fexpr);
-            // std::string::raw::from_buf_len(_data as *const u8, _len as uint)
-            // from_buf_len is deprecated
-            // equivalent is from_raw_parts, but it seem to take ownership of the data
-            // this code creates a vec, copies data into it, and move it into a string
 
-            let mut vec = std::vec::Vec::with_capacity(_len as usize);
-            let dst = vec.as_mut_ptr();
-            std::ptr::copy_nonoverlapping(_data as *const u8, dst, _len as usize);
-            vec.set_len(_len as usize);
-            // would unchecked be safe here?
-            std::string::String::from_utf8(vec).unwrap()
+            let _slice = std::slice::from_raw_parts(_data as *const u8, _len as usize);
+
+            // should we check what comes from X server?
+            std::str::from_utf8_unchecked(&_slice)
         }
     );
     ($ty:ty, $iterfn:ident, $fexpr:expr) => ( //Iterator
@@ -55,7 +49,7 @@ macro_rules! accessor {
         unsafe {
             let _len = $lenfn(&mut $fexpr);
             let _data = $datafn(&mut $fexpr);
-            std::vec::Vec::from_raw_parts(_data, _len as usize, _len as usize)
+            std::slice::from_raw_parts(_data, _len as usize)
         }
     );
 }
