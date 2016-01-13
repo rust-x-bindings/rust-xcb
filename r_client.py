@@ -1547,7 +1547,7 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
     count = len(call_params)
     comma = ',' if count else ');'
     _r('    let cookie = %s(c.get_raw_conn()%s', func_name, comma)
-    call_params.sort(lambda x,y: cmp(x[0] , y[0]))
+    call_params.sort(key=lambda x: x[0])
     for idx, c in call_params:
         count = count - 1
         comma = ',' if count else ');'
