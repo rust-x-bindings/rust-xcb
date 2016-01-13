@@ -307,7 +307,6 @@ def c_open(self):
 
     _r('use std::option::Option;')
     _r('use std::iter::Iterator;')
-    _r('')
 
     global _imports
 
@@ -955,7 +954,6 @@ def _c_accessors_field(self, field):
         _h('pub fn %s (R : *mut %s) -> %s;', field.c_accessor_name, c_type, ftype)
     else:
         _h('')
-        _h('')
         _h('///')
         _h('/// %s : *mut %s', field.c_accessor_name, field.c_field_type)
         _h('///')
@@ -1031,8 +1029,8 @@ def _c_accessors_list(self, field):
         _h('pub fn %s (%s) -> *mut %s;', field.c_accessor_name, params[idx][0], field.c_field_type)
 
     _h('')
-    _h('')
     if switch_obj is not None:
+        _r('')
         _hr('pub fn %s (R : *mut %s,', field.c_length_name, R_obj.c_type)
         spacing = ' '*(len(field.c_length_name)+7)
         _h('%sS : *mut %s) -> c_int;', spacing, S_obj.c_type)
@@ -1040,7 +1038,6 @@ def _c_accessors_list(self, field):
         _h('pub fn %s (R : *mut %s) -> c_int;', field.c_length_name, c_type)
 
     if field.type.member.is_simple:
-        _h('')
         _h('')
         if switch_obj is not None:
             _h('pub fn %s (R : %s,', field.c_end_name, R_obj.c_type)
@@ -1051,7 +1048,6 @@ def _c_accessors_list(self, field):
 
     else:
         _h('')
-
         if switch_obj is not None:
             _h('pub fn %s (R : %s,', field.c_iterator_name, R_obj.c_type)
             spacing = ' '*(len(field.c_iterator_name)+2)
@@ -1093,8 +1089,11 @@ def _c_accessors(self, name, base):
         impl_type = impl_type+'<\'a>'
         impl_decl = impl_decl+'<\'a>'
 
-    _r('\n%s %s {', impl_decl, impl_type)
-    for field in accessor_fields:
+    _r('')
+    _r('%s %s {', impl_decl, impl_type)
+    for (i, field) in enumerate(accessor_fields):
+        if i != 0:
+            _r('')
         _r_accessor(self,field)
     _r_setlevel(1)
     _r('}')
@@ -1110,7 +1109,7 @@ def _r_accessor(self,field):
         _r('  pub fn %s(&mut self) -> %s {', field.c_field_name, field.r_field_type)
         _r('    unsafe { accessor!(%s -> %s, %s) }', field.c_field_name, field.r_field_type,
                                             wrap_field_expr)
-        _r('  }\n')
+        _r('  }')
     elif field.type.is_list and not field.type.fixed_size():
         if field.type.member.is_simple:
             fty = field.type.member.r_type
@@ -1119,7 +1118,6 @@ def _r_accessor(self,field):
                 fty = 'str'
             else:
                 rty = '&['+fty+']'
-
             _r('  pub fn %s(&mut self) -> %s {', field.c_field_name, rty)
             _r('    unsafe { accessor!(%s, %s, %s, %s) }', fty, field.c_length_name, field.c_accessor_name,
                                             wrap_field_expr)
@@ -1127,11 +1125,11 @@ def _r_accessor(self,field):
             _r('  pub fn %s(&mut self) -> %s {', field.c_field_name, field.r_iterator_type)
             _r('    unsafe { accessor!(%s, %s, %s) }', field.r_iterator_type, field.c_iterator_name,
                                             wrap_field_expr)
-        _r('  }\n')
+        _r('  }')
     elif field.type.is_list:
         _r('  pub fn %s(&self) -> Vec<%s> {', field.c_field_name, field.r_field_type)
         _r('    unsafe { (%s.%s).to_vec() }',wrap_field_expr,field.c_field_name)
-        _r('  }\n')
+        _r('  }')
 
     elif field.type.is_container:
         _r('  pub fn %s(&self) -> %s {', field.c_field_name, field.r_field_type)
@@ -1152,7 +1150,7 @@ def c_simple(self, name):
         # Typedef
         _h_setlevel(0)
         my_name = _t(name)
-        _h('')
+        _hr('')
         _h('pub type %s = %s;', my_name, _t(self.name))
         _r('pub type %s = %s;\n', _rty(name), my_name)
 
@@ -1265,6 +1263,7 @@ def c_struct(self, name):
 
 def _wrap_struct(self):
     self.wrap_type = 'Struct'
+    _r('')
     _r('pub struct %s {pub base : base::Struct<%s> }\n', self.r_type, self.c_type)
     self.wrap_field_name = 'self.base.strct'
 
@@ -1274,6 +1273,7 @@ def _setup_wrap_struct(self):
     Special case of _wrap_struct for xcb_setup_t
     '''
     self.wrap_type = 'StructPtr'
+    _r('')
     _r('pub struct %s<\'a> {pub base : base::StructPtr<\'a, %s>}\n', self.r_type, self.c_type)
     self.wrap_field_name = 'self.base.ptr'
 
@@ -1373,7 +1373,7 @@ def _c_request_helper(self, name, rust_cookie_type, cookie_type, void, regular, 
 
     _h_setlevel(1)
     _r_setlevel(1)
-    _h('')
+    _hr('')
     docstr = ''
     if hasattr(self, "doc") and self.doc:
         if self.doc.brief:
@@ -1576,7 +1576,7 @@ def _c_reply(self, name):
     '''
     spacing = ' ' * (len(self.c_reply_name))
 
-    _h('')
+    _hr('')
     _h('///')
     _h('/// Return the reply')
     _h('/// `c`      The xcb_connection_t')
@@ -1601,7 +1601,7 @@ def _c_opcode(name, opcode):
     '''
     _h_setlevel(0)
     _r_setlevel(0)
-    _h('')
+    _r('')
     _r('/// Opcode for %s.', _n(name))
     _r('pub const %s : u8 = %s;', _n(name).upper(), opcode)
 
@@ -1642,6 +1642,7 @@ def c_request(self, name):
 
     if self.reply:
         _c_type_setup(self.reply, name, ('reply',))
+        _r('')
         _r('pub struct %s { base:  base::Reply<%s> }', self.r_reply_type, self.c_reply_type)
         _r('fn mk_reply_%s(reply:*mut %s) -> %s { %s { base : base::mk_reply(reply) } }', self.c_reply_type, self.c_reply_type, self.r_reply_type,  self.r_reply_type)
 
@@ -1704,8 +1705,11 @@ def c_event(self, name):
         new_params = []
 
         _r_setlevel(1)
-        _r('\nimpl %s {', self.r_type)
-        for field in accessor_fields:
+        _r('')
+        _r('impl %s {', self.r_type)
+        for (i, field) in enumerate(accessor_fields):
+            if i != 0:
+                _r('')
             _r_accessor(self,field)
 
             fty = field.type
@@ -1751,6 +1755,7 @@ def c_error(self, name):
         _h('')
         _h('pub type %s  = %s;', _t(name + ('error',)), _t(self.name + ('error',)))
 
+    _r('')
     _r('pub struct %s { pub base : base::Error<%s> }', self.r_type, self.c_type)
 
 
