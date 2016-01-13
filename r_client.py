@@ -1177,6 +1177,7 @@ def _c_complex(self):
         maxtypelen = max(maxtypelen, length)
 
     def _c_complex_field(self, field, comma=','):
+        nonlocal is_copy_eligible
         if field.c_field_type in _types_not_copy_eligible:
             is_copy_eligible = False
         if (field.type.fixed_size() or
@@ -1223,12 +1224,13 @@ def _c_complex(self):
 
     _h('}\n')
 
-    if is_copy_eligible:
+    if is_copy_eligible and not (self.c_type in _types_not_copy_eligible):
         _h('impl Copy for %s {}', self.c_type)
         _h('impl Clone for %s {', self.c_type)
         _h('    fn clone(&self) -> %s { *self }', self.c_type)
         _h('}')
-    else:
+
+    if not is_copy_eligible:
         _types_not_copy_eligible.append(self.c_type)
 
     for sta in structsToAdd:
