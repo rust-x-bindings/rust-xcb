@@ -293,6 +293,7 @@ def c_open(self):
     _hr('#![allow(unused_imports)]')
     _r('#![allow(unused_unsafe)]')
     _h('#![allow(non_camel_case_types)]')
+    _h('#![allow(improper_ctypes)]')
 
     _hr('use std;')
     _hr('use libc::*;')
@@ -865,16 +866,23 @@ def _c_iterator(self, name):
         # iterated
         return
 
+    # #[allow(improper_ctypes)] placed on each iterator struct and fn still raise
+    # warnings because of the phantom field.
+    # It is therefore added at module level to make the compiler quiet
+
     _h_setlevel(0)
     _r_setlevel(0)
+    _h('')
+    #_h('#[allow(improper_ctypes)]')
     _h('#[repr(C)]')
-    _h('pub struct %s {', self.c_iterator_type)
+    _h('pub struct %s<\'a> {', self.c_iterator_type)
     _h('    pub data : *mut %s,', self.c_type)
     _h('    pub rem  : c_int,')
-    _h('    pub index: c_int')
-    _h('}\n')
+    _h('    pub index: c_int,')
+    _h('    _phantom : std::marker::PhantomData<&\'a %s>', self.c_type)
+    _h('}')
 
-    _r('pub type %s = %s;\n', self.r_iterator_type, self.c_iterator_type)
+    _r('pub type %s<\'a> = %s<\'a>;\n', self.r_iterator_type, self.c_iterator_type)
 
     _h_setlevel(1)
     _r_setlevel(1)
@@ -886,6 +894,7 @@ def _c_iterator(self, name):
     _h('/// decreased by one. The member data points to the next')
     _h('/// element. The member index is increased by sizeof(%s)', self.c_type)
     _h('///')
+    #_h('#[allow(improper_ctypes)]')
     _h('pub fn %s (i:*mut %s) -> c_void;', self.c_next_name, self.c_iterator_type)
 
     _h('')
@@ -896,10 +905,11 @@ def _c_iterator(self, name):
     _h('/// The member rem is set to 0. The member data points to the')
     _h('/// last element.')
     _h('///')
+    #_h('#[allow(improper_ctypes)]')
     _h('pub fn %s (i:%s) -> ffi::base::xcb_generic_iterator_t;', self.c_end_name, self.c_iterator_type)
 
     _r('')
-    _r('impl Iterator for %s {', self.r_iterator_type)
+    _r('impl<\'a> Iterator for %s<\'a> {', self.r_iterator_type)
     _r('    type Item = %s;', self.r_type)
     _r('    fn next(&mut self) -> Option<%s> {', self.r_type)
     _r('        if self.rem == 0 { return None; }')
