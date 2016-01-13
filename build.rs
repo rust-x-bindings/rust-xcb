@@ -68,7 +68,7 @@ fn main() {
 
         if ref_mtime > src_file_mtime || ref_mtime > ffi_file_mtime {
 
-            let status = try!(Command::new("python2")
+            let status = try!(Command::new("python3")
                     .arg(&r_client)
                     .arg(&xml_file)
                     .status());
