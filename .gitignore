@@ -12,8 +12,10 @@ src/composite.rs
 src/damage.rs
 src/dpms.rs
 src/dri2.rs
+src/dri3.rs
 src/ge.rs
 src/glx.rs
+src/present.rs
 src/randr.rs
 src/record.rs
 src/render.rs
@@ -41,8 +43,10 @@ src/ffi/composite.rs
 src/ffi/damage.rs
 src/ffi/dpms.rs
 src/ffi/dri2.rs
+src/ffi/dri3.rs
 src/ffi/ge.rs
 src/ffi/glx.rs
+src/ffi/present.rs
 src/ffi/randr.rs
 src/ffi/record.rs
 src/ffi/render.rs

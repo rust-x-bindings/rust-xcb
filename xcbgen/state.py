@@ -32,9 +32,9 @@ class Namespace(object):
         self.root = parse(filename).getroot()
         self.header = self.root.get('header')
         self.ns = self.header + ':'
-        
+
         # Get root element attributes
-        if self.root.get('extension-xname', False): 
+        if self.root.get('extension-xname', False):
             self.is_ext = True
             self.major_version = self.root.get('major-version')
             self.minor_version = self.root.get('minor-version')
@@ -65,6 +65,8 @@ class Module(object):
         self.output = output
 
         self.imports = []
+        self.direct_imports = []
+        self.import_level = 0
         self.types = {}
         self.events = {}
         self.errors = {}
@@ -74,9 +76,11 @@ class Module(object):
         self.add_type('CARD8', '', ('u8',), tcard8)
         self.add_type('CARD16', '', ('u16',), tcard16)
         self.add_type('CARD32', '', ('u32',), tcard32)
+        self.add_type('CARD64', '', ('u64',), tcard64)
         self.add_type('INT8', '', ('i8',), tint8)
         self.add_type('INT16', '', ('i16',), tint16)
         self.add_type('INT32', '', ('i32',), tint32)
+        self.add_type('INT64', '', ('i64',), tint64)
         self.add_type('BYTE', '', ('u8',), tcard8)
         self.add_type('BOOL', '', ('u8',), tcard8)
         self.add_type('char', '', ('c_char',), tchar)
@@ -91,6 +95,7 @@ class Module(object):
     # Recursively resolve all types
     def resolve(self):
         for (name, item) in self.all:
+            self.pads = 0
             item.resolve(self)
 
     # Call all the output methods
@@ -104,6 +109,8 @@ class Module(object):
 
     # Keeps track of what's been imported so far.
     def add_import(self, name, namespace):
+        if self.import_level == 0:
+            self.direct_imports.append((name, namespace.header))
         self.imports.append((name, namespace.header))
 
     def has_import(self, name):
