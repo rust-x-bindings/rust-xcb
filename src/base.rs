@@ -103,17 +103,17 @@ impl<'s> Connection {
         }
     }
 
-    #[inline]
-    pub fn get_setup(&self) -> xproto::Setup {
-        unsafe {
+    //#[inline]
+    //pub fn get_setup(&self) -> xproto::Setup {
+    //    unsafe {
 
-            let setup = ffi::base::xcb_get_setup(self.c);
-            if setup.is_null() {
-                panic!("NULL setup on connection")
-            }
-            mem::transmute(setup)
-        }
-    }
+    //        let setup = ffi::base::xcb_get_setup(self.c);
+    //        if setup.is_null() {
+    //            panic!("NULL setup on connection")
+    //        }
+    //        mem::transmute(setup)
+    //    }
+    //}
 
     #[inline]
     pub fn has_error(&self) -> bool {
@@ -122,29 +122,29 @@ impl<'s> Connection {
         }
     }
 
-    #[inline]
-    pub fn generate_id(&self) -> xproto::Window {
-        unsafe {
-            ffi::base::xcb_generate_id(self.c)
-        }
-    }
+    //#[inline]
+    //pub fn generate_id(&self) -> xproto::Window {
+    //    unsafe {
+    //        ffi::base::xcb_generate_id(self.c)
+    //    }
+    //}
 
     #[inline]
     pub unsafe fn get_raw_conn(&self) -> *mut xcb_connection_t {
         self.c
     }
 
-    pub fn send_event<T>(&self,
-                  propogate: bool,
-                  destination: xproto::Window,
-                  event_mask : u32,
-                  event : Event<T>) {
-        unsafe {
-        ffi::xproto::xcb_send_event(self.c,
-            propogate as u8, destination as ffi::xproto::xcb_window_t,
-            event_mask, event.event as *mut c_char);
-        }
-    }
+    //pub fn send_event<T>(&self,
+    //              propogate: bool,
+    //              destination: xproto::Window,
+    //              event_mask : u32,
+    //              event : Event<T>) {
+    //    unsafe {
+    //    ffi::xproto::xcb_send_event(self.c,
+    //        propogate as u8, destination as ffi::xproto::xcb_window_t,
+    //        event_mask, event.event as *mut c_char);
+    //    }
+    //}
 
     #[inline]
     pub fn connect() -> (Connection, i32) {

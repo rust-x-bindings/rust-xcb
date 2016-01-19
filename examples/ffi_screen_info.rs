@@ -18,7 +18,7 @@ fn main() {
         for _ in 0..screen_num {
             xcb_screen_next(&mut iter as *mut xcb_screen_iterator_t);
         }
-        let screen = *iter.data;
+        let screen = &*iter.data;
         println!("");
         println!("Informations of screen {}:", screen.root);
         println!("  width..........: {}", screen.width_in_pixels);
