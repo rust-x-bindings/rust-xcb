@@ -150,7 +150,8 @@ impl<'s> Connection {
     pub fn connect() -> (Connection, i32) {
         let mut screen_num : c_int = 0;
         unsafe {
-            let conn = ffi::base::xcb_connect(ptr::null_mut() as *mut u8, &mut screen_num);
+            let conn = ffi::base::xcb_connect(ptr::null_mut() as *mut c_char,
+                    &mut screen_num);
             if conn.is_null() {
                 panic!("Couldn't connect")
             } else {
@@ -165,8 +166,8 @@ impl<'s> Connection {
         let mut screen : c_int = 0;
         unsafe {
             let conn = {
-		let s = display.as_ptr();
-                ffi::base::xcb_connect(s as *mut u8, &mut screen)
+                let s = display.as_ptr();
+                ffi::base::xcb_connect(s as *mut c_char, &mut screen)
             };
             if conn.is_null() {
                 None
@@ -182,9 +183,11 @@ impl<'s> Connection {
         let mut screen : c_int = 0;
         unsafe {
             let conn = {
-		let s = display.as_ptr();
-                ffi::base::xcb_connect_to_display_with_auth_info(s as *mut u8,
-                    mem::transmute(auth_info), &mut screen)
+                let s = display.as_ptr();
+                ffi::base::xcb_connect_to_display_with_auth_info(
+                        s as *mut c_char,
+                        mem::transmute(auth_info),
+                        &mut screen)
             };
             if conn.is_null() {
                 None
