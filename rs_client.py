@@ -505,6 +505,12 @@ def _ffi_enum(enum, nametup):
                c.name, type_name, type_name, d.name)
 
 
+def _ffi_bitcase_name(switch, bitcase):
+    assert switch.is_switch and bitcase.type.has_name
+    switch_name = _lower_name(_ext_nametup(switch.name))
+    return '_%s__%s' % (switch_name, bitcase.ffi_field_name)
+
+
 def _ffi_struct(typeobj, must_pack=False):
     '''
     Helper function for handling all structure types.
@@ -531,11 +537,20 @@ def _ffi_struct(typeobj, must_pack=False):
     if not typeobj.is_switch:
         for field in typeobj.fields:
             maxfieldlen = max(maxfieldlen, len(field.ffi_field_name))
+    else:
+        for b in typeobj.bitcases:
+            if b.type.has_name:
+                maxfieldlen = max(maxfieldlen, len(b.ffi_field_name))
+            else:
+                for field in b.type.fields:
+                    maxfieldlen = max(maxfieldlen, len(field.ffi_field_name))
+
+
 
     def _ffi_struct_field(field):
         ftype = field.ffi_field_type
         space = ' '* (maxfieldlen - len(field.ffi_field_name))
-        if (field.type.fixed_size() or self.is_union or
+        if (field.type.fixed_size() or typeobj.is_union or
             # in case of switch with switch children,
             # don't make the field a pointer
             # necessary for unserialize to work
@@ -545,14 +560,39 @@ def _ffi_struct(typeobj, must_pack=False):
             _f('pub %s: %s%s,', field.ffi_field_name, space, ftype)
         else:
             assert not field.has_subscript
-            _f('pub %s: %s*mut %s', field.field.ffi_field_name, space, ftype)
+            _f('pub %s: %s*mut %s,', field.ffi_field_name, space, ftype)
+
+    named_bitcases = []
 
     if not typeobj.is_switch:
         for field in struct_fields:
             _ffi_struct_field(field)
+    else:
+        for b in typeobj.bitcases:
+            if b.type.has_name:
+                named_bitcases.append(b)
+                space = ' ' * (maxfieldlen - len(b.ffi_field_name))
+                _f('pub %s: %s%s,', b.ffi_field_name, space,
+                        _ffi_bitcase_name(typeobj, b))
+            else:
+                for field in b.type.fields:
+                    _ffi_struct_field(field)
 
     _f.unindent()
     _f('}')
+
+    for b in named_bitcases:
+        _f('')
+        _f('#[repr(C)]')
+        _f('pub struct %s {', _ffi_bitcase_name(typeobj, b))
+        _f.indent()
+        maxfieldlen = 0
+        for field in b.type.fields:
+            maxfieldlen = max(maxfieldlen, len(field.ffi_field_name))
+        for field in b.type.fields:
+            _ffi_struct_field(field)
+        _f.unindent()
+        _f('}')
 
 
 
