@@ -5,12 +5,13 @@ extern crate libc;
 use xcb::ffi::base::*;
 use xcb::ffi::xproto::*;
 use std::ptr;
-use libc::c_int;
+use libc::{c_int, c_char};
 
 fn main() {
     unsafe {
         let mut screen_num: c_int = 0;
-        let c = xcb_connect(ptr::null_mut() as *mut u8, &mut screen_num as *mut c_int);
+        let c = xcb_connect(ptr::null_mut() as *mut c_char,
+                &mut screen_num as *mut c_int);
         if c.is_null() { panic!(); }
 
         let setup = xcb_get_setup(c);
