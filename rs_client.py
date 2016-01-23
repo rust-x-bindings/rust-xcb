@@ -118,25 +118,27 @@ def rs_open(module):
 
     EnumCodegen.build_collision_table(module)
 
+    linklib = "xcb"
+    if _ns.is_ext:
+        linklib = linklib + '-' + _ns.header
+        _ext_names[_ns.ext_name] = _ns.header
+        for (n, h) in module.direct_imports:
+            _ext_names[n] = h
+
     _r.section(0)
     _f.section(0)
     _rf('// edited from %s by rs_client.py on %s',
             _ns.file, time.strftime('%c'))
     _rf('// do not edit!')
+    _rf('')
 
-    linklib = "xcb"
-    _f('')
     _f('')
     _f('use ffi::base::*;')
     _f('use libc::{c_char, c_int, c_uint, c_void};')
 
-
     if _ns.is_ext:
-        linklib = linklib + '-' + _ns.header
-        _ext_names[_ns.ext_name] = _ns.header
         for (n, h) in module.direct_imports:
             _f('use ffi::%s::*;', h)
-            _ext_names[n] = h
         _f('')
         _f('pub const XCB_%s_MAJOR_VERSION: u32 = %s;',
                     _ns.ext_name.upper(),
@@ -151,6 +153,18 @@ def rs_open(module):
     _f('#[link(name="%s")]', linklib)
     _f('extern {')
     _f.indent()
+
+    _r('')
+    _r('use base::*;')
+    _r('use ffi::%s::*;', _ns.header)
+    if _ns.is_ext:
+        for (n, h) in module.direct_imports:
+            _r('use %s::*;', h)
+
+    _r.section(1)
+    _r('')
+    _r('')
+
 
 
 def rs_close(module):
@@ -182,10 +196,25 @@ def _cap_split(string):
     splits string with '_' on each titlecase letter
     >>> _cap_split('SomeString')
     Some_String
+    >>> _cap_split('WINDOW')
+    WINDOW
     '''
     split = _cname_re.finditer(string)
     name_parts = [match.group(0) for match in split]
     return '_'.join(name_parts)
+
+def _cap_join(string):
+    '''
+    splits string with '_' on each titlecase letter
+    >>> _cap_join('SomeString')
+    SomeString
+    >>> _cap_join('WINDOW')
+    Window
+    '''
+    split = _cname_re.finditer(string)
+    name_parts = [match.group(0) for match in split]
+    name_parts = [i[0].upper() + i[1:].lower() for i in name_parts]
+    return ''.join(name_parts)
 
 def _symbol(string):
     if string in _rs_keywords:
@@ -195,7 +224,7 @@ def _symbol(string):
 def _upper_1st(string):
     '''
     return copy of string with first letter turned into upper.
-    Other letters are untouched
+    Other letters are untouched.
     '''
     if len(string) == 0:
         return ''
@@ -217,6 +246,10 @@ def _cap_name(nametup):
     return a string made from a nametuple with joined title case
     >>> _cap_name(('xcb', 'Type', 'Name'))
     XcbTypeName
+    >>> _cap_name(('xcb', 'TypeName'))
+    XcbTypeName
+    >>> _cap_name(('xcb', 'TYPENAME'))
+    XcbTypename
     '''
     return ''.join(tuple(_upper_1st(name) for name in nametup))
 
@@ -307,7 +340,7 @@ def _rs_type_name(nametup):
         if _ns.is_ext:
             module = 'xproto::'
 
-    return module + _cap_name(nametup)
+    return module + ''.join([_cap_join(n) for n in nametup])
 
 # FFI codegen functions
 
@@ -830,7 +863,7 @@ def _ffi_reply_fds(request, name):
 def _rs_type_setup(typeobj, nametup):
     #assert typeobj.hasattr('ffi_type')
 
-    typeobj.r_name = _rs_type_name(nametup)
+    typeobj.rs_type = _rs_type_name(nametup)
 
     if typeobj.is_container:
         for field in typeobj.fields:
@@ -841,7 +874,6 @@ def _rs_type_setup(typeobj, nametup):
 
 
 # Common codegen functions
-
 
 class EnumCodegen(object):
 
@@ -861,10 +893,8 @@ class EnumCodegen(object):
         self.done_vals = {}
         self.discriminants = []
         self.conflicts = []
-        print("testing ", nametup)
         key = _ffi_type_name(nametup)
         if EnumCodegen.namecount[key] > 1:
-            print("got it!")
             nametup = nametup + ('enum',)
         self.ffi_name = _ffi_type_name(nametup)
         self.rs_name = _rs_type_name(nametup)
@@ -918,14 +948,16 @@ def rs_simple(simple, nametup):
     print('simple:  ', nametup)
 
     _ffi_type_setup(simple, nametup)
-
     _f.section(0)
-
     assert len(simple.name) == 1
     _f('')
     _f('pub type %s = %s;', simple.ffi_type, simple.name[0])
-
     _ffi_iterator(simple, nametup)
+
+    _rs_type_setup(simple, nametup)
+    _r.section(0)
+    _r('')
+    _r('pub type %s = %s;', simple.rs_type, simple.ffi_type)
 
 
 
