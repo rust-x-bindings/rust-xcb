@@ -96,6 +96,7 @@ def _rf(fmt, *args):
 
 
 _ns = None
+_ext_names = {}
 
 # global variable to keep track of serializers and
 # switch data types due to weird dependencies
@@ -115,7 +116,7 @@ def rs_open(module):
     global _ns
     _ns = module.namespace
 
-    _ffi_build_enum_collision_table(module)
+    EnumCodegen.build_collision_table(module)
 
     _r.section(0)
     _f.section(0)
@@ -131,9 +132,11 @@ def rs_open(module):
 
 
     if _ns.is_ext:
-        linklib = linklib + '-' + _ns.header.lower()
+        linklib = linklib + '-' + _ns.header
+        _ext_names[_ns.ext_name] = _ns.header
         for (n, h) in module.direct_imports:
             _f('use ffi::%s::*;', h)
+            _ext_names[n] = h
         _f('')
         _f('pub const XCB_%s_MAJOR_VERSION: u32 = %s;',
                     _ns.ext_name.upper(),
@@ -172,6 +175,7 @@ def rs_close(module):
 
 _cname_re = re.compile('([A-Z0-9][a-z]+|[A-Z0-9]+(?![a-z])|[a-z]+)')
 _rs_keywords = ['type', 'str', 'match']
+
 
 def _cap_split(string):
     '''
@@ -270,6 +274,41 @@ def _ffi_name(nametup):
     return _lower_name(_ext_nametup(nametup))
 
 
+def _rs_type_name(nametup):
+    '''
+    turns the nametup into a Rust type name
+    foreign rust type names include module prefix
+    >>> _rs_type_name(('u32',))
+    u32
+    >>> _rs_type_name(('xcb', 'Type'))
+    xproto::Type
+    >>> _rs_type_name(('xcb', 'RandR', 'SuperType'))
+    randr::SuperType
+    '''
+    # handles SimpleType
+    if len(nametup) == 1:
+        return nametup[0]
+
+    # remove 'xcb'
+    if nametup[0].lower() == 'xcb':
+        nametup = nametup[1:]
+
+    module = ''
+    # handle extension type
+    if nametup[0] in _ext_names:
+        ext = _ext_names[nametup[0]]
+        if (not _ns.is_ext or
+                ext != _ns.header):
+            module = ext + '::'
+        nametup = nametup[1:]
+
+    # handle xproto type
+    elif len(nametup) == 1:
+        if _ns.is_ext:
+            module = 'xproto::'
+
+    return module + _cap_name(nametup)
+
 # FFI codegen functions
 
 def _ffi_type_setup(typeobj, nametup, suffix=()):
@@ -337,13 +376,6 @@ def _ffi_type_setup(typeobj, nametup, suffix=()):
             field.ffi_need_const = (field.type.nmemb != 1)
             field.ffi_need_pointer = (field.type.nmemb != 1)
 
-            do_deb = ('create_mode' in typeobj.ffi_request_fn and
-                    field.ffi_field_name == 'name')
-
-            if do_deb:
-                print('step 1: ', field.ffi_need_const)
-
-
             # correct the need_pointer field for variable size non-list types
             if not field.type.fixed_size():
                 field.ffi_need_pointer = True
@@ -353,11 +385,9 @@ def _ffi_type_setup(typeobj, nametup, suffix=()):
             if field.type.is_switch:
                 field.ffi_need_const = True
                 field.ffi_need_pointer = True
+                field.ffi_need_aux = True
             elif not field.type.fixed_size() and not field.type.is_bitcase:
                 typeobj.ffi_need_sizeof = True
-
-            if do_deb:
-                print('step 2: ', field.ffi_need_const)
 
             field.ffi_iterator_type = _ffi_type_name(
                     field.field_type + ('iterator',))
@@ -430,79 +460,6 @@ def _ffi_type_setup(typeobj, nametup, suffix=()):
                     #_ffi_serialize('sizeof', typeobj)
 
 
-
-def _ffi_build_enum_collision_table(module):
-    global namecount
-    namecount = {}
-
-    for v in module.types.values():
-        name = _ffi_type_name(v[0])
-        namecount[name] = (namecount.get(name) or 0) + 1
-
-def _ffi_enum(enum, nametup):
-
-    def enum_name():
-        name = _ffi_type_name(nametup)
-        if namecount[name] > 1:
-            name = _ffi_type_name(nametup+('enum',))
-        return name
-
-    def discriminant_name(enam):
-        return _upper_name(_ext_nametup(nametup+(enam,)))
-
-    def enum_val(val):
-        return "0x%02x" % val
-
-
-    class Discriminant: pass
-
-    discriminants = []
-    done_vals = {}
-    conflicts = []
-
-    maxnamelen = 0
-    maxvallen = 0
-    val = -1
-    for (enam, eval) in enum.values:
-        name = discriminant_name(enam)
-        val = int(eval) if eval != '' else val+1
-        valstr = enum_val(val)
-        maxnamelen = max(maxnamelen, len(name))
-        maxvallen = max(maxvallen, len(valstr))
-        d = Discriminant()
-        d.name = name
-        d.valstr = valstr
-        d.val = val
-        if val in done_vals:
-            conflicts.append(d)
-        else:
-            done_vals[val] = d
-            discriminants.append(d)
-
-    _f.section(0)
-
-    type_name = enum_name()
-
-    _f('')
-    if len(discriminants) > 1:
-        _f('#[repr(C)]')
-    _f('pub enum %s {', type_name)
-    _f.indent()
-
-    for d in discriminants:
-        namespace = ' '*(maxnamelen-len(d.name))
-        valspace = ' '*(maxvallen-len(d.valstr))
-        _f('%s %s= %s%s,', d.name, namespace, valspace, d.valstr)
-
-    _f.unindent()
-    _f('}')
-
-    if len(conflicts):
-        _f('')
-    for c in conflicts:
-        d = done_vals[c.val]
-        _f('pub const %s: %s = %s::%s;',
-               c.name, type_name, type_name, d.name)
 
 
 def _ffi_bitcase_name(switch, bitcase):
@@ -873,18 +830,81 @@ def _ffi_reply_fds(request, name):
 def _rs_type_setup(typeobj, nametup):
     #assert typeobj.hasattr('ffi_type')
 
-    def _rs_type_name(nametup):
-        if len(nametup) == 1:
-            # handles SimpleType
-            return nametup[0]
-        else:
-            return _cap_name(nametup)
-
     typeobj.r_name = _rs_type_name(nametup)
 
     if typeobj.is_container:
         for field in typeobj.fields:
             _rs_type_setup(field.type, field.field_type)
+
+
+
+
+
+# Common codegen functions
+
+
+class EnumCodegen(object):
+
+    namecount = {}
+
+    def build_collision_table(module):
+        for v in module.types.values():
+            key = _ffi_type_name(v[0])
+            EnumCodegen.namecount[key] = (
+                (EnumCodegen.namecount.get(key) or 0) + 1
+            )
+
+
+    def __init__(self, nametup):
+        self._nametup = nametup
+
+        self.done_vals = {}
+        self.discriminants = []
+        self.conflicts = []
+        print("testing ", nametup)
+        key = _ffi_type_name(nametup)
+        if EnumCodegen.namecount[key] > 1:
+            print("got it!")
+            nametup = nametup + ('enum',)
+        self.ffi_name = _ffi_type_name(nametup)
+        self.rs_name = _rs_type_name(nametup)
+
+
+    def add_discriminant(self, name, val):
+        class Discriminant: pass
+        d = Discriminant()
+        d.rs_name = name
+        if d.rs_name[0].isdigit():
+            d.rs_name = '_' + d.rs_name
+        d.ffi_name = _upper_name(_ext_nametup(self._nametup+(name,)))
+        d.valstr = '0x%02x' % val
+        d.val = val
+        if val in self.done_vals:
+            self.conflicts.append(d)
+        else:
+            self.done_vals[val] = d
+            self.discriminants.append(d)
+
+    def gen_code(self, sf, name_field, reprC):
+        maxnamelen = 0
+        maxvallen = 0
+        for d in self.discriminants:
+            maxvallen = max(maxvallen, len(d.valstr))
+            maxnamelen = max(maxnamelen, len(getattr(d, name_field)))
+
+        sf.section(0)
+        sf('')
+        if reprC and len(self.discriminants) > 1:
+            sf('#[repr(C)]')
+        sf('pub enum %s {', getattr(self, name_field))
+        sf.indent()
+        for d in self.discriminants:
+            dname = getattr(d, name_field)
+            namespace = ' ' * (maxnamelen-len(dname))
+            valspace = ' ' * (maxvallen-len(d.valstr))
+            sf('%s = %s %s%s,', dname, namespace, valspace, d.valstr)
+        sf.unindent()
+        sf('}')
 
 
 
@@ -908,15 +928,32 @@ def rs_simple(simple, nametup):
     _ffi_iterator(simple, nametup)
 
 
-def rs_enum(enum, nametup):
+
+def rs_enum(typeobj, nametup):
     '''
-    enum is Enum object
+    typeobj is xcbgen.xtypes.Enum object
     nametup is a name tuple
     '''
     print('enum:    ', nametup)
 
-    _ffi_type_setup(enum, nametup, ('enum',))
-    _ffi_enum(enum, nametup)
+    ecg = EnumCodegen(nametup)
+
+    val = -1
+    for (enam, eval) in typeobj.values:
+        val = int(eval) if eval != '' else val+1
+        ecg.add_discriminant(enam, val)
+
+    ecg.gen_code(_f, "ffi_name", True)
+    ecg.gen_code(_r, "rs_name", False)
+
+    # writing conflicts after only for FFI at the moment
+    if len(ecg.conflicts):
+        _f('')
+    for c in ecg.conflicts:
+        d = ecg.done_vals[c.val]
+        _f('pub const %s: %s = %s::%s;',
+               c.ffi_name, ecg.ffi_name, ecg.ffi_name, d.ffi_name)
+
 
 
 def rs_struct(struct, nametup):
