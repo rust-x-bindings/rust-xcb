@@ -191,24 +191,24 @@ _cname_re = re.compile('([A-Z0-9][a-z]+|[A-Z0-9]+(?![a-z])|[a-z]+)')
 _rs_keywords = ['type', 'str', 'match']
 
 
-def _cap_split(string):
+def _tit_split(string):
     '''
     splits string with '_' on each titlecase letter
-    >>> _cap_split('SomeString')
+    >>> _tit_split('SomeString')
     Some_String
-    >>> _cap_split('WINDOW')
+    >>> _tit_split('WINDOW')
     WINDOW
     '''
     split = _cname_re.finditer(string)
     name_parts = [match.group(0) for match in split]
     return '_'.join(name_parts)
 
-def _cap_join(string):
+def _tit_cap(string):
     '''
-    splits string with '_' on each titlecase letter
-    >>> _cap_join('SomeString')
+    capitalize each substring beggining by a titlecase letter
+    >>> _tit_cap('SomeString')
     SomeString
-    >>> _cap_join('WINDOW')
+    >>> _tit_cap('WINDOW')
     Window
     '''
     split = _cname_re.finditer(string)
@@ -239,7 +239,7 @@ def _upper_name(nametup):
     >>> _upper_name(('xcb', 'constant', 'AwesomeValue'))
     XCB_CONSTANT_AWESOME_VALUE
     '''
-    return '_'.join(tuple(_cap_split(name) for name in nametup)).upper()
+    return '_'.join(tuple(_tit_split(name) for name in nametup)).upper()
 
 def _cap_name(nametup):
     '''
@@ -260,7 +260,7 @@ def _lower_name(nametup):
     >>> _upper_name(('xcb', 'Ext', 'RequestName'))
     xcb_ext_request_name
     '''
-    return '_'.join(tuple(_cap_split(name) for name in nametup)).lower()
+    return '_'.join(tuple(_tit_split(name) for name in nametup)).lower()
 
 
 def _ext_nametup(nametup):
@@ -340,7 +340,7 @@ def _rs_type_name(nametup):
         if _ns.is_ext:
             module = 'xproto::'
 
-    return module + ''.join([_cap_join(n) for n in nametup])
+    return module + ''.join([_tit_cap(n) for n in nametup])
 
 # FFI codegen functions
 
