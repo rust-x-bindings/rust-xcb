@@ -155,11 +155,11 @@ def rs_open(module):
     _f.indent()
 
     _r('')
-    _r('use base::*;')
+    _r('use base;')
     _r('use ffi::%s::*;', _ns.header)
     if _ns.is_ext:
         for (n, h) in module.direct_imports:
-            _r('use %s::*;', h)
+            _r('use %s;', h)
 
     _r.section(1)
     _r('')
@@ -341,6 +341,7 @@ def _rs_type_name(nametup):
             module = 'xproto::'
 
     return module + ''.join([_tit_cap(n) for n in nametup])
+
 
 # FFI codegen functions
 
