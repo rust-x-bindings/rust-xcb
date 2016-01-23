@@ -343,6 +343,7 @@ def _rs_type_name(nametup):
     return module + ''.join([_tit_cap(n) for n in nametup])
 
 
+
 # FFI codegen functions
 
 def _ffi_type_setup(typeobj, nametup, suffix=()):
@@ -951,7 +952,7 @@ class EnumCodegen(object):
             dname = getattr(d, name_field)
             namespace = ' ' * (maxnamelen-len(dname))
             valspace = ' ' * (maxvallen-len(d.valstr))
-            sf('%s = %s %s%s,', dname, namespace, valspace, d.valstr)
+            sf('%s %s= %s%s,', dname, namespace, valspace, d.valstr)
         sf.unindent()
         sf('}')
 
