@@ -143,13 +143,18 @@ def rs_open(module):
     _rf('')
 
     _f('')
+    _f('#![allow(improper_ctypes)]')
+    _f('')
     _f('use ffi::base::*;')
-    _f('use libc::{c_char, c_int, c_uint, c_void};')
 
     if _ns.is_ext:
         for (n, h) in module.direct_imports:
             _f('use ffi::%s::*;', h)
         _f('')
+    _f('use libc::{c_char, c_int, c_uint, c_void};')
+    _f('use std;')
+
+    if _ns.is_ext:
         _f('pub const XCB_%s_MAJOR_VERSION: u32 = %s;',
                     _ns.ext_name.upper(),
                     _ns.major_version)
@@ -170,6 +175,9 @@ def rs_open(module):
     if _ns.is_ext:
         for (n, h) in module.direct_imports:
             _r('use %s;', h)
+    _r('use std;')
+    _r('use std::option::Option;')
+    _r('use std::iter::Iterator;')
 
     _r.section(1)
     _r('')
@@ -718,10 +726,11 @@ def _ffi_iterator(typeobj, nametup):
     _f.section(0)
     _f('')
     _f('#[repr(C)]')
-    _f('pub struct %s {', typeobj.ffi_iterator_type)
+    _f("pub struct %s<'a> {", typeobj.ffi_iterator_type)
     _f('    pub data:  *mut %s,', typeobj.ffi_type)
     _f('    pub rem:   c_int,')
     _f('    pub index: c_int,')
+    _f("    _phantom:  std::marker::PhantomData<&'a %s>,", typeobj.ffi_type)
     _f('}')
 
     _f.section(1)
@@ -878,6 +887,8 @@ def _rs_type_setup(typeobj, nametup):
     typeobj.rs_type = _rs_type_name(nametup)
     typeobj.rs_has_lifetime = False
 
+    typeobj.rs_iterator_type = _rs_type_name(nametup+('iterator',))
+
     if typeobj.is_container:
         typeobj.rs_wrap_type = 'StructPtr'
         typeobj.rs_wrap_field = 'ptr'
@@ -885,25 +896,149 @@ def _rs_type_setup(typeobj, nametup):
 
         for field in typeobj.fields:
             _rs_type_setup(field.type, field.field_type)
+            if field.type.is_list:
+                _rs_type_setup(field.type.member, field.field_type)
+            field.rs_field_name = _symbol(field.field_name)
+            field.rs_field_type = _rs_type_name(field.field_type)
+
+            field.rs_iterator_type = _rs_type_name(
+                    field.field_type + ('iterator',))
+
 
 
 def _rs_struct(typeobj):
-
     lifetime1 = ''
     lifetime2 = ''
     if typeobj.rs_has_lifetime:
         lifetime1 = "<'a>"
         lifetime2 = "'a, "
 
-    _r.section(0)
+    _r.section(1)
     _r('')
     _r('pub struct %s%s {', typeobj.rs_type, lifetime1)
     _r('    pub base: base::%s<%s%s>', typeobj.rs_wrap_type,
                 lifetime2, typeobj.ffi_type)
     _r('}')
 
+    _r('')
+    _r('impl%s %s%s {', lifetime1, typeobj.rs_type, lifetime1)
+    with _r.indent_block():
+        for (i, field) in enumerate(typeobj.fields):
+            if i > 0:
+                _r('')
+            if field.visible:
+                _rs_accessor(typeobj, field)
+    _r('}')
 
-# Common codegen functions
+
+def _rs_accessor(typeobj, field):
+
+    if field.type.is_simple:
+        _r('pub fn %s(&self) -> %s {', field.rs_field_name,
+                field.rs_field_type)
+        with _r.indent_block():
+            _r('unsafe {')
+            with _r.indent_block():
+                _r('(*self.base.ptr).%s', field.ffi_field_name)
+            _r('}')
+        _r('}')
+
+    elif field.type.is_list and not field.type.fixed_size():
+        if field.type.member.is_simple:
+            field_type = field.type.member.rs_type
+            if field_type == 'c_char':
+                return_type = '&str'
+            else:
+                return_type = '&[%s]' % field_type
+            _r('pub fn %s(&self) -> %s {', field.rs_field_name, return_type)
+            with _r.indent_block():
+                _r('unsafe {')
+                with _r.indent_block():
+                    _r('let field = self.base.ptr;')
+                    _r('let len = %s(field);', field.ffi_length_fn)
+                    _r('let data = %s(field);', field.ffi_accessor_fn)
+                    if field_type == 'c_char':
+                        _r('let slice = ' +
+                            'std::slice::from_raw_parts(' +
+                                'data as *const u8, ' +
+                                'len as usize);')
+                        _r('// should we check what comes from X?')
+                        _r('std::str::from_utf8_unchecked(&slice)')
+                    else:
+                        _r('std::slice::from_raw_parts(data, len as usize)')
+                _r('}')
+            _r('}')
+        else:
+            _r('pub fn %s(&self) -> %s {',
+                    field.rs_field_name, field.rs_iterator_type)
+            with _r.indent_block():
+                _r('unsafe {')
+                with _r.indent_block():
+                    _r('%s(self.base.ptr)', field.ffi_iterator_fn)
+                _r('}')
+            _r('}')
+            pass
+
+    elif field.type.is_list:
+        _r('pub fn %s(&self) -> &[%s] {',
+                field.rs_field_name, field.rs_field_type)
+        with _r.indent_block():
+            _r('unsafe {')
+            with _r.indent_block():
+                _r('(*self.base.ptr).%s', field.ffi_field_name)
+            _r('}')
+        _r('}')
+
+    elif field.type.is_container:
+        _r('pub fn %s(&self) -> %s {',
+                field.rs_field_name, field.rs_field_type)
+        with _r.indent_block():
+            _r('unsafe {')
+            with _r.indent_block():
+                _r('std::mem::transmute(&(*self.base.ptr).%s)',
+                        field.ffi_field_name)
+            _r('}')
+        _r('}')
+
+    elif not field.type.is_pad:
+        raise Exception('did not treat accessor %s.%s'
+                % (typeobj.ffi_type, field.ffi_field_name))
+
+
+
+def _rs_iterator(typeobj):
+
+    _r.section(1)
+    _r('')
+    _r("pub type %s<'a> = %s<'a>;",
+            typeobj.rs_iterator_type, typeobj.ffi_iterator_type)
+
+    _r('')
+    _r("impl<'a> Iterator for %s<'a> {", typeobj.rs_iterator_type)
+    with _r.indent_block():
+        _r("type Item = %s<'a>;", typeobj.rs_type)
+        _r("fn next(&mut self) -> Option<%s<'a>> {", typeobj.rs_type)
+        with _r.indent_block():
+            _r('if self.rem == 0 { None }')
+            _r('else {')
+            with _r.indent_block():
+                _r('unsafe {')
+                with _r.indent_block():
+                    _r('let iter = self as *mut %s;',
+                            typeobj.ffi_iterator_type)
+                    _r('let data = (*iter).data;')
+                    _r('%s(iter);', typeobj.ffi_next_fn)
+                    _r('Some(std::mem::transmute(data))')
+                _r('}')
+            _r('}')
+        _r('}')
+    _r('}')
+
+
+
+
+
+# Common codegen utilities
 
 class EnumCodegen(object):
 
@@ -1031,6 +1166,7 @@ def rs_struct(struct, nametup):
 
     _rs_type_setup(struct, nametup)
     _rs_struct(struct)
+    _rs_iterator(struct)
 
 def rs_union(union, nametup):
     '''
