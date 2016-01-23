@@ -54,6 +54,16 @@ class SourceFile(object):
         '''
         self._indents[self._section] = indent;
 
+    def indent_block(self):
+        class Indenter(object):
+            def __init__(self, sf):
+                self.sf = sf
+            def __enter__(self):
+                self.sf.indent()
+            def __exit__(self, type, value, traceback):
+                self.sf.unindent()
+        return Indenter(self)
+
     def indent(self):
         '''
         adds one level of indentation to the current section
