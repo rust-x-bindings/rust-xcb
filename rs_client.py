@@ -168,6 +168,9 @@ def rs_open(module):
     _f('#[link(name="%s")]', linklib)
     _f('extern {')
     _f.indent()
+    if _ns.is_ext:
+        _f('')
+        _f('static %s: xcb_extension_t;', _ffi_name(_ns.prefix + ('id',)))
 
     _r('')
     _r('use base;')
@@ -1167,6 +1170,8 @@ def rs_struct(struct, nametup):
     _rs_type_setup(struct, nametup)
     _rs_struct(struct)
     _rs_iterator(struct)
+
+
 
 def rs_union(union, nametup):
     '''
