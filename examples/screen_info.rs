@@ -6,9 +6,9 @@ use xcb::base::*;
 fn main() {
     let (conn, screen_num) = Connection::connect();
 
-    let mut setup = conn.get_setup();
+    let setup = conn.get_setup();
 
-    let mut screen = setup.roots().nth(screen_num as usize).unwrap();
+    let screen = setup.roots().nth(screen_num as usize).unwrap();
 
     println!("");
     println!("Informations of screen {}:", screen.root());
