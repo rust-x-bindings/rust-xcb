@@ -865,13 +865,31 @@ def _rs_type_setup(typeobj, nametup):
     #assert typeobj.hasattr('ffi_type')
 
     typeobj.rs_type = _rs_type_name(nametup)
+    typeobj.rs_has_lifetime = False
 
     if typeobj.is_container:
+        typeobj.rs_wrap_type = 'StructPtr'
+        typeobj.rs_wrap_field = 'ptr'
+        typeobj.rs_has_lifetime = True
+
         for field in typeobj.fields:
             _rs_type_setup(field.type, field.field_type)
 
 
+def _rs_struct(typeobj):
 
+    lifetime1 = ''
+    lifetime2 = ''
+    if typeobj.rs_has_lifetime:
+        lifetime1 = "<'a>"
+        lifetime2 = "'a, "
+
+    _r.section(0)
+    _r('')
+    _r('pub struct %s%s {', typeobj.rs_type, lifetime1)
+    _r('    pub base: base::%s<%s%s>', typeobj.rs_wrap_type,
+                lifetime2, typeobj.ffi_type)
+    _r('}')
 
 
 # Common codegen functions
@@ -1000,7 +1018,8 @@ def rs_struct(struct, nametup):
     _ffi_accessors(struct, nametup)
     _ffi_iterator(struct, nametup)
 
-    pass
+    _rs_type_setup(struct, nametup)
+    _rs_struct(struct)
 
 def rs_union(union, nametup):
     '''
