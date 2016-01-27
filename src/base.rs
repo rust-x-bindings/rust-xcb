@@ -54,21 +54,21 @@ pub struct Connection {
 
 impl<'s> Connection {
     #[inline]
-    pub fn flush(&self) -> bool {
+    pub fn flush(&mut self) -> bool {
         unsafe {
             ffi::base::xcb_flush(self.c) > 0
         }
     }
 
     #[inline]
-    pub fn get_maximum_request_length(&self) -> u32 {
+    pub fn get_maximum_request_length(&mut self) -> u32 {
         unsafe {
             ffi::base::xcb_get_maximum_request_length(self.c)
         }
     }
 
     #[inline]
-    pub fn wait_for_event(&self) -> Option<GenericEvent> {
+    pub fn wait_for_event(&mut self) -> Option<GenericEvent> {
         unsafe {
             let event = ffi::base::xcb_wait_for_event(self.c);
             if event.is_null() {
@@ -80,7 +80,7 @@ impl<'s> Connection {
     }
 
     #[inline]
-    pub fn poll_for_event(&self) -> Option<GenericEvent> {
+    pub fn poll_for_event(&mut self) -> Option<GenericEvent> {
         unsafe {
             let event = ffi::base::xcb_poll_for_event(self.c);
             if event.is_null() {
@@ -92,7 +92,7 @@ impl<'s> Connection {
     }
 
     #[inline]
-    pub fn poll_for_queued_event(&self) -> Option<GenericEvent> {
+    pub fn poll_for_queued_event(&mut self) -> Option<GenericEvent> {
         unsafe {
             let event = ffi::base::xcb_poll_for_queued_event(self.c);
             if event.is_null() {
@@ -103,8 +103,7 @@ impl<'s> Connection {
         }
     }
 
-    #[inline]
-    pub fn get_setup(&self) -> xproto::Setup {
+    pub fn get_setup(&mut self) -> xproto::Setup {
         unsafe {
 
             let setup = ffi::base::xcb_get_setup(self.c);
@@ -116,25 +115,25 @@ impl<'s> Connection {
     }
 
     #[inline]
-    pub fn has_error(&self) -> bool {
+    pub fn has_error(&mut self) -> bool {
         unsafe {
             ffi::base::xcb_connection_has_error(self.c) > 0
         }
     }
 
     #[inline]
-    pub fn generate_id(&self) -> xproto::Window {
+    pub fn generate_id(&mut self) -> xproto::Window {
         unsafe {
             ffi::base::xcb_generate_id(self.c)
         }
     }
 
     #[inline]
-    pub unsafe fn get_raw_conn(&self) -> *mut xcb_connection_t {
+    pub unsafe fn get_raw_conn(&mut self) -> *mut xcb_connection_t {
         self.c
     }
 
-    pub fn send_event<T>(&self,
+    pub fn send_event<T>(&mut self,
                   propogate: bool,
                   destination: xproto::Window,
                   event_mask : u32,
@@ -256,15 +255,14 @@ pub struct Struct<T> {
     pub strct: T
 }
 
-pub struct StructPtr<'a, T: 'a> {
-    pub ptr: *mut T,
-    phantom: PhantomData<&'a T>
+pub struct StructPtr<T> {
+    pub ptr: *mut T
 }
 
 
-pub struct Cookie<'s, T: Copy> {
+pub struct Cookie<T: Copy> {
     pub cookie: T,
-    pub conn: &'s Connection,
+    pub conn: *mut xcb_connection_t,
     pub checked: bool
 }
 
@@ -272,11 +270,11 @@ pub trait ReplyCookie<R> {
     fn get_reply(&self) -> Result<R, GenericError>;
 }
 
-impl<'s, T: Copy> Cookie<'s, T> {
+impl<T: Copy> Cookie<T> {
     pub fn request_check(&self) -> Option<GenericError> {
         unsafe {
             let c : *mut xcb_void_cookie_t = mem::transmute(&self.cookie);
-            let err = ffi::base::xcb_request_check(self.conn.c, *c);
+            let err = ffi::base::xcb_request_check(self.conn, *c);
             //let err = ffi::base::xcb_request_check(
             //    self.conn.c,
             //    void_cookie { sequence: self.cookie.sequence }
@@ -291,18 +289,18 @@ impl<'s, T: Copy> Cookie<'s, T> {
 }
 
 pub struct Reply<T> {
-    pub reply:*mut T
+    pub ptr: *mut T
 }
 
 pub fn mk_reply<T>(reply:*mut T) -> Reply<T> {
-    Reply {reply:reply}
+    Reply {ptr:reply}
 }
 
 impl<T> Drop for Reply<T> {
     fn drop(&mut self) {
         use libc::c_void;
         unsafe {
-            free(self.reply as *mut c_void);
+            free(self.ptr as *mut c_void);
         }
     }
 }
@@ -313,7 +311,7 @@ pub struct GenericEvent { pub base : Event<xcb_generic_event_t>}
 #[derive(Debug)]
 pub struct GenericError { pub base : Error<xcb_generic_error_t>}
 
-pub struct VoidCookie<'s> { pub base : Cookie<'s, xcb_void_cookie_t> }
+pub struct VoidCookie { pub base : Cookie<xcb_void_cookie_t> }
 
 /**
  * Casts the generic event to the right event. Assumes that the given

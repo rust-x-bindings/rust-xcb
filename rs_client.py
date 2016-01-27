@@ -114,6 +114,9 @@ finished_serializers = []
 finished_sizeof = []
 finished_switch = []
 
+_types_uneligible_to_copy = []
+
+
 # exported functions to xcbgen start by 'rs_'
 
 # starting with opening and closing
@@ -131,9 +134,9 @@ def rs_open(module):
     linklib = "xcb"
     if _ns.is_ext:
         linklib = linklib + '-' + _ns.header
-        _ext_names[_ns.ext_name] = _ns.header
+        _ext_names[_ns.ext_name.lower()] = _ns.header
         for (n, h) in module.direct_imports:
-            _ext_names[n] = h
+            _ext_names[n.lower()] = h
 
     _r.section(0)
     _f.section(0)
@@ -174,10 +177,13 @@ def rs_open(module):
 
     _r('')
     _r('use base;')
+    _r('use macros;')
     _r('use ffi::%s::*;', _ns.header)
     if _ns.is_ext:
         for (n, h) in module.direct_imports:
+            _r('use ffi::%s::*;', h)
             _r('use %s;', h)
+    _r('use libc::{c_char, c_int, c_uint, c_void};')
     _r('use std;')
     _r('use std::option::Option;')
     _r('use std::iter::Iterator;')
@@ -328,6 +334,45 @@ def _ffi_name(nametup):
     return _lower_name(_ext_nametup(nametup))
 
 
+
+def _rs_extract_module(nametup):
+    '''
+    returns the module extracted from nametup
+    along with the nametup without the module parts
+    if module is local module, an empty module is returned
+    >>> _rs_type_name(('u32',))
+    ("", "u32")
+    >>> _rs_type_name(('xcb', 'Type'))
+    ("xproto::", "Type")
+    >>> _rs_type_name(('xcb', 'RandR', 'SuperType'))
+    ("randr::", "SuperType")
+    '''
+    # handles SimpleType
+    if len(nametup) == 1:
+        return ("", nametup[0])
+
+    # remove 'xcb'
+    if nametup[0].lower() == 'xcb':
+        nametup = nametup[1:]
+
+    module = ''
+    # handle extension type
+    if nametup[0].lower() in _ext_names:
+        ext = _ext_names[nametup[0].lower()]
+        if (not _ns.is_ext or
+                ext != _ns.header):
+            module = ext + '::'
+        nametup = nametup[1:]
+
+    # handle xproto type
+    else:
+        if _ns.is_ext:
+            module = 'xproto::'
+
+    return (module, nametup)
+
+
+
 def _rs_type_name(nametup):
     '''
     turns the nametup into a Rust type name
@@ -339,29 +384,20 @@ def _rs_type_name(nametup):
     >>> _rs_type_name(('xcb', 'RandR', 'SuperType'))
     randr::SuperType
     '''
-    # handles SimpleType
     if len(nametup) == 1:
         return nametup[0]
 
-    # remove 'xcb'
-    if nametup[0].lower() == 'xcb':
-        nametup = nametup[1:]
-
-    module = ''
-    # handle extension type
-    if nametup[0] in _ext_names:
-        ext = _ext_names[nametup[0]]
-        if (not _ns.is_ext or
-                ext != _ns.header):
-            module = ext + '::'
-        nametup = nametup[1:]
-
-    # handle xproto type
-    elif len(nametup) == 1:
-        if _ns.is_ext:
-            module = 'xproto::'
+    (module, nametup) = _rs_extract_module(nametup)
 
     return module + ''.join([_tit_cap(n) for n in nametup])
+
+
+def _rs_name(nametup):
+
+    (module, nametup) = _rs_extract_module(nametup)
+
+    return module + '_'.join([_tit_split(n) for n in nametup]).lower()
+
 
 
 
@@ -402,14 +438,24 @@ def _ffi_type_setup(typeobj, nametup, suffix=()):
     typeobj.ffi_unpack_fn = _ffi_name(nametup + ('unpack',))
     typeobj.ffi_sizeof_fn = _ffi_name(nametup + ('sizeof',))
 
-    # special case: structs where variable size fields are followed by fixed size fields
+    # special case: structs where variable size fields are followed
+    # by fixed size fields
     typeobj.ffi_var_followed_by_fixed_fields = False
+
+    if not typeobj.fixed_size():
+        if not typeobj in _types_uneligible_to_copy:
+            _types_uneligible_to_copy.append(typeobj)
+        if hasattr(typeobj, 'parents'):
+            for p in typeobj.parents:
+                _types_uneligible_to_copy.append(p)
+
 
     if typeobj.is_switch:
         typeobj.ffi_need_serialize = True
         for bitcase in typeobj.bitcases:
             bitcase.ffi_field_name = _symbol(bitcase.field_name)
-            bitcase_name = bitcase.field_type if bitcase.type.has_name else nametup
+            bitcase_name = (bitcase.field_type if bitcase.type.has_name
+                    else nametup)
             _ffi_type_setup(bitcase.type, bitcase_name, ())
 
     elif typeobj.is_container:
@@ -466,7 +512,8 @@ def _ffi_type_setup(typeobj, nametup, suffix=()):
             if field.type.fixed_size():
                 prev_varsized_offset += field.type.size
                 # special case: intermixed fixed and variable size fields
-                if prev_varsized_field is not None and not field.type.is_pad and field.wire:
+                if (prev_varsized_field is not None and
+                        not field.type.is_pad and field.wire):
                     if not typeobj.is_union:
                         typeobj.ffi_need_serialize = True
                         typeobj.ffi_var_followed_by_fixed_fields = True
@@ -480,7 +527,8 @@ def _ffi_type_setup(typeobj, nametup, suffix=()):
                     field.prev_varsized_field = None
 
     if typeobj.ffi_need_serialize:
-        # when _unserialize() is wanted, create _sizeof() as well for consistency reasons
+        # when _unserialize() is wanted, create _sizeof() as well
+        # for consistency reasons
         typeobj.ffi_need_sizeof = True
 
     # as switch does never appear at toplevel,
@@ -488,10 +536,12 @@ def _ffi_type_setup(typeobj, nametup, suffix=()):
     if typeobj.is_switch:
         if typeobj.ffi_type not in finished_switch:
             finished_switch.append(typeobj.ffi_type)
-            # special: switch C structs get pointer fields for variable-sized members
+            # special: switch C structs get pointer fields
+            # for variable-sized members
             _ffi_struct(typeobj)
             for bitcase in typeobj.bitcases:
-                bitcase_name = bitcase.type.name if bitcase.type.has_name else nametup
+                bitcase_name = (bitcase.type.name if bitcase.type.has_name
+                    else nametup)
                 _ffi_accessors(bitcase.type, bitcase_name)
                 # no list with switch as element, so no call to
                 # _c_iterator(field.type, field_name) necessary
@@ -502,10 +552,12 @@ def _ffi_type_setup(typeobj, nametup, suffix=()):
                 finished_serializers.append(typeobj.ffi_serialize_fn)
                 #_ffi_serialize('serialize', typeobj)
 
-                # _unpack() and _unserialize() are only needed for special cases:
+                # _unpack() and _unserialize() are only needed
+                # for special cases:
                 #   switch -> unpack
                 #   special cases -> unserialize
-                if typeobj.is_switch or typeobj.ffi_var_followed_by_fixed_fields:
+                if (typeobj.is_switch or
+                        typeobj.ffi_var_followed_by_fixed_fields):
                     pass
                     #_ffi_serialize('unserialize', typeobj)
 
@@ -593,6 +645,12 @@ def _ffi_struct(typeobj, must_pack=False):
 
     _f.unindent()
     _f('}')
+    if not typeobj in _types_uneligible_to_copy:
+        _f('')
+        _f('impl Copy for %s {}', typeobj.ffi_type)
+        _f('impl Clone for %s {', typeobj.ffi_type)
+        _f('    fn clone(&self) -> %s { *self }', typeobj.ffi_type)
+        _f('}')
 
     for b in named_bitcases:
         _f('')
@@ -619,7 +677,8 @@ def _ffi_opcode(nametup, opcode):
 def _ffi_accessors_list(typeobj, field):
     '''
     Declares the accessor functions for a list field.
-    Declares a direct-accessor function only if the list members are fixed size.
+    Declares a direct-accessor function only if the list members
+        are fixed size.
     Declares length and get-iterator functions always.
     '''
 
@@ -627,11 +686,14 @@ def _ffi_accessors_list(typeobj, field):
     ffi_type = typeobj.ffi_type
 
     # special case: switch
-    # in case of switch, 2 params have to be supplied to certain accessor functions:
+    # in case of switch, 2 params have to be supplied to certain
+    # accessor functions:
     #   1. the anchestor object (request or reply)
     #   2. the (anchestor) switch object
-    # the reason is that switch is either a child of a request/reply or nested in another switch,
-    # so whenever we need to access a length field, we might need to refer to some anchestor type
+    # the reason is that switch is either a child of a request/reply
+    # or nested in another switch,
+    # so whenever we need to access a length field, we might need to
+    # refer to some anchestor type
     switch_obj = typeobj if typeobj.is_switch else None
     if typeobj.is_bitcase:
         switch_obj = typeobj.parents[-1]
@@ -652,7 +714,8 @@ def _ffi_accessors_list(typeobj, field):
 
         # 'S': name for the 'toplevel' switch
         toplevel_switch = parents[1]
-        params.append(('S: *const %s' % toplevel_switch.ffi_type, toplevel_switch))
+        params.append(('S: *const %s' % toplevel_switch.ffi_type,
+                toplevel_switch))
 
         # auxiliary object for 'S' parameter
         S_obj = parents[1]
@@ -687,7 +750,8 @@ def _ffi_accessors_list(typeobj, field):
 
 def _ffi_accessors_field(typeobj, field):
     '''
-    Declares the accessor functions for a non-list field that follows a variable-length field.
+    Declares the accessor functions for a non-list field that follows
+    a variable-length field.
     '''
     ffi_type = typeobj.ffi_type
 
@@ -729,11 +793,11 @@ def _ffi_iterator(typeobj, nametup):
     _f.section(0)
     _f('')
     _f('#[repr(C)]')
-    _f("pub struct %s<'a> {", typeobj.ffi_iterator_type)
+    _f("pub struct %s {", typeobj.ffi_iterator_type)
     _f('    pub data:  *mut %s,', typeobj.ffi_type)
     _f('    pub rem:   c_int,')
     _f('    pub index: c_int,')
-    _f("    _phantom:  std::marker::PhantomData<&'a %s>,", typeobj.ffi_type)
+    #_f("    _phantom:  std::marker::PhantomData<&'a %s>,", typeobj.ffi_type)
     _f('}')
 
     _f.section(1)
@@ -749,115 +813,20 @@ def _ffi_iterator(typeobj, nametup):
 
 
 
-def _ffi_cookie(request):
-    _f.section(0)
-    _f('')
-    _f('#[derive(Copy, Clone)]')
-    _f('#[repr(C)]')
-    _f('pub struct %s {', request.ffi_cookie_type)
-    _f('    sequence: c_uint')
-    _f('}')
-
-
-def _ffi_request_helper(request, nametup, cookie_type, void, regular,
-        aux=False):
-    '''
-    Declares a request function.
-    '''
-
-    # Four stunningly confusing possibilities here:
-    #
-    #   Void            Non-void
-    # ------------------------------
-    # "req"            "req"
-    # 0 flag           CHECKED flag   Normal Mode
-    # void_cookie      req_cookie
-    # ------------------------------
-    # "req_checked"    "req_unchecked"
-    # CHECKED flag     0 flag         Abnormal Mode
-    # void_cookie      req_cookie
-    # ------------------------------
-
-
-    # Whether we are _checked or _unchecked
-    checked = void and not regular
-    unchecked = not void and not regular
-
-    # What kind of cookie we return
-    func_cookie = 'xcb_void_cookie_t' if void else request.ffi_cookie_type
-
-    # What our function name is
-    func_name = request.ffi_request_fn if not aux else self.ffi_aux_fn
-    if checked:
-        func_name = request.ffi_checked_fn if not aux else request.ffi_aux_checked_fn
-    if unchecked:
-        func_name = request.ffi_unchecked_fn if not aux else request.ffi_aux_unchecked_fn
-
-    param_fields = []
-    wire_fields = []
-    maxnamelen = len('c') # xcb_connection_t
-    serial_fields = []
-    # special case: list with variable size elements
-    list_with_var_size_elems = False
-
-    for field in request.fields:
-        if field.visible:
-            # The field should appear as a call parameter
-            param_fields.append(field)
-        if field.wire and not field.auto:
-            # We need to set the field up in the structure
-            wire_fields.append(field)
-        if field.type.ffi_need_serialize or field.type.ffi_need_sizeof:
-            serial_fields.append(field)
-
-    for field in param_fields:
-        maxnamelen = max(maxnamelen, len(field.ffi_field_name))
-        if field.type.is_list and not field.type.member.fixed_size():
-            list_with_var_size_elems = True
-
-
-    _f.section(1)
-    _f('')
-    fn_start = 'pub fn %s (' % func_name
-    eol = ',' if len(param_fields) else ')'
-    _f('%sc: *mut xcb_connection_t%s', fn_start, eol)
-
-    func_spacing = ' ' * len(fn_start)
-
-    for (i, field) in enumerate(param_fields):
-
-        param_type = field.ffi_field_type
-        if field.ffi_need_pointer:
-            pointer = '*const ' if field.ffi_need_const else '*mut '
-            param_type = pointer + param_type
-
-        if field.type.ffi_need_serialize and not aux:
-            param_type = '*const c_void'
-
-        spacing = ' ' * (maxnamelen - len(field.ffi_field_name))
-        eol = ')' if i == (len(param_fields)-1) else ','
-
-        _f('%s%s: %s%s%s', func_spacing, field.ffi_field_name,
-                spacing, param_type, eol)
-
-    _f('        -> %s;', cookie_type)
-
-
-
-def _ffi_reply(request, name):
+def _ffi_reply(request):
     '''
     Declares the function that returns the reply structure.
     '''
     _f.section(1)
     _f('')
-    _f('/// the returned value must be freed by the caller using libc::free().')
+    _f('/// the returned value must be freed by the caller using ' +
+            'libc::free().')
     fn_start = 'pub fn %s (' % request.ffi_reply_fn
     spacing = ' ' * len(fn_start)
     _f('%sc:      *mut xcb_connection_t,', fn_start)
     _f('%scookie: %s,', spacing, request.ffi_cookie_type)
     _f('%serror:  *mut *mut xcb_generic_error_t)', spacing)
     _f('        -> *mut %s;', request.ffi_reply_type)
-
 
 
 def _ffi_reply_has_fds(self):
@@ -873,7 +842,8 @@ def _ffi_reply_fds(request, name):
     '''
     _f.section(1)
     _f('')
-    _f('/// the returned value must be freed by the caller using libc::free().')
+    _f('/// the returned value must be freed by the caller using ' +
+            'libc::free().')
     fn_start = 'pub fn %s (' % request.ffi_reply_fds_fn
     spacing = ' ' * len(fn_start)
     _f('%sc:     *mut xcb_connection_t,', fn_start)
@@ -884,18 +854,26 @@ def _ffi_reply_fds(request, name):
 
 # Rust codegen function
 
-def _rs_type_setup(typeobj, nametup):
+def _rs_type_setup(typeobj, nametup, suffix=()):
     #assert typeobj.hasattr('ffi_type')
 
-    typeobj.rs_type = _rs_type_name(nametup)
+    typeobj.rs_type = _rs_type_name(nametup + suffix)
     typeobj.rs_has_lifetime = False
 
     typeobj.rs_iterator_type = _rs_type_name(nametup+('iterator',))
+    typeobj.rs_request_fn = _rs_name(nametup)
+    typeobj.rs_checked_fn = _rs_name(nametup+('checked',))
+    typeobj.rs_unchecked_fn = _rs_name(nametup+('unchecked',))
+
+    typeobj.rs_aux_fn = _rs_name(nametup+('aux',))
+    typeobj.rs_aux_checked_fn = _rs_name(nametup+('aux', 'checked'))
+    typeobj.rs_aux_unchecked_fn = _rs_name(nametup+('aux', 'unchecked'))
+    typeobj.rs_reply_type = _rs_type_name(nametup + ('reply',))
+    typeobj.rs_cookie_type = _rs_type_name(nametup + ('cookie',))
 
     if typeobj.is_container:
         typeobj.rs_wrap_type = 'StructPtr'
-        typeobj.rs_wrap_field = 'ptr'
-        typeobj.rs_has_lifetime = True
+        #typeobj.rs_has_lifetime = True
 
         for field in typeobj.fields:
             _rs_type_setup(field.type, field.field_type)
@@ -923,19 +901,25 @@ def _rs_struct(typeobj):
                 lifetime2, typeobj.ffi_type)
     _r('}')
 
+
+def _rs_accessors(typeobj):
+    lifetime1 = ''
+    lifetime2 = ''
+    if typeobj.rs_has_lifetime:
+        lifetime1 = "<'a>"
+        lifetime2 = "'a, "
+
+    _r.section(1)
     _r('')
     _r('impl%s %s%s {', lifetime1, typeobj.rs_type, lifetime1)
     with _r.indent_block():
         for (i, field) in enumerate(typeobj.fields):
-            if i > 0:
-                _r('')
             if field.visible:
                 _rs_accessor(typeobj, field)
     _r('}')
 
 
 def _rs_accessor(typeobj, field):
-
     if field.type.is_simple:
         _r('pub fn %s(&self) -> %s {', field.rs_field_name,
                 field.rs_field_type)
@@ -988,7 +972,7 @@ def _rs_accessor(typeobj, field):
         with _r.indent_block():
             _r('unsafe {')
             with _r.indent_block():
-                _r('(*self.base.ptr).%s', field.ffi_field_name)
+                _r('&(*self.base.ptr).%s', field.ffi_field_name)
             _r('}')
         _r('}')
 
@@ -1013,30 +997,43 @@ def _rs_iterator(typeobj):
 
     _r.section(1)
     _r('')
-    _r("pub type %s<'a> = %s<'a>;",
+    _r("pub type %s = %s;",
             typeobj.rs_iterator_type, typeobj.ffi_iterator_type)
 
     _r('')
-    _r("impl<'a> Iterator for %s<'a> {", typeobj.rs_iterator_type)
-    with _r.indent_block():
-        _r("type Item = %s<'a>;", typeobj.rs_type)
-        _r("fn next(&mut self) -> Option<%s<'a>> {", typeobj.rs_type)
-        with _r.indent_block():
-            _r('if self.rem == 0 { None }')
-            _r('else {')
-            with _r.indent_block():
-                _r('unsafe {')
-                with _r.indent_block():
-                    _r('let iter = self as *mut %s;',
-                            typeobj.ffi_iterator_type)
-                    _r('let data = (*iter).data;')
-                    _r('%s(iter);', typeobj.ffi_next_fn)
-                    _r('Some(std::mem::transmute(data))')
-                _r('}')
-            _r('}')
-        _r('}')
+    _r("impl Iterator for %s {", typeobj.rs_iterator_type)
+    _r("    type Item = %s;", typeobj.rs_type)
+    _r("    fn next(&mut self) -> Option<%s> {", typeobj.rs_type)
+    _r('        if self.rem == 0 { None }')
+    _r('        else {')
+    _r('            unsafe {')
+    _r('                let iter = self as *mut %s;',
+            typeobj.ffi_iterator_type)
+    _r('                let data = (*iter).data;')
+    _r('                %s(iter);', typeobj.ffi_next_fn)
+    _r('                Some(std::mem::transmute(data))')
+    _r('            }')
+    _r('        }')
+    _r('    }')
     _r('}')
 
+
+
+def _rs_reply(request):
+
+    _r.section(1)
+    _r('')
+    _r("pub struct %s {", request.rs_reply_type)
+    _r("    base: base::Reply<%s>", request.ffi_reply_type)
+    _r("}")
+    _r("")
+    _r("fn mk_reply_%s(reply: *mut %s)",
+            request.ffi_reply_type, request.ffi_reply_type)
+    _r("        -> %s {", request.rs_reply_type)
+    _r("    %s {", request.rs_reply_type)
+    _r("        base: base::mk_reply(reply)")
+    _r("    }")
+    _r("}")
 
 
 
@@ -1106,6 +1103,318 @@ class EnumCodegen(object):
 
 
 
+
+
+class RequestCodegen(object):
+
+    def __init__(self, request):
+        self.request = request
+
+        self.void = False if self.request.reply else True
+
+        self.ffi_cookie_type = ('xcb_void_cookie_t' if self.void
+                else self.request.ffi_cookie_type)
+        self.rs_cookie_type = ('base::VoidCookie' if self.void
+                else self.request.rs_cookie_type)
+
+        self.visible_fields = []
+        for field in self.request.fields:
+            if field.visible:
+                self.visible_fields.append(field)
+
+        # for, we do not filter out any visible field,
+        # but we must find out if it is pointer, const ...
+        self.ffi_params = []
+        for field in self.visible_fields:
+            ffi_rq_type = field.ffi_field_type
+            if field.ffi_need_pointer:
+                pointer = '*const ' if field.ffi_need_const else '*mut '
+                ffi_rq_type = pointer + ffi_rq_type
+
+            field.ffi_rq_type = ffi_rq_type
+            self.ffi_params.append(field)
+
+
+        # Rust is more complicated because of lists
+        # here we pack lists in slices
+
+        # there's basically 3 cases:
+        # 1. regular fields, passed as-is to the ffi func
+        # 2. masked lists (such as create_window event mask)
+        #    given to rs slice of tuple (mask, value) and unpacked
+        #    into int and pointer to ffi func
+        # 3. regular lists, for which a length and a pointer
+        #    must be passed to the ffi_func. these are given to
+        #    rs by a slice
+
+        # it happens to have 2 or more lists for same length field.
+        # in this case, we will make 2 slices and runtime assert same length
+        # eg: take a look at render::create_conical_gradient
+
+        for f in self.visible_fields:
+            f.rs_is_slice = False
+            f.rs_lenfield = None
+            f.rs_is_mask_slice = False
+            f.rs_maskfield = None
+            f.rs_skip = False
+
+        for (ffi_index, field) in enumerate(self.visible_fields):
+            field.ffi_index = ffi_index
+
+            if field.type.is_list:
+
+                if field.type.expr.bitfield:
+                    # field associated with a mask
+                    # eg. create_window last field
+                    field.rs_is_mask_slice = True
+                else:
+                    # regular list with length and ptr
+                    field.rs_is_slice = True
+                field.rs_lenfield = field.type.expr.lenfield
+                if not field.rs_lenfield:
+                    len_name = field.type.expr.lenfield_name
+                    for f in self.visible_fields:
+                        if f.field_name == len_name:
+                            field.rs_lenfield = f
+                # the mask is mandatory, but not the length (eg c strings)
+                if field.rs_is_mask_slice:
+                    assert field.rs_lenfield
+                if field.rs_lenfield:
+                    field.rs_lenfield.rs_skip = True
+
+        self.rs_params = []
+
+        for field in self.visible_fields:
+            if not field.rs_skip:
+                self.rs_params.append(field)
+
+
+    def ffi_func_name(self, regular, aux):
+        checked = self.void and not regular
+        unchecked = not self.void and not regular
+
+        if checked:
+            func_name = (self.request.ffi_checked_fn if not aux else
+                    self.request.ffi_aux_checked_fn)
+        elif unchecked:
+            func_name = (self.request.ffi_unchecked_fn if not aux else
+                    self.request.ffi_aux_unchecked_fn)
+        else:
+            func_name = (self.request.ffi_request_fn if not aux else
+                    self.request.ffi_aux_fn)
+
+        return func_name
+
+
+
+    def rs_func_name(self, regular, aux):
+        checked = self.void and not regular
+        unchecked = not self.void and not regular
+
+        if checked:
+            func_name = (self.request.rs_checked_fn if not aux else
+                    self.request.rs_aux_checked_fn)
+        elif unchecked:
+            func_name = (self.request.rs_unchecked_fn if not aux else
+                    self.request.rs_aux_unchecked_fn)
+        else:
+            func_name = (self.request.rs_request_fn if not aux else
+                    self.request.rs_aux_fn)
+
+        return func_name
+
+
+
+    def write_ffi_rs(self, regular, aux=False):
+        self.write_ffi(regular, aux)
+        self.write_rs(regular, aux)
+
+
+    def write_ffi(self, regular, aux=False):
+
+        ffi_func_name = self.ffi_func_name(regular, aux)
+
+        # last tweak in field types
+        for field in self.ffi_params:
+            if field.type.ffi_need_serialize and not aux:
+                field.ffi_rq_type = '*const c_void'
+
+
+        maxnamelen = 1
+        for p in self.ffi_params:
+            maxnamelen = max(maxnamelen, len(p.ffi_field_name))
+
+        _f.section(1)
+        _f("")
+        fn_start = "pub fn %s (" % ffi_func_name
+        func_spacing = ' ' * len(fn_start)
+        spacing = " " * (maxnamelen-len('c'))
+        eol = ',' if len(self.ffi_params) else ')'
+        _f("%sc: %s*mut xcb_connection_t%s", fn_start, spacing, eol)
+
+        for (i, p) in enumerate(self.ffi_params):
+            spacing = ' '*(maxnamelen-len(p.ffi_field_name))
+            eol = ')' if i == (len(self.ffi_params)-1) else ','
+            _f('%s%s: %s%s%s', func_spacing, p.ffi_field_name, spacing,
+                    p.ffi_rq_type, eol)
+
+        _f("        -> %s;", self.ffi_cookie_type)
+
+
+    def write_rs(self, regular, aux=False):
+        checked = self.void and not regular
+        rs_func_name = self.rs_func_name(regular, aux)
+        ffi_func_name = self.ffi_func_name(regular, aux)
+
+        # last tweak in field types
+        for field in self.ffi_params:
+            if field.type.ffi_need_serialize and not aux:
+                field.ffi_rq_type = '*const c_void'
+
+
+        maxnamelen = len('c')
+        for p in self.rs_params:
+            maxnamelen = max(maxnamelen, len(p.rs_field_name))
+
+        let_lines = []
+        call_params = []
+
+        _r.section(1)
+        _r('')
+        fn_start = "pub fn %s(" % rs_func_name
+        func_spacing = ' ' * len(fn_start)
+        eol = ',' if len(self.rs_params) else ')'
+        spacing = ' ' * (maxnamelen-len('c'))
+        _r("%sc%s: &mut base::Connection%s", fn_start, spacing, eol)
+
+        for (i, p) in enumerate(self.rs_params):
+
+            rs_typestr = p.rs_field_type
+
+            if p.rs_is_mask_slice:
+
+                maskfield = p.rs_lenfield
+                rs_typestr = '&[(%s, %s)]' % (maskfield.rs_field_type,
+                    p.rs_field_type)
+
+                let_lines.append('let mut %s_copy = %s.to_vec();' %
+                        (p.rs_field_name, p.rs_field_name))
+                let_lines.append(('let (%s_mask, %s_vec) = ' +
+                        'base::pack_bitfield(&mut %s_copy);') %
+                        (p.rs_field_name, p.rs_field_name, p.rs_field_name))
+                let_lines.append("let %s_ptr = %s_vec.as_ptr();" %
+                        (p.rs_field_name, p.rs_field_name))
+
+                # adding mask field if not already done
+                # (already done should not happen with masks)
+                if not next((cp for cp in call_params
+                            if cp[0] == maskfield.ffi_index), None):
+                    call_params.append((maskfield.ffi_index, "%s_mask as %s" %
+                        (p.rs_field_name, maskfield.ffi_field_type)))
+
+                # adding actual field
+                call_params.append((p.ffi_index, '%s_ptr as %s' %
+                        (p.rs_field_name, p.ffi_rq_type)))
+
+            elif p.rs_is_slice:
+
+                if field.type.member.rs_type == 'c_char':
+                    rs_typestr = '&str'
+                    let_lines.append('let %s = %s.as_bytes();' %
+                            (p.rs_field_name, p.rs_field_name))
+                elif field.type.member.rs_type == 'c_void':
+                    rs_typestr = '&[u8]'
+                else:
+                    rs_typestr = '&[%s]' % rs_typestr
+
+                if p.rs_lenfield:
+                    lenfield = p.rs_lenfield
+                    # adding mask field if not already done
+                    # (already done should not happen with masks)
+                    if not next((cp for cp in call_params
+                            if cp[0] == lenfield.ffi_index), None):
+                        let_lines.append('let %s_len = %s.len();' %
+                                (p.rs_field_name, p.rs_field_name))
+                        call_params.append((lenfield.ffi_index,
+                                "%s_len as %s" %
+                                (p.rs_field_name, lenfield.ffi_field_type)))
+
+                let_lines.append('let %s_ptr = %s.as_ptr();' %
+                        (p.rs_field_name, p.rs_field_name))
+                # adding actual field
+                call_params.append((p.ffi_index, '%s_ptr as %s' %
+                        (p.rs_field_name, p.ffi_rq_type)))
+
+            elif p.type.is_container:
+                call_params.append((p.ffi_index, '*(%s.base.ptr)' %
+                        p.rs_field_name))
+
+            else:
+                call_params.append((p.ffi_index,
+                        '%s as %s' % (p.rs_field_name, p.ffi_rq_type)))
+
+            spacing = ' ' * (maxnamelen-len(p.rs_field_name))
+            eol = ',' if i < (len(self.rs_params)-1) else ')'
+            _r('%s%s%s: %s%s', func_spacing, p.rs_field_name,
+                    spacing, rs_typestr, eol)
+
+        _r("        -> %s {", self.rs_cookie_type)
+
+        with _r.indent_block():
+            _r('unsafe {')
+            with _r.indent_block():
+                for l in let_lines:
+                    print(l)
+                    _r(l)
+
+                call_start = 'let cookie = %s(' % ffi_func_name
+                eol = ',' if len(call_params) else ');'
+                spacing = ' ' * len(call_start)
+                _r('%sc.get_raw_conn()%s', call_start, eol)
+
+                call_params.sort(key=lambda x: x[0])
+
+                for (i, (ffi_ind, p)) in enumerate(call_params):
+                    eol = ',' if i < (len(call_params)-1) else ');'
+                    _r('%s%s%s  // %d', spacing, p, eol, ffi_ind)
+
+                _r("%s {", self.rs_cookie_type)
+                _r("    base: base::Cookie { ")
+                _r("        cookie:  cookie,")
+                _r("        conn:    c.get_raw_conn(),")
+                _r("        checked: %s", 'true' if checked else 'false')
+                _r("    }")
+                _r("}")
+            _r('}')
+        _r('}')
+
+
+
+def _cookie(request):
+    _f.section(0)
+    _f('')
+    _f('#[derive(Copy, Clone)]')
+    _f('#[repr(C)]')
+    _f('pub struct %s {', request.ffi_cookie_type)
+    _f('    sequence: c_uint')
+    _f('}')
+
+    _r.section(0)
+    _r("")
+    _r("pub struct %s {", request.rs_cookie_type)
+    _r("    pub base: base::Cookie<%s>", request.ffi_cookie_type)
+    _r("}")
+
+    _r.section(1)
+    _r('')
+    _r("impl_reply_cookie!(%s, mk_reply_%s, ",
+            request.rs_cookie_type, request.ffi_reply_type)
+    _r("        %s, %s);",
+        request.rs_reply_type, request.ffi_reply_fn)
+
+
+
+
 # codegen drivers
 
 def rs_simple(simple, nametup):
@@ -1169,6 +1478,7 @@ def rs_struct(struct, nametup):
 
     _rs_type_setup(struct, nametup)
     _rs_struct(struct)
+    _rs_accessors(struct)
     _rs_iterator(struct)
 
 
@@ -1210,6 +1520,12 @@ def rs_union(union, nametup):
     _f('    pub data: [u8; %s]', num_bytes)
     _f('}')
 
+    _f('')
+    _f('impl Copy for %s {}', union.ffi_type)
+    _f('impl Clone for %s {', union.ffi_type)
+    _f('    fn clone(&self) -> %s { *self }', union.ffi_type)
+    _f('}')
+
 
 
 def rs_request(request, nametup):
@@ -1219,40 +1535,39 @@ def rs_request(request, nametup):
     '''
     print('request: ', nametup)
     _ffi_type_setup(request, nametup, ('request',))
+    _rs_type_setup(request, nametup, ('request',))
 
-    if request.reply:
-        _ffi_cookie(request)
+    rcg = RequestCodegen(request)
 
     _ffi_opcode(nametup, request.opcode)
-
     _ffi_struct(request)
 
     if request.reply:
+        _cookie(request)
+
         _ffi_type_setup(request.reply, nametup, ('reply',))
         _ffi_struct(request.reply)
-        _ffi_request_helper(request, nametup, request.ffi_cookie_type,
-                False, True, False)
-        _ffi_request_helper(request, nametup, request.ffi_cookie_type,
-                False, False, False)
-        if request.ffi_need_aux:
-            _ffi_request_helper(request, nametup, request.ffi_cookie_type,
-                    False, True, True)
-            _ffi_request_helper(request, nametup, request.ffi_cookie_type,
-                    False, False, True)
         _ffi_accessors(request.reply, nametup + ('reply',))
-        _ffi_reply(request, nametup)
+        _ffi_reply(request)
         if _ffi_reply_has_fds(request.reply):
             _ffi_reply_fds(request, nametup)
-    else:
-        _ffi_request_helper(request, nametup, 'xcb_void_cookie_t',
-                True, False)
-        _ffi_request_helper(request, nametup, 'xcb_void_cookie_t',
-                True, True)
-        if request.ffi_need_aux:
-            _ffi_request_helper(request, nametup, 'xcb_void_cookie_t',
-                    True, False, True)
-            _ffi_request_helper(request, nametup, 'xcb_void_cookie_t',
-                    True, True, True)
+
+        _rs_type_setup(request.reply, nametup, ('reply',))
+        request.reply.rs_wrap_type = 'base::Reply'
+        request.reply.rs_has_lifetime = False
+        _rs_reply(request)
+        _rs_accessors(request.reply)
+
+    # regular call 'request_name'
+    rcg.write_ffi_rs(True, False)
+    # unregular call 'request_name_checked' or 'request_name_unchecked'
+    # depending on cookie type
+    rcg.write_ffi_rs(False, False)
+
+    if request.ffi_need_aux:
+        rcg.write_ffi_rs(True, True)
+        rcg.write_ffi_rs(False, True)
+
 
 
 
@@ -1284,7 +1599,7 @@ def rs_event(event, nametup):
                 event.fields.insert(idx + 1, full_sequence)
 
                 # If the event contains any 64-bit extended fields, they need
-                # to remain aligned on a 64-bit boundary.  Adding full_sequence
+                # to remain aligned on a 64-bit boundary. Adding full_sequence
                 # would normally break that; force the struct to be packed.
                 must_pack = any(f.type.size == 8 and f.type.is_simple
                         for f in event.fields[(idx+1):])
