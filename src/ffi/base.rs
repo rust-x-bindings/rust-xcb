@@ -31,6 +31,7 @@ pub enum xcb_extension_t {}
 
 pub enum xcb_special_event_t {}
 
+pub const XCB_COPY_FROM_PARENT: u32 = 0;
 
 #[repr(C)]
 pub struct xcb_generic_iterator_t {
