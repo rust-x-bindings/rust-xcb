@@ -183,7 +183,7 @@ def rs_open(module):
         for (n, h) in module.direct_imports:
             _r('use ffi::%s::*;', h)
             _r('use %s;', h)
-    _r('use libc::{c_char, c_int, c_uint, c_void};')
+    _r('use libc::{c_char, c_int, c_uint, c_void, malloc};')
     _r('use std;')
     _r('use std::option::Option;')
     _r('use std::iter::Iterator;')
@@ -920,7 +920,7 @@ def _rs_accessors(typeobj):
 
 
 def _rs_accessor(typeobj, field):
-    if field.type.is_simple:
+    if field.type.is_simple or field.type.is_union:
         _r('pub fn %s(&self) -> %s {', field.rs_field_name,
                 field.rs_field_type)
         with _r.indent_block():
@@ -1056,8 +1056,9 @@ class EnumCodegen(object):
         self._nametup = nametup
 
         self.done_vals = {}
-        self.discriminants = []
+        self.unique_discriminants = []
         self.conflicts = []
+        self.all_discriminants = []
         key = _ffi_type_name(nametup)
         if EnumCodegen.namecount[key] > 1:
             nametup = nametup + ('enum',)
@@ -1068,39 +1069,56 @@ class EnumCodegen(object):
     def add_discriminant(self, name, val):
         class Discriminant: pass
         d = Discriminant()
-        d.rs_name = name
+        #d.rs_name = name
+        d.rs_name = _tit_split(name).upper()
         if d.rs_name[0].isdigit():
             d.rs_name = '_' + d.rs_name
         d.ffi_name = _upper_name(_ext_nametup(self._nametup+(name,)))
         d.valstr = '0x%02x' % val
         d.val = val
+        self.all_discriminants.append(d)
         if val in self.done_vals:
             self.conflicts.append(d)
         else:
             self.done_vals[val] = d
-            self.discriminants.append(d)
+            self.unique_discriminants.append(d)
 
-    def gen_code(self, sf, name_field, reprC):
+
+    def maxlen(self, name_field):
         maxnamelen = 0
         maxvallen = 0
-        for d in self.discriminants:
+        for d in self.unique_discriminants:
             maxvallen = max(maxvallen, len(d.valstr))
             maxnamelen = max(maxnamelen, len(getattr(d, name_field)))
+        return (maxnamelen, maxvallen)
 
-        sf.section(0)
-        sf('')
-        if reprC and len(self.discriminants) > 1:
-            sf('#[repr(C)]')
-        sf('pub enum %s {', getattr(self, name_field))
-        sf.indent()
-        for d in self.discriminants:
-            dname = getattr(d, name_field)
-            namespace = ' ' * (maxnamelen-len(dname))
+
+    def write_ffi(self):
+        (maxnamelen, maxvallen) = self.maxlen('ffi_name')
+        type_name = self.ffi_name
+        _f.section(0)
+        _f('')
+        _f('pub type %s = u32;', type_name)
+        for d in self.all_discriminants:
+            d_name = d.ffi_name
+            namespace = ' ' * (maxnamelen-len(d_name))
             valspace = ' ' * (maxvallen-len(d.valstr))
-            sf('%s %s= %s%s,', dname, namespace, valspace, d.valstr)
-        sf.unindent()
-        sf('}')
+            _f('pub const %s%s: %s =%s %s;', d_name, namespace, type_name,
+                    valspace, d.valstr)
 
+    def write_rs(self):
+        (maxnamelen, maxvallen) = self.maxlen("rs_name")
+        _r.section(0)
+        _r('')
+        _r('pub mod %s {', self.rs_name)
+        with _r.indent_block():
+            for d in self.all_discriminants:
+                namespace = ' ' * (maxnamelen-len(d.rs_name))
+                valspace = ' ' * (maxvallen-len(d.valstr))
+                _r('pub const %s%s: u32 =%s %s;', d.rs_name, namespace,
+                        valspace, d.valstr)
+
+        _r('}')
 
 
 
@@ -1415,6 +1433,38 @@ def _cookie(request):
 
 
 
+def _must_pack_event(event, nametup):
+    # The generic event structure xcb_ge_event_t has the full_sequence field
+    # at the 32byte boundary. That's why we've to inject this field into GE
+    # events while generating the structure for them. Otherwise we would read
+    # garbage (the internal full_sequence) when accessing normal event fields
+    # there.
+    must_pack = False
+    if (hasattr(event, 'is_ge_event')
+            and event.is_ge_event
+            and event.name == nametup):
+        event_size = 0
+        for field in event.fields:
+            if field.type.size != None and field.type.nmemb != None:
+                event_size += field.type.size * field.type.nmemb
+            if event_size == 32:
+                full_sequence = Field(tcard32,
+                        tcard32.name, 'full_sequence',
+                        False, True, True)
+                idx = event.fields.index(field)
+                event.fields.insert(idx + 1, full_sequence)
+
+                # If the event contains any 64-bit extended fields, they need
+                # to remain aligned on a 64-bit boundary. Adding full_sequence
+                # would normally break that; force the struct to be packed.
+                must_pack = any(f.type.size == 8 and f.type.is_simple
+                        for f in event.fields[(idx+1):])
+                break
+
+    return must_pack
+
+
+
 # codegen drivers
 
 def rs_simple(simple, nametup):
@@ -1452,16 +1502,9 @@ def rs_enum(typeobj, nametup):
         val = int(eval) if eval != '' else val+1
         ecg.add_discriminant(enam, val)
 
-    ecg.gen_code(_f, "ffi_name", True)
-    ecg.gen_code(_r, "rs_name", False)
+    ecg.write_ffi()
+    ecg.write_rs()
 
-    # writing conflicts after only for FFI at the moment
-    if len(ecg.conflicts):
-        _f('')
-    for c in ecg.conflicts:
-        d = ecg.done_vals[c.val]
-        _f('pub const %s: %s = %s::%s;',
-               c.ffi_name, ecg.ffi_name, ecg.ffi_name, d.ffi_name)
 
 
 
@@ -1526,6 +1569,11 @@ def rs_union(union, nametup):
     _f('    fn clone(&self) -> %s { *self }', union.ffi_type)
     _f('}')
 
+    _rs_type_setup(union, nametup)
+    _r.section(0)
+    _r('')
+    _r('pub type %s = %s;', union.rs_type, union.ffi_type)
+
 
 
 def rs_request(request, nametup):
@@ -1569,8 +1617,6 @@ def rs_request(request, nametup):
         rcg.write_ffi_rs(False, True)
 
 
-
-
 def rs_event(event, nametup):
     '''
     event is Event object
@@ -1578,45 +1624,90 @@ def rs_event(event, nametup):
     '''
     print('event:   ', nametup)
 
-    # The generic event structure xcb_ge_event_t has the full_sequence field
-    # at the 32byte boundary. That's why we've to inject this field into GE
-    # events while generating the structure for them. Otherwise we would read
-    # garbage (the internal full_sequence) when accessing normal event fields
-    # there.
-    must_pack = False
-    if (hasattr(event, 'is_ge_event')
-            and event.is_ge_event
-            and event.name == nametup):
-        event_size = 0
-        for field in event.fields:
-            if field.type.size != None and field.type.nmemb != None:
-                event_size += field.type.size * field.type.nmemb
-            if event_size == 32:
-                full_sequence = Field(tcard32,
-                        tcard32.name, 'full_sequence',
-                        False, True, True)
-                idx = event.fields.index(field)
-                event.fields.insert(idx + 1, full_sequence)
-
-                # If the event contains any 64-bit extended fields, they need
-                # to remain aligned on a 64-bit boundary. Adding full_sequence
-                # would normally break that; force the struct to be packed.
-                must_pack = any(f.type.size == 8 and f.type.is_simple
-                        for f in event.fields[(idx+1):])
-                break
+    must_pack = _must_pack_event(event, nametup)
 
     if must_pack:
         print('event ', nametup, ' is packed')
 
+    for f in event.fields:
+        if f.field_name.lower() == 'new':
+            f.field_name = 'new_'
+
     _ffi_type_setup(event, nametup, ('event',))
     _ffi_opcode(nametup, event.opcodes[nametup])
 
+    _rs_type_setup(event, nametup, ('event',))
+
+    _r.section(0)
+    _r('')
+    _r('pub struct %s {', event.rs_type)
+    _r('    pub base: base::Event<%s>', event.ffi_type)
+    _r('}')
+
     if event.name == nametup:
         _ffi_struct(event, must_pack)
+
+        accessor_fields = []
+        for f in event.fields:
+            if not f.visible: continue
+            accessor_fields.append(f)
+            if f.type.is_list or f.type.is_switch or f.type.is_bitcase:
+                try:
+                    accessor_fields.remove(f.type.expr.lenfield)
+                except:
+                    pass
+
+        new_params = []
+
+        _r.section(1)
+        _r('')
+        _r('impl %s {', event.rs_type)
+        with _r.indent_block():
+            for f in accessor_fields:
+                _rs_accessor(event, f)
+
+                rs_ftype = f.rs_field_type
+                if f.has_subscript:
+                    rs_ftype = "[%s; %d]" % (rs_ftype, f.type.nmemb)
+
+                new_params.append("%s: %s" % (f.rs_field_name, rs_ftype))
+
+            fn_start = "pub fn new("
+            fn_space = ' ' * len(fn_start)
+            p = new_params[0] if len(new_params) else ''
+            eol = ',' if len(new_params)>1 else ')'
+            _r('%s%s%s', fn_start, p, eol)
+            for (i, p) in enumerate(new_params[1:]):
+                eol = ',' if i != len(new_params)-2 else ')'
+                _r("%s%s%s", fn_space, p, eol)
+
+            _r('        -> %s {', event.rs_type)
+            with _r.indent_block():
+                _r('unsafe {')
+                with _r.indent_block():
+                    _r('let raw = malloc(32 as usize) as *mut %s;', event.ffi_type)
+                    for f in event.fields:
+                        if not f.visible: continue
+                        if f.type.is_container and not f.type.is_union:
+                            _r('(*raw).%s = *%s.base.ptr;',
+                                    f.ffi_field_name, f.rs_field_name)
+                        else:
+                            _r('(*raw).%s = %s;',
+                                    f.ffi_field_name, f.rs_field_name)
+                    _r('%s {', event.rs_type)
+                    _r('    base: base::Event {')
+                    _r('        ptr: raw')
+                    _r('    }')
+                    _r('}')
+                _r('}')
+            _r('}')
+        _r('}')
+
+
     else:
         _f.section(0)
         _f('')
-        _f('type %s = %s;', _ffi_type_name(nametup+('event',)),
+        _f('pub type %s = %s;', _ffi_type_name(nametup+('event',)),
                             _ffi_type_name(event.name+('event',)))
 
 
@@ -1635,9 +1726,15 @@ def rs_error(error, nametup):
     else:
         _f.section(0)
         _f('')
-        _f('type %s = %s;', _ffi_type_name(nametup+('error',)),
+        _f('pub type %s = %s;', _ffi_type_name(nametup+('error',)),
                             _ffi_type_name(error.name+('error',)))
-    pass
+
+    _rs_type_setup(error, nametup, ('error',))
+    _r.section(0)
+    _r('')
+    _r('pub struct %s {', error.rs_type)
+    _r('    pub base: base::Error<%s>', error.ffi_type)
+    _r('}')
 
 
 def usage(program):

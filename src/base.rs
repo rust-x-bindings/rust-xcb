@@ -74,7 +74,7 @@ impl<'s> Connection {
             if event.is_null() {
                 None
             } else {
-                Some(GenericEvent { base: Event {event:event}})
+                Some(GenericEvent { base: Event {ptr: event}})
             }
         }
     }
@@ -86,7 +86,7 @@ impl<'s> Connection {
             if event.is_null() {
                 None
             } else {
-                Some(GenericEvent { base: Event {event:event}})
+                Some(GenericEvent { base: Event {ptr: event}})
             }
         }
     }
@@ -98,7 +98,7 @@ impl<'s> Connection {
             if event.is_null() {
                 None
             } else {
-                Some(GenericEvent { base : Event {event:event}})
+                Some(GenericEvent { base : Event {ptr: event}})
             }
         }
     }
@@ -141,7 +141,7 @@ impl<'s> Connection {
         unsafe {
         ffi::xproto::xcb_send_event(self.c,
             propogate as u8, destination as ffi::xproto::xcb_window_t,
-            event_mask, event.event as *mut c_char);
+            event_mask, event.ptr as *mut c_char);
         }
     }
 
@@ -215,8 +215,11 @@ impl Drop for Connection {
     }
 }
 
+
+pub const COPY_FROM_PARENT: u32 = 0;
+
 pub struct Event<T> {
-   pub event:*mut T
+   pub ptr: *mut T
 }
 
 
@@ -224,7 +227,7 @@ impl<T> Drop for Event<T> {
     fn drop(&mut self) {
         use libc::c_void;
         unsafe {
-            free(self.event as *mut c_void);
+            free(self.ptr as *mut c_void);
         }
     }
 }
@@ -232,18 +235,18 @@ impl<T> Drop for Event<T> {
 #[allow(raw_pointer_derive)]
 #[derive(Debug)]
 pub struct Error<T> {
-    error:*mut T
+    ptr: *mut T
 }
 
-pub fn mk_error<T>(err:*mut T) -> Error<T> {
-    Error {error:err}
+pub fn mk_error<T>(err: *mut T) -> Error<T> {
+    Error {ptr: err}
 }
 
 impl<T> Drop for Error<T> {
     fn drop(&mut self) {
         use libc::c_void;
         unsafe {
-            free(self.error as *mut c_void);
+            free(self.ptr as *mut c_void);
         }
     }
 }
@@ -251,9 +254,6 @@ impl<T> Drop for Error<T> {
 pub type AuthInfo = xcb_auth_info_t;
 //TODO: Implement wrapper functions for constructing auth_info
 
-pub struct Struct<T> {
-    pub strct: T
-}
 
 pub struct StructPtr<T> {
     pub ptr: *mut T
@@ -282,7 +282,7 @@ impl<T: Copy> Cookie<T> {
             if err.is_null() {
                 None
             } else {
-                Some(GenericError{base: Error {error:err}})
+                Some(GenericError{base: Error {ptr: err}})
             }
         }
     }
@@ -318,7 +318,7 @@ pub struct VoidCookie { pub base : Cookie<xcb_void_cookie_t> }
  * event is really the correct type.
  */
 #[inline(always)]
-pub fn cast_event<'r, T>(event : &'r mut GenericEvent) -> &'r mut T {
+pub fn cast_event<'r, T>(event : &'r GenericEvent) -> &'r T {
     // This isn't very safe... but other options incur yet more overhead
     // that I really don't want to.
     unsafe { mem::transmute(event) }
@@ -333,7 +333,7 @@ pub trait EventUtil {
 impl<T> EventUtil for Event<T> {
     fn response_type(&self) -> u8 {
         unsafe {
-            let gev : *mut xcb_generic_event_t = mem::transmute(self.event);
+            let gev : *mut xcb_generic_event_t = mem::transmute(self.ptr);
             (*gev).response_type
         }
     }
