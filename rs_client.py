@@ -790,14 +790,17 @@ def _ffi_accessors(typeobj, nametup):
 
 def _ffi_iterator(typeobj, nametup):
 
+    lifetime = "<'a>" if typeobj.has_lifetime else ""
+
     _f.section(0)
     _f('')
     _f('#[repr(C)]')
-    _f("pub struct %s {", typeobj.ffi_iterator_type)
+    _f("pub struct %s%s {", typeobj.ffi_iterator_type, lifetime)
     _f('    pub data:  *mut %s,', typeobj.ffi_type)
     _f('    pub rem:   c_int,')
     _f('    pub index: c_int,')
-    #_f("    _phantom:  std::marker::PhantomData<&'a %s>,", typeobj.ffi_type)
+    if typeobj.has_lifetime:
+        _f("    _phantom:  std::marker::PhantomData<&'a %s>,", typeobj.ffi_type)
     _f('}')
 
     _f.section(1)
@@ -858,7 +861,6 @@ def _rs_type_setup(typeobj, nametup, suffix=()):
     #assert typeobj.hasattr('ffi_type')
 
     typeobj.rs_type = _rs_type_name(nametup + suffix)
-    typeobj.rs_has_lifetime = False
 
     typeobj.rs_iterator_type = _rs_type_name(nametup+('iterator',))
     typeobj.rs_request_fn = _rs_name(nametup)
@@ -872,9 +874,6 @@ def _rs_type_setup(typeobj, nametup, suffix=()):
     typeobj.rs_cookie_type = _rs_type_name(nametup + ('cookie',))
 
     if typeobj.is_container:
-        typeobj.rs_wrap_type = 'StructPtr'
-        #typeobj.rs_has_lifetime = True
-
         for field in typeobj.fields:
             _rs_type_setup(field.type, field.field_type)
             if field.type.is_list:
@@ -888,11 +887,8 @@ def _rs_type_setup(typeobj, nametup, suffix=()):
 
 
 def _rs_struct(typeobj):
-    lifetime1 = ''
-    lifetime2 = ''
-    if typeobj.rs_has_lifetime:
-        lifetime1 = "<'a>"
-        lifetime2 = "'a, "
+    lifetime1 = "<'a>" if typeobj.has_lifetime else ""
+    lifetime2 = "'a, " if typeobj.has_lifetime else ""
 
     _r.section(1)
     _r('')
@@ -903,15 +899,11 @@ def _rs_struct(typeobj):
 
 
 def _rs_accessors(typeobj):
-    lifetime1 = ''
-    lifetime2 = ''
-    if typeobj.rs_has_lifetime:
-        lifetime1 = "<'a>"
-        lifetime2 = "'a, "
+    lifetime = "<'a>" if typeobj.has_lifetime else ""
 
     _r.section(1)
     _r('')
-    _r('impl%s %s%s {', lifetime1, typeobj.rs_type, lifetime1)
+    _r('impl%s %s%s {', lifetime, typeobj.rs_type, lifetime)
     with _r.indent_block():
         for (i, field) in enumerate(typeobj.fields):
             if field.visible:
@@ -995,15 +987,18 @@ def _rs_accessor(typeobj, field):
 
 def _rs_iterator(typeobj):
 
+    lifetime1 = "<'a>" if typeobj.has_lifetime else ""
+    lifetime2 = "'a, " if typeobj.has_lifetime else ""
+
     _r.section(1)
     _r('')
-    _r("pub type %s = %s;",
-            typeobj.rs_iterator_type, typeobj.ffi_iterator_type)
+    _r("pub type %s%s = %s%s;",
+            typeobj.rs_iterator_type, lifetime1, typeobj.ffi_iterator_type, lifetime1)
 
     _r('')
-    _r("impl Iterator for %s {", typeobj.rs_iterator_type)
-    _r("    type Item = %s;", typeobj.rs_type)
-    _r("    fn next(&mut self) -> Option<%s> {", typeobj.rs_type)
+    _r("impl%s Iterator for %s%s {", lifetime1, typeobj.rs_iterator_type, lifetime1)
+    _r("    type Item = %s%s;", typeobj.rs_type, lifetime1)
+    _r("    fn next(&mut self) -> Option<%s%s> {", typeobj.rs_type, lifetime1)
     _r('        if self.rem == 0 { None }')
     _r('        else {')
     _r('            unsafe {')
@@ -1474,6 +1469,8 @@ def rs_simple(simple, nametup):
     '''
     print('simple:  ', nametup)
 
+    simple.has_lifetime = False
+
     _ffi_type_setup(simple, nametup)
     _f.section(0)
     assert len(simple.name) == 1
@@ -1514,6 +1511,9 @@ def rs_struct(struct, nametup):
     nametup is a name tuple
     '''
     print('struct:  ', nametup)
+    struct.rs_wrap_type = 'StructPtr'
+    struct.has_lifetime = False
+
     _ffi_type_setup(struct, nametup)
     _ffi_struct(struct)
     _ffi_accessors(struct, nametup)
@@ -1532,6 +1532,8 @@ def rs_union(union, nametup):
     nametup is a name tuple
     '''
     print('union:   ', nametup)
+    union.has_lifetime = False
+
     _ffi_type_setup(union, nametup)
 
     biggest = 1
@@ -1582,6 +1584,9 @@ def rs_request(request, nametup):
     nametup is a name tuple
     '''
     print('request: ', nametup)
+    request.rs_wrap_type = 'StructPtr'
+    request.has_lifetime = False
+
     _ffi_type_setup(request, nametup, ('request',))
     _rs_type_setup(request, nametup, ('request',))
 
@@ -1591,6 +1596,9 @@ def rs_request(request, nametup):
     _ffi_struct(request)
 
     if request.reply:
+        request.reply.rs_wrap_type = 'base::Reply'
+        request.reply.has_lifetime = False
+
         _cookie(request)
 
         _ffi_type_setup(request.reply, nametup, ('reply',))
@@ -1601,8 +1609,6 @@ def rs_request(request, nametup):
             _ffi_reply_fds(request, nametup)
 
         _rs_type_setup(request.reply, nametup, ('reply',))
-        request.reply.rs_wrap_type = 'base::Reply'
-        request.reply.rs_has_lifetime = False
         _rs_reply(request)
         _rs_accessors(request.reply)
 
