@@ -1405,12 +1405,7 @@ def _opcode(nametup, opcode):
     _f('')
     _f('pub const %s: u32 = %s;', ffi_name, opcode)
 
-    prefix = 'XCB_'
-    if _ns.is_ext:
-        prefix += _ns.header.upper() + '_'
-    rs_name = ffi_name
-    if rs_name.startswith(prefix):
-        rs_name = rs_name[len(prefix):]
+    rs_name = _upper_name(_rs_extract_module(nametup)[1])
 
     _r.section(0)
     _r('')
