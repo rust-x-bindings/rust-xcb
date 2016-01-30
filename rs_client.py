@@ -116,6 +116,9 @@ finished_switch = []
 
 _types_uneligible_to_copy = []
 
+# current handler is used for error reporting
+current_handler = None
+
 
 # exported functions to xcbgen start by 'rs_'
 
@@ -1507,7 +1510,7 @@ def rs_simple(simple, nametup):
     simple is SimpleType object
     nametup is a name tuple
     '''
-    print('simple:  ', nametup)
+    current_handler = ('simple:  ', nametup)
 
     simple.has_lifetime = False
 
@@ -1530,7 +1533,7 @@ def rs_enum(typeobj, nametup):
     typeobj is xcbgen.xtypes.Enum object
     nametup is a name tuple
     '''
-    print('enum:    ', nametup)
+    current_handler = ('enum:    ', nametup)
 
     ecg = EnumCodegen(nametup)
 
@@ -1550,7 +1553,8 @@ def rs_struct(struct, nametup):
     struct is Struct object
     nametup is a name tuple
     '''
-    print('struct:  ', nametup)
+    current_handler = ('struct:  ', nametup)
+
     struct.rs_wrap_type = 'base::StructPtr'
     struct.has_lifetime = True
 
@@ -1571,7 +1575,8 @@ def rs_union(union, nametup):
     union is Union object
     nametup is a name tuple
     '''
-    print('union:   ', nametup)
+    current_handler = ('union:   ', nametup)
+
     union.has_lifetime = False
 
     _ffi_type_setup(union, nametup)
@@ -1623,7 +1628,8 @@ def rs_request(request, nametup):
     request is Request object
     nametup is a name tuple
     '''
-    print('request: ', nametup)
+    current_handler = ('request: ', nametup)
+
     request.rs_wrap_type = 'StructPtr'
     request.has_lifetime = False
 
@@ -1668,7 +1674,7 @@ def rs_event(event, nametup):
     event is Event object
     nametup is a name tuple
     '''
-    print('event:   ', nametup)
+    current_handler = ('event:   ', nametup)
 
     must_pack = _must_pack_event(event, nametup)
 
@@ -1763,7 +1769,8 @@ def rs_error(error, nametup):
     error is Error object
     nametup is a name tuple
     '''
-    print('error:   ', nametup)
+    current_handler = ('error:   ', nametup)
+
     _ffi_type_setup(error, nametup, ('error',))
     _opcode(nametup, error.opcodes[nametup])
 
@@ -1831,4 +1838,8 @@ if __name__ == '__main__':
     module.resolve()
 
     # Output the code
-    module.generate()
+    try:
+        module.generate()
+    except:
+        print('error occured in handler: ', current_handler)
+        raise
