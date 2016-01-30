@@ -67,11 +67,17 @@ pub mod ffi
     #[cfg(feature = "dri2")]
     pub mod dri2;
 
+    #[cfg(feature = "dri3")]
+    pub mod dri3;
+
     #[cfg(feature = "ge")]
     pub mod ge;
 
     #[cfg(feature = "glx")]
     pub mod glx;
+
+    #[cfg(feature = "present")]
+    pub mod present;
 
     #[cfg(feature = "randr")]
     pub mod randr;
@@ -153,11 +159,17 @@ pub mod dpms;
 #[cfg(feature = "dri2")]
 pub mod dri2;
 
+#[cfg(feature = "dri3")]
+pub mod dri3;
+
 #[cfg(feature = "ge")]
 pub mod ge;
 
 #[cfg(feature = "glx")]
 pub mod glx;
+
+#[cfg(feature = "present")]
+pub mod present;
 
 #[cfg(feature = "randr")]
 pub mod randr;

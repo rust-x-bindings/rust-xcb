@@ -19,8 +19,8 @@ libc = "0.2"
 # cargo does not seam to support example.features yet.
 # That is addressed in cargo/#1570
 #[[example]]
-#name = "ffi_randr"
-#features = "randr render"
+#name = "randr_crtc_info"
+#features = "randr"
 
 
 [features]
@@ -29,8 +29,10 @@ composite = [ "xfixes" ]
 damage = [ "xfixes" ]
 dpms = []
 dri2 = []
+dri3 = []
 ge = []
 glx = []
+present = [ "render", "xfixes", "sync" ]
 randr = [ "render" ]
 record = []
 render = []
@@ -45,10 +47,10 @@ xf86dri = []
 xf86vidmode = []
 xfixes = [ "render", "shape" ]
 xinerama = []
-xinput = []
+xinput = [ "xfixes" ]
 xkb = []
 xprint = []
 xselinux = []
 xtest = []
-xvmc = [ "shm", "xv" ]
+xvmc = [ "xv" ]
 xv = [ "shm" ]
