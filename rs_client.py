@@ -893,7 +893,7 @@ def _rs_struct(typeobj):
     _r.section(1)
     _r('')
     _r('pub struct %s%s {', typeobj.rs_type, lifetime1)
-    _r('    pub base: base::%s<%s%s>', typeobj.rs_wrap_type,
+    _r('    pub base: %s<%s%s>', typeobj.rs_wrap_type,
                 lifetime2, typeobj.ffi_type)
     _r('}')
 
@@ -1511,7 +1511,7 @@ def rs_struct(struct, nametup):
     nametup is a name tuple
     '''
     print('struct:  ', nametup)
-    struct.rs_wrap_type = 'StructPtr'
+    struct.rs_wrap_type = 'base::StructPtr'
     struct.has_lifetime = False
 
     _ffi_type_setup(struct, nametup)
