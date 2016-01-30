@@ -1373,7 +1373,6 @@ class RequestCodegen(object):
             _r('unsafe {')
             with _r.indent_block():
                 for l in let_lines:
-                    print(l)
                     _r(l)
 
                 call_start = 'let cookie = %s(' % ffi_func_name
