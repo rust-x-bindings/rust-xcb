@@ -54,21 +54,21 @@ pub struct Connection {
 
 impl<'s> Connection {
     #[inline]
-    pub fn flush(&mut self) -> bool {
+    pub fn flush(&self) -> bool {
         unsafe {
             ffi::base::xcb_flush(self.c) > 0
         }
     }
 
     #[inline]
-    pub fn get_maximum_request_length(&mut self) -> u32 {
+    pub fn get_maximum_request_length(&self) -> u32 {
         unsafe {
             ffi::base::xcb_get_maximum_request_length(self.c)
         }
     }
 
     #[inline]
-    pub fn wait_for_event(&mut self) -> Option<GenericEvent> {
+    pub fn wait_for_event(&self) -> Option<GenericEvent> {
         unsafe {
             let event = ffi::base::xcb_wait_for_event(self.c);
             if event.is_null() {
@@ -80,7 +80,7 @@ impl<'s> Connection {
     }
 
     #[inline]
-    pub fn poll_for_event(&mut self) -> Option<GenericEvent> {
+    pub fn poll_for_event(&self) -> Option<GenericEvent> {
         unsafe {
             let event = ffi::base::xcb_poll_for_event(self.c);
             if event.is_null() {
@@ -92,7 +92,7 @@ impl<'s> Connection {
     }
 
     #[inline]
-    pub fn poll_for_queued_event(&mut self) -> Option<GenericEvent> {
+    pub fn poll_for_queued_event(&self) -> Option<GenericEvent> {
         unsafe {
             let event = ffi::base::xcb_poll_for_queued_event(self.c);
             if event.is_null() {
@@ -103,7 +103,7 @@ impl<'s> Connection {
         }
     }
 
-    pub fn get_setup(&mut self) -> xproto::Setup {
+    pub fn get_setup(&self) -> xproto::Setup {
         unsafe {
 
             let setup = ffi::base::xcb_get_setup(self.c);
@@ -115,25 +115,25 @@ impl<'s> Connection {
     }
 
     #[inline]
-    pub fn has_error(&mut self) -> bool {
+    pub fn has_error(&self) -> bool {
         unsafe {
             ffi::base::xcb_connection_has_error(self.c) > 0
         }
     }
 
     #[inline]
-    pub fn generate_id(&mut self) -> xproto::Window {
+    pub fn generate_id(&self) -> xproto::Window {
         unsafe {
             ffi::base::xcb_generate_id(self.c)
         }
     }
 
     #[inline]
-    pub unsafe fn get_raw_conn(&mut self) -> *mut xcb_connection_t {
+    pub unsafe fn get_raw_conn(&self) -> *mut xcb_connection_t {
         self.c
     }
 
-    pub fn send_event<T>(&mut self,
+    pub fn send_event<T>(&self,
                   propogate: bool,
                   destination: xproto::Window,
                   event_mask : u32,
@@ -255,8 +255,9 @@ pub type AuthInfo = xcb_auth_info_t;
 //TODO: Implement wrapper functions for constructing auth_info
 
 
-pub struct StructPtr<T> {
-    pub ptr: *mut T
+pub struct StructPtr<'a, T: 'a> {
+    pub ptr: *mut T,
+    phantom: PhantomData<&'a T>
 }
 
 

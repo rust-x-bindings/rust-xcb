@@ -1298,7 +1298,7 @@ class RequestCodegen(object):
         func_spacing = ' ' * len(fn_start)
         eol = ',' if len(self.rs_params) else ')'
         spacing = ' ' * (maxnamelen-len('c'))
-        _r("%sc%s: &mut base::Connection%s", fn_start, spacing, eol)
+        _r("%sc%s: &base::Connection%s", fn_start, spacing, eol)
 
         for (i, p) in enumerate(self.rs_params):
 
@@ -1512,7 +1512,7 @@ def rs_struct(struct, nametup):
     '''
     print('struct:  ', nametup)
     struct.rs_wrap_type = 'base::StructPtr'
-    struct.has_lifetime = False
+    struct.has_lifetime = True
 
     _ffi_type_setup(struct, nametup)
     _ffi_struct(struct)
