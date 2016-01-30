@@ -667,13 +667,6 @@ def _ffi_struct(typeobj, must_pack=False):
 
 
 
-def _ffi_opcode(nametup, opcode):
-    _f.section(0)
-    _f('')
-    _f('pub const %s: u32 = %s;',
-            _upper_name(_ext_nametup(nametup)), opcode)
-
-
 def _ffi_accessors_list(typeobj, field):
     '''
     Declares the accessor functions for a list field.
@@ -1403,6 +1396,26 @@ class RequestCodegen(object):
 
 
 
+
+def _opcode(nametup, opcode):
+    ffi_name = _upper_name(_ext_nametup(nametup))
+    _f.section(0)
+    _f('')
+    _f('pub const %s: u32 = %s;', ffi_name, opcode)
+
+    prefix = 'XCB_'
+    if _ns.is_ext:
+        prefix += _ns.header.upper() + '_'
+    rs_name = ffi_name
+    if rs_name.startswith(prefix):
+        rs_name = rs_name[len(prefix):]
+
+    _r.section(0)
+    _r('')
+    _r('pub const %s: u32 = %s;', rs_name, opcode)
+
+
+
 def _cookie(request):
     _f.section(0)
     _f('')
@@ -1592,7 +1605,7 @@ def rs_request(request, nametup):
 
     rcg = RequestCodegen(request)
 
-    _ffi_opcode(nametup, request.opcode)
+    _opcode(nametup, request.opcode)
     _ffi_struct(request)
 
     if request.reply:
@@ -1640,7 +1653,7 @@ def rs_event(event, nametup):
             f.field_name = 'new_'
 
     _ffi_type_setup(event, nametup, ('event',))
-    _ffi_opcode(nametup, event.opcodes[nametup])
+    _opcode(nametup, event.opcodes[nametup])
 
     _rs_type_setup(event, nametup, ('event',))
 
@@ -1725,7 +1738,7 @@ def rs_error(error, nametup):
     '''
     print('error:   ', nametup)
     _ffi_type_setup(error, nametup, ('error',))
-    _ffi_opcode(nametup, error.opcodes[nametup])
+    _opcode(nametup, error.opcodes[nametup])
 
     if error.name == nametup:
         _ffi_struct(error)

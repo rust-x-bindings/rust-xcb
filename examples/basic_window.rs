@@ -2,7 +2,6 @@ extern crate xcb;
 
 use xcb::base::*;
 use xcb::xproto::*;
-use xcb::ffi::xproto::*;
 
 use std::iter::{Iterator};
 
@@ -46,7 +45,7 @@ fn main() {
             None => { break; }
             Some(event) => {
                 let r = event.base.response_type();
-                if r == XCB_KEY_PRESS as u8 {
+                if r == KEY_PRESS as u8 {
                     let key_press : &KeyPressEvent = cast_event(&event);
                     println!("Key '{}' pressed", key_press.detail());
                     break;
