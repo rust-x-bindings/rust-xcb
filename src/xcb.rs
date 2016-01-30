@@ -43,7 +43,6 @@ extern crate libc;
 
 pub mod base;
 #[macro_use]
-pub mod macros;
 pub mod xproto;
 
 
@@ -53,88 +52,88 @@ pub mod ffi
     pub mod base;
 
 
-#[cfg(feature = "bigreq")]
+    #[cfg(feature = "bigreq")]
     pub mod bigreq;
 
-#[cfg(feature = "composite")]
+    #[cfg(feature = "composite")]
     pub mod composite;
 
-#[cfg(feature = "damage")]
+    #[cfg(feature = "damage")]
     pub mod damage;
 
-#[cfg(feature = "dpms")]
+    #[cfg(feature = "dpms")]
     pub mod dpms;
 
-#[cfg(feature = "dri2")]
+    #[cfg(feature = "dri2")]
     pub mod dri2;
 
-#[cfg(feature = "ge")]
+    #[cfg(feature = "ge")]
     pub mod ge;
 
-#[cfg(feature = "glx")]
+    #[cfg(feature = "glx")]
     pub mod glx;
 
-#[cfg(feature = "randr")]
+    #[cfg(feature = "randr")]
     pub mod randr;
 
-#[cfg(feature = "record")]
+    #[cfg(feature = "record")]
     pub mod record;
 
-#[cfg(feature = "render")]
+    #[cfg(feature = "render")]
     pub mod render;
 
-#[cfg(feature = "res")]
+    #[cfg(feature = "res")]
     pub mod res;
 
-#[cfg(feature = "screensaver")]
+    #[cfg(feature = "screensaver")]
     pub mod screensaver;
 
-#[cfg(feature = "shape")]
+    #[cfg(feature = "shape")]
     pub mod shape;
 
-#[cfg(feature = "shm")]
+    #[cfg(feature = "shm")]
     pub mod shm;
 
-#[cfg(feature = "sync")]
+    #[cfg(feature = "sync")]
     pub mod sync;
 
-#[cfg(feature = "xc_misc")]
+    #[cfg(feature = "xc_misc")]
     pub mod xc_misc;
 
-#[cfg(feature = "xevie")]
+    #[cfg(feature = "xevie")]
     pub mod xevie;
 
-#[cfg(feature = "xf86dri")]
+    #[cfg(feature = "xf86dri")]
     pub mod xf86dri;
 
-#[cfg(feature = "xf86vidmode")]
+    #[cfg(feature = "xf86vidmode")]
     pub mod xf86vidmode;
 
-#[cfg(feature = "xfixes")]
+    #[cfg(feature = "xfixes")]
     pub mod xfixes;
 
-#[cfg(feature = "xinerama")]
+    #[cfg(feature = "xinerama")]
     pub mod xinerama;
 
-#[cfg(feature = "xinput")]
+    #[cfg(feature = "xinput")]
     pub mod xinput;
 
-#[cfg(feature = "xkb")]
+    #[cfg(feature = "xkb")]
     pub mod xkb;
 
-#[cfg(feature = "xprint")]
+    #[cfg(feature = "xprint")]
     pub mod xprint;
 
-#[cfg(feature = "xselinux")]
+    #[cfg(feature = "xselinux")]
     pub mod xselinux;
 
-#[cfg(feature = "xtest")]
+    #[cfg(feature = "xtest")]
     pub mod xtest;
 
-#[cfg(feature = "xvmc")]
+    #[cfg(feature = "xvmc")]
     pub mod xvmc;
 
-#[cfg(feature = "xv")]
+    #[cfg(feature = "xv")]
     pub mod xv;
 }
 

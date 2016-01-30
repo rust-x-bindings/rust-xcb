@@ -177,7 +177,6 @@ def rs_open(module):
 
     _r('')
     _r('use base;')
-    _r('use macros;')
     _r('use ffi::base::*;')
     _r('use ffi::%s::*;', _ns.header)
     if _ns.is_ext:
