@@ -183,7 +183,7 @@ def rs_open(module):
         for (n, h) in module.direct_imports:
             _r('use ffi::%s::*;', h)
             _r('use %s;', h)
-    _r('use libc::{c_char, c_int, c_uint, c_void, malloc};')
+    _r('use libc::{self, c_char, c_int, c_uint, c_void};')
     _r('use std;')
     _r('use std::option::Option;')
     _r('use std::iter::Iterator;')
@@ -1704,7 +1704,7 @@ def rs_event(event, nametup):
             with _r.indent_block():
                 _r('unsafe {')
                 with _r.indent_block():
-                    _r('let raw = malloc(32 as usize) as *mut %s;', event.ffi_type)
+                    _r('let raw = libc::malloc(32 as usize) as *mut %s;', event.ffi_type)
                     for f in event.fields:
                         if not f.visible: continue
                         if f.type.is_container and not f.type.is_union:
