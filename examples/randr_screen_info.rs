@@ -6,15 +6,16 @@ use xcb::xproto::*;
 use xcb::randr;
 
 fn main() {
-    let (mut conn, screen_num) = Connection::connect();
-    let screen = conn.get_setup().roots().nth(screen_num as usize).unwrap();
+    let (conn, screen_num) = Connection::connect();
+    let setup = conn.get_setup();
+    let screen = setup.roots().nth(screen_num as usize).unwrap();
     let window_dummy = conn.generate_id();
 
-    create_window(&mut conn, 0, window_dummy, screen.root(), 0, 0, 1, 1, 0, 0, 0, &[]);
+    create_window(&conn, 0, window_dummy, screen.root(), 0, 0, 1, 1, 0, 0, 0, &[]);
 
     conn.flush();
 
-    let cookie = randr::get_screen_info(&mut conn, window_dummy);
+    let cookie = randr::get_screen_info(&conn, window_dummy);
     let reply = cookie.get_reply().unwrap();
     let sizes = reply.sizes();
 

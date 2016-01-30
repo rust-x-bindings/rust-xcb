@@ -8,24 +8,25 @@ use xcb::randr;
 
 fn main() {
 
-    let (mut conn, screen_num) = Connection::connect();
-    let screen = conn.get_setup().roots()
+    let (conn, screen_num) = Connection::connect();
+    let setup = conn.get_setup();
+    let screen = setup.roots()
             .nth(screen_num as usize).unwrap();
     let window_dummy = conn.generate_id();
 
-    create_window(&mut conn, 0, window_dummy, screen.root(),
+    create_window(&conn, 0, window_dummy, screen.root(),
             0, 0, 1, 1, 0, 0, 0, &[]);
 
     conn.flush();
 
     let screen_res_cookie =
-            randr::get_screen_resources(&mut conn, window_dummy);
+            randr::get_screen_resources(&conn, window_dummy);
     let screen_res_reply = screen_res_cookie.get_reply().unwrap();
     let crtcs = screen_res_reply.crtcs();
 
     let mut crtc_cookies = Vec::with_capacity(crtcs.len());
     for crtc in crtcs {
-        crtc_cookies.push(randr::get_crtc_info(&mut conn, *crtc, 0));
+        crtc_cookies.push(randr::get_crtc_info(&conn, *crtc, 0));
     }
 
     for (i, crtc_cookie) in crtc_cookies.iter().enumerate() {

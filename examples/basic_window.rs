@@ -7,9 +7,9 @@ use xcb::ffi::xproto::*;
 use std::iter::{Iterator};
 
 fn main() {
-    let (mut conn, screen_num) = Connection::connect();
-
-    let screen = conn.get_setup().roots().nth(screen_num as usize).unwrap();
+    let (conn, screen_num) = Connection::connect();
+    let setup = conn.get_setup();
+    let screen = setup.roots().nth(screen_num as usize).unwrap();
 
     let window = conn.generate_id();
 
@@ -18,7 +18,7 @@ fn main() {
         (Cw::EVENT_MASK, EventMask::EXPOSURE | EventMask::KEY_PRESS),
     ];
 
-    create_window(&mut conn,
+    create_window(&conn,
         COPY_FROM_PARENT as u8,
         window,
         screen.root(),
@@ -29,11 +29,11 @@ fn main() {
         screen.root_visual(),
         &values);
 
-    map_window(&mut conn,window);
+    map_window(&conn,window);
 
     conn.flush();
 
-    let cookie = intern_atom(&mut conn,0,"_TEST_ATOM");
+    let cookie = intern_atom(&conn,0,"_TEST_ATOM");
     let rep_res = cookie.get_reply();
     match rep_res {
         Ok(r) => {println!("Interned Atom {}", r.atom());}

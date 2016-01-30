@@ -4,7 +4,7 @@ use std::iter::{Iterator};
 use xcb::base::*;
 
 fn main() {
-    let (mut conn, screen_num) = Connection::connect();
+    let (conn, screen_num) = Connection::connect();
 
     let setup = conn.get_setup();
 
