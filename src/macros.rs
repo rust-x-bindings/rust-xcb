@@ -24,32 +24,3 @@ macro_rules! impl_reply_cookie {
         }
     )
 }
-
-macro_rules! accessor {
-    ($fname:ident -> $ty:ty, $fexpr:expr) => ( //Basic access
-        $fexpr.$fname as $ty
-    );
-    (str, $lenfn:ident, $datafn:ident, $fexpr:expr) => ( //String special case
-        unsafe {
-            let _len = $lenfn(&mut $fexpr);
-            let _data = $datafn(&mut $fexpr);
-
-            let _slice = std::slice::from_raw_parts(_data as *const u8, _len as usize);
-
-            // should we check what comes from X server?
-            std::str::from_utf8_unchecked(&_slice)
-        }
-    );
-    ($ty:ty, $iterfn:ident, $fexpr:expr) => ( //Iterator
-        unsafe {
-            $iterfn(&mut $fexpr)
-        }
-    );
-    ($ty:ty, $lenfn:ident, $datafn:ident, $fexpr:expr) => ( //list with fixed-size members
-        unsafe {
-            let _len = $lenfn(&mut $fexpr);
-            let _data = $datafn(&mut $fexpr);
-            std::slice::from_raw_parts(_data, _len as usize)
-        }
-    );
-}
