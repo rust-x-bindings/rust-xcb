@@ -178,6 +178,7 @@ def rs_open(module):
     _r('')
     _r('use base;')
     _r('use macros;')
+    _r('use ffi::base::*;')
     _r('use ffi::%s::*;', _ns.header)
     if _ns.is_ext:
         for (n, h) in module.direct_imports:
@@ -1431,12 +1432,39 @@ def _cookie(request):
     _r("    pub base: base::Cookie<%s>", request.ffi_cookie_type)
     _r("}")
 
+    cookie = request.rs_cookie_type
+    mk_func = 'mk_reply_%s' % request.ffi_reply_type
+    reply = request.rs_reply_type
+    func = request.ffi_reply_fn
+    funcspace = ' ' * len(func)
+
     _r.section(1)
     _r('')
-    _r("impl_reply_cookie!(%s, mk_reply_%s, ",
-            request.rs_cookie_type, request.ffi_reply_type)
-    _r("        %s, %s);",
-        request.rs_reply_type, request.ffi_reply_fn)
+    _r("impl base::ReplyCookie<%s> for %s {", reply, cookie)
+    with _r.indent_block():
+        _r("fn get_reply(&self) -> Result<%s, base::GenericError> {", reply)
+        with _r.indent_block():
+            _r('unsafe {')
+            with _r.indent_block():
+                _r("let mut err: *mut xcb_generic_error_t = std::ptr::null_mut();")
+                _r('let reply = if self.base.checked {')
+                _r('    %s(self.base.conn,', func)
+                _r('    %s self.base.cookie,', funcspace)
+                _r('    %s &mut err)', funcspace)
+                _r('} else {')
+                _r('    %s(self.base.conn,', func)
+                _r('    %s self.base.cookie,', funcspace)
+                _r('    %s std::ptr::null_mut())', funcspace)
+                _r('};')
+                _r('if err.is_null() {')
+                _r('    Ok(%s(reply))', mk_func)
+                _r('} else {')
+                _r('    libc::free(reply as *mut c_void);')
+                _r('    Err(base::GenericError { base: base::mk_error(err) } )')
+                _r('}')
+            _r('}')
+        _r('}')
+    _r('}')
 
 
 
