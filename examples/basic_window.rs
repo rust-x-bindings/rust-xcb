@@ -7,37 +7,35 @@ use std::iter::{Iterator};
 
 fn main() {
     let (conn, screen_num) = Connection::connect();
-
-    let mut setup = conn.get_setup();
-
-    let mut screen = setup.roots().nth(screen_num as usize).unwrap();
+    let setup = conn.get_setup();
+    let screen = setup.roots().nth(screen_num as usize).unwrap();
 
     let window = conn.generate_id();
 
-    let mut values = [
-        (XCB_CW_BACK_PIXEL, screen.white_pixel()),
-        (XCB_CW_EVENT_MASK, XCB_EVENT_MASK_EXPOSURE | XCB_EVENT_MASK_KEY_PRESS),
+    let values = [
+        (Cw::BACK_PIXEL, screen.white_pixel()),
+        (Cw::EVENT_MASK, EventMask::EXPOSURE | EventMask::KEY_PRESS),
     ];
 
-    CreateWindow(&conn,
-        XCB_WINDOW_CLASS_COPY_FROM_PARENT as u8,
+    create_window(&conn,
+        COPY_FROM_PARENT as u8,
         window,
         screen.root(),
         0, 0,
         150, 150,
         10,
-        XCB_WINDOW_CLASS_INPUT_OUTPUT as u16,
+        WindowClass::INPUT_OUTPUT as u16,
         screen.root_visual(),
-        &mut values);
+        &values);
 
-    MapWindow(&conn,window);
+    map_window(&conn,window);
 
     conn.flush();
 
-    let cookie = InternAtom(&conn,0,"_TEST_ATOM");
+    let cookie = intern_atom(&conn,0,"_TEST_ATOM");
     let rep_res = cookie.get_reply();
     match rep_res {
-        Ok(mut r) => {println!("Interned Atom {}", r.atom());}
+        Ok(r) => {println!("Interned Atom {}", r.atom());}
         Err(_) => { panic!("Failed to intern atom"); }
     }
 
@@ -45,10 +43,10 @@ fn main() {
         let event = conn.wait_for_event();
         match event {
             None => { break; }
-            Some(mut event) => {
+            Some(event) => {
                 let r = event.base.response_type();
-                if r == XCB_KEY_PRESS {
-                    let key_press : &mut KeyPressEvent = cast_event(&mut event);
+                if r == KEY_PRESS as u8 {
+                    let key_press : &KeyPressEvent = cast_event(&event);
                     println!("Key '{}' pressed", key_press.detail());
                     break;
                 }

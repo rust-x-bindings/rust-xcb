@@ -74,7 +74,7 @@ impl<'s> Connection {
             if event.is_null() {
                 None
             } else {
-                Some(GenericEvent { base: Event {event:event}})
+                Some(GenericEvent { base: Event {ptr: event}})
             }
         }
     }
@@ -86,7 +86,7 @@ impl<'s> Connection {
             if event.is_null() {
                 None
             } else {
-                Some(GenericEvent { base: Event {event:event}})
+                Some(GenericEvent { base: Event {ptr: event}})
             }
         }
     }
@@ -98,12 +98,11 @@ impl<'s> Connection {
             if event.is_null() {
                 None
             } else {
-                Some(GenericEvent { base : Event {event:event}})
+                Some(GenericEvent { base : Event {ptr: event}})
             }
         }
     }
 
-    #[inline]
     pub fn get_setup(&self) -> xproto::Setup {
         unsafe {
 
@@ -142,7 +141,7 @@ impl<'s> Connection {
         unsafe {
         ffi::xproto::xcb_send_event(self.c,
             propogate as u8, destination as ffi::xproto::xcb_window_t,
-            event_mask, event.event as *mut c_char);
+            event_mask, event.ptr as *mut c_char);
         }
     }
 
@@ -150,7 +149,8 @@ impl<'s> Connection {
     pub fn connect() -> (Connection, i32) {
         let mut screen_num : c_int = 0;
         unsafe {
-            let conn = ffi::base::xcb_connect(ptr::null_mut() as *mut u8, &mut screen_num);
+            let conn = ffi::base::xcb_connect(ptr::null_mut() as *mut c_char,
+                    &mut screen_num);
             if conn.is_null() {
                 panic!("Couldn't connect")
             } else {
@@ -165,8 +165,8 @@ impl<'s> Connection {
         let mut screen : c_int = 0;
         unsafe {
             let conn = {
-		let s = display.as_ptr();
-                ffi::base::xcb_connect(s as *mut u8, &mut screen)
+                let s = display.as_ptr();
+                ffi::base::xcb_connect(s as *mut c_char, &mut screen)
             };
             if conn.is_null() {
                 None
@@ -182,9 +182,11 @@ impl<'s> Connection {
         let mut screen : c_int = 0;
         unsafe {
             let conn = {
-		let s = display.as_ptr();
-                ffi::base::xcb_connect_to_display_with_auth_info(s as *mut u8,
-                    mem::transmute(auth_info), &mut screen)
+                let s = display.as_ptr();
+                ffi::base::xcb_connect_to_display_with_auth_info(
+                        s as *mut c_char,
+                        mem::transmute(auth_info),
+                        &mut screen)
             };
             if conn.is_null() {
                 None
@@ -213,8 +215,11 @@ impl Drop for Connection {
     }
 }
 
+
+pub const COPY_FROM_PARENT: u32 = 0;
+
 pub struct Event<T> {
-   pub event:*mut T
+   pub ptr: *mut T
 }
 
 
@@ -222,7 +227,7 @@ impl<T> Drop for Event<T> {
     fn drop(&mut self) {
         use libc::c_void;
         unsafe {
-            free(self.event as *mut c_void);
+            free(self.ptr as *mut c_void);
         }
     }
 }
@@ -230,18 +235,18 @@ impl<T> Drop for Event<T> {
 #[allow(raw_pointer_derive)]
 #[derive(Debug)]
 pub struct Error<T> {
-    error:*mut T
+    ptr: *mut T
 }
 
-pub fn mk_error<T>(err:*mut T) -> Error<T> {
-    Error {error:err}
+pub fn mk_error<T>(err: *mut T) -> Error<T> {
+    Error {ptr: err}
 }
 
 impl<T> Drop for Error<T> {
     fn drop(&mut self) {
         use libc::c_void;
         unsafe {
-            free(self.error as *mut c_void);
+            free(self.ptr as *mut c_void);
         }
     }
 }
@@ -249,9 +254,6 @@ impl<T> Drop for Error<T> {
 pub type AuthInfo = xcb_auth_info_t;
 //TODO: Implement wrapper functions for constructing auth_info
 
-pub struct Struct<T> {
-    pub strct: T
-}
 
 pub struct StructPtr<'a, T: 'a> {
     pub ptr: *mut T,
@@ -259,9 +261,9 @@ pub struct StructPtr<'a, T: 'a> {
 }
 
 
-pub struct Cookie<'s, T: Copy> {
+pub struct Cookie<T: Copy> {
     pub cookie: T,
-    pub conn: &'s Connection,
+    pub conn: *mut xcb_connection_t,
     pub checked: bool
 }
 
@@ -269,11 +271,11 @@ pub trait ReplyCookie<R> {
     fn get_reply(&self) -> Result<R, GenericError>;
 }
 
-impl<'s, T: Copy> Cookie<'s, T> {
+impl<T: Copy> Cookie<T> {
     pub fn request_check(&self) -> Option<GenericError> {
         unsafe {
             let c : *mut xcb_void_cookie_t = mem::transmute(&self.cookie);
-            let err = ffi::base::xcb_request_check(self.conn.c, *c);
+            let err = ffi::base::xcb_request_check(self.conn, *c);
             //let err = ffi::base::xcb_request_check(
             //    self.conn.c,
             //    void_cookie { sequence: self.cookie.sequence }
@@ -281,25 +283,25 @@ impl<'s, T: Copy> Cookie<'s, T> {
             if err.is_null() {
                 None
             } else {
-                Some(GenericError{base: Error {error:err}})
+                Some(GenericError{base: Error {ptr: err}})
             }
         }
     }
 }
 
 pub struct Reply<T> {
-    pub reply:*mut T
+    pub ptr: *mut T
 }
 
 pub fn mk_reply<T>(reply:*mut T) -> Reply<T> {
-    Reply {reply:reply}
+    Reply {ptr:reply}
 }
 
 impl<T> Drop for Reply<T> {
     fn drop(&mut self) {
         use libc::c_void;
         unsafe {
-            free(self.reply as *mut c_void);
+            free(self.ptr as *mut c_void);
         }
     }
 }
@@ -310,14 +312,14 @@ pub struct GenericEvent { pub base : Event<xcb_generic_event_t>}
 #[derive(Debug)]
 pub struct GenericError { pub base : Error<xcb_generic_error_t>}
 
-pub struct VoidCookie<'s> { pub base : Cookie<'s, xcb_void_cookie_t> }
+pub struct VoidCookie { pub base : Cookie<xcb_void_cookie_t> }
 
 /**
  * Casts the generic event to the right event. Assumes that the given
  * event is really the correct type.
  */
 #[inline(always)]
-pub fn cast_event<'r, T>(event : &'r mut GenericEvent) -> &'r mut T {
+pub fn cast_event<'r, T>(event : &'r GenericEvent) -> &'r T {
     // This isn't very safe... but other options incur yet more overhead
     // that I really don't want to.
     unsafe { mem::transmute(event) }
@@ -332,7 +334,7 @@ pub trait EventUtil {
 impl<T> EventUtil for Event<T> {
     fn response_type(&self) -> u8 {
         unsafe {
-            let gev : *mut xcb_generic_event_t = mem::transmute(self.event);
+            let gev : *mut xcb_generic_event_t = mem::transmute(self.ptr);
             (*gev).response_type
         }
     }

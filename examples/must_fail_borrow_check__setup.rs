@@ -5,15 +5,15 @@ use xcb::base::*;
 
 fn main() {
 
-    let mut setup;
-    let mut screen_num;
+    let setup;
+    let screen_num;
     {
         let (conn, sn) = Connection::connect();
         setup = conn.get_setup();
         screen_num = sn;
     }
 
-    let mut screen = setup.roots().nth(screen_num as usize).unwrap();
+    let screen = setup.roots().nth(screen_num as usize).unwrap();
 
     println!("");
     println!("Informations of screen {}:", screen.root());

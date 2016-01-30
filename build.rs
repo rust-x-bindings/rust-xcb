@@ -47,7 +47,7 @@ fn optional_mtime (path: &Path, default: time_t) -> time_t {
 
 fn main() {
     let root = env::var("CARGO_MANIFEST_DIR").unwrap();
-    let r_client = Path::new(&root).join("r_client.py");
+    let r_client = Path::new(&root).join("rs_client.py");
     let build_rs = Path::new(&root).join("build.rs");
     let xml_dir = Path::new(&root).join("xml");
     let src_dir = Path::new(&root).join("src");
@@ -70,6 +70,7 @@ fn main() {
 
             let status = try!(Command::new("python3")
                     .arg(&r_client)
+                    .arg("-o").arg(&src_dir)
                     .arg(&xml_file)
                     .status());
             if !status.success() {
