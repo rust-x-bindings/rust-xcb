@@ -7,14 +7,12 @@ Rust-XCB is only intended as an interface to XCB, so provides nothing above and 
 
 ## The bindings
 
-The bindings are generated from the `r_client.py` script with help from the `xcbgen` library (also
+The bindings are generated from the `rs_client.py` script with help from the `xcbgen` library (also
 from XCB). The bindings are inside the `ll` module, which also contains the hand-written bindings
 to the core library. However, all of the bindings are still in the repository, so running it is not
 necessary.
 
 ## The wrapper
-
-*NB: As of this writing, this section isn't true, it still needs to be done*
 
 The wrappers are generated from the same files, and provide a safe and more convenient wrapper over
 the low-level bindings by having automatic destructors for returned data, trait implementations for
@@ -27,4 +25,3 @@ The issues tracker has more details, but the high-level things that need to be d
 * Generate Intuitive wrappers. (#1)
 * Get unions generating properly. (#2)
 * Write Tests. (#3)
-* Clean up r_client.py (#4)
