@@ -303,10 +303,12 @@ def _ext_nametup(nametup):
     >>> _ext_nametup(('xcb', 'RandR', 'SuperType'))
     ('xcb', 'randr', 'SuperType')
     '''
-    if len(nametup) > 2 and _ns.is_ext:
-        # lowers extension to avoid '_' split with title letters
-        nametup = tuple(name.lower() if i == 1 else name
+    if len(nametup) > 2 and nametup[1] in _ext_names:
+        nametup = tuple(_ext_names[name] if i == 1 else name
                 for (i, name) in enumerate(nametup))
+        # lowers extension to avoid '_' split with title letters
+        #nametup = tuple(name.lower() if i == 1 else name
+        #        for (i, name) in enumerate(nametup))
     return nametup
 
 def _ffi_type_name(nametup):
@@ -324,6 +326,7 @@ def _ffi_type_name(nametup):
         return nametup[0]
     return _ffi_name(nametup + ('t',))
 
+
 def _ffi_name(nametup):
     '''
     turns the nametup into a FFI name
@@ -334,7 +337,14 @@ def _ffi_name(nametup):
     >>> _ffi_type_name(('xcb', 'RandR', 'SuperType', 't'))
     xcb_randr_super_type_t
     '''
-    return _lower_name(_ext_nametup(nametup))
+    secondIsExt = (len(nametup) > 2 and nametup[1] in _ext_names)
+    nametup = _ext_nametup(nametup)
+
+    if secondIsExt:
+        return '_'.join(tuple(name if i==1 else _tit_split(name)
+                for (i, name) in enumerate(nametup))).lower()
+    else:
+        return '_'.join(tuple(_tit_split(name) for name in nametup)).lower()
 
 
 
