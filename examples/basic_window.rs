@@ -13,8 +13,8 @@ fn main() {
     let window = conn.generate_id();
 
     let values = [
-        (Cw::BACK_PIXEL, screen.white_pixel()),
-        (Cw::EVENT_MASK, EventMask::EXPOSURE | EventMask::KEY_PRESS),
+        (CW_BACK_PIXEL, screen.white_pixel()),
+        (CW_EVENT_MASK, EVENT_MASK_EXPOSURE | EVENT_MASK_KEY_PRESS),
     ];
 
     create_window(&conn,
@@ -24,7 +24,7 @@ fn main() {
         0, 0,
         150, 150,
         10,
-        WindowClass::INPUT_OUTPUT as u16,
+        WINDOW_CLASS_INPUT_OUTPUT as u16,
         screen.root_visual(),
         &values);
 
