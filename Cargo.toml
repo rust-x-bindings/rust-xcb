@@ -54,3 +54,8 @@ xselinux = []
 xtest = []
 xvmc = [ "xv" ]
 xv = [ "shm" ]
+
+# ge and xf86vidmode are apparently nor built neither installed by libxcb C project
+# extensions xkb and xinput are broken because of switches
+# all others are in debug_all whose purpose is to enable all extensions to check build
+debug_all = [ "bigreq", "composite", "damage", "dpms", "dri2", "dri3", "glx", "randr", "record", "render", "res", "screensaver", "shape", "shm", "xc_misc", "xevie", "xf86dri", "xfixes", "xinerama", "xprint", "xselinux", "xtest", "xvmc", "xv" ]
