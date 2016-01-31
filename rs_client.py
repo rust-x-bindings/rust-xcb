@@ -120,6 +120,12 @@ _types_uneligible_to_copy = []
 current_handler = None
 
 
+# link exceptions
+link_exceptions = {
+    "bigreq": "xcb",
+    "xc_misc": "xcb"
+}
+
 # exported functions to xcbgen start by 'rs_'
 
 # starting with opening and closing
@@ -132,14 +138,15 @@ def rs_open(module):
     global _ns
     _ns = module.namespace
 
-    EnumCodegen.build_collision_table(module)
-
     linklib = "xcb"
     if _ns.is_ext:
         linklib = linklib + '-' + _ns.header
         _ext_names[_ns.ext_name.lower()] = _ns.header
         for (n, h) in module.direct_imports:
             _ext_names[n.lower()] = h
+
+    if _ns.header in link_exceptions:
+        linklib = link_exceptions[_ns.header]
 
     _r.section(0)
     _f.section(0)
@@ -188,12 +195,14 @@ def rs_open(module):
             _r('use %s;', h)
     _r('use libc::{self, c_char, c_int, c_uint, c_void};')
     _r('use std;')
-    _r('use std::option::Option;')
     _r('use std::iter::Iterator;')
 
     _r.section(1)
     _r('')
     _r('')
+
+    EnumCodegen.build_collision_table(module)
+
 
 
 
@@ -303,8 +312,8 @@ def _ext_nametup(nametup):
     >>> _ext_nametup(('xcb', 'RandR', 'SuperType'))
     ('xcb', 'randr', 'SuperType')
     '''
-    if len(nametup) > 2 and nametup[1] in _ext_names:
-        nametup = tuple(_ext_names[name] if i == 1 else name
+    if len(nametup) > 2 and nametup[1].lower() in _ext_names:
+        nametup = tuple(_ext_names[name.lower()] if i == 1 else name
                 for (i, name) in enumerate(nametup))
         # lowers extension to avoid '_' split with title letters
         #nametup = tuple(name.lower() if i == 1 else name
@@ -337,7 +346,7 @@ def _ffi_name(nametup):
     >>> _ffi_type_name(('xcb', 'RandR', 'SuperType', 't'))
     xcb_randr_super_type_t
     '''
-    secondIsExt = (len(nametup) > 2 and nametup[1] in _ext_names)
+    secondIsExt = (len(nametup) > 2 and nametup[1].lower() in _ext_names)
     nametup = _ext_nametup(nametup)
 
     if secondIsExt:
@@ -856,7 +865,7 @@ def _ffi_reply_fds(request, name):
     fn_start = 'pub fn %s (' % request.ffi_reply_fds_fn
     spacing = ' ' * len(fn_start)
     _f('%sc:     *mut xcb_connection_t,', fn_start)
-    _f('%sreply: %s)', spacing, request.ffi_cookie_type)
+    _f('%sreply: *mut %s)', spacing, request.ffi_reply_type)
     _f('        -> *mut c_int;')
 
 
@@ -1057,7 +1066,8 @@ def _rs_iterator(typeobj):
     _r('')
     _r("impl%s Iterator for %s%s {", lifetime1, typeobj.rs_iterator_type, lifetime1)
     _r("    type Item = %s%s;", typeobj.rs_type, lifetime1)
-    _r("    fn next(&mut self) -> Option<%s%s> {", typeobj.rs_type, lifetime1)
+    _r("    fn next(&mut self) -> std::option::Option<%s%s> {",
+            typeobj.rs_type, lifetime1)
     _r('        if self.rem == 0 { None }')
     _r('        else {')
     _r('            unsafe {')
@@ -1124,9 +1134,7 @@ class EnumCodegen(object):
         class Discriminant: pass
         d = Discriminant()
         #d.rs_name = name
-        d.rs_name = _tit_split(name).upper()
-        if d.rs_name[0].isdigit():
-            d.rs_name = '_' + d.rs_name
+        d.rs_name = _upper_name(_rs_extract_module(self._nametup+(name,))[1])
         d.ffi_name = _upper_name(_ext_nametup(self._nametup+(name,)))
         d.valstr = '0x%02x' % val
         d.val = val
@@ -1164,15 +1172,13 @@ class EnumCodegen(object):
         (maxnamelen, maxvallen) = self.maxlen("rs_name")
         _r.section(0)
         _r('')
-        _r('pub mod %s {', self.rs_name)
-        with _r.indent_block():
-            for d in self.all_discriminants:
-                namespace = ' ' * (maxnamelen-len(d.rs_name))
-                valspace = ' ' * (maxvallen-len(d.valstr))
-                _r('pub const %s%s: u32 =%s %s;', d.rs_name, namespace,
-                        valspace, d.valstr)
+        _r('pub type %s = u32;', self.rs_name)
+        for d in self.all_discriminants:
+            namespace = ' ' * (maxnamelen-len(d.rs_name))
+            valspace = ' ' * (maxvallen-len(d.valstr))
+            _r('pub const %s%s: %s =%s %s;', d.rs_name, namespace, self.rs_name,
+                    valspace, d.valstr)
 
-        _r('}')
 
 
 
@@ -1463,15 +1469,18 @@ class RequestCodegen(object):
 
 
 def _opcode(nametup, opcode):
+    # handle GLX with -1 opcode
+    optype = 'u32' if int(opcode) >= 0 else 'i32'
+
     ffi_name = _upper_name(_ext_nametup(nametup))
     _f.section(0)
     _f('')
-    _f('pub const %s: u32 = %s;', ffi_name, opcode)
+    _f('pub const %s: %s = %s;', ffi_name, optype, opcode)
 
     rs_name = _upper_name(_rs_extract_module(nametup)[1])
     _r.section(0)
     _r('')
-    _r('pub const %s: u32 = %s;', rs_name, opcode)
+    _r('pub const %s: %s = %s;', rs_name, optype, opcode)
 
 
 
