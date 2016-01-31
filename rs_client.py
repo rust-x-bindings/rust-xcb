@@ -356,6 +356,9 @@ def _ffi_name(nametup):
         return '_'.join(tuple(_tit_split(name) for name in nametup)).lower()
 
 
+def _ffi_const_name(nametup):
+    return _upper_name(_ext_nametup(nametup))
+
 
 def _rs_extract_module(nametup):
     '''
@@ -421,6 +424,8 @@ def _rs_name(nametup):
     return module + '_'.join([_tit_split(n) for n in nametup]).lower()
 
 
+def _rs_const_name(nametup):
+    return _upper_name(_rs_extract_module(nametup)[1])
 
 
 # FFI codegen functions
@@ -1134,8 +1139,8 @@ class EnumCodegen(object):
         class Discriminant: pass
         d = Discriminant()
         #d.rs_name = name
-        d.rs_name = _upper_name(_rs_extract_module(self._nametup+(name,))[1])
-        d.ffi_name = _upper_name(_ext_nametup(self._nametup+(name,)))
+        d.rs_name = _rs_const_name(self._nametup+(name,))
+        d.ffi_name = _ffi_const_name(self._nametup+(name,))
         d.valstr = '0x%02x' % val
         d.val = val
         self.all_discriminants.append(d)
@@ -1472,12 +1477,12 @@ def _opcode(nametup, opcode):
     # handle GLX with -1 opcode
     optype = 'u32' if int(opcode) >= 0 else 'i32'
 
-    ffi_name = _upper_name(_ext_nametup(nametup))
+    ffi_name = _ffi_const_name(nametup)
     _f.section(0)
     _f('')
     _f('pub const %s: %s = %s;', ffi_name, optype, opcode)
 
-    rs_name = _upper_name(_rs_extract_module(nametup)[1])
+    rs_name = _rs_const_name(nametup)
     _r.section(0)
     _r('')
     _r('pub const %s: %s = %s;', rs_name, optype, opcode)
