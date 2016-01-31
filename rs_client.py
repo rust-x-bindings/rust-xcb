@@ -1795,7 +1795,7 @@ def rs_error(error, nametup):
 
 
 def usage(program):
-    print('Usage: {} -o SRCDIR file.xml', program, file=stderr)
+    print('Usage: {} -o SRCDIR file.xml', program, file=sys.stderr)
 
 
 if __name__ == '__main__':
@@ -1830,7 +1830,7 @@ if __name__ == '__main__':
         from xcbgen.state import Module
         from xcbgen.xtypes import *
     except ImportError:
-        print('failed to load xcbgen', file=stderr)
+        print('failed to load xcbgen', file=sys.stderr)
         raise
 
     # Parse the xml header
@@ -1845,5 +1845,5 @@ if __name__ == '__main__':
     try:
         module.generate()
     except:
-        print('error occured in handler: ', current_handler, file=stderr)
+        print('error occured in handler: ', current_handler, file=sys.stderr)
         raise
