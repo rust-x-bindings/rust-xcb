@@ -917,6 +917,59 @@ def _rs_accessors(typeobj):
     _r('}')
 
 
+def _rs_reply_accessors(reply):
+    '''
+    same as _rs_accessors but handles fds special case
+    '''
+    lifetime = "<'a>" if reply.has_lifetime else ""
+
+    fd_field = None
+    nfd_field = None
+    for f in reply.fields:
+        if f.rs_field_name == 'nfd':
+            nfd_field = f
+        if f.isfd:
+            fd_field = f
+
+    reply_fields = []
+    for f in reply.fields:
+        if f.rs_field_name == 'nfd':
+            # writing nfd field only if fds is not written
+            if not fd_field or not nfd_field:
+                reply_fields.append(f)
+        elif not f.isfd:
+            reply_fields.append(f)
+
+
+    _r.section(1)
+    _r('')
+    _r('impl%s %s%s {', lifetime, reply.rs_type, lifetime)
+    with _r.indent_block():
+        # regular fields
+        for field in reply_fields:
+            if field.visible:
+                _rs_accessor(reply, field)
+
+        # fds field if any
+        if nfd_field and fd_field:
+            getter = reply.request.ffi_reply_fds_fn
+            # adding 's'
+            fname = fd_field.rs_field_name
+            if not fname.endswith('s'):
+                fname += 's'
+            _r('pub fn %s(&self, c: &base::Connection) -> &[i32] {', fname)
+            with _r.indent_block():
+                _r('unsafe {')
+                with _r.indent_block():
+                    _r('let nfd = (*self.base.ptr).nfd as usize;')
+                    _r('let ptr = %s(c.get_raw_conn(), self.base.ptr);', getter)
+                    _r('')
+                    _r('std::slice::from_raw_parts(ptr, nfd)')
+                _r('}')
+            _r('}')
+    _r('}')
+
+
 def _rs_accessor(typeobj, field):
     if field.type.is_simple or field.type.is_union:
         _r('pub fn %s(&self) -> %s {', field.rs_field_name,
@@ -1416,7 +1469,6 @@ def _opcode(nametup, opcode):
     _f('pub const %s: u32 = %s;', ffi_name, opcode)
 
     rs_name = _upper_name(_rs_extract_module(nametup)[1])
-
     _r.section(0)
     _r('')
     _r('pub const %s: u32 = %s;', rs_name, opcode)
@@ -1646,6 +1698,8 @@ def rs_request(request, nametup):
     _ffi_struct(request)
 
     if request.reply:
+        # enable getting the request from the reply
+        request.reply.request = request
         request.reply.rs_wrap_type = 'base::Reply'
         request.reply.has_lifetime = False
 
@@ -1660,7 +1714,7 @@ def rs_request(request, nametup):
 
         _rs_type_setup(request.reply, nametup, ('reply',))
         _rs_reply(request)
-        _rs_accessors(request.reply)
+        _rs_reply_accessors(request.reply)
 
     # regular call 'request_name'
     rcg.write_ffi_rs(True, False)
