@@ -166,14 +166,7 @@ def rs_open(module):
         _f('')
     _f('use libc::{c_char, c_int, c_uint, c_void};')
     _f('use std;')
-
-    if _ns.is_ext:
-        _f('pub const XCB_%s_MAJOR_VERSION: u32 = %s;',
-                    _ns.ext_name.upper(),
-                    _ns.major_version)
-        _f('pub const XCB_%s_MINOR_VERSION: u32 = %s;',
-                    _ns.ext_name.upper(),
-                    _ns.minor_version)
+    _f('')
 
     _f.section(1)
     _f('')
@@ -184,6 +177,7 @@ def rs_open(module):
     if _ns.is_ext:
         _f('')
         _f('static %s: xcb_extension_t;', _ffi_name(_ns.prefix + ('id',)))
+
 
     _r('')
     _r('use base;')
@@ -196,10 +190,30 @@ def rs_open(module):
     _r('use libc::{self, c_char, c_int, c_uint, c_void};')
     _r('use std;')
     _r('use std::iter::Iterator;')
+    _r('')
 
     _r.section(1)
     _r('')
     _r('')
+
+
+
+    if _ns.is_ext:
+        _f.section(0)
+        _f('')
+        _f('pub const XCB_%s_MAJOR_VERSION: u32 = %s;',
+                    _ns.ext_name.upper(),
+                    _ns.major_version)
+        _f('pub const XCB_%s_MINOR_VERSION: u32 = %s;',
+                    _ns.ext_name.upper(),
+                    _ns.minor_version)
+
+        _r.section(0)
+        _r('')
+        _r('pub const MAJOR_VERSION: u32 = %s;', _ns.major_version)
+        _r('pub const MINOR_VERSION: u32 = %s;', _ns.minor_version)
+
+
 
     EnumCodegen.build_collision_table(module)
 
