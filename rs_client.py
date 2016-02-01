@@ -1594,6 +1594,7 @@ def rs_simple(simple, nametup):
     simple is SimpleType object
     nametup is a name tuple
     '''
+    global current_handler
     current_handler = ('simple:  ', nametup)
 
     simple.has_lifetime = False
@@ -1617,6 +1618,7 @@ def rs_enum(typeobj, nametup):
     typeobj is xcbgen.xtypes.Enum object
     nametup is a name tuple
     '''
+    global current_handler
     current_handler = ('enum:    ', nametup)
 
     ecg = EnumCodegen(nametup)
@@ -1637,6 +1639,7 @@ def rs_struct(struct, nametup):
     struct is Struct object
     nametup is a name tuple
     '''
+    global current_handler
     current_handler = ('struct:  ', nametup)
 
     struct.rs_wrap_type = 'base::StructPtr'
@@ -1659,6 +1662,7 @@ def rs_union(union, nametup):
     union is Union object
     nametup is a name tuple
     '''
+    global current_handler
     current_handler = ('union:   ', nametup)
 
     union.has_lifetime = False
@@ -1712,6 +1716,7 @@ def rs_request(request, nametup):
     request is Request object
     nametup is a name tuple
     '''
+    global current_handler
     current_handler = ('request: ', nametup)
 
     request.rs_wrap_type = 'StructPtr'
@@ -1760,6 +1765,7 @@ def rs_event(event, nametup):
     event is Event object
     nametup is a name tuple
     '''
+    global current_handler
     current_handler = ('event:   ', nametup)
 
     must_pack = _must_pack_event(event, nametup)
@@ -1855,6 +1861,7 @@ def rs_error(error, nametup):
     error is Error object
     nametup is a name tuple
     '''
+    global current_handler
     current_handler = ('error:   ', nametup)
 
     _ffi_type_setup(error, nametup, ('error',))
