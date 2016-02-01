@@ -33,6 +33,7 @@ test_success cargo build --example basic_window
 test_success cargo build --example ffi_randr_crtc_info --features randr
 test_success cargo build --example randr_crtc_info --features randr
 test_success cargo build --example randr_screen_info --features randr
+test_success cargo build --example ffi_xkb_init --features xkb
 
 test_failure cargo build --example must_fail_borrow_check__reply --features randr
 test_failure cargo build --example must_fail_borrow_check__setup
