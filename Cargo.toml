@@ -1,7 +1,7 @@
 [package]
 
 name = "xcb"
-version = "0.3.0"
+version = "0.4.0"
 authors = [
     "James Miller <james@aatch.net>",
     "Remi Thebault <remi.thebault@gmail.com>",
