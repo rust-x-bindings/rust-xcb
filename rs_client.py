@@ -177,7 +177,8 @@ def rs_open(module):
     _f.indent()
     if _ns.is_ext:
         _f('')
-        _f('static %s: xcb_extension_t;', _ffi_name(_ns.prefix + ('id',)))
+        _f('pub static mut %s: xcb_extension_t;',
+                _ffi_name(_ns.prefix + ('id',)))
 
 
     _r('')
