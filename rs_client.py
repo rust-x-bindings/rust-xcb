@@ -143,7 +143,8 @@ def rs_open(module):
         linklib = linklib + '-' + _ns.header
         _ext_names[_ns.ext_name.lower()] = _ns.header
         for (n, h) in module.direct_imports:
-            _ext_names[n.lower()] = h
+            if h != 'xproto':
+                _ext_names[n.lower()] = h
 
     if _ns.header in link_exceptions:
         linklib = link_exceptions[_ns.header]
@@ -161,7 +162,7 @@ def rs_open(module):
     _f('use ffi::base::*;')
 
     if _ns.is_ext:
-        for (n, h) in module.direct_imports:
+        for (n, h) in module.imports:
             _f('use ffi::%s::*;', h)
         _f('')
     _f('use libc::{c_char, c_int, c_uint, c_void};')
@@ -184,8 +185,9 @@ def rs_open(module):
     _r('use ffi::base::*;')
     _r('use ffi::%s::*;', _ns.header)
     if _ns.is_ext:
-        for (n, h) in module.direct_imports:
+        for (n, h) in module.imports:
             _r('use ffi::%s::*;', h)
+        for (n, h) in module.imports:
             _r('use %s;', h)
     _r('use libc::{self, c_char, c_int, c_uint, c_void};')
     _r('use std;')
