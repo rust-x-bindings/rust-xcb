@@ -493,15 +493,7 @@ def _ffi_type_setup(typeobj, nametup, suffix=()):
                 _types_uneligible_to_copy.append(p)
 
 
-    if typeobj.is_switch:
-        typeobj.ffi_need_serialize = True
-        for bitcase in typeobj.bitcases:
-            bitcase.ffi_field_name = _symbol(bitcase.field_name)
-            bitcase_name = (bitcase.field_type if bitcase.type.has_name
-                    else nametup)
-            _ffi_type_setup(bitcase.type, bitcase_name, ())
-
-    elif typeobj.is_container:
+    if typeobj.is_container:
 
         prev_varsized_field = None
         prev_varsized_offset = 0
@@ -573,21 +565,6 @@ def _ffi_type_setup(typeobj, nametup, suffix=()):
         # when _unserialize() is wanted, create _sizeof() as well
         # for consistency reasons
         typeobj.ffi_need_sizeof = True
-
-    # as switch does never appear at toplevel,
-    # continue here with type construction
-    if typeobj.is_switch:
-        if typeobj.ffi_type not in finished_switch:
-            finished_switch.append(typeobj.ffi_type)
-            # special: switch C structs get pointer fields
-            # for variable-sized members
-            _ffi_struct(typeobj)
-            for bitcase in typeobj.bitcases:
-                bitcase_name = (bitcase.type.name if bitcase.type.has_name
-                    else nametup)
-                _ffi_accessors(bitcase.type, bitcase_name)
-                # no list with switch as element, so no call to
-                # _c_iterator(field.type, field_name) necessary
 
     if not typeobj.is_bitcase:
         if typeobj.ffi_need_serialize:
@@ -921,7 +898,6 @@ def _rs_type_setup(typeobj, nametup, suffix=()):
                     field.field_type + ('iterator',))
 
 
-
 def _rs_struct(typeobj):
     lifetime1 = "<'a>" if typeobj.has_lifetime else ""
     lifetime2 = "'a, " if typeobj.has_lifetime else ""
@@ -942,7 +918,7 @@ def _rs_accessors(typeobj):
     _r('impl%s %s%s {', lifetime, typeobj.rs_type, lifetime)
     with _r.indent_block():
         for (i, field) in enumerate(typeobj.fields):
-            if field.visible:
+            if field.visible and not field.type.is_switch:
                 _rs_accessor(typeobj, field)
     _r('}')
 
@@ -977,7 +953,7 @@ def _rs_reply_accessors(reply):
     with _r.indent_block():
         # regular fields
         for field in reply_fields:
-            if field.visible:
+            if field.visible and not field.type.is_switch:
                 _rs_accessor(reply, field)
 
         # fds field if any
@@ -1078,6 +1054,10 @@ def _rs_iterator(typeobj):
 
     lifetime1 = "<'a>" if typeobj.has_lifetime else ""
     lifetime2 = "'a, " if typeobj.has_lifetime else ""
+    return_expr = '*data'
+    if (hasattr(typeobj, 'rs_wrap_type') and
+            'StructPtr' in typeobj.rs_wrap_type):
+        return_expr = 'std::mem::transmute(data)'
 
     _r.section(1)
     _r('')
@@ -1096,7 +1076,7 @@ def _rs_iterator(typeobj):
             typeobj.ffi_iterator_type)
     _r('                let data = (*iter).data;')
     _r('                %s(iter);', typeobj.ffi_next_fn)
-    _r('                Some(std::mem::transmute(data))')
+    _r('                Some(%s)', return_expr)
     _r('            }')
     _r('        }')
     _r('    }')
@@ -1225,12 +1205,6 @@ class RequestCodegen(object):
         # but we must find out if it is pointer, const ...
         self.ffi_params = []
         for field in self.visible_fields:
-            ffi_rq_type = field.ffi_field_type
-            if field.ffi_need_pointer:
-                pointer = '*const ' if field.ffi_need_const else '*mut '
-                ffi_rq_type = pointer + ffi_rq_type
-
-            field.ffi_rq_type = ffi_rq_type
             self.ffi_params.append(field)
 
 
@@ -1322,6 +1296,15 @@ class RequestCodegen(object):
 
         return func_name
 
+    def ffi_rq_type(self, field, aux):
+        ffi_rq_type = field.ffi_field_type
+        if field.ffi_need_pointer:
+            pointer = '*const ' if field.ffi_need_const else '*mut '
+            ffi_rq_type = pointer + ffi_rq_type
+        if field.type.ffi_need_serialize and not aux:
+            ffi_rq_type = '*const c_void'
+        return ffi_rq_type
+
 
 
     def write_ffi_rs(self, regular, aux=False):
@@ -1332,12 +1315,6 @@ class RequestCodegen(object):
     def write_ffi(self, regular, aux=False):
 
         ffi_func_name = self.ffi_func_name(regular, aux)
-
-        # last tweak in field types
-        for field in self.ffi_params:
-            if field.type.ffi_need_serialize and not aux:
-                field.ffi_rq_type = '*const c_void'
-
 
         maxnamelen = 1
         for p in self.ffi_params:
@@ -1352,10 +1329,12 @@ class RequestCodegen(object):
         _f("%sc: %s*mut xcb_connection_t%s", fn_start, spacing, eol)
 
         for (i, p) in enumerate(self.ffi_params):
+            ffi_rq_type = self.ffi_rq_type(p, aux)
+
             spacing = ' '*(maxnamelen-len(p.ffi_field_name))
             eol = ')' if i == (len(self.ffi_params)-1) else ','
             _f('%s%s: %s%s%s', func_spacing, p.ffi_field_name, spacing,
-                    p.ffi_rq_type, eol)
+                    ffi_rq_type, eol)
 
         _f("        -> %s;", self.ffi_cookie_type)
 
@@ -1364,12 +1343,6 @@ class RequestCodegen(object):
         checked = self.void and not regular
         rs_func_name = self.rs_func_name(regular, aux)
         ffi_func_name = self.ffi_func_name(regular, aux)
-
-        # last tweak in field types
-        for field in self.ffi_params:
-            if field.type.ffi_need_serialize and not aux:
-                field.ffi_rq_type = '*const c_void'
-
 
         maxnamelen = len('c')
         for p in self.rs_params:
@@ -1388,6 +1361,7 @@ class RequestCodegen(object):
 
         for (i, p) in enumerate(self.rs_params):
 
+            ffi_rq_type = self.ffi_rq_type(p, aux)
             rs_typestr = p.rs_field_type
 
             if p.rs_is_mask_slice:
@@ -1413,23 +1387,23 @@ class RequestCodegen(object):
 
                 # adding actual field
                 call_params.append((p.ffi_index, '%s_ptr as %s' %
-                        (p.rs_field_name, p.ffi_rq_type)))
+                        (p.rs_field_name, ffi_rq_type)))
 
             elif p.rs_is_slice:
 
-                if field.type.member.rs_type == 'c_char':
+                if p.type.member.rs_type == 'c_char':
                     rs_typestr = '&str'
                     let_lines.append('let %s = %s.as_bytes();' %
                             (p.rs_field_name, p.rs_field_name))
-                elif field.type.member.rs_type == 'c_void':
+                elif p.type.member.rs_type == 'c_void':
                     rs_typestr = '&[u8]'
                 else:
                     rs_typestr = '&[%s]' % rs_typestr
 
                 if p.rs_lenfield:
                     lenfield = p.rs_lenfield
-                    # adding mask field if not already done
-                    # (already done should not happen with masks)
+                    # adding len field if not already done
+                    # (already done can happen with lists)
                     if not next((cp for cp in call_params
                             if cp[0] == lenfield.ffi_index), None):
                         let_lines.append('let %s_len = %s.len();' %
@@ -1442,15 +1416,18 @@ class RequestCodegen(object):
                         (p.rs_field_name, p.rs_field_name))
                 # adding actual field
                 call_params.append((p.ffi_index, '%s_ptr as %s' %
-                        (p.rs_field_name, p.ffi_rq_type)))
+                        (p.rs_field_name, ffi_rq_type)))
 
             elif p.type.is_container:
-                call_params.append((p.ffi_index, '*(%s.base.ptr)' %
-                        p.rs_field_name))
+                fmt = '*(%s.base.ptr)'
+                if p.ffi_need_pointer:
+                    fmt = '%s.base.ptr'
+                    rs_typestr = '&' + rs_typestr
+                call_params.append((p.ffi_index, fmt % p.rs_field_name))
 
             else:
                 call_params.append((p.ffi_index,
-                        '%s as %s' % (p.rs_field_name, p.ffi_rq_type)))
+                        '%s as %s' % (p.rs_field_name, ffi_rq_type)))
 
             spacing = ' ' * (maxnamelen-len(p.rs_field_name))
             eol = ',' if i < (len(self.rs_params)-1) else ')'
@@ -1588,6 +1565,32 @@ def _must_pack_event(event, nametup):
     return must_pack
 
 
+def _handle_switch(typeobj, nametup):
+    if typeobj.is_switch and typeobj.ffi_type not in finished_switch:
+        finished_switch.append(typeobj.ffi_type)
+
+        for bitcase in typeobj.bitcases:
+            fname = _symbol(bitcase.field_name)
+            bitcase.ffi_field_name = fname
+            bitcase.rs_field_name = fname
+            bitcase.nametup = (bitcase.field_type if bitcase.type.has_name
+                    else nametup)
+            _ffi_type_setup(bitcase.type, bitcase.nametup, ())
+            _rs_type_setup(bitcase.type, bitcase.nametup, ())
+
+        typeobj.has_lifetime = True
+        typeobj.rs_wrap_type = 'base::StructPtr'
+        _ffi_struct(typeobj)
+        _rs_struct(typeobj)
+
+        for bitcase in typeobj.bitcases:
+            _ffi_accessors(bitcase.type, bitcase.nametup)
+            # TODO: rs accessors
+
+    if typeobj.is_container:
+        for f in typeobj.fields:
+            _handle_switch(f.type, f.field_type)
+
 
 # codegen drivers
 
@@ -1648,11 +1651,13 @@ def rs_struct(struct, nametup):
     struct.has_lifetime = True
 
     _ffi_type_setup(struct, nametup)
+    _rs_type_setup(struct, nametup)
+    _handle_switch(struct, nametup)
+
     _ffi_struct(struct)
     _ffi_accessors(struct, nametup)
     _ffi_iterator(struct, nametup)
 
-    _rs_type_setup(struct, nametup)
     _rs_struct(struct)
     _rs_accessors(struct)
     _rs_iterator(struct)
@@ -1670,6 +1675,7 @@ def rs_union(union, nametup):
     union.has_lifetime = False
 
     _ffi_type_setup(union, nametup)
+    _rs_type_setup(union, nametup)
 
     biggest = 1
     most_aligned = 1
@@ -1695,6 +1701,7 @@ def rs_union(union, nametup):
 
     _f.section(0)
     _f('')
+    _f('// union')
     _f('#[repr(C)]')
     _f('pub struct %s {', union.ffi_type)
     _f('    pub data: [u8; %s]', num_bytes)
@@ -1706,10 +1713,12 @@ def rs_union(union, nametup):
     _f('    fn clone(&self) -> %s { *self }', union.ffi_type)
     _f('}')
 
-    _rs_type_setup(union, nametup)
+    _ffi_iterator(union, nametup)
+
     _r.section(0)
     _r('')
     _r('pub type %s = %s;', union.rs_type, union.ffi_type)
+    _rs_iterator(union)
 
 
 
@@ -1726,6 +1735,7 @@ def rs_request(request, nametup):
 
     _ffi_type_setup(request, nametup, ('request',))
     _rs_type_setup(request, nametup, ('request',))
+    _handle_switch(request, nametup)
 
     rcg = RequestCodegen(request)
 
@@ -1741,13 +1751,15 @@ def rs_request(request, nametup):
         _cookie(request)
 
         _ffi_type_setup(request.reply, nametup, ('reply',))
+        _rs_type_setup(request.reply, nametup, ('reply',))
+        _handle_switch(request.reply, nametup)
+
         _ffi_struct(request.reply)
         _ffi_accessors(request.reply, nametup + ('reply',))
         _ffi_reply(request)
         if _ffi_reply_has_fds(request.reply):
             _ffi_reply_fds(request, nametup)
 
-        _rs_type_setup(request.reply, nametup, ('reply',))
         _rs_reply(request)
         _rs_reply_accessors(request.reply)
 
