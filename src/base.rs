@@ -147,6 +147,27 @@ impl<'s> Connection {
         }
     }
 
+
+    #[inline]
+    pub fn prefetch_extension_data(&self, ext: &mut Extension) {
+        unsafe {
+            xcb_prefetch_extension_data(self.c, ext);
+        }
+    }
+
+
+    #[inline]
+    pub fn get_extension_data(&self, ext: &mut Extension)
+            -> Option<QueryExtensionData> {
+        unsafe {
+            let ptr = xcb_get_extension_data(self.c, ext);
+            if !ptr.is_null() { Some(QueryExtensionData { ptr: ptr }) }
+            else { None }
+        }
+    }
+
+
+
     #[inline]
     pub fn connect() -> (Connection, i32) {
         let mut screen_num : c_int = 0;
@@ -213,6 +234,40 @@ impl Drop for Connection {
     fn drop(&mut self) {
         unsafe {
             ffi::base::xcb_disconnect(self.c);
+        }
+    }
+}
+
+
+pub type Extension = xcb_extension_t;
+
+// Mimics xproto::QueryExtensionReply, but without the Drop trait.
+// Used for Connection::get_extension_data whose returned value
+// must not be freed.
+// Named QueryExtensionData to avoid name collision
+pub struct QueryExtensionData {
+    ptr: *const ffi::xproto::xcb_query_extension_reply_t
+}
+
+impl QueryExtensionData {
+    pub fn present(&self) -> u8 {
+        unsafe {
+            (*self.ptr).present
+        }
+    }
+    pub fn major_opcode(&self) -> u8 {
+        unsafe {
+            (*self.ptr).major_opcode
+        }
+    }
+    pub fn first_event(&self) -> u8 {
+        unsafe {
+            (*self.ptr).first_event
+        }
+    }
+    pub fn first_error(&self) -> u8 {
+        unsafe {
+            (*self.ptr).first_error
         }
     }
 }

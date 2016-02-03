@@ -174,6 +174,8 @@ def rs_open(module):
     if _ns.header in link_exceptions:
         linklib = link_exceptions[_ns.header]
 
+    ext_id_name = _ffi_name(_ns.prefix + ('id',))
+
     _r.section(0)
     _f.section(0)
     _rf('// edited from %s by rs_client.py on %s',
@@ -202,8 +204,7 @@ def rs_open(module):
     _f.indent()
     if _ns.is_ext:
         _f('')
-        _f('pub static mut %s: xcb_extension_t;',
-                _ffi_name(_ns.prefix + ('id',)))
+        _f('pub static mut %s: xcb_extension_t;', ext_id_name)
 
 
     _r('')
@@ -219,6 +220,13 @@ def rs_open(module):
     _r('use std;')
     _r('use std::iter::Iterator;')
     _r('')
+    if _ns.is_ext:
+        _r('')
+        _r("pub fn id() -> &'static mut base::Extension {")
+        _r('    unsafe {')
+        _r('        &mut %s', ext_id_name)
+        _r('    }')
+        _r('}')
 
     _r.section(1)
     _r('')
