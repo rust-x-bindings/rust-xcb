@@ -7,6 +7,9 @@ authors = [
     "Remi Thebault <remi.thebault@gmail.com>",
     "Thomas Bracht Laumann Jespersen <laumann.thomas@gmail.com>"
 ]
+description = "Rust bindings and wrappers for XCB"
+repository = "https://github.com/rtbo/rust-xcb"
+license = "MIT"
 build = "build.rs"
 
 [lib]
