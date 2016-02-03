@@ -273,24 +273,6 @@ pub trait ReplyCookie<R> {
     fn get_reply(&self) -> Result<R, GenericError>;
 }
 
-impl<T: Copy> Cookie<T> {
-    pub fn request_check(&self) -> Option<GenericError> {
-        unsafe {
-            let c : *mut xcb_void_cookie_t = mem::transmute(&self.cookie);
-            let err = ffi::base::xcb_request_check(self.conn, *c);
-            //let err = ffi::base::xcb_request_check(
-            //    self.conn.c,
-            //    void_cookie { sequence: self.cookie.sequence }
-            //);
-            if err.is_null() {
-                None
-            } else {
-                Some(GenericError{base: Error {ptr: err}})
-            }
-        }
-    }
-}
-
 pub struct Reply<T> {
     pub ptr: *mut T
 }
@@ -315,6 +297,22 @@ pub struct GenericEvent { pub base : Event<xcb_generic_event_t>}
 pub struct GenericError { pub base : Error<xcb_generic_error_t>}
 
 pub struct VoidCookie { pub base : Cookie<xcb_void_cookie_t> }
+
+impl VoidCookie {
+    pub fn request_check(&self) -> Result<(), GenericError> {
+        unsafe {
+            let c : xcb_void_cookie_t = mem::transmute(self.base.cookie);
+            let err = ffi::base::xcb_request_check(self.base.conn, c);
+
+            if err.is_null() {
+                Ok(())
+            } else {
+                Err(GenericError{base: Error {ptr: err}})
+            }
+        }
+    }
+}
+
 
 /**
  * Casts the generic event to the right event. Assumes that the given
