@@ -1444,12 +1444,19 @@ class RequestCodegen(object):
                 call_params.append((p.ffi_index, '%s_ptr as %s' %
                         (p.rs_field_name, ffi_rq_type)))
 
+            elif p.type.is_container and p.ffi_need_pointer:
+                rs_typestr = 'std::option::Option<%s>' % rs_typestr
+                let_lines.append('let %s_ptr = match %s {' % (p.rs_field_name,
+                        p.rs_field_name))
+                let_lines.append('    Some(p) => p.base.ptr as %s,' %
+                        ffi_rq_type)
+                let_lines.append('    None => std::ptr::null()')
+                let_lines.append('};')
+                call_params.append((p.ffi_index, '%s_ptr' % p.rs_field_name))
+
             elif p.type.is_container:
-                fmt = '*(%s.base.ptr)'
-                if p.ffi_need_pointer:
-                    fmt = '%s.base.ptr'
-                    rs_typestr = '&' + rs_typestr
-                call_params.append((p.ffi_index, fmt % p.rs_field_name))
+                call_params.append((p.ffi_index, '*(%s.base.ptr)' %
+                        p.rs_field_name))
 
             else:
                 call_params.append((p.ffi_index,
