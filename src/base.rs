@@ -54,7 +54,7 @@ pub struct Connection {
     c : *mut xcb_connection_t
 }
 
-impl<'s> Connection {
+impl Connection {
     #[inline]
     pub fn flush(&self) -> bool {
         unsafe {
