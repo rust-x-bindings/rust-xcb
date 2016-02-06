@@ -29,27 +29,19 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#![link(name="xcb",
-       vers="0.3",
-       uuid="ef466d26-0620-4f5f-a1d2-1bb9c628e101",
-       url= "https://github.com/Aatch/rust-xcb")]
-
-#![crate_type="lib"]
-
 #![allow(dead_code)]
-#![allow(non_snake_case)]
-#![allow(non_camel_case_types)]
 #![allow(unused_imports)]
 
 extern crate libc;
 
 pub mod base;
-#[macro_use]
 pub mod xproto;
 
 
 pub mod ffi
 {
+    #![allow(non_camel_case_types)]
+
     pub mod xproto;
     pub mod base;
 
@@ -127,6 +119,7 @@ pub mod ffi
     pub mod xinput;
 
     #[cfg(feature = "xkb")]
+    #[allow(non_snake_case)]
     pub mod xkb;
 
     #[cfg(feature = "xprint")]
@@ -219,6 +212,7 @@ pub mod xinerama;
 pub mod xinput;
 
 #[cfg(feature = "xkb")]
+#[allow(non_snake_case)]
 pub mod xkb;
 
 #[cfg(feature = "xprint")]

@@ -37,10 +37,10 @@ extern crate libc;
 use ffi;
 use ffi::base::*;
 
-use libc::{c_int,c_char,free};
+use libc::{c_int, c_char, free};
 use std::option::Option;
 
-use std::{num,ptr,vec,str,mem};
+use std::{ptr, mem};
 use std::marker::PhantomData;
 // std::num::Zero is unstable in rustc 1.5 => remove impl copy
 // hereunder as soon as Zero gets stabilized (or replaced by something else)
@@ -289,7 +289,6 @@ impl<T> Drop for Event<T> {
     }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Debug)]
 pub struct Error<T> {
     ptr: *mut T

@@ -29,8 +29,6 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#![allow(non_camel_case_types)] // C types
-
 extern crate libc;
 
 use libc::{c_int, c_uint, c_void, c_char};
@@ -212,6 +210,7 @@ extern {
 }
 
 #[allow(non_upper_case_globals)]
+#[allow(non_snake_case)]
 pub mod Xlib {
     use super::{xcb_connection_t};
     use libc::{c_void, c_uint};
