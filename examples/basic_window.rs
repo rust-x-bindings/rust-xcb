@@ -32,7 +32,7 @@ fn main() {
 
     conn.flush();
 
-    let cookie = intern_atom(&conn,0,"_TEST_ATOM");
+    let cookie = intern_atom(&conn, false, "_TEST_ATOM");
     let rep_res = cookie.get_reply();
     match rep_res {
         Ok(r) => {println!("Interned Atom {}", r.atom());}

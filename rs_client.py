@@ -151,6 +151,15 @@ link_exceptions = {
     "xc_misc": "xcb"
 }
 
+
+#type translation
+_ffi_type_translation = {
+    'BOOL': 'u8'
+}
+_rs_type_translation = {
+    'BOOL': 'bool'
+}
+
 # exported functions to xcbgen start by 'rs_'
 
 # starting with opening and closing
@@ -382,6 +391,8 @@ def _ffi_type_name(nametup):
     '''
     if len(nametup) == 1:
         # handles SimpleType
+        if nametup[0] in _ffi_type_translation:
+            return _ffi_type_translation[nametup[0]]
         return nametup[0]
     return _ffi_name(nametup + ('t',))
 
@@ -460,6 +471,8 @@ def _rs_type_name(nametup):
     randr::SuperType
     '''
     if len(nametup) == 1:
+        if nametup[0] in _rs_type_translation:
+            return _rs_type_translation[nametup[0]]
         return nametup[0]
 
     (module, nametup) = _rs_extract_module(nametup)
@@ -1017,7 +1030,10 @@ def _rs_accessor(typeobj, field):
         with _r.indent_block():
             _r('unsafe {')
             with _r.indent_block():
-                _r('(*self.base.ptr).%s', field.ffi_field_name)
+                convert = ''
+                if field.rs_field_type == 'bool':
+                    convert = ' != 0'
+                _r('(*self.base.ptr).%s%s', field.ffi_field_name, convert)
             _r('}')
         _r('}')
 
@@ -1508,6 +1524,7 @@ class RequestCodegen(object):
 
 
 def _opcode(nametup, opcode):
+    print(opcode)
     # handle GLX with -1 opcode
     optype = 'u32' if int(opcode) >= 0 else 'i32'
 
@@ -1891,8 +1908,11 @@ def rs_event(event, nametup):
                             _r('(*raw).%s = *%s.base.ptr;',
                                     f.ffi_field_name, f.rs_field_name)
                         else:
-                            _r('(*raw).%s = %s;',
-                                    f.ffi_field_name, f.rs_field_name)
+                            assignment = f.rs_field_name
+                            if f.rs_field_type == 'bool':
+                                assignment = ('if %s { 1 } else { 0 }' %
+                                    f.rs_field_name)
+                            _r('(*raw).%s = %s;', f.ffi_field_name, assignment)
                     _r('%s {', event.rs_type)
                     _r('    base: base::Event {')
                     _r('        ptr: raw')

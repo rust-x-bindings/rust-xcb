@@ -26,7 +26,7 @@ fn main() {
 
         match cookie.get_reply() {
             Ok(r) => {
-                if r.supported() == 0 {
+                if !r.supported() {
                     panic!("xkb-1.0 is not supported");
                 }
             },
