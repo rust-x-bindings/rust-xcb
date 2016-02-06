@@ -1038,7 +1038,20 @@ def _rs_accessor(typeobj, field):
         _r('}')
 
     elif field.type.is_list and not field.type.fixed_size():
-        if field.type.member.is_simple:
+        if field.type.member.rs_type == 'bool':
+            # special case for bool: we need to convert all elements into an owned vec
+            _r('pub fn %s(&self) -> Vec<bool> {', field.rs_field_name)
+            with _r.indent_block():
+                _r('unsafe {')
+                with _r.indent_block():
+                    _r('let field = self.base.ptr;')
+                    _r('let len = %s(field);', field.ffi_length_fn)
+                    _r('let data = %s(field);', field.ffi_accessor_fn)
+                    _r('let slice = std::slice::from_raw_parts(data, len as usize);')
+                    _r('slice.iter().map(|el| if *el == 0 {false} else{true}).collect()')
+                _r('}')
+            _r('}')
+        elif field.type.member.is_simple:
             field_type = field.type.member.rs_type
             if field_type == 'c_char':
                 return_type = '&str'
@@ -1526,7 +1539,7 @@ class RequestCodegen(object):
 def _opcode(nametup, opcode):
     print(opcode)
     # handle GLX with -1 opcode
-    optype = 'u32' if int(opcode) >= 0 else 'i32'
+    optype = 'u8' if int(opcode) >= 0 else 'i8'
 
     ffi_name = _ffi_const_name(nametup)
     _f.section(0)
