@@ -31,6 +31,7 @@
 
 #![allow(dead_code)]
 #![allow(unused_imports)]
+#![allow(non_snake_case)]
 
 extern crate libc;
 
@@ -119,7 +120,6 @@ pub mod ffi
     pub mod xinput;
 
     #[cfg(feature = "xkb")]
-    #[allow(non_snake_case)]
     pub mod xkb;
 
     #[cfg(feature = "xprint")]
@@ -212,7 +212,6 @@ pub mod xinerama;
 pub mod xinput;
 
 #[cfg(feature = "xkb")]
-#[allow(non_snake_case)]
 pub mod xkb;
 
 #[cfg(feature = "xprint")]
