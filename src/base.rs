@@ -51,7 +51,8 @@ use std::ops::{BitAnd, BitOr};
 use xproto;
 
 pub struct Connection {
-    c : *mut xcb_connection_t
+    c:     *mut xcb_connection_t,
+    owned: bool
 }
 
 impl Connection {
@@ -178,54 +179,77 @@ impl Connection {
                 panic!("Couldn't connect")
             } else {
                 ffi::base::xcb_prefetch_maximum_request_length(conn);
-                (Connection {c:conn}, screen_num as i32)
+                (
+                    Connection {
+                        c:conn,
+                        owned:true
+                    },
+                    screen_num as i32
+                )
             }
         }
     }
 
     #[inline]
     pub fn connect_to_display(display:&str) -> Option<(Connection, i32)> {
-        let mut screen : c_int = 0;
+        let mut screen_num : c_int = 0;
         unsafe {
             let conn = {
                 let s = display.as_ptr();
-                ffi::base::xcb_connect(s as *mut c_char, &mut screen)
+                ffi::base::xcb_connect(s as *mut c_char, &mut screen_num)
             };
             if conn.is_null() {
                 None
             } else {
                 ffi::base::xcb_prefetch_maximum_request_length(conn);
-                Some((Connection {c:conn}, screen as i32))
+                Some((
+                    Connection {
+                        c:conn,
+                        owned:true
+                    },
+                    screen_num as i32
+                ))
             }
         }
     }
 
     #[inline]
     pub fn connect_with_auth(display:&str, auth_info: &AuthInfo) -> Option<(Connection, i32)> {
-        let mut screen : c_int = 0;
+        let mut screen_num : c_int = 0;
         unsafe {
             let conn = {
                 let s = display.as_ptr();
                 ffi::base::xcb_connect_to_display_with_auth_info(
                         s as *mut c_char,
                         mem::transmute(auth_info),
-                        &mut screen)
+                        &mut screen_num)
             };
             if conn.is_null() {
                 None
             } else {
                 ffi::base::xcb_prefetch_maximum_request_length(conn);
-                Some((Connection {c:conn}, screen as i32))
+                Some((
+                    Connection {
+                        c:conn,
+                        owned:true
+                    },
+                    screen_num as i32
+                ))
             }
         }
     }
 
-    pub unsafe fn from_raw_conn(conn:*mut xcb_connection_t) -> Connection {
+    pub unsafe fn from_raw_conn(
+            conn:             *mut xcb_connection_t,
+            must_disconnect:  bool) -> Connection {
         if conn.is_null() {
             panic!("Cannot construct from null pointer");
         }
 
-        Connection {c:conn}
+        Connection {
+            c:  conn,
+            owned: must_disconnect
+        }
     }
 
 }
@@ -233,7 +257,9 @@ impl Connection {
 impl Drop for Connection {
     fn drop(&mut self) {
         unsafe {
-            ffi::base::xcb_disconnect(self.c);
+            if self.owned {
+                ffi::base::xcb_disconnect(self.c);
+            }
         }
     }
 }
