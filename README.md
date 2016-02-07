@@ -16,8 +16,7 @@ xcb = "0.4.1"
 
 The bindings are generated from the `rs_client.py` script with help from the `xcbgen` library (also
 from XCB). The bindings are inside the `ffi` module, which also contains the hand-written bindings
-to the core library. However, all of the bindings are still in the repository, so running it is not
-necessary.
+to the core library.
 
 Bindings reflect the C API almost one for one.
 
