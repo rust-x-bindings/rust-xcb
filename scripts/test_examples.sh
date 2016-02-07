@@ -6,7 +6,7 @@ function test_success {
     if [ $status -ne 0 ]
     then
         echo "$@"
-        "$@"
+        "$@" --verbose
         echo -e "\e[38;5;166mSuccess test failed:\e[0m" "$@"
     else
         echo -e "\e[38;5;76mSuccess test succeed:\e[0m" "$@"
@@ -19,7 +19,7 @@ function test_failure {
     if [ $status -eq 0 ]
     then
         echo "$@"
-        "$@"
+        "$@" --verbose
         echo -e "\e[38;5;166mFailure test failed:\e[0m" "$@"
     else
         echo -e "\e[38;5;76mFailure test succeed:\e[0m" "$@"
