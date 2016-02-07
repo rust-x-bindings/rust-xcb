@@ -2,8 +2,7 @@
 extern crate xcb;
 extern crate libc;
 
-use xcb::ffi::base::*;
-use xcb::ffi::xproto::*;
+use xcb::ffi::*;
 use std::ptr;
 use libc::{c_int, c_char};
 

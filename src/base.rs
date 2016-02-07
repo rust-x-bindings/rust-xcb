@@ -29,27 +29,180 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-//extern crate extra;
 extern crate libc;
 
-// I don't know enough about the module system to figure out why I can't
-// globally export the base module and see it here.
-use ffi;
+use xproto::*;
 use ffi::base::*;
+use ffi::xproto::*;
 
-use libc::{c_int, c_char, free};
+use libc::{c_int, c_char, c_void};
 use std::option::Option;
 
-use std::{ptr, mem};
+use std::mem;
+use std::ptr::{null, null_mut};
 use std::marker::PhantomData;
-// std::num::Zero is unstable in rustc 1.5 => remove impl copy
+// std::num::Zero is unstable in rustc 1.5 => remove the Zero defined
 // hereunder as soon as Zero gets stabilized (or replaced by something else)
 //use std::num::Zero;
 use std::cmp::Ordering;
 use std::ops::{BitAnd, BitOr};
 
-use xproto;
 
+
+pub const NONE: u32 = 0;
+pub const COPY_FROM_PARENT: u32 = 0;
+pub const CURRENT_TIME: u32 = 0;
+pub const NO_SYMBOL: u32 = 0;
+
+
+pub type Extension = xcb_extension_t;
+
+
+/// `StructPtr` is a wrapper for pointer to struct owned by XCB
+/// that must not be freed
+/// it is instead bound to the lifetime of its parent that it borrows immutably
+pub struct StructPtr<'a, T: 'a> {
+    pub ptr: *mut T,
+    phantom: PhantomData<&'a T>
+}
+
+
+
+/// `Event` wraps a pointer to `xcb_*_event_t`
+/// this pointer will be freed when the `Event` goes out of scope
+pub struct Event<T> {
+   pub ptr: *mut T
+}
+
+impl<T> Event<T> {
+    pub fn response_type(&self) -> u8 {
+        unsafe {
+            let gev : *mut xcb_generic_event_t = mem::transmute(self.ptr);
+            (*gev).response_type
+        }
+    }
+}
+
+impl<T> Drop for Event<T> {
+    fn drop(&mut self) {
+        unsafe {
+            libc::free(self.ptr as *mut c_void);
+        }
+    }
+}
+
+/// Casts the generic event to the right event. Assumes that the given
+/// event is really the correct type.
+#[inline(always)]
+pub fn cast_event<'r, T>(event : &'r GenericEvent) -> &'r T {
+    // This isn't very safe... but other options incur yet more overhead
+    // that I really don't want to.
+    unsafe { mem::transmute(event) }
+}
+
+
+
+
+/// `Error` wraps a pointer to `xcb_*_error_t`
+/// this pointer will be freed when the `Error` goes out of scope
+#[derive(Debug)]
+pub struct Error<T> {
+    pub ptr: *mut T
+}
+
+impl<T> Error<T> {
+    pub fn response_type(&self) -> u8 {
+        unsafe {
+            let ger : *mut xcb_generic_error_t = mem::transmute(self.ptr);
+            (*ger).response_type
+        }
+    }
+    pub fn error_code(&self) -> u8 {
+        unsafe {
+            let ger : *mut xcb_generic_error_t = mem::transmute(self.ptr);
+            (*ger).error_code
+        }
+    }
+}
+
+impl<T> Drop for Error<T> {
+    fn drop(&mut self) {
+        unsafe {
+            libc::free(self.ptr as *mut c_void);
+        }
+    }
+}
+
+/// Casts the generic error to the right error. Assumes that the given
+/// errir is really the correct type.
+#[inline(always)]
+pub fn cast_error<'r, T>(error : &'r GenericError) -> &'r T {
+    // This isn't very safe... but other options incur yet more overhead
+    // that I really don't want to.
+    unsafe { mem::transmute(error) }
+}
+
+
+
+
+/// wraps a cookie as returned by a request function
+/// instantiation of `Cookie` that are not `VoidCookie`
+/// should provide a `get_reply` method to return a `Reply`
+pub struct Cookie<T: Copy> {
+    pub cookie: T,
+    pub conn: *mut xcb_connection_t,
+    pub checked: bool
+}
+
+pub type VoidCookie = Cookie<xcb_void_cookie_t>;
+
+impl VoidCookie {
+    pub fn request_check(&self) -> Result<(), GenericError> {
+        unsafe {
+            let c : xcb_void_cookie_t = mem::transmute(self.cookie);
+            let err = xcb_request_check(self.conn, c);
+
+            if err.is_null() {
+                Ok(())
+            } else {
+                Err(GenericError{ ptr: err })
+            }
+        }
+    }
+}
+
+
+
+/// Wraps a pointer to a `xcb_*_reply_t`
+/// the pointer is freed when the `Reply` goes out of scope
+pub struct Reply<T> {
+    pub ptr: *mut T
+}
+
+impl<T> Drop for Reply<T> {
+    fn drop(&mut self) {
+        unsafe {
+            libc::free(self.ptr as *mut c_void);
+        }
+    }
+}
+
+
+pub type GenericEvent = Event<xcb_generic_event_t>;
+pub type GenericError = Error<xcb_generic_error_t>;
+pub type GenericReply = Reply<xcb_generic_reply_t>;
+
+
+
+
+pub type AuthInfo = xcb_auth_info_t;
+//TODO: Implement wrapper functions for constructing auth_info
+
+
+
+/// wraps an `xcb_connection_t` object
+/// will call `xcb_disconnect` when the `Connection` goes out of scope
+/// (unless the `Connection` is made with `from_raw_conn`
 pub struct Connection {
     c:     *mut xcb_connection_t,
     owned: bool
@@ -59,25 +212,25 @@ impl Connection {
     #[inline]
     pub fn flush(&self) -> bool {
         unsafe {
-            ffi::base::xcb_flush(self.c) > 0
+            xcb_flush(self.c) > 0
         }
     }
 
     #[inline]
     pub fn get_maximum_request_length(&self) -> u32 {
         unsafe {
-            ffi::base::xcb_get_maximum_request_length(self.c)
+            xcb_get_maximum_request_length(self.c)
         }
     }
 
     #[inline]
     pub fn wait_for_event(&self) -> Option<GenericEvent> {
         unsafe {
-            let event = ffi::base::xcb_wait_for_event(self.c);
+            let event = xcb_wait_for_event(self.c);
             if event.is_null() {
                 None
             } else {
-                Some(GenericEvent { base: Event {ptr: event}})
+                Some(GenericEvent { ptr: event })
             }
         }
     }
@@ -85,11 +238,11 @@ impl Connection {
     #[inline]
     pub fn poll_for_event(&self) -> Option<GenericEvent> {
         unsafe {
-            let event = ffi::base::xcb_poll_for_event(self.c);
+            let event = xcb_poll_for_event(self.c);
             if event.is_null() {
                 None
             } else {
-                Some(GenericEvent { base: Event {ptr: event}})
+                Some(GenericEvent { ptr: event })
             }
         }
     }
@@ -97,19 +250,19 @@ impl Connection {
     #[inline]
     pub fn poll_for_queued_event(&self) -> Option<GenericEvent> {
         unsafe {
-            let event = ffi::base::xcb_poll_for_queued_event(self.c);
+            let event = xcb_poll_for_queued_event(self.c);
             if event.is_null() {
                 None
             } else {
-                Some(GenericEvent { base : Event {ptr: event}})
+                Some(GenericEvent { ptr: event })
             }
         }
     }
 
-    pub fn get_setup(&self) -> xproto::Setup {
+    pub fn get_setup(&self) -> Setup {
         unsafe {
 
-            let setup = ffi::base::xcb_get_setup(self.c);
+            let setup = xcb_get_setup(self.c);
             if setup.is_null() {
                 panic!("NULL setup on connection")
             }
@@ -120,14 +273,14 @@ impl Connection {
     #[inline]
     pub fn has_error(&self) -> bool {
         unsafe {
-            ffi::base::xcb_connection_has_error(self.c) > 0
+            xcb_connection_has_error(self.c) > 0
         }
     }
 
     #[inline]
-    pub fn generate_id(&self) -> xproto::Window {
+    pub fn generate_id(&self) -> Window {
         unsafe {
-            ffi::base::xcb_generate_id(self.c)
+            xcb_generate_id(self.c)
         }
     }
 
@@ -138,12 +291,12 @@ impl Connection {
 
     pub fn send_event<T>(&self,
                   propogate: bool,
-                  destination: xproto::Window,
+                  destination: Window,
                   event_mask : u32,
                   event : Event<T>) {
         unsafe {
-        ffi::xproto::xcb_send_event(self.c,
-            propogate as u8, destination as ffi::xproto::xcb_window_t,
+        xcb_send_event(self.c,
+            propogate as u8, destination as xcb_window_t,
             event_mask, event.ptr as *mut c_char);
         }
     }
@@ -173,12 +326,12 @@ impl Connection {
     pub fn connect() -> (Connection, i32) {
         let mut screen_num : c_int = 0;
         unsafe {
-            let conn = ffi::base::xcb_connect(ptr::null_mut() as *mut c_char,
+            let conn = xcb_connect(null_mut() as *mut c_char,
                     &mut screen_num);
             if conn.is_null() {
                 panic!("Couldn't connect")
             } else {
-                ffi::base::xcb_prefetch_maximum_request_length(conn);
+                xcb_prefetch_maximum_request_length(conn);
                 (
                     Connection {
                         c:conn,
@@ -196,12 +349,12 @@ impl Connection {
         unsafe {
             let conn = {
                 let s = display.as_ptr();
-                ffi::base::xcb_connect(s as *mut c_char, &mut screen_num)
+                xcb_connect(s as *mut c_char, &mut screen_num)
             };
             if conn.is_null() {
                 None
             } else {
-                ffi::base::xcb_prefetch_maximum_request_length(conn);
+                xcb_prefetch_maximum_request_length(conn);
                 Some((
                     Connection {
                         c:conn,
@@ -219,7 +372,7 @@ impl Connection {
         unsafe {
             let conn = {
                 let s = display.as_ptr();
-                ffi::base::xcb_connect_to_display_with_auth_info(
+                xcb_connect_to_display_with_auth_info(
                         s as *mut c_char,
                         mem::transmute(auth_info),
                         &mut screen_num)
@@ -227,7 +380,7 @@ impl Connection {
             if conn.is_null() {
                 None
             } else {
-                ffi::base::xcb_prefetch_maximum_request_length(conn);
+                xcb_prefetch_maximum_request_length(conn);
                 Some((
                     Connection {
                         c:conn,
@@ -258,21 +411,20 @@ impl Drop for Connection {
     fn drop(&mut self) {
         unsafe {
             if self.owned {
-                ffi::base::xcb_disconnect(self.c);
+                xcb_disconnect(self.c);
             }
         }
     }
 }
 
 
-pub type Extension = xcb_extension_t;
 
 // Mimics xproto::QueryExtensionReply, but without the Drop trait.
 // Used for Connection::get_extension_data whose returned value
 // must not be freed.
 // Named QueryExtensionData to avoid name collision
 pub struct QueryExtensionData {
-    ptr: *const ffi::xproto::xcb_query_extension_reply_t
+    ptr: *const xcb_query_extension_reply_t
 }
 
 impl QueryExtensionData {
@@ -298,127 +450,6 @@ impl QueryExtensionData {
     }
 }
 
-
-pub const COPY_FROM_PARENT: u32 = 0;
-
-pub struct Event<T> {
-   pub ptr: *mut T
-}
-
-
-impl<T> Drop for Event<T> {
-    fn drop(&mut self) {
-        use libc::c_void;
-        unsafe {
-            free(self.ptr as *mut c_void);
-        }
-    }
-}
-
-#[derive(Debug)]
-pub struct Error<T> {
-    ptr: *mut T
-}
-
-pub fn mk_error<T>(err: *mut T) -> Error<T> {
-    Error {ptr: err}
-}
-
-impl<T> Drop for Error<T> {
-    fn drop(&mut self) {
-        use libc::c_void;
-        unsafe {
-            free(self.ptr as *mut c_void);
-        }
-    }
-}
-
-pub type AuthInfo = xcb_auth_info_t;
-//TODO: Implement wrapper functions for constructing auth_info
-
-
-pub struct StructPtr<'a, T: 'a> {
-    pub ptr: *mut T,
-    phantom: PhantomData<&'a T>
-}
-
-
-pub struct Cookie<T: Copy> {
-    pub cookie: T,
-    pub conn: *mut xcb_connection_t,
-    pub checked: bool
-}
-
-pub trait ReplyCookie<R> {
-    fn get_reply(&self) -> Result<R, GenericError>;
-}
-
-pub struct Reply<T> {
-    pub ptr: *mut T
-}
-
-pub fn mk_reply<T>(reply:*mut T) -> Reply<T> {
-    Reply {ptr:reply}
-}
-
-impl<T> Drop for Reply<T> {
-    fn drop(&mut self) {
-        use libc::c_void;
-        unsafe {
-            free(self.ptr as *mut c_void);
-        }
-    }
-}
-
-pub struct GenericReply { pub base : Reply<xcb_generic_reply_t>}
-pub struct GenericEvent { pub base : Event<xcb_generic_event_t>}
-
-#[derive(Debug)]
-pub struct GenericError { pub base : Error<xcb_generic_error_t>}
-
-pub struct VoidCookie { pub base : Cookie<xcb_void_cookie_t> }
-
-impl VoidCookie {
-    pub fn request_check(&self) -> Result<(), GenericError> {
-        unsafe {
-            let c : xcb_void_cookie_t = mem::transmute(self.base.cookie);
-            let err = ffi::base::xcb_request_check(self.base.conn, c);
-
-            if err.is_null() {
-                Ok(())
-            } else {
-                Err(GenericError{base: Error {ptr: err}})
-            }
-        }
-    }
-}
-
-
-/**
- * Casts the generic event to the right event. Assumes that the given
- * event is really the correct type.
- */
-#[inline(always)]
-pub fn cast_event<'r, T>(event : &'r GenericEvent) -> &'r T {
-    // This isn't very safe... but other options incur yet more overhead
-    // that I really don't want to.
-    unsafe { mem::transmute(event) }
-}
-
-//Accessor methods for all Events
-pub trait EventUtil {
-    #[inline(always)]
-    fn response_type(&self) -> u8;
-}
-
-impl<T> EventUtil for Event<T> {
-    fn response_type(&self) -> u8 {
-        unsafe {
-            let gev : *mut xcb_generic_event_t = mem::transmute(self.ptr);
-            (*gev).response_type
-        }
-    }
-}
 
 pub trait Zero {
     fn zero() -> Self;

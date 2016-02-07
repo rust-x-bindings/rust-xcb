@@ -38,14 +38,18 @@ extern crate libc;
 pub mod base;
 pub mod xproto;
 
+pub use base::*;
+pub use xproto::*;
 
 pub mod ffi
 {
     #![allow(non_camel_case_types)]
 
-    pub mod xproto;
     pub mod base;
+    pub mod xproto;
 
+    pub use ffi::base::*;
+    pub use ffi::xproto::*;
 
     #[cfg(feature = "bigreq")]
     pub mod bigreq;

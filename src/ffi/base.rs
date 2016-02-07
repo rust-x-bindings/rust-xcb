@@ -29,10 +29,9 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-extern crate libc;
+use ffi::xproto::{xcb_setup_t, xcb_query_extension_reply_t};
 
 use libc::{c_int, c_uint, c_void, c_char};
-use ffi::xproto;
 
 
 pub enum xcb_connection_t {}
@@ -41,22 +40,25 @@ pub enum xcb_extension_t {}
 
 pub enum xcb_special_event_t {}
 
+pub const XCB_NONE: u32 = 0;
 pub const XCB_COPY_FROM_PARENT: u32 = 0;
+pub const XCB_CURRENT_TIME: u32 = 0;
+pub const XCB_NO_SYMBOL: u32 = 0;
 
 #[repr(C)]
 pub struct xcb_generic_iterator_t {
-    data:  *mut c_void,
-    rem:   c_int,
-    index: c_int
+    pub data:  *mut c_void,
+    pub rem:   c_int,
+    pub index: c_int
 }
 
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct xcb_generic_reply_t {
-    response_type: u8,
-    pad0:          u8,
-    sequence:      u16,
-    length:        u32
+    pub response_type: u8,
+    pad0:              u8,
+    pub sequence:      u16,
+    pub length:        u32
 }
 
 #[derive(Copy)]
@@ -75,14 +77,14 @@ impl Clone for xcb_generic_event_t {
 #[derive(Copy)]
 #[repr(C)]
 pub struct xcb_ge_event_t {
-    response_type: u8,
-    pad0:          u8,
-    sequence:      u16,
-    length:        u32,
-    event_type:    u16,
-    pad1:          u16,
-    pad:           [u32; 5],
-    full_sequence: u32
+    pub response_type: u8,
+    pad0:              u8,
+    pub sequence:      u16,
+    pub length:        u32,
+    pub event_type:    u16,
+    pad1:              u16,
+    pad:               [u32; 5],
+    pub full_sequence: u32
 }
 impl Clone for xcb_ge_event_t {
     fn clone(&self) -> xcb_ge_event_t { *self }
@@ -91,15 +93,15 @@ impl Clone for xcb_ge_event_t {
 #[derive(Copy, Debug)]
 #[repr(C)]
 pub struct xcb_generic_error_t {
-    response_type:  u8,
-    error_code:     u8,
-    sequence:       u16,
-    resource_id:    u32,
-    minor_code:     u16,
-    major_code:     u8,
-    pad0:           u8,
-    pad:            [u32; 5],
-    full_sequence:  u32
+    pub response_type:  u8,
+    pub error_code:     u8,
+    pub sequence:       u16,
+    pub resource_id:    u32,
+    pub minor_code:     u16,
+    pub major_code:     u8,
+    pad0:               u8,
+    pad:                [u32; 5],
+    pub full_sequence:  u32
 }
 impl Clone for xcb_generic_error_t {
     fn clone(&self) -> xcb_generic_error_t { *self }
@@ -108,15 +110,15 @@ impl Clone for xcb_generic_error_t {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct xcb_void_cookie_t {
-    sequence: c_int
+    pub sequence: c_int
 }
 
 #[repr(C)]
 pub struct xcb_auth_info_t {
-    namelen:    c_int,
-    name:       *mut c_char,
-    datalen:    c_int,
-    data:       *mut c_char
+    pub namelen:    c_int,
+    pub name:       *mut c_char,
+    pub datalen:    c_int,
+    pub data:       *mut c_char
 }
 
 
@@ -169,13 +171,13 @@ extern {
 
     pub fn xcb_get_extension_data(c: *mut xcb_connection_t,
                                   ext: *mut xcb_extension_t)
-            -> *const xproto::xcb_query_extension_reply_t;
+            -> *const xcb_query_extension_reply_t;
 
     pub fn xcb_prefetch_extension_data(c: *mut xcb_connection_t,
                                        ext: *mut xcb_extension_t);
 
     pub fn xcb_get_setup(c: *mut xcb_connection_t)
-            -> *const xproto::xcb_setup_t;
+            -> *const xcb_setup_t;
 
     pub fn xcb_get_file_descriptor(c: *mut xcb_connection_t)
             -> c_int;
@@ -223,8 +225,9 @@ pub mod Xlib {
     #[link(name="X11")]
     #[link(name="X11-xcb")]
     extern {
-        pub fn XGetXCBConnection(dpy:*mut Display) -> *mut xcb_connection_t;
-        pub fn XSetEventQueueOwner(dpy:*mut Display, owner:XEventQueueOwner) -> c_void;
+        pub fn XGetXCBConnection(dpy: *mut Display)
+                -> *mut xcb_connection_t;
+        pub fn XSetEventQueueOwner(dpy: *mut Display, owner:XEventQueueOwner);
     }
 
 }

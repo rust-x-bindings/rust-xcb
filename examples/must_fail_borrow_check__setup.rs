@@ -1,14 +1,13 @@
 extern crate xcb;
 
 use std::iter::{Iterator};
-use xcb::base::*;
 
 fn main() {
 
     let setup;
     let screen_num;
     {
-        let (conn, sn) = Connection::connect();
+        let (conn, sn) = xcb::Connection::connect();
         setup = conn.get_setup();
         screen_num = sn;
     }

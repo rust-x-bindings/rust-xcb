@@ -951,10 +951,8 @@ def _rs_struct(typeobj):
 
     _r.section(1)
     _r('')
-    _r('pub struct %s%s {', typeobj.rs_type, lifetime1)
-    _r('    pub base: %s<%s%s>', typeobj.rs_wrap_type,
-                lifetime2, typeobj.ffi_type)
-    _r('}')
+    _r('pub type %s%s = base::StructPtr<%s%s>;', typeobj.rs_type, lifetime1,
+            lifetime2, typeobj.ffi_type)
 
 
 def _rs_accessors(typeobj):
@@ -1017,8 +1015,8 @@ def _rs_reply_accessors(reply):
             with _r.indent_block():
                 _r('unsafe {')
                 with _r.indent_block():
-                    _r('let nfd = (*self.base.ptr).nfd as usize;')
-                    _r('let ptr = %s(c.get_raw_conn(), self.base.ptr);', getter)
+                    _r('let nfd = (*self.ptr).nfd as usize;')
+                    _r('let ptr = %s(c.get_raw_conn(), self.ptr);', getter)
                     _r('')
                     _r('std::slice::from_raw_parts(ptr, nfd)')
                 _r('}')
@@ -1064,7 +1062,7 @@ def _rs_accessor(typeobj, field):
                 convert = ''
                 if field.rs_field_type == 'bool':
                     convert = ' != 0'
-                _r('(*self.base.ptr).%s%s', field.ffi_field_name, convert)
+                _r('(*self.ptr).%s%s', field.ffi_field_name, convert)
             _r('}')
         _r('}')
 
@@ -1076,7 +1074,7 @@ def _rs_accessor(typeobj, field):
         with _r.indent_block():
             _r('unsafe {')
             with _r.indent_block():
-                _r('&(*self.base.ptr).%s', field.ffi_field_name)
+                _r('&(*self.ptr).%s', field.ffi_field_name)
             _r('}')
         _r('}')
 
@@ -1087,7 +1085,7 @@ def _rs_accessor(typeobj, field):
             with _r.indent_block():
                 _r('unsafe {')
                 with _r.indent_block():
-                    _r('let field = self.base.ptr;')
+                    _r('let field = self.ptr;')
                     _r('let len = %s(field);', field.ffi_length_fn)
                     _r('let data = %s(field);', field.ffi_accessor_fn)
                     _r('let slice = std::slice::from_raw_parts(data, len as usize);')
@@ -1104,7 +1102,7 @@ def _rs_accessor(typeobj, field):
             with _r.indent_block():
                 _r('unsafe {')
                 with _r.indent_block():
-                    _r('let field = self.base.ptr;')
+                    _r('let field = self.ptr;')
                     _r('let len = %s(field);', field.ffi_length_fn)
                     _r('let data = %s(field);', field.ffi_accessor_fn)
                     if field_type == 'c_char':
@@ -1124,7 +1122,7 @@ def _rs_accessor(typeobj, field):
             with _r.indent_block():
                 _r('unsafe {')
                 with _r.indent_block():
-                    _r('%s(self.base.ptr)', field.ffi_iterator_fn)
+                    _r('%s(self.ptr)', field.ffi_iterator_fn)
                 _r('}')
             _r('}')
             pass
@@ -1135,7 +1133,7 @@ def _rs_accessor(typeobj, field):
         with _r.indent_block():
             _r('unsafe {')
             with _r.indent_block():
-                _r('&(*self.base.ptr).%s', field.ffi_field_name)
+                _r('&(*self.ptr).%s', field.ffi_field_name)
             _r('}')
         _r('}')
 
@@ -1145,7 +1143,7 @@ def _rs_accessor(typeobj, field):
         with _r.indent_block():
             _r('unsafe {')
             with _r.indent_block():
-                _r('std::mem::transmute(&(*self.base.ptr).%s)',
+                _r('std::mem::transmute(&(*self.ptr).%s)',
                         field.ffi_field_name)
             _r('}')
         _r('}')
@@ -1161,8 +1159,7 @@ def _rs_iterator(typeobj):
     lifetime1 = "<'a>" if typeobj.has_lifetime else ""
     lifetime2 = "'a, " if typeobj.has_lifetime else ""
     return_expr = '*data'
-    if (hasattr(typeobj, 'rs_wrap_type') and
-            'StructPtr' in typeobj.rs_wrap_type):
+    if typeobj.is_container and not typeobj.is_union:
         return_expr = 'std::mem::transmute(data)'
 
     _r.section(1)
@@ -1194,17 +1191,7 @@ def _rs_reply(request):
 
     _r.section(1)
     _r('')
-    _r("pub struct %s {", request.rs_reply_type)
-    _r("    base: base::Reply<%s>", request.ffi_reply_type)
-    _r("}")
-    _r("")
-    _r("fn mk_reply_%s(reply: *mut %s)",
-            request.ffi_reply_type, request.ffi_reply_type)
-    _r("        -> %s {", request.rs_reply_type)
-    _r("    %s {", request.rs_reply_type)
-    _r("        base: base::mk_reply(reply)")
-    _r("    }")
-    _r("}")
+    _r('pub type %s = base::Reply<%s>;', request.rs_reply_type, request.ffi_reply_type);
 
 
 
@@ -1528,14 +1515,14 @@ class RequestCodegen(object):
                 rs_typestr = 'std::option::Option<%s>' % rs_typestr
                 let_lines.append('let %s_ptr = match %s {' % (p.rs_field_name,
                         p.rs_field_name))
-                let_lines.append('    Some(p) => p.base.ptr as %s,' %
+                let_lines.append('    Some(p) => p.ptr as %s,' %
                         ffi_rq_type)
                 let_lines.append('    None => std::ptr::null()')
                 let_lines.append('};')
                 call_params.append((p.ffi_index, '%s_ptr' % p.rs_field_name))
 
             elif p.type.is_container:
-                call_params.append((p.ffi_index, '*(%s.base.ptr)' %
+                call_params.append((p.ffi_index, '*(%s.ptr)' %
                         p.rs_field_name))
 
             else:
@@ -1567,11 +1554,9 @@ class RequestCodegen(object):
                     _r('%s%s%s  // %d', spacing, p, eol, ffi_ind)
 
                 _r("%s {", self.rs_cookie_type)
-                _r("    base: base::Cookie { ")
-                _r("        cookie:  cookie,")
-                _r("        conn:    c.get_raw_conn(),")
-                _r("        checked: %s", 'true' if checked else 'false')
-                _r("    }")
+                _r("    cookie:  cookie,")
+                _r("    conn:    c.get_raw_conn(),")
+                _r("    checked: %s", 'true' if checked else 'false')
                 _r("}")
             _r('}')
         _r('}')
@@ -1606,39 +1591,37 @@ def _cookie(request):
 
     _r.section(0)
     _r("")
-    _r("pub struct %s {", request.rs_cookie_type)
-    _r("    pub base: base::Cookie<%s>", request.ffi_cookie_type)
-    _r("}")
+    _r("pub type %s = base::Cookie<%s>;",
+            request.rs_cookie_type, request.ffi_cookie_type)
 
     cookie = request.rs_cookie_type
-    mk_func = 'mk_reply_%s' % request.ffi_reply_type
     reply = request.rs_reply_type
     func = request.ffi_reply_fn
     funcspace = ' ' * len(func)
 
     _r.section(1)
     _r('')
-    _r("impl base::ReplyCookie<%s> for %s {", reply, cookie)
+    _r("impl %s {", cookie)
     with _r.indent_block():
-        _r("fn get_reply(&self) -> Result<%s, base::GenericError> {", reply)
+        _r("pub fn get_reply(&self) -> Result<%s, base::GenericError> {", reply)
         with _r.indent_block():
             _r('unsafe {')
             with _r.indent_block():
                 _r("let mut err: *mut xcb_generic_error_t = std::ptr::null_mut();")
-                _r('let reply = if self.base.checked {')
-                _r('    %s(self.base.conn,', func)
-                _r('    %s self.base.cookie,', funcspace)
+                _r('let reply = if self.checked {')
+                _r('    %s(self.conn,', func)
+                _r('    %s self.cookie,', funcspace)
                 _r('    %s &mut err)', funcspace)
                 _r('} else {')
-                _r('    %s(self.base.conn,', func)
-                _r('    %s self.base.cookie,', funcspace)
+                _r('    %s(self.conn,', func)
+                _r('    %s self.cookie,', funcspace)
                 _r('    %s std::ptr::null_mut())', funcspace)
                 _r('};')
                 _r('if err.is_null() {')
-                _r('    Ok(%s(reply))', mk_func)
+                _r('    Ok(%s { ptr: reply })', reply)
                 _r('} else {')
                 _r('    libc::free(reply as *mut c_void);')
-                _r('    Err(base::GenericError { base: base::mk_error(err) } )')
+                _r('    Err(base::GenericError { ptr: err } )')
                 _r('}')
             _r('}')
         _r('}')
@@ -1692,7 +1675,6 @@ def _handle_switch(typeobj, nametup):
             _rs_type_setup(bitcase.type, bitcase.nametup, ())
 
         typeobj.has_lifetime = True
-        typeobj.rs_wrap_type = 'base::StructPtr'
         _ffi_struct(typeobj)
         _rs_struct(typeobj)
 
@@ -1760,7 +1742,6 @@ def rs_struct(struct, nametup):
     global current_handler
     current_handler = ('struct:  ', nametup)
 
-    struct.rs_wrap_type = 'base::StructPtr'
     struct.has_lifetime = True
 
     _ffi_type_setup(struct, nametup)
@@ -1845,7 +1826,6 @@ def rs_request(request, nametup):
     global current_handler
     current_handler = ('request: ', nametup)
 
-    request.rs_wrap_type = 'StructPtr'
     request.has_lifetime = False
 
     _ffi_type_setup(request, nametup, ('request',))
@@ -1860,7 +1840,6 @@ def rs_request(request, nametup):
     if request.reply:
         # enable getting the request from the reply
         request.reply.request = request
-        request.reply.rs_wrap_type = 'base::Reply'
         request.reply.has_lifetime = False
 
         _cookie(request)
@@ -1914,9 +1893,7 @@ def rs_event(event, nametup):
 
     _r.section(0)
     _r('')
-    _r('pub struct %s {', event.rs_type)
-    _r('    pub base: base::Event<%s>', event.ffi_type)
-    _r('}')
+    _r('pub type %s = base::Event<%s>;', event.rs_type, event.ffi_type)
 
     if event.name == nametup:
         _ffi_struct(event, must_pack)
@@ -1963,7 +1940,7 @@ def rs_event(event, nametup):
                     for f in event.fields:
                         if not f.visible: continue
                         if f.type.is_container and not f.type.is_union:
-                            _r('(*raw).%s = *%s.base.ptr;',
+                            _r('(*raw).%s = *%s.ptr;',
                                     f.ffi_field_name, f.rs_field_name)
                         else:
                             assignment = f.rs_field_name
@@ -1972,9 +1949,7 @@ def rs_event(event, nametup):
                                     f.rs_field_name)
                             _r('(*raw).%s = %s;', f.ffi_field_name, assignment)
                     _r('%s {', event.rs_type)
-                    _r('    base: base::Event {')
-                    _r('        ptr: raw')
-                    _r('    }')
+                    _r('    ptr: raw')
                     _r('}')
                 _r('}')
             _r('}')

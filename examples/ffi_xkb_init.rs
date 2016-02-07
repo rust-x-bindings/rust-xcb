@@ -2,7 +2,7 @@
 extern crate xcb;
 extern crate libc;
 
-use xcb::ffi::base::*;
+use xcb::ffi::*;
 use xcb::ffi::xkb::*;
 
 use std::ptr::{null, null_mut};

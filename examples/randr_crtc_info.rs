@@ -2,19 +2,17 @@
 extern crate xcb;
 extern crate libc;
 
-use xcb::base::*;
-use xcb::xproto::*;
 use xcb::randr;
 
 fn main() {
 
-    let (conn, screen_num) = Connection::connect();
+    let (conn, screen_num) = xcb::Connection::connect();
     let setup = conn.get_setup();
     let screen = setup.roots()
             .nth(screen_num as usize).unwrap();
     let window_dummy = conn.generate_id();
 
-    create_window(&conn, 0, window_dummy, screen.root(),
+    xcb::create_window(&conn, 0, window_dummy, screen.root(),
             0, 0, 1, 1, 0, 0, 0, &[]);
 
     conn.flush();

@@ -2,12 +2,11 @@
 extern crate xcb;
 extern crate libc;
 
-use xcb::base::*;
 use xcb::xkb;
 
 fn main() {
 
-    let (conn, _) = Connection::connect();
+    let (conn, _) = xcb::Connection::connect();
 
     conn.prefetch_extension_data(xkb::id());
 
