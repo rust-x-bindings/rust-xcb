@@ -1,7 +1,8 @@
 language: rust
 before_install:
     - sudo apt-get update -qq
-    - sudo apt-get install -y ^libxcb.* libx11-xcb-dev python3
+    - sudo apt-get install -y libx11-xcb-dev python3
+    - scripts/install_xcb.sh
 script:
     - cargo build --verbose --features debug_all
     - scripts/test_examples.sh
