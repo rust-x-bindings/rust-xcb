@@ -218,13 +218,14 @@ def rs_open(module):
 
     _r('')
     _r('use base;')
+    if _ns.is_ext:
+        for (n, h) in module.imports:
+            _r('use %s;', h)
     _r('use ffi::base::*;')
     _r('use ffi::%s::*;', _ns.header)
     if _ns.is_ext:
         for (n, h) in module.imports:
             _r('use ffi::%s::*;', h)
-        for (n, h) in module.imports:
-            _r('use %s;', h)
     _r('use libc::{self, c_char, c_int, c_uint, c_void};')
     _r('use std;')
     _r('use std::iter::Iterator;')
