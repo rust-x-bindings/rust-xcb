@@ -29,13 +29,17 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-extern crate libc;
 
 use xproto::*;
 use ffi::base::*;
 use ffi::xproto::*;
+#[cfg(feature="xlib_xcb")]
+use ffi::xlib_xcb::*;
 
-use libc::{c_int, c_char, c_void};
+#[cfg(feature="xlib_xcb")]
+use x11::xlib;
+
+use libc::{self, c_int, c_char, c_void};
 use std::option::Option;
 
 use std::mem;
@@ -343,6 +347,22 @@ impl Connection {
         }
     }
 
+    #[cfg(feature="xlib_xcb")]
+    pub fn new_from_xlib_display(dpy: *mut xlib::Display) -> Connection {
+        unsafe {
+            if dpy.is_null() {
+                panic!("attempt connect with null display");
+            }
+            Connection {
+                c: XGetXCBConnection(dpy),
+                owned: false
+            }
+        }
+    }
+
+
+
+
     #[inline]
     pub fn connect_to_display(display:&str) -> Option<(Connection, i32)> {
         let mut screen_num : c_int = 0;
@@ -417,6 +437,24 @@ impl Drop for Connection {
     }
 }
 
+
+#[cfg(feature="xlib_xcb")]
+pub enum EventQueueOwner {
+    Xcb,
+    Xlib
+}
+
+
+#[cfg(feature="xlib_xcb")]
+pub fn set_event_queue_owner(dpy: *mut xlib::Display, owner: EventQueueOwner) {
+    unsafe {
+        let owner = match owner {
+            EventQueueOwner::Xcb => XCBOwnsEventQueue,
+            EventQueueOwner::Xlib => XlibOwnsEventQueue
+        };
+        XSetEventQueueOwner(dpy, owner);
+    }
+}
 
 
 // Mimics xproto::QueryExtensionReply, but without the Drop trait.

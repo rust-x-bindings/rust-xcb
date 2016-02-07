@@ -34,6 +34,8 @@
 #![allow(non_snake_case)]
 
 extern crate libc;
+#[cfg(feature="xlib_xcb")]
+extern crate x11;
 
 pub mod base;
 pub mod xproto;
@@ -50,6 +52,11 @@ pub mod ffi
 
     pub use ffi::base::*;
     pub use ffi::xproto::*;
+
+
+    #[cfg(feature = "xlib_xcb")]
+    pub mod xlib_xcb;
+
 
     #[cfg(feature = "bigreq")]
     pub mod bigreq;

@@ -1,7 +1,7 @@
 [package]
 
 name = "xcb"
-version = "0.4.1"
+version = "0.5.0"
 authors = [
     "James Miller <james@aatch.net>",
     "Remi Thebault <remi.thebault@gmail.com>",
@@ -12,6 +12,9 @@ repository = "https://github.com/rtbo/rust-xcb"
 license = "MIT"
 build = "build.rs"
 
+[build-dependencies]
+libc = "0.2"
+
 [lib]
 name = "xcb"
 path = "src/xcb.rs"
@@ -19,18 +22,13 @@ path = "src/xcb.rs"
 [dependencies]
 libc = "0.2"
 
-[build-dependencies]
-libc = "0.2"
-
-
-# cargo does not seam to support example.features yet.
-# That is addressed in cargo/#1570
-#[[example]]
-#name = "randr_crtc_info"
-#features = "randr"
-
+[dependencies.x11]
+version = "2.3"
+optional = true
+features = ["xlib"]
 
 [features]
+xlib_xcb = ["x11/xlib"]
 bigreq = []
 composite = [ "xfixes" ]
 damage = [ "xfixes" ]
@@ -69,3 +67,11 @@ debug_all = [ "bigreq", "composite", "damage", "dpms", "dri2", "dri3",
         "glx", "randr", "record", "render", "res", "screensaver", "shape",
         "shm", "xc_misc", "xevie", "xf86dri", "xfixes", "xinerama", "xkb",
         "xprint", "xselinux", "xtest", "xvmc", "xv" ]
+
+
+
+# cargo does not seam to support example.features yet.
+# That is addressed in cargo/#1570
+#[[example]]
+#name = "randr_crtc_info"
+#features = "randr"

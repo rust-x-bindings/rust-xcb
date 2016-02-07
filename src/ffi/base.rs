@@ -211,23 +211,3 @@ extern {
 
 }
 
-#[allow(non_upper_case_globals)]
-#[allow(non_snake_case)]
-pub mod Xlib {
-    use super::{xcb_connection_t};
-    use libc::{c_void, c_uint};
-    pub enum Display {}
-
-    pub type XEventQueueOwner = c_uint;
-    pub static XlibOwnsEventQueue : XEventQueueOwner = 0;
-    pub static XCBOwnsEventQueue : XEventQueueOwner  = 1;
-
-    #[link(name="X11")]
-    #[link(name="X11-xcb")]
-    extern {
-        pub fn XGetXCBConnection(dpy: *mut Display)
-                -> *mut xcb_connection_t;
-        pub fn XSetEventQueueOwner(dpy: *mut Display, owner:XEventQueueOwner);
-    }
-
-}
