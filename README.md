@@ -27,21 +27,3 @@ The wrappers are generated from the same files, and provide a safe and more conv
 the low-level bindings by having automatic destructors for returned data, trait implementations for
 object "types" and other safe helpers.
 
-## Changelog
-
- * 0.4.1
- rtbo - 2016
-    - generating union accessors
-    - handling of bool parameters in the wrapper API
-    - Travis
-
- * 0.4.0
- rtbo/laumann - 2016
-    - first fully functional wrappers
-    - rewritten rs_client.py
-    - new examples
-    - made ffi very close to C
-    - fixed wrappers segfaults
-
- * 0.3.0
- Aatch - 2013
