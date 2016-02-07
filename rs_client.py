@@ -966,7 +966,10 @@ def _rs_accessors(typeobj):
     with _r.indent_block():
         for (i, field) in enumerate(typeobj.fields):
             if field.visible and not field.type.is_switch:
-                _rs_accessor(typeobj, field)
+                if typeobj.is_union:
+                    _rs_union_accessor(typeobj, field)
+                else:
+                    _rs_accessor(typeobj, field)
     _r('}')
 
 
@@ -1023,8 +1026,36 @@ def _rs_reply_accessors(reply):
     _r('}')
 
 
+def _rs_union_accessor(typeobj, field):
+    if field.type.is_simple:
+        _r('pub fn %s(&self) -> %s {', field.rs_field_name, field.rs_field_type)
+        with _r.indent_block():
+            _r('unsafe {')
+            with _r.indent_block():
+                convert = ''
+                if field.rs_field_type == 'bool':
+                    convert = ' != 0'
+                _r('let _ptr = self.data.as_ptr() as *const %s;', field.ffi_field_type)
+                _r('*_ptr%s', convert)
+            _r('}')
+        _r('}')
+
+    elif field.type.is_list and field.type.fixed_size():
+        assert (typeobj.union_num_bytes % field.type.size) == 0
+        _r('pub fn %s(&self) -> &[%s] {',
+                field.rs_field_name, field.rs_field_type)
+        with _r.indent_block():
+            _r('unsafe {')
+            with _r.indent_block():
+                _r('let ptr = self.data.as_ptr() as *const %s;', field.rs_field_type)
+                _r('std::slice::from_raw_parts(ptr, %d)',
+                        typeobj.union_num_bytes / field.type.size)
+            _r('}')
+        _r('}')
+
+
 def _rs_accessor(typeobj, field):
-    if field.type.is_simple or field.type.is_union:
+    if field.type.is_simple:
         _r('pub fn %s(&self) -> %s {', field.rs_field_name,
                 field.rs_field_type)
         with _r.indent_block():
@@ -1034,6 +1065,18 @@ def _rs_accessor(typeobj, field):
                 if field.rs_field_type == 'bool':
                     convert = ' != 0'
                 _r('(*self.base.ptr).%s%s', field.ffi_field_name, convert)
+            _r('}')
+        _r('}')
+
+    elif field.type.is_union:
+        # do we already have a lifetime declared?
+        lifetime = "<'a>" if not typeobj.has_lifetime else ""
+        _r("pub fn %s%s(&'a self) -> &'a %s {", field.rs_field_name, lifetime,
+                field.rs_field_type)
+        with _r.indent_block():
+            _r('unsafe {')
+            with _r.indent_block():
+                _r('&(*self.base.ptr).%s', field.ffi_field_name)
             _r('}')
         _r('}')
 
@@ -1768,13 +1811,14 @@ def rs_union(union, nametup):
         num_aligned += 1
 
     num_bytes = num_aligned * most_aligned
+    union.union_num_bytes = num_bytes
 
     _f.section(0)
     _f('')
     _f('// union')
     _f('#[repr(C)]')
     _f('pub struct %s {', union.ffi_type)
-    _f('    pub data: [u8; %s]', num_bytes)
+    _f('    pub data: [u8; %d]', num_bytes)
     _f('}')
 
     _f('')
@@ -1788,6 +1832,7 @@ def rs_union(union, nametup):
     _r.section(0)
     _r('')
     _r('pub type %s = %s;', union.rs_type, union.ffi_type)
+    _rs_accessors(union)
     _rs_iterator(union)
 
 
@@ -1853,6 +1898,7 @@ def rs_event(event, nametup):
     current_handler = ('event:   ', nametup)
 
     must_pack = _must_pack_event(event, nametup)
+    event.has_lifetime = False
 
     if must_pack:
         print('event ', nametup, ' is packed')
