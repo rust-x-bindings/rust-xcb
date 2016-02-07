@@ -1,5 +1,7 @@
 #!/bin/bash
 
+exit_code=0
+
 function test_success {
     "$@" > /dev/null 2>&1
     local status=$?
@@ -8,6 +10,7 @@ function test_success {
         echo "$@"
         "$@" --verbose
         echo -e "\e[38;5;166mSuccess test failed:\e[0m" "$@"
+        exit_code=1
     else
         echo -e "\e[38;5;76mSuccess test succeed:\e[0m" "$@"
     fi
@@ -21,6 +24,7 @@ function test_failure {
         echo "$@"
         "$@" --verbose
         echo -e "\e[38;5;166mFailure test failed:\e[0m" "$@"
+        exit_code=1
     else
         echo -e "\e[38;5;76mFailure test succeed:\e[0m" "$@"
     fi
@@ -38,3 +42,5 @@ test_success cargo build --example xkb_init --features xkb
 
 test_failure cargo build --example must_fail_borrow_check__reply --features randr
 test_failure cargo build --example must_fail_borrow_check__setup
+
+exit $exit_code
