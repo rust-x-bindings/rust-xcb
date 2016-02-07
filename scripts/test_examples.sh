@@ -49,7 +49,7 @@ test_success cargo build --example ffi_xkb_init --features xkb
 test_success cargo build --example xkb_init --features xkb
 
 pushd examples/opengl_window
-echo in examples/opengl_window:
+echo from examples/opengl_window:
 test_success cargo build
 popd
 
