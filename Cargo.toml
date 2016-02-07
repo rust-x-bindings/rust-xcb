@@ -9,7 +9,10 @@ authors = [
 ]
 description = "Rust bindings and wrappers for XCB"
 repository = "https://github.com/rtbo/rust-xcb"
+readme = "README.md"
+keywords = ["xcb", "bindings", "window", "xlib", "x11", "opengl"]
 license = "MIT"
+exclude = [ "examples/*" ]
 build = "build.rs"
 
 [build-dependencies]
