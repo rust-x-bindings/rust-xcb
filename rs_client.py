@@ -1537,7 +1537,6 @@ class RequestCodegen(object):
 
 
 def _opcode(nametup, opcode):
-    print(opcode)
     # handle GLX with -1 opcode
     optype = 'u8' if int(opcode) >= 0 else 'i8'
 
