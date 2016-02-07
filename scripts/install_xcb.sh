@@ -17,4 +17,4 @@ cd libxcb-1.11.1
 ./configure --enable-xkb --enable-xinput --enable-selinux
 make
 sudo make install
-cd..
+cd ..
