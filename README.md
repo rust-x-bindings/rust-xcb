@@ -7,10 +7,10 @@ protocol descriptions from XCB to generate the bindings and the wrappers.
 
 Rust-XCB is only intended as an interface to XCB, so provides nothing above and beyond that.
 
-'''toml
+```toml
 [dependencies]
 xcb = "0.4.1"
-'''
+```
 
 ## The bindings
 
