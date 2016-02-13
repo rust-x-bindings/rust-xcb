@@ -204,12 +204,20 @@ pub type AuthInfo = xcb_auth_info_t;
 
 
 
+#[cfg(feature="xlib_xcb")]
+pub enum EventQueueOwner {
+    Xcb,
+    Xlib
+}
+
+
 /// wraps an `xcb_connection_t` object
 /// will call `xcb_disconnect` when the `Connection` goes out of scope
-/// (unless the `Connection` is made with `from_raw_conn`
+/// (unless the `Connection` is made with `from_raw_conn`)
 pub struct Connection {
-    c:     *mut xcb_connection_t,
-    owned: bool
+    c:   *mut xcb_connection_t,
+    #[cfg(feature="xlib_xcb")]
+    dpy: *mut xlib::Display,
 }
 
 impl Connection {
@@ -289,8 +297,13 @@ impl Connection {
     }
 
     #[inline]
-    pub unsafe fn get_raw_conn(&self) -> *mut xcb_connection_t {
+    pub fn get_raw_conn(&self) -> *mut xcb_connection_t {
         self.c
+    }
+
+    #[cfg(feature="xlib_xcb")]
+    pub fn get_raw_dpy(&self) -> *mut xlib::Display {
+        self.dpy
     }
 
     pub fn send_event<T>(&self,
@@ -324,14 +337,28 @@ impl Connection {
         }
     }
 
+    #[cfg(feature="xlib_xcb")]
+    pub fn set_event_queue_owner(&self, owner: EventQueueOwner) {
+        if self.dpy.is_null() {
+            panic!("set_event_queue_owner needs the xlib::Display");
+        }
+        unsafe {
+            let owner = match owner {
+                EventQueueOwner::Xcb => XCBOwnsEventQueue,
+                EventQueueOwner::Xlib => XlibOwnsEventQueue
+            };
+            XSetEventQueueOwner(self.dpy, owner);
+        }
+    }
+
 
 
     #[inline]
+    #[cfg(not(feature="xlib_xcb"))]
     pub fn connect() -> (Connection, i32) {
         let mut screen_num : c_int = 0;
         unsafe {
-            let conn = xcb_connect(null_mut() as *mut c_char,
-                    &mut screen_num);
+            let conn = xcb_connect(null_mut(), &mut screen_num);
             if conn.is_null() {
                 panic!("Couldn't connect")
             } else {
@@ -339,9 +366,28 @@ impl Connection {
                 (
                     Connection {
                         c:conn,
-                        owned:true
                     },
                     screen_num as i32
+                )
+            }
+        }
+    }
+
+    #[cfg(feature="xlib_xcb")]
+    pub fn connect_with_xlib_display() -> (Connection, i32) {
+        unsafe {
+            let dpy = xlib::XOpenDisplay(null());
+            let conn = XGetXCBConnection(dpy);
+            if conn.is_null() || dpy.is_null() {
+                panic!("Couldn't connect")
+            } else {
+                xcb_prefetch_maximum_request_length(conn);
+                (
+                    Connection {
+                        c:   conn,
+                        dpy: dpy,
+                    },
+                    xlib::XDefaultScreen(dpy) as i32
                 )
             }
         }
@@ -355,7 +401,7 @@ impl Connection {
             }
             Connection {
                 c: XGetXCBConnection(dpy),
-                owned: false
+                dpy: dpy
             }
         }
     }
@@ -364,6 +410,7 @@ impl Connection {
 
 
     #[inline]
+    #[cfg(not(feature="xlib_xcb"))]
     pub fn connect_to_display(display:&str) -> Option<(Connection, i32)> {
         let mut screen_num : c_int = 0;
         unsafe {
@@ -378,7 +425,6 @@ impl Connection {
                 Some((
                     Connection {
                         c:conn,
-                        owned:true
                     },
                     screen_num as i32
                 ))
@@ -387,6 +433,7 @@ impl Connection {
     }
 
     #[inline]
+    #[cfg(not(feature="xlib_xcb"))]
     pub fn connect_with_auth(display:&str, auth_info: &AuthInfo) -> Option<(Connection, i32)> {
         let mut screen_num : c_int = 0;
         unsafe {
@@ -404,7 +451,6 @@ impl Connection {
                 Some((
                     Connection {
                         c:conn,
-                        owned:true
                     },
                     screen_num as i32
                 ))
@@ -412,47 +458,37 @@ impl Connection {
         }
     }
 
-    pub unsafe fn from_raw_conn(
-            conn:             *mut xcb_connection_t,
-            must_disconnect:  bool) -> Connection {
+    #[cfg(not(feature="xlib_xcb"))]
+    pub unsafe fn from_raw_conn(conn: *mut xcb_connection_t) -> Connection {
         if conn.is_null() {
             panic!("Cannot construct from null pointer");
         }
 
         Connection {
             c:  conn,
-            owned: must_disconnect
         }
     }
 
 }
 
 impl Drop for Connection {
+    #[cfg(not(feature="xlib_xcb"))]
     fn drop(&mut self) {
         unsafe {
-            if self.owned {
-                xcb_disconnect(self.c);
-            }
+            xcb_disconnect(self.c);
         }
     }
-}
 
-
-#[cfg(feature="xlib_xcb")]
-pub enum EventQueueOwner {
-    Xcb,
-    Xlib
-}
-
-
-#[cfg(feature="xlib_xcb")]
-pub fn set_event_queue_owner(dpy: *mut xlib::Display, owner: EventQueueOwner) {
-    unsafe {
-        let owner = match owner {
-            EventQueueOwner::Xcb => XCBOwnsEventQueue,
-            EventQueueOwner::Xlib => XlibOwnsEventQueue
-        };
-        XSetEventQueueOwner(dpy, owner);
+    #[cfg(feature="xlib_xcb")]
+    fn drop(&mut self) {
+        unsafe {
+            if self.dpy.is_null() {
+                xcb_disconnect(self.c);
+            }
+            else {
+                xlib::XCloseDisplay(self.dpy);
+            }
+        }
     }
 }
 
