@@ -174,10 +174,9 @@ fn main() { unsafe {
             xcb::ATOM_STRING,
             8, title.as_bytes());
 
-    let protocols: &[u32] = &[wm_delete_window];
+    let protocols = [wm_delete_window];
     xcb::change_property(&conn, xcb::PROP_MODE_REPLACE as u8,
-            win, wm_protocols, xcb::ATOM_ATOM, 32,
-            std::mem::transmute(protocols));
+            win, wm_protocols, xcb::ATOM_ATOM, 32, &protocols);
 
     xcb::map_window(&conn, win);
     conn.flush();

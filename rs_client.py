@@ -1318,8 +1318,12 @@ class RequestCodegen(object):
         # in this case, we will make 2 slices and runtime assert same length
         # eg: take a look at render::create_conical_gradient
 
+        rs_num_template = 0
+        template_letters = ['T', 'U', 'V', 'W']
+
         for f in self.visible_fields:
             f.rs_is_slice = False
+            f.rs_template_let = ''
             f.rs_lenfield = None
             f.rs_is_mask_slice = False
             f.rs_maskfield = None
@@ -1337,6 +1341,9 @@ class RequestCodegen(object):
                 else:
                     # regular list with length and ptr
                     field.rs_is_slice = True
+                    if field.type.member.rs_type == 'c_void':
+                        field.rs_template_let = template_letters[rs_num_template]
+                        rs_num_template += 1
                 field.rs_lenfield = field.type.expr.lenfield
                 if not field.rs_lenfield:
                     len_name = field.type.expr.lenfield_name
@@ -1355,6 +1362,14 @@ class RequestCodegen(object):
             if not field.rs_skip:
                 self.rs_params.append(field)
 
+        self.rs_template = ''
+        if rs_num_template:
+            self.rs_template = '<'
+            for i in range(rs_num_template):
+                if i != 0:
+                    self.rs_template += ', '
+                self.rs_template += template_letters[i]
+            self.rs_template += '>'
 
     def ffi_func_name(self, regular, aux):
         checked = self.void and not regular
@@ -1447,7 +1462,7 @@ class RequestCodegen(object):
 
         _r.section(1)
         _r('')
-        fn_start = "pub fn %s(" % rs_func_name
+        fn_start = "pub fn %s%s(" % (rs_func_name, self.rs_template)
         func_spacing = ' ' * len(fn_start)
         eol = ',' if len(self.rs_params) else ')'
         spacing = ' ' * (maxnamelen-len('c'))
@@ -1490,7 +1505,7 @@ class RequestCodegen(object):
                     let_lines.append('let %s = %s.as_bytes();' %
                             (p.rs_field_name, p.rs_field_name))
                 elif p.type.member.rs_type == 'c_void':
-                    rs_typestr = '&[u8]'
+                    rs_typestr = '&[%s]' % p.rs_template_let
                 else:
                     rs_typestr = '&[%s]' % rs_typestr
 
