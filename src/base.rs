@@ -97,7 +97,6 @@ impl<T> Drop for Event<T> {
 
 /// Casts the generic event to the right event. Assumes that the given
 /// event is really the correct type.
-#[inline(always)]
 pub fn cast_event<'r, T>(event : &'r GenericEvent) -> &'r T {
     // This isn't very safe... but other options incur yet more overhead
     // that I really don't want to.
@@ -139,7 +138,6 @@ impl<T> Drop for Error<T> {
 
 /// Casts the generic error to the right error. Assumes that the given
 /// errir is really the correct type.
-#[inline(always)]
 pub fn cast_error<'r, T>(error : &'r GenericError) -> &'r T {
     // This isn't very safe... but other options incur yet more overhead
     // that I really don't want to.
@@ -221,21 +219,18 @@ pub struct Connection {
 }
 
 impl Connection {
-    #[inline]
     pub fn flush(&self) -> bool {
         unsafe {
             xcb_flush(self.c) > 0
         }
     }
 
-    #[inline]
     pub fn get_maximum_request_length(&self) -> u32 {
         unsafe {
             xcb_get_maximum_request_length(self.c)
         }
     }
 
-    #[inline]
     pub fn wait_for_event(&self) -> Option<GenericEvent> {
         unsafe {
             let event = xcb_wait_for_event(self.c);
@@ -247,7 +242,6 @@ impl Connection {
         }
     }
 
-    #[inline]
     pub fn poll_for_event(&self) -> Option<GenericEvent> {
         unsafe {
             let event = xcb_poll_for_event(self.c);
@@ -259,7 +253,6 @@ impl Connection {
         }
     }
 
-    #[inline]
     pub fn poll_for_queued_event(&self) -> Option<GenericEvent> {
         unsafe {
             let event = xcb_poll_for_queued_event(self.c);
@@ -282,21 +275,18 @@ impl Connection {
         }
     }
 
-    #[inline]
     pub fn has_error(&self) -> bool {
         unsafe {
             xcb_connection_has_error(self.c) > 0
         }
     }
 
-    #[inline]
     pub fn generate_id(&self) -> Window {
         unsafe {
             xcb_generate_id(self.c)
         }
     }
 
-    #[inline]
     pub fn get_raw_conn(&self) -> *mut xcb_connection_t {
         self.c
     }
@@ -319,7 +309,6 @@ impl Connection {
     }
 
 
-    #[inline]
     pub fn prefetch_extension_data(&self, ext: &mut Extension) {
         unsafe {
             xcb_prefetch_extension_data(self.c, ext);
@@ -327,7 +316,6 @@ impl Connection {
     }
 
 
-    #[inline]
     pub fn get_extension_data(&self, ext: &mut Extension)
             -> Option<QueryExtensionData> {
         unsafe {
@@ -353,7 +341,6 @@ impl Connection {
 
 
 
-    #[inline]
     #[cfg(not(feature="xlib_xcb"))]
     pub fn connect() -> (Connection, i32) {
         let mut screen_num : c_int = 0;
@@ -409,7 +396,6 @@ impl Connection {
 
 
 
-    #[inline]
     #[cfg(not(feature="xlib_xcb"))]
     pub fn connect_to_display(display:&str) -> Option<(Connection, i32)> {
         let mut screen_num : c_int = 0;
@@ -432,7 +418,6 @@ impl Connection {
         }
     }
 
-    #[inline]
     #[cfg(not(feature="xlib_xcb"))]
     pub fn connect_with_auth(display:&str, auth_info: &AuthInfo) -> Option<(Connection, i32)> {
         let mut screen_num : c_int = 0;
