@@ -12,7 +12,7 @@ version = "2.3"
 features = ["xlib", "glx"]
 
 [dependencies.xcb]
-version = "0.5.0"
+version = "0.6.0"
 path = "../.."
 features = ["xlib_xcb", "dri2"]
 
