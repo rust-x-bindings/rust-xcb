@@ -213,8 +213,8 @@ fn main() { unsafe {
         GLX_CONTEXT_MINOR_VERSION_ARB as c_int, 0,
         0
     ];
-    let ctx = glx_create_context_attribs(conn.get_raw_dpy(), fbc, null_mut(), xlib::True,
-            &context_attribs[0] as *const c_int);
+    let ctx = glx_create_context_attribs(conn.get_raw_dpy(), fbc, null_mut(),
+            xlib::True, &context_attribs[0] as *const c_int);
 
     conn.flush();
     xlib::XSync(conn.get_raw_dpy(), xlib::False);

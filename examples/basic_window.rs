@@ -25,7 +25,7 @@ fn main() {
         screen.root_visual(),
         &values);
 
-    xcb::map_window(&conn,window);
+    xcb::map_window(&conn, window);
 
     conn.flush();
 
