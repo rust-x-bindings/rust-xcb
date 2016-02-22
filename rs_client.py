@@ -160,6 +160,14 @@ _rs_type_translation = {
     'BOOL': 'bool'
 }
 
+# struct with only simple fields are defined as typedef to the ffi struct (issue #7)
+# this list adds exception to this behavior
+_rs_typedef_exceptions = [
+    # not strictly necessary has Setup has complex fields
+    # however intent is clear: 'xproto::Setup' MUST use StructPtr
+    'xproto::Setup'
+]
+
 # exported functions to xcbgen start by 'rs_'
 
 # starting with opening and closing
@@ -923,6 +931,12 @@ def _rs_type_setup(typeobj, nametup, suffix=()):
 
     typeobj.rs_type = _rs_type_name(nametup + suffix)
 
+    if len(nametup) == 1:
+        typeobj.rs_qualified_type = typeobj.rs_type
+    else:
+        module = _ns.ext_name.lower() if _ns.is_ext else 'xproto'
+        typeobj.rs_qualified_type = '%s::%s' % (module, typeobj.rs_type)
+
     typeobj.rs_iterator_type = _rs_type_name(nametup+('iterator',))
     typeobj.rs_request_fn = _rs_name(nametup)
     typeobj.rs_checked_fn = _rs_name(nametup+('checked',))
@@ -934,7 +948,10 @@ def _rs_type_setup(typeobj, nametup, suffix=()):
     typeobj.rs_reply_type = _rs_type_name(nametup + ('reply',))
     typeobj.rs_cookie_type = _rs_type_name(nametup + ('cookie',))
 
+    typeobj.rs_is_pod = False
+
     if typeobj.is_container:
+        has_complex = False
         for field in typeobj.fields:
             _rs_type_setup(field.type, field.field_type)
             if field.type.is_list:
@@ -945,24 +962,84 @@ def _rs_type_setup(typeobj, nametup, suffix=()):
             field.rs_iterator_type = _rs_type_name(
                     field.field_type + ('iterator',))
 
+            if not field.type.is_simple and not field.type.rs_is_pod:
+                has_complex = True
+
+        typeobj.rs_only_has_simple = not has_complex
+        # we restrict POD a little
+        typeobj.rs_is_pod = (
+                (not has_complex) and
+                (not typeobj.rs_qualified_type in _rs_typedef_exceptions) and
+                (not typeobj.is_reply and not typeobj.is_union) and
+                (not typeobj.is_switch))
+
+        if typeobj.rs_is_pod:
+            typeobj.has_lifetime = False
+
+
 
 def _rs_struct(typeobj):
-    lifetime1 = "<'a>" if typeobj.has_lifetime else ""
-    lifetime2 = "'a, " if typeobj.has_lifetime else ""
+    if typeobj.rs_is_pod:
+        _r('')
+        _r('pub struct %s {', typeobj.rs_type)
+        _r('    pub base: %s,', typeobj.ffi_type)
+        _r('}')
+    else:
+        lifetime1 = "<'a>" if typeobj.has_lifetime else ""
+        lifetime2 = "'a, " if typeobj.has_lifetime else ""
 
-    _r.section(1)
-    _r('')
-    _r('pub type %s%s = base::StructPtr<%s%s>;', typeobj.rs_type, lifetime1,
-            lifetime2, typeobj.ffi_type)
+        _r.section(1)
+        _r('')
+        _r('pub type %s%s = base::StructPtr<%s%s>;', typeobj.rs_type, lifetime1,
+                lifetime2, typeobj.ffi_type)
 
 
 def _rs_accessors(typeobj):
+
     lifetime = "<'a>" if typeobj.has_lifetime else ""
 
     _r.section(1)
     _r('')
     _r('impl%s %s%s {', lifetime, typeobj.rs_type, lifetime)
     with _r.indent_block():
+        if typeobj.rs_is_pod:
+            # POD structs have a new method
+            fnstart = 'pub fn new('
+            fnspace = ' '*len(fnstart)
+            maxfieldlen = 0
+            for f in typeobj.fields:
+                maxfieldlen = max(maxfieldlen, len(f.rs_field_name))
+            eol = ',' if len(typeobj.fields) > 1 else ')'
+            f1 = typeobj.fields[0]
+            space1 = ' '*(maxfieldlen - len(f1.rs_field_name))
+            _r('#[allow(unused_unsafe)]')
+            _r('%s%s: %s%s%s', fnstart, f1.rs_field_name, space1, f1.rs_field_type, eol)
+            for (i, f) in enumerate(typeobj.fields[1:]):
+                argspace = ' '*(maxfieldlen-len(f.rs_field_name))
+                eol = ',' if i < len(typeobj.fields)-2 else ')'
+                _r('%s%s: %s%s%s', fnspace, f.rs_field_name, argspace, f.rs_field_type, eol)
+            _r('        -> %s {', typeobj.rs_type)
+            with _r.indent_block():
+                _r('unsafe {')
+                with _r.indent_block():
+                    _r('%s {', typeobj.rs_type)
+                    with _r.indent_block():
+                        _r('base: %s {', typeobj.ffi_type)
+                        with _r.indent_block():
+                            for f in typeobj.fields:
+                                space = ' '*(maxfieldlen-len(f.rs_field_name))
+                                if f.type.rs_is_pod:
+                                    _r('%s: %sstd::mem::transmute(%s),', f.rs_field_name, space, f.rs_field_name)
+                                else:
+                                    assignment = f.rs_field_name
+                                    if f.rs_field_type == 'bool':
+                                        assignment = 'if %s { 1 } else { 0 }' % f.rs_field_name
+                                    _r('%s: %s%s,', f.rs_field_name, space, assignment)
+                        _r('}')
+                    _r('}')
+                _r('}')
+            _r('}')
+
         for (i, field) in enumerate(typeobj.fields):
             if field.visible and not field.type.is_switch:
                 if typeobj.is_union:
@@ -1053,17 +1130,26 @@ def _rs_union_accessor(typeobj, field):
         _r('}')
 
 
-def _rs_accessor(typeobj, field):
-    if field.type.is_simple:
+def _rs_accessor(typeobj, field, disable_pod_acc=False):
+    if field.type.is_simple or field.type.rs_is_pod:
+        _r('#[allow(unused_unsafe)]')
         _r('pub fn %s(&self) -> %s {', field.rs_field_name,
                 field.rs_field_type)
+
+        acc = '(*self.ptr)'
+        if typeobj.rs_is_pod and not disable_pod_acc:
+            acc = 'self.base'
+
         with _r.indent_block():
+            convert = ''
+            if field.rs_field_type == 'bool':
+                convert = ' != 0'
             _r('unsafe {')
             with _r.indent_block():
-                convert = ''
-                if field.rs_field_type == 'bool':
-                    convert = ' != 0'
-                _r('(*self.ptr).%s%s', field.ffi_field_name, convert)
+                if field.type.rs_is_pod:
+                    _r('std::mem::transmute(%s.%s)', acc, field.ffi_field_name)
+                else:
+                    _r('%s.%s%s', acc, field.ffi_field_name, convert)
             _r('}')
         _r('}')
 
@@ -1160,7 +1246,9 @@ def _rs_iterator(typeobj):
     lifetime1 = "<'a>" if typeobj.has_lifetime else ""
     lifetime2 = "'a, " if typeobj.has_lifetime else ""
     return_expr = '*data'
-    if typeobj.is_container and not typeobj.is_union:
+    if typeobj.rs_is_pod:
+        return_expr = 'std::mem::transmute(*data)'
+    elif typeobj.is_container and not typeobj.is_union:
         return_expr = 'std::mem::transmute(data)'
 
     _r.section(1)
@@ -1537,10 +1625,13 @@ class RequestCodegen(object):
                 let_lines.append('};')
                 call_params.append((p.ffi_index, '%s_ptr' % p.rs_field_name))
 
-            elif p.type.is_container:
+            elif p.type.is_container and not p.type.rs_is_pod:
                 call_params.append((p.ffi_index, '*(%s.ptr)' %
                         p.rs_field_name))
 
+            elif p.type.rs_is_pod:
+                call_params.append((p.ffi_index, '%s.base' %
+                        p.rs_field_name))
             else:
                 call_params.append((p.ffi_index,
                         '%s as %s' % (p.rs_field_name, ffi_rq_type)))
@@ -1931,7 +2022,7 @@ def rs_event(event, nametup):
         _r('impl %s {', event.rs_type)
         with _r.indent_block():
             for f in accessor_fields:
-                _rs_accessor(event, f)
+                _rs_accessor(event, f, True)
 
                 rs_ftype = f.rs_field_type
                 if f.has_subscript:
@@ -1955,9 +2046,13 @@ def rs_event(event, nametup):
                     _r('let raw = libc::malloc(32 as usize) as *mut %s;', event.ffi_type)
                     for f in event.fields:
                         if not f.visible: continue
-                        if f.type.is_container and not f.type.is_union:
+                        if f.type.is_container and not f.type.is_union and not f.type.rs_is_pod:
                             _r('(*raw).%s = *%s.ptr;',
                                     f.ffi_field_name, f.rs_field_name)
+
+                        elif f.type.rs_is_pod:
+                            _r('(*raw).%s = %s.base;', f.ffi_field_name, f.rs_field_name)
+
                         else:
                             assignment = f.rs_field_name
                             if f.rs_field_type == 'bool':
