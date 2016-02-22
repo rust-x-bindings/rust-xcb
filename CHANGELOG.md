@@ -1,7 +1,8 @@
  * 0.6.0
- rtbo - 15/02/2016
+ rtbo - 22/02/2016
     - xlib_xcb: Connection owns the xlib::Display and calls XCloseDisplay
     - requests accept template slices
+    - POD types distinction
 
  * 0.5.0
  rtbo - 07/02/2016
