@@ -427,12 +427,12 @@ def _rs_extract_module(nametup):
     returns the module extracted from nametup
     along with the nametup without the module parts
     if module is local module, an empty module is returned
-    >>> _rs_type_name(('u32',))
+    >>> _rs_extract_module(('u32',))
     ("", "u32")
-    >>> _rs_type_name(('xcb', 'Type'))
-    ("xproto::", "Type")
-    >>> _rs_type_name(('xcb', 'RandR', 'SuperType'))
-    ("randr::", "SuperType")
+    >>> _rs_extract_module(('xcb', 'Type'))
+    ("", ("Type"))
+    >>> _rs_extract_module(('xcb', 'RandR', 'SuperType'))
+    ("randr::", ("SuperType"))
     '''
     # handles SimpleType
     if len(nametup) == 1:
@@ -451,7 +451,7 @@ def _rs_extract_module(nametup):
             module = ext + '::'
         nametup = nametup[1:]
 
-    # handle xproto type
+    # handle xproto type for extensions
     else:
         if _ns.is_ext:
             module = 'xproto::'
