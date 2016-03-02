@@ -295,7 +295,7 @@ def rs_close(module):
 # transformation of name tuples
 
 _cname_re = re.compile('([A-Z0-9][a-z]+|[A-Z0-9]+(?![a-z])|[a-z]+)')
-_rs_keywords = ['type', 'str', 'match']
+_rs_keywords = ['type', 'str', 'match', 'new']
 
 
 def _tit_split(string):
@@ -2073,10 +2073,6 @@ def rs_event(event, nametup):
 
     if must_pack:
         print('event ', nametup, ' is packed')
-
-    for f in event.fields:
-        if f.field_name.lower() == 'new':
-            f.field_name = 'new_'
 
     _ffi_type_setup(event, nametup, ('event',))
     _opcode(nametup, event.opcodes[nametup])
