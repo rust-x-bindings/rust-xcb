@@ -12,6 +12,9 @@ Rust-XCB is only intended as an interface to XCB, so provides nothing above and 
 xcb = "0.6.1"
 ```
 
+__Documentation__:
+http://rtbo.github.io/rust-xcb/xcb/
+
 ## The bindings
 
 The bindings are generated from the `rs_client.py` script with help from the `xcbgen` library (also
