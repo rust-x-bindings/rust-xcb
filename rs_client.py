@@ -670,6 +670,7 @@ def _ffi_struct(typeobj, must_pack=False):
 
     _f.section(0)
     _f('')
+    _write_doc_brief_desc(_f, typeobj.doc)
     _f('#[repr(C%s)]', ', packed' if must_pack else '')
     _f('pub struct %s {', typeobj.ffi_type)
     _f.indent()
@@ -707,6 +708,8 @@ def _ffi_struct(typeobj, must_pack=False):
 
     if not typeobj.is_switch:
         for field in struct_fields:
+            for d in typeobj.doc.fields[field.field_name]:
+                _f('/// %s', d)
             _ffi_struct_field(field)
     else:
         for b in typeobj.bitcases:
@@ -950,8 +953,6 @@ def _rs_type_setup(typeobj, nametup, suffix=()):
 
     typeobj.rs_is_pod = False
 
-
-
     if typeobj.is_container:
         has_complex = False
         for field in typeobj.fields:
@@ -981,8 +982,10 @@ def _rs_type_setup(typeobj, nametup, suffix=()):
 
 
 def _rs_struct(typeobj):
+    _r.section(0)
+    _r('')
+    _write_doc_brief_desc(_r, typeobj.doc)
     if typeobj.rs_is_pod:
-        _r('')
         _r('pub struct %s {', typeobj.rs_type)
         _r('    pub base: %s,', typeobj.ffi_type)
         _r('}')
@@ -990,8 +993,6 @@ def _rs_struct(typeobj):
         lifetime1 = "<'a>" if typeobj.has_lifetime else ""
         lifetime2 = "'a, " if typeobj.has_lifetime else ""
 
-        _r.section(1)
-        _r('')
         _r('pub type %s%s = base::StructPtr<%s%s>;', typeobj.rs_type, lifetime1,
                 lifetime2, typeobj.ffi_type)
 
@@ -1294,16 +1295,24 @@ def _rs_reply(request):
 def _prepare_doc(typeobj):
     # preparing doc for easier handling
     # each typeobj must have a doc attribute with brief, description and fields
+
+    def rework_phrase(phrase):
+        # having 'unknown start of token' error by rustdoc sometimes.
+        # This silents it
+        # return phrase.replace('`', '')
+        # Edit: not necessary anymore
+        return phrase
+
     if hasattr(typeobj, "doc_prepared"):
         assert typeobj.doc_prepared == True
         return
     if hasattr(typeobj, "doc") and typeobj.doc:
         if typeobj.doc.brief:
-            typeobj.doc.brief = typeobj.doc.brief.split('\n')
+            typeobj.doc.brief = [rework_phrase(p) for p in typeobj.doc.brief.split('\n')]
         else:
             typeobj.doc.brief = []
         if typeobj.doc.description:
-            typeobj.doc.description = typeobj.doc.description.split('\n')
+            typeobj.doc.description = [rework_phrase(p) for p in typeobj.doc.description.split('\n')]
         else:
             typeobj.doc.description = []
         if hasattr(typeobj, "fields"):
@@ -1311,10 +1320,8 @@ def _prepare_doc(typeobj):
                 typeobj.doc.fields = {}
             for f in typeobj.fields:
                 if f.field_name in typeobj.doc.fields:
-                    print(typeobj.doc.fields)
-                    print(f.field_name)
                     typeobj.doc.fields[f.field_name] = \
-                            typeobj.doc.fields[f.field_name].split('\n')
+                            [rework_phrase(p) for p in typeobj.doc.fields[f.field_name].split('\n')]
                 else:
                     typeobj.doc.fields[f.field_name] = []
     else:
@@ -1621,6 +1628,22 @@ class RequestCodegen(object):
         _r.section(1)
         _r('')
         _write_doc_brief_desc(_r, self.request.doc)
+        doc_params = False
+        for f in self.rs_params:
+            if len(self.request.doc.fields[f.field_name]):
+                doc_params = True
+                break
+        if doc_params:
+            _r('///')
+            _r('/// parameters:')
+            _r('///')
+            _r('///   - __c__:')
+            _r('///       The connection object to the server')
+            for f in self.rs_params:
+                _r('///')
+                _r('///   - __%s__:', f.field_name)
+                for fd in self.request.doc.fields[f.field_name]:
+                    _r('///       %s', fd)
         fn_start = "pub fn %s%s(" % (rs_func_name, self.rs_template)
         func_spacing = ' ' * len(fn_start)
         eol = ',' if len(self.rs_params) else ')'
@@ -1862,6 +1885,7 @@ def _handle_switch(typeobj, nametup):
 
     if typeobj.is_container:
         for f in typeobj.fields:
+            _prepare_doc(f.type)
             _handle_switch(f.type, f.field_type)
 
 
@@ -1984,6 +2008,7 @@ def rs_union(union, nametup):
 
     _f.section(0)
     _f('')
+    _write_doc_brief_desc(_f, union.doc)
     _f('// union')
     _f('#[repr(C)]')
     _f('pub struct %s {', union.ffi_type)
@@ -2028,6 +2053,7 @@ def rs_request(request, nametup):
     _ffi_struct(request)
 
     if request.reply:
+        _prepare_doc(request.reply)
         # enable getting the request from the reply
         request.reply.request = request
         request.reply.has_lifetime = False
@@ -2066,9 +2092,9 @@ def rs_event(event, nametup):
     global current_handler
     current_handler = ('event:   ', nametup)
 
-    _prepare_doc(event)
-
     must_pack = _must_pack_event(event, nametup)
+    # _must_pack_event may insert fields, therefore must be called before _prepare_doc
+    _prepare_doc(event)
     event.has_lifetime = False
 
     if must_pack:
@@ -2104,6 +2130,8 @@ def rs_event(event, nametup):
         _r('impl %s {', event.rs_type)
         with _r.indent_block():
             for f in accessor_fields:
+                for fd in event.doc.fields[f.field_name]:
+                    _r('/// %s', fd)
                 _rs_accessor(event, f, True)
 
                 rs_ftype = f.rs_field_type

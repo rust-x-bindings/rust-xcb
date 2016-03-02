@@ -211,7 +211,6 @@ pub enum EventQueueOwner {
 
 /// wraps an `xcb_connection_t` object
 /// will call `xcb_disconnect` when the `Connection` goes out of scope
-/// (unless the `Connection` is made with `from_raw_conn`)
 pub struct Connection {
     c:   *mut xcb_connection_t,
     #[cfg(feature="xlib_xcb")]
