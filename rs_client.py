@@ -381,11 +381,11 @@ def _ext_nametup(nametup):
     ('xcb', 'randr', 'SuperType')
     '''
     if len(nametup) > 2 and nametup[1].lower() in _ext_names:
-        nametup = tuple(_ext_names[name.lower()] if i == 1 else name
-                for (i, name) in enumerate(nametup))
-        # lowers extension to avoid '_' split with title letters
-        #nametup = tuple(name.lower() if i == 1 else name
+        #nametup = tuple(_ext_names[name.lower()] if i == 1 else name
         #        for (i, name) in enumerate(nametup))
+        # lowers extension to avoid '_' split with title letters
+        nametup = tuple(name.lower() if i == 1 else name
+                for (i, name) in enumerate(nametup))
     return nametup
 
 def _ffi_type_name(nametup):
