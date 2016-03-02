@@ -950,6 +950,8 @@ def _rs_type_setup(typeobj, nametup, suffix=()):
 
     typeobj.rs_is_pod = False
 
+
+
     if typeobj.is_container:
         has_complex = False
         for field in typeobj.fields:
@@ -1042,6 +1044,8 @@ def _rs_accessors(typeobj):
 
         for (i, field) in enumerate(typeobj.fields):
             if field.visible and not field.type.is_switch:
+                for d in typeobj.doc.fields[field.field_name]:
+                    _r('/// %s', d)
                 if typeobj.is_union:
                     _rs_union_accessor(typeobj, field)
                 else:
@@ -1287,6 +1291,57 @@ def _rs_reply(request):
 
 # Common codegen utilities
 
+def _prepare_doc(typeobj):
+    # preparing doc for easier handling
+    # each typeobj must have a doc attribute with brief, description and fields
+    if hasattr(typeobj, "doc_prepared"):
+        assert typeobj.doc_prepared == True
+        return
+    if hasattr(typeobj, "doc") and typeobj.doc:
+        if typeobj.doc.brief:
+            typeobj.doc.brief = typeobj.doc.brief.split('\n')
+        else:
+            typeobj.doc.brief = []
+        if typeobj.doc.description:
+            typeobj.doc.description = typeobj.doc.description.split('\n')
+        else:
+            typeobj.doc.description = []
+        if hasattr(typeobj, "fields"):
+            if not hasattr(typeobj.doc, "fields"):
+                typeobj.doc.fields = {}
+            for f in typeobj.fields:
+                if f.field_name in typeobj.doc.fields:
+                    print(typeobj.doc.fields)
+                    print(f.field_name)
+                    typeobj.doc.fields[f.field_name] = \
+                            typeobj.doc.fields[f.field_name].split('\n')
+                else:
+                    typeobj.doc.fields[f.field_name] = []
+    else:
+        class Doc(object): pass
+        typeobj.doc = Doc()
+        typeobj.doc.brief = []
+        typeobj.doc.description = []
+        typeobj.doc.fields = {}
+        if hasattr(typeobj, "fields"):
+            for f in typeobj.fields:
+                typeobj.doc.fields[f.field_name] = []
+
+    typeobj.doc_prepared = True
+
+
+def _write_docs(sf, doclist):
+    for s in doclist:
+        sf('/// %s', s)
+
+
+def _write_doc_brief_desc(sf, doc):
+    _write_docs(sf, doc.brief)
+    if len(doc.brief) and len(doc.description):
+        sf('///')
+    _write_docs(sf, doc.description)
+
+
 class EnumCodegen(object):
 
     namecount = {}
@@ -1299,8 +1354,9 @@ class EnumCodegen(object):
             )
 
 
-    def __init__(self, nametup):
+    def __init__(self, nametup, doc):
         self._nametup = nametup
+        self._doc = doc
 
         self.done_vals = {}
         self.unique_discriminants = []
@@ -1321,6 +1377,9 @@ class EnumCodegen(object):
         d.ffi_name = _ffi_const_name(self._nametup+(name,))
         d.valstr = '0x%02x' % val
         d.val = val
+        d.doc = None
+        if self._doc and name in self._doc.fields:
+            d.doc = self._doc.fields[name]
         self.all_discriminants.append(d)
         if val in self.done_vals:
             self.conflicts.append(d)
@@ -1343,11 +1402,16 @@ class EnumCodegen(object):
         type_name = self.ffi_name
         _f.section(0)
         _f('')
+        _write_doc_brief_desc(_f, self._doc)
         _f('pub type %s = u32;', type_name)
         for d in self.all_discriminants:
             d_name = d.ffi_name
             namespace = ' ' * (maxnamelen-len(d_name))
             valspace = ' ' * (maxvallen-len(d.valstr))
+            if d.doc:
+                ddocs = d.doc.split('\n')
+                for dd in ddocs:
+                    _f('/// %s', dd)
             _f('pub const %s%s: %s =%s %s;', d_name, namespace, type_name,
                     valspace, d.valstr)
 
@@ -1355,10 +1419,15 @@ class EnumCodegen(object):
         (maxnamelen, maxvallen) = self.maxlen("rs_name")
         _r.section(0)
         _r('')
+        _write_doc_brief_desc(_r, self._doc)
         _r('pub type %s = u32;', self.rs_name)
         for d in self.all_discriminants:
             namespace = ' ' * (maxnamelen-len(d.rs_name))
             valspace = ' ' * (maxvallen-len(d.valstr))
+            if d.doc:
+                ddocs = d.doc.split('\n')
+                for dd in ddocs:
+                    _r('/// %s', dd)
             _r('pub const %s%s: %s =%s %s;', d.rs_name, namespace, self.rs_name,
                     valspace, d.valstr)
 
@@ -1519,6 +1588,7 @@ class RequestCodegen(object):
 
         _f.section(1)
         _f("")
+        _write_doc_brief_desc(_f, self.request.doc)
         fn_start = "pub fn %s (" % ffi_func_name
         func_spacing = ' ' * len(fn_start)
         spacing = " " * (maxnamelen-len('c'))
@@ -1550,6 +1620,7 @@ class RequestCodegen(object):
 
         _r.section(1)
         _r('')
+        _write_doc_brief_desc(_r, self.request.doc)
         fn_start = "pub fn %s%s(" % (rs_func_name, self.rs_template)
         func_spacing = ' ' * len(fn_start)
         eol = ',' if len(self.rs_params) else ')'
@@ -1804,18 +1875,22 @@ def rs_simple(simple, nametup):
     global current_handler
     current_handler = ('simple:  ', nametup)
 
+    _prepare_doc(simple)
+
     simple.has_lifetime = False
 
     _ffi_type_setup(simple, nametup)
     _f.section(0)
     assert len(simple.name) == 1
     _f('')
+    _write_doc_brief_desc(_f, simple.doc)
     _f('pub type %s = %s;', simple.ffi_type, simple.name[0])
     _ffi_iterator(simple, nametup)
 
     _rs_type_setup(simple, nametup)
     _r.section(0)
     _r('')
+    _write_doc_brief_desc(_r, simple.doc)
     _r('pub type %s = %s;', simple.rs_type, simple.ffi_type)
 
 
@@ -1828,7 +1903,9 @@ def rs_enum(typeobj, nametup):
     global current_handler
     current_handler = ('enum:    ', nametup)
 
-    ecg = EnumCodegen(nametup)
+    _prepare_doc(typeobj)
+
+    ecg = EnumCodegen(nametup, typeobj.doc)
 
     val = -1
     for (enam, eval) in typeobj.values:
@@ -1848,6 +1925,8 @@ def rs_struct(struct, nametup):
     '''
     global current_handler
     current_handler = ('struct:  ', nametup)
+
+    _prepare_doc(struct)
 
     struct.has_lifetime = True
 
@@ -1872,6 +1951,8 @@ def rs_union(union, nametup):
     '''
     global current_handler
     current_handler = ('union:   ', nametup)
+
+    _prepare_doc(union)
 
     union.has_lifetime = False
 
@@ -1933,6 +2014,8 @@ def rs_request(request, nametup):
     global current_handler
     current_handler = ('request: ', nametup)
 
+    _prepare_doc(request)
+
     request.has_lifetime = False
 
     _ffi_type_setup(request, nametup, ('request',))
@@ -1983,6 +2066,8 @@ def rs_event(event, nametup):
     global current_handler
     current_handler = ('event:   ', nametup)
 
+    _prepare_doc(event)
+
     must_pack = _must_pack_event(event, nametup)
     event.has_lifetime = False
 
@@ -2000,6 +2085,7 @@ def rs_event(event, nametup):
 
     _r.section(0)
     _r('')
+    _write_doc_brief_desc(_r, event.doc)
     _r('pub type %s = base::Event<%s>;', event.rs_type, event.ffi_type)
 
     if event.name == nametup:
@@ -2082,6 +2168,8 @@ def rs_error(error, nametup):
     '''
     global current_handler
     current_handler = ('error:   ', nametup)
+
+    _prepare_doc(error)
 
     _ffi_type_setup(error, nametup, ('error',))
     _opcode(nametup, error.opcodes[nametup])
