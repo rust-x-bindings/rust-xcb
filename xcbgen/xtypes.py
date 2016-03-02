@@ -703,7 +703,7 @@ class Doc(object):
     def __init__(self, name, elt):
         self.name = name
         self.description = None
-        self.brief = 'BRIEF DESCRIPTION MISSING'
+        self.brief = None
         self.fields = {}
         self.errors = {}
         self.see = {}
