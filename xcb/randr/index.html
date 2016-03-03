@@ -1,0 +1,2219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `randr` mod in crate `xcb`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, randr">
+
+    <title>xcb::randr - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>xcb</a></p><script>window.sidebarCurrent = {name: 'randr', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>xcb</a>::<wbr><a class='mod' href=''>randr</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-32482' class='srclink' href='../../src/xcb/randr.rs.html#5-4116' title='goto source code'>[src]</a></span></h1>
+<h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.BadCrtcError.html'
+                               title='xcb::randr::BadCrtcError'>BadCrtcError</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.BadModeError.html'
+                               title='xcb::randr::BadModeError'>BadModeError</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.BadOutputError.html'
+                               title='xcb::randr::BadOutputError'>BadOutputError</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.BadProviderError.html'
+                               title='xcb::randr::BadProviderError'>BadProviderError</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.ModeInfo.html'
+                               title='xcb::randr::ModeInfo'>ModeInfo</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.OutputChange.html'
+                               title='xcb::randr::OutputChange'>OutputChange</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.ScreenSize.html'
+                               title='xcb::randr::ScreenSize'>ScreenSize</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.ADD_OUTPUT_MODE.html'
+                               title='xcb::randr::ADD_OUTPUT_MODE'>ADD_OUTPUT_MODE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.BAD_CRTC.html'
+                               title='xcb::randr::BAD_CRTC'>BAD_CRTC</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.BAD_MODE.html'
+                               title='xcb::randr::BAD_MODE'>BAD_MODE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.BAD_OUTPUT.html'
+                               title='xcb::randr::BAD_OUTPUT'>BAD_OUTPUT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.BAD_PROVIDER.html'
+                               title='xcb::randr::BAD_PROVIDER'>BAD_PROVIDER</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CHANGE_OUTPUT_PROPERTY.html'
+                               title='xcb::randr::CHANGE_OUTPUT_PROPERTY'>CHANGE_OUTPUT_PROPERTY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CHANGE_PROVIDER_PROPERTY.html'
+                               title='xcb::randr::CHANGE_PROVIDER_PROPERTY'>CHANGE_PROVIDER_PROPERTY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CONFIGURE_OUTPUT_PROPERTY.html'
+                               title='xcb::randr::CONFIGURE_OUTPUT_PROPERTY'>CONFIGURE_OUTPUT_PROPERTY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CONFIGURE_PROVIDER_PROPERTY.html'
+                               title='xcb::randr::CONFIGURE_PROVIDER_PROPERTY'>CONFIGURE_PROVIDER_PROPERTY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CONNECTION_CONNECTED.html'
+                               title='xcb::randr::CONNECTION_CONNECTED'>CONNECTION_CONNECTED</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CONNECTION_DISCONNECTED.html'
+                               title='xcb::randr::CONNECTION_DISCONNECTED'>CONNECTION_DISCONNECTED</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CONNECTION_UNKNOWN.html'
+                               title='xcb::randr::CONNECTION_UNKNOWN'>CONNECTION_UNKNOWN</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CREATE_MODE.html'
+                               title='xcb::randr::CREATE_MODE'>CREATE_MODE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.DELETE_OUTPUT_MODE.html'
+                               title='xcb::randr::DELETE_OUTPUT_MODE'>DELETE_OUTPUT_MODE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.DELETE_OUTPUT_PROPERTY.html'
+                               title='xcb::randr::DELETE_OUTPUT_PROPERTY'>DELETE_OUTPUT_PROPERTY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.DELETE_PROVIDER_PROPERTY.html'
+                               title='xcb::randr::DELETE_PROVIDER_PROPERTY'>DELETE_PROVIDER_PROPERTY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.DESTROY_MODE.html'
+                               title='xcb::randr::DESTROY_MODE'>DESTROY_MODE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.GET_CRTC_GAMMA.html'
+                               title='xcb::randr::GET_CRTC_GAMMA'>GET_CRTC_GAMMA</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.GET_CRTC_GAMMA_SIZE.html'
+                               title='xcb::randr::GET_CRTC_GAMMA_SIZE'>GET_CRTC_GAMMA_SIZE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.GET_CRTC_INFO.html'
+                               title='xcb::randr::GET_CRTC_INFO'>GET_CRTC_INFO</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.GET_CRTC_TRANSFORM.html'
+                               title='xcb::randr::GET_CRTC_TRANSFORM'>GET_CRTC_TRANSFORM</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.GET_OUTPUT_INFO.html'
+                               title='xcb::randr::GET_OUTPUT_INFO'>GET_OUTPUT_INFO</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.GET_OUTPUT_PRIMARY.html'
+                               title='xcb::randr::GET_OUTPUT_PRIMARY'>GET_OUTPUT_PRIMARY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.GET_OUTPUT_PROPERTY.html'
+                               title='xcb::randr::GET_OUTPUT_PROPERTY'>GET_OUTPUT_PROPERTY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.GET_PANNING.html'
+                               title='xcb::randr::GET_PANNING'>GET_PANNING</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.GET_PROVIDERS.html'
+                               title='xcb::randr::GET_PROVIDERS'>GET_PROVIDERS</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.GET_PROVIDER_INFO.html'
+                               title='xcb::randr::GET_PROVIDER_INFO'>GET_PROVIDER_INFO</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.GET_PROVIDER_PROPERTY.html'
+                               title='xcb::randr::GET_PROVIDER_PROPERTY'>GET_PROVIDER_PROPERTY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.GET_SCREEN_INFO.html'
+                               title='xcb::randr::GET_SCREEN_INFO'>GET_SCREEN_INFO</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.GET_SCREEN_RESOURCES.html'
+                               title='xcb::randr::GET_SCREEN_RESOURCES'>GET_SCREEN_RESOURCES</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.GET_SCREEN_RESOURCES_CURRENT.html'
+                               title='xcb::randr::GET_SCREEN_RESOURCES_CURRENT'>GET_SCREEN_RESOURCES_CURRENT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.GET_SCREEN_SIZE_RANGE.html'
+                               title='xcb::randr::GET_SCREEN_SIZE_RANGE'>GET_SCREEN_SIZE_RANGE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.LIST_OUTPUT_PROPERTIES.html'
+                               title='xcb::randr::LIST_OUTPUT_PROPERTIES'>LIST_OUTPUT_PROPERTIES</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.LIST_PROVIDER_PROPERTIES.html'
+                               title='xcb::randr::LIST_PROVIDER_PROPERTIES'>LIST_PROVIDER_PROPERTIES</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.MAJOR_VERSION.html'
+                               title='xcb::randr::MAJOR_VERSION'>MAJOR_VERSION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.MINOR_VERSION.html'
+                               title='xcb::randr::MINOR_VERSION'>MINOR_VERSION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.MODE_FLAG_BCAST.html'
+                               title='xcb::randr::MODE_FLAG_BCAST'>MODE_FLAG_BCAST</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.MODE_FLAG_CSYNC.html'
+                               title='xcb::randr::MODE_FLAG_CSYNC'>MODE_FLAG_CSYNC</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.MODE_FLAG_CSYNC_NEGATIVE.html'
+                               title='xcb::randr::MODE_FLAG_CSYNC_NEGATIVE'>MODE_FLAG_CSYNC_NEGATIVE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.MODE_FLAG_CSYNC_POSITIVE.html'
+                               title='xcb::randr::MODE_FLAG_CSYNC_POSITIVE'>MODE_FLAG_CSYNC_POSITIVE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.MODE_FLAG_DOUBLE_CLOCK.html'
+                               title='xcb::randr::MODE_FLAG_DOUBLE_CLOCK'>MODE_FLAG_DOUBLE_CLOCK</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.MODE_FLAG_DOUBLE_SCAN.html'
+                               title='xcb::randr::MODE_FLAG_DOUBLE_SCAN'>MODE_FLAG_DOUBLE_SCAN</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.MODE_FLAG_HALVE_CLOCK.html'
+                               title='xcb::randr::MODE_FLAG_HALVE_CLOCK'>MODE_FLAG_HALVE_CLOCK</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.MODE_FLAG_HSKEW_PRESENT.html'
+                               title='xcb::randr::MODE_FLAG_HSKEW_PRESENT'>MODE_FLAG_HSKEW_PRESENT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.MODE_FLAG_HSYNC_NEGATIVE.html'
+                               title='xcb::randr::MODE_FLAG_HSYNC_NEGATIVE'>MODE_FLAG_HSYNC_NEGATIVE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.MODE_FLAG_HSYNC_POSITIVE.html'
+                               title='xcb::randr::MODE_FLAG_HSYNC_POSITIVE'>MODE_FLAG_HSYNC_POSITIVE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.MODE_FLAG_INTERLACE.html'
+                               title='xcb::randr::MODE_FLAG_INTERLACE'>MODE_FLAG_INTERLACE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.MODE_FLAG_PIXEL_MULTIPLEX.html'
+                               title='xcb::randr::MODE_FLAG_PIXEL_MULTIPLEX'>MODE_FLAG_PIXEL_MULTIPLEX</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.MODE_FLAG_VSYNC_NEGATIVE.html'
+                               title='xcb::randr::MODE_FLAG_VSYNC_NEGATIVE'>MODE_FLAG_VSYNC_NEGATIVE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.MODE_FLAG_VSYNC_POSITIVE.html'
+                               title='xcb::randr::MODE_FLAG_VSYNC_POSITIVE'>MODE_FLAG_VSYNC_POSITIVE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.NOTIFY.html'
+                               title='xcb::randr::NOTIFY'>NOTIFY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.NOTIFY_CRTC_CHANGE.html'
+                               title='xcb::randr::NOTIFY_CRTC_CHANGE'>NOTIFY_CRTC_CHANGE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.NOTIFY_MASK_CRTC_CHANGE.html'
+                               title='xcb::randr::NOTIFY_MASK_CRTC_CHANGE'>NOTIFY_MASK_CRTC_CHANGE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.NOTIFY_MASK_OUTPUT_CHANGE.html'
+                               title='xcb::randr::NOTIFY_MASK_OUTPUT_CHANGE'>NOTIFY_MASK_OUTPUT_CHANGE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.NOTIFY_MASK_OUTPUT_PROPERTY.html'
+                               title='xcb::randr::NOTIFY_MASK_OUTPUT_PROPERTY'>NOTIFY_MASK_OUTPUT_PROPERTY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.NOTIFY_MASK_PROVIDER_CHANGE.html'
+                               title='xcb::randr::NOTIFY_MASK_PROVIDER_CHANGE'>NOTIFY_MASK_PROVIDER_CHANGE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.NOTIFY_MASK_PROVIDER_PROPERTY.html'
+                               title='xcb::randr::NOTIFY_MASK_PROVIDER_PROPERTY'>NOTIFY_MASK_PROVIDER_PROPERTY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.NOTIFY_MASK_RESOURCE_CHANGE.html'
+                               title='xcb::randr::NOTIFY_MASK_RESOURCE_CHANGE'>NOTIFY_MASK_RESOURCE_CHANGE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.NOTIFY_MASK_SCREEN_CHANGE.html'
+                               title='xcb::randr::NOTIFY_MASK_SCREEN_CHANGE'>NOTIFY_MASK_SCREEN_CHANGE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.NOTIFY_OUTPUT_CHANGE.html'
+                               title='xcb::randr::NOTIFY_OUTPUT_CHANGE'>NOTIFY_OUTPUT_CHANGE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.NOTIFY_OUTPUT_PROPERTY.html'
+                               title='xcb::randr::NOTIFY_OUTPUT_PROPERTY'>NOTIFY_OUTPUT_PROPERTY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.NOTIFY_PROVIDER_CHANGE.html'
+                               title='xcb::randr::NOTIFY_PROVIDER_CHANGE'>NOTIFY_PROVIDER_CHANGE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.NOTIFY_PROVIDER_PROPERTY.html'
+                               title='xcb::randr::NOTIFY_PROVIDER_PROPERTY'>NOTIFY_PROVIDER_PROPERTY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.NOTIFY_RESOURCE_CHANGE.html'
+                               title='xcb::randr::NOTIFY_RESOURCE_CHANGE'>NOTIFY_RESOURCE_CHANGE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PROVIDER_CAPABILITY_SINK_OFFLOAD.html'
+                               title='xcb::randr::PROVIDER_CAPABILITY_SINK_OFFLOAD'>PROVIDER_CAPABILITY_SINK_OFFLOAD</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PROVIDER_CAPABILITY_SINK_OUTPUT.html'
+                               title='xcb::randr::PROVIDER_CAPABILITY_SINK_OUTPUT'>PROVIDER_CAPABILITY_SINK_OUTPUT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PROVIDER_CAPABILITY_SOURCE_OFFLOAD.html'
+                               title='xcb::randr::PROVIDER_CAPABILITY_SOURCE_OFFLOAD'>PROVIDER_CAPABILITY_SOURCE_OFFLOAD</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PROVIDER_CAPABILITY_SOURCE_OUTPUT.html'
+                               title='xcb::randr::PROVIDER_CAPABILITY_SOURCE_OUTPUT'>PROVIDER_CAPABILITY_SOURCE_OUTPUT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.QUERY_OUTPUT_PROPERTY.html'
+                               title='xcb::randr::QUERY_OUTPUT_PROPERTY'>QUERY_OUTPUT_PROPERTY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.QUERY_PROVIDER_PROPERTY.html'
+                               title='xcb::randr::QUERY_PROVIDER_PROPERTY'>QUERY_PROVIDER_PROPERTY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.QUERY_VERSION.html'
+                               title='xcb::randr::QUERY_VERSION'>QUERY_VERSION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.ROTATION_REFLECT_X.html'
+                               title='xcb::randr::ROTATION_REFLECT_X'>ROTATION_REFLECT_X</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.ROTATION_REFLECT_Y.html'
+                               title='xcb::randr::ROTATION_REFLECT_Y'>ROTATION_REFLECT_Y</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.ROTATION_ROTATE_0.html'
+                               title='xcb::randr::ROTATION_ROTATE_0'>ROTATION_ROTATE_0</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.ROTATION_ROTATE_180.html'
+                               title='xcb::randr::ROTATION_ROTATE_180'>ROTATION_ROTATE_180</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.ROTATION_ROTATE_270.html'
+                               title='xcb::randr::ROTATION_ROTATE_270'>ROTATION_ROTATE_270</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.ROTATION_ROTATE_90.html'
+                               title='xcb::randr::ROTATION_ROTATE_90'>ROTATION_ROTATE_90</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SCREEN_CHANGE_NOTIFY.html'
+                               title='xcb::randr::SCREEN_CHANGE_NOTIFY'>SCREEN_CHANGE_NOTIFY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SELECT_INPUT.html'
+                               title='xcb::randr::SELECT_INPUT'>SELECT_INPUT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SET_CONFIG_FAILED.html'
+                               title='xcb::randr::SET_CONFIG_FAILED'>SET_CONFIG_FAILED</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SET_CONFIG_INVALID_CONFIG_TIME.html'
+                               title='xcb::randr::SET_CONFIG_INVALID_CONFIG_TIME'>SET_CONFIG_INVALID_CONFIG_TIME</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SET_CONFIG_INVALID_TIME.html'
+                               title='xcb::randr::SET_CONFIG_INVALID_TIME'>SET_CONFIG_INVALID_TIME</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SET_CONFIG_SUCCESS.html'
+                               title='xcb::randr::SET_CONFIG_SUCCESS'>SET_CONFIG_SUCCESS</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SET_CRTC_CONFIG.html'
+                               title='xcb::randr::SET_CRTC_CONFIG'>SET_CRTC_CONFIG</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SET_CRTC_GAMMA.html'
+                               title='xcb::randr::SET_CRTC_GAMMA'>SET_CRTC_GAMMA</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SET_CRTC_TRANSFORM.html'
+                               title='xcb::randr::SET_CRTC_TRANSFORM'>SET_CRTC_TRANSFORM</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SET_OUTPUT_PRIMARY.html'
+                               title='xcb::randr::SET_OUTPUT_PRIMARY'>SET_OUTPUT_PRIMARY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SET_PANNING.html'
+                               title='xcb::randr::SET_PANNING'>SET_PANNING</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SET_PROVIDER_OFFLOAD_SINK.html'
+                               title='xcb::randr::SET_PROVIDER_OFFLOAD_SINK'>SET_PROVIDER_OFFLOAD_SINK</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SET_PROVIDER_OUTPUT_SOURCE.html'
+                               title='xcb::randr::SET_PROVIDER_OUTPUT_SOURCE'>SET_PROVIDER_OUTPUT_SOURCE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SET_SCREEN_CONFIG.html'
+                               title='xcb::randr::SET_SCREEN_CONFIG'>SET_SCREEN_CONFIG</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SET_SCREEN_SIZE.html'
+                               title='xcb::randr::SET_SCREEN_SIZE'>SET_SCREEN_SIZE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.TRANSFORM_PROJECTIVE.html'
+                               title='xcb::randr::TRANSFORM_PROJECTIVE'>TRANSFORM_PROJECTIVE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.TRANSFORM_SCALE_DOWN.html'
+                               title='xcb::randr::TRANSFORM_SCALE_DOWN'>TRANSFORM_SCALE_DOWN</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.TRANSFORM_SCALE_UP.html'
+                               title='xcb::randr::TRANSFORM_SCALE_UP'>TRANSFORM_SCALE_UP</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.TRANSFORM_UNIT.html'
+                               title='xcb::randr::TRANSFORM_UNIT'>TRANSFORM_UNIT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.add_output_mode.html'
+                               title='xcb::randr::add_output_mode'>add_output_mode</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.add_output_mode_checked.html'
+                               title='xcb::randr::add_output_mode_checked'>add_output_mode_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.change_output_property.html'
+                               title='xcb::randr::change_output_property'>change_output_property</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.change_output_property_checked.html'
+                               title='xcb::randr::change_output_property_checked'>change_output_property_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.change_provider_property.html'
+                               title='xcb::randr::change_provider_property'>change_provider_property</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.change_provider_property_checked.html'
+                               title='xcb::randr::change_provider_property_checked'>change_provider_property_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.configure_output_property.html'
+                               title='xcb::randr::configure_output_property'>configure_output_property</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.configure_output_property_checked.html'
+                               title='xcb::randr::configure_output_property_checked'>configure_output_property_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.configure_provider_property.html'
+                               title='xcb::randr::configure_provider_property'>configure_provider_property</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.configure_provider_property_checked.html'
+                               title='xcb::randr::configure_provider_property_checked'>configure_provider_property_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.create_mode.html'
+                               title='xcb::randr::create_mode'>create_mode</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.create_mode_unchecked.html'
+                               title='xcb::randr::create_mode_unchecked'>create_mode_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.delete_output_mode.html'
+                               title='xcb::randr::delete_output_mode'>delete_output_mode</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.delete_output_mode_checked.html'
+                               title='xcb::randr::delete_output_mode_checked'>delete_output_mode_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.delete_output_property.html'
+                               title='xcb::randr::delete_output_property'>delete_output_property</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.delete_output_property_checked.html'
+                               title='xcb::randr::delete_output_property_checked'>delete_output_property_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.delete_provider_property.html'
+                               title='xcb::randr::delete_provider_property'>delete_provider_property</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.delete_provider_property_checked.html'
+                               title='xcb::randr::delete_provider_property_checked'>delete_provider_property_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.destroy_mode.html'
+                               title='xcb::randr::destroy_mode'>destroy_mode</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.destroy_mode_checked.html'
+                               title='xcb::randr::destroy_mode_checked'>destroy_mode_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_crtc_gamma.html'
+                               title='xcb::randr::get_crtc_gamma'>get_crtc_gamma</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_crtc_gamma_size.html'
+                               title='xcb::randr::get_crtc_gamma_size'>get_crtc_gamma_size</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_crtc_gamma_size_unchecked.html'
+                               title='xcb::randr::get_crtc_gamma_size_unchecked'>get_crtc_gamma_size_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_crtc_gamma_unchecked.html'
+                               title='xcb::randr::get_crtc_gamma_unchecked'>get_crtc_gamma_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_crtc_info.html'
+                               title='xcb::randr::get_crtc_info'>get_crtc_info</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_crtc_info_unchecked.html'
+                               title='xcb::randr::get_crtc_info_unchecked'>get_crtc_info_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_crtc_transform.html'
+                               title='xcb::randr::get_crtc_transform'>get_crtc_transform</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_crtc_transform_unchecked.html'
+                               title='xcb::randr::get_crtc_transform_unchecked'>get_crtc_transform_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_output_info.html'
+                               title='xcb::randr::get_output_info'>get_output_info</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_output_info_unchecked.html'
+                               title='xcb::randr::get_output_info_unchecked'>get_output_info_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_output_primary.html'
+                               title='xcb::randr::get_output_primary'>get_output_primary</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_output_primary_unchecked.html'
+                               title='xcb::randr::get_output_primary_unchecked'>get_output_primary_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_output_property.html'
+                               title='xcb::randr::get_output_property'>get_output_property</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_output_property_unchecked.html'
+                               title='xcb::randr::get_output_property_unchecked'>get_output_property_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_panning.html'
+                               title='xcb::randr::get_panning'>get_panning</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_panning_unchecked.html'
+                               title='xcb::randr::get_panning_unchecked'>get_panning_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_provider_info.html'
+                               title='xcb::randr::get_provider_info'>get_provider_info</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_provider_info_unchecked.html'
+                               title='xcb::randr::get_provider_info_unchecked'>get_provider_info_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_provider_property.html'
+                               title='xcb::randr::get_provider_property'>get_provider_property</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_provider_property_unchecked.html'
+                               title='xcb::randr::get_provider_property_unchecked'>get_provider_property_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_providers.html'
+                               title='xcb::randr::get_providers'>get_providers</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_providers_unchecked.html'
+                               title='xcb::randr::get_providers_unchecked'>get_providers_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_screen_info.html'
+                               title='xcb::randr::get_screen_info'>get_screen_info</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_screen_info_unchecked.html'
+                               title='xcb::randr::get_screen_info_unchecked'>get_screen_info_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_screen_resources.html'
+                               title='xcb::randr::get_screen_resources'>get_screen_resources</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_screen_resources_current.html'
+                               title='xcb::randr::get_screen_resources_current'>get_screen_resources_current</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_screen_resources_current_unchecked.html'
+                               title='xcb::randr::get_screen_resources_current_unchecked'>get_screen_resources_current_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_screen_resources_unchecked.html'
+                               title='xcb::randr::get_screen_resources_unchecked'>get_screen_resources_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_screen_size_range.html'
+                               title='xcb::randr::get_screen_size_range'>get_screen_size_range</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_screen_size_range_unchecked.html'
+                               title='xcb::randr::get_screen_size_range_unchecked'>get_screen_size_range_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.id.html'
+                               title='xcb::randr::id'>id</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.list_output_properties.html'
+                               title='xcb::randr::list_output_properties'>list_output_properties</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.list_output_properties_unchecked.html'
+                               title='xcb::randr::list_output_properties_unchecked'>list_output_properties_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.list_provider_properties.html'
+                               title='xcb::randr::list_provider_properties'>list_provider_properties</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.list_provider_properties_unchecked.html'
+                               title='xcb::randr::list_provider_properties_unchecked'>list_provider_properties_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.query_output_property.html'
+                               title='xcb::randr::query_output_property'>query_output_property</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.query_output_property_unchecked.html'
+                               title='xcb::randr::query_output_property_unchecked'>query_output_property_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.query_provider_property.html'
+                               title='xcb::randr::query_provider_property'>query_provider_property</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.query_provider_property_unchecked.html'
+                               title='xcb::randr::query_provider_property_unchecked'>query_provider_property_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.query_version.html'
+                               title='xcb::randr::query_version'>query_version</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.query_version_unchecked.html'
+                               title='xcb::randr::query_version_unchecked'>query_version_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.select_input.html'
+                               title='xcb::randr::select_input'>select_input</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.select_input_checked.html'
+                               title='xcb::randr::select_input_checked'>select_input_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.set_crtc_config.html'
+                               title='xcb::randr::set_crtc_config'>set_crtc_config</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.set_crtc_config_unchecked.html'
+                               title='xcb::randr::set_crtc_config_unchecked'>set_crtc_config_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.set_crtc_gamma.html'
+                               title='xcb::randr::set_crtc_gamma'>set_crtc_gamma</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.set_crtc_gamma_checked.html'
+                               title='xcb::randr::set_crtc_gamma_checked'>set_crtc_gamma_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.set_crtc_transform.html'
+                               title='xcb::randr::set_crtc_transform'>set_crtc_transform</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.set_crtc_transform_checked.html'
+                               title='xcb::randr::set_crtc_transform_checked'>set_crtc_transform_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.set_output_primary.html'
+                               title='xcb::randr::set_output_primary'>set_output_primary</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.set_output_primary_checked.html'
+                               title='xcb::randr::set_output_primary_checked'>set_output_primary_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.set_panning.html'
+                               title='xcb::randr::set_panning'>set_panning</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.set_panning_unchecked.html'
+                               title='xcb::randr::set_panning_unchecked'>set_panning_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.set_provider_offload_sink.html'
+                               title='xcb::randr::set_provider_offload_sink'>set_provider_offload_sink</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.set_provider_offload_sink_checked.html'
+                               title='xcb::randr::set_provider_offload_sink_checked'>set_provider_offload_sink_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.set_provider_output_source.html'
+                               title='xcb::randr::set_provider_output_source'>set_provider_output_source</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.set_provider_output_source_checked.html'
+                               title='xcb::randr::set_provider_output_source_checked'>set_provider_output_source_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.set_screen_config.html'
+                               title='xcb::randr::set_screen_config'>set_screen_config</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.set_screen_config_unchecked.html'
+                               title='xcb::randr::set_screen_config_unchecked'>set_screen_config_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.set_screen_size.html'
+                               title='xcb::randr::set_screen_size'>set_screen_size</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.set_screen_size_checked.html'
+                               title='xcb::randr::set_screen_size_checked'>set_screen_size_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.Connection.html'
+                               title='xcb::randr::Connection'>Connection</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.CreateModeCookie.html'
+                               title='xcb::randr::CreateModeCookie'>CreateModeCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.CreateModeReply.html'
+                               title='xcb::randr::CreateModeReply'>CreateModeReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.Crtc.html'
+                               title='xcb::randr::Crtc'>Crtc</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.CrtcChange.html'
+                               title='xcb::randr::CrtcChange'>CrtcChange</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.CrtcChangeIterator.html'
+                               title='xcb::randr::CrtcChangeIterator'>CrtcChangeIterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetCrtcGammaCookie.html'
+                               title='xcb::randr::GetCrtcGammaCookie'>GetCrtcGammaCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetCrtcGammaReply.html'
+                               title='xcb::randr::GetCrtcGammaReply'>GetCrtcGammaReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetCrtcGammaSizeCookie.html'
+                               title='xcb::randr::GetCrtcGammaSizeCookie'>GetCrtcGammaSizeCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetCrtcGammaSizeReply.html'
+                               title='xcb::randr::GetCrtcGammaSizeReply'>GetCrtcGammaSizeReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetCrtcInfoCookie.html'
+                               title='xcb::randr::GetCrtcInfoCookie'>GetCrtcInfoCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetCrtcInfoReply.html'
+                               title='xcb::randr::GetCrtcInfoReply'>GetCrtcInfoReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetCrtcTransformCookie.html'
+                               title='xcb::randr::GetCrtcTransformCookie'>GetCrtcTransformCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetCrtcTransformReply.html'
+                               title='xcb::randr::GetCrtcTransformReply'>GetCrtcTransformReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetOutputInfoCookie.html'
+                               title='xcb::randr::GetOutputInfoCookie'>GetOutputInfoCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetOutputInfoReply.html'
+                               title='xcb::randr::GetOutputInfoReply'>GetOutputInfoReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetOutputPrimaryCookie.html'
+                               title='xcb::randr::GetOutputPrimaryCookie'>GetOutputPrimaryCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetOutputPrimaryReply.html'
+                               title='xcb::randr::GetOutputPrimaryReply'>GetOutputPrimaryReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetOutputPropertyCookie.html'
+                               title='xcb::randr::GetOutputPropertyCookie'>GetOutputPropertyCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetOutputPropertyReply.html'
+                               title='xcb::randr::GetOutputPropertyReply'>GetOutputPropertyReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetPanningCookie.html'
+                               title='xcb::randr::GetPanningCookie'>GetPanningCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetPanningReply.html'
+                               title='xcb::randr::GetPanningReply'>GetPanningReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetProviderInfoCookie.html'
+                               title='xcb::randr::GetProviderInfoCookie'>GetProviderInfoCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetProviderInfoReply.html'
+                               title='xcb::randr::GetProviderInfoReply'>GetProviderInfoReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetProviderPropertyCookie.html'
+                               title='xcb::randr::GetProviderPropertyCookie'>GetProviderPropertyCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetProviderPropertyReply.html'
+                               title='xcb::randr::GetProviderPropertyReply'>GetProviderPropertyReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetProvidersCookie.html'
+                               title='xcb::randr::GetProvidersCookie'>GetProvidersCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetProvidersReply.html'
+                               title='xcb::randr::GetProvidersReply'>GetProvidersReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetScreenInfoCookie.html'
+                               title='xcb::randr::GetScreenInfoCookie'>GetScreenInfoCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetScreenInfoReply.html'
+                               title='xcb::randr::GetScreenInfoReply'>GetScreenInfoReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetScreenResourcesCookie.html'
+                               title='xcb::randr::GetScreenResourcesCookie'>GetScreenResourcesCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetScreenResourcesCurrentCookie.html'
+                               title='xcb::randr::GetScreenResourcesCurrentCookie'>GetScreenResourcesCurrentCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetScreenResourcesCurrentReply.html'
+                               title='xcb::randr::GetScreenResourcesCurrentReply'>GetScreenResourcesCurrentReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetScreenResourcesReply.html'
+                               title='xcb::randr::GetScreenResourcesReply'>GetScreenResourcesReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetScreenSizeRangeCookie.html'
+                               title='xcb::randr::GetScreenSizeRangeCookie'>GetScreenSizeRangeCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GetScreenSizeRangeReply.html'
+                               title='xcb::randr::GetScreenSizeRangeReply'>GetScreenSizeRangeReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.ListOutputPropertiesCookie.html'
+                               title='xcb::randr::ListOutputPropertiesCookie'>ListOutputPropertiesCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.ListOutputPropertiesReply.html'
+                               title='xcb::randr::ListOutputPropertiesReply'>ListOutputPropertiesReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.ListProviderPropertiesCookie.html'
+                               title='xcb::randr::ListProviderPropertiesCookie'>ListProviderPropertiesCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.ListProviderPropertiesReply.html'
+                               title='xcb::randr::ListProviderPropertiesReply'>ListProviderPropertiesReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.Mode.html'
+                               title='xcb::randr::Mode'>Mode</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.ModeFlag.html'
+                               title='xcb::randr::ModeFlag'>ModeFlag</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.ModeInfoIterator.html'
+                               title='xcb::randr::ModeInfoIterator'>ModeInfoIterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.Notify.html'
+                               title='xcb::randr::Notify'>Notify</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.NotifyData.html'
+                               title='xcb::randr::NotifyData'>NotifyData</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.NotifyDataIterator.html'
+                               title='xcb::randr::NotifyDataIterator'>NotifyDataIterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.NotifyEvent.html'
+                               title='xcb::randr::NotifyEvent'>NotifyEvent</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.NotifyMask.html'
+                               title='xcb::randr::NotifyMask'>NotifyMask</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.Output.html'
+                               title='xcb::randr::Output'>Output</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.OutputChangeIterator.html'
+                               title='xcb::randr::OutputChangeIterator'>OutputChangeIterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.OutputProperty.html'
+                               title='xcb::randr::OutputProperty'>OutputProperty</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.OutputPropertyIterator.html'
+                               title='xcb::randr::OutputPropertyIterator'>OutputPropertyIterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.Provider.html'
+                               title='xcb::randr::Provider'>Provider</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.ProviderCapability.html'
+                               title='xcb::randr::ProviderCapability'>ProviderCapability</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.ProviderChange.html'
+                               title='xcb::randr::ProviderChange'>ProviderChange</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.ProviderChangeIterator.html'
+                               title='xcb::randr::ProviderChangeIterator'>ProviderChangeIterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.ProviderProperty.html'
+                               title='xcb::randr::ProviderProperty'>ProviderProperty</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.ProviderPropertyIterator.html'
+                               title='xcb::randr::ProviderPropertyIterator'>ProviderPropertyIterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.QueryOutputPropertyCookie.html'
+                               title='xcb::randr::QueryOutputPropertyCookie'>QueryOutputPropertyCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.QueryOutputPropertyReply.html'
+                               title='xcb::randr::QueryOutputPropertyReply'>QueryOutputPropertyReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.QueryProviderPropertyCookie.html'
+                               title='xcb::randr::QueryProviderPropertyCookie'>QueryProviderPropertyCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.QueryProviderPropertyReply.html'
+                               title='xcb::randr::QueryProviderPropertyReply'>QueryProviderPropertyReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.QueryVersionCookie.html'
+                               title='xcb::randr::QueryVersionCookie'>QueryVersionCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.QueryVersionReply.html'
+                               title='xcb::randr::QueryVersionReply'>QueryVersionReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.RefreshRates.html'
+                               title='xcb::randr::RefreshRates'>RefreshRates</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.RefreshRatesIterator.html'
+                               title='xcb::randr::RefreshRatesIterator'>RefreshRatesIterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.ResourceChange.html'
+                               title='xcb::randr::ResourceChange'>ResourceChange</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.ResourceChangeIterator.html'
+                               title='xcb::randr::ResourceChangeIterator'>ResourceChangeIterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.Rotation.html'
+                               title='xcb::randr::Rotation'>Rotation</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.ScreenChangeNotifyEvent.html'
+                               title='xcb::randr::ScreenChangeNotifyEvent'>ScreenChangeNotifyEvent</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.ScreenSizeIterator.html'
+                               title='xcb::randr::ScreenSizeIterator'>ScreenSizeIterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.SetConfig.html'
+                               title='xcb::randr::SetConfig'>SetConfig</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.SetCrtcConfigCookie.html'
+                               title='xcb::randr::SetCrtcConfigCookie'>SetCrtcConfigCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.SetCrtcConfigReply.html'
+                               title='xcb::randr::SetCrtcConfigReply'>SetCrtcConfigReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.SetPanningCookie.html'
+                               title='xcb::randr::SetPanningCookie'>SetPanningCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.SetPanningReply.html'
+                               title='xcb::randr::SetPanningReply'>SetPanningReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.SetScreenConfigCookie.html'
+                               title='xcb::randr::SetScreenConfigCookie'>SetScreenConfigCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.SetScreenConfigReply.html'
+                               title='xcb::randr::SetScreenConfigReply'>SetScreenConfigReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.Transform.html'
+                               title='xcb::randr::Transform'>Transform</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "xcb";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

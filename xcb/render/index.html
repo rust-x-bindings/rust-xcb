@@ -1,0 +1,2051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `render` mod in crate `xcb`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, render">
+
+    <title>xcb::render - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>xcb</a></p><script>window.sidebarCurrent = {name: 'render', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>xcb</a>::<wbr><a class='mod' href=''>render</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-34316' class='srclink' href='../../src/xcb/render.rs.html#5-2812' title='goto source code'>[src]</a></span></h1>
+<h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Animcursorelt.html'
+                               title='xcb::render::Animcursorelt'>Animcursorelt</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Color.html'
+                               title='xcb::render::Color'>Color</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Directformat.html'
+                               title='xcb::render::Directformat'>Directformat</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.GlyphError.html'
+                               title='xcb::render::GlyphError'>GlyphError</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.GlyphSetError.html'
+                               title='xcb::render::GlyphSetError'>GlyphSetError</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Glyphinfo.html'
+                               title='xcb::render::Glyphinfo'>Glyphinfo</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Indexvalue.html'
+                               title='xcb::render::Indexvalue'>Indexvalue</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Linefix.html'
+                               title='xcb::render::Linefix'>Linefix</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.PictFormatError.html'
+                               title='xcb::render::PictFormatError'>PictFormatError</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.PictOpError.html'
+                               title='xcb::render::PictOpError'>PictOpError</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.PictureError.html'
+                               title='xcb::render::PictureError'>PictureError</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Pictvisual.html'
+                               title='xcb::render::Pictvisual'>Pictvisual</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Pointfix.html'
+                               title='xcb::render::Pointfix'>Pointfix</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Spanfix.html'
+                               title='xcb::render::Spanfix'>Spanfix</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Transform.html'
+                               title='xcb::render::Transform'>Transform</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Trap.html'
+                               title='xcb::render::Trap'>Trap</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Trapezoid.html'
+                               title='xcb::render::Trapezoid'>Trapezoid</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Triangle.html'
+                               title='xcb::render::Triangle'>Triangle</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.ADD_GLYPHS.html'
+                               title='xcb::render::ADD_GLYPHS'>ADD_GLYPHS</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.ADD_TRAPS.html'
+                               title='xcb::render::ADD_TRAPS'>ADD_TRAPS</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CHANGE_PICTURE.html'
+                               title='xcb::render::CHANGE_PICTURE'>CHANGE_PICTURE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.COMPOSITE.html'
+                               title='xcb::render::COMPOSITE'>COMPOSITE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.COMPOSITE_GLYPHS_16.html'
+                               title='xcb::render::COMPOSITE_GLYPHS_16'>COMPOSITE_GLYPHS_16</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.COMPOSITE_GLYPHS_32.html'
+                               title='xcb::render::COMPOSITE_GLYPHS_32'>COMPOSITE_GLYPHS_32</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.COMPOSITE_GLYPHS_8.html'
+                               title='xcb::render::COMPOSITE_GLYPHS_8'>COMPOSITE_GLYPHS_8</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CP_ALPHA_MAP.html'
+                               title='xcb::render::CP_ALPHA_MAP'>CP_ALPHA_MAP</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CP_ALPHA_X_ORIGIN.html'
+                               title='xcb::render::CP_ALPHA_X_ORIGIN'>CP_ALPHA_X_ORIGIN</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CP_ALPHA_Y_ORIGIN.html'
+                               title='xcb::render::CP_ALPHA_Y_ORIGIN'>CP_ALPHA_Y_ORIGIN</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CP_CLIP_MASK.html'
+                               title='xcb::render::CP_CLIP_MASK'>CP_CLIP_MASK</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CP_CLIP_X_ORIGIN.html'
+                               title='xcb::render::CP_CLIP_X_ORIGIN'>CP_CLIP_X_ORIGIN</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CP_CLIP_Y_ORIGIN.html'
+                               title='xcb::render::CP_CLIP_Y_ORIGIN'>CP_CLIP_Y_ORIGIN</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CP_COMPONENT_ALPHA.html'
+                               title='xcb::render::CP_COMPONENT_ALPHA'>CP_COMPONENT_ALPHA</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CP_DITHER.html'
+                               title='xcb::render::CP_DITHER'>CP_DITHER</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CP_GRAPHICS_EXPOSURE.html'
+                               title='xcb::render::CP_GRAPHICS_EXPOSURE'>CP_GRAPHICS_EXPOSURE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CP_POLY_EDGE.html'
+                               title='xcb::render::CP_POLY_EDGE'>CP_POLY_EDGE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CP_POLY_MODE.html'
+                               title='xcb::render::CP_POLY_MODE'>CP_POLY_MODE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CP_REPEAT.html'
+                               title='xcb::render::CP_REPEAT'>CP_REPEAT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CP_SUBWINDOW_MODE.html'
+                               title='xcb::render::CP_SUBWINDOW_MODE'>CP_SUBWINDOW_MODE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CREATE_ANIM_CURSOR.html'
+                               title='xcb::render::CREATE_ANIM_CURSOR'>CREATE_ANIM_CURSOR</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CREATE_CONICAL_GRADIENT.html'
+                               title='xcb::render::CREATE_CONICAL_GRADIENT'>CREATE_CONICAL_GRADIENT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CREATE_CURSOR.html'
+                               title='xcb::render::CREATE_CURSOR'>CREATE_CURSOR</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CREATE_GLYPH_SET.html'
+                               title='xcb::render::CREATE_GLYPH_SET'>CREATE_GLYPH_SET</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CREATE_LINEAR_GRADIENT.html'
+                               title='xcb::render::CREATE_LINEAR_GRADIENT'>CREATE_LINEAR_GRADIENT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CREATE_PICTURE.html'
+                               title='xcb::render::CREATE_PICTURE'>CREATE_PICTURE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CREATE_RADIAL_GRADIENT.html'
+                               title='xcb::render::CREATE_RADIAL_GRADIENT'>CREATE_RADIAL_GRADIENT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CREATE_SOLID_FILL.html'
+                               title='xcb::render::CREATE_SOLID_FILL'>CREATE_SOLID_FILL</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.FILL_RECTANGLES.html'
+                               title='xcb::render::FILL_RECTANGLES'>FILL_RECTANGLES</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.FREE_GLYPHS.html'
+                               title='xcb::render::FREE_GLYPHS'>FREE_GLYPHS</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.FREE_GLYPH_SET.html'
+                               title='xcb::render::FREE_GLYPH_SET'>FREE_GLYPH_SET</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.FREE_PICTURE.html'
+                               title='xcb::render::FREE_PICTURE'>FREE_PICTURE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.GLYPH.html'
+                               title='xcb::render::GLYPH'>GLYPH</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.GLYPH_SET.html'
+                               title='xcb::render::GLYPH_SET'>GLYPH_SET</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.MAJOR_VERSION.html'
+                               title='xcb::render::MAJOR_VERSION'>MAJOR_VERSION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.MINOR_VERSION.html'
+                               title='xcb::render::MINOR_VERSION'>MINOR_VERSION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICTURE.html'
+                               title='xcb::render::PICTURE'>PICTURE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICTURE_NONE.html'
+                               title='xcb::render::PICTURE_NONE'>PICTURE_NONE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_FORMAT.html'
+                               title='xcb::render::PICT_FORMAT'>PICT_FORMAT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP.html'
+                               title='xcb::render::PICT_OP'>PICT_OP</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_ADD.html'
+                               title='xcb::render::PICT_OP_ADD'>PICT_OP_ADD</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_ATOP.html'
+                               title='xcb::render::PICT_OP_ATOP'>PICT_OP_ATOP</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_ATOP_REVERSE.html'
+                               title='xcb::render::PICT_OP_ATOP_REVERSE'>PICT_OP_ATOP_REVERSE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_CLEAR.html'
+                               title='xcb::render::PICT_OP_CLEAR'>PICT_OP_CLEAR</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_COLOR_BURN.html'
+                               title='xcb::render::PICT_OP_COLOR_BURN'>PICT_OP_COLOR_BURN</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_COLOR_DODGE.html'
+                               title='xcb::render::PICT_OP_COLOR_DODGE'>PICT_OP_COLOR_DODGE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_CONJOINT_ATOP.html'
+                               title='xcb::render::PICT_OP_CONJOINT_ATOP'>PICT_OP_CONJOINT_ATOP</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_CONJOINT_ATOP_REVERSE.html'
+                               title='xcb::render::PICT_OP_CONJOINT_ATOP_REVERSE'>PICT_OP_CONJOINT_ATOP_REVERSE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_CONJOINT_CLEAR.html'
+                               title='xcb::render::PICT_OP_CONJOINT_CLEAR'>PICT_OP_CONJOINT_CLEAR</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_CONJOINT_DST.html'
+                               title='xcb::render::PICT_OP_CONJOINT_DST'>PICT_OP_CONJOINT_DST</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_CONJOINT_IN.html'
+                               title='xcb::render::PICT_OP_CONJOINT_IN'>PICT_OP_CONJOINT_IN</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_CONJOINT_IN_REVERSE.html'
+                               title='xcb::render::PICT_OP_CONJOINT_IN_REVERSE'>PICT_OP_CONJOINT_IN_REVERSE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_CONJOINT_OUT.html'
+                               title='xcb::render::PICT_OP_CONJOINT_OUT'>PICT_OP_CONJOINT_OUT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_CONJOINT_OUT_REVERSE.html'
+                               title='xcb::render::PICT_OP_CONJOINT_OUT_REVERSE'>PICT_OP_CONJOINT_OUT_REVERSE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_CONJOINT_OVER.html'
+                               title='xcb::render::PICT_OP_CONJOINT_OVER'>PICT_OP_CONJOINT_OVER</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_CONJOINT_OVER_REVERSE.html'
+                               title='xcb::render::PICT_OP_CONJOINT_OVER_REVERSE'>PICT_OP_CONJOINT_OVER_REVERSE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_CONJOINT_SRC.html'
+                               title='xcb::render::PICT_OP_CONJOINT_SRC'>PICT_OP_CONJOINT_SRC</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_CONJOINT_XOR.html'
+                               title='xcb::render::PICT_OP_CONJOINT_XOR'>PICT_OP_CONJOINT_XOR</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_DARKEN.html'
+                               title='xcb::render::PICT_OP_DARKEN'>PICT_OP_DARKEN</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_DIFFERENCE.html'
+                               title='xcb::render::PICT_OP_DIFFERENCE'>PICT_OP_DIFFERENCE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_DISJOINT_ATOP.html'
+                               title='xcb::render::PICT_OP_DISJOINT_ATOP'>PICT_OP_DISJOINT_ATOP</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_DISJOINT_ATOP_REVERSE.html'
+                               title='xcb::render::PICT_OP_DISJOINT_ATOP_REVERSE'>PICT_OP_DISJOINT_ATOP_REVERSE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_DISJOINT_CLEAR.html'
+                               title='xcb::render::PICT_OP_DISJOINT_CLEAR'>PICT_OP_DISJOINT_CLEAR</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_DISJOINT_DST.html'
+                               title='xcb::render::PICT_OP_DISJOINT_DST'>PICT_OP_DISJOINT_DST</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_DISJOINT_IN.html'
+                               title='xcb::render::PICT_OP_DISJOINT_IN'>PICT_OP_DISJOINT_IN</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_DISJOINT_IN_REVERSE.html'
+                               title='xcb::render::PICT_OP_DISJOINT_IN_REVERSE'>PICT_OP_DISJOINT_IN_REVERSE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_DISJOINT_OUT.html'
+                               title='xcb::render::PICT_OP_DISJOINT_OUT'>PICT_OP_DISJOINT_OUT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_DISJOINT_OUT_REVERSE.html'
+                               title='xcb::render::PICT_OP_DISJOINT_OUT_REVERSE'>PICT_OP_DISJOINT_OUT_REVERSE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_DISJOINT_OVER.html'
+                               title='xcb::render::PICT_OP_DISJOINT_OVER'>PICT_OP_DISJOINT_OVER</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_DISJOINT_OVER_REVERSE.html'
+                               title='xcb::render::PICT_OP_DISJOINT_OVER_REVERSE'>PICT_OP_DISJOINT_OVER_REVERSE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_DISJOINT_SRC.html'
+                               title='xcb::render::PICT_OP_DISJOINT_SRC'>PICT_OP_DISJOINT_SRC</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_DISJOINT_XOR.html'
+                               title='xcb::render::PICT_OP_DISJOINT_XOR'>PICT_OP_DISJOINT_XOR</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_DST.html'
+                               title='xcb::render::PICT_OP_DST'>PICT_OP_DST</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_EXCLUSION.html'
+                               title='xcb::render::PICT_OP_EXCLUSION'>PICT_OP_EXCLUSION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_HARD_LIGHT.html'
+                               title='xcb::render::PICT_OP_HARD_LIGHT'>PICT_OP_HARD_LIGHT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_HSL_COLOR.html'
+                               title='xcb::render::PICT_OP_HSL_COLOR'>PICT_OP_HSL_COLOR</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_HSL_HUE.html'
+                               title='xcb::render::PICT_OP_HSL_HUE'>PICT_OP_HSL_HUE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_HSL_LUMINOSITY.html'
+                               title='xcb::render::PICT_OP_HSL_LUMINOSITY'>PICT_OP_HSL_LUMINOSITY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_HSL_SATURATION.html'
+                               title='xcb::render::PICT_OP_HSL_SATURATION'>PICT_OP_HSL_SATURATION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_IN.html'
+                               title='xcb::render::PICT_OP_IN'>PICT_OP_IN</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_IN_REVERSE.html'
+                               title='xcb::render::PICT_OP_IN_REVERSE'>PICT_OP_IN_REVERSE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_LIGHTEN.html'
+                               title='xcb::render::PICT_OP_LIGHTEN'>PICT_OP_LIGHTEN</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_MULTIPLY.html'
+                               title='xcb::render::PICT_OP_MULTIPLY'>PICT_OP_MULTIPLY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_OUT.html'
+                               title='xcb::render::PICT_OP_OUT'>PICT_OP_OUT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_OUT_REVERSE.html'
+                               title='xcb::render::PICT_OP_OUT_REVERSE'>PICT_OP_OUT_REVERSE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_OVER.html'
+                               title='xcb::render::PICT_OP_OVER'>PICT_OP_OVER</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_OVERLAY.html'
+                               title='xcb::render::PICT_OP_OVERLAY'>PICT_OP_OVERLAY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_OVER_REVERSE.html'
+                               title='xcb::render::PICT_OP_OVER_REVERSE'>PICT_OP_OVER_REVERSE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_SATURATE.html'
+                               title='xcb::render::PICT_OP_SATURATE'>PICT_OP_SATURATE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_SCREEN.html'
+                               title='xcb::render::PICT_OP_SCREEN'>PICT_OP_SCREEN</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_SOFT_LIGHT.html'
+                               title='xcb::render::PICT_OP_SOFT_LIGHT'>PICT_OP_SOFT_LIGHT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_SRC.html'
+                               title='xcb::render::PICT_OP_SRC'>PICT_OP_SRC</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_OP_XOR.html'
+                               title='xcb::render::PICT_OP_XOR'>PICT_OP_XOR</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_TYPE_DIRECT.html'
+                               title='xcb::render::PICT_TYPE_DIRECT'>PICT_TYPE_DIRECT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.PICT_TYPE_INDEXED.html'
+                               title='xcb::render::PICT_TYPE_INDEXED'>PICT_TYPE_INDEXED</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.POLY_EDGE_SHARP.html'
+                               title='xcb::render::POLY_EDGE_SHARP'>POLY_EDGE_SHARP</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.POLY_EDGE_SMOOTH.html'
+                               title='xcb::render::POLY_EDGE_SMOOTH'>POLY_EDGE_SMOOTH</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.POLY_MODE_IMPRECISE.html'
+                               title='xcb::render::POLY_MODE_IMPRECISE'>POLY_MODE_IMPRECISE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.POLY_MODE_PRECISE.html'
+                               title='xcb::render::POLY_MODE_PRECISE'>POLY_MODE_PRECISE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.QUERY_FILTERS.html'
+                               title='xcb::render::QUERY_FILTERS'>QUERY_FILTERS</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.QUERY_PICT_FORMATS.html'
+                               title='xcb::render::QUERY_PICT_FORMATS'>QUERY_PICT_FORMATS</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.QUERY_PICT_INDEX_VALUES.html'
+                               title='xcb::render::QUERY_PICT_INDEX_VALUES'>QUERY_PICT_INDEX_VALUES</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.QUERY_VERSION.html'
+                               title='xcb::render::QUERY_VERSION'>QUERY_VERSION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.REFERENCE_GLYPH_SET.html'
+                               title='xcb::render::REFERENCE_GLYPH_SET'>REFERENCE_GLYPH_SET</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.REPEAT_NONE.html'
+                               title='xcb::render::REPEAT_NONE'>REPEAT_NONE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.REPEAT_NORMAL.html'
+                               title='xcb::render::REPEAT_NORMAL'>REPEAT_NORMAL</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.REPEAT_PAD.html'
+                               title='xcb::render::REPEAT_PAD'>REPEAT_PAD</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.REPEAT_REFLECT.html'
+                               title='xcb::render::REPEAT_REFLECT'>REPEAT_REFLECT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SET_PICTURE_CLIP_RECTANGLES.html'
+                               title='xcb::render::SET_PICTURE_CLIP_RECTANGLES'>SET_PICTURE_CLIP_RECTANGLES</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SET_PICTURE_FILTER.html'
+                               title='xcb::render::SET_PICTURE_FILTER'>SET_PICTURE_FILTER</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SET_PICTURE_TRANSFORM.html'
+                               title='xcb::render::SET_PICTURE_TRANSFORM'>SET_PICTURE_TRANSFORM</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SUB_PIXEL_HORIZONTAL_BGR.html'
+                               title='xcb::render::SUB_PIXEL_HORIZONTAL_BGR'>SUB_PIXEL_HORIZONTAL_BGR</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SUB_PIXEL_HORIZONTAL_RGB.html'
+                               title='xcb::render::SUB_PIXEL_HORIZONTAL_RGB'>SUB_PIXEL_HORIZONTAL_RGB</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SUB_PIXEL_NONE.html'
+                               title='xcb::render::SUB_PIXEL_NONE'>SUB_PIXEL_NONE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SUB_PIXEL_UNKNOWN.html'
+                               title='xcb::render::SUB_PIXEL_UNKNOWN'>SUB_PIXEL_UNKNOWN</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SUB_PIXEL_VERTICAL_BGR.html'
+                               title='xcb::render::SUB_PIXEL_VERTICAL_BGR'>SUB_PIXEL_VERTICAL_BGR</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SUB_PIXEL_VERTICAL_RGB.html'
+                               title='xcb::render::SUB_PIXEL_VERTICAL_RGB'>SUB_PIXEL_VERTICAL_RGB</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.TRAPEZOIDS.html'
+                               title='xcb::render::TRAPEZOIDS'>TRAPEZOIDS</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.TRIANGLES.html'
+                               title='xcb::render::TRIANGLES'>TRIANGLES</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.TRI_FAN.html'
+                               title='xcb::render::TRI_FAN'>TRI_FAN</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.TRI_STRIP.html'
+                               title='xcb::render::TRI_STRIP'>TRI_STRIP</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.add_glyphs.html'
+                               title='xcb::render::add_glyphs'>add_glyphs</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.add_glyphs_checked.html'
+                               title='xcb::render::add_glyphs_checked'>add_glyphs_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.add_traps.html'
+                               title='xcb::render::add_traps'>add_traps</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.add_traps_checked.html'
+                               title='xcb::render::add_traps_checked'>add_traps_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.change_picture.html'
+                               title='xcb::render::change_picture'>change_picture</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.change_picture_checked.html'
+                               title='xcb::render::change_picture_checked'>change_picture_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.composite.html'
+                               title='xcb::render::composite'>composite</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.composite_checked.html'
+                               title='xcb::render::composite_checked'>composite_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.composite_glyphs_16.html'
+                               title='xcb::render::composite_glyphs_16'>composite_glyphs_16</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.composite_glyphs_16_checked.html'
+                               title='xcb::render::composite_glyphs_16_checked'>composite_glyphs_16_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.composite_glyphs_32.html'
+                               title='xcb::render::composite_glyphs_32'>composite_glyphs_32</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.composite_glyphs_32_checked.html'
+                               title='xcb::render::composite_glyphs_32_checked'>composite_glyphs_32_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.composite_glyphs_8.html'
+                               title='xcb::render::composite_glyphs_8'>composite_glyphs_8</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.composite_glyphs_8_checked.html'
+                               title='xcb::render::composite_glyphs_8_checked'>composite_glyphs_8_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.create_anim_cursor.html'
+                               title='xcb::render::create_anim_cursor'>create_anim_cursor</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.create_anim_cursor_checked.html'
+                               title='xcb::render::create_anim_cursor_checked'>create_anim_cursor_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.create_conical_gradient.html'
+                               title='xcb::render::create_conical_gradient'>create_conical_gradient</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.create_conical_gradient_checked.html'
+                               title='xcb::render::create_conical_gradient_checked'>create_conical_gradient_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.create_cursor.html'
+                               title='xcb::render::create_cursor'>create_cursor</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.create_cursor_checked.html'
+                               title='xcb::render::create_cursor_checked'>create_cursor_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.create_glyph_set.html'
+                               title='xcb::render::create_glyph_set'>create_glyph_set</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.create_glyph_set_checked.html'
+                               title='xcb::render::create_glyph_set_checked'>create_glyph_set_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.create_linear_gradient.html'
+                               title='xcb::render::create_linear_gradient'>create_linear_gradient</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.create_linear_gradient_checked.html'
+                               title='xcb::render::create_linear_gradient_checked'>create_linear_gradient_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.create_picture.html'
+                               title='xcb::render::create_picture'>create_picture</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.create_picture_checked.html'
+                               title='xcb::render::create_picture_checked'>create_picture_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.create_radial_gradient.html'
+                               title='xcb::render::create_radial_gradient'>create_radial_gradient</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.create_radial_gradient_checked.html'
+                               title='xcb::render::create_radial_gradient_checked'>create_radial_gradient_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.create_solid_fill.html'
+                               title='xcb::render::create_solid_fill'>create_solid_fill</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.create_solid_fill_checked.html'
+                               title='xcb::render::create_solid_fill_checked'>create_solid_fill_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.fill_rectangles.html'
+                               title='xcb::render::fill_rectangles'>fill_rectangles</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.fill_rectangles_checked.html'
+                               title='xcb::render::fill_rectangles_checked'>fill_rectangles_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.free_glyph_set.html'
+                               title='xcb::render::free_glyph_set'>free_glyph_set</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.free_glyph_set_checked.html'
+                               title='xcb::render::free_glyph_set_checked'>free_glyph_set_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.free_glyphs.html'
+                               title='xcb::render::free_glyphs'>free_glyphs</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.free_glyphs_checked.html'
+                               title='xcb::render::free_glyphs_checked'>free_glyphs_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.free_picture.html'
+                               title='xcb::render::free_picture'>free_picture</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.free_picture_checked.html'
+                               title='xcb::render::free_picture_checked'>free_picture_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.id.html'
+                               title='xcb::render::id'>id</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.query_filters.html'
+                               title='xcb::render::query_filters'>query_filters</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.query_filters_unchecked.html'
+                               title='xcb::render::query_filters_unchecked'>query_filters_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.query_pict_formats.html'
+                               title='xcb::render::query_pict_formats'>query_pict_formats</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.query_pict_formats_unchecked.html'
+                               title='xcb::render::query_pict_formats_unchecked'>query_pict_formats_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.query_pict_index_values.html'
+                               title='xcb::render::query_pict_index_values'>query_pict_index_values</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.query_pict_index_values_unchecked.html'
+                               title='xcb::render::query_pict_index_values_unchecked'>query_pict_index_values_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.query_version.html'
+                               title='xcb::render::query_version'>query_version</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.query_version_unchecked.html'
+                               title='xcb::render::query_version_unchecked'>query_version_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.reference_glyph_set.html'
+                               title='xcb::render::reference_glyph_set'>reference_glyph_set</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.reference_glyph_set_checked.html'
+                               title='xcb::render::reference_glyph_set_checked'>reference_glyph_set_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.set_picture_clip_rectangles.html'
+                               title='xcb::render::set_picture_clip_rectangles'>set_picture_clip_rectangles</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.set_picture_clip_rectangles_checked.html'
+                               title='xcb::render::set_picture_clip_rectangles_checked'>set_picture_clip_rectangles_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.set_picture_filter.html'
+                               title='xcb::render::set_picture_filter'>set_picture_filter</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.set_picture_filter_checked.html'
+                               title='xcb::render::set_picture_filter_checked'>set_picture_filter_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.set_picture_transform.html'
+                               title='xcb::render::set_picture_transform'>set_picture_transform</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.set_picture_transform_checked.html'
+                               title='xcb::render::set_picture_transform_checked'>set_picture_transform_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.trapezoids.html'
+                               title='xcb::render::trapezoids'>trapezoids</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.trapezoids_checked.html'
+                               title='xcb::render::trapezoids_checked'>trapezoids_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.tri_fan.html'
+                               title='xcb::render::tri_fan'>tri_fan</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.tri_fan_checked.html'
+                               title='xcb::render::tri_fan_checked'>tri_fan_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.tri_strip.html'
+                               title='xcb::render::tri_strip'>tri_strip</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.tri_strip_checked.html'
+                               title='xcb::render::tri_strip_checked'>tri_strip_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.triangles.html'
+                               title='xcb::render::triangles'>triangles</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.triangles_checked.html'
+                               title='xcb::render::triangles_checked'>triangles_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.AnimcursoreltIterator.html'
+                               title='xcb::render::AnimcursoreltIterator'>AnimcursoreltIterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.ColorIterator.html'
+                               title='xcb::render::ColorIterator'>ColorIterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.Cp.html'
+                               title='xcb::render::Cp'>Cp</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.DirectformatIterator.html'
+                               title='xcb::render::DirectformatIterator'>DirectformatIterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.Fixed.html'
+                               title='xcb::render::Fixed'>Fixed</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.Glyph.html'
+                               title='xcb::render::Glyph'>Glyph</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GlyphinfoIterator.html'
+                               title='xcb::render::GlyphinfoIterator'>GlyphinfoIterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.Glyphset.html'
+                               title='xcb::render::Glyphset'>Glyphset</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.IndexvalueIterator.html'
+                               title='xcb::render::IndexvalueIterator'>IndexvalueIterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.LinefixIterator.html'
+                               title='xcb::render::LinefixIterator'>LinefixIterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.PictOp.html'
+                               title='xcb::render::PictOp'>PictOp</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.PictType.html'
+                               title='xcb::render::PictType'>PictType</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.Pictdepth.html'
+                               title='xcb::render::Pictdepth'>Pictdepth</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.PictdepthIterator.html'
+                               title='xcb::render::PictdepthIterator'>PictdepthIterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.Pictformat.html'
+                               title='xcb::render::Pictformat'>Pictformat</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.Pictforminfo.html'
+                               title='xcb::render::Pictforminfo'>Pictforminfo</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.PictforminfoIterator.html'
+                               title='xcb::render::PictforminfoIterator'>PictforminfoIterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.Pictscreen.html'
+                               title='xcb::render::Pictscreen'>Pictscreen</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.PictscreenIterator.html'
+                               title='xcb::render::PictscreenIterator'>PictscreenIterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.Picture.html'
+                               title='xcb::render::Picture'>Picture</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.PictureEnum.html'
+                               title='xcb::render::PictureEnum'>PictureEnum</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.PictvisualIterator.html'
+                               title='xcb::render::PictvisualIterator'>PictvisualIterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.PointfixIterator.html'
+                               title='xcb::render::PointfixIterator'>PointfixIterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.PolyEdge.html'
+                               title='xcb::render::PolyEdge'>PolyEdge</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.PolyMode.html'
+                               title='xcb::render::PolyMode'>PolyMode</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.QueryFiltersCookie.html'
+                               title='xcb::render::QueryFiltersCookie'>QueryFiltersCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.QueryFiltersReply.html'
+                               title='xcb::render::QueryFiltersReply'>QueryFiltersReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.QueryPictFormatsCookie.html'
+                               title='xcb::render::QueryPictFormatsCookie'>QueryPictFormatsCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.QueryPictFormatsReply.html'
+                               title='xcb::render::QueryPictFormatsReply'>QueryPictFormatsReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.QueryPictIndexValuesCookie.html'
+                               title='xcb::render::QueryPictIndexValuesCookie'>QueryPictIndexValuesCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.QueryPictIndexValuesReply.html'
+                               title='xcb::render::QueryPictIndexValuesReply'>QueryPictIndexValuesReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.QueryVersionCookie.html'
+                               title='xcb::render::QueryVersionCookie'>QueryVersionCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.QueryVersionReply.html'
+                               title='xcb::render::QueryVersionReply'>QueryVersionReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.Repeat.html'
+                               title='xcb::render::Repeat'>Repeat</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.SpanfixIterator.html'
+                               title='xcb::render::SpanfixIterator'>SpanfixIterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.SubPixel.html'
+                               title='xcb::render::SubPixel'>SubPixel</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.TransformIterator.html'
+                               title='xcb::render::TransformIterator'>TransformIterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.TrapIterator.html'
+                               title='xcb::render::TrapIterator'>TrapIterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.TrapezoidIterator.html'
+                               title='xcb::render::TrapezoidIterator'>TrapezoidIterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.TriangleIterator.html'
+                               title='xcb::render::TriangleIterator'>TriangleIterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "xcb";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

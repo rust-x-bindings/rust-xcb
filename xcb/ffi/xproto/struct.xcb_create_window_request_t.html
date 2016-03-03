@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `xcb_create_window_request_t` struct in crate `xcb`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, xcb_create_window_request_t">
+
+    <title>xcb::ffi::xproto::xcb_create_window_request_t - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>xcb</a>::<wbr><a href='../index.html'>ffi</a>::<wbr><a href='index.html'>xproto</a></p><script>window.sidebarCurrent = {name: 'xcb_create_window_request_t', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../../index.html'>xcb</a>::<wbr><a href='../index.html'>ffi</a>::<wbr><a href='index.html'>xproto</a>::<wbr><a class='struct' href=''>xcb_create_window_request_t</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-5441' class='srclink' href='../../../src/xcb/ffi/xproto.rs.html#1567-1600' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct xcb_create_window_request_t {
+    pub major_opcode: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    pub depth: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    pub length: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,
+    pub wid: <a class='type' href='../../../xcb/ffi/xproto/type.xcb_window_t.html' title='xcb::ffi::xproto::xcb_window_t'>xcb_window_t</a>,
+    pub parent: <a class='type' href='../../../xcb/ffi/xproto/type.xcb_window_t.html' title='xcb::ffi::xproto::xcb_window_t'>xcb_window_t</a>,
+    pub x: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i16.html'>i16</a>,
+    pub y: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i16.html'>i16</a>,
+    pub width: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,
+    pub height: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,
+    pub border_width: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,
+    pub class: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,
+    pub visual: <a class='type' href='../../../xcb/ffi/xproto/type.xcb_visualid_t.html' title='xcb::ffi::xproto::xcb_visualid_t'>xcb_visualid_t</a>,
+    pub value_mask: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>,
+}</pre><div class='docblock'><p>Creates a window</p>
+
+<p>Creates an unmapped window as child of the specified <code>parent</code> window. A
+CreateNotify event will be generated. The new window is placed on top in the
+stacking order with respect to siblings.</p>
+
+<p>The coordinate system has the X axis horizontal and the Y axis vertical with
+the origin [0, 0] at the upper-left corner. Coordinates are integral, in terms
+of pixels, and coincide with pixel centers. Each window and pixmap has its own
+coordinate system. For a window, the origin is inside the border at the inside,
+upper-left corner.</p>
+
+<p>The created window is not yet displayed (mapped), call <code>xcb_map_window</code> to
+display it.</p>
+
+<p>The created window will initially use the same cursor as its parent.</p>
+</div><h2 class='fields'>Fields</h2>
+<table><tr class='stab '>
+                                  <td id='structfield.major_opcode'><code>major_opcode</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.depth'><code>depth</code></td><td><div class='docblock'><p>Specifies the new window&#39;s depth (TODO: what unit?).</p>
+
+<p>The special value <code>XCB_COPY_FROM_PARENT</code> means the depth is taken from the
+<code>parent</code> window.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.length'><code>length</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.wid'><code>wid</code></td><td><div class='docblock'><p>The ID with which you will refer to the new window, created by
+<code>xcb_generate_id</code>.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.parent'><code>parent</code></td><td><div class='docblock'><p>The parent window of the new window.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.x'><code>x</code></td><td><div class='docblock'><p>The X coordinate of the new window.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.y'><code>y</code></td><td><div class='docblock'><p>The Y coordinate of the new window.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.width'><code>width</code></td><td><div class='docblock'><p>The width of the new window.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.height'><code>height</code></td><td><div class='docblock'><p>The height of the new window.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.border_width'><code>border_width</code></td><td><div class='docblock'><p>TODO:</p>
+
+<p>Must be zero if the <code>class</code> is <code>InputOnly</code> or a <code>xcb_match_error_t</code> occurs.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.class'><code>class</code></td><td><div class='docblock'></div></td></tr><tr class='stab '>
+                                  <td id='structfield.visual'><code>visual</code></td><td><div class='docblock'><p>Specifies the id for the new window&#39;s visual.</p>
+
+<p>The special value <code>XCB_COPY_FROM_PARENT</code> means the visual is taken from the
+<code>parent</code> window.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.value_mask'><code>value_mask</code></td><td></td></tr></table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "xcb";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script defer src="../../../search-index.js"></script>
+</body>
+</html>

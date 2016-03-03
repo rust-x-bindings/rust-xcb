@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `query_text_extents` fn in crate `xcb`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, query_text_extents">
+
+    <title>xcb::xproto::query_text_extents - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>xcb</a>::<wbr><a href='index.html'>xproto</a></p><script>window.sidebarCurrent = {name: 'query_text_extents', ty: 'fn', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content fn">
+<h1 class='fqn'><span class='in-band'>Function <a href='../index.html'>xcb</a>::<wbr><a href='index.html'>xproto</a>::<wbr><a class='fn' href=''>query_text_extents</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-2800' class='srclink' href='../../src/xcb/xproto.rs.html#8427-8444' title='goto source code'>[src]</a></span></h1>
+<pre class='rust fn'>pub fn query_text_extents(c: &amp;<a class='struct' href='../../xcb/base/struct.Connection.html' title='xcb::base::Connection'>Connection</a>, font: <a class='type' href='../../xcb/xproto/type.Fontable.html' title='xcb::xproto::Fontable'>Fontable</a>, string: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a class='struct' href='../../xcb/xproto/struct.Char2b.html' title='xcb::xproto::Char2b'>Char2b</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='type' href='../../xcb/xproto/type.QueryTextExtentsCookie.html' title='xcb::xproto::QueryTextExtentsCookie'>QueryTextExtentsCookie</a></pre><div class='docblock'><p>get text extents</p>
+
+<p>Query text extents from the X11 server. This request returns the bounding box
+of the specified 16-bit character string in the specified <code>font</code> or the font
+contained in the specified graphics context.</p>
+
+<p><code>font_ascent</code> is set to the maximum of the ascent metrics of all characters in
+the string. <code>font_descent</code> is set to the maximum of the descent metrics.
+<code>overall_width</code> is set to the sum of the character-width metrics of all
+characters in the string. For each character in the string, let W be the sum of
+the character-width metrics of all characters preceding it in the string. Let L
+be the left-side-bearing metric of the character plus W. Let R be the
+right-side-bearing metric of the character plus W. The lbearing member is set
+to the minimum L of all characters in the string. The rbearing member is set to
+the maximum R.</p>
+
+<p>For fonts defined with linear indexing rather than 2-byte matrix indexing, each
+<code>xcb_char2b_t</code> structure is interpreted as a 16-bit number with byte1 as the
+most significant byte. If the font has no defined default character, undefined
+characters in the string are taken to have all zero metrics.</p>
+
+<p>Characters with all zero metrics are ignored. If the font has no defined
+default_char, the undefined characters in the string are also ignored.</p>
+
+<p>parameters:</p>
+
+<ul>
+<li><p><strong>c</strong>:
+  The connection object to the server</p></li>
+<li><p><strong>font</strong>:
+  The <code>font</code> to calculate text extents in. You can also pass a graphics context.</p></li>
+<li><p><strong>string</strong>:
+  The text to get text extents for.</p></li>
+</ul>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "xcb";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

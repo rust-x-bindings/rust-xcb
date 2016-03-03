@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `xcb_xkb_set_map_request_t` struct in crate `xcb`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, xcb_xkb_set_map_request_t">
+
+    <title>xcb::ffi::xkb::xcb_xkb_set_map_request_t - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>xcb</a>::<wbr><a href='../index.html'>ffi</a>::<wbr><a href='index.html'>xkb</a></p><script>window.sidebarCurrent = {name: 'xcb_xkb_set_map_request_t', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../../index.html'>xcb</a>::<wbr><a href='../index.html'>ffi</a>::<wbr><a href='index.html'>xkb</a>::<wbr><a class='struct' href=''>xcb_xkb_set_map_request_t</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-23446' class='srclink' href='../../../src/xcb/ffi/xkb.rs.html#1967-1997' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct xcb_xkb_set_map_request_t {
+    pub major_opcode: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    pub minor_opcode: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    pub length: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,
+    pub deviceSpec: <a class='type' href='../../../xcb/ffi/xkb/type.xcb_xkb_device_spec_t.html' title='xcb::ffi::xkb::xcb_xkb_device_spec_t'>xcb_xkb_device_spec_t</a>,
+    pub present: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,
+    pub flags: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,
+    pub minKeyCode: <a class='type' href='../../../xcb/ffi/xproto/type.xcb_keycode_t.html' title='xcb::ffi::xproto::xcb_keycode_t'>xcb_keycode_t</a>,
+    pub maxKeyCode: <a class='type' href='../../../xcb/ffi/xproto/type.xcb_keycode_t.html' title='xcb::ffi::xproto::xcb_keycode_t'>xcb_keycode_t</a>,
+    pub firstType: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    pub nTypes: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    pub firstKeySym: <a class='type' href='../../../xcb/ffi/xproto/type.xcb_keycode_t.html' title='xcb::ffi::xproto::xcb_keycode_t'>xcb_keycode_t</a>,
+    pub nKeySyms: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    pub totalSyms: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,
+    pub firstKeyAction: <a class='type' href='../../../xcb/ffi/xproto/type.xcb_keycode_t.html' title='xcb::ffi::xproto::xcb_keycode_t'>xcb_keycode_t</a>,
+    pub nKeyActions: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    pub totalActions: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,
+    pub firstKeyBehavior: <a class='type' href='../../../xcb/ffi/xproto/type.xcb_keycode_t.html' title='xcb::ffi::xproto::xcb_keycode_t'>xcb_keycode_t</a>,
+    pub nKeyBehaviors: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    pub totalKeyBehaviors: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    pub firstKeyExplicit: <a class='type' href='../../../xcb/ffi/xproto/type.xcb_keycode_t.html' title='xcb::ffi::xproto::xcb_keycode_t'>xcb_keycode_t</a>,
+    pub nKeyExplicit: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    pub totalKeyExplicit: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    pub firstModMapKey: <a class='type' href='../../../xcb/ffi/xproto/type.xcb_keycode_t.html' title='xcb::ffi::xproto::xcb_keycode_t'>xcb_keycode_t</a>,
+    pub nModMapKeys: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    pub totalModMapKeys: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    pub firstVModMapKey: <a class='type' href='../../../xcb/ffi/xproto/type.xcb_keycode_t.html' title='xcb::ffi::xproto::xcb_keycode_t'>xcb_keycode_t</a>,
+    pub nVModMapKeys: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    pub totalVModMapKeys: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    pub virtualMods: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,
+}</pre><h2 class='fields'>Fields</h2>
+<table><tr class='stab '>
+                                  <td id='structfield.major_opcode'><code>major_opcode</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.minor_opcode'><code>minor_opcode</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.length'><code>length</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.deviceSpec'><code>deviceSpec</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.present'><code>present</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.flags'><code>flags</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.minKeyCode'><code>minKeyCode</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.maxKeyCode'><code>maxKeyCode</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.firstType'><code>firstType</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.nTypes'><code>nTypes</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.firstKeySym'><code>firstKeySym</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.nKeySyms'><code>nKeySyms</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.totalSyms'><code>totalSyms</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.firstKeyAction'><code>firstKeyAction</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.nKeyActions'><code>nKeyActions</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.totalActions'><code>totalActions</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.firstKeyBehavior'><code>firstKeyBehavior</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.nKeyBehaviors'><code>nKeyBehaviors</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.totalKeyBehaviors'><code>totalKeyBehaviors</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.firstKeyExplicit'><code>firstKeyExplicit</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.nKeyExplicit'><code>nKeyExplicit</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.totalKeyExplicit'><code>totalKeyExplicit</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.firstModMapKey'><code>firstModMapKey</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.nModMapKeys'><code>nModMapKeys</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.totalModMapKeys'><code>totalModMapKeys</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.firstVModMapKey'><code>firstVModMapKey</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.nVModMapKeys'><code>nVModMapKeys</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.totalVModMapKeys'><code>totalVModMapKeys</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.virtualMods'><code>virtualMods</code></td><td></td></tr></table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "xcb";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script defer src="../../../search-index.js"></script>
+</body>
+</html>

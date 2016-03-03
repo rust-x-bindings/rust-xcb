@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `xcb_xv_image_format_info_t` struct in crate `xcb`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, xcb_xv_image_format_info_t">
+
+    <title>xcb::ffi::xv::xcb_xv_image_format_info_t - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>xcb</a>::<wbr><a href='../index.html'>ffi</a>::<wbr><a href='index.html'>xv</a></p><script>window.sidebarCurrent = {name: 'xcb_xv_image_format_info_t', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../../index.html'>xcb</a>::<wbr><a href='../index.html'>ffi</a>::<wbr><a href='index.html'>xv</a>::<wbr><a class='struct' href=''>xcb_xv_image_format_info_t</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-27942' class='srclink' href='../../../src/xcb/ffi/xv.rs.html#182-210' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct xcb_xv_image_format_info_t {
+    pub id: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>,
+    pub type_: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    pub byte_order: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    pub pad0: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>; 2]</a>,
+    pub guid: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>; 16]</a>,
+    pub bpp: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    pub num_planes: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    pub pad1: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>; 2]</a>,
+    pub depth: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    pub pad2: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>; 3]</a>,
+    pub red_mask: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>,
+    pub green_mask: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>,
+    pub blue_mask: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>,
+    pub format: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    pub pad3: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>; 3]</a>,
+    pub y_sample_bits: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>,
+    pub u_sample_bits: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>,
+    pub v_sample_bits: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>,
+    pub vhorz_y_period: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>,
+    pub vhorz_u_period: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>,
+    pub vhorz_v_period: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>,
+    pub vvert_y_period: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>,
+    pub vvert_u_period: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>,
+    pub vvert_v_period: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>,
+    pub vcomp_order: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>; 32]</a>,
+    pub vscanline_order: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    pub pad4: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>; 11]</a>,
+}</pre><h2 class='fields'>Fields</h2>
+<table><tr class='stab '>
+                                  <td id='structfield.id'><code>id</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.type_'><code>type_</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.byte_order'><code>byte_order</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.pad0'><code>pad0</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.guid'><code>guid</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.bpp'><code>bpp</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.num_planes'><code>num_planes</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.pad1'><code>pad1</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.depth'><code>depth</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.pad2'><code>pad2</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.red_mask'><code>red_mask</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.green_mask'><code>green_mask</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.blue_mask'><code>blue_mask</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.format'><code>format</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.pad3'><code>pad3</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.y_sample_bits'><code>y_sample_bits</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.u_sample_bits'><code>u_sample_bits</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.v_sample_bits'><code>v_sample_bits</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.vhorz_y_period'><code>vhorz_y_period</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.vhorz_u_period'><code>vhorz_u_period</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.vhorz_v_period'><code>vhorz_v_period</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.vvert_y_period'><code>vvert_y_period</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.vvert_u_period'><code>vvert_u_period</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.vvert_v_period'><code>vvert_v_period</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.vcomp_order'><code>vcomp_order</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.vscanline_order'><code>vscanline_order</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.pad4'><code>pad4</code></td><td></td></tr></table><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a> for <a class='struct' href='../../../xcb/ffi/xv/struct.xcb_xv_image_format_info_t.html' title='xcb::ffi::xv::xcb_xv_image_format_info_t'>xcb_xv_image_format_info_t</a></code></h3><div class='impl-items'></div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../../../xcb/ffi/xv/struct.xcb_xv_image_format_info_t.html' title='xcb::ffi::xv::xcb_xv_image_format_info_t'>xcb_xv_image_format_info_t</a></code></h3><div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../../../xcb/ffi/xv/struct.xcb_xv_image_format_info_t.html' title='xcb::ffi::xv::xcb_xv_image_format_info_t'>xcb_xv_image_format_info_t</a></code></h4>
+<h4 id='method.clone_from' class='method'><span class="since">1.0.0</span><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "xcb";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script defer src="../../../search-index.js"></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `xcb_create_glyph_cursor_request_t` struct in crate `xcb`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, xcb_create_glyph_cursor_request_t">
+
+    <title>xcb::ffi::xproto::xcb_create_glyph_cursor_request_t - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>xcb</a>::<wbr><a href='../index.html'>ffi</a>::<wbr><a href='index.html'>xproto</a></p><script>window.sidebarCurrent = {name: 'xcb_create_glyph_cursor_request_t', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../../index.html'>xcb</a>::<wbr><a href='../index.html'>ffi</a>::<wbr><a href='index.html'>xproto</a>::<wbr><a class='struct' href=''>xcb_create_glyph_cursor_request_t</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-7189' class='srclink' href='../../../src/xcb/ffi/xproto.rs.html#4786-4814' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct xcb_create_glyph_cursor_request_t {
+    pub major_opcode: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    pub pad0: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    pub length: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,
+    pub cid: <a class='type' href='../../../xcb/ffi/xproto/type.xcb_cursor_t.html' title='xcb::ffi::xproto::xcb_cursor_t'>xcb_cursor_t</a>,
+    pub source_font: <a class='type' href='../../../xcb/ffi/xproto/type.xcb_font_t.html' title='xcb::ffi::xproto::xcb_font_t'>xcb_font_t</a>,
+    pub mask_font: <a class='type' href='../../../xcb/ffi/xproto/type.xcb_font_t.html' title='xcb::ffi::xproto::xcb_font_t'>xcb_font_t</a>,
+    pub source_char: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,
+    pub mask_char: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,
+    pub fore_red: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,
+    pub fore_green: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,
+    pub fore_blue: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,
+    pub back_red: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,
+    pub back_green: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,
+    pub back_blue: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,
+}</pre><div class='docblock'><p>create cursor</p>
+
+<p>Creates a cursor from a font glyph. X provides a set of standard cursor shapes
+in a special font named cursor. Applications are encouraged to use this
+interface for their cursors because the font can be customized for the
+individual display type.</p>
+
+<p>All pixels which are set to 1 in the source will use the foreground color (as
+specified by <code>fore_red</code>, <code>fore_green</code> and <code>fore_blue</code>). All pixels set to 0
+will use the background color (as specified by <code>back_red</code>, <code>back_green</code> and
+<code>back_blue</code>).</p>
+</div><h2 class='fields'>Fields</h2>
+<table><tr class='stab '>
+                                  <td id='structfield.major_opcode'><code>major_opcode</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.pad0'><code>pad0</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.length'><code>length</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.cid'><code>cid</code></td><td><div class='docblock'><p>The ID with which you will refer to the cursor, created by <code>xcb_generate_id</code>.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.source_font'><code>source_font</code></td><td><div class='docblock'><p>In which font to look for the cursor glyph.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.mask_font'><code>mask_font</code></td><td><div class='docblock'><p>In which font to look for the mask glyph.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.source_char'><code>source_char</code></td><td><div class='docblock'><p>The glyph of <code>source_font</code> to use.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.mask_char'><code>mask_char</code></td><td><div class='docblock'><p>The glyph of <code>mask_font</code> to use as a mask: Pixels which are set to 1 define
+which source pixels are displayed. All pixels which are set to 0 are not
+displayed.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.fore_red'><code>fore_red</code></td><td><div class='docblock'><p>The red value of the foreground color.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.fore_green'><code>fore_green</code></td><td><div class='docblock'><p>The green value of the foreground color.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.fore_blue'><code>fore_blue</code></td><td><div class='docblock'><p>The blue value of the foreground color.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.back_red'><code>back_red</code></td><td><div class='docblock'><p>The red value of the background color.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.back_green'><code>back_green</code></td><td><div class='docblock'><p>The green value of the background color.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.back_blue'><code>back_blue</code></td><td><div class='docblock'><p>The blue value of the background color.</p>
+</div></td></tr></table><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a> for <a class='struct' href='../../../xcb/ffi/xproto/struct.xcb_create_glyph_cursor_request_t.html' title='xcb::ffi::xproto::xcb_create_glyph_cursor_request_t'>xcb_create_glyph_cursor_request_t</a></code></h3><div class='impl-items'></div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../../../xcb/ffi/xproto/struct.xcb_create_glyph_cursor_request_t.html' title='xcb::ffi::xproto::xcb_create_glyph_cursor_request_t'>xcb_create_glyph_cursor_request_t</a></code></h3><div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../../../xcb/ffi/xproto/struct.xcb_create_glyph_cursor_request_t.html' title='xcb::ffi::xproto::xcb_create_glyph_cursor_request_t'>xcb_create_glyph_cursor_request_t</a></code></h4>
+<h4 id='method.clone_from' class='method'><span class="since">1.0.0</span><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "xcb";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script defer src="../../../search-index.js"></script>
+</body>
+</html>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `damage` mod in crate `xcb`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, damage">
+
+    <title>xcb::ffi::damage - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>xcb</a>::<wbr><a href='../index.html'>ffi</a></p><script>window.sidebarCurrent = {name: 'damage', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Module <a href='../../index.html'>xcb</a>::<wbr><a href='../index.html'>ffi</a>::<wbr><a class='mod' href=''>damage</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-9741' class='srclink' href='../../../src/xcb/ffi/damage.rs.html#5-241' title='goto source code'>[src]</a></span></h1>
+<h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_damage_add_request_t.html'
+                               title='xcb::ffi::damage::xcb_damage_add_request_t'>xcb_damage_add_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_damage_bad_damage_error_t.html'
+                               title='xcb::ffi::damage::xcb_damage_bad_damage_error_t'>xcb_damage_bad_damage_error_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_damage_create_request_t.html'
+                               title='xcb::ffi::damage::xcb_damage_create_request_t'>xcb_damage_create_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_damage_damage_iterator_t.html'
+                               title='xcb::ffi::damage::xcb_damage_damage_iterator_t'>xcb_damage_damage_iterator_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_damage_destroy_request_t.html'
+                               title='xcb::ffi::damage::xcb_damage_destroy_request_t'>xcb_damage_destroy_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_damage_notify_event_t.html'
+                               title='xcb::ffi::damage::xcb_damage_notify_event_t'>xcb_damage_notify_event_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_damage_query_version_cookie_t.html'
+                               title='xcb::ffi::damage::xcb_damage_query_version_cookie_t'>xcb_damage_query_version_cookie_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_damage_query_version_reply_t.html'
+                               title='xcb::ffi::damage::xcb_damage_query_version_reply_t'>xcb_damage_query_version_reply_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_damage_query_version_request_t.html'
+                               title='xcb::ffi::damage::xcb_damage_query_version_request_t'>xcb_damage_query_version_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_damage_subtract_request_t.html'
+                               title='xcb::ffi::damage::xcb_damage_subtract_request_t'>xcb_damage_subtract_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_DAMAGE_ADD.html'
+                               title='xcb::ffi::damage::XCB_DAMAGE_ADD'>XCB_DAMAGE_ADD</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_DAMAGE_BAD_DAMAGE.html'
+                               title='xcb::ffi::damage::XCB_DAMAGE_BAD_DAMAGE'>XCB_DAMAGE_BAD_DAMAGE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_DAMAGE_CREATE.html'
+                               title='xcb::ffi::damage::XCB_DAMAGE_CREATE'>XCB_DAMAGE_CREATE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_DAMAGE_DESTROY.html'
+                               title='xcb::ffi::damage::XCB_DAMAGE_DESTROY'>XCB_DAMAGE_DESTROY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_DAMAGE_MAJOR_VERSION.html'
+                               title='xcb::ffi::damage::XCB_DAMAGE_MAJOR_VERSION'>XCB_DAMAGE_MAJOR_VERSION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_DAMAGE_MINOR_VERSION.html'
+                               title='xcb::ffi::damage::XCB_DAMAGE_MINOR_VERSION'>XCB_DAMAGE_MINOR_VERSION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_DAMAGE_NOTIFY.html'
+                               title='xcb::ffi::damage::XCB_DAMAGE_NOTIFY'>XCB_DAMAGE_NOTIFY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_DAMAGE_QUERY_VERSION.html'
+                               title='xcb::ffi::damage::XCB_DAMAGE_QUERY_VERSION'>XCB_DAMAGE_QUERY_VERSION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_DAMAGE_REPORT_LEVEL_BOUNDING_BOX.html'
+                               title='xcb::ffi::damage::XCB_DAMAGE_REPORT_LEVEL_BOUNDING_BOX'>XCB_DAMAGE_REPORT_LEVEL_BOUNDING_BOX</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_DAMAGE_REPORT_LEVEL_DELTA_RECTANGLES.html'
+                               title='xcb::ffi::damage::XCB_DAMAGE_REPORT_LEVEL_DELTA_RECTANGLES'>XCB_DAMAGE_REPORT_LEVEL_DELTA_RECTANGLES</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_DAMAGE_REPORT_LEVEL_NON_EMPTY.html'
+                               title='xcb::ffi::damage::XCB_DAMAGE_REPORT_LEVEL_NON_EMPTY'>XCB_DAMAGE_REPORT_LEVEL_NON_EMPTY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_DAMAGE_REPORT_LEVEL_RAW_RECTANGLES.html'
+                               title='xcb::ffi::damage::XCB_DAMAGE_REPORT_LEVEL_RAW_RECTANGLES'>XCB_DAMAGE_REPORT_LEVEL_RAW_RECTANGLES</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_DAMAGE_SUBTRACT.html'
+                               title='xcb::ffi::damage::XCB_DAMAGE_SUBTRACT'>XCB_DAMAGE_SUBTRACT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table><h2 id='statics' class='section-header'><a href="#statics">Statics</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='static' href='static.xcb_damage_id.html'
+                               title='xcb::ffi::damage::xcb_damage_id'>xcb_damage_id</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_damage_add.html'
+                               title='xcb::ffi::damage::xcb_damage_add'>xcb_damage_add</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_damage_add_checked.html'
+                               title='xcb::ffi::damage::xcb_damage_add_checked'>xcb_damage_add_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_damage_create.html'
+                               title='xcb::ffi::damage::xcb_damage_create'>xcb_damage_create</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_damage_create_checked.html'
+                               title='xcb::ffi::damage::xcb_damage_create_checked'>xcb_damage_create_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_damage_damage_end.html'
+                               title='xcb::ffi::damage::xcb_damage_damage_end'>xcb_damage_damage_end</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_damage_damage_next.html'
+                               title='xcb::ffi::damage::xcb_damage_damage_next'>xcb_damage_damage_next</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_damage_destroy.html'
+                               title='xcb::ffi::damage::xcb_damage_destroy'>xcb_damage_destroy</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_damage_destroy_checked.html'
+                               title='xcb::ffi::damage::xcb_damage_destroy_checked'>xcb_damage_destroy_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_damage_query_version.html'
+                               title='xcb::ffi::damage::xcb_damage_query_version'>xcb_damage_query_version</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_damage_query_version_reply.html'
+                               title='xcb::ffi::damage::xcb_damage_query_version_reply'>xcb_damage_query_version_reply</a></td>
+                        <td class='docblock short'>
+                             <p>the returned value must be freed by the caller using libc::free().</p>
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_damage_query_version_unchecked.html'
+                               title='xcb::ffi::damage::xcb_damage_query_version_unchecked'>xcb_damage_query_version_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_damage_subtract.html'
+                               title='xcb::ffi::damage::xcb_damage_subtract'>xcb_damage_subtract</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_damage_subtract_checked.html'
+                               title='xcb::ffi::damage::xcb_damage_subtract_checked'>xcb_damage_subtract_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.xcb_damage_damage_t.html'
+                               title='xcb::ffi::damage::xcb_damage_damage_t'>xcb_damage_damage_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.xcb_damage_report_level_t.html'
+                               title='xcb::ffi::damage::xcb_damage_report_level_t'>xcb_damage_report_level_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "xcb";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script defer src="../../../search-index.js"></script>
+</body>
+</html>

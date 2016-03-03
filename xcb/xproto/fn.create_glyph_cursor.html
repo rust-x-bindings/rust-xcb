@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `create_glyph_cursor` fn in crate `xcb`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, create_glyph_cursor">
+
+    <title>xcb::xproto::create_glyph_cursor - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>xcb</a>::<wbr><a href='index.html'>xproto</a></p><script>window.sidebarCurrent = {name: 'create_glyph_cursor', ty: 'fn', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content fn">
+<h1 class='fqn'><span class='in-band'>Function <a href='../index.html'>xcb</a>::<wbr><a href='index.html'>xproto</a>::<wbr><a class='fn' href=''>create_glyph_cursor</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-3824' class='srclink' href='../../src/xcb/xproto.rs.html#11947-11979' title='goto source code'>[src]</a></span></h1>
+<pre class='rust fn'>pub fn create_glyph_cursor(c: &amp;<a class='struct' href='../../xcb/base/struct.Connection.html' title='xcb::base::Connection'>Connection</a>, cid: <a class='type' href='../../xcb/xproto/type.Cursor.html' title='xcb::xproto::Cursor'>Cursor</a>, source_font: <a class='type' href='../../xcb/xproto/type.Font.html' title='xcb::xproto::Font'>Font</a>, mask_font: <a class='type' href='../../xcb/xproto/type.Font.html' title='xcb::xproto::Font'>Font</a>, source_char: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>, mask_char: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>, fore_red: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>, fore_green: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>, fore_blue: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>, back_red: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>, back_green: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>, back_blue: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>) -&gt; <a class='type' href='../../xcb/base/type.VoidCookie.html' title='xcb::base::VoidCookie'>VoidCookie</a></pre><div class='docblock'><p>create cursor</p>
+
+<p>Creates a cursor from a font glyph. X provides a set of standard cursor shapes
+in a special font named cursor. Applications are encouraged to use this
+interface for their cursors because the font can be customized for the
+individual display type.</p>
+
+<p>All pixels which are set to 1 in the source will use the foreground color (as
+specified by <code>fore_red</code>, <code>fore_green</code> and <code>fore_blue</code>). All pixels set to 0
+will use the background color (as specified by <code>back_red</code>, <code>back_green</code> and
+<code>back_blue</code>).</p>
+
+<p>parameters:</p>
+
+<ul>
+<li><p><strong>c</strong>:
+  The connection object to the server</p></li>
+<li><p><strong>cid</strong>:
+  The ID with which you will refer to the cursor, created by <code>xcb_generate_id</code>.</p></li>
+<li><p><strong>source_font</strong>:
+  In which font to look for the cursor glyph.</p></li>
+<li><p><strong>mask_font</strong>:
+  In which font to look for the mask glyph.</p></li>
+<li><p><strong>source_char</strong>:
+  The glyph of <code>source_font</code> to use.</p></li>
+<li><p><strong>mask_char</strong>:
+  The glyph of <code>mask_font</code> to use as a mask: Pixels which are set to 1 define
+  which source pixels are displayed. All pixels which are set to 0 are not
+  displayed.</p></li>
+<li><p><strong>fore_red</strong>:
+  The red value of the foreground color.</p></li>
+<li><p><strong>fore_green</strong>:
+  The green value of the foreground color.</p></li>
+<li><p><strong>fore_blue</strong>:
+  The blue value of the foreground color.</p></li>
+<li><p><strong>back_red</strong>:
+  The red value of the background color.</p></li>
+<li><p><strong>back_green</strong>:
+  The green value of the background color.</p></li>
+<li><p><strong>back_blue</strong>:
+  The blue value of the background color.</p></li>
+</ul>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "xcb";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

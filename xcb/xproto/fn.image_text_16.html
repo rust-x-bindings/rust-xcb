@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `image_text_16` fn in crate `xcb`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, image_text_16">
+
+    <title>xcb::xproto::image_text_16 - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>xcb</a>::<wbr><a href='index.html'>xproto</a></p><script>window.sidebarCurrent = {name: 'image_text_16', ty: 'fn', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content fn">
+<h1 class='fqn'><span class='in-band'>Function <a href='../index.html'>xcb</a>::<wbr><a href='index.html'>xproto</a>::<wbr><a class='fn' href=''>image_text_16</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-3419' class='srclink' href='../../src/xcb/xproto.rs.html#10666-10689' title='goto source code'>[src]</a></span></h1>
+<pre class='rust fn'>pub fn image_text_16(c: &amp;<a class='struct' href='../../xcb/base/struct.Connection.html' title='xcb::base::Connection'>Connection</a>, drawable: <a class='type' href='../../xcb/xproto/type.Drawable.html' title='xcb::xproto::Drawable'>Drawable</a>, gc: <a class='type' href='../../xcb/xproto/type.Gcontext.html' title='xcb::xproto::Gcontext'>Gcontext</a>, x: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i16.html'>i16</a>, y: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i16.html'>i16</a>, string: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a class='struct' href='../../xcb/xproto/struct.Char2b.html' title='xcb::xproto::Char2b'>Char2b</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='type' href='../../xcb/base/type.VoidCookie.html' title='xcb::base::VoidCookie'>VoidCookie</a></pre><div class='docblock'><p>Draws text</p>
+
+<p>Fills the destination rectangle with the background pixel from <code>gc</code>, then
+paints the text with the foreground pixel from <code>gc</code>. The upper-left corner of
+the filled rectangle is at [x, y - font-ascent]. The width is overall-width,
+the height is font-ascent + font-descent. The overall-width, font-ascent and
+font-descent are as returned by <code>xcb_query_text_extents</code> (TODO).</p>
+
+<p>Note that using X core fonts is deprecated (but still supported) in favor of
+client-side rendering using Xft.</p>
+
+<p>parameters:</p>
+
+<ul>
+<li><p><strong>c</strong>:
+  The connection object to the server</p></li>
+<li><p><strong>drawable</strong>:
+  The drawable (Window or Pixmap) to draw text on.</p></li>
+<li><p><strong>gc</strong>:
+  The graphics context to use.</p>
+
+<p>The following graphics context components are used: plane-mask, foreground,
+  background, font, subwindow-mode, clip-x-origin, clip-y-origin, and clip-mask.</p></li>
+<li><p><strong>x</strong>:
+  The x coordinate of the first character, relative to the origin of <code>drawable</code>.</p></li>
+<li><p><strong>y</strong>:
+  The y coordinate of the first character, relative to the origin of <code>drawable</code>.</p></li>
+<li><p><strong>string</strong>:
+  The string to draw. Only the first 255 characters are relevant due to the data
+  type of <code>string_len</code>. Every character uses 2 bytes (hence the 16 in this
+  request&#39;s name).</p></li>
+</ul>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "xcb";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

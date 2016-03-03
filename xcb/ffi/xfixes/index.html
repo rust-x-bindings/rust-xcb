@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `xfixes` mod in crate `xcb`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, xfixes">
+
+    <title>xcb::ffi::xfixes - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>xcb</a>::<wbr><a href='../index.html'>ffi</a></p><script>window.sidebarCurrent = {name: 'xfixes', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Module <a href='../../index.html'>xcb</a>::<wbr><a href='../index.html'>ffi</a>::<wbr><a class='mod' href=''>xfixes</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-20804' class='srclink' href='../../../src/xcb/ffi/xfixes.rs.html#5-1214' title='goto source code'>[src]</a></span></h1>
+<h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_bad_region_error_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_bad_region_error_t'>xcb_xfixes_bad_region_error_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_barrier_iterator_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_barrier_iterator_t'>xcb_xfixes_barrier_iterator_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_change_cursor_by_name_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_change_cursor_by_name_request_t'>xcb_xfixes_change_cursor_by_name_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_change_cursor_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_change_cursor_request_t'>xcb_xfixes_change_cursor_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_change_save_set_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_change_save_set_request_t'>xcb_xfixes_change_save_set_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_copy_region_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_copy_region_request_t'>xcb_xfixes_copy_region_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_create_pointer_barrier_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_create_pointer_barrier_request_t'>xcb_xfixes_create_pointer_barrier_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_create_region_from_bitmap_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_create_region_from_bitmap_request_t'>xcb_xfixes_create_region_from_bitmap_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_create_region_from_gc_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_create_region_from_gc_request_t'>xcb_xfixes_create_region_from_gc_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_create_region_from_picture_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_create_region_from_picture_request_t'>xcb_xfixes_create_region_from_picture_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_create_region_from_window_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_create_region_from_window_request_t'>xcb_xfixes_create_region_from_window_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_create_region_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_create_region_request_t'>xcb_xfixes_create_region_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_cursor_notify_event_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_cursor_notify_event_t'>xcb_xfixes_cursor_notify_event_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_delete_pointer_barrier_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_delete_pointer_barrier_request_t'>xcb_xfixes_delete_pointer_barrier_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_destroy_region_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_destroy_region_request_t'>xcb_xfixes_destroy_region_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_expand_region_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_expand_region_request_t'>xcb_xfixes_expand_region_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_fetch_region_cookie_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_fetch_region_cookie_t'>xcb_xfixes_fetch_region_cookie_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_fetch_region_reply_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_fetch_region_reply_t'>xcb_xfixes_fetch_region_reply_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_fetch_region_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_fetch_region_request_t'>xcb_xfixes_fetch_region_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_get_cursor_image_and_name_cookie_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_image_and_name_cookie_t'>xcb_xfixes_get_cursor_image_and_name_cookie_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_get_cursor_image_and_name_reply_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_image_and_name_reply_t'>xcb_xfixes_get_cursor_image_and_name_reply_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_get_cursor_image_and_name_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_image_and_name_request_t'>xcb_xfixes_get_cursor_image_and_name_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_get_cursor_image_cookie_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_image_cookie_t'>xcb_xfixes_get_cursor_image_cookie_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_get_cursor_image_reply_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_image_reply_t'>xcb_xfixes_get_cursor_image_reply_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_get_cursor_image_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_image_request_t'>xcb_xfixes_get_cursor_image_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_get_cursor_name_cookie_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_name_cookie_t'>xcb_xfixes_get_cursor_name_cookie_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_get_cursor_name_reply_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_name_reply_t'>xcb_xfixes_get_cursor_name_reply_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_get_cursor_name_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_name_request_t'>xcb_xfixes_get_cursor_name_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_hide_cursor_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_hide_cursor_request_t'>xcb_xfixes_hide_cursor_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_intersect_region_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_intersect_region_request_t'>xcb_xfixes_intersect_region_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_invert_region_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_invert_region_request_t'>xcb_xfixes_invert_region_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_query_version_cookie_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_query_version_cookie_t'>xcb_xfixes_query_version_cookie_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_query_version_reply_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_query_version_reply_t'>xcb_xfixes_query_version_reply_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_query_version_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_query_version_request_t'>xcb_xfixes_query_version_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_region_extents_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_region_extents_request_t'>xcb_xfixes_region_extents_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_region_iterator_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_region_iterator_t'>xcb_xfixes_region_iterator_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_select_cursor_input_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_select_cursor_input_request_t'>xcb_xfixes_select_cursor_input_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_select_selection_input_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_select_selection_input_request_t'>xcb_xfixes_select_selection_input_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_selection_notify_event_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_selection_notify_event_t'>xcb_xfixes_selection_notify_event_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_set_cursor_name_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_set_cursor_name_request_t'>xcb_xfixes_set_cursor_name_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_set_gc_clip_region_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_set_gc_clip_region_request_t'>xcb_xfixes_set_gc_clip_region_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_set_picture_clip_region_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_set_picture_clip_region_request_t'>xcb_xfixes_set_picture_clip_region_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_set_region_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_set_region_request_t'>xcb_xfixes_set_region_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_set_window_shape_region_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_set_window_shape_region_request_t'>xcb_xfixes_set_window_shape_region_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_show_cursor_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_show_cursor_request_t'>xcb_xfixes_show_cursor_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_subtract_region_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_subtract_region_request_t'>xcb_xfixes_subtract_region_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_translate_region_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_translate_region_request_t'>xcb_xfixes_translate_region_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.xcb_xfixes_union_region_request_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_union_region_request_t'>xcb_xfixes_union_region_request_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_BAD_REGION.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_BAD_REGION'>XCB_XFIXES_BAD_REGION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_BARRIER_DIRECTIONS_NEGATIVE_X.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_BARRIER_DIRECTIONS_NEGATIVE_X'>XCB_XFIXES_BARRIER_DIRECTIONS_NEGATIVE_X</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_BARRIER_DIRECTIONS_NEGATIVE_Y.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_BARRIER_DIRECTIONS_NEGATIVE_Y'>XCB_XFIXES_BARRIER_DIRECTIONS_NEGATIVE_Y</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_BARRIER_DIRECTIONS_POSITIVE_X.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_BARRIER_DIRECTIONS_POSITIVE_X'>XCB_XFIXES_BARRIER_DIRECTIONS_POSITIVE_X</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_BARRIER_DIRECTIONS_POSITIVE_Y.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_BARRIER_DIRECTIONS_POSITIVE_Y'>XCB_XFIXES_BARRIER_DIRECTIONS_POSITIVE_Y</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_CHANGE_CURSOR.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_CHANGE_CURSOR'>XCB_XFIXES_CHANGE_CURSOR</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_CHANGE_CURSOR_BY_NAME.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_CHANGE_CURSOR_BY_NAME'>XCB_XFIXES_CHANGE_CURSOR_BY_NAME</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_CHANGE_SAVE_SET.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_CHANGE_SAVE_SET'>XCB_XFIXES_CHANGE_SAVE_SET</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_COPY_REGION.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_COPY_REGION'>XCB_XFIXES_COPY_REGION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_CREATE_POINTER_BARRIER.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_CREATE_POINTER_BARRIER'>XCB_XFIXES_CREATE_POINTER_BARRIER</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_CREATE_REGION.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_CREATE_REGION'>XCB_XFIXES_CREATE_REGION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_CREATE_REGION_FROM_BITMAP.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_CREATE_REGION_FROM_BITMAP'>XCB_XFIXES_CREATE_REGION_FROM_BITMAP</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_CREATE_REGION_FROM_GC.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_CREATE_REGION_FROM_GC'>XCB_XFIXES_CREATE_REGION_FROM_GC</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_CREATE_REGION_FROM_PICTURE.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_CREATE_REGION_FROM_PICTURE'>XCB_XFIXES_CREATE_REGION_FROM_PICTURE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_CREATE_REGION_FROM_WINDOW.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_CREATE_REGION_FROM_WINDOW'>XCB_XFIXES_CREATE_REGION_FROM_WINDOW</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_CURSOR_NOTIFY.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_CURSOR_NOTIFY'>XCB_XFIXES_CURSOR_NOTIFY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_CURSOR_NOTIFY_DISPLAY_CURSOR.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_CURSOR_NOTIFY_DISPLAY_CURSOR'>XCB_XFIXES_CURSOR_NOTIFY_DISPLAY_CURSOR</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_CURSOR_NOTIFY_MASK_DISPLAY_CURSOR.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_CURSOR_NOTIFY_MASK_DISPLAY_CURSOR'>XCB_XFIXES_CURSOR_NOTIFY_MASK_DISPLAY_CURSOR</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_DELETE_POINTER_BARRIER.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_DELETE_POINTER_BARRIER'>XCB_XFIXES_DELETE_POINTER_BARRIER</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_DESTROY_REGION.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_DESTROY_REGION'>XCB_XFIXES_DESTROY_REGION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_EXPAND_REGION.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_EXPAND_REGION'>XCB_XFIXES_EXPAND_REGION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_FETCH_REGION.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_FETCH_REGION'>XCB_XFIXES_FETCH_REGION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_GET_CURSOR_IMAGE.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_GET_CURSOR_IMAGE'>XCB_XFIXES_GET_CURSOR_IMAGE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_GET_CURSOR_IMAGE_AND_NAME.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_GET_CURSOR_IMAGE_AND_NAME'>XCB_XFIXES_GET_CURSOR_IMAGE_AND_NAME</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_GET_CURSOR_NAME.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_GET_CURSOR_NAME'>XCB_XFIXES_GET_CURSOR_NAME</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_HIDE_CURSOR.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_HIDE_CURSOR'>XCB_XFIXES_HIDE_CURSOR</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_INTERSECT_REGION.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_INTERSECT_REGION'>XCB_XFIXES_INTERSECT_REGION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_INVERT_REGION.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_INVERT_REGION'>XCB_XFIXES_INVERT_REGION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_MAJOR_VERSION.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_MAJOR_VERSION'>XCB_XFIXES_MAJOR_VERSION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_MINOR_VERSION.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_MINOR_VERSION'>XCB_XFIXES_MINOR_VERSION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_QUERY_VERSION.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_QUERY_VERSION'>XCB_XFIXES_QUERY_VERSION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_REGION_EXTENTS.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_REGION_EXTENTS'>XCB_XFIXES_REGION_EXTENTS</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_REGION_NONE.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_REGION_NONE'>XCB_XFIXES_REGION_NONE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_SAVE_SET_MAPPING_MAP.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_SAVE_SET_MAPPING_MAP'>XCB_XFIXES_SAVE_SET_MAPPING_MAP</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_SAVE_SET_MAPPING_UNMAP.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_SAVE_SET_MAPPING_UNMAP'>XCB_XFIXES_SAVE_SET_MAPPING_UNMAP</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_SAVE_SET_MODE_DELETE.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_SAVE_SET_MODE_DELETE'>XCB_XFIXES_SAVE_SET_MODE_DELETE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_SAVE_SET_MODE_INSERT.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_SAVE_SET_MODE_INSERT'>XCB_XFIXES_SAVE_SET_MODE_INSERT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_SAVE_SET_TARGET_NEAREST.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_SAVE_SET_TARGET_NEAREST'>XCB_XFIXES_SAVE_SET_TARGET_NEAREST</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_SAVE_SET_TARGET_ROOT.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_SAVE_SET_TARGET_ROOT'>XCB_XFIXES_SAVE_SET_TARGET_ROOT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_SELECTION_EVENT_MASK_SELECTION_CLIENT_CLOSE.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_SELECTION_EVENT_MASK_SELECTION_CLIENT_CLOSE'>XCB_XFIXES_SELECTION_EVENT_MASK_SELECTION_CLIENT_CLOSE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_SELECTION_EVENT_MASK_SELECTION_WINDOW_DESTROY.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_SELECTION_EVENT_MASK_SELECTION_WINDOW_DESTROY'>XCB_XFIXES_SELECTION_EVENT_MASK_SELECTION_WINDOW_DESTROY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_SELECTION_EVENT_MASK_SET_SELECTION_OWNER.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_SELECTION_EVENT_MASK_SET_SELECTION_OWNER'>XCB_XFIXES_SELECTION_EVENT_MASK_SET_SELECTION_OWNER</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_SELECTION_EVENT_SELECTION_CLIENT_CLOSE.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_SELECTION_EVENT_SELECTION_CLIENT_CLOSE'>XCB_XFIXES_SELECTION_EVENT_SELECTION_CLIENT_CLOSE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_SELECTION_EVENT_SELECTION_WINDOW_DESTROY.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_SELECTION_EVENT_SELECTION_WINDOW_DESTROY'>XCB_XFIXES_SELECTION_EVENT_SELECTION_WINDOW_DESTROY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_SELECTION_EVENT_SET_SELECTION_OWNER.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_SELECTION_EVENT_SET_SELECTION_OWNER'>XCB_XFIXES_SELECTION_EVENT_SET_SELECTION_OWNER</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_SELECTION_NOTIFY.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_SELECTION_NOTIFY'>XCB_XFIXES_SELECTION_NOTIFY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_SELECT_CURSOR_INPUT.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_SELECT_CURSOR_INPUT'>XCB_XFIXES_SELECT_CURSOR_INPUT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_SELECT_SELECTION_INPUT.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_SELECT_SELECTION_INPUT'>XCB_XFIXES_SELECT_SELECTION_INPUT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_SET_CURSOR_NAME.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_SET_CURSOR_NAME'>XCB_XFIXES_SET_CURSOR_NAME</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_SET_GC_CLIP_REGION.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_SET_GC_CLIP_REGION'>XCB_XFIXES_SET_GC_CLIP_REGION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_SET_PICTURE_CLIP_REGION.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_SET_PICTURE_CLIP_REGION'>XCB_XFIXES_SET_PICTURE_CLIP_REGION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_SET_REGION.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_SET_REGION'>XCB_XFIXES_SET_REGION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_SET_WINDOW_SHAPE_REGION.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_SET_WINDOW_SHAPE_REGION'>XCB_XFIXES_SET_WINDOW_SHAPE_REGION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_SHOW_CURSOR.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_SHOW_CURSOR'>XCB_XFIXES_SHOW_CURSOR</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_SUBTRACT_REGION.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_SUBTRACT_REGION'>XCB_XFIXES_SUBTRACT_REGION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_TRANSLATE_REGION.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_TRANSLATE_REGION'>XCB_XFIXES_TRANSLATE_REGION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_XFIXES_UNION_REGION.html'
+                               title='xcb::ffi::xfixes::XCB_XFIXES_UNION_REGION'>XCB_XFIXES_UNION_REGION</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table><h2 id='statics' class='section-header'><a href="#statics">Statics</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='static' href='static.xcb_xfixes_id.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_id'>xcb_xfixes_id</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_barrier_end.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_barrier_end'>xcb_xfixes_barrier_end</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_barrier_next.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_barrier_next'>xcb_xfixes_barrier_next</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_change_cursor.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_change_cursor'>xcb_xfixes_change_cursor</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_change_cursor_by_name.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_change_cursor_by_name'>xcb_xfixes_change_cursor_by_name</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_change_cursor_by_name_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_change_cursor_by_name_checked'>xcb_xfixes_change_cursor_by_name_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_change_cursor_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_change_cursor_checked'>xcb_xfixes_change_cursor_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_change_save_set.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_change_save_set'>xcb_xfixes_change_save_set</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_change_save_set_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_change_save_set_checked'>xcb_xfixes_change_save_set_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_copy_region.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_copy_region'>xcb_xfixes_copy_region</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_copy_region_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_copy_region_checked'>xcb_xfixes_copy_region_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_create_pointer_barrier.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_create_pointer_barrier'>xcb_xfixes_create_pointer_barrier</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_create_pointer_barrier_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_create_pointer_barrier_checked'>xcb_xfixes_create_pointer_barrier_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_create_region.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_create_region'>xcb_xfixes_create_region</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_create_region_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_create_region_checked'>xcb_xfixes_create_region_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_create_region_from_bitmap.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_create_region_from_bitmap'>xcb_xfixes_create_region_from_bitmap</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_create_region_from_bitmap_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_create_region_from_bitmap_checked'>xcb_xfixes_create_region_from_bitmap_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_create_region_from_gc.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_create_region_from_gc'>xcb_xfixes_create_region_from_gc</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_create_region_from_gc_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_create_region_from_gc_checked'>xcb_xfixes_create_region_from_gc_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_create_region_from_picture.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_create_region_from_picture'>xcb_xfixes_create_region_from_picture</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_create_region_from_picture_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_create_region_from_picture_checked'>xcb_xfixes_create_region_from_picture_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_create_region_from_window.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_create_region_from_window'>xcb_xfixes_create_region_from_window</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_create_region_from_window_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_create_region_from_window_checked'>xcb_xfixes_create_region_from_window_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_delete_pointer_barrier.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_delete_pointer_barrier'>xcb_xfixes_delete_pointer_barrier</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_delete_pointer_barrier_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_delete_pointer_barrier_checked'>xcb_xfixes_delete_pointer_barrier_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_destroy_region.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_destroy_region'>xcb_xfixes_destroy_region</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_destroy_region_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_destroy_region_checked'>xcb_xfixes_destroy_region_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_expand_region.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_expand_region'>xcb_xfixes_expand_region</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_expand_region_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_expand_region_checked'>xcb_xfixes_expand_region_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_fetch_region.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_fetch_region'>xcb_xfixes_fetch_region</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_fetch_region_rectangles.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_fetch_region_rectangles'>xcb_xfixes_fetch_region_rectangles</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_fetch_region_rectangles_iterator.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_fetch_region_rectangles_iterator'>xcb_xfixes_fetch_region_rectangles_iterator</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_fetch_region_rectangles_length.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_fetch_region_rectangles_length'>xcb_xfixes_fetch_region_rectangles_length</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_fetch_region_reply.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_fetch_region_reply'>xcb_xfixes_fetch_region_reply</a></td>
+                        <td class='docblock short'>
+                             <p>the returned value must be freed by the caller using libc::free().</p>
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_fetch_region_unchecked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_fetch_region_unchecked'>xcb_xfixes_fetch_region_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_get_cursor_image.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_image'>xcb_xfixes_get_cursor_image</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_get_cursor_image_and_name.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_image_and_name'>xcb_xfixes_get_cursor_image_and_name</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_get_cursor_image_and_name_cursor_image.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_image_and_name_cursor_image'>xcb_xfixes_get_cursor_image_and_name_cursor_image</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_get_cursor_image_and_name_cursor_image_end.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_image_and_name_cursor_image_end'>xcb_xfixes_get_cursor_image_and_name_cursor_image_end</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_get_cursor_image_and_name_cursor_image_length.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_image_and_name_cursor_image_length'>xcb_xfixes_get_cursor_image_and_name_cursor_image_length</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_get_cursor_image_and_name_name.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_image_and_name_name'>xcb_xfixes_get_cursor_image_and_name_name</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_get_cursor_image_and_name_name_end.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_image_and_name_name_end'>xcb_xfixes_get_cursor_image_and_name_name_end</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_get_cursor_image_and_name_name_length.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_image_and_name_name_length'>xcb_xfixes_get_cursor_image_and_name_name_length</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_get_cursor_image_and_name_reply.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_image_and_name_reply'>xcb_xfixes_get_cursor_image_and_name_reply</a></td>
+                        <td class='docblock short'>
+                             <p>the returned value must be freed by the caller using libc::free().</p>
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_get_cursor_image_and_name_unchecked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_image_and_name_unchecked'>xcb_xfixes_get_cursor_image_and_name_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_get_cursor_image_cursor_image.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_image_cursor_image'>xcb_xfixes_get_cursor_image_cursor_image</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_get_cursor_image_cursor_image_end.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_image_cursor_image_end'>xcb_xfixes_get_cursor_image_cursor_image_end</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_get_cursor_image_cursor_image_length.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_image_cursor_image_length'>xcb_xfixes_get_cursor_image_cursor_image_length</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_get_cursor_image_reply.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_image_reply'>xcb_xfixes_get_cursor_image_reply</a></td>
+                        <td class='docblock short'>
+                             <p>the returned value must be freed by the caller using libc::free().</p>
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_get_cursor_image_unchecked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_image_unchecked'>xcb_xfixes_get_cursor_image_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_get_cursor_name.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_name'>xcb_xfixes_get_cursor_name</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_get_cursor_name_name.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_name_name'>xcb_xfixes_get_cursor_name_name</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_get_cursor_name_name_end.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_name_name_end'>xcb_xfixes_get_cursor_name_name_end</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_get_cursor_name_name_length.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_name_name_length'>xcb_xfixes_get_cursor_name_name_length</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_get_cursor_name_reply.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_name_reply'>xcb_xfixes_get_cursor_name_reply</a></td>
+                        <td class='docblock short'>
+                             <p>the returned value must be freed by the caller using libc::free().</p>
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_get_cursor_name_unchecked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_get_cursor_name_unchecked'>xcb_xfixes_get_cursor_name_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_hide_cursor.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_hide_cursor'>xcb_xfixes_hide_cursor</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_hide_cursor_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_hide_cursor_checked'>xcb_xfixes_hide_cursor_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_intersect_region.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_intersect_region'>xcb_xfixes_intersect_region</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_intersect_region_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_intersect_region_checked'>xcb_xfixes_intersect_region_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_invert_region.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_invert_region'>xcb_xfixes_invert_region</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_invert_region_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_invert_region_checked'>xcb_xfixes_invert_region_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_query_version.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_query_version'>xcb_xfixes_query_version</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_query_version_reply.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_query_version_reply'>xcb_xfixes_query_version_reply</a></td>
+                        <td class='docblock short'>
+                             <p>the returned value must be freed by the caller using libc::free().</p>
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_query_version_unchecked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_query_version_unchecked'>xcb_xfixes_query_version_unchecked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_region_end.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_region_end'>xcb_xfixes_region_end</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_region_extents.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_region_extents'>xcb_xfixes_region_extents</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_region_extents_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_region_extents_checked'>xcb_xfixes_region_extents_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_region_next.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_region_next'>xcb_xfixes_region_next</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_select_cursor_input.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_select_cursor_input'>xcb_xfixes_select_cursor_input</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_select_cursor_input_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_select_cursor_input_checked'>xcb_xfixes_select_cursor_input_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_select_selection_input.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_select_selection_input'>xcb_xfixes_select_selection_input</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_select_selection_input_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_select_selection_input_checked'>xcb_xfixes_select_selection_input_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_set_cursor_name.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_set_cursor_name'>xcb_xfixes_set_cursor_name</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_set_cursor_name_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_set_cursor_name_checked'>xcb_xfixes_set_cursor_name_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_set_gc_clip_region.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_set_gc_clip_region'>xcb_xfixes_set_gc_clip_region</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_set_gc_clip_region_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_set_gc_clip_region_checked'>xcb_xfixes_set_gc_clip_region_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_set_picture_clip_region.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_set_picture_clip_region'>xcb_xfixes_set_picture_clip_region</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_set_picture_clip_region_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_set_picture_clip_region_checked'>xcb_xfixes_set_picture_clip_region_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_set_region.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_set_region'>xcb_xfixes_set_region</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_set_region_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_set_region_checked'>xcb_xfixes_set_region_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_set_window_shape_region.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_set_window_shape_region'>xcb_xfixes_set_window_shape_region</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_set_window_shape_region_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_set_window_shape_region_checked'>xcb_xfixes_set_window_shape_region_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_show_cursor.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_show_cursor'>xcb_xfixes_show_cursor</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_show_cursor_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_show_cursor_checked'>xcb_xfixes_show_cursor_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_subtract_region.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_subtract_region'>xcb_xfixes_subtract_region</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_subtract_region_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_subtract_region_checked'>xcb_xfixes_subtract_region_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_translate_region.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_translate_region'>xcb_xfixes_translate_region</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_translate_region_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_translate_region_checked'>xcb_xfixes_translate_region_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_union_region.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_union_region'>xcb_xfixes_union_region</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.xcb_xfixes_union_region_checked.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_union_region_checked'>xcb_xfixes_union_region_checked</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.xcb_xfixes_barrier_directions_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_barrier_directions_t'>xcb_xfixes_barrier_directions_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.xcb_xfixes_barrier_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_barrier_t'>xcb_xfixes_barrier_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.xcb_xfixes_cursor_notify_mask_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_cursor_notify_mask_t'>xcb_xfixes_cursor_notify_mask_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.xcb_xfixes_cursor_notify_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_cursor_notify_t'>xcb_xfixes_cursor_notify_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.xcb_xfixes_region_enum_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_region_enum_t'>xcb_xfixes_region_enum_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.xcb_xfixes_region_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_region_t'>xcb_xfixes_region_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.xcb_xfixes_save_set_mapping_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_save_set_mapping_t'>xcb_xfixes_save_set_mapping_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.xcb_xfixes_save_set_mode_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_save_set_mode_t'>xcb_xfixes_save_set_mode_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.xcb_xfixes_save_set_target_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_save_set_target_t'>xcb_xfixes_save_set_target_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.xcb_xfixes_selection_event_mask_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_selection_event_mask_t'>xcb_xfixes_selection_event_mask_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.xcb_xfixes_selection_event_t.html'
+                               title='xcb::ffi::xfixes::xcb_xfixes_selection_event_t'>xcb_xfixes_selection_event_t</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "xcb";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script defer src="../../../search-index.js"></script>
+</body>
+</html>

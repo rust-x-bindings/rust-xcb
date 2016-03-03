@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `base` mod in crate `xcb`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, base">
+
+    <title>xcb::base - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>xcb</a></p><script>window.sidebarCurrent = {name: 'base', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>xcb</a>::<wbr><a class='mod' href=''>base</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-5' class='srclink' href='../../src/xcb/base.rs.html#33-560' title='goto source code'>[src]</a></span></h1>
+<h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Connection.html'
+                               title='xcb::base::Connection'>Connection</a></td>
+                        <td class='docblock short'>
+                             <p>wraps an <code>xcb_connection_t</code> object
+will call <code>xcb_disconnect</code> when the <code>Connection</code> goes out of scope</p>
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Cookie.html'
+                               title='xcb::base::Cookie'>Cookie</a></td>
+                        <td class='docblock short'>
+                             <p>wraps a cookie as returned by a request function
+instantiation of <code>Cookie</code> that are not <code>VoidCookie</code>
+should provide a <code>get_reply</code> method to return a <code>Reply</code></p>
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Error.html'
+                               title='xcb::base::Error'>Error</a></td>
+                        <td class='docblock short'>
+                             <p><code>Error</code> wraps a pointer to <code>xcb_*_error_t</code>
+this pointer will be freed when the <code>Error</code> goes out of scope</p>
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Event.html'
+                               title='xcb::base::Event'>Event</a></td>
+                        <td class='docblock short'>
+                             <p><code>Event</code> wraps a pointer to <code>xcb_*_event_t</code>
+this pointer will be freed when the <code>Event</code> goes out of scope</p>
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.QueryExtensionData.html'
+                               title='xcb::base::QueryExtensionData'>QueryExtensionData</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Reply.html'
+                               title='xcb::base::Reply'>Reply</a></td>
+                        <td class='docblock short'>
+                             <p>Wraps a pointer to a <code>xcb_*_reply_t</code>
+the pointer is freed when the <code>Reply</code> goes out of scope</p>
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.StructPtr.html'
+                               title='xcb::base::StructPtr'>StructPtr</a></td>
+                        <td class='docblock short'>
+                             <p><code>StructPtr</code> is a wrapper for pointer to struct owned by XCB
+that must not be freed
+it is instead bound to the lifetime of its parent that it borrows immutably</p>
+                        </td>
+                    </tr>
+                </table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.COPY_FROM_PARENT.html'
+                               title='xcb::base::COPY_FROM_PARENT'>COPY_FROM_PARENT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CURRENT_TIME.html'
+                               title='xcb::base::CURRENT_TIME'>CURRENT_TIME</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.NONE.html'
+                               title='xcb::base::NONE'>NONE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.NO_SYMBOL.html'
+                               title='xcb::base::NO_SYMBOL'>NO_SYMBOL</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='trait' href='trait.Zero.html'
+                               title='xcb::base::Zero'>Zero</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.cast_error.html'
+                               title='xcb::base::cast_error'>cast_error</a></td>
+                        <td class='docblock short'>
+                             <p>Casts the generic error to the right error. Assumes that the given
+errir is really the correct type.</p>
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.cast_event.html'
+                               title='xcb::base::cast_event'>cast_event</a></td>
+                        <td class='docblock short'>
+                             <p>Casts the generic event to the right event. Assumes that the given
+event is really the correct type.</p>
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.pack_bitfield.html'
+                               title='xcb::base::pack_bitfield'>pack_bitfield</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.AuthInfo.html'
+                               title='xcb::base::AuthInfo'>AuthInfo</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.Extension.html'
+                               title='xcb::base::Extension'>Extension</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GenericError.html'
+                               title='xcb::base::GenericError'>GenericError</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GenericEvent.html'
+                               title='xcb::base::GenericEvent'>GenericEvent</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.GenericReply.html'
+                               title='xcb::base::GenericReply'>GenericReply</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.VoidCookie.html'
+                               title='xcb::base::VoidCookie'>VoidCookie</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "xcb";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>
