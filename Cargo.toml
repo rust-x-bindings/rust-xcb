@@ -8,6 +8,7 @@ authors = [
 ]
 description = "Rust bindings and wrappers for XCB"
 repository = "https://github.com/rtbo/rust-xcb"
+documentation = "http://rtbo.github.io/rust-xcb/xcb/"
 readme = "README.md"
 keywords = ["xcb", "window", "xlib", "x11", "opengl"]
 license = "MIT"
