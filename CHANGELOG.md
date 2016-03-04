@@ -1,3 +1,11 @@
+ * 0.6.2
+ rtbo - 04/03/2016
+    - fix: correct names for DRI2 and 3 FFI constants
+
+ * 0.6.1
+ rtbo - 02/03/2016
+    - fix: correct names for 'xtest' extension
+
  * 0.6.0
  rtbo - 22/02/2016
     - xlib_xcb: Connection owns the xlib::Display and calls XCloseDisplay
