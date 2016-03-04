@@ -370,7 +370,7 @@
 <span id="327">327</span>
 <span id="328">328</span>
 </pre><pre class='rust '>
-<span class='comment'>// edited from dri3.xml by rs_client.py on Thu Mar  3 00:50:43 2016</span>
+<span class='comment'>// edited from dri3.xml by rs_client.py on Fri Mar  4 08:12:10 2016</span>
 <span class='comment'>// do not edit!</span>
 
 
@@ -386,7 +386,7 @@
 <span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_DRI3_MAJOR_VERSION</span>: <span class='ident'>u32</span> <span class='op'>=</span> <span class='number'>1</span>;
 <span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_DRI3_MINOR_VERSION</span>: <span class='ident'>u32</span> <span class='op'>=</span> <span class='number'>0</span>;
 
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_DRI_3_QUERY_VERSION</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>0</span>;
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_DRI3_QUERY_VERSION</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>0</span>;
 
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>xcb_dri3_query_version_request_t</span> {
@@ -423,7 +423,7 @@
     <span class='kw'>fn</span> <span class='ident'>clone</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xcb_dri3_query_version_reply_t</span> { <span class='op'>*</span><span class='self'>self</span> }
 }
 
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_DRI_3_OPEN</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>1</span>;
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_DRI3_OPEN</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>1</span>;
 
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>xcb_dri3_open_request_t</span> {
@@ -459,7 +459,7 @@
     <span class='kw'>fn</span> <span class='ident'>clone</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xcb_dri3_open_reply_t</span> { <span class='op'>*</span><span class='self'>self</span> }
 }
 
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_DRI_3_PIXMAP_FROM_BUFFER</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>2</span>;
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_DRI3_PIXMAP_FROM_BUFFER</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>2</span>;
 
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>xcb_dri3_pixmap_from_buffer_request_t</span> {
@@ -481,7 +481,7 @@
     <span class='kw'>fn</span> <span class='ident'>clone</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xcb_dri3_pixmap_from_buffer_request_t</span> { <span class='op'>*</span><span class='self'>self</span> }
 }
 
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_DRI_3_BUFFER_FROM_PIXMAP</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>3</span>;
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_DRI3_BUFFER_FROM_PIXMAP</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>3</span>;
 
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>xcb_dri3_buffer_from_pixmap_request_t</span> {
@@ -522,7 +522,7 @@
     <span class='kw'>fn</span> <span class='ident'>clone</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xcb_dri3_buffer_from_pixmap_reply_t</span> { <span class='op'>*</span><span class='self'>self</span> }
 }
 
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_DRI_3_FENCE_FROM_FD</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>4</span>;
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_DRI3_FENCE_FROM_FD</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>4</span>;
 
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>xcb_dri3_fence_from_fd_request_t</span> {
@@ -540,7 +540,7 @@
     <span class='kw'>fn</span> <span class='ident'>clone</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xcb_dri3_fence_from_fd_request_t</span> { <span class='op'>*</span><span class='self'>self</span> }
 }
 
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_DRI_3_FD_FROM_FENCE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>5</span>;
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_DRI3_FD_FROM_FENCE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>5</span>;
 
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>xcb_dri3_fd_from_fence_request_t</span> {

@@ -665,7 +665,7 @@
 <span id="622">622</span>
 <span id="623">623</span>
 </pre><pre class='rust '>
-<span class='comment'>// edited from xf86dri.xml by rs_client.py on Thu Mar  3 00:50:42 2016</span>
+<span class='comment'>// edited from xf86dri.xml by rs_client.py on Fri Mar  4 08:12:09 2016</span>
 <span class='comment'>// do not edit!</span>
 
 
@@ -700,7 +700,7 @@
     <span class='kw'>pub</span> <span class='ident'>index</span>: <span class='ident'>c_int</span>,
 }
 
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_XF_8_6DRI_QUERY_VERSION</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>0</span>;
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_XF86DRI_QUERY_VERSION</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>0</span>;
 
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>xcb_xf86dri_query_version_request_t</span> {
@@ -736,7 +736,7 @@
     <span class='kw'>fn</span> <span class='ident'>clone</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xcb_xf86dri_query_version_reply_t</span> { <span class='op'>*</span><span class='self'>self</span> }
 }
 
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_XF_8_6DRI_QUERY_DIRECT_RENDERING_CAPABLE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>1</span>;
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_XF86DRI_QUERY_DIRECT_RENDERING_CAPABLE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>1</span>;
 
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>xcb_xf86dri_query_direct_rendering_capable_request_t</span> {
@@ -771,7 +771,7 @@
     <span class='kw'>fn</span> <span class='ident'>clone</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xcb_xf86dri_query_direct_rendering_capable_reply_t</span> { <span class='op'>*</span><span class='self'>self</span> }
 }
 
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_XF_8_6DRI_OPEN_CONNECTION</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>2</span>;
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_XF86DRI_OPEN_CONNECTION</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>2</span>;
 
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>xcb_xf86dri_open_connection_request_t</span> {
@@ -804,7 +804,7 @@
     <span class='kw'>pub</span> <span class='ident'>pad1</span>:              [<span class='ident'>u8</span>; <span class='number'>12</span>],
 }
 
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_XF_8_6DRI_CLOSE_CONNECTION</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>3</span>;
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_XF86DRI_CLOSE_CONNECTION</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>3</span>;
 
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>xcb_xf86dri_close_connection_request_t</span> {
@@ -819,7 +819,7 @@
     <span class='kw'>fn</span> <span class='ident'>clone</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xcb_xf86dri_close_connection_request_t</span> { <span class='op'>*</span><span class='self'>self</span> }
 }
 
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_XF_8_6DRI_GET_CLIENT_DRIVER_NAME</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>4</span>;
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_XF86DRI_GET_CLIENT_DRIVER_NAME</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>4</span>;
 
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>xcb_xf86dri_get_client_driver_name_request_t</span> {
@@ -853,7 +853,7 @@
     <span class='kw'>pub</span> <span class='ident'>pad1</span>:                        [<span class='ident'>u8</span>; <span class='number'>8</span>],
 }
 
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_XF_8_6DRI_CREATE_CONTEXT</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>5</span>;
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_XF86DRI_CREATE_CONTEXT</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>5</span>;
 
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>xcb_xf86dri_create_context_request_t</span> {
@@ -890,7 +890,7 @@
     <span class='kw'>fn</span> <span class='ident'>clone</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xcb_xf86dri_create_context_reply_t</span> { <span class='op'>*</span><span class='self'>self</span> }
 }
 
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_XF_8_6DRI_DESTROY_CONTEXT</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>6</span>;
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_XF86DRI_DESTROY_CONTEXT</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>6</span>;
 
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>xcb_xf86dri_destroy_context_request_t</span> {
@@ -906,7 +906,7 @@
     <span class='kw'>fn</span> <span class='ident'>clone</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xcb_xf86dri_destroy_context_request_t</span> { <span class='op'>*</span><span class='self'>self</span> }
 }
 
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_XF_8_6DRI_CREATE_DRAWABLE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>7</span>;
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_XF86DRI_CREATE_DRAWABLE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>7</span>;
 
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>xcb_xf86dri_create_drawable_request_t</span> {
@@ -942,7 +942,7 @@
     <span class='kw'>fn</span> <span class='ident'>clone</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xcb_xf86dri_create_drawable_reply_t</span> { <span class='op'>*</span><span class='self'>self</span> }
 }
 
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_XF_8_6DRI_DESTROY_DRAWABLE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>8</span>;
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_XF86DRI_DESTROY_DRAWABLE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>8</span>;
 
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>xcb_xf86dri_destroy_drawable_request_t</span> {
@@ -958,7 +958,7 @@
     <span class='kw'>fn</span> <span class='ident'>clone</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xcb_xf86dri_destroy_drawable_request_t</span> { <span class='op'>*</span><span class='self'>self</span> }
 }
 
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_XF_8_6DRI_GET_DRAWABLE_INFO</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>9</span>;
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_XF86DRI_GET_DRAWABLE_INFO</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>9</span>;
 
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>xcb_xf86dri_get_drawable_info_request_t</span> {
@@ -998,7 +998,7 @@
     <span class='kw'>pub</span> <span class='ident'>num_back_clip_rects</span>:  <span class='ident'>u32</span>,
 }
 
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_XF_8_6DRI_GET_DEVICE_INFO</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>10</span>;
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_XF86DRI_GET_DEVICE_INFO</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>10</span>;
 
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>xcb_xf86dri_get_device_info_request_t</span> {
@@ -1033,7 +1033,7 @@
     <span class='kw'>pub</span> <span class='ident'>device_private_size</span>:       <span class='ident'>u32</span>,
 }
 
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_XF_8_6DRI_AUTH_CONNECTION</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>11</span>;
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>XCB_XF86DRI_AUTH_CONNECTION</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>11</span>;
 
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>xcb_xf86dri_auth_connection_request_t</span> {
