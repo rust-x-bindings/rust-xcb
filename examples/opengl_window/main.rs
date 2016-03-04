@@ -286,6 +286,11 @@ fn main() { unsafe {
         }
     }
 
+    // only to make sure that rs_client generate correct names for DRI2
+    // (used to be "*_DRI_2_*")
+    // should be in a "compile tests" section instead of example
+    let _ = xcb::ffi::dri2::XCB_DRI2_ATTACHMENT_BUFFER_ACCUM;
+
     glXDestroyContext(conn.get_raw_dpy(), ctx);
 
     xcb::unmap_window(&conn, win);

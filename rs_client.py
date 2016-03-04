@@ -427,7 +427,7 @@ def _ffi_name(nametup):
 
 
 def _ffi_const_name(nametup):
-    return _upper_name(_ext_nametup(nametup))
+    return _ffi_name(_ext_nametup(nametup)).upper()
 
 
 def _rs_extract_module(nametup):
