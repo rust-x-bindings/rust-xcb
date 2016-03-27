@@ -224,6 +224,7 @@ def rs_open(module):
         _f('pub static mut %s: xcb_extension_t;', ext_id_name)
 
 
+    _r('#![allow(unused_unsafe)]')
     _r('')
     _r('use base;')
     if _ns.is_ext:
@@ -1137,7 +1138,6 @@ def _rs_union_accessor(typeobj, field):
 
 def _rs_accessor(typeobj, field, disable_pod_acc=False):
     if field.type.is_simple or field.type.rs_is_pod:
-        _r('#[allow(unused_unsafe)]')
         _r('pub fn %s(&self) -> %s {', field.rs_field_name,
                 field.rs_field_type)
 
