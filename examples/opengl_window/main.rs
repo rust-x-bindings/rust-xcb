@@ -95,7 +95,7 @@ fn get_glxfbconfig(dpy: *mut xlib::Display, screen_num: i32,
 
 
 fn main() { unsafe {
-    let (conn, screen_num) = xcb::Connection::connect_with_xlib_display();
+    let (conn, screen_num) = xcb::Connection::connect_with_xlib_display().unwrap();
     conn.set_event_queue_owner(xcb::EventQueueOwner::Xcb);
 
     if glx_dec_version(conn.get_raw_dpy()) < 13 {

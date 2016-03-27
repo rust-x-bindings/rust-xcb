@@ -7,7 +7,7 @@ fn main() {
     let setup;
     let screen_num;
     {
-        let (conn, sn) = xcb::Connection::connect();
+        let (conn, sn) = xcb::Connection::connect(None).unwrap();
         setup = conn.get_setup();
         screen_num = sn;
     }

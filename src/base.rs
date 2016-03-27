@@ -210,6 +210,28 @@ pub enum EventQueueOwner {
 }
 
 
+#[derive(Debug)]
+pub enum ConnError {
+    /// xcb connection errors because of socket, pipe and other stream errors.
+    Connection,
+    /// xcb connection shutdown because of extension not supported
+    ClosedExtNotSupported,
+    /// malloc(), calloc() and realloc() error upon failure, for eg ENOMEM
+    ClosedMemInsufficient,
+    /// Connection closed, exceeding request length that server accepts.
+    ClosedReqLenExceed,
+    /// Connection closed, error during parsing display string.
+    ClosedParseErr,
+    /// Connection closed because the server does not have a screen
+    /// matching the display.
+    ClosedInvalidScreen,
+    /// Connection closed because some FD passing operation failed
+    ClosedFdPassingFailed,
+}
+
+pub type ConnResult<T> = Result<T, ConnError>;
+
+
 /// wraps an `xcb_connection_t` object
 /// will call `xcb_disconnect` when the `Connection` goes out of scope
 pub struct Connection {
@@ -275,9 +297,27 @@ impl Connection {
         }
     }
 
-    pub fn has_error(&self) -> bool {
+    pub fn has_error(&self) -> ConnResult<()> {
         unsafe {
-            xcb_connection_has_error(self.c) > 0
+            match xcb_connection_has_error(self.c) {
+                0 => { Ok(()) },
+                XCB_CONN_ERROR => { Err(ConnError::Connection) },
+                XCB_CONN_CLOSED_EXT_NOTSUPPORTED =>
+                        { Err(ConnError::ClosedExtNotSupported) },
+                XCB_CONN_CLOSED_MEM_INSUFFICIENT =>
+                        { Err(ConnError::ClosedMemInsufficient) },
+                XCB_CONN_CLOSED_REQ_LEN_EXCEED =>
+                        { Err(ConnError::ClosedReqLenExceed) },
+                XCB_CONN_CLOSED_PARSE_ERR =>
+                        { Err(ConnError::ClosedParseErr) },
+                XCB_CONN_CLOSED_INVALID_SCREEN =>
+                        { Err(ConnError::ClosedInvalidScreen) },
+                XCB_CONN_CLOSED_FDPASSING_FAILED =>
+                        { Err(ConnError::ClosedFdPassingFailed) },
+                _ => {
+                    panic!("unexpected error code");
+                },
+            }
         }
     }
 
@@ -327,12 +367,9 @@ impl Connection {
 
     #[cfg(feature="xlib_xcb")]
     pub fn set_event_queue_owner(&self, owner: EventQueueOwner) {
-        if self.dpy.is_null() {
-            panic!("set_event_queue_owner needs the xlib::Display");
-        }
+        debug_assert!(!self.dpy.is_null());
         unsafe {
-            let owner = match owner {
-                EventQueueOwner::Xcb => XCBOwnsEventQueue,
+            let owner = match owner { EventQueueOwner::Xcb => XCBOwnsEventQueue,
                 EventQueueOwner::Xlib => XlibOwnsEventQueue
             };
             XSetEventQueueOwner(self.dpy, owner);
@@ -342,50 +379,49 @@ impl Connection {
 
 
     #[cfg(not(feature="xlib_xcb"))]
-    pub fn connect() -> (Connection, i32) {
-        let mut screen_num : c_int = 0;
+    pub fn connect(display: Option<&str>) -> ConnResult<(Connection, i32)> {
         unsafe {
-            let conn = xcb_connect(null(), &mut screen_num);
-            if conn.is_null() {
-                panic!("Couldn't connect")
-            } else {
-                xcb_prefetch_maximum_request_length(conn);
-                (
-                    Connection {
-                        c:conn,
-                    },
-                    screen_num as i32
-                )
-            }
+            let display = display.map(|s| CString::new(s).unwrap());
+            let mut screen_num : c_int = 0;
+            let cconn = xcb_connect(
+                display.map_or(null(), |s| s.as_ptr()),
+                &mut screen_num
+            );
+
+            // xcb doc says that a valid object is always returned
+            // so we simply assert without handling this in the return
+            assert!(!cconn.is_null(), "had incorrect pointer");
+
+            let conn = Connection { c: cconn };
+
+            conn.has_error().map(|_| {
+                xcb_prefetch_maximum_request_length(cconn);
+                (conn, screen_num as i32)
+            })
         }
     }
 
     #[cfg(feature="xlib_xcb")]
-    pub fn connect_with_xlib_display() -> (Connection, i32) {
+    pub fn connect_with_xlib_display() -> ConnResult<(Connection, i32)> {
         unsafe {
             let dpy = xlib::XOpenDisplay(null());
-            let conn = XGetXCBConnection(dpy);
-            if conn.is_null() || dpy.is_null() {
-                panic!("Couldn't connect")
-            } else {
-                xcb_prefetch_maximum_request_length(conn);
-                (
-                    Connection {
-                        c:   conn,
-                        dpy: dpy,
-                    },
-                    xlib::XDefaultScreen(dpy) as i32
-                )
-            }
+            let cconn = XGetXCBConnection(dpy);
+            assert!(!dpy.is_null() && !cconn.is_null(),
+                "XLib could not connect to the X server");
+
+            let conn = Connection { c: cconn, dpy: dpy };
+
+            conn.has_error().map(|_| {
+                xcb_prefetch_maximum_request_length(cconn);
+                (conn, xlib::XDefaultScreen(dpy) as i32)
+            })
         }
     }
 
     #[cfg(feature="xlib_xcb")]
     pub fn new_from_xlib_display(dpy: *mut xlib::Display) -> Connection {
         unsafe {
-            if dpy.is_null() {
-                panic!("attempt connect with null display");
-            }
+            assert!(!dpy.is_null(), "attempt connect with null display");
             Connection {
                 c: XGetXCBConnection(dpy),
                 dpy: dpy
@@ -395,59 +431,34 @@ impl Connection {
 
 
 
-
     #[cfg(not(feature="xlib_xcb"))]
-    pub fn connect_to_display(display:&str) -> Option<(Connection, i32)> {
-        let mut screen_num : c_int = 0;
+    pub fn connect_with_auth_info(display: Option<&str>, auth_info: &AuthInfo)
+    -> ConnResult<(Connection, i32)> {
         unsafe {
-            let conn = {
-                let cdpy = CString::new(display).unwrap();
-                xcb_connect(cdpy.as_ptr(), &mut screen_num)
-            };
-            if conn.is_null() {
-                None
-            } else {
-                xcb_prefetch_maximum_request_length(conn);
-                Some((
-                    Connection {
-                        c:conn,
-                    },
-                    screen_num as i32
-                ))
-            }
-        }
-    }
+            let display = display.map(|s| CString::new(s).unwrap());
+            let mut screen_num : c_int = 0;
+            let cconn = xcb_connect_to_display_with_auth_info(
+                display.map_or(null(), |s| s.as_ptr()),
+                mem::transmute(auth_info),
+                &mut screen_num
+            );
 
-    #[cfg(not(feature="xlib_xcb"))]
-    pub fn connect_with_auth(display:&str, auth_info: &AuthInfo) -> Option<(Connection, i32)> {
-        let mut screen_num : c_int = 0;
-        unsafe {
-            let conn = {
-                let s = CString::new(display).unwrap();
-                xcb_connect_to_display_with_auth_info(
-                        s.as_ptr(),
-                        mem::transmute(auth_info),
-                        &mut screen_num)
-            };
-            if conn.is_null() {
-                None
-            } else {
-                xcb_prefetch_maximum_request_length(conn);
-                Some((
-                    Connection {
-                        c:conn,
-                    },
-                    screen_num as i32
-                ))
-            }
+            // xcb doc says that a valid object is always returned
+            // so we simply assert without handling this in the return
+            assert!(!cconn.is_null(), "had incorrect pointer");
+
+            let conn = Connection { c: cconn };
+
+            conn.has_error().map(|_| {
+                xcb_prefetch_maximum_request_length(cconn);
+                (conn, screen_num as i32)
+            })
         }
     }
 
     #[cfg(not(feature="xlib_xcb"))]
     pub unsafe fn from_raw_conn(conn: *mut xcb_connection_t) -> Connection {
-        if conn.is_null() {
-            panic!("Cannot construct from null pointer");
-        }
+        assert!(!conn.is_null());
 
         Connection {
             c:  conn,

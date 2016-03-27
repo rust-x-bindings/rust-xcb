@@ -11,7 +11,7 @@ use libc::{free, c_void};
 fn main() {
     unsafe {
         //Open connection to X server
-        let conn = xcb_connect(ptr::null_mut(), ptr::null_mut());
+        let conn = xcb_connect(ptr::null(), ptr::null_mut());
 
         //Get the first X screen
         let first_screen = xcb_setup_roots_iterator(xcb_get_setup(conn)).data;

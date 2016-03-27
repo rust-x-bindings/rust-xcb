@@ -12,8 +12,7 @@ fn main() {
     unsafe {
 
         let mut screen_num: c_int = 0;
-        let c = xcb_connect(null_mut() as *mut c_char,
-                &mut screen_num as *mut c_int);
+        let c = xcb_connect(null(), &mut screen_num);
         if c.is_null() { panic!(); }
 
         // generally useful to retrieve the first event from this

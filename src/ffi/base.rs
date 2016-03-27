@@ -40,9 +40,40 @@ pub enum xcb_extension_t {}
 
 pub enum xcb_special_event_t {}
 
+// Pre-defined constants
+
+/// Current protocol version
+pub const X_PROTOCOL: u32 = 11;
+/// Current minor version
+pub const X_PROTOCOL_REVISION: u32 = 0;
+/// X_TCP_PORT + display number = server port for TCP transport
+pub const X_TCP_PORT: u32 = 6000;
+
+/// xcb connection errors because of socket, pipe and other stream errors.
+pub const XCB_CONN_ERROR: c_int = 1;
+/// xcb connection shutdown because of extension not supported
+pub const XCB_CONN_CLOSED_EXT_NOTSUPPORTED: c_int = 2;
+/// malloc(), calloc() and realloc() error upon failure, for eg ENOMEM
+pub const XCB_CONN_CLOSED_MEM_INSUFFICIENT: c_int = 3;
+/// Connection closed, exceeding request length that server accepts.
+pub const XCB_CONN_CLOSED_REQ_LEN_EXCEED: c_int = 4;
+/// Connection closed, error during parsing display string.
+pub const XCB_CONN_CLOSED_PARSE_ERR: c_int = 5;
+/// Connection closed because the server does not have a screen
+/// matching the display.
+pub const XCB_CONN_CLOSED_INVALID_SCREEN: c_int = 6;
+/// Connection closed because some FD passing operation failed
+pub const XCB_CONN_CLOSED_FDPASSING_FAILED: c_int = 7;
+
+
+
+/// XCB_NONE is the universal null resource or null atom parameter value for many core X requests
 pub const XCB_NONE: u32 = 0;
+/// XCB_COPY_FROM_PARENT can be used for many xcb_create_window parameters
 pub const XCB_COPY_FROM_PARENT: u32 = 0;
+/// XCB_CURRENT_TIME can be used in most requests that take an xcb_timestamp_t
 pub const XCB_CURRENT_TIME: u32 = 0;
+/// XCB_NO_SYMBOL fills in unused entries in xcb_keysym_t tables
 pub const XCB_NO_SYMBOL: u32 = 0;
 
 #[repr(C)]

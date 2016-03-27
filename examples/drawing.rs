@@ -27,7 +27,7 @@ fn main() {
     ];
 
 
-    let (conn, screen_num) = xcb::Connection::connect();
+    let (conn, screen_num) = xcb::Connection::connect(None).unwrap();
     let setup = conn.get_setup();
     let screen = setup.roots().nth(screen_num as usize).unwrap();
 

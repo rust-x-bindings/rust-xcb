@@ -6,7 +6,7 @@ use xcb::xkb;
 
 fn main() {
 
-    let (conn, _) = xcb::Connection::connect();
+    let (conn, _) = xcb::Connection::connect(None).unwrap();
 
     conn.prefetch_extension_data(xkb::id());
 
