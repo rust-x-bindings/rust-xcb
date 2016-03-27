@@ -39,6 +39,7 @@ popd () {
 }
 
 test_success cargo build --example connect
+test_success cargo build --example connect_str
 test_success cargo build --example ffi_screen_info
 test_success cargo build --example screen_info
 test_success cargo build --example basic_window

@@ -191,17 +191,17 @@ extern {
 
     pub fn xcb_disconnect(c: *mut xcb_connection_t);
 
-    pub fn xcb_parse_display(name: *mut c_char,
+    pub fn xcb_parse_display(name: *const c_char,
                              host: *mut *mut c_char,
                              display: *mut c_int,
                              screen: *mut c_int)
             -> c_int;
 
-    pub fn xcb_connect(displayname: *mut c_char,
+    pub fn xcb_connect(displayname: *const c_char,
                        screenp: *mut c_int)
             -> *mut xcb_connection_t;
 
-    pub fn xcb_connect_to_display_with_auth_info(display: *mut c_char,
+    pub fn xcb_connect_to_display_with_auth_info(display: *const c_char,
                                                  auth: *mut xcb_auth_info_t,
                                                  screen: *mut c_int)
             -> *mut xcb_connection_t;

@@ -43,13 +43,14 @@ use libc::{self, c_int, c_char, c_void};
 use std::option::Option;
 
 use std::mem;
-use std::ptr::{null, null_mut};
+use std::ptr::null;
 use std::marker::PhantomData;
 // std::num::Zero is unstable in rustc 1.5 => remove the Zero defined
 // hereunder as soon as Zero gets stabilized (or replaced by something else)
 //use std::num::Zero;
 use std::cmp::Ordering;
 use std::ops::{BitAnd, BitOr};
+use std::ffi::CString;
 
 
 
@@ -344,7 +345,7 @@ impl Connection {
     pub fn connect() -> (Connection, i32) {
         let mut screen_num : c_int = 0;
         unsafe {
-            let conn = xcb_connect(null_mut(), &mut screen_num);
+            let conn = xcb_connect(null(), &mut screen_num);
             if conn.is_null() {
                 panic!("Couldn't connect")
             } else {
@@ -400,8 +401,8 @@ impl Connection {
         let mut screen_num : c_int = 0;
         unsafe {
             let conn = {
-                let s = display.as_ptr();
-                xcb_connect(s as *mut c_char, &mut screen_num)
+                let cdpy = CString::new(display).unwrap();
+                xcb_connect(cdpy.as_ptr(), &mut screen_num)
             };
             if conn.is_null() {
                 None
@@ -422,9 +423,9 @@ impl Connection {
         let mut screen_num : c_int = 0;
         unsafe {
             let conn = {
-                let s = display.as_ptr();
+                let s = CString::new(display).unwrap();
                 xcb_connect_to_display_with_auth_info(
-                        s as *mut c_char,
+                        s.as_ptr(),
                         mem::transmute(auth_info),
                         &mut screen_num)
             };
