@@ -1,3 +1,10 @@
+ * 0.7.0
+ rtbo - 28/03/2016
+    - fix connection with strings (#9)
+    - assign response_type in *Event::new (#10)
+    - Connection::connect returns Result (#11)
+    - Some documentation (#12)
+
  * 0.6.2
  rtbo - 04/03/2016
     - fix: correct names for DRI2 and 3 FFI constants
