@@ -37,6 +37,9 @@ extern crate libc;
 #[cfg(feature="xlib_xcb")]
 extern crate x11;
 
+#[macro_use]
+extern crate log;
+
 pub mod base;
 pub mod xproto;
 
