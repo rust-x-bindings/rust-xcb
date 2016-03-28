@@ -2159,9 +2159,6 @@ def rs_event(event, nametup):
                     _r('let raw = libc::malloc(32 as usize) as *mut %s;',
                             event.ffi_type)
                     if len(event.opcodes) > 1:
-                        print(event.opcodes)
-                        for opname in event.opcodes:
-                            print(opname)
                         # build list of possible opcodes
                         orlist = ' ||\n                    '.join(
                                 [('response_type == %s' % _rs_const_name(opname))
