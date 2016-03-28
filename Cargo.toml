@@ -69,7 +69,7 @@ xv = [ "shm" ]
 debug_all = [ "bigreq", "composite", "damage", "dpms", "dri2", "dri3",
         "glx", "randr", "record", "render", "res", "screensaver", "shape",
         "shm", "xc_misc", "xevie", "xf86dri", "xfixes", "xinerama", "xkb",
-        "xprint", "xselinux", "xtest", "xvmc", "xv" ]
+        "xprint", "xselinux", "xtest", "xvmc", "xv", "xlib_xcb" ]
 
 
 
