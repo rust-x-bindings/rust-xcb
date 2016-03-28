@@ -9,7 +9,7 @@ Rust-XCB is only intended as an interface to XCB, so provides nothing above and 
 
 ```toml
 [dependencies]
-xcb = "0.6.2"
+xcb = "0.7.0"
 ```
 
 __Documentation__:
