@@ -53,14 +53,29 @@ use std::ops::{BitAnd, BitOr};
 use std::ffi::CString;
 
 
+/// Current protocol version
+pub const X_PROTOCOL: u32 = 11;
+/// Current minor version
+pub const X_PROTOCOL_REVISION: u32 = 0;
+/// X_TCP_PORT + display number = server port for TCP transport
+pub const X_TCP_PORT: u32 = 6000;
 
+
+/// Opaque type used as key for `Connection::get_extension_data`
+pub type Extension = xcb_extension_t;
+
+
+/// `xcb::NONE` is the universal null resource or null atom parameter value
+/// for many core X requests
 pub const NONE: u32 = 0;
+/// `xcb::COPY_FROM_PARENT` can be used for many `xcb::create_window` parameters
 pub const COPY_FROM_PARENT: u32 = 0;
+/// `xcb::CURRENT_TIME` can be used in most requests that take an `xcb::Timestamp`
 pub const CURRENT_TIME: u32 = 0;
+/// `xcb::NO_SYMBOL` fills in unused entries in `xcb::Keysym` tables
 pub const NO_SYMBOL: u32 = 0;
 
 
-pub type Extension = xcb_extension_t;
 
 
 /// `StructPtr` is a wrapper for pointer to struct owned by XCB
@@ -70,7 +85,6 @@ pub struct StructPtr<'a, T: 'a> {
     pub ptr: *mut T,
     phantom: PhantomData<&'a T>
 }
-
 
 
 /// `Event` wraps a pointer to `xcb_*_event_t`
@@ -148,8 +162,8 @@ pub fn cast_error<'r, T>(error : &'r GenericError) -> &'r T {
 
 
 
-/// wraps a cookie as returned by a request function
-/// instantiation of `Cookie` that are not `VoidCookie`
+/// wraps a cookie as returned by a request function.
+/// Instantiations of `Cookie` that are not `VoidCookie`
 /// should provide a `get_reply` method to return a `Reply`
 pub struct Cookie<T: Copy> {
     pub cookie: T,
@@ -198,8 +212,8 @@ pub type GenericReply = Reply<xcb_generic_reply_t>;
 
 
 
-pub type AuthInfo = xcb_auth_info_t;
 //TODO: Implement wrapper functions for constructing auth_info
+pub type AuthInfo = xcb_auth_info_t;
 
 
 
@@ -210,6 +224,7 @@ pub enum EventQueueOwner {
 }
 
 
+/// Error type that is returned by `Connection::has_error`
 #[derive(Debug)]
 pub enum ConnError {
     /// xcb connection errors because of socket, pipe and other stream errors.
@@ -232,7 +247,8 @@ pub enum ConnError {
 pub type ConnResult<T> = Result<T, ConnError>;
 
 
-/// wraps an `xcb_connection_t` object
+/// xcb::Connection handles communication with the X server.
+/// It wraps an `xcb_connection_t` object and
 /// will call `xcb_disconnect` when the `Connection` goes out of scope
 pub struct Connection {
     c:   *mut xcb_connection_t,
@@ -241,18 +257,39 @@ pub struct Connection {
 }
 
 impl Connection {
+
+    /// Forces any buffered output to be written to the server. Blocks
+    /// until the write is complete.
+    ///
+    /// Return `true` on success, `false` otherwise.
     pub fn flush(&self) -> bool {
         unsafe {
             xcb_flush(self.c) > 0
         }
     }
 
+    /// Returns the maximum request length that this server accepts.
+    ///
+    /// In the absence of the BIG-REQUESTS extension, returns the
+    /// maximum request length field from the connection setup data, which
+    /// may be as much as 65535. If the server supports BIG-REQUESTS, then
+    /// the maximum request length field from the reply to the
+    /// BigRequestsEnable request will be returned instead.
+    ///
+    /// Note that this length is measured in four-byte units, making the
+    /// theoretical maximum lengths roughly 256kB without BIG-REQUESTS and
+    /// 16GB with.
     pub fn get_maximum_request_length(&self) -> u32 {
         unsafe {
             xcb_get_maximum_request_length(self.c)
         }
     }
 
+    /// Returns the next event or error from the server.
+    ///
+    /// Returns the next event or error from the server, or returns `None` in
+    /// the event of an I/O error. Blocks until either an event or error
+    /// arrive, or an I/O error occurs.
     pub fn wait_for_event(&self) -> Option<GenericEvent> {
         unsafe {
             let event = xcb_wait_for_event(self.c);
@@ -264,6 +301,13 @@ impl Connection {
         }
     }
 
+    /// Returns the next event or error from the server.
+    ///
+    /// Returns the next event or error from the server, if one is
+    /// available, or returns `None` otherwise. If no event is available, that
+    /// might be because an I/O error like connection close occurred while
+    /// attempting to read the next event, in which case the connection is
+    /// shut down when this function returns.
     pub fn poll_for_event(&self) -> Option<GenericEvent> {
         unsafe {
             let event = xcb_poll_for_event(self.c);
@@ -275,6 +319,16 @@ impl Connection {
         }
     }
 
+    /// Returns the next event without reading from the connection.
+    ///
+    /// This is a version of `poll_for_event` that only examines the
+    /// event queue for new events. The function doesn't try to read new
+    /// events from the connection if no queued events are found.
+    ///
+    /// This function is useful for callers that know in advance that all
+    /// interesting events have already been read from the connection. For
+    /// example, callers might use `wait_for_reply` and be interested
+    /// only of events that preceded a specific reply.
     pub fn poll_for_queued_event(&self) -> Option<GenericEvent> {
         unsafe {
             let event = xcb_poll_for_queued_event(self.c);
@@ -286,6 +340,18 @@ impl Connection {
         }
     }
 
+    /// Access the data returned by the server.
+    ///
+    /// Accessor for the data returned by the server when the `Connection`
+    /// was initialized. This data includes
+    /// - the server's required format for images,
+    /// - a list of available visuals,
+    /// - a list of available screens,
+    /// - the server's maximum request length (in the absence of the
+    /// BIG-REQUESTS extension),
+    /// - and other assorted information.
+    ///
+    /// See the X protocol specification for more details.
     pub fn get_setup(&self) -> Setup {
         unsafe {
 
@@ -297,6 +363,13 @@ impl Connection {
         }
     }
 
+    /// Test whether the connection has shut down due to a fatal error.
+    ///
+    /// Some errors that occur in the context of a `Connection`
+    /// are unrecoverable. When such an error occurs, the
+    /// connection is shut down and further operations on the
+    /// `Connection` have no effect, but memory will not be freed until
+    /// the `Connection` is dropped.
     pub fn has_error(&self) -> ConnResult<()> {
         unsafe {
             match xcb_connection_has_error(self.c) {
@@ -315,47 +388,56 @@ impl Connection {
                 XCB_CONN_CLOSED_FDPASSING_FAILED =>
                         { Err(ConnError::ClosedFdPassingFailed) },
                 _ => {
-                    panic!("unexpected error code");
+                    warn!("XCB: unexpected error code from xcb_connection_has_error");
+                    warn!("XCB: Default to ConnError::Connection");
+                    Err(ConnError::Connection)
                 },
             }
         }
     }
 
-    pub fn generate_id(&self) -> Window {
+    /// Allocates an XID for a new object.
+    ///
+    /// Allocates an XID for a new object. Typically used just prior to
+    /// various object creation functions, such as `xcb::create_window`.
+    pub fn generate_id(&self) -> u32 {
         unsafe {
             xcb_generate_id(self.c)
         }
     }
 
+    /// Returns the inner ffi `xcb_connection_t` pointer
     pub fn get_raw_conn(&self) -> *mut xcb_connection_t {
         self.c
     }
 
+    /// Returns the inner ffi `xlib::Display` pointer.
     #[cfg(feature="xlib_xcb")]
     pub fn get_raw_dpy(&self) -> *mut xlib::Display {
         self.dpy
     }
 
-    pub fn send_event<T>(&self,
-                  propogate: bool,
-                  destination: Window,
-                  event_mask : u32,
-                  event : Event<T>) {
-        unsafe {
-        xcb_send_event(self.c,
-            propogate as u8, destination as xcb_window_t,
-            event_mask, event.ptr as *mut c_char);
-        }
-    }
-
-
+    /// Prefetch of extension data into the extension cache
+    ///
+    /// This function allows a "prefetch" of extension data into the
+    /// extension cache. Invoking the function may cause a call to
+    /// xcb_query_extension, but will not block waiting for the
+    /// reply. xcb_get_extension_data will return the prefetched data after
+    /// possibly blocking while it is retrieved.
     pub fn prefetch_extension_data(&self, ext: &mut Extension) {
         unsafe {
             xcb_prefetch_extension_data(self.c, ext);
         }
     }
 
-
+    /// Caches reply information from QueryExtension requests.
+    ///
+    /// This function is the primary interface to the "extension cache",
+    /// which caches reply information from QueryExtension
+    /// requests. Invoking this function may cause a call to
+    /// xcb_query_extension to retrieve extension information from the
+    /// server, and may block until extension data is received from the
+    /// server.
     pub fn get_extension_data(&self, ext: &mut Extension)
             -> Option<QueryExtensionData> {
         unsafe {
@@ -365,6 +447,8 @@ impl Connection {
         }
     }
 
+    /// Sets the owner of the event queue in the case if the connection is opened
+    /// with the XLib interface. the default owner is XLib.
     #[cfg(feature="xlib_xcb")]
     pub fn set_event_queue_owner(&self, owner: EventQueueOwner) {
         debug_assert!(!self.dpy.is_null());
@@ -378,10 +462,20 @@ impl Connection {
 
 
 
+    /// Connects to the X server.
+    /// `displayname:` The name of the display.
+    ///
+    /// Connects to the X server specified by `displayname.` If
+    /// `displayname` is `None,` uses the value of the DISPLAY environment
+    /// variable.
+    ///
+    /// Returns Ok(connection object, preferred screen) in case of success, or
+    /// Err(ConnError) in case of error. If no screen is preferred, the second
+    /// member of the tuple is set to 0.
     #[cfg(not(feature="xlib_xcb"))]
-    pub fn connect(display: Option<&str>) -> ConnResult<(Connection, i32)> {
+    pub fn connect(displayname: Option<&str>) -> ConnResult<(Connection, i32)> {
         unsafe {
-            let display = display.map(|s| CString::new(s).unwrap());
+            let display = displayname.map(|s| CString::new(s).unwrap());
             let mut screen_num : c_int = 0;
             let cconn = xcb_connect(
                 display.map_or(null(), |s| s.as_ptr()),
@@ -401,6 +495,10 @@ impl Connection {
         }
     }
 
+    /// Open a new connection with XLib.
+    /// The event queue owner defaults to XLib
+    /// One would need to open an XCB connection with Xlib in order to use
+    /// OpenGL.
     #[cfg(feature="xlib_xcb")]
     pub fn connect_with_xlib_display() -> ConnResult<(Connection, i32)> {
         unsafe {
@@ -418,19 +516,28 @@ impl Connection {
         }
     }
 
+    /// wraps a `xlib::Display` and get an XCB connection from an exisiting object
+    /// `xlib::XCloseDisplay` will be called when the returned object is dropped
     #[cfg(feature="xlib_xcb")]
-    pub fn new_from_xlib_display(dpy: *mut xlib::Display) -> Connection {
-        unsafe {
-            assert!(!dpy.is_null(), "attempt connect with null display");
-            Connection {
-                c: XGetXCBConnection(dpy),
-                dpy: dpy
-            }
+    pub unsafe fn new_from_xlib_display(dpy: *mut xlib::Display) -> Connection {
+        assert!(!dpy.is_null(), "attempt connect with null display");
+        Connection {
+            c: XGetXCBConnection(dpy),
+            dpy: dpy
         }
     }
 
 
 
+    /// Connects to the X server, using an authorization information.
+    /// display: The name of the display.
+    /// auth_info: The authorization information.
+    /// screen: A pointer to a preferred screen number.
+    /// Returns A newly allocated `Connection` structure.
+    ///
+    /// Connects to the X server specified by displayname, using the
+    /// authorization auth.
+    /// The second member of the returned tuple is the preferred screen, or 0
     #[cfg(not(feature="xlib_xcb"))]
     pub fn connect_with_auth_info(display: Option<&str>, auth_info: &AuthInfo)
     -> ConnResult<(Connection, i32)> {
@@ -456,6 +563,7 @@ impl Connection {
         }
     }
 
+    /// builds a new Connection object from an available connection
     #[cfg(not(feature="xlib_xcb"))]
     pub unsafe fn from_raw_conn(conn: *mut xcb_connection_t) -> Connection {
         assert!(!conn.is_null());
@@ -537,6 +645,23 @@ impl Zero for i64   { fn zero() -> i64   {0} }
 impl Zero for isize { fn zero() -> isize {0} }
 impl Zero for f32   { fn zero() -> f32   {0f32} }
 impl Zero for f64   { fn zero() -> f64   {0f64} }
+
+/// pack bitfields tuples into vector usable for FFI requests
+/// ```
+///     let values = [
+///         (xcb::CW_EVENT_MASK, xcb::EVENT_MASK_EXPOSURE | xcb::EVENT_MASK_KEY_PRESS),
+///         (xcb::CW_BACK_PIXEL, 0xffffffff),
+///     ];
+///     let ffi_values = (
+///         xcb::CW_BACK_PIXEL | xcb::CW_EVENT_MASK,
+///         [
+///             Oxffffffff,
+///             xcb::EVENT_MASK_EXPOSURE | xcb::EVENT_MASK_KEY_PRESS,
+///             0
+///         ]
+///     );
+///     assert_eq!(pack_bitfield(&mut values), ffi_values);
+/// ```
 
 pub fn pack_bitfield<T, L>(bf : &mut Vec<(T,L)>) -> (T, Vec<L>)
     where T: Ord + Zero + Copy + BitAnd<Output=T> + BitOr<Output=T>,

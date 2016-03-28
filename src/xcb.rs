@@ -33,6 +33,9 @@
 #![allow(unused_imports)]
 #![allow(non_snake_case)]
 
+//! Rust bindings to the XCB library.
+//! Look at documentation of modules base and xproto.
+
 extern crate libc;
 #[cfg(feature="xlib_xcb")]
 extern crate x11;
