@@ -2143,6 +2143,14 @@ def rs_event(event, nametup):
 
                 new_params.append("%s: %s" % (f.rs_field_name, rs_ftype))
 
+            _r('/// Constructs a new %s', event.rs_type)
+            if len(event.opcodes) > 1:
+                _r('/// `response_type` must be set to one of:')
+                for opname in event.opcodes:
+                    _r('///     - `%s`', _rs_const_name(opname))
+            else:
+                _r('/// `response_type` will be set automatically to %s',
+                        _rs_const_name(nametup))
             fn_start = "pub fn new("
             fn_space = ' ' * len(fn_start)
             p = new_params[0] if len(new_params) else ''
