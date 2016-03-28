@@ -2125,6 +2125,8 @@ def rs_event(event, nametup):
                     pass
 
         new_params = []
+        if len(event.opcodes) > 1:
+            new_params.append('response_type: u8')
 
         _r.section(1)
         _r('')
@@ -2156,6 +2158,20 @@ def rs_event(event, nametup):
                 with _r.indent_block():
                     _r('let raw = libc::malloc(32 as usize) as *mut %s;',
                             event.ffi_type)
+                    if len(event.opcodes) > 1:
+                        print(event.opcodes)
+                        for opname in event.opcodes:
+                            print(opname)
+                        # build list of possible opcodes
+                        orlist = ' ||\n                    '.join(
+                                [('response_type == %s' % _rs_const_name(opname))
+                                    for opname in event.opcodes])
+                        _r('assert!(%s,', orlist)
+                        _r('        "wrong response_type supplied to %s::new");',
+                                event.rs_type)
+                        _r('(*raw).response_type = response_type;')
+                    else:
+                        _r('(*raw).response_type = %s;', _rs_const_name(nametup))
                     for f in event.fields:
                         if not f.visible: continue
                         if f.type.is_container and not f.type.is_union \
