@@ -1610,8 +1610,12 @@
 <span id="1567">1567</span>
 <span id="1568">1568</span>
 <span id="1569">1569</span>
+<span id="1570">1570</span>
+<span id="1571">1571</span>
+<span id="1572">1572</span>
+<span id="1573">1573</span>
 </pre><pre class='rust '>
-<span class='comment'>// edited from xprint.xml by rs_client.py on Mon Mar 28 11:00:17 2016</span>
+<span class='comment'>// edited from xprint.xml by rs_client.py on Mon Mar 28 22:49:53 2016</span>
 <span class='comment'>// do not edit!</span>
 
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
@@ -3138,6 +3142,8 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>cancel</span> <span class='op'>!=</span> <span class='number'>0</span>
         }
     }
+    <span class='doccomment'>/// Construct a new NotifyEvent</span>
+    <span class='doccomment'>/// `response_type` will be set automatically to NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>detail</span>: <span class='ident'>u8</span>,
                <span class='ident'>context</span>: <span class='ident'>Pcontext</span>,
                <span class='ident'>cancel</span>: <span class='ident'>bool</span>)
@@ -3166,6 +3172,8 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>context</span>
         }
     }
+    <span class='doccomment'>/// Construct a new AttributNotifyEvent</span>
+    <span class='doccomment'>/// `response_type` will be set automatically to ATTRIBUT_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>detail</span>: <span class='ident'>u8</span>,
                <span class='ident'>context</span>: <span class='ident'>Pcontext</span>)
             <span class='op'>-&gt;</span> <span class='ident'>AttributNotifyEvent</span> {

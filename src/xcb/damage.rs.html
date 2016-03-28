@@ -358,8 +358,10 @@
 <span id="315">315</span>
 <span id="316">316</span>
 <span id="317">317</span>
+<span id="318">318</span>
+<span id="319">319</span>
 </pre><pre class='rust '>
-<span class='comment'>// edited from damage.xml by rs_client.py on Mon Mar 28 11:00:18 2016</span>
+<span class='comment'>// edited from damage.xml by rs_client.py on Mon Mar 28 22:49:53 2016</span>
 <span class='comment'>// do not edit!</span>
 
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
@@ -654,6 +656,8 @@
             <span class='ident'>std</span>::<span class='ident'>mem</span>::<span class='ident'>transmute</span>((<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>geometry</span>)
         }
     }
+    <span class='doccomment'>/// Construct a new NotifyEvent</span>
+    <span class='doccomment'>/// `response_type` will be set automatically to NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>level</span>: <span class='ident'>u8</span>,
                <span class='ident'>drawable</span>: <span class='ident'>xproto</span>::<span class='ident'>Drawable</span>,
                <span class='ident'>damage</span>: <span class='ident'>Damage</span>,

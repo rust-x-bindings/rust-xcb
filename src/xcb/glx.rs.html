@@ -7172,8 +7172,12 @@
 <span id="7129">7129</span>
 <span id="7130">7130</span>
 <span id="7131">7131</span>
+<span id="7132">7132</span>
+<span id="7133">7133</span>
+<span id="7134">7134</span>
+<span id="7135">7135</span>
 </pre><pre class='rust '>
-<span class='comment'>// edited from glx.xml by rs_client.py on Mon Mar 28 11:00:16 2016</span>
+<span class='comment'>// edited from glx.xml by rs_client.py on Mon Mar 28 22:49:52 2016</span>
 <span class='comment'>// do not edit!</span>
 
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
@@ -7736,6 +7740,8 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>count</span>
         }
     }
+    <span class='doccomment'>/// Construct a new PbufferClobberEvent</span>
+    <span class='doccomment'>/// `response_type` will be set automatically to PBUFFER_CLOBBER</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>event_type</span>: <span class='ident'>u16</span>,
                <span class='ident'>draw_type</span>: <span class='ident'>u16</span>,
                <span class='ident'>drawable</span>: <span class='ident'>Drawable</span>,
@@ -7803,6 +7809,8 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>sbc</span>
         }
     }
+    <span class='doccomment'>/// Construct a new BufferSwapCompleteEvent</span>
+    <span class='doccomment'>/// `response_type` will be set automatically to BUFFER_SWAP_COMPLETE</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>event_type</span>: <span class='ident'>u16</span>,
                <span class='ident'>drawable</span>: <span class='ident'>Drawable</span>,
                <span class='ident'>ust_hi</span>: <span class='ident'>u32</span>,

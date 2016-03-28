@@ -6806,8 +6806,32 @@
 <span id="6763">6763</span>
 <span id="6764">6764</span>
 <span id="6765">6765</span>
+<span id="6766">6766</span>
+<span id="6767">6767</span>
+<span id="6768">6768</span>
+<span id="6769">6769</span>
+<span id="6770">6770</span>
+<span id="6771">6771</span>
+<span id="6772">6772</span>
+<span id="6773">6773</span>
+<span id="6774">6774</span>
+<span id="6775">6775</span>
+<span id="6776">6776</span>
+<span id="6777">6777</span>
+<span id="6778">6778</span>
+<span id="6779">6779</span>
+<span id="6780">6780</span>
+<span id="6781">6781</span>
+<span id="6782">6782</span>
+<span id="6783">6783</span>
+<span id="6784">6784</span>
+<span id="6785">6785</span>
+<span id="6786">6786</span>
+<span id="6787">6787</span>
+<span id="6788">6788</span>
+<span id="6789">6789</span>
 </pre><pre class='rust '>
-<span class='comment'>// edited from xkb.xml by rs_client.py on Mon Mar 28 11:00:14 2016</span>
+<span class='comment'>// edited from xkb.xml by rs_client.py on Mon Mar 28 22:49:50 2016</span>
 <span class='comment'>// do not edit!</span>
 
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
@@ -12526,6 +12550,8 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>changed</span>
         }
     }
+    <span class='doccomment'>/// Construct a new NewKeyboardNotifyEvent</span>
+    <span class='doccomment'>/// `response_type` will be set automatically to NEW_KEYBOARD_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>xkbType</span>: <span class='ident'>u8</span>,
                <span class='ident'>time</span>: <span class='ident'>xproto</span>::<span class='ident'>Timestamp</span>,
                <span class='ident'>deviceID</span>: <span class='ident'>u8</span>,
@@ -12670,6 +12696,8 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>virtualMods</span>
         }
     }
+    <span class='doccomment'>/// Construct a new MapNotifyEvent</span>
+    <span class='doccomment'>/// `response_type` will be set automatically to MAP_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>xkbType</span>: <span class='ident'>u8</span>,
                <span class='ident'>time</span>: <span class='ident'>xproto</span>::<span class='ident'>Timestamp</span>,
                <span class='ident'>deviceID</span>: <span class='ident'>u8</span>,
@@ -12836,6 +12864,8 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>requestMinor</span>
         }
     }
+    <span class='doccomment'>/// Construct a new StateNotifyEvent</span>
+    <span class='doccomment'>/// `response_type` will be set automatically to STATE_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>xkbType</span>: <span class='ident'>u8</span>,
                <span class='ident'>time</span>: <span class='ident'>xproto</span>::<span class='ident'>Timestamp</span>,
                <span class='ident'>deviceID</span>: <span class='ident'>u8</span>,
@@ -12947,6 +12977,8 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>requestMinor</span>
         }
     }
+    <span class='doccomment'>/// Construct a new ControlsNotifyEvent</span>
+    <span class='doccomment'>/// `response_type` will be set automatically to CONTROLS_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>xkbType</span>: <span class='ident'>u8</span>,
                <span class='ident'>time</span>: <span class='ident'>xproto</span>::<span class='ident'>Timestamp</span>,
                <span class='ident'>deviceID</span>: <span class='ident'>u8</span>,
@@ -13006,6 +13038,8 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>stateChanged</span>
         }
     }
+    <span class='doccomment'>/// Construct a new IndicatorStateNotifyEvent</span>
+    <span class='doccomment'>/// `response_type` will be set automatically to INDICATOR_STATE_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>xkbType</span>: <span class='ident'>u8</span>,
                <span class='ident'>time</span>: <span class='ident'>xproto</span>::<span class='ident'>Timestamp</span>,
                <span class='ident'>deviceID</span>: <span class='ident'>u8</span>,
@@ -13053,6 +13087,8 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>mapChanged</span>
         }
     }
+    <span class='doccomment'>/// Construct a new IndicatorMapNotifyEvent</span>
+    <span class='doccomment'>/// `response_type` will be set automatically to INDICATOR_MAP_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>xkbType</span>: <span class='ident'>u8</span>,
                <span class='ident'>time</span>: <span class='ident'>xproto</span>::<span class='ident'>Timestamp</span>,
                <span class='ident'>deviceID</span>: <span class='ident'>u8</span>,
@@ -13150,6 +13186,8 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>changedIndicators</span>
         }
     }
+    <span class='doccomment'>/// Construct a new NamesNotifyEvent</span>
+    <span class='doccomment'>/// `response_type` will be set automatically to NAMES_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>xkbType</span>: <span class='ident'>u8</span>,
                <span class='ident'>time</span>: <span class='ident'>xproto</span>::<span class='ident'>Timestamp</span>,
                <span class='ident'>deviceID</span>: <span class='ident'>u8</span>,
@@ -13227,6 +13265,8 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>nTotalSI</span>
         }
     }
+    <span class='doccomment'>/// Construct a new CompatMapNotifyEvent</span>
+    <span class='doccomment'>/// `response_type` will be set automatically to COMPAT_MAP_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>xkbType</span>: <span class='ident'>u8</span>,
                <span class='ident'>time</span>: <span class='ident'>xproto</span>::<span class='ident'>Timestamp</span>,
                <span class='ident'>deviceID</span>: <span class='ident'>u8</span>,
@@ -13308,6 +13348,8 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>eventOnly</span> <span class='op'>!=</span> <span class='number'>0</span>
         }
     }
+    <span class='doccomment'>/// Construct a new BellNotifyEvent</span>
+    <span class='doccomment'>/// `response_type` will be set automatically to BELL_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>xkbType</span>: <span class='ident'>u8</span>,
                <span class='ident'>time</span>: <span class='ident'>xproto</span>::<span class='ident'>Timestamp</span>,
                <span class='ident'>deviceID</span>: <span class='ident'>u8</span>,
@@ -13387,6 +13429,8 @@
             <span class='kw-2'>&amp;</span>(<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>message</span>
         }
     }
+    <span class='doccomment'>/// Construct a new ActionMessageEvent</span>
+    <span class='doccomment'>/// `response_type` will be set automatically to ACTION_MESSAGE</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>xkbType</span>: <span class='ident'>u8</span>,
                <span class='ident'>time</span>: <span class='ident'>xproto</span>::<span class='ident'>Timestamp</span>,
                <span class='ident'>deviceID</span>: <span class='ident'>u8</span>,
@@ -13452,6 +13496,8 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>debounceDelay</span>
         }
     }
+    <span class='doccomment'>/// Construct a new AccessXNotifyEvent</span>
+    <span class='doccomment'>/// `response_type` will be set automatically to ACCESS_X_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>xkbType</span>: <span class='ident'>u8</span>,
                <span class='ident'>time</span>: <span class='ident'>xproto</span>::<span class='ident'>Timestamp</span>,
                <span class='ident'>deviceID</span>: <span class='ident'>u8</span>,
@@ -13538,6 +13584,8 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>unsupported</span>
         }
     }
+    <span class='doccomment'>/// Construct a new ExtensionDeviceNotifyEvent</span>
+    <span class='doccomment'>/// `response_type` will be set automatically to EXTENSION_DEVICE_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>xkbType</span>: <span class='ident'>u8</span>,
                <span class='ident'>time</span>: <span class='ident'>xproto</span>::<span class='ident'>Timestamp</span>,
                <span class='ident'>deviceID</span>: <span class='ident'>u8</span>,

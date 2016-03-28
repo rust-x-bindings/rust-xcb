@@ -1996,8 +1996,12 @@
 <span id="1953">1953</span>
 <span id="1954">1954</span>
 <span id="1955">1955</span>
+<span id="1956">1956</span>
+<span id="1957">1957</span>
+<span id="1958">1958</span>
+<span id="1959">1959</span>
 </pre><pre class='rust '>
-<span class='comment'>// edited from xv.xml by rs_client.py on Mon Mar 28 11:00:20 2016</span>
+<span class='comment'>// edited from xv.xml by rs_client.py on Mon Mar 28 22:49:55 2016</span>
 <span class='comment'>// do not edit!</span>
 
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
@@ -2625,6 +2629,8 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>port</span>
         }
     }
+    <span class='doccomment'>/// Construct a new VideoNotifyEvent</span>
+    <span class='doccomment'>/// `response_type` will be set automatically to VIDEO_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>reason</span>: <span class='ident'>u8</span>,
                <span class='ident'>time</span>: <span class='ident'>xproto</span>::<span class='ident'>Timestamp</span>,
                <span class='ident'>drawable</span>: <span class='ident'>xproto</span>::<span class='ident'>Drawable</span>,
@@ -2665,6 +2671,8 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>value</span>
         }
     }
+    <span class='doccomment'>/// Construct a new PortNotifyEvent</span>
+    <span class='doccomment'>/// `response_type` will be set automatically to PORT_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>time</span>: <span class='ident'>xproto</span>::<span class='ident'>Timestamp</span>,
                <span class='ident'>port</span>: <span class='ident'>Port</span>,
                <span class='ident'>attribute</span>: <span class='ident'>xproto</span>::<span class='ident'>Atom</span>,
