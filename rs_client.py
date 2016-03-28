@@ -2093,7 +2093,8 @@ def rs_event(event, nametup):
     current_handler = ('event:   ', nametup)
 
     must_pack = _must_pack_event(event, nametup)
-    # _must_pack_event may insert fields, therefore must be called before _prepare_doc
+    # _must_pack_event may insert fields,
+    # therefore must be called before _prepare_doc
     _prepare_doc(event)
     event.has_lifetime = False
 
@@ -2153,15 +2154,18 @@ def rs_event(event, nametup):
             with _r.indent_block():
                 _r('unsafe {')
                 with _r.indent_block():
-                    _r('let raw = libc::malloc(32 as usize) as *mut %s;', event.ffi_type)
+                    _r('let raw = libc::malloc(32 as usize) as *mut %s;',
+                            event.ffi_type)
                     for f in event.fields:
                         if not f.visible: continue
-                        if f.type.is_container and not f.type.is_union and not f.type.rs_is_pod:
+                        if f.type.is_container and not f.type.is_union \
+                                and not f.type.rs_is_pod:
                             _r('(*raw).%s = *%s.ptr;',
                                     f.ffi_field_name, f.rs_field_name)
 
                         elif f.type.rs_is_pod:
-                            _r('(*raw).%s = %s.base;', f.ffi_field_name, f.rs_field_name)
+                            _r('(*raw).%s = %s.base;', f.ffi_field_name,
+                                    f.rs_field_name)
 
                         else:
                             assignment = f.rs_field_name
