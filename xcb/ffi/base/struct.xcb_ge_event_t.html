@@ -46,7 +46,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-4345' class='srclink' href='../../../src/xcb/ffi/base.rs.html#79-88' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-4395' class='srclink' href='../../../src/xcb/ffi/base.rs.html#110-119' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct xcb_ge_event_t {
     pub response_type: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
     pub sequence: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,
@@ -54,7 +54,14 @@
     pub event_type: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,
     pub full_sequence: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>,
     // some fields omitted
-}</pre><h2 class='fields'>Fields</h2>
+}</pre><div class='docblock'><p>GE event</p>
+
+<p>An event as sent by the XGE extension. The length field specifies the
+number of 4-byte blocks trailing the struct.</p>
+
+<p>Deprecated Since some fields in this struct have unfortunate names, it is
+recommended to use xcb_ge_generic_event_t instead.</p>
+</div><h2 class='fields'>Fields</h2>
 <table><tr class='stab '>
                                   <td id='structfield.response_type'><code>response_type</code></td><td></td></tr><tr class='stab '>
                                   <td id='structfield.sequence'><code>sequence</code></td><td></td></tr><tr class='stab '>

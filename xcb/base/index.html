@@ -46,14 +46,15 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-5' class='srclink' href='../../src/xcb/base.rs.html#33-560' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-7' class='srclink' href='../../src/xcb/base.rs.html#33-697' title='goto source code'>[src]</a></span></h1>
 <h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
                     <tr class=' module-item'>
                         <td><a class='struct' href='struct.Connection.html'
                                title='xcb::base::Connection'>Connection</a></td>
                         <td class='docblock short'>
-                             <p>wraps an <code>xcb_connection_t</code> object
+                             <p>xcb::Connection handles communication with the X server.
+It wraps an <code>xcb_connection_t</code> object and
 will call <code>xcb_disconnect</code> when the <code>Connection</code> goes out of scope</p>
                         </td>
                     </tr>
@@ -62,8 +63,8 @@ will call <code>xcb_disconnect</code> when the <code>Connection</code> goes out 
                         <td><a class='struct' href='struct.Cookie.html'
                                title='xcb::base::Cookie'>Cookie</a></td>
                         <td class='docblock short'>
-                             <p>wraps a cookie as returned by a request function
-instantiation of <code>Cookie</code> that are not <code>VoidCookie</code>
+                             <p>wraps a cookie as returned by a request function.
+Instantiations of <code>Cookie</code> that are not <code>VoidCookie</code>
 should provide a <code>get_reply</code> method to return a <code>Reply</code></p>
                         </td>
                     </tr>
@@ -112,13 +113,30 @@ that must not be freed
 it is instead bound to the lifetime of its parent that it borrows immutably</p>
                         </td>
                     </tr>
+                </table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='enum' href='enum.ConnError.html'
+                               title='xcb::base::ConnError'>ConnError</a></td>
+                        <td class='docblock short'>
+                             <p>Error type that is returned by <code>Connection::has_error</code></p>
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='enum' href='enum.EventQueueOwner.html'
+                               title='xcb::base::EventQueueOwner'>EventQueueOwner</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
                 </table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
 <table>
                     <tr class=' module-item'>
                         <td><a class='constant' href='constant.COPY_FROM_PARENT.html'
                                title='xcb::base::COPY_FROM_PARENT'>COPY_FROM_PARENT</a></td>
                         <td class='docblock short'>
-                             
+                             <p><code>xcb::COPY_FROM_PARENT</code> can be used for many <code>xcb::create_window</code> parameters</p>
                         </td>
                     </tr>
                 
@@ -126,7 +144,7 @@ it is instead bound to the lifetime of its parent that it borrows immutably</p>
                         <td><a class='constant' href='constant.CURRENT_TIME.html'
                                title='xcb::base::CURRENT_TIME'>CURRENT_TIME</a></td>
                         <td class='docblock short'>
-                             
+                             <p><code>xcb::CURRENT_TIME</code> can be used in most requests that take an <code>xcb::Timestamp</code></p>
                         </td>
                     </tr>
                 
@@ -134,7 +152,8 @@ it is instead bound to the lifetime of its parent that it borrows immutably</p>
                         <td><a class='constant' href='constant.NONE.html'
                                title='xcb::base::NONE'>NONE</a></td>
                         <td class='docblock short'>
-                             
+                             <p><code>xcb::NONE</code> is the universal null resource or null atom parameter value
+for many core X requests</p>
                         </td>
                     </tr>
                 
@@ -142,7 +161,31 @@ it is instead bound to the lifetime of its parent that it borrows immutably</p>
                         <td><a class='constant' href='constant.NO_SYMBOL.html'
                                title='xcb::base::NO_SYMBOL'>NO_SYMBOL</a></td>
                         <td class='docblock short'>
-                             
+                             <p><code>xcb::NO_SYMBOL</code> fills in unused entries in <code>xcb::Keysym</code> tables</p>
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.X_PROTOCOL.html'
+                               title='xcb::base::X_PROTOCOL'>X_PROTOCOL</a></td>
+                        <td class='docblock short'>
+                             <p>Current protocol version</p>
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.X_PROTOCOL_REVISION.html'
+                               title='xcb::base::X_PROTOCOL_REVISION'>X_PROTOCOL_REVISION</a></td>
+                        <td class='docblock short'>
+                             <p>Current minor version</p>
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.X_TCP_PORT.html'
+                               title='xcb::base::X_TCP_PORT'>X_TCP_PORT</a></td>
+                        <td class='docblock short'>
+                             <p>X_TCP_PORT + display number = server port for TCP transport</p>
                         </td>
                     </tr>
                 </table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
@@ -178,7 +221,8 @@ event is really the correct type.</p>
                         <td><a class='fn' href='fn.pack_bitfield.html'
                                title='xcb::base::pack_bitfield'>pack_bitfield</a></td>
                         <td class='docblock short'>
-                             
+                             <p>pack bitfields tuples into vector usable for FFI requests
+<code>let values = [ (xcb::CW_EVENT_MASK, xcb::EVENT_MASK_EXPOSURE | xcb::EVENT_MASK_KEY_PRESS), (xcb::CW_BACK_PIXEL, 0xffffffff), ]; let ffi_values = ( xcb::CW_BACK_PIXEL | xcb::CW_EVENT_MASK, [ Oxffffffff, xcb::EVENT_MASK_EXPOSURE | xcb::EVENT_MASK_KEY_PRESS, 0 ] ); assert_eq!(pack_bitfield(&amp;mut values), ffi_values);</code></p>
                         </td>
                     </tr>
                 </table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
@@ -192,10 +236,18 @@ event is really the correct type.</p>
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='type' href='type.ConnResult.html'
+                               title='xcb::base::ConnResult'>ConnResult</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='type' href='type.Extension.html'
                                title='xcb::base::Extension'>Extension</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Opaque type used as key for <code>Connection::get_extension_data</code></p>
                         </td>
                     </tr>
                 

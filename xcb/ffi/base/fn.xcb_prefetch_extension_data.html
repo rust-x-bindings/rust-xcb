@@ -46,8 +46,15 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-4437' class='srclink' href='../../../src/xcb/ffi/base.rs.html#176-177' title='goto source code'>[src]</a></span></h1>
-<pre class='rust fn'>pub unsafe extern fn xcb_prefetch_extension_data(c: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='enum' href='../../../xcb/ffi/base/enum.xcb_connection_t.html' title='xcb::ffi::base::xcb_connection_t'>xcb_connection_t</a>, ext: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='enum' href='../../../xcb/ffi/base/enum.xcb_extension_t.html' title='xcb::ffi::base::xcb_extension_t'>xcb_extension_t</a>)</pre></section>
+        </span><a id='src-4491' class='srclink' href='../../../src/xcb/ffi/base.rs.html#346-347' title='goto source code'>[src]</a></span></h1>
+<pre class='rust fn'>pub unsafe extern fn xcb_prefetch_extension_data(c: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='enum' href='../../../xcb/ffi/base/enum.xcb_connection_t.html' title='xcb::ffi::base::xcb_connection_t'>xcb_connection_t</a>, ext: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='enum' href='../../../xcb/ffi/base/enum.xcb_extension_t.html' title='xcb::ffi::base::xcb_extension_t'>xcb_extension_t</a>)</pre><div class='docblock'><p>Prefetch of extension data into the extension cache</p>
+
+<p>This function allows a &quot;prefetch&quot; of extension data into the
+extension cache. Invoking the function may cause a call to
+xcb_query_extension, but will not block waiting for the
+reply. xcb_get_extension_data will return the prefetched data after
+possibly blocking while it is retrieved.</p>
+</div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>

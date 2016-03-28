@@ -1562,29 +1562,11 @@
 <span id="1519">1519</span>
 <span id="1520">1520</span>
 <span id="1521">1521</span>
-<span id="1522">1522</span>
-<span id="1523">1523</span>
-<span id="1524">1524</span>
-<span id="1525">1525</span>
-<span id="1526">1526</span>
-<span id="1527">1527</span>
-<span id="1528">1528</span>
-<span id="1529">1529</span>
-<span id="1530">1530</span>
-<span id="1531">1531</span>
-<span id="1532">1532</span>
-<span id="1533">1533</span>
-<span id="1534">1534</span>
-<span id="1535">1535</span>
-<span id="1536">1536</span>
-<span id="1537">1537</span>
-<span id="1538">1538</span>
-<span id="1539">1539</span>
-<span id="1540">1540</span>
 </pre><pre class='rust '>
-<span class='comment'>// edited from xselinux.xml by rs_client.py on Fri Mar  4 08:12:09 2016</span>
+<span class='comment'>// edited from xselinux.xml by rs_client.py on Mon Mar 28 11:00:17 2016</span>
 <span class='comment'>// do not edit!</span>
 
+<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
 
 <span class='kw'>use</span> <span class='ident'>base</span>;
 <span class='kw'>use</span> <span class='ident'>xproto</span>;
@@ -1713,13 +1695,11 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>QueryVersionReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_selinux_query_version_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>QueryVersionReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>server_major</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u16</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>server_major</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>server_minor</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u16</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>server_minor</span>
@@ -1821,7 +1801,6 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetDeviceCreateContextReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_selinux_get_device_create_context_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>GetDeviceCreateContextReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>context_len</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>context_len</span>
@@ -1929,7 +1908,6 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetDeviceContextReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_selinux_get_device_context_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>GetDeviceContextReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>context_len</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>context_len</span>
@@ -2037,7 +2015,6 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetWindowCreateContextReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_selinux_get_window_create_context_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>GetWindowCreateContextReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>context_len</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>context_len</span>
@@ -2105,7 +2082,6 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetWindowContextReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_selinux_get_window_context_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>GetWindowContextReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>context_len</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>context_len</span>
@@ -2152,19 +2128,16 @@
 }
 
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> <span class='ident'>ListItem</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>name</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xproto</span>::<span class='ident'>Atom</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>name</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>object_context_len</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>object_context_len</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>data_context_len</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>data_context_len</span>
@@ -2271,7 +2244,6 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetPropertyCreateContextReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_selinux_get_property_create_context_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>GetPropertyCreateContextReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>context_len</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>context_len</span>
@@ -2375,7 +2347,6 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetPropertyUseContextReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_selinux_get_property_use_context_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>GetPropertyUseContextReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>context_len</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>context_len</span>
@@ -2443,7 +2414,6 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetPropertyContextReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_selinux_get_property_context_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>GetPropertyContextReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>context_len</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>context_len</span>
@@ -2519,7 +2489,6 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetPropertyDataContextReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_selinux_get_property_data_context_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>GetPropertyDataContextReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>context_len</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>context_len</span>
@@ -2595,7 +2564,6 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>ListPropertiesReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_selinux_list_properties_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>ListPropertiesReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>properties_len</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>properties_len</span>
@@ -2698,7 +2666,6 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetSelectionCreateContextReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_selinux_get_selection_create_context_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>GetSelectionCreateContextReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>context_len</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>context_len</span>
@@ -2802,7 +2769,6 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetSelectionUseContextReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_selinux_get_selection_use_context_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>GetSelectionUseContextReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>context_len</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>context_len</span>
@@ -2870,7 +2836,6 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetSelectionContextReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_selinux_get_selection_context_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>GetSelectionContextReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>context_len</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>context_len</span>
@@ -2942,7 +2907,6 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetSelectionDataContextReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_selinux_get_selection_data_context_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>GetSelectionDataContextReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>context_len</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>context_len</span>
@@ -3014,7 +2978,6 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>ListSelectionsReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_selinux_list_selections_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>ListSelectionsReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>selections_len</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>selections_len</span>
@@ -3077,7 +3040,6 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetClientContextReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_selinux_get_client_context_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>GetClientContextReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>context_len</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>context_len</span>

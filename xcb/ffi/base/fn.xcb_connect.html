@@ -46,8 +46,23 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-4456' class='srclink' href='../../../src/xcb/ffi/base.rs.html#200-202' title='goto source code'>[src]</a></span></h1>
-<pre class='rust fn'>pub unsafe extern fn xcb_connect(displayname: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='type' href='../../../libc/unix/notbsd/linux/other/b64/x86_64/type.c_char.html' title='libc::unix::notbsd::linux::other::b64::x86_64::c_char'>c_char</a>, screenp: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='type' href='../../../libc/type.c_int.html' title='libc::c_int'>c_int</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='enum' href='../../../xcb/ffi/base/enum.xcb_connection_t.html' title='xcb::ffi::base::xcb_connection_t'>xcb_connection_t</a></pre></section>
+        </span><a id='src-4510' class='srclink' href='../../../src/xcb/ffi/base.rs.html#454-456' title='goto source code'>[src]</a></span></h1>
+<pre class='rust fn'>pub unsafe extern fn xcb_connect(displayname: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*const </a><a class='type' href='../../../libc/unix/notbsd/linux/other/b64/x86_64/type.c_char.html' title='libc::unix::notbsd::linux::other::b64::x86_64::c_char'>c_char</a>, screenp: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='type' href='../../../libc/type.c_int.html' title='libc::c_int'>c_int</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='enum' href='../../../xcb/ffi/base/enum.xcb_connection_t.html' title='xcb::ffi::base::xcb_connection_t'>xcb_connection_t</a></pre><div class='docblock'><p>Connects to the X server.
+displayname: The name of the display.
+screenp: A pointer to a preferred screen number.
+Returns A newly allocated xcb_connection_t structure.</p>
+
+<p>Connects to the X server specified by displayname. If
+displayname is NULL, uses the value of the DISPLAY environment
+variable. If a particular screen on that server is preferred, the
+int pointed to by screenp (if not NULL) will be set to that
+screen; otherwise the screen will be set to 0.</p>
+
+<p>Always returns a non-NULL pointer to a xcb_connection_t, even on failure.
+Callers need to use xcb_connection_has_error() to check for failure.
+When finished, use xcb_disconnect() to close the connection and free
+the structure.</p>
+</div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>

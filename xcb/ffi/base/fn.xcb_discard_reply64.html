@@ -46,8 +46,25 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-4431' class='srclink' href='../../../src/xcb/ffi/base.rs.html#169-170' title='goto source code'>[src]</a></span></h1>
-<pre class='rust fn'>pub unsafe extern fn xcb_discard_reply64(c: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='enum' href='../../../xcb/ffi/base/enum.xcb_connection_t.html' title='xcb::ffi::base::xcb_connection_t'>xcb_connection_t</a>, sequence: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>)</pre></section>
+        </span><a id='src-4485' class='srclink' href='../../../src/xcb/ffi/base.rs.html#319-320' title='goto source code'>[src]</a></span></h1>
+<pre class='rust fn'>pub unsafe extern fn xcb_discard_reply64(c: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='enum' href='../../../xcb/ffi/base/enum.xcb_connection_t.html' title='xcb::ffi::base::xcb_connection_t'>xcb_connection_t</a>, sequence: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>)</pre><div class='docblock'><p>Discards the reply for a request, given by a 64bit sequence number</p>
+
+<p>sequence is the 64-bit sequence number as returned by xcb_send_request64().</p>
+
+<p>Discards the reply for a request. Additionally, any error generated
+by the request is also discarded (unless it was an _unchecked request
+and the error has already arrived).</p>
+
+<p>This function will not block even if the reply is not yet available.</p>
+
+<p>Note that the sequence really does have to come from xcb_send_request64();
+the cookie sequence number is defined as &quot;unsigned&quot; int and therefore
+not 64-bit on all platforms.
+This function is not designed to operate on socket-handoff replies.</p>
+
+<p>Unlike its xcb_discard_reply() counterpart, the given sequence number is not
+automatically &quot;widened&quot; to 64-bit.</p>
+</div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>

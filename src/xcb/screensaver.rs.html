@@ -471,22 +471,11 @@
 <span id="428">428</span>
 <span id="429">429</span>
 <span id="430">430</span>
-<span id="431">431</span>
-<span id="432">432</span>
-<span id="433">433</span>
-<span id="434">434</span>
-<span id="435">435</span>
-<span id="436">436</span>
-<span id="437">437</span>
-<span id="438">438</span>
-<span id="439">439</span>
-<span id="440">440</span>
-<span id="441">441</span>
-<span id="442">442</span>
 </pre><pre class='rust '>
-<span class='comment'>// edited from screensaver.xml by rs_client.py on Fri Mar  4 08:12:11 2016</span>
+<span class='comment'>// edited from screensaver.xml by rs_client.py on Mon Mar 28 11:00:19 2016</span>
 <span class='comment'>// do not edit!</span>
 
+<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
 
 <span class='kw'>use</span> <span class='ident'>base</span>;
 <span class='kw'>use</span> <span class='ident'>xproto</span>;
@@ -570,13 +559,11 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>QueryVersionReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_screensaver_query_version_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>QueryVersionReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>server_major_version</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u16</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>server_major_version</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>server_minor_version</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u16</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>server_minor_version</span>
@@ -642,37 +629,31 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>QueryInfoReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_screensaver_query_info_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>QueryInfoReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>state</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>state</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>saver_window</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xproto</span>::<span class='ident'>Window</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>saver_window</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>ms_until_server</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>ms_until_server</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>ms_since_user_input</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>ms_since_user_input</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>event_mask</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>event_mask</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>kind</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>kind</span>
@@ -869,37 +850,31 @@
 }
 
 <span class='kw'>impl</span> <span class='ident'>NotifyEvent</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>state</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>state</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>time</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xproto</span>::<span class='ident'>Timestamp</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>time</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>root</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xproto</span>::<span class='ident'>Window</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>root</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>window</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xproto</span>::<span class='ident'>Window</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>window</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>kind</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>kind</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>forced</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>forced</span> <span class='op'>!=</span> <span class='number'>0</span>
@@ -914,6 +889,7 @@
             <span class='op'>-&gt;</span> <span class='ident'>NotifyEvent</span> {
         <span class='kw'>unsafe</span> {
             <span class='kw'>let</span> <span class='ident'>raw</span> <span class='op'>=</span> <span class='ident'>libc</span>::<span class='ident'>malloc</span>(<span class='number'>32</span> <span class='kw'>as</span> <span class='ident'>usize</span>) <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_screensaver_notify_event_t</span>;
+            (<span class='op'>*</span><span class='ident'>raw</span>).<span class='ident'>response_type</span> <span class='op'>=</span> <span class='ident'>NOTIFY</span>;
             (<span class='op'>*</span><span class='ident'>raw</span>).<span class='ident'>state</span> <span class='op'>=</span> <span class='ident'>state</span>;
             (<span class='op'>*</span><span class='ident'>raw</span>).<span class='ident'>time</span> <span class='op'>=</span> <span class='ident'>time</span>;
             (<span class='op'>*</span><span class='ident'>raw</span>).<span class='ident'>root</span> <span class='op'>=</span> <span class='ident'>root</span>;

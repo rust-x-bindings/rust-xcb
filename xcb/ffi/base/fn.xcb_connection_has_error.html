@@ -46,8 +46,24 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-4444' class='srclink' href='../../../src/xcb/ffi/base.rs.html#185-186' title='goto source code'>[src]</a></span></h1>
-<pre class='rust fn'>pub unsafe extern fn xcb_connection_has_error(c: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='enum' href='../../../xcb/ffi/base/enum.xcb_connection_t.html' title='xcb::ffi::base::xcb_connection_t'>xcb_connection_t</a>) -&gt; <a class='type' href='../../../libc/type.c_int.html' title='libc::c_int'>c_int</a></pre></section>
+        </span><a id='src-4498' class='srclink' href='../../../src/xcb/ffi/base.rs.html#392-393' title='goto source code'>[src]</a></span></h1>
+<pre class='rust fn'>pub unsafe extern fn xcb_connection_has_error(c: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='enum' href='../../../xcb/ffi/base/enum.xcb_connection_t.html' title='xcb::ffi::base::xcb_connection_t'>xcb_connection_t</a>) -&gt; <a class='type' href='../../../libc/type.c_int.html' title='libc::c_int'>c_int</a></pre><div class='docblock'><p>Test whether the connection has shut down due to a fatal error.</p>
+
+<p>Some errors that occur in the context of an xcb_connection_t
+are unrecoverable. When such an error occurs, the
+connection is shut down and further operations on the
+xcb_connection_t have no effect, but memory will not be freed until
+xcb_disconnect() is called on the xcb_connection_t.</p>
+
+<p>Returns XCB_CONN_ERROR, because of socket errors, pipe errors or other stream errors.
+Returns XCB_CONN_CLOSED_EXT_NOTSUPPORTED, when extension not supported.
+Returns XCB_CONN_CLOSED_MEM_INSUFFICIENT, when memory not available.
+Returns XCB_CONN_CLOSED_REQ_LEN_EXCEED, exceeding request length that server accepts.
+Returns XCB_CONN_CLOSED_PARSE_ERR, error during parsing display string.
+Returns XCB_CONN_CLOSED_INVALID_SCREEN, because the server does not have a screen matching the display.</p>
+
+<p>Returns &gt; 0 if the connection is in an error state; 0 otherwise.</p>
+</div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>

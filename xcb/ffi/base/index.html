@@ -46,14 +46,15 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-4307' class='srclink' href='../../../src/xcb/ffi/base.rs.html#32-212' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-4354' class='srclink' href='../../../src/xcb/ffi/base.rs.html#32-486' title='goto source code'>[src]</a></span></h1>
 <h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
                     <tr class=' module-item'>
                         <td><a class='struct' href='struct.xcb_auth_info_t.html'
                                title='xcb::ffi::base::xcb_auth_info_t'>xcb_auth_info_t</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Container for authorization information.
+A container for authorization information to be sent to the X server</p>
                         </td>
                     </tr>
                 
@@ -61,7 +62,7 @@
                         <td><a class='struct' href='struct.xcb_ge_event_t.html'
                                title='xcb::ffi::base::xcb_ge_event_t'>xcb_ge_event_t</a></td>
                         <td class='docblock short'>
-                             
+                             <p>GE event</p>
                         </td>
                     </tr>
                 
@@ -69,7 +70,7 @@
                         <td><a class='struct' href='struct.xcb_generic_error_t.html'
                                title='xcb::ffi::base::xcb_generic_error_t'>xcb_generic_error_t</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Generic error</p>
                         </td>
                     </tr>
                 
@@ -77,7 +78,7 @@
                         <td><a class='struct' href='struct.xcb_generic_event_t.html'
                                title='xcb::ffi::base::xcb_generic_event_t'>xcb_generic_event_t</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Generic event</p>
                         </td>
                     </tr>
                 
@@ -85,7 +86,7 @@
                         <td><a class='struct' href='struct.xcb_generic_iterator_t.html'
                                title='xcb::ffi::base::xcb_generic_iterator_t'>xcb_generic_iterator_t</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Generic iterator</p>
                         </td>
                     </tr>
                 
@@ -93,7 +94,7 @@
                         <td><a class='struct' href='struct.xcb_generic_reply_t.html'
                                title='xcb::ffi::base::xcb_generic_reply_t'>xcb_generic_reply_t</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Generic reply</p>
                         </td>
                     </tr>
                 
@@ -101,7 +102,7 @@
                         <td><a class='struct' href='struct.xcb_void_cookie_t.html'
                                title='xcb::ffi::base::xcb_void_cookie_t'>xcb_void_cookie_t</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Generic cookie</p>
                         </td>
                     </tr>
                 </table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
@@ -110,7 +111,9 @@
                         <td><a class='enum' href='enum.xcb_connection_t.html'
                                title='xcb::ffi::base::xcb_connection_t'>xcb_connection_t</a></td>
                         <td class='docblock short'>
-                             
+                             <p>XCB connection structure
+An opaque structure that contain all data that XCB needs to communicate
+with an X server.</p>
                         </td>
                     </tr>
                 
@@ -118,7 +121,7 @@
                         <td><a class='enum' href='enum.xcb_extension_t.html'
                                title='xcb::ffi::base::xcb_extension_t'>xcb_extension_t</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Opaque structure used as key for xcb_get_extension_data_t</p>
                         </td>
                     </tr>
                 
@@ -132,10 +135,67 @@
                 </table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
 <table>
                     <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_CONN_CLOSED_EXT_NOTSUPPORTED.html'
+                               title='xcb::ffi::base::XCB_CONN_CLOSED_EXT_NOTSUPPORTED'>XCB_CONN_CLOSED_EXT_NOTSUPPORTED</a></td>
+                        <td class='docblock short'>
+                             <p>xcb connection shutdown because of extension not supported</p>
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_CONN_CLOSED_FDPASSING_FAILED.html'
+                               title='xcb::ffi::base::XCB_CONN_CLOSED_FDPASSING_FAILED'>XCB_CONN_CLOSED_FDPASSING_FAILED</a></td>
+                        <td class='docblock short'>
+                             <p>Connection closed because some FD passing operation failed</p>
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_CONN_CLOSED_INVALID_SCREEN.html'
+                               title='xcb::ffi::base::XCB_CONN_CLOSED_INVALID_SCREEN'>XCB_CONN_CLOSED_INVALID_SCREEN</a></td>
+                        <td class='docblock short'>
+                             <p>Connection closed because the server does not have a screen
+matching the display.</p>
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_CONN_CLOSED_MEM_INSUFFICIENT.html'
+                               title='xcb::ffi::base::XCB_CONN_CLOSED_MEM_INSUFFICIENT'>XCB_CONN_CLOSED_MEM_INSUFFICIENT</a></td>
+                        <td class='docblock short'>
+                             <p>malloc(), calloc() and realloc() error upon failure, for eg ENOMEM</p>
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_CONN_CLOSED_PARSE_ERR.html'
+                               title='xcb::ffi::base::XCB_CONN_CLOSED_PARSE_ERR'>XCB_CONN_CLOSED_PARSE_ERR</a></td>
+                        <td class='docblock short'>
+                             <p>Connection closed, error during parsing display string.</p>
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_CONN_CLOSED_REQ_LEN_EXCEED.html'
+                               title='xcb::ffi::base::XCB_CONN_CLOSED_REQ_LEN_EXCEED'>XCB_CONN_CLOSED_REQ_LEN_EXCEED</a></td>
+                        <td class='docblock short'>
+                             <p>Connection closed, exceeding request length that server accepts.</p>
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.XCB_CONN_ERROR.html'
+                               title='xcb::ffi::base::XCB_CONN_ERROR'>XCB_CONN_ERROR</a></td>
+                        <td class='docblock short'>
+                             <p>xcb connection errors because of socket, pipe and other stream errors.</p>
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='constant' href='constant.XCB_COPY_FROM_PARENT.html'
                                title='xcb::ffi::base::XCB_COPY_FROM_PARENT'>XCB_COPY_FROM_PARENT</a></td>
                         <td class='docblock short'>
-                             
+                             <p>XCB_COPY_FROM_PARENT can be used for many xcb_create_window parameters</p>
                         </td>
                     </tr>
                 
@@ -143,7 +203,7 @@
                         <td><a class='constant' href='constant.XCB_CURRENT_TIME.html'
                                title='xcb::ffi::base::XCB_CURRENT_TIME'>XCB_CURRENT_TIME</a></td>
                         <td class='docblock short'>
-                             
+                             <p>XCB_CURRENT_TIME can be used in most requests that take an xcb_timestamp_t</p>
                         </td>
                     </tr>
                 
@@ -151,7 +211,7 @@
                         <td><a class='constant' href='constant.XCB_NONE.html'
                                title='xcb::ffi::base::XCB_NONE'>XCB_NONE</a></td>
                         <td class='docblock short'>
-                             
+                             <p>XCB_NONE is the universal null resource or null atom parameter value for many core X requests</p>
                         </td>
                     </tr>
                 
@@ -159,7 +219,7 @@
                         <td><a class='constant' href='constant.XCB_NO_SYMBOL.html'
                                title='xcb::ffi::base::XCB_NO_SYMBOL'>XCB_NO_SYMBOL</a></td>
                         <td class='docblock short'>
-                             
+                             <p>XCB_NO_SYMBOL fills in unused entries in xcb_keysym_t tables</p>
                         </td>
                     </tr>
                 </table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
@@ -168,7 +228,10 @@
                         <td><a class='fn' href='fn.xcb_connect.html'
                                title='xcb::ffi::base::xcb_connect'>xcb_connect</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Connects to the X server.
+displayname: The name of the display.
+screenp: A pointer to a preferred screen number.
+Returns A newly allocated xcb_connection_t structure.</p>
                         </td>
                     </tr>
                 
@@ -176,7 +239,11 @@
                         <td><a class='fn' href='fn.xcb_connect_to_display_with_auth_info.html'
                                title='xcb::ffi::base::xcb_connect_to_display_with_auth_info'>xcb_connect_to_display_with_auth_info</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Connects to the X server, using an authorization information.
+display: The name of the display.
+auth: The authorization information.
+screen: A pointer to a preferred screen number.
+Returns A newly allocated xcb_connection_t structure.</p>
                         </td>
                     </tr>
                 
@@ -184,7 +251,7 @@
                         <td><a class='fn' href='fn.xcb_connect_to_fd.html'
                                title='xcb::ffi::base::xcb_connect_to_fd'>xcb_connect_to_fd</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Connects to the X server.</p>
                         </td>
                     </tr>
                 
@@ -192,7 +259,7 @@
                         <td><a class='fn' href='fn.xcb_connection_has_error.html'
                                title='xcb::ffi::base::xcb_connection_has_error'>xcb_connection_has_error</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Test whether the connection has shut down due to a fatal error.</p>
                         </td>
                     </tr>
                 
@@ -200,7 +267,7 @@
                         <td><a class='fn' href='fn.xcb_discard_reply.html'
                                title='xcb::ffi::base::xcb_discard_reply'>xcb_discard_reply</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Discards the reply for a request.</p>
                         </td>
                     </tr>
                 
@@ -208,7 +275,7 @@
                         <td><a class='fn' href='fn.xcb_discard_reply64.html'
                                title='xcb::ffi::base::xcb_discard_reply64'>xcb_discard_reply64</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Discards the reply for a request, given by a 64bit sequence number</p>
                         </td>
                     </tr>
                 
@@ -216,7 +283,7 @@
                         <td><a class='fn' href='fn.xcb_disconnect.html'
                                title='xcb::ffi::base::xcb_disconnect'>xcb_disconnect</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Closes the connection.</p>
                         </td>
                     </tr>
                 
@@ -224,7 +291,8 @@
                         <td><a class='fn' href='fn.xcb_flush.html'
                                title='xcb::ffi::base::xcb_flush'>xcb_flush</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Forces any buffered output to be written to the server. Blocks
+until the write is complete.</p>
                         </td>
                     </tr>
                 
@@ -232,7 +300,8 @@
                         <td><a class='fn' href='fn.xcb_generate_id.html'
                                title='xcb::ffi::base::xcb_generate_id'>xcb_generate_id</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Allocates an XID for a new object.
+Returns A newly allocated XID.</p>
                         </td>
                     </tr>
                 
@@ -240,7 +309,7 @@
                         <td><a class='fn' href='fn.xcb_get_extension_data.html'
                                title='xcb::ffi::base::xcb_get_extension_data'>xcb_get_extension_data</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Caches reply information from QueryExtension requests.</p>
                         </td>
                     </tr>
                 
@@ -248,7 +317,7 @@
                         <td><a class='fn' href='fn.xcb_get_file_descriptor.html'
                                title='xcb::ffi::base::xcb_get_file_descriptor'>xcb_get_file_descriptor</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Access the file descriptor of the connection.</p>
                         </td>
                     </tr>
                 
@@ -256,7 +325,7 @@
                         <td><a class='fn' href='fn.xcb_get_maximum_request_length.html'
                                title='xcb::ffi::base::xcb_get_maximum_request_length'>xcb_get_maximum_request_length</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Returns the maximum request length that this server accepts.</p>
                         </td>
                     </tr>
                 
@@ -264,7 +333,7 @@
                         <td><a class='fn' href='fn.xcb_get_setup.html'
                                title='xcb::ffi::base::xcb_get_setup'>xcb_get_setup</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Access the data returned by the server.</p>
                         </td>
                     </tr>
                 
@@ -272,7 +341,11 @@
                         <td><a class='fn' href='fn.xcb_parse_display.html'
                                title='xcb::ffi::base::xcb_parse_display'>xcb_parse_display</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Parses a display string name in the form documented by X(7x).
+name: The name of the display.
+host: A pointer to a malloc&#39;d copy of the hostname.
+display: A pointer to the display number.
+screen: A pointer to the screen number.</p>
                         </td>
                     </tr>
                 
@@ -280,7 +353,7 @@
                         <td><a class='fn' href='fn.xcb_poll_for_event.html'
                                title='xcb::ffi::base::xcb_poll_for_event'>xcb_poll_for_event</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Returns the next event or error from the server.</p>
                         </td>
                     </tr>
                 
@@ -288,7 +361,7 @@
                         <td><a class='fn' href='fn.xcb_poll_for_queued_event.html'
                                title='xcb::ffi::base::xcb_poll_for_queued_event'>xcb_poll_for_queued_event</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Returns the next event without reading from the connection.</p>
                         </td>
                     </tr>
                 
@@ -296,7 +369,7 @@
                         <td><a class='fn' href='fn.xcb_poll_for_special_event.html'
                                title='xcb::ffi::base::xcb_poll_for_special_event'>xcb_poll_for_special_event</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Returns the next event from a special queue</p>
                         </td>
                     </tr>
                 
@@ -304,7 +377,7 @@
                         <td><a class='fn' href='fn.xcb_prefetch_extension_data.html'
                                title='xcb::ffi::base::xcb_prefetch_extension_data'>xcb_prefetch_extension_data</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Prefetch of extension data into the extension cache</p>
                         </td>
                     </tr>
                 
@@ -312,7 +385,7 @@
                         <td><a class='fn' href='fn.xcb_prefetch_maximum_request_length.html'
                                title='xcb::ffi::base::xcb_prefetch_maximum_request_length'>xcb_prefetch_maximum_request_length</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Prefetch the maximum request length without blocking.</p>
                         </td>
                     </tr>
                 
@@ -320,7 +393,7 @@
                         <td><a class='fn' href='fn.xcb_register_for_special_xge.html'
                                title='xcb::ffi::base::xcb_register_for_special_xge'>xcb_register_for_special_xge</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Listen for a special event</p>
                         </td>
                     </tr>
                 
@@ -328,7 +401,7 @@
                         <td><a class='fn' href='fn.xcb_request_check.html'
                                title='xcb::ffi::base::xcb_request_check'>xcb_request_check</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Return the error for a request, or NULL if none can ever arrive.</p>
                         </td>
                     </tr>
                 
@@ -336,7 +409,7 @@
                         <td><a class='fn' href='fn.xcb_unregister_for_special_event.html'
                                title='xcb::ffi::base::xcb_unregister_for_special_event'>xcb_unregister_for_special_event</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Stop listening for a special event</p>
                         </td>
                     </tr>
                 
@@ -344,7 +417,7 @@
                         <td><a class='fn' href='fn.xcb_wait_for_event.html'
                                title='xcb::ffi::base::xcb_wait_for_event'>xcb_wait_for_event</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Returns the next event or error from the server.</p>
                         </td>
                     </tr>
                 
@@ -352,7 +425,7 @@
                         <td><a class='fn' href='fn.xcb_wait_for_special_event.html'
                                title='xcb::ffi::base::xcb_wait_for_special_event'>xcb_wait_for_special_event</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Returns the next event from a special queue, blocking until one arrives</p>
                         </td>
                     </tr>
                 </table></section>

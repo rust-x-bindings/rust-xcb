@@ -46,18 +46,25 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-4393' class='srclink' href='../../../src/xcb/ffi/base.rs.html#117-122' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-4447' class='srclink' href='../../../src/xcb/ffi/base.rs.html#165-175' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct xcb_auth_info_t {
     pub namelen: <a class='type' href='../../../libc/type.c_int.html' title='libc::c_int'>c_int</a>,
     pub name: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='type' href='../../../libc/unix/notbsd/linux/other/b64/x86_64/type.c_char.html' title='libc::unix::notbsd::linux::other::b64::x86_64::c_char'>c_char</a>,
     pub datalen: <a class='type' href='../../../libc/type.c_int.html' title='libc::c_int'>c_int</a>,
     pub data: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='type' href='../../../libc/unix/notbsd/linux/other/b64/x86_64/type.c_char.html' title='libc::unix::notbsd::linux::other::b64::x86_64::c_char'>c_char</a>,
-}</pre><h2 class='fields'>Fields</h2>
+}</pre><div class='docblock'><p>Container for authorization information.
+A container for authorization information to be sent to the X server</p>
+</div><h2 class='fields'>Fields</h2>
 <table><tr class='stab '>
-                                  <td id='structfield.namelen'><code>namelen</code></td><td></td></tr><tr class='stab '>
-                                  <td id='structfield.name'><code>name</code></td><td></td></tr><tr class='stab '>
-                                  <td id='structfield.datalen'><code>datalen</code></td><td></td></tr><tr class='stab '>
-                                  <td id='structfield.data'><code>data</code></td><td></td></tr></table></section>
+                                  <td id='structfield.namelen'><code>namelen</code></td><td><div class='docblock'><p>length of the string name (as returned by strlen)</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.name'><code>name</code></td><td><div class='docblock'><p>String containing the authentication protocol name,
+such as &quot;MIT-MAGIC-COOKIE-1&quot; or &quot;XDM-AUTHORIZATION-1&quot;.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.datalen'><code>datalen</code></td><td><div class='docblock'><p>length of the data member</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.data'><code>data</code></td><td><div class='docblock'><p>data interpreted in a protocol specific manner</p>
+</div></td></tr></table></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>

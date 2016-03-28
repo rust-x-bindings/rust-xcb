@@ -46,8 +46,23 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-4459' class='srclink' href='../../../src/xcb/ffi/base.rs.html#204-207' title='goto source code'>[src]</a></span></h1>
-<pre class='rust fn'>pub unsafe extern fn xcb_connect_to_display_with_auth_info(display: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='type' href='../../../libc/unix/notbsd/linux/other/b64/x86_64/type.c_char.html' title='libc::unix::notbsd::linux::other::b64::x86_64::c_char'>c_char</a>, auth: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='struct' href='../../../xcb/ffi/base/struct.xcb_auth_info_t.html' title='xcb::ffi::base::xcb_auth_info_t'>xcb_auth_info_t</a>, screen: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='type' href='../../../libc/type.c_int.html' title='libc::c_int'>c_int</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='enum' href='../../../xcb/ffi/base/enum.xcb_connection_t.html' title='xcb::ffi::base::xcb_connection_t'>xcb_connection_t</a></pre></section>
+        </span><a id='src-4513' class='srclink' href='../../../src/xcb/ffi/base.rs.html#473-476' title='goto source code'>[src]</a></span></h1>
+<pre class='rust fn'>pub unsafe extern fn xcb_connect_to_display_with_auth_info(display: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*const </a><a class='type' href='../../../libc/unix/notbsd/linux/other/b64/x86_64/type.c_char.html' title='libc::unix::notbsd::linux::other::b64::x86_64::c_char'>c_char</a>, auth: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='struct' href='../../../xcb/ffi/base/struct.xcb_auth_info_t.html' title='xcb::ffi::base::xcb_auth_info_t'>xcb_auth_info_t</a>, screen: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='type' href='../../../libc/type.c_int.html' title='libc::c_int'>c_int</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='enum' href='../../../xcb/ffi/base/enum.xcb_connection_t.html' title='xcb::ffi::base::xcb_connection_t'>xcb_connection_t</a></pre><div class='docblock'><p>Connects to the X server, using an authorization information.
+display: The name of the display.
+auth: The authorization information.
+screen: A pointer to a preferred screen number.
+Returns A newly allocated xcb_connection_t structure.</p>
+
+<p>Connects to the X server specified by displayname, using the
+authorization auth. If a particular screen on that server is
+preferred, the int pointed to by screenp (if not NULL) will
+be set to that screen; otherwise screenp will be set to 0.</p>
+
+<p>Always returns a non-NULL pointer to a xcb_connection_t, even on failure.
+Callers need to use xcb_connection_has_error() to check for failure.
+When finished, use xcb_disconnect() to close the connection and free
+the structure.</p>
+</div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>

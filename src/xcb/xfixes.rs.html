@@ -1742,39 +1742,11 @@
 <span id="1699">1699</span>
 <span id="1700">1700</span>
 <span id="1701">1701</span>
-<span id="1702">1702</span>
-<span id="1703">1703</span>
-<span id="1704">1704</span>
-<span id="1705">1705</span>
-<span id="1706">1706</span>
-<span id="1707">1707</span>
-<span id="1708">1708</span>
-<span id="1709">1709</span>
-<span id="1710">1710</span>
-<span id="1711">1711</span>
-<span id="1712">1712</span>
-<span id="1713">1713</span>
-<span id="1714">1714</span>
-<span id="1715">1715</span>
-<span id="1716">1716</span>
-<span id="1717">1717</span>
-<span id="1718">1718</span>
-<span id="1719">1719</span>
-<span id="1720">1720</span>
-<span id="1721">1721</span>
-<span id="1722">1722</span>
-<span id="1723">1723</span>
-<span id="1724">1724</span>
-<span id="1725">1725</span>
-<span id="1726">1726</span>
-<span id="1727">1727</span>
-<span id="1728">1728</span>
-<span id="1729">1729</span>
-<span id="1730">1730</span>
 </pre><pre class='rust '>
-<span class='comment'>// edited from xfixes.xml by rs_client.py on Fri Mar  4 08:12:11 2016</span>
+<span class='comment'>// edited from xfixes.xml by rs_client.py on Mon Mar 28 11:00:19 2016</span>
 <span class='comment'>// do not edit!</span>
 
+<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
 
 <span class='kw'>use</span> <span class='ident'>base</span>;
 <span class='kw'>use</span> <span class='ident'>xproto</span>;
@@ -1958,13 +1930,11 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>QueryVersionReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_xfixes_query_version_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>QueryVersionReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>major_version</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>major_version</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>minor_version</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>minor_version</span>
@@ -2045,37 +2015,31 @@
 }
 
 <span class='kw'>impl</span> <span class='ident'>SelectionNotifyEvent</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>subtype</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>subtype</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>window</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xproto</span>::<span class='ident'>Window</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>window</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>owner</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xproto</span>::<span class='ident'>Window</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>owner</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>selection</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xproto</span>::<span class='ident'>Atom</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>selection</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>timestamp</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xproto</span>::<span class='ident'>Timestamp</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>timestamp</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>selection_timestamp</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xproto</span>::<span class='ident'>Timestamp</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>selection_timestamp</span>
@@ -2090,6 +2054,7 @@
             <span class='op'>-&gt;</span> <span class='ident'>SelectionNotifyEvent</span> {
         <span class='kw'>unsafe</span> {
             <span class='kw'>let</span> <span class='ident'>raw</span> <span class='op'>=</span> <span class='ident'>libc</span>::<span class='ident'>malloc</span>(<span class='number'>32</span> <span class='kw'>as</span> <span class='ident'>usize</span>) <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_xfixes_selection_notify_event_t</span>;
+            (<span class='op'>*</span><span class='ident'>raw</span>).<span class='ident'>response_type</span> <span class='op'>=</span> <span class='ident'>SELECTION_NOTIFY</span>;
             (<span class='op'>*</span><span class='ident'>raw</span>).<span class='ident'>subtype</span> <span class='op'>=</span> <span class='ident'>subtype</span>;
             (<span class='op'>*</span><span class='ident'>raw</span>).<span class='ident'>window</span> <span class='op'>=</span> <span class='ident'>window</span>;
             (<span class='op'>*</span><span class='ident'>raw</span>).<span class='ident'>owner</span> <span class='op'>=</span> <span class='ident'>owner</span>;
@@ -2140,31 +2105,26 @@
 }
 
 <span class='kw'>impl</span> <span class='ident'>CursorNotifyEvent</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>subtype</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>subtype</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>window</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xproto</span>::<span class='ident'>Window</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>window</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>cursor_serial</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>cursor_serial</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>timestamp</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xproto</span>::<span class='ident'>Timestamp</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>timestamp</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>name</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xproto</span>::<span class='ident'>Atom</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>name</span>
@@ -2178,6 +2138,7 @@
             <span class='op'>-&gt;</span> <span class='ident'>CursorNotifyEvent</span> {
         <span class='kw'>unsafe</span> {
             <span class='kw'>let</span> <span class='ident'>raw</span> <span class='op'>=</span> <span class='ident'>libc</span>::<span class='ident'>malloc</span>(<span class='number'>32</span> <span class='kw'>as</span> <span class='ident'>usize</span>) <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_xfixes_cursor_notify_event_t</span>;
+            (<span class='op'>*</span><span class='ident'>raw</span>).<span class='ident'>response_type</span> <span class='op'>=</span> <span class='ident'>CURSOR_NOTIFY</span>;
             (<span class='op'>*</span><span class='ident'>raw</span>).<span class='ident'>subtype</span> <span class='op'>=</span> <span class='ident'>subtype</span>;
             (<span class='op'>*</span><span class='ident'>raw</span>).<span class='ident'>window</span> <span class='op'>=</span> <span class='ident'>window</span>;
             (<span class='op'>*</span><span class='ident'>raw</span>).<span class='ident'>cursor_serial</span> <span class='op'>=</span> <span class='ident'>cursor_serial</span>;
@@ -2248,43 +2209,36 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetCursorImageReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_xfixes_get_cursor_image_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>GetCursorImageReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>x</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>i16</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>x</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>y</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>i16</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>y</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>width</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u16</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>width</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>height</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u16</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>height</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>xhot</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u16</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>xhot</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>yhot</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u16</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>yhot</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>cursor_serial</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>cursor_serial</span>
@@ -2830,7 +2784,6 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>FetchRegionReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_xfixes_fetch_region_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>FetchRegionReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>extents</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xproto</span>::<span class='ident'>Rectangle</span> {
         <span class='kw'>unsafe</span> {
             <span class='ident'>std</span>::<span class='ident'>mem</span>::<span class='ident'>transmute</span>((<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>extents</span>)
@@ -3061,13 +3014,11 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetCursorNameReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_xfixes_get_cursor_name_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>GetCursorNameReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>atom</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xproto</span>::<span class='ident'>Atom</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>atom</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>nbytes</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u16</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>nbytes</span>
@@ -3139,55 +3090,46 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetCursorImageAndNameReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_xfixes_get_cursor_image_and_name_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>GetCursorImageAndNameReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>x</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>i16</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>x</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>y</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>i16</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>y</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>width</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u16</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>width</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>height</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u16</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>height</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>xhot</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u16</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>xhot</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>yhot</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u16</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>yhot</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>cursor_serial</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>cursor_serial</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>cursor_atom</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xproto</span>::<span class='ident'>Atom</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>cursor_atom</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>nbytes</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u16</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>nbytes</span>

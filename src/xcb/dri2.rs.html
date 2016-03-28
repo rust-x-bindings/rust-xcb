@@ -1365,56 +1365,11 @@
 <span id="1322">1322</span>
 <span id="1323">1323</span>
 <span id="1324">1324</span>
-<span id="1325">1325</span>
-<span id="1326">1326</span>
-<span id="1327">1327</span>
-<span id="1328">1328</span>
-<span id="1329">1329</span>
-<span id="1330">1330</span>
-<span id="1331">1331</span>
-<span id="1332">1332</span>
-<span id="1333">1333</span>
-<span id="1334">1334</span>
-<span id="1335">1335</span>
-<span id="1336">1336</span>
-<span id="1337">1337</span>
-<span id="1338">1338</span>
-<span id="1339">1339</span>
-<span id="1340">1340</span>
-<span id="1341">1341</span>
-<span id="1342">1342</span>
-<span id="1343">1343</span>
-<span id="1344">1344</span>
-<span id="1345">1345</span>
-<span id="1346">1346</span>
-<span id="1347">1347</span>
-<span id="1348">1348</span>
-<span id="1349">1349</span>
-<span id="1350">1350</span>
-<span id="1351">1351</span>
-<span id="1352">1352</span>
-<span id="1353">1353</span>
-<span id="1354">1354</span>
-<span id="1355">1355</span>
-<span id="1356">1356</span>
-<span id="1357">1357</span>
-<span id="1358">1358</span>
-<span id="1359">1359</span>
-<span id="1360">1360</span>
-<span id="1361">1361</span>
-<span id="1362">1362</span>
-<span id="1363">1363</span>
-<span id="1364">1364</span>
-<span id="1365">1365</span>
-<span id="1366">1366</span>
-<span id="1367">1367</span>
-<span id="1368">1368</span>
-<span id="1369">1369</span>
-<span id="1370">1370</span>
 </pre><pre class='rust '>
-<span class='comment'>// edited from dri2.xml by rs_client.py on Fri Mar  4 08:12:10 2016</span>
+<span class='comment'>// edited from dri2.xml by rs_client.py on Mon Mar 28 11:00:18 2016</span>
 <span class='comment'>// do not edit!</span>
 
+<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
 
 <span class='kw'>use</span> <span class='ident'>base</span>;
 <span class='kw'>use</span> <span class='ident'>xproto</span>;
@@ -1545,31 +1500,26 @@
             }
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>attachment</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             <span class='self'>self</span>.<span class='ident'>base</span>.<span class='ident'>attachment</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>name</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             <span class='self'>self</span>.<span class='ident'>base</span>.<span class='ident'>name</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>pitch</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             <span class='self'>self</span>.<span class='ident'>base</span>.<span class='ident'>pitch</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>cpp</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             <span class='self'>self</span>.<span class='ident'>base</span>.<span class='ident'>cpp</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>flags</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             <span class='self'>self</span>.<span class='ident'>base</span>.<span class='ident'>flags</span>
@@ -1608,13 +1558,11 @@
             }
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>attachment</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             <span class='self'>self</span>.<span class='ident'>base</span>.<span class='ident'>attachment</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>format</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             <span class='self'>self</span>.<span class='ident'>base</span>.<span class='ident'>format</span>
@@ -1665,13 +1613,11 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>QueryVersionReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_dri2_query_version_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>QueryVersionReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>major_version</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>major_version</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>minor_version</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>minor_version</span>
@@ -1737,13 +1683,11 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>ConnectReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_dri2_connect_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>ConnectReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>driver_name_length</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>driver_name_length</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>device_name_length</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>device_name_length</span>
@@ -1837,7 +1781,6 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>AuthenticateReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_dri2_authenticate_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>AuthenticateReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>authenticated</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>authenticated</span>
@@ -1959,19 +1902,16 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetBuffersReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_dri2_get_buffers_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>GetBuffersReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>width</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>width</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>height</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>height</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>count</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>count</span>
@@ -2120,19 +2060,16 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetBuffersWithFormatReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_dri2_get_buffers_with_format_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>GetBuffersWithFormatReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>width</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>width</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>height</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>height</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>count</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>count</span>
@@ -2213,13 +2150,11 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>SwapBuffersReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_dri2_swap_buffers_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>SwapBuffersReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>swap_hi</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>swap_hi</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>swap_lo</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>swap_lo</span>
@@ -2305,37 +2240,31 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetMscReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_dri2_get_msc_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>GetMscReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>ust_hi</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>ust_hi</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>ust_lo</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>ust_lo</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>msc_hi</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>msc_hi</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>msc_lo</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>msc_lo</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>sbc_hi</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>sbc_hi</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>sbc_lo</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>sbc_lo</span>
@@ -2397,37 +2326,31 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>WaitMscReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_dri2_wait_msc_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>WaitMscReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>ust_hi</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>ust_hi</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>ust_lo</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>ust_lo</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>msc_hi</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>msc_hi</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>msc_lo</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>msc_lo</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>sbc_hi</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>sbc_hi</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>sbc_lo</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>sbc_lo</span>
@@ -2513,37 +2436,31 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>WaitSbcReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_dri2_wait_sbc_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>WaitSbcReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>ust_hi</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>ust_hi</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>ust_lo</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>ust_lo</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>msc_hi</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>msc_hi</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>msc_lo</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>msc_lo</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>sbc_hi</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>sbc_hi</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>sbc_lo</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>sbc_lo</span>
@@ -2645,19 +2562,16 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetParamReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_dri2_get_param_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>GetParamReply</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>is_param_recognized</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>is_param_recognized</span> <span class='op'>!=</span> <span class='number'>0</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>value_hi</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>value_hi</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>value_lo</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>value_lo</span>
@@ -2698,43 +2612,36 @@
 }
 
 <span class='kw'>impl</span> <span class='ident'>BufferSwapCompleteEvent</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>event_type</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u16</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>event_type</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>drawable</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xproto</span>::<span class='ident'>Drawable</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>drawable</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>ust_hi</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>ust_hi</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>ust_lo</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>ust_lo</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>msc_hi</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>msc_hi</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>msc_lo</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>msc_lo</span>
         }
     }
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>sbc</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>sbc</span>
@@ -2750,6 +2657,7 @@
             <span class='op'>-&gt;</span> <span class='ident'>BufferSwapCompleteEvent</span> {
         <span class='kw'>unsafe</span> {
             <span class='kw'>let</span> <span class='ident'>raw</span> <span class='op'>=</span> <span class='ident'>libc</span>::<span class='ident'>malloc</span>(<span class='number'>32</span> <span class='kw'>as</span> <span class='ident'>usize</span>) <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_dri2_buffer_swap_complete_event_t</span>;
+            (<span class='op'>*</span><span class='ident'>raw</span>).<span class='ident'>response_type</span> <span class='op'>=</span> <span class='ident'>BUFFER_SWAP_COMPLETE</span>;
             (<span class='op'>*</span><span class='ident'>raw</span>).<span class='ident'>event_type</span> <span class='op'>=</span> <span class='ident'>event_type</span>;
             (<span class='op'>*</span><span class='ident'>raw</span>).<span class='ident'>drawable</span> <span class='op'>=</span> <span class='ident'>drawable</span>;
             (<span class='op'>*</span><span class='ident'>raw</span>).<span class='ident'>ust_hi</span> <span class='op'>=</span> <span class='ident'>ust_hi</span>;
@@ -2765,7 +2673,6 @@
 }
 
 <span class='kw'>impl</span> <span class='ident'>InvalidateBuffersEvent</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>drawable</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>xproto</span>::<span class='ident'>Drawable</span> {
         <span class='kw'>unsafe</span> {
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>drawable</span>
@@ -2775,6 +2682,7 @@
             <span class='op'>-&gt;</span> <span class='ident'>InvalidateBuffersEvent</span> {
         <span class='kw'>unsafe</span> {
             <span class='kw'>let</span> <span class='ident'>raw</span> <span class='op'>=</span> <span class='ident'>libc</span>::<span class='ident'>malloc</span>(<span class='number'>32</span> <span class='kw'>as</span> <span class='ident'>usize</span>) <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_dri2_invalidate_buffers_event_t</span>;
+            (<span class='op'>*</span><span class='ident'>raw</span>).<span class='ident'>response_type</span> <span class='op'>=</span> <span class='ident'>INVALIDATE_BUFFERS</span>;
             (<span class='op'>*</span><span class='ident'>raw</span>).<span class='ident'>drawable</span> <span class='op'>=</span> <span class='ident'>drawable</span>;
             <span class='ident'>InvalidateBuffersEvent</span> {
                 <span class='ident'>ptr</span>: <span class='ident'>raw</span>

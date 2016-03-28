@@ -46,8 +46,24 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-4451' class='srclink' href='../../../src/xcb/ffi/base.rs.html#194-198' title='goto source code'>[src]</a></span></h1>
-<pre class='rust fn'>pub unsafe extern fn xcb_parse_display(name: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='type' href='../../../libc/unix/notbsd/linux/other/b64/x86_64/type.c_char.html' title='libc::unix::notbsd::linux::other::b64::x86_64::c_char'>c_char</a>, host: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='type' href='../../../libc/unix/notbsd/linux/other/b64/x86_64/type.c_char.html' title='libc::unix::notbsd::linux::other::b64::x86_64::c_char'>c_char</a>, display: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='type' href='../../../libc/type.c_int.html' title='libc::c_int'>c_int</a>, screen: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='type' href='../../../libc/type.c_int.html' title='libc::c_int'>c_int</a>) -&gt; <a class='type' href='../../../libc/type.c_int.html' title='libc::c_int'>c_int</a></pre></section>
+        </span><a id='src-4505' class='srclink' href='../../../src/xcb/ffi/base.rs.html#433-437' title='goto source code'>[src]</a></span></h1>
+<pre class='rust fn'>pub unsafe extern fn xcb_parse_display(name: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*const </a><a class='type' href='../../../libc/unix/notbsd/linux/other/b64/x86_64/type.c_char.html' title='libc::unix::notbsd::linux::other::b64::x86_64::c_char'>c_char</a>, host: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='type' href='../../../libc/unix/notbsd/linux/other/b64/x86_64/type.c_char.html' title='libc::unix::notbsd::linux::other::b64::x86_64::c_char'>c_char</a>, display: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='type' href='../../../libc/type.c_int.html' title='libc::c_int'>c_int</a>, screen: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='type' href='../../../libc/type.c_int.html' title='libc::c_int'>c_int</a>) -&gt; <a class='type' href='../../../libc/type.c_int.html' title='libc::c_int'>c_int</a></pre><div class='docblock'><p>Parses a display string name in the form documented by X(7x).
+name: The name of the display.
+host: A pointer to a malloc&#39;d copy of the hostname.
+display: A pointer to the display number.
+screen: A pointer to the screen number.</p>
+
+<p>Parses the display string name display_name in the form
+documented by X(7x). Has no side effects on failure. If
+displayname is NULL or empty, it uses the environment
+variable DISPLAY. hostp is a pointer to a newly allocated string
+that contain the host name. displayp is set to the display
+number and screenp to the preferred screen number. screenp
+can be NULL. If displayname does not contain a screen number,
+it is set to 0.</p>
+
+<p>Returns 0 on failure, non 0 otherwise.</p>
+</div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>

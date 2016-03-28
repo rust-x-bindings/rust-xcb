@@ -282,6 +282,9 @@
 <span id="239">239</span>
 <span id="240">240</span>
 <span id="241">241</span>
+<span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
 </pre><pre class='rust '>
 <span class='comment'>/*
  * Copyright (C) 2013 James Miller &lt;james@aatch.net&gt;
@@ -321,6 +324,9 @@
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>libc</span>;
 <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>feature</span><span class='op'>=</span><span class='string'>&quot;xlib_xcb&quot;</span>)]</span>
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>x11</span>;
+
+<span class='attribute'>#[<span class='ident'>macro_use</span>]</span>
+<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>log</span>;
 
 <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>base</span>;
 <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>xproto</span>;

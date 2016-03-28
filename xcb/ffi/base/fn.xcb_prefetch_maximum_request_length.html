@@ -46,8 +46,22 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-4403' class='srclink' href='../../../src/xcb/ffi/base.rs.html#134' title='goto source code'>[src]</a></span></h1>
-<pre class='rust fn'>pub unsafe extern fn xcb_prefetch_maximum_request_length(c: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='enum' href='../../../xcb/ffi/base/enum.xcb_connection_t.html' title='xcb::ffi::base::xcb_connection_t'>xcb_connection_t</a>)</pre></section>
+        </span><a id='src-4457' class='srclink' href='../../../src/xcb/ffi/base.rs.html#217' title='goto source code'>[src]</a></span></h1>
+<pre class='rust fn'>pub unsafe extern fn xcb_prefetch_maximum_request_length(c: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='enum' href='../../../xcb/ffi/base/enum.xcb_connection_t.html' title='xcb::ffi::base::xcb_connection_t'>xcb_connection_t</a>)</pre><div class='docblock'><p>Prefetch the maximum request length without blocking.</p>
+
+<p>Without blocking, does as much work as possible toward computing
+the maximum request length accepted by the X server.</p>
+
+<p>Invoking this function may cause a call to xcb_big_requests_enable,
+but will not block waiting for the reply.
+xcb_get_maximum_request_length will return the prefetched data
+after possibly blocking while the reply is retrieved.</p>
+
+<p>Note that in order for this function to be fully non-blocking, the
+application must previously have called
+xcb_prefetch_extension_data(c, &amp;xcb_big_requests_id) and the reply
+must have already arrived.</p>
+</div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>

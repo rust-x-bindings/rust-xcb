@@ -46,8 +46,18 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-4409' class='srclink' href='../../../src/xcb/ffi/base.rs.html#142-143' title='goto source code'>[src]</a></span></h1>
-<pre class='rust fn'>pub unsafe extern fn xcb_poll_for_queued_event(c: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='enum' href='../../../xcb/ffi/base/enum.xcb_connection_t.html' title='xcb::ffi::base::xcb_connection_t'>xcb_connection_t</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='struct' href='../../../xcb/ffi/base/struct.xcb_generic_event_t.html' title='xcb::ffi::base::xcb_generic_event_t'>xcb_generic_event_t</a></pre></section>
+        </span><a id='src-4463' class='srclink' href='../../../src/xcb/ffi/base.rs.html#247-248' title='goto source code'>[src]</a></span></h1>
+<pre class='rust fn'>pub unsafe extern fn xcb_poll_for_queued_event(c: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='enum' href='../../../xcb/ffi/base/enum.xcb_connection_t.html' title='xcb::ffi::base::xcb_connection_t'>xcb_connection_t</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='struct' href='../../../xcb/ffi/base/struct.xcb_generic_event_t.html' title='xcb::ffi::base::xcb_generic_event_t'>xcb_generic_event_t</a></pre><div class='docblock'><p>Returns the next event without reading from the connection.</p>
+
+<p>This is a version of xcb_poll_for_event that only examines the
+event queue for new events. The function doesn&#39;t try to read new
+events from the connection if no queued events are found.</p>
+
+<p>This function is useful for callers that know in advance that all
+interesting events have already been read from the connection. For
+example, callers might use xcb_wait_for_reply and be interested
+only of events that preceded a specific reply.</p>
+</div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
