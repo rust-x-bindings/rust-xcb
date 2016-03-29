@@ -285,6 +285,26 @@ impl Connection {
         }
     }
 
+    /// Prefetch the maximum request length without blocking.
+    ///
+    /// Without blocking, does as much work as possible toward computing
+    /// the maximum request length accepted by the X server.
+    ///
+    /// Invoking this function may cause a call to xcb_big_requests_enable,
+    /// but will not block waiting for the reply.
+    /// xcb_get_maximum_request_length will return the prefetched data
+    /// after possibly blocking while the reply is retrieved.
+    ///
+    /// Note that in order for this function to be fully non-blocking, the
+    /// application must previously have called
+    /// c.prefetch_extension_data(xcb::bigreq::id()) and the reply
+    /// must have already arrived.
+    pub fn prefetch_maximum_request_length(&self) {
+        unsafe {
+            xcb_prefetch_maximum_request_length(self.c);
+        }
+    }
+
     /// Returns the next event or error from the server.
     ///
     /// Returns the next event or error from the server, or returns `None` in
@@ -489,7 +509,6 @@ impl Connection {
             let conn = Connection { c: cconn };
 
             conn.has_error().map(|_| {
-                xcb_prefetch_maximum_request_length(cconn);
                 (conn, screen_num as i32)
             })
         }
@@ -510,7 +529,6 @@ impl Connection {
             let conn = Connection { c: cconn, dpy: dpy };
 
             conn.has_error().map(|_| {
-                xcb_prefetch_maximum_request_length(cconn);
                 (conn, xlib::XDefaultScreen(dpy) as i32)
             })
         }
@@ -557,7 +575,6 @@ impl Connection {
             let conn = Connection { c: cconn };
 
             conn.has_error().map(|_| {
-                xcb_prefetch_maximum_request_length(cconn);
                 (conn, screen_num as i32)
             })
         }
