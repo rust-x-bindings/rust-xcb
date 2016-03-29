@@ -738,6 +738,23 @@
 <span id="695">695</span>
 <span id="696">696</span>
 <span id="697">697</span>
+<span id="698">698</span>
+<span id="699">699</span>
+<span id="700">700</span>
+<span id="701">701</span>
+<span id="702">702</span>
+<span id="703">703</span>
+<span id="704">704</span>
+<span id="705">705</span>
+<span id="706">706</span>
+<span id="707">707</span>
+<span id="708">708</span>
+<span id="709">709</span>
+<span id="710">710</span>
+<span id="711">711</span>
+<span id="712">712</span>
+<span id="713">713</span>
+<span id="714">714</span>
 </pre><pre class='rust '>
 <span class='comment'>/*
  * Copyright (C) 2013 James Miller &lt;james@aatch.net&gt;
@@ -1026,6 +1043,26 @@
         }
     }
 
+    <span class='doccomment'>/// Prefetch the maximum request length without blocking.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// Without blocking, does as much work as possible toward computing</span>
+    <span class='doccomment'>/// the maximum request length accepted by the X server.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// Invoking this function may cause a call to xcb_big_requests_enable,</span>
+    <span class='doccomment'>/// but will not block waiting for the reply.</span>
+    <span class='doccomment'>/// xcb_get_maximum_request_length will return the prefetched data</span>
+    <span class='doccomment'>/// after possibly blocking while the reply is retrieved.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// Note that in order for this function to be fully non-blocking, the</span>
+    <span class='doccomment'>/// application must previously have called</span>
+    <span class='doccomment'>/// c.prefetch_extension_data(xcb::bigreq::id()) and the reply</span>
+    <span class='doccomment'>/// must have already arrived.</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>prefetch_maximum_request_length</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) {
+        <span class='kw'>unsafe</span> {
+            <span class='ident'>xcb_prefetch_maximum_request_length</span>(<span class='self'>self</span>.<span class='ident'>c</span>);
+        }
+    }
+
     <span class='doccomment'>/// Returns the next event or error from the server.</span>
     <span class='doccomment'>///</span>
     <span class='doccomment'>/// Returns the next event or error from the server, or returns `None` in</span>
@@ -1230,7 +1267,6 @@
             <span class='kw'>let</span> <span class='ident'>conn</span> <span class='op'>=</span> <span class='ident'>Connection</span> { <span class='ident'>c</span>: <span class='ident'>cconn</span> };
 
             <span class='ident'>conn</span>.<span class='ident'>has_error</span>().<span class='ident'>map</span>(<span class='op'>|</span>_<span class='op'>|</span> {
-                <span class='ident'>xcb_prefetch_maximum_request_length</span>(<span class='ident'>cconn</span>);
                 (<span class='ident'>conn</span>, <span class='ident'>screen_num</span> <span class='kw'>as</span> <span class='ident'>i32</span>)
             })
         }
@@ -1251,7 +1287,6 @@
             <span class='kw'>let</span> <span class='ident'>conn</span> <span class='op'>=</span> <span class='ident'>Connection</span> { <span class='ident'>c</span>: <span class='ident'>cconn</span>, <span class='ident'>dpy</span>: <span class='ident'>dpy</span> };
 
             <span class='ident'>conn</span>.<span class='ident'>has_error</span>().<span class='ident'>map</span>(<span class='op'>|</span>_<span class='op'>|</span> {
-                <span class='ident'>xcb_prefetch_maximum_request_length</span>(<span class='ident'>cconn</span>);
                 (<span class='ident'>conn</span>, <span class='ident'>xlib</span>::<span class='ident'>XDefaultScreen</span>(<span class='ident'>dpy</span>) <span class='kw'>as</span> <span class='ident'>i32</span>)
             })
         }
@@ -1298,7 +1333,6 @@
             <span class='kw'>let</span> <span class='ident'>conn</span> <span class='op'>=</span> <span class='ident'>Connection</span> { <span class='ident'>c</span>: <span class='ident'>cconn</span> };
 
             <span class='ident'>conn</span>.<span class='ident'>has_error</span>().<span class='ident'>map</span>(<span class='op'>|</span>_<span class='op'>|</span> {
-                <span class='ident'>xcb_prefetch_maximum_request_length</span>(<span class='ident'>cconn</span>);
                 (<span class='ident'>conn</span>, <span class='ident'>screen_num</span> <span class='kw'>as</span> <span class='ident'>i32</span>)
             })
         }

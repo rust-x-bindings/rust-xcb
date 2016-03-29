@@ -13342,7 +13342,7 @@
 <span id="13299">13299</span>
 <span id="13300">13300</span>
 </pre><pre class='rust '>
-<span class='comment'>// edited from xproto.xml by rs_client.py on Mon Mar 28 22:49:51 2016</span>
+<span class='comment'>// edited from xproto.xml by rs_client.py on Tue Mar 29 01:49:01 2016</span>
 <span class='comment'>// do not edit!</span>
 
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
@@ -15603,10 +15603,10 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>same_screen</span> <span class='op'>!=</span> <span class='number'>0</span>
         }
     }
-    <span class='doccomment'>/// Construct a new KeyPressEvent</span>
+    <span class='doccomment'>/// Constructs a new KeyPressEvent</span>
     <span class='doccomment'>/// `response_type` must be set to one of:</span>
-    <span class='doccomment'>///     - `KEY_PRESS`</span>
     <span class='doccomment'>///     - `KEY_RELEASE`</span>
+    <span class='doccomment'>///     - `KEY_PRESS`</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>response_type</span>: <span class='ident'>u8</span>,
                <span class='ident'>detail</span>: <span class='ident'>Keycode</span>,
                <span class='ident'>time</span>: <span class='ident'>Timestamp</span>,
@@ -15622,8 +15622,8 @@
             <span class='op'>-&gt;</span> <span class='ident'>KeyPressEvent</span> {
         <span class='kw'>unsafe</span> {
             <span class='kw'>let</span> <span class='ident'>raw</span> <span class='op'>=</span> <span class='ident'>libc</span>::<span class='ident'>malloc</span>(<span class='number'>32</span> <span class='kw'>as</span> <span class='ident'>usize</span>) <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_key_press_event_t</span>;
-            <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>response_type</span> <span class='op'>==</span> <span class='ident'>KEY_PRESS</span> <span class='op'>||</span>
-                    <span class='ident'>response_type</span> <span class='op'>==</span> <span class='ident'>KEY_RELEASE</span>,
+            <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>response_type</span> <span class='op'>==</span> <span class='ident'>KEY_RELEASE</span> <span class='op'>||</span>
+                    <span class='ident'>response_type</span> <span class='op'>==</span> <span class='ident'>KEY_PRESS</span>,
                     <span class='string'>&quot;wrong response_type supplied to KeyPressEvent::new&quot;</span>);
             (<span class='op'>*</span><span class='ident'>raw</span>).<span class='ident'>response_type</span> <span class='op'>=</span> <span class='ident'>response_type</span>;
             (<span class='op'>*</span><span class='ident'>raw</span>).<span class='ident'>detail</span> <span class='op'>=</span> <span class='ident'>detail</span>;
@@ -15715,10 +15715,10 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>same_screen</span> <span class='op'>!=</span> <span class='number'>0</span>
         }
     }
-    <span class='doccomment'>/// Construct a new ButtonPressEvent</span>
+    <span class='doccomment'>/// Constructs a new ButtonPressEvent</span>
     <span class='doccomment'>/// `response_type` must be set to one of:</span>
-    <span class='doccomment'>///     - `BUTTON_RELEASE`</span>
     <span class='doccomment'>///     - `BUTTON_PRESS`</span>
+    <span class='doccomment'>///     - `BUTTON_RELEASE`</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>response_type</span>: <span class='ident'>u8</span>,
                <span class='ident'>detail</span>: <span class='ident'>Button</span>,
                <span class='ident'>time</span>: <span class='ident'>Timestamp</span>,
@@ -15734,8 +15734,8 @@
             <span class='op'>-&gt;</span> <span class='ident'>ButtonPressEvent</span> {
         <span class='kw'>unsafe</span> {
             <span class='kw'>let</span> <span class='ident'>raw</span> <span class='op'>=</span> <span class='ident'>libc</span>::<span class='ident'>malloc</span>(<span class='number'>32</span> <span class='kw'>as</span> <span class='ident'>usize</span>) <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_button_press_event_t</span>;
-            <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>response_type</span> <span class='op'>==</span> <span class='ident'>BUTTON_RELEASE</span> <span class='op'>||</span>
-                    <span class='ident'>response_type</span> <span class='op'>==</span> <span class='ident'>BUTTON_PRESS</span>,
+            <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>response_type</span> <span class='op'>==</span> <span class='ident'>BUTTON_PRESS</span> <span class='op'>||</span>
+                    <span class='ident'>response_type</span> <span class='op'>==</span> <span class='ident'>BUTTON_RELEASE</span>,
                     <span class='string'>&quot;wrong response_type supplied to ButtonPressEvent::new&quot;</span>);
             (<span class='op'>*</span><span class='ident'>raw</span>).<span class='ident'>response_type</span> <span class='op'>=</span> <span class='ident'>response_type</span>;
             (<span class='op'>*</span><span class='ident'>raw</span>).<span class='ident'>detail</span> <span class='op'>=</span> <span class='ident'>detail</span>;
@@ -15827,7 +15827,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>same_screen</span> <span class='op'>!=</span> <span class='number'>0</span>
         }
     }
-    <span class='doccomment'>/// Construct a new MotionNotifyEvent</span>
+    <span class='doccomment'>/// Constructs a new MotionNotifyEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to MOTION_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>detail</span>: <span class='ident'>u8</span>,
                <span class='ident'>time</span>: <span class='ident'>Timestamp</span>,
@@ -15934,7 +15934,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>same_screen_focus</span>
         }
     }
-    <span class='doccomment'>/// Construct a new EnterNotifyEvent</span>
+    <span class='doccomment'>/// Constructs a new EnterNotifyEvent</span>
     <span class='doccomment'>/// `response_type` must be set to one of:</span>
     <span class='doccomment'>///     - `LEAVE_NOTIFY`</span>
     <span class='doccomment'>///     - `ENTER_NOTIFY`</span>
@@ -15997,10 +15997,10 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>mode</span>
         }
     }
-    <span class='doccomment'>/// Construct a new FocusInEvent</span>
+    <span class='doccomment'>/// Constructs a new FocusInEvent</span>
     <span class='doccomment'>/// `response_type` must be set to one of:</span>
-    <span class='doccomment'>///     - `FOCUS_IN`</span>
     <span class='doccomment'>///     - `FOCUS_OUT`</span>
+    <span class='doccomment'>///     - `FOCUS_IN`</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>response_type</span>: <span class='ident'>u8</span>,
                <span class='ident'>detail</span>: <span class='ident'>u8</span>,
                <span class='ident'>event</span>: <span class='ident'>Window</span>,
@@ -16008,8 +16008,8 @@
             <span class='op'>-&gt;</span> <span class='ident'>FocusInEvent</span> {
         <span class='kw'>unsafe</span> {
             <span class='kw'>let</span> <span class='ident'>raw</span> <span class='op'>=</span> <span class='ident'>libc</span>::<span class='ident'>malloc</span>(<span class='number'>32</span> <span class='kw'>as</span> <span class='ident'>usize</span>) <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_focus_in_event_t</span>;
-            <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>response_type</span> <span class='op'>==</span> <span class='ident'>FOCUS_IN</span> <span class='op'>||</span>
-                    <span class='ident'>response_type</span> <span class='op'>==</span> <span class='ident'>FOCUS_OUT</span>,
+            <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>response_type</span> <span class='op'>==</span> <span class='ident'>FOCUS_OUT</span> <span class='op'>||</span>
+                    <span class='ident'>response_type</span> <span class='op'>==</span> <span class='ident'>FOCUS_IN</span>,
                     <span class='string'>&quot;wrong response_type supplied to FocusInEvent::new&quot;</span>);
             (<span class='op'>*</span><span class='ident'>raw</span>).<span class='ident'>response_type</span> <span class='op'>=</span> <span class='ident'>response_type</span>;
             (<span class='op'>*</span><span class='ident'>raw</span>).<span class='ident'>detail</span> <span class='op'>=</span> <span class='ident'>detail</span>;
@@ -16028,7 +16028,7 @@
             <span class='kw-2'>&amp;</span>(<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>keys</span>
         }
     }
-    <span class='doccomment'>/// Construct a new KeymapNotifyEvent</span>
+    <span class='doccomment'>/// Constructs a new KeymapNotifyEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to KEYMAP_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>keys</span>: [<span class='ident'>u8</span>; <span class='number'>31</span>])
             <span class='op'>-&gt;</span> <span class='ident'>KeymapNotifyEvent</span> {
@@ -16085,7 +16085,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>count</span>
         }
     }
-    <span class='doccomment'>/// Construct a new ExposeEvent</span>
+    <span class='doccomment'>/// Constructs a new ExposeEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to EXPOSE</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>window</span>: <span class='ident'>Window</span>,
                <span class='ident'>x</span>: <span class='ident'>u16</span>,
@@ -16151,7 +16151,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>major_opcode</span>
         }
     }
-    <span class='doccomment'>/// Construct a new GraphicsExposureEvent</span>
+    <span class='doccomment'>/// Constructs a new GraphicsExposureEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to GRAPHICS_EXPOSURE</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>drawable</span>: <span class='ident'>Drawable</span>,
                <span class='ident'>x</span>: <span class='ident'>u16</span>,
@@ -16196,7 +16196,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>major_opcode</span>
         }
     }
-    <span class='doccomment'>/// Construct a new NoExposureEvent</span>
+    <span class='doccomment'>/// Constructs a new NoExposureEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to NO_EXPOSURE</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>drawable</span>: <span class='ident'>Drawable</span>,
                <span class='ident'>minor_opcode</span>: <span class='ident'>u16</span>,
@@ -16226,7 +16226,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>state</span>
         }
     }
-    <span class='doccomment'>/// Construct a new VisibilityNotifyEvent</span>
+    <span class='doccomment'>/// Constructs a new VisibilityNotifyEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to VISIBILITY_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>window</span>: <span class='ident'>Window</span>,
                <span class='ident'>state</span>: <span class='ident'>u8</span>)
@@ -16284,7 +16284,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>override_redirect</span> <span class='op'>!=</span> <span class='number'>0</span>
         }
     }
-    <span class='doccomment'>/// Construct a new CreateNotifyEvent</span>
+    <span class='doccomment'>/// Constructs a new CreateNotifyEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to CREATE_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>parent</span>: <span class='ident'>Window</span>,
                <span class='ident'>window</span>: <span class='ident'>Window</span>,
@@ -16327,7 +16327,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>window</span>
         }
     }
-    <span class='doccomment'>/// Construct a new DestroyNotifyEvent</span>
+    <span class='doccomment'>/// Constructs a new DestroyNotifyEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to DESTROY_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>event</span>: <span class='ident'>Window</span>,
                <span class='ident'>window</span>: <span class='ident'>Window</span>)
@@ -16365,7 +16365,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>from_configure</span> <span class='op'>!=</span> <span class='number'>0</span>
         }
     }
-    <span class='doccomment'>/// Construct a new UnmapNotifyEvent</span>
+    <span class='doccomment'>/// Constructs a new UnmapNotifyEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to UNMAP_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>event</span>: <span class='ident'>Window</span>,
                <span class='ident'>window</span>: <span class='ident'>Window</span>,
@@ -16404,7 +16404,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>override_redirect</span> <span class='op'>!=</span> <span class='number'>0</span>
         }
     }
-    <span class='doccomment'>/// Construct a new MapNotifyEvent</span>
+    <span class='doccomment'>/// Constructs a new MapNotifyEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to MAP_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>event</span>: <span class='ident'>Window</span>,
                <span class='ident'>window</span>: <span class='ident'>Window</span>,
@@ -16436,7 +16436,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>window</span>
         }
     }
-    <span class='doccomment'>/// Construct a new MapRequestEvent</span>
+    <span class='doccomment'>/// Constructs a new MapRequestEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to MAP_REQUEST</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>parent</span>: <span class='ident'>Window</span>,
                <span class='ident'>window</span>: <span class='ident'>Window</span>)
@@ -16484,7 +16484,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>override_redirect</span> <span class='op'>!=</span> <span class='number'>0</span>
         }
     }
-    <span class='doccomment'>/// Construct a new ReparentNotifyEvent</span>
+    <span class='doccomment'>/// Constructs a new ReparentNotifyEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to REPARENT_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>event</span>: <span class='ident'>Window</span>,
                <span class='ident'>window</span>: <span class='ident'>Window</span>,
@@ -16569,7 +16569,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>override_redirect</span> <span class='op'>!=</span> <span class='number'>0</span>
         }
     }
-    <span class='doccomment'>/// Construct a new ConfigureNotifyEvent</span>
+    <span class='doccomment'>/// Constructs a new ConfigureNotifyEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to CONFIGURE_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>event</span>: <span class='ident'>Window</span>,
                <span class='ident'>window</span>: <span class='ident'>Window</span>,
@@ -16651,7 +16651,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>value_mask</span>
         }
     }
-    <span class='doccomment'>/// Construct a new ConfigureRequestEvent</span>
+    <span class='doccomment'>/// Constructs a new ConfigureRequestEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to CONFIGURE_REQUEST</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>stack_mode</span>: <span class='ident'>u8</span>,
                <span class='ident'>parent</span>: <span class='ident'>Window</span>,
@@ -16705,7 +16705,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>y</span>
         }
     }
-    <span class='doccomment'>/// Construct a new GravityNotifyEvent</span>
+    <span class='doccomment'>/// Constructs a new GravityNotifyEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to GRAVITY_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>event</span>: <span class='ident'>Window</span>,
                <span class='ident'>window</span>: <span class='ident'>Window</span>,
@@ -16742,7 +16742,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>height</span>
         }
     }
-    <span class='doccomment'>/// Construct a new ResizeRequestEvent</span>
+    <span class='doccomment'>/// Constructs a new ResizeRequestEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to RESIZE_REQUEST</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>window</span>: <span class='ident'>Window</span>,
                <span class='ident'>width</span>: <span class='ident'>u16</span>,
@@ -16781,7 +16781,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>place</span>
         }
     }
-    <span class='doccomment'>/// Construct a new CirculateNotifyEvent</span>
+    <span class='doccomment'>/// Constructs a new CirculateNotifyEvent</span>
     <span class='doccomment'>/// `response_type` must be set to one of:</span>
     <span class='doccomment'>///     - `CIRCULATE_REQUEST`</span>
     <span class='doccomment'>///     - `CIRCULATE_NOTIFY`</span>
@@ -16831,7 +16831,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>state</span>
         }
     }
-    <span class='doccomment'>/// Construct a new PropertyNotifyEvent</span>
+    <span class='doccomment'>/// Constructs a new PropertyNotifyEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to PROPERTY_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>window</span>: <span class='ident'>Window</span>,
                <span class='ident'>atom</span>: <span class='ident'>Atom</span>,
@@ -16868,7 +16868,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>selection</span>
         }
     }
-    <span class='doccomment'>/// Construct a new SelectionClearEvent</span>
+    <span class='doccomment'>/// Constructs a new SelectionClearEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to SELECTION_CLEAR</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>time</span>: <span class='ident'>Timestamp</span>,
                <span class='ident'>owner</span>: <span class='ident'>Window</span>,
@@ -16918,7 +16918,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>property</span>
         }
     }
-    <span class='doccomment'>/// Construct a new SelectionRequestEvent</span>
+    <span class='doccomment'>/// Constructs a new SelectionRequestEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to SELECTION_REQUEST</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>time</span>: <span class='ident'>Timestamp</span>,
                <span class='ident'>owner</span>: <span class='ident'>Window</span>,
@@ -16969,7 +16969,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>property</span>
         }
     }
-    <span class='doccomment'>/// Construct a new SelectionNotifyEvent</span>
+    <span class='doccomment'>/// Constructs a new SelectionNotifyEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to SELECTION_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>time</span>: <span class='ident'>Timestamp</span>,
                <span class='ident'>requestor</span>: <span class='ident'>Window</span>,
@@ -17017,7 +17017,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>state</span>
         }
     }
-    <span class='doccomment'>/// Construct a new ColormapNotifyEvent</span>
+    <span class='doccomment'>/// Constructs a new ColormapNotifyEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to COLORMAP_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>window</span>: <span class='ident'>Window</span>,
                <span class='ident'>colormap</span>: <span class='ident'>Colormap</span>,
@@ -17101,7 +17101,7 @@
             <span class='kw-2'>&amp;</span>(<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>data</span>
         }
     }
-    <span class='doccomment'>/// Construct a new ClientMessageEvent</span>
+    <span class='doccomment'>/// Constructs a new ClientMessageEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to CLIENT_MESSAGE</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>format</span>: <span class='ident'>u8</span>,
                <span class='ident'>window</span>: <span class='ident'>Window</span>,
@@ -17141,7 +17141,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>count</span>
         }
     }
-    <span class='doccomment'>/// Construct a new MappingNotifyEvent</span>
+    <span class='doccomment'>/// Constructs a new MappingNotifyEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to MAPPING_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>request</span>: <span class='ident'>u8</span>,
                <span class='ident'>first_keycode</span>: <span class='ident'>Keycode</span>,
@@ -17161,7 +17161,7 @@
 }
 
 <span class='kw'>impl</span> <span class='ident'>GeGenericEvent</span> {
-    <span class='doccomment'>/// Construct a new GeGenericEvent</span>
+    <span class='doccomment'>/// Constructs a new GeGenericEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to GE_GENERIC</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>()
             <span class='op'>-&gt;</span> <span class='ident'>GeGenericEvent</span> {

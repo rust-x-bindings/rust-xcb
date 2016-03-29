@@ -1747,7 +1747,7 @@
 <span id="1704">1704</span>
 <span id="1705">1705</span>
 </pre><pre class='rust '>
-<span class='comment'>// edited from xfixes.xml by rs_client.py on Mon Mar 28 22:49:55 2016</span>
+<span class='comment'>// edited from xfixes.xml by rs_client.py on Tue Mar 29 01:49:05 2016</span>
 <span class='comment'>// do not edit!</span>
 
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
@@ -2049,7 +2049,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>selection_timestamp</span>
         }
     }
-    <span class='doccomment'>/// Construct a new SelectionNotifyEvent</span>
+    <span class='doccomment'>/// Constructs a new SelectionNotifyEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to SELECTION_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>subtype</span>: <span class='ident'>u8</span>,
                <span class='ident'>window</span>: <span class='ident'>xproto</span>::<span class='ident'>Window</span>,
@@ -2136,7 +2136,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>name</span>
         }
     }
-    <span class='doccomment'>/// Construct a new CursorNotifyEvent</span>
+    <span class='doccomment'>/// Constructs a new CursorNotifyEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to CURSOR_NOTIFY</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>subtype</span>: <span class='ident'>u8</span>,
                <span class='ident'>window</span>: <span class='ident'>xproto</span>::<span class='ident'>Window</span>,

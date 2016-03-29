@@ -1370,7 +1370,7 @@
 <span id="1327">1327</span>
 <span id="1328">1328</span>
 </pre><pre class='rust '>
-<span class='comment'>// edited from dri2.xml by rs_client.py on Mon Mar 28 22:49:54 2016</span>
+<span class='comment'>// edited from dri2.xml by rs_client.py on Tue Mar 29 01:49:04 2016</span>
 <span class='comment'>// do not edit!</span>
 
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
@@ -2651,7 +2651,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>sbc</span>
         }
     }
-    <span class='doccomment'>/// Construct a new BufferSwapCompleteEvent</span>
+    <span class='doccomment'>/// Constructs a new BufferSwapCompleteEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to BUFFER_SWAP_COMPLETE</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>event_type</span>: <span class='ident'>u16</span>,
                <span class='ident'>drawable</span>: <span class='ident'>xproto</span>::<span class='ident'>Drawable</span>,
@@ -2684,7 +2684,7 @@
             (<span class='op'>*</span><span class='self'>self</span>.<span class='ident'>ptr</span>).<span class='ident'>drawable</span>
         }
     }
-    <span class='doccomment'>/// Construct a new InvalidateBuffersEvent</span>
+    <span class='doccomment'>/// Constructs a new InvalidateBuffersEvent</span>
     <span class='doccomment'>/// `response_type` will be set automatically to INVALIDATE_BUFFERS</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>drawable</span>: <span class='ident'>xproto</span>::<span class='ident'>Drawable</span>)
             <span class='op'>-&gt;</span> <span class='ident'>InvalidateBuffersEvent</span> {

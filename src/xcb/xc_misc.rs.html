@@ -278,7 +278,7 @@
 <span id="235">235</span>
 <span id="236">236</span>
 </pre><pre class='rust '>
-<span class='comment'>// edited from xc_misc.xml by rs_client.py on Mon Mar 28 22:49:51 2016</span>
+<span class='comment'>// edited from xc_misc.xml by rs_client.py on Tue Mar 29 01:49:01 2016</span>
 <span class='comment'>// do not edit!</span>
 
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
@@ -293,7 +293,7 @@
 
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>id</span>() <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='kw-2'>mut</span> <span class='ident'>base</span>::<span class='ident'>Extension</span> {
     <span class='kw'>unsafe</span> {
-        <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>xcb_xcmisc_id</span>
+        <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>xcb_xc_misc_id</span>
     }
 }
 
@@ -302,15 +302,15 @@
 
 <span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>GET_VERSION</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>0</span>;
 
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetVersionCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_xcmisc_get_version_cookie_t</span><span class='op'>&gt;</span>;
+<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetVersionCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_xc_misc_get_version_cookie_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>GET_XID_RANGE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>1</span>;
 
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetXidRangeCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_xcmisc_get_xid_range_cookie_t</span><span class='op'>&gt;</span>;
+<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetXidRangeCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_xc_misc_get_xid_range_cookie_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>GET_XID_LIST</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>2</span>;
 
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetXidListCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_xcmisc_get_xid_list_cookie_t</span><span class='op'>&gt;</span>;
+<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetXidListCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_xc_misc_get_xid_list_cookie_t</span><span class='op'>&gt;</span>;
 
 
 
@@ -319,13 +319,13 @@
         <span class='kw'>unsafe</span> {
             <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>err</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_generic_error_t</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>();
             <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>checked</span> {
-                <span class='ident'>xcb_xcmisc_get_version_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                             <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                             <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
+                <span class='ident'>xcb_xc_misc_get_version_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
+                                              <span class='self'>self</span>.<span class='ident'>cookie</span>,
+                                              <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
             } <span class='kw'>else</span> {
-                <span class='ident'>xcb_xcmisc_get_version_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                             <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                             <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
+                <span class='ident'>xcb_xc_misc_get_version_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
+                                              <span class='self'>self</span>.<span class='ident'>cookie</span>,
+                                              <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
             };
             <span class='kw'>if</span> <span class='ident'>err</span>.<span class='ident'>is_null</span>() {
                 <span class='prelude-val'>Ok</span>(<span class='ident'>GetVersionReply</span> { <span class='ident'>ptr</span>: <span class='ident'>reply</span> })
@@ -337,7 +337,7 @@
     }
 }
 
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetVersionReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_xcmisc_get_version_reply_t</span><span class='op'>&gt;</span>;
+<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetVersionReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_xc_misc_get_version_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>GetVersionReply</span> {
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>server_major_version</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u16</span> {
@@ -357,9 +357,9 @@
                    <span class='ident'>client_minor_version</span>: <span class='ident'>u16</span>)
         <span class='op'>-&gt;</span> <span class='ident'>GetVersionCookie</span> {
     <span class='kw'>unsafe</span> {
-        <span class='kw'>let</span> <span class='ident'>cookie</span> <span class='op'>=</span> <span class='ident'>xcb_xcmisc_get_version</span>(<span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>(),
-                                            <span class='ident'>client_major_version</span> <span class='kw'>as</span> <span class='ident'>u16</span>,  <span class='comment'>// 0</span>
-                                            <span class='ident'>client_minor_version</span> <span class='kw'>as</span> <span class='ident'>u16</span>);  <span class='comment'>// 1</span>
+        <span class='kw'>let</span> <span class='ident'>cookie</span> <span class='op'>=</span> <span class='ident'>xcb_xc_misc_get_version</span>(<span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>(),
+                                             <span class='ident'>client_major_version</span> <span class='kw'>as</span> <span class='ident'>u16</span>,  <span class='comment'>// 0</span>
+                                             <span class='ident'>client_minor_version</span> <span class='kw'>as</span> <span class='ident'>u16</span>);  <span class='comment'>// 1</span>
         <span class='ident'>GetVersionCookie</span> {
             <span class='ident'>cookie</span>:  <span class='ident'>cookie</span>,
             <span class='ident'>conn</span>:    <span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>(),
@@ -373,9 +373,9 @@
                              <span class='ident'>client_minor_version</span>: <span class='ident'>u16</span>)
         <span class='op'>-&gt;</span> <span class='ident'>GetVersionCookie</span> {
     <span class='kw'>unsafe</span> {
-        <span class='kw'>let</span> <span class='ident'>cookie</span> <span class='op'>=</span> <span class='ident'>xcb_xcmisc_get_version_unchecked</span>(<span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>(),
-                                                      <span class='ident'>client_major_version</span> <span class='kw'>as</span> <span class='ident'>u16</span>,  <span class='comment'>// 0</span>
-                                                      <span class='ident'>client_minor_version</span> <span class='kw'>as</span> <span class='ident'>u16</span>);  <span class='comment'>// 1</span>
+        <span class='kw'>let</span> <span class='ident'>cookie</span> <span class='op'>=</span> <span class='ident'>xcb_xc_misc_get_version_unchecked</span>(<span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>(),
+                                                       <span class='ident'>client_major_version</span> <span class='kw'>as</span> <span class='ident'>u16</span>,  <span class='comment'>// 0</span>
+                                                       <span class='ident'>client_minor_version</span> <span class='kw'>as</span> <span class='ident'>u16</span>);  <span class='comment'>// 1</span>
         <span class='ident'>GetVersionCookie</span> {
             <span class='ident'>cookie</span>:  <span class='ident'>cookie</span>,
             <span class='ident'>conn</span>:    <span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>(),
@@ -389,13 +389,13 @@
         <span class='kw'>unsafe</span> {
             <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>err</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_generic_error_t</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>();
             <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>checked</span> {
-                <span class='ident'>xcb_xcmisc_get_xid_range_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                               <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                               <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
+                <span class='ident'>xcb_xc_misc_get_xid_range_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
+                                                <span class='self'>self</span>.<span class='ident'>cookie</span>,
+                                                <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
             } <span class='kw'>else</span> {
-                <span class='ident'>xcb_xcmisc_get_xid_range_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                               <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                               <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
+                <span class='ident'>xcb_xc_misc_get_xid_range_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
+                                                <span class='self'>self</span>.<span class='ident'>cookie</span>,
+                                                <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
             };
             <span class='kw'>if</span> <span class='ident'>err</span>.<span class='ident'>is_null</span>() {
                 <span class='prelude-val'>Ok</span>(<span class='ident'>GetXidRangeReply</span> { <span class='ident'>ptr</span>: <span class='ident'>reply</span> })
@@ -407,7 +407,7 @@
     }
 }
 
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetXidRangeReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_xcmisc_get_xid_range_reply_t</span><span class='op'>&gt;</span>;
+<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetXidRangeReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_xc_misc_get_xid_range_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>GetXidRangeReply</span> {
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>start_id</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
@@ -425,7 +425,7 @@
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_xid_range</span>(<span class='ident'>c</span>: <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>)
         <span class='op'>-&gt;</span> <span class='ident'>GetXidRangeCookie</span> {
     <span class='kw'>unsafe</span> {
-        <span class='kw'>let</span> <span class='ident'>cookie</span> <span class='op'>=</span> <span class='ident'>xcb_xcmisc_get_xid_range</span>(<span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>());
+        <span class='kw'>let</span> <span class='ident'>cookie</span> <span class='op'>=</span> <span class='ident'>xcb_xc_misc_get_xid_range</span>(<span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>());
         <span class='ident'>GetXidRangeCookie</span> {
             <span class='ident'>cookie</span>:  <span class='ident'>cookie</span>,
             <span class='ident'>conn</span>:    <span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>(),
@@ -437,7 +437,7 @@
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_xid_range_unchecked</span>(<span class='ident'>c</span>: <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>)
         <span class='op'>-&gt;</span> <span class='ident'>GetXidRangeCookie</span> {
     <span class='kw'>unsafe</span> {
-        <span class='kw'>let</span> <span class='ident'>cookie</span> <span class='op'>=</span> <span class='ident'>xcb_xcmisc_get_xid_range_unchecked</span>(<span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>());
+        <span class='kw'>let</span> <span class='ident'>cookie</span> <span class='op'>=</span> <span class='ident'>xcb_xc_misc_get_xid_range_unchecked</span>(<span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>());
         <span class='ident'>GetXidRangeCookie</span> {
             <span class='ident'>cookie</span>:  <span class='ident'>cookie</span>,
             <span class='ident'>conn</span>:    <span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>(),
@@ -451,13 +451,13 @@
         <span class='kw'>unsafe</span> {
             <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>err</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_generic_error_t</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>();
             <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>checked</span> {
-                <span class='ident'>xcb_xcmisc_get_xid_list_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                              <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                              <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
+                <span class='ident'>xcb_xc_misc_get_xid_list_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
+                                               <span class='self'>self</span>.<span class='ident'>cookie</span>,
+                                               <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
             } <span class='kw'>else</span> {
-                <span class='ident'>xcb_xcmisc_get_xid_list_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                              <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                              <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
+                <span class='ident'>xcb_xc_misc_get_xid_list_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
+                                               <span class='self'>self</span>.<span class='ident'>cookie</span>,
+                                               <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
             };
             <span class='kw'>if</span> <span class='ident'>err</span>.<span class='ident'>is_null</span>() {
                 <span class='prelude-val'>Ok</span>(<span class='ident'>GetXidListReply</span> { <span class='ident'>ptr</span>: <span class='ident'>reply</span> })
@@ -469,7 +469,7 @@
     }
 }
 
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetXidListReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_xcmisc_get_xid_list_reply_t</span><span class='op'>&gt;</span>;
+<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetXidListReply</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Reply</span><span class='op'>&lt;</span><span class='ident'>xcb_xc_misc_get_xid_list_reply_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>GetXidListReply</span> {
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>ids_len</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
@@ -480,8 +480,8 @@
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>ids</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span>[<span class='ident'>u32</span>] {
         <span class='kw'>unsafe</span> {
             <span class='kw'>let</span> <span class='ident'>field</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>ptr</span>;
-            <span class='kw'>let</span> <span class='ident'>len</span> <span class='op'>=</span> <span class='ident'>xcb_xcmisc_get_xid_list_ids_length</span>(<span class='ident'>field</span>);
-            <span class='kw'>let</span> <span class='ident'>data</span> <span class='op'>=</span> <span class='ident'>xcb_xcmisc_get_xid_list_ids</span>(<span class='ident'>field</span>);
+            <span class='kw'>let</span> <span class='ident'>len</span> <span class='op'>=</span> <span class='ident'>xcb_xc_misc_get_xid_list_ids_length</span>(<span class='ident'>field</span>);
+            <span class='kw'>let</span> <span class='ident'>data</span> <span class='op'>=</span> <span class='ident'>xcb_xc_misc_get_xid_list_ids</span>(<span class='ident'>field</span>);
             <span class='ident'>std</span>::<span class='ident'>slice</span>::<span class='ident'>from_raw_parts</span>(<span class='ident'>data</span>, <span class='ident'>len</span> <span class='kw'>as</span> <span class='ident'>usize</span>)
         }
     }
@@ -491,8 +491,8 @@
                     <span class='ident'>count</span>: <span class='ident'>u32</span>)
         <span class='op'>-&gt;</span> <span class='ident'>GetXidListCookie</span> {
     <span class='kw'>unsafe</span> {
-        <span class='kw'>let</span> <span class='ident'>cookie</span> <span class='op'>=</span> <span class='ident'>xcb_xcmisc_get_xid_list</span>(<span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>(),
-                                             <span class='ident'>count</span> <span class='kw'>as</span> <span class='ident'>u32</span>);  <span class='comment'>// 0</span>
+        <span class='kw'>let</span> <span class='ident'>cookie</span> <span class='op'>=</span> <span class='ident'>xcb_xc_misc_get_xid_list</span>(<span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>(),
+                                              <span class='ident'>count</span> <span class='kw'>as</span> <span class='ident'>u32</span>);  <span class='comment'>// 0</span>
         <span class='ident'>GetXidListCookie</span> {
             <span class='ident'>cookie</span>:  <span class='ident'>cookie</span>,
             <span class='ident'>conn</span>:    <span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>(),
@@ -505,8 +505,8 @@
                               <span class='ident'>count</span>: <span class='ident'>u32</span>)
         <span class='op'>-&gt;</span> <span class='ident'>GetXidListCookie</span> {
     <span class='kw'>unsafe</span> {
-        <span class='kw'>let</span> <span class='ident'>cookie</span> <span class='op'>=</span> <span class='ident'>xcb_xcmisc_get_xid_list_unchecked</span>(<span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>(),
-                                                       <span class='ident'>count</span> <span class='kw'>as</span> <span class='ident'>u32</span>);  <span class='comment'>// 0</span>
+        <span class='kw'>let</span> <span class='ident'>cookie</span> <span class='op'>=</span> <span class='ident'>xcb_xc_misc_get_xid_list_unchecked</span>(<span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>(),
+                                                        <span class='ident'>count</span> <span class='kw'>as</span> <span class='ident'>u32</span>);  <span class='comment'>// 0</span>
         <span class='ident'>GetXidListCookie</span> {
             <span class='ident'>cookie</span>:  <span class='ident'>cookie</span>,
             <span class='ident'>conn</span>:    <span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>(),

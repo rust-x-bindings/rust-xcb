@@ -69,6 +69,21 @@ BigRequestsEnable request will be returned instead.</p>
 <p>Note that this length is measured in four-byte units, making the
 theoretical maximum lengths roughly 256kB without BIG-REQUESTS and
 16GB with.</p>
+</div><h4 id='method.prefetch_maximum_request_length' class='method'><code>fn <a href='#method.prefetch_maximum_request_length' class='fnname'>prefetch_maximum_request_length</a>(&amp;self)</code></h4>
+<div class='docblock'><p>Prefetch the maximum request length without blocking.</p>
+
+<p>Without blocking, does as much work as possible toward computing
+the maximum request length accepted by the X server.</p>
+
+<p>Invoking this function may cause a call to xcb_big_requests_enable,
+but will not block waiting for the reply.
+xcb_get_maximum_request_length will return the prefetched data
+after possibly blocking while the reply is retrieved.</p>
+
+<p>Note that in order for this function to be fully non-blocking, the
+application must previously have called
+c.prefetch_extension_data(xcb::bigreq::id()) and the reply
+must have already arrived.</p>
 </div><h4 id='method.wait_for_event' class='method'><code>fn <a href='#method.wait_for_event' class='fnname'>wait_for_event</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='type' href='../../xcb/base/type.GenericEvent.html' title='xcb::base::GenericEvent'>GenericEvent</a>&gt;</code></h4>
 <div class='docblock'><p>Returns the next event or error from the server.</p>
 
