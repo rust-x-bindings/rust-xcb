@@ -182,7 +182,7 @@ def rs_open(module):
 
     linklib = "xcb"
     if _ns.is_ext:
-        linklib = linklib + '-' + _ns.header
+        linklib = 'xcb-' + _ns.header
         _ext_names[_ns.ext_name.lower()] = _ns.header
         for (n, h) in module.direct_imports:
             if h != 'xproto':
@@ -207,7 +207,7 @@ def rs_open(module):
 
     if _ns.is_ext:
         for (n, h) in module.imports:
-            _f('use ffi::%s::*;', h)
+            _f('use ffi::%s::*;', _module_name(n))
         _f('')
     _f('use libc::{c_char, c_int, c_uint, c_void};')
     _f('use std;')
@@ -229,12 +229,12 @@ def rs_open(module):
     _r('use base;')
     if _ns.is_ext:
         for (n, h) in module.imports:
-            _r('use %s;', h)
+            _r('use %s;', _module_name(n))
     _r('use ffi::base::*;')
-    _r('use ffi::%s::*;', _ns.header)
+    _r('use ffi::%s::*;', _module_name(_ns.ext_name))
     if _ns.is_ext:
         for (n, h) in module.imports:
-            _r('use ffi::%s::*;', h)
+            _r('use ffi::%s::*;', _module_name(n))
     _r('use libc::{self, c_char, c_int, c_uint, c_void};')
     _r('use std;')
     _r('use std::iter::Iterator;')
@@ -256,11 +256,11 @@ def rs_open(module):
     if _ns.is_ext:
         _f.section(0)
         _f('')
-        _f('pub const XCB_%s_MAJOR_VERSION: u32 = %s;',
-                    _ns.ext_name.upper(),
+        _f('pub const %s: u32 = %s;',
+                    _ffi_const_name(('xcb', _ns.ext_name, 'major', 'version')),
                     _ns.major_version)
-        _f('pub const XCB_%s_MINOR_VERSION: u32 = %s;',
-                    _ns.ext_name.upper(),
+        _f('pub const %s: u32 = %s;',
+                    _ffi_const_name(('xcb', _ns.ext_name, 'minor', 'version')),
                     _ns.minor_version)
 
         _r.section(0)
@@ -288,8 +288,8 @@ def rs_close(module):
     _f.unindent()
     _f('} // extern')
 
-    _f.writeout(os.path.join(module.rs_srcdir, "ffi", "%s.rs" % _ns.header))
-    _r.writeout(os.path.join(module.rs_srcdir, "%s.rs" % _ns.header))
+    _f.writeout(os.path.join(module.rs_srcdir, "ffi", "%s.rs" % _module_name(_ns.ext_name)))
+    _r.writeout(os.path.join(module.rs_srcdir, "%s.rs" % _module_name(_ns.ext_name)))
 
 
 
@@ -323,6 +323,19 @@ def _tit_cap(string):
     name_parts = [match.group(0) for match in split]
     name_parts = [i[0].upper() + i[1:].lower() for i in name_parts]
     return ''.join(name_parts)
+
+
+_extension_special_cases = ['XPrint', 'XCMisc', 'BigRequests']
+
+def _module_name(name):
+    if len(name):
+        if name in _extension_special_cases:
+            return _tit_split(name).lower()
+        else:
+            return name.lower()
+    else:
+        return 'xproto'
+
 
 def _symbol(string):
     if string in _rs_keywords:
@@ -385,7 +398,7 @@ def _ext_nametup(nametup):
         #nametup = tuple(_ext_names[name.lower()] if i == 1 else name
         #        for (i, name) in enumerate(nametup))
         # lowers extension to avoid '_' split with title letters
-        nametup = tuple(name.lower() if i == 1 else name
+        nametup = tuple(_module_name(name) if i == 1 else name
                 for (i, name) in enumerate(nametup))
     return nametup
 

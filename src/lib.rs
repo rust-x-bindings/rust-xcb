@@ -45,119 +45,11 @@ extern crate log;
 
 pub mod base;
 pub mod xproto;
+pub mod big_requests;
+pub mod xc_misc;
 
 pub use base::*;
 pub use xproto::*;
-
-pub mod ffi
-{
-    #![allow(non_camel_case_types)]
-
-    pub mod base;
-    pub mod xproto;
-
-    pub use ffi::base::*;
-    pub use ffi::xproto::*;
-
-
-    #[cfg(feature = "xlib_xcb")]
-    pub mod xlib_xcb;
-
-
-    #[cfg(feature = "bigreq")]
-    pub mod bigreq;
-
-    #[cfg(feature = "composite")]
-    pub mod composite;
-
-    #[cfg(feature = "damage")]
-    pub mod damage;
-
-    #[cfg(feature = "dpms")]
-    pub mod dpms;
-
-    #[cfg(feature = "dri2")]
-    pub mod dri2;
-
-    #[cfg(feature = "dri3")]
-    pub mod dri3;
-
-    #[cfg(feature = "ge")]
-    pub mod ge;
-
-    #[cfg(feature = "glx")]
-    pub mod glx;
-
-    #[cfg(feature = "present")]
-    pub mod present;
-
-    #[cfg(feature = "randr")]
-    pub mod randr;
-
-    #[cfg(feature = "record")]
-    pub mod record;
-
-    #[cfg(feature = "render")]
-    pub mod render;
-
-    #[cfg(feature = "res")]
-    pub mod res;
-
-    #[cfg(feature = "screensaver")]
-    pub mod screensaver;
-
-    #[cfg(feature = "shape")]
-    pub mod shape;
-
-    #[cfg(feature = "shm")]
-    pub mod shm;
-
-    #[cfg(feature = "sync")]
-    pub mod sync;
-
-    #[cfg(feature = "xc_misc")]
-    pub mod xc_misc;
-
-    #[cfg(feature = "xevie")]
-    pub mod xevie;
-
-    #[cfg(feature = "xf86dri")]
-    pub mod xf86dri;
-
-    #[cfg(feature = "xf86vidmode")]
-    pub mod xf86vidmode;
-
-    #[cfg(feature = "xfixes")]
-    pub mod xfixes;
-
-    #[cfg(feature = "xinerama")]
-    pub mod xinerama;
-
-    #[cfg(feature = "xinput")]
-    pub mod xinput;
-
-    #[cfg(feature = "xkb")]
-    pub mod xkb;
-
-    #[cfg(feature = "xprint")]
-    pub mod xprint;
-
-    #[cfg(feature = "xselinux")]
-    pub mod xselinux;
-
-    #[cfg(feature = "xtest")]
-    pub mod xtest;
-
-    #[cfg(feature = "xvmc")]
-    pub mod xvmc;
-
-    #[cfg(feature = "xv")]
-    pub mod xv;
-}
-
-
-#[cfg(feature = "bigreq")]
-pub mod bigreq;
 
 #[cfg(feature = "composite")]
 pub mod composite;
@@ -175,10 +67,13 @@ pub mod dri2;
 pub mod dri3;
 
 #[cfg(feature = "ge")]
-pub mod ge;
+pub mod genericevent;
 
 #[cfg(feature = "glx")]
 pub mod glx;
+
+#[cfg(feature = "xinput")]
+pub mod input;
 
 #[cfg(feature = "present")]
 pub mod present;
@@ -198,6 +93,9 @@ pub mod res;
 #[cfg(feature = "screensaver")]
 pub mod screensaver;
 
+#[cfg(feature = "xselinux")]
+pub mod selinux;
+
 #[cfg(feature = "shape")]
 pub mod shape;
 
@@ -207,8 +105,11 @@ pub mod shm;
 #[cfg(feature = "sync")]
 pub mod sync;
 
-#[cfg(feature = "xc_misc")]
-pub mod xc_misc;
+#[cfg(feature = "xtest")]
+pub mod test;
+
+#[cfg(feature = "xprint")]
+pub mod x_print;
 
 #[cfg(feature = "xevie")]
 pub mod xevie;
@@ -225,23 +126,113 @@ pub mod xfixes;
 #[cfg(feature = "xinerama")]
 pub mod xinerama;
 
-#[cfg(feature = "xinput")]
-pub mod xinput;
-
 #[cfg(feature = "xkb")]
 pub mod xkb;
-
-#[cfg(feature = "xprint")]
-pub mod xprint;
-
-#[cfg(feature = "xselinux")]
-pub mod xselinux;
-
-#[cfg(feature = "xtest")]
-pub mod xtest;
 
 #[cfg(feature = "xvmc")]
 pub mod xvmc;
 
 #[cfg(feature = "xv")]
 pub mod xv;
+
+
+pub mod ffi
+{
+    #![allow(non_camel_case_types)]
+
+    pub mod base;
+    pub mod xproto;
+    pub mod big_requests;
+    pub mod xc_misc;
+
+    pub use ffi::base::*;
+    pub use ffi::xproto::*;
+
+
+    #[cfg(feature = "xlib_xcb")]
+    pub mod xlib_xcb;
+
+    #[cfg(feature = "composite")]
+    pub mod composite;
+
+    #[cfg(feature = "damage")]
+    pub mod damage;
+
+    #[cfg(feature = "dpms")]
+    pub mod dpms;
+
+    #[cfg(feature = "dri2")]
+    pub mod dri2;
+
+    #[cfg(feature = "dri3")]
+    pub mod dri3;
+
+    #[cfg(feature = "ge")]
+    pub mod genericevent;
+
+    #[cfg(feature = "glx")]
+    pub mod glx;
+
+    #[cfg(feature = "xinput")]
+    pub mod input;
+
+    #[cfg(feature = "present")]
+    pub mod present;
+
+    #[cfg(feature = "randr")]
+    pub mod randr;
+
+    #[cfg(feature = "record")]
+    pub mod record;
+
+    #[cfg(feature = "render")]
+    pub mod render;
+
+    #[cfg(feature = "res")]
+    pub mod res;
+
+    #[cfg(feature = "screensaver")]
+    pub mod screensaver;
+
+    #[cfg(feature = "xselinux")]
+    pub mod selinux;
+
+    #[cfg(feature = "shape")]
+    pub mod shape;
+
+    #[cfg(feature = "shm")]
+    pub mod shm;
+
+    #[cfg(feature = "sync")]
+    pub mod sync;
+
+    #[cfg(feature = "xtest")]
+    pub mod test;
+
+    #[cfg(feature = "xprint")]
+    pub mod x_print;
+
+    #[cfg(feature = "xevie")]
+    pub mod xevie;
+
+    #[cfg(feature = "xf86dri")]
+    pub mod xf86dri;
+
+    #[cfg(feature = "xf86vidmode")]
+    pub mod xf86vidmode;
+
+    #[cfg(feature = "xfixes")]
+    pub mod xfixes;
+
+    #[cfg(feature = "xinerama")]
+    pub mod xinerama;
+
+    #[cfg(feature = "xkb")]
+    pub mod xkb;
+
+    #[cfg(feature = "xvmc")]
+    pub mod xvmc;
+
+    #[cfg(feature = "xv")]
+    pub mod xv;
+}
