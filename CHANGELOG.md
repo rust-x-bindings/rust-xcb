@@ -1,3 +1,8 @@
+ * 0.7.1
+ rtbo - 29/03/2016
+    - module names closer to ffi
+    - fix #13
+
  * 0.7.0
  rtbo - 28/03/2016
     - fix connection with strings (#9)
