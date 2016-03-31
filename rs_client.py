@@ -1812,7 +1812,6 @@ def _cookie(request):
     cookie = request.rs_cookie_type
     reply = request.rs_reply_type
     func = request.ffi_reply_fn
-    funcspace = ' ' * len(func)
 
     _r.section(1)
     _r('')
@@ -1822,22 +1821,20 @@ def _cookie(request):
         with _r.indent_block():
             _r('unsafe {')
             with _r.indent_block():
-                _r("let mut err: *mut xcb_generic_error_t = std::ptr::null_mut();")
-                _r('let reply = if self.checked {')
-                _r('    %s(self.conn,', func)
-                _r('    %s self.cookie,', funcspace)
-                _r('    %s &mut err)', funcspace)
-                _r('} else {')
-                _r('    %s(self.conn,', func)
-                _r('    %s self.cookie,', funcspace)
-                _r('    %s std::ptr::null_mut())', funcspace)
-                _r('};')
-                _r('if err.is_null() {')
-                _r('    Ok(%s { ptr: reply })', reply)
-                _r('} else {')
-                _r('    libc::free(reply as *mut c_void);')
-                _r('    Err(base::GenericError { ptr: err } )')
-                _r('}')
+                _r("if self.checked {")
+                _r("    let mut err: *mut xcb_generic_error_t = "
+                        + "std::ptr::null_mut();")
+                _r("    let reply = %s {", reply)
+                _r("        ptr: %s (self.conn, self.cookie, &mut err)", func)
+                _r("    };")
+                _r("    if err.is_null() { Ok (reply) }")
+                _r("    else { Err(base::GenericError { ptr: err }) }")
+                _r("} else {")
+                _r("    Ok( %s {", reply)
+                _r("        ptr: %s (self.conn, self.cookie, ", func)
+                _r("                std::ptr::null_mut())")
+                _r("    })")
+                _r("}")
             _r('}')
         _r('}')
     _r('}')
