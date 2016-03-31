@@ -1627,7 +1627,8 @@ class RequestCodegen(object):
 
 
     def write_rs(self, regular, aux=False):
-        checked = self.void and not regular
+        checked = (self.void and not regular) \
+                or ((not self.void) and regular)
         rs_func_name = self.rs_func_name(regular, aux)
         ffi_func_name = self.ffi_func_name(regular, aux)
 
