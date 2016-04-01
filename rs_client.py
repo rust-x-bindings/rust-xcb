@@ -996,7 +996,7 @@ def _rs_type_setup(typeobj, nametup, suffix=()):
 
 
 def _rs_struct(typeobj):
-    _r.section(0)
+    _r.section(1)
     _r('')
     _write_doc_brief_desc(_r, typeobj.doc)
     if typeobj.rs_is_pod:
@@ -1789,7 +1789,7 @@ def _opcode(nametup, opcode):
     _f('pub const %s: %s = %s;', ffi_name, optype, opcode)
 
     rs_name = _rs_const_name(nametup)
-    _r.section(0)
+    _r.section(1)
     _r('')
     _r('pub const %s: %s = %s;', rs_name, optype, opcode)
 
@@ -1804,7 +1804,7 @@ def _cookie(request):
     _f('    sequence: c_uint')
     _f('}')
 
-    _r.section(0)
+    _r.section(1)
     _r("")
     _r("pub type %s = base::Cookie<%s>;",
             request.rs_cookie_type, request.ffi_cookie_type)
@@ -2034,7 +2034,7 @@ def rs_union(union, nametup):
 
     _ffi_iterator(union, nametup)
 
-    _r.section(0)
+    _r.section(1)
     _r('')
     _r('pub type %s = %s;', union.rs_type, union.ffi_type)
     _rs_accessors(union)
@@ -2117,7 +2117,7 @@ def rs_event(event, nametup):
 
     _rs_type_setup(event, nametup, ('event',))
 
-    _r.section(0)
+    _r.section(1)
     _r('')
     _write_doc_brief_desc(_r, event.doc)
     _r('pub type %s = base::Event<%s>;', event.rs_type, event.ffi_type)
