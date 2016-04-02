@@ -534,26 +534,8 @@
 <span id="491">491</span>
 <span id="492">492</span>
 <span id="493">493</span>
-<span id="494">494</span>
-<span id="495">495</span>
-<span id="496">496</span>
-<span id="497">497</span>
-<span id="498">498</span>
-<span id="499">499</span>
-<span id="500">500</span>
-<span id="501">501</span>
-<span id="502">502</span>
-<span id="503">503</span>
-<span id="504">504</span>
-<span id="505">505</span>
-<span id="506">506</span>
-<span id="507">507</span>
-<span id="508">508</span>
-<span id="509">509</span>
-<span id="510">510</span>
-<span id="511">511</span>
 </pre><pre class='rust '>
-<span class='comment'>// edited from xinerama.xml by rs_client.py on Tue Mar 29 01:49:04 2016</span>
+<span class='comment'>// edited from xinerama.xml by rs_client.py on Fri Apr  1 08:27:27 2016</span>
 <span class='comment'>// do not edit!</span>
 
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
@@ -577,35 +559,11 @@
 <span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>MAJOR_VERSION</span>: <span class='ident'>u32</span> <span class='op'>=</span> <span class='number'>1</span>;
 <span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>MINOR_VERSION</span>: <span class='ident'>u32</span> <span class='op'>=</span> <span class='number'>1</span>;
 
+
+
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>ScreenInfo</span> {
     <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>xcb_xinerama_screen_info_t</span>,
 }
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>QUERY_VERSION</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>0</span>;
-
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>QueryVersionCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_xinerama_query_version_cookie_t</span><span class='op'>&gt;</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>GET_STATE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>1</span>;
-
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetStateCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_xinerama_get_state_cookie_t</span><span class='op'>&gt;</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>GET_SCREEN_COUNT</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>2</span>;
-
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetScreenCountCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_xinerama_get_screen_count_cookie_t</span><span class='op'>&gt;</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>GET_SCREEN_SIZE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>3</span>;
-
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetScreenSizeCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_xinerama_get_screen_size_cookie_t</span><span class='op'>&gt;</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>IS_ACTIVE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>4</span>;
-
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>IsActiveCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_xinerama_is_active_cookie_t</span><span class='op'>&gt;</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>QUERY_SCREENS</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>5</span>;
-
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>QueryScreensCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_xinerama_query_screens_cookie_t</span><span class='op'>&gt;</span>;
-
-
 
 <span class='kw'>impl</span> <span class='ident'>ScreenInfo</span> {
     <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
@@ -664,24 +622,25 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>QUERY_VERSION</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>0</span>;
+
+<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>QueryVersionCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_xinerama_query_version_cookie_t</span><span class='op'>&gt;</span>;
+
 <span class='kw'>impl</span> <span class='ident'>QueryVersionCookie</span> {
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_reply</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>QueryVersionReply</span>, <span class='ident'>base</span>::<span class='ident'>GenericError</span><span class='op'>&gt;</span> {
         <span class='kw'>unsafe</span> {
-            <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>err</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_generic_error_t</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>();
-            <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>checked</span> {
-                <span class='ident'>xcb_xinerama_query_version_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                                 <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                                 <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
+            <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>checked</span> {
+                <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>err</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_generic_error_t</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>();
+                <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='ident'>QueryVersionReply</span> {
+                    <span class='ident'>ptr</span>: <span class='ident'>xcb_xinerama_query_version_reply</span> (<span class='self'>self</span>.<span class='ident'>conn</span>, <span class='self'>self</span>.<span class='ident'>cookie</span>, <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
+                };
+                <span class='kw'>if</span> <span class='ident'>err</span>.<span class='ident'>is_null</span>() { <span class='prelude-val'>Ok</span> (<span class='ident'>reply</span>) }
+                <span class='kw'>else</span> { <span class='prelude-val'>Err</span>(<span class='ident'>base</span>::<span class='ident'>GenericError</span> { <span class='ident'>ptr</span>: <span class='ident'>err</span> }) }
             } <span class='kw'>else</span> {
-                <span class='ident'>xcb_xinerama_query_version_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                                 <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                                 <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
-            };
-            <span class='kw'>if</span> <span class='ident'>err</span>.<span class='ident'>is_null</span>() {
-                <span class='prelude-val'>Ok</span>(<span class='ident'>QueryVersionReply</span> { <span class='ident'>ptr</span>: <span class='ident'>reply</span> })
-            } <span class='kw'>else</span> {
-                <span class='ident'>libc</span>::<span class='ident'>free</span>(<span class='ident'>reply</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>);
-                <span class='prelude-val'>Err</span>(<span class='ident'>base</span>::<span class='ident'>GenericError</span> { <span class='ident'>ptr</span>: <span class='ident'>err</span> } )
+                <span class='prelude-val'>Ok</span>( <span class='ident'>QueryVersionReply</span> {
+                    <span class='ident'>ptr</span>: <span class='ident'>xcb_xinerama_query_version_reply</span> (<span class='self'>self</span>.<span class='ident'>conn</span>, <span class='self'>self</span>.<span class='ident'>cookie</span>,
+                            <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
+                })
             }
         }
     }
@@ -713,7 +672,7 @@
         <span class='ident'>QueryVersionCookie</span> {
             <span class='ident'>cookie</span>:  <span class='ident'>cookie</span>,
             <span class='ident'>conn</span>:    <span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>(),
-            <span class='ident'>checked</span>: <span class='boolval'>false</span>
+            <span class='ident'>checked</span>: <span class='boolval'>true</span>
         }
     }
 }
@@ -734,24 +693,25 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>GET_STATE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>1</span>;
+
+<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetStateCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_xinerama_get_state_cookie_t</span><span class='op'>&gt;</span>;
+
 <span class='kw'>impl</span> <span class='ident'>GetStateCookie</span> {
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_reply</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>GetStateReply</span>, <span class='ident'>base</span>::<span class='ident'>GenericError</span><span class='op'>&gt;</span> {
         <span class='kw'>unsafe</span> {
-            <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>err</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_generic_error_t</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>();
-            <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>checked</span> {
-                <span class='ident'>xcb_xinerama_get_state_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                             <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                             <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
+            <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>checked</span> {
+                <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>err</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_generic_error_t</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>();
+                <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='ident'>GetStateReply</span> {
+                    <span class='ident'>ptr</span>: <span class='ident'>xcb_xinerama_get_state_reply</span> (<span class='self'>self</span>.<span class='ident'>conn</span>, <span class='self'>self</span>.<span class='ident'>cookie</span>, <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
+                };
+                <span class='kw'>if</span> <span class='ident'>err</span>.<span class='ident'>is_null</span>() { <span class='prelude-val'>Ok</span> (<span class='ident'>reply</span>) }
+                <span class='kw'>else</span> { <span class='prelude-val'>Err</span>(<span class='ident'>base</span>::<span class='ident'>GenericError</span> { <span class='ident'>ptr</span>: <span class='ident'>err</span> }) }
             } <span class='kw'>else</span> {
-                <span class='ident'>xcb_xinerama_get_state_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                             <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                             <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
-            };
-            <span class='kw'>if</span> <span class='ident'>err</span>.<span class='ident'>is_null</span>() {
-                <span class='prelude-val'>Ok</span>(<span class='ident'>GetStateReply</span> { <span class='ident'>ptr</span>: <span class='ident'>reply</span> })
-            } <span class='kw'>else</span> {
-                <span class='ident'>libc</span>::<span class='ident'>free</span>(<span class='ident'>reply</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>);
-                <span class='prelude-val'>Err</span>(<span class='ident'>base</span>::<span class='ident'>GenericError</span> { <span class='ident'>ptr</span>: <span class='ident'>err</span> } )
+                <span class='prelude-val'>Ok</span>( <span class='ident'>GetStateReply</span> {
+                    <span class='ident'>ptr</span>: <span class='ident'>xcb_xinerama_get_state_reply</span> (<span class='self'>self</span>.<span class='ident'>conn</span>, <span class='self'>self</span>.<span class='ident'>cookie</span>,
+                            <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
+                })
             }
         }
     }
@@ -781,7 +741,7 @@
         <span class='ident'>GetStateCookie</span> {
             <span class='ident'>cookie</span>:  <span class='ident'>cookie</span>,
             <span class='ident'>conn</span>:    <span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>(),
-            <span class='ident'>checked</span>: <span class='boolval'>false</span>
+            <span class='ident'>checked</span>: <span class='boolval'>true</span>
         }
     }
 }
@@ -800,24 +760,25 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>GET_SCREEN_COUNT</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>2</span>;
+
+<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetScreenCountCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_xinerama_get_screen_count_cookie_t</span><span class='op'>&gt;</span>;
+
 <span class='kw'>impl</span> <span class='ident'>GetScreenCountCookie</span> {
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_reply</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>GetScreenCountReply</span>, <span class='ident'>base</span>::<span class='ident'>GenericError</span><span class='op'>&gt;</span> {
         <span class='kw'>unsafe</span> {
-            <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>err</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_generic_error_t</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>();
-            <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>checked</span> {
-                <span class='ident'>xcb_xinerama_get_screen_count_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                                    <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                                    <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
+            <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>checked</span> {
+                <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>err</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_generic_error_t</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>();
+                <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='ident'>GetScreenCountReply</span> {
+                    <span class='ident'>ptr</span>: <span class='ident'>xcb_xinerama_get_screen_count_reply</span> (<span class='self'>self</span>.<span class='ident'>conn</span>, <span class='self'>self</span>.<span class='ident'>cookie</span>, <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
+                };
+                <span class='kw'>if</span> <span class='ident'>err</span>.<span class='ident'>is_null</span>() { <span class='prelude-val'>Ok</span> (<span class='ident'>reply</span>) }
+                <span class='kw'>else</span> { <span class='prelude-val'>Err</span>(<span class='ident'>base</span>::<span class='ident'>GenericError</span> { <span class='ident'>ptr</span>: <span class='ident'>err</span> }) }
             } <span class='kw'>else</span> {
-                <span class='ident'>xcb_xinerama_get_screen_count_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                                    <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                                    <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
-            };
-            <span class='kw'>if</span> <span class='ident'>err</span>.<span class='ident'>is_null</span>() {
-                <span class='prelude-val'>Ok</span>(<span class='ident'>GetScreenCountReply</span> { <span class='ident'>ptr</span>: <span class='ident'>reply</span> })
-            } <span class='kw'>else</span> {
-                <span class='ident'>libc</span>::<span class='ident'>free</span>(<span class='ident'>reply</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>);
-                <span class='prelude-val'>Err</span>(<span class='ident'>base</span>::<span class='ident'>GenericError</span> { <span class='ident'>ptr</span>: <span class='ident'>err</span> } )
+                <span class='prelude-val'>Ok</span>( <span class='ident'>GetScreenCountReply</span> {
+                    <span class='ident'>ptr</span>: <span class='ident'>xcb_xinerama_get_screen_count_reply</span> (<span class='self'>self</span>.<span class='ident'>conn</span>, <span class='self'>self</span>.<span class='ident'>cookie</span>,
+                            <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
+                })
             }
         }
     }
@@ -847,7 +808,7 @@
         <span class='ident'>GetScreenCountCookie</span> {
             <span class='ident'>cookie</span>:  <span class='ident'>cookie</span>,
             <span class='ident'>conn</span>:    <span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>(),
-            <span class='ident'>checked</span>: <span class='boolval'>false</span>
+            <span class='ident'>checked</span>: <span class='boolval'>true</span>
         }
     }
 }
@@ -866,24 +827,25 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>GET_SCREEN_SIZE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>3</span>;
+
+<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>GetScreenSizeCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_xinerama_get_screen_size_cookie_t</span><span class='op'>&gt;</span>;
+
 <span class='kw'>impl</span> <span class='ident'>GetScreenSizeCookie</span> {
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_reply</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>GetScreenSizeReply</span>, <span class='ident'>base</span>::<span class='ident'>GenericError</span><span class='op'>&gt;</span> {
         <span class='kw'>unsafe</span> {
-            <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>err</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_generic_error_t</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>();
-            <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>checked</span> {
-                <span class='ident'>xcb_xinerama_get_screen_size_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                                   <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                                   <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
+            <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>checked</span> {
+                <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>err</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_generic_error_t</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>();
+                <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='ident'>GetScreenSizeReply</span> {
+                    <span class='ident'>ptr</span>: <span class='ident'>xcb_xinerama_get_screen_size_reply</span> (<span class='self'>self</span>.<span class='ident'>conn</span>, <span class='self'>self</span>.<span class='ident'>cookie</span>, <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
+                };
+                <span class='kw'>if</span> <span class='ident'>err</span>.<span class='ident'>is_null</span>() { <span class='prelude-val'>Ok</span> (<span class='ident'>reply</span>) }
+                <span class='kw'>else</span> { <span class='prelude-val'>Err</span>(<span class='ident'>base</span>::<span class='ident'>GenericError</span> { <span class='ident'>ptr</span>: <span class='ident'>err</span> }) }
             } <span class='kw'>else</span> {
-                <span class='ident'>xcb_xinerama_get_screen_size_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                                   <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                                   <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
-            };
-            <span class='kw'>if</span> <span class='ident'>err</span>.<span class='ident'>is_null</span>() {
-                <span class='prelude-val'>Ok</span>(<span class='ident'>GetScreenSizeReply</span> { <span class='ident'>ptr</span>: <span class='ident'>reply</span> })
-            } <span class='kw'>else</span> {
-                <span class='ident'>libc</span>::<span class='ident'>free</span>(<span class='ident'>reply</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>);
-                <span class='prelude-val'>Err</span>(<span class='ident'>base</span>::<span class='ident'>GenericError</span> { <span class='ident'>ptr</span>: <span class='ident'>err</span> } )
+                <span class='prelude-val'>Ok</span>( <span class='ident'>GetScreenSizeReply</span> {
+                    <span class='ident'>ptr</span>: <span class='ident'>xcb_xinerama_get_screen_size_reply</span> (<span class='self'>self</span>.<span class='ident'>conn</span>, <span class='self'>self</span>.<span class='ident'>cookie</span>,
+                            <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
+                })
             }
         }
     }
@@ -925,7 +887,7 @@
         <span class='ident'>GetScreenSizeCookie</span> {
             <span class='ident'>cookie</span>:  <span class='ident'>cookie</span>,
             <span class='ident'>conn</span>:    <span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>(),
-            <span class='ident'>checked</span>: <span class='boolval'>false</span>
+            <span class='ident'>checked</span>: <span class='boolval'>true</span>
         }
     }
 }
@@ -946,24 +908,25 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>IS_ACTIVE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>4</span>;
+
+<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>IsActiveCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_xinerama_is_active_cookie_t</span><span class='op'>&gt;</span>;
+
 <span class='kw'>impl</span> <span class='ident'>IsActiveCookie</span> {
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_reply</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>IsActiveReply</span>, <span class='ident'>base</span>::<span class='ident'>GenericError</span><span class='op'>&gt;</span> {
         <span class='kw'>unsafe</span> {
-            <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>err</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_generic_error_t</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>();
-            <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>checked</span> {
-                <span class='ident'>xcb_xinerama_is_active_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                             <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                             <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
+            <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>checked</span> {
+                <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>err</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_generic_error_t</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>();
+                <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='ident'>IsActiveReply</span> {
+                    <span class='ident'>ptr</span>: <span class='ident'>xcb_xinerama_is_active_reply</span> (<span class='self'>self</span>.<span class='ident'>conn</span>, <span class='self'>self</span>.<span class='ident'>cookie</span>, <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
+                };
+                <span class='kw'>if</span> <span class='ident'>err</span>.<span class='ident'>is_null</span>() { <span class='prelude-val'>Ok</span> (<span class='ident'>reply</span>) }
+                <span class='kw'>else</span> { <span class='prelude-val'>Err</span>(<span class='ident'>base</span>::<span class='ident'>GenericError</span> { <span class='ident'>ptr</span>: <span class='ident'>err</span> }) }
             } <span class='kw'>else</span> {
-                <span class='ident'>xcb_xinerama_is_active_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                             <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                             <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
-            };
-            <span class='kw'>if</span> <span class='ident'>err</span>.<span class='ident'>is_null</span>() {
-                <span class='prelude-val'>Ok</span>(<span class='ident'>IsActiveReply</span> { <span class='ident'>ptr</span>: <span class='ident'>reply</span> })
-            } <span class='kw'>else</span> {
-                <span class='ident'>libc</span>::<span class='ident'>free</span>(<span class='ident'>reply</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>);
-                <span class='prelude-val'>Err</span>(<span class='ident'>base</span>::<span class='ident'>GenericError</span> { <span class='ident'>ptr</span>: <span class='ident'>err</span> } )
+                <span class='prelude-val'>Ok</span>( <span class='ident'>IsActiveReply</span> {
+                    <span class='ident'>ptr</span>: <span class='ident'>xcb_xinerama_is_active_reply</span> (<span class='self'>self</span>.<span class='ident'>conn</span>, <span class='self'>self</span>.<span class='ident'>cookie</span>,
+                            <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
+                })
             }
         }
     }
@@ -986,7 +949,7 @@
         <span class='ident'>IsActiveCookie</span> {
             <span class='ident'>cookie</span>:  <span class='ident'>cookie</span>,
             <span class='ident'>conn</span>:    <span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>(),
-            <span class='ident'>checked</span>: <span class='boolval'>false</span>
+            <span class='ident'>checked</span>: <span class='boolval'>true</span>
         }
     }
 }
@@ -1003,24 +966,25 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>QUERY_SCREENS</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>5</span>;
+
+<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>QueryScreensCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_xinerama_query_screens_cookie_t</span><span class='op'>&gt;</span>;
+
 <span class='kw'>impl</span> <span class='ident'>QueryScreensCookie</span> {
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_reply</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>QueryScreensReply</span>, <span class='ident'>base</span>::<span class='ident'>GenericError</span><span class='op'>&gt;</span> {
         <span class='kw'>unsafe</span> {
-            <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>err</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_generic_error_t</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>();
-            <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>checked</span> {
-                <span class='ident'>xcb_xinerama_query_screens_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                                 <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                                 <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
+            <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>checked</span> {
+                <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>err</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_generic_error_t</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>();
+                <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='ident'>QueryScreensReply</span> {
+                    <span class='ident'>ptr</span>: <span class='ident'>xcb_xinerama_query_screens_reply</span> (<span class='self'>self</span>.<span class='ident'>conn</span>, <span class='self'>self</span>.<span class='ident'>cookie</span>, <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
+                };
+                <span class='kw'>if</span> <span class='ident'>err</span>.<span class='ident'>is_null</span>() { <span class='prelude-val'>Ok</span> (<span class='ident'>reply</span>) }
+                <span class='kw'>else</span> { <span class='prelude-val'>Err</span>(<span class='ident'>base</span>::<span class='ident'>GenericError</span> { <span class='ident'>ptr</span>: <span class='ident'>err</span> }) }
             } <span class='kw'>else</span> {
-                <span class='ident'>xcb_xinerama_query_screens_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                                 <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                                 <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
-            };
-            <span class='kw'>if</span> <span class='ident'>err</span>.<span class='ident'>is_null</span>() {
-                <span class='prelude-val'>Ok</span>(<span class='ident'>QueryScreensReply</span> { <span class='ident'>ptr</span>: <span class='ident'>reply</span> })
-            } <span class='kw'>else</span> {
-                <span class='ident'>libc</span>::<span class='ident'>free</span>(<span class='ident'>reply</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>);
-                <span class='prelude-val'>Err</span>(<span class='ident'>base</span>::<span class='ident'>GenericError</span> { <span class='ident'>ptr</span>: <span class='ident'>err</span> } )
+                <span class='prelude-val'>Ok</span>( <span class='ident'>QueryScreensReply</span> {
+                    <span class='ident'>ptr</span>: <span class='ident'>xcb_xinerama_query_screens_reply</span> (<span class='self'>self</span>.<span class='ident'>conn</span>, <span class='self'>self</span>.<span class='ident'>cookie</span>,
+                            <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
+                })
             }
         }
     }
@@ -1048,7 +1012,7 @@
         <span class='ident'>QueryScreensCookie</span> {
             <span class='ident'>cookie</span>:  <span class='ident'>cookie</span>,
             <span class='ident'>conn</span>:    <span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>(),
-            <span class='ident'>checked</span>: <span class='boolval'>false</span>
+            <span class='ident'>checked</span>: <span class='boolval'>true</span>
         }
     }
 }

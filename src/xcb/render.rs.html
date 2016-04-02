@@ -2771,20 +2771,8 @@
 <span id="2728">2728</span>
 <span id="2729">2729</span>
 <span id="2730">2730</span>
-<span id="2731">2731</span>
-<span id="2732">2732</span>
-<span id="2733">2733</span>
-<span id="2734">2734</span>
-<span id="2735">2735</span>
-<span id="2736">2736</span>
-<span id="2737">2737</span>
-<span id="2738">2738</span>
-<span id="2739">2739</span>
-<span id="2740">2740</span>
-<span id="2741">2741</span>
-<span id="2742">2742</span>
 </pre><pre class='rust '>
-<span class='comment'>// edited from render.xml by rs_client.py on Tue Mar 29 01:49:05 2016</span>
+<span class='comment'>// edited from render.xml by rs_client.py on Fri Apr  1 08:27:28 2016</span>
 <span class='comment'>// do not edit!</span>
 
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
@@ -2917,165 +2905,41 @@
 
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Fixed</span> <span class='op'>=</span> <span class='ident'>xcb_render_fixed_t</span>;
 
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>PICT_FORMAT</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>0</span>;
-
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>PictFormatError</span> {
     <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>base</span>::<span class='ident'>Error</span><span class='op'>&lt;</span><span class='ident'>xcb_render_pict_format_error_t</span><span class='op'>&gt;</span>
 }
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>PICTURE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>1</span>;
 
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>PictureError</span> {
     <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>base</span>::<span class='ident'>Error</span><span class='op'>&lt;</span><span class='ident'>xcb_render_picture_error_t</span><span class='op'>&gt;</span>
 }
 
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>PICT_OP</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>2</span>;
-
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>PictOpError</span> {
     <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>base</span>::<span class='ident'>Error</span><span class='op'>&lt;</span><span class='ident'>xcb_render_pict_op_error_t</span><span class='op'>&gt;</span>
 }
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>GLYPH_SET</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>3</span>;
 
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>GlyphSetError</span> {
     <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>base</span>::<span class='ident'>Error</span><span class='op'>&lt;</span><span class='ident'>xcb_render_glyph_set_error_t</span><span class='op'>&gt;</span>
 }
 
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>GLYPH</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>4</span>;
-
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>GlyphError</span> {
     <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>base</span>::<span class='ident'>Error</span><span class='op'>&lt;</span><span class='ident'>xcb_render_glyph_error_t</span><span class='op'>&gt;</span>
 }
 
+
+
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>PICT_FORMAT</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>0</span>;
+
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>PICTURE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>1</span>;
+
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>PICT_OP</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>2</span>;
+
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>GLYPH_SET</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>3</span>;
+
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>GLYPH</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>4</span>;
+
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Directformat</span> {
     <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>xcb_render_directformat_t</span>,
 }
-
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Pictforminfo</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>StructPtr</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span>, <span class='ident'>xcb_render_pictforminfo_t</span><span class='op'>&gt;</span>;
-
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Pictvisual</span> {
-    <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>xcb_render_pictvisual_t</span>,
-}
-
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Pictdepth</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>StructPtr</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span>, <span class='ident'>xcb_render_pictdepth_t</span><span class='op'>&gt;</span>;
-
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Pictscreen</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>StructPtr</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span>, <span class='ident'>xcb_render_pictscreen_t</span><span class='op'>&gt;</span>;
-
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Indexvalue</span> {
-    <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>xcb_render_indexvalue_t</span>,
-}
-
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Color</span> {
-    <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>xcb_render_color_t</span>,
-}
-
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Pointfix</span> {
-    <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>xcb_render_pointfix_t</span>,
-}
-
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Linefix</span> {
-    <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>xcb_render_linefix_t</span>,
-}
-
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Triangle</span> {
-    <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>xcb_render_triangle_t</span>,
-}
-
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Trapezoid</span> {
-    <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>xcb_render_trapezoid_t</span>,
-}
-
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Glyphinfo</span> {
-    <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>xcb_render_glyphinfo_t</span>,
-}
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>QUERY_VERSION</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>0</span>;
-
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>QueryVersionCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_render_query_version_cookie_t</span><span class='op'>&gt;</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>QUERY_PICT_FORMATS</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>1</span>;
-
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>QueryPictFormatsCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_render_query_pict_formats_cookie_t</span><span class='op'>&gt;</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>QUERY_PICT_INDEX_VALUES</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>2</span>;
-
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>QueryPictIndexValuesCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_render_query_pict_index_values_cookie_t</span><span class='op'>&gt;</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>CREATE_PICTURE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>4</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>CHANGE_PICTURE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>5</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>SET_PICTURE_CLIP_RECTANGLES</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>6</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>FREE_PICTURE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>7</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>COMPOSITE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>8</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>TRAPEZOIDS</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>10</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>TRIANGLES</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>11</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>TRI_STRIP</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>12</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>TRI_FAN</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>13</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>CREATE_GLYPH_SET</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>17</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>REFERENCE_GLYPH_SET</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>18</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>FREE_GLYPH_SET</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>19</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>ADD_GLYPHS</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>20</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>FREE_GLYPHS</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>22</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>COMPOSITE_GLYPHS_8</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>23</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>COMPOSITE_GLYPHS_16</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>24</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>COMPOSITE_GLYPHS_32</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>25</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>FILL_RECTANGLES</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>26</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>CREATE_CURSOR</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>27</span>;
-
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Transform</span> {
-    <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>xcb_render_transform_t</span>,
-}
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>SET_PICTURE_TRANSFORM</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>28</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>QUERY_FILTERS</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>29</span>;
-
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>QueryFiltersCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_render_query_filters_cookie_t</span><span class='op'>&gt;</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>SET_PICTURE_FILTER</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>30</span>;
-
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Animcursorelt</span> {
-    <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>xcb_render_animcursorelt_t</span>,
-}
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>CREATE_ANIM_CURSOR</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>31</span>;
-
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Spanfix</span> {
-    <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>xcb_render_spanfix_t</span>,
-}
-
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Trap</span> {
-    <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>xcb_render_trap_t</span>,
-}
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>ADD_TRAPS</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>32</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>CREATE_SOLID_FILL</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>33</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>CREATE_LINEAR_GRADIENT</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>34</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>CREATE_RADIAL_GRADIENT</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>35</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>CREATE_CONICAL_GRADIENT</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>36</span>;
-
-
 
 <span class='kw'>impl</span> <span class='ident'>Directformat</span> {
     <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
@@ -3162,6 +3026,8 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Pictforminfo</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>StructPtr</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span>, <span class='ident'>xcb_render_pictforminfo_t</span><span class='op'>&gt;</span>;
+
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> <span class='ident'>Pictforminfo</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> {
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>id</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Pictformat</span> {
         <span class='kw'>unsafe</span> {
@@ -3207,6 +3073,10 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Pictvisual</span> {
+    <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>xcb_render_pictvisual_t</span>,
+}
+
 <span class='kw'>impl</span> <span class='ident'>Pictvisual</span> {
     <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>visual</span>: <span class='ident'>xproto</span>::<span class='ident'>Visualid</span>,
@@ -3250,6 +3120,8 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Pictdepth</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>StructPtr</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span>, <span class='ident'>xcb_render_pictdepth_t</span><span class='op'>&gt;</span>;
+
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> <span class='ident'>Pictdepth</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> {
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>depth</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
         <span class='kw'>unsafe</span> {
@@ -3285,6 +3157,8 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Pictscreen</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>StructPtr</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span>, <span class='ident'>xcb_render_pictscreen_t</span><span class='op'>&gt;</span>;
+
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> <span class='ident'>Pictscreen</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> {
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>num_depths</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>unsafe</span> {
@@ -3318,6 +3192,10 @@
             }
         }
     }
+}
+
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Indexvalue</span> {
+    <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>xcb_render_indexvalue_t</span>,
 }
 
 <span class='kw'>impl</span> <span class='ident'>Indexvalue</span> {
@@ -3384,6 +3262,10 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Color</span> {
+    <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>xcb_render_color_t</span>,
+}
+
 <span class='kw'>impl</span> <span class='ident'>Color</span> {
     <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>red</span>:   <span class='ident'>u16</span>,
@@ -3441,6 +3323,10 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Pointfix</span> {
+    <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>xcb_render_pointfix_t</span>,
+}
+
 <span class='kw'>impl</span> <span class='ident'>Pointfix</span> {
     <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>x</span>: <span class='ident'>Fixed</span>,
@@ -3484,6 +3370,10 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Linefix</span> {
+    <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>xcb_render_linefix_t</span>,
+}
+
 <span class='kw'>impl</span> <span class='ident'>Linefix</span> {
     <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>p1</span>: <span class='ident'>Pointfix</span>,
@@ -3525,6 +3415,10 @@
             }
         }
     }
+}
+
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Triangle</span> {
+    <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>xcb_render_triangle_t</span>,
 }
 
 <span class='kw'>impl</span> <span class='ident'>Triangle</span> {
@@ -3575,6 +3469,10 @@
             }
         }
     }
+}
+
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Trapezoid</span> {
+    <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>xcb_render_trapezoid_t</span>,
 }
 
 <span class='kw'>impl</span> <span class='ident'>Trapezoid</span> {
@@ -3632,6 +3530,10 @@
             }
         }
     }
+}
+
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Glyphinfo</span> {
+    <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>xcb_render_glyphinfo_t</span>,
 }
 
 <span class='kw'>impl</span> <span class='ident'>Glyphinfo</span> {
@@ -3705,24 +3607,25 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>QUERY_VERSION</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>0</span>;
+
+<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>QueryVersionCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_render_query_version_cookie_t</span><span class='op'>&gt;</span>;
+
 <span class='kw'>impl</span> <span class='ident'>QueryVersionCookie</span> {
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_reply</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>QueryVersionReply</span>, <span class='ident'>base</span>::<span class='ident'>GenericError</span><span class='op'>&gt;</span> {
         <span class='kw'>unsafe</span> {
-            <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>err</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_generic_error_t</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>();
-            <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>checked</span> {
-                <span class='ident'>xcb_render_query_version_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                               <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                               <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
+            <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>checked</span> {
+                <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>err</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_generic_error_t</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>();
+                <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='ident'>QueryVersionReply</span> {
+                    <span class='ident'>ptr</span>: <span class='ident'>xcb_render_query_version_reply</span> (<span class='self'>self</span>.<span class='ident'>conn</span>, <span class='self'>self</span>.<span class='ident'>cookie</span>, <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
+                };
+                <span class='kw'>if</span> <span class='ident'>err</span>.<span class='ident'>is_null</span>() { <span class='prelude-val'>Ok</span> (<span class='ident'>reply</span>) }
+                <span class='kw'>else</span> { <span class='prelude-val'>Err</span>(<span class='ident'>base</span>::<span class='ident'>GenericError</span> { <span class='ident'>ptr</span>: <span class='ident'>err</span> }) }
             } <span class='kw'>else</span> {
-                <span class='ident'>xcb_render_query_version_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                               <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                               <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
-            };
-            <span class='kw'>if</span> <span class='ident'>err</span>.<span class='ident'>is_null</span>() {
-                <span class='prelude-val'>Ok</span>(<span class='ident'>QueryVersionReply</span> { <span class='ident'>ptr</span>: <span class='ident'>reply</span> })
-            } <span class='kw'>else</span> {
-                <span class='ident'>libc</span>::<span class='ident'>free</span>(<span class='ident'>reply</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>);
-                <span class='prelude-val'>Err</span>(<span class='ident'>base</span>::<span class='ident'>GenericError</span> { <span class='ident'>ptr</span>: <span class='ident'>err</span> } )
+                <span class='prelude-val'>Ok</span>( <span class='ident'>QueryVersionReply</span> {
+                    <span class='ident'>ptr</span>: <span class='ident'>xcb_render_query_version_reply</span> (<span class='self'>self</span>.<span class='ident'>conn</span>, <span class='self'>self</span>.<span class='ident'>cookie</span>,
+                            <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
+                })
             }
         }
     }
@@ -3754,7 +3657,7 @@
         <span class='ident'>QueryVersionCookie</span> {
             <span class='ident'>cookie</span>:  <span class='ident'>cookie</span>,
             <span class='ident'>conn</span>:    <span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>(),
-            <span class='ident'>checked</span>: <span class='boolval'>false</span>
+            <span class='ident'>checked</span>: <span class='boolval'>true</span>
         }
     }
 }
@@ -3775,24 +3678,25 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>QUERY_PICT_FORMATS</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>1</span>;
+
+<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>QueryPictFormatsCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_render_query_pict_formats_cookie_t</span><span class='op'>&gt;</span>;
+
 <span class='kw'>impl</span> <span class='ident'>QueryPictFormatsCookie</span> {
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_reply</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>QueryPictFormatsReply</span>, <span class='ident'>base</span>::<span class='ident'>GenericError</span><span class='op'>&gt;</span> {
         <span class='kw'>unsafe</span> {
-            <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>err</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_generic_error_t</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>();
-            <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>checked</span> {
-                <span class='ident'>xcb_render_query_pict_formats_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                                    <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                                    <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
+            <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>checked</span> {
+                <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>err</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_generic_error_t</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>();
+                <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='ident'>QueryPictFormatsReply</span> {
+                    <span class='ident'>ptr</span>: <span class='ident'>xcb_render_query_pict_formats_reply</span> (<span class='self'>self</span>.<span class='ident'>conn</span>, <span class='self'>self</span>.<span class='ident'>cookie</span>, <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
+                };
+                <span class='kw'>if</span> <span class='ident'>err</span>.<span class='ident'>is_null</span>() { <span class='prelude-val'>Ok</span> (<span class='ident'>reply</span>) }
+                <span class='kw'>else</span> { <span class='prelude-val'>Err</span>(<span class='ident'>base</span>::<span class='ident'>GenericError</span> { <span class='ident'>ptr</span>: <span class='ident'>err</span> }) }
             } <span class='kw'>else</span> {
-                <span class='ident'>xcb_render_query_pict_formats_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                                    <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                                    <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
-            };
-            <span class='kw'>if</span> <span class='ident'>err</span>.<span class='ident'>is_null</span>() {
-                <span class='prelude-val'>Ok</span>(<span class='ident'>QueryPictFormatsReply</span> { <span class='ident'>ptr</span>: <span class='ident'>reply</span> })
-            } <span class='kw'>else</span> {
-                <span class='ident'>libc</span>::<span class='ident'>free</span>(<span class='ident'>reply</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>);
-                <span class='prelude-val'>Err</span>(<span class='ident'>base</span>::<span class='ident'>GenericError</span> { <span class='ident'>ptr</span>: <span class='ident'>err</span> } )
+                <span class='prelude-val'>Ok</span>( <span class='ident'>QueryPictFormatsReply</span> {
+                    <span class='ident'>ptr</span>: <span class='ident'>xcb_render_query_pict_formats_reply</span> (<span class='self'>self</span>.<span class='ident'>conn</span>, <span class='self'>self</span>.<span class='ident'>cookie</span>,
+                            <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
+                })
             }
         }
     }
@@ -3853,7 +3757,7 @@
         <span class='ident'>QueryPictFormatsCookie</span> {
             <span class='ident'>cookie</span>:  <span class='ident'>cookie</span>,
             <span class='ident'>conn</span>:    <span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>(),
-            <span class='ident'>checked</span>: <span class='boolval'>false</span>
+            <span class='ident'>checked</span>: <span class='boolval'>true</span>
         }
     }
 }
@@ -3870,24 +3774,25 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>QUERY_PICT_INDEX_VALUES</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>2</span>;
+
+<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>QueryPictIndexValuesCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_render_query_pict_index_values_cookie_t</span><span class='op'>&gt;</span>;
+
 <span class='kw'>impl</span> <span class='ident'>QueryPictIndexValuesCookie</span> {
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_reply</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>QueryPictIndexValuesReply</span>, <span class='ident'>base</span>::<span class='ident'>GenericError</span><span class='op'>&gt;</span> {
         <span class='kw'>unsafe</span> {
-            <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>err</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_generic_error_t</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>();
-            <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>checked</span> {
-                <span class='ident'>xcb_render_query_pict_index_values_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                                         <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                                         <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
+            <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>checked</span> {
+                <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>err</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_generic_error_t</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>();
+                <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='ident'>QueryPictIndexValuesReply</span> {
+                    <span class='ident'>ptr</span>: <span class='ident'>xcb_render_query_pict_index_values_reply</span> (<span class='self'>self</span>.<span class='ident'>conn</span>, <span class='self'>self</span>.<span class='ident'>cookie</span>, <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
+                };
+                <span class='kw'>if</span> <span class='ident'>err</span>.<span class='ident'>is_null</span>() { <span class='prelude-val'>Ok</span> (<span class='ident'>reply</span>) }
+                <span class='kw'>else</span> { <span class='prelude-val'>Err</span>(<span class='ident'>base</span>::<span class='ident'>GenericError</span> { <span class='ident'>ptr</span>: <span class='ident'>err</span> }) }
             } <span class='kw'>else</span> {
-                <span class='ident'>xcb_render_query_pict_index_values_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                                         <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                                         <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
-            };
-            <span class='kw'>if</span> <span class='ident'>err</span>.<span class='ident'>is_null</span>() {
-                <span class='prelude-val'>Ok</span>(<span class='ident'>QueryPictIndexValuesReply</span> { <span class='ident'>ptr</span>: <span class='ident'>reply</span> })
-            } <span class='kw'>else</span> {
-                <span class='ident'>libc</span>::<span class='ident'>free</span>(<span class='ident'>reply</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>);
-                <span class='prelude-val'>Err</span>(<span class='ident'>base</span>::<span class='ident'>GenericError</span> { <span class='ident'>ptr</span>: <span class='ident'>err</span> } )
+                <span class='prelude-val'>Ok</span>( <span class='ident'>QueryPictIndexValuesReply</span> {
+                    <span class='ident'>ptr</span>: <span class='ident'>xcb_render_query_pict_index_values_reply</span> (<span class='self'>self</span>.<span class='ident'>conn</span>, <span class='self'>self</span>.<span class='ident'>cookie</span>,
+                            <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
+                })
             }
         }
     }
@@ -3917,7 +3822,7 @@
         <span class='ident'>QueryPictIndexValuesCookie</span> {
             <span class='ident'>cookie</span>:  <span class='ident'>cookie</span>,
             <span class='ident'>conn</span>:    <span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>(),
-            <span class='ident'>checked</span>: <span class='boolval'>false</span>
+            <span class='ident'>checked</span>: <span class='boolval'>true</span>
         }
     }
 }
@@ -3935,6 +3840,8 @@
         }
     }
 }
+
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>CREATE_PICTURE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>4</span>;
 
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>create_picture</span>(<span class='ident'>c</span>         : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                       <span class='ident'>pid</span>       : <span class='ident'>Picture</span>,
@@ -3984,6 +3891,8 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>CHANGE_PICTURE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>5</span>;
+
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>change_picture</span>(<span class='ident'>c</span>         : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                       <span class='ident'>picture</span>   : <span class='ident'>Picture</span>,
                       <span class='ident'>value_list</span>: <span class='kw-2'>&amp;</span>[(<span class='ident'>u32</span>, <span class='ident'>u32</span>)])
@@ -4023,6 +3932,8 @@
         }
     }
 }
+
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>SET_PICTURE_CLIP_RECTANGLES</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>6</span>;
 
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>set_picture_clip_rectangles</span>(<span class='ident'>c</span>            : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                                    <span class='ident'>picture</span>      : <span class='ident'>Picture</span>,
@@ -4070,6 +3981,8 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>FREE_PICTURE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>7</span>;
+
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>free_picture</span>(<span class='ident'>c</span>      : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                     <span class='ident'>picture</span>: <span class='ident'>Picture</span>)
         <span class='op'>-&gt;</span> <span class='ident'>base</span>::<span class='ident'>VoidCookie</span> {
@@ -4097,6 +4010,8 @@
         }
     }
 }
+
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>COMPOSITE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>8</span>;
 
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>composite</span>(<span class='ident'>c</span>     : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                  <span class='ident'>op</span>    : <span class='ident'>u8</span>,
@@ -4170,6 +4085,8 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>TRAPEZOIDS</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>10</span>;
+
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>trapezoids</span>(<span class='ident'>c</span>          : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                   <span class='ident'>op</span>         : <span class='ident'>u8</span>,
                   <span class='ident'>src</span>        : <span class='ident'>Picture</span>,
@@ -4227,6 +4144,8 @@
         }
     }
 }
+
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>TRIANGLES</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>11</span>;
 
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>triangles</span>(<span class='ident'>c</span>          : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                  <span class='ident'>op</span>         : <span class='ident'>u8</span>,
@@ -4286,6 +4205,8 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>TRI_STRIP</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>12</span>;
+
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>tri_strip</span>(<span class='ident'>c</span>          : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                  <span class='ident'>op</span>         : <span class='ident'>u8</span>,
                  <span class='ident'>src</span>        : <span class='ident'>Picture</span>,
@@ -4343,6 +4264,8 @@
         }
     }
 }
+
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>TRI_FAN</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>13</span>;
 
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>tri_fan</span>(<span class='ident'>c</span>          : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                <span class='ident'>op</span>         : <span class='ident'>u8</span>,
@@ -4402,6 +4325,8 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>CREATE_GLYPH_SET</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>17</span>;
+
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>create_glyph_set</span>(<span class='ident'>c</span>     : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                         <span class='ident'>gsid</span>  : <span class='ident'>Glyphset</span>,
                         <span class='ident'>format</span>: <span class='ident'>Pictformat</span>)
@@ -4433,6 +4358,8 @@
         }
     }
 }
+
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>REFERENCE_GLYPH_SET</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>18</span>;
 
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>reference_glyph_set</span>(<span class='ident'>c</span>       : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                            <span class='ident'>gsid</span>    : <span class='ident'>Glyphset</span>,
@@ -4466,6 +4393,8 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>FREE_GLYPH_SET</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>19</span>;
+
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>free_glyph_set</span>(<span class='ident'>c</span>       : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                       <span class='ident'>glyphset</span>: <span class='ident'>Glyphset</span>)
         <span class='op'>-&gt;</span> <span class='ident'>base</span>::<span class='ident'>VoidCookie</span> {
@@ -4493,6 +4422,8 @@
         }
     }
 }
+
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>ADD_GLYPHS</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>20</span>;
 
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>add_glyphs</span>(<span class='ident'>c</span>       : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                   <span class='ident'>glyphset</span>: <span class='ident'>Glyphset</span>,
@@ -4548,6 +4479,8 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>FREE_GLYPHS</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>22</span>;
+
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>free_glyphs</span>(<span class='ident'>c</span>       : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                    <span class='ident'>glyphset</span>: <span class='ident'>Glyphset</span>,
                    <span class='ident'>glyphs</span>  : <span class='kw-2'>&amp;</span>[<span class='ident'>Glyph</span>])
@@ -4585,6 +4518,8 @@
         }
     }
 }
+
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>COMPOSITE_GLYPHS_8</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>23</span>;
 
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>composite_glyphs_8</span>(<span class='ident'>c</span>          : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                           <span class='ident'>op</span>         : <span class='ident'>u8</span>,
@@ -4648,6 +4583,8 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>COMPOSITE_GLYPHS_16</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>24</span>;
+
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>composite_glyphs_16</span>(<span class='ident'>c</span>          : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                            <span class='ident'>op</span>         : <span class='ident'>u8</span>,
                            <span class='ident'>src</span>        : <span class='ident'>Picture</span>,
@@ -4709,6 +4646,8 @@
         }
     }
 }
+
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>COMPOSITE_GLYPHS_32</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>25</span>;
 
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>composite_glyphs_32</span>(<span class='ident'>c</span>          : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                            <span class='ident'>op</span>         : <span class='ident'>u8</span>,
@@ -4772,6 +4711,8 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>FILL_RECTANGLES</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>26</span>;
+
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>fill_rectangles</span>(<span class='ident'>c</span>    : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                        <span class='ident'>op</span>   : <span class='ident'>u8</span>,
                        <span class='ident'>dst</span>  : <span class='ident'>Picture</span>,
@@ -4818,6 +4759,8 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>CREATE_CURSOR</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>27</span>;
+
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>create_cursor</span>(<span class='ident'>c</span>     : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                      <span class='ident'>cid</span>   : <span class='ident'>xproto</span>::<span class='ident'>Cursor</span>,
                      <span class='ident'>source</span>: <span class='ident'>Picture</span>,
@@ -4856,6 +4799,10 @@
             <span class='ident'>checked</span>: <span class='boolval'>true</span>
         }
     }
+}
+
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Transform</span> {
+    <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>xcb_render_transform_t</span>,
 }
 
 <span class='kw'>impl</span> <span class='ident'>Transform</span> {
@@ -4950,6 +4897,8 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>SET_PICTURE_TRANSFORM</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>28</span>;
+
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>set_picture_transform</span>(<span class='ident'>c</span>        : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                              <span class='ident'>picture</span>  : <span class='ident'>Picture</span>,
                              <span class='ident'>transform</span>: <span class='ident'>Transform</span>)
@@ -4982,24 +4931,25 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>QUERY_FILTERS</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>29</span>;
+
+<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>QueryFiltersCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_render_query_filters_cookie_t</span><span class='op'>&gt;</span>;
+
 <span class='kw'>impl</span> <span class='ident'>QueryFiltersCookie</span> {
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_reply</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>QueryFiltersReply</span>, <span class='ident'>base</span>::<span class='ident'>GenericError</span><span class='op'>&gt;</span> {
         <span class='kw'>unsafe</span> {
-            <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>err</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_generic_error_t</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>();
-            <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>checked</span> {
-                <span class='ident'>xcb_render_query_filters_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                               <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                               <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
+            <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>checked</span> {
+                <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>err</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_generic_error_t</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>();
+                <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='ident'>QueryFiltersReply</span> {
+                    <span class='ident'>ptr</span>: <span class='ident'>xcb_render_query_filters_reply</span> (<span class='self'>self</span>.<span class='ident'>conn</span>, <span class='self'>self</span>.<span class='ident'>cookie</span>, <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
+                };
+                <span class='kw'>if</span> <span class='ident'>err</span>.<span class='ident'>is_null</span>() { <span class='prelude-val'>Ok</span> (<span class='ident'>reply</span>) }
+                <span class='kw'>else</span> { <span class='prelude-val'>Err</span>(<span class='ident'>base</span>::<span class='ident'>GenericError</span> { <span class='ident'>ptr</span>: <span class='ident'>err</span> }) }
             } <span class='kw'>else</span> {
-                <span class='ident'>xcb_render_query_filters_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                               <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                               <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
-            };
-            <span class='kw'>if</span> <span class='ident'>err</span>.<span class='ident'>is_null</span>() {
-                <span class='prelude-val'>Ok</span>(<span class='ident'>QueryFiltersReply</span> { <span class='ident'>ptr</span>: <span class='ident'>reply</span> })
-            } <span class='kw'>else</span> {
-                <span class='ident'>libc</span>::<span class='ident'>free</span>(<span class='ident'>reply</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>);
-                <span class='prelude-val'>Err</span>(<span class='ident'>base</span>::<span class='ident'>GenericError</span> { <span class='ident'>ptr</span>: <span class='ident'>err</span> } )
+                <span class='prelude-val'>Ok</span>( <span class='ident'>QueryFiltersReply</span> {
+                    <span class='ident'>ptr</span>: <span class='ident'>xcb_render_query_filters_reply</span> (<span class='self'>self</span>.<span class='ident'>conn</span>, <span class='self'>self</span>.<span class='ident'>cookie</span>,
+                            <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
+                })
             }
         }
     }
@@ -5042,7 +4992,7 @@
         <span class='ident'>QueryFiltersCookie</span> {
             <span class='ident'>cookie</span>:  <span class='ident'>cookie</span>,
             <span class='ident'>conn</span>:    <span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>(),
-            <span class='ident'>checked</span>: <span class='boolval'>false</span>
+            <span class='ident'>checked</span>: <span class='boolval'>true</span>
         }
     }
 }
@@ -5060,6 +5010,8 @@
         }
     }
 }
+
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>SET_PICTURE_FILTER</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>30</span>;
 
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>set_picture_filter</span>(<span class='ident'>c</span>      : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                           <span class='ident'>picture</span>: <span class='ident'>Picture</span>,
@@ -5111,6 +5063,10 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Animcursorelt</span> {
+    <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>xcb_render_animcursorelt_t</span>,
+}
+
 <span class='kw'>impl</span> <span class='ident'>Animcursorelt</span> {
     <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>cursor</span>: <span class='ident'>xproto</span>::<span class='ident'>Cursor</span>,
@@ -5154,6 +5110,8 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>CREATE_ANIM_CURSOR</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>31</span>;
+
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>create_anim_cursor</span>(<span class='ident'>c</span>      : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                           <span class='ident'>cid</span>    : <span class='ident'>xproto</span>::<span class='ident'>Cursor</span>,
                           <span class='ident'>cursors</span>: <span class='kw-2'>&amp;</span>[<span class='ident'>Animcursorelt</span>])
@@ -5190,6 +5148,10 @@
             <span class='ident'>checked</span>: <span class='boolval'>true</span>
         }
     }
+}
+
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Spanfix</span> {
+    <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>xcb_render_spanfix_t</span>,
 }
 
 <span class='kw'>impl</span> <span class='ident'>Spanfix</span> {
@@ -5242,6 +5204,10 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Trap</span> {
+    <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>xcb_render_trap_t</span>,
+}
+
 <span class='kw'>impl</span> <span class='ident'>Trap</span> {
     <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>top</span>: <span class='ident'>Spanfix</span>,
@@ -5284,6 +5250,8 @@
         }
     }
 }
+
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>ADD_TRAPS</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>32</span>;
 
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>add_traps</span>(<span class='ident'>c</span>      : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                  <span class='ident'>picture</span>: <span class='ident'>Picture</span>,
@@ -5331,6 +5299,8 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>CREATE_SOLID_FILL</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>33</span>;
+
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>create_solid_fill</span>(<span class='ident'>c</span>      : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                          <span class='ident'>picture</span>: <span class='ident'>Picture</span>,
                          <span class='ident'>color</span>  : <span class='ident'>Color</span>)
@@ -5362,6 +5332,8 @@
         }
     }
 }
+
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>CREATE_LINEAR_GRADIENT</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>34</span>;
 
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>create_linear_gradient</span>(<span class='ident'>c</span>      : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                               <span class='ident'>picture</span>: <span class='ident'>Picture</span>,
@@ -5414,6 +5386,8 @@
         }
     }
 }
+
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>CREATE_RADIAL_GRADIENT</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>35</span>;
 
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>create_radial_gradient</span>(<span class='ident'>c</span>           : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                               <span class='ident'>picture</span>     : <span class='ident'>Picture</span>,
@@ -5474,6 +5448,8 @@
         }
     }
 }
+
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>CREATE_CONICAL_GRADIENT</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>36</span>;
 
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>create_conical_gradient</span>(<span class='ident'>c</span>      : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                                <span class='ident'>picture</span>: <span class='ident'>Picture</span>,

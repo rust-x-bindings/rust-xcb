@@ -357,11 +357,8 @@
 <span id="314">314</span>
 <span id="315">315</span>
 <span id="316">316</span>
-<span id="317">317</span>
-<span id="318">318</span>
-<span id="319">319</span>
 </pre><pre class='rust '>
-<span class='comment'>// edited from damage.xml by rs_client.py on Tue Mar 29 01:49:04 2016</span>
+<span class='comment'>// edited from damage.xml by rs_client.py on Fri Apr  1 08:27:26 2016</span>
 <span class='comment'>// do not edit!</span>
 
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>allow</span>(<span class='ident'>unused_unsafe</span>)]</span>
@@ -399,48 +396,33 @@
 <span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>REPORT_LEVEL_BOUNDING_BOX</span>    : <span class='ident'>ReportLevel</span> <span class='op'>=</span> <span class='number'>0x02</span>;
 <span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>REPORT_LEVEL_NON_EMPTY</span>       : <span class='ident'>ReportLevel</span> <span class='op'>=</span> <span class='number'>0x03</span>;
 
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>BAD_DAMAGE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>0</span>;
-
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>BadDamageError</span> {
     <span class='kw'>pub</span> <span class='ident'>base</span>: <span class='ident'>base</span>::<span class='ident'>Error</span><span class='op'>&lt;</span><span class='ident'>xcb_damage_bad_damage_error_t</span><span class='op'>&gt;</span>
 }
+
+
+
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>BAD_DAMAGE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>0</span>;
 
 <span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>QUERY_VERSION</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>0</span>;
 
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>QueryVersionCookie</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Cookie</span><span class='op'>&lt;</span><span class='ident'>xcb_damage_query_version_cookie_t</span><span class='op'>&gt;</span>;
 
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>CREATE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>1</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>DESTROY</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>2</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>SUBTRACT</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>3</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>ADD</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>4</span>;
-
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>NOTIFY</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>0</span>;
-
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>NotifyEvent</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Event</span><span class='op'>&lt;</span><span class='ident'>xcb_damage_notify_event_t</span><span class='op'>&gt;</span>;
-
-
-
 <span class='kw'>impl</span> <span class='ident'>QueryVersionCookie</span> {
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_reply</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>QueryVersionReply</span>, <span class='ident'>base</span>::<span class='ident'>GenericError</span><span class='op'>&gt;</span> {
         <span class='kw'>unsafe</span> {
-            <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>err</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_generic_error_t</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>();
-            <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>checked</span> {
-                <span class='ident'>xcb_damage_query_version_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                               <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                               <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
+            <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>checked</span> {
+                <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>err</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>xcb_generic_error_t</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>();
+                <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='ident'>QueryVersionReply</span> {
+                    <span class='ident'>ptr</span>: <span class='ident'>xcb_damage_query_version_reply</span> (<span class='self'>self</span>.<span class='ident'>conn</span>, <span class='self'>self</span>.<span class='ident'>cookie</span>, <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>err</span>)
+                };
+                <span class='kw'>if</span> <span class='ident'>err</span>.<span class='ident'>is_null</span>() { <span class='prelude-val'>Ok</span> (<span class='ident'>reply</span>) }
+                <span class='kw'>else</span> { <span class='prelude-val'>Err</span>(<span class='ident'>base</span>::<span class='ident'>GenericError</span> { <span class='ident'>ptr</span>: <span class='ident'>err</span> }) }
             } <span class='kw'>else</span> {
-                <span class='ident'>xcb_damage_query_version_reply</span>(<span class='self'>self</span>.<span class='ident'>conn</span>,
-                                               <span class='self'>self</span>.<span class='ident'>cookie</span>,
-                                               <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
-            };
-            <span class='kw'>if</span> <span class='ident'>err</span>.<span class='ident'>is_null</span>() {
-                <span class='prelude-val'>Ok</span>(<span class='ident'>QueryVersionReply</span> { <span class='ident'>ptr</span>: <span class='ident'>reply</span> })
-            } <span class='kw'>else</span> {
-                <span class='ident'>libc</span>::<span class='ident'>free</span>(<span class='ident'>reply</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>);
-                <span class='prelude-val'>Err</span>(<span class='ident'>base</span>::<span class='ident'>GenericError</span> { <span class='ident'>ptr</span>: <span class='ident'>err</span> } )
+                <span class='prelude-val'>Ok</span>( <span class='ident'>QueryVersionReply</span> {
+                    <span class='ident'>ptr</span>: <span class='ident'>xcb_damage_query_version_reply</span> (<span class='self'>self</span>.<span class='ident'>conn</span>, <span class='self'>self</span>.<span class='ident'>cookie</span>,
+                            <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
+                })
             }
         }
     }
@@ -472,7 +454,7 @@
         <span class='ident'>QueryVersionCookie</span> {
             <span class='ident'>cookie</span>:  <span class='ident'>cookie</span>,
             <span class='ident'>conn</span>:    <span class='ident'>c</span>.<span class='ident'>get_raw_conn</span>(),
-            <span class='ident'>checked</span>: <span class='boolval'>false</span>
+            <span class='ident'>checked</span>: <span class='boolval'>true</span>
         }
     }
 }
@@ -492,6 +474,8 @@
         }
     }
 }
+
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>CREATE</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>1</span>;
 
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>create</span>(<span class='ident'>c</span>       : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
               <span class='ident'>damage</span>  : <span class='ident'>Damage</span>,
@@ -529,6 +513,8 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>DESTROY</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>2</span>;
+
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>destroy</span>(<span class='ident'>c</span>     : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                <span class='ident'>damage</span>: <span class='ident'>Damage</span>)
         <span class='op'>-&gt;</span> <span class='ident'>base</span>::<span class='ident'>VoidCookie</span> {
@@ -556,6 +542,8 @@
         }
     }
 }
+
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>SUBTRACT</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>3</span>;
 
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>subtract</span>(<span class='ident'>c</span>     : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
                 <span class='ident'>damage</span>: <span class='ident'>Damage</span>,
@@ -593,6 +581,8 @@
     }
 }
 
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>ADD</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>4</span>;
+
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>add</span>(<span class='ident'>c</span>       : <span class='kw-2'>&amp;</span><span class='ident'>base</span>::<span class='ident'>Connection</span>,
            <span class='ident'>drawable</span>: <span class='ident'>xproto</span>::<span class='ident'>Drawable</span>,
            <span class='ident'>region</span>  : <span class='ident'>xfixes</span>::<span class='ident'>Region</span>)
@@ -624,6 +614,10 @@
         }
     }
 }
+
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>NOTIFY</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>0</span>;
+
+<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>NotifyEvent</span> <span class='op'>=</span> <span class='ident'>base</span>::<span class='ident'>Event</span><span class='op'>&lt;</span><span class='ident'>xcb_damage_notify_event_t</span><span class='op'>&gt;</span>;
 
 <span class='kw'>impl</span> <span class='ident'>NotifyEvent</span> {
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>level</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {

@@ -910,7 +910,7 @@
 }
 
 <span class='doccomment'>/// Casts the generic error to the right error. Assumes that the given</span>
-<span class='doccomment'>/// errir is really the correct type.</span>
+<span class='doccomment'>/// error is really the correct type.</span>
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>cast_error</span><span class='op'>&lt;</span><span class='lifetime'>&#39;r</span>, <span class='ident'>T</span><span class='op'>&gt;</span>(<span class='ident'>error</span> : <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;r</span> <span class='ident'>GenericError</span>) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;r</span> <span class='ident'>T</span> {
     <span class='comment'>// This isn&#39;t very safe... but other options incur yet more overhead</span>
     <span class='comment'>// that I really don&#39;t want to.</span>
