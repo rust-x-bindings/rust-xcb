@@ -13,7 +13,7 @@ xcb = "0.7"
 ```
 
 __Documentation__:
-http://rtbo.github.io/rust-xcb/xcb/
+http://rtbo.github.io/rust-xcb/xcb/index.html
 
 ## The bindings
 
