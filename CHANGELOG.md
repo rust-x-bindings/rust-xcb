@@ -1,3 +1,7 @@
+ * 0.7.2
+ rtbo - 02/04/2016
+    - fix #14
+
  * 0.7.1
  rtbo - 29/03/2016
     - module names closer to ffi
