@@ -34,7 +34,40 @@
 #![allow(non_snake_case)]
 
 //! Rust bindings to the XCB library.
-//! Look at documentation of modules base and xproto.
+//!
+//! The X protocol C-language Binding (XCB - https://xcb.freedesktop.org/) is a
+//! replacement for Xlib featuring a small footprint, latency hiding,
+//! direct access to the protocol, improved threading support, and extensibility.
+//!
+//! The communication is established with the X server by the creation of a
+//! `Connection` object.
+//!
+//! A client communicates with the server by sending requests. There are 2 types
+//! of requests:
+//!   - void requests: requests that do not expect an answer (e.g. `ChangeProperty`)
+//!   - non-void requests: requests that need a `Reply` (e.g. `GetProperty`)
+//!
+//! Void requests are normally unchecked. They are issued by the client, that
+//! will normally not do anything else about it. For each such request, it exists
+//! a variant with `_checked` suffix (e.g. `change_property` and `change_property_checked`)
+//! that allows to receive a confirmation reply from the server via
+//! `Connection::request_check`.
+//!
+//! Conversely, non-void requests are normally checked. When the client retrieves
+//! the `Reply`, it can check for `Error`. For each such request, it exists a variant
+//! with `_unchecked` suffix (e.g. `get_property` and `get_property_unchecked`).
+//! If this variant is used, the `Reply` is retrieved assuming that there was no error.
+//!
+//! The server can also communicate with clients by sending `Event`s.
+//! The client listens to events with calls such as `Connection::wait_for_event`
+//! (blocking) or `Connection::poll_for_event` (non-blocking).
+//!
+//! API documentation is detailed in modules `base` and `xproto`.
+//!
+//!  - `base`: contains `Connection` and a few utils
+//!  - `xproto`: X protocol requests and events
+//!
+//! X protocol extensions are activated with cargo features
 
 extern crate libc;
 #[cfg(feature="xlib_xcb")]
