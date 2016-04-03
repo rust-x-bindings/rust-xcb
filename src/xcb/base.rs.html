@@ -1055,7 +1055,7 @@
     <span class='doccomment'>///</span>
     <span class='doccomment'>/// Note that in order for this function to be fully non-blocking, the</span>
     <span class='doccomment'>/// application must previously have called</span>
-    <span class='doccomment'>/// c.prefetch_extension_data(xcb::bigreq::id()) and the reply</span>
+    <span class='doccomment'>/// `c.prefetch_extension_data(xcb::big_requests::id())` and the reply</span>
     <span class='doccomment'>/// must have already arrived.</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>prefetch_maximum_request_length</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) {
         <span class='kw'>unsafe</span> {

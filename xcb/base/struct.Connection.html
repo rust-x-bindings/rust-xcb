@@ -82,7 +82,7 @@ after possibly blocking while the reply is retrieved.</p>
 
 <p>Note that in order for this function to be fully non-blocking, the
 application must previously have called
-c.prefetch_extension_data(xcb::bigreq::id()) and the reply
+<code>c.prefetch_extension_data(xcb::big_requests::id())</code> and the reply
 must have already arrived.</p>
 </div><h4 id='method.wait_for_event' class='method'><code>fn <a href='#method.wait_for_event' class='fnname'>wait_for_event</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='type' href='../../xcb/base/type.GenericEvent.html' title='xcb::base::GenericEvent'>GenericEvent</a>&gt;</code></h4>
 <div class='docblock'><p>Returns the next event or error from the server.</p>
