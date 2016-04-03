@@ -44,6 +44,7 @@
 //!
 //! A client communicates with the server by sending requests. There are 2 types
 //! of requests:
+//!
 //!   - void requests: requests that do not expect an answer (e.g. `ChangeProperty`)
 //!   - non-void requests: requests that need a `Reply` (e.g. `GetProperty`)
 //!
@@ -54,7 +55,7 @@
 //! `Connection::request_check`.
 //!
 //! Conversely, non-void requests are normally checked. When the client retrieves
-//! the `Reply`, it can check for `Error`. For each such request, it exists a variant
+//! the `Reply`, it can check for an `Error`. For each such request, it exists a variant
 //! with `_unchecked` suffix (e.g. `get_property` and `get_property_unchecked`).
 //! If this variant is used, the `Reply` is retrieved assuming that there was no error.
 //!
