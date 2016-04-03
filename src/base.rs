@@ -297,7 +297,7 @@ impl Connection {
     ///
     /// Note that in order for this function to be fully non-blocking, the
     /// application must previously have called
-    /// c.prefetch_extension_data(xcb::bigreq::id()) and the reply
+    /// `c.prefetch_extension_data(xcb::big_requests::id())` and the reply
     /// must have already arrived.
     pub fn prefetch_maximum_request_length(&self) {
         unsafe {
