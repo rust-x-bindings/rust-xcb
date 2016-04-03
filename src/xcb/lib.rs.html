@@ -312,6 +312,7 @@
 <span id="269">269</span>
 <span id="270">270</span>
 <span id="271">271</span>
+<span id="272">272</span>
 </pre><pre class='rust '>
 <span class='comment'>/*
  * Copyright (C) 2013 James Miller &lt;james@aatch.net&gt;
@@ -359,6 +360,7 @@
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! A client communicates with the server by sending requests. There are 2 types</span>
 <span class='doccomment'>//! of requests:</span>
+<span class='doccomment'>//!</span>
 <span class='doccomment'>//!   - void requests: requests that do not expect an answer (e.g. `ChangeProperty`)</span>
 <span class='doccomment'>//!   - non-void requests: requests that need a `Reply` (e.g. `GetProperty`)</span>
 <span class='doccomment'>//!</span>
@@ -369,7 +371,7 @@
 <span class='doccomment'>//! `Connection::request_check`.</span>
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! Conversely, non-void requests are normally checked. When the client retrieves</span>
-<span class='doccomment'>//! the `Reply`, it can check for `Error`. For each such request, it exists a variant</span>
+<span class='doccomment'>//! the `Reply`, it can check for an `Error`. For each such request, it exists a variant</span>
 <span class='doccomment'>//! with `_unchecked` suffix (e.g. `get_property` and `get_property_unchecked`).</span>
 <span class='doccomment'>//! If this variant is used, the `Reply` is retrieved assuming that there was no error.</span>
 <span class='doccomment'>//!</span>

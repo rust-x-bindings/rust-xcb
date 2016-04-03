@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `/home/remi/.cargo/registry/src/github.com-88ac128001ac3a9a/x11-2.3.1/src/xrender.rs`.">
+    <meta name="description" content="Source to the Rust file `/home/remi/.cargo/registry/src/github.com-88ac128001ac3a9a/x11-2.4.0/src/xrender.rs`.">
     <meta name="keywords" content="rust, rustlang, rust-lang">
 
     <title>xrender.rs.html -- source</title>
@@ -456,7 +456,7 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>XDouble</span> <span class='op'>=</span> <span class='ident'>c_double</span>;
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>XFixed</span> <span class='op'>=</span> <span class='ident'>c_int</span>;
 
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>PartialEq</span>)]</span>
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>_XAnimCursor</span> {
   <span class='kw'>pub</span> <span class='ident'>cursor</span>: <span class='ident'>Cursor</span>,
@@ -464,7 +464,7 @@
 }
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>XAnimCursor</span> <span class='op'>=</span> <span class='ident'>_XAnimCursor</span>;
 
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>PartialEq</span>)]</span>
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>_XCircle</span> {
   <span class='kw'>pub</span> <span class='ident'>x</span>: <span class='ident'>XFixed</span>,
@@ -473,7 +473,7 @@
 }
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>XCircle</span> <span class='op'>=</span> <span class='ident'>_XCircle</span>;
 
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>PartialEq</span>)]</span>
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>_XConicalGradient</span> {
   <span class='kw'>pub</span> <span class='ident'>center</span>: <span class='ident'>XPointFixed</span>,
@@ -481,7 +481,7 @@
 }
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>XConicalGradient</span> <span class='op'>=</span> <span class='ident'>_XConicalGradient</span>;
 
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>PartialEq</span>)]</span>
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>_XFilters</span> {
   <span class='kw'>pub</span> <span class='ident'>nfilter</span>: <span class='ident'>c_int</span>,
@@ -491,7 +491,7 @@
 }
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>XFilters</span> <span class='op'>=</span> <span class='ident'>_XFilters</span>;
 
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>PartialEq</span>)]</span>
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>_XGlyphElt8</span> {
   <span class='kw'>pub</span> <span class='ident'>glyphset</span>: <span class='ident'>GlyphSet</span>,
@@ -502,7 +502,7 @@
 }
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>XGlyphElt8</span> <span class='op'>=</span> <span class='ident'>_XGlyphElt8</span>;
 
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>PartialEq</span>)]</span>
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>_XGlyphElt16</span> {
   <span class='kw'>pub</span> <span class='ident'>glyphset</span>: <span class='ident'>GlyphSet</span>,
@@ -513,7 +513,7 @@
 }
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>XGlyphElt16</span> <span class='op'>=</span> <span class='ident'>_XGlyphElt16</span>;
 
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>PartialEq</span>)]</span>
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>_XGlyphElt32</span> {
   <span class='kw'>pub</span> <span class='ident'>glyphset</span>: <span class='ident'>GlyphSet</span>,
@@ -524,7 +524,7 @@
 }
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>XGlyphElt32</span> <span class='op'>=</span> <span class='ident'>_XGlyphElt32</span>;
 
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>PartialEq</span>)]</span>
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>_XGlyphInfo</span> {
   <span class='kw'>pub</span> <span class='ident'>width</span>: <span class='ident'>c_ushort</span>,
@@ -536,7 +536,7 @@
 }
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>XGlyphInfo</span> <span class='op'>=</span> <span class='ident'>_XGlyphInfo</span>;
 
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>PartialEq</span>)]</span>
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>_XIndexValue</span> {
   <span class='kw'>pub</span> <span class='ident'>pixel</span>: <span class='ident'>c_ulong</span>,
@@ -547,7 +547,7 @@
 }
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>XIndexValue</span> <span class='op'>=</span> <span class='ident'>_XIndexValue</span>;
 
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>PartialEq</span>)]</span>
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>_XLinearGradient</span> {
   <span class='kw'>pub</span> <span class='ident'>p1</span>: <span class='ident'>XPointFixed</span>,
@@ -555,7 +555,7 @@
 }
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>XLinearGradient</span> <span class='op'>=</span> <span class='ident'>_XLinearGradient</span>;
 
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>PartialEq</span>)]</span>
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>_XLineFixed</span> {
   <span class='kw'>pub</span> <span class='ident'>p1</span>: <span class='ident'>XPointFixed</span>,
@@ -563,7 +563,7 @@
 }
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>XLineFixed</span> <span class='op'>=</span> <span class='ident'>_XLineFixed</span>;
 
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>PartialEq</span>)]</span>
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>_XPointDouble</span> {
   <span class='kw'>pub</span> <span class='ident'>x</span>: <span class='ident'>XDouble</span>,
@@ -571,7 +571,7 @@
 }
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>XPointDouble</span> <span class='op'>=</span> <span class='ident'>_XPointDouble</span>;
 
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>PartialEq</span>)]</span>
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>_XPointFixed</span> {
   <span class='kw'>pub</span> <span class='ident'>x</span>: <span class='ident'>XFixed</span>,
@@ -579,7 +579,7 @@
 }
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>XPointFixed</span> <span class='op'>=</span> <span class='ident'>_XPointFixed</span>;
 
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>PartialEq</span>)]</span>
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>_XRadialGradient</span> {
   <span class='kw'>pub</span> <span class='ident'>inner</span>: <span class='ident'>XCircle</span>,
@@ -587,7 +587,7 @@
 }
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>XRadialGradient</span> <span class='op'>=</span> <span class='ident'>_XRadialGradient</span>;
 
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>PartialEq</span>)]</span>
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>XRenderColor</span> {
   <span class='kw'>pub</span> <span class='ident'>red</span>: <span class='ident'>c_ushort</span>,
@@ -596,7 +596,7 @@
   <span class='kw'>pub</span> <span class='ident'>alpha</span>: <span class='ident'>c_ushort</span>,
 }
 
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>PartialEq</span>)]</span>
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>XRenderDirectFormat</span> {
   <span class='kw'>pub</span> <span class='ident'>red</span>: <span class='ident'>c_short</span>,
@@ -609,7 +609,7 @@
   <span class='kw'>pub</span> <span class='ident'>alphaMask</span>: <span class='ident'>c_short</span>,
 }
 
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>PartialEq</span>)]</span>
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>XRenderPictFormat</span> {
   <span class='kw'>pub</span> <span class='ident'>id</span>: <span class='ident'>PictFormat</span>,
@@ -619,7 +619,7 @@
   <span class='kw'>pub</span> <span class='ident'>colormap</span>: <span class='ident'>Colormap</span>,
 }
 
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>PartialEq</span>)]</span>
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>_XRenderPictureAttributes</span> {
   <span class='kw'>pub</span> <span class='ident'>repeat</span>: <span class='ident'>c_int</span>,
@@ -638,7 +638,7 @@
 }
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>XRenderPictureAttributes</span> <span class='op'>=</span> <span class='ident'>_XRenderPictureAttributes</span>;
 
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>PartialEq</span>)]</span>
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>_XSpanFix</span> {
   <span class='kw'>pub</span> <span class='ident'>left</span>: <span class='ident'>XFixed</span>,
@@ -647,7 +647,7 @@
 }
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>XSpanFix</span> <span class='op'>=</span> <span class='ident'>_XSpanFix</span>;
 
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>PartialEq</span>)]</span>
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>_XTrap</span> {
   <span class='kw'>pub</span> <span class='ident'>top</span>: <span class='ident'>XSpanFix</span>,
@@ -655,7 +655,7 @@
 }
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>XTrap</span> <span class='op'>=</span> <span class='ident'>_XTrap</span>;
 
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>PartialEq</span>)]</span>
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>_XTrapezoid</span> {
   <span class='kw'>pub</span> <span class='ident'>top</span>: <span class='ident'>XFixed</span>,
@@ -665,7 +665,7 @@
 }
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>XTrapezoid</span> <span class='op'>=</span> <span class='ident'>_XTrapezoid</span>;
 
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>PartialEq</span>)]</span>
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>_XTriangle</span> {
   <span class='kw'>pub</span> <span class='ident'>p1</span>: <span class='ident'>XPointFixed</span>,
@@ -674,7 +674,7 @@
 }
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>XTriangle</span> <span class='op'>=</span> <span class='ident'>_XTriangle</span>;
 
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>PartialEq</span>)]</span>
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>_XTransform</span> {
   <span class='kw'>pub</span> <span class='ident'>matrix</span>: [[<span class='ident'>XFixed</span>; <span class='number'>3</span>]; <span class='number'>3</span>],

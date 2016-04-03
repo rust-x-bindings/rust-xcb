@@ -46,7 +46,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-0' class='srclink' href='../src/xcb/lib.rs.html#32-271' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-0' class='srclink' href='../src/xcb/lib.rs.html#32-272' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>Rust bindings to the XCB library.</p>
 
 <p>The X protocol C-language Binding (XCB - <a href="https://xcb.freedesktop.org/">https://xcb.freedesktop.org/</a>) is a
@@ -57,9 +57,12 @@ direct access to the protocol, improved threading support, and extensibility.</p
 <code>Connection</code> object.</p>
 
 <p>A client communicates with the server by sending requests. There are 2 types
-of requests:
-  - void requests: requests that do not expect an answer (e.g. <code>ChangeProperty</code>)
-  - non-void requests: requests that need a <code>Reply</code> (e.g. <code>GetProperty</code>)</p>
+of requests:</p>
+
+<ul>
+<li>void requests: requests that do not expect an answer (e.g. <code>ChangeProperty</code>)</li>
+<li>non-void requests: requests that need a <code>Reply</code> (e.g. <code>GetProperty</code>)</li>
+</ul>
 
 <p>Void requests are normally unchecked. They are issued by the client, that
 will normally not do anything else about it. For each such request, it exists
@@ -68,7 +71,7 @@ that allows to receive a confirmation reply from the server via
 <code>Connection::request_check</code>.</p>
 
 <p>Conversely, non-void requests are normally checked. When the client retrieves
-the <code>Reply</code>, it can check for <code>Error</code>. For each such request, it exists a variant
+the <code>Reply</code>, it can check for an <code>Error</code>. For each such request, it exists a variant
 with <code>_unchecked</code> suffix (e.g. <code>get_property</code> and <code>get_property_unchecked</code>).
 If this variant is used, the <code>Reply</code> is retrieved assuming that there was no error.</p>
 
