@@ -1199,26 +1199,34 @@ def _rs_accessor(typeobj, field, disable_pod_acc=False):
             _r('}')
         elif field.type.member.is_simple:
             field_type = field.type.member.rs_type
+            is_template = False
             if field_type == 'c_char':
                 return_type = '&str'
+            elif field_type == 'c_void':
+                is_template = True
+                return_type = '&[T]'
             else:
                 return_type = '&[%s]' % field_type
-            _r('pub fn %s(&self) -> %s {', field.rs_field_name, return_type)
+            _r('pub fn %s%s(&self) -> %s {', field.rs_field_name,
+                    '<T>' if is_template else '', return_type)
             with _r.indent_block():
                 _r('unsafe {')
                 with _r.indent_block():
                     _r('let field = self.ptr;')
-                    _r('let len = %s(field);', field.ffi_length_fn)
+                    _r('let len = %s(field) as usize;', field.ffi_length_fn)
                     _r('let data = %s(field);', field.ffi_accessor_fn)
                     if field_type == 'c_char':
                         _r('let slice = ' +
                             'std::slice::from_raw_parts(' +
-                                'data as *const u8, ' +
-                                'len as usize);')
+                                'data as *const u8, len);')
                         _r('// should we check what comes from X?')
                         _r('std::str::from_utf8_unchecked(&slice)')
+                    elif is_template:
+                        _r('debug_assert_eq!(len %% std::mem::size_of::<T>(), 0);')
+                        _r('std::slice::from_raw_parts(data as *const T, ' +
+                                'len / std::mem::size_of::<T>())')
                     else:
-                        _r('std::slice::from_raw_parts(data, len as usize)')
+                        _r('std::slice::from_raw_parts(data, len)')
                 _r('}')
             _r('}')
         else:
