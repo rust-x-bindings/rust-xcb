@@ -27,13 +27,20 @@ fn main() {
 
     xcb::map_window(&conn, window);
 
+    let title = "Basic Window";
+    // setting title
+    xcb::change_property(&conn, xcb::PROP_MODE_REPLACE as u8, window,
+            xcb::ATOM_WM_NAME, xcb::ATOM_STRING, 8, title.as_bytes());
+
     conn.flush();
 
-    let cookie = xcb::intern_atom(&conn, false, "_TEST_ATOM");
-    let rep_res = cookie.get_reply();
-    match rep_res {
-        Ok(r) => {println!("Interned Atom {}", r.atom());}
-        Err(_) => { panic!("Failed to intern atom"); }
+    // retrieving title
+    let cookie = xcb::get_property(&conn, false, window, xcb::ATOM_WM_NAME,
+            xcb::ATOM_STRING, 0, 1024);
+    if let Ok(reply) = cookie.get_reply() {
+        assert_eq!(std::str::from_utf8(reply.value()).unwrap(), title);
+    } else {
+        panic!("could not retrieve window title!");
     }
 
     loop {
