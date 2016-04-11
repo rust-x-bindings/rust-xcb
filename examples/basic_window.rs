@@ -84,11 +84,8 @@ fn main() {
 
                         let ev = xcb::ClientMessageEvent::new(32, window, wm_state, data);
 
-                        xcb::send_event(&conn, true, screen.root(),
-                            xcb::EVENT_MASK_STRUCTURE_NOTIFY |
-                            xcb::EVENT_MASK_SUBSTRUCTURE_NOTIFY |
-                            xcb::EVENT_MASK_SUBSTRUCTURE_REDIRECT,
-                            &ev);
+                        xcb::send_event(&conn, false, screen.root(),
+                            xcb::EVENT_MASK_STRUCTURE_NOTIFY, &ev);
 
                         conn.flush();
 
