@@ -43,6 +43,19 @@ fn main() {
         panic!("could not retrieve window title!");
     }
 
+    // retrieving a few atoms
+    let (wm_state, wm_state_maxv, wm_state_maxh) = {
+        let cook = xcb::intern_atom(&conn, true, "_NET_WM_STATE");
+        let cook_maxv = xcb::intern_atom(&conn, true, "_NET_WM_STATE_MAXIMIZED_VERT");
+        let cook_maxh = xcb::intern_atom(&conn, true, "_NET_WM_STATE_MAXIMIZED_HORZ");
+
+        (cook.get_reply().unwrap().atom(),
+            cook_maxv.get_reply().unwrap().atom(),
+            cook_maxh.get_reply().unwrap().atom())
+    };
+
+    let mut maximized = false;
+
     loop {
         let event = conn.wait_for_event();
         match event {
@@ -52,7 +65,44 @@ fn main() {
                 if r == xcb::KEY_PRESS as u8 {
                     let key_press : &xcb::KeyPressEvent = xcb::cast_event(&event);
                     println!("Key '{}' pressed", key_press.detail());
-                    break;
+
+                    if key_press.detail() == 0x3a { // M (on qwerty)
+
+                        // toggle maximized
+
+                        // we see here TODO work on wrappers
+                        let data = unsafe {
+                            let mut data = xcb::ClientMessageData { data: [0; 20] };
+                            let mut data32: &mut [u32; 5] = std::mem::transmute(&mut data.data);
+                            data32[0] = if maximized { 0 } else { 1 };
+                            data32[1] = wm_state_maxv;
+                            data32[2] = wm_state_maxh;
+
+                            data
+                        };
+
+                        let ev = xcb::ClientMessageEvent::new(32, window, wm_state, data);
+
+                        let ev_str = unsafe {
+                            let ptr: *const u8 = std::mem::transmute(ev.ptr);
+                            let slice = std::slice::from_raw_parts(ptr, 0);
+                            // should we check what comes from X?
+                            std::str::from_utf8_unchecked(&slice)
+                        };
+
+                        xcb::send_event(&conn, true, screen.root(),
+                            xcb::EVENT_MASK_STRUCTURE_NOTIFY |
+                            xcb::EVENT_MASK_SUBSTRUCTURE_NOTIFY |
+                            xcb::EVENT_MASK_SUBSTRUCTURE_REDIRECT,
+                            ev_str);
+
+                        conn.flush();
+
+                        maximized = !maximized;
+                    }
+                    else if key_press.detail() == 0x18 { // Q (on qwerty)
+                        break;
+                    }
                 }
             }
         }
