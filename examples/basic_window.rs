@@ -64,13 +64,14 @@ fn main() {
                 let r = event.response_type();
                 if r == xcb::KEY_PRESS as u8 {
                     let key_press : &xcb::KeyPressEvent = xcb::cast_event(&event);
+
                     println!("Key '{}' pressed", key_press.detail());
 
                     if key_press.detail() == 0x3a { // M (on qwerty)
 
                         // toggle maximized
 
-                        // we see here TODO work on wrappers
+                        // we see here TODO work on union safe wrappers
                         let data = unsafe {
                             let mut data = xcb::ClientMessageData { data: [0; 20] };
                             let mut data32: &mut [u32; 5] = std::mem::transmute(&mut data.data);
@@ -83,18 +84,11 @@ fn main() {
 
                         let ev = xcb::ClientMessageEvent::new(32, window, wm_state, data);
 
-                        let ev_str = unsafe {
-                            let ptr: *const u8 = std::mem::transmute(ev.ptr);
-                            let slice = std::slice::from_raw_parts(ptr, 0);
-                            // should we check what comes from X?
-                            std::str::from_utf8_unchecked(&slice)
-                        };
-
                         xcb::send_event(&conn, true, screen.root(),
                             xcb::EVENT_MASK_STRUCTURE_NOTIFY |
                             xcb::EVENT_MASK_SUBSTRUCTURE_NOTIFY |
                             xcb::EVENT_MASK_SUBSTRUCTURE_REDIRECT,
-                            ev_str);
+                            &ev);
 
                         conn.flush();
 

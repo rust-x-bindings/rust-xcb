@@ -1506,6 +1506,14 @@ class RequestCodegen(object):
         rs_num_template = 0
         template_letters = ['T', 'U', 'V', 'W']
 
+        # xproto::send_event is special.
+        # the FFI takes an event argument casted to a char*
+        # here we are going to require an &Event<T> for the rs func
+        self.rs_send_event = False
+        if _ns.header == "xproto" and \
+                self.request.rs_request_fn.startswith("send_event"):
+            self.rs_send_event = True
+
         for f in self.visible_fields:
             f.rs_is_slice = False
             f.rs_template_let = ''
@@ -1517,7 +1525,11 @@ class RequestCodegen(object):
         for (ffi_index, field) in enumerate(self.visible_fields):
             field.ffi_index = ffi_index
 
-            if field.type.is_list:
+            if self.rs_send_event and field.rs_field_name == "event":
+                field.rs_template_let = template_letters[rs_num_template]
+                rs_num_template += 1
+
+            elif field.type.is_list:
 
                 if field.type.expr.bitfield:
                     # field associated with a mask
@@ -1677,7 +1689,13 @@ class RequestCodegen(object):
             ffi_rq_type = self.ffi_rq_type(p, aux)
             rs_typestr = p.rs_field_type
 
-            if p.rs_is_mask_slice:
+            if self.rs_send_event and p.rs_field_name == "event":
+                rs_typestr = "&base::Event<%s>" % p.rs_template_let
+                let_lines.append("let event_ptr = " +
+                    "std::mem::transmute(event.ptr);")
+                call_params.append((p.ffi_index, "event_ptr"))
+                pass
+            elif p.rs_is_mask_slice:
 
                 maskfield = p.rs_lenfield
                 rs_typestr = '&[(%s, %s)]' % (maskfield.rs_field_type,
