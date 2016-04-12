@@ -71,18 +71,15 @@ fn main() {
 
                         // toggle maximized
 
-                        // we see here TODO work on union safe wrappers
-                        let data = unsafe {
-                            let mut data = xcb::ClientMessageData { data: [0; 20] };
-                            let mut data32: &mut [u32; 5] = std::mem::transmute(&mut data.data);
-                            data32[0] = if maximized { 0 } else { 1 };
-                            data32[1] = wm_state_maxv;
-                            data32[2] = wm_state_maxh;
+                        // ClientMessageData is a memory safe untagged union
+                        let data = xcb::ClientMessageData::from_data32([
+                            if maximized { 0 } else { 1 },
+                            wm_state_maxv, wm_state_maxh,
+                            0, 0
+                        ]);
 
-                            data
-                        };
-
-                        let ev = xcb::ClientMessageEvent::new(32, window, wm_state, data);
+                        let ev = xcb::ClientMessageEvent::new(32, window,
+                            wm_state, data);
 
                         xcb::send_event(&conn, false, screen.root(),
                             xcb::EVENT_MASK_STRUCTURE_NOTIFY, &ev);

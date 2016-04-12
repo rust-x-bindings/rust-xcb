@@ -1134,6 +1134,22 @@ def _rs_union_accessor(typeobj, field):
                 _r('*_ptr%s', convert)
             _r('}')
         _r('}')
+        _r('pub fn from_%s(%s: %s) -> %s {', field.rs_field_name,
+                field.rs_field_name, field.rs_field_type, typeobj.rs_type)
+        with _r.indent_block():
+            _r('unsafe {')
+            with _r.indent_block():
+                if field.rs_field_type == 'bool':
+                    _r('let %s: %s = %s != 0;', field.rs_field_name,
+                            field.ffi_field_type, field.rs_field_name)
+                _r('let mut res = %s { data: [0; %d] };', typeobj.rs_type,
+                        typeobj.union_num_bytes)
+                _r('let mut res_ptr = &mut res.data[0] as *mut %s;', field.ffi_field_type)
+                _r('*res_ptr = %s;', field.rs_field_name)
+                _r('res')
+            _r('}')
+        _r('}')
+
 
     elif field.type.is_list and field.type.fixed_size():
         assert (typeobj.union_num_bytes % field.type.size) == 0
@@ -1145,6 +1161,17 @@ def _rs_union_accessor(typeobj, field):
                 _r('let ptr = self.data.as_ptr() as *const %s;', field.rs_field_type)
                 _r('std::slice::from_raw_parts(ptr, %d)',
                         typeobj.union_num_bytes / field.type.size)
+            _r('}')
+        _r('}')
+        _r('pub fn from_%s(%s: [%s; %d]) -> %s {', field.rs_field_name,
+                field.rs_field_name, field.rs_field_type,
+                typeobj.union_num_bytes / field.type.size,
+                typeobj.rs_type)
+        with _r.indent_block():
+            _r('unsafe {')
+            with _r.indent_block():
+                _r('%s { data: std::mem::transmute(%s) }', typeobj.rs_type,
+                        field.rs_field_name)
             _r('}')
         _r('}')
 
