@@ -1,3 +1,12 @@
+ * 0.7.4
+ rtbo - xx/06/2016
+    - templating send_event* to take event obj instead of str
+    - correct iterator attribute lifetime (#16)
+
+ * 0.7.3
+ rtbo - 10/04/2016
+    - templating some accessors
+
  * 0.7.2
  rtbo - 02/04/2016
     - fix #14
