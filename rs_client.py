@@ -1257,8 +1257,10 @@ def _rs_accessor(typeobj, field, disable_pod_acc=False):
                 _r('}')
             _r('}')
         else:
-            _r('pub fn %s(&self) -> %s {',
-                    field.rs_field_name, field.rs_iterator_type)
+            lifetime = "<'a>" if typeobj.has_lifetime and \
+                    field.type.member.has_lifetime else ""
+            _r('pub fn %s(&self) -> %s%s {',
+                    field.rs_field_name, field.rs_iterator_type, lifetime)
             with _r.indent_block():
                 _r('unsafe {')
                 with _r.indent_block():
