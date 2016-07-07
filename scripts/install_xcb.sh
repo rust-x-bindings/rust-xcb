@@ -2,8 +2,8 @@
 
 set -x
 
-wget http://xcb.freedesktop.org/dist/xcb-proto-1.11.tar.bz2
-wget http://xcb.freedesktop.org/dist/libxcb-1.11.1.tar.bz2
+wget https://xcb.freedesktop.org/dist/xcb-proto-1.11.tar.bz2
+wget https://xcb.freedesktop.org/dist/libxcb-1.11.1.tar.bz2
 
 tar -xjf xcb-proto-1.11.tar.bz2
 cd xcb-proto-1.11
