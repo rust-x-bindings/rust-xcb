@@ -9,8 +9,6 @@ use std::fs;
 use std::os::unix::fs::MetadataExt;
 use std::process::Command;
 
-use libc::time_t;
-
 
 fn visit_xml<F>(xml_dir: &Path, cb: F) -> io::Result<()>
         where F: Fn(&Path) -> io::Result<()> {
@@ -35,15 +33,13 @@ fn xml_to_rs (rs_dir: &Path, xml_file: &Path) -> PathBuf {
     path
 }
 
-fn optional_mtime (path: &Path, default: time_t) -> time_t {
+fn optional_mtime (path: &Path, default: i64) -> i64 {
     if let Ok(md) = fs::metadata(&path) {
         md.mtime()
-    }
-    else {
+    } else {
         default
     }
 }
-
 
 fn main() {
     let root = env::var("CARGO_MANIFEST_DIR").unwrap();
