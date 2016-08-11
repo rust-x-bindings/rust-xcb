@@ -513,6 +513,16 @@ def _rs_name(nametup):
 def _rs_const_name(nametup):
     return _upper_name(_rs_extract_module(nametup)[1])
 
+def _rs_field_name(string):
+    res = ''
+    for c in string:
+        if c.isupper():
+            res = res + '_' + c.lower()
+        else:
+            res = res + c
+    return res
+
+
 
 # FFI codegen functions
 
@@ -973,7 +983,7 @@ def _rs_type_setup(typeobj, nametup, suffix=()):
             _rs_type_setup(field.type, field.field_type)
             if field.type.is_list:
                 _rs_type_setup(field.type.member, field.field_type)
-            field.rs_field_name = _symbol(field.field_name)
+            field.rs_field_name = _symbol(_rs_field_name(field.field_name))
             field.rs_field_type = _rs_type_name(field.field_type)
 
             field.rs_iterator_type = _rs_type_name(
@@ -1051,7 +1061,7 @@ def _rs_accessors(typeobj):
                                     assignment = f.rs_field_name
                                     if f.rs_field_type == 'bool':
                                         assignment = 'if %s { 1 } else { 0 }' % f.rs_field_name
-                                    _r('%s: %s%s,', f.rs_field_name, space, assignment)
+                                    _r('%s: %s%s,', f.ffi_field_name, space, assignment)
                         _r('}')
                     _r('}')
                 _r('}')
