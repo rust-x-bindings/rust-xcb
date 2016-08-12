@@ -256,6 +256,12 @@ pub struct Connection {
     dpy: *mut xlib::Display,
 }
 
+#[cfg(feature="thread")]
+unsafe impl Send for Connection {}
+#[cfg(feature="thread")]
+unsafe impl Sync for Connection {}
+
+
 impl Connection {
 
     /// Forces any buffered output to be written to the server. Blocks

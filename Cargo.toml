@@ -29,6 +29,8 @@ features = ["xlib"]
 
 [features]
 xlib_xcb = ["x11/xlib"]
+thread = []
+
 composite = [ "xfixes" ]
 damage = [ "xfixes" ]
 dpms = []
@@ -61,7 +63,7 @@ xv = [ "shm" ]
 # ge and xf86vidmode are apparently nor built neither installed by libxcb C project
 # extension xinput is broken
 # all others are in debug_all whose purpose is to check build of extensions
-debug_all = [ "composite", "damage", "dpms", "dri2", "dri3",
+debug_all = [ "thread", "composite", "damage", "dpms", "dri2", "dri3",
         "glx", "randr", "record", "render", "res", "screensaver", "shape",
         "shm", "xevie", "xf86dri", "xfixes", "xinerama", "xkb",
         "xprint", "xselinux", "xtest", "xvmc", "xv", "xlib_xcb" ]
