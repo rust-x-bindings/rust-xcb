@@ -110,6 +110,11 @@ impl<T> Drop for Event<T> {
     }
 }
 
+#[cfg(feature="thread")]
+unsafe impl<T> Send for Event<T> {}
+#[cfg(feature="thread")]
+unsafe impl<T> Sync for Event<T> {}
+
 /// Casts the generic event to the right event. Assumes that the given
 /// event is really the correct type.
 pub fn cast_event<'r, T>(event : &'r GenericEvent) -> &'r T {
@@ -150,6 +155,11 @@ impl<T> Drop for Error<T> {
         }
     }
 }
+
+#[cfg(feature="thread")]
+unsafe impl<T> Send for Error<T> {}
+#[cfg(feature="thread")]
+unsafe impl<T> Sync for Error<T> {}
 
 /// Casts the generic error to the right error. Assumes that the given
 /// error is really the correct type.
@@ -203,6 +213,11 @@ impl<T> Drop for Reply<T> {
         }
     }
 }
+
+#[cfg(feature="thread")]
+unsafe impl<T> Send for Reply<T> {}
+#[cfg(feature="thread")]
+unsafe impl<T> Sync for Reply<T> {}
 
 
 pub type GenericEvent = Event<xcb_generic_event_t>;
