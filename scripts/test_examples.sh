@@ -50,6 +50,7 @@ test_success cargo build --example randr_crtc_info --features randr
 test_success cargo build --example randr_screen_info --features randr
 test_success cargo build --example ffi_xkb_init --features xkb
 test_success cargo build --example xkb_init --features xkb
+test_success cargo build --example threaded_window --features thread
 
 pushd examples/opengl_window
 echo from examples/opengl_window:
