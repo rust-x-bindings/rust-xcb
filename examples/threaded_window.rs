@@ -25,7 +25,7 @@ fn main() {
         window,
         screen_root,
         0, 0,
-        150, 150,
+        320, 240,
         10,
         xcb::WINDOW_CLASS_INPUT_OUTPUT as u16,
         screen_rv,
@@ -38,14 +38,10 @@ fn main() {
     {
         let conn = conn.clone();
         thread::spawn(move || {
-            let mut smiley = false;
+            let mut blink = false;
             loop {
-                let title = if smiley {
-                    "Basic Threaded Window ;-)"
-                }
-                else {
-                    "Basic Threaded Window"
-                };
+                let title = if blink { "Basic Threaded Window ;-)" }
+                else { "Basic Threaded Window :-)" };
 
                 let c = xcb::change_property_checked(&conn, xcb::PROP_MODE_REPLACE as u8, window,
                         xcb::ATOM_WM_NAME, xcb::ATOM_STRING, 8, title.as_bytes());
@@ -54,7 +50,7 @@ fn main() {
                     break;
                 }
 
-                smiley = !smiley;
+                blink = !blink;
                 thread::sleep(time::Duration::from_millis(500));
             }
         });
@@ -68,8 +64,19 @@ fn main() {
             None => { break; }
             Some(event) => {
                 let r = event.response_type();
-                if r == xcb::KEY_PRESS as u8 {
-                    let key_press : &xcb::KeyPressEvent = xcb::cast_event(&event);
+                if r == xcb::PROPERTY_NOTIFY as u8 {
+                    let prop_notify: &xcb::PropertyNotifyEvent = xcb::cast_event(&event);
+                    if prop_notify.atom() == xcb::ATOM_WM_NAME {
+                        // retrieving title
+                        let cookie = xcb::get_property(&conn, false, window, xcb::ATOM_WM_NAME,
+                                xcb::ATOM_STRING, 0, 1024);
+                        if let Ok(reply) = cookie.get_reply() {
+                            println!("title changed to \"{}\"", std::str::from_utf8(reply.value()).unwrap());
+                        }
+                    }
+                }
+                else if r == xcb::KEY_PRESS as u8 {
+                    let key_press: &xcb::KeyPressEvent = xcb::cast_event(&event);
 
                     println!("Key '{}' pressed", key_press.detail());
 
