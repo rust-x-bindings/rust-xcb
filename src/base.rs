@@ -198,6 +198,11 @@ impl<'a> VoidCookie<'a> {
     }
 }
 
+#[cfg(feature="thread")]
+unsafe impl<'a, T: Copy> Send for Cookie<'a, T> {}
+#[cfg(feature="thread")]
+unsafe impl<'a, T: Copy> Sync for Cookie<'a, T> {}
+
 
 
 /// Wraps a pointer to a `xcb_*_reply_t`
