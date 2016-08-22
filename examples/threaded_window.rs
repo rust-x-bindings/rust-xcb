@@ -5,17 +5,17 @@ use std::{thread, time};
 use std::sync::Arc;
 
 fn main() {
-    let (conn, screen_num) = xcb::Connection::connect(None).unwrap();
-    let (screen_root, screen_wp, screen_rv) = {
-        let setup = conn.get_setup();
-        let screen = setup.roots().nth(screen_num as usize).unwrap();
-        (screen.root(), screen.white_pixel(), screen.root_visual())
+    let (conn, screen_num) = {
+        let (conn, screen_num) = xcb::Connection::connect(None).unwrap();
+        (Arc::new(conn), screen_num)
     };
+    let setup = conn.get_setup();
+    let screen = setup.roots().nth(screen_num as usize).unwrap();
 
     let window = conn.generate_id();
 
     let values = [
-        (xcb::CW_BACK_PIXEL, screen_wp),
+        (xcb::CW_BACK_PIXEL, screen.black_pixel()),
         (xcb::CW_EVENT_MASK, xcb::EVENT_MASK_EXPOSURE | xcb::EVENT_MASK_KEY_PRESS |
             xcb::EVENT_MASK_STRUCTURE_NOTIFY | xcb::EVENT_MASK_PROPERTY_CHANGE),
     ];
@@ -23,17 +23,15 @@ fn main() {
     xcb::create_window(&conn,
         xcb::COPY_FROM_PARENT as u8,
         window,
-        screen_root,
+        screen.root(),
         0, 0,
         320, 240,
         10,
         xcb::WINDOW_CLASS_INPUT_OUTPUT as u16,
-        screen_rv,
+        screen.root_visual(),
         &values);
 
     xcb::map_window(&conn, window);
-
-    let conn = Arc::new(conn);
 
     {
         let conn = conn.clone();
