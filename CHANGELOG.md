@@ -1,3 +1,8 @@
+ * 0.7.5
+ rtbo - xx/08/2016
+    - multi-threading support (#23)
+    - other bug fixes
+
  * 0.7.4
  rtbo - xx/06/2016
     - templating send_event* to take event obj instead of str
