@@ -175,19 +175,19 @@ pub fn cast_error<'r, T>(error : &'r GenericError) -> &'r T {
 /// wraps a cookie as returned by a request function.
 /// Instantiations of `Cookie` that are not `VoidCookie`
 /// should provide a `get_reply` method to return a `Reply`
-pub struct Cookie<T: Copy> {
+pub struct Cookie<'a, T: Copy> {
     pub cookie: T,
-    pub conn: *mut xcb_connection_t,
+    pub conn: &'a Connection,
     pub checked: bool
 }
 
-pub type VoidCookie = Cookie<xcb_void_cookie_t>;
+pub type VoidCookie<'a> = Cookie<'a, xcb_void_cookie_t>;
 
-impl VoidCookie {
+impl<'a> VoidCookie<'a> {
     pub fn request_check(&self) -> Result<(), GenericError> {
         unsafe {
             let c : xcb_void_cookie_t = mem::transmute(self.cookie);
-            let err = xcb_request_check(self.conn, c);
+            let err = xcb_request_check(self.conn.get_raw_conn(), c);
 
             if err.is_null() {
                 Ok(())

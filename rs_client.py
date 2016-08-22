@@ -1598,13 +1598,11 @@ class RequestCodegen(object):
             if not field.rs_skip:
                 self.rs_params.append(field)
 
-        self.rs_template = ''
+        self.rs_template = "<'a>"
         if rs_num_template:
-            self.rs_template = '<'
+            self.rs_template = "<'a"
             for i in range(rs_num_template):
-                if i != 0:
-                    self.rs_template += ', '
-                self.rs_template += template_letters[i]
+                self.rs_template += ', ' + template_letters[i]
             self.rs_template += '>'
 
     def ffi_func_name(self, regular, aux):
@@ -1721,7 +1719,7 @@ class RequestCodegen(object):
         func_spacing = ' ' * len(fn_start)
         eol = ',' if len(self.rs_params) else ')'
         spacing = ' ' * (maxnamelen-len('c'))
-        _r("%sc%s: &base::Connection%s", fn_start, spacing, eol)
+        _r("%sc%s: &'a base::Connection%s", fn_start, spacing, eol)
 
         for (i, p) in enumerate(self.rs_params):
 
@@ -1814,7 +1812,7 @@ class RequestCodegen(object):
             _r('%s%s%s: %s%s', func_spacing, p.rs_field_name,
                     spacing, rs_typestr, eol)
 
-        _r("        -> %s {", self.rs_cookie_type)
+        _r("        -> %s<'a> {", self.rs_cookie_type)
 
         with _r.indent_block():
             _r('unsafe {')
@@ -1835,7 +1833,7 @@ class RequestCodegen(object):
 
                 _r("%s {", self.rs_cookie_type)
                 _r("    cookie:  cookie,")
-                _r("    conn:    c.get_raw_conn(),")
+                _r("    conn:    c,")
                 _r("    checked: %s", 'true' if checked else 'false')
                 _r("}")
             _r('}')
@@ -1871,7 +1869,7 @@ def _cookie(request):
 
     _r.section(1)
     _r("")
-    _r("pub type %s = base::Cookie<%s>;",
+    _r("pub type %s<'a> = base::Cookie<'a, %s>;",
             request.rs_cookie_type, request.ffi_cookie_type)
 
     cookie = request.rs_cookie_type
@@ -1880,7 +1878,7 @@ def _cookie(request):
 
     _r.section(1)
     _r('')
-    _r("impl %s {", cookie)
+    _r("impl<'a> %s<'a> {", cookie)
     with _r.indent_block():
         _r("pub fn get_reply(&self) -> Result<%s, base::GenericError> {", reply)
         with _r.indent_block():
@@ -1890,13 +1888,13 @@ def _cookie(request):
                 _r("    let mut err: *mut xcb_generic_error_t = "
                         + "std::ptr::null_mut();")
                 _r("    let reply = %s {", reply)
-                _r("        ptr: %s (self.conn, self.cookie, &mut err)", func)
+                _r("        ptr: %s (self.conn.get_raw_conn(), self.cookie, &mut err)", func)
                 _r("    };")
                 _r("    if err.is_null() { Ok (reply) }")
                 _r("    else { Err(base::GenericError { ptr: err }) }")
                 _r("} else {")
                 _r("    Ok( %s {", reply)
-                _r("        ptr: %s (self.conn, self.cookie, ", func)
+                _r("        ptr: %s (self.conn.get_raw_conn(), self.cookie, ", func)
                 _r("                std::ptr::null_mut())")
                 _r("    })")
                 _r("}")
