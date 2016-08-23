@@ -484,11 +484,11 @@ impl Connection {
     /// xcb_query_extension to retrieve extension information from the
     /// server, and may block until extension data is received from the
     /// server.
-    pub fn get_extension_data(&self, ext: &mut Extension)
-            -> Option<QueryExtensionData> {
+    pub fn get_extension_data<'a>(&'a self, ext: &mut Extension)
+            -> Option<QueryExtensionData<'a>> {
         unsafe {
             let ptr = xcb_get_extension_data(self.c, ext);
-            if !ptr.is_null() { Some(QueryExtensionData { ptr: ptr }) }
+            if !ptr.is_null() { Some(QueryExtensionData { ptr: ptr, _marker: PhantomData }) }
             else { None }
         }
     }
@@ -644,11 +644,12 @@ impl Drop for Connection {
 // Used for Connection::get_extension_data whose returned value
 // must not be freed.
 // Named QueryExtensionData to avoid name collision
-pub struct QueryExtensionData {
-    ptr: *const xcb_query_extension_reply_t
+pub struct QueryExtensionData<'a> {
+    ptr: *const xcb_query_extension_reply_t,
+    _marker: PhantomData<&'a ()>,
 }
 
-impl QueryExtensionData {
+impl<'a> QueryExtensionData<'a> {
     pub fn present(&self) -> u8 {
         unsafe {
             (*self.ptr).present
