@@ -499,10 +499,10 @@ impl Connection {
     pub fn set_event_queue_owner(&self, owner: EventQueueOwner) {
         debug_assert!(!self.dpy.is_null());
         unsafe {
-            let owner = match owner { EventQueueOwner::Xcb => XCBOwnsEventQueue,
+            XSetEventQueueOwner(self.dpy, match owner {
+                EventQueueOwner::Xcb => XCBOwnsEventQueue,
                 EventQueueOwner::Xlib => XlibOwnsEventQueue
-            };
-            XSetEventQueueOwner(self.dpy, owner);
+            });
         }
     }
 
