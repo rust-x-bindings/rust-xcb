@@ -195,9 +195,9 @@ def rs_open(module):
 
     _r.section(0)
     _f.section(0)
-    _rf('// edited from %s by rs_client.py on %s',
+    _rf('// Generated automatically from %s by rs_client.py on %s.',
             _ns.file, time.strftime('%c'))
-    _rf('// do not edit!')
+    _rf('// Do not edit!')
     _rf('')
 
     _f('')
