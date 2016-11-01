@@ -31,7 +31,9 @@ object "types" and other safe helpers.
 
 ## Example
 
-Drawing example (checkout for [more](https://github.com/rtbo/rust-xcb/tree/master/examples))
+Drawing example (checkout for more [here](https://github.com/rtbo/rust-xcb/tree/master/examples)
+and also [here](https://github.com/rtbo/toy_xcb))
+
 ```rust
 extern crate xcb;
 
