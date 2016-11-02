@@ -1019,6 +1019,7 @@ def _rs_struct(typeobj):
 
         _r('pub type %s%s = base::StructPtr<%s%s>;', typeobj.rs_type, lifetime1,
                 lifetime2, typeobj.ffi_type)
+        typeobj.struct_ptr = True
 
 
 def _rs_accessors(typeobj):
@@ -1184,6 +1185,20 @@ def _rs_union_accessor(typeobj, field):
                         field.rs_field_name)
             _r('}')
         _r('}')
+
+
+    elif field.type.is_container:
+        _r('pub fn %s(&self) -> %s {', field.rs_field_name, field.rs_field_type)
+        with _r.indent_block():
+            _r('unsafe {')
+            with _r.indent_block():
+                if hasattr(field.type, 'struct_ptr') and field.type.struct_ptr:
+                    _r('std::mem::transmute(self)')
+                else:
+                    _r('std::mem::transmute(*self)')
+            _r('}')
+        _r('}')
+
 
 
 def _rs_accessor(typeobj, field, disable_pod_acc=False):
