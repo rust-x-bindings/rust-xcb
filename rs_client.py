@@ -1019,16 +1019,17 @@ def _rs_struct(typeobj):
 
         _r('pub type %s%s = base::StructPtr<%s%s>;', typeobj.rs_type, lifetime1,
                 lifetime2, typeobj.ffi_type)
-        typeobj.struct_ptr = True
 
 
 def _rs_accessors(typeobj):
 
     lifetime = "<'a>" if typeobj.has_lifetime else ""
+    # unions always get an impl lifetime to be sure
+    lifetime2 = "<'a>" if typeobj.is_union else lifetime
 
     _r.section(1)
     _r('')
-    _r('impl%s %s%s {', lifetime, typeobj.rs_type, lifetime)
+    _r('impl%s %s%s {', lifetime2, typeobj.rs_type, lifetime)
     with _r.indent_block():
         if typeobj.rs_is_pod:
             # POD structs have a new method
@@ -1188,17 +1189,22 @@ def _rs_union_accessor(typeobj, field):
 
 
     elif field.type.is_container:
-        _r('pub fn %s(&self) -> %s {', field.rs_field_name, field.rs_field_type)
+        if not field.type.rs_is_pod:
+            _r('pub fn %s(&\'a self) -> %s<\'a> {',
+                    field.rs_field_name, field.rs_field_type)
+        else:
+            _r('pub fn %s(&self) -> %s {', field.rs_field_name, field.rs_field_type)
+
         with _r.indent_block():
             _r('unsafe {')
             with _r.indent_block():
-                if hasattr(field.type, 'struct_ptr') and field.type.struct_ptr:
+                if not field.type.rs_is_pod:
                     _r('std::mem::transmute(self)')
                 else:
                     _r('std::mem::transmute(*self)')
             _r('}')
         _r('}')
-        if not (hasattr(field.type, 'struct_ptr') and field.type.struct_ptr):
+        if field.type.rs_is_pod:
             _r('pub fn from_%s(%s: %s) -> %s {', field.rs_field_name,
                     field.rs_field_name, field.rs_field_type, typeobj.rs_type)
             with _r.indent_block():
