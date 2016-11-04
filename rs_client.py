@@ -1191,7 +1191,7 @@ def _rs_union_accessor(typeobj, field):
             _r('pub fn %s<\'a>(&\'a self) -> %s<\'a> {',
                     field.rs_field_name, field.rs_field_type)
         else:
-            _r('pub fn %s(&self) -> %s {', field.rs_field_name, field.rs_field_type)
+            _r('pub fn %s(&self) -> &%s {', field.rs_field_name, field.rs_field_type)
 
         with _r.indent_block():
             _r('unsafe {')
@@ -1199,7 +1199,8 @@ def _rs_union_accessor(typeobj, field):
                 if not field.type.rs_is_pod:
                     _r('std::mem::transmute(self)')
                 else:
-                    _r('std::mem::transmute(*self)')
+                    _r('let _ptr = self.data.as_ptr() as *const %s;', field.rs_field_type)
+                    _r('_ptr')
             _r('}')
         _r('}')
         if field.type.rs_is_pod:
