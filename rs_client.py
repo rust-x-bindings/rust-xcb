@@ -1203,15 +1203,6 @@ def _rs_union_accessor(typeobj, field):
                     _r('_ptr')
             _r('}')
         _r('}')
-        if field.type.rs_is_pod:
-            _r('pub fn from_%s(%s: %s) -> %s {', field.rs_field_name,
-                    field.rs_field_name, field.rs_field_type, typeobj.rs_type)
-            with _r.indent_block():
-                _r('unsafe {')
-                with _r.indent_block():
-                        _r('std::mem::transmute(%s)', field.rs_field_name);
-                _r('}')
-            _r('}')
 
 
 
