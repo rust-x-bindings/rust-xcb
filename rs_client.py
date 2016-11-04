@@ -1200,7 +1200,7 @@ def _rs_union_accessor(typeobj, field):
                     _r('std::mem::transmute(self)')
                 else:
                     _r('let _ptr = self.data.as_ptr() as *const %s;', field.rs_field_type)
-                    _r('_ptr')
+                    _r('&*_ptr')
             _r('}')
         _r('}')
 
