@@ -1024,12 +1024,10 @@ def _rs_struct(typeobj):
 def _rs_accessors(typeobj):
 
     lifetime = "<'a>" if typeobj.has_lifetime else ""
-    # unions always get an impl lifetime to be sure
-    lifetime2 = "<'a>" if typeobj.is_union else lifetime
 
     _r.section(1)
     _r('')
-    _r('impl%s %s%s {', lifetime2, typeobj.rs_type, lifetime)
+    _r('impl%s %s%s {', lifetime, typeobj.rs_type, lifetime)
     with _r.indent_block():
         if typeobj.rs_is_pod:
             # POD structs have a new method
@@ -1190,7 +1188,7 @@ def _rs_union_accessor(typeobj, field):
 
     elif field.type.is_container:
         if not field.type.rs_is_pod:
-            _r('pub fn %s(&\'a self) -> %s<\'a> {',
+            _r('pub fn %s<\'a>(&\'a self) -> %s<\'a> {',
                     field.rs_field_name, field.rs_field_type)
         else:
             _r('pub fn %s(&self) -> %s {', field.rs_field_name, field.rs_field_type)
