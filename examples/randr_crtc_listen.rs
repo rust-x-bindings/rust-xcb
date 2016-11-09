@@ -1,5 +1,4 @@
 extern crate xcb;
-extern crate libc;
 
 use xcb::randr;
 
