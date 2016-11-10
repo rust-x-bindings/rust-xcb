@@ -650,9 +650,9 @@ pub struct QueryExtensionData<'a> {
 }
 
 impl<'a> QueryExtensionData<'a> {
-    pub fn present(&self) -> u8 {
+    pub fn present(&self) -> bool {
         unsafe {
-            (*self.ptr).present
+            (*self.ptr).present != 0
         }
     }
     pub fn major_opcode(&self) -> u8 {
