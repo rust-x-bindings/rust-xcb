@@ -989,7 +989,8 @@ def _rs_type_setup(typeobj, nametup, suffix=()):
             field.rs_iterator_type = _rs_type_name(
                     field.field_type + ('iterator',))
 
-            if not field.type.is_simple and not field.type.rs_is_pod:
+            if not field.type.is_simple and not field.type.rs_is_pod \
+                    and not field.type.is_pad:
                 has_complex = True
 
         typeobj.rs_only_has_simple = not has_complex
@@ -1034,19 +1035,28 @@ def _rs_accessors(typeobj):
             # POD structs have a new method
             fnstart = 'pub fn new('
             fnspace = ' '*len(fnstart)
+            argfields = []
+            for f in typeobj.fields:
+                if not f.type.is_pad:
+                    argfields.append(f)
             maxfieldlen = 0
             for f in typeobj.fields:
                 maxfieldlen = max(maxfieldlen, len(f.rs_field_name))
-            eol = ',' if len(typeobj.fields) > 1 else ')'
-            f1 = typeobj.fields[0]
-            space1 = ' '*(maxfieldlen - len(f1.rs_field_name))
-            _r('#[allow(unused_unsafe)]')
-            _r('%s%s: %s%s%s', fnstart, f1.rs_field_name, space1, f1.rs_field_type, eol)
-            for (i, f) in enumerate(typeobj.fields[1:]):
-                argspace = ' '*(maxfieldlen-len(f.rs_field_name))
-                eol = ',' if i < len(typeobj.fields)-2 else ')'
-                _r('%s%s: %s%s%s', fnspace, f.rs_field_name, argspace, f.rs_field_type, eol)
-            _r('        -> %s {', typeobj.rs_type)
+            if len(argfields):
+                eol = ',' if len(argfields) > 1 else ')'
+                f1 = argfields[0]
+                space1 = ' '*(maxfieldlen - len(f1.rs_field_name))
+                _r('#[allow(unused_unsafe)]')
+                _r('%s%s: %s%s%s', fnstart, f1.rs_field_name, space1, f1.rs_field_type, eol)
+                for (i, f) in enumerate(argfields[1:]):
+                    argspace = ' '*(maxfieldlen-len(f.rs_field_name))
+                    eol = ',' if i < len(argfields)-2 else ')'
+                    _r('%s%s: %s%s%s', fnspace, f.rs_field_name, argspace, f.rs_field_type, eol)
+                _r('        -> %s {', typeobj.rs_type)
+            else:
+                _r('#[allow(unused_unsafe)]')
+                _r('%s) -> %s {', fnstart, typeobj.rs_type)
+
             with _r.indent_block():
                 _r('unsafe {')
                 with _r.indent_block():
@@ -1058,6 +1068,11 @@ def _rs_accessors(typeobj):
                                 space = ' '*(maxfieldlen-len(f.rs_field_name))
                                 if f.type.rs_is_pod:
                                     _r('%s: %sstd::mem::transmute(%s),', f.rs_field_name, space, f.rs_field_name)
+                                elif f.type.is_pad:
+                                    fval = '0'
+                                    if f.has_subscript:
+                                        fval = '[0; %d]' % f.type.nmemb
+                                    _r('%s: %s%s,', f.rs_field_name, space, fval)
                                 else:
                                     assignment = f.rs_field_name
                                     if f.rs_field_type == 'bool':
