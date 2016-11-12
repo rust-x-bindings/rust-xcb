@@ -1148,7 +1148,7 @@ def _rs_reply_accessors(reply):
 
 
 def _rs_union_accessor(typeobj, field):
-    if field.type.is_simple:
+    if field.type.is_simple or field.type.rs_is_pod:
         _r('pub fn %s(&self) -> %s {', field.rs_field_name, field.rs_field_type)
         with _r.indent_block():
             _r('unsafe {')
@@ -1156,7 +1156,7 @@ def _rs_union_accessor(typeobj, field):
                 convert = ''
                 if field.rs_field_type == 'bool':
                     convert = ' != 0'
-                _r('let _ptr = self.data.as_ptr() as *const %s;', field.ffi_field_type)
+                _r('let _ptr = self.data.as_ptr() as *const %s;', field.rs_field_type)
                 _r('*_ptr%s', convert)
             _r('}')
         _r('}')
@@ -1170,7 +1170,7 @@ def _rs_union_accessor(typeobj, field):
                             field.ffi_field_type, field.rs_field_name)
                 _r('let mut res = %s { data: [0; %d] };', typeobj.rs_type,
                         typeobj.union_num_bytes)
-                _r('let mut res_ptr = &mut res.data[0] as *mut %s;', field.ffi_field_type)
+                _r('let mut res_ptr = res.data.as_mut_ptr() as *mut %s;', field.rs_field_type)
                 _r('*res_ptr = %s;', field.rs_field_name)
                 _r('res')
             _r('}')
