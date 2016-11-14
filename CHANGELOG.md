@@ -1,3 +1,8 @@
+ * 0.7.6
+ rtbo/ibabushkin - 14/11/2016
+    - much better handling of union accessors (#27) Credits to Inokentiy Babushkin
+    - other minor fixes
+
  * 0.7.5
  rtbo - xx/08/2016
     - multi-threading support (#23)
