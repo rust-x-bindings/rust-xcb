@@ -4,7 +4,7 @@ extern crate libc;
 
 use xcb::ffi::*;
 use std::ptr;
-use libc::{c_int, c_char};
+use libc::c_int;
 
 fn main() {
     unsafe {
