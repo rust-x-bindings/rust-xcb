@@ -177,10 +177,8 @@ unsafe impl<T> Sync for Error<T> {}
 
 /// Casts the generic error to the right error. Assumes that the given
 /// error is really the correct type.
-pub fn cast_error<'r, T>(error : &'r GenericError) -> &'r T {
-    // This isn't very safe... but other options incur yet more overhead
-    // that I really don't want to.
-    unsafe { mem::transmute(error) }
+pub unsafe fn cast_error<'r, T>(error : &'r GenericError) -> &'r T {
+    mem::transmute(error)
 }
 
 
