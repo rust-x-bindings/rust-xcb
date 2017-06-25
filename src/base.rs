@@ -171,9 +171,8 @@ impl<T: fmt::Debug> error::Error for Error<T> {
     }
 }
 
-#[cfg(feature="thread")]
+// Error are readonly and can be safely sent and shared with other threads
 unsafe impl<T> Send for Error<T> {}
-#[cfg(feature="thread")]
 unsafe impl<T> Sync for Error<T> {}
 
 /// Casts the generic error to the right error. Assumes that the given
