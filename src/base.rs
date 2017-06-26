@@ -42,6 +42,8 @@ use x11::xlib;
 use libc::{self, c_int, c_char, c_void};
 use std::option::Option;
 
+use std::error;
+use std::fmt;
 use std::mem;
 use std::ptr::null;
 use std::marker::PhantomData;
@@ -156,17 +158,27 @@ impl<T> Drop for Error<T> {
     }
 }
 
-#[cfg(feature="thread")]
+impl<T> fmt::Display for Error<T> {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "xcb::Error {{ response_type: {}, error_code: {} }}",
+               self.response_type(),
+               self.error_code())
+    }
+}
+impl<T: fmt::Debug> error::Error for Error<T> {
+    fn description(&self) -> &str {
+        "xcb::Error"
+    }
+}
+
+// Error are readonly and can be safely sent and shared with other threads
 unsafe impl<T> Send for Error<T> {}
-#[cfg(feature="thread")]
 unsafe impl<T> Sync for Error<T> {}
 
 /// Casts the generic error to the right error. Assumes that the given
 /// error is really the correct type.
-pub fn cast_error<'r, T>(error : &'r GenericError) -> &'r T {
-    // This isn't very safe... but other options incur yet more overhead
-    // that I really don't want to.
-    unsafe { mem::transmute(error) }
+pub unsafe fn cast_error<'r, T>(error : &'r GenericError) -> &'r T {
+    mem::transmute(error)
 }
 
 
@@ -262,6 +274,32 @@ pub enum ConnError {
     ClosedInvalidScreen,
     /// Connection closed because some FD passing operation failed
     ClosedFdPassingFailed,
+}
+
+impl ConnError {
+    fn to_str(&self) -> &str {
+        match *self {
+            ConnError::Connection => "Connection error, possible I/O error",
+            ConnError::ClosedExtNotSupported => "Connection closed, X extension not supported",
+            ConnError::ClosedMemInsufficient => "Connection closed, insufficient memory",
+            ConnError::ClosedReqLenExceed => "Connection closed, exceeded request length that server accepts.",
+            ConnError::ClosedParseErr => "Connection closed, error during parsing display string",
+            ConnError::ClosedInvalidScreen => "Connection closed, the server does not have a screen matching the display",
+            ConnError::ClosedFdPassingFailed => "Connection closed, file-descriptor passing operation failed",
+        }
+    }
+}
+
+impl fmt::Display for ConnError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        self.to_str().fmt(f)
+    }
+}
+
+impl error::Error for ConnError {
+    fn description(&self) -> &str {
+        self.to_str()
+    }
 }
 
 pub type ConnResult<T> = Result<T, ConnError>;
