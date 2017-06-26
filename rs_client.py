@@ -1325,6 +1325,16 @@ def _rs_accessor(typeobj, field, disable_pod_acc=False):
             _r('}')
         _r('}')
 
+    elif not field.type.fixed_size():
+        _r('pub fn %s(&self) -> &%s {',
+                field.rs_field_name, field.rs_field_type)
+        with _r.indent_block():
+            _r('unsafe {')
+            with _r.indent_block():
+                _r('std::mem::transmute(%s(self.ptr))', field.ffi_accessor_fn)
+            _r('}')
+        _r('}')
+
     elif field.type.is_container:
         _r('pub fn %s(&self) -> %s {',
                 field.rs_field_name, field.rs_field_type)
@@ -1828,7 +1838,7 @@ class RequestCodegen(object):
                         p.rs_field_name))
                 let_lines.append('    Some(p) => p.ptr as %s,' %
                         ffi_rq_type)
-                let_lines.append('    None => std::ptr::null()')
+                let_lines.append('    None => std::ptr::%s()' % ('null' if p.ffi_need_const else 'null_mut'))
                 let_lines.append('};')
                 call_params.append((p.ffi_index, '%s_ptr' % p.rs_field_name))
 
@@ -2223,6 +2233,7 @@ def rs_event(event, nametup):
 
     if event.name == nametup:
         _ffi_struct(event, must_pack)
+        _ffi_accessors(event, nametup)
 
         accessor_fields = []
         for f in event.fields:
@@ -2253,62 +2264,64 @@ def rs_event(event, nametup):
 
                 new_params.append("%s: %s" % (f.rs_field_name, rs_ftype))
 
-            _r('/// Constructs a new %s', event.rs_type)
-            if len(event.opcodes) > 1:
-                _r('/// `response_type` must be set to one of:')
-                for opname in event.opcodes:
-                    _r('///     - `%s`', _rs_const_name(opname))
-            else:
-                _r('/// `response_type` will be set automatically to %s',
-                        _rs_const_name(nametup))
-            fn_start = "pub fn new("
-            fn_space = ' ' * len(fn_start)
-            p = new_params[0] if len(new_params) else ''
-            eol = ',' if len(new_params)>1 else ')'
-            _r('%s%s%s', fn_start, p, eol)
-            for (i, p) in enumerate(new_params[1:]):
-                eol = ',' if i != len(new_params)-2 else ')'
-                _r("%s%s%s", fn_space, p, eol)
+            if event.rs_is_pod:
+                _r('/// Constructs a new %s', event.rs_type)
+                if len(event.opcodes) > 1:
+                    _r('/// `response_type` must be set to one of:')
+                    for opname in event.opcodes:
+                        _r('///     - `%s`', _rs_const_name(opname))
+                else:
+                    _r('/// `response_type` will be set automatically to %s',
+                            _rs_const_name(nametup))
+                fn_start = "pub fn new("
+                fn_space = ' ' * len(fn_start)
+                p = new_params[0] if len(new_params) else ''
+                eol = ',' if len(new_params)>1 else ')'
+                _r('%s%s%s', fn_start, p, eol)
+                for (i, p) in enumerate(new_params[1:]):
+                    eol = ',' if i != len(new_params)-2 else ')'
+                    _r("%s%s%s", fn_space, p, eol)
 
-            _r('        -> %s {', event.rs_type)
-            with _r.indent_block():
-                _r('unsafe {')
+                _r('        -> %s {', event.rs_type)
                 with _r.indent_block():
-                    _r('let raw = libc::malloc(32 as usize) as *mut %s;',
-                            event.ffi_type)
-                    if len(event.opcodes) > 1:
-                        # build list of possible opcodes
-                        orlist = ' ||\n                    '.join(
-                                [('response_type == %s' % _rs_const_name(opname))
-                                    for opname in event.opcodes])
-                        _r('assert!(%s,', orlist)
-                        _r('        "wrong response_type supplied to %s::new");',
-                                event.rs_type)
-                        _r('(*raw).response_type = response_type;')
-                    else:
-                        _r('(*raw).response_type = %s;', _rs_const_name(nametup))
-                    for f in event.fields:
-                        if not f.visible: continue
-                        if f.type.is_container and not f.type.is_union \
-                                and not f.type.rs_is_pod:
-                            _r('(*raw).%s = *%s.ptr;',
-                                    f.ffi_field_name, f.rs_field_name)
-
-                        elif f.type.rs_is_pod:
-                            _r('(*raw).%s = %s.base;', f.ffi_field_name,
-                                    f.rs_field_name)
-
+                    _r('unsafe {')
+                    with _r.indent_block():
+                        _r('let raw = libc::malloc(32 as usize) as *mut %s;',
+                                event.ffi_type)
+                        if len(event.opcodes) > 1:
+                            # build list of possible opcodes
+                            orlist = ' ||\n                    '.join(
+                                    [('response_type == %s' % _rs_const_name(opname))
+                                        for opname in event.opcodes])
+                            _r('assert!(%s,', orlist)
+                            _r('        "wrong response_type supplied to %s::new");',
+                                    event.rs_type)
+                            _r('(*raw).response_type = response_type;')
                         else:
-                            assignment = f.rs_field_name
-                            if f.rs_field_type == 'bool':
-                                assignment = ('if %s { 1 } else { 0 }' %
-                                    f.rs_field_name)
-                            _r('(*raw).%s = %s;', f.ffi_field_name, assignment)
-                    _r('%s {', event.rs_type)
-                    _r('    ptr: raw')
+                            _r('(*raw).response_type = %s;', _rs_const_name(nametup))
+                        for f in event.fields:
+                            if not f.visible: continue
+                            if f.type.is_container and not f.type.is_union \
+                                    and not f.type.rs_is_pod:
+                                _r('(*raw).%s = *%s.ptr;',
+                                        f.ffi_field_name, f.rs_field_name)
+
+                            elif f.type.rs_is_pod:
+                                _r('(*raw).%s = %s.base;', f.ffi_field_name,
+                                        f.rs_field_name)
+
+                            else:
+                                assignment = f.rs_field_name
+                                if f.rs_field_type == 'bool':
+                                    assignment = ('if %s { 1 } else { 0 }' %
+                                        f.rs_field_name)
+                                _r('(*raw).%s = %s;', f.ffi_field_name, assignment)
+                        _r('%s {', event.rs_type)
+                        _r('    ptr: raw')
+                        _r('}')
                     _r('}')
                 _r('}')
-            _r('}')
+
         _r('}')
 
 
