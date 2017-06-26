@@ -2264,7 +2264,7 @@ def rs_event(event, nametup):
 
                 new_params.append("%s: %s" % (f.rs_field_name, rs_ftype))
 
-            if event.rs_is_pod:
+            if event.fixed_size():
                 _r('/// Constructs a new %s', event.rs_type)
                 if len(event.opcodes) > 1:
                     _r('/// `response_type` must be set to one of:')
