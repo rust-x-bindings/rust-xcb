@@ -63,7 +63,9 @@ fn main() {
             Some(event) => {
                 let r = event.response_type();
                 if r == xcb::PROPERTY_NOTIFY as u8 {
-                    let prop_notify: &xcb::PropertyNotifyEvent = xcb::cast_event(&event);
+                    let prop_notify: &xcb::PropertyNotifyEvent = unsafe {
+                        xcb::cast_event(&event)
+                    };
                     if prop_notify.atom() == xcb::ATOM_WM_NAME {
                         // retrieving title
                         let cookie = xcb::get_property(&conn, false, window, xcb::ATOM_WM_NAME,
@@ -74,7 +76,9 @@ fn main() {
                     }
                 }
                 else if r == xcb::KEY_PRESS as u8 {
-                    let key_press: &xcb::KeyPressEvent = xcb::cast_event(&event);
+                    let key_press: &xcb::KeyPressEvent = unsafe {
+                        xcb::cast_event(&event)
+                    };
 
                     println!("Key '{}' pressed", key_press.detail());
 

@@ -244,7 +244,9 @@ fn main() { unsafe {
                     break;
                 },
                 xcb::CLIENT_MESSAGE => {
-                    let cmev = xcb::cast_event::<xcb::ClientMessageEvent>(&ev);
+                    let cmev = unsafe {
+                        xcb::cast_event::<xcb::ClientMessageEvent>(&ev)
+                    };
                     if cmev.type_() == wm_protocols && cmev.format() == 32 {
                         let protocol = cmev.data().data32()[0];
                         if protocol == wm_delete_window {

@@ -119,10 +119,8 @@ unsafe impl<T> Sync for Event<T> {}
 
 /// Casts the generic event to the right event. Assumes that the given
 /// event is really the correct type.
-pub fn cast_event<'r, T>(event : &'r GenericEvent) -> &'r T {
-    // This isn't very safe... but other options incur yet more overhead
-    // that I really don't want to.
-    unsafe { mem::transmute(event) }
+pub unsafe fn cast_event<'r, T>(event : &'r GenericEvent) -> &'r T {
+    mem::transmute(event)
 }
 
 

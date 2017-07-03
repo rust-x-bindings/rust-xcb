@@ -63,7 +63,9 @@ fn main() {
             Some(event) => {
                 let r = event.response_type();
                 if r == xcb::KEY_PRESS as u8 {
-                    let key_press : &xcb::KeyPressEvent = xcb::cast_event(&event);
+                    let key_press : &xcb::KeyPressEvent = unsafe {
+                        xcb::cast_event(&event)
+                    };
 
                     println!("Key '{}' pressed", key_press.detail());
 

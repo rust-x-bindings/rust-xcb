@@ -87,7 +87,9 @@ fn main() {
 
                     },
                     xcb::KEY_PRESS => {
-                        let key_press : &xcb::KeyPressEvent = xcb::cast_event(&event);
+                        let key_press : &xcb::KeyPressEvent = unsafe {
+                            xcb::cast_event(&event)
+                        };
                         println!("Key '{}' pressed", key_press.detail());
                         break;
                     },

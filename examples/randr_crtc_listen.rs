@@ -15,7 +15,7 @@ fn main() {
         let event = con.wait_for_event().unwrap();
 
         if event.response_type() == randr_base + randr::NOTIFY {
-            let ev: &randr::NotifyEvent = xcb::cast_event(&event);
+            let ev: &randr::NotifyEvent = unsafe { xcb::cast_event(&event) };
             let d = ev.u().cc();
             println!("received CRTC_NOTIFY event:\n\
                      \ttimestamp: {}, window: {}, crtc: {}, mode: {}, rotation: {}\n\
