@@ -88,6 +88,19 @@ pub struct StructPtr<'a, T: 'a> {
     phantom: PhantomData<&'a T>
 }
 
+impl<'a, T: 'a> Copy for StructPtr<'a, T> {}
+impl<'a, T: 'a> Clone for StructPtr<'a, T> {
+    fn clone(&self) -> Self {
+        *self
+    }
+}
+
+impl<'a, T: 'a> StructPtr<'a, T> {
+    pub unsafe fn borrow(self) -> &'a T {
+        &*self.ptr
+    }
+}
+
 
 /// `Event` wraps a pointer to `xcb_*_event_t`
 /// this pointer will be freed when the `Event` goes out of scope
@@ -229,6 +242,11 @@ impl<T> Drop for Reply<T> {
     }
 }
 
+impl<T> Reply<T> {
+    pub unsafe fn borrow<'a>(&'a self) -> &'a T {
+        &*self.ptr
+    }
+}
 #[cfg(feature="thread")]
 unsafe impl<T> Send for Reply<T> {}
 #[cfg(feature="thread")]

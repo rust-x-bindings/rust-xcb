@@ -14,7 +14,8 @@ fn main() {
         let conn = xcb_connect(ptr::null(), ptr::null_mut());
 
         //Get the first X screen
-        let first_screen = xcb_setup_roots_iterator(xcb_get_setup(conn)).data;
+        let setup = xcb_get_setup(conn);
+        let first_screen = xcb_setup_roots_iterator(&*setup).data;
 
         //Generate ID for the X window
         let window_dummy = xcb_generate_id(conn);

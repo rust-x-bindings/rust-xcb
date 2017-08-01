@@ -823,7 +823,7 @@ def _ffi_accessors_list(typeobj, field):
         _f('pub fn %s (%s)', field.ffi_accessor_fn, params[idx][0])
         _f('        -> *mut %s;', field.ffi_field_type)
 
-    def _may_switch_fn(fn_name, return_type):
+    def _may_switch_fn(fn_name, return_type, nongeneric_iterator=False):
         _f('')
         if switch_obj is not None:
             fn_start = 'pub fn %s (' % fn_name
@@ -832,7 +832,8 @@ def _ffi_accessors_list(typeobj, field):
             _f('%sS: *const %s)', spacing, S_obj.ffi_type)
             _f('        -> %s;', return_type)
         else:
-            _f('pub fn %s (R: *const %s)', fn_name, ffi_type)
+            pointer = "&" if nongeneric_iterator else "*const "
+            _f('pub fn %s (R: %s%s)', fn_name, pointer, ffi_type)
             _f('        -> %s;', return_type)
 
     _may_switch_fn(field.ffi_length_fn, 'c_int')
@@ -840,7 +841,7 @@ def _ffi_accessors_list(typeobj, field):
     if field.type.member.is_simple:
         _may_switch_fn(field.ffi_end_fn, 'xcb_generic_iterator_t')
     else:
-        _may_switch_fn(field.ffi_iterator_fn, field.ffi_iterator_type)
+        _may_switch_fn(field.ffi_iterator_fn, field.ffi_iterator_type, True)
 
 
 
@@ -1310,7 +1311,7 @@ def _rs_accessor(typeobj, field, disable_pod_acc=False):
             with _r.indent_block():
                 _r('unsafe {')
                 with _r.indent_block():
-                    _r('%s(self.ptr)', field.ffi_iterator_fn)
+                    _r('%s(self.borrow())', field.ffi_iterator_fn)
                 _r('}')
             _r('}')
             pass
