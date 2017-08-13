@@ -53,6 +53,7 @@ use std::marker::PhantomData;
 use std::cmp::Ordering;
 use std::ops::{BitAnd, BitOr};
 use std::ffi::CString;
+use std::os::unix::io::{AsRawFd, RawFd};
 
 
 /// Current protocol version
@@ -654,6 +655,14 @@ impl Connection {
             c:  conn,
             dpy: null_mut(),
         };
+    }
+}
+
+impl AsRawFd for Connection {
+    fn as_raw_fd(&self) -> RawFd {
+        unsafe {
+            xcb_get_file_descriptor(self.c)
+        }
     }
 }
 
