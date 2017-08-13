@@ -13,7 +13,7 @@ fn main() {
         if c.is_null() { panic!(); }
 
         let setup = xcb_get_setup(c);
-        let mut iter = xcb_setup_roots_iterator(setup);
+        let mut iter = xcb_setup_roots_iterator(&*setup);
         for _ in 0..screen_num {
             xcb_screen_next(&mut iter as *mut xcb_screen_iterator_t);
         }
