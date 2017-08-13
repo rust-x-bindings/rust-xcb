@@ -144,6 +144,12 @@ _types_uneligible_to_copy = []
 # current handler is used for error reporting
 current_handler = None
 
+# Keep tracks of types that have lifetime parameter
+# Initialized with types that are defined in one module and used in other modules
+types_with_lifetime = [
+    "xcb_str_iterator_t",                   # defined in xproto, used in render
+    "xcb_xv_image_format_info_iterator_t"   # defined in xv, used in xvmc
+]
 
 # link exceptions
 link_exceptions = {
@@ -523,6 +529,28 @@ def _rs_field_name(string):
     return res
 
 
+def _set_type_lifetime(typeobj, has_lifetime):
+    typeobj.has_lifetime = has_lifetime
+
+    # handle successive calls to _set_type_lifetime on the same object
+    def ensure_in(val):
+        if not val in types_with_lifetime:
+            types_with_lifetime.append(val)
+
+    def ensure_out(val):
+        while val in types_with_lifetime:
+            types_with_lifetime.remove(val)
+
+    if has_lifetime:
+        ensure_in(typeobj.ffi_iterator_type)
+        ensure_in(typeobj.rs_type)
+        ensure_in(typeobj.rs_iterator_type)
+    else:
+        ensure_out(typeobj.ffi_iterator_type)
+        ensure_out(typeobj.rs_type)
+        ensure_out(typeobj.rs_iterator_type)
+
+
 
 # FFI codegen functions
 
@@ -825,15 +853,17 @@ def _ffi_accessors_list(typeobj, field):
 
     def _may_switch_fn(fn_name, return_type):
         _f('')
+        has_lifetime = return_type in types_with_lifetime
+        lifetime = "<'a>" if has_lifetime else ""
         if switch_obj is not None:
-            fn_start = 'pub fn %s (' % fn_name
+            fn_start = 'pub fn %s%s (' % (fn_name, lifetime)
             spacing = ' '*len(fn_start)
             _f('%sR: *const %s,', fn_start, R_obj.ffi_type)
             _f('%sS: *const %s)', spacing, S_obj.ffi_type)
-            _f('        -> %s;', return_type)
+            _f('        -> %s%s;', return_type, lifetime)
         else:
-            _f('pub fn %s (R: *const %s)', fn_name, ffi_type)
-            _f('        -> %s;', return_type)
+            _f('pub fn %s%s (R: *const %s)', fn_name, lifetime, ffi_type)
+            _f('        -> %s%s;', return_type, lifetime)
 
     _may_switch_fn(field.ffi_length_fn, 'c_int')
 
@@ -886,7 +916,8 @@ def _ffi_accessors(typeobj, nametup):
 
 def _ffi_iterator(typeobj, nametup):
 
-    lifetime = "<'a>" if typeobj.has_lifetime else ""
+    has_lifetime = typeobj.ffi_iterator_type in types_with_lifetime
+    lifetime = "<'a>" if has_lifetime else ""
 
     _f.section(0)
     _f('')
@@ -895,7 +926,7 @@ def _ffi_iterator(typeobj, nametup):
     _f('    pub data:  *mut %s,', typeobj.ffi_type)
     _f('    pub rem:   c_int,')
     _f('    pub index: c_int,')
-    if typeobj.has_lifetime:
+    if has_lifetime:
         _f("    _phantom:  std::marker::PhantomData<&'a %s>,", typeobj.ffi_type)
     _f('}')
 
@@ -1002,7 +1033,7 @@ def _rs_type_setup(typeobj, nametup, suffix=()):
                 (not typeobj.is_switch))
 
         if typeobj.rs_is_pod:
-            typeobj.has_lifetime = False
+            _set_type_lifetime(typeobj, False)
 
 
 
@@ -1016,16 +1047,18 @@ def _rs_struct(typeobj):
         _r('    pub base: %s,', typeobj.ffi_type)
         _r('}')
     else:
-        lifetime1 = "<'a>" if typeobj.has_lifetime else ""
-        lifetime2 = "'a, " if typeobj.has_lifetime else ""
+        has_lifetime = typeobj.rs_type in types_with_lifetime
+        lifetime1 = "<'a>" if has_lifetime else ""
+        lifetime2 = "'a, " if has_lifetime else ""
 
-        _r('pub type %s%s = base::StructPtr<%s%s>;', typeobj.rs_type, lifetime1,
+        _r("pub type %s%s = base::StructPtr<%s%s>;", typeobj.rs_type, lifetime1,
                 lifetime2, typeobj.ffi_type)
 
 
 def _rs_accessors(typeobj):
 
-    lifetime = "<'a>" if typeobj.has_lifetime else ""
+    has_lifetime = typeobj.rs_type in types_with_lifetime
+    lifetime = "<'a>" if has_lifetime else ""
 
     _r.section(1)
     _r('')
@@ -1098,7 +1131,8 @@ def _rs_reply_accessors(reply):
     '''
     same as _rs_accessors but handles fds special case
     '''
-    lifetime = "<'a>" if reply.has_lifetime else ""
+    has_lifetime = reply.rs_type in types_with_lifetime
+    lifetime = "<'a>" if has_lifetime else ""
 
     fd_field = None
     nfd_field = None
@@ -1246,7 +1280,8 @@ def _rs_accessor(typeobj, field, disable_pod_acc=False):
 
     elif field.type.is_union:
         # do we already have a lifetime declared?
-        lifetime = "<'a>" if not typeobj.has_lifetime else ""
+        has_lifetime = typeobj.rs_type in types_with_lifetime
+        lifetime = "<'a>" if not has_lifetime else ""
         _r("pub fn %s%s(&'a self) -> &'a %s {", field.rs_field_name, lifetime,
                 field.rs_field_type)
         with _r.indent_block():
@@ -1303,8 +1338,10 @@ def _rs_accessor(typeobj, field, disable_pod_acc=False):
                 _r('}')
             _r('}')
         else:
-            lifetime = "<'a>" if typeobj.has_lifetime and \
-                    field.type.member.has_lifetime else ""
+            lifetime = ""
+            if field.rs_iterator_type in types_with_lifetime and \
+                    typeobj.rs_type in types_with_lifetime:
+                lifetime = "<'a>"
             _r('pub fn %s(&self) -> %s%s {',
                     field.rs_field_name, field.rs_iterator_type, lifetime)
             with _r.indent_block():
@@ -1344,8 +1381,9 @@ def _rs_accessor(typeobj, field, disable_pod_acc=False):
 
 def _rs_iterator(typeobj):
 
-    lifetime1 = "<'a>" if typeobj.has_lifetime else ""
-    lifetime2 = "'a, " if typeobj.has_lifetime else ""
+    has_lifetime = typeobj.rs_iterator_type in types_with_lifetime
+    lifetime1 = "<'a>" if has_lifetime else ""
+    lifetime2 = "'a, " if has_lifetime else ""
     return_expr = '*data'
     if typeobj.rs_is_pod:
         return_expr = 'std::mem::transmute(*data)'
@@ -1985,7 +2023,8 @@ def _handle_switch(typeobj, nametup):
             _ffi_type_setup(bitcase.type, bitcase.nametup, ())
             _rs_type_setup(bitcase.type, bitcase.nametup, ())
 
-        typeobj.has_lifetime = True
+        _set_type_lifetime(typeobj, True)
+
         _ffi_struct(typeobj)
         _rs_struct(typeobj)
 
@@ -2067,6 +2106,8 @@ def rs_struct(struct, nametup):
     _ffi_type_setup(struct, nametup)
     _rs_type_setup(struct, nametup)
     _handle_switch(struct, nametup)
+
+    _set_type_lifetime(struct, struct.has_lifetime)
 
     _ffi_struct(struct)
     _ffi_accessors(struct, nametup)
@@ -2157,6 +2198,8 @@ def rs_request(request, nametup):
     _rs_type_setup(request, nametup, ('request',))
     _handle_switch(request, nametup)
 
+    _set_type_lifetime(request, request.has_lifetime)
+
     rcg = RequestCodegen(request)
 
     _opcode(nametup, request.opcode)
@@ -2173,6 +2216,8 @@ def rs_request(request, nametup):
         _ffi_type_setup(request.reply, nametup, ('reply',))
         _rs_type_setup(request.reply, nametup, ('reply',))
         _handle_switch(request.reply, nametup)
+
+        _set_type_lifetime(request.reply, request.reply.has_lifetime)
 
         _ffi_struct(request.reply)
         _ffi_accessors(request.reply, nametup + ('reply',))
@@ -2206,15 +2251,18 @@ def rs_event(event, nametup):
     # _must_pack_event may insert fields,
     # therefore must be called before _prepare_doc
     _prepare_doc(event)
-    event.has_lifetime = False
 
     if must_pack:
         print('event ', nametup, ' is packed')
 
-    _ffi_type_setup(event, nametup, ('event',))
-    _opcode(nametup, event.opcodes[nametup])
+    event.has_lifetime = False
 
+    _ffi_type_setup(event, nametup, ('event',))
     _rs_type_setup(event, nametup, ('event',))
+
+    _set_type_lifetime(event, event.has_lifetime)
+
+    _opcode(nametup, event.opcodes[nametup])
 
     _r.section(1)
     _r('')
