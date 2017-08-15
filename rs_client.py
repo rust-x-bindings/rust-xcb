@@ -1204,7 +1204,7 @@ def _rs_union_accessor(typeobj, field):
                             field.ffi_field_type, field.rs_field_name)
                 _r('let mut res = %s { data: [0; %d] };', typeobj.rs_type,
                         typeobj.union_num_bytes)
-                _r('let mut res_ptr = res.data.as_mut_ptr() as *mut %s;', field.rs_field_type)
+                _r('let res_ptr = res.data.as_mut_ptr() as *mut %s;', field.rs_field_type)
                 _r('*res_ptr = %s;', field.rs_field_name)
                 _r('res')
             _r('}')
