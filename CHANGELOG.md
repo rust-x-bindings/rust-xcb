@@ -1,3 +1,8 @@
+ * 0.7.7
+ rtbo - 15/08/2017
+    - branch 0.7.x to support servo
+    - fix lifetime inconsistency (#40)
+
  * 0.8.0
  mjkillough/eduardosm/rtbo - 11/07/2017
     - error trait and unsafe cast_error (#32) - mjkillough
