@@ -1,3 +1,7 @@
+ * 0.8.1
+ rtbo - 15/08/2017
+    - fix lifetime inconsistency (#40)
+
  * 0.7.7
  rtbo - 15/08/2017
     - branch 0.7.x to support servo
