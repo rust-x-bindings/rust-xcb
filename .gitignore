@@ -4,6 +4,7 @@
 *.pyc
 target
 Cargo.lock
+.vscode/
 
 # generated files
 src/xproto.rs
