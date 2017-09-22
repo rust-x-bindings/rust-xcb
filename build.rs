@@ -68,6 +68,7 @@ fn main() {
                     .arg(&r_client)
                     .arg("-o").arg(&src_dir)
                     .arg(&xml_file)
+                    .env("PYTHONHASHSEED", "0")
                     .status());
             if !status.success() {
                 panic!("processing of {} returned non-zero ({})",
