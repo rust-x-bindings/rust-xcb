@@ -1543,7 +1543,7 @@ class EnumCodegen(object):
         _f.section(0)
         _f('')
         _write_doc_brief_desc(_f, self._doc)
-        _f('pub type %s = u32;', type_name)
+        _f('pub type %s = %s;', type_name, self.guess_type())
         for d in self.all_discriminants:
             d_name = d.ffi_name
             namespace = ' ' * (maxnamelen-len(d_name))
@@ -1560,7 +1560,7 @@ class EnumCodegen(object):
         _r.section(0)
         _r('')
         _write_doc_brief_desc(_r, self._doc)
-        _r('pub type %s = u32;', self.rs_name)
+        _r('pub type %s = %s;', self.rs_name, self.guess_type())
         for d in self.all_discriminants:
             namespace = ' ' * (maxnamelen-len(d.rs_name))
             valspace = ' ' * (maxvallen-len(d.valstr))
@@ -1571,6 +1571,19 @@ class EnumCodegen(object):
             _r('pub const %s%s: %s =%s %s;', d.rs_name, namespace, self.rs_name,
                     valspace, d.valstr)
 
+    def guess_type(self):
+        maxval = 0
+        for d in self.all_discriminants:
+            if d.val > maxval:
+                maxval = d.val
+        if maxval < 2**8:
+            return 'u8'
+        elif maxval <= 2**16:
+            return 'u16'
+        elif maxval <= 2**32:
+            return 'u32'
+        elif maxval <= 2**64:
+            return 'u64'
 
 
 
