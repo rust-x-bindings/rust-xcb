@@ -1,6 +1,6 @@
 [package]
 name = "xcb"
-version = "0.8.1"
+version = "0.8.2"
 authors = [ "Remi Thebault <remi.thebault@gmail.com>" ]
 description = "Rust bindings and wrappers for XCB"
 repository = "https://github.com/rtbo/rust-xcb"
@@ -16,7 +16,7 @@ libc = "0.2"
 
 [dependencies]
 libc = "0.2"
-log = "0.3"
+log = "0.4"
 
 [dependencies.x11]
 version = "2.3"
