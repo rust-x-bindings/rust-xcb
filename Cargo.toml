@@ -23,6 +23,9 @@ version = "2.3"
 optional = true
 features = ["xlib"]
 
+[package.metadata.docs.rs]
+all-features = true
+
 [features]
 xlib_xcb = ["x11/xlib"]
 thread = []
