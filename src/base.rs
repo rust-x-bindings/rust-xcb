@@ -560,13 +560,21 @@ impl Connection {
     /// member of the tuple is set to 0.
     #[cfg(not(feature="xlib_xcb"))]
     pub fn connect(displayname: Option<&str>) -> ConnResult<(Connection, i32)> {
+        let mut screen_num : c_int = 0;
+        let displayname = displayname.map(|s| CString::new(s).unwrap());
         unsafe {
-            let display = displayname.map(|s| CString::new(s).unwrap());
-            let mut screen_num : c_int = 0;
-            let cconn = xcb_connect(
-                display.map_or(null(), |s| s.as_ptr()),
+            let cconn = if let Some(display) = displayname {
+                xcb_connect(
+                    display.as_ptr(),
+                    &mut screen_num
+                )
+            } else {
+                xcb_connect(
+                null(),
                 &mut screen_num
-            );
+               )
+            };
+
 
             // xcb doc says that a valid object is always returned
             // so we simply assert without handling this in the return
@@ -623,16 +631,24 @@ impl Connection {
     /// authorization auth.
     /// The second member of the returned tuple is the preferred screen, or 0
     #[cfg(not(feature="xlib_xcb"))]
-    pub fn connect_with_auth_info(display: Option<&str>, auth_info: &AuthInfo)
+    pub fn connect_with_auth_info(displayname: Option<&str>, auth_info: &AuthInfo)
     -> ConnResult<(Connection, i32)> {
         unsafe {
-            let display = display.map(|s| CString::new(s).unwrap());
             let mut screen_num : c_int = 0;
-            let cconn = xcb_connect_to_display_with_auth_info(
-                display.map_or(null(), |s| s.as_ptr()),
-                mem::transmute(auth_info),
-                &mut screen_num
-            );
+            let displayname = displayname.map(|s| CString::new(s).unwrap());
+            let cconn = if let Some(display) = displayname {
+                xcb_connect_to_display_with_auth_info(
+                    display.as_ptr(),
+                    mem::transmute(auth_info),
+                    &mut screen_num
+                )
+            } else {
+                xcb_connect_to_display_with_auth_info(
+                    null(),
+                    mem::transmute(auth_info),
+                    &mut screen_num
+                )
+            };
 
             // xcb doc says that a valid object is always returned
             // so we simply assert without handling this in the return
