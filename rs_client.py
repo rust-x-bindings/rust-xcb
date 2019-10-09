@@ -1968,6 +1968,7 @@ def _cookie(request):
                 _r("        ptr: %s (self.conn.get_raw_conn(), self.cookie, &mut err)", func)
                 _r("    };")
                 _r("    std::mem::forget(self);")
+                _r("    if reply.ptr.is_null() { return Err(base::GenericError { ptr: err }) }")
                 _r("    if err.is_null() { Ok (reply) }")
                 _r("    else { Err(base::GenericError { ptr: err }) }")
                 _r("} else {")
