@@ -200,8 +200,9 @@ impl<'a> VoidCookie<'a> {
             let c: xcb_void_cookie_t = mem::transmute(self.cookie);
             let err = xcb_request_check(self.conn.get_raw_conn(), c);
 
+            let conn_has_error = self.conn.has_error().is_ok();
             std::mem::forget(self);
-            if err.is_null() && self.conn.has_error().is_ok() {
+            if err.is_null() && conn_has_error {
                 Ok(())
             } else {
                 Err(GenericError { ptr: err })
