@@ -1957,7 +1957,7 @@ def _cookie(request):
     _r('')
     _r("impl<'a> %s<'a> {", cookie)
     with _r.indent_block():
-        _r("pub fn get_reply(self) -> Result<%s, base::GenericError> {", reply)
+        _r("pub fn get_reply(self) -> Result<%s, base::ReplyError> {", reply)
         with _r.indent_block():
             _r('unsafe {')
             with _r.indent_block():
@@ -1968,9 +1968,9 @@ def _cookie(request):
                 _r("        ptr: %s (self.conn.get_raw_conn(), self.cookie, &mut err)", func)
                 _r("    };")
                 _r("    std::mem::forget(self);")
-                _r("    if reply.ptr.is_null() { return Err(base::GenericError { ptr: err }) }")
+                _r("    if reply.ptr.is_null() { return Err(base::ReplyError::NullResponse) }")
                 _r("    if err.is_null() { Ok (reply) }")
-                _r("    else { Err(base::GenericError { ptr: err }) }")
+                _r("    else { Err(base::ReplyError::GenericError(base::GenericError { ptr: err })) }")
                 _r("} else {")
                 _r("    let res = %s {", reply)
                 _r("        ptr: %s (self.conn.get_raw_conn(), self.cookie, ", func)

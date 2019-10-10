@@ -257,8 +257,28 @@ pub type GenericEvent = Event<xcb_generic_event_t>;
 pub type GenericError = Error<xcb_generic_error_t>;
 pub type GenericReply = Reply<xcb_generic_reply_t>;
 
+#[derive(Debug)]
+pub enum ReplyError {
+    NullResponse,
+    GenericError(GenericError)
+}
 
 
+impl std::fmt::Display for ReplyError {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> Result<(), std::fmt::Error> {
+        write!(f, "xcb::ReplyError: ")?;
+        match self {
+            Self::NullResponse => { write!(f, "Unexpected null pointer(check pending errors on connection)")}
+            Self::GenericError(g) => {write!(f, "{}", g)}
+        }
+    }
+}
+
+impl std::error::Error for ReplyError {
+    fn description(&self) -> &str {
+        "xcb::ReplyError"
+    }
+}
 
 //TODO: Implement wrapper functions for constructing auth_info
 pub type AuthInfo = xcb_auth_info_t;
