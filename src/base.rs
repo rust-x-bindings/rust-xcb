@@ -227,9 +227,9 @@ impl<'a, T: Copy + CookieSeq> Drop for Cookie<'a, T> {
 }
 
 #[cfg(feature="thread")]
-unsafe impl<'a, T: Copy> Send for Cookie<'a, T> {}
+unsafe impl<'a, T: Copy + CookieSeq> Send for Cookie<'a, T> {}
 #[cfg(feature="thread")]
-unsafe impl<'a, T: Copy> Sync for Cookie<'a, T> {}
+unsafe impl<'a, T: Copy + CookieSeq> Sync for Cookie<'a, T> {}
 
 
 
