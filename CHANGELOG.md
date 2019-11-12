@@ -1,3 +1,7 @@
+ * 0.9.0
+ Lompik - 12/11/2019
+    - get_reply consume cookies and impl Drop on Cookies (#57)
+
  * 0.8.3
  Lompik - 12/11/2019
     - fix use after free when connecting with display names (#65)
