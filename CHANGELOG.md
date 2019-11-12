@@ -3,8 +3,8 @@
     - fix use after free when connecting with display names (#65)
 
  * 0.8.2 
- chrisduerr/myfreeweb/yamnikov-oleg/rtbo - 13/02/2018
-    - move to log 0.4
+ chrisduerr/myfreeweb/yamnikov-oleg/eigebong/rtbo - 13/02/2018
+    - move to log 0.4 (#55)
     - improve missing python error in build.rs (#49)
     - add Connection.into_raw_conn
     - make source generation deterministic (#43)
