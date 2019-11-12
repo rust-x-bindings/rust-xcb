@@ -1937,8 +1937,15 @@ def _cookie(request):
     _f('#[derive(Copy, Clone)]')
     _f('#[repr(C)]')
     _f('pub struct %s {', request.ffi_cookie_type)
-    _f('    sequence: c_uint')
+    _f('    pub(crate) sequence: c_uint')
     _f('}')
+
+    _r("impl base::CookieSeq for %s {", request.ffi_cookie_type)
+    with _r.indent_block():
+        _r("fn sequence(&self) -> c_uint { self.sequence }")
+    _r("}")
+
+
 
     _r.section(1)
     _r("")
@@ -1953,7 +1960,7 @@ def _cookie(request):
     _r('')
     _r("impl<'a> %s<'a> {", cookie)
     with _r.indent_block():
-        _r("pub fn get_reply(&self) -> Result<%s, base::GenericError> {", reply)
+        _r("pub fn get_reply(self) -> Result<%s, base::GenericError> {", reply)
         with _r.indent_block():
             _r('unsafe {')
             with _r.indent_block():
@@ -1963,13 +1970,16 @@ def _cookie(request):
                 _r("    let reply = %s {", reply)
                 _r("        ptr: %s (self.conn.get_raw_conn(), self.cookie, &mut err)", func)
                 _r("    };")
+                _r("    std::mem::forget(self);")
                 _r("    if err.is_null() { Ok (reply) }")
                 _r("    else { Err(base::GenericError { ptr: err }) }")
                 _r("} else {")
-                _r("    Ok( %s {", reply)
+                _r("    let res = %s {", reply)
                 _r("        ptr: %s (self.conn.get_raw_conn(), self.cookie, ", func)
                 _r("                std::ptr::null_mut())")
-                _r("    })")
+                _r("    };")
+                _r("    std::mem::forget(self);")
+                _r("    Ok(res)")
                 _r("}")
             _r('}')
         _r('}')

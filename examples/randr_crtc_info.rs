@@ -27,7 +27,7 @@ fn main() {
         crtc_cookies.push(randr::get_crtc_info(&conn, *crtc, 0));
     }
 
-    for (i, crtc_cookie) in crtc_cookies.iter().enumerate() {
+    for (i, crtc_cookie) in crtc_cookies.into_iter().enumerate() {
         if let Ok(reply) = crtc_cookie.get_reply() {
             if i != 0 { println!(""); }
             println!("CRTC[{}] INFO:", i);

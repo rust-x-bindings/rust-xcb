@@ -144,7 +144,7 @@ impl Clone for xcb_generic_error_t {
 #[repr(C)]
 pub struct xcb_void_cookie_t {
     /// sequence number
-    pub sequence: c_int
+    pub sequence: c_uint
 }
 
 
@@ -484,4 +484,3 @@ extern {
             -> u32;
 
 }
-

@@ -186,33 +186,50 @@ pub unsafe fn cast_error<'r, T>(error : &'r GenericError) -> &'r T {
 /// wraps a cookie as returned by a request function.
 /// Instantiations of `Cookie` that are not `VoidCookie`
 /// should provide a `get_reply` method to return a `Reply`
-pub struct Cookie<'a, T: Copy> {
+pub struct Cookie<'a, T: Copy + CookieSeq> {
     pub cookie: T,
     pub conn: &'a Connection,
-    pub checked: bool
+    pub checked: bool,
 }
 
 pub type VoidCookie<'a> = Cookie<'a, xcb_void_cookie_t>;
 
 impl<'a> VoidCookie<'a> {
-    pub fn request_check(&self) -> Result<(), GenericError> {
+    pub fn request_check(self) -> Result<(), GenericError> {
         unsafe {
-            let c : xcb_void_cookie_t = mem::transmute(self.cookie);
+            let c: xcb_void_cookie_t = mem::transmute(self.cookie);
             let err = xcb_request_check(self.conn.get_raw_conn(), c);
 
+            std::mem::forget(self);
             if err.is_null() {
                 Ok(())
             } else {
-                Err(GenericError{ ptr: err })
+                Err(GenericError { ptr: err })
             }
         }
     }
 }
 
+impl CookieSeq for xcb_void_cookie_t {
+    fn sequence(&self) -> libc::c_uint {
+        self.sequence
+    }
+}
+
+pub trait CookieSeq {
+    fn sequence(&self) -> libc::c_uint;
+}
+
+impl<'a, T: Copy + CookieSeq> Drop for Cookie<'a, T> {
+    fn drop(&mut self) {
+        unsafe { xcb_discard_reply(self.conn.get_raw_conn(), self.cookie.sequence()) };
+    }
+}
+
 #[cfg(feature="thread")]
-unsafe impl<'a, T: Copy> Send for Cookie<'a, T> {}
+unsafe impl<'a, T: Copy + CookieSeq> Send for Cookie<'a, T> {}
 #[cfg(feature="thread")]
-unsafe impl<'a, T: Copy> Sync for Cookie<'a, T> {}
+unsafe impl<'a, T: Copy + CookieSeq> Sync for Cookie<'a, T> {}
 
 
 
