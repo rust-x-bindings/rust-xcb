@@ -48,7 +48,6 @@ fn main() {
     let xml_dir = Path::new(&root).join("xml");
     let src_dir = Path::new(&root).join("src");
     let src_ffi_dir = Path::new(&src_dir).join("ffi");
-    let out_dir = env::var("OUT_DIR").unwrap();
 
     let r_client_mtime = fs::metadata(&r_client).unwrap().mtime();
     let build_rs_mtime = fs::metadata(&build_rs).unwrap().mtime();
@@ -68,7 +67,7 @@ fn main() {
             let status = Command::new("python3")
                     .arg("-B")      // disable __pycache__ dir that messes with cargo
                     .arg(&r_client)
-                    .arg("-o").arg(&out_dir)
+                    .arg("-o").arg(&src_dir)
                     .arg(&xml_file)
                     .env("PYTHONHASHSEED", "0")
                     .status()
