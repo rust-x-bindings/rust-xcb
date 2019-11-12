@@ -112,6 +112,7 @@ class SourceFile(object):
 
 
     def writeout(self, path):
+        os.makedirs(os.path.dirname(path), exist_ok=True)
         with open(path, 'w') as f:
             for section in self._lines:
                 for line in section:
@@ -207,8 +208,6 @@ def rs_open(module):
     _rf('')
 
     _f('')
-    _f('#![allow(improper_ctypes)]')
-    _f('')
     _f('use ffi::base::*;')
 
     if _ns.is_ext:
@@ -230,8 +229,6 @@ def rs_open(module):
         _f('pub static mut %s: xcb_extension_t;', ext_id_name)
 
 
-    _r('#![allow(unused_unsafe)]')
-    _r('')
     _r('use base;')
     if _ns.is_ext:
         for (n, h) in module.imports:

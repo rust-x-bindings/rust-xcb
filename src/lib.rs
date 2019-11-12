@@ -32,6 +32,7 @@
 #![allow(dead_code)]
 #![allow(unused_imports)]
 #![allow(non_snake_case)]
+#![allow(unused_unsafe)]
 
 //! Rust bindings to the XCB library.
 //!
@@ -78,106 +79,175 @@ extern crate x11;
 extern crate log;
 
 pub mod base;
-pub mod xproto;
-pub mod big_requests;
-pub mod xc_misc;
+
+pub mod xproto {
+    include!(concat!(env!("OUT_DIR"), "/xproto.rs"));
+}
+pub mod big_requests {
+    include!(concat!(env!("OUT_DIR"), "/big_requests.rs"));
+}
+pub mod xc_misc {
+    include!(concat!(env!("OUT_DIR"), "/xc_misc.rs"));
+}
 
 pub use base::*;
 pub use xproto::*;
 
 #[cfg(feature = "composite")]
-pub mod composite;
+pub mod composite {
+    include!(concat!(env!("OUT_DIR"), "/composite.rs"));
+}
 
 #[cfg(feature = "damage")]
-pub mod damage;
+pub mod damage {
+    include!(concat!(env!("OUT_DIR"), "/damage.rs"));
+}
 
 #[cfg(feature = "dpms")]
-pub mod dpms;
+pub mod dpms {
+    include!(concat!(env!("OUT_DIR"), "/dpms.rs"));
+}
 
 #[cfg(feature = "dri2")]
-pub mod dri2;
+pub mod dri2 {
+    include!(concat!(env!("OUT_DIR"), "/dri2.rs"));
+}
 
 #[cfg(feature = "dri3")]
-pub mod dri3;
+pub mod dri3 {
+    include!(concat!(env!("OUT_DIR"), "/dri3.rs"));
+}
 
 #[cfg(feature = "ge")]
-pub mod genericevent;
+pub mod genericevent {
+    include!(concat!(env!("OUT_DIR"), "/genericevent.rs"));
+}
 
 #[cfg(feature = "glx")]
-pub mod glx;
+pub mod glx {
+    include!(concat!(env!("OUT_DIR"), "/glx.rs"));
+}
 
 #[cfg(feature = "xinput")]
-pub mod input;
+pub mod input {
+    include!(concat!(env!("OUT_DIR"), "/input.rs"));
+}
 
 #[cfg(feature = "present")]
-pub mod present;
+pub mod present {
+    include!(concat!(env!("OUT_DIR"), "/present.rs"));
+}
 
 #[cfg(feature = "randr")]
-pub mod randr;
+pub mod randr {
+    include!(concat!(env!("OUT_DIR"), "/randr.rs"));
+}
 
 #[cfg(feature = "record")]
-pub mod record;
+pub mod record {
+    include!(concat!(env!("OUT_DIR"), "/record.rs"));
+}
 
 #[cfg(feature = "render")]
-pub mod render;
+pub mod render {
+    include!(concat!(env!("OUT_DIR"), "/render.rs"));
+}
 
 #[cfg(feature = "res")]
-pub mod res;
+pub mod res {
+    include!(concat!(env!("OUT_DIR"), "/res.rs"));
+}
 
 #[cfg(feature = "screensaver")]
-pub mod screensaver;
+pub mod screensaver {
+    include!(concat!(env!("OUT_DIR"), "/screensaver.rs"));
+}
 
 #[cfg(feature = "xselinux")]
-pub mod selinux;
+pub mod selinux {
+    include!(concat!(env!("OUT_DIR"), "/selinux.rs"));
+}
 
 #[cfg(feature = "shape")]
-pub mod shape;
+pub mod shape {
+    include!(concat!(env!("OUT_DIR"), "/shape.rs"));
+}
 
 #[cfg(feature = "shm")]
-pub mod shm;
+pub mod shm {
+    include!(concat!(env!("OUT_DIR"), "/shm.rs"));
+}
 
 #[cfg(feature = "sync")]
-pub mod sync;
+pub mod sync {
+    include!(concat!(env!("OUT_DIR"), "/sync.rs"));
+}
 
 #[cfg(feature = "xtest")]
-pub mod test;
+pub mod test {
+    include!(concat!(env!("OUT_DIR"), "/test.rs"));
+}
 
 #[cfg(feature = "xprint")]
-pub mod x_print;
+pub mod x_print {
+    include!(concat!(env!("OUT_DIR"), "/x_print.rs"));
+}
 
 #[cfg(feature = "xevie")]
-pub mod xevie;
+pub mod xevie {
+    include!(concat!(env!("OUT_DIR"), "/xevie.rs"));
+}
 
 #[cfg(feature = "xf86dri")]
-pub mod xf86dri;
+pub mod xf86dri {
+    include!(concat!(env!("OUT_DIR"), "/xf86dri.rs"));
+}
 
 #[cfg(feature = "xf86vidmode")]
-pub mod xf86vidmode;
+pub mod xf86vidmode {
+    include!(concat!(env!("OUT_DIR"), "/xf86vidmode.rs"));
+}
 
 #[cfg(feature = "xfixes")]
-pub mod xfixes;
+pub mod xfixes {
+    include!(concat!(env!("OUT_DIR"), "/xfixes.rs"));
+}
 
 #[cfg(feature = "xinerama")]
-pub mod xinerama;
+pub mod xinerama {
+    include!(concat!(env!("OUT_DIR"), "/xinerama.rs"));
+}
 
 #[cfg(feature = "xkb")]
-pub mod xkb;
+pub mod xkb {
+    include!(concat!(env!("OUT_DIR"), "/xkb.rs"));
+}
 
 #[cfg(feature = "xvmc")]
-pub mod xvmc;
+pub mod xvmc {
+    include!(concat!(env!("OUT_DIR"), "/xvmc.rs"));
+}
 
 #[cfg(feature = "xv")]
-pub mod xv;
-
+pub mod xv {
+    include!(concat!(env!("OUT_DIR"), "/xv.rs"));
+}
 
 pub mod ffi
 {
     #![allow(non_camel_case_types)]
+    #![allow(improper_ctypes)]
 
     pub mod base;
-    pub mod xproto;
-    pub mod big_requests;
-    pub mod xc_misc;
+    pub mod xproto {
+        include!(concat!(env!("OUT_DIR"), "/ffi/xproto.rs"));
+    }
+    pub mod big_requests {
+        include!(concat!(env!("OUT_DIR"), "/ffi/big_requests.rs"));
+    }
+    pub mod xc_misc {
+        include!(concat!(env!("OUT_DIR"), "/ffi/xc_misc.rs"));
+    }
 
     pub use ffi::base::*;
     pub use ffi::xproto::*;
@@ -187,86 +257,142 @@ pub mod ffi
     pub mod xlib_xcb;
 
     #[cfg(feature = "composite")]
-    pub mod composite;
+    pub mod composite {
+        include!(concat!(env!("OUT_DIR"), "/ffi/composite.rs"));
+    }
 
     #[cfg(feature = "damage")]
-    pub mod damage;
+    pub mod damage {
+        include!(concat!(env!("OUT_DIR"), "/ffi/damage.rs"));
+    }
 
     #[cfg(feature = "dpms")]
-    pub mod dpms;
+    pub mod dpms {
+        include!(concat!(env!("OUT_DIR"), "/ffi/dpms.rs"));
+    }
 
     #[cfg(feature = "dri2")]
-    pub mod dri2;
+    pub mod dri2 {
+        include!(concat!(env!("OUT_DIR"), "/ffi/dri2.rs"));
+    }
 
     #[cfg(feature = "dri3")]
-    pub mod dri3;
+    pub mod dri3 {
+        include!(concat!(env!("OUT_DIR"), "/ffi/dri3.rs"));
+    }
 
     #[cfg(feature = "ge")]
-    pub mod genericevent;
+    pub mod genericevent {
+        include!(concat!(env!("OUT_DIR"), "/ffi/genericevent.rs"));
+    }
 
     #[cfg(feature = "glx")]
-    pub mod glx;
+    pub mod glx {
+        include!(concat!(env!("OUT_DIR"), "/ffi/glx.rs"));
+    }
 
     #[cfg(feature = "xinput")]
-    pub mod input;
+    pub mod input {
+        include!(concat!(env!("OUT_DIR"), "/ffi/input.rs"));
+    }
 
     #[cfg(feature = "present")]
-    pub mod present;
+    pub mod present {
+        include!(concat!(env!("OUT_DIR"), "/ffi/present.rs"));
+    }
 
     #[cfg(feature = "randr")]
-    pub mod randr;
+    pub mod randr {
+        include!(concat!(env!("OUT_DIR"), "/ffi/randr.rs"));
+    }
 
     #[cfg(feature = "record")]
-    pub mod record;
+    pub mod record {
+        include!(concat!(env!("OUT_DIR"), "/ffi/record.rs"));
+    }
 
     #[cfg(feature = "render")]
-    pub mod render;
+    pub mod render {
+        include!(concat!(env!("OUT_DIR"), "/ffi/render.rs"));
+    }
 
     #[cfg(feature = "res")]
-    pub mod res;
+    pub mod res {
+        include!(concat!(env!("OUT_DIR"), "/ffi/res.rs"));
+    }
 
     #[cfg(feature = "screensaver")]
-    pub mod screensaver;
+    pub mod screensaver {
+        include!(concat!(env!("OUT_DIR"), "/ffi/screensaver.rs"));
+    }
 
     #[cfg(feature = "xselinux")]
-    pub mod selinux;
+    pub mod selinux {
+        include!(concat!(env!("OUT_DIR"), "/ffi/selinux.rs"));
+    }
 
     #[cfg(feature = "shape")]
-    pub mod shape;
+    pub mod shape {
+        include!(concat!(env!("OUT_DIR"), "/ffi/shape.rs"));
+    }
 
     #[cfg(feature = "shm")]
-    pub mod shm;
+    pub mod shm {
+        include!(concat!(env!("OUT_DIR"), "/ffi/shm.rs"));
+    }
 
     #[cfg(feature = "sync")]
-    pub mod sync;
+    pub mod sync {
+        include!(concat!(env!("OUT_DIR"), "/ffi/sync.rs"));
+    }
 
     #[cfg(feature = "xtest")]
-    pub mod test;
+    pub mod test {
+        include!(concat!(env!("OUT_DIR"), "/ffi/test.rs"));
+    }
 
     #[cfg(feature = "xprint")]
-    pub mod x_print;
+    pub mod x_print {
+        include!(concat!(env!("OUT_DIR"), "/ffi/x_print.rs"));
+    }
 
     #[cfg(feature = "xevie")]
-    pub mod xevie;
+    pub mod xevie {
+        include!(concat!(env!("OUT_DIR"), "/ffi/xevie.rs"));
+    }
 
     #[cfg(feature = "xf86dri")]
-    pub mod xf86dri;
+    pub mod xf86dri {
+        include!(concat!(env!("OUT_DIR"), "/ffi/xf86dri.rs"));
+    }
 
     #[cfg(feature = "xf86vidmode")]
-    pub mod xf86vidmode;
+    pub mod xf86vidmode {
+        include!(concat!(env!("OUT_DIR"), "/ffi/xf86vidmode.rs"));
+    }
 
     #[cfg(feature = "xfixes")]
-    pub mod xfixes;
+    pub mod xfixes {
+        include!(concat!(env!("OUT_DIR"), "/ffi/xfixes.rs"));
+    }
 
     #[cfg(feature = "xinerama")]
-    pub mod xinerama;
+    pub mod xinerama {
+        include!(concat!(env!("OUT_DIR"), "/ffi/xinerama.rs"));
+    }
 
     #[cfg(feature = "xkb")]
-    pub mod xkb;
+    pub mod xkb {
+        include!(concat!(env!("OUT_DIR"), "/ffi/xkb.rs"));
+    }
 
     #[cfg(feature = "xvmc")]
-    pub mod xvmc;
+    pub mod xvmc {
+        include!(concat!(env!("OUT_DIR"), "/ffi/xvmc.rs"));
+    }
 
     #[cfg(feature = "xv")]
-    pub mod xv;
+    pub mod xv {
+        include!(concat!(env!("OUT_DIR"), "/ffi/xv.rs"));
+    }
 }
