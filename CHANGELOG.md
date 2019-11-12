@@ -1,6 +1,18 @@
+ * 0.8.3
+ Lompik - 12/11/2019
+    - fix use after free when connecting with display names (#65)
+
+ * 0.8.2 
+ chrisduerr/myfreeweb/yamnikov-oleg/rtbo - 13/02/2018
+    - move to log 0.4
+    - improve missing python error in build.rs (#49)
+    - add Connection.into_raw_conn
+    - make source generation deterministic (#43)
+
  * 0.8.1
- rtbo - 15/08/2017
+ rtbo/main--/chrisduerr - 15/08/2017
     - fix lifetime inconsistency (#40)
+    - impl AsRawFd for Connection (#39)
 
  * 0.8.0
  mjkillough/eduardosm/rtbo - 11/07/2017
