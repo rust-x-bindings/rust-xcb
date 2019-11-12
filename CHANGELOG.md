@@ -1,3 +1,9 @@
+ * 0.7.7
+ rtbo/mjkillough
+    - implement Error/Display for GenericError and ConnError
+    - fix lifetime inconsistencies
+    - Send and Sync implemented regardless of thread feature
+
  * 0.7.6
  rtbo/ibabushkin - 14/11/2016
     - much better handling of union accessors (#27) Credits to Inokentiy Babushkin
