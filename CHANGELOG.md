@@ -1,3 +1,7 @@
+ * 0.7.8
+ Lompik - 12/11/2019
+    - fix use after free when connecting with display names (#65) (backporting from 0.8)
+
  * 0.7.7
  rtbo/mjkillough
     - implement Error/Display for GenericError and ConnError
