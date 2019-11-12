@@ -2,17 +2,23 @@
  rtbo - 15/08/2017
     - fix lifetime inconsistency (#40)
 
- * 0.7.7
- rtbo - 15/08/2017
-    - branch 0.7.x to support servo
-    - fix lifetime inconsistency (#40)
-
  * 0.8.0
  mjkillough/eduardosm/rtbo - 11/07/2017
     - error trait and unsafe cast_error (#32) - mjkillough
     - unsafe cast_event - rtbo
     - allow xcb::connect without xlib_xcb feature
       (fixes also doc generation) (#35) - eduardosm
+
+ * 0.7.8
+ Lompik - 12/11/2019
+    - fix use after free when connecting with display names (#65) (backporting from 0.8)
+
+ * 0.7.7
+ rtbo/mjkillough - 15/08/2017
+    - branch 0.7.x to support servo
+    - implement Error/Display for GenericError and ConnError
+    - fix lifetime inconsistencies (#40)
+    - Send and Sync implemented regardless of thread feature
 
  * 0.7.6
  rtbo/ibabushkin - 14/11/2016
