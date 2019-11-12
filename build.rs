@@ -66,6 +66,7 @@ fn main() {
         if ref_mtime > src_file_mtime || ref_mtime > ffi_file_mtime {
 
             let status = Command::new("python3")
+                    .arg("-B")      // disable __pycache__ dir that messes with cargo
                     .arg(&r_client)
                     .arg("-o").arg(&out_dir)
                     .arg(&xml_file)
