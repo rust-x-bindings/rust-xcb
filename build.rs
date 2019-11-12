@@ -12,12 +12,12 @@ use std::process::Command;
 
 fn visit_xml<F>(xml_dir: &Path, cb: F) -> io::Result<()>
         where F: Fn(&Path) -> io::Result<()> {
-    if try!(fs::metadata(xml_dir)).is_dir() {
-        for entry in try!(fs::read_dir(xml_dir)) {
-            let path = try!(entry).path();
-            if try!(fs::metadata(&path)).is_file() {
+    if fs::metadata(xml_dir)?.is_dir() {
+        for entry in fs::read_dir(xml_dir)? {
+            let path = entry?.path();
+            if fs::metadata(&path)?.is_file() {
                 if let Some(ext) = path.extension() {
-                    if ext == "xml" { try!(cb(&path)); }
+                    if ext == "xml" { cb(&path)?; }
                 }
             }
         }
@@ -56,7 +56,7 @@ fn main() {
     visit_xml(&xml_dir, |xml_file: &Path| -> io::Result<()> {
         let src_file = xml_to_rs(&src_dir, &xml_file);
         let ffi_file = xml_to_rs(&src_ffi_dir, &xml_file);
-        let xml_file_mtime = try!(fs::metadata(&xml_file)).mtime();
+        let xml_file_mtime = fs::metadata(&xml_file)?.mtime();
         let src_file_mtime = optional_mtime(&src_file, 0);
         let ffi_file_mtime = optional_mtime(&ffi_file, 0);
 
