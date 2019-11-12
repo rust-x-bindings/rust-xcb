@@ -1,6 +1,6 @@
 [package]
 name = "xcb"
-version = "0.8.3"
+version = "0.9.0"
 authors = [ "Remi Thebault <remi.thebault@gmail.com>" ]
 description = "Rust bindings and wrappers for XCB"
 repository = "https://github.com/rtbo/rust-xcb"
