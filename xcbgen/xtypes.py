@@ -124,6 +124,7 @@ tbool =  SimpleType(('BOOL',), 1)
 tchar =  SimpleType(('c_char',), 1)
 tfloat = SimpleType(('f32',), 4)
 tdouble = SimpleType(('f64',), 8)
+tvoid =  SimpleType(('c_void',), 1)
 
 
 class Enum(SimpleType):
