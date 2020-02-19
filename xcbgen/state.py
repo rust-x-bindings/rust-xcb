@@ -86,7 +86,7 @@ class Module(object):
         self.add_type('char', '', ('c_char',), tchar)
         self.add_type('float', '', ('f32',), tfloat)
         self.add_type('double', '', ('f64',), tdouble)
-        self.add_type('void', '', ('c_void',), tcard8)
+        self.add_type('void', '', ('c_void',), tvoid)
 
     # This goes out and parses the rest of the XML
     def register(self):

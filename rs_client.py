@@ -1302,7 +1302,7 @@ def _rs_accessor(typeobj, field, disable_pod_acc=False):
                 _r('}')
             _r('}')
         elif field.type.member.is_simple:
-            field_type = field.type.member.rs_type
+            field_type = field.rs_field_type
             is_template = False
             if field_type == 'c_char':
                 return_type = '&str'
