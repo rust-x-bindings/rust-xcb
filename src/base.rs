@@ -195,17 +195,17 @@ pub struct Cookie<'a, T: Copy + CookieSeq> {
 pub type VoidCookie<'a> = Cookie<'a, xcb_void_cookie_t>;
 
 impl<'a> VoidCookie<'a> {
-    pub fn request_check(self) -> Result<(), GenericError> {
+    pub fn request_check(self) -> Result<(), ReplyError> {
         unsafe {
             let c: xcb_void_cookie_t = mem::transmute(self.cookie);
             let err = xcb_request_check(self.conn.get_raw_conn(), c);
 
-            let conn_has_error = self.conn.has_error().is_ok();
+            let conn_is_ok = self.conn.has_error().is_ok();
             std::mem::forget(self);
-            if err.is_null() && conn_has_error {
-                Ok(())
-            } else {
-                Err(GenericError { ptr: err })
+            match (err.is_null(), conn_is_ok) {
+		(true, true) => Ok(()),
+		(true, false) => Err(ReplyError::NullResponse),
+		(false, _) => Err(ReplyError::GenericError { 0:GenericError{ ptr: err} }),
             }
         }
     }
