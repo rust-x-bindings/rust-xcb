@@ -195,16 +195,17 @@ pub struct Cookie<'a, T: Copy + CookieSeq> {
 pub type VoidCookie<'a> = Cookie<'a, xcb_void_cookie_t>;
 
 impl<'a> VoidCookie<'a> {
-    pub fn request_check(self) -> Result<(), GenericError> {
+    pub fn request_check(self) -> Result<(), ReplyError> {
         unsafe {
             let c: xcb_void_cookie_t = mem::transmute(self.cookie);
             let err = xcb_request_check(self.conn.get_raw_conn(), c);
 
+            let conn_is_ok = self.conn.has_error().is_ok();
             std::mem::forget(self);
-            if err.is_null() {
-                Ok(())
-            } else {
-                Err(GenericError { ptr: err })
+            match (err.is_null(), conn_is_ok) {
+		(true, true) => Ok(()),
+		(true, false) => Err(ReplyError::NullResponse),
+		(false, _) => Err(ReplyError::GenericError { 0:GenericError{ ptr: err} }),
             }
         }
     }
@@ -257,8 +258,28 @@ pub type GenericEvent = Event<xcb_generic_event_t>;
 pub type GenericError = Error<xcb_generic_error_t>;
 pub type GenericReply = Reply<xcb_generic_reply_t>;
 
+#[derive(Debug)]
+pub enum ReplyError {
+    NullResponse,
+    GenericError(GenericError)
+}
 
 
+impl std::fmt::Display for ReplyError {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> Result<(), std::fmt::Error> {
+        write!(f, "xcb::ReplyError: ")?;
+        match self {
+            Self::NullResponse => { write!(f, "Unexpected null pointer(check pending errors on connection)")}
+            Self::GenericError(g) => {write!(f, "{}", g)}
+        }
+    }
+}
+
+impl std::error::Error for ReplyError {
+    fn description(&self) -> &str {
+        "xcb::ReplyError"
+    }
+}
 
 //TODO: Implement wrapper functions for constructing auth_info
 pub type AuthInfo = xcb_auth_info_t;
