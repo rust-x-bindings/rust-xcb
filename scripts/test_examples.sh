@@ -47,6 +47,7 @@ test_success cargo build --example drawing
 test_success cargo build --example draw_root_window
 test_success cargo build --example ffi_randr_crtc_info --features randr
 test_success cargo build --example randr_screen_info --features randr
+test_success cargo build --example randr_screen_modes --features randr
 test_success cargo build --example randr_crtc_info --features randr
 test_success cargo build --example randr_crtc_listen --features randr
 test_success cargo build --example ffi_xkb_init --features xkb
