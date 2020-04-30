@@ -294,7 +294,7 @@ pub enum EventQueueOwner {
 
 
 /// Error type that is returned by `Connection::has_error`
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub enum ConnError {
     /// xcb connection errors because of socket, pipe and other stream errors.
     Connection,
