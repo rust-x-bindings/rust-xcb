@@ -175,6 +175,7 @@ OF THIS SOFTWARE.
     <field type="FENCE" name="idle_fence" />
   </event>
 
+<!--
   <event name="RedirectNotify" number="3" xge="true">
     <field type="BOOL" name="update_window"/>
     <pad bytes="1"/>
@@ -201,5 +202,6 @@ OF THIS SOFTWARE.
     <field type="CARD64" name="remainder" />
     <list type="Notify" name="notifies"/>
   </event>
+-->
 
 </xcb>
