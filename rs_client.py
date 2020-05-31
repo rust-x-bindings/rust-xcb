@@ -720,6 +720,7 @@ def _ffi_struct(typeobj, must_pack=False):
     _f('')
     _write_doc_brief_desc(_f, typeobj.doc)
     _f('#[repr(C%s)]', ', packed' if must_pack else '')
+    _f('#[derive(Debug)]')
     _f('pub struct %s {', typeobj.ffi_type)
     _f.indent()
 
@@ -782,6 +783,7 @@ def _ffi_struct(typeobj, must_pack=False):
     for b in named_bitcases:
         _f('')
         _f('#[repr(C)]')
+        _f('#[derive(Debug)]')
         _f('pub struct %s {', _ffi_bitcase_name(typeobj, b))
         _f.indent()
         maxfieldlen = 0
@@ -918,6 +920,7 @@ def _ffi_iterator(typeobj, nametup):
     _f.section(0)
     _f('')
     _f('#[repr(C)]')
+    _f('#[derive(Debug)]')
     _f("pub struct %s%s {", typeobj.ffi_iterator_type, lifetime)
     _f('    pub data:  *mut %s,', typeobj.ffi_type)
     _f('    pub rem:   c_int,')
@@ -1931,7 +1934,7 @@ def _opcode(nametup, opcode):
 def _cookie(request):
     _f.section(0)
     _f('')
-    _f('#[derive(Copy, Clone)]')
+    _f('#[derive(Copy, Clone, Debug)]')
     _f('#[repr(C)]')
     _f('pub struct %s {', request.ffi_cookie_type)
     _f('    pub(crate) sequence: c_uint')
@@ -2167,6 +2170,7 @@ def rs_union(union, nametup):
     _write_doc_brief_desc(_f, union.doc)
     _f('// union')
     _f('#[repr(C)]')
+    _f('#[derive(Debug)]')
     _f('pub struct %s {', union.ffi_type)
     _f('    pub data: [u8; %d]', num_bytes)
     _f('}')
