@@ -7,7 +7,7 @@ we do not create a new type object, we just record the existing one under a new 
 '''
 
 from os.path import join
-from xml.etree.cElementTree import parse
+from xml.etree.ElementTree import parse
 
 from xcbgen.xtypes import *
 
