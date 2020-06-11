@@ -720,7 +720,6 @@ def _ffi_struct(typeobj, must_pack=False):
     _f('')
     _write_doc_brief_desc(_f, typeobj.doc)
     _f('#[repr(C%s)]', ', packed' if must_pack else '')
-    _f('#[derive(Debug)]')
     _f('pub struct %s {', typeobj.ffi_type)
     _f.indent()
 
@@ -780,10 +779,38 @@ def _ffi_struct(typeobj, must_pack=False):
         _f('    fn clone(&self) -> %s { *self }', typeobj.ffi_type)
         _f('}')
 
+    def _ffi_debug_struct_start(name):
+        _f('impl ::std::fmt::Debug for %s {', name)
+        _f('    fn fmt(&self, fmt: &mut ::std::fmt::Formatter<\'_>) -> ::std::fmt::Result {')
+        _f('        fmt.debug_struct("%s")', name)
+
+    def _ffi_debug_struct_end():
+        _f('            .finish()')
+        _f('    }')
+        _f('}')
+
+    def _ffi_debug_struct_field(field):
+        if field.type.nmemb and field.type.nmemb > 1:
+            _f('            .field("%s", &&self.%s[..])', field.ffi_field_name, field.ffi_field_name)
+        else:
+            _f('            .field("%s", &self.%s)', field.ffi_field_name, field.ffi_field_name)
+
+    _ffi_debug_struct_start(typeobj.ffi_type)
+    if not typeobj.is_switch:
+        for field in struct_fields:
+            _ffi_debug_struct_field(field)
+    else:
+        for b in typeobj.bitcases:
+            if b.type.has_name:
+                _ffi_debug_struct_field(b)
+            else:
+                for field in b.type.fields:
+                    _ffi_debug_struct_field(field)
+    _ffi_debug_struct_end()
+
     for b in named_bitcases:
         _f('')
         _f('#[repr(C)]')
-        _f('#[derive(Debug)]')
         _f('pub struct %s {', _ffi_bitcase_name(typeobj, b))
         _f.indent()
         maxfieldlen = 0
@@ -794,6 +821,10 @@ def _ffi_struct(typeobj, must_pack=False):
         _f.unindent()
         _f('}')
 
+        _ffi_debug_struct_start(_ffi_bitcase_name(typeobj, b))
+        for field in b.type.fields:
+            _ffi_debug_struct_field(field)
+        _ffi_debug_struct_end()
 
 
 def _ffi_accessors_list(typeobj, field):
