@@ -779,6 +779,35 @@ def _ffi_struct(typeobj, must_pack=False):
         _f('    fn clone(&self) -> %s { *self }', typeobj.ffi_type)
         _f('}')
 
+    def _ffi_debug_struct_start(name):
+        _f('impl ::std::fmt::Debug for %s {', name)
+        _f('    fn fmt(&self, fmt: &mut ::std::fmt::Formatter<\'_>) -> ::std::fmt::Result {')
+        _f('        fmt.debug_struct("%s")', name)
+
+    def _ffi_debug_struct_end():
+        _f('            .finish()')
+        _f('    }')
+        _f('}')
+
+    def _ffi_debug_struct_field(field):
+        if field.type.nmemb and field.type.nmemb > 1:
+            _f('            .field("%s", &&self.%s[..])', field.ffi_field_name, field.ffi_field_name)
+        else:
+            _f('            .field("%s", &self.%s)', field.ffi_field_name, field.ffi_field_name)
+
+    _ffi_debug_struct_start(typeobj.ffi_type)
+    if not typeobj.is_switch:
+        for field in struct_fields:
+            _ffi_debug_struct_field(field)
+    else:
+        for b in typeobj.bitcases:
+            if b.type.has_name:
+                _ffi_debug_struct_field(b)
+            else:
+                for field in b.type.fields:
+                    _ffi_debug_struct_field(field)
+    _ffi_debug_struct_end()
+
     for b in named_bitcases:
         _f('')
         _f('#[repr(C)]')
@@ -792,6 +821,10 @@ def _ffi_struct(typeobj, must_pack=False):
         _f.unindent()
         _f('}')
 
+        _ffi_debug_struct_start(_ffi_bitcase_name(typeobj, b))
+        for field in b.type.fields:
+            _ffi_debug_struct_field(field)
+        _ffi_debug_struct_end()
 
 
 def _ffi_accessors_list(typeobj, field):
@@ -918,6 +951,7 @@ def _ffi_iterator(typeobj, nametup):
     _f.section(0)
     _f('')
     _f('#[repr(C)]')
+    _f('#[derive(Debug)]')
     _f("pub struct %s%s {", typeobj.ffi_iterator_type, lifetime)
     _f('    pub data:  *mut %s,', typeobj.ffi_type)
     _f('    pub rem:   c_int,')
@@ -1931,7 +1965,7 @@ def _opcode(nametup, opcode):
 def _cookie(request):
     _f.section(0)
     _f('')
-    _f('#[derive(Copy, Clone)]')
+    _f('#[derive(Copy, Clone, Debug)]')
     _f('#[repr(C)]')
     _f('pub struct %s {', request.ffi_cookie_type)
     _f('    pub(crate) sequence: c_uint')
@@ -2167,6 +2201,7 @@ def rs_union(union, nametup):
     _write_doc_brief_desc(_f, union.doc)
     _f('// union')
     _f('#[repr(C)]')
+    _f('#[derive(Debug)]')
     _f('pub struct %s {', union.ffi_type)
     _f('    pub data: [u8; %d]', num_bytes)
     _f('}')
