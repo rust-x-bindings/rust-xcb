@@ -89,4 +89,6 @@ fn main() {
     println!("cargo:rerun-if-changed={}", &xml_dir.display());
     println!("cargo:rerun-if-changed={}", &xcbgen_dir.display());
 
+    #[cfg(target_os = "freebsd")]
+    println!("cargo:rustc-link-search=/usr/local/lib");
 }
