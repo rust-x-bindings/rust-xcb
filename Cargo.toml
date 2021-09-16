@@ -10,6 +10,7 @@ keywords = ["xcb", "window", "xlib", "x11", "opengl"]
 license = "MIT"
 exclude = [ "examples/*", "scripts/*" ]
 build = "build/main.rs"
+autoexamples = false
 
 [build-dependencies]
 libc = "0.2"
@@ -65,10 +66,66 @@ debug_all = [ "thread", "composite", "damage", "dpms", "dri2", "dri3",
         "shm", "xevie", "xf86dri", "xfixes", "xinerama", "xkb",
         "xprint", "xselinux", "xtest", "xvmc", "xv", "xlib_xcb" ]
 
+[dev-dependencies]
+gl = "0.5.2"
 
+[dev-dependencies.x11]
+version = "2.3"
+features = ["xlib", "glx"]
 
-# cargo does not seam to support example.features yet.
-# That is addressed in cargo/#1570
-#[[example]]
-#name = "randr_crtc_info"
-#features = "randr"
+[[example]]
+name = "basic_window"
+
+[[example]]
+name = "connect_str"
+
+[[example]]
+name = "connect"
+
+[[example]]
+name = "draw_root_window"
+
+[[example]]
+name = "drawing"
+
+[[example]]
+name = "opengl_window"
+required-features = ["xlib_xcb", "dri2"]
+
+[[example]]
+name = "randr_crtc_info"
+required-features = ["randr"]
+
+[[example]]
+name = "ffi_randr_crtc_info"
+required-features = ["randr"]
+
+[[example]]
+name = "randr_crtc_listen"
+required-features = ["randr"]
+
+[[example]]
+name = "randr_screen_info"
+required-features = ["randr"]
+
+[[example]]
+name = "randr_screen_modes"
+required-features = ["randr"]
+
+[[example]]
+name = "screen_info"
+
+[[example]]
+name = "ffi_screen_info"
+
+[[example]]
+name = "threaded_window"
+required-features = ["thread"]
+
+[[example]]
+name = "xkb_init"
+required-features = ["xkb"]
+
+[[example]]
+name = "ffi_xkb_init"
+required-features = ["xkb"]
