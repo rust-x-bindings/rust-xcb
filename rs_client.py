@@ -719,6 +719,8 @@ def _ffi_struct(typeobj, must_pack=False):
     _f.section(0)
     _f('')
     _write_doc_brief_desc(_f, typeobj.doc)
+    copyclone = "Copy, Clone, " if not typeobj in _types_uneligible_to_copy else ""
+    _f('#[derive(%sDebug)]', copyclone)
     _f('#[repr(C%s)]', ', packed' if must_pack else '')
     _f('pub struct %s {', typeobj.ffi_type)
     _f.indent()
@@ -772,44 +774,10 @@ def _ffi_struct(typeobj, must_pack=False):
 
     _f.unindent()
     _f('}')
-    if not typeobj in _types_uneligible_to_copy:
-        _f('')
-        _f('impl Copy for %s {}', typeobj.ffi_type)
-        _f('impl Clone for %s {', typeobj.ffi_type)
-        _f('    fn clone(&self) -> %s { *self }', typeobj.ffi_type)
-        _f('}')
-
-    def _ffi_debug_struct_start(name):
-        _f('impl ::std::fmt::Debug for %s {', name)
-        _f('    fn fmt(&self, fmt: &mut ::std::fmt::Formatter<\'_>) -> ::std::fmt::Result {')
-        _f('        fmt.debug_struct("%s")', name)
-
-    def _ffi_debug_struct_end():
-        _f('            .finish()')
-        _f('    }')
-        _f('}')
-
-    def _ffi_debug_struct_field(field):
-        if field.type.nmemb and field.type.nmemb > 1:
-            _f('            .field("%s", &&self.%s[..])', field.ffi_field_name, field.ffi_field_name)
-        else:
-            _f('            .field("%s", &self.%s)', field.ffi_field_name, field.ffi_field_name)
-
-    _ffi_debug_struct_start(typeobj.ffi_type)
-    if not typeobj.is_switch:
-        for field in struct_fields:
-            _ffi_debug_struct_field(field)
-    else:
-        for b in typeobj.bitcases:
-            if b.type.has_name:
-                _ffi_debug_struct_field(b)
-            else:
-                for field in b.type.fields:
-                    _ffi_debug_struct_field(field)
-    _ffi_debug_struct_end()
 
     for b in named_bitcases:
         _f('')
+        _f("#[derive(Debug)]")
         _f('#[repr(C)]')
         _f('pub struct %s {', _ffi_bitcase_name(typeobj, b))
         _f.indent()
@@ -821,10 +789,6 @@ def _ffi_struct(typeobj, must_pack=False):
         _f.unindent()
         _f('}')
 
-        _ffi_debug_struct_start(_ffi_bitcase_name(typeobj, b))
-        for field in b.type.fields:
-            _ffi_debug_struct_field(field)
-        _ffi_debug_struct_end()
 
 
 def _ffi_accessors_list(typeobj, field):
@@ -1329,9 +1293,9 @@ def _rs_accessor(typeobj, field, disable_pod_acc=False):
                 _r('unsafe {')
                 with _r.indent_block():
                     _r('let field = self.ptr;')
-                    _r('let len = %s(field);', field.ffi_length_fn)
+                    _r('let len = %s(field) as usize;', field.ffi_length_fn)
                     _r('let data = %s(field);', field.ffi_accessor_fn)
-                    _r('let slice = std::slice::from_raw_parts(data, len as usize);')
+                    _r('let slice = std::slice::from_raw_parts(data, len);')
                     _r('slice.iter().map(|el| if *el == 0 {false} else{true}).collect()')
                 _r('}')
             _r('}')
@@ -1971,6 +1935,8 @@ def _cookie(request):
     _f('    pub(crate) sequence: c_uint')
     _f('}')
 
+    _r.section(1)
+    _r("")
     _r("impl base::CookieSeq for %s {", request.ffi_cookie_type)
     with _r.indent_block():
         _r("fn sequence(&self) -> c_uint { self.sequence }")
