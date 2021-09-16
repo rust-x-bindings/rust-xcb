@@ -25,31 +25,22 @@ fn xcb_mod_map(name: &str) -> &str {
     }
 }
 
-// fn is_always(name: &str) -> bool {
-//     match name {
-//         "xproto" | "big_requests" | "xc_misc" => true,
-//         _ => false,
-//     }
-// }
+fn is_always(name: &str) -> bool {
+    match name {
+        "xproto" | "big_requests" | "xc_misc" => true,
+        _ => false,
+    }
+}
 
-// fn has_feature(name: &str) -> bool {
-//     env::var(format!("CARGO_FEATURE_{}", name.to_ascii_uppercase())).is_ok()
-// }
+fn has_feature(name: &str) -> bool {
+    env::var(format!("CARGO_FEATURE_{}", name.to_ascii_uppercase())).is_ok()
+}
 
 fn main() {
     let root = env::var("CARGO_MANIFEST_DIR").unwrap_or(".".to_string());
     let xml_dir = Path::new(&root).join("xml");
-    // let src_dir = Path::new(&root).join("build");
     let out_dir = env::var("OUT_DIR").unwrap_or("./gen/current".to_string());
     let out_dir = Path::new(&out_dir);
-
-    // let src_files = ["main.rs", "parse.rs", "codegen.rs", "output.rs"];
-
-    // let ref_mtime = src_files
-    //     .iter()
-    //     .map(|f| Path::new(&root).join("build").join(f))
-    //     .map(|p| mtime(&p).expect(&format!("cannot get modification time of {}", p.display())))
-    //     .fold(std::i64::MIN, |a, b| a.max(b));
 
     let rustfmt = env::var("XCB_RUSTFMT").ok().and_then(|var| {
         if var == "1" || var == "y" || var == "Y" {
@@ -80,18 +71,6 @@ fn main() {
     println!("cargo:rustc-link-search=/usr/local/lib");
 }
 
-// #[cfg(target_family = "unix")]
-// fn mtime<P: AsRef<Path>>(path: P) -> io::Result<i64> {
-//     use std::os::unix::fs::MetadataExt;
-//     fs::metadata(path).map(|m| m.mtime())
-// }
-
-// #[cfg(target_family = "windows")]
-// fn mtime<P: AsRef<Path>>(path: P) -> io::Result<i64> {
-//     use std::os::windows::fs::MetadataExt;
-//     fs::metadata(path).map(|m| m.last_write_time() as i64)
-// }
-
 fn iter_xml(xml_dir: &Path) -> impl Iterator<Item = PathBuf> {
     fs::read_dir(xml_dir)
         .unwrap()
@@ -101,10 +80,6 @@ fn iter_xml(xml_dir: &Path) -> impl Iterator<Item = PathBuf> {
             _ => false,
         })
 }
-
-// fn optional_mtime(path: &Path, default: i64) -> i64 {
-//     mtime(path).unwrap_or(default)
-// }
 
 fn find_exe<P>(exe_name: P) -> Option<PathBuf>
 where
@@ -138,15 +113,13 @@ fn process_xcb_gen(
         return Ok(());
     }
 
-    // if !is_always(&xcb_mod) && !has_feature(&xcb_mod) {
-    //     return Ok(());
-    // }
+    if !is_always(&xcb_mod) && !has_feature(&xcb_mod) {
+        return Ok(());
+    }
 
-    //let ref_mtime = cmp::max(ref_mtime, mtime(&xml_file).unwrap());
     let ffi_file = out_dir.join("ffi").join(&xcb_mod).with_extension("rs");
     let rs_file = out_dir.join(&xcb_mod).with_extension("rs");
 
-    // println!("processing {}", &xcb_mod);
     let ffi = Output::new(&rustfmt, &ffi_file).expect(&format!(
         "cannot create FFI output file: {}",
         ffi_file.display()
