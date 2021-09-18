@@ -70,7 +70,7 @@ impl<B: BufRead> Parser<B> {
                 Ok(str::from_utf8(&txt)?.into())
             }
             Ok(ev) => Err(Error::Parse(format!("expected text, found {:?}", ev))),
-            Err(e) => Err(e)?,
+            Err(e) => Err(e.into()),
         }
     }
 
@@ -95,7 +95,7 @@ impl<B: BufRead> Parser<B> {
                             str::from_utf8(close_tag).unwrap(),
                             ev
                         ))),
-                        Err(e) => Err(e)?,
+                        Err(e) => Err(e.into()),
                     }
                 } else {
                     Ok(txt)
@@ -112,7 +112,7 @@ impl<B: BufRead> Parser<B> {
                 }
             }
             Ok(ev) => Err(Error::Parse(format!("expected text, found {:?}", ev))),
-            Err(e) => Err(e)?,
+            Err(e) => Err(e.into()),
         }
     }
 
@@ -120,7 +120,7 @@ impl<B: BufRead> Parser<B> {
         match self.xml.read_event(&mut self.buf) {
             Ok(XmlEv::Start(e) | XmlEv::Empty(e)) => Ok(Vec::from(e.name())),
             Ok(ev) => Err(Error::Parse(format!("expected start tag, found {:?}", ev))),
-            Err(e) => Err(e)?,
+            Err(e) => Err(e.into()),
         }
     }
 
@@ -146,7 +146,7 @@ impl<B: BufRead> Parser<B> {
                         ev
                     )))
                 }
-                Err(e) => Err(e)?,
+                Err(e) => return Err(e.into()),
             }
         }
     }
@@ -217,16 +217,15 @@ impl<B: BufRead> Parser<B> {
                     }
                     _ => {}
                 },
-                Ok(XmlEv::Empty(ref e)) => match e.name() {
-                    b"field" => {
+                Ok(XmlEv::Empty(ref e)) => {
+                    if e.name() == b"field" {
                         let name = expect_attribute(e.attributes(), b"name")?;
                         fields.push(DocField {
                             name,
                             text: String::new(),
                         });
                     }
-                    _ => {}
-                },
+                }
                 Ok(XmlEv::Text(_) | XmlEv::CData(_)) => {
                     return Err(Error::Parse("Unexpected doc text out of element".into()));
                 }
@@ -236,7 +235,7 @@ impl<B: BufRead> Parser<B> {
                     }
                 }
                 Ok(_) => {}
-                Err(err) => Err(err)?,
+                Err(err) => return Err(err.into()),
             }
         }
 
@@ -433,7 +432,7 @@ impl<B: BufRead> Parser<B> {
                 Ok(ev) => {
                     return Err(Error::Parse(format!("unexpected XML in enum: {:?}", ev)));
                 }
-                Err(err) => Err(err)?,
+                Err(err) => return Err(err.into()),
             }
         }
 
@@ -455,13 +454,9 @@ impl<B: BufRead> Parser<B> {
                     let [typ, nam, enu] = vals;
 
                     if let (Some(typ), Some(name)) = (typ, nam) {
-                        Ok(StructField::Field {
-                            name: name,
-                            typ: typ,
-                            enu: enu,
-                        })
+                        Ok(StructField::Field { name, typ, enu })
                     } else {
-                        return Err(Error::Parse("struct field without type and/or name".into()));
+                        Err(Error::Parse("struct field without type and/or name".into()))
                     }
                 }
                 b"pad" => {
@@ -487,9 +482,9 @@ impl<B: BufRead> Parser<B> {
                         (*padnum) += 1;
                         Ok(StructField::AlignPad(name, val))
                     } else {
-                        return Err(Error::Parse(
+                        Err(Error::Parse(
                             "<pad> with neither align and bytes attr".into(),
-                        ));
+                        ))
                     }
                 }
                 b"list" => {
@@ -500,9 +495,9 @@ impl<B: BufRead> Parser<B> {
                     if let (Some(typ), Some(name)) = (typ, nam) {
                         Ok(StructField::ListNoLen { name, typ })
                     } else {
-                        return Err(Error::Parse(
+                        Err(Error::Parse(
                             "<list> tag without type and/or name attribute".into(),
-                        ));
+                        ))
                     }
                 }
                 b"valueparam" => {
@@ -520,9 +515,9 @@ impl<B: BufRead> Parser<B> {
                             list_name,
                         })
                     } else {
-                        return Err(Error::Parse(
+                        Err(Error::Parse(
                                 "<valueparam> tag without value-mask-type, value-mask-name or value-list-name attribute".into(),
-                            ));
+                            ))
                     }
                 }
                 b"fd" => {
@@ -554,9 +549,9 @@ impl<B: BufRead> Parser<B> {
                             None => StructField::ListNoLen { name, typ },
                         })
                     } else {
-                        return Err(Error::Parse(
+                        Err(Error::Parse(
                             "<list> tag without type and/or name attribute".into(),
-                        ));
+                        ))
                     }
                 }
                 b"exprfield" => {
@@ -569,9 +564,9 @@ impl<B: BufRead> Parser<B> {
                         self.xml.read_to_end(b"exprfield", &mut self.buf)?;
                         Ok(StructField::Expr { name, typ, expr })
                     } else {
-                        return Err(Error::Parse(
+                        Err(Error::Parse(
                             "<exprfield> tag without type and/or name attribute".into(),
-                        ));
+                        ))
                     }
                 }
                 b"switch" => {
@@ -662,7 +657,7 @@ impl<B: BufRead> Parser<B> {
                         doc: None,
                     }
                 } else {
-                    self.parse_struct(name, &end_tag)?
+                    self.parse_struct(name, end_tag)?
                 };
                 Ok(OpStruct {
                     number,
@@ -713,7 +708,12 @@ impl<B: BufRead> Parser<B> {
         }
     }
 
-    fn parse_switch_case(&mut self, name: Option<String>, mut padnum: &mut u32, end_tag: &[u8]) -> Result<SwitchCase> {
+    fn parse_switch_case(
+        &mut self,
+        name: Option<String>,
+        mut padnum: &mut u32,
+        end_tag: &[u8],
+    ) -> Result<SwitchCase> {
         let bit = end_tag == b"bitcase";
 
         let mut exprs = Vec::new();
@@ -756,7 +756,12 @@ impl<B: BufRead> Parser<B> {
             }
         }
 
-        Ok(SwitchCase { bit, name, exprs, fields })
+        Ok(SwitchCase {
+            bit,
+            name,
+            exprs,
+            fields,
+        })
     }
 
     fn parse_switch(&mut self, padnum: &mut u32) -> Result<(Expr<usize>, Vec<SwitchCase>)> {
@@ -786,10 +791,11 @@ impl<B: BufRead> Parser<B> {
                         }
                     }
                 }
-                Ok(XmlEv::End(ref e)) => match e.name() {
-                    b"switch" => break,
-                    _ => {}
-                },
+                Ok(XmlEv::End(ref e)) => {
+                    if e.name() == b"switch" {
+                        break;
+                    }
+                }
                 Ok(_) => {}
                 Err(err) => return Err(err.into()),
             }
@@ -814,11 +820,17 @@ struct StructContent {
 }
 
 fn is_expr_tag(tag: &[u8]) -> bool {
-    match tag {
-        b"fieldref" | b"paramref" | b"op" | b"unop" | b"popcount" | b"value" | b"enumref"
-        | b"sumof" => true,
-        _ => false,
-    }
+    matches!(
+        tag,
+        b"fieldref"
+            | b"paramref"
+            | b"op"
+            | b"unop"
+            | b"popcount"
+            | b"value"
+            | b"enumref"
+            | b"sumof"
+    )
 }
 
 impl<B: BufRead> Iterator for &mut Parser<B> {
@@ -844,9 +856,7 @@ impl<B: BufRead> Iterator for &mut Parser<B> {
                         ))),
                     }
                 }
-                b"xidtype" => {
-                    Some(expect_attribute(e.attributes(), b"name").map(|name| Event::XidType(name)))
-                }
+                b"xidtype" => Some(expect_attribute(e.attributes(), b"name").map(Event::XidType)),
                 b"error" => Some({
                     let start = e.to_owned();
                     self.parse_op_struct(start, b"")
@@ -892,10 +902,7 @@ impl<B: BufRead> Iterator for &mut Parser<B> {
                 }),
                 b"request" => {
                     let start = e.to_owned();
-                    Some(
-                        self.parse_request(start, true)
-                            .map(|req| Event::Request(req)),
-                    )
+                    Some(self.parse_request(start, true).map(Event::Request))
                 }
                 _ => Some(Ok(Event::Ignore)),
             },
@@ -940,22 +947,22 @@ impl<B: BufRead> Iterator for &mut Parser<B> {
 
                     Some(Ok(Event::Info(mod_name, ext_info)))
                 }
-                b"import" => Some(self.parse_import().map(|s| Event::Import(s))),
+                b"import" => Some(self.parse_import().map(Event::Import)),
                 b"xidunion" => Some(expect_attribute(e.attributes(), b"name").and_then(|name| {
                     let unionres = self.parse_xidunion(name);
-                    unionres.map(|un| Event::XidUnion(un))
+                    unionres.map(Event::XidUnion)
                 })),
                 b"enum" => Some(expect_attribute(e.attributes(), b"name").and_then(|name| {
                     let enumres = self.parse_enum(name);
-                    enumres.map(|enu| Event::Enum(enu))
+                    enumres.map(Event::Enum)
                 })),
                 b"struct" => Some(expect_attribute(e.attributes(), b"name").and_then(|name| {
                     let structres = self.parse_struct(name, b"struct");
-                    structres.map(|stru| Event::Struct(stru))
+                    structres.map(Event::Struct)
                 })),
                 b"union" => Some(expect_attribute(e.attributes(), b"name").and_then(|name| {
                     let unionres = self.parse_struct(name, b"union");
-                    unionres.map(|stru| Event::Union(stru))
+                    unionres.map(Event::Union)
                 })),
                 b"error" => Some({
                     let start = e.to_owned();
@@ -981,10 +988,7 @@ impl<B: BufRead> Iterator for &mut Parser<B> {
                 }),
                 b"request" => {
                     let start = e.to_owned();
-                    Some(
-                        self.parse_request(start, false)
-                            .map(|req| Event::Request(req)),
-                    )
+                    Some(self.parse_request(start, false).map(Event::Request))
                 }
                 _ => Some(Ok(Event::Ignore)),
             },
@@ -1009,7 +1013,7 @@ fn expect_attribute(attrs: Attributes, name: &[u8]) -> Result<String> {
                     return attr_value(&attr);
                 }
             }
-            Err(err) => Err(err)?,
+            Err(err) => return Err(err.into()),
         }
     }
     Err(Error::Parse(format!(

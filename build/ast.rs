@@ -130,6 +130,7 @@ pub struct Request {
     pub doc: Option<Doc>,
 }
 
+#[allow(clippy::enum_variant_names)]
 #[derive(Debug, Clone)]
 pub enum Event {
     Info(String, Option<ExtInfo>),

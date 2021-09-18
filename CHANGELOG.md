@@ -2,6 +2,7 @@
  rtbo
     - build script is written in Rust. Python no longer needed. (#56, #62, #89, #99)
     - fixed some member names (e.g. size_i_d => size_id / num__f_b_configs => num_fb_configs)
+    - moved CI to github actions
 
  * 0.9.0
  Lompik - 12/11/2019

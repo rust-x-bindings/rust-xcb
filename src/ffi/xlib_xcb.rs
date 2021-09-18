@@ -33,17 +33,16 @@
 #![allow(non_snake_case)]
 
 use ffi::xcb_connection_t;
-use libc::{c_void, c_uint};
+use libc::{c_uint, c_void};
 
 use x11::xlib;
 
 pub type XEventQueueOwner = c_uint;
-pub static XlibOwnsEventQueue : XEventQueueOwner = 0;
-pub static XCBOwnsEventQueue : XEventQueueOwner  = 1;
+pub static XlibOwnsEventQueue: XEventQueueOwner = 0;
+pub static XCBOwnsEventQueue: XEventQueueOwner = 1;
 
-#[link(name="X11-xcb")]
-extern {
-    pub fn XGetXCBConnection(dpy: *mut xlib::Display)
-            -> *mut xcb_connection_t;
+#[link(name = "X11-xcb")]
+extern "C" {
+    pub fn XGetXCBConnection(dpy: *mut xlib::Display) -> *mut xcb_connection_t;
     pub fn XSetEventQueueOwner(dpy: *mut xlib::Display, owner: XEventQueueOwner);
 }

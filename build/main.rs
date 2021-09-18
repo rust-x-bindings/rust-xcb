@@ -26,10 +26,7 @@ fn xcb_mod_map(name: &str) -> &str {
 }
 
 fn is_always(name: &str) -> bool {
-    match name {
-        "xproto" | "big_requests" | "xc_misc" => true,
-        _ => false,
-    }
+    matches!(name, "xproto" | "big_requests" | "xc_misc")
 }
 
 fn has_feature(name: &str) -> bool {
@@ -37,9 +34,9 @@ fn has_feature(name: &str) -> bool {
 }
 
 fn main() {
-    let root = env::var("CARGO_MANIFEST_DIR").unwrap_or(".".to_string());
+    let root = env::var("CARGO_MANIFEST_DIR").unwrap_or_else(|_| ".".to_string());
     let xml_dir = Path::new(&root).join("xml");
-    let out_dir = env::var("OUT_DIR").unwrap_or("./gen/current".to_string());
+    let out_dir = env::var("OUT_DIR").unwrap_or_else(|_| "./gen/current".to_string());
     let out_dir = Path::new(&out_dir);
 
     let rustfmt = env::var("RXCB_RUSTFMT").ok().and_then(|var| {
@@ -54,18 +51,19 @@ fn main() {
     let mut dep_info = Vec::new();
 
     for xml_file in iter_xml(&xml_dir) {
-        match xml_file.file_stem().unwrap().to_str().unwrap() {
-            "xinput" => {continue},
-            _ => {}
+        if xml_file.file_stem().unwrap().to_str().unwrap() == "xinput" {
+            continue;
         }
 
-        process_xcb_gen(&xml_file, &out_dir, &rustfmt, gen_all, &mut dep_info).unwrap_or_else(|err| {
-            panic!(
-                "Error during processing of {}: {:?}",
-                xml_file.display(),
-                err
-            )
-        });
+        process_xcb_gen(&xml_file, out_dir, &rustfmt, gen_all, &mut dep_info).unwrap_or_else(
+            |err| {
+                panic!(
+                    "Error during processing of {}: {:?}",
+                    xml_file.display(),
+                    err
+                )
+            },
+        );
     }
 
     #[cfg(target_os = "freebsd")]
@@ -111,27 +109,23 @@ fn process_xcb_gen(
     let xcb_mod = xcb_mod.to_str().unwrap();
     let xcb_mod = xcb_mod_map(xcb_mod);
 
-    if dep_info.iter().find(|di| di.xcb_mod == xcb_mod).is_some() {
+    if dep_info.iter().any(|di| di.xcb_mod == xcb_mod) {
         return Ok(());
     }
 
-    if !gen_all && !is_always(&xcb_mod) && !has_feature(&xcb_mod) {
+    if !gen_all && !is_always(xcb_mod) && !has_feature(xcb_mod) {
         return Ok(());
     }
 
     let ffi_file = out_dir.join("ffi").join(&xcb_mod).with_extension("rs");
     let rs_file = out_dir.join(&xcb_mod).with_extension("rs");
 
-    let ffi = Output::new(&rustfmt, &ffi_file).expect(&format!(
-        "cannot create FFI output file: {}",
-        ffi_file.display()
-    ));
-    let rs = Output::new(&rustfmt, &rs_file).expect(&format!(
-        "cannot create Rust output file: {}",
-        rs_file.display()
-    ));
+    let ffi = Output::new(rustfmt, &ffi_file)
+        .unwrap_or_else(|_| panic!("cannot create FFI output file: {}", ffi_file.display()));
+    let rs = Output::new(rustfmt, &rs_file)
+        .unwrap_or_else(|_| panic!("cannot create Rust output file: {}", rs_file.display()));
 
-    let mut parser = Parser::from_file(&xml_file);
+    let mut parser = Parser::from_file(xml_file);
 
     let mut imports = Vec::new();
     let mut events = Vec::new();
@@ -202,7 +196,7 @@ fn process_xcb_gen(
         deps
     };
 
-    let mut cg = CodeGen::new(&xcb_mod, ffi, rs, deps, evcopies);
+    let mut cg = CodeGen::new(xcb_mod, ffi, rs, deps, evcopies);
 
     cg.prologue(imports, &info.1)?;
 

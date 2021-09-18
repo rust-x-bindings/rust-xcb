@@ -1,19 +1,19 @@
-
-extern crate xcb;
 extern crate libc;
+extern crate xcb;
 
-use xcb::ffi::*;
 use xcb::ffi::xkb::*;
+use xcb::ffi::*;
 
+use libc::{c_char, c_int, c_void};
 use std::ptr::{null, null_mut};
-use libc::{c_int, c_char, c_void};
 
 fn main() {
     unsafe {
-
         let mut screen_num: c_int = 0;
         let c = xcb_connect(null(), &mut screen_num);
-        if c.is_null() { panic!(); }
+        if c.is_null() {
+            panic!();
+        }
 
         // generally useful to retrieve the first event from this
         // extension. event response_type will be set on this
@@ -48,34 +48,35 @@ fn main() {
         // note that key strokes are given directly by
         // the XCB_KEY_PRESS event from xproto, not by xkb
         {
-            let map_parts =
-                XCB_XKB_MAP_PART_KEY_TYPES |
-                XCB_XKB_MAP_PART_KEY_SYMS |
-                XCB_XKB_MAP_PART_MODIFIER_MAP |
-                XCB_XKB_MAP_PART_EXPLICIT_COMPONENTS |
-                XCB_XKB_MAP_PART_KEY_ACTIONS |
-                XCB_XKB_MAP_PART_KEY_BEHAVIORS |
-                XCB_XKB_MAP_PART_VIRTUAL_MODS |
-                XCB_XKB_MAP_PART_VIRTUAL_MOD_MAP;
+            let map_parts = XCB_XKB_MAP_PART_KEY_TYPES
+                | XCB_XKB_MAP_PART_KEY_SYMS
+                | XCB_XKB_MAP_PART_MODIFIER_MAP
+                | XCB_XKB_MAP_PART_EXPLICIT_COMPONENTS
+                | XCB_XKB_MAP_PART_KEY_ACTIONS
+                | XCB_XKB_MAP_PART_KEY_BEHAVIORS
+                | XCB_XKB_MAP_PART_VIRTUAL_MODS
+                | XCB_XKB_MAP_PART_VIRTUAL_MOD_MAP;
 
-            let events =
-                XCB_XKB_EVENT_TYPE_NEW_KEYBOARD_NOTIFY |
-                XCB_XKB_EVENT_TYPE_MAP_NOTIFY |
-                XCB_XKB_EVENT_TYPE_STATE_NOTIFY;
+            let events = XCB_XKB_EVENT_TYPE_NEW_KEYBOARD_NOTIFY
+                | XCB_XKB_EVENT_TYPE_MAP_NOTIFY
+                | XCB_XKB_EVENT_TYPE_STATE_NOTIFY;
 
-            let cookie = xcb_xkb_select_events_checked(c,
+            let cookie = xcb_xkb_select_events_checked(
+                c,
                 XCB_XKB_ID_USE_CORE_KBD as u16,
-                events as u16, 0, events as u16,
-                map_parts as u16, map_parts as u16, null());
+                events as u16,
+                0,
+                events as u16,
+                map_parts as u16,
+                map_parts as u16,
+                null(),
+            );
             let err = xcb_request_check(c, cookie);
             if !err.is_null() {
                 panic!("failed to select notify events from xcb xkb");
             }
         }
 
-
         // proceed with create_window and event loop...
-
     }
 }
-

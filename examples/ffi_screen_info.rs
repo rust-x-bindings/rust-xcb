@@ -1,16 +1,17 @@
-
-extern crate xcb;
 extern crate libc;
+extern crate xcb;
 
-use xcb::ffi::*;
-use std::ptr;
 use libc::c_int;
+use std::ptr;
+use xcb::ffi::*;
 
 fn main() {
     unsafe {
         let mut screen_num: c_int = 0;
         let c = xcb_connect(ptr::null(), &mut screen_num);
-        if c.is_null() { panic!(); }
+        if c.is_null() {
+            panic!();
+        }
 
         let setup = xcb_get_setup(c);
         let mut iter = xcb_setup_roots_iterator(setup);
@@ -28,4 +29,3 @@ fn main() {
         xcb_disconnect(c);
     }
 }
-

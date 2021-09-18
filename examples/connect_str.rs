@@ -1,4 +1,3 @@
-
 extern crate xcb;
 
 fn main() {

@@ -1,6 +1,6 @@
 extern crate xcb;
 
-use std::iter::{Iterator};
+use std::iter::Iterator;
 
 fn main() {
     let (conn, screen_num) = xcb::Connection::connect(None).unwrap();
