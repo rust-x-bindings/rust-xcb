@@ -946,16 +946,16 @@ fn capitalize(s: &str) -> String {
     }
 }
 
-/// insert a underscore before each uppercase/digit preceded or follwed by lowercase
-/// do not apply to the first char
-/// assert!(tit_split("SomeString") == "Some_String")
-/// assert!(tit_split("WINDOW") == "WINDOW")
-fn tit_split(name: &str) -> String {
+// insert a underscore before each uppercase/digit preceded or follwed by lowercase
+// do not apply to the first char
+fn tit_split<H>(name: &str, is_high: H) -> String
+where
+    H: Fn(char) -> bool,
+{
     if name.len() <= 1 {
         return name.into();
     }
 
-    let is_high = |c: char| c.is_ascii_uppercase() || c.is_ascii_digit();
     let is_low = |c: char| c.is_ascii_lowercase();
 
     let mut res = String::new();
@@ -982,14 +982,8 @@ fn tit_split(name: &str) -> String {
     res
 }
 
-/// capitalize each substring beginning by uppercase
-/// said otherwise: every upper preceded by another upper and followed by a upper is turned to lower
-/// assert!(tit_cap("SomeString") == "SomeString")
-/// assert!(tit_cap("WINDOW") == "Window")
-/// assert!(tit_cap("CONTEXT_TAG") == "ContextTag")
-/// assert!(tit_cap("value_list") == "ValueList")
-/// assert!(tit_cap("GContext") == "GContext")
-/// assert!(tit_cap("IDChoice") == "IdChoice")
+// capitalize each substring beginning by uppercase
+// said otherwise: every upper preceded by another upper and followed by a upper is turned to lower
 fn tit_cap(name: &str) -> String {
     if name.len() <= 1 {
         return name.into();
@@ -1025,14 +1019,45 @@ fn tit_cap(name: &str) -> String {
     res
 }
 
-fn symbol(name: &str) -> &str {
-    match name {
-        "type" => "type_",
-        "str" => "str_",
-        "match" => "match_",
-        "new" => "new_",
-        s => s,
+#[test]
+fn test_tit_cap() {
+    assert!(tit_cap("SomeString") == "SomeString");
+    assert!(tit_cap("WINDOW") == "Window");
+    assert!(tit_cap("CONTEXT_TAG") == "ContextTag");
+    assert!(tit_cap("value_list") == "ValueList");
+    assert!(tit_cap("GContext") == "GContext");
+    assert!(tit_cap("IDChoice") == "IdChoice");
+}
+
+fn tit_dig_split(name: &str) -> String {
+    tit_split(name, |c| c.is_ascii_uppercase() || c.is_ascii_digit())
+}
+
+#[test]
+fn test_tit_dig_split() {
+    assert_eq!(tit_dig_split("SomeString"), "Some_String");
+    assert_eq!(tit_dig_split("WINDOW"), "WINDOW");
+}
+
+const KEYWORDS: &[&str] = &["type", "str", "match", "new", "await"];
+
+fn field_name(name: &str) -> String {
+    let mut res = tit_split(name, |c| c.is_ascii_uppercase()).to_ascii_lowercase();
+
+    if KEYWORDS.contains(&res.as_str()) {
+        res.push('_');
     }
+
+    res
+}
+
+#[test]
+fn test_field_name() {
+    assert_eq!(field_name("groupMaps"), "group_maps");
+    assert_eq!(field_name("num_FB_configs"), "num_fb_configs");
+    assert_eq!(field_name("sizeID"), "size_id");
+    assert_eq!(field_name("new"), "new_");
+    assert_eq!(field_name("byte1"), "byte1");
 }
 
 fn extract_module(typ: &str) -> (Option<&str>, &str) {

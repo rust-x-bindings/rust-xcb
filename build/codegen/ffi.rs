@@ -2,7 +2,7 @@ use std::io::{self, Write};
 
 use super::{
     capitalize, emit_doc_field, emit_doc_text, enum_suffix_exception, expr_fixed_length,
-    extract_module, has_fd, make_field, symbol, tit_split, CodeGen,
+    extract_module, field_name, has_fd, make_field, tit_dig_split, CodeGen,
 };
 use crate::ast::{Doc, Expr, Reply, Struct, StructField, SwitchCase};
 
@@ -13,7 +13,7 @@ impl CodeGen {
 
     /// FFI type name
     pub fn ffi_decl_type_name(&self, typ: &str) -> String {
-        let typ = tit_split(typ).to_ascii_lowercase();
+        let typ = tit_dig_split(typ).to_ascii_lowercase();
         format!("xcb_{}{}_t", &self.xcb_mod_prefix, typ)
     }
 
@@ -37,7 +37,7 @@ impl CodeGen {
                 let (module, typ) = extract_module(&typ);
 
                 if let Some(module) = module {
-                    let typ = tit_split(typ).to_ascii_lowercase();
+                    let typ = tit_dig_split(typ).to_ascii_lowercase();
                     let mod_prefix = if module == "xproto" {
                         String::new()
                     } else {
@@ -59,7 +59,7 @@ impl CodeGen {
 
                         pref
                     };
-                    let typ = tit_split(typ).to_ascii_lowercase();
+                    let typ = tit_dig_split(typ).to_ascii_lowercase();
                     format!("xcb_{}{}_t", mod_prefix, typ)
                 }
             }
@@ -84,7 +84,7 @@ impl CodeGen {
         format!(
             "xcb_{}{}_iterator_t",
             &mod_prefix,
-            tit_split(typ).to_ascii_lowercase()
+            tit_dig_split(typ).to_ascii_lowercase()
         )
     }
 
@@ -123,7 +123,7 @@ impl CodeGen {
     }
 
     pub fn ffi_enum_type_name(&mut self, typ: &str) -> String {
-        let base = tit_split(typ).to_ascii_lowercase();
+        let base = tit_dig_split(typ).to_ascii_lowercase();
         let try1 = format!("xcb_{}{}_t", self.xcb_mod_prefix, base);
         if self.has_ffi_type(&try1) || enum_suffix_exception(&self.xcb_mod, &typ) {
             format!("xcb_{}{}_enum_t", self.xcb_mod_prefix, base)
@@ -462,7 +462,7 @@ impl CodeGen {
                     let typ = self.ffi_use_type_name(&typ);
                     let out = &mut self.ffi;
                     emit_doc_field(out, &doc, &name)?;
-                    writeln!(out, "    pub {}: {}{},", symbol(&name), ptr, typ,)?;
+                    writeln!(out, "    pub {}: {}{},", field_name(&name), ptr, typ,)?;
                     written_fields.push(name.as_str());
                 }
                 StructField::Pad(name, sz) => {
@@ -489,13 +489,13 @@ impl CodeGen {
                         let out = &mut self.ffi;
 
                         emit_doc_field(out, &doc, &name)?;
-                        writeln!(out, "    pub {}: [{}; {}],", symbol(&name), &typ, sz)?;
+                        writeln!(out, "    pub {}: [{}; {}],", field_name(&name), &typ, sz)?;
                     } else if is_switch {
                         let typ = self.ffi_use_type_name(&typ);
                         let out = &mut self.ffi;
 
                         emit_doc_field(out, &doc, &name)?;
-                        writeln!(out, "    pub {}: *mut {},", symbol(&name), &typ)?;
+                        writeln!(out, "    pub {}: *mut {},", field_name(&name), &typ)?;
                     }
                 }
                 StructField::ValueParam {
@@ -509,18 +509,18 @@ impl CodeGen {
                     let mask_typ = self.ffi_use_type_name(&mask_typ);
                     let out = &mut self.ffi;
                     emit_doc_field(out, &doc, &mask_name)?;
-                    writeln!(out, "    pub {}: {},", symbol(&mask_name), mask_typ,)?;
+                    writeln!(out, "    pub {}: {},", field_name(&mask_name), mask_typ,)?;
                 }
                 StructField::Switch(name, _, _) => {
                     if let Some(case_req_name) = case_req_name {
                         let typ = switch_struct_name(&self.xcb_mod_prefix, case_req_name, name);
                         let out = &mut self.ffi;
-                        writeln!(out, "    pub {}: {},", symbol(name), typ)?;
+                        writeln!(out, "    pub {}: {},", field_name(name), typ)?;
                     }
                 }
                 StructField::NamedCase(name, typ) => {
                     let out = &mut self.ffi;
-                    writeln!(out, "    pub {}: {},", symbol(&name), typ)?;
+                    writeln!(out, "    pub {}: {},", field_name(&name), typ)?;
                 }
                 _ => {}
             }
@@ -637,12 +637,12 @@ impl CodeGen {
             match f {
                 StructField::Field { name, typ, .. } => {
                     written_fields.push(name);
-                    let name = symbol(&name);
+                    let name = field_name(&name);
                     let typ = self.ffi_use_type_name(&typ);
                     writeln!(&mut self.ffi_buf, "        {}: {},", &name, &typ)?;
                 }
                 StructField::Fd(name) => {
-                    let name = symbol(&name);
+                    let name = field_name(&name);
                     writeln!(&mut self.ffi_buf, "        {}: i32,", &name)?;
                 }
                 StructField::ValueParam {
@@ -651,31 +651,31 @@ impl CodeGen {
                     list_name,
                 } => {
                     let mask_typ = self.ffi_use_type_name(&mask_typ);
-                    let list_name = symbol(list_name);
+                    let list_name = field_name(list_name);
 
                     let out = &mut self.ffi_buf;
                     if !written_fields.contains(&mask_name) {
-                        let mask_name = symbol(mask_name);
+                        let mask_name = field_name(mask_name);
                         writeln!(out, "        {}: {},", &mask_name, &mask_typ)?;
                     }
                     writeln!(out, "        {}: *const u32,", &list_name)?;
                 }
                 StructField::List { name, typ, .. } => {
-                    let name = symbol(&name);
+                    let name = field_name(&name);
                     let typ = self.ffi_use_type_name(&typ);
                     let out = &mut self.ffi_buf;
                     writeln!(out, "        {}: *const {},", &name, &typ)?;
                 }
                 StructField::ListNoLen { name, typ } => {
                     let len_name = name.clone() + "_len";
-                    let name = symbol(&name);
+                    let name = field_name(&name);
                     let typ = self.ffi_use_type_name(&typ);
                     let out = &mut self.ffi_buf;
                     writeln!(out, "        {}: u32,", &len_name)?;
                     writeln!(out, "        {}: *const {},", &name, &typ)?;
                 }
                 StructField::Switch(name, ..) => {
-                    let name = symbol(&name);
+                    let name = field_name(&name);
                     let typ = switch_struct_name(&self.xcb_mod_prefix, &req_name, &name);
                     writeln!(&mut self.ffi_buf, "        {}: *const {},", &name, &typ)?;
                 }
@@ -772,8 +772,8 @@ pub fn enum_item_name(xcb_mod_prefix: &str, name: &str, item: &str) -> String {
     format!(
         "XCB_{}{}_{}",
         xcb_mod_prefix,
-        tit_split(name),
-        tit_split(item)
+        tit_dig_split(name),
+        tit_dig_split(item)
     )
     .to_ascii_uppercase()
 }
@@ -782,7 +782,7 @@ pub fn iterator_next_fn_name(xcb_mod_prefix: &str, typ: &str) -> String {
     format!(
         "xcb_{}{}_next",
         xcb_mod_prefix,
-        tit_split(typ).to_ascii_lowercase()
+        tit_dig_split(typ).to_ascii_lowercase()
     )
 }
 
@@ -790,7 +790,7 @@ pub fn iterator_end_fn_name(xcb_mod_prefix: &str, typ: &str) -> String {
     format!(
         "xcb_{}{}_end",
         xcb_mod_prefix,
-        tit_split(typ).to_ascii_lowercase()
+        tit_dig_split(typ).to_ascii_lowercase()
     )
 }
 
@@ -802,8 +802,8 @@ pub fn field_list_iterator_acc_fn_name(
     format!(
         "xcb_{}{}_{}",
         &xcb_mod_prefix,
-        tit_split(typ_name).to_ascii_lowercase(),
-        tit_split(field).to_ascii_lowercase()
+        tit_dig_split(typ_name).to_ascii_lowercase(),
+        tit_dig_split(field).to_ascii_lowercase()
     )
 }
 
@@ -815,8 +815,8 @@ pub fn field_list_iterator_len_fn_name(
     format!(
         "xcb_{}{}_{}_length",
         &xcb_mod_prefix,
-        tit_split(typ_name).to_ascii_lowercase(),
-        tit_split(field).to_ascii_lowercase()
+        tit_dig_split(typ_name).to_ascii_lowercase(),
+        tit_dig_split(field).to_ascii_lowercase()
     )
 }
 
@@ -828,8 +828,8 @@ pub fn field_list_iterator_end_fn_name(
     format!(
         "xcb_{}{}_{}_end",
         &xcb_mod_prefix,
-        tit_split(typ_name).to_ascii_lowercase(),
-        tit_split(field).to_ascii_lowercase()
+        tit_dig_split(typ_name).to_ascii_lowercase(),
+        tit_dig_split(field).to_ascii_lowercase()
     )
 }
 
@@ -837,8 +837,8 @@ pub fn field_list_iterator_it_fn_name(xcb_mod_prefix: &str, typ_name: &str, fiel
     format!(
         "xcb_{}{}_{}_iterator",
         &xcb_mod_prefix,
-        tit_split(typ_name).to_ascii_lowercase(),
-        tit_split(field).to_ascii_lowercase()
+        tit_dig_split(typ_name).to_ascii_lowercase(),
+        tit_dig_split(field).to_ascii_lowercase()
     )
 }
 
@@ -846,8 +846,8 @@ pub fn switch_struct_name(xcb_mod_prefix: &str, req_name: &str, switch_name: &st
     format!(
         "xcb_{}{}_{}_t",
         &xcb_mod_prefix,
-        tit_split(req_name).to_ascii_lowercase(),
-        tit_split(switch_name).to_ascii_lowercase()
+        tit_dig_split(req_name).to_ascii_lowercase(),
+        tit_dig_split(switch_name).to_ascii_lowercase()
     )
 }
 
@@ -855,8 +855,8 @@ pub fn switch_accessor_fn(xcb_mod_prefix: &str, req_name: &str, switch_name: &st
     format!(
         "xcb_{}{}_{}",
         &xcb_mod_prefix,
-        tit_split(req_name).to_ascii_lowercase(),
-        tit_split(switch_name).to_ascii_lowercase()
+        tit_dig_split(req_name).to_ascii_lowercase(),
+        tit_dig_split(switch_name).to_ascii_lowercase()
     )
 }
 
@@ -869,9 +869,9 @@ pub fn switch_named_case(
     format!(
         "_xcb_{}{}_{}__{}",
         &xcb_mod_prefix,
-        tit_split(req_name).to_ascii_lowercase(),
-        tit_split(switch_name),
-        tit_split(case_name)
+        tit_dig_split(req_name).to_ascii_lowercase(),
+        tit_dig_split(switch_name),
+        tit_dig_split(case_name)
     )
 }
 
@@ -879,7 +879,7 @@ pub fn request_fn_name(xcb_mod_prefix: &str, req_name: &str) -> String {
     format!(
         "xcb_{}{}",
         &xcb_mod_prefix,
-        tit_split(req_name).to_ascii_lowercase(),
+        tit_dig_split(req_name).to_ascii_lowercase(),
     )
 }
 
@@ -887,7 +887,7 @@ pub fn reply_fn_name(xcb_mod_prefix: &str, req_name: &str) -> String {
     format!(
         "xcb_{}{}_reply",
         &xcb_mod_prefix,
-        tit_split(req_name).to_ascii_lowercase(),
+        tit_dig_split(req_name).to_ascii_lowercase(),
     )
 }
 
@@ -895,7 +895,7 @@ pub fn reply_fds_fn_name(xcb_mod_prefix: &str, req_name: &str) -> String {
     format!(
         "xcb_{}{}_reply_fds",
         &xcb_mod_prefix,
-        tit_split(req_name).to_ascii_lowercase(),
+        tit_dig_split(req_name).to_ascii_lowercase(),
     )
 }
 
@@ -903,7 +903,7 @@ pub fn opcode_name(xcb_mod_prefix: &str, name: &str) -> String {
     format!(
         "XCB_{}{}",
         xcb_mod_prefix.to_ascii_uppercase(),
-        tit_split(&name).to_ascii_uppercase()
+        tit_dig_split(&name).to_ascii_uppercase()
     )
 }
 

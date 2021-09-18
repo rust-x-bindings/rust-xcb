@@ -42,13 +42,14 @@ fn main() {
     let out_dir = env::var("OUT_DIR").unwrap_or("./gen/current".to_string());
     let out_dir = Path::new(&out_dir);
 
-    let rustfmt = env::var("XCB_RUSTFMT").ok().and_then(|var| {
+    let rustfmt = env::var("RXCB_RUSTFMT").ok().and_then(|var| {
         if var == "1" || var == "y" || var == "Y" {
             find_exe("rustfmt")
         } else {
             None
         }
     });
+    let gen_all = env::var("RXCB_GENALL").is_ok();
 
     let mut dep_info = Vec::new();
 
@@ -58,7 +59,7 @@ fn main() {
             _ => {}
         }
 
-        process_xcb_gen(&xml_file, &out_dir, &rustfmt, &mut dep_info).unwrap_or_else(|err| {
+        process_xcb_gen(&xml_file, &out_dir, &rustfmt, gen_all, &mut dep_info).unwrap_or_else(|err| {
             panic!(
                 "Error during processing of {}: {:?}",
                 xml_file.display(),
@@ -103,6 +104,7 @@ fn process_xcb_gen(
     xml_file: &Path,
     out_dir: &Path,
     rustfmt: &Option<PathBuf>,
+    gen_all: bool,
     dep_info: &mut Vec<DepInfo>,
 ) -> Result<()> {
     let xcb_mod = xml_file.file_stem().unwrap();
@@ -113,7 +115,7 @@ fn process_xcb_gen(
         return Ok(());
     }
 
-    if !is_always(&xcb_mod) && !has_feature(&xcb_mod) {
+    if !gen_all && !is_always(&xcb_mod) && !has_feature(&xcb_mod) {
         return Ok(());
     }
 
@@ -179,7 +181,7 @@ fn process_xcb_gen(
             let xml_file = xml_file.with_file_name(&format!("{}.xml", i));
 
             // panic also from here to have the correct xml_file reported
-            process_xcb_gen(&xml_file, out_dir, rustfmt, dep_info).unwrap_or_else(|err| {
+            process_xcb_gen(&xml_file, out_dir, rustfmt, gen_all, dep_info).unwrap_or_else(|err| {
                 panic!(
                     "Error during processing of {}: {:?}",
                     xml_file.display(),
