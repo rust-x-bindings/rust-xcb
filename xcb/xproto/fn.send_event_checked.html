@@ -1,150 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="rustdoc">
-    <meta name="description" content="API documentation for the Rust `send_event_checked` fn in crate `xcb`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang, send_event_checked">
-
-    <title>xcb::xproto::send_event_checked - Rust</title>
-
-    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
-    <link rel="stylesheet" type="text/css" href="../../main.css">
-
-    
-    
-</head>
-<body class="rustdoc">
-    <!--[if lte IE 8]>
-    <div class="warning">
-        This old browser is unsupported and will most likely display funky
-        things.
-    </div>
-    <![endif]-->
-
-    
-
-    <nav class="sidebar">
-        
-        <p class='location'><a href='../index.html'>xcb</a>::<wbr><a href='index.html'>xproto</a></p><script>window.sidebarCurrent = {name: 'send_event_checked', ty: 'fn', relpath: ''};</script><script defer src="sidebar-items.js"></script>
-    </nav>
-
-    <nav class="sub">
-        <form class="search-form js-only">
-            <div class="search-container">
-                <input class="search-input" name="search"
-                       autocomplete="off"
-                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
-                       type="search">
-            </div>
-        </form>
-    </nav>
-
-    <section id='main' class="content fn">
-<h1 class='fqn'><span class='in-band'>Function <a href='../index.html'>xcb</a>::<wbr><a href='index.html'>xproto</a>::<wbr><a class='fn' href=''>send_event_checked</a></span><span class='out-of-band'><span id='render-detail'>
-            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
-                [<span class='inner'>&#x2212;</span>]
-            </a>
-        </span><a id='src-2224' class='srclink' href='../../src/xcb/xproto.rs.html#5665-5685' title='goto source code'>[src]</a></span></h1>
-<pre class='rust fn'>pub fn send_event_checked(c: &amp;<a class='struct' href='../../xcb/base/struct.Connection.html' title='xcb::base::Connection'>Connection</a>, propagate: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>, destination: <a class='type' href='../../xcb/xproto/type.Window.html' title='xcb::xproto::Window'>Window</a>, event_mask: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, event: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='type' href='../../xcb/base/type.VoidCookie.html' title='xcb::base::VoidCookie'>VoidCookie</a></pre><div class='docblock'><p>send an event</p>
-
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="send an event"><meta name="keywords" content="rust, rustlang, rust-lang, send_event_checked"><title>send_event_checked in xcb::xproto - Rust</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc fn"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../xcb/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a><div class="sidebar-elems"><h2 class="location">Other items in<br><a href="../index.html">xcb</a>::<wbr><a href="index.html">xproto</a></h2><div id="sidebar-vars" data-name="send_event_checked" data-ty="fn" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Function <a href="../index.html">xcb</a>::<wbr><a href="index.html">xproto</a>::<wbr><a class="fn" href="#">send_event_checked</a><button id="copy-path" onclick="copy_path(this)" title="copy path"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item import" title="Copy item import to clipboard"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../../src/xcb/home/remi/dev/rust-xcb/target/debug/build/xcb-89d895950dd767d0/out/xproto.rs.html#5456-5478" title="goto source code">[src]</a></span></h1><pre class="rust fn">pub fn send_event_checked&lt;'a, T&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;c: &amp;'a <a class="struct" href="../base/struct.Connection.html" title="struct xcb::base::Connection">Connection</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;propagate: <a class="primitive" href="https://doc.rust-lang.org/1.55.0/std/primitive.bool.html">bool</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;destination: <a class="type" href="type.Window.html" title="type xcb::xproto::Window">Window</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;event_mask: <a class="primitive" href="https://doc.rust-lang.org/1.55.0/std/primitive.u32.html">u32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;event: &amp;<a class="struct" href="../base/struct.Event.html" title="struct xcb::base::Event">Event</a>&lt;T&gt;<br>) -&gt; <a class="type" href="../base/type.VoidCookie.html" title="type xcb::base::VoidCookie">VoidCookie</a>&lt;'a&gt;</pre><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>send an event</p>
 <p>Identifies the <code>destination</code> window, determines which clients should receive
 the specified event and ignores any active grabs.</p>
-
 <p>The <code>event</code> must be one of the core events or an event defined by an extension,
 so that the X server can correctly byte-swap the contents as necessary. The
 contents of <code>event</code> are otherwise unaltered and unchecked except for the
-<code>send_event</code> field which is forced to &#39;true&#39;.</p>
-
+<code>send_event</code> field which is forced to ‘true’.</p>
 <p>parameters:</p>
-
 <ul>
-<li><p><strong>c</strong>:
-  The connection object to the server</p></li>
-<li><p><strong>propagate</strong>:
-  If <code>propagate</code> is true and no clients have selected any event on <code>destination</code>,
-  the destination is replaced with the closest ancestor of <code>destination</code> for
-  which some client has selected a type in <code>event_mask</code> and for which no
-  intervening window has that type in its do-not-propagate-mask. If no such
-  window exists or if the window is an ancestor of the focus window and
-  <code>InputFocus</code> was originally specified as the destination, the event is not sent
-  to any clients. Otherwise, the event is reported to every client selecting on
-  the final destination any of the types specified in <code>event_mask</code>.</p></li>
-<li><p><strong>destination</strong>:
-  The window to send this event to. Every client which selects any event within
-  <code>event_mask</code> on <code>destination</code> will get the event.</p>
-
+<li>
+<p><strong>c</strong>:
+The connection object to the server</p>
+</li>
+<li>
+<p><strong>propagate</strong>:
+If <code>propagate</code> is true and no clients have selected any event on <code>destination</code>,
+the destination is replaced with the closest ancestor of <code>destination</code> for
+which some client has selected a type in <code>event_mask</code> and for which no
+intervening window has that type in its do-not-propagate-mask. If no such
+window exists or if the window is an ancestor of the focus window and
+<code>InputFocus</code> was originally specified as the destination, the event is not sent
+to any clients. Otherwise, the event is reported to every client selecting on
+the final destination any of the types specified in <code>event_mask</code>.</p>
+</li>
+<li>
+<p><strong>destination</strong>:
+The window to send this event to. Every client which selects any event within
+<code>event_mask</code> on <code>destination</code> will get the event.</p>
 <p>The special value <code>XCB_SEND_EVENT_DEST_POINTER_WINDOW</code> refers to the window
-  that contains the mouse pointer.</p>
-
+that contains the mouse pointer.</p>
 <p>The special value <code>XCB_SEND_EVENT_DEST_ITEM_FOCUS</code> refers to the window which
-  has the keyboard focus.</p></li>
-<li><p><strong>event_mask</strong>:
-  Event_mask for determining which clients should receive the specified event.
-  See <code>destination</code> and <code>propagate</code>.</p></li>
-<li><p><strong>event</strong>:
-  The event to send to the specified <code>destination</code>.</p></li>
+has the keyboard focus.</p>
+</li>
+<li>
+<p><strong>event_mask</strong>:
+Event_mask for determining which clients should receive the specified event.
+See <code>destination</code> and <code>propagate</code>.</p>
+</li>
+<li>
+<p><strong>event</strong>:
+The event to send to the specified <code>destination</code>.</p>
+</li>
 </ul>
-</div></section>
-    <section id='search' class="content hidden"></section>
-
-    <section class="footer"></section>
-
-    <aside id="help" class="hidden">
-        <div>
-            <h1 class="hidden">Help</h1>
-
-            <div class="shortcuts">
-                <h2>Keyboard Shortcuts</h2>
-
-                <dl>
-                    <dt>?</dt>
-                    <dd>Show this help dialog</dd>
-                    <dt>S</dt>
-                    <dd>Focus the search field</dd>
-                    <dt>&larrb;</dt>
-                    <dd>Move up in search results</dd>
-                    <dt>&rarrb;</dt>
-                    <dd>Move down in search results</dd>
-                    <dt>&#9166;</dt>
-                    <dd>Go to active search result</dd>
-                </dl>
-            </div>
-
-            <div class="infos">
-                <h2>Search Tricks</h2>
-
-                <p>
-                    Prefix searches with a type followed by a colon (e.g.
-                    <code>fn:</code>) to restrict the search to a given type.
-                </p>
-
-                <p>
-                    Accepted types are: <code>fn</code>, <code>mod</code>,
-                    <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>type</code>, <code>macro</code>,
-                    and <code>const</code>.
-                </p>
-
-                <p>
-                    Search functions by type signature (e.g.
-                    <code>vec -> usize</code> or <code>* -> vec</code>)
-                </p>
-            </div>
-        </div>
-    </aside>
-
-    
-
-    <script>
-        window.rootPath = "../../";
-        window.currentCrate = "xcb";
-        window.playgroundUrl = "";
-    </script>
-    <script src="../../jquery.js"></script>
+</div></details></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="xcb" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
     <script src="../../main.js"></script>
-    
-    <script defer src="../../search-index.js"></script>
-</body>
-</html>
+</body></html>

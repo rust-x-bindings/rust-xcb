@@ -1,346 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="rustdoc">
-    <meta name="description" content="API documentation for the Rust `base` mod in crate `xcb`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang, base">
-
-    <title>xcb::base - Rust</title>
-
-    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
-    <link rel="stylesheet" type="text/css" href="../../main.css">
-
-    
-    
-</head>
-<body class="rustdoc">
-    <!--[if lte IE 8]>
-    <div class="warning">
-        This old browser is unsupported and will most likely display funky
-        things.
-    </div>
-    <![endif]-->
-
-    
-
-    <nav class="sidebar">
-        
-        <p class='location'><a href='../index.html'>xcb</a></p><script>window.sidebarCurrent = {name: 'base', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
-    </nav>
-
-    <nav class="sub">
-        <form class="search-form js-only">
-            <div class="search-container">
-                <input class="search-input" name="search"
-                       autocomplete="off"
-                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
-                       type="search">
-            </div>
-        </form>
-    </nav>
-
-    <section id='main' class="content mod">
-<h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>xcb</a>::<wbr><a class='mod' href=''>base</a></span><span class='out-of-band'><span id='render-detail'>
-            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
-                [<span class='inner'>&#x2212;</span>]
-            </a>
-        </span><a id='src-7' class='srclink' href='../../src/xcb/base.rs.html#33-714' title='goto source code'>[src]</a></span></h1>
-<h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
-<table>
-                    <tr class=' module-item'>
-                        <td><a class='struct' href='struct.Connection.html'
-                               title='xcb::base::Connection'>Connection</a></td>
-                        <td class='docblock short'>
-                             <p>xcb::Connection handles communication with the X server.
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `base` mod in crate `xcb`."><meta name="keywords" content="rust, rustlang, rust-lang, base"><title>xcb::base - Rust</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../xcb/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a><h2 class="location">Module base</h2><div class="sidebar-elems"><div class="block items"><ul><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#constants">Constants</a></li><li><a href="#traits">Traits</a></li><li><a href="#functions">Functions</a></li><li><a href="#types">Type Definitions</a></li></ul></div><div id="sidebar-vars" data-name="base" data-ty="mod" data-relpath="./"></div><script defer src="./sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Module <a href="../index.html">xcb</a>::<wbr><a class="mod" href="#">base</a><button id="copy-path" onclick="copy_path(this)" title="copy path"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item import" title="Copy item import to clipboard"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../../src/xcb/base.rs.html#32-858" title="goto source code">[src]</a></span></h1><h2 id="structs" class="section-header"><a href="#structs">Structs</a></h2>
+<div class="item-table"><div class="item-left module-item"><a class="struct" href="struct.Connection.html" title="xcb::base::Connection struct">Connection</a></div><div class="item-right docblock-short"><p>xcb::Connection handles communication with the X server.
 It wraps an <code>xcb_connection_t</code> object and
 will call <code>xcb_disconnect</code> when the <code>Connection</code> goes out of scope</p>
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='struct' href='struct.Cookie.html'
-                               title='xcb::base::Cookie'>Cookie</a></td>
-                        <td class='docblock short'>
-                             <p>wraps a cookie as returned by a request function.
+</div><div class="item-left module-item"><a class="struct" href="struct.Cookie.html" title="xcb::base::Cookie struct">Cookie</a></div><div class="item-right docblock-short"><p>wraps a cookie as returned by a request function.
 Instantiations of <code>Cookie</code> that are not <code>VoidCookie</code>
 should provide a <code>get_reply</code> method to return a <code>Reply</code></p>
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='struct' href='struct.Error.html'
-                               title='xcb::base::Error'>Error</a></td>
-                        <td class='docblock short'>
-                             <p><code>Error</code> wraps a pointer to <code>xcb_*_error_t</code>
+</div><div class="item-left module-item"><a class="struct" href="struct.Error.html" title="xcb::base::Error struct">Error</a></div><div class="item-right docblock-short"><p><code>Error</code> wraps a pointer to <code>xcb_*_error_t</code>
 this pointer will be freed when the <code>Error</code> goes out of scope</p>
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='struct' href='struct.Event.html'
-                               title='xcb::base::Event'>Event</a></td>
-                        <td class='docblock short'>
-                             <p><code>Event</code> wraps a pointer to <code>xcb_*_event_t</code>
+</div><div class="item-left module-item"><a class="struct" href="struct.Event.html" title="xcb::base::Event struct">Event</a></div><div class="item-right docblock-short"><p><code>Event</code> wraps a pointer to <code>xcb_*_event_t</code>
 this pointer will be freed when the <code>Event</code> goes out of scope</p>
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='struct' href='struct.QueryExtensionData.html'
-                               title='xcb::base::QueryExtensionData'>QueryExtensionData</a></td>
-                        <td class='docblock short'>
-                             
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='struct' href='struct.Reply.html'
-                               title='xcb::base::Reply'>Reply</a></td>
-                        <td class='docblock short'>
-                             <p>Wraps a pointer to a <code>xcb_*_reply_t</code>
+</div><div class="item-left module-item"><a class="struct" href="struct.QueryExtensionData.html" title="xcb::base::QueryExtensionData struct">QueryExtensionData</a></div><div class="item-right docblock-short"></div><div class="item-left module-item"><a class="struct" href="struct.Reply.html" title="xcb::base::Reply struct">Reply</a></div><div class="item-right docblock-short"><p>Wraps a pointer to a <code>xcb_*_reply_t</code>
 the pointer is freed when the <code>Reply</code> goes out of scope</p>
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='struct' href='struct.StructPtr.html'
-                               title='xcb::base::StructPtr'>StructPtr</a></td>
-                        <td class='docblock short'>
-                             <p><code>StructPtr</code> is a wrapper for pointer to struct owned by XCB
+</div><div class="item-left module-item"><a class="struct" href="struct.StructPtr.html" title="xcb::base::StructPtr struct">StructPtr</a></div><div class="item-right docblock-short"><p><code>StructPtr</code> is a wrapper for pointer to struct owned by XCB
 that must not be freed
 it is instead bound to the lifetime of its parent that it borrows immutably</p>
-                        </td>
-                    </tr>
-                </table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
-<table>
-                    <tr class=' module-item'>
-                        <td><a class='enum' href='enum.ConnError.html'
-                               title='xcb::base::ConnError'>ConnError</a></td>
-                        <td class='docblock short'>
-                             <p>Error type that is returned by <code>Connection::has_error</code></p>
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='enum' href='enum.EventQueueOwner.html'
-                               title='xcb::base::EventQueueOwner'>EventQueueOwner</a></td>
-                        <td class='docblock short'>
-                             
-                        </td>
-                    </tr>
-                </table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
-<table>
-                    <tr class=' module-item'>
-                        <td><a class='constant' href='constant.COPY_FROM_PARENT.html'
-                               title='xcb::base::COPY_FROM_PARENT'>COPY_FROM_PARENT</a></td>
-                        <td class='docblock short'>
-                             <p><code>xcb::COPY_FROM_PARENT</code> can be used for many <code>xcb::create_window</code> parameters</p>
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='constant' href='constant.CURRENT_TIME.html'
-                               title='xcb::base::CURRENT_TIME'>CURRENT_TIME</a></td>
-                        <td class='docblock short'>
-                             <p><code>xcb::CURRENT_TIME</code> can be used in most requests that take an <code>xcb::Timestamp</code></p>
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='constant' href='constant.NONE.html'
-                               title='xcb::base::NONE'>NONE</a></td>
-                        <td class='docblock short'>
-                             <p><code>xcb::NONE</code> is the universal null resource or null atom parameter value
+</div></div><h2 id="enums" class="section-header"><a href="#enums">Enums</a></h2>
+<div class="item-table"><div class="item-left module-item"><a class="enum" href="enum.ConnError.html" title="xcb::base::ConnError enum">ConnError</a></div><div class="item-right docblock-short"><p>Error type that is returned by <code>Connection::has_error</code></p>
+</div><div class="item-left module-item"><a class="enum" href="enum.EventQueueOwner.html" title="xcb::base::EventQueueOwner enum">EventQueueOwner</a></div><div class="item-right docblock-short"></div><div class="item-left module-item"><a class="enum" href="enum.ReplyError.html" title="xcb::base::ReplyError enum">ReplyError</a></div><div class="item-right docblock-short"></div></div><h2 id="constants" class="section-header"><a href="#constants">Constants</a></h2>
+<div class="item-table"><div class="item-left module-item"><a class="constant" href="constant.COPY_FROM_PARENT.html" title="xcb::base::COPY_FROM_PARENT constant">COPY_FROM_PARENT</a></div><div class="item-right docblock-short"><p><code>xcb::COPY_FROM_PARENT</code> can be used for many <code>xcb::create_window</code> parameters</p>
+</div><div class="item-left module-item"><a class="constant" href="constant.CURRENT_TIME.html" title="xcb::base::CURRENT_TIME constant">CURRENT_TIME</a></div><div class="item-right docblock-short"><p><code>xcb::CURRENT_TIME</code> can be used in most requests that take an <code>xcb::Timestamp</code></p>
+</div><div class="item-left module-item"><a class="constant" href="constant.NONE.html" title="xcb::base::NONE constant">NONE</a></div><div class="item-right docblock-short"><p><code>xcb::NONE</code> is the universal null resource or null atom parameter value
 for many core X requests</p>
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='constant' href='constant.NO_SYMBOL.html'
-                               title='xcb::base::NO_SYMBOL'>NO_SYMBOL</a></td>
-                        <td class='docblock short'>
-                             <p><code>xcb::NO_SYMBOL</code> fills in unused entries in <code>xcb::Keysym</code> tables</p>
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='constant' href='constant.X_PROTOCOL.html'
-                               title='xcb::base::X_PROTOCOL'>X_PROTOCOL</a></td>
-                        <td class='docblock short'>
-                             <p>Current protocol version</p>
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='constant' href='constant.X_PROTOCOL_REVISION.html'
-                               title='xcb::base::X_PROTOCOL_REVISION'>X_PROTOCOL_REVISION</a></td>
-                        <td class='docblock short'>
-                             <p>Current minor version</p>
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='constant' href='constant.X_TCP_PORT.html'
-                               title='xcb::base::X_TCP_PORT'>X_TCP_PORT</a></td>
-                        <td class='docblock short'>
-                             <p>X_TCP_PORT + display number = server port for TCP transport</p>
-                        </td>
-                    </tr>
-                </table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
-<table>
-                    <tr class=' module-item'>
-                        <td><a class='trait' href='trait.Zero.html'
-                               title='xcb::base::Zero'>Zero</a></td>
-                        <td class='docblock short'>
-                             
-                        </td>
-                    </tr>
-                </table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
-<table>
-                    <tr class=' module-item'>
-                        <td><a class='fn' href='fn.cast_error.html'
-                               title='xcb::base::cast_error'>cast_error</a></td>
-                        <td class='docblock short'>
-                             <p>Casts the generic error to the right error. Assumes that the given
+</div><div class="item-left module-item"><a class="constant" href="constant.NO_SYMBOL.html" title="xcb::base::NO_SYMBOL constant">NO_SYMBOL</a></div><div class="item-right docblock-short"><p><code>xcb::NO_SYMBOL</code> fills in unused entries in <code>xcb::Keysym</code> tables</p>
+</div><div class="item-left module-item"><a class="constant" href="constant.X_PROTOCOL.html" title="xcb::base::X_PROTOCOL constant">X_PROTOCOL</a></div><div class="item-right docblock-short"><p>Current protocol version</p>
+</div><div class="item-left module-item"><a class="constant" href="constant.X_PROTOCOL_REVISION.html" title="xcb::base::X_PROTOCOL_REVISION constant">X_PROTOCOL_REVISION</a></div><div class="item-right docblock-short"><p>Current minor version</p>
+</div><div class="item-left module-item"><a class="constant" href="constant.X_TCP_PORT.html" title="xcb::base::X_TCP_PORT constant">X_TCP_PORT</a></div><div class="item-right docblock-short"><p>X_TCP_PORT + display number = server port for TCP transport</p>
+</div></div><h2 id="traits" class="section-header"><a href="#traits">Traits</a></h2>
+<div class="item-table"><div class="item-left module-item"><a class="trait" href="trait.CookieSeq.html" title="xcb::base::CookieSeq trait">CookieSeq</a></div><div class="item-right docblock-short"></div><div class="item-left module-item"><a class="trait" href="trait.Zero.html" title="xcb::base::Zero trait">Zero</a></div><div class="item-right docblock-short"></div></div><h2 id="functions" class="section-header"><a href="#functions">Functions</a></h2>
+<div class="item-table"><div class="item-left module-item"><a class="fn" href="fn.cast_error.html" title="xcb::base::cast_error fn">cast_error</a><a title="unsafe function" href="#"><sup>⚠</sup></a></div><div class="item-right docblock-short"><p>Casts the generic error to the right error. Assumes that the given
 error is really the correct type.</p>
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='fn' href='fn.cast_event.html'
-                               title='xcb::base::cast_event'>cast_event</a></td>
-                        <td class='docblock short'>
-                             <p>Casts the generic event to the right event. Assumes that the given
+</div><div class="item-left module-item"><a class="fn" href="fn.cast_event.html" title="xcb::base::cast_event fn">cast_event</a><a title="unsafe function" href="#"><sup>⚠</sup></a></div><div class="item-right docblock-short"><p>Casts the generic event to the right event. Assumes that the given
 event is really the correct type.</p>
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='fn' href='fn.pack_bitfield.html'
-                               title='xcb::base::pack_bitfield'>pack_bitfield</a></td>
-                        <td class='docblock short'>
-                             <p>pack bitfields tuples into vector usable for FFI requests
-<code>let values = [ (xcb::CW_EVENT_MASK, xcb::EVENT_MASK_EXPOSURE | xcb::EVENT_MASK_KEY_PRESS), (xcb::CW_BACK_PIXEL, 0xffffffff), ]; let ffi_values = ( xcb::CW_BACK_PIXEL | xcb::CW_EVENT_MASK, [ Oxffffffff, xcb::EVENT_MASK_EXPOSURE | xcb::EVENT_MASK_KEY_PRESS, 0 ] ); assert_eq!(pack_bitfield(&amp;mut values), ffi_values);</code></p>
-                        </td>
-                    </tr>
-                </table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
-<table>
-                    <tr class=' module-item'>
-                        <td><a class='type' href='type.AuthInfo.html'
-                               title='xcb::base::AuthInfo'>AuthInfo</a></td>
-                        <td class='docblock short'>
-                             
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='type' href='type.ConnResult.html'
-                               title='xcb::base::ConnResult'>ConnResult</a></td>
-                        <td class='docblock short'>
-                             
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='type' href='type.Extension.html'
-                               title='xcb::base::Extension'>Extension</a></td>
-                        <td class='docblock short'>
-                             <p>Opaque type used as key for <code>Connection::get_extension_data</code></p>
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='type' href='type.GenericError.html'
-                               title='xcb::base::GenericError'>GenericError</a></td>
-                        <td class='docblock short'>
-                             
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='type' href='type.GenericEvent.html'
-                               title='xcb::base::GenericEvent'>GenericEvent</a></td>
-                        <td class='docblock short'>
-                             
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='type' href='type.GenericReply.html'
-                               title='xcb::base::GenericReply'>GenericReply</a></td>
-                        <td class='docblock short'>
-                             
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='type' href='type.VoidCookie.html'
-                               title='xcb::base::VoidCookie'>VoidCookie</a></td>
-                        <td class='docblock short'>
-                             
-                        </td>
-                    </tr>
-                </table></section>
-    <section id='search' class="content hidden"></section>
-
-    <section class="footer"></section>
-
-    <aside id="help" class="hidden">
-        <div>
-            <h1 class="hidden">Help</h1>
-
-            <div class="shortcuts">
-                <h2>Keyboard Shortcuts</h2>
-
-                <dl>
-                    <dt>?</dt>
-                    <dd>Show this help dialog</dd>
-                    <dt>S</dt>
-                    <dd>Focus the search field</dd>
-                    <dt>&larrb;</dt>
-                    <dd>Move up in search results</dd>
-                    <dt>&rarrb;</dt>
-                    <dd>Move down in search results</dd>
-                    <dt>&#9166;</dt>
-                    <dd>Go to active search result</dd>
-                </dl>
-            </div>
-
-            <div class="infos">
-                <h2>Search Tricks</h2>
-
-                <p>
-                    Prefix searches with a type followed by a colon (e.g.
-                    <code>fn:</code>) to restrict the search to a given type.
-                </p>
-
-                <p>
-                    Accepted types are: <code>fn</code>, <code>mod</code>,
-                    <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>type</code>, <code>macro</code>,
-                    and <code>const</code>.
-                </p>
-
-                <p>
-                    Search functions by type signature (e.g.
-                    <code>vec -> usize</code> or <code>* -> vec</code>)
-                </p>
-            </div>
-        </div>
-    </aside>
-
-    
-
-    <script>
-        window.rootPath = "../../";
-        window.currentCrate = "xcb";
-        window.playgroundUrl = "";
-    </script>
-    <script src="../../jquery.js"></script>
+</div><div class="item-left module-item"><a class="fn" href="fn.pack_bitfield.html" title="xcb::base::pack_bitfield fn">pack_bitfield</a></div><div class="item-right docblock-short"><p>pack bitfields tuples into vector usable for FFI requests</p>
+</div></div><h2 id="types" class="section-header"><a href="#types">Type Definitions</a></h2>
+<div class="item-table"><div class="item-left module-item"><a class="type" href="type.AuthInfo.html" title="xcb::base::AuthInfo type">AuthInfo</a></div><div class="item-right docblock-short"></div><div class="item-left module-item"><a class="type" href="type.ConnResult.html" title="xcb::base::ConnResult type">ConnResult</a></div><div class="item-right docblock-short"></div><div class="item-left module-item"><a class="type" href="type.Extension.html" title="xcb::base::Extension type">Extension</a></div><div class="item-right docblock-short"><p>Opaque type used as key for <code>Connection::get_extension_data</code></p>
+</div><div class="item-left module-item"><a class="type" href="type.GenericError.html" title="xcb::base::GenericError type">GenericError</a></div><div class="item-right docblock-short"></div><div class="item-left module-item"><a class="type" href="type.GenericEvent.html" title="xcb::base::GenericEvent type">GenericEvent</a></div><div class="item-right docblock-short"></div><div class="item-left module-item"><a class="type" href="type.GenericReply.html" title="xcb::base::GenericReply type">GenericReply</a></div><div class="item-right docblock-short"></div><div class="item-left module-item"><a class="type" href="type.VoidCookie.html" title="xcb::base::VoidCookie type">VoidCookie</a></div><div class="item-right docblock-short"></div></div></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="xcb" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
     <script src="../../main.js"></script>
-    
-    <script defer src="../../search-index.js"></script>
-</body>
-</html>
+</body></html>
