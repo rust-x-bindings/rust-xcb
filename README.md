@@ -1,11 +1,4 @@
 
-__Maintainance request__
-
-I've been very happy to work on this project, but I don't have the possibility anymore to maintain these bindings to the level the Rust community deserves.
-I can't spend as much time on it as I used to, and I'm not using neither Rust nor XCB anymore, so I clearly can't improve
-the bindings with the latest Rust features.
-Person with motivation and good knowledge of Rust and XCB may contact me per email.
-
 # Rust XCB
 
 [![Build Status](https://travis-ci.org/rtbo/rust-xcb.svg?branch=master)](https://travis-ci.org/rtbo/rust-xcb)
@@ -17,7 +10,7 @@ Rust-XCB is only intended as an interface to XCB, so provides nothing above and 
 
 ```toml
 [dependencies]
-xcb = "0.9"
+xcb = "0.10"
 ```
 
 __Documentation__:
