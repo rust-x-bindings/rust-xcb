@@ -144,14 +144,6 @@ impl CodeGen {
         }
 
         let out = &mut self.ffi;
-        // Adding a comment only to fit the python generated code and pass initial tests
-        writeln!(
-            out,
-            "// Generated automatically from {}.xml by rs_client.py version 0.9.0.",
-            &self.xcb_mod
-        )?;
-        writeln!(out, "// Do not edit!")?;
-        writeln!(out)?;
         writeln!(out, "use ffi::base::*;")?;
         for imp in imports.iter() {
             writeln!(out, "use ffi::{}::*;", imp)?;
@@ -185,13 +177,6 @@ impl CodeGen {
         }
 
         let out = &mut self.rs;
-        writeln!(
-            out,
-            "// Generated automatically from {}.xml by rs_client.py version 0.9.0.",
-            &self.xcb_mod
-        )?;
-        writeln!(out, "// Do not edit!")?;
-        writeln!(out)?;
         writeln!(out, "use base;")?;
         for imp in imports.iter() {
             writeln!(out, "use {};", imp)?;
