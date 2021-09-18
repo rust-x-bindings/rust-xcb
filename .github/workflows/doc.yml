@@ -1,0 +1,42 @@
+on:
+  push:
+    branches:
+      - main
+
+name: Build documentation
+
+jobs:
+  build:
+    name: Build all extensions and examples
+    runs-on: ubuntu-latest
+    env:
+      RXCB_RUSTFMT: 1
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+
+      - name: Install stable toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+          components: rustfmt
+
+      - name: Setup OpenGL
+        run: sudo apt-get install libx11-xcb-dev libgl1-mesa-dev
+
+      - name: Install XCB
+        run: scripts/install_xcb.sh
+
+      - name: Run cargo doc
+        uses: actions-rs/cargo@v1
+        with:
+          command: doc
+          args: --features debug_all
+
+      - name: Push on gh-pages
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: gh-pages
+          folder: target/doc
