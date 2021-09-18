@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `&#x2F;home&#x2F;remi&#x2F;.cargo&#x2F;registry&#x2F;src&#x2F;github.com-1ecc6299db9ec823&#x2F;x11-2.18.1&#x2F;src&#x2F;xlib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>xlib.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../x11/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `&#x2F;home&#x2F;runner&#x2F;.cargo&#x2F;registry&#x2F;src&#x2F;github.com-1ecc6299db9ec823&#x2F;x11-2.18.2&#x2F;src&#x2F;xlib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>xlib.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../x11/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -3402,6 +3402,84 @@
 <span id="3402">3402</span>
 <span id="3403">3403</span>
 <span id="3404">3404</span>
+<span id="3405">3405</span>
+<span id="3406">3406</span>
+<span id="3407">3407</span>
+<span id="3408">3408</span>
+<span id="3409">3409</span>
+<span id="3410">3410</span>
+<span id="3411">3411</span>
+<span id="3412">3412</span>
+<span id="3413">3413</span>
+<span id="3414">3414</span>
+<span id="3415">3415</span>
+<span id="3416">3416</span>
+<span id="3417">3417</span>
+<span id="3418">3418</span>
+<span id="3419">3419</span>
+<span id="3420">3420</span>
+<span id="3421">3421</span>
+<span id="3422">3422</span>
+<span id="3423">3423</span>
+<span id="3424">3424</span>
+<span id="3425">3425</span>
+<span id="3426">3426</span>
+<span id="3427">3427</span>
+<span id="3428">3428</span>
+<span id="3429">3429</span>
+<span id="3430">3430</span>
+<span id="3431">3431</span>
+<span id="3432">3432</span>
+<span id="3433">3433</span>
+<span id="3434">3434</span>
+<span id="3435">3435</span>
+<span id="3436">3436</span>
+<span id="3437">3437</span>
+<span id="3438">3438</span>
+<span id="3439">3439</span>
+<span id="3440">3440</span>
+<span id="3441">3441</span>
+<span id="3442">3442</span>
+<span id="3443">3443</span>
+<span id="3444">3444</span>
+<span id="3445">3445</span>
+<span id="3446">3446</span>
+<span id="3447">3447</span>
+<span id="3448">3448</span>
+<span id="3449">3449</span>
+<span id="3450">3450</span>
+<span id="3451">3451</span>
+<span id="3452">3452</span>
+<span id="3453">3453</span>
+<span id="3454">3454</span>
+<span id="3455">3455</span>
+<span id="3456">3456</span>
+<span id="3457">3457</span>
+<span id="3458">3458</span>
+<span id="3459">3459</span>
+<span id="3460">3460</span>
+<span id="3461">3461</span>
+<span id="3462">3462</span>
+<span id="3463">3463</span>
+<span id="3464">3464</span>
+<span id="3465">3465</span>
+<span id="3466">3466</span>
+<span id="3467">3467</span>
+<span id="3468">3468</span>
+<span id="3469">3469</span>
+<span id="3470">3470</span>
+<span id="3471">3471</span>
+<span id="3472">3472</span>
+<span id="3473">3473</span>
+<span id="3474">3474</span>
+<span id="3475">3475</span>
+<span id="3476">3476</span>
+<span id="3477">3477</span>
+<span id="3478">3478</span>
+<span id="3479">3479</span>
+<span id="3480">3480</span>
+<span id="3481">3481</span>
+<span id="3482">3482</span>
 </pre><pre class="rust">
 <span class="comment">// x11-rs: Rust bindings for X11 libraries</span>
 <span class="comment">// The X11 libraries are available under the MIT license.</span>
@@ -4290,7 +4368,6 @@
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span> <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XkbSection</span>;
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span> <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XkbServerMapRec</span>;
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span> <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XkbShape</span>;
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span> <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XkbStateRec</span>;
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span> <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XkbSymInterpretRec</span>;
 
 <span class="comment">// union placeholders</span>
@@ -5090,6 +5167,25 @@
   <span class="kw">pub</span> <span class="ident">num_keys</span>: <span class="ident">c_uchar</span>,
   <span class="kw">pub</span> <span class="ident">num_key_aliases</span>: <span class="ident">c_uchar</span>,
   <span class="kw">pub</span> <span class="ident">num_rg</span>: <span class="ident">c_ushort</span>,
+}
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XkbStateRec</span> {
+  <span class="kw">pub</span> <span class="ident">group</span>: <span class="ident">c_uchar</span>,
+  <span class="kw">pub</span> <span class="ident">locked_group</span>: <span class="ident">c_uchar</span>,
+  <span class="kw">pub</span> <span class="ident">base_group</span>: <span class="ident">c_ushort</span>,
+  <span class="kw">pub</span> <span class="ident">latched_group</span>: <span class="ident">c_ushort</span>,
+  <span class="kw">pub</span> <span class="ident">mods</span>: <span class="ident">c_uchar</span>,
+  <span class="kw">pub</span> <span class="ident">base_mods</span>: <span class="ident">c_uchar</span>,
+  <span class="kw">pub</span> <span class="ident">latched_mods</span>: <span class="ident">c_uchar</span>,
+  <span class="kw">pub</span> <span class="ident">locked_mods</span>: <span class="ident">c_uchar</span>,
+  <span class="kw">pub</span> <span class="ident">compat_state</span>: <span class="ident">c_uchar</span>,
+  <span class="kw">pub</span> <span class="ident">grab_mods</span>: <span class="ident">c_uchar</span>,
+  <span class="kw">pub</span> <span class="ident">compat_grab_mods</span>: <span class="ident">c_uchar</span>,
+  <span class="kw">pub</span> <span class="ident">lookup_mods</span>: <span class="ident">c_uchar</span>,
+  <span class="kw">pub</span> <span class="ident">compat_lookup_mods</span>: <span class="ident">c_uchar</span>,
+  <span class="kw">pub</span> <span class="ident">ptr_buttons</span>: <span class="ident">c_ushort</span>,
 }
 
 
@@ -5894,6 +5990,66 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIMCallback</span> {
     <span class="kw">pub</span> <span class="ident">client_data</span>: <span class="ident">XPointer</span>,
     <span class="kw">pub</span> <span class="ident">callback</span>: <span class="ident">XIMProc</span>,
+}
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">XIMCaretDirection</span> {
+    <span class="ident">XIMForwardChar</span>,
+    <span class="ident">XIMBackwardChar</span>,
+    <span class="ident">XIMForwardWord</span>,
+    <span class="ident">XIMBackwardWord</span>,
+    <span class="ident">XIMCaretUp</span>,
+    <span class="ident">XIMCaretDown</span>,
+    <span class="ident">XIMNextLine</span>,
+    <span class="ident">XIMPreviousLine</span>,
+    <span class="ident">XIMLineStart</span>,
+    <span class="ident">XIMLineEnd</span>,
+    <span class="ident">XIMAbsolutePosition</span>,
+    <span class="ident">XIMDontChange</span>,
+}
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">XIMCaretStyle</span> {
+    <span class="ident">XIMIsInvisible</span>,
+    <span class="ident">XIMIsPrimary</span>,
+    <span class="ident">XIMIsSecondary</span>,
+}
+
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XIMFeedback</span> <span class="op">=</span> <span class="ident">c_ulong</span>;
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIMPreeditDrawCallbackStruct</span> {
+    <span class="kw">pub</span> <span class="ident">caret</span>: <span class="ident">c_int</span>,
+    <span class="kw">pub</span> <span class="ident">chg_first</span>: <span class="ident">c_int</span>,
+    <span class="kw">pub</span> <span class="ident">chg_length</span>: <span class="ident">c_int</span>,
+    <span class="kw">pub</span> <span class="ident">text</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">XIMText</span>,
+}
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIMPreeditCaretCallbackStruct</span> {
+    <span class="kw">pub</span> <span class="ident">position</span>: <span class="ident">c_int</span>,
+    <span class="kw">pub</span> <span class="ident">direction</span>: <span class="ident">XIMCaretDirection</span>,
+    <span class="kw">pub</span> <span class="ident">style</span>: <span class="ident">XIMCaretStyle</span>,
+}
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
+<span class="kw">pub</span> <span class="ident">union</span> <span class="ident">XIMTextString</span> {
+  <span class="kw">pub</span> <span class="ident">multi_byte</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>,
+  <span class="kw">pub</span> <span class="ident">wide_char</span>: <span class="ident">wchar_t</span>,
+}
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIMText</span> {
+  <span class="kw">pub</span> <span class="ident">length</span>: <span class="ident">c_ushort</span>,
+  <span class="kw">pub</span> <span class="ident">feedback</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">XIMFeedback</span>,
+  <span class="kw">pub</span> <span class="ident">encoding_is_wchar</span>: <span class="ident">Bool</span>,
+  <span class="kw">pub</span> <span class="ident">string</span>: <span class="ident">XIMTextString</span>,
 }
 
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
