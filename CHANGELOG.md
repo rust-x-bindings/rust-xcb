@@ -1,3 +1,8 @@
+ * unpublished
+ rtbo
+    - build script is written in Rust. Python no longer needed. (#56, #62, #89, #99)
+    - fixed some member names (e.g. size_i_d => size_id / num__f_b_configs => num_fb_configs)
+
  * 0.9.0
  Lompik - 12/11/2019
     - get_reply consume cookies and impl Drop on Cookies (#57)
@@ -6,7 +11,7 @@
  Lompik - 12/11/2019
     - fix use after free when connecting with display names (#65)
 
- * 0.8.2 
+ * 0.8.2
  chrisduerr/myfreeweb/yamnikov-oleg/eigebong/rtbo - 13/02/2018
     - move to log 0.4 (#55)
     - improve missing python error in build.rs (#49)
