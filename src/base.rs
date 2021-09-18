@@ -29,32 +29,30 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-
-use xproto::*;
 use ffi::base::*;
-use ffi::xproto::*;
-#[cfg(feature="xlib_xcb")]
+#[cfg(feature = "xlib_xcb")]
 use ffi::xlib_xcb::*;
+use ffi::xproto::*;
+use xproto::*;
 
-#[cfg(feature="xlib_xcb")]
+#[cfg(feature = "xlib_xcb")]
 use x11::xlib;
 
-use libc::{self, c_int, c_char, c_void};
+use libc::{self, c_char, c_int, c_void};
 use std::option::Option;
 
 use std::error;
 use std::fmt;
+use std::marker::PhantomData;
 use std::mem;
 use std::ptr::{null, null_mut};
-use std::marker::PhantomData;
 // std::num::Zero is unstable in rustc 1.5 => remove the Zero defined
 // hereunder as soon as Zero gets stabilized (or replaced by something else)
 //use std::num::Zero;
 use std::cmp::Ordering;
-use std::ops::{BitAnd, BitOr};
 use std::ffi::CString;
+use std::ops::{BitAnd, BitOr};
 use std::os::unix::io::{AsRawFd, RawFd};
-
 
 /// Current protocol version
 pub const X_PROTOCOL: u32 = 11;
@@ -63,10 +61,8 @@ pub const X_PROTOCOL_REVISION: u32 = 0;
 /// X_TCP_PORT + display number = server port for TCP transport
 pub const X_TCP_PORT: u32 = 6000;
 
-
 /// Opaque type used as key for `Connection::get_extension_data`
 pub type Extension = xcb_extension_t;
-
 
 /// `xcb::NONE` is the universal null resource or null atom parameter value
 /// for many core X requests
@@ -78,28 +74,24 @@ pub const CURRENT_TIME: u32 = 0;
 /// `xcb::NO_SYMBOL` fills in unused entries in `xcb::Keysym` tables
 pub const NO_SYMBOL: u32 = 0;
 
-
-
-
 /// `StructPtr` is a wrapper for pointer to struct owned by XCB
 /// that must not be freed
 /// it is instead bound to the lifetime of its parent that it borrows immutably
 pub struct StructPtr<'a, T: 'a> {
     pub ptr: *mut T,
-    phantom: PhantomData<&'a T>
+    phantom: PhantomData<&'a T>,
 }
-
 
 /// `Event` wraps a pointer to `xcb_*_event_t`
 /// this pointer will be freed when the `Event` goes out of scope
 pub struct Event<T> {
-   pub ptr: *mut T
+    pub ptr: *mut T,
 }
 
 impl<T> Event<T> {
     pub fn response_type(&self) -> u8 {
         unsafe {
-            let gev : *mut xcb_generic_event_t = mem::transmute(self.ptr);
+            let gev: *mut xcb_generic_event_t = mem::transmute(self.ptr);
             (*gev).response_type
         }
     }
@@ -113,37 +105,34 @@ impl<T> Drop for Event<T> {
     }
 }
 
-#[cfg(feature="thread")]
+#[cfg(feature = "thread")]
 unsafe impl<T> Send for Event<T> {}
-#[cfg(feature="thread")]
+#[cfg(feature = "thread")]
 unsafe impl<T> Sync for Event<T> {}
 
 /// Casts the generic event to the right event. Assumes that the given
 /// event is really the correct type.
-pub unsafe fn cast_event<'r, T>(event : &'r GenericEvent) -> &'r T {
+pub unsafe fn cast_event<'r, T>(event: &'r GenericEvent) -> &'r T {
     mem::transmute(event)
 }
-
-
-
 
 /// `Error` wraps a pointer to `xcb_*_error_t`
 /// this pointer will be freed when the `Error` goes out of scope
 #[derive(Debug)]
 pub struct Error<T> {
-    pub ptr: *mut T
+    pub ptr: *mut T,
 }
 
 impl<T> Error<T> {
     pub fn response_type(&self) -> u8 {
         unsafe {
-            let ger : *mut xcb_generic_error_t = mem::transmute(self.ptr);
+            let ger: *mut xcb_generic_error_t = mem::transmute(self.ptr);
             (*ger).response_type
         }
     }
     pub fn error_code(&self) -> u8 {
         unsafe {
-            let ger : *mut xcb_generic_error_t = mem::transmute(self.ptr);
+            let ger: *mut xcb_generic_error_t = mem::transmute(self.ptr);
             (*ger).error_code
         }
     }
@@ -159,9 +148,12 @@ impl<T> Drop for Error<T> {
 
 impl<T> fmt::Display for Error<T> {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "xcb::Error {{ response_type: {}, error_code: {} }}",
-               self.response_type(),
-               self.error_code())
+        write!(
+            f,
+            "xcb::Error {{ response_type: {}, error_code: {} }}",
+            self.response_type(),
+            self.error_code()
+        )
     }
 }
 impl<T: fmt::Debug> error::Error for Error<T> {
@@ -176,12 +168,9 @@ unsafe impl<T> Sync for Error<T> {}
 
 /// Casts the generic error to the right error. Assumes that the given
 /// error is really the correct type.
-pub unsafe fn cast_error<'r, T>(error : &'r GenericError) -> &'r T {
+pub unsafe fn cast_error<'r, T>(error: &'r GenericError) -> &'r T {
     mem::transmute(error)
 }
-
-
-
 
 /// wraps a cookie as returned by a request function.
 /// Instantiations of `Cookie` that are not `VoidCookie`
@@ -203,9 +192,11 @@ impl<'a> VoidCookie<'a> {
             let conn_is_ok = self.conn.has_error().is_ok();
             std::mem::forget(self);
             match (err.is_null(), conn_is_ok) {
-		(true, true) => Ok(()),
-		(true, false) => Err(ReplyError::NullResponse),
-		(false, _) => Err(ReplyError::GenericError { 0:GenericError{ ptr: err} }),
+                (true, true) => Ok(()),
+                (true, false) => Err(ReplyError::NullResponse),
+                (false, _) => Err(ReplyError::GenericError {
+                    0: GenericError { ptr: err },
+                }),
             }
         }
     }
@@ -227,17 +218,15 @@ impl<'a, T: Copy + CookieSeq> Drop for Cookie<'a, T> {
     }
 }
 
-#[cfg(feature="thread")]
+#[cfg(feature = "thread")]
 unsafe impl<'a, T: Copy + CookieSeq> Send for Cookie<'a, T> {}
-#[cfg(feature="thread")]
+#[cfg(feature = "thread")]
 unsafe impl<'a, T: Copy + CookieSeq> Sync for Cookie<'a, T> {}
-
-
 
 /// Wraps a pointer to a `xcb_*_reply_t`
 /// the pointer is freed when the `Reply` goes out of scope
 pub struct Reply<T> {
-    pub ptr: *mut T
+    pub ptr: *mut T,
 }
 
 impl<T> Drop for Reply<T> {
@@ -248,11 +237,10 @@ impl<T> Drop for Reply<T> {
     }
 }
 
-#[cfg(feature="thread")]
+#[cfg(feature = "thread")]
 unsafe impl<T> Send for Reply<T> {}
-#[cfg(feature="thread")]
+#[cfg(feature = "thread")]
 unsafe impl<T> Sync for Reply<T> {}
-
 
 pub type GenericEvent = Event<xcb_generic_event_t>;
 pub type GenericError = Error<xcb_generic_error_t>;
@@ -261,16 +249,22 @@ pub type GenericReply = Reply<xcb_generic_reply_t>;
 #[derive(Debug)]
 pub enum ReplyError {
     NullResponse,
-    GenericError(GenericError)
+    GenericError(GenericError),
 }
-
 
 impl std::fmt::Display for ReplyError {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> Result<(), std::fmt::Error> {
         write!(f, "xcb::ReplyError: ")?;
         match self {
-            Self::NullResponse => { write!(f, "Unexpected null pointer(check pending errors on connection)")}
-            Self::GenericError(g) => {write!(f, "{}", g)}
+            Self::NullResponse => {
+                write!(
+                    f,
+                    "Unexpected null pointer(check pending errors on connection)"
+                )
+            }
+            Self::GenericError(g) => {
+                write!(f, "{}", g)
+            }
         }
     }
 }
@@ -284,14 +278,11 @@ impl std::error::Error for ReplyError {
 //TODO: Implement wrapper functions for constructing auth_info
 pub type AuthInfo = xcb_auth_info_t;
 
-
-
-#[cfg(feature="xlib_xcb")]
+#[cfg(feature = "xlib_xcb")]
 pub enum EventQueueOwner {
     Xcb,
-    Xlib
+    Xlib,
 }
-
 
 /// Error type that is returned by `Connection::has_error`
 #[derive(Debug)]
@@ -319,10 +310,16 @@ impl ConnError {
             ConnError::Connection => "Connection error, possible I/O error",
             ConnError::ClosedExtNotSupported => "Connection closed, X extension not supported",
             ConnError::ClosedMemInsufficient => "Connection closed, insufficient memory",
-            ConnError::ClosedReqLenExceed => "Connection closed, exceeded request length that server accepts.",
+            ConnError::ClosedReqLenExceed => {
+                "Connection closed, exceeded request length that server accepts."
+            }
             ConnError::ClosedParseErr => "Connection closed, error during parsing display string",
-            ConnError::ClosedInvalidScreen => "Connection closed, the server does not have a screen matching the display",
-            ConnError::ClosedFdPassingFailed => "Connection closed, file-descriptor passing operation failed",
+            ConnError::ClosedInvalidScreen => {
+                "Connection closed, the server does not have a screen matching the display"
+            }
+            ConnError::ClosedFdPassingFailed => {
+                "Connection closed, file-descriptor passing operation failed"
+            }
         }
     }
 }
@@ -341,32 +338,27 @@ impl error::Error for ConnError {
 
 pub type ConnResult<T> = Result<T, ConnError>;
 
-
 /// xcb::Connection handles communication with the X server.
 /// It wraps an `xcb_connection_t` object and
 /// will call `xcb_disconnect` when the `Connection` goes out of scope
 pub struct Connection {
-    c:   *mut xcb_connection_t,
-    #[cfg(feature="xlib_xcb")]
+    c: *mut xcb_connection_t,
+    #[cfg(feature = "xlib_xcb")]
     dpy: *mut xlib::Display,
 }
 
-#[cfg(feature="thread")]
+#[cfg(feature = "thread")]
 unsafe impl Send for Connection {}
-#[cfg(feature="thread")]
+#[cfg(feature = "thread")]
 unsafe impl Sync for Connection {}
 
-
 impl Connection {
-
     /// Forces any buffered output to be written to the server. Blocks
     /// until the write is complete.
     ///
     /// Return `true` on success, `false` otherwise.
     pub fn flush(&self) -> bool {
-        unsafe {
-            xcb_flush(self.c) > 0
-        }
+        unsafe { xcb_flush(self.c) > 0 }
     }
 
     /// Returns the maximum request length that this server accepts.
@@ -381,9 +373,7 @@ impl Connection {
     /// theoretical maximum lengths roughly 256kB without BIG-REQUESTS and
     /// 16GB with.
     pub fn get_maximum_request_length(&self) -> u32 {
-        unsafe {
-            xcb_get_maximum_request_length(self.c)
-        }
+        unsafe { xcb_get_maximum_request_length(self.c) }
     }
 
     /// Prefetch the maximum request length without blocking.
@@ -475,7 +465,6 @@ impl Connection {
     /// See the X protocol specification for more details.
     pub fn get_setup(&self) -> Setup {
         unsafe {
-
             let setup = xcb_get_setup(self.c);
             if setup.is_null() {
                 panic!("NULL setup on connection")
@@ -494,25 +483,19 @@ impl Connection {
     pub fn has_error(&self) -> ConnResult<()> {
         unsafe {
             match xcb_connection_has_error(self.c) {
-                0 => { Ok(()) },
-                XCB_CONN_ERROR => { Err(ConnError::Connection) },
-                XCB_CONN_CLOSED_EXT_NOTSUPPORTED =>
-                        { Err(ConnError::ClosedExtNotSupported) },
-                XCB_CONN_CLOSED_MEM_INSUFFICIENT =>
-                        { Err(ConnError::ClosedMemInsufficient) },
-                XCB_CONN_CLOSED_REQ_LEN_EXCEED =>
-                        { Err(ConnError::ClosedReqLenExceed) },
-                XCB_CONN_CLOSED_PARSE_ERR =>
-                        { Err(ConnError::ClosedParseErr) },
-                XCB_CONN_CLOSED_INVALID_SCREEN =>
-                        { Err(ConnError::ClosedInvalidScreen) },
-                XCB_CONN_CLOSED_FDPASSING_FAILED =>
-                        { Err(ConnError::ClosedFdPassingFailed) },
+                0 => Ok(()),
+                XCB_CONN_ERROR => Err(ConnError::Connection),
+                XCB_CONN_CLOSED_EXT_NOTSUPPORTED => Err(ConnError::ClosedExtNotSupported),
+                XCB_CONN_CLOSED_MEM_INSUFFICIENT => Err(ConnError::ClosedMemInsufficient),
+                XCB_CONN_CLOSED_REQ_LEN_EXCEED => Err(ConnError::ClosedReqLenExceed),
+                XCB_CONN_CLOSED_PARSE_ERR => Err(ConnError::ClosedParseErr),
+                XCB_CONN_CLOSED_INVALID_SCREEN => Err(ConnError::ClosedInvalidScreen),
+                XCB_CONN_CLOSED_FDPASSING_FAILED => Err(ConnError::ClosedFdPassingFailed),
                 _ => {
                     warn!("XCB: unexpected error code from xcb_connection_has_error");
                     warn!("XCB: Default to ConnError::Connection");
                     Err(ConnError::Connection)
-                },
+                }
             }
         }
     }
@@ -522,9 +505,7 @@ impl Connection {
     /// Allocates an XID for a new object. Typically used just prior to
     /// various object creation functions, such as `xcb::create_window`.
     pub fn generate_id(&self) -> u32 {
-        unsafe {
-            xcb_generate_id(self.c)
-        }
+        unsafe { xcb_generate_id(self.c) }
     }
 
     /// Returns the inner ffi `xcb_connection_t` pointer
@@ -540,7 +521,7 @@ impl Connection {
     }
 
     /// Returns the inner ffi `xlib::Display` pointer.
-    #[cfg(feature="xlib_xcb")]
+    #[cfg(feature = "xlib_xcb")]
     pub fn get_raw_dpy(&self) -> *mut xlib::Display {
         self.dpy
     }
@@ -566,29 +547,35 @@ impl Connection {
     /// xcb_query_extension to retrieve extension information from the
     /// server, and may block until extension data is received from the
     /// server.
-    pub fn get_extension_data<'a>(&'a self, ext: &mut Extension)
-            -> Option<QueryExtensionData<'a>> {
+    pub fn get_extension_data<'a>(&'a self, ext: &mut Extension) -> Option<QueryExtensionData<'a>> {
         unsafe {
             let ptr = xcb_get_extension_data(self.c, ext);
-            if !ptr.is_null() { Some(QueryExtensionData { ptr: ptr, _marker: PhantomData }) }
-            else { None }
+            if !ptr.is_null() {
+                Some(QueryExtensionData {
+                    ptr: ptr,
+                    _marker: PhantomData,
+                })
+            } else {
+                None
+            }
         }
     }
 
     /// Sets the owner of the event queue in the case if the connection is opened
     /// with the XLib interface. the default owner is XLib.
-    #[cfg(feature="xlib_xcb")]
+    #[cfg(feature = "xlib_xcb")]
     pub fn set_event_queue_owner(&self, owner: EventQueueOwner) {
         debug_assert!(!self.dpy.is_null());
         unsafe {
-            XSetEventQueueOwner(self.dpy, match owner {
-                EventQueueOwner::Xcb => XCBOwnsEventQueue,
-                EventQueueOwner::Xlib => XlibOwnsEventQueue
-            });
+            XSetEventQueueOwner(
+                self.dpy,
+                match owner {
+                    EventQueueOwner::Xcb => XCBOwnsEventQueue,
+                    EventQueueOwner::Xlib => XlibOwnsEventQueue,
+                },
+            );
         }
     }
-
-
 
     /// Connects to the X server.
     /// `displayname:` The name of the display.
@@ -601,21 +588,14 @@ impl Connection {
     /// Err(ConnError) in case of error. If no screen is preferred, the second
     /// member of the tuple is set to 0.
     pub fn connect(displayname: Option<&str>) -> ConnResult<(Connection, i32)> {
-        let mut screen_num : c_int = 0;
+        let mut screen_num: c_int = 0;
         let displayname = displayname.map(|s| CString::new(s).unwrap());
         unsafe {
             let cconn = if let Some(display) = displayname {
-                xcb_connect(
-                    display.as_ptr(),
-                    &mut screen_num
-                )
+                xcb_connect(display.as_ptr(), &mut screen_num)
             } else {
-                xcb_connect(
-                null(),
-                &mut screen_num
-               )
+                xcb_connect(null(), &mut screen_num)
             };
-
 
             // xcb doc says that a valid object is always returned
             // so we simply assert without handling this in the return
@@ -623,9 +603,7 @@ impl Connection {
 
             let conn = Self::from_raw_conn(cconn);
 
-            conn.has_error().map(|_| {
-                (conn, screen_num as i32)
-            })
+            conn.has_error().map(|_| (conn, screen_num as i32))
         }
     }
 
@@ -633,34 +611,33 @@ impl Connection {
     /// The event queue owner defaults to XLib
     /// One would need to open an XCB connection with Xlib in order to use
     /// OpenGL.
-    #[cfg(feature="xlib_xcb")]
+    #[cfg(feature = "xlib_xcb")]
     pub fn connect_with_xlib_display() -> ConnResult<(Connection, i32)> {
         unsafe {
             let dpy = xlib::XOpenDisplay(null());
             let cconn = XGetXCBConnection(dpy);
-            assert!(!dpy.is_null() && !cconn.is_null(),
-                "XLib could not connect to the X server");
+            assert!(
+                !dpy.is_null() && !cconn.is_null(),
+                "XLib could not connect to the X server"
+            );
 
             let conn = Connection { c: cconn, dpy: dpy };
 
-            conn.has_error().map(|_| {
-                (conn, xlib::XDefaultScreen(dpy) as i32)
-            })
+            conn.has_error()
+                .map(|_| (conn, xlib::XDefaultScreen(dpy) as i32))
         }
     }
 
     /// wraps a `xlib::Display` and get an XCB connection from an exisiting object
     /// `xlib::XCloseDisplay` will be called when the returned object is dropped
-    #[cfg(feature="xlib_xcb")]
+    #[cfg(feature = "xlib_xcb")]
     pub unsafe fn new_from_xlib_display(dpy: *mut xlib::Display) -> Connection {
         assert!(!dpy.is_null(), "attempt connect with null display");
         Connection {
             c: XGetXCBConnection(dpy),
-            dpy: dpy
+            dpy: dpy,
         }
     }
-
-
 
     /// Connects to the X server, using an authorization information.
     /// display: The name of the display.
@@ -671,22 +648,24 @@ impl Connection {
     /// Connects to the X server specified by displayname, using the
     /// authorization auth.
     /// The second member of the returned tuple is the preferred screen, or 0
-    pub fn connect_with_auth_info(displayname: Option<&str>, auth_info: &AuthInfo)
-    -> ConnResult<(Connection, i32)> {
+    pub fn connect_with_auth_info(
+        displayname: Option<&str>,
+        auth_info: &AuthInfo,
+    ) -> ConnResult<(Connection, i32)> {
         unsafe {
-            let mut screen_num : c_int = 0;
+            let mut screen_num: c_int = 0;
             let displayname = displayname.map(|s| CString::new(s).unwrap());
             let cconn = if let Some(display) = displayname {
                 xcb_connect_to_display_with_auth_info(
                     display.as_ptr(),
                     mem::transmute(auth_info),
-                    &mut screen_num
+                    &mut screen_num,
                 )
             } else {
                 xcb_connect_to_display_with_auth_info(
                     null(),
                     mem::transmute(auth_info),
-                    &mut screen_num
+                    &mut screen_num,
                 )
             };
 
@@ -696,9 +675,7 @@ impl Connection {
 
             let conn = Self::from_raw_conn(cconn);
 
-            conn.has_error().map(|_| {
-                (conn, screen_num as i32)
-            })
+            conn.has_error().map(|_| (conn, screen_num as i32))
         }
     }
 
@@ -706,14 +683,12 @@ impl Connection {
     pub unsafe fn from_raw_conn(conn: *mut xcb_connection_t) -> Connection {
         assert!(!conn.is_null());
 
-        #[cfg(not(feature="xlib_xcb"))]
-        return Connection {
-            c:  conn,
-        };
+        #[cfg(not(feature = "xlib_xcb"))]
+        return Connection { c: conn };
 
-        #[cfg(feature="xlib_xcb")]
+        #[cfg(feature = "xlib_xcb")]
         return Connection {
-            c:  conn,
+            c: conn,
             dpy: null_mut(),
         };
     }
@@ -721,31 +696,27 @@ impl Connection {
 
 impl AsRawFd for Connection {
     fn as_raw_fd(&self) -> RawFd {
-        unsafe {
-            xcb_get_file_descriptor(self.c)
-        }
+        unsafe { xcb_get_file_descriptor(self.c) }
     }
 }
 
 impl Drop for Connection {
     fn drop(&mut self) {
-        #[cfg(not(feature="xlib_xcb"))]
+        #[cfg(not(feature = "xlib_xcb"))]
         unsafe {
             xcb_disconnect(self.c);
         }
 
-        #[cfg(feature="xlib_xcb")]
+        #[cfg(feature = "xlib_xcb")]
         unsafe {
             if self.dpy.is_null() {
                 xcb_disconnect(self.c);
-            }
-            else {
+            } else {
                 xlib::XCloseDisplay(self.dpy);
             }
         }
     }
 }
-
 
 // Mimics xproto::QueryExtensionReply, but without the Drop trait.
 // Used for Connection::get_extension_data whose returned value
@@ -758,44 +729,83 @@ pub struct QueryExtensionData<'a> {
 
 impl<'a> QueryExtensionData<'a> {
     pub fn present(&self) -> bool {
-        unsafe {
-            (*self.ptr).present != 0
-        }
+        unsafe { (*self.ptr).present != 0 }
     }
     pub fn major_opcode(&self) -> u8 {
-        unsafe {
-            (*self.ptr).major_opcode
-        }
+        unsafe { (*self.ptr).major_opcode }
     }
     pub fn first_event(&self) -> u8 {
-        unsafe {
-            (*self.ptr).first_event
-        }
+        unsafe { (*self.ptr).first_event }
     }
     pub fn first_error(&self) -> u8 {
-        unsafe {
-            (*self.ptr).first_error
-        }
+        unsafe { (*self.ptr).first_error }
     }
 }
-
 
 pub trait Zero {
     fn zero() -> Self;
 }
 
-impl Zero for u8    { fn zero() -> u8    {0} }
-impl Zero for u16   { fn zero() -> u16   {0} }
-impl Zero for u32   { fn zero() -> u32   {0} }
-impl Zero for u64   { fn zero() -> u64   {0} }
-impl Zero for usize { fn zero() -> usize {0} }
-impl Zero for i8    { fn zero() -> i8    {0} }
-impl Zero for i16   { fn zero() -> i16   {0} }
-impl Zero for i32   { fn zero() -> i32   {0} }
-impl Zero for i64   { fn zero() -> i64   {0} }
-impl Zero for isize { fn zero() -> isize {0} }
-impl Zero for f32   { fn zero() -> f32   {0f32} }
-impl Zero for f64   { fn zero() -> f64   {0f64} }
+impl Zero for u8 {
+    fn zero() -> u8 {
+        0
+    }
+}
+impl Zero for u16 {
+    fn zero() -> u16 {
+        0
+    }
+}
+impl Zero for u32 {
+    fn zero() -> u32 {
+        0
+    }
+}
+impl Zero for u64 {
+    fn zero() -> u64 {
+        0
+    }
+}
+impl Zero for usize {
+    fn zero() -> usize {
+        0
+    }
+}
+impl Zero for i8 {
+    fn zero() -> i8 {
+        0
+    }
+}
+impl Zero for i16 {
+    fn zero() -> i16 {
+        0
+    }
+}
+impl Zero for i32 {
+    fn zero() -> i32 {
+        0
+    }
+}
+impl Zero for i64 {
+    fn zero() -> i64 {
+        0
+    }
+}
+impl Zero for isize {
+    fn zero() -> isize {
+        0
+    }
+}
+impl Zero for f32 {
+    fn zero() -> f32 {
+        0f32
+    }
+}
+impl Zero for f64 {
+    fn zero() -> f64 {
+        0f64
+    }
+}
 
 /// pack bitfields tuples into vector usable for FFI requests
 /// ```
@@ -814,19 +824,19 @@ impl Zero for f64   { fn zero() -> f64   {0f64} }
 ///     assert_eq!(pack_bitfield(&mut values), ffi_values);
 /// ```
 
-pub fn pack_bitfield<T, L>(bf : &mut Vec<(T,L)>) -> (T, Vec<L>)
-    where T: Ord + Zero + Copy + BitAnd<Output=T> + BitOr<Output=T>,
-          L: Copy {
-	bf.sort_by(|a,b| {
+pub fn pack_bitfield<T, L>(bf: &mut Vec<(T, L)>) -> (T, Vec<L>)
+where
+    T: Ord + Zero + Copy + BitAnd<Output = T> + BitOr<Output = T>,
+    L: Copy,
+{
+    bf.sort_by(|a, b| {
         let &(a, _) = a;
         let &(b, _) = b;
         if a < b {
             Ordering::Less
-        }
-        else if a > b {
+        } else if a > b {
             Ordering::Greater
-        }
-        else {
+        } else {
             Ordering::Equal
         }
     });
@@ -839,7 +849,7 @@ pub fn pack_bitfield<T, L>(bf : &mut Vec<(T,L)>) -> (T, Vec<L>)
         if mask & f > T::zero() {
             continue;
         } else {
-            mask = mask|f;
+            mask = mask | f;
             list.push(v);
         }
     }

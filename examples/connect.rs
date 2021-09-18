@@ -1,4 +1,3 @@
-
 extern crate xcb;
 
 fn main() {
@@ -8,4 +7,3 @@ fn main() {
         println!("Could not connect to X!");
     }
 }
-

@@ -72,7 +72,7 @@
 //! X protocol extensions are activated with cargo features
 
 extern crate libc;
-#[cfg(feature="xlib_xcb")]
+#[cfg(feature = "xlib_xcb")]
 extern crate x11;
 
 #[macro_use]
@@ -118,7 +118,7 @@ pub mod dri3 {
     include!(concat!(env!("OUT_DIR"), "/dri3.rs"));
 }
 
-#[cfg(feature = "ge")]
+#[cfg(feature = "genericevent")]
 pub mod genericevent {
     include!(concat!(env!("OUT_DIR"), "/genericevent.rs"));
 }
@@ -128,7 +128,7 @@ pub mod glx {
     include!(concat!(env!("OUT_DIR"), "/glx.rs"));
 }
 
-#[cfg(feature = "xinput")]
+#[cfg(feature = "input")]
 pub mod input {
     include!(concat!(env!("OUT_DIR"), "/input.rs"));
 }
@@ -163,7 +163,7 @@ pub mod screensaver {
     include!(concat!(env!("OUT_DIR"), "/screensaver.rs"));
 }
 
-#[cfg(feature = "xselinux")]
+#[cfg(feature = "selinux")]
 pub mod selinux {
     include!(concat!(env!("OUT_DIR"), "/selinux.rs"));
 }
@@ -183,12 +183,12 @@ pub mod sync {
     include!(concat!(env!("OUT_DIR"), "/sync.rs"));
 }
 
-#[cfg(feature = "xtest")]
+#[cfg(feature = "test")]
 pub mod test {
     include!(concat!(env!("OUT_DIR"), "/test.rs"));
 }
 
-#[cfg(feature = "xprint")]
+#[cfg(feature = "x_print")]
 pub mod x_print {
     include!(concat!(env!("OUT_DIR"), "/x_print.rs"));
 }
@@ -233,8 +233,7 @@ pub mod xv {
     include!(concat!(env!("OUT_DIR"), "/xv.rs"));
 }
 
-pub mod ffi
-{
+pub mod ffi {
     #![allow(non_camel_case_types)]
     #![allow(improper_ctypes)]
 
@@ -251,7 +250,6 @@ pub mod ffi
 
     pub use ffi::base::*;
     pub use ffi::xproto::*;
-
 
     #[cfg(feature = "xlib_xcb")]
     pub mod xlib_xcb;
@@ -281,7 +279,7 @@ pub mod ffi
         include!(concat!(env!("OUT_DIR"), "/ffi/dri3.rs"));
     }
 
-    #[cfg(feature = "ge")]
+    #[cfg(feature = "genericevent")]
     pub mod genericevent {
         include!(concat!(env!("OUT_DIR"), "/ffi/genericevent.rs"));
     }
@@ -291,7 +289,7 @@ pub mod ffi
         include!(concat!(env!("OUT_DIR"), "/ffi/glx.rs"));
     }
 
-    #[cfg(feature = "xinput")]
+    #[cfg(feature = "input")]
     pub mod input {
         include!(concat!(env!("OUT_DIR"), "/ffi/input.rs"));
     }
@@ -326,7 +324,7 @@ pub mod ffi
         include!(concat!(env!("OUT_DIR"), "/ffi/screensaver.rs"));
     }
 
-    #[cfg(feature = "xselinux")]
+    #[cfg(feature = "selinux")]
     pub mod selinux {
         include!(concat!(env!("OUT_DIR"), "/ffi/selinux.rs"));
     }
@@ -346,12 +344,12 @@ pub mod ffi
         include!(concat!(env!("OUT_DIR"), "/ffi/sync.rs"));
     }
 
-    #[cfg(feature = "xtest")]
+    #[cfg(feature = "test")]
     pub mod test {
         include!(concat!(env!("OUT_DIR"), "/ffi/test.rs"));
     }
 
-    #[cfg(feature = "xprint")]
+    #[cfg(feature = "x_print")]
     pub mod x_print {
         include!(concat!(env!("OUT_DIR"), "/ffi/x_print.rs"));
     }

@@ -1,4 +1,3 @@
-
 extern crate xcb;
 
 use xcb::randr;
@@ -9,7 +8,20 @@ fn main() {
     let screen = setup.roots().nth(screen_num as usize).unwrap();
     let window_dummy = conn.generate_id();
 
-    xcb::create_window(&conn, 0, window_dummy, screen.root(), 0, 0, 1, 1, 0, 0, 0, &[]);
+    xcb::create_window(
+        &conn,
+        0,
+        window_dummy,
+        screen.root(),
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        &[],
+    );
 
     conn.flush();
 
@@ -18,10 +30,16 @@ fn main() {
     let sizes = reply.sizes();
 
     for (i, size) in sizes.enumerate() {
-        if i != 0 { println!(""); }
-        println!("size of screen {}:", i+1);
-        println!("   {} x {} ({}mm x {}mm)", size.width(), size.height(),
-                size.mwidth(), size.mheight());
+        if i != 0 {
+            println!("");
+        }
+        println!("size of screen {}:", i + 1);
+        println!(
+            "   {} x {} ({}mm x {}mm)",
+            size.width(),
+            size.height(),
+            size.mwidth(),
+            size.mheight()
+        );
     }
 }
-

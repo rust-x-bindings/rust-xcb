@@ -1,0 +1,83 @@
+on: [push, pull_request]
+
+name: Continuous Integration
+
+jobs:
+  check:
+    name: Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+
+      - name: Install stable toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+
+      - name: Run cargo check
+        uses: actions-rs/cargo@v1
+        with:
+          command: check
+
+  build:
+    name: Build all extensions and examples
+    runs-on: ubuntu-latest
+    env:
+      RXCB_RUSTFMT: 1
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+
+      - name: Install stable toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+
+      - name: Setup OpenGL
+        run: sudo apt-get install libx11-xcb-dev libgl1-mesa-dev
+
+      - name: Install XCB
+        run: scripts/install_xcb.sh
+
+      - name: Run cargo build
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --features debug_all
+
+      - name: Test examples build
+        run: scripts/test_examples.sh
+
+  lints:
+    name: Lints
+    runs-on: ubuntu-latest
+    env:
+      RXCB_RUSTFMT: 1
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+
+      - name: Install stable toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+          components: rustfmt, clippy
+
+      - name: Run cargo fmt
+        uses: actions-rs/cargo@v1
+        with:
+          command: fmt
+          args: --all -- --check
+
+      # - name: Run cargo clippy
+      #   uses: actions-rs/cargo@v1
+      #   with:
+      #     command: clippy
+      #     args: -- -D warnings

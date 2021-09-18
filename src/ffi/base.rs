@@ -29,10 +29,9 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-use ffi::xproto::{xcb_setup_t, xcb_query_extension_reply_t};
+use ffi::xproto::{xcb_query_extension_reply_t, xcb_setup_t};
 
-use libc::{c_int, c_uint, c_void, c_char};
-
+use libc::{c_char, c_int, c_uint, c_void};
 
 // Pre-defined constants
 
@@ -52,7 +51,6 @@ pub const XCB_CONN_CLOSED_INVALID_SCREEN: c_int = 6;
 /// Connection closed because some FD passing operation failed
 pub const XCB_CONN_CLOSED_FDPASSING_FAILED: c_int = 7;
 
-
 /// XCB connection structure
 /// An opaque structure that contain all data that XCB needs to communicate
 /// with an X server.
@@ -63,14 +61,12 @@ pub enum xcb_extension_t {}
 
 pub enum xcb_special_event_t {}
 
-
-
 /// Generic iterator
 #[repr(C)]
 pub struct xcb_generic_iterator_t {
-    pub data:  *mut c_void,
-    pub rem:   c_int,
-    pub index: c_int
+    pub data: *mut c_void,
+    pub rem: c_int,
+    pub index: c_int,
 }
 
 /// Generic reply
@@ -78,9 +74,9 @@ pub struct xcb_generic_iterator_t {
 #[repr(C)]
 pub struct xcb_generic_reply_t {
     pub response_type: u8,
-    pad0:              u8,
-    pub sequence:      u16,
-    pub length:        u32
+    pad0: u8,
+    pub sequence: u16,
+    pub length: u32,
 }
 
 /// Generic event
@@ -88,13 +84,15 @@ pub struct xcb_generic_reply_t {
 #[repr(C)]
 pub struct xcb_generic_event_t {
     pub response_type: u8,
-    pub pad0:          u8,
-    pub sequence:      u16,
-    pub pad:           [u32; 7],
-    pub full_sequence: u32
+    pub pad0: u8,
+    pub sequence: u16,
+    pub pad: [u32; 7],
+    pub full_sequence: u32,
 }
 impl Clone for xcb_generic_event_t {
-    fn clone(&self) -> xcb_generic_event_t { *self }
+    fn clone(&self) -> xcb_generic_event_t {
+        *self
+    }
 }
 
 /// GE event
@@ -109,34 +107,38 @@ impl Clone for xcb_generic_event_t {
 #[repr(C)]
 pub struct xcb_ge_event_t {
     pub response_type: u8,
-    pad0:              u8,
-    pub sequence:      u16,
-    pub length:        u32,
-    pub event_type:    u16,
-    pad1:              u16,
-    pad:               [u32; 5],
-    pub full_sequence: u32
+    pad0: u8,
+    pub sequence: u16,
+    pub length: u32,
+    pub event_type: u16,
+    pad1: u16,
+    pad: [u32; 5],
+    pub full_sequence: u32,
 }
 impl Clone for xcb_ge_event_t {
-    fn clone(&self) -> xcb_ge_event_t { *self }
+    fn clone(&self) -> xcb_ge_event_t {
+        *self
+    }
 }
 
 /// Generic error
 #[derive(Copy, Debug)]
 #[repr(C)]
 pub struct xcb_generic_error_t {
-    pub response_type:  u8,
-    pub error_code:     u8,
-    pub sequence:       u16,
-    pub resource_id:    u32,
-    pub minor_code:     u16,
-    pub major_code:     u8,
-    pad0:               u8,
-    pad:                [u32; 5],
-    pub full_sequence:  u32
+    pub response_type: u8,
+    pub error_code: u8,
+    pub sequence: u16,
+    pub resource_id: u32,
+    pub minor_code: u16,
+    pub major_code: u8,
+    pad0: u8,
+    pad: [u32; 5],
+    pub full_sequence: u32,
 }
 impl Clone for xcb_generic_error_t {
-    fn clone(&self) -> xcb_generic_error_t { *self }
+    fn clone(&self) -> xcb_generic_error_t {
+        *self
+    }
 }
 
 /// Generic cookie
@@ -144,9 +146,8 @@ impl Clone for xcb_generic_error_t {
 #[repr(C)]
 pub struct xcb_void_cookie_t {
     /// sequence number
-    pub sequence: c_uint
+    pub sequence: c_uint,
 }
-
 
 /// XCB_NONE is the universal null resource or null atom parameter value for many core X requests
 pub const XCB_NONE: u32 = 0;
@@ -157,32 +158,29 @@ pub const XCB_CURRENT_TIME: u32 = 0;
 /// XCB_NO_SYMBOL fills in unused entries in xcb_keysym_t tables
 pub const XCB_NO_SYMBOL: u32 = 0;
 
-
-
 /// Container for authorization information.
 /// A container for authorization information to be sent to the X server
 #[repr(C)]
 pub struct xcb_auth_info_t {
     /// length of the string name (as returned by strlen)
-    pub namelen:    c_int,
+    pub namelen: c_int,
     /// String containing the authentication protocol name,
     /// such as "MIT-MAGIC-COOKIE-1" or "XDM-AUTHORIZATION-1".
-    pub name:       *mut c_char,
+    pub name: *mut c_char,
     /// length of the data member
-    pub datalen:    c_int,
+    pub datalen: c_int,
     /// data interpreted in a protocol specific manner
-    pub data:       *mut c_char
+    pub data: *mut c_char,
 }
 
-#[link(name="xcb")]
-extern {
+#[link(name = "xcb")]
+extern "C" {
 
     /// Forces any buffered output to be written to the server. Blocks
     /// until the write is complete.
     ///
     /// Return > 0 on success, <= 0 otherwise.
-    pub fn xcb_flush(c: *mut xcb_connection_t)
-            -> c_int;
+    pub fn xcb_flush(c: *mut xcb_connection_t) -> c_int;
 
     /// Returns the maximum request length that this server accepts.
     ///
@@ -197,8 +195,7 @@ extern {
     /// 16GB with.
     ///
     /// Returns The maximum request length field.
-    pub fn xcb_get_maximum_request_length(c: *mut xcb_connection_t)
-            -> u32;
+    pub fn xcb_get_maximum_request_length(c: *mut xcb_connection_t) -> u32;
 
     /// Prefetch the maximum request length without blocking.
     ///
@@ -221,8 +218,7 @@ extern {
     /// Returns the next event or error from the server, or returns null in
     /// the event of an I/O error. Blocks until either an event or error
     /// arrive, or an I/O error occurs.
-    pub fn xcb_wait_for_event(c: *mut xcb_connection_t)
-            -> *mut xcb_generic_event_t;
+    pub fn xcb_wait_for_event(c: *mut xcb_connection_t) -> *mut xcb_generic_event_t;
 
     /// Returns the next event or error from the server.
     ///
@@ -231,8 +227,7 @@ extern {
     /// might be because an I/O error like connection close occurred while
     /// attempting to read the next event, in which case the connection is
     /// shut down when this function returns.
-    pub fn xcb_poll_for_event(c: *mut xcb_connection_t)
-            -> *mut xcb_generic_event_t;
+    pub fn xcb_poll_for_event(c: *mut xcb_connection_t) -> *mut xcb_generic_event_t;
 
     /// Returns the next event without reading from the connection.
     ///
@@ -244,29 +239,30 @@ extern {
     /// interesting events have already been read from the connection. For
     /// example, callers might use xcb_wait_for_reply and be interested
     /// only of events that preceded a specific reply.
-    pub fn xcb_poll_for_queued_event(c: *mut xcb_connection_t)
-            -> *mut xcb_generic_event_t;
+    pub fn xcb_poll_for_queued_event(c: *mut xcb_connection_t) -> *mut xcb_generic_event_t;
 
     /// Returns the next event from a special queue
-    pub fn xcb_poll_for_special_event(c: *mut xcb_connection_t,
-                                      se: *mut xcb_special_event_t)
-            -> *mut xcb_generic_event_t;
+    pub fn xcb_poll_for_special_event(
+        c: *mut xcb_connection_t,
+        se: *mut xcb_special_event_t,
+    ) -> *mut xcb_generic_event_t;
 
     /// Returns the next event from a special queue, blocking until one arrives
-    pub fn xcb_wait_for_special_event(c: *mut xcb_connection_t,
-                                      se: *mut xcb_special_event_t)
-            -> *mut xcb_generic_event_t;
+    pub fn xcb_wait_for_special_event(
+        c: *mut xcb_connection_t,
+        se: *mut xcb_special_event_t,
+    ) -> *mut xcb_generic_event_t;
 
     /// Listen for a special event
-    pub fn xcb_register_for_special_xge(c: *mut xcb_connection_t,
-                                        ext: *mut xcb_extension_t,
-                                        eid: u32,
-                                        stamp: *mut u32)
-            -> *mut xcb_special_event_t;
+    pub fn xcb_register_for_special_xge(
+        c: *mut xcb_connection_t,
+        ext: *mut xcb_extension_t,
+        eid: u32,
+        stamp: *mut u32,
+    ) -> *mut xcb_special_event_t;
 
     /// Stop listening for a special event
-    pub fn xcb_unregister_for_special_event(c: *mut xcb_connection_t,
-                                            se: *mut xcb_special_event_t);
+    pub fn xcb_unregister_for_special_event(c: *mut xcb_connection_t, se: *mut xcb_special_event_t);
 
     /// Return the error for a request, or NULL if none can ever arrive.
     ///
@@ -279,9 +275,10 @@ extern {
     /// Note that this function will perform a sync if needed to ensure that the
     /// sequence number will advance beyond that provided in cookie; this is a
     /// convenience to avoid races in determining whether the sync is needed.
-    pub fn xcb_request_check(c: *mut xcb_connection_t,
-                             cookie: xcb_void_cookie_t)
-            -> *mut xcb_generic_error_t;
+    pub fn xcb_request_check(
+        c: *mut xcb_connection_t,
+        cookie: xcb_void_cookie_t,
+    ) -> *mut xcb_generic_error_t;
 
     /// Discards the reply for a request.
     ///
@@ -295,8 +292,7 @@ extern {
     ///
     /// Note that the sequence really does have to come from an xcb cookie;
     /// this function is not designed to operate on socket-handoff replies.
-    pub fn xcb_discard_reply(c: *mut xcb_connection_t,
-                             sequence: c_uint);
+    pub fn xcb_discard_reply(c: *mut xcb_connection_t, sequence: c_uint);
 
     /// Discards the reply for a request, given by a 64bit sequence number
     ///
@@ -316,8 +312,7 @@ extern {
     /// Unlike its xcb_discard_reply() counterpart, the given sequence number is not
     /// automatically "widened" to 64-bit.
     ///
-    pub fn xcb_discard_reply64(c: *mut xcb_connection_t,
-                               sequence: u64);
+    pub fn xcb_discard_reply64(c: *mut xcb_connection_t, sequence: u64);
 
     /// Caches reply information from QueryExtension requests.
     ///
@@ -332,9 +327,10 @@ extern {
     /// itself.
     ///
     /// Returns A pointer to the xcb_query_extension_reply_t for the extension.
-    pub fn xcb_get_extension_data(c: *mut xcb_connection_t,
-                                  ext: *mut xcb_extension_t)
-            -> *const xcb_query_extension_reply_t;
+    pub fn xcb_get_extension_data(
+        c: *mut xcb_connection_t,
+        ext: *mut xcb_extension_t,
+    ) -> *const xcb_query_extension_reply_t;
 
     /// Prefetch of extension data into the extension cache
     ///
@@ -343,8 +339,7 @@ extern {
     /// xcb_query_extension, but will not block waiting for the
     /// reply. xcb_get_extension_data will return the prefetched data after
     /// possibly blocking while it is retrieved.
-    pub fn xcb_prefetch_extension_data(c: *mut xcb_connection_t,
-                                       ext: *mut xcb_extension_t);
+    pub fn xcb_prefetch_extension_data(c: *mut xcb_connection_t, ext: *mut xcb_extension_t);
 
     /// Access the data returned by the server.
     ///
@@ -361,8 +356,7 @@ extern {
     ///
     /// Returns A pointer to an xcb_setup_t structure.
     /// The result must not be freed.
-    pub fn xcb_get_setup(c: *mut xcb_connection_t)
-            -> *const xcb_setup_t;
+    pub fn xcb_get_setup(c: *mut xcb_connection_t) -> *const xcb_setup_t;
 
     /// Access the file descriptor of the connection.
     ///
@@ -370,8 +364,7 @@ extern {
     /// xcb_connect_to_fd call that returned @p c.
     ///
     /// Returns The file descriptor.
-    pub fn xcb_get_file_descriptor(c: *mut xcb_connection_t)
-            -> c_int;
+    pub fn xcb_get_file_descriptor(c: *mut xcb_connection_t) -> c_int;
 
     /// Test whether the connection has shut down due to a fatal error.
     ///
@@ -389,8 +382,7 @@ extern {
     /// Returns XCB_CONN_CLOSED_INVALID_SCREEN, because the server does not have a screen matching the display.
     ///
     /// Returns > 0 if the connection is in an error state; 0 otherwise.
-    pub fn xcb_connection_has_error(c: *mut xcb_connection_t)
-            -> c_int;
+    pub fn xcb_connection_has_error(c: *mut xcb_connection_t) -> c_int;
 
     /// Connects to the X server.
     ///
@@ -404,9 +396,7 @@ extern {
     /// Callers need to use xcb_connection_has_error() to check for failure.
     /// When finished, use xcb_disconnect() to close the connection and free
     /// the structure.
-    pub fn xcb_connect_to_fd(fd: c_int,
-                             auth_info: *mut xcb_auth_info_t)
-            -> *mut xcb_connection_t;
+    pub fn xcb_connect_to_fd(fd: c_int, auth_info: *mut xcb_auth_info_t) -> *mut xcb_connection_t;
 
     /// Closes the connection.
     ///
@@ -430,11 +420,12 @@ extern {
     /// it is set to 0.
     ///
     /// Returns 0 on failure, non 0 otherwise.
-    pub fn xcb_parse_display(name: *const c_char,
-                             host: *mut *mut c_char,
-                             display: *mut c_int,
-                             screen: *mut c_int)
-            -> c_int;
+    pub fn xcb_parse_display(
+        name: *const c_char,
+        host: *mut *mut c_char,
+        display: *mut c_int,
+        screen: *mut c_int,
+    ) -> c_int;
 
     /// Connects to the X server.
     /// displayname: The name of the display.
@@ -451,9 +442,7 @@ extern {
     /// Callers need to use xcb_connection_has_error() to check for failure.
     /// When finished, use xcb_disconnect() to close the connection and free
     /// the structure.
-    pub fn xcb_connect(displayname: *const c_char,
-                       screenp: *mut c_int)
-            -> *mut xcb_connection_t;
+    pub fn xcb_connect(displayname: *const c_char, screenp: *mut c_int) -> *mut xcb_connection_t;
 
     /// Connects to the X server, using an authorization information.
     /// display: The name of the display.
@@ -470,17 +459,17 @@ extern {
     /// Callers need to use xcb_connection_has_error() to check for failure.
     /// When finished, use xcb_disconnect() to close the connection and free
     /// the structure.
-    pub fn xcb_connect_to_display_with_auth_info(display: *const c_char,
-                                                 auth: *mut xcb_auth_info_t,
-                                                 screen: *mut c_int)
-            -> *mut xcb_connection_t;
+    pub fn xcb_connect_to_display_with_auth_info(
+        display: *const c_char,
+        auth: *mut xcb_auth_info_t,
+        screen: *mut c_int,
+    ) -> *mut xcb_connection_t;
 
     /// Allocates an XID for a new object.
     /// Returns A newly allocated XID.
     ///
     /// Allocates an XID for a new object. Typically used just prior to
     /// various object creation functions, such as xcb_create_window.
-    pub fn xcb_generate_id(c: *mut xcb_connection_t)
-            -> u32;
+    pub fn xcb_generate_id(c: *mut xcb_connection_t) -> u32;
 
 }

@@ -1,4 +1,3 @@
-
 extern crate xcb;
 
 use xcb::randr;
@@ -30,7 +29,20 @@ fn main() {
     let screen = setup.roots().nth(screen_num as usize).unwrap();
     let window_dummy = conn.generate_id();
 
-    xcb::create_window(&conn, 0, window_dummy, screen.root(), 0, 0, 1, 1, 0, 0, 0, &[]);
+    xcb::create_window(
+        &conn,
+        0,
+        window_dummy,
+        screen.root(),
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        &[],
+    );
 
     conn.flush();
 
@@ -40,8 +52,8 @@ fn main() {
     let modes = reply.modes();
 
     for (i, mode) in modes.enumerate() {
-        println!("mode {}", i+1);
+        println!("mode {}", i + 1);
         println!("\tresolution = {}x{}", mode.width(), mode.height());
-        println!("\trefresh rate = {:.1}Hz",  mode_refresh(&mode));
+        println!("\trefresh rate = {:.1}Hz", mode_refresh(&mode));
     }
 }

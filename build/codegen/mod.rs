@@ -88,10 +88,9 @@ impl CodeGen {
 
         let ptr_width = env::var("CARGO_CFG_TARGET_POINTER_WIDTH")
             .map(|s| {
-                str::parse::<usize>(&s).expect(&format!(
-                    "can't parse CARGO_CFG_TARGET_POINTER_WIDTH {} as usize",
-                    s
-                ))
+                str::parse::<usize>(&s).unwrap_or_else(|_| {
+                    panic!("can't parse CARGO_CFG_TARGET_POINTER_WIDTH {} as usize", s)
+                })
             })
             .unwrap_or(PTR_WIDTH);
 
@@ -192,7 +191,7 @@ impl CodeGen {
             &self.xcb_mod
         )?;
         writeln!(out, "// Do not edit!")?;
-        writeln!(out, "")?;
+        writeln!(out)?;
         writeln!(out, "use base;")?;
         for imp in imports.iter() {
             writeln!(out, "use {};", imp)?;
@@ -205,7 +204,7 @@ impl CodeGen {
         writeln!(out, "use libc::{{self, c_char, c_int, c_uint, c_void}};")?;
         writeln!(out, "use std;")?;
         writeln!(out, "use std::iter::Iterator;")?;
-        writeln!(out, "")?;
+        writeln!(out)?;
 
         if let Some(ext_info) = ext_info {
             let out = &mut self.rs;
@@ -355,6 +354,7 @@ impl CodeGen {
     //     &self.xcb_mod
     // }
 
+    #[allow(clippy::too_many_arguments)]
     fn reg_type(
         &mut self,
         typ: String,
@@ -406,7 +406,7 @@ impl CodeGen {
             "double" => true,
             "void" => true,
             typ => {
-                let (_, typ) = extract_module(&typ);
+                let (_, typ) = extract_module(typ);
                 self.typ_simple.contains(typ)
                     || self.dep_info.iter().any(|di| di.typ_simple.contains(typ))
             }
@@ -414,8 +414,8 @@ impl CodeGen {
     }
 
     fn typ_is_pod(&self, typ: &str) -> bool {
-        let (_, typ) = extract_module(&typ);
-        self.typ_is_simple(&typ)
+        let (_, typ) = extract_module(typ);
+        self.typ_is_simple(typ)
             || self.typ_pod.contains(typ)
             || self.dep_info.iter().any(|di| di.typ_pod.contains(typ))
     }
@@ -424,7 +424,7 @@ impl CodeGen {
         for f in fields.iter() {
             match f {
                 StructField::Field { typ, .. } => {
-                    if !self.typ_is_pod(&typ) {
+                    if !self.typ_is_pod(typ) {
                         return false;
                     }
                 }
@@ -633,7 +633,7 @@ impl CodeGen {
     }
 
     fn emit_error_copy(&mut self, name: &str, number: i32, error_ref: &str) -> io::Result<()> {
-        ffi::emit_opcode(&mut self.ffi, &self.xcb_mod_prefix, &name, number)?;
+        ffi::emit_opcode(&mut self.ffi, &self.xcb_mod_prefix, name, number)?;
         let new_name = name.to_owned() + "Error";
         let old_name = error_ref.to_owned() + "Error";
 
@@ -645,7 +645,7 @@ impl CodeGen {
         let rs_typ = rs::type_name(&new_name);
 
         rs::emit_error(&mut self.rs, &new_ffi_typ, &rs_typ)?;
-        rs::emit_opcode(&mut self.rs_buf, &name, number)?;
+        rs::emit_opcode(&mut self.rs_buf, name, number)?;
 
         self.notify_typ(new_name);
 
@@ -789,9 +789,8 @@ impl CodeGen {
                     if params.is_empty() {
                         StructField::Pad("pad0".into(), 1)
                     } else {
-                        let p = params.remove(0);
                         // assert!(self.compute_ffi_struct_field_sizeof(&p) == Some(1usize));
-                        p
+                        params.remove(0)
                     }
                 } else {
                     StructField::Field {
@@ -814,8 +813,8 @@ impl CodeGen {
             if let StructField::Switch(name, expr, cases) = f {
                 let toplevel = req.name.to_string() + "Request";
                 self.notify_typ(toplevel.clone());
-                self.emit_ffi_switch_struct(&req.name, &name, &expr, &cases, &toplevel, None)?;
-                self.emit_rs_switch_typedef(&req.name, &name, &cases, &toplevel, None)?;
+                self.emit_ffi_switch_struct(&req.name, name, expr, cases, &toplevel, None)?;
+                self.emit_rs_switch_typedef(&req.name, name, cases, &toplevel, None)?;
             }
         }
 
@@ -919,7 +918,7 @@ fn expr_fixed_length(expr: &Expr<usize>) -> Option<usize> {
     match expr {
         Expr::EnumRef { .. } => None, // FIXME: get the value of the enum item
         Expr::Value(val) => Some(*val),
-        Expr::Popcount(ex) => expr_fixed_length(&ex).map(|sz| sz.count_ones() as _),
+        Expr::Popcount(ex) => expr_fixed_length(ex).map(|sz| sz.count_ones() as _),
         Expr::Op(op, lhs, rhs) => match (expr_fixed_length(lhs), expr_fixed_length(rhs)) {
             (Some(lhs), Some(rhs)) => match op.as_str() {
                 "+" => Some(lhs + rhs),
@@ -965,10 +964,8 @@ where
     let mut c = ch.next().unwrap();
 
     for next in ch {
-        if is_low(prev) && is_high(c) || is_high(c) && is_low(next) {
-            if prev != '_' {
-                res.push('_');
-            }
+        if (is_low(prev) && is_high(c) || is_high(c) && is_low(next)) && prev != '_' {
+            res.push('_');
         }
         res.push(c);
         prev = c;
@@ -1197,7 +1194,7 @@ impl ListField {
                     typ,
                     len_expr,
                 } => {
-                    let lenfield = expr_lenfield(&len_expr);
+                    let lenfield = expr_lenfield(len_expr);
                     if let Some(lenfield) = lenfield {
                         let name = name.clone();
                         let typ = typ.clone();
@@ -1244,9 +1241,9 @@ impl ListField {
 fn expr_lenfield(expr: &Expr<usize>) -> Option<&str> {
     match expr {
         Expr::FieldRef(name) => Some(name),
-        Expr::Op(_, lhs, rhs) => expr_lenfield(&lhs).or_else(|| expr_lenfield(&rhs)),
-        Expr::Unop(_, rhs) => expr_lenfield(&rhs),
-        Expr::Popcount(e) => expr_lenfield(&e),
+        Expr::Op(_, lhs, rhs) => expr_lenfield(lhs).or_else(|| expr_lenfield(rhs)),
+        Expr::Unop(_, rhs) => expr_lenfield(rhs),
+        Expr::Popcount(e) => expr_lenfield(e),
         _ => None,
     }
 }
@@ -1263,9 +1260,8 @@ fn request_has_template(params: &[StructField]) -> bool {
 }
 
 fn enum_suffix_exception(xcb_mod: &str, enum_typ: &str) -> bool {
-    match (xcb_mod, enum_typ) {
-        ("render", "Picture") => true,
-        ("present", "Event") => true,
-        _ => false,
-    }
+    matches!(
+        (xcb_mod, enum_typ),
+        ("render", "Picture") | ("present", "Event")
+    )
 }
