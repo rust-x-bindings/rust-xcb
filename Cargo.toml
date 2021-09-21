@@ -58,14 +58,6 @@ test = []
 xvmc = [ "xv" ]
 xv = [ "shm" ]
 
-# ge and xf86vidmode are apparently nor built neither installed by libxcb C project
-# extension xinput is broken
-# all others are in debug_all whose purpose is to check build of extensions
-debug_all = [ "thread", "composite", "damage", "dpms", "dri2", "dri3",
-        "glx", "randr", "record", "render", "res", "screensaver", "shape",
-        "shm", "xevie", "xf86dri", "xfixes", "xinerama", "xkb",
-        "x_print", "selinux", "test", "xvmc", "xv", "xlib_xcb" ]
-
 [dev-dependencies]
 gl = "0.5.2"
 

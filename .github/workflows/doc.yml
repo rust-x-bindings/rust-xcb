@@ -33,7 +33,7 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: doc
-          args: --features debug_all
+          args: --all-features
 
       - name: Push on gh-pages
         uses: JamesIves/github-pages-deploy-action@4.1.5

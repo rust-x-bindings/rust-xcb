@@ -48,7 +48,7 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: build
-          args: --features debug_all
+          args: --all-features
 
       - name: Test examples build
         run: scripts/test_examples.sh
