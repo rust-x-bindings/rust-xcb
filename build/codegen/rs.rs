@@ -199,15 +199,15 @@ impl CodeGen {
                 StructField::ListNoLen { name, typ } => {
                     let has_lifetime = has_lifetime && self.typ_with_lifetime.contains(typ);
                     let lifetime = if has_lifetime { "<'a>" } else { "" };
-                    let len_name = name.clone() + "_len";
+                    // let len_name = name.clone() + "_len";
                     let rs_name = field_name(name);
                     let it_typ = self.rs_use_type_name(typ) + "Iterator";
                     let ffi_it_fn_name =
                         ffi::field_list_iterator_it_fn_name(&self.xcb_mod_prefix, typ_name, name);
                     let out = &mut self.rs_buf;
-                    writeln!(out, "    pub fn {}(&self) -> u32 {{", &len_name)?;
-                    writeln!(out, "        unsafe {{ {}.{} }}", &accessor, &len_name)?;
-                    writeln!(out, "    }}")?;
+                    // writeln!(out, "    pub fn {}(&self) -> u32 {{", &len_name)?;
+                    // writeln!(out, "        unsafe {{ {}.{} }}", &accessor, &len_name)?;
+                    // writeln!(out, "    }}")?;
                     writeln!(
                         out,
                         "    pub fn {}(&self) -> {}{} {{",
@@ -636,156 +636,160 @@ impl CodeGen {
         }
 
         // emitting ctor
+        if !has_variable_list(&stru.fields) {
+            {
+                let out = &mut self.rs_buf;
 
-        {
-            let out = &mut self.rs_buf;
-
-            writeln!(out, "    /// Constructs a new {}", &rs_typ)?;
-            if opcopies.is_empty() {
-                writeln!(
-                    out,
-                    "    /// `response_type` will be set automatically to {}",
-                    &opn
-                )?;
-            } else {
-                writeln!(out, "    /// `response_type` must be set to one of:")?;
-                writeln!(out, "    ///     - `{}`", &opn)?;
-                for op in opcopies.iter() {
-                    let opn = opname(&op.name);
+                writeln!(out, "    /// Constructs a new {}", &rs_typ)?;
+                if opcopies.is_empty() {
+                    writeln!(
+                        out,
+                        "    /// `response_type` will be set automatically to {}",
+                        &opn
+                    )?;
+                } else {
+                    writeln!(out, "    /// `response_type` must be set to one of:")?;
                     writeln!(out, "    ///     - `{}`", &opn)?;
+                    for op in opcopies.iter() {
+                        let opn = opname(&op.name);
+                        writeln!(out, "    ///     - `{}`", &opn)?;
+                    }
                 }
+
+                writeln!(out, "    pub fn new (")?;
             }
 
-            writeln!(out, "    pub fn new (")?;
-        }
-
-        for f in stru.fields.iter() {
-            match f {
-                StructField::Field { name, typ, .. } => {
-                    if field_skip.iter().any(|skip| skip == name) {
-                        continue;
-                    }
-                    let rs_typ = self.rs_use_type_name(typ);
-                    writeln!(
-                        &mut self.rs_buf,
-                        "        {}: {},",
-                        field_name(name),
-                        &rs_typ
-                    )?;
-                }
-                StructField::Pad(_, _) => {}
-                StructField::List {
-                    name,
-                    typ,
-                    len_expr,
-                } => {
-                    if field_skip.iter().any(|skip| skip == name) {
-                        continue;
-                    }
-                    let typ = match typ.as_str() {
-                        "char" => "&str".into(),
-                        typ => {
-                            let typ = self.rs_use_type_name(typ);
-                            if let Some(len) = expr_fixed_length(len_expr) {
-                                format!("[{}; {}]", &typ, len)
-                            } else {
-                                format!("&[{}]", &typ)
-                            }
+            for f in stru.fields.iter() {
+                match f {
+                    StructField::Field { name, typ, .. } => {
+                        if field_skip.iter().any(|skip| skip == name) {
+                            continue;
                         }
-                    };
-                    writeln!(&mut self.rs_buf, "        {}: {},", field_name(name), &typ)?;
+                        let rs_typ = self.rs_use_type_name(typ);
+                        writeln!(
+                            &mut self.rs_buf,
+                            "        {}: {},",
+                            field_name(name),
+                            &rs_typ
+                        )?;
+                    }
+                    StructField::Pad(_, _) => {}
+                    StructField::List {
+                        name,
+                        typ,
+                        len_expr,
+                    } => {
+                        if field_skip.iter().any(|skip| skip == name) {
+                            continue;
+                        }
+                        let typ = match typ.as_str() {
+                            "char" => "&str".into(),
+                            typ => {
+                                let typ = self.rs_use_type_name(typ);
+                                if let Some(len) = expr_fixed_length(len_expr) {
+                                    format!("[{}; {}]", &typ, len)
+                                } else {
+                                    format!("&[{}]", &typ)
+                                }
+                            }
+                        };
+                        writeln!(&mut self.rs_buf, "        {}: {},", field_name(name), &typ)?;
+                    }
+                    StructField::ListNoLen { name, typ } => {
+                        let len_name = name.clone() + "_len";
+                        let typ = self.rs_use_type_name(typ);
+                        writeln!(&mut self.rs_buf, "        {}: u32,", len_name)?;
+                        writeln!(&mut self.rs_buf, "        {}: {},", field_name(name), typ)?;
+                    }
+                    _ => unimplemented!("{}::{}::{:?}", self.xcb_mod, &rs_typ, f),
                 }
-                StructField::ListNoLen { name, typ } => {
-                    let len_name = name.clone() + "_len";
-                    let typ = self.rs_use_type_name(typ);
-                    writeln!(&mut self.rs_buf, "        {}: u32,", len_name)?;
-                    writeln!(&mut self.rs_buf, "        {}: {},", field_name(name), typ)?;
-                }
-                _ => unimplemented!("{}::{}::{:?}", self.xcb_mod, &rs_typ, f),
             }
-        }
 
-        {
-            let out = &mut self.rs_buf;
+            {
+                let out = &mut self.rs_buf;
 
-            writeln!(out, "    ) -> {} {{", &rs_typ)?;
-            writeln!(out, "        unsafe {{")?;
-            writeln!(
-                out,
-                "            let raw = libc::malloc(32 as usize) as *mut {};",
-                &ffi_typ
-            )?;
-            if !opcopies.is_empty() {
-                let copies = opcopies.iter().map(|opc| opname(&opc.name));
-                let opcodes = Some(opn.clone()).into_iter().chain(copies);
-                let assert_expr = opcodes
-                    .map(|opc| format!("response_type == {}", &opc))
-                    .collect::<Vec<String>>()
-                    .join(" || ");
+                writeln!(out, "    ) -> {} {{", &rs_typ)?;
+                writeln!(out, "        unsafe {{")?;
                 writeln!(
                     out,
-                    "            assert!({}, \"wrong response_type supplied to {}::new\");",
-                    &assert_expr, &rs_typ
+                    "            let raw = libc::malloc(32 as usize) as *mut {};",
+                    &ffi_typ
                 )?;
-            } else {
-                writeln!(out, "            (*raw).response_type = {};", &opn)?;
+                if !opcopies.is_empty() {
+                    let copies = opcopies.iter().map(|opc| opname(&opc.name));
+                    let opcodes = Some(opn.clone()).into_iter().chain(copies);
+                    let assert_expr = opcodes
+                        .map(|opc| format!("response_type == {}", &opc))
+                        .collect::<Vec<String>>()
+                        .join(" || ");
+                    writeln!(
+                        out,
+                        "            assert!({}, \"wrong response_type supplied to {}::new\");",
+                        &assert_expr, &rs_typ
+                    )?;
+                } else {
+                    writeln!(out, "            (*raw).response_type = {};", &opn)?;
+                }
             }
-        }
 
-        for f in stru.fields.iter() {
-            match f {
-                StructField::Field { name, typ, .. } => {
-                    if field_skip.iter().any(|skip| skip == name) {
-                        continue;
+            for f in stru.fields.iter() {
+                match f {
+                    StructField::Field { name, typ, .. } => {
+                        if field_skip.iter().any(|skip| skip == name) {
+                            continue;
+                        }
+                        let f_name = field_name(name);
+                        let is_simple = self.typ_is_simple(typ);
+                        let is_pod = self.typ_is_pod(typ);
+
+                        let expr = if !is_simple && is_pod {
+                            format!("{}.base", &f_name)
+                        } else if typ == "BOOL" {
+                            format!("if {} {{ 1 }} else {{ 0 }}", f_name)
+                        } else {
+                            f_name.clone()
+                        };
+
+                        writeln!(
+                            &mut self.rs_buf,
+                            "            (*raw).{} = {};",
+                            f_name, expr
+                        )?;
                     }
-                    let f_name = field_name(name);
-
-                    let expr = if !self.typ_is_simple(typ) && self.typ_is_pod(typ) {
-                        format!("{}.base", &f_name)
-                    } else if typ == "BOOL" {
-                        format!("if {} {{ 1 }} else {{ 0 }}", f_name)
-                    } else {
-                        f_name.clone()
-                    };
-
-                    writeln!(
-                        &mut self.rs_buf,
-                        "            (*raw).{} = {};",
-                        f_name, expr
-                    )?;
+                    StructField::List { name, .. } => {
+                        let f_name = field_name(name);
+                        writeln!(
+                            &mut self.rs_buf,
+                            "            (*raw).{} = {};",
+                            f_name, f_name
+                        )?;
+                    }
+                    StructField::ListNoLen { name, .. } => {
+                        let len_name = name.clone() + "_len";
+                        let f_name = field_name(name);
+                        writeln!(
+                            &mut self.rs_buf,
+                            "            (*raw).{} = {};",
+                            len_name, len_name
+                        )?;
+                        writeln!(
+                            &mut self.rs_buf,
+                            "            (*raw).{} = {};",
+                            f_name, f_name
+                        )?;
+                    }
+                    _ => {}
                 }
-                StructField::List { name, .. } => {
-                    let f_name = field_name(name);
-                    writeln!(
-                        &mut self.rs_buf,
-                        "            (*raw).{} = {};",
-                        f_name, f_name
-                    )?;
-                }
-                StructField::ListNoLen { name, .. } => {
-                    let len_name = name.clone() + "_len";
-                    let f_name = field_name(name);
-                    writeln!(
-                        &mut self.rs_buf,
-                        "            (*raw).{} = {};",
-                        len_name, len_name
-                    )?;
-                    writeln!(
-                        &mut self.rs_buf,
-                        "            (*raw).{} = {};",
-                        f_name, f_name
-                    )?;
-                }
-                _ => {}
             }
+
+            let out = &mut self.rs_buf;
+
+            writeln!(out, "            {} {{ ptr: raw }}", &rs_typ)?;
+            writeln!(out, "        }}")?; // closing unsafe
+            writeln!(out, "    }}")?; // closing new
         }
 
-        let out = &mut self.rs_buf;
-
-        writeln!(out, "            {} {{ ptr: raw }}", &rs_typ)?;
-        writeln!(out, "        }}")?; // closing unsafe
-        writeln!(out, "    }}")?; // closing new
-        writeln!(out, "}}")?; // closing impl
+        writeln!(&mut self.rs_buf, "}}")?; // closing impl
 
         for opc in opcopies.iter() {
             let opn = opname(&opc.name);
@@ -1060,7 +1064,7 @@ impl CodeGen {
                         let rs_name = field_name(name);
                         let out = &mut self.rs_buf;
                         writeln!(out, "            {}.base,", &rs_name)?;
-                    } else {
+                    } else if is_simple || is_pod {
                         let ffi_typ = self.ffi_use_type_name(typ);
                         let mut rs_name = field_name(name);
 
@@ -1069,6 +1073,10 @@ impl CodeGen {
                         }
                         let out = &mut self.rs_buf;
                         writeln!(out, "            {} as {},", &rs_name, &ffi_typ)?;
+                    } else {
+                        let rs_name = field_name(name);
+                        let out = &mut self.rs_buf;
+                        writeln!(out, "            {}.ptr", &rs_name)?;
                     }
                 }
                 StructField::Fd(name) => {
@@ -1257,6 +1265,24 @@ fn has_fd_nfd(fields: &[StructField]) -> bool {
     }
 
     has_fd && has_nfd
+}
+
+fn has_variable_list(fields: &[StructField]) -> bool {
+    for f in fields.iter() {
+        match f {
+            StructField::List { len_expr, ..} => {
+                let sz = expr_fixed_length(len_expr);
+                if sz.is_none() {
+                    return true;
+                }
+            }
+            StructField::ListNoLen {..} => {
+                return true;
+            }
+            _ => {}
+        }
+    }
+    false
 }
 
 pub fn type_name(typ: &str) -> String {

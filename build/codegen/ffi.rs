@@ -358,7 +358,19 @@ impl CodeGen {
                     if fixed_size && fixed_len {
                         continue;
                     }
-
+                    self.emit_ffi_field_list_accessor(
+                        ffi_typ,
+                        xcb_name,
+                        name,
+                        typ,
+                        toplevel_typ,
+                        fixed_size,
+                    )?;
+                }
+                StructField::ListNoLen {
+                    name, typ
+                } => {
+                    let fixed_size = self.ffi_type_sizeof(typ).is_some();
                     self.emit_ffi_field_list_accessor(
                         ffi_typ,
                         xcb_name,
@@ -430,7 +442,7 @@ impl CodeGen {
             self.ffi_decl_type_name(name)
         };
 
-        let impl_copy_clone = self.eligible_to_copy(stru) && !no_copy;
+        let impl_copy_clone = must_pack || self.eligible_to_copy(stru) && !no_copy;
 
         let copyclone = if impl_copy_clone { "Copy, Clone, " } else { "" };
 
@@ -637,8 +649,14 @@ impl CodeGen {
                 StructField::Field { name, typ, .. } => {
                     written_fields.push(name);
                     let name = field_name(name);
+                    let is_pod = self.typ_is_pod(typ);
+                    let is_simple = self.typ_is_simple(typ);
                     let typ = self.ffi_use_type_name(typ);
-                    writeln!(&mut self.ffi_buf, "        {}: {},", &name, &typ)?;
+                    if is_simple || is_pod {
+                        writeln!(&mut self.ffi_buf, "        {}: {},", &name, &typ)?;
+                    } else {
+                        writeln!(&mut self.ffi_buf, "        {}: *mut {},", &name, &typ)?;
+                    }
                 }
                 StructField::Fd(name) => {
                     let name = field_name(name);

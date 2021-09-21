@@ -391,18 +391,42 @@ impl CodeGen {
             "double" => true,
             "void" => true,
             typ => {
-                let (_, typ) = extract_module(typ);
-                self.typ_simple.contains(typ)
-                    || self.dep_info.iter().any(|di| di.typ_simple.contains(typ))
+                let (module, typ) = extract_module(typ);
+                if let Some(module) = module {
+                    if module == self.xcb_mod {
+                        self.typ_simple.contains(typ)
+                    } else {
+                        self.dep_info
+                            .iter()
+                            .any(|di| di.xcb_mod == module && di.typ_simple.contains(typ))
+                    }
+                } else if self.has_type(typ) {
+                    self.typ_simple.contains(typ)
+                } else {
+                    self.dep_info.iter().any(|di| di.typ_simple.contains(typ))
+                }
             }
         }
     }
 
     fn typ_is_pod(&self, typ: &str) -> bool {
-        let (_, typ) = extract_module(typ);
-        self.typ_is_simple(typ)
-            || self.typ_pod.contains(typ)
-            || self.dep_info.iter().any(|di| di.typ_pod.contains(typ))
+        if self.typ_is_simple(typ) {
+            return true;
+        }
+        let (module, typ) = extract_module(typ);
+        if let Some(module) = module {
+            if module == self.xcb_mod {
+                self.typ_pod.contains(typ)
+            } else {
+                self.dep_info
+                    .iter()
+                    .any(|di| di.xcb_mod == module && di.typ_pod.contains(typ))
+            }
+        } else if self.has_type(typ) {
+            self.typ_pod.contains(typ)
+        } else {
+            self.dep_info.iter().any(|di| di.typ_pod.contains(typ))
+        }
     }
 
     fn fields_are_pod(&self, fields: &[StructField]) -> bool {
@@ -413,6 +437,8 @@ impl CodeGen {
                         return false;
                     }
                 }
+                StructField::Pad(..) => {}
+                StructField::AlignPad(..) => {}
                 _ => {
                     return false;
                 }
@@ -731,6 +757,7 @@ impl CodeGen {
         };
 
         let ffi_typ = self.emit_ffi_struct(&stru, None, must_pack, false, false)?;
+        self.emit_ffi_field_list_accessors(&ffi_typ, &orig_name, &stru.fields, None, false)?;
         let ffi_sz = self.compute_ffi_struct_size(&stru);
 
         for c in opcopies.iter() {
