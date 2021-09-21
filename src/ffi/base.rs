@@ -30,6 +30,7 @@
  */
 
 use ffi::xproto::{xcb_query_extension_reply_t, xcb_setup_t};
+use ffi::ext::xcb_extension_t;
 
 use libc::{c_char, c_int, c_uint, c_void};
 
@@ -55,9 +56,6 @@ pub const XCB_CONN_CLOSED_FDPASSING_FAILED: c_int = 7;
 /// An opaque structure that contain all data that XCB needs to communicate
 /// with an X server.
 pub enum xcb_connection_t {}
-
-/// Opaque structure used as key for xcb_get_extension_data_t
-pub enum xcb_extension_t {}
 
 pub enum xcb_special_event_t {}
 

@@ -238,6 +238,8 @@ pub mod ffi {
     #![allow(improper_ctypes)]
 
     pub mod base;
+    pub mod ext;
+
     pub mod xproto {
         include!(concat!(env!("OUT_DIR"), "/ffi/xproto.rs"));
     }

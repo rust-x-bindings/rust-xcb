@@ -30,6 +30,7 @@
  */
 
 use ffi::base::*;
+use ffi::ext::xcb_extension_t;
 #[cfg(feature = "xlib_xcb")]
 use ffi::xlib_xcb::*;
 use ffi::xproto::*;

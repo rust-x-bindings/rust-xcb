@@ -145,6 +145,7 @@ impl CodeGen {
 
         let out = &mut self.ffi;
         writeln!(out, "use ffi::base::*;")?;
+        writeln!(out, "use ffi::ext::*;")?;
         for imp in imports.iter() {
             writeln!(out, "use ffi::{}::*;", imp)?;
         }
@@ -171,7 +172,7 @@ impl CodeGen {
             writeln!(out)?;
             writeln!(
                 out,
-                "pub static mut xcb_{}_id: xcb_extension_t;",
+                "    pub static mut xcb_{}_id: xcb_extension_t;",
                 &self.xcb_mod
             )?;
         }

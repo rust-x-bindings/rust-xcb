@@ -30,7 +30,7 @@
  */
 
 
-use libc::{c_int, c_uint, c_void};
+use libc::{c_int, c_uint, c_void, c_char, iovec};
 use ffi::base::*;
 use ffi::xproto;
 
