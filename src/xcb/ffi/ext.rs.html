@@ -123,6 +123,9 @@
 <span id="123">123</span>
 <span id="124">124</span>
 <span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
+<span id="128">128</span>
 </pre><pre class="rust">
 <span class="comment">/*
  * Copyright (C) 2013 James Miller &lt;james@aatch.net&gt;
@@ -155,100 +158,103 @@
  * DEALINGS IN THE SOFTWARE.
  */</span>
 
-
-<span class="kw">use</span> <span class="ident">libc</span>::{<span class="ident">c_int</span>, <span class="ident">c_uint</span>, <span class="ident">c_void</span>, <span class="ident">c_char</span>, <span class="ident">iovec</span>};
 <span class="kw">use</span> <span class="ident">ffi::base</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">ffi::xproto</span>;
-
-
+<span class="kw">use</span> <span class="ident">libc</span>::{<span class="ident">c_char</span>, <span class="ident">c_int</span>, <span class="ident">c_uint</span>, <span class="ident">c_void</span>, <span class="ident">iovec</span>};
 
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">xcb_extension_t</span> {
-    <span class="ident">name</span>:      <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>,
-    <span class="ident">global_id</span>: <span class="ident">c_int</span>
+    <span class="ident">name</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>,
+    <span class="ident">global_id</span>: <span class="ident">c_int</span>,
 }
 
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">xcb_protocol_request_t</span> {
-    <span class="ident">count</span>:  <span class="ident">usize</span>,
-    <span class="ident">ext</span>:    <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_extension_t</span>,
+    <span class="ident">count</span>: <span class="ident">usize</span>,
+    <span class="ident">ext</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_extension_t</span>,
     <span class="ident">opcode</span>: <span class="ident">u8</span>,
-    <span class="ident">isvoid</span>: <span class="ident">u8</span>
+    <span class="ident">isvoid</span>: <span class="ident">u8</span>,
 }
-
 
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">xcb_send_request_flags_t</span> {
-    <span class="ident">XCB_REQUEST_CHECKED</span>       <span class="op">=</span> <span class="number">0x01</span>,
-    <span class="ident">XCB_REQUEST_RAW</span>           <span class="op">=</span> <span class="number">0x02</span>,
+    <span class="ident">XCB_REQUEST_CHECKED</span> <span class="op">=</span> <span class="number">0x01</span>,
+    <span class="ident">XCB_REQUEST_RAW</span> <span class="op">=</span> <span class="number">0x02</span>,
     <span class="ident">XCB_REQUEST_DISCARD_REPLY</span> <span class="op">=</span> <span class="number">0x04</span>,
-    <span class="ident">XCB_REQUEST_REPLY_FDS</span>     <span class="op">=</span> <span class="number">0x08</span>
+    <span class="ident">XCB_REQUEST_REPLY_FDS</span> <span class="op">=</span> <span class="number">0x08</span>,
 }
 
-<span class="attribute">#[<span class="ident">link</span>(<span class="ident">name</span><span class="op">=</span><span class="string">&quot;xcb&quot;</span>)]</span>
-<span class="kw">extern</span> {
+<span class="attribute">#[<span class="ident">link</span>(<span class="ident">name</span> <span class="op">=</span> <span class="string">&quot;xcb&quot;</span>)]</span>
+<span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xcb_send_request</span>(<span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
-                            <span class="ident">flags</span>: <span class="ident">c_int</span>,
-                            <span class="ident">vector</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">iovec</span>,
-                            <span class="ident">request</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">xcb_protocol_request_t</span>)
-            <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_uint</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xcb_send_request</span>(
+        <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
+        <span class="ident">flags</span>: <span class="ident">c_int</span>,
+        <span class="ident">vector</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">iovec</span>,
+        <span class="ident">request</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">xcb_protocol_request_t</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_uint</span>;
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xcb_send_request64</span>(<span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
-                              <span class="ident">flags</span>: <span class="ident">c_int</span>,
-                              <span class="ident">vector</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">iovec</span>,
-                              <span class="ident">request</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">xcb_protocol_request_t</span>)
-            <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xcb_send_request64</span>(
+        <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
+        <span class="ident">flags</span>: <span class="ident">c_int</span>,
+        <span class="ident">vector</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">iovec</span>,
+        <span class="ident">request</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">xcb_protocol_request_t</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span>;
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xcb_send_fd</span>(<span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
-                       <span class="ident">fd</span>: <span class="ident">c_int</span>);
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xcb_send_fd</span>(<span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>, <span class="ident">fd</span>: <span class="ident">c_int</span>);
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xcb_take_socket</span>(<span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
-                           <span class="ident">return_socket</span>: <span class="kw">extern</span> <span class="kw">fn</span>(<span class="ident">closure</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>),
-                           <span class="ident">closure</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>,
-                           <span class="ident">flags</span>: <span class="ident">c_int</span>,
-                           <span class="ident">sent</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u64</span>)
-            <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xcb_take_socket</span>(
+        <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
+        <span class="ident">return_socket</span>: <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span>(<span class="ident">closure</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>),
+        <span class="ident">closure</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>,
+        <span class="ident">flags</span>: <span class="ident">c_int</span>,
+        <span class="ident">sent</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u64</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_int</span>;
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xcb_writev</span>(<span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
-                      <span class="ident">vector</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">iovec</span>,
-                      <span class="ident">count</span>: <span class="ident">c_int</span>,
-                      <span class="ident">requests</span>: <span class="ident">u64</span>)
-            <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xcb_writev</span>(
+        <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
+        <span class="ident">vector</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">iovec</span>,
+        <span class="ident">count</span>: <span class="ident">c_int</span>,
+        <span class="ident">requests</span>: <span class="ident">u64</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_int</span>;
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xcb_wait_for_reply</span>(<span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
-                              <span class="ident">request</span>: <span class="ident">c_uint</span>,
-                              <span class="ident">e</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>)
-            <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xcb_wait_for_reply</span>(
+        <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
+        <span class="ident">request</span>: <span class="ident">c_uint</span>,
+        <span class="ident">e</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>;
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xcb_wait_for_reply64</span>(<span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
-                                <span class="ident">request</span>: <span class="ident">u64</span>,
-                                <span class="ident">e</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>)
-            <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xcb_wait_for_reply64</span>(
+        <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
+        <span class="ident">request</span>: <span class="ident">u64</span>,
+        <span class="ident">e</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>;
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xcb_poll_for_reply</span>(<span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
-                              <span class="ident">request</span>: <span class="ident">c_uint</span>,
-                              <span class="ident">reply</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>,
-                              <span class="ident">error</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>)
-            <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xcb_poll_for_reply</span>(
+        <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
+        <span class="ident">request</span>: <span class="ident">c_uint</span>,
+        <span class="ident">reply</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>,
+        <span class="ident">error</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_int</span>;
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xcb_poll_for_reply64</span>(<span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
-                                <span class="ident">request</span>: <span class="ident">u64</span>,
-                                <span class="ident">reply</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>,
-                                <span class="ident">error</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>)
-            <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xcb_poll_for_reply64</span>(
+        <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
+        <span class="ident">request</span>: <span class="ident">u64</span>,
+        <span class="ident">reply</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>,
+        <span class="ident">error</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_int</span>;
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xcb_get_reply_fds</span>(<span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
-                             <span class="ident">reply</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>,
-                             <span class="ident">replylen</span>: <span class="ident">usize</span>)
-            <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xcb_get_reply_fds</span>(
+        <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
+        <span class="ident">reply</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>,
+        <span class="ident">replylen</span>: <span class="ident">usize</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_int</span>;
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xcb_popcount</span>(<span class="ident">mask</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_int</span>;
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xcb_sumof</span>(<span class="ident">list</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>, <span class="ident">len</span>: <span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_int</span>;
 
 }
-
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="xcb" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
     <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
