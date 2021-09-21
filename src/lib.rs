@@ -128,10 +128,10 @@ pub mod glx {
     include!(concat!(env!("OUT_DIR"), "/glx.rs"));
 }
 
-#[cfg(feature = "input")]
-pub mod input {
-    include!(concat!(env!("OUT_DIR"), "/input.rs"));
-}
+// #[cfg(feature = "input")]
+// pub mod input {
+//     include!(concat!(env!("OUT_DIR"), "/input.rs"));
+// }
 
 #[cfg(feature = "present")]
 pub mod present {
@@ -289,10 +289,10 @@ pub mod ffi {
         include!(concat!(env!("OUT_DIR"), "/ffi/glx.rs"));
     }
 
-    #[cfg(feature = "input")]
-    pub mod input {
-        include!(concat!(env!("OUT_DIR"), "/ffi/input.rs"));
-    }
+    // #[cfg(feature = "input")]
+    // pub mod input {
+    //     include!(concat!(env!("OUT_DIR"), "/ffi/input.rs"));
+    // }
 
     #[cfg(feature = "present")]
     pub mod present {
