@@ -1270,13 +1270,13 @@ fn has_fd_nfd(fields: &[StructField]) -> bool {
 fn has_variable_list(fields: &[StructField]) -> bool {
     for f in fields.iter() {
         match f {
-            StructField::List { len_expr, ..} => {
+            StructField::List { len_expr, .. } => {
                 let sz = expr_fixed_length(len_expr);
                 if sz.is_none() {
                     return true;
                 }
             }
-            StructField::ListNoLen {..} => {
+            StructField::ListNoLen { .. } => {
                 return true;
             }
             _ => {}

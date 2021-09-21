@@ -367,9 +367,7 @@ impl CodeGen {
                         fixed_size,
                     )?;
                 }
-                StructField::ListNoLen {
-                    name, typ
-                } => {
+                StructField::ListNoLen { name, typ } => {
                     let fixed_size = self.ffi_type_sizeof(typ).is_some();
                     self.emit_ffi_field_list_accessor(
                         ffi_typ,

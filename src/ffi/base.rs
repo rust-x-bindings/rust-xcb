@@ -29,8 +29,8 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-use ffi::xproto::{xcb_query_extension_reply_t, xcb_setup_t};
 use ffi::ext::xcb_extension_t;
+use ffi::xproto::{xcb_query_extension_reply_t, xcb_setup_t};
 
 use libc::{c_char, c_int, c_uint, c_void};
 
