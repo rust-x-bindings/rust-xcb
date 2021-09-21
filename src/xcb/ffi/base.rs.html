@@ -471,8 +471,6 @@
 <span id="471">471</span>
 <span id="472">472</span>
 <span id="473">473</span>
-<span id="474">474</span>
-<span id="475">475</span>
 </pre><pre class="rust">
 <span class="comment">/*
  * Copyright (C) 2013 James Miller &lt;james@aatch.net&gt;
@@ -506,6 +504,7 @@
  */</span>
 
 <span class="kw">use</span> <span class="ident">ffi::xproto</span>::{<span class="ident">xcb_query_extension_reply_t</span>, <span class="ident">xcb_setup_t</span>};
+<span class="kw">use</span> <span class="ident">ffi::ext::xcb_extension_t</span>;
 
 <span class="kw">use</span> <span class="ident">libc</span>::{<span class="ident">c_char</span>, <span class="ident">c_int</span>, <span class="ident">c_uint</span>, <span class="ident">c_void</span>};
 
@@ -531,9 +530,6 @@
 <span class="doccomment">/// An opaque structure that contain all data that XCB needs to communicate</span>
 <span class="doccomment">/// with an X server.</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">xcb_connection_t</span> {}
-
-<span class="doccomment">/// Opaque structure used as key for xcb_get_extension_data_t</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">xcb_extension_t</span> {}
 
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">xcb_special_event_t</span> {}
 

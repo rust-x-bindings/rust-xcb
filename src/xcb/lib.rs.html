@@ -394,6 +394,8 @@
 <span id="394">394</span>
 <span id="395">395</span>
 <span id="396">396</span>
+<span id="397">397</span>
+<span id="398">398</span>
 </pre><pre class="rust">
 <span class="comment">/*
  * Copyright (C) 2013 James Miller &lt;james@aatch.net&gt;
@@ -525,10 +527,10 @@
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/glx.rs&quot;</span>));
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;input&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">input</span> {
-    <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/input.rs&quot;</span>));
-}
+<span class="comment">// #[cfg(feature = &quot;input&quot;)]</span>
+<span class="comment">// pub mod input {</span>
+<span class="comment">//     include!(concat!(env!(&quot;OUT_DIR&quot;), &quot;/input.rs&quot;));</span>
+<span class="comment">// }</span>
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;present&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">present</span> {
@@ -635,6 +637,8 @@
     <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">improper_ctypes</span>)]</span>
 
     <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">base</span>;
+    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">ext</span>;
+
     <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xproto</span> {
         <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/xproto.rs&quot;</span>));
     }
@@ -686,10 +690,10 @@
         <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/glx.rs&quot;</span>));
     }
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;input&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">input</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/input.rs&quot;</span>));
-    }
+    <span class="comment">// #[cfg(feature = &quot;input&quot;)]</span>
+    <span class="comment">// pub mod input {</span>
+    <span class="comment">//     include!(concat!(env!(&quot;OUT_DIR&quot;), &quot;/ffi/input.rs&quot;));</span>
+    <span class="comment">// }</span>
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;present&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">present</span> {
