@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `&#x2F;home&#x2F;runner&#x2F;.cargo&#x2F;registry&#x2F;src&#x2F;github.com-1ecc6299db9ec823&#x2F;x11-2.19.0&#x2F;src&#x2F;xlib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>xlib.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../x11/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `&#x2F;home&#x2F;runner&#x2F;.cargo&#x2F;registry&#x2F;src&#x2F;github.com-1ecc6299db9ec823&#x2F;x11-2.19.1&#x2F;src&#x2F;xlib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>xlib.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../x11/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -3508,6 +3508,55 @@
 <span id="3508">3508</span>
 <span id="3509">3509</span>
 <span id="3510">3510</span>
+<span id="3511">3511</span>
+<span id="3512">3512</span>
+<span id="3513">3513</span>
+<span id="3514">3514</span>
+<span id="3515">3515</span>
+<span id="3516">3516</span>
+<span id="3517">3517</span>
+<span id="3518">3518</span>
+<span id="3519">3519</span>
+<span id="3520">3520</span>
+<span id="3521">3521</span>
+<span id="3522">3522</span>
+<span id="3523">3523</span>
+<span id="3524">3524</span>
+<span id="3525">3525</span>
+<span id="3526">3526</span>
+<span id="3527">3527</span>
+<span id="3528">3528</span>
+<span id="3529">3529</span>
+<span id="3530">3530</span>
+<span id="3531">3531</span>
+<span id="3532">3532</span>
+<span id="3533">3533</span>
+<span id="3534">3534</span>
+<span id="3535">3535</span>
+<span id="3536">3536</span>
+<span id="3537">3537</span>
+<span id="3538">3538</span>
+<span id="3539">3539</span>
+<span id="3540">3540</span>
+<span id="3541">3541</span>
+<span id="3542">3542</span>
+<span id="3543">3543</span>
+<span id="3544">3544</span>
+<span id="3545">3545</span>
+<span id="3546">3546</span>
+<span id="3547">3547</span>
+<span id="3548">3548</span>
+<span id="3549">3549</span>
+<span id="3550">3550</span>
+<span id="3551">3551</span>
+<span id="3552">3552</span>
+<span id="3553">3553</span>
+<span id="3554">3554</span>
+<span id="3555">3555</span>
+<span id="3556">3556</span>
+<span id="3557">3557</span>
+<span id="3558">3558</span>
+<span id="3559">3559</span>
 </pre><pre class="rust">
 <span class="comment">// x11-rs: Rust bindings for X11 libraries</span>
 <span class="comment">// The X11 libraries are available under the MIT license.</span>
@@ -4364,7 +4413,30 @@
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XkbComponentNames</span>;
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XkbControls</span>;
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XkbControls</span> {
+    <span class="kw">pub</span> <span class="ident">mk_dflt_btn</span>: <span class="ident">c_uchar</span>,
+    <span class="kw">pub</span> <span class="ident">num_groups</span>: <span class="ident">c_uchar</span>,
+    <span class="kw">pub</span> <span class="ident">groups_wrap</span>: <span class="ident">c_uchar</span>,
+    <span class="kw">pub</span> <span class="ident">internal</span>: <span class="ident">XkbModsRec</span>,
+    <span class="kw">pub</span> <span class="ident">ignore_loc</span>: <span class="ident">XkbModsRec</span>,
+    <span class="kw">pub</span> <span class="ident">enabled_ctrls</span>: <span class="ident">c_uint</span>,
+    <span class="kw">pub</span> <span class="ident">repeat_delay</span>: <span class="ident">c_ushort</span>,
+    <span class="kw">pub</span> <span class="ident">repeat_interval</span>: <span class="ident">c_ushort</span>,
+    <span class="kw">pub</span> <span class="ident">slow_keys_delay</span>: <span class="ident">c_ushort</span>,
+    <span class="kw">pub</span> <span class="ident">debounce_delay</span>: <span class="ident">c_ushort</span>,
+    <span class="kw">pub</span> <span class="ident">mk_delay</span>: <span class="ident">c_ushort</span>,
+    <span class="kw">pub</span> <span class="ident">mk_interval</span>: <span class="ident">c_ushort</span>,
+    <span class="kw">pub</span> <span class="ident">mk_time_to_max</span>: <span class="ident">c_ushort</span>,
+    <span class="kw">pub</span> <span class="ident">mk_max_speed</span>: <span class="ident">c_ushort</span>,
+    <span class="kw">pub</span> <span class="ident">mk_curve</span>: <span class="ident">c_short</span>,
+    <span class="kw">pub</span> <span class="ident">ax_options</span>: <span class="ident">c_ushort</span>,
+    <span class="kw">pub</span> <span class="ident">ax_timeout</span>: <span class="ident">c_ushort</span>,
+    <span class="kw">pub</span> <span class="ident">axt_opts_mask</span>: <span class="ident">c_ushort</span>,
+    <span class="kw">pub</span> <span class="ident">axt_opts_values</span>: <span class="ident">c_ushort</span>,
+    <span class="kw">pub</span> <span class="ident">axt_ctrls_mask</span>: <span class="ident">c_uint</span>,
+    <span class="kw">pub</span> <span class="ident">axt_ctrls_values</span>: <span class="ident">c_uint</span>,
+    <span class="kw">pub</span> <span class="ident">per_key_repeat</span>: [<span class="ident">c_uchar</span>; <span class="number">32</span>],
+}
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XkbControlsChanges</span>;
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
@@ -4392,7 +4464,11 @@
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XkbMapChanges</span>;
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XkbMods</span>;
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XkbMods</span> {
+    <span class="kw">pub</span> <span class="ident">mask</span>: <span class="ident">c_uchar</span>,
+    <span class="kw">pub</span> <span class="ident">real_mods</span>: <span class="ident">c_uchar</span>,
+    <span class="kw">pub</span> <span class="ident">vmods</span>: <span class="ident">c_ushort</span>,
+}
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XkbNameChanges</span>;
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
@@ -4475,6 +4551,7 @@
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XkbServerMapPtr</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">_XkbServerMapRec</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XkbShapePtr</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">_XkbShape</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XkbStatePtr</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">_XkbStateRec</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XkbStateRec</span> <span class="op">=</span> <span class="ident">_XkbStateRec</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XkbSymInterpretPtr</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">_XkbSymInterpretRec</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XOM</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">_XOM</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XrmDatabase</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">_XrmHashBucketRec</span>;
@@ -5217,18 +5294,23 @@
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XkbStateRec</span> {
     <span class="kw">pub</span> <span class="ident">group</span>: <span class="ident">c_uchar</span>,
-    <span class="kw">pub</span> <span class="ident">locked_group</span>: <span class="ident">c_uchar</span>,
     <span class="kw">pub</span> <span class="ident">base_group</span>: <span class="ident">c_ushort</span>,
     <span class="kw">pub</span> <span class="ident">latched_group</span>: <span class="ident">c_ushort</span>,
+    <span class="kw">pub</span> <span class="ident">locked_group</span>: <span class="ident">c_uchar</span>,
+
     <span class="kw">pub</span> <span class="ident">mods</span>: <span class="ident">c_uchar</span>,
     <span class="kw">pub</span> <span class="ident">base_mods</span>: <span class="ident">c_uchar</span>,
     <span class="kw">pub</span> <span class="ident">latched_mods</span>: <span class="ident">c_uchar</span>,
     <span class="kw">pub</span> <span class="ident">locked_mods</span>: <span class="ident">c_uchar</span>,
+
     <span class="kw">pub</span> <span class="ident">compat_state</span>: <span class="ident">c_uchar</span>,
+
     <span class="kw">pub</span> <span class="ident">grab_mods</span>: <span class="ident">c_uchar</span>,
     <span class="kw">pub</span> <span class="ident">compat_grab_mods</span>: <span class="ident">c_uchar</span>,
+
     <span class="kw">pub</span> <span class="ident">lookup_mods</span>: <span class="ident">c_uchar</span>,
     <span class="kw">pub</span> <span class="ident">compat_lookup_mods</span>: <span class="ident">c_uchar</span>,
+
     <span class="kw">pub</span> <span class="ident">ptr_buttons</span>: <span class="ident">c_ushort</span>,
 }
 
@@ -6975,6 +7057,22 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XkbAccessXNotifyMask</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">10</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XkbExtensionDeviceNotifyMask</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">11</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XkbAllEventsMask</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">0xfff</span>;
+
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XkbModifierStateMask</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XkbModifierBaseMask</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">1</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XkbModifierLatchMask</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">2</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XkbModifierLockMask</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">3</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XkbGroupStateMask</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">4</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XkbGroupBaseMask</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">5</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XkbGroupLatchMask</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">6</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XkbGroupLockMask</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">7</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XkbCompatStateMask</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">8</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XkbGrabModsMask</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">9</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XkbCompatGrabModsMask</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">10</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XkbLookupModsMask</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">11</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XkbCompatLookupModsMask</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">12</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XkbPointerButtonMask</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">13</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XkbAllStateComponentsMask</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">0x3fff</span>;
 
 <span class="comment">// Bitmask returned by XParseGeometry</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NoValue</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x0000</span>;
