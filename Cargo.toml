@@ -85,6 +85,9 @@ name = "opengl_window"
 required-features = ["xlib_xcb", "dri2"]
 
 [[example]]
+name = "print_setup"
+
+[[example]]
 name = "randr_crtc_info"
 required-features = ["randr"]
 
