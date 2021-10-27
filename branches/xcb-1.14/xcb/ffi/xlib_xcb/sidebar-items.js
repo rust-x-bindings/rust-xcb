@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["XGetXCBConnection",""],["XSetEventQueueOwner",""]],"static":[["XCBOwnsEventQueue",""],["XlibOwnsEventQueue",""]],"type":[["XEventQueueOwner",""]]});
