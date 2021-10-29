@@ -542,6 +542,81 @@
 <span id="542">542</span>
 <span id="543">543</span>
 <span id="544">544</span>
+<span id="545">545</span>
+<span id="546">546</span>
+<span id="547">547</span>
+<span id="548">548</span>
+<span id="549">549</span>
+<span id="550">550</span>
+<span id="551">551</span>
+<span id="552">552</span>
+<span id="553">553</span>
+<span id="554">554</span>
+<span id="555">555</span>
+<span id="556">556</span>
+<span id="557">557</span>
+<span id="558">558</span>
+<span id="559">559</span>
+<span id="560">560</span>
+<span id="561">561</span>
+<span id="562">562</span>
+<span id="563">563</span>
+<span id="564">564</span>
+<span id="565">565</span>
+<span id="566">566</span>
+<span id="567">567</span>
+<span id="568">568</span>
+<span id="569">569</span>
+<span id="570">570</span>
+<span id="571">571</span>
+<span id="572">572</span>
+<span id="573">573</span>
+<span id="574">574</span>
+<span id="575">575</span>
+<span id="576">576</span>
+<span id="577">577</span>
+<span id="578">578</span>
+<span id="579">579</span>
+<span id="580">580</span>
+<span id="581">581</span>
+<span id="582">582</span>
+<span id="583">583</span>
+<span id="584">584</span>
+<span id="585">585</span>
+<span id="586">586</span>
+<span id="587">587</span>
+<span id="588">588</span>
+<span id="589">589</span>
+<span id="590">590</span>
+<span id="591">591</span>
+<span id="592">592</span>
+<span id="593">593</span>
+<span id="594">594</span>
+<span id="595">595</span>
+<span id="596">596</span>
+<span id="597">597</span>
+<span id="598">598</span>
+<span id="599">599</span>
+<span id="600">600</span>
+<span id="601">601</span>
+<span id="602">602</span>
+<span id="603">603</span>
+<span id="604">604</span>
+<span id="605">605</span>
+<span id="606">606</span>
+<span id="607">607</span>
+<span id="608">608</span>
+<span id="609">609</span>
+<span id="610">610</span>
+<span id="611">611</span>
+<span id="612">612</span>
+<span id="613">613</span>
+<span id="614">614</span>
+<span id="615">615</span>
+<span id="616">616</span>
+<span id="617">617</span>
+<span id="618">618</span>
+<span id="619">619</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">Wired</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi::base</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi::ext</span>::<span class="kw-2">*</span>;
@@ -673,10 +748,6 @@
     <span class="macro">assert_eq!</span>(<span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span>(), <span class="number">4</span>);
 }
 
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryVersionCookie</span> {
-    <span class="ident">seq</span>: <span class="ident">u32</span>,
-}
-
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryVersionReply</span> {
     <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -741,15 +812,47 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">base::Cookie</span> <span class="kw">for</span> <span class="ident">QueryVersionCookie</span> {
-    <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryVersionReply</span>;
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryVersionCookie</span> {
+    <span class="ident">seq</span>: <span class="ident">u64</span>,
+}
 
-    <span class="kw">fn</span> <span class="ident">sequence</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedQueryVersionCookie</span> {
+    <span class="ident">seq</span>: <span class="ident">u64</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">base::Cookie</span> <span class="kw">for</span> <span class="ident">QueryVersionCookie</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_sequence</span>(<span class="ident">seq</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="ident">QueryVersionCookie</span> { <span class="ident">seq</span> }
+    }
+
+    <span class="kw">fn</span> <span class="ident">sequence</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
         <span class="self">self</span>.<span class="ident">seq</span>
     }
 }
 
-<span class="kw">impl</span> <span class="ident">base::CookieGetReply</span> <span class="kw">for</span> <span class="ident">QueryVersionCookie</span> {}
+<span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">QueryVersionCookie</span> {
+    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">base::GenericError</span>;
+}
+
+<span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">QueryVersionCookie</span> {
+    <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryVersionReply</span>;
+}
+
+<span class="kw">impl</span> <span class="ident">base::Cookie</span> <span class="kw">for</span> <span class="ident">UncheckedQueryVersionCookie</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_sequence</span>(<span class="ident">seq</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="ident">UncheckedQueryVersionCookie</span> { <span class="ident">seq</span> }
+    }
+
+    <span class="kw">fn</span> <span class="ident">sequence</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
+        <span class="self">self</span>.<span class="ident">seq</span>
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedQueryVersionCookie</span> {
+    <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryVersionReply</span>;
+}
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryVersion</span> {
@@ -757,44 +860,49 @@
     <span class="kw">pub</span> <span class="ident">minor_version</span>: <span class="ident">u32</span>,
 }
 
-<span class="kw">impl</span> <span class="ident">base::Request</span> <span class="kw">for</span> <span class="ident">QueryVersion</span> {
-    <span class="kw">const</span> <span class="ident">OPCODE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0</span>;
-    <span class="kw">const</span> <span class="ident">ISVOID</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="bool-val">false</span>;
-    <span class="kw">type</span> <span class="ident">Cookie</span> <span class="op">=</span> <span class="ident">QueryVersionCookie</span>;
-    <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryVersionReply</span>;
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::RawRequest</span> <span class="kw">for</span> <span class="ident">QueryVersion</span> {
+    <span class="kw">fn</span> <span class="ident">raw_request</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">c</span>: <span class="kw-2">&amp;</span><span class="ident">base::Connection</span>, <span class="ident">checked</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="op">=</span> <span class="ident">xcb_protocol_request_t</span> {
+                <span class="ident">count</span>: <span class="number">2</span>,
+                <span class="ident">ext</span>: (<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">FFI_EXT</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
+                <span class="ident">opcode</span>: <span class="number">0</span>,
+                <span class="ident">isvoid</span>: <span class="number">0</span>,
+            };
 
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">raw_request</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">c</span>: <span class="kw-2">&amp;</span><span class="ident">base::Connection</span>,
-        <span class="ident">flags</span>: <span class="ident">base::RequestFlags</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">QueryVersionCookie</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="op">=</span> <span class="ident">xcb_protocol_request_t</span> {
-            <span class="ident">count</span>: <span class="number">2</span>,
-            <span class="ident">ext</span>: (<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">FFI_EXT</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
-            <span class="ident">opcode</span>: <span class="ident"><span class="self">Self</span>::OPCODE</span>,
-            <span class="ident">isvoid</span>: <span class="kw">if</span> <span class="ident"><span class="self">Self</span>::ISVOID</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> },
-        };
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sections</span>: [<span class="ident">iovec</span>; <span class="number">4</span>] <span class="op">=</span> [<span class="ident">iovec</span> {
+                <span class="ident">iov_base</span>: <span class="ident">std::ptr::null_mut</span>(),
+                <span class="ident">iov_len</span>: <span class="number">0</span>,
+            }; <span class="number">4</span>];
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sections</span>: [<span class="ident">iovec</span>; <span class="number">4</span>] <span class="op">=</span> [<span class="ident">iovec</span> {
-            <span class="ident">iov_base</span>: <span class="ident">std::ptr::null_mut</span>(),
-            <span class="ident">iov_len</span>: <span class="number">0</span>,
-        }; <span class="number">4</span>];
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf0</span>: [<span class="ident">u8</span>; <span class="number">12</span>] <span class="op">=</span> [<span class="number">0</span>; <span class="number">12</span>];
+            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">4</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u32</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">major_version</span>;
+            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">8</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u32</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">minor_version</span>;
+            <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
+            <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">12</span>;
+            <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf0</span>: [<span class="ident">u8</span>; <span class="number">12</span>] <span class="op">=</span> [<span class="number">0</span>; <span class="number">12</span>];
-        <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">4</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u32</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">major_version</span>;
-        <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">8</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u32</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">minor_version</span>;
-        <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
-        <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">12</span>;
-        <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> ((<span class="op">-</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="kw">as</span> <span class="ident">isize</span>)) <span class="op">&amp;</span> <span class="number">3</span>) <span class="kw">as</span> <span class="ident">usize</span>;
+            <span class="kw">let</span> <span class="ident">flags</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">checked</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> };
 
-        <span class="kw">let</span> <span class="ident">seq</span> <span class="op">=</span> <span class="ident">xcb_send_request</span>(
-            <span class="ident">c</span>.<span class="ident">get_raw_conn</span>(),
-            <span class="ident">flags</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="kw">_</span>,
-            <span class="ident">sections</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">2</span>),
-            <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
-        );
-        <span class="ident">QueryVersionCookie</span> { <span class="ident">seq</span> }
+            <span class="ident">xcb_send_request64</span>(
+                <span class="ident">c</span>.<span class="ident">get_raw_conn</span>(),
+                <span class="ident">flags</span>,
+                <span class="ident">sections</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">2</span>),
+                <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
+            )
+        }
     }
+}
+
+<span class="kw">impl</span> <span class="ident">base::Request</span> <span class="kw">for</span> <span class="ident">QueryVersion</span> {
+    <span class="kw">type</span> <span class="ident">Cookie</span> <span class="op">=</span> <span class="ident">QueryVersionCookie</span>;
+    <span class="kw">const</span> <span class="ident">IS_VOID</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="bool-val">false</span>;
+}
+
+<span class="kw">impl</span> <span class="ident">base::RequestWithReply</span> <span class="kw">for</span> <span class="ident">QueryVersion</span> {
+    <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryVersionReply</span>;
+    <span class="kw">type</span> <span class="ident">Cookie</span> <span class="op">=</span> <span class="ident">QueryVersionCookie</span>;
+    <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedQueryVersionCookie</span>;
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
@@ -816,60 +924,63 @@
     <span class="kw">pub</span> <span class="ident">notifies</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">Notify</span>],
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::Request</span> <span class="kw">for</span> <span class="ident">Pixmap</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">const</span> <span class="ident">OPCODE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">1</span>;
-    <span class="kw">const</span> <span class="ident">ISVOID</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="bool-val">true</span>;
-    <span class="kw">type</span> <span class="ident">Cookie</span> <span class="op">=</span> <span class="ident">base::VoidCookie</span>;
-    <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> ();
+<span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RawRequest</span> <span class="kw">for</span> <span class="ident">Pixmap</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">raw_request</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">c</span>: <span class="kw-2">&amp;</span><span class="ident">base::Connection</span>, <span class="ident">checked</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="op">=</span> <span class="ident">xcb_protocol_request_t</span> {
+                <span class="ident">count</span>: <span class="number">4</span>,
+                <span class="ident">ext</span>: (<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">FFI_EXT</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
+                <span class="ident">opcode</span>: <span class="number">1</span>,
+                <span class="ident">isvoid</span>: <span class="number">1</span>,
+            };
 
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">raw_request</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">c</span>: <span class="kw-2">&amp;</span><span class="ident">base::Connection</span>,
-        <span class="ident">flags</span>: <span class="ident">base::RequestFlags</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">base::VoidCookie</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="op">=</span> <span class="ident">xcb_protocol_request_t</span> {
-            <span class="ident">count</span>: <span class="number">4</span>,
-            <span class="ident">ext</span>: (<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">FFI_EXT</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
-            <span class="ident">opcode</span>: <span class="ident"><span class="self">Self</span>::OPCODE</span>,
-            <span class="ident">isvoid</span>: <span class="kw">if</span> <span class="ident"><span class="self">Self</span>::ISVOID</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> },
-        };
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sections</span>: [<span class="ident">iovec</span>; <span class="number">6</span>] <span class="op">=</span> [<span class="ident">iovec</span> {
+                <span class="ident">iov_base</span>: <span class="ident">std::ptr::null_mut</span>(),
+                <span class="ident">iov_len</span>: <span class="number">0</span>,
+            }; <span class="number">6</span>];
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sections</span>: [<span class="ident">iovec</span>; <span class="number">6</span>] <span class="op">=</span> [<span class="ident">iovec</span> {
-            <span class="ident">iov_base</span>: <span class="ident">std::ptr::null_mut</span>(),
-            <span class="ident">iov_len</span>: <span class="number">0</span>,
-        }; <span class="number">6</span>];
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf0</span>: [<span class="ident">u8</span>; <span class="number">72</span>] <span class="op">=</span> [<span class="number">0</span>; <span class="number">72</span>];
+            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">4</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xproto::Window</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">window</span>;
+            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">8</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xproto::Pixmap</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">pixmap</span>;
+            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">12</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u32</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">serial</span>;
+            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">16</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xfixes::Region</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">valid</span>;
+            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">20</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xfixes::Region</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">update</span>;
+            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">24</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">i16</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">x_off</span>;
+            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">26</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">i16</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">y_off</span>;
+            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">28</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">randr::Crtc</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">target_crtc</span>;
+            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">32</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">sync::Fence</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">wait_fence</span>;
+            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">36</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">sync::Fence</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">idle_fence</span>;
+            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">40</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u32</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">options</span>;
+            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">48</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u64</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">target_msc</span>;
+            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">56</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u64</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">divisor</span>;
+            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">64</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u64</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">remainder</span>;
+            <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
+            <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">72</span>;
+            <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf0</span>: [<span class="ident">u8</span>; <span class="number">72</span>] <span class="op">=</span> [<span class="number">0</span>; <span class="number">72</span>];
-        <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">4</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xproto::Window</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">window</span>;
-        <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">8</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xproto::Pixmap</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">pixmap</span>;
-        <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">12</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u32</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">serial</span>;
-        <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">16</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xfixes::Region</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">valid</span>;
-        <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">20</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xfixes::Region</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">update</span>;
-        <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">24</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">i16</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">x_off</span>;
-        <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">26</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">i16</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">y_off</span>;
-        <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">28</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">randr::Crtc</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">target_crtc</span>;
-        <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">32</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">sync::Fence</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">wait_fence</span>;
-        <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">36</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">sync::Fence</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">idle_fence</span>;
-        <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">40</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u32</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">options</span>;
-        <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">48</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u64</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">target_msc</span>;
-        <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">56</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u64</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">divisor</span>;
-        <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">64</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u64</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">remainder</span>;
-        <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
-        <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">72</span>;
-        <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> ((<span class="op">-</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="kw">as</span> <span class="ident">isize</span>)) <span class="op">&amp;</span> <span class="number">3</span>) <span class="kw">as</span> <span class="ident">usize</span>;
+            <span class="ident">sections</span>[<span class="number">4</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">notifies</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
+            <span class="ident">sections</span>[<span class="number">4</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">notifies</span>.<span class="ident">len</span>() <span class="op">*</span> <span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Notify</span><span class="op">&gt;</span>();
+            <span class="ident">sections</span>[<span class="number">5</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">4</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
 
-        <span class="ident">sections</span>[<span class="number">4</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">notifies</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
-        <span class="ident">sections</span>[<span class="number">4</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">notifies</span>.<span class="ident">len</span>() <span class="op">*</span> <span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Notify</span><span class="op">&gt;</span>();
-        <span class="ident">sections</span>[<span class="number">5</span>].<span class="ident">iov_len</span> <span class="op">=</span> ((<span class="op">-</span>(<span class="ident">sections</span>[<span class="number">4</span>].<span class="ident">iov_len</span> <span class="kw">as</span> <span class="ident">isize</span>)) <span class="op">&amp;</span> <span class="number">3</span>) <span class="kw">as</span> <span class="ident">usize</span>;
+            <span class="kw">let</span> <span class="ident">flags</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">checked</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> };
 
-        <span class="kw">let</span> <span class="ident">seq</span> <span class="op">=</span> <span class="ident">xcb_send_request</span>(
-            <span class="ident">c</span>.<span class="ident">get_raw_conn</span>(),
-            <span class="ident">flags</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="kw">_</span>,
-            <span class="ident">sections</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">2</span>),
-            <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
-        );
-        <span class="ident">base::VoidCookie</span> { <span class="ident">seq</span> }
+            <span class="ident">xcb_send_request64</span>(
+                <span class="ident">c</span>.<span class="ident">get_raw_conn</span>(),
+                <span class="ident">flags</span>,
+                <span class="ident">sections</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">2</span>),
+                <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
+            )
+        }
     }
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::Request</span> <span class="kw">for</span> <span class="ident">Pixmap</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+    <span class="kw">type</span> <span class="ident">Cookie</span> <span class="op">=</span> <span class="ident">base::VoidCookie</span>;
+    <span class="kw">const</span> <span class="ident">IS_VOID</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="bool-val">true</span>;
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">Pixmap</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">base::GenericError</span>;
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
@@ -881,47 +992,50 @@
     <span class="kw">pub</span> <span class="ident">remainder</span>: <span class="ident">u64</span>,
 }
 
-<span class="kw">impl</span> <span class="ident">base::Request</span> <span class="kw">for</span> <span class="ident">NotifyMsc</span> {
-    <span class="kw">const</span> <span class="ident">OPCODE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">2</span>;
-    <span class="kw">const</span> <span class="ident">ISVOID</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="bool-val">true</span>;
-    <span class="kw">type</span> <span class="ident">Cookie</span> <span class="op">=</span> <span class="ident">base::VoidCookie</span>;
-    <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> ();
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::RawRequest</span> <span class="kw">for</span> <span class="ident">NotifyMsc</span> {
+    <span class="kw">fn</span> <span class="ident">raw_request</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">c</span>: <span class="kw-2">&amp;</span><span class="ident">base::Connection</span>, <span class="ident">checked</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="op">=</span> <span class="ident">xcb_protocol_request_t</span> {
+                <span class="ident">count</span>: <span class="number">2</span>,
+                <span class="ident">ext</span>: (<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">FFI_EXT</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
+                <span class="ident">opcode</span>: <span class="number">2</span>,
+                <span class="ident">isvoid</span>: <span class="number">1</span>,
+            };
 
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">raw_request</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">c</span>: <span class="kw-2">&amp;</span><span class="ident">base::Connection</span>,
-        <span class="ident">flags</span>: <span class="ident">base::RequestFlags</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">base::VoidCookie</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="op">=</span> <span class="ident">xcb_protocol_request_t</span> {
-            <span class="ident">count</span>: <span class="number">2</span>,
-            <span class="ident">ext</span>: (<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">FFI_EXT</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
-            <span class="ident">opcode</span>: <span class="ident"><span class="self">Self</span>::OPCODE</span>,
-            <span class="ident">isvoid</span>: <span class="kw">if</span> <span class="ident"><span class="self">Self</span>::ISVOID</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> },
-        };
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sections</span>: [<span class="ident">iovec</span>; <span class="number">4</span>] <span class="op">=</span> [<span class="ident">iovec</span> {
+                <span class="ident">iov_base</span>: <span class="ident">std::ptr::null_mut</span>(),
+                <span class="ident">iov_len</span>: <span class="number">0</span>,
+            }; <span class="number">4</span>];
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sections</span>: [<span class="ident">iovec</span>; <span class="number">4</span>] <span class="op">=</span> [<span class="ident">iovec</span> {
-            <span class="ident">iov_base</span>: <span class="ident">std::ptr::null_mut</span>(),
-            <span class="ident">iov_len</span>: <span class="number">0</span>,
-        }; <span class="number">4</span>];
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf0</span>: [<span class="ident">u8</span>; <span class="number">40</span>] <span class="op">=</span> [<span class="number">0</span>; <span class="number">40</span>];
+            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">4</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xproto::Window</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">window</span>;
+            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">8</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u32</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">serial</span>;
+            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">16</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u64</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">target_msc</span>;
+            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">24</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u64</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">divisor</span>;
+            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">32</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u64</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">remainder</span>;
+            <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
+            <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">40</span>;
+            <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf0</span>: [<span class="ident">u8</span>; <span class="number">40</span>] <span class="op">=</span> [<span class="number">0</span>; <span class="number">40</span>];
-        <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">4</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xproto::Window</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">window</span>;
-        <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">8</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u32</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">serial</span>;
-        <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">16</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u64</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">target_msc</span>;
-        <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">24</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u64</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">divisor</span>;
-        <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">32</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u64</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">remainder</span>;
-        <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
-        <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">40</span>;
-        <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> ((<span class="op">-</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="kw">as</span> <span class="ident">isize</span>)) <span class="op">&amp;</span> <span class="number">3</span>) <span class="kw">as</span> <span class="ident">usize</span>;
+            <span class="kw">let</span> <span class="ident">flags</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">checked</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> };
 
-        <span class="kw">let</span> <span class="ident">seq</span> <span class="op">=</span> <span class="ident">xcb_send_request</span>(
-            <span class="ident">c</span>.<span class="ident">get_raw_conn</span>(),
-            <span class="ident">flags</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="kw">_</span>,
-            <span class="ident">sections</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">2</span>),
-            <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
-        );
-        <span class="ident">base::VoidCookie</span> { <span class="ident">seq</span> }
+            <span class="ident">xcb_send_request64</span>(
+                <span class="ident">c</span>.<span class="ident">get_raw_conn</span>(),
+                <span class="ident">flags</span>,
+                <span class="ident">sections</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">2</span>),
+                <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
+            )
+        }
     }
+}
+
+<span class="kw">impl</span> <span class="ident">base::Request</span> <span class="kw">for</span> <span class="ident">NotifyMsc</span> {
+    <span class="kw">type</span> <span class="ident">Cookie</span> <span class="op">=</span> <span class="ident">base::VoidCookie</span>;
+    <span class="kw">const</span> <span class="ident">IS_VOID</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="bool-val">true</span>;
+}
+
+<span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">NotifyMsc</span> {
+    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">base::GenericError</span>;
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
@@ -931,50 +1045,49 @@
     <span class="kw">pub</span> <span class="ident">event_mask</span>: <span class="ident">EventMask</span>,
 }
 
-<span class="kw">impl</span> <span class="ident">base::Request</span> <span class="kw">for</span> <span class="ident">SelectInput</span> {
-    <span class="kw">const</span> <span class="ident">OPCODE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">3</span>;
-    <span class="kw">const</span> <span class="ident">ISVOID</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="bool-val">true</span>;
-    <span class="kw">type</span> <span class="ident">Cookie</span> <span class="op">=</span> <span class="ident">base::VoidCookie</span>;
-    <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> ();
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::RawRequest</span> <span class="kw">for</span> <span class="ident">SelectInput</span> {
+    <span class="kw">fn</span> <span class="ident">raw_request</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">c</span>: <span class="kw-2">&amp;</span><span class="ident">base::Connection</span>, <span class="ident">checked</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="op">=</span> <span class="ident">xcb_protocol_request_t</span> {
+                <span class="ident">count</span>: <span class="number">2</span>,
+                <span class="ident">ext</span>: (<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">FFI_EXT</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
+                <span class="ident">opcode</span>: <span class="number">3</span>,
+                <span class="ident">isvoid</span>: <span class="number">1</span>,
+            };
 
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">raw_request</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">c</span>: <span class="kw-2">&amp;</span><span class="ident">base::Connection</span>,
-        <span class="ident">flags</span>: <span class="ident">base::RequestFlags</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">base::VoidCookie</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="op">=</span> <span class="ident">xcb_protocol_request_t</span> {
-            <span class="ident">count</span>: <span class="number">2</span>,
-            <span class="ident">ext</span>: (<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">FFI_EXT</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
-            <span class="ident">opcode</span>: <span class="ident"><span class="self">Self</span>::OPCODE</span>,
-            <span class="ident">isvoid</span>: <span class="kw">if</span> <span class="ident"><span class="self">Self</span>::ISVOID</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> },
-        };
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sections</span>: [<span class="ident">iovec</span>; <span class="number">4</span>] <span class="op">=</span> [<span class="ident">iovec</span> {
+                <span class="ident">iov_base</span>: <span class="ident">std::ptr::null_mut</span>(),
+                <span class="ident">iov_len</span>: <span class="number">0</span>,
+            }; <span class="number">4</span>];
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sections</span>: [<span class="ident">iovec</span>; <span class="number">4</span>] <span class="op">=</span> [<span class="ident">iovec</span> {
-            <span class="ident">iov_base</span>: <span class="ident">std::ptr::null_mut</span>(),
-            <span class="ident">iov_len</span>: <span class="number">0</span>,
-        }; <span class="number">4</span>];
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf0</span>: [<span class="ident">u8</span>; <span class="number">16</span>] <span class="op">=</span> [<span class="number">0</span>; <span class="number">16</span>];
+            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">4</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">Event</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">eid</span>;
+            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">8</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xproto::Window</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">window</span>;
+            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">12</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u32</span>) <span class="op">=</span>
+                <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="self">self</span>.<span class="ident">event_mask</span>) <span class="kw">as</span> <span class="ident">u32</span>;
+            <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
+            <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">16</span>;
+            <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf0</span>: [<span class="ident">u8</span>; <span class="number">16</span>] <span class="op">=</span> [<span class="number">0</span>; <span class="number">16</span>];
-        <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">4</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">Event</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">eid</span>;
-        <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">8</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xproto::Window</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">window</span>;
-        <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">12</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u32</span>) <span class="op">=</span>
-            <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="self">self</span>.<span class="ident">event_mask</span>) <span class="kw">as</span> <span class="ident">u32</span>;
-        <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
-        <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">16</span>;
-        <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> ((<span class="op">-</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="kw">as</span> <span class="ident">isize</span>)) <span class="op">&amp;</span> <span class="number">3</span>) <span class="kw">as</span> <span class="ident">usize</span>;
+            <span class="kw">let</span> <span class="ident">flags</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">checked</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> };
 
-        <span class="kw">let</span> <span class="ident">seq</span> <span class="op">=</span> <span class="ident">xcb_send_request</span>(
-            <span class="ident">c</span>.<span class="ident">get_raw_conn</span>(),
-            <span class="ident">flags</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="kw">_</span>,
-            <span class="ident">sections</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">2</span>),
-            <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
-        );
-        <span class="ident">base::VoidCookie</span> { <span class="ident">seq</span> }
+            <span class="ident">xcb_send_request64</span>(
+                <span class="ident">c</span>.<span class="ident">get_raw_conn</span>(),
+                <span class="ident">flags</span>,
+                <span class="ident">sections</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">2</span>),
+                <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
+            )
+        }
     }
 }
 
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryCapabilitiesCookie</span> {
-    <span class="ident">seq</span>: <span class="ident">u32</span>,
+<span class="kw">impl</span> <span class="ident">base::Request</span> <span class="kw">for</span> <span class="ident">SelectInput</span> {
+    <span class="kw">type</span> <span class="ident">Cookie</span> <span class="op">=</span> <span class="ident">base::VoidCookie</span>;
+    <span class="kw">const</span> <span class="ident">IS_VOID</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="bool-val">true</span>;
+}
+
+<span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">SelectInput</span> {
+    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">base::GenericError</span>;
 }
 
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryCapabilitiesReply</span> {
@@ -1033,58 +1146,95 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">base::Cookie</span> <span class="kw">for</span> <span class="ident">QueryCapabilitiesCookie</span> {
-    <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryCapabilitiesReply</span>;
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryCapabilitiesCookie</span> {
+    <span class="ident">seq</span>: <span class="ident">u64</span>,
+}
 
-    <span class="kw">fn</span> <span class="ident">sequence</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedQueryCapabilitiesCookie</span> {
+    <span class="ident">seq</span>: <span class="ident">u64</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">base::Cookie</span> <span class="kw">for</span> <span class="ident">QueryCapabilitiesCookie</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_sequence</span>(<span class="ident">seq</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="ident">QueryCapabilitiesCookie</span> { <span class="ident">seq</span> }
+    }
+
+    <span class="kw">fn</span> <span class="ident">sequence</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
         <span class="self">self</span>.<span class="ident">seq</span>
     }
 }
 
-<span class="kw">impl</span> <span class="ident">base::CookieGetReply</span> <span class="kw">for</span> <span class="ident">QueryCapabilitiesCookie</span> {}
+<span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">QueryCapabilitiesCookie</span> {
+    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">base::GenericError</span>;
+}
+
+<span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">QueryCapabilitiesCookie</span> {
+    <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryCapabilitiesReply</span>;
+}
+
+<span class="kw">impl</span> <span class="ident">base::Cookie</span> <span class="kw">for</span> <span class="ident">UncheckedQueryCapabilitiesCookie</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_sequence</span>(<span class="ident">seq</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="ident">UncheckedQueryCapabilitiesCookie</span> { <span class="ident">seq</span> }
+    }
+
+    <span class="kw">fn</span> <span class="ident">sequence</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
+        <span class="self">self</span>.<span class="ident">seq</span>
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedQueryCapabilitiesCookie</span> {
+    <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryCapabilitiesReply</span>;
+}
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryCapabilities</span> {
     <span class="kw">pub</span> <span class="ident">target</span>: <span class="ident">u32</span>,
 }
 
-<span class="kw">impl</span> <span class="ident">base::Request</span> <span class="kw">for</span> <span class="ident">QueryCapabilities</span> {
-    <span class="kw">const</span> <span class="ident">OPCODE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">4</span>;
-    <span class="kw">const</span> <span class="ident">ISVOID</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="bool-val">false</span>;
-    <span class="kw">type</span> <span class="ident">Cookie</span> <span class="op">=</span> <span class="ident">QueryCapabilitiesCookie</span>;
-    <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryCapabilitiesReply</span>;
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::RawRequest</span> <span class="kw">for</span> <span class="ident">QueryCapabilities</span> {
+    <span class="kw">fn</span> <span class="ident">raw_request</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">c</span>: <span class="kw-2">&amp;</span><span class="ident">base::Connection</span>, <span class="ident">checked</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="op">=</span> <span class="ident">xcb_protocol_request_t</span> {
+                <span class="ident">count</span>: <span class="number">2</span>,
+                <span class="ident">ext</span>: (<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">FFI_EXT</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
+                <span class="ident">opcode</span>: <span class="number">4</span>,
+                <span class="ident">isvoid</span>: <span class="number">0</span>,
+            };
 
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">raw_request</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">c</span>: <span class="kw-2">&amp;</span><span class="ident">base::Connection</span>,
-        <span class="ident">flags</span>: <span class="ident">base::RequestFlags</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">QueryCapabilitiesCookie</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="op">=</span> <span class="ident">xcb_protocol_request_t</span> {
-            <span class="ident">count</span>: <span class="number">2</span>,
-            <span class="ident">ext</span>: (<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">FFI_EXT</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
-            <span class="ident">opcode</span>: <span class="ident"><span class="self">Self</span>::OPCODE</span>,
-            <span class="ident">isvoid</span>: <span class="kw">if</span> <span class="ident"><span class="self">Self</span>::ISVOID</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> },
-        };
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sections</span>: [<span class="ident">iovec</span>; <span class="number">4</span>] <span class="op">=</span> [<span class="ident">iovec</span> {
+                <span class="ident">iov_base</span>: <span class="ident">std::ptr::null_mut</span>(),
+                <span class="ident">iov_len</span>: <span class="number">0</span>,
+            }; <span class="number">4</span>];
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sections</span>: [<span class="ident">iovec</span>; <span class="number">4</span>] <span class="op">=</span> [<span class="ident">iovec</span> {
-            <span class="ident">iov_base</span>: <span class="ident">std::ptr::null_mut</span>(),
-            <span class="ident">iov_len</span>: <span class="number">0</span>,
-        }; <span class="number">4</span>];
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf0</span>: [<span class="ident">u8</span>; <span class="number">8</span>] <span class="op">=</span> [<span class="number">0</span>; <span class="number">8</span>];
+            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">4</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u32</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">target</span>;
+            <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
+            <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">8</span>;
+            <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf0</span>: [<span class="ident">u8</span>; <span class="number">8</span>] <span class="op">=</span> [<span class="number">0</span>; <span class="number">8</span>];
-        <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">4</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u32</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">target</span>;
-        <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
-        <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">8</span>;
-        <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> ((<span class="op">-</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="kw">as</span> <span class="ident">isize</span>)) <span class="op">&amp;</span> <span class="number">3</span>) <span class="kw">as</span> <span class="ident">usize</span>;
+            <span class="kw">let</span> <span class="ident">flags</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">checked</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> };
 
-        <span class="kw">let</span> <span class="ident">seq</span> <span class="op">=</span> <span class="ident">xcb_send_request</span>(
-            <span class="ident">c</span>.<span class="ident">get_raw_conn</span>(),
-            <span class="ident">flags</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="kw">_</span>,
-            <span class="ident">sections</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">2</span>),
-            <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
-        );
-        <span class="ident">QueryCapabilitiesCookie</span> { <span class="ident">seq</span> }
+            <span class="ident">xcb_send_request64</span>(
+                <span class="ident">c</span>.<span class="ident">get_raw_conn</span>(),
+                <span class="ident">flags</span>,
+                <span class="ident">sections</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">2</span>),
+                <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
+            )
+        }
     }
+}
+
+<span class="kw">impl</span> <span class="ident">base::Request</span> <span class="kw">for</span> <span class="ident">QueryCapabilities</span> {
+    <span class="kw">type</span> <span class="ident">Cookie</span> <span class="op">=</span> <span class="ident">QueryCapabilitiesCookie</span>;
+    <span class="kw">const</span> <span class="ident">IS_VOID</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="bool-val">false</span>;
+}
+
+<span class="kw">impl</span> <span class="ident">base::RequestWithReply</span> <span class="kw">for</span> <span class="ident">QueryCapabilities</span> {
+    <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryCapabilitiesReply</span>;
+    <span class="kw">type</span> <span class="ident">Cookie</span> <span class="op">=</span> <span class="ident">QueryCapabilitiesCookie</span>;
+    <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedQueryCapabilitiesCookie</span>;
 }
 </code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../../../../../../../../../../" data-current-crate="xcb" data-search-index-js="../../../../../../../../../../../../search-index.js" data-search-js="../../../../../../../../../../../../search.js"></div>

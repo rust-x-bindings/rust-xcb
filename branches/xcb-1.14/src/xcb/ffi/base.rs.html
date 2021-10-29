@@ -500,7 +500,7 @@
 <span class="doccomment">/// Generic error</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">xcb_generic_error_t</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">xcb_generic_error_t</span> {
     <span class="kw">pub</span> <span class="ident">response_type</span>: <span class="ident">u8</span>,
     <span class="kw">pub</span> <span class="ident">error_code</span>: <span class="ident">u8</span>,
     <span class="kw">pub</span> <span class="ident">sequence</span>: <span class="ident">u16</span>,
@@ -515,7 +515,7 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">xcb_void_cookie_t</span> {
-    <span class="ident">seq</span>: <span class="ident">u32</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">seq</span>: <span class="ident">u32</span>,
 }
 
 <span class="doccomment">/// Container for authorization information.</span>

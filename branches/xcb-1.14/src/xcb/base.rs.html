@@ -793,6 +793,113 @@
 <span id="793">793</span>
 <span id="794">794</span>
 <span id="795">795</span>
+<span id="796">796</span>
+<span id="797">797</span>
+<span id="798">798</span>
+<span id="799">799</span>
+<span id="800">800</span>
+<span id="801">801</span>
+<span id="802">802</span>
+<span id="803">803</span>
+<span id="804">804</span>
+<span id="805">805</span>
+<span id="806">806</span>
+<span id="807">807</span>
+<span id="808">808</span>
+<span id="809">809</span>
+<span id="810">810</span>
+<span id="811">811</span>
+<span id="812">812</span>
+<span id="813">813</span>
+<span id="814">814</span>
+<span id="815">815</span>
+<span id="816">816</span>
+<span id="817">817</span>
+<span id="818">818</span>
+<span id="819">819</span>
+<span id="820">820</span>
+<span id="821">821</span>
+<span id="822">822</span>
+<span id="823">823</span>
+<span id="824">824</span>
+<span id="825">825</span>
+<span id="826">826</span>
+<span id="827">827</span>
+<span id="828">828</span>
+<span id="829">829</span>
+<span id="830">830</span>
+<span id="831">831</span>
+<span id="832">832</span>
+<span id="833">833</span>
+<span id="834">834</span>
+<span id="835">835</span>
+<span id="836">836</span>
+<span id="837">837</span>
+<span id="838">838</span>
+<span id="839">839</span>
+<span id="840">840</span>
+<span id="841">841</span>
+<span id="842">842</span>
+<span id="843">843</span>
+<span id="844">844</span>
+<span id="845">845</span>
+<span id="846">846</span>
+<span id="847">847</span>
+<span id="848">848</span>
+<span id="849">849</span>
+<span id="850">850</span>
+<span id="851">851</span>
+<span id="852">852</span>
+<span id="853">853</span>
+<span id="854">854</span>
+<span id="855">855</span>
+<span id="856">856</span>
+<span id="857">857</span>
+<span id="858">858</span>
+<span id="859">859</span>
+<span id="860">860</span>
+<span id="861">861</span>
+<span id="862">862</span>
+<span id="863">863</span>
+<span id="864">864</span>
+<span id="865">865</span>
+<span id="866">866</span>
+<span id="867">867</span>
+<span id="868">868</span>
+<span id="869">869</span>
+<span id="870">870</span>
+<span id="871">871</span>
+<span id="872">872</span>
+<span id="873">873</span>
+<span id="874">874</span>
+<span id="875">875</span>
+<span id="876">876</span>
+<span id="877">877</span>
+<span id="878">878</span>
+<span id="879">879</span>
+<span id="880">880</span>
+<span id="881">881</span>
+<span id="882">882</span>
+<span id="883">883</span>
+<span id="884">884</span>
+<span id="885">885</span>
+<span id="886">886</span>
+<span id="887">887</span>
+<span id="888">888</span>
+<span id="889">889</span>
+<span id="890">890</span>
+<span id="891">891</span>
+<span id="892">892</span>
+<span id="893">893</span>
+<span id="894">894</span>
+<span id="895">895</span>
+<span id="896">896</span>
+<span id="897">897</span>
+<span id="898">898</span>
+<span id="899">899</span>
+<span id="900">900</span>
+<span id="901">901</span>
+<span id="902">902</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xproto::Setup</span>;
 
@@ -803,9 +910,10 @@
 
 <span class="kw">use</span> <span class="ident">libc::c_int</span>;
 
-<span class="kw">use</span> <span class="ident">std::error::Error</span>;
+<span class="kw">use</span> <span class="ident">std::error</span>;
 <span class="kw">use</span> <span class="ident">std::ffi::CString</span>;
 <span class="kw">use</span> <span class="ident">std::fmt</span>::{<span class="self">self</span>, <span class="ident">Display</span>, <span class="ident">Formatter</span>};
+<span class="kw">use</span> <span class="ident">std::marker</span>::{<span class="self">self</span>, <span class="ident">PhantomData</span>};
 <span class="kw">use</span> <span class="ident">std::mem</span>;
 <span class="kw">use</span> <span class="ident">std::ptr</span>;
 <span class="kw">use</span> <span class="ident">std::slice</span>;
@@ -981,85 +1089,122 @@
     <span class="kw">fn</span> <span class="ident">from_ptr</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>;
 }
 
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Cookie</span> {
-    <span class="kw">type</span> <span class="ident">Reply</span>;
-    <span class="kw">fn</span> <span class="ident">sequence</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span>;
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Error</span> {
+    <span class="doccomment">/// # Safety</span>
+    <span class="doccomment">/// `err` must be a valid, non-null error</span>
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_ffi_error</span>(<span class="ident">err</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>;
 }
 
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">CookieGetReply</span>: <span class="ident">Cookie</span>
-<span class="kw">where</span>
-    <span class="self">Self</span>: <span class="ident">Sized</span>,
-    <span class="ident"><span class="self">Self</span>::Reply</span>: <span class="ident">Reply</span>,
-{
-    <span class="kw">fn</span> <span class="ident">get_reply</span>(<span class="self">self</span>, <span class="ident">c</span>: <span class="kw-2">&amp;</span><span class="ident">Connection</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident"><span class="self">Self</span>::Reply</span> {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">err</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span> <span class="op">=</span> <span class="ident">std::ptr::null_mut</span>();
-            <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="ident">xcb_wait_for_reply</span>(<span class="ident">c</span>.<span class="ident">get_raw_conn</span>(), <span class="self">self</span>.<span class="ident">sequence</span>(), <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">err</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
-            <span class="macro">assert!</span>(<span class="ident">err</span>.<span class="ident">is_null</span>()); <span class="comment">// FIXME: return result</span>
-            <span class="ident"><span class="self">Self</span>::Reply::from_ptr</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>)
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GenericError</span> {
+    <span class="kw">pub</span> <span class="ident">response_type</span>: <span class="ident">u8</span>,
+    <span class="kw">pub</span> <span class="ident">error_code</span>: <span class="ident">u8</span>,
+    <span class="kw">pub</span> <span class="ident">sequence</span>: <span class="ident">u16</span>,
+    <span class="kw">pub</span> <span class="ident">resource_id</span>: <span class="ident">u32</span>,
+    <span class="kw">pub</span> <span class="ident">minor_code</span>: <span class="ident">u16</span>,
+    <span class="kw">pub</span> <span class="ident">major_code</span>: <span class="ident">u8</span>,
+    <span class="kw">pub</span> <span class="ident">full_sequence</span>: <span class="ident">u32</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">Error</span> <span class="kw">for</span> <span class="ident">GenericError</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_ffi_error</span>(<span class="ident">err</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="macro">debug_assert!</span>(<span class="op">!</span><span class="ident">err</span>.<span class="ident">is_null</span>());
+        <span class="kw">let</span> <span class="ident">err</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="ident">err</span>;
+        <span class="ident">GenericError</span> {
+            <span class="ident">response_type</span>: <span class="ident">err</span>.<span class="ident">response_type</span>,
+            <span class="ident">error_code</span>: <span class="ident">err</span>.<span class="ident">error_code</span>,
+            <span class="ident">sequence</span>: <span class="ident">err</span>.<span class="ident">sequence</span>,
+            <span class="ident">resource_id</span>: <span class="ident">err</span>.<span class="ident">resource_id</span>,
+            <span class="ident">minor_code</span>: <span class="ident">err</span>.<span class="ident">minor_code</span>,
+            <span class="ident">major_code</span>: <span class="ident">err</span>.<span class="ident">major_code</span>,
+            <span class="ident">full_sequence</span>: <span class="ident">err</span>.<span class="ident">full_sequence</span>,
         }
     }
 }
 
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Cookie</span> {
+    <span class="doccomment">/// # Safety</span>
+    <span class="doccomment">/// `seq` must be a valid cookie for the given `Reply` type.</span>
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_sequence</span>(<span class="ident">seq</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>;
+
+    <span class="kw">fn</span> <span class="ident">sequence</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span>;
+}
+
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">CheckedCookie</span>: <span class="ident">Cookie</span> {
+    <span class="kw">type</span> <span class="ident">Error</span>: <span class="ident">Error</span>;
+}
+
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">CheckedCookieWithReply</span>: <span class="ident">CheckedCookie</span> {
+    <span class="kw">type</span> <span class="ident">Reply</span>: <span class="ident">Reply</span>;
+}
+
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">UncheckedCookieWithReply</span>: <span class="ident">Cookie</span> {
+    <span class="kw">type</span> <span class="ident">Reply</span>: <span class="ident">Reply</span>;
+}
+
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">VoidCookie</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">seq</span>: <span class="ident">u32</span>,
+    <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Cookie</span> <span class="kw">for</span> <span class="ident">VoidCookie</span> {
-    <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> ();
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_sequence</span>(<span class="ident">seq</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="ident">VoidCookie</span> { <span class="ident">seq</span> }
+    }
 
-    <span class="kw">fn</span> <span class="ident">sequence</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">fn</span> <span class="ident">sequence</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
         <span class="self">self</span>.<span class="ident">seq</span>
     }
 }
 
-<span class="macro">bitflags!</span> {
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RequestFlags</span>: <span class="ident">u32</span> {
-        <span class="kw">const</span> <span class="ident">NONE</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">const</span> <span class="ident">CHECKED</span> <span class="op">=</span> <span class="number">1</span>;
-        <span class="kw">const</span> <span class="ident">RAW</span> <span class="op">=</span> <span class="number">2</span>;
-        <span class="kw">const</span> <span class="ident">DISCARD_REPLY</span> <span class="op">=</span> <span class="number">4</span>;
-        <span class="kw">const</span> <span class="ident">REPLY_FDS</span> <span class="op">=</span> <span class="number">8</span>;
-    }
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CheckedVoidCookie</span><span class="op">&lt;</span><span class="ident">E</span>: <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="ident">seq</span>: <span class="ident">u64</span>,
+    <span class="ident">phantom</span>: <span class="ident">marker::PhantomData</span><span class="op">&lt;</span><span class="ident">E</span><span class="op">&gt;</span>,
 }
 
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Request</span> {
-    <span class="kw">const</span> <span class="ident">OPCODE</span>: <span class="ident">u8</span>;
-    <span class="kw">const</span> <span class="ident">ISVOID</span>: <span class="ident">bool</span>;
-    <span class="kw">type</span> <span class="ident">Reply</span>;
-    <span class="kw">type</span> <span class="ident">Cookie</span>: <span class="ident">Cookie</span><span class="op">&lt;</span><span class="ident">Reply</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::Reply</span><span class="op">&gt;</span>;
-
-    <span class="doccomment">/// # Safety</span>
-    <span class="doccomment">/// calling this function with wrong flags may cause undefined behavior</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">raw_request</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">c</span>: <span class="kw-2">&amp;</span><span class="ident">Connection</span>, <span class="ident">flags</span>: <span class="ident">RequestFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident"><span class="self">Self</span>::Cookie</span>;
-
-    <span class="kw">fn</span> <span class="ident">request</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">c</span>: <span class="kw-2">&amp;</span><span class="ident">Connection</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident"><span class="self">Self</span>::Cookie</span> {
-        <span class="kw">unsafe</span> {
-            <span class="self">self</span>.<span class="ident">raw_request</span>(
-                <span class="ident">c</span>,
-                <span class="kw">if</span> <span class="ident"><span class="self">Self</span>::ISVOID</span> {
-                    <span class="ident">RequestFlags::NONE</span>
-                } <span class="kw">else</span> {
-                    <span class="ident">RequestFlags::CHECKED</span>
-                },
-            )
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">E</span>: <span class="ident">Error</span><span class="op">&gt;</span> <span class="ident">Cookie</span> <span class="kw">for</span> <span class="ident">CheckedVoidCookie</span><span class="op">&lt;</span><span class="ident">E</span><span class="op">&gt;</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_sequence</span>(<span class="ident">seq</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="ident">CheckedVoidCookie</span> {
+            <span class="ident">seq</span>,
+            <span class="ident">phantom</span>: <span class="ident">PhantomData</span>,
         }
     }
-}
 
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">VoidRequest</span>: <span class="ident">Request</span><span class="op">&lt;</span><span class="ident">Reply</span> <span class="op">=</span> ()<span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">request_checked</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">c</span>: <span class="kw-2">&amp;</span><span class="ident">Connection</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident"><span class="self">Self</span>::Cookie</span> {
-        <span class="kw">unsafe</span> { <span class="self">self</span>.<span class="ident">raw_request</span>(<span class="ident">c</span>, <span class="ident">RequestFlags::CHECKED</span>) }
+    <span class="kw">fn</span> <span class="ident">sequence</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
+        <span class="self">self</span>.<span class="ident">seq</span>
     }
 }
 
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">RequestWithReply</span>: <span class="ident">Request</span>
-<span class="kw">where</span>
-    <span class="ident"><span class="self">Self</span>::Reply</span>: <span class="ident">Reply</span>,
-{
-    <span class="kw">fn</span> <span class="ident">request_unchecked</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">c</span>: <span class="kw-2">&amp;</span><span class="ident">Connection</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident"><span class="self">Self</span>::Cookie</span> {
-        <span class="kw">unsafe</span> { <span class="self">self</span>.<span class="ident">raw_request</span>(<span class="ident">c</span>, <span class="ident">RequestFlags::NONE</span>) }
-    }
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">E</span>: <span class="ident">Error</span><span class="op">&gt;</span> <span class="ident">CheckedCookie</span> <span class="kw">for</span> <span class="ident">CheckedVoidCookie</span><span class="op">&lt;</span><span class="ident">E</span><span class="op">&gt;</span> {
+    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">E</span>;
+}
+
+<span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">trait</span> <span class="ident">RawRequest</span> {
+    <span class="kw">fn</span> <span class="ident">raw_request</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">conn</span>: <span class="kw-2">&amp;</span><span class="ident">Connection</span>, <span class="ident">checked</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span>;
+}
+
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Request</span>: <span class="ident">RawRequest</span> {
+    <span class="kw">type</span> <span class="ident">Cookie</span>: <span class="ident">Cookie</span>;
+    <span class="kw">const</span> <span class="ident">IS_VOID</span>: <span class="ident">bool</span>;
+}
+
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">RequestWithoutReply</span>: <span class="ident">Request</span> {
+    <span class="kw">type</span> <span class="ident">Error</span>: <span class="ident">Error</span>;
+
+    <span class="comment">// fn request_checked(&amp;self, conn: &amp;Connection) -&gt; CheckedVoidCookie&lt;Self::Error&gt; {</span>
+    <span class="comment">//     unsafe { CheckedVoidCookie::from_sequence(self.raw_request(conn, true)) }</span>
+    <span class="comment">// }</span>
+}
+
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">RequestWithReply</span>: <span class="ident">Request</span> {
+    <span class="kw">type</span> <span class="ident">Reply</span>: <span class="ident">Reply</span>;
+    <span class="kw">type</span> <span class="ident">Cookie</span>: <span class="ident">CheckedCookieWithReply</span><span class="op">&lt;</span><span class="ident">Reply</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::Reply</span><span class="op">&gt;</span>;
+    <span class="kw">type</span> <span class="ident">UncheckedCookie</span>: <span class="ident">UncheckedCookieWithReply</span><span class="op">&lt;</span><span class="ident">Reply</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::Reply</span><span class="op">&gt;</span>;
+
+    <span class="comment">// fn raw_request(&amp;self, conn: &amp;Connection, checked: bool) -&gt; u64;</span>
+
+    <span class="comment">// fn request_unchecked(&amp;self, conn: &amp;Connection) -&gt; Self::UncheckedCookie {</span>
+    <span class="comment">//     unsafe { Self::UncheckedCookie::from_sequence(self.raw_request(conn, false)) }</span>
+    <span class="comment">// }</span>
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xlib_xcb&quot;</span>)]</span>
@@ -1109,7 +1254,7 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Error</span> <span class="kw">for</span> <span class="ident">ConnError</span> {
+<span class="kw">impl</span> <span class="ident">error::Error</span> <span class="kw">for</span> <span class="ident">ConnError</span> {
     <span class="kw">fn</span> <span class="ident">description</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span> {
         <span class="self">self</span>.<span class="ident">to_str</span>()
     }
@@ -1376,6 +1521,71 @@
         }
     }
 
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">send_request</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">req</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">R::Cookie</span>
+    <span class="kw">where</span>
+        <span class="ident">R</span>: <span class="ident">Request</span>,
+    {
+        <span class="kw">unsafe</span> { <span class="ident">R::Cookie::from_sequence</span>(<span class="ident">req</span>.<span class="ident">raw_request</span>(<span class="self">self</span>, <span class="op">!</span><span class="ident">R::IS_VOID</span>)) }
+    }
+
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">send_request_checked</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">req</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CheckedVoidCookie</span><span class="op">&lt;</span><span class="ident">R::Error</span><span class="op">&gt;</span>
+    <span class="kw">where</span>
+        <span class="ident">R</span>: <span class="ident">RequestWithoutReply</span>,
+    {
+        <span class="kw">unsafe</span> { <span class="ident">CheckedVoidCookie::from_sequence</span>(<span class="ident">req</span>.<span class="ident">raw_request</span>(<span class="self">self</span>, <span class="bool-val">true</span>)) }
+    }
+
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">send_request_unchecked</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">req</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">R::UncheckedCookie</span>
+    <span class="kw">where</span>
+        <span class="ident">R</span>: <span class="ident">RequestWithReply</span>,
+    {
+        <span class="kw">unsafe</span> { <span class="ident">R::UncheckedCookie::from_sequence</span>(<span class="ident">req</span>.<span class="ident">raw_request</span>(<span class="self">self</span>, <span class="bool-val">false</span>)) }
+    }
+
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">check_request</span><span class="op">&lt;</span><span class="ident">E</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cookie</span>: <span class="ident">CheckedVoidCookie</span><span class="op">&lt;</span><span class="ident">E</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">E</span><span class="op">&gt;</span>
+    <span class="kw">where</span>
+        <span class="ident">E</span>: <span class="ident">Error</span>,
+    {
+        <span class="kw">let</span> <span class="ident">cookie</span> <span class="op">=</span> <span class="ident">xcb_void_cookie_t</span> {
+            <span class="ident">seq</span>: <span class="ident">cookie</span>.<span class="ident">sequence</span>() <span class="kw">as</span> <span class="ident">u32</span>,
+        };
+        <span class="kw">let</span> <span class="ident">err</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">xcb_request_check</span>(<span class="self">self</span>.<span class="ident">get_raw_conn</span>(), <span class="ident">cookie</span>) };
+        <span class="kw">if</span> <span class="ident">err</span>.<span class="ident">is_null</span>() {
+            <span class="prelude-val">Ok</span>(())
+        } <span class="kw">else</span> {
+            <span class="prelude-val">Err</span>(<span class="kw">unsafe</span> { <span class="ident">E::from_ffi_error</span>(<span class="ident">err</span>) })
+        }
+    }
+
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_reply</span><span class="op">&lt;</span><span class="ident">C</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cookie</span>: <span class="ident">C</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">C::Reply</span>, <span class="ident">C::Error</span><span class="op">&gt;</span>
+    <span class="kw">where</span>
+        <span class="ident">C</span>: <span class="ident">CheckedCookieWithReply</span>,
+    {
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">err</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span> <span class="op">=</span> <span class="ident">std::ptr::null_mut</span>();
+            <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span>
+                <span class="ident">xcb_wait_for_reply64</span>(<span class="self">self</span>.<span class="ident">get_raw_conn</span>(), <span class="ident">cookie</span>.<span class="ident">sequence</span>(), <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">err</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+            <span class="kw">if</span> <span class="ident">err</span>.<span class="ident">is_null</span>() {
+                <span class="prelude-val">Ok</span>(<span class="ident">C::Reply::from_ptr</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>))
+            } <span class="kw">else</span> {
+                <span class="prelude-val">Err</span>(<span class="ident">C::Error::from_ffi_error</span>(<span class="ident">err</span>))
+            }
+        }
+    }
+
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_reply_unchecked</span><span class="op">&lt;</span><span class="ident">C</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cookie</span>: <span class="ident">C</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">C::Reply</span>
+    <span class="kw">where</span>
+        <span class="ident">C</span>: <span class="ident">UncheckedCookieWithReply</span>,
+    {
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">err</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span> <span class="op">=</span> <span class="ident">std::ptr::null_mut</span>();
+            <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span>
+                <span class="ident">xcb_wait_for_reply64</span>(<span class="self">self</span>.<span class="ident">get_raw_conn</span>(), <span class="ident">cookie</span>.<span class="ident">sequence</span>(), <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">err</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+            <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">err</span>.<span class="ident">is_null</span>());
+            <span class="ident">C::Reply::from_ptr</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>)
+        }
+    }
+
     <span class="comment">// /// @brief Connects to the X server.</span>
     <span class="comment">// /// @param fd The file descriptor.</span>
     <span class="comment">// /// @param auth_info Authentication data.</span>
@@ -1551,42 +1761,46 @@
     }
 }
 
-<span class="doccomment">/// Align number upwards.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Returns the smallest x with alignment `align` so that x &gt;= addr. The alignment must be</span>
-<span class="doccomment">/// a power of 2.</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">align_up</span>(<span class="ident">number</span>: <span class="ident">usize</span>, <span class="ident">align</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
-    <span class="macro">debug_assert!</span>(<span class="ident">align</span>.<span class="ident">is_power_of_two</span>(), <span class="string">&quot;`align` must be a power of two&quot;</span>);
-    <span class="kw">let</span> <span class="ident">align_mask</span> <span class="op">=</span> <span class="ident">align</span> <span class="op">-</span> <span class="number">1</span>;
-    <span class="kw">if</span> <span class="ident">number</span> <span class="op">&amp;</span> <span class="ident">align_mask</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
-        <span class="ident">number</span> <span class="comment">// already aligned</span>
-    } <span class="kw">else</span> {
-        (<span class="ident">number</span> <span class="op">|</span> <span class="ident">align_mask</span>) <span class="op">+</span> <span class="number">1</span>
+<span class="macro">bitflags!</span> {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">RequestFlags</span>: <span class="ident">u32</span> {
+        <span class="kw">const</span> <span class="ident">NONE</span> <span class="op">=</span> <span class="number">0</span>;
+        <span class="kw">const</span> <span class="ident">CHECKED</span> <span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">const</span> <span class="ident">RAW</span> <span class="op">=</span> <span class="number">2</span>;
+        <span class="kw">const</span> <span class="ident">DISCARD_REPLY</span> <span class="op">=</span> <span class="number">4</span>;
+        <span class="kw">const</span> <span class="ident">REPLY_FDS</span> <span class="op">=</span> <span class="number">8</span>;
     }
+}
+
+<span class="doccomment">/// Compute the necessary padding after `base` to have `align` alignment</span>
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">align_pad</span>(<span class="ident">base</span>: <span class="ident">usize</span>, <span class="ident">align</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
+    <span class="macro">debug_assert!</span>(<span class="ident">align</span>.<span class="ident">is_power_of_two</span>(), <span class="string">&quot;`align` must be a power of two&quot;</span>);
+
+    <span class="kw">let</span> <span class="ident">base</span> <span class="op">=</span> <span class="ident">base</span> <span class="kw">as</span> <span class="ident">isize</span>;
+    <span class="kw">let</span> <span class="ident">align</span> <span class="op">=</span> <span class="ident">align</span> <span class="kw">as</span> <span class="ident">isize</span>;
+    (<span class="op">-</span><span class="ident">base</span> <span class="op">&amp;</span> (<span class="ident">align</span> <span class="op">-</span> <span class="number">1</span>)) <span class="kw">as</span> <span class="ident">usize</span>
 }
 
 <span class="attribute">#[<span class="ident">test</span>]</span>
 <span class="kw">fn</span> <span class="ident">test_align_up</span>() {
-    <span class="comment">// align 1</span>
-    <span class="macro">assert_eq!</span>(<span class="ident">align_up</span>(<span class="number">0</span>, <span class="number">1</span>), <span class="number">0</span>);
-    <span class="macro">assert_eq!</span>(<span class="ident">align_up</span>(<span class="number">1234</span>, <span class="number">1</span>), <span class="number">1234</span>);
-    <span class="macro">assert_eq!</span>(<span class="ident">align_up</span>(<span class="number">0xffffffffffffffff</span>, <span class="number">1</span>), <span class="number">0xffffffffffffffff</span>);
-    <span class="comment">// align 2</span>
-    <span class="macro">assert_eq!</span>(<span class="ident">align_up</span>(<span class="number">0</span>, <span class="number">2</span>), <span class="number">0</span>);
-    <span class="macro">assert_eq!</span>(<span class="ident">align_up</span>(<span class="number">1233</span>, <span class="number">2</span>), <span class="number">1234</span>);
-    <span class="macro">assert_eq!</span>(<span class="ident">align_up</span>(<span class="number">0xfffffffffffffffe</span>, <span class="number">2</span>), <span class="number">0xfffffffffffffffe</span>);
     <span class="comment">// align 4</span>
-    <span class="macro">assert_eq!</span>(<span class="ident">align_up</span>(<span class="number">0</span>, <span class="number">4</span>), <span class="number">0</span>);
-    <span class="macro">assert_eq!</span>(<span class="ident">align_up</span>(<span class="number">12</span>, <span class="number">4</span>), <span class="number">12</span>);
-    <span class="macro">assert_eq!</span>(<span class="ident">align_up</span>(<span class="number">13</span>, <span class="number">4</span>), <span class="number">16</span>);
-    <span class="macro">assert_eq!</span>(<span class="ident">align_up</span>(<span class="number">14</span>, <span class="number">4</span>), <span class="number">16</span>);
-    <span class="macro">assert_eq!</span>(<span class="ident">align_up</span>(<span class="number">15</span>, <span class="number">4</span>), <span class="number">16</span>);
-    <span class="macro">assert_eq!</span>(<span class="ident">align_up</span>(<span class="number">16</span>, <span class="number">4</span>), <span class="number">16</span>);
-    <span class="comment">// address 0</span>
-    <span class="macro">assert_eq!</span>(<span class="ident">align_up</span>(<span class="number">0</span>, <span class="number">128</span>), <span class="number">0</span>);
-    <span class="macro">assert_eq!</span>(<span class="ident">align_up</span>(<span class="number">0</span>, <span class="number">1</span>), <span class="number">0</span>);
-    <span class="macro">assert_eq!</span>(<span class="ident">align_up</span>(<span class="number">0</span>, <span class="number">2</span>), <span class="number">0</span>);
-    <span class="macro">assert_eq!</span>(<span class="ident">align_up</span>(<span class="number">0</span>, <span class="number">0x8000000000000000</span>), <span class="number">0</span>);
+    <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">10</span> {
+        <span class="macro">println!</span>(<span class="string">&quot;{} -&gt; {}&quot;</span>, <span class="ident">i</span>, <span class="ident">align_pad</span>(<span class="ident">i</span>, <span class="number">4</span>));
+    }
+    <span class="comment">// align 1</span>
+    <span class="macro">assert_eq!</span>(<span class="ident">align_pad</span>(<span class="number">0</span>, <span class="number">1</span>), <span class="number">0</span>);
+    <span class="macro">assert_eq!</span>(<span class="ident">align_pad</span>(<span class="number">1234</span>, <span class="number">1</span>), <span class="number">0</span>);
+    <span class="macro">assert_eq!</span>(<span class="ident">align_pad</span>(<span class="number">1235</span>, <span class="number">1</span>), <span class="number">0</span>);
+    <span class="comment">// align 2</span>
+    <span class="macro">assert_eq!</span>(<span class="ident">align_pad</span>(<span class="number">0</span>, <span class="number">2</span>), <span class="number">0</span>);
+    <span class="macro">assert_eq!</span>(<span class="ident">align_pad</span>(<span class="number">1233</span>, <span class="number">2</span>), <span class="number">1</span>);
+    <span class="macro">assert_eq!</span>(<span class="ident">align_pad</span>(<span class="number">1234</span>, <span class="number">2</span>), <span class="number">0</span>);
+    <span class="comment">// align 4</span>
+    <span class="macro">assert_eq!</span>(<span class="ident">align_pad</span>(<span class="number">0</span>, <span class="number">4</span>), <span class="number">0</span>);
+    <span class="macro">assert_eq!</span>(<span class="ident">align_pad</span>(<span class="number">12</span>, <span class="number">4</span>), <span class="number">0</span>);
+    <span class="macro">assert_eq!</span>(<span class="ident">align_pad</span>(<span class="number">13</span>, <span class="number">4</span>), <span class="number">3</span>);
+    <span class="macro">assert_eq!</span>(<span class="ident">align_pad</span>(<span class="number">14</span>, <span class="number">4</span>), <span class="number">2</span>);
+    <span class="macro">assert_eq!</span>(<span class="ident">align_pad</span>(<span class="number">15</span>, <span class="number">4</span>), <span class="number">1</span>);
+    <span class="macro">assert_eq!</span>(<span class="ident">align_pad</span>(<span class="number">16</span>, <span class="number">4</span>), <span class="number">0</span>);
 }
 </code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="xcb" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
