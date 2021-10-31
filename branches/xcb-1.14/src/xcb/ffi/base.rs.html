@@ -439,6 +439,10 @@
 <span id="439">439</span>
 <span id="440">440</span>
 <span id="441">441</span>
+<span id="442">442</span>
+<span id="443">443</span>
+<span id="444">444</span>
+<span id="445">445</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">super</span>::ext</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">libc</span>::{<span class="ident">c_char</span>, <span class="ident">c_int</span>, <span class="ident">c_uint</span>, <span class="ident">c_void</span>};
 
@@ -484,17 +488,17 @@
 <span class="doccomment">/// A generic event structure.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">xcb_generic_event_t</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">xcb_generic_event_t</span> {
     <span class="doccomment">/// Type of the response</span>
-    <span class="ident">response_type</span>: <span class="ident">u8</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">response_type</span>: <span class="ident">u8</span>,
     <span class="doccomment">/// Padding</span>
-    <span class="ident">pad0</span>: <span class="ident">u8</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">pad0</span>: <span class="ident">u8</span>,
     <span class="doccomment">/// Sequence number</span>
-    <span class="ident">sequence</span>: <span class="ident">u16</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">sequence</span>: <span class="ident">u16</span>,
     <span class="doccomment">/// Padding</span>
-    <span class="ident">pad</span>: [<span class="ident">u32</span>; <span class="number">7</span>],
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">pad</span>: [<span class="ident">u32</span>; <span class="number">7</span>],
     <span class="doccomment">/// full sequence</span>
-    <span class="ident">full_sequence</span>: <span class="ident">u32</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">full_sequence</span>: <span class="ident">u32</span>,
 }
 
 <span class="doccomment">/// Generic error</span>
@@ -702,8 +706,12 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The result must not be freed. This storage is managed by the cache</span>
     <span class="doccomment">/// itself.</span>
-    <span class="comment">// FIXME: QueryExtensionReply from xproto</span>
-    <span class="comment">// pub(crate) fn xcb_get_extension_data(c: *mut xcb_connection_t, ext: *mut xcb_extension_t) -&gt; *const xcb_query_extension_reply_t;</span>
+    <span class="comment">// We trick the result from `*const xcb_query_extension_reply_t` to `*const u8` to be compatible with</span>
+    <span class="comment">// `xproto::QueryExtensionReply::from_data`</span>
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_get_extension_data</span>(
+        <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
+        <span class="ident">ext</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_extension_t</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>;
 
     <span class="doccomment">/// @brief Prefetch of extension data into the extension cache</span>
     <span class="doccomment">/// @param c The connection.</span>
