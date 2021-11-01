@@ -443,6 +443,23 @@
 <span id="443">443</span>
 <span id="444">444</span>
 <span id="445">445</span>
+<span id="446">446</span>
+<span id="447">447</span>
+<span id="448">448</span>
+<span id="449">449</span>
+<span id="450">450</span>
+<span id="451">451</span>
+<span id="452">452</span>
+<span id="453">453</span>
+<span id="454">454</span>
+<span id="455">455</span>
+<span id="456">456</span>
+<span id="457">457</span>
+<span id="458">458</span>
+<span id="459">459</span>
+<span id="460">460</span>
+<span id="461">461</span>
+<span id="462">462</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">super</span>::ext</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">libc</span>::{<span class="ident">c_char</span>, <span class="ident">c_int</span>, <span class="ident">c_uint</span>, <span class="ident">c_void</span>};
 
@@ -498,6 +515,23 @@
     <span class="doccomment">/// Padding</span>
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">pad</span>: [<span class="ident">u32</span>; <span class="number">7</span>],
     <span class="doccomment">/// full sequence</span>
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">full_sequence</span>: <span class="ident">u32</span>,
+}
+
+<span class="comment">// GE_GENERIC stuff is actually generated in X-proto, but we need it here in FFI form,</span>
+<span class="comment">// so it is just copy pasted from xproto.h</span>
+
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="ident">XCB_GE_GENERIC</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">35</span>;
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">xcb_ge_generic_event_t</span> {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">response_type</span>: <span class="ident">u8</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">extension</span>: <span class="ident">u8</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">sequence</span>: <span class="ident">u16</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">length</span>: <span class="ident">u32</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">event_type</span>: <span class="ident">u16</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">pad0</span>: [<span class="ident">u8</span>; <span class="number">22</span>],
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">full_sequence</span>: <span class="ident">u32</span>,
 }
 

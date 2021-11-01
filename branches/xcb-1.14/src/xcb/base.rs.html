@@ -921,7 +921,17 @@
 <span id="921">921</span>
 <span id="922">922</span>
 <span id="923">923</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext::ExtensionData</span>;
+<span id="924">924</span>
+<span id="925">925</span>
+<span id="926">926</span>
+<span id="927">927</span>
+<span id="928">928</span>
+<span id="929">929</span>
+<span id="930">930</span>
+<span id="931">931</span>
+</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>::{<span class="self">self</span>, <span class="ident">Error</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::event</span>::{<span class="self">self</span>, <span class="ident">Event</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>::{<span class="ident">ErrorExtensionData</span>, <span class="ident">EventExtensionData</span>, <span class="ident">ExtensionData</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xproto</span>::{<span class="ident">Atom</span>, <span class="ident">Keysym</span>, <span class="ident">Setup</span>, <span class="ident">Timestamp</span>};
 
@@ -933,7 +943,6 @@
 <span class="kw">use</span> <span class="ident">libc::c_int</span>;
 
 <span class="kw">use</span> <span class="ident">std::cell::RefCell</span>;
-<span class="kw">use</span> <span class="ident">std::error</span>;
 <span class="kw">use</span> <span class="ident">std::ffi::CString</span>;
 <span class="kw">use</span> <span class="ident">std::fmt</span>::{<span class="self">self</span>, <span class="ident">Display</span>, <span class="ident">Formatter</span>};
 <span class="kw">use</span> <span class="ident">std::marker</span>::{<span class="self">self</span>, <span class="ident">PhantomData</span>};
@@ -1127,45 +1136,28 @@
     <span class="kw">fn</span> <span class="ident">from_ptr</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>;
 }
 
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Event</span>: <span class="ident">Sized</span> {
+<span class="doccomment">/// trait for converting wire data to an event</span>
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">FromWireEvent</span>: <span class="ident">Sized</span> {
     <span class="doccomment">/// # Safety</span>
     <span class="doccomment">/// `event` must be a valid, non-null event returned by `xcb_wait_for_event`</span>
     <span class="doccomment">/// or similar function</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_ffi</span>(<span class="ident">first_event</span>: <span class="ident">u8</span>, <span class="ident">event</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>;
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_wire_event</span>(<span class="ident">first_event</span>: <span class="ident">u8</span>, <span class="ident">event</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>;
 }
 
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Error</span> {
+<span class="doccomment">/// trait for converting wire data to a generic event</span>
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">FromWireGeEvent</span>: <span class="ident">Sized</span> {
+    <span class="doccomment">/// # Safety</span>
+    <span class="doccomment">/// `event` must be a valid, non-null event returned by `xcb_wait_for_event`</span>
+    <span class="doccomment">/// or similar function</span>
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_wire_ge_event</span>(<span class="ident">event</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_ge_generic_event_t</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>;
+}
+
+<span class="doccomment">/// trait for converting wire data to an error</span>
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">FromWireError</span> {
     <span class="doccomment">/// # Safety</span>
     <span class="doccomment">/// `err` must be a valid, non-null error obtained by `xcb_wait_for_reply`</span>
     <span class="doccomment">/// or similar function</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_ffi</span>(<span class="ident">err</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>;
-}
-
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GenericError</span> {
-    <span class="kw">pub</span> <span class="ident">response_type</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span> <span class="ident">error_code</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span> <span class="ident">sequence</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">resource_id</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">minor_code</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">major_code</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span> <span class="ident">full_sequence</span>: <span class="ident">u32</span>,
-}
-
-<span class="kw">impl</span> <span class="ident">Error</span> <span class="kw">for</span> <span class="ident">GenericError</span> {
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_ffi</span>(<span class="ident">err</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="macro">debug_assert!</span>(<span class="op">!</span><span class="ident">err</span>.<span class="ident">is_null</span>());
-        <span class="kw">let</span> <span class="ident">err</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="ident">err</span>;
-        <span class="ident">GenericError</span> {
-            <span class="ident">response_type</span>: <span class="ident">err</span>.<span class="ident">response_type</span>,
-            <span class="ident">error_code</span>: <span class="ident">err</span>.<span class="ident">error_code</span>,
-            <span class="ident">sequence</span>: <span class="ident">err</span>.<span class="ident">sequence</span>,
-            <span class="ident">resource_id</span>: <span class="ident">err</span>.<span class="ident">resource_id</span>,
-            <span class="ident">minor_code</span>: <span class="ident">err</span>.<span class="ident">minor_code</span>,
-            <span class="ident">major_code</span>: <span class="ident">err</span>.<span class="ident">major_code</span>,
-            <span class="ident">full_sequence</span>: <span class="ident">err</span>.<span class="ident">full_sequence</span>,
-        }
-    }
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_wire_error</span>(<span class="ident">first_error</span>: <span class="ident">u8</span>, <span class="ident">error</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>;
 }
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Cookie</span> {
@@ -1176,9 +1168,7 @@
     <span class="kw">fn</span> <span class="ident">sequence</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span>;
 }
 
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">CheckedCookie</span>: <span class="ident">Cookie</span> {
-    <span class="kw">type</span> <span class="ident">Error</span>: <span class="ident">Error</span>;
-}
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">CheckedCookie</span>: <span class="ident">Cookie</span> {}
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">CheckedCookieWithReply</span>: <span class="ident">CheckedCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span>: <span class="ident">Reply</span>;
@@ -1204,17 +1194,13 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CheckedVoidCookie</span><span class="op">&lt;</span><span class="ident">E</span>: <span class="ident">Error</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CheckedVoidCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
-    <span class="ident">phantom</span>: <span class="ident">marker::PhantomData</span><span class="op">&lt;</span><span class="ident">E</span><span class="op">&gt;</span>,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">E</span>: <span class="ident">Error</span><span class="op">&gt;</span> <span class="ident">Cookie</span> <span class="kw">for</span> <span class="ident">CheckedVoidCookie</span><span class="op">&lt;</span><span class="ident">E</span><span class="op">&gt;</span> {
+<span class="kw">impl</span> <span class="ident">Cookie</span> <span class="kw">for</span> <span class="ident">CheckedVoidCookie</span> {
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_sequence</span>(<span class="ident">seq</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="ident">CheckedVoidCookie</span> {
-            <span class="ident">seq</span>,
-            <span class="ident">phantom</span>: <span class="ident">PhantomData</span>,
-        }
+        <span class="ident">CheckedVoidCookie</span> { <span class="ident">seq</span> }
     }
 
     <span class="kw">fn</span> <span class="ident">sequence</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
@@ -1222,9 +1208,7 @@
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">E</span>: <span class="ident">Error</span><span class="op">&gt;</span> <span class="ident">CheckedCookie</span> <span class="kw">for</span> <span class="ident">CheckedVoidCookie</span><span class="op">&lt;</span><span class="ident">E</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">E</span>;
-}
+<span class="kw">impl</span> <span class="ident">CheckedCookie</span> <span class="kw">for</span> <span class="ident">CheckedVoidCookie</span> {}
 
 <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">trait</span> <span class="ident">RawRequest</span> {
     <span class="kw">fn</span> <span class="ident">raw_request</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">conn</span>: <span class="kw-2">&amp;</span><span class="ident">Connection</span>, <span class="ident">checked</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span>;
@@ -1235,9 +1219,7 @@
     <span class="kw">const</span> <span class="ident">IS_VOID</span>: <span class="ident">bool</span>;
 }
 
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">RequestWithoutReply</span>: <span class="ident">Request</span> {
-    <span class="kw">type</span> <span class="ident">Error</span>: <span class="ident">Error</span>;
-}
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">RequestWithoutReply</span>: <span class="ident">Request</span> {}
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">RequestWithReply</span>: <span class="ident">Request</span> {
     <span class="kw">type</span> <span class="ident">Reply</span>: <span class="ident">Reply</span>;
@@ -1293,7 +1275,7 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">error::Error</span> <span class="kw">for</span> <span class="ident">ConnError</span> {
+<span class="kw">impl</span> <span class="ident">std::error::Error</span> <span class="kw">for</span> <span class="ident">ConnError</span> {
     <span class="kw">fn</span> <span class="ident">description</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span> {
         <span class="self">self</span>.<span class="ident">to_str</span>()
     }
@@ -1308,7 +1290,8 @@
     <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xlib_xcb&quot;</span>)]</span>
     <span class="ident">dpy</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xlib::Display</span>,
-    <span class="ident">extension_data</span>: <span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ExtensionData</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">event_ext_data</span>: <span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">EventExtensionData</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">error_ext_data</span>: <span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ErrorExtensionData</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">Connection</span> {}
@@ -1363,25 +1346,45 @@
         }
     }
 
-    <span class="comment">// /// @brief Returns the next event or error from the server.</span>
-    <span class="comment">// /// @param c The connection to the X server.</span>
-    <span class="comment">// /// @return The next event from the server.</span>
-    <span class="comment">// ///</span>
-    <span class="comment">// /// Returns the next event or error from the server, or returns null in</span>
-    <span class="comment">// /// the event of an I/O error. Blocks until either an event or error</span>
-    <span class="comment">// /// arrive, or an I/O error occurs.</span>
-    <span class="comment">// pub(crate) fn xcb_wait_for_event(c: *mut xcb_connection_t) -&gt; *mut xcb_generic_event_t;</span>
+    <span class="doccomment">/// @brief Returns the next event or error from the server.</span>
+    <span class="doccomment">/// @param c The connection to the X server.</span>
+    <span class="doccomment">/// @return The next event from the server.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Returns the next event or error from the server, or returns null in</span>
+    <span class="doccomment">/// the event of an I/O error. Blocks until either an event or error</span>
+    <span class="doccomment">/// arrive, or an I/O error occurs.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wait_for_event</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ConnResult</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span> {
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="ident">ev</span> <span class="op">=</span> <span class="ident">xcb_wait_for_event</span>(<span class="self">self</span>.<span class="ident">get_raw_conn</span>());
+            <span class="kw">if</span> <span class="ident">ev</span>.<span class="ident">is_null</span>() {
+                <span class="self">self</span>.<span class="ident">has_error</span>()<span class="question-mark">?</span>;
+                <span class="macro">panic!</span>(<span class="string">&quot;xcb_wait_for_event returned null&quot;</span>);
+            }
+            <span class="kw">let</span> <span class="ident">ext_data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">event_ext_data</span>.<span class="ident">borrow</span>();
+            <span class="prelude-val">Ok</span>(<span class="ident">event::resolve_event</span>(<span class="ident">ev</span>, <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">ext_data</span>))
+        }
+    }
 
-    <span class="comment">// /// @brief Returns the next event or error from the server.</span>
-    <span class="comment">// /// @param c The connection to the X server.</span>
-    <span class="comment">// /// @return The next event from the server.</span>
-    <span class="comment">// ///</span>
-    <span class="comment">// /// Returns the next event or error from the server, if one is</span>
-    <span class="comment">// /// available, or returns @c NULL otherwise. If no event is available, that</span>
-    <span class="comment">// /// might be because an I/O error like connection close occurred while</span>
-    <span class="comment">// /// attempting to read the next event, in which case the connection is</span>
-    <span class="comment">// /// shut down when this function returns.</span>
-    <span class="comment">// pub(crate) fn xcb_poll_for_event(c: *mut xcb_connection_t) -&gt; *mut xcb_generic_event_t;</span>
+    <span class="doccomment">/// @brief Returns the next event or error from the server.</span>
+    <span class="doccomment">/// @param c The connection to the X server.</span>
+    <span class="doccomment">/// @return The next event from the server.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Returns the next event or error from the server, if one is</span>
+    <span class="doccomment">/// available, or returns @c NULL otherwise. If no event is available, that</span>
+    <span class="doccomment">/// might be because an I/O error like connection close occurred while</span>
+    <span class="doccomment">/// attempting to read the next event, in which case the connection is</span>
+    <span class="doccomment">/// shut down when this function returns.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">poll_for_event</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span> {
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="ident">ev</span> <span class="op">=</span> <span class="ident">xcb_poll_for_event</span>(<span class="self">self</span>.<span class="ident">get_raw_conn</span>());
+            <span class="kw">if</span> <span class="ident">ev</span>.<span class="ident">is_null</span>() {
+                <span class="prelude-val">None</span>
+            } <span class="kw">else</span> {
+                <span class="kw">let</span> <span class="ident">ext_data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">event_ext_data</span>.<span class="ident">borrow</span>();
+                <span class="prelude-val">Some</span>(<span class="ident">event::resolve_event</span>(<span class="ident">ev</span>, <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">ext_data</span>))
+            }
+        }
+    }
 
     <span class="comment">// /// @brief Returns the next event without reading from the connection.</span>
     <span class="comment">// /// @param c The connection to the X server.</span>
@@ -1547,7 +1550,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Checked requests do not expect a reply, but the returned cookie can be used to check for</span>
     <span class="doccomment">/// errors using `Connection::check_request`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">send_request_checked</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">req</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CheckedVoidCookie</span><span class="op">&lt;</span><span class="ident">R::Error</span><span class="op">&gt;</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">send_request_checked</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">req</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CheckedVoidCookie</span>
     <span class="kw">where</span>
         <span class="ident">R</span>: <span class="ident">RequestWithoutReply</span>,
     {
@@ -1567,39 +1570,36 @@
     }
 
     <span class="doccomment">/// Check a checked request for errors.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">check_request</span><span class="op">&lt;</span><span class="ident">E</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cookie</span>: <span class="ident">CheckedVoidCookie</span><span class="op">&lt;</span><span class="ident">E</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">E</span><span class="op">&gt;</span>
-    <span class="kw">where</span>
-        <span class="ident">E</span>: <span class="ident">Error</span>,
-    {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">check_request</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cookie</span>: <span class="ident">CheckedVoidCookie</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">error::Error</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">cookie</span> <span class="op">=</span> <span class="ident">xcb_void_cookie_t</span> {
             <span class="ident">seq</span>: <span class="ident">cookie</span>.<span class="ident">sequence</span>() <span class="kw">as</span> <span class="ident">u32</span>,
         };
-        <span class="kw">let</span> <span class="ident">err</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">xcb_request_check</span>(<span class="self">self</span>.<span class="ident">get_raw_conn</span>(), <span class="ident">cookie</span>) };
-        <span class="kw">if</span> <span class="ident">err</span>.<span class="ident">is_null</span>() {
+        <span class="kw">let</span> <span class="ident">error</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">xcb_request_check</span>(<span class="self">self</span>.<span class="ident">get_raw_conn</span>(), <span class="ident">cookie</span>) };
+        <span class="kw">if</span> <span class="ident">error</span>.<span class="ident">is_null</span>() {
             <span class="prelude-val">Ok</span>(())
         } <span class="kw">else</span> {
             <span class="kw">unsafe</span> {
-                <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">E::from_ffi</span>(<span class="ident">err</span>);
-                <span class="ident">libc::free</span>(<span class="ident">err</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+                <span class="kw">let</span> <span class="ident">extension_data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">error_ext_data</span>.<span class="ident">borrow</span>();
+                <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">error::resolve_error</span>(<span class="ident">error</span>, <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">extension_data</span>);
                 <span class="prelude-val">Err</span>(<span class="ident">res</span>)
             }
         }
     }
 
     <span class="doccomment">/// Get the reply of a previous request</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_reply</span><span class="op">&lt;</span><span class="ident">C</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cookie</span>: <span class="ident">C</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">C::Reply</span>, <span class="ident">C::Error</span><span class="op">&gt;</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_reply</span><span class="op">&lt;</span><span class="ident">C</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cookie</span>: <span class="ident">C</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">C::Reply</span>, <span class="ident">Error</span><span class="op">&gt;</span>
     <span class="kw">where</span>
         <span class="ident">C</span>: <span class="ident">CheckedCookieWithReply</span>,
     {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">err</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span> <span class="op">=</span> <span class="ident">std::ptr::null_mut</span>();
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">error</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span> <span class="op">=</span> <span class="ident">std::ptr::null_mut</span>();
             <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span>
-                <span class="ident">xcb_wait_for_reply64</span>(<span class="self">self</span>.<span class="ident">get_raw_conn</span>(), <span class="ident">cookie</span>.<span class="ident">sequence</span>(), <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">err</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
-            <span class="kw">if</span> <span class="ident">err</span>.<span class="ident">is_null</span>() {
+                <span class="ident">xcb_wait_for_reply64</span>(<span class="self">self</span>.<span class="ident">get_raw_conn</span>(), <span class="ident">cookie</span>.<span class="ident">sequence</span>(), <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">error</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+            <span class="kw">if</span> <span class="ident">error</span>.<span class="ident">is_null</span>() {
                 <span class="prelude-val">Ok</span>(<span class="ident">C::Reply::from_ptr</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>))
             } <span class="kw">else</span> {
-                <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">C::Error::from_ffi</span>(<span class="ident">err</span>);
-                <span class="ident">libc::free</span>(<span class="ident">err</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+                <span class="kw">let</span> <span class="ident">extension_data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">error_ext_data</span>.<span class="ident">borrow</span>();
+                <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">error::resolve_error</span>(<span class="ident">error</span>, <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">extension_data</span>);
                 <span class="prelude-val">Err</span>(<span class="ident">res</span>)
             }
         }
@@ -1769,19 +1769,39 @@
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xlib_xcb&quot;</span>))]</span>
         <span class="kw">return</span> <span class="ident">Connection</span> {
             <span class="ident">c</span>: <span class="ident">conn</span>,
-            <span class="ident">extension_data</span>: <span class="ident">RefCell::new</span>(<span class="ident">Vec::new</span>()),
+            <span class="ident">event_ext_data</span>: <span class="ident">RefCell::new</span>(<span class="ident">Vec::new</span>()),
+            <span class="ident">error_ext_data</span>: <span class="ident">RefCell::new</span>(<span class="ident">Vec::new</span>()),
         };
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xlib_xcb&quot;</span>)]</span>
         <span class="kw">return</span> <span class="ident">Connection</span> {
             <span class="ident">c</span>: <span class="ident">conn</span>,
             <span class="ident">dpy</span>: <span class="ident">ptr::null_mut</span>(),
-            <span class="ident">extension_data</span>: <span class="ident">RefCell::new</span>(<span class="ident">Vec::new</span>()),
+            <span class="ident">event_ext_data</span>: <span class="ident">RefCell::new</span>(<span class="ident">Vec::new</span>()),
+            <span class="ident">error_ext_data</span>: <span class="ident">RefCell::new</span>(<span class="ident">Vec::new</span>()),
         };
     }
 
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">register_extension_data</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">data</span>: <span class="ident">ExtensionData</span>) {
-        <span class="self">self</span>.<span class="ident">extension_data</span>.<span class="ident">borrow_mut</span>().<span class="ident">push</span>(<span class="ident">data</span>);
+        <span class="comment">// Event and Error resolution algorithm need the extension data to be sorted reverse both for first_event and first_error</span>
+        <span class="comment">// in practive the order should be the same, but as we don&#39;t know for sure, we have two separate storages</span>
+        {
+            <span class="kw">let</span> <span class="ident">event_ext_data</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">event_ext_data</span>.<span class="ident">borrow_mut</span>();
+            <span class="ident">event_ext_data</span>.<span class="ident">push</span>(<span class="ident">EventExtensionData</span> {
+                <span class="ident">ext</span>: <span class="ident">data</span>.<span class="ident">ext</span>,
+                <span class="ident">major_opcode</span>: <span class="ident">data</span>.<span class="ident">major_opcode</span>,
+                <span class="ident">first_event</span>: <span class="ident">data</span>.<span class="ident">first_event</span>,
+            });
+            <span class="ident">event_ext_data</span>.<span class="ident">sort_by</span>(<span class="op">|</span><span class="ident">a</span>, <span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>.<span class="ident">first_event</span>.<span class="ident">cmp</span>(<span class="kw-2">&amp;</span><span class="ident">a</span>.<span class="ident">first_event</span>))
+        }
+        {
+            <span class="kw">let</span> <span class="ident">error_ext_data</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">error_ext_data</span>.<span class="ident">borrow_mut</span>();
+            <span class="ident">error_ext_data</span>.<span class="ident">push</span>(<span class="ident">ErrorExtensionData</span> {
+                <span class="ident">ext</span>: <span class="ident">data</span>.<span class="ident">ext</span>,
+                <span class="ident">first_error</span>: <span class="ident">data</span>.<span class="ident">first_error</span>,
+            });
+            <span class="ident">error_ext_data</span>.<span class="ident">sort_by</span>(<span class="op">|</span><span class="ident">a</span>, <span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>.<span class="ident">first_error</span>.<span class="ident">cmp</span>(<span class="kw-2">&amp;</span><span class="ident">a</span>.<span class="ident">first_error</span>))
+        }
     }
 }
 
@@ -1823,11 +1843,7 @@
 }
 
 <span class="attribute">#[<span class="ident">test</span>]</span>
-<span class="kw">fn</span> <span class="ident">test_align_up</span>() {
-    <span class="comment">// align 4</span>
-    <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">10</span> {
-        <span class="macro">println!</span>(<span class="string">&quot;{} -&gt; {}&quot;</span>, <span class="ident">i</span>, <span class="ident">align_pad</span>(<span class="ident">i</span>, <span class="number">4</span>));
-    }
+<span class="kw">fn</span> <span class="ident">test_align_pad</span>() {
     <span class="comment">// align 1</span>
     <span class="macro">assert_eq!</span>(<span class="ident">align_pad</span>(<span class="number">0</span>, <span class="number">1</span>), <span class="number">0</span>);
     <span class="macro">assert_eq!</span>(<span class="ident">align_pad</span>(<span class="number">1234</span>, <span class="number">1</span>), <span class="number">0</span>);
