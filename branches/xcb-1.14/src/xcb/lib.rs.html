@@ -271,6 +271,15 @@
 <span id="271">271</span>
 <span id="272">272</span>
 <span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
 </pre><pre class="rust"><code><span class="comment">/*
  * Copyright (C) 2013 James Miller &lt;james@aatch.net&gt;
  * Copyright (c) 2016
@@ -374,6 +383,7 @@
     <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
     <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::unit_arg</span>)]</span>
     <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::new_ret_no_self</span>)]</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::too_many_arguments</span>)]</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xproto.rs&quot;</span>));
 }
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">bigreq</span> {
@@ -404,6 +414,7 @@
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri2&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">dri2</span> {
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::too_many_arguments</span>)]</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/dri2.rs&quot;</span>));
 }
 
@@ -419,6 +430,7 @@
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;glx&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">glx</span> {
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::too_many_arguments</span>)]</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/glx.rs&quot;</span>));
 }
 
@@ -427,6 +439,7 @@
     <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
     <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_mut</span>)]</span>
     <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::unit_arg</span>)]</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::too_many_arguments</span>)]</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xinput.rs&quot;</span>));
 }
 
@@ -439,6 +452,7 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;randr&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">randr</span> {
     <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::unit_arg</span>)]</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::too_many_arguments</span>)]</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/randr.rs&quot;</span>));
 }
 
@@ -476,6 +490,7 @@
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shape&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">shape</span> {
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::too_many_arguments</span>)]</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/shape.rs&quot;</span>));
 }
 
@@ -488,6 +503,7 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">sync</span> {
     <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
     <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::unit_arg</span>)]</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::too_many_arguments</span>)]</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/sync.rs&quot;</span>));
 }
 
@@ -531,6 +547,7 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xkb</span> {
     <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
     <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::unit_arg</span>)]</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::too_many_arguments</span>)]</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xkb.rs&quot;</span>));
 }
 
@@ -542,6 +559,7 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xv&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xv</span> {
     <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::unit_arg</span>)]</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::too_many_arguments</span>)]</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xv.rs&quot;</span>));
 }
 </code></pre></div>
