@@ -1561,6 +1561,25 @@
 <span id="1561">1561</span>
 <span id="1562">1562</span>
 <span id="1563">1563</span>
+<span id="1564">1564</span>
+<span id="1565">1565</span>
+<span id="1566">1566</span>
+<span id="1567">1567</span>
+<span id="1568">1568</span>
+<span id="1569">1569</span>
+<span id="1570">1570</span>
+<span id="1571">1571</span>
+<span id="1572">1572</span>
+<span id="1573">1573</span>
+<span id="1574">1574</span>
+<span id="1575">1575</span>
+<span id="1576">1576</span>
+<span id="1577">1577</span>
+<span id="1578">1578</span>
+<span id="1579">1579</span>
+<span id="1580">1580</span>
+<span id="1581">1581</span>
+<span id="1582">1582</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi::base</span>::<span class="kw-2">*</span>;
@@ -1583,7 +1602,7 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MINOR_VERSION</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">2</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VERSION_STRING</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;1.2&quot;</span>;
 
-<span class="kw">static</span> <span class="kw-2">mut</span> <span class="ident">FFI_EXT</span>: <span class="ident">xcb_extension_t</span> <span class="op">=</span> <span class="ident">xcb_extension_t</span> {
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">static</span> <span class="kw-2">mut</span> <span class="ident">FFI_EXT</span>: <span class="ident">xcb_extension_t</span> <span class="op">=</span> <span class="ident">xcb_extension_t</span> {
     <span class="ident">name</span>: <span class="ident">XNAME</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>,
     <span class="ident">global_id</span>: <span class="number">0</span>,
 };
@@ -1619,6 +1638,9 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::BaseEvent</span> <span class="kw">for</span> <span class="ident">GenericEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::Extension</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ext::Extension::Present</span>);
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">GenericEvent</span> { <span class="ident">raw</span> }
     }
@@ -1740,6 +1762,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::GeEvent</span> <span class="kw">for</span> <span class="ident">ConfigureNotifyEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">ext::Extension</span> <span class="op">=</span> <span class="ident">ext::Extension::Present</span>;
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">ConfigureNotifyEvent</span> { <span class="ident">raw</span> }
     }
@@ -1931,6 +1957,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::GeEvent</span> <span class="kw">for</span> <span class="ident">CompleteNotifyEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">ext::Extension</span> <span class="op">=</span> <span class="ident">ext::Extension::Present</span>;
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">CompleteNotifyEvent</span> { <span class="ident">raw</span> }
     }
@@ -2087,6 +2117,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::GeEvent</span> <span class="kw">for</span> <span class="ident">IdleNotifyEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">ext::Extension</span> <span class="op">=</span> <span class="ident">ext::Extension::Present</span>;
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">2</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">IdleNotifyEvent</span> { <span class="ident">raw</span> }
     }
@@ -2224,6 +2258,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::GeEvent</span> <span class="kw">for</span> <span class="ident">RedirectNotifyEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">ext::Extension</span> <span class="op">=</span> <span class="ident">ext::Extension::Present</span>;
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">3</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">RedirectNotifyEvent</span> { <span class="ident">raw</span> }
     }

@@ -21363,6 +21363,104 @@
 <span id="21363">21363</span>
 <span id="21364">21364</span>
 <span id="21365">21365</span>
+<span id="21366">21366</span>
+<span id="21367">21367</span>
+<span id="21368">21368</span>
+<span id="21369">21369</span>
+<span id="21370">21370</span>
+<span id="21371">21371</span>
+<span id="21372">21372</span>
+<span id="21373">21373</span>
+<span id="21374">21374</span>
+<span id="21375">21375</span>
+<span id="21376">21376</span>
+<span id="21377">21377</span>
+<span id="21378">21378</span>
+<span id="21379">21379</span>
+<span id="21380">21380</span>
+<span id="21381">21381</span>
+<span id="21382">21382</span>
+<span id="21383">21383</span>
+<span id="21384">21384</span>
+<span id="21385">21385</span>
+<span id="21386">21386</span>
+<span id="21387">21387</span>
+<span id="21388">21388</span>
+<span id="21389">21389</span>
+<span id="21390">21390</span>
+<span id="21391">21391</span>
+<span id="21392">21392</span>
+<span id="21393">21393</span>
+<span id="21394">21394</span>
+<span id="21395">21395</span>
+<span id="21396">21396</span>
+<span id="21397">21397</span>
+<span id="21398">21398</span>
+<span id="21399">21399</span>
+<span id="21400">21400</span>
+<span id="21401">21401</span>
+<span id="21402">21402</span>
+<span id="21403">21403</span>
+<span id="21404">21404</span>
+<span id="21405">21405</span>
+<span id="21406">21406</span>
+<span id="21407">21407</span>
+<span id="21408">21408</span>
+<span id="21409">21409</span>
+<span id="21410">21410</span>
+<span id="21411">21411</span>
+<span id="21412">21412</span>
+<span id="21413">21413</span>
+<span id="21414">21414</span>
+<span id="21415">21415</span>
+<span id="21416">21416</span>
+<span id="21417">21417</span>
+<span id="21418">21418</span>
+<span id="21419">21419</span>
+<span id="21420">21420</span>
+<span id="21421">21421</span>
+<span id="21422">21422</span>
+<span id="21423">21423</span>
+<span id="21424">21424</span>
+<span id="21425">21425</span>
+<span id="21426">21426</span>
+<span id="21427">21427</span>
+<span id="21428">21428</span>
+<span id="21429">21429</span>
+<span id="21430">21430</span>
+<span id="21431">21431</span>
+<span id="21432">21432</span>
+<span id="21433">21433</span>
+<span id="21434">21434</span>
+<span id="21435">21435</span>
+<span id="21436">21436</span>
+<span id="21437">21437</span>
+<span id="21438">21438</span>
+<span id="21439">21439</span>
+<span id="21440">21440</span>
+<span id="21441">21441</span>
+<span id="21442">21442</span>
+<span id="21443">21443</span>
+<span id="21444">21444</span>
+<span id="21445">21445</span>
+<span id="21446">21446</span>
+<span id="21447">21447</span>
+<span id="21448">21448</span>
+<span id="21449">21449</span>
+<span id="21450">21450</span>
+<span id="21451">21451</span>
+<span id="21452">21452</span>
+<span id="21453">21453</span>
+<span id="21454">21454</span>
+<span id="21455">21455</span>
+<span id="21456">21456</span>
+<span id="21457">21457</span>
+<span id="21458">21458</span>
+<span id="21459">21459</span>
+<span id="21460">21460</span>
+<span id="21461">21461</span>
+<span id="21462">21462</span>
+<span id="21463">21463</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi::base</span>::<span class="kw-2">*</span>;
@@ -21383,7 +21481,7 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MINOR_VERSION</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">3</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VERSION_STRING</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;2.3&quot;</span>;
 
-<span class="kw">static</span> <span class="kw-2">mut</span> <span class="ident">FFI_EXT</span>: <span class="ident">xcb_extension_t</span> <span class="op">=</span> <span class="ident">xcb_extension_t</span> {
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">static</span> <span class="kw-2">mut</span> <span class="ident">FFI_EXT</span>: <span class="ident">xcb_extension_t</span> <span class="op">=</span> <span class="ident">xcb_extension_t</span> {
     <span class="ident">name</span>: <span class="ident">XNAME</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>,
     <span class="ident">global_id</span>: <span class="number">0</span>,
 };
@@ -21419,6 +21517,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::BaseError</span> <span class="kw">for</span> <span class="ident">DeviceError</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::Extension</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ext::Extension::Input</span>);
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">DeviceError</span> { <span class="ident">raw</span> }
     }
@@ -21487,6 +21589,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::BaseError</span> <span class="kw">for</span> <span class="ident">EventError</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::Extension</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ext::Extension::Input</span>);
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">EventError</span> { <span class="ident">raw</span> }
     }
@@ -21555,6 +21661,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::BaseError</span> <span class="kw">for</span> <span class="ident">ModeError</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::Extension</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ext::Extension::Input</span>);
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">2</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">ModeError</span> { <span class="ident">raw</span> }
     }
@@ -21623,6 +21733,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::BaseError</span> <span class="kw">for</span> <span class="ident">DeviceBusyError</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::Extension</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ext::Extension::Input</span>);
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">3</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">DeviceBusyError</span> { <span class="ident">raw</span> }
     }
@@ -21691,6 +21805,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::BaseError</span> <span class="kw">for</span> <span class="ident">ClassError</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::Extension</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ext::Extension::Input</span>);
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">4</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">ClassError</span> { <span class="ident">raw</span> }
     }
@@ -21787,6 +21905,9 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::BaseEvent</span> <span class="kw">for</span> <span class="ident">DeviceValuatorEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::Extension</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ext::Extension::Input</span>);
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">DeviceValuatorEvent</span> { <span class="ident">raw</span> }
     }
@@ -21919,6 +22040,9 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::BaseEvent</span> <span class="kw">for</span> <span class="ident">DeviceKeyPressEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::Extension</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ext::Extension::Input</span>);
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">DeviceKeyPressEvent</span> { <span class="ident">raw</span> }
     }
@@ -22134,6 +22258,9 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::BaseEvent</span> <span class="kw">for</span> <span class="ident">DeviceFocusInEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::Extension</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ext::Extension::Input</span>);
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">6</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">DeviceFocusInEvent</span> { <span class="ident">raw</span> }
     }
@@ -22274,6 +22401,9 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::BaseEvent</span> <span class="kw">for</span> <span class="ident">DeviceStateNotifyEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::Extension</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ext::Extension::Input</span>);
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">10</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">DeviceStateNotifyEvent</span> { <span class="ident">raw</span> }
     }
@@ -22455,6 +22585,9 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::BaseEvent</span> <span class="kw">for</span> <span class="ident">DeviceMappingNotifyEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::Extension</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ext::Extension::Input</span>);
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">11</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">DeviceMappingNotifyEvent</span> { <span class="ident">raw</span> }
     }
@@ -22589,6 +22722,9 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::BaseEvent</span> <span class="kw">for</span> <span class="ident">ChangeDeviceNotifyEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::Extension</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ext::Extension::Input</span>);
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">12</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">ChangeDeviceNotifyEvent</span> { <span class="ident">raw</span> }
     }
@@ -22700,6 +22836,9 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::BaseEvent</span> <span class="kw">for</span> <span class="ident">DeviceKeyStateNotifyEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::Extension</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ext::Extension::Input</span>);
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">13</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">DeviceKeyStateNotifyEvent</span> { <span class="ident">raw</span> }
     }
@@ -22795,6 +22934,9 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::BaseEvent</span> <span class="kw">for</span> <span class="ident">DeviceButtonStateNotifyEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::Extension</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ext::Extension::Input</span>);
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">14</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">DeviceButtonStateNotifyEvent</span> { <span class="ident">raw</span> }
     }
@@ -22890,6 +23032,9 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::BaseEvent</span> <span class="kw">for</span> <span class="ident">DevicePresenceNotifyEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::Extension</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ext::Extension::Input</span>);
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">15</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">DevicePresenceNotifyEvent</span> { <span class="ident">raw</span> }
     }
@@ -23013,6 +23158,9 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::BaseEvent</span> <span class="kw">for</span> <span class="ident">DevicePropertyNotifyEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::Extension</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ext::Extension::Input</span>);
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">16</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">DevicePropertyNotifyEvent</span> { <span class="ident">raw</span> }
     }
@@ -23135,6 +23283,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::GeEvent</span> <span class="kw">for</span> <span class="ident">DeviceChangedEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">ext::Extension</span> <span class="op">=</span> <span class="ident">ext::Extension::Input</span>;
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">DeviceChangedEvent</span> { <span class="ident">raw</span> }
     }
@@ -23286,6 +23438,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::GeEvent</span> <span class="kw">for</span> <span class="ident">KeyPressEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">ext::Extension</span> <span class="op">=</span> <span class="ident">ext::Extension::Input</span>;
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">2</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">KeyPressEvent</span> { <span class="ident">raw</span> }
     }
@@ -23560,6 +23716,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::GeEvent</span> <span class="kw">for</span> <span class="ident">ButtonPressEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">ext::Extension</span> <span class="op">=</span> <span class="ident">ext::Extension::Input</span>;
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">4</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">ButtonPressEvent</span> { <span class="ident">raw</span> }
     }
@@ -23836,6 +23996,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::GeEvent</span> <span class="kw">for</span> <span class="ident">EnterEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">ext::Extension</span> <span class="op">=</span> <span class="ident">ext::Extension::Input</span>;
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">7</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">EnterEvent</span> { <span class="ident">raw</span> }
     }
@@ -24092,6 +24256,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::GeEvent</span> <span class="kw">for</span> <span class="ident">HierarchyEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">ext::Extension</span> <span class="op">=</span> <span class="ident">ext::Extension::Input</span>;
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">11</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">HierarchyEvent</span> { <span class="ident">raw</span> }
     }
@@ -24231,6 +24399,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::GeEvent</span> <span class="kw">for</span> <span class="ident">PropertyEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">ext::Extension</span> <span class="op">=</span> <span class="ident">ext::Extension::Input</span>;
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">12</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">PropertyEvent</span> { <span class="ident">raw</span> }
     }
@@ -24360,6 +24532,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::GeEvent</span> <span class="kw">for</span> <span class="ident">RawKeyPressEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">ext::Extension</span> <span class="op">=</span> <span class="ident">ext::Extension::Input</span>;
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">13</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">RawKeyPressEvent</span> { <span class="ident">raw</span> }
     }
@@ -24553,6 +24729,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::GeEvent</span> <span class="kw">for</span> <span class="ident">RawButtonPressEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">ext::Extension</span> <span class="op">=</span> <span class="ident">ext::Extension::Input</span>;
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">15</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">RawButtonPressEvent</span> { <span class="ident">raw</span> }
     }
@@ -24748,6 +24928,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::GeEvent</span> <span class="kw">for</span> <span class="ident">TouchBeginEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">ext::Extension</span> <span class="op">=</span> <span class="ident">ext::Extension::Input</span>;
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">18</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">TouchBeginEvent</span> { <span class="ident">raw</span> }
     }
@@ -25024,6 +25208,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::GeEvent</span> <span class="kw">for</span> <span class="ident">TouchOwnershipEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">ext::Extension</span> <span class="op">=</span> <span class="ident">ext::Extension::Input</span>;
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">21</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">TouchOwnershipEvent</span> { <span class="ident">raw</span> }
     }
@@ -25190,6 +25378,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::GeEvent</span> <span class="kw">for</span> <span class="ident">RawTouchBeginEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">ext::Extension</span> <span class="op">=</span> <span class="ident">ext::Extension::Input</span>;
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">22</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">RawTouchBeginEvent</span> { <span class="ident">raw</span> }
     }
@@ -25385,6 +25577,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::GeEvent</span> <span class="kw">for</span> <span class="ident">BarrierHitEvent</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">ext::Extension</span> <span class="op">=</span> <span class="ident">ext::Extension::Input</span>;
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">25</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">BarrierHitEvent</span> { <span class="ident">raw</span> }
     }

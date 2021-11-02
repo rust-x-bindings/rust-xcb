@@ -3420,6 +3420,34 @@
 <span id="3420">3420</span>
 <span id="3421">3421</span>
 <span id="3422">3422</span>
+<span id="3423">3423</span>
+<span id="3424">3424</span>
+<span id="3425">3425</span>
+<span id="3426">3426</span>
+<span id="3427">3427</span>
+<span id="3428">3428</span>
+<span id="3429">3429</span>
+<span id="3430">3430</span>
+<span id="3431">3431</span>
+<span id="3432">3432</span>
+<span id="3433">3433</span>
+<span id="3434">3434</span>
+<span id="3435">3435</span>
+<span id="3436">3436</span>
+<span id="3437">3437</span>
+<span id="3438">3438</span>
+<span id="3439">3439</span>
+<span id="3440">3440</span>
+<span id="3441">3441</span>
+<span id="3442">3442</span>
+<span id="3443">3443</span>
+<span id="3444">3444</span>
+<span id="3445">3445</span>
+<span id="3446">3446</span>
+<span id="3447">3447</span>
+<span id="3448">3448</span>
+<span id="3449">3449</span>
+<span id="3450">3450</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi::base</span>::<span class="kw-2">*</span>;
@@ -3437,7 +3465,7 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MINOR_VERSION</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">2</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VERSION_STRING</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;2.2&quot;</span>;
 
-<span class="kw">static</span> <span class="kw-2">mut</span> <span class="ident">FFI_EXT</span>: <span class="ident">xcb_extension_t</span> <span class="op">=</span> <span class="ident">xcb_extension_t</span> {
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">static</span> <span class="kw-2">mut</span> <span class="ident">FFI_EXT</span>: <span class="ident">xcb_extension_t</span> <span class="op">=</span> <span class="ident">xcb_extension_t</span> {
     <span class="ident">name</span>: <span class="ident">XNAME</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>,
     <span class="ident">global_id</span>: <span class="number">0</span>,
 };
@@ -3476,6 +3504,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::BaseError</span> <span class="kw">for</span> <span class="ident">BadClockError</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::Extension</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ext::Extension::Xf86VidMode</span>);
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">BadClockError</span> { <span class="ident">raw</span> }
     }
@@ -3544,6 +3576,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::BaseError</span> <span class="kw">for</span> <span class="ident">BadHTimingsError</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::Extension</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ext::Extension::Xf86VidMode</span>);
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">BadHTimingsError</span> { <span class="ident">raw</span> }
     }
@@ -3612,6 +3648,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::BaseError</span> <span class="kw">for</span> <span class="ident">BadVTimingsError</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::Extension</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ext::Extension::Xf86VidMode</span>);
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">2</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">BadVTimingsError</span> { <span class="ident">raw</span> }
     }
@@ -3680,6 +3720,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::BaseError</span> <span class="kw">for</span> <span class="ident">ModeUnsuitableError</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::Extension</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ext::Extension::Xf86VidMode</span>);
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">3</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">ModeUnsuitableError</span> { <span class="ident">raw</span> }
     }
@@ -3748,6 +3792,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::BaseError</span> <span class="kw">for</span> <span class="ident">ExtensionDisabledError</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::Extension</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ext::Extension::Xf86VidMode</span>);
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">4</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">ExtensionDisabledError</span> { <span class="ident">raw</span> }
     }
@@ -3816,6 +3864,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::BaseError</span> <span class="kw">for</span> <span class="ident">ClientNotLocalError</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::Extension</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ext::Extension::Xf86VidMode</span>);
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">5</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">ClientNotLocalError</span> { <span class="ident">raw</span> }
     }
@@ -3884,6 +3936,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::BaseError</span> <span class="kw">for</span> <span class="ident">ZoomLockedError</span> {
+    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::Extension</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ext::Extension::Xf86VidMode</span>);
+
+    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">6</span>;
+
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">ZoomLockedError</span> { <span class="ident">raw</span> }
     }
