@@ -280,6 +280,12 @@
 <span id="280">280</span>
 <span id="281">281</span>
 <span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
 </pre><pre class="rust"><code><span class="comment">/*
  * Copyright (C) 2013 James Miller &lt;james@aatch.net&gt;
  * Copyright (c) 2016
@@ -359,6 +365,16 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">event</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">ext</span>;
 
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">base</span>::<span class="kw-2">*</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">error</span>::<span class="kw-2">*</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">event</span>::<span class="kw-2">*</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">ext</span>::<span class="kw-2">*</span>;
+
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">x</span> {
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::base</span>::{<span class="ident">COPY_FROM_PARENT</span>, <span class="ident">CURRENT_TIME</span>, <span class="ident">NO_SYMBOL</span>};
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::xproto</span>::<span class="kw-2">*</span>;
+}
+
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">ffi</span> {
     <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">non_camel_case_types</span>)]</span>
     <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">improper_ctypes</span>)]</span>
@@ -392,10 +408,6 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xc_misc</span> {
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xc_misc.rs&quot;</span>));
 }
-
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">base</span>::<span class="kw-2">*</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">ext</span>::<span class="kw-2">*</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">xproto</span>::<span class="kw-2">*</span>;
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;composite&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">composite</span> {

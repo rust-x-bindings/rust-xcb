@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["Event",""]]});
+initSidebarItems({"enum":[["ProtocolEvent",""]]});

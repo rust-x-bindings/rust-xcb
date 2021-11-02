@@ -832,7 +832,6 @@
 <span id="832">832</span>
 <span id="833">833</span>
 <span id="834">834</span>
-<span id="835">835</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi::base</span>::<span class="kw-2">*</span>;
@@ -1015,9 +1014,9 @@
                 <span class="ident">iov_len</span>: <span class="number">0</span>,
             }; <span class="number">4</span>];
 
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf0</span>: [<span class="ident">u8</span>; <span class="number">8</span>] <span class="op">=</span> [<span class="number">0</span>; <span class="number">8</span>];
-            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">4</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u16</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">client_major_version</span>;
-            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">6</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u16</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">client_minor_version</span>;
+            <span class="kw">let</span> <span class="ident">buf0</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>] <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="number">0</span>; <span class="number">8</span>];
+            <span class="self">self</span>.<span class="ident">client_major_version</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">4</span>..]);
+            <span class="self">self</span>.<span class="ident">client_minor_version</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">6</span>..]);
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">8</span>;
             <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
@@ -1156,7 +1155,7 @@
                 <span class="ident">iov_len</span>: <span class="number">0</span>,
             }; <span class="number">4</span>];
 
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf0</span>: [<span class="ident">u8</span>; <span class="number">4</span>] <span class="op">=</span> [<span class="number">0</span>; <span class="number">4</span>];
+            <span class="kw">let</span> <span class="ident">buf0</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>] <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="number">0</span>; <span class="number">4</span>];
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">4</span>;
             <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
@@ -1314,7 +1313,7 @@
                 <span class="ident">iov_len</span>: <span class="number">0</span>,
             }; <span class="number">4</span>];
 
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf0</span>: [<span class="ident">u8</span>; <span class="number">4</span>] <span class="op">=</span> [<span class="number">0</span>; <span class="number">4</span>];
+            <span class="kw">let</span> <span class="ident">buf0</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>] <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="number">0</span>; <span class="number">4</span>];
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">4</span>;
             <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
@@ -1364,10 +1363,10 @@
                 <span class="ident">iov_len</span>: <span class="number">0</span>,
             }; <span class="number">4</span>];
 
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf0</span>: [<span class="ident">u8</span>; <span class="number">10</span>] <span class="op">=</span> [<span class="number">0</span>; <span class="number">10</span>];
-            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">4</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u16</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">standby_timeout</span>;
-            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">6</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u16</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">suspend_timeout</span>;
-            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">8</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u16</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">off_timeout</span>;
+            <span class="kw">let</span> <span class="ident">buf0</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>] <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="number">0</span>; <span class="number">10</span>];
+            <span class="self">self</span>.<span class="ident">standby_timeout</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">4</span>..]);
+            <span class="self">self</span>.<span class="ident">suspend_timeout</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">6</span>..]);
+            <span class="self">self</span>.<span class="ident">off_timeout</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">8</span>..]);
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">10</span>;
             <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
@@ -1409,7 +1408,7 @@
                 <span class="ident">iov_len</span>: <span class="number">0</span>,
             }; <span class="number">4</span>];
 
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf0</span>: [<span class="ident">u8</span>; <span class="number">4</span>] <span class="op">=</span> [<span class="number">0</span>; <span class="number">4</span>];
+            <span class="kw">let</span> <span class="ident">buf0</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>] <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="number">0</span>; <span class="number">4</span>];
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">4</span>;
             <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
@@ -1451,7 +1450,7 @@
                 <span class="ident">iov_len</span>: <span class="number">0</span>,
             }; <span class="number">4</span>];
 
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf0</span>: [<span class="ident">u8</span>; <span class="number">4</span>] <span class="op">=</span> [<span class="number">0</span>; <span class="number">4</span>];
+            <span class="kw">let</span> <span class="ident">buf0</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>] <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="number">0</span>; <span class="number">4</span>];
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">4</span>;
             <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
@@ -1495,9 +1494,8 @@
                 <span class="ident">iov_len</span>: <span class="number">0</span>,
             }; <span class="number">4</span>];
 
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf0</span>: [<span class="ident">u8</span>; <span class="number">6</span>] <span class="op">=</span> [<span class="number">0</span>; <span class="number">6</span>];
-            <span class="kw-2">*</span>(<span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">4</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u16</span>) <span class="op">=</span>
-                <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="self">self</span>.<span class="ident">power_level</span>) <span class="kw">as</span> <span class="ident">u16</span>;
+            <span class="kw">let</span> <span class="ident">buf0</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>] <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="number">0</span>; <span class="number">6</span>];
+            (<span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="self">self</span>.<span class="ident">power_level</span>) <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">4</span>..]);
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">6</span>;
             <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
@@ -1641,7 +1639,7 @@
                 <span class="ident">iov_len</span>: <span class="number">0</span>,
             }; <span class="number">4</span>];
 
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf0</span>: [<span class="ident">u8</span>; <span class="number">4</span>] <span class="op">=</span> [<span class="number">0</span>; <span class="number">4</span>];
+            <span class="kw">let</span> <span class="ident">buf0</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>] <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="number">0</span>; <span class="number">4</span>];
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">4</span>;
             <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
