@@ -286,11 +286,38 @@
 <span id="286">286</span>
 <span id="287">287</span>
 <span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
+<span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
+<span id="295">295</span>
+<span id="296">296</span>
+<span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
+<span id="312">312</span>
+<span id="313">313</span>
 </pre><pre class="rust"><code><span class="comment">/*
  * Copyright (C) 2013 James Miller &lt;james@aatch.net&gt;
  * Copyright (c) 2016
  *         Remi Thebault &lt;remi.thebault@gmail.com&gt;
  *         Thomas Bracht Laumann Jespersen &lt;laumann.thomas@gmail.com&gt;
+ *
+ * Copyright (c) 2017-2021 Remi Thebault &lt;remi.thebault@gmail.com&gt;
  *
  * Permission is hereby granted, free of charge, to any
  * person obtaining a copy of this software and associated
@@ -338,16 +365,8 @@
 <span class="doccomment">//!   - void requests: requests that do not expect an answer (e.g. `ChangeProperty`)</span>
 <span class="doccomment">//!   - non-void requests: requests that need a `Reply` (e.g. `GetProperty`)</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! Void requests are normally unchecked. They are issued by the client, that</span>
-<span class="doccomment">//! will normally not do anything else about it. For each such request, it exists</span>
-<span class="doccomment">//! a variant with `_checked` suffix (e.g. `change_property` and `change_property_checked`)</span>
-<span class="doccomment">//! that allows to receive a confirmation reply from the server via</span>
-<span class="doccomment">//! `Connection::request_check`.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Conversely, non-void requests are normally checked. When the client retrieves</span>
-<span class="doccomment">//! the `Reply`, it can check for an `Error`. For each such request, it exists a variant</span>
-<span class="doccomment">//! with `_unchecked` suffix (e.g. `get_property` and `get_property_unchecked`).</span>
-<span class="doccomment">//! If this variant is used, the `Reply` is retrieved assuming that there was no error.</span>
+<span class="doccomment">//! Requests are passed to the server by filling a request structure e.g. `x::CreateWindow`</span>
+<span class="doccomment">//! and passing it to `Connection::send_request`.</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! The server can also communicate with clients by sending `Event`s.</span>
 <span class="doccomment">//! The client listens to events with calls such as `Connection::wait_for_event`</span>
@@ -371,19 +390,20 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">ext</span>::<span class="kw-2">*</span>;
 
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">x</span> {
+    <span class="doccomment">//! module containing all the definitions of the core X protocol</span>
     <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::base</span>::{<span class="ident">COPY_FROM_PARENT</span>, <span class="ident">CURRENT_TIME</span>, <span class="ident">NO_SYMBOL</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::xproto</span>::<span class="kw-2">*</span>;
 }
 
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">ffi</span> {
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod</span> <span class="ident">ffi</span> {
     <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">non_camel_case_types</span>)]</span>
     <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">improper_ctypes</span>)]</span>
 
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">base</span>;
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">ext</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod</span> <span class="ident">base</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod</span> <span class="ident">ext</span>;
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xlib_xcb&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xlib_xcb</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod</span> <span class="ident">xlib_xcb</span>;
 
     <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">base</span>::<span class="kw-2">*</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">ext</span>::<span class="kw-2">*</span>;
@@ -400,6 +420,36 @@
     <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::unit_arg</span>)]</span>
     <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::new_ret_no_self</span>)]</span>
     <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::too_many_arguments</span>)]</span>
+
+    <span class="doccomment">//! module containing all the definitions of the core X protocol</span>
+
+    <span class="doccomment">/// Trait for element in a property list</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// In events (e.g. `GetProperty::value`), it allows to assert that the format</span>
+    <span class="doccomment">/// correspond to the type cast and therefore to do the cast safely at runtime</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// In request (e.g. `ChangeProperty::data`), it allows to infer the format value</span>
+    <span class="doccomment">/// from the type of passed data</span>
+    <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">PropEl</span> {
+        <span class="kw">const</span> <span class="ident">FORMAT</span>: <span class="ident">u8</span>;
+    }
+
+    <span class="kw">impl</span> <span class="ident">PropEl</span> <span class="kw">for</span> <span class="ident">u8</span> {
+        <span class="kw">const</span> <span class="ident">FORMAT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">8</span>;
+    }
+
+    <span class="kw">impl</span> <span class="ident">PropEl</span> <span class="kw">for</span> <span class="ident">u16</span> {
+        <span class="kw">const</span> <span class="ident">FORMAT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">16</span>;
+    }
+
+    <span class="kw">impl</span> <span class="ident">PropEl</span> <span class="kw">for</span> <span class="ident">u32</span> {
+        <span class="kw">const</span> <span class="ident">FORMAT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">32</span>;
+    }
+
+    <span class="kw">impl</span> <span class="ident">PropEl</span> <span class="kw">for</span> <span class="ident">Atom</span> {
+        <span class="kw">const</span> <span class="ident">FORMAT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">32</span>;
+    }
+
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xproto.rs&quot;</span>));
 }
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">bigreq</span> {

@@ -1258,9 +1258,6 @@
 <span id="1258">1258</span>
 <span id="1259">1259</span>
 <span id="1260">1260</span>
-<span id="1261">1261</span>
-<span id="1262">1262</span>
-<span id="1263">1263</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>::{<span class="self">self</span>, <span class="ident">ProtocolError</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::event</span>::{<span class="self">self</span>, <span class="ident">ProtocolEvent</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>::{<span class="ident">ErrorExtensionData</span>, <span class="ident">EventExtensionData</span>, <span class="ident">Extension</span>, <span class="ident">ExtensionData</span>};
@@ -1934,10 +1931,7 @@
         }
     }
 
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">handle_wait_for_event</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">ev</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ProtocolEvent</span><span class="op">&gt;</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">handle_wait_for_event</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ev</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ProtocolEvent</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="ident">ev</span>.<span class="ident">is_null</span>() {
             <span class="self">self</span>.<span class="ident">has_error</span>()<span class="question-mark">?</span>;
             <span class="macro">panic!</span>(<span class="string">&quot;xcb_wait_for_event returned null with I/O error&quot;</span>);

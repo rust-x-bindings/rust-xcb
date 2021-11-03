@@ -691,6 +691,7 @@
 <span id="691">691</span>
 <span id="692">692</span>
 <span id="693">693</span>
+<span id="694">694</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi::base</span>::<span class="kw-2">*</span>;
@@ -699,6 +700,7 @@
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::shape</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xfixes</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xproto</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xproto::PropEl</span>;
 
 <span class="kw">use</span> <span class="ident">bitflags::bitflags</span>;
 <span class="kw">use</span> <span class="ident">libc</span>::{<span class="self">self</span>, <span class="ident">iovec</span>};
@@ -1005,7 +1007,7 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Damage</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,

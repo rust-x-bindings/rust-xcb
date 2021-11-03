@@ -20287,6 +20287,74 @@
 <span id="20287">20287</span>
 <span id="20288">20288</span>
 <span id="20289">20289</span>
+<span id="20290">20290</span>
+<span id="20291">20291</span>
+<span id="20292">20292</span>
+<span id="20293">20293</span>
+<span id="20294">20294</span>
+<span id="20295">20295</span>
+<span id="20296">20296</span>
+<span id="20297">20297</span>
+<span id="20298">20298</span>
+<span id="20299">20299</span>
+<span id="20300">20300</span>
+<span id="20301">20301</span>
+<span id="20302">20302</span>
+<span id="20303">20303</span>
+<span id="20304">20304</span>
+<span id="20305">20305</span>
+<span id="20306">20306</span>
+<span id="20307">20307</span>
+<span id="20308">20308</span>
+<span id="20309">20309</span>
+<span id="20310">20310</span>
+<span id="20311">20311</span>
+<span id="20312">20312</span>
+<span id="20313">20313</span>
+<span id="20314">20314</span>
+<span id="20315">20315</span>
+<span id="20316">20316</span>
+<span id="20317">20317</span>
+<span id="20318">20318</span>
+<span id="20319">20319</span>
+<span id="20320">20320</span>
+<span id="20321">20321</span>
+<span id="20322">20322</span>
+<span id="20323">20323</span>
+<span id="20324">20324</span>
+<span id="20325">20325</span>
+<span id="20326">20326</span>
+<span id="20327">20327</span>
+<span id="20328">20328</span>
+<span id="20329">20329</span>
+<span id="20330">20330</span>
+<span id="20331">20331</span>
+<span id="20332">20332</span>
+<span id="20333">20333</span>
+<span id="20334">20334</span>
+<span id="20335">20335</span>
+<span id="20336">20336</span>
+<span id="20337">20337</span>
+<span id="20338">20338</span>
+<span id="20339">20339</span>
+<span id="20340">20340</span>
+<span id="20341">20341</span>
+<span id="20342">20342</span>
+<span id="20343">20343</span>
+<span id="20344">20344</span>
+<span id="20345">20345</span>
+<span id="20346">20346</span>
+<span id="20347">20347</span>
+<span id="20348">20348</span>
+<span id="20349">20349</span>
+<span id="20350">20350</span>
+<span id="20351">20351</span>
+<span id="20352">20352</span>
+<span id="20353">20353</span>
+<span id="20354">20354</span>
+<span id="20355">20355</span>
+<span id="20356">20356</span>
+<span id="20357">20357</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi::base</span>::<span class="kw-2">*</span>;
@@ -24246,7 +24314,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">data</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ClientMessageData</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">data</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ClientMessageData</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">match</span> <span class="self">self</span>.<span class="ident">format</span>() {
                 <span class="number">8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ClientMessageData::Data8</span>(
@@ -24519,7 +24587,7 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Window</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,
@@ -24545,7 +24613,7 @@
     <span class="macro">assert_eq!</span>(<span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span>(), <span class="number">4</span>);
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Pixmap</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,
@@ -24571,7 +24639,7 @@
     <span class="macro">assert_eq!</span>(<span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Pixmap</span><span class="op">&gt;</span>(), <span class="number">4</span>);
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Cursor</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,
@@ -24597,7 +24665,7 @@
     <span class="macro">assert_eq!</span>(<span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Cursor</span><span class="op">&gt;</span>(), <span class="number">4</span>);
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Font</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,
@@ -24623,7 +24691,7 @@
     <span class="macro">assert_eq!</span>(<span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Font</span><span class="op">&gt;</span>(), <span class="number">4</span>);
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gcontext</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,
@@ -24649,7 +24717,7 @@
     <span class="macro">assert_eq!</span>(<span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Gcontext</span><span class="op">&gt;</span>(), <span class="number">4</span>);
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Colormap</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,
@@ -24675,7 +24743,7 @@
     <span class="macro">assert_eq!</span>(<span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Colormap</span><span class="op">&gt;</span>(), <span class="number">4</span>);
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Atom</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,
@@ -24725,6 +24793,38 @@
     }
 }
 
+<span class="kw">impl</span> <span class="ident">PartialEq</span> <span class="kw">for</span> <span class="ident">Drawable</span> {
+    <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rhs</span>: <span class="kw-2">&amp;</span><span class="ident">Drawable</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">resource_id</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">rhs</span>.<span class="ident">resource_id</span>()
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">Eq</span> <span class="kw">for</span> <span class="ident">Drawable</span> {}
+
+<span class="kw">impl</span> <span class="ident">PartialEq</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Drawable</span> {
+    <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rhs</span>: <span class="kw-2">&amp;</span><span class="ident">Window</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">resource_id</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">rhs</span>.<span class="ident">resource_id</span>()
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">PartialEq</span><span class="op">&lt;</span><span class="ident">Drawable</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Window</span> {
+    <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rhs</span>: <span class="kw-2">&amp;</span><span class="ident">Drawable</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">resource_id</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">rhs</span>.<span class="ident">resource_id</span>()
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">PartialEq</span><span class="op">&lt;</span><span class="ident">Pixmap</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Drawable</span> {
+    <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rhs</span>: <span class="kw-2">&amp;</span><span class="ident">Pixmap</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">resource_id</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">rhs</span>.<span class="ident">resource_id</span>()
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">PartialEq</span><span class="op">&lt;</span><span class="ident">Drawable</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Pixmap</span> {
+    <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rhs</span>: <span class="kw-2">&amp;</span><span class="ident">Drawable</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">resource_id</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">rhs</span>.<span class="ident">resource_id</span>()
+    }
+}
+
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Fontable</span> {
     <span class="prelude-val">None</span>,
@@ -24743,6 +24843,38 @@
             <span class="ident">Fontable::Font</span>(<span class="ident">xid</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">xid</span>.<span class="ident">resource_id</span>(),
             <span class="ident">Fontable::Gcontext</span>(<span class="ident">xid</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">xid</span>.<span class="ident">resource_id</span>(),
         }
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">PartialEq</span> <span class="kw">for</span> <span class="ident">Fontable</span> {
+    <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rhs</span>: <span class="kw-2">&amp;</span><span class="ident">Fontable</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">resource_id</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">rhs</span>.<span class="ident">resource_id</span>()
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">Eq</span> <span class="kw">for</span> <span class="ident">Fontable</span> {}
+
+<span class="kw">impl</span> <span class="ident">PartialEq</span><span class="op">&lt;</span><span class="ident">Font</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Fontable</span> {
+    <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rhs</span>: <span class="kw-2">&amp;</span><span class="ident">Font</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">resource_id</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">rhs</span>.<span class="ident">resource_id</span>()
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">PartialEq</span><span class="op">&lt;</span><span class="ident">Fontable</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Font</span> {
+    <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rhs</span>: <span class="kw-2">&amp;</span><span class="ident">Fontable</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">resource_id</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">rhs</span>.<span class="ident">resource_id</span>()
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">PartialEq</span><span class="op">&lt;</span><span class="ident">Gcontext</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Fontable</span> {
+    <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rhs</span>: <span class="kw-2">&amp;</span><span class="ident">Gcontext</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">resource_id</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">rhs</span>.<span class="ident">resource_id</span>()
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">PartialEq</span><span class="op">&lt;</span><span class="ident">Fontable</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Gcontext</span> {
+    <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rhs</span>: <span class="kw-2">&amp;</span><span class="ident">Fontable</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">resource_id</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">rhs</span>.<span class="ident">resource_id</span>()
     }
 }
 
@@ -30576,17 +30708,15 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ChangeProperty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ChangeProperty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">P</span>: <span class="ident">PropEl</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">mode</span>: <span class="ident">PropMode</span>,
     <span class="kw">pub</span> <span class="ident">window</span>: <span class="ident">Window</span>,
     <span class="kw">pub</span> <span class="ident">property</span>: <span class="ident">Atom</span>,
     <span class="kw">pub</span> <span class="ident">r#type</span>: <span class="ident">Atom</span>,
-    <span class="kw">pub</span> <span class="ident">format</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span> <span class="ident">data_len</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
+    <span class="kw">pub</span> <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">P</span>],
 }
 
-<span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RawRequest</span> <span class="kw">for</span> <span class="ident">ChangeProperty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">P</span>: <span class="ident">PropEl</span><span class="op">&gt;</span> <span class="ident">base::RawRequest</span> <span class="kw">for</span> <span class="ident">ChangeProperty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">P</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">raw_request</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">c</span>: <span class="kw-2">&amp;</span><span class="ident">base::Connection</span>, <span class="ident">checked</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="op">=</span> <span class="ident">xcb_protocol_request_t</span> {
@@ -30606,8 +30736,8 @@
             <span class="self">self</span>.<span class="ident">window</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">4</span>..]);
             <span class="self">self</span>.<span class="ident">property</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">8</span>..]);
             <span class="self">self</span>.<span class="ident">r#type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">12</span>..]);
-            <span class="self">self</span>.<span class="ident">format</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">16</span>..]);
-            <span class="self">self</span>.<span class="ident">data_len</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">20</span>..]);
+            <span class="ident">P::FORMAT</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">16</span>..]);
+            (<span class="self">self</span>.<span class="ident">data</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">20</span>..]);
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">24</span>;
             <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
@@ -30628,12 +30758,12 @@
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::Request</span> <span class="kw">for</span> <span class="ident">ChangeProperty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">P</span>: <span class="ident">PropEl</span><span class="op">&gt;</span> <span class="ident">base::Request</span> <span class="kw">for</span> <span class="ident">ChangeProperty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">P</span><span class="op">&gt;</span> {
     <span class="kw">type</span> <span class="ident">Cookie</span> <span class="op">=</span> <span class="ident">base::VoidCookie</span>;
     <span class="kw">const</span> <span class="ident">IS_VOID</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="bool-val">true</span>;
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">ChangeProperty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">P</span>: <span class="ident">PropEl</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">ChangeProperty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">P</span><span class="op">&gt;</span> {}
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DeleteProperty</span> {
@@ -30772,11 +30902,17 @@
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">value</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">PropEl</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">P</span>] {
+        <span class="macro">assert_eq!</span>(
+            <span class="self">self</span>.<span class="ident">format</span>(),
+            <span class="ident">P::FORMAT</span>,
+            <span class="string">&quot;mismatched format of xproto::GetPropertyReply::value&quot;</span>
+        );
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">32usize</span>;
             <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> ((<span class="self">self</span>.<span class="ident">value_len</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="op">*</span> ((<span class="self">self</span>.<span class="ident">format</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="op">/</span> <span class="number">8usize</span>));
-            <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>;
+            <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">len</span> <span class="op">/</span> <span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span>();
+            <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">P</span>;
             <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>)
         }
     }

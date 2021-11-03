@@ -2956,6 +2956,7 @@
 <span id="2956">2956</span>
 <span id="2957">2957</span>
 <span id="2958">2958</span>
+<span id="2959">2959</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi::base</span>::<span class="kw-2">*</span>;
@@ -2963,6 +2964,7 @@
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::render</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::shape</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xproto</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xproto::PropEl</span>;
 
 <span class="kw">use</span> <span class="ident">bitflags::bitflags</span>;
 <span class="kw">use</span> <span class="ident">libc</span>::{<span class="self">self</span>, <span class="ident">iovec</span>};
@@ -3457,7 +3459,7 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Region</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,
@@ -3489,7 +3491,7 @@
     <span class="prelude-val">None</span> <span class="op">=</span> <span class="number">0</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Barrier</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,

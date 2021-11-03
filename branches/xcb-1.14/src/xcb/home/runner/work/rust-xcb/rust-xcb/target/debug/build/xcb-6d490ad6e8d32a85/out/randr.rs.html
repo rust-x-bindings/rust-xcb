@@ -8561,12 +8561,22 @@
 <span id="8561">8561</span>
 <span id="8562">8562</span>
 <span id="8563">8563</span>
+<span id="8564">8564</span>
+<span id="8565">8565</span>
+<span id="8566">8566</span>
+<span id="8567">8567</span>
+<span id="8568">8568</span>
+<span id="8569">8569</span>
+<span id="8570">8570</span>
+<span id="8571">8571</span>
+<span id="8572">8572</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi::base</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi::ext</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::render</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xproto</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xproto::PropEl</span>;
 
 <span class="kw">use</span> <span class="ident">bitflags::bitflags</span>;
 <span class="kw">use</span> <span class="ident">libc</span>::{<span class="self">self</span>, <span class="ident">iovec</span>};
@@ -9207,7 +9217,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">u</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">NotifyData</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">u</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">NotifyData</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">match</span> <span class="self">self</span>.<span class="ident">sub_code</span>() {
                 <span class="ident">Notify::CrtcChange</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">NotifyData::Cc</span>(<span class="kw-2">*</span><span class="ident">CrtcChange::from_data</span>(
@@ -9282,7 +9292,7 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Mode</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,
@@ -9308,7 +9318,7 @@
     <span class="macro">assert_eq!</span>(<span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Mode</span><span class="op">&gt;</span>(), <span class="number">4</span>);
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Crtc</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,
@@ -9334,7 +9344,7 @@
     <span class="macro">assert_eq!</span>(<span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Crtc</span><span class="op">&gt;</span>(), <span class="number">4</span>);
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Output</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,
@@ -9360,7 +9370,7 @@
     <span class="macro">assert_eq!</span>(<span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Output</span><span class="op">&gt;</span>(), <span class="number">4</span>);
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Provider</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,
@@ -9386,7 +9396,7 @@
     <span class="macro">assert_eq!</span>(<span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Provider</span><span class="op">&gt;</span>(), <span class="number">4</span>);
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Lease</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,
@@ -12590,17 +12600,15 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">ConfigureOutputProperty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ChangeOutputProperty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ChangeOutputProperty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">P</span>: <span class="ident">PropEl</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">output</span>: <span class="ident">Output</span>,
     <span class="kw">pub</span> <span class="ident">property</span>: <span class="ident">xproto::Atom</span>,
     <span class="kw">pub</span> <span class="ident">r#type</span>: <span class="ident">xproto::Atom</span>,
-    <span class="kw">pub</span> <span class="ident">format</span>: <span class="ident">u8</span>,
     <span class="kw">pub</span> <span class="ident">mode</span>: <span class="ident">xproto::PropMode</span>,
-    <span class="kw">pub</span> <span class="ident">num_units</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
+    <span class="kw">pub</span> <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">P</span>],
 }
 
-<span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RawRequest</span> <span class="kw">for</span> <span class="ident">ChangeOutputProperty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">P</span>: <span class="ident">PropEl</span><span class="op">&gt;</span> <span class="ident">base::RawRequest</span> <span class="kw">for</span> <span class="ident">ChangeOutputProperty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">P</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">raw_request</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">c</span>: <span class="kw-2">&amp;</span><span class="ident">base::Connection</span>, <span class="ident">checked</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="op">=</span> <span class="ident">xcb_protocol_request_t</span> {
@@ -12619,9 +12627,9 @@
             <span class="self">self</span>.<span class="ident">output</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">4</span>..]);
             <span class="self">self</span>.<span class="ident">property</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">8</span>..]);
             <span class="self">self</span>.<span class="ident">r#type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">12</span>..]);
-            <span class="self">self</span>.<span class="ident">format</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">16</span>..]);
+            <span class="ident">P::FORMAT</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">16</span>..]);
             (<span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="self">self</span>.<span class="ident">mode</span>) <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">17</span>..]);
-            <span class="self">self</span>.<span class="ident">num_units</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">20</span>..]);
+            (<span class="self">self</span>.<span class="ident">data</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">20</span>..]);
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">24</span>;
             <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
@@ -12642,12 +12650,12 @@
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::Request</span> <span class="kw">for</span> <span class="ident">ChangeOutputProperty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">P</span>: <span class="ident">PropEl</span><span class="op">&gt;</span> <span class="ident">base::Request</span> <span class="kw">for</span> <span class="ident">ChangeOutputProperty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">P</span><span class="op">&gt;</span> {
     <span class="kw">type</span> <span class="ident">Cookie</span> <span class="op">=</span> <span class="ident">base::VoidCookie</span>;
     <span class="kw">const</span> <span class="ident">IS_VOID</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="bool-val">true</span>;
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">ChangeOutputProperty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">P</span>: <span class="ident">PropEl</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">ChangeOutputProperty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">P</span><span class="op">&gt;</span> {}
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DeleteOutputProperty</span> {
@@ -12786,11 +12794,17 @@
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">data</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">data</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">PropEl</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">P</span>] {
+        <span class="macro">assert_eq!</span>(
+            <span class="self">self</span>.<span class="ident">format</span>(),
+            <span class="ident">P::FORMAT</span>,
+            <span class="string">&quot;mismatched format of randr::GetOutputPropertyReply::data&quot;</span>
+        );
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">32usize</span>;
             <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> ((<span class="self">self</span>.<span class="ident">num_items</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="op">*</span> ((<span class="self">self</span>.<span class="ident">format</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="op">/</span> <span class="number">8usize</span>));
-            <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>;
+            <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">len</span> <span class="op">/</span> <span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span>();
+            <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">P</span>;
             <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>)
         }
     }
@@ -16291,17 +16305,15 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">ConfigureProviderProperty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ChangeProviderProperty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ChangeProviderProperty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">P</span>: <span class="ident">PropEl</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">provider</span>: <span class="ident">Provider</span>,
     <span class="kw">pub</span> <span class="ident">property</span>: <span class="ident">xproto::Atom</span>,
     <span class="kw">pub</span> <span class="ident">r#type</span>: <span class="ident">xproto::Atom</span>,
-    <span class="kw">pub</span> <span class="ident">format</span>: <span class="ident">u8</span>,
     <span class="kw">pub</span> <span class="ident">mode</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span> <span class="ident">num_items</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
+    <span class="kw">pub</span> <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">P</span>],
 }
 
-<span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RawRequest</span> <span class="kw">for</span> <span class="ident">ChangeProviderProperty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">P</span>: <span class="ident">PropEl</span><span class="op">&gt;</span> <span class="ident">base::RawRequest</span> <span class="kw">for</span> <span class="ident">ChangeProviderProperty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">P</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">raw_request</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">c</span>: <span class="kw-2">&amp;</span><span class="ident">base::Connection</span>, <span class="ident">checked</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="op">=</span> <span class="ident">xcb_protocol_request_t</span> {
@@ -16320,9 +16332,9 @@
             <span class="self">self</span>.<span class="ident">provider</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">4</span>..]);
             <span class="self">self</span>.<span class="ident">property</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">8</span>..]);
             <span class="self">self</span>.<span class="ident">r#type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">12</span>..]);
-            <span class="self">self</span>.<span class="ident">format</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">16</span>..]);
+            <span class="ident">P::FORMAT</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">16</span>..]);
             <span class="self">self</span>.<span class="ident">mode</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">17</span>..]);
-            <span class="self">self</span>.<span class="ident">num_items</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">20</span>..]);
+            (<span class="self">self</span>.<span class="ident">data</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">20</span>..]);
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="ident">buf0</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">24</span>;
             <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
@@ -16343,12 +16355,12 @@
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::Request</span> <span class="kw">for</span> <span class="ident">ChangeProviderProperty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">P</span>: <span class="ident">PropEl</span><span class="op">&gt;</span> <span class="ident">base::Request</span> <span class="kw">for</span> <span class="ident">ChangeProviderProperty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">P</span><span class="op">&gt;</span> {
     <span class="kw">type</span> <span class="ident">Cookie</span> <span class="op">=</span> <span class="ident">base::VoidCookie</span>;
     <span class="kw">const</span> <span class="ident">IS_VOID</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="bool-val">true</span>;
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">ChangeProviderProperty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">P</span>: <span class="ident">PropEl</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">ChangeProviderProperty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">P</span><span class="op">&gt;</span> {}
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DeleteProviderProperty</span> {
@@ -16487,11 +16499,17 @@
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">data</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">data</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">PropEl</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">P</span>] {
+        <span class="macro">assert_eq!</span>(
+            <span class="self">self</span>.<span class="ident">format</span>(),
+            <span class="ident">P::FORMAT</span>,
+            <span class="string">&quot;mismatched format of randr::GetProviderPropertyReply::data&quot;</span>
+        );
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">32usize</span>;
             <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> ((<span class="self">self</span>.<span class="ident">num_items</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="op">*</span> ((<span class="self">self</span>.<span class="ident">format</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="op">/</span> <span class="number">8usize</span>));
-            <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>;
+            <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">len</span> <span class="op">/</span> <span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span>();
+            <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">P</span>;
             <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>)
         }
     }
